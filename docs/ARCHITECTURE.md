@@ -1,89 +1,80 @@
 # FreeMix Architecture & Technical Design
 
-## 1. Executive Summary
+## 1. Diretriz Central de Arquitetura
 
-**FreeMix** is an open-source live video production suite designed to provide a professional, broadcast-grade switcher workflow (inspired by vMix and hardware vision mixers) while running atop the battle-tested, high-performance rendering engine of **OBS Studio** (`libobs`).
+> **“O FreeMix é um aplicativo próprio, com executável, interface e distribuição próprios, usando a biblioteca libobs como motor interno.”**
 
-Instead of a monolithic, destructive fork that alters the compiled C++ core of OBS (which historically causes "merge hell" and abandoned codebases, as seen in commercial forks like Quicklink StudioPro), FreeMix employs a **modular, layered architecture**:
+Esta especificação define formalmente a arquitetura de entrega do FreeMix e substitui qualquer concepção anterior que tratasse o produto final como OBS portátil com tema, Web Dock ou script de personalização.
+
+O usuário final instala e executa o **FreeMix** (`FreeMix.exe`) e realiza toda a operação broadcast dentro da sua interface integrada.
 
 ```
-+-----------------------------------------------------------------+
-|                   FreeMix Application Layer                     |
-|  - Switcher Console Dock (Broadcast UI, Tally, Crossbars)       |
-|  - FreeMix Call (WebRTC P2P Multi-Guest Remote Engine)         |
-|  - Audio Bus Routing (Master, Aux A, Aux B / Mix-Minus)         |
-|  - Win32 Process Branding & Native GPU Splash Screen           |
-+-----------------------------------------------------------------+
-                                |
-                                v (Non-blocking IPC / obs-frontend-api)
-+-----------------------------------------------------------------+
-|                    OBS Studio Core & Plugins                    |
-|  - libobs (C/C++ Direct3D 11 / OpenGL render engine)           |
-|  - obs-websocket 5.x protocol                                   |
-|  - Community Plugins: Source Record (MultiCorder), Replay, DSK |
-|  - Hardware Encoders: NVENC, QuickSync, Apple VT, AMF, x264     |
-+-----------------------------------------------------------------+
++-----------------------------------------------------------------------+
+|                         FreeMix Studio App                            |
+|                            (FreeMix.exe)                              |
+|                                                                       |
+|  +-----------------------------------------------------------------+  |
+|  |             Interface Operacional de Produção (Qt6)             |  |
+|  |  - Barra Superior: Fullscreen, Multiview, Aux 1/2, Status, Time |  |
+|  |  - Monitores Centrais: Preview (Laranja) & Program (Verde)      |  |
+|  |  - Console Central de Transição: Cut, Fade, Zoom, T-Bar         |  |
+|  |  - Mesa de Corte: Entradas, Câmeras, Mídias, Call WebRTC        |  |
+|  |  - Mixer Broadcast: Faders dB, Master, Fones, Delay, Pan, VST   |  |
+|  +-----------------------------------------------------------------+  |
+|                                  |                                    |
+|                                  v                                    |
+|  +-----------------------------------------------------------------+  |
+|  |                  Camada de Serviços do FreeMix                  |  |
+|  |  - OutputManager: MultiStream NVENC, DeckLink SDI, NDI, OMT     |  |
+|  |  - AudioBusManager: Master, Aux A Mix-Minus, Aux B Headphones    |  |
+|  |  - CanvasMixManager: Múltiplos renders e composições paralelas   |  |
+|  |  - MultiviewManager: Mosaico de confiança e sinalização Tally   |  |
+|  |  - ProjectManager: Projetos, cenas e persistência própria       |  |
+|  +-----------------------------------------------------------------+  |
++-----------------------------------------------------------------------+
+                                   |
+                  (Chamadas Diretas de API C / C++)
+                                   v
++-----------------------------------------------------------------------+
+|                    libobs (Core Media Engine)                         |
+|  - Render Pipeline: Direct3D 11, shaders de vídeo, texturas GPU       |
+|  - Audio Engine: libobs-audio, resampling, mixers, canais 7.1/estéreo |
+|  - Hardware Video Encoders: NVENC, Intel QuickSync, AMD AMF, Apple VT |
+|  - Capture Framework: DirectShow, Wasapi, Media Foundation, PipeWire  |
+|  - Protocol Outputs: RTMP, SRT, RIST, MPEG-TS                         |
++-----------------------------------------------------------------------+
 ```
 
 ---
 
-## 2. Decoupled Architectural Layers
+## 2. Princípios de Execução e Fronteiras do Aplicativo
 
-### Phase 1: Portable Extension & Broadcast Dock (Current)
-- **Engine**: Official unmodified OBS Studio 64-bit portable runtime.
-- **Switching Surface**: Native Chromium Embedded Framework (CEF) browser dock running at hardware refresh rate.
-- **Communication**: Asynchronous, high-throughput WebSocket (`obs-websocket 5.x`). If the UI encounters an intense DOM repaint, video rendering and hardware encoding continue at 60 fps without dropping a single frame.
-- **Process Integration**: Win32 background daemons handle dynamic window titles and taskbar icon assignment (`WM_SETICON`) without altering signed executables.
+### 2.1 Executável e Identidade Própria
+1. O produto é entregue como o executável nativo Windows **`FreeMix.exe`**, compilado a partir do código C++/Qt do projeto.
+2. Metadados de versão, ícone (`IDI_ICON1`), manifesto com suporte a High-DPI e janelas pertencem exclusivamente ao FreeMix.
+3. Não são aceitos:
+   - Scripts que abrem o OBS e aplicam tema ou títulos via Win32 posterior.
+   - Navegadores Edge/Chrome abrindo a mesa isolada fora do software de vídeo.
+   - Telas de configuração ou caixas de diálogo operacionais antigas do OBS original.
 
-### Phase 2: Native Qt/C++ Extension Plugin (`obs-freemix`)
-- Utilizing `obs-frontend-api` to register custom top-level menu bars:
-  - `Produção` (Production): New production, Open, Save, Templates, Backup.
-  - `Entradas` (Inputs): Add, Duplicate, Batch configure, Categories.
-  - `Áudio` (Audio): Master and Aux Bus matrix, mix-minus routing.
-  - `Saídas` (Outputs): Streaming multi-destinations, Recording profiles, Virtual Camera.
-  - `Layout`: Preview/Program densities, multiview configurations, Operate vs. Edit toggle.
-  - `Ferramentas` (Tools): Replay director, FreeMix Call manager, SPX-GC Graphics.
-- Native dock replacement using `obs_frontend_add_dock_by_id`.
+### 2.2 Gerenciamento do Motor via `libobs`
+O aplicativo FreeMix utiliza a `libobs` seguindo a documentação oficial de frontends (`https://docs.obsproject.com/frontends`):
+- `obs_startup()`: Inicializa o subsistema de áudio e vídeo com resolução e taxa de quadros definidas pela produção.
+- `obs_load_all_modules()`: Carrega os módulos de captura, efeitos e encoders selecionados pelo FreeMix.
+- `obs_display_create()`: Cria os viewports nativos de Preview e Program ancorados nos widgets centrais da janela principal.
+- `obs_set_output_source()`: Define as saídas de vídeo e transições comutadas pela mesa de corte.
 
-### Phase 3: Modular UI Fork (Long-Term)
-- Should deep customizations require restructuring the root `QMainWindow` beyond Qt hook capabilities, maintain a dedicated **UI-only fork** while linking directly against upstream `libobs` and plugin headers.
-
----
-
-## 3. Operational Workflow vs. Edit Modes
-
-Traditional OBS keeps transformation bounding boxes and crop handles active in the preview canvas. FreeMix introduces distinct operational states:
-
-1. **Operate Mode (`Modo Operar`)**:
-   - Preview canvas acts strictly as a confidence monitor for the next on-air source.
-   - Accidental dragging, resizing, or transformation of scene items is locked.
-   - Single-click prepares the source into Preview; Double-click opens its specific Properties dialog.
-   - Transition buttons (`Cut`, `Fade`, `Quick Play`) trigger state changes immediately.
-
-2. **Compose Mode (`Modo Editar`)**:
-   - Unlocks bounding boxes, scale gizmos, alignment guides, and layer ordering.
+### 2.3 Central de Configurações FreeMix
+Ao clicar em "Configurações" ou na engrenagem de qualquer elemento, abre-se a **Central de Configurações FreeMix**:
+- **Projeto & Vídeo**: Resolução base (1080p, 4K, 720p) e framerate (60fps, 59.94, 50, 30).
+- **Entradas**: Painel com propriedades dinâmicas do hardware capturado, sem interfaces legadas.
+- **Áudio & Barramentos**: Roteamento matricial do Master, retorno de convidados (Mix-Minus) e fone da direção.
+- **Saídas & MultiStream**: Gerenciador de múltiplos destinos RTMP/SRT com encoder compartilhado.
 
 ---
 
-## 4. Audio Architecture & Mix-Minus (Audio Buses)
+## 3. Gestão de Licenças e Conformidade
 
-FreeMix exposes a broadcast bus matrix built upon OBS's 6 audio tracks:
-- **Track 1 (`M` - Master)**: PGM audio sent to the primary livestream and recording.
-- **Track 2**: Clean feed (isolated program minus graphics/voiceovers).
-- **Track 3 (`A` - Aux A)**: Remote guest return bus (Mix-Minus: hears program audio minus their own voice to eliminate feedback/echo).
-- **Track 4 (`B` - Aux B)**: Operator headphones & intercom monitoring.
-
----
-
-## 5. FreeMix Call (Low-Latency Remote Guests)
-
-- Powered by peer-to-peer WebRTC via modern browser capture (`browser_source`).
-- **Zero Cloud Subscription**: Directly negotiates encrypted audio/video peer connections.
-- **Audio Separation**: `reroute_audio: true` injects the guest's discrete audio feed into the mixer as an independent strip, allowing custom EQ, filters, and bus routing.
-- **Program Return**: Automated reverse link broadcasting the OBS Virtual Camera feed back to the guest's smartphone or browser.
-
----
-
-## 6. License & Compliance
-
-FreeMix is licensed under the **GNU General Public License v2.0 (GPL-2.0)** to maintain 100% compliance with OBS Studio and its ecosystem. Commercial distribution or monetization is permitted under the terms of the GPL, provided corresponding source code is made available.
+O FreeMix é desenvolvido sob a **GPL-2.0**.
+- A biblioteca `libobs` e módulos compatíveis são utilizados preservando os créditos de seus autores originais e o cumprimento estrito das exigências da licença de código aberto.
+- O código-fonte de modificações e do aplicativo é integralmente versionado no repositório.

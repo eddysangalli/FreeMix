@@ -1,0 +1,12 @@
+{
+  "id": "marca_bug_relogio",
+  "name": "Marca de Canto com Relógio (Bug)",
+  "collection": "Marca",
+  "category": "Bugs",
+  "version": 1,
+  "layer": 1,
+  "htmlFile": "bug_relogio.html",
+  "fields": [
+    { "key": "marca", "label": "Nome da Marca / Canal", "type": "text", "default": "FREEMIX NEWS" }
+  ]
+}

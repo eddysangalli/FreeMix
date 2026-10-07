@@ -1,0 +1,29 @@
+{
+  "id": "jornal_lower_third",
+  "name": "Identificação de Entrevistado (Lower Third)",
+  "collection": "Jornalismo",
+  "category": "Tarjas",
+  "version": 1,
+  "layer": 3,
+  "htmlFile": "lower_third.html",
+  "fields": [
+    {
+      "key": "nome",
+      "label": "Nome Completo",
+      "type": "text",
+      "default": "Dr. Carlos Eduardo Silva"
+    },
+    {
+      "key": "cargo",
+      "label": "Cargo / Função",
+      "type": "text",
+      "default": "Especialista em Comunicação e Redes"
+    },
+    {
+      "key": "cor",
+      "label": "Cor de Destaque",
+      "type": "color",
+      "default": "#00e676"
+    }
+  ]
+}

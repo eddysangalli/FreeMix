@@ -1,0 +1,53 @@
+{
+  "name": "obs-freemix",
+  "version": "0.2.0",
+  "description": "FreeMix Native Plugin - Broadcast switcher UI and integrations for OBS Studio",
+  "author": "FreeMix Team",
+  "license": "GPL-2.0",
+  "url": "https://github.com/eddysangalli/FreeMix",
+  "minObsVersion": "30.0.0",
+  "maxObsVersion": "31.0.0",
+  "binary": "obs-freemix.dll",
+  "dataPath": "obs-freemix",
+  "locale": {
+    "en-US": "locale/en-US.ini",
+    "pt-BR": "locale/pt-BR.ini"
+  },
+  "dependencies": [
+    "obs-websocket",
+    "source-record",
+    "replay-source",
+    "downstream-keyer"
+  ],
+  "optionalDependencies": [
+    "obs-ndi",
+    "obs-websockets",
+    "obs-browser"
+  ],
+  "components": {
+    "menus": [
+      "Produção",
+      "Entradas",
+      "Áudio",
+      "Saídas",
+      "Layout",
+      "Ferramentas",
+      "Ajuda"
+    ],
+    "dialogs": [
+      "AddInputDialog",
+      "InputPropertiesDialog",
+      "GeneralSettingsDialog",
+      "ModuleSettingsDialog"
+    ],
+    "docks": [
+      "Mesa de Corte FreeMix"
+    ],
+    "integrations": [
+      "Source Record (MultiCorder)",
+      "Replay Source",
+      "Downstream Keyer",
+      "VDO.Ninja (FreeMix Call)"
+    ]
+  }
+}

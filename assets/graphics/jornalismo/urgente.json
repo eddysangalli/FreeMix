@@ -1,0 +1,13 @@
+{
+  "id": "jornal_urgente",
+  "name": "Tarja Plantão / Notícia Urgente",
+  "collection": "Jornalismo",
+  "category": "Tarjas",
+  "version": 1,
+  "layer": 3,
+  "htmlFile": "urgente.html",
+  "fields": [
+    { "key": "titulo", "label": "Destaque do Badge", "type": "text", "default": "URGENTE" },
+    { "key": "texto", "label": "Texto da Notícia", "type": "text", "default": "Defesa Civil emite alerta meteorológico para as próximas horas" }
+  ]
+}

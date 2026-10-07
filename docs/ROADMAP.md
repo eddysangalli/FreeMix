@@ -1,33 +1,43 @@
-# FreeMix Roadmap
+# FreeMix Roadmap · Transição para Aplicativo Próprio
 
-This roadmap outlines the milestones for the FreeMix live production switcher project.
-
----
-
-## 🎯 Phase 1: Portable Broadcast Suite (Current · v0.1.0)
-- [x] Studio Mode with vMix color scheme (Preview Orange `#f7931e`, Output Green `#0e8a16`).
-- [x] Hardware-accelerated WPF borderless splash screen (`splash.ps1`).
-- [x] Dynamic Win32 window title and icon daemon (`set-freemix-title.ps1`).
-- [x] Broadcast center transition column with T-Bar slider (`Yami_MesaDeCorte.ovt`).
-- [x] FreeMix Call integration (VDO.Ninja WebRTC P2P guest connection & return PGM).
-- [x] Color-coded category tabs, real-time live clock, and broadcast status bar.
-- [x] MultiCorder (ISO recording) via Source Record filter integration.
-- [x] Replay angles integration via Replay Source.
-- [x] Automated CDP/WebSocket regression test suites (`test-inputs.mjs`, `test-mesa.mjs`).
+Este roadmap documenta o plano de execução e o status atual da transição arquitetural do FreeMix para um aplicativo autônomo baseado na biblioteca `libobs`.
 
 ---
 
-## 🚀 Phase 2: Native Qt Integration & Workflow Refinement (v0.2.0 - v0.4.0)
-- [ ] Dedicated FreeMix top menu bar (`Produção`, `Entradas`, `Áudio`, `Saídas`, `Layout`, `Ferramentas`).
-- [ ] Dual-state Operate vs. Edit mode toggle (disabling canvas transformation handles during live switching).
-- [ ] Crossbar hardware switcher row (1-10 Preview and Program buttons).
-- [ ] Conference Room mode in FreeMix Call (multi-guest room where guests see each other before switching).
-- [ ] Dedicated Input Properties modal replacing native OBS property popups with streamlined tabs (General, Video, Audio, Bus, Shortcuts).
+## 📌 Etapa 1: Base do Aplicativo Compilado & Ciclo de Vida da `libobs` (Em Execução)
+* [x] **Redefinição Arquitetural**: Documentação formal do escopo e arquitetura do aplicativo próprio (`FreeMix.exe`) com `libobs`.
+* [x] **Serviços de Integração em C++**:
+  - `OutputManager`: Saídas unificadas e suporte a MultiStream com encoder NVENC compartilhado.
+  - `AudioBusManager`: Barramentos Master, Aux A Mix-Minus e Aux B Fones via `libobs-audio`.
+  - `CanvasMixManager` & `MultiviewManager`: Múltiplos renders e composição da grade multiview.
+* [ ] **Compilação do Executável Windows (`FreeMix.exe`)**:
+  - Estrutura de compilação CMake (`src/app/CMakeLists.txt`).
+  - Recursos Win32 compilados (`freemix.rc`, `freemix.ico`, manifesto DPI-Aware).
+  - Ponto de entrada (`main.cpp` / `FreeMixApp`): Inicialização da `libobs` (`obs_startup`), detecção de GPU e criação do loop de eventos Qt.
+* [ ] **Janela Principal Nativa (`FreeMixMainWindow`)**:
+  - Contêiner de vídeo com os dois viewports DirectX 11 (`obs_display_create`): Preview e Program.
+  - Barra central de transições (Cut, Fade, T-Bar).
+  - Ancoragem integrada da Mesa de Produção do FreeMix.
 
 ---
 
-## 🏆 Phase 3: Modular C++ Plugin & Standalone Packaging (v0.5.0+)
-- [ ] Compile standalone `obs-freemix.dll` using `obs-frontend-api`.
-- [ ] Native QWidget mixer strips for ultra-low latency VU meters.
-- [ ] SPX-GC / CasparCG graphics pack integration out-of-the-box.
-- [ ] One-click Windows installer (Inno Setup / MSIX) alongside the portable ZIP format.
+## 📌 Etapa 2: Central de Configurações & Diálogos Operacionais Próprios
+* [ ] **Central de Configurações FreeMix**:
+  - Painel de Projeto e Vídeo (resoluções base/saída, FPS num/den).
+  - Painel de Áudio e Barramentos (roteamento de dispositivos, níveis de monitoração).
+  - Painel de Transmissão & MultiStream (adicionar/editar destinos RTMP/SRT).
+* [ ] **Editor de Propriedades de Entradas**:
+  - Janela própria de propriedades para câmeras DirectShow, placas DeckLink, mídias e navegadores.
+  - Consulta direta às propriedades do motor (`obs_source_properties`).
+* [ ] **Diálogo de Filtros e Efeitos**:
+  - Ajuste de Compressor, Limiter, Redutor de Ruído e plugins VST na interface FreeMix.
+
+---
+
+## 📌 Etapa 3: Empacotamento Autônomo & Distribuição
+* [ ] **Distribuição Portátil e Instalador**:
+  - Pacote completo com `FreeMix.exe`, `libobs.dll`, plugins essenciais e redistribuíveis do Visual C++.
+  - Armazenamento de dados do usuário em diretório próprio (`FreeMix/config/` ou `%APPDATA%\FreeMix`), sem dependência de instalações ou perfis do OBS.
+* [ ] **Validação e Testes Automatizados**:
+  - Testes de inicialização em ambiente limpo sem OBS pré-instalado.
+  - Persistência e restauração de projetos FreeMix (.fmx).
