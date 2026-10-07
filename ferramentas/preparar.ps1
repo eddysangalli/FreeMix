@@ -6,8 +6,24 @@ $root = Split-Path -Parent $PSScriptRoot
 $cfg = Join-Path $root 'config\obs-studio'
 $mark = Join-Path $cfg 'raiz.txt'
 $old = if (Test-Path $mark) { (Get-Content $mark -Raw).Trim() } else { 'D:\DRIVE\IA\antigravity\vmixtwste\obs-vmix' }
+
+# Every start: the keyer plugin (Downstream Keyer 0.4.4) leaves the "hide after" time of a keyer created at run
+# time uninitialised and saves that garbage with the preset. On the next start such a keyer drops its scene right
+# after showing it: an overlay that will not stay on, or the audio buses going off air (no sound on Master).
+# No request can set that value, so it is zeroed in the preset files here.
+try {
+  if (-not (Get-Process obs64, FreeMix -ErrorAction SilentlyContinue | Where-Object { $_.Path -like "$root\*" })) {
+    $enc = New-Object System.Text.UTF8Encoding $false
+    foreach ($f in Get-ChildItem (Join-Path $cfg 'basic\scenes\*') -Include *.json, *.bak, *.salvo -File -ErrorAction SilentlyContinue) {
+      $t = [System.IO.File]::ReadAllText($f.FullName, $enc)
+      $n = [regex]::Replace($t, '("hide_after":\s*)[1-9]\d*', '${1}0')
+      if ($n -ne $t) { [System.IO.File]::WriteAllText($f.FullName, $n, $enc) }
+    }
+  }
+} catch { }
+
 if ($old -ieq $root) { exit 0 }
-if (Get-Process obs64 -ErrorAction SilentlyContinue | Where-Object { $_.Path -like "$root\*" }) { exit 0 }
+if (Get-Process obs64, FreeMix -ErrorAction SilentlyContinue | Where-Object { $_.Path -like "$root\*" }) { exit 0 }
 
 $utf8 = New-Object System.Text.UTF8Encoding $false
 function Swap([string]$text, [string]$from, [string]$to) { [regex]::Replace($text, [regex]::Escape($from), { param($m) $to }, 'IgnoreCase') }

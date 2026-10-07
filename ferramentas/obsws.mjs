@@ -9,7 +9,8 @@ const WebSocket = require("ws");
 export const ROOT = "D:/DRIVE/IA/antigravity/vmixtwste/obs-vmix";
 const sha = (text) => createHash("sha256").update(text).digest("base64");
 
-export async function connect() {
+// opts.events: obs-websocket event subscription mask; opts.onEvent(type, data) receives them.
+export async function connect(opts = {}) {
   const cfg = JSON.parse(readFileSync(`${ROOT}/config/obs-studio/plugin_config/obs-websocket/config.json`, "utf8"));
   const ws = new WebSocket(`ws://127.0.0.1:${cfg.server_port}`);
   const pending = new Map();
@@ -20,8 +21,9 @@ export async function connect() {
       const m = JSON.parse(String(raw));
       if (m.op === 0) {
         const a = m.d.authentication;
-        ws.send(JSON.stringify({ op: 1, d: { rpcVersion: 1, eventSubscriptions: 0, ...(a ? { authentication: sha(sha(cfg.server_password + a.salt) + a.challenge) } : {}) } }));
+        ws.send(JSON.stringify({ op: 1, d: { rpcVersion: 1, eventSubscriptions: opts.events || 0, ...(a ? { authentication: sha(sha(cfg.server_password + a.salt) + a.challenge) } : {}) } }));
       } else if (m.op === 2) resolve();
+      else if (m.op === 5) opts.onEvent?.(m.d.eventType, m.d.eventData);
       else if (m.op === 7) { const p = pending.get(m.d.requestId); pending.delete(m.d.requestId); p?.(m.d); }
     });
     ws.on("close", (code) => reject(new Error(`conexão fechada (${code})`)));

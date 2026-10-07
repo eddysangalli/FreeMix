@@ -2,6 +2,8 @@
 
 O **FreeMix Studio** é uma plataforma de produção ao vivo de alta performance inspirada na ergonomia e no fluxo operacional do **vMix** e **TriCaster**, utilizando a biblioteca `libobs` como motor de captura, renderização gráfica, processamento de áudio e transmissão.
 
+> **Estado real do projeto (07/10/2026): leia [`CONTINUAR.md`](CONTINUAR.md).** Ele diz o que existe, o que foi testado e o que falta. O restante deste README e a pasta `docs` descrevem a intenção do produto e, em vários pontos, dão como pronto o que ainda não foi feito. O programa de verdade é o OBS Studio 32.2.2 mais os patches da pasta [`fork`](fork/LEIAME.md); as pastas `src` e `plugins/obs-freemix` são um rascunho anterior que nunca compilou.
+
 ---
 
 ## 🎯 Arquitetura de Produto

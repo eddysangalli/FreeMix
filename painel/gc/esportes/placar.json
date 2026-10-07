@@ -1,0 +1,17 @@
+{
+  "id": "esporte_placar",
+  "name": "Placar com Cronômetro Dinâmico",
+  "collection": "Esportes",
+  "category": "Placares",
+  "version": 1,
+  "layer": 1,
+  "htmlFile": "placar.html",
+  "fields": [
+    { "key": "timeA", "label": "Time Mandante", "type": "text", "default": "BRASIL" },
+    { "key": "golsA", "label": "Gols Mandante", "type": "number", "default": 2 },
+    { "key": "golsB", "label": "Gols Visitante", "type": "number", "default": 1 },
+    { "key": "timeB", "label": "Time Visitante", "type": "text", "default": "ARGENTINA" },
+    { "key": "periodo", "label": "Período / Tempo", "type": "text", "default": "2º T" },
+    { "key": "minutos", "label": "Minuto Inicial", "type": "number", "default": 35 }
+  ]
+}

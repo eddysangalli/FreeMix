@@ -1,362 +1,100 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
 <head>
-  <meta charset="utf-8">
-  <title>FreeMix Studio - Menu Superior</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <style>
-    :root {
-      --bg-top: #10141b;
-      --bg-btn: #18202c;
-      --bg-btn-hover: #222d3d;
-      --bg-btn-active: #0d5f2a;
-      --border-btn: #263445;
-      --border-btn-hover: #3a4f69;
-      --text-main: #dbe4ef;
-      --text-dim: #7f93aa;
-      --c-green: #00e676;
-      --c-orange: #f7931e;
-      --c-red: #ff3b30;
-      --c-blue: #2979ff;
-    }
-    * { box-sizing: border-box; margin: 0; padding: 0; user-select: none; }
-    html, body {
-      width: 100%; height: 100%;
-      background: var(--bg-top);
-      color: var(--text-main);
-      font: 11.5px/1.2 "Segoe UI", -apple-system, Roboto, Helvetica, Arial, sans-serif;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      border-bottom: 1px solid #1a222f;
-    }
-    .topbar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      width: 100%;
-      height: 36px;
-      padding: 0 8px;
-      gap: 6px;
-    }
-    .left-brand {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      flex-shrink: 0;
-    }
-    .brand-logo {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      font-weight: 800;
-      font-size: 12px;
-      letter-spacing: 0.5px;
-      color: #ffffff;
-    }
-    .brand-logo svg {
-      width: 18px;
-      height: 18px;
-      fill: var(--c-orange);
-    }
-    .brand-badge {
-      background: #18212e;
-      border: 1px solid #2a3a50;
-      color: var(--text-dim);
-      font-size: 10px;
-      font-weight: 600;
-      padding: 2px 7px;
-      border-radius: 3px;
-      display: flex;
-      align-items: center;
-      gap: 4px;
-    }
-    .brand-badge b { color: var(--text-main); }
-    .brand-badge .dirty { color: var(--c-red); display: none; }
-
-    .center-actions {
-      display: flex;
-      align-items: center;
-      gap: 4px;
-      flex-wrap: nowrap;
-      overflow-x: auto;
-    }
-    .btn-group {
-      display: flex;
-      align-items: center;
-      gap: 2px;
-      background: #0b0e13;
-      padding: 2px;
-      border-radius: 3px;
-      border: 1px solid #1c2635;
-    }
-    .btn {
-      height: 26px;
-      padding: 0 8px;
-      background: var(--bg-btn);
-      border: 1px solid var(--border-btn);
-      color: var(--text-main);
-      font-size: 11px;
-      font-weight: 600;
-      border-radius: 2px;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      white-space: nowrap;
-      transition: all 0.1s ease;
-    }
-    .btn:hover {
-      background: var(--bg-btn-hover);
-      border-color: var(--border-btn-hover);
-      color: #ffffff;
-    }
-    .btn:active {
-      background: var(--bg-btn-active);
-      border-color: var(--c-green);
-      transform: translateY(1px);
-    }
-    .btn svg {
-      width: 13px;
-      height: 13px;
-      fill: currentColor;
-    }
-    .btn.accent {
-      background: #142a1d;
-      border-color: #235d39;
-      color: #a7f3d0;
-    }
-    .btn.accent:hover {
-      background: #1d3e2a;
-      border-color: var(--c-green);
-      color: #ffffff;
-    }
-
-    .right-tools {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      flex-shrink: 0;
-    }
-    .aux-bar {
-      display: flex;
-      align-items: center;
-      gap: 4px;
-      background: #0c0f14;
-      padding: 2px 6px;
-      border-radius: 3px;
-      border: 1px solid #1c2635;
-      font-size: 10px;
-      font-weight: 700;
-      color: var(--text-dim);
-    }
-    .aux-bar select {
-      background: #141b24;
-      border: 1px solid #28374a;
-      color: var(--c-green);
-      border-radius: 2px;
-      font-size: 10px;
-      font-weight: 700;
-      height: 20px;
-      padding: 0 4px;
-      outline: none;
-      cursor: pointer;
-    }
-
-    /* Modal Backdrop se aberto na topbar */
-    .modal-backdrop {
-      position: fixed; inset: 0; background: rgba(0,0,0,0.85);
-      display: none; align-items: center; justify-content: center; z-index: 9999;
-    }
-    .modal-backdrop.on { display: flex; }
-    .modal-dialog {
-      background: #121822; border: 1px solid #2a394d; border-radius: 4px;
-      width: 760px; max-width: 95vw; max-height: 85vh; display: flex; flex-direction: column;
-      box-shadow: 0 16px 48px rgba(0,0,0,0.85); overflow: hidden;
-    }
-    .modal-header {
-      height: 38px; background: #16202c; border-bottom: 1px solid #243346;
-      display: flex; align-items: center; justify-content: space-between; padding: 0 12px;
-      font-weight: 700; font-size: 12px;
-    }
-    .modal-body {
-      padding: 16px; overflow-y: auto; flex: 1; font-size: 11.5px;
-    }
-    .modal-close {
-      background: none; border: none; color: var(--text-dim); font-size: 16px; cursor: pointer;
-    }
-    .modal-close:hover { color: #fff; }
-  </style>
+<meta charset="utf-8">
+<title>Menu</title>
+<style>
+  /* Barra superior do FreeMix, na disposição de uma mesa de produção: Preset à esquerda, Tela Cheia no centro,
+     Pausar Entradas / Básico / Configurar / ? à direita. Cada botão executa algo real; as janelas abrem na mesa
+     de baixo porque esta barra é baixa demais para mostrá-las. */
+  :root { --bar: #0d1013; --btn: #2a3540; --btn-h: #364452; --bd: #4b5967; --tx: #f2f5f8; --on: #0e7a0d; }
+  * { box-sizing: border-box; }
+  html, body { height: 100%; margin: 0; }
+  body { background: var(--bar); color: var(--tx); font: 700 11px/1 "Segoe UI", Tahoma, Arial, sans-serif; user-select: none; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; padding: 0 4px; overflow: hidden; white-space: nowrap; }
+  .grp { display: flex; align-items: center; gap: 4px; } .grp.r { justify-content: flex-end; }
+  button { font: inherit; color: inherit; cursor: pointer; }
+  .b { height: 22px; min-width: 74px; padding: 0 10px; background: var(--btn); border: 1px solid var(--bd); display: inline-flex; align-items: center; justify-content: center; }
+  .b:hover { background: var(--btn-h); } .b.on { background: var(--on); border-color: #2fb02c; }
+  .b:disabled { color: #6b7480; background: #1b2229; border-color: #2c353e; cursor: default; }
+  .b.dd { min-width: 0; width: 15px; padding: 0; margin-left: -5px; border-left-color: #1b2229; font-size: 8px; }
+  .b.sq { min-width: 0; width: 24px; padding: 0; }
+  .clk { display: inline-flex; gap: 10px; margin-left: 10px; padding: 0 10px; height: 22px; align-items: center; background: #000; border: 1px solid #f2f5f8; font: 700 12px Consolas, monospace; } .clk b { color: #5a636e; } .clk b.on { color: #ff5a4f; } .clk #k-now { color: #f2f5f8; }
+  .lab { padding: 0 14px 0 10px; font-size: 12px; }
+</style>
 </head>
 <body>
-  <div class="topbar">
-    <!-- Identidade Broadcast -->
-    <div class="left-brand">
-      <div class="brand-logo">
-        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14.5v-9l6 4.5-6 4.5z"/></svg>
-        <span>FREEMIX <span style="color:var(--c-orange)">STUDIO</span></span>
-      </div>
-      <div class="brand-badge" id="preset-badge" title="Preset ativo de produção">
-        <span>Projeto:</span>
-        <b id="preset-name">Producao_Estudio.fmx</b>
-        <span class="dirty" id="preset-dirty">*</span>
-      </div>
-    </div>
-
-    <!-- Menus Principais estilo vMix -->
-    <div class="center-actions">
-      <!-- Bloco de Projetos / Presets -->
-      <div class="btn-group">
-        <button class="btn" data-act="newpreset" title="Novo Projeto / Preset Limpo">
-          <svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
-          Novo
-        </button>
-        <button class="btn" data-act="openmodal" data-m="presets" title="Abrir Preset Salvo (*.fmx)">
-          <svg viewBox="0 0 24 24"><path d="M20 6h-8l-2-2H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm0 12H4V8h16v10z"/></svg>
-          Abrir
-        </button>
-        <button class="btn accent" data-act="savepreset" title="Salvar Projeto Atual">
-          <svg viewBox="0 0 24 24"><path d="M17 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V7l-4-4zm-5 16c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3zm3-10H5V5h10v4z"/></svg>
-          Salvar
-        </button>
-        <button class="btn" data-act="savepresetas" title="Salvar Como Nova Versão">Salvar Como</button>
-      </div>
-
-      <!-- Bloco de Centrais Operacionais (vMix Modules) -->
-      <div class="btn-group">
-        <button class="btn" data-act="openmodal" data-m="settings" title="Configurações do Estúdio (Vídeo, Áudio, Saídas, Rede, Gravação)">
-          ⚙ Configurações
-        </button>
-        <button class="btn" data-act="openmodal" data-m="shortcuts" title="Central de Atalhos de Teclado e MIDI Learn">
-          ⚡ Atalhos
-        </button>
-        <button class="btn" data-act="openmodal" data-m="datasources" title="Central de Fontes de Dados (CSV, Sheets, RSS, JSON)">
-          📊 DataSources
-        </button>
-        <button class="btn" data-act="openmodal" data-m="overlays8" title="Central de Overlays (8 Canais DSK Independentes)">
-          🔲 Overlays (8)
-        </button>
-        <button class="btn" data-act="openmodal" data-m="replay" title="Central de Replay Multi-Cam (Câmeras ISO e Players A/B)">
-          ⏪ Replay Multi-Cam
-        </button>
-        <button class="btn" data-act="openmodal" data-m="bonding" title="Multi-WAN Bonding Failover (Internet Combinada)">
-          🌐 Bonding
-        </button>
-        <button class="btn" data-act="openmodal" data-m="outputs" title="Central de Saídas (Fullscreen, NDI Alpha, Virtual Cam)">
-          Saídas
-        </button>
-        <button class="btn" data-act="openmodal" data-m="graphics" title="Galeria de Gráficos e GCs Broadcast">
-          Gráficos / GCs
-        </button>
-        <button class="btn" data-act="openmodal" data-m="audiomatrix" title="Matriz de Áudio & Mix-Minus">
-          Audio Matrix
-        </button>
-      </div>
-    </div>
-
-    <!-- Controles Rápidos do Lado Direito -->
-    <div class="right-tools">
-      <div class="aux-bar">
-        <span>AUX 1:</span>
-        <select id="aux1-sel" data-act="aux" data-aux="1">
-          <option>Preview</option>
-          <option selected>Program</option>
-          <option>Cam 1</option>
-          <option>Clean Feed</option>
-        </select>
-        <span>AUX 2:</span>
-        <select id="aux2-sel" data-act="aux" data-aux="2">
-          <option selected>Clean Feed</option>
-          <option>Program</option>
-          <option>Replay A</option>
-        </select>
-      </div>
-      <button class="btn" data-act="fullscreen" title="Tela Cheia no Monitor Externo">Fullscreen</button>
-      <button class="btn" data-act="multiview" title="Mosaico Multiview de Câmeras">Multiview</button>
-    </div>
+  <div class="grp">
+    <span class="lab" id="lab" title="Preset em uso">Preset</span>
+    <button class="b" data-open="presets" data-arg="new" title="Criar uma produção nova, vazia">Novo</button>
+    <button class="b" data-open="presets" title="Abrir uma produção salva">Abrir</button><button class="b dd" data-open="presets" title="Produções salvas">▼</button>
+    <button class="b" data-do="presetsave" title="Confirma que a produção em uso está gravada">Salvar</button>
+    <button class="b" data-open="saveas" title="Grava uma cópia da produção com outro nome e passa a usá-la">Salvar como</button><button class="b dd" data-open="saveas" title="Salvar como">▼</button>
+    <button class="b" data-do="presetlast" title="Volta para a produção usada antes desta">Último</button>
+  </div>
+  <div class="grp">
+    <button class="b" data-do="fullscreen" title="Output em tela cheia no segundo monitor (em janela, se houver só um)">Tela Cheia</button><button class="b dd" data-open="ext" title="Central de saídas">▼</button>
+    <span class="clk" title="Relógio de produção: tempo de gravação, tempo de transmissão e hora"><b id="k-rec">REC 00:00:00</b><b id="k-str">NO AR 00:00:00</b><b id="k-now"></b></span>
+  </div>
+  <div class="grp r">
+    <button class="b" id="b-pause" data-do="pausethumbs" title="Pausa todas as entradas de vídeo que estão tocando">Pausar Entradas</button>
+    <button class="b" id="b-basic" data-do="basic" title="Mostra ou esconde os botões avançados da janela">Básico</button>
+    <button class="b" data-open="config" title="Vídeo da produção">Configurar</button><button class="b dd" data-open="cfgmenu" title="Todas as configurações">▼</button>
+    <button class="b sq" data-open="help" title="Ajuda">?</button>
   </div>
 
-  <!-- Modal Container -->
-  <div class="modal-backdrop" id="top-modal-backdrop">
-    <div class="modal-dialog" id="top-modal-dialog">
-      <div class="modal-header">
-        <span id="top-modal-title">Central Operacional</span>
-        <button class="modal-close" id="top-modal-close">&times;</button>
-      </div>
-      <div class="modal-body" id="top-modal-body"></div>
-    </div>
-  </div>
-
-  <script>
-    "use strict";
-    const bc = ("BroadcastChannel" in window) ? new BroadcastChannel("freemix_channel") : null;
-
-    // Ações dos botões da TopBar
-    const ACT = {
-      newpreset: () => {
-        if (confirm("Deseja criar uma nova produção limpa?")) {
-          document.getElementById("preset-name").textContent = "Producao_Nova.fmx";
-          notify("PRESET_NEW", { name: "Producao_Nova.fmx" });
-        }
-      },
-      savepreset: () => {
-        const name = document.getElementById("preset-name").textContent;
-        document.getElementById("preset-dirty").style.display = "none";
-        notify("PRESET_SAVE", { name });
-        alert("Projeto salvo com sucesso: " + name);
-      },
-      savepresetas: () => {
-        const current = document.getElementById("preset-name").textContent;
-        const novo = prompt("Salvar projeto como (*.fmx):", current);
-        if (novo && novo.trim()) {
-          const fn = novo.endsWith(".fmx") ? novo : novo + ".fmx";
-          document.getElementById("preset-name").textContent = fn;
-          notify("PRESET_SAVEAS", { name: fn });
-          alert("Projeto salvo como: " + fn);
-        }
-      },
-      openmodal: (ds) => {
-        const m = ds.m;
-        notify("OPEN_MODAL", { modal: m });
-      },
-      fullscreen: () => notify("TRIGGER_FULLSCREEN", {}),
-      multiview: () => notify("TRIGGER_MULTIVIEW", {}),
-      aux: (ds) => notify("AUX_ROUTE", { aux: ds.aux })
+<script src="local.js"></script>
+<script>
+  "use strict";
+  const $ = (id) => document.getElementById(id), LOCAL = window.MESA_LOCAL || {};
+  const b64 = (buf) => btoa(String.fromCharCode(...new Uint8Array(buf)));
+  const sha = async (text) => b64(await crypto.subtle.digest("SHA-256", new TextEncoder().encode(text)));
+  let ws = null, seq = 0, on = false;
+  const pending = new Map();
+  const req = (type, data) => new Promise((res, rej) => {
+    if (!on) return rej(new Error("sem conexão com o motor"));
+    const id = String(++seq); pending.set(id, { res, rej });
+    ws.send(JSON.stringify({ op: 6, d: { requestType: type, requestId: id, requestData: data } }));
+  });
+  const paint = () => { for (const b of document.querySelectorAll(".b")) b.disabled = !on; };
+  const tell = (msg) => req("BroadcastCustomEvent", { eventData: { freemix: msg } });
+  function connect() {
+    const mine = ws = new WebSocket(LOCAL.url || "ws://127.0.0.1:4455");
+    mine.onmessage = async (ev) => {
+      const m = JSON.parse(ev.data);
+      if (m.op === 0) {
+        const d = { rpcVersion: 1, eventSubscriptions: 1 | 2 }, a = m.d.authentication; // geral (recados da mesa) e configuração (troca de preset)
+        if (a) d.authentication = await sha((await sha((LOCAL.password || "") + a.salt)) + a.challenge);
+        mine.send(JSON.stringify({ op: 1, d }));
+      } else if (m.op === 2) {
+        on = true; paint();
+        req("GetSceneCollectionList").then((c) => { $("lab").title = "Preset em uso: " + c.currentSceneCollectionName; }).catch(() => {});
+        tell({ do: "state" }).catch(() => {}); // ask the panel which toggles are on
+      } else if (m.op === 5) {
+        const d = m.d.eventData || {};
+        if (m.d.eventType === "CurrentSceneCollectionChanged") $("lab").title = "Preset em uso: " + d.sceneCollectionName;
+        else if (m.d.eventType === "CustomEvent" && d.freemix && d.freemix.state) { $("b-pause").classList.toggle("on", !!d.freemix.state.paused); $("b-basic").classList.toggle("on", !!d.freemix.state.basic); }
+      } else if (m.op === 7) {
+        const p = pending.get(m.d.requestId); if (!p) return;
+        pending.delete(m.d.requestId);
+        m.d.requestStatus.result ? p.res(m.d.responseData || {}) : p.rej(new Error(m.d.requestStatus.comment || "falhou"));
+      }
     };
-
-    function notify(type, payload) {
-      if (bc) bc.postMessage({ type, payload });
-      // Comunica também com a janela principal ou pai se estiver em iframe / doca
-      try {
-        if (window.parent && window.parent !== window) {
-          window.parent.postMessage({ type, payload }, "*");
-        }
-      } catch {}
-    }
-
-    // Escuta eventos de volta vindos da mesa de corte
-    if (bc) {
-      bc.onmessage = (ev) => {
-        const d = ev.data;
-        if (!d) return;
-        if (d.type === "UPDATE_PRESET_NAME") {
-          document.getElementById("preset-name").textContent = d.payload.name;
-        } else if (d.type === "SET_DIRTY") {
-          document.getElementById("preset-dirty").style.display = d.payload.dirty ? "inline" : "none";
-        }
-      };
-    }
-
-    document.addEventListener("click", (e) => {
-      const btn = e.target.closest("[data-act]");
-      if (!btn) return;
-      const act = btn.dataset.act;
-      if (ACT[act]) ACT[act](btn.dataset);
-    });
-
-    document.getElementById("top-modal-close")?.addEventListener("click", () => {
-      document.getElementById("top-modal-backdrop").className = "modal-backdrop";
-    });
-  </script>
+    mine.onclose = () => { if (ws !== mine) return; for (const p of pending.values()) p.rej(new Error("conexão encerrada")); pending.clear(); on = false; paint(); setTimeout(connect, 2500); };
+  }
+  document.addEventListener("click", (e) => {
+    const b = e.target.closest(".b"); if (!b || b.disabled) return;
+    tell(b.dataset.open ? { open: b.dataset.open, arg: b.dataset.arg || null } : { do: b.dataset.do }).catch(() => {});
+  });
+  document.addEventListener("contextmenu", (e) => e.preventDefault());
+  // Production clock: both counters come from the engine once a second.
+  setInterval(async () => {
+    $("k-now").textContent = new Date().toLocaleTimeString("pt-BR");
+    if (!on) return;
+    const [r, s] = await Promise.all([req("GetRecordStatus").catch(() => null), req("GetStreamStatus").catch(() => null)]);
+    $("k-rec").textContent = "REC " + (r && r.outputActive ? r.outputTimecode.slice(0, 8) : "00:00:00"); $("k-rec").classList.toggle("on", !!(r && r.outputActive));
+    $("k-str").textContent = "NO AR " + (s && s.outputActive ? s.outputTimecode.slice(0, 8) : "00:00:00"); $("k-str").classList.toggle("on", !!(s && s.outputActive));
+  }, 1000);
+  paint(); connect();
+</script>
 </body>
 </html>

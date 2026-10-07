@@ -1,0 +1,34 @@
+// Click-test of the Replay window's memory readout and Remover button. Engine with --remote-debugging-port=9333.
+import { createRequire } from "node:module";
+import { connect, sleep } from "./obsws.mjs";
+const require = createRequire("D:/DRIVE/IA/antigravity/vmixtwste/rea/package.json");
+const WebSocket = require("ws");
+const t = (await (await fetch("http://127.0.0.1:9333/json")).json()).find((x) => x.url.endsWith("painel/mesa.html"));
+const c = new WebSocket(t.webSocketDebuggerUrl); await new Promise((r) => c.on("open", r));
+let id = 0; const waits = new Map();
+c.on("message", (raw) => { const m = JSON.parse(String(raw)); waits.get(m.id)?.(m); waits.delete(m.id); });
+const ev = (expression) => new Promise((r) => { const i = ++id; waits.set(i, (m) => r(m.result?.exceptionDetails ? "ERRO: " + m.result.exceptionDetails.exception?.description : m.result?.result?.value)); c.send(JSON.stringify({ id: i, method: "Runtime.evaluate", params: { expression, returnByValue: true, awaitPromise: true } })); });
+const click = (sel) => ev(`(() => { const el = document.querySelector(${JSON.stringify(sel)}); if (!el) return "sem elemento"; el.click(); return "ok"; })()`);
+const obs = await connect();
+const mem = async () => Math.round((await obs.req("GetStats")).memoryUsage);
+const angles = async () => (await obs.req("GetInputList", { inputKind: "replay_source" })).inputs.length;
+let pass = 0, total = 0;
+const check = (name, ok, detail = "") => { total++; if (ok) pass++; console.log(`${ok ? "OK   " : "FALHA"} ${name}${detail !== "" ? "  (" + detail + ")" : ""}`); };
+
+await ev("location.reload()"); await sleep(5000);
+const before = await mem(), had = await angles();
+await ev(`st.pop = null; openPop("replay")`); await sleep(800);
+check("janela Replay mostra a memória do programa", /Memória do programa agora: \d+ MB/.test(await ev(`document.getElementById("pop").textContent`)), `${before} MB, ${had} ângulo(s) antes do teste`);
+await ev(`(() => { document.getElementById("rp-cam").value = "CAM 3"; })()`);
+await click(`.pop [data-a="rpadd"]`); await sleep(6000);
+const during = await mem();
+check("ângulo novo criado com 3 s por padrão", (await obs.tryReq("GetInputSettings", { inputName: "Replay CAM 3" }))?.inputSettings?.duration === 3000, `memória ${before} -> ${during} MB`);
+check("cada ângulo tem o botão Remover", (await ev(`!!document.querySelector('.pop [data-a="rpdel"][data-v="REPLAY CAM 3"]')`)) === true);
+await click(`.pop [data-a="rpdel"][data-v="REPLAY CAM 3"]`); await sleep(6000);
+const after = await mem();
+check("Remover tira o ângulo e a fonte de replay", (await angles()) === had && !(await obs.req("GetSceneList")).scenes.some((s) => s.sceneName === "REPLAY CAM 3"));
+check("filtro de captura sai da câmera", !((await obs.tryReq("GetSourceFilterList", { sourceName: "Imagem CAM 3" }))?.filters ?? []).some((f) => f.filterKind.startsWith("replay_filter")));
+check("memória volta depois de remover", after < during - 200 || during - before < 200, `${before} -> ${during} -> ${after} MB`);
+await ev("closePop()");
+console.log(`${pass}/${total} verificações passaram`);
+obs.close(); c.close();

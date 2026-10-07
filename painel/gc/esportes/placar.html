@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    width: 1920px;
+    height: 1080px;
+    background: transparent;
+    overflow: hidden;
+    font-family: 'Segoe UI', -apple-system, sans-serif;
+  }
+  .score-container {
+    position: absolute;
+    top: 60px;
+    left: 80px;
+    display: flex;
+    align-items: stretch;
+    height: 52px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.7);
+    border-radius: 4px;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(-50px);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+  }
+  .score-container.in {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .team {
+    display: flex;
+    align-items: center;
+    background: #101622;
+    padding: 0 16px;
+    color: #fff;
+    font-weight: 800;
+    font-size: 20px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  .score {
+    background: #00e676;
+    color: #0b1118;
+    font-size: 26px;
+    font-weight: 900;
+    width: 46px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .timer-box {
+    background: #090d14;
+    color: #ffd600;
+    font-family: monospace;
+    font-weight: bold;
+    font-size: 20px;
+    padding: 0 16px;
+    display: flex;
+    align-items: center;
+    border-left: 2px solid #1e293b;
+  }
+  .period {
+    background: #1a2332;
+    color: #8fa0b5;
+    font-size: 13px;
+    font-weight: bold;
+    padding: 0 10px;
+    display: flex;
+    align-items: center;
+  }
+</style>
+</head>
+<body>
+
+<div id="box" class="score-container">
+  <div class="period" id="f-period">1º T</div>
+  <div class="team" id="f-team1">TIME A</div>
+  <div class="score" id="f-score1">0</div>
+  <div class="score" id="f-score2" style="background:#00c853">0</div>
+  <div class="team" id="f-team2">TIME B</div>
+  <div class="timer-box" id="f-timer">00:00</div>
+</div>
+
+<script>
+  let seconds = 0;
+  let timerInterval = null;
+
+  function formatTime(s) {
+    const m = Math.floor(s / 60);
+    const sec = s % 60;
+    return `${String(m).padStart(2,'0')}:${String(sec).padStart(2,'0')}`;
+  }
+
+  function play(data) {
+    if (data) update(data);
+    document.getElementById("box").classList.add("in");
+    if (!timerInterval) {
+      timerInterval = setInterval(() => {
+        seconds++;
+        document.getElementById("f-timer").textContent = formatTime(seconds);
+      }, 1000);
+    }
+  }
+
+  function stop() {
+    document.getElementById("box").classList.remove("in");
+    if (timerInterval) {
+      clearInterval(timerInterval);
+      timerInterval = null;
+    }
+  }
+
+  function update(data) {
+    if (data.timeA) document.getElementById("f-team1").textContent = data.timeA;
+    if (data.timeB) document.getElementById("f-team2").textContent = data.timeB;
+    if (data.golsA !== undefined) document.getElementById("f-score1").textContent = data.golsA;
+    if (data.golsB !== undefined) document.getElementById("f-score2").textContent = data.golsB;
+    if (data.periodo) document.getElementById("f-period").textContent = data.periodo;
+    if (data.minutos !== undefined) {
+      seconds = parseInt(data.minutos) * 60;
+      document.getElementById("f-timer").textContent = formatTime(seconds);
+    }
+  }
+
+  window.GC = { play, stop, update };
+</script>
+<script src="../gc.js"></script>
+</body>
+</html>

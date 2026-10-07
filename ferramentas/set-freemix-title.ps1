@@ -1,5 +1,5 @@
-# FreeMix Studio - Injetor Oficial de Título e Identidade Visual Broadcast
-# Aplica o título oficial "FreeMix Studio - [<preset>] - 1080p60" e o ícone PE na janela nativa
+﻿# FreeMix Studio - Injetor Oficial de Título e Identidade Visual Broadcast
+# Aplica o título oficial "FreeMix Studio - <preset>" e o ícone PE na janela nativa
 
 $ErrorActionPreference = 'SilentlyContinue'
 $root = Split-Path -Parent $PSScriptRoot
@@ -73,7 +73,7 @@ function BuildTitle {
         $m = Select-String -Path $user -Pattern "^SceneCollection=(.*)$" | Select-Object -First 1
         if ($m) { $coll = $m.Matches[0].Groups[1].Value.Trim() }
     }
-    return "FreeMix Studio - [$coll.fmx] - 1080p60"
+    return "FreeMix Studio - $coll"
 }
 
 # Aguarda até 60 segundos pelo processo obs64 ou FreeMix

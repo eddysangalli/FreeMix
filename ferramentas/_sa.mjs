@@ -1,0 +1,15 @@
+import { existsSync, readdirSync, unlinkSync } from "node:fs";
+import { connect, sleep, ROOT } from "./obsws.mjs";
+const dir = `${ROOT}/config/obs-studio/basic/scenes`;
+const obs = await connect();
+await obs.req("SetPersistentData", { realm: "OBS_WEBSOCKET_DATA_REALM_GLOBAL", slotName: "freemix_cmd", slotValue: { id: Date.now(), cmd: "saveas", from: "Demonstracao", name: "TESTE COPIA" } });
+await sleep(3000);
+console.log("arquivos:", readdirSync(dir).join(", "));
+console.log("motor lista:", (await obs.req("GetSceneCollectionList")).sceneCollections.join(", "));
+const r = await obs.tryReq("SetCurrentSceneCollection", { sceneCollectionName: "TESTE COPIA" });
+await sleep(3500);
+console.log("troca aceita:", !!r, "| em uso:", (await obs.req("GetSceneCollectionList")).currentSceneCollectionName, "| entradas:", (await obs.req("GetSceneList")).scenes.length);
+await obs.tryReq("SetCurrentSceneCollection", { sceneCollectionName: "Demonstracao" }); await sleep(3500);
+if ((await obs.req("GetSceneCollectionList")).currentSceneCollectionName === "Demonstracao") for (const f of readdirSync(dir)) if (/^TESTE_COPIA/.test(f)) unlinkSync(`${dir}/${f}`);
+console.log("limpo:", readdirSync(dir).join(", "));
+obs.close();

@@ -87,9 +87,9 @@ OBSBasicStatusBar {
     background-color: var(--grey8);
 }
 
-QMenuBar {
-    background-color: var(--grey6);
-}
+
+
+
 
 QMainWindow::separator {
     background: var(--grey8);
@@ -447,4 +447,109 @@ QTabBar::tab:selected {
     border-bottom: 1px solid #171b22;
     color: #ffffff;
     font-weight: 700;
+}
+
+/* FreeMix top area */
+
+QMenuBar {
+    background-color: var(--grey8);
+    padding: 0px 4px;
+}
+
+QMenuBar::item {
+    background: transparent;
+    padding: 3px 9px;
+}
+
+QMenuBar::item:selected {
+    background-color: var(--grey4);
+}
+
+QDockWidget#Menu_extraBrowser {
+    min-height: 46px;
+    max-height: 46px;
+    font-size: 7pt;
+    font-weight: normal;
+    color: var(--text_muted);
+}
+
+QDockWidget#Menu_extraBrowser::title {
+    background-color: var(--grey8);
+    padding: 0px 6px;
+}
+
+/* Tally colours: red is on air, green is preview */
+
+.label-preview-title {
+    background-color: #d92418;
+    color: #ffffff;
+}
+
+#previewLabel {
+    background-color: #12a31a;
+    color: #ffffff;
+}
+
+/* Safe Area icon in the Preview title bar (button created by FreeMix.exe, widgets/FreeMixSafeArea.cpp). */
+#freemixSafeAreaButton { background: transparent; border: none; color: #ffffff; padding: 0px 4px; margin: 0px; min-height: 0px; font-size: 15px; }
+#freemixSafeAreaButton:hover { background: rgba(255, 255, 255, 45); }
+#freemixSafeAreaButton::menu-indicator { image: none; width: 0px; }
+
+/* Old menu bar hidden: the FreeMix bar replaces it. Its menus still open with Alt+letter. Remove this block to show it again. */
+
+QMenuBar {
+    min-height: 0px;
+    max-height: 0px;
+    padding: 0px;
+    border: none;
+}
+
+/* Transition column */
+
+#canvasEditor > QWidget > QPushButton,
+MenuButton {
+    background-color: #2a3540;
+    border: 1px solid #4b5967;
+    border-radius: 0px;
+    color: #f2f5f8;
+    font-weight: bold;
+    min-height: 24px;
+    max-height: 28px;
+    padding: 2px 6px;
+    margin: 2px 0px;
+}
+
+#canvasEditor > QWidget > QPushButton:hover,
+MenuButton:hover {
+    background-color: #364452;
+}
+
+MenuButton {
+    min-width: 92px;
+    max-width: 112px;
+}
+
+#canvasEditor > QWidget > QPushButton.icon-plus {
+    min-width: 0px;
+    max-width: 0px;
+    min-height: 0px;
+    max-height: 0px;
+    border: none;
+    margin: 0px;
+    padding: 0px;
+}
+
+#canvasEditor > QWidget > QLabel {
+    min-height: 0px;
+    max-height: 0px;
+    font-size: 1px;
+    margin: 0px;
+    padding: 0px;
+}
+
+#canvasEditor > QWidget > QLabel.label-preview-title {
+    min-height: 20px;
+    max-height: 26px;
+    font-size: var(--font_large);
+    padding: 3px 8px;
 }

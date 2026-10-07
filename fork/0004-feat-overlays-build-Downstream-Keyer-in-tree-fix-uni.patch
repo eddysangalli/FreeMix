@@ -1,0 +1,3794 @@
+From b6e0b54036ae5b1ba3b6f5fb4681da7a321dcbdb Mon Sep 17 00:00:00 2001
+From: Eddy Sangalli <eddyrodrigues@outlook.com>
+Date: Wed, 7 Oct 2026 18:11:02 -0300
+Subject: [PATCH 4/5] feat(overlays): build Downstream Keyer in-tree, fix
+ uninitialised hide-after
+
+Downstream Keyer 0.4.4 by Exeldro (GPL-2.0) is now built as part of FreeMix
+from plugins/downstream-keyer instead of being shipped as a separate binary.
+
+Changes to the upstream code:
+- DownstreamKeyer::hideAfter starts at zero. Upstream left it uninitialised,
+  so a keyer created at run time took whatever was in memory as its "hide
+  after" time, saved it with the scene collection and, on the next start,
+  dropped its scene right after showing it (overlays that would not stay on,
+  audio bus scene going off air).
+- New vendor request "dsk_set_hide_after" { dsk_name, hide_after } in
+  milliseconds, for the duration of an overlay.
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+---
+ plugins/CMakeLists.txt                        |    2 +
+ plugins/downstream-keyer/.clang-format        |    2 +
+ plugins/downstream-keyer/CMakeLists.txt       |   40 +
+ plugins/downstream-keyer/LICENSE              |  339 +++++
+ plugins/downstream-keyer/README.md            |   18 +
+ .../downstream-keyer/data/locale/en-US.ini    |   23 +
+ .../downstream-keyer/data/locale/es-ES.ini    |   23 +
+ .../downstream-keyer/data/locale/fr-FR.ini    |   22 +
+ .../downstream-keyer/data/locale/pt-BR.ini    |   23 +
+ .../downstream-keyer/data/locale/zh-CN.ini    |   23 +
+ .../downstream-keyer-dock.cpp                 | 1167 +++++++++++++++++
+ .../downstream-keyer-dock.hpp                 |   74 ++
+ plugins/downstream-keyer/downstream-keyer.cpp | 1054 +++++++++++++++
+ plugins/downstream-keyer/downstream-keyer.hpp |  104 ++
+ plugins/downstream-keyer/media/icon.ico       |  Bin 0 -> 30486 bytes
+ plugins/downstream-keyer/media/logo.png       |  Bin 0 -> 1460 bytes
+ plugins/downstream-keyer/name-dialog.cpp      |   54 +
+ plugins/downstream-keyer/name-dialog.hpp      |   17 +
+ plugins/downstream-keyer/obs-websocket-api.h  |  216 +++
+ plugins/downstream-keyer/output-source.c      |  272 ++++
+ plugins/downstream-keyer/version.h            |    7 +
+ plugins/downstream-keyer/version.h.in         |    6 +
+ 22 files changed, 3486 insertions(+)
+ create mode 100644 plugins/downstream-keyer/.clang-format
+ create mode 100644 plugins/downstream-keyer/CMakeLists.txt
+ create mode 100644 plugins/downstream-keyer/LICENSE
+ create mode 100644 plugins/downstream-keyer/README.md
+ create mode 100644 plugins/downstream-keyer/data/locale/en-US.ini
+ create mode 100644 plugins/downstream-keyer/data/locale/es-ES.ini
+ create mode 100644 plugins/downstream-keyer/data/locale/fr-FR.ini
+ create mode 100644 plugins/downstream-keyer/data/locale/pt-BR.ini
+ create mode 100644 plugins/downstream-keyer/data/locale/zh-CN.ini
+ create mode 100644 plugins/downstream-keyer/downstream-keyer-dock.cpp
+ create mode 100644 plugins/downstream-keyer/downstream-keyer-dock.hpp
+ create mode 100644 plugins/downstream-keyer/downstream-keyer.cpp
+ create mode 100644 plugins/downstream-keyer/downstream-keyer.hpp
+ create mode 100644 plugins/downstream-keyer/media/icon.ico
+ create mode 100644 plugins/downstream-keyer/media/logo.png
+ create mode 100644 plugins/downstream-keyer/name-dialog.cpp
+ create mode 100644 plugins/downstream-keyer/name-dialog.hpp
+ create mode 100644 plugins/downstream-keyer/obs-websocket-api.h
+ create mode 100644 plugins/downstream-keyer/output-source.c
+ create mode 100644 plugins/downstream-keyer/version.h
+ create mode 100644 plugins/downstream-keyer/version.h.in
+
+diff --git a/plugins/CMakeLists.txt b/plugins/CMakeLists.txt
+index 1bea2e4..ff33b41 100644
+--- a/plugins/CMakeLists.txt
++++ b/plugins/CMakeLists.txt
+@@ -53,6 +53,8 @@ add_obs_plugin(
+     PLATFORMS WINDOWS MACOS LINUX
+     WITH_MESSAGE
+ )
++# FreeMix: third-party components built in-tree (see each folder's CMakeLists.txt for origin and changes).
++add_obs_plugin(downstream-keyer PLATFORMS WINDOWS)
+ add_obs_plugin(
+     frontend-tools
+     PLATFORMS WINDOWS MACOS LINUX
+diff --git a/plugins/downstream-keyer/.clang-format b/plugins/downstream-keyer/.clang-format
+new file mode 100644
+index 0000000..d7e326e
+--- /dev/null
++++ b/plugins/downstream-keyer/.clang-format
+@@ -0,0 +1,2 @@
++BasedOnStyle: InheritParentConfig
++ColumnLimit: 132
+\ No newline at end of file
+diff --git a/plugins/downstream-keyer/CMakeLists.txt b/plugins/downstream-keyer/CMakeLists.txt
+new file mode 100644
+index 0000000..bf117e7
+--- /dev/null
++++ b/plugins/downstream-keyer/CMakeLists.txt
+@@ -0,0 +1,40 @@
++cmake_minimum_required(VERSION 3.28...3.30)
++
++# Downstream Keyer by Exeldro (GPL-2.0), https://github.com/exeldro/obs-downstream-keyer, version 0.4.4,
++# built as part of FreeMix instead of being shipped as a separate binary.
++# FreeMix changes to the upstream code:
++#   - DownstreamKeyer::hideAfter starts at zero (downstream-keyer.hpp);
++#   - new request "dsk_set_hide_after" (downstream-keyer-dock.cpp).
++
++find_package(Qt6 REQUIRED Core Widgets)
++
++add_library(downstream-keyer MODULE)
++add_library(OBS::downstream-keyer ALIAS downstream-keyer)
++
++target_sources(
++  downstream-keyer
++  PRIVATE
++    downstream-keyer-dock.cpp
++    downstream-keyer-dock.hpp
++    downstream-keyer.cpp
++    downstream-keyer.hpp
++    name-dialog.cpp
++    name-dialog.hpp
++    obs-websocket-api.h
++    output-source.c
++    version.h
++)
++
++target_link_libraries(downstream-keyer PRIVATE OBS::libobs OBS::frontend-api Qt::Core Qt::Widgets)
++
++# Third-party code: its warnings must not stop the build.
++target_compile_options(downstream-keyer PRIVATE $<$<C_COMPILER_ID:MSVC>:/WX->)
++
++set_target_properties_obs(
++  downstream-keyer
++  PROPERTIES FOLDER plugins/freemix
++             PREFIX ""
++             AUTOMOC ON
++             AUTOUIC ON
++             AUTORCC ON
++)
+diff --git a/plugins/downstream-keyer/LICENSE b/plugins/downstream-keyer/LICENSE
+new file mode 100644
+index 0000000..d159169
+--- /dev/null
++++ b/plugins/downstream-keyer/LICENSE
+@@ -0,0 +1,339 @@
++                    GNU GENERAL PUBLIC LICENSE
++                       Version 2, June 1991
++
++ Copyright (C) 1989, 1991 Free Software Foundation, Inc.,
++ 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
++ Everyone is permitted to copy and distribute verbatim copies
++ of this license document, but changing it is not allowed.
++
++                            Preamble
++
++  The licenses for most software are designed to take away your
++freedom to share and change it.  By contrast, the GNU General Public
++License is intended to guarantee your freedom to share and change free
++software--to make sure the software is free for all its users.  This
++General Public License applies to most of the Free Software
++Foundation's software and to any other program whose authors commit to
++using it.  (Some other Free Software Foundation software is covered by
++the GNU Lesser General Public License instead.)  You can apply it to
++your programs, too.
++
++  When we speak of free software, we are referring to freedom, not
++price.  Our General Public Licenses are designed to make sure that you
++have the freedom to distribute copies of free software (and charge for
++this service if you wish), that you receive source code or can get it
++if you want it, that you can change the software or use pieces of it
++in new free programs; and that you know you can do these things.
++
++  To protect your rights, we need to make restrictions that forbid
++anyone to deny you these rights or to ask you to surrender the rights.
++These restrictions translate to certain responsibilities for you if you
++distribute copies of the software, or if you modify it.
++
++  For example, if you distribute copies of such a program, whether
++gratis or for a fee, you must give the recipients all the rights that
++you have.  You must make sure that they, too, receive or can get the
++source code.  And you must show them these terms so they know their
++rights.
++
++  We protect your rights with two steps: (1) copyright the software, and
++(2) offer you this license which gives you legal permission to copy,
++distribute and/or modify the software.
++
++  Also, for each author's protection and ours, we want to make certain
++that everyone understands that there is no warranty for this free
++software.  If the software is modified by someone else and passed on, we
++want its recipients to know that what they have is not the original, so
++that any problems introduced by others will not reflect on the original
++authors' reputations.
++
++  Finally, any free program is threatened constantly by software
++patents.  We wish to avoid the danger that redistributors of a free
++program will individually obtain patent licenses, in effect making the
++program proprietary.  To prevent this, we have made it clear that any
++patent must be licensed for everyone's free use or not licensed at all.
++
++  The precise terms and conditions for copying, distribution and
++modification follow.
++
++                    GNU GENERAL PUBLIC LICENSE
++   TERMS AND CONDITIONS FOR COPYING, DISTRIBUTION AND MODIFICATION
++
++  0. This License applies to any program or other work which contains
++a notice placed by the copyright holder saying it may be distributed
++under the terms of this General Public License.  The "Program", below,
++refers to any such program or work, and a "work based on the Program"
++means either the Program or any derivative work under copyright law:
++that is to say, a work containing the Program or a portion of it,
++either verbatim or with modifications and/or translated into another
++language.  (Hereinafter, translation is included without limitation in
++the term "modification".)  Each licensee is addressed as "you".
++
++Activities other than copying, distribution and modification are not
++covered by this License; they are outside its scope.  The act of
++running the Program is not restricted, and the output from the Program
++is covered only if its contents constitute a work based on the
++Program (independent of having been made by running the Program).
++Whether that is true depends on what the Program does.
++
++  1. You may copy and distribute verbatim copies of the Program's
++source code as you receive it, in any medium, provided that you
++conspicuously and appropriately publish on each copy an appropriate
++copyright notice and disclaimer of warranty; keep intact all the
++notices that refer to this License and to the absence of any warranty;
++and give any other recipients of the Program a copy of this License
++along with the Program.
++
++You may charge a fee for the physical act of transferring a copy, and
++you may at your option offer warranty protection in exchange for a fee.
++
++  2. You may modify your copy or copies of the Program or any portion
++of it, thus forming a work based on the Program, and copy and
++distribute such modifications or work under the terms of Section 1
++above, provided that you also meet all of these conditions:
++
++    a) You must cause the modified files to carry prominent notices
++    stating that you changed the files and the date of any change.
++
++    b) You must cause any work that you distribute or publish, that in
++    whole or in part contains or is derived from the Program or any
++    part thereof, to be licensed as a whole at no charge to all third
++    parties under the terms of this License.
++
++    c) If the modified program normally reads commands interactively
++    when run, you must cause it, when started running for such
++    interactive use in the most ordinary way, to print or display an
++    announcement including an appropriate copyright notice and a
++    notice that there is no warranty (or else, saying that you provide
++    a warranty) and that users may redistribute the program under
++    these conditions, and telling the user how to view a copy of this
++    License.  (Exception: if the Program itself is interactive but
++    does not normally print such an announcement, your work based on
++    the Program is not required to print an announcement.)
++
++These requirements apply to the modified work as a whole.  If
++identifiable sections of that work are not derived from the Program,
++and can be reasonably considered independent and separate works in
++themselves, then this License, and its terms, do not apply to those
++sections when you distribute them as separate works.  But when you
++distribute the same sections as part of a whole which is a work based
++on the Program, the distribution of the whole must be on the terms of
++this License, whose permissions for other licensees extend to the
++entire whole, and thus to each and every part regardless of who wrote it.
++
++Thus, it is not the intent of this section to claim rights or contest
++your rights to work written entirely by you; rather, the intent is to
++exercise the right to control the distribution of derivative or
++collective works based on the Program.
++
++In addition, mere aggregation of another work not based on the Program
++with the Program (or with a work based on the Program) on a volume of
++a storage or distribution medium does not bring the other work under
++the scope of this License.
++
++  3. You may copy and distribute the Program (or a work based on it,
++under Section 2) in object code or executable form under the terms of
++Sections 1 and 2 above provided that you also do one of the following:
++
++    a) Accompany it with the complete corresponding machine-readable
++    source code, which must be distributed under the terms of Sections
++    1 and 2 above on a medium customarily used for software interchange; or,
++
++    b) Accompany it with a written offer, valid for at least three
++    years, to give any third party, for a charge no more than your
++    cost of physically performing source distribution, a complete
++    machine-readable copy of the corresponding source code, to be
++    distributed under the terms of Sections 1 and 2 above on a medium
++    customarily used for software interchange; or,
++
++    c) Accompany it with the information you received as to the offer
++    to distribute corresponding source code.  (This alternative is
++    allowed only for noncommercial distribution and only if you
++    received the program in object code or executable form with such
++    an offer, in accord with Subsection b above.)
++
++The source code for a work means the preferred form of the work for
++making modifications to it.  For an executable work, complete source
++code means all the source code for all modules it contains, plus any
++associated interface definition files, plus the scripts used to
++control compilation and installation of the executable.  However, as a
++special exception, the source code distributed need not include
++anything that is normally distributed (in either source or binary
++form) with the major components (compiler, kernel, and so on) of the
++operating system on which the executable runs, unless that component
++itself accompanies the executable.
++
++If distribution of executable or object code is made by offering
++access to copy from a designated place, then offering equivalent
++access to copy the source code from the same place counts as
++distribution of the source code, even though third parties are not
++compelled to copy the source along with the object code.
++
++  4. You may not copy, modify, sublicense, or distribute the Program
++except as expressly provided under this License.  Any attempt
++otherwise to copy, modify, sublicense or distribute the Program is
++void, and will automatically terminate your rights under this License.
++However, parties who have received copies, or rights, from you under
++this License will not have their licenses terminated so long as such
++parties remain in full compliance.
++
++  5. You are not required to accept this License, since you have not
++signed it.  However, nothing else grants you permission to modify or
++distribute the Program or its derivative works.  These actions are
++prohibited by law if you do not accept this License.  Therefore, by
++modifying or distributing the Program (or any work based on the
++Program), you indicate your acceptance of this License to do so, and
++all its terms and conditions for copying, distributing or modifying
++the Program or works based on it.
++
++  6. Each time you redistribute the Program (or any work based on the
++Program), the recipient automatically receives a license from the
++original licensor to copy, distribute or modify the Program subject to
++these terms and conditions.  You may not impose any further
++restrictions on the recipients' exercise of the rights granted herein.
++You are not responsible for enforcing compliance by third parties to
++this License.
++
++  7. If, as a consequence of a court judgment or allegation of patent
++infringement or for any other reason (not limited to patent issues),
++conditions are imposed on you (whether by court order, agreement or
++otherwise) that contradict the conditions of this License, they do not
++excuse you from the conditions of this License.  If you cannot
++distribute so as to satisfy simultaneously your obligations under this
++License and any other pertinent obligations, then as a consequence you
++may not distribute the Program at all.  For example, if a patent
++license would not permit royalty-free redistribution of the Program by
++all those who receive copies directly or indirectly through you, then
++the only way you could satisfy both it and this License would be to
++refrain entirely from distribution of the Program.
++
++If any portion of this section is held invalid or unenforceable under
++any particular circumstance, the balance of the section is intended to
++apply and the section as a whole is intended to apply in other
++circumstances.
++
++It is not the purpose of this section to induce you to infringe any
++patents or other property right claims or to contest validity of any
++such claims; this section has the sole purpose of protecting the
++integrity of the free software distribution system, which is
++implemented by public license practices.  Many people have made
++generous contributions to the wide range of software distributed
++through that system in reliance on consistent application of that
++system; it is up to the author/donor to decide if he or she is willing
++to distribute software through any other system and a licensee cannot
++impose that choice.
++
++This section is intended to make thoroughly clear what is believed to
++be a consequence of the rest of this License.
++
++  8. If the distribution and/or use of the Program is restricted in
++certain countries either by patents or by copyrighted interfaces, the
++original copyright holder who places the Program under this License
++may add an explicit geographical distribution limitation excluding
++those countries, so that distribution is permitted only in or among
++countries not thus excluded.  In such case, this License incorporates
++the limitation as if written in the body of this License.
++
++  9. The Free Software Foundation may publish revised and/or new versions
++of the General Public License from time to time.  Such new versions will
++be similar in spirit to the present version, but may differ in detail to
++address new problems or concerns.
++
++Each version is given a distinguishing version number.  If the Program
++specifies a version number of this License which applies to it and "any
++later version", you have the option of following the terms and conditions
++either of that version or of any later version published by the Free
++Software Foundation.  If the Program does not specify a version number of
++this License, you may choose any version ever published by the Free Software
++Foundation.
++
++  10. If you wish to incorporate parts of the Program into other free
++programs whose distribution conditions are different, write to the author
++to ask for permission.  For software which is copyrighted by the Free
++Software Foundation, write to the Free Software Foundation; we sometimes
++make exceptions for this.  Our decision will be guided by the two goals
++of preserving the free status of all derivatives of our free software and
++of promoting the sharing and reuse of software generally.
++
++                            NO WARRANTY
++
++  11. BECAUSE THE PROGRAM IS LICENSED FREE OF CHARGE, THERE IS NO WARRANTY
++FOR THE PROGRAM, TO THE EXTENT PERMITTED BY APPLICABLE LAW.  EXCEPT WHEN
++OTHERWISE STATED IN WRITING THE COPYRIGHT HOLDERS AND/OR OTHER PARTIES
++PROVIDE THE PROGRAM "AS IS" WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED
++OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
++MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.  THE ENTIRE RISK AS
++TO THE QUALITY AND PERFORMANCE OF THE PROGRAM IS WITH YOU.  SHOULD THE
++PROGRAM PROVE DEFECTIVE, YOU ASSUME THE COST OF ALL NECESSARY SERVICING,
++REPAIR OR CORRECTION.
++
++  12. IN NO EVENT UNLESS REQUIRED BY APPLICABLE LAW OR AGREED TO IN WRITING
++WILL ANY COPYRIGHT HOLDER, OR ANY OTHER PARTY WHO MAY MODIFY AND/OR
++REDISTRIBUTE THE PROGRAM AS PERMITTED ABOVE, BE LIABLE TO YOU FOR DAMAGES,
++INCLUDING ANY GENERAL, SPECIAL, INCIDENTAL OR CONSEQUENTIAL DAMAGES ARISING
++OUT OF THE USE OR INABILITY TO USE THE PROGRAM (INCLUDING BUT NOT LIMITED
++TO LOSS OF DATA OR DATA BEING RENDERED INACCURATE OR LOSSES SUSTAINED BY
++YOU OR THIRD PARTIES OR A FAILURE OF THE PROGRAM TO OPERATE WITH ANY OTHER
++PROGRAMS), EVEN IF SUCH HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE
++POSSIBILITY OF SUCH DAMAGES.
++
++                     END OF TERMS AND CONDITIONS
++
++            How to Apply These Terms to Your New Programs
++
++  If you develop a new program, and you want it to be of the greatest
++possible use to the public, the best way to achieve this is to make it
++free software which everyone can redistribute and change under these terms.
++
++  To do so, attach the following notices to the program.  It is safest
++to attach them to the start of each source file to most effectively
++convey the exclusion of warranty; and each file should have at least
++the "copyright" line and a pointer to where the full notice is found.
++
++    <one line to give the program's name and a brief idea of what it does.>
++    Copyright (C) <year>  <name of author>
++
++    This program is free software; you can redistribute it and/or modify
++    it under the terms of the GNU General Public License as published by
++    the Free Software Foundation; either version 2 of the License, or
++    (at your option) any later version.
++
++    This program is distributed in the hope that it will be useful,
++    but WITHOUT ANY WARRANTY; without even the implied warranty of
++    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++    GNU General Public License for more details.
++
++    You should have received a copy of the GNU General Public License along
++    with this program; if not, write to the Free Software Foundation, Inc.,
++    51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
++
++Also add information on how to contact you by electronic and paper mail.
++
++If the program is interactive, make it output a short notice like this
++when it starts in an interactive mode:
++
++    Gnomovision version 69, Copyright (C) year name of author
++    Gnomovision comes with ABSOLUTELY NO WARRANTY; for details type `show w'.
++    This is free software, and you are welcome to redistribute it
++    under certain conditions; type `show c' for details.
++
++The hypothetical commands `show w' and `show c' should show the appropriate
++parts of the General Public License.  Of course, the commands you use may
++be called something other than `show w' and `show c'; they could even be
++mouse-clicks or menu items--whatever suits your program.
++
++You should also get your employer (if you work as a programmer) or your
++school, if any, to sign a "copyright disclaimer" for the program, if
++necessary.  Here is a sample; alter the names:
++
++  Yoyodyne, Inc., hereby disclaims all copyright interest in the program
++  `Gnomovision' (which makes passes at compilers) written by James Hacker.
++
++  <signature of Ty Coon>, 1 April 1989
++  Ty Coon, President of Vice
++
++This General Public License does not permit incorporating your program into
++proprietary programs.  If your program is a subroutine library, you may
++consider it more useful to permit linking proprietary applications with the
++library.  If this is what you want to do, use the GNU Lesser General
++Public License instead of this License.
+diff --git a/plugins/downstream-keyer/README.md b/plugins/downstream-keyer/README.md
+new file mode 100644
+index 0000000..92c47d1
+--- /dev/null
++++ b/plugins/downstream-keyer/README.md
+@@ -0,0 +1,18 @@
++# Downstream Keyer for OBS Studio
++
++Plugin for OBS Studio to add a Downstream Keyer dock.
++
++Inspired by: https://github.com/obsproject/obs-studio/pull/4491/
++
++# Download
++
++https://obsproject.com/forum/resources/downstream-keyer.1254/
++
++# Build
++- Build OBS Studio: https://obsproject.com/wiki/Install-Instructions
++- Check out this repository to UI/frontend-plugins/downstream-keyer
++- Add `add_subdirectory(downstream-keyer)` to UI/frontend-plugins/CMakeLists.txt
++- Rebuild OBS Studio
++
++# Donations
++https://www.paypal.me/exeldro
+diff --git a/plugins/downstream-keyer/data/locale/en-US.ini b/plugins/downstream-keyer/data/locale/en-US.ini
+new file mode 100644
+index 0000000..02a872a
+--- /dev/null
++++ b/plugins/downstream-keyer/data/locale/en-US.ini
+@@ -0,0 +1,23 @@
++DownstreamKeyer="Downstream Keyer"
++Description="Downstream Keyer"
++DSKName="Downstream Keyer Name?"
++Add="Add"
++Rename="Rename"
++Remove="Remove"
++MoveUp="Move up"
++MoveDown="Move down"
++Transition="Transition"
++ShowTransition="Show Transition"
++HideTransition="Hide Transition"
++None="None"
++DefaultName="DSK 1"
++EnableDSK="Show on"
++DisableDSK="Hide on"
++OutputSource="Output Source"
++View="View"
++Channel="Channel"
++FallbackColor="Fallback Color"
++EnableTie="Enable Tie"
++DisableTie="Disable Tie"
++ExcludeScene="Exclude Scene"
++HideAfter="Hide After"
+diff --git a/plugins/downstream-keyer/data/locale/es-ES.ini b/plugins/downstream-keyer/data/locale/es-ES.ini
+new file mode 100644
+index 0000000..68ea56f
+--- /dev/null
++++ b/plugins/downstream-keyer/data/locale/es-ES.ini
+@@ -0,0 +1,23 @@
++DownstreamKeyer="Downstream Keyer"
++Description="Downstream Keyer"
++DSKName="¿Nombre del Downstream Keyer?" 
++Add="Agregar"
++Rename="Renombrar"
++Remove="Eliminar"
++MoveUp="Mover hacia arriba"
++MoveDown="Mover hacia abajo"
++Transition="Transición"
++ShowTransition="Mostrar transición"
++HideTransition="Ocultar transición"
++None="Ninguna"
++DefaultName="DSK 1"
++EnableDSK="Mostrar DSK"
++DisableDSK="Ocultar DSK"
++OutputSource="Fuente de salida"
++View="Vista"
++Channel="Canal"
++FallbackColor="Color de respaldo"
++EnableTie="Habilitar candado"
++DisableTie="Deshabilitar candado"
++ExcludeScene="Excluir escena"
++HideAfter="Ocultar después"
+diff --git a/plugins/downstream-keyer/data/locale/fr-FR.ini b/plugins/downstream-keyer/data/locale/fr-FR.ini
+new file mode 100644
+index 0000000..0180e9e
+--- /dev/null
++++ b/plugins/downstream-keyer/data/locale/fr-FR.ini
+@@ -0,0 +1,22 @@
++DownstreamKeyer="Downstream Keyer"
++Description="Downstream Keyer"
++DSKName="Nom pour Downstream Keyer?"
++Add="Ajouter"
++Rename="Renommer"
++Remove="Supprimer"
++MoveUp="Monter"
++MoveDown="Descendre"
++Transition="Transition"
++ShowTransition="Afficher Transition"
++HideTransition="Masquer Transition"
++None="Aucun"
++DefaultName="DSK 1"
++EnableDSK="Afficher"
++DisableDSK="Masquer"
++OutputSource="Source de sortie"
++View="Affichage"
++Channel="Channel"
++FallbackColor="Couleur du fond"
++EnableTie="Verrouiller"
++DisableTie="Déverrouiller"
++ExcludeScene="Exclure scène"
+\ No newline at end of file
+diff --git a/plugins/downstream-keyer/data/locale/pt-BR.ini b/plugins/downstream-keyer/data/locale/pt-BR.ini
+new file mode 100644
+index 0000000..f0b0876
+--- /dev/null
++++ b/plugins/downstream-keyer/data/locale/pt-BR.ini
+@@ -0,0 +1,23 @@
++DownstreamKeyer="Downstream Keyer"
++Description="Downstream Keyer"
++DSKName="Nome do Downstream Keyer?"
++Add="Adicionar"
++Rename="Renomear"
++Remove="Remover"
++MoveUp="Mover para cima"
++MoveDown="Mover para baixo"
++Transition="Transição"
++ShowTransition="Mostrar Transição"
++HideTransition="Esconder Transição"
++None="Nenhuma"
++DefaultName="DSK 1"
++EnableDSK="Mostrar em"
++DisableDSK="Esconder em"
++OutputSource="Fonte de Saída"
++View="Visão"
++Channel="Canal"
++FallbackColor="Cor Substituta"
++EnableTie="Habilitar Ligação"
++DisableTie="Desabilitar Ligação"
++ExcludeScene="Excluir Cena"
++HideAfter="Esconder Após"
+diff --git a/plugins/downstream-keyer/data/locale/zh-CN.ini b/plugins/downstream-keyer/data/locale/zh-CN.ini
+new file mode 100644
+index 0000000..0a78199
+--- /dev/null
++++ b/plugins/downstream-keyer/data/locale/zh-CN.ini
+@@ -0,0 +1,23 @@
++DownstreamKeyer="下游键控制器"
++Description="下游键"
++DSKName="下游键名称"
++Add="添加"
++Rename="重命名"
++Remove="删除"
++MoveUp="上移"
++MoveDown="下移"
++Transition="转场"
++ShowTransition="显示转场"
++HideTransition="隐藏转场"
++None="关闭"
++DefaultName="DSK 1"
++EnableDSK="启用下游键"
++DisableDSK="禁用下游键"
++OutputSource="输出源"
++View="查看"
++Channel="通道"
++FallbackColor="备用颜色"
++EnableTie="启用绑定"
++DisableTie="禁用绑定"
++ExcludeScene="排除场景"
++HideAfter="延迟隐藏"
+diff --git a/plugins/downstream-keyer/downstream-keyer-dock.cpp b/plugins/downstream-keyer/downstream-keyer-dock.cpp
+new file mode 100644
+index 0000000..d69e0ff
+--- /dev/null
++++ b/plugins/downstream-keyer/downstream-keyer-dock.cpp
+@@ -0,0 +1,1167 @@
++#include "downstream-keyer.hpp"
++#include "downstream-keyer-dock.hpp"
++#include "name-dialog.hpp"
++#include "obs.hpp"
++#include "obs-websocket-api.h"
++#include "version.h"
++#include <obs-module.h>
++#include <QMainWindow>
++#include <QMenu>
++#include <QPushButton>
++#include <QVBoxLayout>
++#include <QWidgetAction>
++#include <util/platform.h>
++
++#ifndef _WIN32
++#include <dlfcn.h>
++#endif
++
++#define QT_UTF8(str) QString::fromUtf8(str)
++#define QT_TO_UTF8(str) str.toUtf8().constData()
++
++OBS_DECLARE_MODULE()
++OBS_MODULE_AUTHOR("Exeldro");
++OBS_MODULE_USE_DEFAULT_LOCALE("downstream-keyer", "en-US")
++
++MODULE_EXTERN struct obs_source_info output_source_info;
++
++std::map<std::string, DownstreamKeyerDock *> _dsks;
++obs_websocket_vendor vendor = nullptr;
++
++extern "C" {
++size_t get_view_count();
++const char *get_view_name(size_t idx);
++obs_view_t *get_view_by_name(const char *view_name);
++obs_canvas_t *get_canvas_by_name(const char *view_name);
++obs_source_t *get_source_from_view(const char *view_name, uint32_t channel);
++};
++
++size_t get_view_count()
++{
++	return _dsks.size();
++}
++
++const char *get_view_name(size_t idx)
++{
++	size_t i = 0;
++	for (auto it = _dsks.begin(); it != _dsks.end(); it++) {
++		if (i == idx) {
++			return it->first.c_str();
++		}
++		i++;
++	}
++	return NULL;
++}
++
++obs_view_t *get_view_by_name(const char *view_name)
++{
++	auto it = _dsks.find(view_name);
++	if (it == _dsks.end())
++		return NULL;
++	obs_view_t *view = it->second->GetView();
++	return view;
++}
++
++obs_canvas_t *get_canvas_by_name(const char *view_name)
++{
++	auto it = _dsks.find(view_name);
++	if (it == _dsks.end())
++		return NULL;
++	obs_canvas_t *canvas = it->second->GetCanvas();
++	return canvas;
++}
++
++obs_source_t *get_source_from_view(const char *view_name, uint32_t channel)
++{
++	obs_source_t *source = nullptr;
++	auto it = _dsks.find(view_name);
++	if (it != _dsks.end()) {
++		obs_view_t *view = it->second->GetView();
++		if (view) {
++			source = obs_view_get_source(view, channel);
++		} else {
++			obs_canvas_t *canvas = it->second->GetCanvas();
++			if (canvas) {
++				source = obs_canvas_get_channel(canvas, channel);
++				obs_canvas_release(canvas);
++			}
++		}
++	}
++	return source;
++}
++
++obs_data_t *load_data = nullptr;
++
++static DownstreamKeyerDock *add_dock(const char *viewName, obs_view_t *view, obs_canvas_t *canvas)
++{
++	const auto main_window = static_cast<QMainWindow *>(obs_frontend_get_main_window());
++	obs_frontend_push_ui_translation(obs_module_get_string);
++	auto dsk = new DownstreamKeyerDock(main_window, 1, view, canvas, viewName);
++	QString title = QString::fromUtf8(viewName);
++	title += " ";
++	title += QT_UTF8(obs_module_text("DownstreamKeyer"));
++	QString name = QString::fromUtf8(viewName);
++	name += "DownstreamKeyerDock";
++
++	obs_frontend_add_dock_by_id(QT_TO_UTF8(name), QT_TO_UTF8(title), dsk);
++	_dsks[viewName] = dsk;
++	obs_frontend_pop_ui_translation();
++	if (load_data)
++		DownstreamKeyerDock::frontend_save_load(load_data, false, dsk);
++	return dsk;
++}
++
++static void proc_add_view(void *data, calldata_t *cd)
++{
++	UNUSED_PARAMETER(data);
++	const char *viewName = calldata_string(cd, "view_name");
++	obs_view_t *view = (obs_view_t *)calldata_ptr(cd, "view");
++	if (!viewName || !strlen(viewName))
++		return;
++	auto dski = _dsks.find(viewName);
++	if (dski != _dsks.end()) {
++		auto transitions = (get_transitions_callback_t)calldata_ptr(cd, "get_transitions");
++		if (transitions) {
++			dski->second->SetTransitions((get_transitions_callback_t)calldata_ptr(cd, "get_transitions"),
++						     calldata_ptr(cd, "get_transitions_data"));
++		}
++		return;
++	}
++
++	auto dsk = add_dock(viewName, view, nullptr);
++	dsk->SetTransitions((get_transitions_callback_t)calldata_ptr(cd, "get_transitions"),
++			    calldata_ptr(cd, "get_transitions_data"));
++}
++
++static void proc_add_canvas(void *data, calldata_t *cd)
++{
++	UNUSED_PARAMETER(data);
++	const char *viewName = calldata_string(cd, "canvas_name");
++	obs_canvas_t *canvas = (obs_canvas_t *)calldata_ptr(cd, "canvas");
++	if (!viewName || !strlen(viewName))
++		return;
++	auto dski = _dsks.find(viewName);
++	if (dski != _dsks.end()) {
++		auto transitions = (get_transitions_callback_t)calldata_ptr(cd, "get_transitions");
++		if (transitions) {
++			dski->second->SetTransitions((get_transitions_callback_t)calldata_ptr(cd, "get_transitions"),
++						     calldata_ptr(cd, "get_transitions_data"));
++		}
++		return;
++	}
++
++	auto dsk = add_dock(viewName, nullptr, canvas);
++	dsk->SetTransitions((get_transitions_callback_t)calldata_ptr(cd, "get_transitions"),
++			    calldata_ptr(cd, "get_transitions_data"));
++}
++
++static void proc_remove_view(void *data, calldata_t *cd)
++{
++	UNUSED_PARAMETER(data);
++	const char *viewName = calldata_string(cd, "view_name");
++	if (!viewName || !strlen(viewName))
++		return;
++	if (_dsks.find(viewName) == _dsks.end()) {
++		return;
++	}
++	std::string name = viewName;
++	name += "DownstreamKeyerDock";
++	obs_frontend_remove_dock(name.c_str());
++	_dsks.erase(viewName);
++}
++
++static void proc_remove_canvas(void *data, calldata_t *cd)
++{
++	UNUSED_PARAMETER(data);
++	const char *viewName = calldata_string(cd, "canvas_name");
++	if (!viewName || !strlen(viewName))
++		return;
++	if (_dsks.find(viewName) == _dsks.end()) {
++		return;
++	}
++	std::string name = viewName;
++	name += "DownstreamKeyerDock";
++	obs_frontend_remove_dock(name.c_str());
++	_dsks.erase(viewName);
++}
++
++static void refresh_canvas()
++{
++	obs_canvas_t *main_canvas = obs_get_main_canvas();
++	obs_enum_canvases(
++		[](void *param, obs_canvas_t *canvas) {
++			if (canvas == param)
++				return true;
++			UNUSED_PARAMETER(param);
++			const char *canvas_name = obs_canvas_get_name(canvas);
++			if (!canvas_name || !strlen(canvas_name))
++				return true;
++			if (_dsks.find(canvas_name) != _dsks.end())
++				return true;
++			add_dock(canvas_name, nullptr, canvas);
++			return true;
++		},
++		main_canvas);
++	obs_canvas_release(main_canvas);
++}
++
++static void frontend_event(enum obs_frontend_event event, void *data)
++{
++	UNUSED_PARAMETER(data);
++	if (event == OBS_FRONTEND_EVENT_CANVAS_ADDED) {
++		refresh_canvas();
++	} else if (event == OBS_FRONTEND_EVENT_CANVAS_REMOVED) {
++	} else if (event == OBS_FRONTEND_EVENT_SCENE_COLLECTION_CLEANUP) {
++		load_data = nullptr;
++	}
++}
++
++static void frontend_save_load(obs_data_t *save_data, bool saving, void *data)
++{
++	UNUSED_PARAMETER(data);
++	load_data = save_data;
++	if (!saving)
++		refresh_canvas();
++}
++
++bool obs_module_load()
++{
++	blog(LOG_INFO, "[Downstream Keyer] loaded version %s", PROJECT_VERSION);
++	obs_register_source(&output_source_info);
++
++	const auto main_window = static_cast<QMainWindow *>(obs_frontend_get_main_window());
++	obs_frontend_push_ui_translation(obs_module_get_string);
++
++	auto dsk = new DownstreamKeyerDock(main_window);
++
++	obs_frontend_add_dock_by_id("DownstreamKeyerDock", obs_module_text("DownstreamKeyer"), dsk);
++	_dsks[""] = dsk;
++	obs_frontend_pop_ui_translation();
++	auto ph = obs_get_proc_handler();
++	proc_handler_add(ph, "void downstream_keyer_add_view(in ptr view, in string view_name)", &proc_add_view, nullptr);
++	proc_handler_add(ph, "void downstream_keyer_remove_view(in string view_name)", &proc_remove_view, nullptr);
++	proc_handler_add(ph, "void downstream_keyer_add_canvas(in ptr canvas, in string canvas_name)", &proc_add_canvas, nullptr);
++	proc_handler_add(ph, "void downstream_keyer_remove_canvas(in string canvas_name)", &proc_remove_canvas, nullptr);
++
++	obs_frontend_add_event_callback(frontend_event, nullptr);
++	obs_frontend_add_save_callback(frontend_save_load, nullptr);
++	return true;
++}
++
++void obs_module_post_load(void)
++{
++	vendor = obs_websocket_register_vendor("downstream-keyer");
++	if (!vendor)
++		return;
++	obs_websocket_vendor_register_request(vendor, "get_downstream_keyers", DownstreamKeyerDock::get_downstream_keyers, nullptr);
++	obs_websocket_vendor_register_request(vendor, "get_downstream_keyer", DownstreamKeyerDock::get_downstream_keyer, nullptr);
++	obs_websocket_vendor_register_request(vendor, "add_downstream_keyer", DownstreamKeyerDock::add_downstream_keyer, nullptr);
++	obs_websocket_vendor_register_request(vendor, "remove_downstream_keyer", DownstreamKeyerDock::remove_downstream_keyer,
++					      nullptr);
++	obs_websocket_vendor_register_request(vendor, "dsk_get_scene", DownstreamKeyerDock::get_scene, nullptr);
++	obs_websocket_vendor_register_request(vendor, "dsk_select_scene", DownstreamKeyerDock::change_scene, nullptr);
++	obs_websocket_vendor_register_request(vendor, "dsk_add_scene", DownstreamKeyerDock::add_scene, nullptr);
++	obs_websocket_vendor_register_request(vendor, "dsk_remove_scene", DownstreamKeyerDock::remove_scene, nullptr);
++	obs_websocket_vendor_register_request(vendor, "dsk_set_tie", DownstreamKeyerDock::set_tie, nullptr);
++	obs_websocket_vendor_register_request(vendor, "dsk_set_hide_after", DownstreamKeyerDock::set_hide_after, nullptr);
++	obs_websocket_vendor_register_request(vendor, "dsk_set_transition", DownstreamKeyerDock::set_transition, nullptr);
++	obs_websocket_vendor_register_request(vendor, "dsk_add_exclude_scene", DownstreamKeyerDock::add_exclude_scene, nullptr);
++	obs_websocket_vendor_register_request(vendor, "dsk_remove_exclude_scene", DownstreamKeyerDock::remove_exclude_scene,
++					      nullptr);
++}
++
++void obs_module_unload()
++{
++	obs_frontend_remove_event_callback(frontend_event, nullptr);
++	obs_frontend_remove_save_callback(frontend_save_load, nullptr);
++	_dsks.clear();
++	obs_frontend_remove_dock("DownstreamKeyerDock");
++	if (!vendor || !obs_get_module("obs-websocket"))
++		return;
++	obs_websocket_vendor_unregister_request(vendor, "get_downstream_keyers");
++	obs_websocket_vendor_unregister_request(vendor, "get_downstream_keyer");
++	obs_websocket_vendor_unregister_request(vendor, "add_downstream_keyer");
++	obs_websocket_vendor_unregister_request(vendor, "remove_downstream_keyer");
++	obs_websocket_vendor_unregister_request(vendor, "dsk_select_scene");
++	obs_websocket_vendor_unregister_request(vendor, "dsk_add_scene");
++	obs_websocket_vendor_unregister_request(vendor, "dsk_remove_scene");
++	obs_websocket_vendor_unregister_request(vendor, "dsk_set_tie");
++	obs_websocket_vendor_unregister_request(vendor, "dsk_set_hide_after");
++	obs_websocket_vendor_unregister_request(vendor, "dsk_set_transition");
++	obs_websocket_vendor_unregister_request(vendor, "dsk_add_exclude_scene");
++	obs_websocket_vendor_unregister_request(vendor, "dsk_remove_exclude_scene");
++}
++
++MODULE_EXPORT const char *obs_module_description(void)
++{
++	return obs_module_text("Description");
++}
++
++MODULE_EXPORT const char *obs_module_name(void)
++{
++	return obs_module_text("DownstreamKeyer");
++}
++
++void DownstreamKeyerDock::frontend_save_load(obs_data_t *save_data, bool saving, void *data)
++{
++	auto downstreamKeyerDock = static_cast<DownstreamKeyerDock *>(data);
++	if (saving) {
++		downstreamKeyerDock->Save(save_data);
++	} else {
++		downstreamKeyerDock->Load(save_data);
++		downstreamKeyerDock->loaded = true;
++	}
++}
++
++void DownstreamKeyerDock::frontend_event(enum obs_frontend_event event, void *data)
++{
++	auto downstreamKeyerDock = static_cast<DownstreamKeyerDock *>(data);
++	if (event == OBS_FRONTEND_EVENT_SCENE_COLLECTION_CLEANUP && downstreamKeyerDock->loaded) {
++		downstreamKeyerDock->ClearKeyers();
++		if (!downstreamKeyerDock->closing)
++			downstreamKeyerDock->AddDefaultKeyer();
++	} else if (event == OBS_FRONTEND_EVENT_EXIT) {
++		downstreamKeyerDock->ClearKeyers();
++	} else if (event == OBS_FRONTEND_EVENT_SCENE_CHANGED) {
++		QMetaObject::invokeMethod(downstreamKeyerDock, "SceneChanged", Qt::QueuedConnection);
++	} else if (event == OBS_FRONTEND_EVENT_SCRIPTING_SHUTDOWN) {
++		downstreamKeyerDock->closing = true;
++		downstreamKeyerDock->ClearKeyers();
++	}
++}
++
++DownstreamKeyerDock::DownstreamKeyerDock(QWidget *parent, int oc, obs_view_t *v, obs_canvas_t *c, const char *vn)
++	: QFrame(parent),
++	  outputChannel(oc),
++	  loaded(false),
++	  view(v),
++	  canvas(obs_canvas_get_weak_canvas(c))
++{
++	get_transitions = [](void *data, struct obs_frontend_source_list *sources) {
++		UNUSED_PARAMETER(data);
++		obs_frontend_get_transitions(sources);
++	};
++
++	if (vn)
++		viewName = vn;
++
++	if (c) {
++		auto sh = obs_canvas_get_signal_handler(c);
++		signal_handler_connect(
++			sh, "remove",
++			[](void *data, calldata_t *cd) {
++				UNUSED_PARAMETER(cd);
++				auto dock = static_cast<DownstreamKeyerDock *>(data);
++				dock->closing = true;
++				dock->ClearKeyers();
++				dock->deleteLater();
++			},
++			this);
++	}
++
++	tabs = new QTabWidget(this);
++	tabs->setMovable(true);
++
++	connect(tabs->tabBar(), &QTabBar::tabMoved, tabs->tabBar(), [this]() {
++		int count = tabs->count();
++		for (int i = 0; i < count; i++) {
++			auto w = dynamic_cast<DownstreamKeyer *>(tabs->widget(i));
++			w->SetOutputChannel(outputChannel + i);
++		}
++	});
++
++	auto config = new QPushButton(this);
++	config->setProperty("themeID", "configIconSmall");
++	config->setProperty("class", "icon-gear");
++
++	connect(config, &QAbstractButton::clicked, this, &DownstreamKeyerDock::ConfigClicked);
++
++	tabs->setCornerWidget(config);
++	auto l = new QVBoxLayout;
++	l->setContentsMargins(0, 0, 0, 0);
++	l->addWidget(tabs);
++	setLayout(l);
++
++	obs_frontend_add_save_callback(frontend_save_load, this);
++	obs_frontend_add_event_callback(frontend_event, this);
++}
++
++DownstreamKeyerDock::~DownstreamKeyerDock()
++{
++
++	obs_frontend_remove_save_callback(frontend_save_load, this);
++	obs_frontend_remove_event_callback(frontend_event, this);
++	ClearKeyers();
++}
++
++void DownstreamKeyerDock::SetTransitions(get_transitions_callback_t gt, void *gtd)
++{
++	get_transitions = gt;
++	get_transitions_data = gtd;
++}
++
++void DownstreamKeyerDock::Save(obs_data_t *data)
++{
++	obs_data_array_t *keyers = obs_data_array_create();
++	int count = tabs->count();
++	for (int i = 0; i < count; i++) {
++		auto w = dynamic_cast<DownstreamKeyer *>(tabs->widget(i));
++		const auto keyerData = obs_data_create();
++		obs_data_set_string(keyerData, "name", QT_TO_UTF8(tabs->tabText(i)));
++		w->Save(keyerData);
++		obs_data_array_push_back(keyers, keyerData);
++		obs_data_release(keyerData);
++	}
++	if (!viewName.empty()) {
++		std::string s = viewName;
++		s += "_downstream_keyers_channel";
++		obs_data_set_int(data, s.c_str(), outputChannel);
++		s = viewName;
++		s += "_downstream_keyers";
++		obs_data_set_array(data, s.c_str(), keyers);
++
++	} else {
++		obs_data_set_int(data, "downstream_keyers_channel", outputChannel);
++		obs_data_set_array(data, "downstream_keyers", keyers);
++	}
++	obs_data_array_release(keyers);
++}
++
++void DownstreamKeyerDock::Load(obs_data_t *data)
++{
++	if (loaded)
++		return;
++	obs_data_array_t *keyers = nullptr;
++	if (!viewName.empty()) {
++		std::string s = viewName;
++		s += "_downstream_keyers_channel";
++		outputChannel = obs_data_get_int(data, s.c_str());
++		if (outputChannel < 1 || outputChannel >= MAX_CHANNELS)
++			outputChannel = 1;
++		s = viewName;
++		s += "_downstream_keyers";
++		keyers = obs_data_get_array(data, s.c_str());
++	} else {
++		outputChannel = obs_data_get_int(data, "downstream_keyers_channel");
++		if (outputChannel < 7 || outputChannel >= MAX_CHANNELS)
++			outputChannel = 7;
++		keyers = obs_data_get_array(data, "downstream_keyers");
++	}
++	ClearKeyers();
++	if (keyers) {
++		auto count = obs_data_array_count(keyers);
++		if (count == 0) {
++			AddDefaultKeyer();
++		}
++		obs_canvas_t *c = obs_weak_canvas_get_canvas(canvas);
++		for (size_t i = 0; i < count; i++) {
++			auto keyerData = obs_data_array_item(keyers, i);
++			auto keyer = new DownstreamKeyer((int)(outputChannel + i), QT_UTF8(obs_data_get_string(keyerData, "name")),
++							 view, c, get_transitions, get_transitions_data);
++			keyer->Load(keyerData);
++			tabs->addTab(keyer, keyer->objectName());
++			obs_data_release(keyerData);
++		}
++		obs_canvas_release(c);
++		obs_data_array_release(keyers);
++	} else {
++		AddDefaultKeyer();
++	}
++}
++
++void DownstreamKeyerDock::ClearKeyers()
++{
++	while (tabs->count()) {
++		auto w = dynamic_cast<DownstreamKeyer *>(tabs->widget(0));
++		tabs->removeTab(0);
++		delete w;
++	}
++	loaded = false;
++}
++
++void DownstreamKeyerDock::AddDefaultKeyer()
++{
++	if (view) {
++		if (outputChannel < 1 || outputChannel >= MAX_CHANNELS)
++			outputChannel = 1;
++	} else if (canvas) {
++		if (outputChannel < 1 || outputChannel >= MAX_CHANNELS)
++			outputChannel = 1;
++	} else {
++		if (outputChannel < 7 || outputChannel >= MAX_CHANNELS)
++			outputChannel = 7;
++	}
++	obs_canvas_t *c = obs_weak_canvas_get_canvas(canvas);
++	auto keyer = new DownstreamKeyer(outputChannel, QT_UTF8(obs_module_text("DefaultName")), view, c, get_transitions,
++					 get_transitions_data);
++	obs_canvas_release(c);
++	tabs->addTab(keyer, keyer->objectName());
++}
++void DownstreamKeyerDock::SceneChanged()
++{
++	if (closing)
++		return;
++	const int count = tabs->count();
++
++	obs_source_t *scene = nullptr;
++	if (view) {
++		obs_source_t *source = obs_view_get_source(view, 0);
++		if (source && obs_source_get_type(source) == OBS_SOURCE_TYPE_TRANSITION) {
++			obs_source_t *ts = obs_transition_get_active_source(source);
++			if (ts) {
++				obs_source_release(source);
++				source = ts;
++			}
++		}
++		if (source && obs_source_is_scene(source)) {
++			scene = source;
++		} else {
++			obs_source_release(source);
++		}
++	} else if (canvas) {
++		obs_canvas_t *c = obs_weak_canvas_get_canvas(canvas);
++		obs_source_t *source = c && !obs_canvas_removed(c) ? obs_canvas_get_channel(c, 0) : nullptr;
++		obs_canvas_release(c);
++		if (source && obs_source_get_type(source) == OBS_SOURCE_TYPE_TRANSITION) {
++			obs_source_t *ts = obs_transition_get_active_source(source);
++			if (ts) {
++				obs_source_release(source);
++				source = ts;
++			}
++		}
++		if (source && obs_source_is_scene(source)) {
++			scene = source;
++		} else {
++			obs_source_release(source);
++		}
++
++	} else {
++		scene = obs_frontend_get_current_scene();
++	}
++	std::string scene_name = scene ? obs_source_get_name(scene) : "";
++	for (int i = 0; i < count; i++) {
++		auto w = dynamic_cast<DownstreamKeyer *>(tabs->widget(i));
++		if (w)
++			w->SceneChanged(scene_name);
++	}
++	obs_source_release(scene);
++}
++
++void DownstreamKeyerDock::AddTransitionMenu(QMenu *tm, enum transitionType transition_type)
++{
++
++	std::string transition;
++	int transition_duration = 300;
++	auto w = dynamic_cast<DownstreamKeyer *>(tabs->currentWidget());
++	if (w) {
++		transition = w->GetTransition(transition_type);
++		transition_duration = w->GetTransitionDuration(transition_type);
++	}
++
++	auto setTransition = [this, transition_type](std::string name) {
++		auto w = dynamic_cast<DownstreamKeyer *>(tabs->currentWidget());
++		if (w)
++			w->SetTransition(name.c_str(), transition_type);
++	};
++
++	auto a = tm->addAction(QT_UTF8(obs_module_text("None")));
++	a->setCheckable(true);
++	a->setChecked(transition.empty());
++	connect(a, &QAction::triggered, [setTransition] { return setTransition(""); });
++	tm->addSeparator();
++	obs_frontend_source_list transitions = {};
++	get_transitions(get_transitions_data, &transitions);
++	for (size_t i = 0; i < transitions.sources.num; i++) {
++		const char *n = obs_source_get_name(transitions.sources.array[i]);
++		if (!n)
++			continue;
++		a = tm->addAction(QT_UTF8(n));
++		a->setCheckable(true);
++		a->setChecked(strcmp(transition.c_str(), n) == 0);
++		connect(a, &QAction::triggered, [setTransition, n] { return setTransition(n); });
++	}
++	obs_frontend_source_list_free(&transitions);
++
++	tm->addSeparator();
++
++	QSpinBox *duration = new QSpinBox(tm);
++	duration->setMinimum(50);
++	duration->setSuffix("ms");
++	duration->setMaximum(20000);
++	duration->setSingleStep(50);
++	duration->setValue(transition_duration);
++
++	auto setDuration = [this, transition_type](int duration) {
++		auto w = dynamic_cast<DownstreamKeyer *>(tabs->currentWidget());
++		if (w)
++			w->SetTransitionDuration(duration, transition_type);
++	};
++	connect(duration, (void(QSpinBox::*)(int)) & QSpinBox::valueChanged, setDuration);
++
++	QWidgetAction *durationAction = new QWidgetAction(tm);
++	durationAction->setDefaultWidget(duration);
++
++	tm->addAction(durationAction);
++}
++
++void DownstreamKeyerDock::AddExcludeSceneMenu(QMenu *tm)
++{
++	auto setSceneExclude = [this](std::string name, bool add) {
++		const auto w = dynamic_cast<DownstreamKeyer *>(tabs->currentWidget());
++		if (w) {
++			if (add) {
++				w->AddExcludeScene(name.c_str());
++			} else {
++				w->RemoveExcludeScene(name.c_str());
++			}
++		}
++	};
++	const auto w = dynamic_cast<DownstreamKeyer *>(tabs->currentWidget());
++	struct obs_frontend_source_list scenes = {};
++	obs_frontend_get_scenes(&scenes);
++	for (size_t i = 0; i < scenes.sources.num; i++) {
++		obs_source_t *source = scenes.sources.array[i];
++		auto name = obs_source_get_name(source);
++		auto a = tm->addAction(QT_UTF8(name));
++
++		a->setCheckable(true);
++		bool excluded = false;
++		if (w) {
++			excluded = w->IsSceneExcluded(name);
++		}
++		a->setChecked(excluded);
++		excluded = !excluded;
++		connect(a, &QAction::triggered, [setSceneExclude, name, excluded] { return setSceneExclude(name, excluded); });
++	}
++	obs_frontend_source_list_free(&scenes);
++}
++
++void DownstreamKeyerDock::ConfigClicked()
++{
++	QMenu popup;
++	auto *a = popup.addAction(QT_UTF8(obs_module_text("Add")));
++	connect(a, SIGNAL(triggered()), this, SLOT(Add()));
++	a = popup.addAction(QT_UTF8(obs_module_text("Rename")));
++	connect(a, SIGNAL(triggered()), this, SLOT(Rename()));
++	a = popup.addAction(QT_UTF8(obs_module_text("Remove")));
++	connect(a, SIGNAL(triggered()), this, SLOT(Remove()));
++	auto tm = popup.addMenu(QT_UTF8(obs_module_text("Transition")));
++	AddTransitionMenu(tm, transitionType::match);
++	tm = popup.addMenu(QT_UTF8(obs_module_text("ShowTransition")));
++	AddTransitionMenu(tm, transitionType::show);
++	tm = popup.addMenu(QT_UTF8(obs_module_text("HideTransition")));
++	AddTransitionMenu(tm, transitionType::hide);
++	tm = popup.addMenu(QT_UTF8(obs_module_text("ExcludeScene")));
++	AddExcludeSceneMenu(tm);
++
++	tm = popup.addMenu(QT_UTF8(obs_module_text("HideAfter")));
++	QSpinBox *duration = new QSpinBox(tm);
++	duration->setMinimum(0);
++	duration->setSuffix("ms");
++	duration->setMaximum(1000000);
++	duration->setSingleStep(1000);
++	const auto w = dynamic_cast<DownstreamKeyer *>(tabs->currentWidget());
++	duration->setValue(w->GetHideAfter());
++	auto setDuration = [&](int duration) {
++		auto w = dynamic_cast<DownstreamKeyer *>(tabs->currentWidget());
++		if (w)
++			w->SetHideAfter(duration);
++	};
++	connect(duration, (void(QSpinBox::*)(int)) & QSpinBox::valueChanged, setDuration);
++	QWidgetAction *durationAction = new QWidgetAction(tm);
++	durationAction->setDefaultWidget(duration);
++
++	tm->addAction(durationAction);
++	popup.exec(QCursor::pos());
++}
++
++void DownstreamKeyerDock::Add(QString name)
++{
++	if (name.isEmpty()) {
++		std::string std_name = obs_module_text("DefaultName");
++		if (!NameDialog::AskForName(this, std_name))
++			return;
++		name = QString::fromUtf8(std_name.c_str());
++	}
++	if (outputChannel < 7 || outputChannel >= MAX_CHANNELS)
++		outputChannel = 7;
++	obs_canvas_t *c = obs_weak_canvas_get_canvas(canvas);
++	auto keyer = new DownstreamKeyer(outputChannel + tabs->count(), name, view, c, get_transitions, get_transitions_data);
++	obs_canvas_release(c);
++	tabs->addTab(keyer, keyer->objectName());
++}
++
++void DownstreamKeyerDock::Rename()
++{
++	int i = tabs->currentIndex();
++	if (i < 0)
++		return;
++	std::string name = QT_TO_UTF8(tabs->tabText(i));
++	if (NameDialog::AskForName(this, name)) {
++		tabs->setTabText(i, QT_UTF8(name.c_str()));
++	}
++}
++
++void DownstreamKeyerDock::Remove(int index)
++{
++	if (index < 0)
++		index = tabs->currentIndex();
++	if (index < 0)
++		return;
++	auto w = tabs->widget(index);
++	tabs->removeTab(index);
++	delete w;
++	if (tabs->count() == 0) {
++		AddDefaultKeyer();
++	}
++}
++QString DownstreamKeyerDock::GetScene(QString dskName)
++{
++	const int count = tabs->count();
++	for (int i = 0; i < count; i++) {
++		auto w = dynamic_cast<DownstreamKeyer *>(tabs->widget(i));
++		if (w->objectName() == dskName) {
++			return w->GetScene();
++		}
++	}
++	return "";
++}
++
++bool DownstreamKeyerDock::SwitchDSK(QString dskName, QString sceneName)
++{
++	const int count = tabs->count();
++	for (int i = 0; i < count; i++) {
++		auto w = dynamic_cast<DownstreamKeyer *>(tabs->widget(i));
++		if (w->objectName() == dskName) {
++			if (w->SwitchToScene(sceneName)) {
++				return true;
++			}
++		}
++	}
++	return false;
++}
++
++bool DownstreamKeyerDock::AddScene(QString dskName, QString sceneName, int insertBeforeRow)
++{
++	const int count = tabs->count();
++	for (int i = 0; i < count; i++) {
++		auto w = dynamic_cast<DownstreamKeyer *>(tabs->widget(i));
++		if (w->objectName() == dskName) {
++			if (w->AddScene(sceneName, insertBeforeRow)) {
++				return true;
++			}
++		}
++	}
++	return false;
++}
++
++bool DownstreamKeyerDock::RemoveScene(QString dskName, QString sceneName)
++{
++	const int count = tabs->count();
++	for (int i = 0; i < count; i++) {
++		auto w = dynamic_cast<DownstreamKeyer *>(tabs->widget(i));
++		if (w->objectName() == dskName) {
++			if (w->RemoveScene(sceneName)) {
++				return true;
++			}
++		}
++	}
++	return false;
++}
++
++bool DownstreamKeyerDock::SetTie(QString dskName, bool tie)
++{
++	const int count = tabs->count();
++	for (int i = 0; i < count; i++) {
++		auto w = dynamic_cast<DownstreamKeyer *>(tabs->widget(i));
++		if (w->objectName() == dskName) {
++			w->SetTie(tie);
++			return true;
++		}
++	}
++	return false;
++}
++
++bool DownstreamKeyerDock::SetHideAfter(QString dskName, int duration)
++{
++	const int count = tabs->count();
++	for (int i = 0; i < count; i++) {
++		auto w = dynamic_cast<DownstreamKeyer *>(tabs->widget(i));
++		if (w->objectName() == dskName) {
++			w->SetHideAfter(duration < 0 ? 0 : duration);
++			return true;
++		}
++	}
++	return false;
++}
++
++bool DownstreamKeyerDock::SetTransition(const QString &dskName, const char *transition, int duration, transitionType tt)
++{
++	const int count = tabs->count();
++	for (int i = 0; i < count; i++) {
++		auto w = dynamic_cast<DownstreamKeyer *>(tabs->widget(i));
++		if (w->objectName() == dskName) {
++			w->SetTransition(transition, tt);
++			w->SetTransitionDuration(duration, tt);
++			return true;
++		}
++	}
++	return false;
++}
++
++bool DownstreamKeyerDock::AddExcludeScene(QString dskName, const char *sceneName)
++{
++	const int count = tabs->count();
++	for (int i = 0; i < count; i++) {
++		auto w = dynamic_cast<DownstreamKeyer *>(tabs->widget(i));
++		if (w->objectName() == dskName) {
++			w->AddExcludeScene(sceneName);
++			return true;
++		}
++	}
++	return false;
++}
++
++bool DownstreamKeyerDock::RemoveExcludeScene(QString dskName, const char *sceneName)
++{
++	const int count = tabs->count();
++	for (int i = 0; i < count; i++) {
++		auto w = dynamic_cast<DownstreamKeyer *>(tabs->widget(i));
++		if (w->objectName() == dskName) {
++			w->RemoveExcludeScene(sceneName);
++			return true;
++		}
++	}
++	return false;
++}
++
++void DownstreamKeyerDock::get_downstream_keyers(obs_data_t *request_data, obs_data_t *response_data, void *param)
++{
++	UNUSED_PARAMETER(param);
++	const char *viewName = obs_data_get_string(request_data, "view_name");
++	if (_dsks.find(viewName) == _dsks.end())
++		return;
++	_dsks[viewName]->Save(response_data);
++}
++
++void DownstreamKeyerDock::get_downstream_keyer(obs_data_t *request_data, obs_data_t *response_data, void *param)
++{
++	UNUSED_PARAMETER(param);
++	const char *viewName = obs_data_get_string(request_data, "view_name");
++	if (_dsks.find(viewName) == _dsks.end()) {
++		obs_data_set_string(response_data, "error", "'view_name' not found");
++		obs_data_set_bool(response_data, "success", false);
++		return;
++	}
++	auto dsk = _dsks[viewName];
++	const char *dsk_name = obs_data_get_string(request_data, "dsk_name");
++	if (!dsk_name || !strlen(dsk_name)) {
++		obs_data_set_string(response_data, "error", "'dsk_name' not set");
++		obs_data_set_bool(response_data, "success", false);
++		return;
++	}
++	QString dskName = QString::fromUtf8(dsk_name);
++	const int count = dsk->tabs->count();
++	for (int i = 0; i < count; i++) {
++		auto w = dynamic_cast<DownstreamKeyer *>(dsk->tabs->widget(i));
++		if (w->objectName() == dskName) {
++			obs_data_set_bool(response_data, "success", true);
++			w->Save(response_data);
++			return;
++		}
++	}
++	obs_data_set_bool(response_data, "success", false);
++	obs_data_set_string(response_data, "error", "No downstream keyer with that name found");
++}
++
++void DownstreamKeyerDock::add_downstream_keyer(obs_data_t *request_data, obs_data_t *response_data, void *param)
++{
++	UNUSED_PARAMETER(param);
++	const char *viewName = obs_data_get_string(request_data, "view_name");
++	if (_dsks.find(viewName) == _dsks.end()) {
++		obs_data_set_string(response_data, "error", "'view_name' not found");
++		obs_data_set_bool(response_data, "success", false);
++		return;
++	}
++	auto dsk = _dsks[viewName];
++	const char *dsk_name = obs_data_get_string(request_data, "dsk_name");
++	if (!dsk_name || !strlen(dsk_name)) {
++		obs_data_set_string(response_data, "error", "'dsk_name' not set");
++		obs_data_set_bool(response_data, "success", false);
++		return;
++	}
++	QString dskName = QString::fromUtf8(dsk_name);
++	const int count = dsk->tabs->count();
++	for (int i = 0; i < count; i++) {
++		auto w = dynamic_cast<DownstreamKeyer *>(dsk->tabs->widget(i));
++		if (w->objectName() == dskName) {
++			obs_data_set_string(response_data, "error", "'dsk_name' exists");
++			obs_data_set_bool(response_data, "success", false);
++			return;
++		}
++	}
++	QMetaObject::invokeMethod(dsk, "Add", Q_ARG(QString, dskName));
++	obs_data_set_bool(response_data, "success", true);
++}
++
++void DownstreamKeyerDock::remove_downstream_keyer(obs_data_t *request_data, obs_data_t *response_data, void *param)
++{
++	UNUSED_PARAMETER(param);
++	const char *viewName = obs_data_get_string(request_data, "view_name");
++	if (_dsks.find(viewName) == _dsks.end()) {
++		obs_data_set_string(response_data, "error", "'view_name' not found");
++		obs_data_set_bool(response_data, "success", false);
++		return;
++	}
++	auto dsk = _dsks[viewName];
++	const char *dsk_name = obs_data_get_string(request_data, "dsk_name");
++	if (!dsk_name || !strlen(dsk_name)) {
++		obs_data_set_string(response_data, "error", "'dsk_name' not set");
++		obs_data_set_bool(response_data, "success", false);
++		return;
++	}
++	QString dskName = QString::fromUtf8(dsk_name);
++	const int count = dsk->tabs->count();
++	for (int i = 0; i < count; i++) {
++		auto w = dynamic_cast<DownstreamKeyer *>(dsk->tabs->widget(i));
++		if (w->objectName() == dskName) {
++			QMetaObject::invokeMethod(dsk, "Remove", Q_ARG(int, i));
++			obs_data_set_bool(response_data, "success", true);
++			return;
++		}
++	}
++	obs_data_set_string(response_data, "error", "No downstream keyer with that name found");
++}
++
++void DownstreamKeyerDock::get_scene(obs_data_t *request_data, obs_data_t *response_data, void *param)
++{
++	UNUSED_PARAMETER(param);
++	const char *viewName = obs_data_get_string(request_data, "view_name");
++	if (_dsks.find(viewName) == _dsks.end()) {
++		obs_data_set_string(response_data, "error", "'view_name' not found");
++		obs_data_set_bool(response_data, "success", false);
++		return;
++	}
++	auto dsk = _dsks[viewName];
++	const char *dsk_name = obs_data_get_string(request_data, "dsk_name");
++	if (!dsk_name || !strlen(dsk_name)) {
++		obs_data_set_string(response_data, "error", "'dsk_name' not set");
++		obs_data_set_bool(response_data, "success", false);
++		return;
++	}
++	QString scene = dsk->GetScene(QString::fromUtf8(dsk_name));
++	obs_data_set_string(response_data, "scene", scene.toUtf8().constData());
++	obs_data_set_bool(response_data, "success", true);
++}
++
++void DownstreamKeyerDock::change_scene(obs_data_t *request_data, obs_data_t *response_data, void *param)
++{
++	UNUSED_PARAMETER(param);
++	const char *viewName = obs_data_get_string(request_data, "view_name");
++	if (_dsks.find(viewName) == _dsks.end()) {
++		obs_data_set_string(response_data, "error", "'view_name' not found");
++		obs_data_set_bool(response_data, "success", false);
++		return;
++	}
++	auto dsk = _dsks[viewName];
++	const char *dsk_name = obs_data_get_string(request_data, "dsk_name");
++	const char *scene_name = obs_data_get_string(request_data, "scene");
++	if (!scene_name) {
++		obs_data_set_string(response_data, "error", "'scene' not set");
++		obs_data_set_bool(response_data, "success", false);
++		return;
++	}
++	if (!dsk_name || !strlen(dsk_name)) {
++		obs_data_set_string(response_data, "error", "'dsk_name' not set");
++		obs_data_set_bool(response_data, "success", false);
++		return;
++	}
++	obs_data_set_bool(response_data, "success", dsk->SwitchDSK(QString::fromUtf8(dsk_name), QString::fromUtf8(scene_name)));
++}
++
++void DownstreamKeyerDock::add_scene(obs_data_t *request_data, obs_data_t *response_data, void *param)
++{
++	UNUSED_PARAMETER(param);
++	const char *viewName = obs_data_get_string(request_data, "view_name");
++	if (_dsks.find(viewName) == _dsks.end()) {
++		obs_data_set_string(response_data, "error", "'view_name' not found");
++		obs_data_set_bool(response_data, "success", false);
++		return;
++	}
++	auto dsk = _dsks[viewName];
++	const char *dsk_name = obs_data_get_string(request_data, "dsk_name");
++	const char *scene_name = obs_data_get_string(request_data, "scene");
++	int insertBeforeRow = obs_data_get_int(request_data, "insertBeforeRow");
++	if (!scene_name || !strlen(scene_name)) {
++		obs_data_set_string(response_data, "error", "'scene' not set");
++		obs_data_set_bool(response_data, "success", false);
++		return;
++	}
++	if (!dsk_name || !strlen(dsk_name)) {
++		obs_data_set_string(response_data, "error", "'dsk_name' not set");
++
++		obs_data_set_bool(response_data, "success", false);
++		return;
++	}
++
++	obs_data_set_bool(response_data, "success",
++			  dsk->AddScene(QString::fromUtf8(dsk_name), QString::fromUtf8(scene_name), insertBeforeRow));
++}
++
++void DownstreamKeyerDock::remove_scene(obs_data_t *request_data, obs_data_t *response_data, void *param)
++{
++	UNUSED_PARAMETER(param);
++	const char *viewName = obs_data_get_string(request_data, "view_name");
++	if (_dsks.find(viewName) == _dsks.end()) {
++		obs_data_set_string(response_data, "error", "'view_name' not found");
++		obs_data_set_bool(response_data, "success", false);
++		return;
++	}
++	auto dsk = _dsks[viewName];
++	const char *dsk_name = obs_data_get_string(request_data, "dsk_name");
++	const char *scene_name = obs_data_get_string(request_data, "scene");
++	if (!scene_name || !strlen(scene_name)) {
++		obs_data_set_string(response_data, "error", "'scene' not set");
++		obs_data_set_bool(response_data, "success", false);
++		return;
++	}
++	if (!dsk_name || !strlen(dsk_name)) {
++		obs_data_set_string(response_data, "error", "'dsk_name' not set");
++		obs_data_set_bool(response_data, "success", false);
++		return;
++	}
++	obs_data_set_bool(response_data, "success", dsk->RemoveScene(QString::fromUtf8(dsk_name), QString::fromUtf8(scene_name)));
++}
++
++void DownstreamKeyerDock::set_tie(obs_data_t *request_data, obs_data_t *response_data, void *param)
++{
++	UNUSED_PARAMETER(param);
++	const char *viewName = obs_data_get_string(request_data, "view_name");
++	if (_dsks.find(viewName) == _dsks.end()) {
++		obs_data_set_string(response_data, "error", "'view_name' not found");
++		obs_data_set_bool(response_data, "success", false);
++		return;
++	}
++	auto dsk = _dsks[viewName];
++	const char *dsk_name = obs_data_get_string(request_data, "dsk_name");
++	if (!obs_data_has_user_value(request_data, "tie")) {
++		obs_data_set_string(response_data, "error", "'tie' not set");
++		obs_data_set_bool(response_data, "success", false);
++		return;
++	}
++	const bool tie = obs_data_get_bool(request_data, "tie");
++	if (!dsk_name || !strlen(dsk_name)) {
++		obs_data_set_string(response_data, "error", "'dsk_name' not set");
++		obs_data_set_bool(response_data, "success", false);
++		return;
++	}
++	obs_data_set_bool(response_data, "success", dsk->SetTie(QString::fromUtf8(dsk_name), tie));
++}
++
++void DownstreamKeyerDock::set_hide_after(obs_data_t *request_data, obs_data_t *response_data, void *param)
++{
++	UNUSED_PARAMETER(param);
++	const char *viewName = obs_data_get_string(request_data, "view_name");
++	if (_dsks.find(viewName) == _dsks.end()) {
++		obs_data_set_string(response_data, "error", "'view_name' not found");
++		obs_data_set_bool(response_data, "success", false);
++		return;
++	}
++	auto dsk = _dsks[viewName];
++	const char *dsk_name = obs_data_get_string(request_data, "dsk_name");
++	if (!dsk_name || !strlen(dsk_name)) {
++		obs_data_set_string(response_data, "error", "'dsk_name' not set");
++		obs_data_set_bool(response_data, "success", false);
++		return;
++	}
++	if (!obs_data_has_user_value(request_data, "hide_after")) {
++		obs_data_set_string(response_data, "error", "'hide_after' not set");
++		obs_data_set_bool(response_data, "success", false);
++		return;
++	}
++	const int duration = (int)obs_data_get_int(request_data, "hide_after");
++	obs_data_set_bool(response_data, "success", dsk->SetHideAfter(QString::fromUtf8(dsk_name), duration));
++}
++
++void DownstreamKeyerDock::set_transition(obs_data_t *request_data, obs_data_t *response_data, void *param)
++{
++	UNUSED_PARAMETER(param);
++	const char *viewName = obs_data_get_string(request_data, "view_name");
++	if (_dsks.find(viewName) == _dsks.end()) {
++		obs_data_set_string(response_data, "error", "'view_name' not found");
++		obs_data_set_bool(response_data, "success", false);
++		return;
++	}
++	auto dsk = _dsks[viewName];
++	const char *dsk_name = obs_data_get_string(request_data, "dsk_name");
++	const char *transition = obs_data_get_string(request_data, "transition");
++	const char *transition_type = obs_data_get_string(request_data, "transition_type");
++	long long duration = obs_data_get_int(request_data, "transition_duration");
++
++	transitionType tt;
++	if (strcmp(transition_type, "show") == 0 || strcmp(transition_type, "Show") == 0) {
++		tt = transitionType::show;
++	} else if (strcmp(transition_type, "hide") == 0 || strcmp(transition_type, "Hide") == 0) {
++		tt = transitionType::hide;
++	} else {
++		tt = transitionType::match;
++	}
++
++	if (!dsk_name || !strlen(dsk_name)) {
++		obs_data_set_string(response_data, "error", "'dsk_name' not set");
++		obs_data_set_bool(response_data, "success", false);
++		return;
++	}
++	dsk->SetTransition(QString::fromUtf8(dsk_name), transition, duration, tt);
++	obs_data_set_bool(response_data, "success", true);
++}
++
++void DownstreamKeyerDock::add_exclude_scene(obs_data_t *request_data, obs_data_t *response_data, void *param)
++{
++	UNUSED_PARAMETER(param);
++	const char *viewName = obs_data_get_string(request_data, "view_name");
++	if (_dsks.find(viewName) == _dsks.end()) {
++		obs_data_set_string(response_data, "error", "'view_name' not found");
++		obs_data_set_bool(response_data, "success", false);
++		return;
++	}
++	auto dsk = _dsks[viewName];
++	const char *dsk_name = obs_data_get_string(request_data, "dsk_name");
++	const char *scene_name = obs_data_get_string(request_data, "scene");
++	if (!scene_name || !strlen(scene_name)) {
++		obs_data_set_string(response_data, "error", "'scene' not set");
++		obs_data_set_bool(response_data, "success", false);
++		return;
++	}
++	if (!dsk_name || !strlen(dsk_name)) {
++		obs_data_set_string(response_data, "error", "'dsk_name' not set");
++		obs_data_set_bool(response_data, "success", false);
++		return;
++	}
++	obs_data_set_bool(response_data, "success", dsk->AddExcludeScene(QString::fromUtf8(dsk_name), scene_name));
++}
++
++void DownstreamKeyerDock::remove_exclude_scene(obs_data_t *request_data, obs_data_t *response_data, void *param)
++{
++	UNUSED_PARAMETER(param);
++	const char *viewName = obs_data_get_string(request_data, "view_name");
++	if (_dsks.find(viewName) == _dsks.end()) {
++		obs_data_set_string(response_data, "error", "'view_name' not found");
++		obs_data_set_bool(response_data, "success", false);
++		return;
++	}
++	auto dsk = _dsks[viewName];
++	const char *dsk_name = obs_data_get_string(request_data, "dsk_name");
++	const char *scene_name = obs_data_get_string(request_data, "scene");
++	if (!scene_name || !strlen(scene_name)) {
++		obs_data_set_string(response_data, "error", "'scene' not set");
++		obs_data_set_bool(response_data, "success", false);
++		return;
++	}
++	if (!dsk_name || !strlen(dsk_name)) {
++		obs_data_set_string(response_data, "error", "'dsk_name' not set");
++		obs_data_set_bool(response_data, "success", false);
++		return;
++	}
++	obs_data_set_bool(response_data, "success", dsk->RemoveExcludeScene(QString::fromUtf8(dsk_name), scene_name));
++}
+diff --git a/plugins/downstream-keyer/downstream-keyer-dock.hpp b/plugins/downstream-keyer/downstream-keyer-dock.hpp
+new file mode 100644
+index 0000000..61a18b6
+--- /dev/null
++++ b/plugins/downstream-keyer/downstream-keyer-dock.hpp
+@@ -0,0 +1,74 @@
++#pragma once
++#include <QDockWidget>
++#include <qmenu.h>
++#include <QTabWidget>
++#include <QVBoxLayout>
++#include <QFrame>
++#include <obs-frontend-api.h>
++#include "downstream-keyer.hpp"
++#include "obs-websocket-api.h"
++
++class DownstreamKeyerDock : public QFrame {
++	Q_OBJECT
++private:
++	QTabWidget *tabs;
++	int outputChannel;
++	bool loaded = false;
++	bool closing = false;
++	obs_view_t *view = nullptr;
++	obs_weak_canvas_t *canvas = nullptr;
++	std::string viewName;
++	get_transitions_callback_t get_transitions = nullptr;
++	void *get_transitions_data = nullptr;
++
++	void Save(obs_data_t *data);
++	void Load(obs_data_t *data);
++	QString GetScene(QString dskName);
++	bool SwitchDSK(QString dskName, QString sceneName);
++	bool AddScene(QString dskName, QString sceneName, int insertBeforeRow);
++	bool RemoveScene(QString dskName, QString sceneName);
++	bool SetTie(QString dskName, bool tie);
++	/* FreeMix: "hide after" time of a keyer in milliseconds, 0 = stays on (request dsk_set_hide_after). */
++	bool SetHideAfter(QString dskName, int duration);
++	bool SetTransition(const QString &chars, const char *transition, int duration, transitionType tt);
++	bool AddExcludeScene(QString dskName, const char *sceneName);
++	bool RemoveExcludeScene(QString dskName, const char *sceneName);
++
++	void ClearKeyers();
++	void AddDefaultKeyer();
++	void ConfigClicked();
++	void AddTransitionMenu(QMenu *tm, enum transitionType transition_type);
++	void AddExcludeSceneMenu(QMenu *tm);
++private slots:
++	void SceneChanged();
++	void Add(QString name = "");
++	void Rename();
++	void Remove(int index = -1);
++
++public:
++	DownstreamKeyerDock(QWidget *parent = nullptr, int outputChannel = 7, obs_view_t *view = nullptr,
++			    obs_canvas_t *canvas = nullptr, const char *view_name = nullptr);
++	~DownstreamKeyerDock();
++
++	void SetTransitions(get_transitions_callback_t get_transitions = nullptr, void *get_transitions_data = nullptr);
++
++	inline obs_view_t *GetView() { return view; }
++	inline obs_canvas_t *GetCanvas() { return obs_weak_canvas_get_canvas(canvas); }
++
++	static void frontend_event(enum obs_frontend_event event, void *data);
++	static void frontend_save_load(obs_data_t *save_data, bool saving, void *data);
++
++	static void get_downstream_keyers(obs_data_t *request_data, obs_data_t *response_data, void *param);
++	static void get_downstream_keyer(obs_data_t *request_data, obs_data_t *response_data, void *param);
++	static void add_downstream_keyer(obs_data_t *request_data, obs_data_t *response_data, void *param);
++	static void remove_downstream_keyer(obs_data_t *request_data, obs_data_t *response_data, void *param);
++	static void get_scene(obs_data_t *request_data, obs_data_t *response_data, void *param);
++	static void change_scene(obs_data_t *request_data, obs_data_t *response_data, void *param);
++	static void add_scene(obs_data_t *request_data, obs_data_t *response_data, void *param);
++	static void remove_scene(obs_data_t *request_data, obs_data_t *response_data, void *param);
++	static void set_tie(obs_data_t *request_data, obs_data_t *response_data, void *param);
++	static void set_hide_after(obs_data_t *request_data, obs_data_t *response_data, void *param);
++	static void set_transition(obs_data_t *request_data, obs_data_t *response_data, void *param);
++	static void add_exclude_scene(obs_data_t *request_data, obs_data_t *response_data, void *param);
++	static void remove_exclude_scene(obs_data_t *request_data, obs_data_t *response_data, void *param);
++};
+diff --git a/plugins/downstream-keyer/downstream-keyer.cpp b/plugins/downstream-keyer/downstream-keyer.cpp
+new file mode 100644
+index 0000000..399d367
+--- /dev/null
++++ b/plugins/downstream-keyer/downstream-keyer.cpp
+@@ -0,0 +1,1054 @@
++#include "downstream-keyer.hpp"
++
++#include <QCheckBox>
++#include <QComboBox>
++#include <QLabel>
++#include <QLineEdit>
++#include <QListWidget>
++#include <QPushButton>
++#include <QSpinBox>
++#include <QToolBar>
++#include <QVBoxLayout>
++#include <obs-frontend-api.h>
++
++#include "obs-module.h"
++
++#define QT_UTF8(str) QString::fromUtf8(str)
++#define QT_TO_UTF8(str) str.toUtf8().constData()
++
++extern obs_websocket_vendor vendor;
++
++DownstreamKeyer::DownstreamKeyer(int channel, QString name, obs_view_t *v, obs_canvas_t *c, get_transitions_callback_t gt,
++				 void *gtd)
++	: outputChannel(channel),
++	  transition(nullptr),
++	  showTransition(nullptr),
++	  hideTransition(nullptr),
++	  overrideTransition(nullptr),
++	  transitionDuration(300),
++	  showTransitionDuration(300),
++	  hideTransitionDuration(300),
++	  view(v),
++	  canvas(c),
++	  get_transitions(gt),
++	  get_transitions_data(gtd)
++{
++	setObjectName(name);
++	auto layout = new QVBoxLayout(this);
++	layout->setSpacing(0);
++	layout->setContentsMargins(0, 0, 0, 0);
++
++	scenesList = new QListWidget(this);
++	scenesList->setObjectName(QStringLiteral("scenes"));
++	QSizePolicy sizePolicy6(QSizePolicy::Preferred, QSizePolicy::Expanding);
++	sizePolicy6.setHorizontalStretch(0);
++	sizePolicy6.setVerticalStretch(0);
++	sizePolicy6.setHeightForWidth(scenesList->sizePolicy().hasHeightForWidth());
++	scenesList->setSizePolicy(sizePolicy6);
++	scenesList->setContextMenuPolicy(Qt::CustomContextMenu);
++	scenesList->setFrameShape(QFrame::NoFrame);
++	scenesList->setFrameShadow(QFrame::Plain);
++	scenesList->setProperty("showDropIndicator", QVariant(true));
++	scenesList->setDragEnabled(true);
++	scenesList->setDragDropMode(QAbstractItemView::InternalMove);
++	scenesList->setDefaultDropAction(Qt::TargetMoveAction);
++	connect(scenesList, SIGNAL(itemSelectionChanged()), this, SLOT(on_scenesList_itemSelectionChanged()));
++
++	layout->addWidget(scenesList);
++
++	scenesToolbar = new QToolBar(this);
++	scenesToolbar->setObjectName(QStringLiteral("scenesToolbar"));
++	scenesToolbar->setIconSize(QSize(16, 16));
++	scenesToolbar->setFloatable(false);
++
++	auto actionAddScene = new QAction(this);
++	actionAddScene->setObjectName(QStringLiteral("actionAddScene"));
++	actionAddScene->setProperty("themeID", "addIconSmall");
++	actionAddScene->setProperty("class", "icon-plus");
++	actionAddScene->setText(QT_UTF8(obs_module_text("Add")));
++	connect(actionAddScene, SIGNAL(triggered()), this, SLOT(on_actionAddScene_triggered()));
++	scenesToolbar->addAction(actionAddScene);
++
++	auto actionRemoveScene = new QAction(this);
++	actionRemoveScene->setObjectName(QStringLiteral("actionRemoveScene"));
++	actionRemoveScene->setShortcutContext(Qt::WidgetWithChildrenShortcut);
++	actionRemoveScene->setProperty("themeID", "removeIconSmall");
++	actionRemoveScene->setProperty("class", "icon-minus");
++	actionRemoveScene->setText(QT_UTF8(obs_module_text("Remove")));
++	connect(actionRemoveScene, SIGNAL(triggered()), this, SLOT(on_actionRemoveScene_triggered()));
++	scenesToolbar->addAction(actionRemoveScene);
++
++	scenesToolbar->addSeparator();
++
++	auto actionSceneUp = new QAction(this);
++	actionSceneUp->setObjectName(QStringLiteral("actionSceneUp"));
++	actionSceneUp->setProperty("themeID", "upArrowIconSmall");
++	actionSceneUp->setProperty("class", "icon-up");
++	actionSceneUp->setText(QT_UTF8(obs_module_text("MoveUp")));
++	connect(actionSceneUp, SIGNAL(triggered()), this, SLOT(on_actionSceneUp_triggered()));
++	scenesToolbar->addAction(actionSceneUp);
++
++	auto actionSceneDown = new QAction(this);
++	actionSceneDown->setObjectName(QStringLiteral("actionSceneDown"));
++	actionSceneDown->setProperty("themeID", "downArrowIconSmall");
++	actionSceneDown->setProperty("class", "icon-down");
++	actionSceneDown->setText(QT_UTF8(obs_module_text("MoveDown")));
++	connect(actionSceneDown, SIGNAL(triggered()), this, SLOT(on_actionSceneDown_triggered()));
++	scenesToolbar->addAction(actionSceneDown);
++
++	scenesToolbar->addSeparator();
++
++	auto actionSceneNull = new QAction(this);
++	actionSceneNull->setObjectName(QStringLiteral("actionSceneNull"));
++	actionSceneNull->setProperty("themeID", "pauseIconSmall");
++	actionSceneNull->setProperty("class", "icon-media-pause");
++	actionSceneNull->setText(QT_UTF8(obs_module_text("None")));
++	connect(actionSceneNull, SIGNAL(triggered()), this, SLOT(on_actionSceneNull_triggered()));
++	scenesToolbar->addAction(actionSceneNull);
++
++	scenesToolbar->addSeparator();
++
++	tie = new LockedCheckBox(this);
++	tie->setObjectName(QStringLiteral("tie"));
++	tie->setToolTip(QT_UTF8(obs_module_text("Tie")));
++	scenesToolbar->addWidget(tie);
++
++	// Themes need the QAction dynamic properties
++	for (QAction *x : scenesToolbar->actions()) {
++		QWidget *temp = scenesToolbar->widgetForAction(x);
++
++		for (QByteArray &y : x->dynamicPropertyNames()) {
++			temp->setProperty(y, x->property(y));
++		}
++	}
++
++	layout->addWidget(scenesToolbar);
++
++	layout->addItem(new QSpacerItem(150, 0, QSizePolicy::Fixed, QSizePolicy::Minimum));
++
++	const auto sh = obs_get_signal_handler();
++	signal_handler_connect(sh, "source_rename", source_rename, this);
++	signal_handler_connect(sh, "source_remove", source_remove, this);
++
++	setLayout(layout);
++	QString disableDskHotkeyName = QT_UTF8(obs_module_text("DisableDSK"));
++	disableDskHotkeyName += " ";
++	disableDskHotkeyName += name;
++
++	null_hotkey_id =
++		obs_hotkey_register_frontend(QT_TO_UTF8(disableDskHotkeyName), QT_TO_UTF8(disableDskHotkeyName), null_hotkey, this);
++	QString enableTieHotkeyName = QT_UTF8(obs_module_text("EnableTie"));
++	enableTieHotkeyName += " ";
++	enableTieHotkeyName += name;
++	QString disableTieHotkeyName = QT_UTF8(obs_module_text("DisableTie"));
++	disableTieHotkeyName += " ";
++	disableTieHotkeyName += name;
++
++	tie_hotkey_id = obs_hotkey_pair_register_frontend(QT_TO_UTF8(enableTieHotkeyName), QT_TO_UTF8(enableTieHotkeyName),
++							  QT_TO_UTF8(disableTieHotkeyName), QT_TO_UTF8(disableTieHotkeyName),
++							  enable_tie_hotkey, disable_tie_hotkey, this, this);
++
++	connect(&hideTimer, &QTimer::timeout, [this]() {
++		hideTimer.stop();
++		on_actionSceneNull_triggered();
++	});
++}
++
++DownstreamKeyer::~DownstreamKeyer()
++{
++	if (view) {
++		//obs_view_set_source(view, outputChannel, nullptr);
++	} else if (canvas) {
++		//obs_canvas_set_channel(canvas, outputChannel, nullptr);
++	} else {
++		obs_set_output_source(outputChannel, nullptr);
++	}
++	obs_hotkey_unregister(null_hotkey_id);
++	obs_hotkey_pair_unregister(tie_hotkey_id);
++
++	if (transition) {
++		obs_transition_clear(transition);
++		obs_source_release(transition);
++		transition = nullptr;
++	}
++	if (showTransition) {
++		obs_transition_clear(showTransition);
++		obs_source_release(showTransition);
++		showTransition = nullptr;
++	}
++	if (hideTransition) {
++		obs_transition_clear(hideTransition);
++		obs_source_release(hideTransition);
++		hideTransition = nullptr;
++	}
++	if (overrideTransition) {
++		obs_transition_clear(overrideTransition);
++		obs_source_release(overrideTransition);
++		overrideTransition = nullptr;
++	}
++	const auto sh = obs_get_signal_handler();
++	signal_handler_disconnect(sh, "source_rename", source_rename, this);
++	signal_handler_disconnect(sh, "source_remove", source_remove, this);
++	while (scenesList->count()) {
++		const auto item = scenesList->item(0);
++		scenesList->removeItemWidget(item);
++		obs_hotkey_pair_unregister(item->data(Qt::UserRole).toUInt());
++		delete item;
++	}
++	delete scenesList;
++	delete scenesToolbar;
++}
++
++void DownstreamKeyer::on_actionAddScene_triggered()
++{
++	obs_source_t *scene = nullptr;
++	if (view) {
++		obs_source_t *source = obs_view_get_source(view, 0);
++		if (source && obs_source_get_type(source) == OBS_SOURCE_TYPE_TRANSITION) {
++			obs_source_t *ts = obs_transition_get_active_source(source);
++			if (ts) {
++				obs_source_release(source);
++				source = ts;
++			}
++		}
++		if (source && obs_source_is_scene(source)) {
++			scene = source;
++		} else {
++			obs_source_release(source);
++		}
++	} else if (canvas) {
++		obs_source_t *source = obs_canvas_get_channel(canvas, 0);
++		if (source && obs_source_get_type(source) == OBS_SOURCE_TYPE_TRANSITION) {
++			obs_source_t *ts = obs_transition_get_active_source(source);
++			if (ts) {
++				obs_source_release(source);
++				source = ts;
++			}
++		}
++		if (source && obs_source_is_scene(source)) {
++			scene = source;
++		} else {
++			obs_source_release(source);
++		}
++	} else {
++		scene = obs_frontend_preview_program_mode_active() ? obs_frontend_get_current_preview_scene()
++								   : obs_frontend_get_current_scene();
++	}
++	if (!scene)
++		return;
++	auto sceneName = QT_UTF8(obs_source_get_name(scene));
++	if (scenesList->findItems(sceneName, Qt::MatchFixedString).count() == 0) {
++		const auto currentRow = scenesList->currentRow();
++		add_scene(sceneName, scene, currentRow);
++	}
++
++	obs_source_release(scene);
++}
++
++void DownstreamKeyer::on_actionRemoveScene_triggered()
++{
++	auto item = scenesList->currentItem();
++	if (!item)
++		return;
++	scenesList->removeItemWidget(item);
++	obs_hotkey_pair_unregister(item->data(Qt::UserRole).toUInt());
++	delete item;
++}
++
++void DownstreamKeyer::on_actionSceneUp_triggered()
++{
++	ChangeSceneIndex(true, -1, 0);
++}
++
++void DownstreamKeyer::on_actionSceneDown_triggered()
++{
++	ChangeSceneIndex(true, 1, scenesList->count() - 1);
++}
++
++void DownstreamKeyer::on_actionSceneNull_triggered()
++{
++	for (int i = 0; i < scenesList->count(); i++) {
++		auto item = scenesList->item(i);
++		item->setSelected(false);
++	}
++	scenesList->setCurrentRow(-1);
++}
++
++void DownstreamKeyer::apply_source(obs_source_t *const newSource)
++{
++	if (newSource && hideAfter > 0) {
++		hideTimer.stop();
++		hideTimer.setInterval(hideAfter);
++		hideTimer.start();
++	}
++	obs_source_t *prevSource = view     ? obs_view_get_source(view, outputChannel)
++				   : canvas ? obs_canvas_get_channel(canvas, outputChannel)
++					    : obs_get_output_source(outputChannel);
++	obs_source_t *prevTransition = nullptr;
++	if (prevSource && obs_source_get_type(prevSource) == OBS_SOURCE_TYPE_TRANSITION) {
++		prevTransition = prevSource;
++		prevSource = obs_transition_get_active_source(prevSource);
++	}
++	obs_source_t *newTransition = nullptr;
++	uint32_t newTransitionDuration = transitionDuration;
++	if (prevSource == newSource) {
++	} else if (!prevSource && newSource && showTransition) {
++		newTransition = showTransition;
++		newTransitionDuration = showTransitionDuration;
++	} else if (prevSource && !newSource && hideTransition) {
++		newTransition = hideTransition;
++		newTransitionDuration = hideTransitionDuration;
++	} else {
++		auto ph = obs_get_proc_handler();
++		calldata_t cd = {0};
++		calldata_set_string(&cd, "from_scene", obs_source_get_name(prevSource));
++		calldata_set_string(&cd, "to_scene", obs_source_get_name(newSource));
++		if (proc_handler_call(ph, "get_transition_table_transition", &cd)) {
++			const char *p = calldata_string(&cd, "transition");
++			SetTransition(p ? p : "", transitionType::override);
++			SetTransitionDuration(calldata_int(&cd, "duration"), transitionType::override);
++		} else {
++			SetTransition("", transitionType::override);
++		}
++		calldata_free(&cd);
++		if (overrideTransition) {
++			newTransition = overrideTransition;
++			newTransitionDuration = overrideTransitionDuration;
++		} else if (transition)
++			newTransition = transition;
++	}
++	if (prevSource == newSource) {
++		//skip if nothing changed
++	} else {
++		if (!newTransition) {
++			if (view) {
++				obs_view_set_source(view, outputChannel, newSource);
++			} else if (canvas) {
++				obs_canvas_set_channel(canvas, outputChannel, newSource);
++			} else {
++				obs_set_output_source(outputChannel, newSource);
++			}
++		} else {
++			obs_transition_set(newTransition, prevSource);
++
++			obs_transition_start(newTransition, OBS_TRANSITION_MODE_AUTO, newTransitionDuration, newSource);
++
++			if (prevTransition != newTransition) {
++				if (view) {
++					obs_view_set_source(view, outputChannel, newTransition);
++				} else if (canvas) {
++					obs_canvas_set_channel(canvas, outputChannel, newTransition);
++				} else {
++					obs_set_output_source(outputChannel, newTransition);
++				}
++			}
++		}
++		if (vendor) {
++			const auto data = obs_data_create();
++			obs_data_set_string(data, "dsk_name", QT_TO_UTF8(objectName()));
++			obs_data_set_int(data, "dsk_channel", outputChannel);
++			obs_data_set_string(data, "new_scene", newSource ? obs_source_get_name(newSource) : "");
++			obs_data_set_string(data, "old_scene", prevSource ? obs_source_get_name(prevSource) : "");
++			obs_websocket_vendor_emit_event(vendor, "dsk_scene_changed", data);
++			obs_data_release(data);
++		}
++	}
++
++	obs_source_release(prevSource);
++	obs_source_release(prevTransition);
++}
++
++void DownstreamKeyer::apply_selected_source()
++{
++	const auto l = scenesList->selectedItems();
++	const auto newSource = l.count() ? (canvas ? obs_canvas_get_source_by_name(canvas, QT_TO_UTF8(l.value(0)->text()))
++						   : obs_get_source_by_name(QT_TO_UTF8(l.value(0)->text())))
++					 : nullptr;
++
++	apply_source(newSource);
++	obs_source_release(newSource);
++}
++
++void DownstreamKeyer::on_scenesList_itemSelectionChanged()
++{
++	if (tie->isChecked())
++		return;
++
++	apply_selected_source();
++}
++
++void DownstreamKeyer::ChangeSceneIndex(bool relative, int offset, int invalidIdx)
++{
++	int idx = scenesList->currentRow();
++	if (idx == -1 || idx == invalidIdx)
++		return;
++
++	scenesList->blockSignals(true);
++	QListWidgetItem *item = scenesList->takeItem(idx);
++
++	if (!relative)
++		idx = 0;
++
++	scenesList->insertItem(idx + offset, item);
++	scenesList->setCurrentRow(idx + offset);
++	item->setSelected(true);
++	scenesList->blockSignals(false);
++}
++
++void DownstreamKeyer::Save(obs_data_t *data)
++{
++	obs_data_set_string(data, "transition", transition ? obs_source_get_name(transition) : "");
++	obs_data_set_int(data, "transition_duration", transitionDuration);
++	obs_data_set_string(data, "show_transition", showTransition ? obs_source_get_name(showTransition) : "");
++	obs_data_set_int(data, "show_transition_duration", showTransitionDuration);
++	obs_data_set_string(data, "hide_transition", hideTransition ? obs_source_get_name(hideTransition) : "");
++	obs_data_set_int(data, "hide_transition_duration", hideTransitionDuration);
++	obs_data_set_int(data, "hide_after", hideAfter);
++	obs_data_set_bool(data, "tie", tie->isChecked());
++	obs_data_array_t *sceneArray = obs_data_array_create();
++	for (int i = 0; i < scenesList->count(); i++) {
++		auto item = scenesList->item(i);
++		if (!item)
++			continue;
++		auto sceneData = obs_data_create();
++		obs_data_set_string(sceneData, "name", QT_TO_UTF8(item->text()));
++		obs_data_array_push_back(sceneArray, sceneData);
++		obs_data_release(sceneData);
++	}
++	obs_data_set_array(data, "scenes", sceneArray);
++	obs_data_set_string(data, "scene", scenesList->currentItem() ? QT_TO_UTF8(scenesList->currentItem()->text()) : "");
++	obs_data_array_release(sceneArray);
++
++	obs_data_array_t *nh = obs_hotkey_save(null_hotkey_id);
++	obs_data_set_array(data, "null_hotkey", nh);
++	obs_data_array_release(nh);
++	obs_data_array_t *eth = nullptr;
++	obs_data_array_t *dth = nullptr;
++	obs_hotkey_pair_save(tie_hotkey_id, &eth, &dth);
++	obs_data_set_array(data, "enable_tie_hotkey", eth);
++	obs_data_set_array(data, "disable_tie_hotkey", dth);
++	obs_data_array_release(eth);
++	obs_data_array_release(dth);
++	auto excludes = obs_data_array_create();
++	for (auto t : exclude_scenes) {
++		const auto obj = obs_data_create();
++		obs_data_set_string(obj, "name", t.c_str());
++		obs_data_array_push_back(excludes, obj);
++		obs_data_release(obj);
++	}
++	obs_data_set_array(data, "exclude_scenes", excludes);
++	obs_data_array_release(excludes);
++}
++
++std::string DownstreamKeyer::GetTransition(enum transitionType transition_type)
++{
++	if (transition_type == transitionType::match && transition)
++		return obs_source_get_name(transition);
++	if (transition_type == transitionType::show && showTransition)
++		return obs_source_get_name(showTransition);
++	if (transition_type == transitionType::hide && hideTransition)
++		return obs_source_get_name(hideTransition);
++	if (transition_type == transitionType::override && overrideTransition)
++		return obs_source_get_name(overrideTransition);
++	return "";
++}
++
++void DownstreamKeyer::SetTransition(const char *transition_name, enum transitionType transition_type)
++{
++	obs_source_t *oldTransition = transition;
++	if (transition_type == transitionType::show)
++		oldTransition = showTransition;
++	else if (transition_type == transitionType::hide)
++		oldTransition = hideTransition;
++	else if (transition_type == transitionType::override)
++		oldTransition = overrideTransition;
++
++	if (!oldTransition && (!transition_name || !strlen(transition_name)))
++		return;
++
++	obs_source_t *newTransition = nullptr;
++	obs_frontend_source_list transitions = {};
++	get_transitions(get_transitions_data, &transitions);
++	for (size_t i = 0; i < transitions.sources.num; i++) {
++		const char *n = obs_source_get_name(transitions.sources.array[i]);
++		if (!n)
++			continue;
++		if (strcmp(transition_name, n) == 0) {
++			newTransition = obs_source_duplicate(transitions.sources.array[i],
++							     obs_source_get_name(transitions.sources.array[i]), true);
++			break;
++		}
++	}
++	obs_frontend_source_list_free(&transitions);
++
++	if (transition_type == transitionType::show)
++		showTransition = newTransition;
++	else if (transition_type == transitionType::hide)
++		hideTransition = newTransition;
++	else if (transition_type == transitionType::override)
++		overrideTransition = newTransition;
++	else
++		transition = newTransition;
++	obs_source_t *prevSource = view     ? obs_view_get_source(view, outputChannel)
++				   : canvas ? obs_canvas_get_channel(canvas, outputChannel)
++					    : obs_get_output_source(outputChannel);
++	if (oldTransition && prevSource == oldTransition) {
++		if (newTransition) {
++			//swap transition
++			obs_transition_swap_begin(newTransition, oldTransition);
++			if (view) {
++				obs_view_set_source(view, outputChannel, newTransition);
++			} else if (canvas) {
++				obs_canvas_set_channel(canvas, outputChannel, newTransition);
++			} else {
++				obs_set_output_source(outputChannel, newTransition);
++			}
++			obs_transition_swap_end(newTransition, oldTransition);
++		} else {
++			auto item = scenesList->currentItem();
++			if (item) {
++				auto scene = canvas ? obs_canvas_get_source_by_name(canvas, QT_TO_UTF8(item->text()))
++						    : obs_get_source_by_name(QT_TO_UTF8(item->text()));
++				if (view) {
++					obs_view_set_source(view, outputChannel, scene);
++				} else if (canvas) {
++					obs_canvas_set_channel(canvas, outputChannel, scene);
++				} else {
++					obs_set_output_source(outputChannel, scene);
++				}
++				obs_source_release(scene);
++			} else {
++				if (view) {
++					obs_view_set_source(view, outputChannel, nullptr);
++				} else if (canvas) {
++					obs_canvas_set_channel(canvas, outputChannel, nullptr);
++				} else {
++					obs_set_output_source(outputChannel, nullptr);
++				}
++			}
++		}
++	}
++	obs_source_release(prevSource);
++	if (oldTransition) {
++		obs_transition_clear(oldTransition);
++		obs_source_release(oldTransition);
++	}
++}
++
++void DownstreamKeyer::SetTransitionDuration(int duration, enum transitionType transition_type)
++{
++	if (transition_type == match)
++		transitionDuration = duration;
++	else if (transition_type == transitionType::show)
++		showTransitionDuration = duration;
++	else if (transition_type == transitionType::hide)
++		hideTransitionDuration = duration;
++	else if (transition_type == transitionType::override)
++		overrideTransitionDuration = duration;
++}
++
++int DownstreamKeyer::GetTransitionDuration(enum transitionType transition_type)
++{
++	if (transition_type == transitionType::show)
++		return showTransitionDuration;
++	if (transition_type == transitionType::hide)
++		return hideTransitionDuration;
++	if (transition_type == transitionType::override)
++		return overrideTransitionDuration;
++	return transitionDuration;
++}
++
++void DownstreamKeyer::SetHideAfter(int duration)
++{
++	hideAfter = duration;
++	if (duration == 0)
++		hideTimer.stop();
++}
++
++int DownstreamKeyer::GetHideAfter()
++{
++	return hideAfter;
++}
++
++void DownstreamKeyer::SceneChanged(std::string scene)
++{
++	auto found = false;
++	for (const auto &e : exclude_scenes) {
++		if (scene == e)
++			found = true;
++	}
++
++	if (found) {
++		apply_source(nullptr);
++		return;
++	} else {
++		obs_source_t *prevSource = view     ? obs_view_get_source(view, outputChannel)
++					   : canvas ? obs_canvas_get_channel(canvas, outputChannel)
++						    : obs_get_output_source(outputChannel);
++		if (prevSource && obs_source_get_type(prevSource) == OBS_SOURCE_TYPE_TRANSITION) {
++			obs_source_t *prevTransition = prevSource;
++			prevSource = obs_transition_get_active_source(prevTransition);
++			obs_source_release(prevTransition);
++		}
++		if (prevSource == nullptr) {
++			apply_selected_source();
++			return;
++		}
++		obs_source_release(prevSource);
++	}
++
++	if (!tie->isChecked())
++		return;
++
++	apply_selected_source();
++}
++
++void DownstreamKeyer::Load(obs_data_t *data)
++{
++	SetTransition(obs_data_get_string(data, "transition"));
++	transitionDuration = obs_data_get_int(data, "transition_duration");
++	SetTransition(obs_data_get_string(data, "show_transition"), transitionType::show);
++	showTransitionDuration = obs_data_get_int(data, "show_transition_duration");
++	SetTransition(obs_data_get_string(data, "hide_transition"), transitionType::hide);
++	hideTransitionDuration = obs_data_get_int(data, "hide_transition_duration");
++	hideAfter = obs_data_get_int(data, "hide_after");
++	tie->setChecked(obs_data_get_bool(data, "tie"));
++	scenesList->clear();
++	obs_data_array_t *sceneArray = obs_data_get_array(data, "scenes");
++	const auto sceneName = QT_UTF8(obs_data_get_string(data, "scene"));
++	if (sceneArray) {
++		auto count = obs_data_array_count(sceneArray);
++		for (size_t i = 0; i < count; i++) {
++			const auto sceneData = obs_data_array_item(sceneArray, i);
++			const auto source_name = obs_data_get_string(sceneData, "name");
++			const auto item = new QListWidgetItem(QT_UTF8(source_name));
++			scenesList->addItem(item);
++			obs_source_t *source = canvas ? obs_canvas_get_source_by_name(canvas, source_name)
++						      : obs_get_source_by_name(source_name);
++			if (item->text() == sceneName) {
++				if (source) {
++					if (view) {
++						obs_view_set_source(view, outputChannel, source);
++					} else if (canvas) {
++						obs_canvas_set_channel(canvas, outputChannel, source);
++					} else {
++						obs_set_output_source(outputChannel, source);
++					}
++				}
++				scenesList->setCurrentItem(item);
++				item->setSelected(true);
++			}
++			obs_data_release(sceneData);
++
++			if (source) {
++				std::string enable_hotkey = obs_module_text("EnableDSK");
++				enable_hotkey += " ";
++				enable_hotkey += QT_TO_UTF8(objectName());
++				std::string disable_hotkey = obs_module_text("DisableDSK");
++				disable_hotkey += " ";
++				disable_hotkey += QT_TO_UTF8(objectName());
++				uint64_t h = obs_hotkey_pair_register_source(source, enable_hotkey.c_str(), enable_hotkey.c_str(),
++									     disable_hotkey.c_str(), disable_hotkey.c_str(),
++									     enable_DSK_hotkey, disable_DSK_hotkey, this, this);
++
++				if (h != OBS_INVALID_HOTKEY_PAIR_ID) {
++					item->setData(Qt::UserRole, static_cast<uint>(h));
++				}
++				obs_source_release(source);
++			}
++		}
++		obs_data_array_release(sceneArray);
++	}
++	if (sceneName.isEmpty()) {
++		for (int i = 0; i < scenesList->count(); i++) {
++			scenesList->item(i)->setSelected(false);
++		}
++		const auto row = scenesList->currentRow();
++		if (row != -1)
++			scenesList->setCurrentRow(-1);
++	}
++	obs_data_array_t *nh = obs_data_get_array(data, "null_hotkey");
++	obs_hotkey_load(null_hotkey_id, nh);
++	obs_data_array_release(nh);
++	obs_data_array_t *eth = obs_data_get_array(data, "enable_tie_hotkey");
++	obs_data_array_t *dth = obs_data_get_array(data, "disable_tie_hotkey");
++	obs_hotkey_pair_load(tie_hotkey_id, eth, dth);
++	obs_data_array_release(eth);
++	obs_data_array_release(dth);
++
++	auto excludes = obs_data_get_array(data, "exclude_scenes");
++	exclude_scenes.clear();
++	if (excludes) {
++		auto count = obs_data_array_count(excludes);
++		for (size_t i = 0; i < count; i++) {
++			const auto sceneData = obs_data_array_item(excludes, i);
++			exclude_scenes.emplace(obs_data_get_string(sceneData, "name"));
++			obs_data_release(sceneData);
++		}
++		obs_data_array_release(excludes);
++	}
++}
++
++void DownstreamKeyer::source_rename(void *data, calldata_t *calldata)
++{
++	const auto downstreamKeyer = static_cast<DownstreamKeyer *>(data);
++	const auto newName = QT_UTF8(calldata_string(calldata, "new_name"));
++	const auto prevName = QT_UTF8(calldata_string(calldata, "prev_name"));
++	const auto count = downstreamKeyer->scenesList->count();
++	for (int i = 0; i < count; i++) {
++		const auto item = downstreamKeyer->scenesList->item(i);
++		if (item->text() == prevName)
++			item->setText(newName);
++	}
++}
++
++void DownstreamKeyer::source_remove(void *data, calldata_t *calldata)
++{
++	const auto downstreamKeyer = static_cast<DownstreamKeyer *>(data);
++	const auto name = QT_UTF8(obs_source_get_name(static_cast<obs_source_t *>(calldata_ptr(calldata, "source"))));
++
++	const auto count = downstreamKeyer->scenesList->count();
++	for (int i = count - 1; i >= 0; i--) {
++		const auto item = downstreamKeyer->scenesList->item(i);
++		if (item->text() == name) {
++			downstreamKeyer->scenesList->removeItemWidget(item);
++			obs_hotkey_pair_unregister(item->data(Qt::UserRole).toUInt());
++			delete item;
++		}
++	}
++}
++
++bool DownstreamKeyer::enable_DSK_hotkey(void *data, obs_hotkey_pair_id id, obs_hotkey_t *hotkey, bool pressed)
++{
++	UNUSED_PARAMETER(hotkey);
++	if (!pressed)
++		return false;
++	const auto downstreamKeyer = static_cast<DownstreamKeyer *>(data);
++	bool changed = false;
++	for (int i = 0; i < downstreamKeyer->scenesList->count(); i++) {
++		auto item = downstreamKeyer->scenesList->item(i);
++		if (!item)
++			continue;
++		if (item->data(Qt::UserRole).toUInt() == id) {
++			if (!item->isSelected()) {
++				item->setSelected(true);
++				changed = true;
++			}
++		}
++	}
++	return changed;
++}
++
++bool DownstreamKeyer::disable_DSK_hotkey(void *data, obs_hotkey_pair_id id, obs_hotkey_t *hotkey, bool pressed)
++{
++	UNUSED_PARAMETER(hotkey);
++	if (!pressed)
++		return false;
++	const auto downstreamKeyer = static_cast<DownstreamKeyer *>(data);
++	bool changed = false;
++	for (int i = 0; i < downstreamKeyer->scenesList->count(); i++) {
++		auto item = downstreamKeyer->scenesList->item(i);
++		if (!item)
++			continue;
++		if (item->data(Qt::UserRole).toUInt() == id) {
++			if (item->isSelected()) {
++				item->setSelected(false);
++				changed = true;
++			}
++		}
++	}
++	return changed;
++}
++
++void DownstreamKeyer::null_hotkey(void *data, obs_hotkey_id id, obs_hotkey_t *hotkey, bool pressed)
++{
++	UNUSED_PARAMETER(id);
++	UNUSED_PARAMETER(hotkey);
++	if (!pressed)
++		return;
++	const auto downstreamKeyer = static_cast<DownstreamKeyer *>(data);
++	QMetaObject::invokeMethod(downstreamKeyer, "on_actionSceneNull_triggered", Qt::QueuedConnection);
++}
++
++bool DownstreamKeyer::enable_tie_hotkey(void *data, obs_hotkey_pair_id id, obs_hotkey_t *hotkey, bool pressed)
++{
++	UNUSED_PARAMETER(id);
++	UNUSED_PARAMETER(hotkey);
++	if (!pressed)
++		return false;
++	const auto downstreamKeyer = static_cast<DownstreamKeyer *>(data);
++	if (downstreamKeyer->tie->isChecked())
++		return false;
++	downstreamKeyer->tie->setChecked(true);
++	return true;
++}
++bool DownstreamKeyer::disable_tie_hotkey(void *data, obs_hotkey_pair_id id, obs_hotkey_t *hotkey, bool pressed)
++{
++	UNUSED_PARAMETER(id);
++	UNUSED_PARAMETER(hotkey);
++	if (!pressed)
++		return false;
++	const auto downstreamKeyer = static_cast<DownstreamKeyer *>(data);
++	if (!downstreamKeyer->tie->isChecked())
++		return false;
++	downstreamKeyer->tie->setChecked(false);
++	return true;
++}
++
++void DownstreamKeyer::AddExcludeScene(const char *scene_name)
++{
++	if (exclude_scenes.count(scene_name) > 0)
++		return;
++	exclude_scenes.emplace(scene_name);
++	obs_source_t *scene = nullptr;
++	if (view) {
++		obs_source_t *source = obs_view_get_source(view, 0);
++		if (source && obs_source_get_type(source) == OBS_SOURCE_TYPE_TRANSITION) {
++			obs_source_t *ts = obs_transition_get_active_source(source);
++			if (ts) {
++				obs_source_release(source);
++				source = ts;
++			}
++		}
++		if (source && obs_source_is_scene(source)) {
++			scene = source;
++		} else {
++			obs_source_release(source);
++		}
++	} else if (canvas) {
++		obs_source_t *source = obs_canvas_get_channel(canvas, 0);
++		if (source && obs_source_get_type(source) == OBS_SOURCE_TYPE_TRANSITION) {
++			obs_source_t *ts = obs_transition_get_active_source(source);
++			if (ts) {
++				obs_source_release(source);
++				source = ts;
++			}
++		}
++		if (source && obs_source_is_scene(source)) {
++			scene = source;
++		} else {
++			obs_source_release(source);
++		}
++	} else {
++		scene = obs_frontend_get_current_scene();
++	}
++	const auto sn = obs_source_get_name(scene);
++	if (strcmp(sn, scene_name) == 0)
++		SceneChanged(sn);
++	obs_source_release(scene);
++}
++
++void DownstreamKeyer::RemoveExcludeScene(const char *scene_name)
++{
++	exclude_scenes.erase(scene_name);
++	obs_source_t *scene = nullptr;
++	if (view) {
++		obs_source_t *source = obs_view_get_source(view, 0);
++		if (source && obs_source_get_type(source) == OBS_SOURCE_TYPE_TRANSITION) {
++			obs_source_t *ts = obs_transition_get_active_source(source);
++			if (ts) {
++				obs_source_release(source);
++				source = ts;
++			}
++		}
++		if (source && obs_source_is_scene(source)) {
++			scene = source;
++		} else {
++			obs_source_release(source);
++		}
++	} else if (canvas) {
++		obs_source_t *source = obs_canvas_get_channel(canvas, 0);
++		if (source && obs_source_get_type(source) == OBS_SOURCE_TYPE_TRANSITION) {
++			obs_source_t *ts = obs_transition_get_active_source(source);
++			if (ts) {
++				obs_source_release(source);
++				source = ts;
++			}
++		}
++		if (source && obs_source_is_scene(source)) {
++			scene = source;
++		} else {
++			obs_source_release(source);
++		}
++	} else {
++		scene = obs_frontend_get_current_scene();
++	}
++	const auto sn = obs_source_get_name(scene);
++	if (strcmp(sn, scene_name) == 0)
++		SceneChanged(sn);
++	obs_source_release(scene);
++}
++bool DownstreamKeyer::IsSceneExcluded(const char *scene_name)
++{
++	return exclude_scenes.find(scene_name) != exclude_scenes.end();
++}
++
++QString DownstreamKeyer::GetScene()
++{
++	for (int i = 0; i < scenesList->count(); i++) {
++		const auto item = scenesList->item(i);
++		if (!item)
++			continue;
++		if (!item->isSelected())
++			continue;
++		return item->text();
++	}
++	return "";
++}
++
++bool DownstreamKeyer::SwitchToScene(QString scene_name)
++{
++	if (scene_name.isEmpty()) {
++		on_actionSceneNull_triggered();
++		return true;
++	}
++	for (int i = 0; i < scenesList->count(); i++) {
++		const auto item = scenesList->item(i);
++		if (!item)
++			continue;
++		if (item->text() == scene_name) {
++			if (!item->isSelected()) {
++				item->setSelected(true);
++			}
++			return true;
++		}
++	}
++	return false;
++}
++
++void DownstreamKeyer::add_scene(QString scene_name, obs_source_t *s, int insertBeforeRow)
++{
++	const auto item = new QListWidgetItem(scene_name);
++	int scenesListCount = scenesList->count();
++	if ((insertBeforeRow > scenesListCount) || (insertBeforeRow < 0)) {
++		insertBeforeRow = scenesListCount;
++	}
++	scenesList->insertItem(insertBeforeRow, item);
++
++	std::string enable_hotkey = obs_module_text("EnableDSK");
++	enable_hotkey += " ";
++	enable_hotkey += QT_TO_UTF8(objectName());
++	std::string disable_hotkey = obs_module_text("DisableDSK");
++	disable_hotkey += " ";
++	disable_hotkey += QT_TO_UTF8(objectName());
++	uint64_t h = obs_hotkey_pair_register_source(s, enable_hotkey.c_str(), enable_hotkey.c_str(), disable_hotkey.c_str(),
++						     disable_hotkey.c_str(), enable_DSK_hotkey, disable_DSK_hotkey, this, this);
++
++	if (h != OBS_INVALID_HOTKEY_PAIR_ID) {
++		item->setData(Qt::UserRole, static_cast<uint>(h));
++	}
++}
++
++bool DownstreamKeyer::AddScene(QString scene_name, int insertBeforeRow)
++{
++	if (scene_name.isEmpty()) {
++		return false;
++	}
++	if (scenesList->findItems(scene_name, Qt::MatchFixedString).count() != 0) {
++		return true;
++	}
++	auto nameUtf8 = scene_name.toUtf8();
++	auto name = nameUtf8.constData();
++	auto s = canvas ? obs_canvas_get_source_by_name(canvas, name) : obs_get_source_by_name(name);
++	if (obs_source_is_scene(s)) {
++		add_scene(scene_name, s, insertBeforeRow);
++		obs_source_release(s);
++		return true;
++	}
++	obs_source_release(s);
++	return false;
++}
++
++bool DownstreamKeyer::RemoveScene(QString scene_name)
++{
++	if (scene_name.isEmpty()) {
++		return false;
++	}
++	for (int i = 0; i < scenesList->count(); i++) {
++		const auto item = scenesList->item(i);
++		if (!item)
++			continue;
++
++		if (item->text() == scene_name) {
++			scenesList->removeItemWidget(item);
++			obs_hotkey_pair_unregister(item->data(Qt::UserRole).toUInt());
++			delete item;
++			return true;
++		}
++	}
++	return false;
++}
++
++void DownstreamKeyer::SetTie(bool tie)
++{
++	this->tie->setChecked(tie);
++}
++
++void DownstreamKeyer::SetOutputChannel(int oc)
++{
++	if (oc == outputChannel)
++		return;
++	obs_source_t *prevSource = view     ? obs_view_get_source(view, outputChannel)
++				   : canvas ? obs_canvas_get_channel(canvas, outputChannel)
++					    : obs_get_output_source(outputChannel);
++	obs_source_t *prevTransition = nullptr;
++	if (prevSource && obs_source_get_type(prevSource) == OBS_SOURCE_TYPE_TRANSITION) {
++		prevTransition = prevSource;
++		prevSource = obs_transition_get_active_source(prevSource);
++	}
++	if (prevTransition) {
++		if (prevTransition == transition || prevTransition == showTransition || prevTransition == hideTransition ||
++		    prevTransition == overrideTransition) {
++			if (view) {
++				obs_view_set_source(view, outputChannel, nullptr);
++			} else if (canvas) {
++				obs_canvas_set_channel(canvas, outputChannel, nullptr);
++			} else {
++				obs_set_output_source(outputChannel, nullptr);
++			}
++		} else {
++			obs_source_release(prevTransition);
++			prevTransition = nullptr;
++		}
++	} else if (prevSource) {
++		const auto l = scenesList->selectedItems();
++		const auto newSource = l.count() ? (canvas ? obs_canvas_get_source_by_name(canvas, QT_TO_UTF8(l.value(0)->text()))
++							   : obs_get_source_by_name(QT_TO_UTF8(l.value(0)->text())))
++						 : nullptr;
++		if (prevSource == newSource) {
++			if (view) {
++				obs_view_set_source(view, outputChannel, nullptr);
++			} else if (canvas) {
++				obs_canvas_set_channel(canvas, outputChannel, nullptr);
++			} else {
++				obs_set_output_source(outputChannel, nullptr);
++			}
++			obs_source_release(newSource);
++		} else {
++			obs_source_release(prevSource);
++			prevSource = newSource;
++		}
++	}
++	outputChannel = oc;
++	if (prevTransition) {
++		if (view) {
++			obs_view_set_source(view, outputChannel, prevTransition);
++		} else if (canvas) {
++			obs_canvas_set_channel(canvas, outputChannel, prevTransition);
++		} else {
++			obs_set_output_source(outputChannel, prevTransition);
++		}
++	} else {
++		apply_selected_source();
++	}
++	obs_source_release(prevSource);
++	obs_source_release(prevTransition);
++}
++
++LockedCheckBox::LockedCheckBox()
++{
++	setProperty("lockCheckBox", true);
++	setProperty("class", "indicator-lock");
++}
++
++LockedCheckBox::LockedCheckBox(QWidget *parent) : QCheckBox(parent) {}
+diff --git a/plugins/downstream-keyer/downstream-keyer.hpp b/plugins/downstream-keyer/downstream-keyer.hpp
+new file mode 100644
+index 0000000..c478e6a
+--- /dev/null
++++ b/plugins/downstream-keyer/downstream-keyer.hpp
+@@ -0,0 +1,104 @@
++#pragma once
++
++#include <QCheckBox>
++#include <QComboBox>
++#include <QLabel>
++#include <QListWidget>
++#include <QSpinBox>
++#include <QTimer>
++#include <QToolBar>
++#include <QWidget>
++#include <set>
++
++#include "obs.h"
++#include "obs-websocket-api.h"
++
++typedef void (*get_transitions_callback_t)(void *data, struct obs_frontend_source_list *sources);
++
++class LockedCheckBox : public QCheckBox {
++	Q_OBJECT
++
++public:
++	LockedCheckBox();
++	explicit LockedCheckBox(QWidget *parent);
++};
++
++enum transitionType { match, show, hide, override };
++
++class DownstreamKeyer : public QWidget {
++	Q_OBJECT
++
++private:
++	QTimer hideTimer;
++	int outputChannel;
++	obs_source_t *transition;
++	obs_source_t *showTransition;
++	obs_source_t *hideTransition;
++	obs_source_t *overrideTransition;
++	QListWidget *scenesList;
++	QToolBar *scenesToolbar;
++	uint32_t transitionDuration;
++	uint32_t showTransitionDuration;
++	uint32_t hideTransitionDuration;
++	uint32_t overrideTransitionDuration;
++	/* FreeMix: starts at zero. Upstream 0.4.4 left it uninitialised, so a keyer created at run time took whatever
++	 * was in memory as its "hide after" time, saved it with the scene collection and, on the next start, dropped
++	 * its scene right after showing it. */
++	uint32_t hideAfter = 0;
++	LockedCheckBox *tie;
++	obs_hotkey_id null_hotkey_id;
++	obs_hotkey_pair_id tie_hotkey_id;
++	std::set<std::string> exclude_scenes;
++	obs_view_t *view = nullptr;
++	obs_canvas_t *canvas = nullptr;
++	get_transitions_callback_t get_transitions = nullptr;
++	void *get_transitions_data = nullptr;
++
++	static void source_rename(void *data, calldata_t *calldata);
++	static void source_remove(void *data, calldata_t *calldata);
++	static bool enable_DSK_hotkey(void *data, obs_hotkey_pair_id id, obs_hotkey_t *hotkey, bool pressed);
++	static bool disable_DSK_hotkey(void *data, obs_hotkey_pair_id id, obs_hotkey_t *hotkey, bool pressed);
++
++	static void null_hotkey(void *data, obs_hotkey_id id, obs_hotkey_t *hotkey, bool pressed);
++
++	static bool enable_tie_hotkey(void *data, obs_hotkey_pair_id id, obs_hotkey_t *hotkey, bool pressed);
++	static bool disable_tie_hotkey(void *data, obs_hotkey_pair_id id, obs_hotkey_t *hotkey, bool pressed);
++
++	void ChangeSceneIndex(bool relative, int idx, int invalidIdx);
++
++private slots:
++	void on_actionAddScene_triggered();
++	void on_actionRemoveScene_triggered();
++	void on_actionSceneUp_triggered();
++	void on_actionSceneDown_triggered();
++	void on_actionSceneNull_triggered();
++	void apply_source(obs_source_t *newSource);
++	void apply_selected_source();
++	void on_scenesList_itemSelectionChanged();
++signals:
++
++public:
++	DownstreamKeyer(int channel, QString name, obs_view_t *view = nullptr, obs_canvas_t *canvas = nullptr,
++			get_transitions_callback_t get_transitions = nullptr, void *get_transitions_data = nullptr);
++	~DownstreamKeyer();
++
++	void Save(obs_data_t *data);
++	void Load(obs_data_t *data);
++	void SetTransition(const char *transition_name, enum transitionType transition_type = match);
++	std::string GetTransition(enum transitionType transition_type = match);
++	void SetTransitionDuration(int duration, enum transitionType transition_type = match);
++	int GetTransitionDuration(enum transitionType transition_type = match);
++	void SetHideAfter(int duration);
++	int GetHideAfter();
++	void SceneChanged(std::string scene);
++	void AddExcludeScene(const char *scene_name);
++	void RemoveExcludeScene(const char *scene_name);
++	bool IsSceneExcluded(const char *scene_name);
++	QString GetScene();
++	bool SwitchToScene(QString scene_name);
++	void add_scene(QString scene_name, obs_source_t *s, int insertBeforeRow);
++	bool AddScene(QString scene_name, int insertBeforeRow);
++	bool RemoveScene(QString scene_name);
++	void SetTie(bool tie);
++	void SetOutputChannel(int outputChannel);
++};
+diff --git a/plugins/downstream-keyer/media/icon.ico b/plugins/downstream-keyer/media/icon.ico
+new file mode 100644
+index 0000000000000000000000000000000000000000..e31ab14b0d7a97470858a5ed308a7f9d06107bf7
+GIT binary patch
+literal 30486
+zcmeI32apv-6M**!BBlO_5e(cZ{E8WWQOr*eF>93pV=2a>EENnWhN|~4loX0$0?Gu&
+z!kn|>DP_i-BhQ2x&wT26{m<9$&Ai#Yefy5%jyunts(!n(J>ApWGuzYC(=Q0Bg6_ex
+z%Le9J6O8T_1S5kW=+mcApV%`9W}9a<HHG>t({99nf?&{~V*S5Cu%KTM%$wiE&{qYy
+z{{_L+;XyFa@Gwmc$3i=E2?E1sj-dr?kxo$R>gwdf4?mO-KKQ`FH{X0Cjg5`^cHe*h
+zz08|8PvN7FKGL>7{P2U~e*5h=IsEX$WtCM{kv@I;$jU3PEPea-mF>6RUcUbNYx(ZG
+z@8sHRuaz5byisB7*s<F7&_fRuXyLQzrkje<r>wsE>N0rnU|D9FWt7jyAAc;sph1JA
+zfB*gpE3B}BwuJ^-V6)9O(`Peg%#dGx`9%&m-~d^1#TAtndSrsX570pS>#x7c{`>DQ
+zy?XVM3opD--g)O8t#7{h=7J7@t+(D<diU-vOE0~&EVa~9+IGMF_ETDvz<bV}J69fh
+z=pnh}l1t>a+isKE+FI8?_p@frlC#e~TON4e0c{IST%rG`pMF~DPdMQOnJ{63JoC&m
+z^4xRJ3A(RT{`lh$ZTs-U4@)+il`&(+$jK+4EVti&yBp6W9`tea(MQYi#~&{zo_L}R
+zA3j|5w&j*vs&12L!M*q1d#d~H-MdRJmy@fmx=Q->>nB5o43VFI{<#vl&OgQrJ-_tQ
+zOWNlqn{1+E%-B{cj3;Ao?6Jq{I6V63qcVQ{c)9uJo28+lp%QrrPy0$V)(*7vik&g0
+zDlq2ASf3j6Yl^X1ozc#Ol$%y!HGsY38;XO^KKo4m{`+r7$9+DZm$%=3I|T2(`>xV|
+z`|Y=`EjRGoW}9u)PGhU1u+~~@={IAEusbtn&Xnt}yUxJ{7hE8;gLaE8wve~pddoJK
+zyYIeRx^(Fhva@D3hw3Mtbdqa7apFXwe(t&FI$(Xk&O%pJRV8=bb(d=o|8Cv7DXweR
+zuDVu?7%@Vy57eO<H*TD3kKK#*@7Li4Pg{Kc)z#Iiulo9WdH?<QWsNn~Xu_Yqe16gU
+zD1Y9?>IWU#@nL;kcinZBm#?2n^25v5&ug!}ChM)Yp7iY5Q&wATHC=C6OIUkYTd}K*
+zr7btyaDzTua>*r?rbmw+vcwWgh^-^jtFOLlo9p_4AMnHzPsr@qvt{bksdCCGr|4Qm
+z{f#%?kiY)=%eCj8XS8Q+WL>%X>Z_HOXYjH<h9mNBu;tUHO;dZ$I&#GoS7?3m<jFE+
+z$`rll893@U-E>o^e~(q!TV&+B`t;LJ73R#DBfIauyZSWDZHt>fe}1B@Wjink)~&}M
+ze_Zao^G=nKZ*ZS|_EEoxG2lC^w9X{)zvGTObRN(L;{f0bEw|iqI;R--XP<pGiA5rg
+z^%I%-)^^xo2legnpX@isJiq_``xAL2A@Mcrx5K<W{q)n-SK4KlUDO8POW-%PwBQ3-
+z{s$d&kYj_7#C%^={`hH@Kfb4((+@uQpxP_+#C=N({^PJ=!({#S*O%RP+fA4=x7>1z
+z`gI#_xS`-nfAPf^EoHBC%u(zS{_a;_eWhUi_doyqbCGzr2C>m^n-=`A8Ux!IaDJHC
+z0H%IeYm8pXBh^6bYv9W-zYO`kQ9qbE``I}A#XcE7`SsUdZvw3QmKS}*71pDTHrhy5
+zT4|+3!0*DR^Y^a!HN-@+W`BOh8E1q5e`@26H+DQX*kFT@PmV13{Ub+?bZd?=S&8?^
+zi0^L;F^1DlJ5BvB>-X3zaiE=d-Z{h%U&Z%NxZi89y+Uo0WT1cgw1xYcni|2!#;^8)
+zSOI>h&yT(;^-s)b*Ijp2z3jdB-pbqZ!2gN%k4zR{>DrwBi6Q;|`|mn7$jbQIy-HmF
+zJgd~N#W$z_V~#n-s#mX%Jo1S8Ht>kk|DwD<^N%@U<>NYf^ypCk`1|-);E2WXt=Ym{
+zT$KLdbImo^XdDq81MC6W=iGPSeRA);_sSuM9HM?5^Md;yfBeyQFF*bClln~HEIn8J
+zH1<^fGvb=;FRV{znJ~t0zWJuybI(2Md*j=)9~?Dml=`YXM-KL1eDBf1GjOy4*vGN&
+zU@y!)01x``=YEurUuUm!#1TiRy|6I=uGlkxZveYy>$VMb_GRq7eLeZSn|sgLo^#GQ
+za_Xt4hTyp4j#Ilr+?0Nz_{%T9Tz$^w_EV`{biCLPWilDrbI(2H`RAVxkw@ExkS(k*
+zzAwN0vc_VG-4cIXb=6g6=+L3^<daWo449blC!c)MWNx*vOGm~SUU}t}I+xBm>ns6?
+zJ!A9HJ8KH@Zh$xhdx_R8#3AU1xxjkj19J@>__pJ~0}pIf9ne2#5X7js0@z#54(y(|
+zE&Io(i1tHV=CH#K)3^fm+{U<&qqW~Z+CS^5A15NFg$z~)t=&KR_urp*6nj{|V5i!u
+ze{81TKk+PLB7R}dZ2KoB(3&=Y_2tMTkJK|G8%sOtsH5~dyY<#v_1j!$opm(kHekSj
+zR{#EZPwdZ&FTN;`J@%La=ODy~0G?4tC!CM9=DYhk?u_?l&a`VGPQh8xC<87|F(8do
+zbjG=szEi4!R0F97QVpaUXm1VRBjPLK+b;~T7a`B8QsE4ovu5_p<p6xN@8<Zg<Q)-f
+zCC<pcU}0eS<(HRjx7}9r1j_lzPd)XN=A4luMNULH7&vfXlfIFObAFo(5T_^3xQR&_
+zm#@XZKA%`av=B2Qe-GVq-j@XI;n+(@<seUk+_`eaKOc?KHn&dx9djvKUU}sejVEyB
+zj6Mn2_r%GM49Hln5WjD(oaNdvkI03H7M>B8ARfBrnrkKkJj(I+^G2e5w6*+6a+Q-e
+z`n)CbGw;aLB-TW13m^tdZYVgvk0kxKm;9W65UYq5o`LJ=@{@b8V8Mc@_?qWwb9(JN
+zbVU6V2W8!f7UHKJNq+Khtsea=`j3;J_)}DV*1S0T8I2YC{1@gP8OxRP&p$s_eqvvr
+zfBtzBGS(#GV}Ad{&WR&O3u_u{sNc3F_r%D{74p<LHy|h3=gnEszWeU0xo6}YlY@5A
+zMHlHgj<r8r`Iaxe^wQYeG|qM|yX-P;V`=<8D%~R!vf&3M73Ku%AAKRK1>_~a9k}@7
+zi}f9N4~r-NlXIeSz7KtZqYZ5>oxS20;Cm2bwa@GoS&#|Y7NwB)$C-I09kiqm;-$<*
+z{EN0Kygxn|ekOVP_ykG7847DeQX6vT(Jy*o4E(&zws;SGe7+&(5o>ZB;2#5g59G3K
+zwbfR!?V#oV0(<PShsMU+T6SL_tY_GyI3S1b`s=UPTs+Rxrca-)^FFRE`FP|5bfm(0
+zGC3=2uf4YBPLnUuoV{6ly#sj$KA_Jt&pcDl>G74xoAvSBcZ9+oYSN@hnu|i7gay`$
+z9e3PO^CI{L$WyU6dnFf^^Wye;7v=;0G;20F0Z}0Dg4`BtJ!krH`%>2G=y}`X8W(g&
+zE>3fDCddsV-#BiKC0@`T1^LMtJNV#(bx+E^v>fcT(@wGa=Y85s{uf?&A#}DKr`zT{
+zYcKi94IwWmPDcDQ^474Q7Ru#ubwv63E|~LvjE7hoYjX5`JDU9X+U4?8&O7hCf3*Dk
+zr|O@q|G52Kd(9u_GkHx>eJ0Hx*6L_`{=3>9h4mM|EGiFm@^tX|{d_8XAp8GkOGD0L
+zd#%6djQu<R?c={f*5~KS-hjL#asVyh;}b6j&wq@_V<j&#X}`I+#sz<qylo#iOJKid
+zfx5-V<#{eHS<`+}4fq-`wjeF-r~&e{<{6k<MV^-VF=b%iQl3^9QwJz!+<<bWu^hrY
+zPjT_eN%fNIC8~jRPDC|QsHb}Q=j$b>3rP@Ud6kA@rK_$Fjm26}4X)1C6jyI+J;2r4
+zT84GSwX6b{v$$U1^0ubymaFstSL>>Vtg#ow2&A~2!)49W3^;Z=U7;)C%=3mUC~#Ha
+z99fVNsn3F<{bI$%%aT!9;&JZXW8`#il;WH!j4s`Tj2m0m(CI9rQ!Ab>tJ5YPCpvv%
+zam@DGK<8PL{>%rJh|4F?rMRYJi#|K8UUJwq`+n9W7j2fo73W#DU>yT3)((O*O`76r
+zO*4Zl{5r#4u&sIX)EMpp=aR)#d+lsF5|u1%HMZ4>rsfJRTC(6An+$Yz0F8Ly@`Z*7
+zYf7OK7$)FMsn6)8_*0kFo95uEizIr<XZ2E~YpB**@h4xnTAa#n@wLsyHR{@D=_Z8e
+z8dYBwSA5fAe^RU});6@boTV|>hGGX6SDPsz>xx1<oc9vB>Own<bAyPgi##mO4vmgN
+zHcaOR*dVRUmd*|vbXE@zm*;7r6uYxyTj)TFgIcUPI<2=5S6?^2$WAXIo^@l#W<6vW
+zH)vFgaP`Y>=dldGUxQPZHVO5Yglp6f-?0tRiBoe^o|5xM-+f0#KDE`3p}7h3Ov2?e
+z@pN`plxBE|r<-Yxw1lgTP6<zzoW;5KDA8F|>HQtfcM^*|I-Kt$Ho;}}iQ#Ogbx9WA
+zNsQ99Aue8)OoE)MDh4Cw9h}ZmoYA106D4D}@Om*6`Et58pMqf>&(j!3Gf43`GlX{8
+zWuQZHRwv_({f*~o=u(`~fhkdac3Qn)1***p$IS_Fg?Z)-w$n=yXD&@~IEiNNnt5%0
+z3&qiyj+lMM+Q-=IoIz@-Zc3Lgq6*;#@Fkx1<8;&7!_gtdb?4)3H||>E=^nY86z5bC
+zy6N<KDNLaBH`PF@fm8#j22u^A8b~#eY9Q4>s)1AksRmLFq#8&ykZK^+K&pXM1E~g5
+O4Wt@KHSq7#!2bdMqquqi
+
+literal 0
+HcmV?d00001
+
+diff --git a/plugins/downstream-keyer/media/logo.png b/plugins/downstream-keyer/media/logo.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..6c4a820d1374b4042986ae3c2089051f27ca2da4
+GIT binary patch
+literal 1460
+zcmeAS@N?(olHy`uVBq!ia0vp^_ks8s2OE$K?FsM%QjEnx?oJHr&dIz4a#+$GeH|GX
+zHuiJ>Nn{1`ISV`@iy0XBj({-ZRBb+K1_oA7PZ!6KinzCT6N_iNiL?do{{P>8duonv
+zHoKz0?mgu<i}$Ha_DpKu-7m(nxaQyA_52Tt>TCaV#Q4+*DA{oc%C~gzI~`$HeAF!P
+z(Xr!)f(t(3kCJ-owRLrM|8w}Jd0RiKKAdyVHu>co<$cU9+s_GA_5UanxNA4<lHsFj
+zMaj7Si(meIkMR3lxxLs~YfmcU_oyR#9~Vs9F#pFqkGAWx8L|cLFIm?yC-;%|lUE8=
+zb+)_jXFrNgd|1Fr*d170E&RDqGV+nO3s13NykR)2#uuB9qF1bW9$r=0x2TF`)1SGA
+zRv)gPvgr_0?%_+f(w^h@?UBuMwYSZCEAzA<w8HKxNd4{1NDpP*Wf%9|m+Z`E@17xd
+zq`WxJ;*}6Q_@WD!zgCg&44nR>Y(qo;XSeg&d7JVhy7Q(So?3Ho!;)`;_qogVKGs=T
+zJEv@4f}-r>inr?fWOY_tpO*Z@LiX{N&kD;I+DF>G7rs9`t^dL%OaB_?n_TxKjz6B2
+zFR;EWYWd;EAV23bRF|9Xz8`TU{LaM%EEaqpMZe{FFv&Fk=(3WY!0=iasAT<u^xfAs
+zS67~|yZbJD_Kz-0se8=~$CZIGeV^f*oz=GQ-vfclf689CxZvEs%5{$qzB;%j_ORr`
+z8E?Q5UwG@M{k>`Lj~o5I{N*F(yDFzYM!7YMPS3VIq`CfQOZZ`<_L=F1u{DQQr(c`t
+zQ+#V@`GL*zxxPNQv0nJT`Ni17GXIQSYoeLOW7}r>6r4>zVVW!ZJAC)!*gIBs53ib4
+zHw53y5{Q#EKL2RjN89SBB5}6o(~7>|%|A7lUu%Yz-R`(p<8#lZeLVXq?<UVXo70(P
+zK%v^rXHS^Qx5WHvIi0h-xx7Nvd~@Bd<IjJ+KJB46>*n-(#;?WZGp<`LvvB6x*QT4F
+zeUyA)H&w}Gb8Xc5HJLRh6~9HC+56vClu6{Cp>F!MH+Ron5t!b5F<bC^pYq-ht>rPN
+zldq}lOR3m<*VN(R-t|{E7SGRb*H%imJAACXRKRxsyx0sI-Lx_*JMMIww6NyOekA4?
+zaIC4z?{&yNd`z9q&HT%`^3VpS<?Rpst*hG=ZK`%2HI46gn6^K-;!DXdd#{ZSw|9JU
+zZaBN9ceC;5JaznebKYB>MW;5;4X=|=4~ZzB_jXBVs$#Fuy`(Mg%X@!F)Cu-`)$rs#
+z5$A*Dry?sm@z;-cUOwZt?`rCEZ3Wrp>aEAO&baw<_8We-AM;WwvW>m>3%r>clfSkv
+zaPto_CL6uIH_pD<5oVlSb!%pv$KsU*d(OO>G41&3m*>7exLOi@lr=x?cGa0R-ZlJe
+zzk-jxs59O?zv|qY>>B>f{3R_Q?my$*Ds~V2-+d-nv|!27q?b=*8`9C=U(XPw`NY<9
+TJ^x%_Nz35r>gTe~DWM4f5ptCe
+
+literal 0
+HcmV?d00001
+
+diff --git a/plugins/downstream-keyer/name-dialog.cpp b/plugins/downstream-keyer/name-dialog.cpp
+new file mode 100644
+index 0000000..f365932
+--- /dev/null
++++ b/plugins/downstream-keyer/name-dialog.cpp
+@@ -0,0 +1,54 @@
++#include "name-dialog.hpp"
++
++#include <QVBoxLayout>
++
++#include "obs-module.h"
++
++NameDialog::NameDialog(QWidget *parent) : QDialog(parent)
++{
++	setWindowTitle(QString::fromUtf8(obs_module_text("DSKName")));
++	setModal(true);
++	setWindowModality(Qt::WindowModality::WindowModal);
++	setMinimumWidth(200);
++	setMinimumHeight(100);
++	QVBoxLayout *layout = new QVBoxLayout;
++	setLayout(layout);
++
++	userText = new QLineEdit(this);
++	layout->addWidget(userText);
++
++	QDialogButtonBox *buttonbox = new QDialogButtonBox(
++		QDialogButtonBox::Ok | QDialogButtonBox::Cancel);
++	layout->addWidget(buttonbox);
++	buttonbox->setCenterButtons(true);
++	connect(buttonbox, &QDialogButtonBox::accepted, this, &QDialog::accept);
++	connect(buttonbox, &QDialogButtonBox::rejected, this, &QDialog::reject);
++}
++
++static bool IsWhitespace(char ch)
++{
++	return ch == ' ' || ch == '\t';
++}
++
++static void CleanWhitespace(std::string &str)
++{
++	while (!str.empty() && IsWhitespace(str.back()))
++		str.erase(str.end() - 1);
++	while (!str.empty() && IsWhitespace(str.front()))
++		str.erase(str.begin());
++}
++
++bool NameDialog::AskForName(QWidget *parent, std::string &name)
++{
++	NameDialog dialog(parent);
++	dialog.userText->setMaxLength(170);
++	dialog.userText->setText(QString::fromUtf8(name.c_str()));
++	dialog.userText->selectAll();
++
++	if (dialog.exec() != DialogCode::Accepted) {
++		return false;
++	}
++	name = dialog.userText->text().toUtf8().constData();
++	CleanWhitespace(name);
++	return true;
++}
+diff --git a/plugins/downstream-keyer/name-dialog.hpp b/plugins/downstream-keyer/name-dialog.hpp
+new file mode 100644
+index 0000000..33ef022
+--- /dev/null
++++ b/plugins/downstream-keyer/name-dialog.hpp
+@@ -0,0 +1,17 @@
++#pragma once
++
++#include <QDialog>
++#include <QLabel>
++#include <QLineEdit>
++#include <QDialogButtonBox>
++#include <string>
++
++class NameDialog : public QDialog {
++	Q_OBJECT
++public:
++	static bool AskForName(QWidget *parent, std::string &name);
++
++private:
++	NameDialog(QWidget *parent);
++	QLineEdit *userText;
++};
+diff --git a/plugins/downstream-keyer/obs-websocket-api.h b/plugins/downstream-keyer/obs-websocket-api.h
+new file mode 100644
+index 0000000..9b63f84
+--- /dev/null
++++ b/plugins/downstream-keyer/obs-websocket-api.h
+@@ -0,0 +1,216 @@
++/*
++obs-websocket
++Copyright (C) 2016-2021 Stephane Lepin <stephane.lepin@gmail.com>
++Copyright (C) 2020-2022 Kyle Manning <tt2468@gmail.com>
++
++This program is free software; you can redistribute it and/or modify
++it under the terms of the GNU General Public License as published by
++the Free Software Foundation; either version 2 of the License, or
++(at your option) any later version.
++
++This program is distributed in the hope that it will be useful,
++but WITHOUT ANY WARRANTY; without even the implied warranty of
++MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++GNU General Public License for more details.
++
++You should have received a copy of the GNU General Public License along
++with this program. If not, see <https://www.gnu.org/licenses/>
++*/
++
++#ifndef _OBS_WEBSOCKET_API_H
++#define _OBS_WEBSOCKET_API_H
++
++#include <obs.h>
++
++#define OBS_WEBSOCKET_API_VERSION 2
++
++#ifdef __cplusplus
++extern "C" {
++#endif
++
++typedef void *obs_websocket_vendor;
++typedef void (*obs_websocket_request_callback_function)(obs_data_t *, obs_data_t *, void *);
++
++struct obs_websocket_request_response {
++	unsigned int status_code;
++	char *comment;
++	char *response_data; // JSON string, because obs_data_t* only supports array<object>, so conversions would break API.
++};
++
++/* ==================== INTERNAL DEFINITIONS ==================== */
++
++struct obs_websocket_request_callback {
++	obs_websocket_request_callback_function callback;
++	void *priv_data;
++};
++
++inline proc_handler_t *_ph;
++
++/* ==================== INTERNAL API FUNCTIONS ==================== */
++
++static inline proc_handler_t *obs_websocket_get_ph(void)
++{
++	proc_handler_t *global_ph = obs_get_proc_handler();
++	assert(global_ph != NULL);
++
++	calldata_t cd = {0};
++	if (!proc_handler_call(global_ph, "obs_websocket_api_get_ph", &cd))
++		blog(LOG_DEBUG, "Unable to fetch obs-websocket proc handler object. obs-websocket not installed?");
++	proc_handler_t *ret = (proc_handler_t *)calldata_ptr(&cd, "ph");
++	calldata_free(&cd);
++
++	return ret;
++}
++
++static inline bool obs_websocket_ensure_ph(void)
++{
++	if (!_ph)
++		_ph = obs_websocket_get_ph();
++	return _ph != NULL;
++}
++
++static inline bool obs_websocket_vendor_run_simple_proc(obs_websocket_vendor vendor, const char *proc_name, calldata_t *cd)
++{
++	if (!obs_websocket_ensure_ph())
++		return false;
++
++	if (!vendor || !proc_name || !strlen(proc_name) || !cd)
++		return false;
++
++	calldata_set_ptr(cd, "vendor", vendor);
++
++	proc_handler_call(_ph, proc_name, cd);
++	return calldata_bool(cd, "success");
++}
++
++/* ==================== GENERAL API FUNCTIONS ==================== */
++
++// Gets the API version built with the obs-websocket plugin
++static inline unsigned int obs_websocket_get_api_version(void)
++{
++	if (!obs_websocket_ensure_ph())
++		return 0;
++
++	calldata_t cd = {0};
++
++	if (!proc_handler_call(_ph, "get_api_version", &cd))
++		return 1; // API v1 does not include get_api_version
++
++	unsigned int ret = (unsigned int)calldata_int(&cd, "version");
++
++	calldata_free(&cd);
++
++	return ret;
++}
++
++// Calls an obs-websocket request. Free response with `obs_websocket_request_response_free()`
++static inline obs_websocket_request_response *obs_websocket_call_request(const char *request_type, obs_data_t *request_data = NULL)
++{
++	if (!obs_websocket_ensure_ph())
++		return NULL;
++
++	const char *request_data_string = NULL;
++	if (request_data)
++		request_data_string = obs_data_get_json(request_data);
++
++	calldata_t cd = {0};
++
++	calldata_set_string(&cd, "request_type", request_type);
++	calldata_set_string(&cd, "request_data", request_data_string);
++
++	proc_handler_call(_ph, "call_request", &cd);
++
++	auto ret = (struct obs_websocket_request_response *)calldata_ptr(&cd, "response");
++
++	calldata_free(&cd);
++
++	return ret;
++}
++
++// Free a request response object returned by `obs_websocket_call_request()`
++static inline void obs_websocket_request_response_free(struct obs_websocket_request_response *response)
++{
++	if (!response)
++		return;
++
++	if (response->comment)
++		bfree(response->comment);
++	if (response->response_data)
++		bfree(response->response_data);
++	bfree(response);
++}
++
++/* ==================== VENDOR API FUNCTIONS ==================== */
++
++// ALWAYS CALL ONLY VIA `obs_module_post_load()` CALLBACK!
++// Registers a new "vendor" (Example: obs-ndi)
++static inline obs_websocket_vendor obs_websocket_register_vendor(const char *vendor_name)
++{
++	if (!obs_websocket_ensure_ph())
++		return NULL;
++
++	calldata_t cd = {0};
++
++	calldata_set_string(&cd, "name", vendor_name);
++
++	proc_handler_call(_ph, "vendor_register", &cd);
++	obs_websocket_vendor ret = calldata_ptr(&cd, "vendor");
++	calldata_free(&cd);
++
++	return ret;
++}
++
++// Registers a new request for a vendor
++static inline bool obs_websocket_vendor_register_request(obs_websocket_vendor vendor, const char *request_type,
++							 obs_websocket_request_callback_function request_callback, void *priv_data)
++{
++	calldata_t cd = {0};
++
++	struct obs_websocket_request_callback cb = {};
++	cb.callback = request_callback;
++	cb.priv_data = priv_data;
++
++	calldata_set_string(&cd, "type", request_type);
++	calldata_set_ptr(&cd, "callback", &cb);
++
++	const bool success = obs_websocket_vendor_run_simple_proc(vendor, "vendor_request_register", &cd);
++	calldata_free(&cd);
++
++	return success;
++}
++
++// Unregisters an existing vendor request
++static inline bool obs_websocket_vendor_unregister_request(obs_websocket_vendor vendor, const char *request_type)
++{
++	calldata_t cd = {0};
++
++	calldata_set_string(&cd, "type", request_type);
++
++	const bool success = obs_websocket_vendor_run_simple_proc(vendor, "vendor_request_unregister", &cd);
++	calldata_free(&cd);
++
++	return success;
++}
++
++// Does not affect event_data refcount.
++// Emits an event under the vendor's name
++static inline bool obs_websocket_vendor_emit_event(obs_websocket_vendor vendor, const char *event_name, obs_data_t *event_data)
++{
++	calldata_t cd = {0};
++
++	calldata_set_string(&cd, "type", event_name);
++	calldata_set_ptr(&cd, "data", (void *)event_data);
++
++	const bool success = obs_websocket_vendor_run_simple_proc(vendor, "vendor_event_emit", &cd);
++	calldata_free(&cd);
++
++	return success;
++}
++
++/* ==================== END API FUNCTIONS ==================== */
++
++#ifdef __cplusplus
++}
++#endif
++
++#endif
+diff --git a/plugins/downstream-keyer/output-source.c b/plugins/downstream-keyer/output-source.c
+new file mode 100644
+index 0000000..800d9e3
+--- /dev/null
++++ b/plugins/downstream-keyer/output-source.c
+@@ -0,0 +1,272 @@
++#include <obs-module.h>
++#include <stdio.h>
++#include <obs-frontend-api.h>
++#include <util/dstr.h>
++
++struct output_source_context {
++	obs_source_t *source;
++	bool rendering;
++	char *view_name;
++	uint32_t channel;
++	obs_source_t *outputSource;
++	uint32_t width;
++	uint32_t height;
++	struct vec4 color;
++	bool recurring;
++	gs_texrender_t *render;
++};
++
++size_t get_view_count();
++const char *get_view_name(size_t idx);
++obs_view_t *get_view_by_name(const char *view_name);
++obs_canvas_t *get_canvas_by_name(const char *view_name);
++obs_source_t *get_source_from_view(const char *view_name, uint32_t channel);
++
++static const char *output_source_get_name(void *type_data)
++{
++	UNUSED_PARAMETER(type_data);
++	return obs_module_text("OutputSource");
++}
++
++static void output_source_update(void *data, obs_data_t *settings)
++{
++	struct output_source_context *context = data;
++	const char *view_name = obs_data_get_string(settings, "view");
++	if (!context->view_name || strcmp(view_name, context->view_name) != 0) {
++		bfree(context->view_name);
++		context->view_name = bstrdup(view_name);
++	}
++
++	context->channel = (uint32_t)obs_data_get_int(settings, "channel");
++	vec4_from_rgba(&context->color, (uint32_t)obs_data_get_int(settings, "color"));
++}
++
++static void *output_source_create(obs_data_t *settings, obs_source_t *source)
++{
++	struct output_source_context *context = bzalloc(sizeof(struct output_source_context));
++	context->source = source;
++
++	output_source_update(context, settings);
++	return context;
++}
++
++static void output_source_destroy(void *data)
++{
++	struct output_source_context *context = data;
++	if (context->render) {
++		obs_enter_graphics();
++		gs_texrender_destroy(context->render);
++		obs_leave_graphics();
++	}
++	bfree(context->view_name);
++	bfree(context);
++}
++
++#define channel_name_count 7
++
++static char *channel_names[] = {"StudioMode.Program", "Basic.DesktopDevice1", "Basic.DesktopDevice2", "Basic.AuxDevice1",
++				"Basic.AuxDevice2",   "Basic.AuxDevice3",     "Basic.AuxDevice4"};
++
++static bool view_changed(void *priv, obs_properties_t *props, obs_property_t *property, obs_data_t *settings)
++{
++	UNUSED_PARAMETER(priv);
++	UNUSED_PARAMETER(property);
++	obs_property_t *channels = obs_properties_get(props, "channel");
++	const char *view_name = obs_data_get_string(settings, "view");
++	bool changed = false;
++	struct dstr buffer = {0};
++	obs_view_t *view = get_view_by_name(view_name);
++	obs_canvas_t *canvas = get_canvas_by_name(view_name);
++
++	for (uint32_t i = 0; i < MAX_CHANNELS; i++) {
++		if (i >= channel_name_count || (strlen(view_name) && i > 0)) {
++			dstr_printf(&buffer, "%i", i);
++		} else {
++			dstr_copy(&buffer, obs_frontend_get_locale_string(channel_names[i]));
++		}
++
++		obs_source_t *source = view ? obs_view_get_source(view, i)
++					    : (canvas ? obs_canvas_get_channel(canvas, i) : obs_get_output_source(i));
++		if (source) {
++			if (obs_source_get_type(source) == OBS_SOURCE_TYPE_TRANSITION) {
++				obs_source_t *transition = source;
++				source = obs_transition_get_active_source(transition);
++				if (source) {
++					obs_source_release(transition);
++				} else {
++					source = transition;
++				}
++			}
++			dstr_cat(&buffer, " - ");
++			dstr_cat(&buffer, obs_source_get_name(source));
++			obs_source_release(source);
++		}
++		if (strcmp(buffer.array, obs_property_list_item_name(channels, i)) != 0) {
++			obs_property_list_item_remove(channels, i);
++			obs_property_list_insert_int(channels, i, buffer.array, i);
++			changed = true;
++		}
++	}
++	obs_canvas_release(canvas);
++	dstr_free(&buffer);
++	return changed;
++}
++
++static obs_properties_t *output_source_properties(void *data)
++{
++	obs_properties_t *ppts = obs_properties_create();
++
++	size_t c = get_view_count();
++	if (c > 1) {
++		obs_property_t *p = obs_properties_add_list(ppts, "view", obs_module_text("View"), OBS_COMBO_TYPE_LIST,
++							    OBS_COMBO_FORMAT_STRING);
++		for (size_t i = 0; i < c; i++) {
++			const char *name = get_view_name(i);
++			obs_property_list_add_string(p, name, name);
++		}
++		obs_property_set_modified_callback2(p, view_changed, data);
++	}
++	obs_property_t *p =
++		obs_properties_add_list(ppts, "channel", obs_module_text("Channel"), OBS_COMBO_TYPE_LIST, OBS_COMBO_FORMAT_INT);
++	char buffer[10];
++
++	for (int i = 0; i < MAX_CHANNELS; i++) {
++		if (i < channel_name_count) {
++			obs_property_list_add_int(p, obs_frontend_get_locale_string(channel_names[i]), i);
++		} else {
++			snprintf(buffer, 10, "%i", i);
++			obs_property_list_add_int(p, buffer, i);
++		}
++	}
++
++	obs_properties_add_color(ppts, "color", obs_module_text("FallbackColor"));
++	return ppts;
++}
++
++void output_source_defaults(obs_data_t *settings)
++{
++	UNUSED_PARAMETER(settings);
++}
++
++static void output_source_video_render(void *data, gs_effect_t *effect)
++{
++	UNUSED_PARAMETER(effect);
++	struct output_source_context *context = data;
++	if (context->recurring && context->render) {
++		gs_texture_t *tex = gs_texrender_get_texture(context->render);
++		if (tex) {
++			effect = obs_get_base_effect(OBS_EFFECT_DEFAULT);
++			gs_eparam_t *image = gs_effect_get_param_by_name(effect, "image");
++			gs_effect_set_texture(image, tex);
++			while (gs_effect_loop(effect, "Draw"))
++				gs_draw_sprite(tex, 0, context->width, context->height);
++			return;
++		}
++	}
++
++	if (context->rendering || context->recurring || !context->outputSource) {
++		gs_effect_t *solid = obs_get_base_effect(OBS_EFFECT_SOLID);
++		gs_eparam_t *color = gs_effect_get_param_by_name(solid, "color");
++		gs_technique_t *tech = gs_effect_get_technique(solid, "Solid");
++
++		gs_effect_set_vec4(color, &context->color);
++
++		gs_technique_begin(tech);
++		gs_technique_begin_pass(tech, 0);
++
++		gs_draw_sprite(0, 0, context->width, context->height);
++
++		gs_technique_end_pass(tech);
++		gs_technique_end(tech);
++		return;
++	}
++
++	context->rendering = true;
++	obs_source_video_render(context->outputSource);
++	context->rendering = false;
++}
++
++static uint32_t output_source_getwidth(void *data)
++{
++	struct output_source_context *context = data;
++	return context->width;
++}
++
++static uint32_t output_source_getheight(void *data)
++{
++	struct output_source_context *context = data;
++	return context->height;
++}
++
++static void check_recursion(obs_source_t *parent, obs_source_t *child, void *data)
++{
++	UNUSED_PARAMETER(parent);
++	struct output_source_context *context = data;
++	if (child == context->source) {
++		context->recurring = true;
++	}
++}
++
++static void output_source_video_tick(void *data, float seconds)
++{
++	UNUSED_PARAMETER(seconds);
++	struct output_source_context *context = data;
++	obs_source_t *source = strlen(context->view_name) ? get_source_from_view(context->view_name, context->channel)
++							  : obs_get_output_source(context->channel);
++	if (!source) {
++		if (context->outputSource) {
++			context->outputSource = NULL;
++			context->recurring = false;
++		}
++		return;
++	}
++	context->recurring = false;
++	obs_source_enum_active_tree(source, check_recursion, data);
++	context->outputSource = source;
++	context->width = obs_source_get_width(source);
++	context->height = obs_source_get_height(source);
++	if (context->recurring) {
++		obs_enter_graphics();
++		if (!context->render) {
++
++			context->render = gs_texrender_create(GS_RGBA, GS_ZS_NONE);
++		} else {
++			gs_texrender_reset(context->render);
++		}
++		gs_blend_state_push();
++		gs_blend_function(GS_BLEND_ONE, GS_BLEND_ZERO);
++
++		if (gs_texrender_begin(context->render, context->width, context->height)) {
++			struct vec4 clear_color;
++
++			vec4_zero(&clear_color);
++			gs_clear(GS_CLEAR_COLOR, &clear_color, 0.0f, 0);
++			gs_ortho(0.0f, (float)context->width, 0.0f, (float)context->height, -100.0f, 100.0f);
++
++			obs_source_video_render(context->outputSource);
++
++			gs_texrender_end(context->render);
++		}
++		gs_blend_state_pop();
++		obs_leave_graphics();
++	}
++	obs_source_release(source);
++}
++
++struct obs_source_info output_source_info = {
++	.id = "ouput_source",
++	.type = OBS_SOURCE_TYPE_INPUT,
++	.output_flags = OBS_SOURCE_VIDEO | OBS_SOURCE_CUSTOM_DRAW,
++	.get_name = output_source_get_name,
++	.create = output_source_create,
++	.destroy = output_source_destroy,
++	.load = output_source_update,
++	.update = output_source_update,
++	.get_properties = output_source_properties,
++	.get_defaults = output_source_defaults,
++	.video_render = output_source_video_render,
++	.video_tick = output_source_video_tick,
++	.get_width = output_source_getwidth,
++	.get_height = output_source_getheight,
++	.icon_type = OBS_ICON_TYPE_UNKNOWN,
++};
+diff --git a/plugins/downstream-keyer/version.h b/plugins/downstream-keyer/version.h
+new file mode 100644
+index 0000000..561890f
+--- /dev/null
++++ b/plugins/downstream-keyer/version.h
+@@ -0,0 +1,7 @@
++#pragma once
++
++/* Upstream version this copy was taken from. */
++#define PROJECT_VERSION "0.4.4"
++#define PROJECT_VERSION_MAJOR 0
++#define PROJECT_VERSION_MINOR 4
++#define PROJECT_VERSION_PATCH 4
+diff --git a/plugins/downstream-keyer/version.h.in b/plugins/downstream-keyer/version.h.in
+new file mode 100644
+index 0000000..0037ea0
+--- /dev/null
++++ b/plugins/downstream-keyer/version.h.in
+@@ -0,0 +1,6 @@
++#pragma once
++
++#define PROJECT_VERSION "${PROJECT_VERSION}"
++#define PROJECT_VERSION_MAJOR ${PROJECT_VERSION_MAJOR}
++#define PROJECT_VERSION_MINOR ${PROJECT_VERSION_MINOR}
++#define PROJECT_VERSION_PATCH ${PROJECT_VERSION_PATCH}
+\ No newline at end of file
+-- 
+2.56.0.windows.1
+

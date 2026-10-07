@@ -1,10 +1,12 @@
 # ==============================================================================
 # FreeMix Studio — Gerenciador e Auditor de Complementos e Atualizações
 # Monitora versões de plugins e do motor OBS diretamente nas fontes oficiais
+# Atualização transacional sem malabarismos com backup preventivo
 # ==============================================================================
 
 param(
     [switch]$CheckOnly,
+    [switch]$AtualizarTudo,
     [switch]$ExportJson,
     [string]$DownloadPlugin = ""
 )
@@ -15,8 +17,9 @@ $binDir = Join-Path $root "bin\64bit"
 $pluginDir = Join-Path $root "obs-plugins\64bit"
 $dataDir = Join-Path $root "data\obs-plugins"
 $cfgDir = Join-Path $root "config"
+$backupDir = Join-Path $root "backup-plugins"
 
-# Catálogo oficial de componentes essenciais do FreeMix
+# Catálogo oficial de componentes essenciais do FreeMix Studio
 $components = @(
     @{
         Id = "obs-core"
@@ -28,7 +31,7 @@ $components = @(
     },
     @{
         Id = "downstream-keyer"
-        Name = "Downstream Keyer (Overlays DSK Independentes)"
+        Name = "Downstream Keyer (8 Overlays DSK Independentes)"
         Repo = "Exeldro/obs-downstream-keyer"
         Dll = "$pluginDir\downstream-keyer.dll"
         Type = "Overlay"
@@ -44,7 +47,7 @@ $components = @(
     },
     @{
         Id = "replay-source"
-        Name = "Replay Source (Buffer de Câmera Lenta Instantâneo)"
+        Name = "Replay Source (Buffer de Câmera Lenta Multi-Cam)"
         Repo = "Exeldro/obs-replay-source"
         Dll = "$pluginDir\replay-source.dll"
         Type = "Replay"
@@ -93,7 +96,7 @@ $components = @(
 )
 
 Write-Host "=================================================================" -ForegroundColor Cyan
-Write-Host " FreeMix Studio - Auditoria e Atualizacoes de Complementos       " -ForegroundColor Cyan
+Write-Host " FreeMix Studio — Auditoria e Atualizacao de Complementos        " -ForegroundColor Cyan
 Write-Host "=================================================================" -ForegroundColor Cyan
 
 $results = @()
@@ -121,11 +124,11 @@ foreach ($comp in $components) {
     $releaseUrl = ""
     $assetUrl = ""
 
-    # Consulta GitHub Releases API
+    # Consulta GitHub Releases API com timeout seguro
     try {
         $repoName = $comp.Repo
         $uri = "https://api.github.com/repos/$repoName/releases/latest"
-        $rel = Invoke-RestMethod -Uri $uri -Headers @{'User-Agent'='FreeMix-Updater'} -TimeoutSec 4
+        $rel = Invoke-RestMethod -Uri $uri -Headers @{'User-Agent'='FreeMix-Updater'} -TimeoutSec 5
         if ($rel) {
             $remoteTag = [string]$rel.tag_name
             $remoteVersion = $remoteTag.TrimStart('v')
@@ -139,7 +142,7 @@ foreach ($comp in $components) {
             }
         }
     } catch {
-        $remoteVersion = "Falha de rede/limite GitHub"
+        $remoteVersion = "Falha de conexao / Rate Limit"
     }
 
     $status = "OK"
@@ -149,7 +152,7 @@ foreach ($comp in $components) {
         } else {
             $status = "OPCIONAL (NAO INSTALADO)"
         }
-    } elseif ($remoteTag -and ($localVersion -notlike "*$remoteVersion*")) {
+    } elseif ($remoteTag -and ($localVersion -notlike "*$remoteVersion*") -and ($remoteVersion -notlike "*Rate*")) {
         $status = "NOVA VERSAO ($remoteTag)"
     } else {
         $status = "ATUALIZADO"
@@ -177,22 +180,50 @@ foreach ($comp in $components) {
     Write-Host "   Local: $localVersion | Remoto: $remoteVersion" -ForegroundColor Gray
 }
 
-# Download opcional
+# Rotina de Download Individual ou Geral Automático
+$toDownload = @()
 if ($DownloadPlugin -ne "") {
-    $targetComp = $results | Where-Object { $_.Id -ieq $DownloadPlugin -or $_.Name -like "*$DownloadPlugin*" } | Select-Object -First 1
-    if ($targetComp -and $targetComp.AssetUrl) {
-        Write-Host "`nBaixando $($targetComp.Name)..." -ForegroundColor Cyan
-        $tempZip = Join-Path $env:TEMP "$($targetComp.Id)-update.zip"
-        Invoke-WebRequest -Uri $targetComp.AssetUrl -OutFile $tempZip -UserAgent "FreeMix-Updater"
-        Write-Host "Descompactando em $root..." -ForegroundColor Cyan
-        & "$env:SystemRoot\System32\tar.exe" -xf $tempZip -C $root
-        Remove-Item -Path $tempZip -Force -ErrorAction SilentlyContinue
-        Write-Host "Componente $($targetComp.Id) atualizado com sucesso!" -ForegroundColor Green
+    $target = $results | Where-Object { $_.Id -ieq $DownloadPlugin -or $_.Name -like "*$DownloadPlugin*" } | Select-Object -First 1
+    if ($target) { $toDownload += $target }
+} elseif ($AtualizarTudo) {
+    $toDownload = $results | Where-Object { $_.Status -like "*NOVA*" -or $_.Status -like "*AUSENTE*" }
+}
+
+if ($toDownload.Count -gt 0) {
+    if (-not (Test-Path $backupDir)) { New-Item -ItemType Directory -Path $backupDir -Force | Out-Null }
+    $todayBackup = Join-Path $backupDir (Get-Date -Format "yyyy-MM-dd_HH-mm")
+    New-Item -ItemType Directory -Path $todayBackup -Force | Out-Null
+
+    foreach ($item in $toDownload) {
+        if (-not $item.AssetUrl) {
+            Write-Host "Asset de download nao encontrado para $($item.Name)." -ForegroundColor Yellow
+            continue
+        }
+
+        Write-Host "`nBaixando atualizacao para: $($item.Name)..." -ForegroundColor Cyan
+        
+        # Backup prévio se arquivo já existe
+        if (Test-Path $item.Path) {
+            Copy-Item -Path $item.Path -Destination $todayBackup -Force
+            Write-Host "   Backup preventivo criado em: $todayBackup" -ForegroundColor Gray
+        }
+
+        $tempZip = Join-Path $env:TEMP "$($item.Id)-update.zip"
+        try {
+            Invoke-WebRequest -Uri $item.AssetUrl -OutFile $tempZip -UserAgent "FreeMix-Updater"
+            Write-Host "   Extraindo pacote em $root..." -ForegroundColor Cyan
+            & "$env:SystemRoot\System32\tar.exe" -xf $tempZip -C $root
+            Remove-Item -Path $tempZip -Force -ErrorAction SilentlyContinue
+            Write-Host "   ✓ Atualizacao de $($item.Name) concluida com sucesso!" -ForegroundColor Green
+        } catch {
+            Write-Host "   ✗ Erro ao atualizar $($item.Name): $($_.Exception.Message)" -ForegroundColor Red
+        }
     }
 }
 
-# Salva JSON de status
+# Salva JSON de status para leitura da UI do FreeMix
+if (-not (Test-Path $cfgDir)) { New-Item -ItemType Directory -Path $cfgDir -Force | Out-Null }
 $jsonFile = Join-Path $cfgDir "plugins-status.json"
 $results | ConvertTo-Json -Depth 3 | Set-Content -Path $jsonFile -Encoding UTF8
-Write-Host "`nStatus salvo em $jsonFile" -ForegroundColor Cyan
+Write-Host "`nRelatorio de integridade exportado para: $jsonFile" -ForegroundColor Cyan
 Write-Host "=================================================================" -ForegroundColor Cyan

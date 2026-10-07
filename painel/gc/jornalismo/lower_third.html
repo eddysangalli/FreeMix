@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    width: 1920px;
+    height: 1080px;
+    background: transparent;
+    overflow: hidden;
+    font-family: 'Segoe UI', -apple-system, sans-serif;
+  }
+  .lt-container {
+    position: absolute;
+    bottom: 90px;
+    left: 100px;
+    display: flex;
+    flex-direction: column;
+    transform: translateX(-120%);
+    opacity: 0;
+    transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+  }
+  .lt-container.in {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  .lt-bar-primary {
+    background: linear-gradient(90deg, #0b1320 0%, #152238 100%);
+    border-left: 6px solid var(--accent, #00e676);
+    padding: 12px 28px 10px 20px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.6);
+    border-radius: 0 4px 0 0;
+  }
+  .lt-name {
+    font-size: 32px;
+    font-weight: 800;
+    color: #ffffff;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .lt-bar-secondary {
+    background: rgba(14, 20, 29, 0.92);
+    padding: 8px 24px 8px 20px;
+    border-left: 6px solid rgba(255,255,255,0.4);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+    border-radius: 0 0 4px 0;
+  }
+  .lt-title {
+    font-size: 20px;
+    font-weight: 500;
+    color: #00e676;
+    letter-spacing: 0.3px;
+  }
+</style>
+</head>
+<body>
+
+<div id="box" class="lt-container">
+  <div class="lt-bar-primary">
+    <div id="f-name" class="lt-name">Nome do Entrevistado</div>
+  </div>
+  <div class="lt-bar-secondary">
+    <div id="f-title" class="lt-title">Cargo / Especialidade</div>
+  </div>
+</div>
+
+<script>
+  let isPlaying = false;
+  function play(data) {
+    if (data) update(data);
+    document.getElementById("box").classList.add("in");
+    isPlaying = true;
+  }
+  function stop() {
+    document.getElementById("box").classList.remove("in");
+    isPlaying = false;
+  }
+  function update(data) {
+    if (data.nome) document.getElementById("f-name").textContent = data.nome;
+    if (data.cargo) document.getElementById("f-title").textContent = data.cargo;
+    if (data.cor) document.documentElement.style.setProperty("--accent", data.cor);
+  }
+  window.GC = { play, stop, update };
+</script>
+<script src="../gc.js"></script>
+</body>
+</html>

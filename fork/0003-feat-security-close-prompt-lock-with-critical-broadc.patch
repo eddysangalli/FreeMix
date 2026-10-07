@@ -1,0 +1,118 @@
+From 7eaf3a7c94d49f380cd4e8f186a2aa2cda257ede Mon Sep 17 00:00:00 2001
+From: Eddy Sangalli <eddyrodrigues@outlook.com>
+Date: Wed, 7 Oct 2026 12:11:21 -0300
+Subject: [PATCH 3/5] feat(security): close prompt lock with critical broadcast
+ warning during recording/streaming
+
+---
+ frontend/widgets/OBSBasic.cpp | 55 ++++++++++++++++++++---------------
+ 1 file changed, 31 insertions(+), 24 deletions(-)
+
+diff --git a/frontend/widgets/OBSBasic.cpp b/frontend/widgets/OBSBasic.cpp
+index b6f5445..d70119f 100644
+--- a/frontend/widgets/OBSBasic.cpp
++++ b/frontend/widgets/OBSBasic.cpp
+@@ -1081,6 +1081,7 @@ void OBSBasic::OBSInit()
+ 	CreateHotkeys();
+ 
+ 	InitPrimitives();
++	InitSafeAreaMenu();
+ 
+ 	sceneDuplicationMode = config_get_bool(App()->GetUserConfig(), "BasicWindow", "SceneDuplicationMode");
+ 	swapScenesMode = config_get_bool(App()->GetUserConfig(), "BasicWindow", "SwapScenesMode");
+@@ -1488,6 +1489,10 @@ void OBSBasic::applicationShutdown() noexcept
+ 	gs_vertexbuffer_destroy(leftLine);
+ 	gs_vertexbuffer_destroy(topLine);
+ 	gs_vertexbuffer_destroy(rightLine);
++	for (gs_vertbuffer_t *guide : safeAreaGuides) {
++		gs_vertexbuffer_destroy(guide);
++	}
++	safeAreaGuides.clear();
+ 	obs_leave_graphics();
+ 
+ 	/* When shutting down, sometimes source references can get in to the
+@@ -1943,30 +1948,41 @@ bool OBSBasic::isReadyToClose()
+ 
+ bool OBSBasic::shouldPromptForClose()
+ {
+-	bool confirmOnExit = config_get_bool(App()->GetUserConfig(), "General", "ConfirmOnExit");
+-	if (confirmOnExit && outputHandler && outputHandler->Active() && !clearingFailed) {
+-		return true;
++	if (clearingFailed) {
++		return false;
+ 	}
+ 
+-	return false;
++	// Trava de segurança: sempre pede confirmação antes de fechar o FreeMix Studio
++	return true;
+ }
+ 
+ bool OBSBasic::promptToClose()
+ {
+ 	isClosePromptOpen_ = true;
+-
+ 	SetShowing(true);
+-	QMessageBox::StandardButton button =
+-		OBSMessageBox::question(this, QTStr("ConfirmExit.Title"), QTStr("ConfirmExit.Text"),
+-					QMessageBox::StandardButtons(QMessageBox::Ok | QMessageBox::Cancel));
+ 
+-	if (button == QMessageBox::Cancel) {
+-		isClosePromptOpen_ = false;
+-		return false;
++	const bool isBroadcasting = outputHandler && outputHandler->Active();
++
++	QString title;
++	QString text;
++
++	if (isBroadcasting) {
++		title = QString::fromUtf8("Atenção: Transmissão / Gravação em Andamento!");
++		text = QString::fromUtf8("O FreeMix Studio está atualmente GRAVANDO ou TRANSMITINDO AO VIVO!\n\n"
++		                         "Fechar o programa agora irá interromper imediatamente a emissão.\n\n"
++		                         "Tem certeza absoluta de que deseja interromper tudo e fechar?");
++	} else {
++		title = QString::fromUtf8("Fechar FreeMix Studio");
++		text = QString::fromUtf8("Tem certeza de que deseja fechar o FreeMix Studio?");
+ 	}
+ 
++	QMessageBox::StandardButton button =
++		QMessageBox::question(this, title, text,
++		                      QMessageBox::Yes | QMessageBox::No,
++		                      QMessageBox::No);
++
+ 	isClosePromptOpen_ = false;
+-	return true;
++	return (button == QMessageBox::Yes);
+ }
+ 
+ void OBSBasic::closeWindow()
+@@ -2124,24 +2140,15 @@ void OBSBasic::UpdateTitleBar()
+ {
+ 	stringstream name;
+ 
+-	const char *profile = config_get_string(App()->GetUserConfig(), "Basic", "Profile");
+ 	const char *sceneCollection = config_get_string(App()->GetUserConfig(), "Basic", "SceneCollection");
+ 
+-	name << "OBS ";
+-	if (previewProgramMode) {
+-		name << "Studio ";
+-	}
+-
+-	name << App()->GetVersionString(false);
++	/* FreeMix: the title carries the product name and the open preset, nothing else. */
++	name << "FreeMix Studio";
+ 	if (safe_mode) {
+ 		name << " (" << Str("TitleBar.SafeMode") << ")";
+ 	}
+-	if (App()->IsPortableMode()) {
+-		name << " - " << Str("TitleBar.PortableMode");
+-	}
+ 
+-	name << " - " << Str("TitleBar.Profile") << ": " << profile;
+-	name << " - " << Str("TitleBar.Scenes") << ": " << sceneCollection;
++	name << " - " << sceneCollection;
+ 
+ 	setWindowTitle(QT_UTF8(name.str().c_str()));
+ }
+-- 
+2.56.0.windows.1
+

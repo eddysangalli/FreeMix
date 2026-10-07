@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    width: 1920px;
+    height: 1080px;
+    background: transparent;
+    overflow: hidden;
+    font-family: 'Segoe UI', -apple-system, sans-serif;
+  }
+  .bug-container {
+    position: absolute;
+    top: 50px;
+    right: 80px;
+    display: flex;
+    align-items: center;
+    background: rgba(11, 16, 24, 0.85);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 4px;
+    padding: 6px 14px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.6);
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+  .bug-container.in {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .brand-text {
+    font-size: 16px;
+    font-weight: 800;
+    color: #00e676;
+    letter-spacing: 1px;
+    margin-right: 12px;
+    padding-right: 12px;
+    border-right: 1px solid rgba(255,255,255,0.25);
+  }
+  .clock-text {
+    font-size: 18px;
+    font-weight: 700;
+    color: #ffffff;
+    font-family: monospace;
+    letter-spacing: 1px;
+  }
+</style>
+</head>
+<body>
+
+<div id="box" class="bug-container">
+  <div class="brand-text" id="f-brand">FREEMIX</div>
+  <div class="clock-text" id="f-clock">00:00:00</div>
+</div>
+
+<script>
+  let clockInterval = null;
+
+  function updateClock() {
+    const now = new Date();
+    const h = String(now.getHours()).padStart(2, '0');
+    const m = String(now.getMinutes()).padStart(2, '0');
+    const s = String(now.getSeconds()).padStart(2, '0');
+    document.getElementById("f-clock").textContent = `${h}:${m}:${s}`;
+  }
+
+  function play(data) {
+    if (data) update(data);
+    updateClock();
+    document.getElementById("box").classList.add("in");
+    if (!clockInterval) {
+      clockInterval = setInterval(updateClock, 1000);
+    }
+  }
+
+  function stop() {
+    document.getElementById("box").classList.remove("in");
+    if (clockInterval) {
+      clearInterval(clockInterval);
+      clockInterval = null;
+    }
+  }
+
+  function update(data) {
+    if (data.marca) document.getElementById("f-brand").textContent = data.marca;
+  }
+
+  window.GC = { play, stop, update };
+</script>
+<script src="../gc.js"></script>
+</body>
+</html>

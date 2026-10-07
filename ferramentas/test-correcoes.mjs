@@ -1,0 +1,46 @@
+// Click-test of the corrected buttons and of the window heights. Engine with --remote-debugging-port=9333.
+import { createRequire } from "node:module";
+import { connect, sleep } from "./obsws.mjs";
+const require = createRequire("D:/DRIVE/IA/antigravity/vmixtwste/rea/package.json");
+const WebSocket = require("ws");
+const targets = await (await fetch("http://127.0.0.1:9333/json")).json();
+const attach = async (suffix) => {
+  const t = targets.find((x) => x.url.endsWith(suffix)); const c = new WebSocket(t.webSocketDebuggerUrl); await new Promise((r) => c.on("open", r));
+  let id = 0; const waits = new Map(); c.on("message", (raw) => { const m = JSON.parse(String(raw)); waits.get(m.id)?.(m); waits.delete(m.id); });
+  const ev = (expression) => new Promise((r) => { const i = ++id; waits.set(i, (m) => r(m.result?.exceptionDetails ? "ERRO: " + m.result.exceptionDetails.exception?.description : m.result?.result?.value)); c.send(JSON.stringify({ id: i, method: "Runtime.evaluate", params: { expression, returnByValue: true, awaitPromise: true } })); });
+  return { ev, click: (sel) => ev(`(() => { const el = document.querySelector(${JSON.stringify(sel)}); if (!el) return "sem elemento"; el.click(); return "ok"; })()`), close: () => c.close() };
+};
+const top = await attach("painel/topbar.html"), mesa = await attach("painel/mesa.html");
+const obs = await connect();
+let pass = 0, total = 0;
+const check = (name, ok, detail = "") => { total++; if (ok) pass++; console.log(`${ok ? "OK   " : "FALHA"} ${name}${detail !== "" ? "  (" + detail + ")" : ""}`); };
+const fits = () => mesa.ev(`(() => { const p = document.getElementById("pop"), f = p.querySelector(".add .form"), t = p.querySelector(".add .types"); return JSON.stringify({ painel: innerHeight, janela: p.offsetHeight, topo: Math.round(p.getBoundingClientRect().top), formRola: f ? f.scrollHeight > f.clientHeight + 1 : false, listaRola: t ? t.scrollHeight > t.clientHeight + 1 : false }); })()`).then(JSON.parse);
+
+await mesa.ev("location.reload()"); await top.ev("location.reload()"); await sleep(6000);
+const icons = await mesa.ev(`[...document.querySelectorAll("#bot .ib")].map((b) => b.title).join(" | ")`);
+check("ícones da direita com as funções do original", icons.startsWith("Menu: gerenciador de barramentos de áudio | Ver estatísticas de desempenho | Exibir os atalhos | Foto da saída") && icons.includes("Bloquear ou desbloquear"), icons);
+await mesa.click(`#bot .ib[data-v="stats"]`); await sleep(1500);
+check("estatísticas mostram números do motor", /Quadros por segundo\s*\d/.test(await mesa.ev(`document.getElementById("pop").textContent`)) && (await mesa.ev(`document.getElementById("pop").textContent`)).includes("Disco livre"));
+await mesa.ev("closePop()");
+await obs.req("SetCurrentProgramScene", { sceneName: "VT" }); await sleep(2500);
+const before = (await obs.req("GetMediaInputStatus", { inputName: "VT áudio" })).mediaState;
+await top.click(`[data-do="pausethumbs"]`); await sleep(1500);
+const after = (await obs.req("GetMediaInputStatus", { inputName: "VT áudio" })).mediaState;
+check("Pausar Entradas pausa as mídias que estão tocando", before === "OBS_MEDIA_STATE_PLAYING" && after === "OBS_MEDIA_STATE_PAUSED", `${before.slice(16)} -> ${after.slice(16)}`);
+await obs.req("TriggerMediaInputAction", { inputName: "VT áudio", mediaAction: "OBS_WEBSOCKET_MEDIA_INPUT_ACTION_PLAY" });
+await obs.req("SetCurrentProgramScene", { sceneName: "CAM 1" }); await sleep(1200);
+await mesa.click(`#bot [data-a="lock"]`); await sleep(300);
+await mesa.ev(`(() => { st.rec = true; A.record(); })()`); await sleep(400);
+const guarded = (await mesa.ev(`document.getElementById("toast").textContent`)).includes("Cadeado ligado") && !(await obs.req("GetRecordStatus")).outputActive;
+await mesa.ev(`(() => { st.rec = false; })()`);
+await mesa.click(`.tile:not(.is-out) [data-a="closeask"]`); await sleep(300);
+check("cadeado bloqueia parar a gravação e fechar entradas, e fica laranja", guarded && (await mesa.ev("String(st.pop)")) === "null" && (await mesa.ev(`document.querySelector("#bot .ib.lockon") !== null`)) === true);
+await mesa.click(`#bot [data-a="lock"]`); await sleep(300);
+check("Externo e Playlist são botões de iniciar/parar", (await mesa.ev(`document.querySelector('#bot [data-a="external"]')?.textContent`)) === "Externo" && (await mesa.ev(`document.querySelector('#bot [data-a="plstart"]')?.textContent`)) === "Playlist");
+await mesa.click(`#bot .cg[data-v="recset"]`); await sleep(1800);
+const r = await fits(); check("janela de gravação cabe sem rolagem", !r.formRola && !r.listaRola && r.topo >= 0, JSON.stringify(r));
+await mesa.ev("closePop()"); await mesa.click(`#bot [data-a="pop"][data-v="add"]`); await sleep(600);
+const a = await fits(); check("Input Select mostra todos os tipos sem rolagem", !a.listaRola && a.topo >= 0, JSON.stringify(a));
+await mesa.ev("closePop()");
+console.log(`${pass}/${total} verificações passaram`);
+obs.close(); top.close(); mesa.close();

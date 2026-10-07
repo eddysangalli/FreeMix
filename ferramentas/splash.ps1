@@ -2,7 +2,7 @@
 # window is visible (or after 25 s). The bar is an indeterminate animation: it does not pretend to know progress.
 $ErrorActionPreference = 'Stop'
 $root = Split-Path -Parent $PSScriptRoot
-$exe = Join-Path $root 'bin\64bit\obs64.exe'
+$exe = Join-Path $root 'bin\64bit\FreeMix.exe'
 Add-Type -AssemblyName PresentationFramework, PresentationCore, WindowsBase
 
 [xml]$xaml = @"
@@ -65,7 +65,7 @@ $timer.Add_Tick({
   $script:pos += 9; if ($script:pos -gt 560) { $script:pos = -140 }
   [System.Windows.Controls.Canvas]::SetLeft($bar, $script:pos)
   $elapsed = ((Get-Date) - $started).TotalSeconds
-  $p = Get-Process obs64 -ErrorAction SilentlyContinue | Where-Object { $_.Path -ieq $exe } | Select-Object -First 1
+  $p = Get-Process obs64, FreeMix -ErrorAction SilentlyContinue | Where-Object { $_.Path -ieq $exe } | Select-Object -First 1
   if ($p) { $status.Text = 'Carregando cenas e painel...' }
   if (($p -and $p.MainWindowHandle -ne [IntPtr]::Zero -and $elapsed -gt 1.5) -or $elapsed -gt 25) { $timer.Stop(); $window.Close() }
 })
