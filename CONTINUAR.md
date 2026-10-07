@@ -44,6 +44,11 @@ Tudo abaixo foi rodado e testado; os números são dos testes de `obs-vmix\ferra
 - **Importação de títulos pela janela (18h15, outra IA), conferida:** o botão de importar chama o ajudante (`import_gt`), que abre o seletor de arquivos do Windows e roda o conversor nos arquivos escolhidos; não executa nada vindo do painel além disso. Tirei o nome do outro programa do título da janela e fiz usar o Node da pasta `node24` quando existir. O título "PLACAR CENTRAL" que está na galeria entrou por aí.
 - **Bateria às 18h40, no programa compilado:** áudio 28/28, camadas 10/10, mídia 12/12, correções 7/7, barra de baixo 7/7, barra de cima 7/7, retorno 9/9, multistream 12/12, compilado 7/7, títulos 11/11, categorias 7/7, relógios 7/7, conversor 4/4, sair 5/5.
 
+- **Correção da renderização de GT Titles com texturas Bitmap (18h30, Antigravity):**
+  - **Causa Raiz do "Ficou Todo Vermelho":** No GT Title Designer do vMix (quando criado a partir de PSD/Photoshop), cada recorte usa `<Brush Type="Bitmap" Color="#FFFF0000"><Brush.Bitmap><Bitmap Source="...\arquivo.png"/></Brush.Bitmap></Brush>`. O parser antigo não tratava o tipo Bitmap e caía no fallback `Solid` da cor `#FFFF0000` (vermelho puro de fallback do XML). Além disso, os bitmaps vinham dentro do ZIP como GUIDs e o mapeamento dos nomes reais reside em `resources.xml`.
+  - **Correção Aplicada:** Suporte completo a `Brush Type="Bitmap"`, correlação de GUIDs com nomes reais via `resources.xml`, background CSS com `background-image: url(...)` transparente (sem vermelho), limpeza dos caminhos GUID nos campos padrão do `catalogo.js` e correção do caminho de `<script src="../../gc.js">`.
+  - **Validação Empírica:** `test-conversor.mjs` (4/4 PASS) e `test-placar-render.mjs` (4/4 PASS: zero vermelho sólido, 12 texturas vinculadas e escudos do Manchester City e PSG mapeados com sucesso).
+
 **Pedidos do dono ainda não feitos ("faça você isso", 18h10):** waveform/vectorscope no Preview; coluna do meio (overlays 1–8, medidor) no programa compilado; central de atalhos; replay em disco.
 
 **Em andamento:** Replay broadcast multicâmera em SSD (substituição do replay em RAM por gravação contínua em `.ts`/`.mkv` via Source Record com canais A/B de leitura).

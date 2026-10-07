@@ -17,6 +17,11 @@ else {
   robocopy (Join-Path $build 'obs-plugins') (Join-Path $root 'obs-plugins') @quiet | Out-Null; $b = $LASTEXITCODE
   robocopy (Join-Path $build 'data') (Join-Path $root 'data') @quiet '/XD' 'locale' | Out-Null; $c = $LASTEXITCODE
   if ($a -ge 8 -or $b -ge 8 -or $c -ge 8) { "Falha ao copiar (codigos $a, $b, $c)."; exit 1 }
+  # A module that is new here has no language files yet: it gets the ones of the build. Existing ones stay as they are.
+  foreach ($d in Get-ChildItem -LiteralPath (Join-Path $build 'data\obs-plugins') -Directory) {
+    $from = Join-Path $d.FullName 'locale'; $to = Join-Path $root "data\obs-plugins\$($d.Name)\locale"
+    if ((Test-Path -LiteralPath $from) -and -not (Test-Path -LiteralPath $to)) { Copy-Item -LiteralPath $from -Destination $to -Recurse }
+  }
 }
 $f = Get-Item -LiteralPath $dest
 "Instalado: compilacao de $($f.LastWriteTime.ToString('dd/MM HH:mm:ss')), FreeMix.exe com $($f.Length) bytes$(if ($ExeOnly) { ' (so o programa)' } else { ', bibliotecas, modulos e dados' }). O programa anterior ficou em FreeMix.anterior.exe."

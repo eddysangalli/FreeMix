@@ -495,6 +495,16 @@ QDockWidget#Menu_extraBrowser::title {
 #freemixSafeAreaButton:hover { background: rgba(255, 255, 255, 45); }
 #freemixSafeAreaButton::menu-indicator { image: none; width: 0px; }
 
+/* Waveform / Vectorscope icon, to its left (widgets/FreeMixScope.cpp). */
+#freemixScopeButton { background: transparent; border: none; padding: 0px 4px; margin: 0px; min-height: 0px; }
+#freemixScopeButton:hover { background: rgba(255, 255, 255, 45); }
+#freemixScopeButton::menu-indicator { image: none; width: 0px; }
+
+/* Overlay channels 1 to 8 in the column between Preview and Output (widgets/FreeMixCenterColumn.cpp). */
+.freemix-overlay { min-width: 0px; min-height: 22px; padding: 0px; font-weight: bold; }
+.freemix-overlay:checked { background-color: #d92418; color: #ffffff; border-color: #ff6a5e; }
+.freemix-overlay:disabled { color: #56606c; }
+
 /* Old menu bar hidden: the FreeMix bar replaces it. Its menus still open with Alt+letter. Remove this block to show it again. */
 
 QMenuBar {

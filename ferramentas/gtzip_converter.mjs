@@ -552,7 +552,7 @@ export function generateHtml(gtData, templateTitle = 'FreeMix GT Template', asse
       }
     });
   </script>
-  <script src="../gc.js"></script>
+  <script src="../../gc.js" onerror="this.onerror=null;this.src='../gc.js'"></script>
 </body>
 </html>`;
 }
@@ -734,10 +734,11 @@ export function convertGtzipFile(gtzipPath, outputDir) {
   gtData.layers.forEach(l => {
     l.elements.forEach(el => {
       if (el.type === 'TextBlock' || el.type === 'Ticker' || el.type === 'Image') {
+        const defaultVal = el.text || (el.source ? path.basename(el.source.replace(/\\/g, '/')) : '') || '';
         manifest.fields.push({
           name: el.name,
           type: el.type,
-          default: el.text || el.source || '',
+          default: defaultVal,
           font: el.fontFamily,
           size: el.fontSize
         });
