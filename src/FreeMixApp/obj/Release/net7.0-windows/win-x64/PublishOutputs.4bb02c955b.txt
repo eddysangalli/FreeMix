@@ -1,0 +1,5 @@
+d:\DRIVE\IA\antigravity\vmixtwste\obs-vmix\bin\64bit\FreeMix.exe
+d:\DRIVE\IA\antigravity\vmixtwste\obs-vmix\bin\64bit\FreeMix.dll
+d:\DRIVE\IA\antigravity\vmixtwste\obs-vmix\bin\64bit\FreeMix.deps.json
+d:\DRIVE\IA\antigravity\vmixtwste\obs-vmix\bin\64bit\FreeMix.runtimeconfig.json
+d:\DRIVE\IA\antigravity\vmixtwste\obs-vmix\bin\64bit\FreeMix.pdb

@@ -1,0 +1,15 @@
+d:\DRIVE\IA\antigravity\vmixtwste\FreeMix\src\FreeMixApp\bin\Release\net7.0-windows\FreeMix.exe
+d:\DRIVE\IA\antigravity\vmixtwste\FreeMix\src\FreeMixApp\bin\Release\net7.0-windows\FreeMix.deps.json
+d:\DRIVE\IA\antigravity\vmixtwste\FreeMix\src\FreeMixApp\bin\Release\net7.0-windows\FreeMix.runtimeconfig.json
+d:\DRIVE\IA\antigravity\vmixtwste\FreeMix\src\FreeMixApp\bin\Release\net7.0-windows\FreeMix.dll
+d:\DRIVE\IA\antigravity\vmixtwste\FreeMix\src\FreeMixApp\bin\Release\net7.0-windows\FreeMix.pdb
+d:\DRIVE\IA\antigravity\vmixtwste\FreeMix\src\FreeMixApp\obj\Release\net7.0-windows\FreeMixApp.csproj.AssemblyReference.cache
+d:\DRIVE\IA\antigravity\vmixtwste\FreeMix\src\FreeMixApp\obj\Release\net7.0-windows\FreeMixApp.GeneratedMSBuildEditorConfig.editorconfig
+d:\DRIVE\IA\antigravity\vmixtwste\FreeMix\src\FreeMixApp\obj\Release\net7.0-windows\FreeMixApp.AssemblyInfoInputs.cache
+d:\DRIVE\IA\antigravity\vmixtwste\FreeMix\src\FreeMixApp\obj\Release\net7.0-windows\FreeMixApp.AssemblyInfo.cs
+d:\DRIVE\IA\antigravity\vmixtwste\FreeMix\src\FreeMixApp\obj\Release\net7.0-windows\FreeMixApp.csproj.CoreCompileInputs.cache
+d:\DRIVE\IA\antigravity\vmixtwste\FreeMix\src\FreeMixApp\obj\Release\net7.0-windows\FreeMix.dll
+d:\DRIVE\IA\antigravity\vmixtwste\FreeMix\src\FreeMixApp\obj\Release\net7.0-windows\refint\FreeMix.dll
+d:\DRIVE\IA\antigravity\vmixtwste\FreeMix\src\FreeMixApp\obj\Release\net7.0-windows\FreeMix.pdb
+d:\DRIVE\IA\antigravity\vmixtwste\FreeMix\src\FreeMixApp\obj\Release\net7.0-windows\FreeMixApp.genruntimeconfig.cache
+d:\DRIVE\IA\antigravity\vmixtwste\FreeMix\src\FreeMixApp\obj\Release\net7.0-windows\ref\FreeMix.dll

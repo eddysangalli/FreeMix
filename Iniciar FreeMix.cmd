@@ -1,8 +1,25 @@
 @echo off
-rem FreeMix: mesa de corte sobre o OBS portatil desta pasta. Nao le nem altera o OBS instalado na maquina.
-rem Se a pasta foi movida ou copiada para outra maquina, preparar.ps1 ajusta os caminhos salvos antes de abrir.
-start "" powershell -NoProfile -WindowStyle Hidden -ExecutionPolicy Bypass -File "%~dp0ferramentas\splash.ps1"
-powershell -NoProfile -ExecutionPolicy Bypass -File "%~dp0ferramentas\preparar.ps1"
-cd /d "%~dp0bin\64bit"
-start "" powershell -NoProfile -WindowStyle Hidden -ExecutionPolicy Bypass -File "%~dp0ferramentas\set-freemix-title.ps1"
-start "" obs64.exe --portable --multi --disable-updater --disable-missing-files-check
+rem ==============================================================================
+rem FreeMix Studio — Executável Nativo Oficial
+rem Inicia a aplicação própria FreeMix.exe compilada a partir do projeto
+rem ==============================================================================
+
+setlocal
+set "DIR=%~dp0"
+set "BIN_DIR=%DIR%..\obs-vmix\bin\64bit"
+
+if not exist "%BIN_DIR%\FreeMix.exe" (
+    set "BIN_DIR=%DIR%bin\64bit"
+)
+
+if not exist "%BIN_DIR%\FreeMix.exe" (
+    echo ERRO: Executavel FreeMix.exe nao encontrado em %BIN_DIR%.
+    echo Compile o projeto antes de executar.
+    pause
+    exit /b 1
+)
+
+cd /d "%BIN_DIR%"
+start "" "%BIN_DIR%\FreeMix.exe"
+
+exit /b 0
