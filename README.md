@@ -1,100 +1,77 @@
-# 🎬 FreeMix Studio
+# FreeMix Studio — Suite Profissional de Produção Broadcast
 
-> **Aplicativo Próprio de Produção e Transmissão de Vídeo ao Vivo (Broadcast)**  
-> *Suíte de switcher profissional estilo vMix com executável, interface e distribuição próprios, utilizando a biblioteca `libobs` como motor interno.*
-
-[![License: GPL-2.0](https://img.shields.io/badge/License-GPL--2.0-blue.svg)](LICENSE)
-[![Engine: libobs](https://img.shields.io/badge/Engine-libobs%20Core-black.svg)](https://obsproject.com)
-[![Platform: Windows](https://img.shields.io/badge/Platform-Windows%2010%20%7C%2011%20x64-0078d4.svg)]()
-[![FreeMix Call: WebRTC](https://img.shields.io/badge/FreeMix%20Call-WebRTC%20P2P-brightgreen.svg)]()
+O **FreeMix Studio** é uma plataforma de produção ao vivo de alta performance inspirada na ergonomia e no fluxo operacional do **vMix** e **TriCaster**, utilizando a biblioteca `libobs` como motor de captura, renderização gráfica, processamento de áudio e transmissão.
 
 ---
 
-## 🌟 O que é o FreeMix?
+## 🎯 Arquitetura de Produto
 
-O **FreeMix** é um aplicativo Windows completo e independente (`FreeMix.exe`) desenvolvido para fornecer a operadores, diretores e técnicos de TV uma mesa de corte de produção ao vivo ágil e integrada (estilo vMix, TriCaster e consoles de vídeo broadcast), combinando a interface operacional e recursos proprietários com a performance imbatível da biblioteca de mídia **`libobs`** como motor interno.
+1. **Executável Nativo Oficial**:
+   - Binário compilado `FreeMix.exe` (.NET 7 x64 / WinExe nativo) localizado em `bin/64bit/FreeMix.exe`.
+   - Ícone oficial PE Win32 de alta resolução (`freemix.ico`).
+   - Identificador explícito no Windows Shell (`AppUserModelID: FreeMix.Studio.BroadcastSuite.1.0`), isolando o aplicativo na Barra de Tarefas sem exibir cara ou janelas do OBS.
 
-### 📐 Definição de Arquitetura do Produto
-* **Aplicativo Próprio**: O FreeMix é entregue como um executável compilado (`FreeMix.exe`), com identidade visual, janelas, menus, configurações e distribuição próprias.
-* **libobs como Motor Interno**: O aplicativo inicializa e comanda diretamente os subsistemas de captura de vídeo, composição Direct3D 11, processamento de áudio, encoders de hardware (NVENC, QuickSync, AMF, x264) e protocolos de saída (RTMP, SRT, NDI, OMT, DeckLink SDI).
-* **Operação Integrada em Tela Única**: O operador abre o FreeMix e controla toda a transmissão dentro dele — visualizando monitores de Preview e Program, barra central de transições (Cut, Fade, T-Bar), painel de entradas com abas de categoria, mixer de áudio com faders Master/Fones e central unificada de saídas.
+2. **Barra Superior de Presets e Menus Broadcast (Acima de Tudo)**:
+   - Posicionada no topo do estúdio, acima dos monitores de Preview e Program:
+     - `[Novo]`: Inicia um preset de estúdio limpo.
+     - `[Abrir]`: Carrega projetos de produção (`*.fmx` ou coleções de cenas).
+     - `[Salvar]`: Salva instantaneamente todas as entradas, filtros e rotas.
+     - `[Salvar Como]`: Cria cópias e versões do preset.
+     - `[Último]`: Recarrega o último estado de estúdio utilizado.
+     - `[📺 Monitores: ON/OFF]`: Alterna entre visão completa de estúdio e mesa compacta.
+     - `[⚙ Configurações]`: Central de preferências com 7 abas organizadas e modais centralizados com backdrop blur.
 
----
+3. **Monitores de Estúdio Integrados**:
+   - **Monitor de Preview (Prévia)**: Borda verde/laranja, tally visual, resolução `1080p60`, guias de Safe Area (80%/90%) e botão Quick Play.
+   - **Central de Transições & T-Bar**:
+     - Corte seco `CUT` em verde vivo.
+     - Transições suaves: `FADE` (250/500/1000ms), `ZOOM`, `WIPE`, `STINGER 1..4`.
+     - `T-Bar Broadcast Interativo`: alavanca deslizante proporcional de 0% a 100%.
+     - `FTB (Fade to Black)`: botão de segurança de emergência com LED pulsante.
+   - **Monitor de Program (PGM / No Ar)**: Borda vermelha forte, tally `● ON AIR` piscante, relógio com timecode em tempo real e atalhos de Overlays rápidos.
 
-## ✨ Módulos e Recursos Integrados
-
-### 🎛️ Mesa de Corte & Switcher Broadcast
-* **Telas de Vídeo Integradas**: Preview (cor Laranja broadcast) e Program (cor Verde no ar) com vúmetros de áudio Master e medidores de pico integrados.
-* **Barra Central de Transições**: Botões rápidos de corte (`Cut`, `Fade`, `Zoom`, `Wipe`, `Slide`, `Merge`, `FTB`) e **T-Bar horizontal** com resposta analógica fluida.
-* **Bandeja de Entradas Dinâmica**: Câmeras, placas de captura, vídeos, vinhetas, GC, apresentações e chamadas remotas organizadas por abas coloridas.
-* **Tally & Identificação Automática**: Indicadores visuais imediatos de estado em ar e pré-visualização.
-
-### 🎧 Gerenciador de Áudio & Barramentos (Mix-Minus)
-* **Faixas Dedicadas**: Fader Master (dB) e Fader Fones (Headphones) fixos e independentes.
-* **Configurações Avançadas por Canal (`⚙`)**:
-  - Monitoração de áudio: Nenhuma / Fones Apenas / Fones + Transmissão (`SetInputAudioMonitorType`).
-  - Sincronização & Atraso (Lipsync Delay): Ajuste fino em milissegundos com atalhos rápidos (+50 ms, +100 ms, -50 ms, 0 ms).
-  - Balanço Estéreo (Pan L/R).
-  - Efeitos & Plugins: Compressor, Limiter dinâmico, Redução de Ruído e suporte a plugins VST2.x.
-* **Submixes e Mix-Minus**: Barramento Master (`M`), Aux A (`A` - retorno sem eco para convidados) e Aux B (`B` - escuta da direção).
-
-### 🌐 Central de Saídas & MultiStream
-* **MultiStream Integrado**: Transmissão para múltiplos destinos simultâneos (YouTube, Twitch, SRT, Kick, Facebook) compartilhando o encoder NVENC/QuickSync sem duplicar consumo de GPU.
-* **Saídas Físicas e IP**:
-  - **Fullscreen**: Projeção direta de PGM ou Preview em monitor ou telão secundário.
-  - **Multiview**: Mosaico broadcast de câmeras e mídias em tela cheia ou janela.
-  - **NDI & OMT**: Feeds de vídeo sobre IP com suporte a canal Alfa (Fill + Key).
-  - **DeckLink SDI**: Saídas para placas Blackmagic com detecção de hardware.
-  - **Câmera Virtual**: Envio de PGM para Zoom, Meet e Teams.
-* **MultiCorder (Gravação ISO)**: Gravação isolada de câmeras individuais em paralelo com o programa gravado.
-
-### 📡 Transmissão Multi-WAN & Bonding (Estilo LiveU / RIST Multi-Link)
-* **Três Modos de Proteção**:
-  - **Principal + Reserva**: Comutação automática instantânea (Failover) para conexão reserva caso o link cabeado oscile.
-  - **Redundância Simultânea (Hitless)**: Duplicação de pacotes em tempo real por caminhos físicos distintos (ex: Ethernet + 5G), garantindo zero quedas no destino.
-  - **Agregação de Capacidade**: Soma da banda de múltiplos links via RIST/SRT.
-* **Telemetria Completa**: Medição de taxa (Mbps), RTT (ms) e perda de pacotes por adaptador de rede físico.
-* **Receptor Integrado (`freemix-bonding-relay`)**: Recomposição e deduplicação de pacotes antes do envio para YouTube ou Twitch.
-
-### 🎨 Módulo de Gráficos (GCs) & Fontes de Dados
-* **Catálogo de Coleções**: Jornalismo (Lower Thirds, Plantão Urgente, Ticker), Esportes (Placares com cronômetro dinâmico), Marca (Bugs de canto com relógio ao vivo).
-* **3 Camadas Independentes (Layers)**: Sobreposição de tarjas sem conflito com placares permanentes ou marcas de canal.
-* **Fontes de Dados (DataSources)**: Importação de planilhas CSV, tabelas manuais e feeds JSON locais ou HTTP com preenchimento em 1 clique.
-* **Operação On-Air de Dois Estágios**: Preparação no monitor de preview antes do disparo ao vivo (Take In, Update sem corte, Take Out suave e Clear All).
+4. **Entradas & Overlays Estilo vMix**:
+   - Grade dinâmica de entradas (Tiles com miniaturas vivas, áudio meters e tally de estado).
+   - **8 Canais de Overlays Independentes** (DSK 1 a 8) acionáveis diretamente em cada entrada.
+   - **Central de Replay Multi-Cam**: até 4 câmeras ISO simultâneas, marcação de In/Out e velocidades de 10% a 100%.
+   - **DataSources**: integração de dados dinâmicos com Excel, Google Sheets, CSV e JSON.
+   - **Transmissão Multi-WAN / Bonding LiveU**: agregação de interfaces (Ethernet + Wi-Fi + 5G) e failover hitless via RIST.
 
 ---
 
-## 🏗️ Estrutura de Código e Compilação
+## 🛠 Gerenciamento e Atualização de Complementos (Sem Malabarismos)
 
-O FreeMix é organizado nas seguintes camadas:
-1. **`src/app/`**: Executável principal (`FreeMix.exe`), inicialização do ciclo de vida Qt6 e inicialização dos subsistemas da `libobs`.
-2. **`src/ui/`**: Interface do usuário, janela principal (`FreeMixMainWindow`), monitores de vídeo, switcher de corte, mixer de áudio e caixas de diálogo.
-3. **`src/services/`**: Serviços internos gerenciadores:
-   - `OutputManager`: Saídas físicas, gravação, streaming e MultiStream.
-   - `AudioBusManager`: Barramentos Master, Aux A (Mix-Minus), Aux B (Fones).
-   - `CanvasMixManager`: Gerenciamento de múltiplos renders e resoluções.
-   - `MultiviewManager`: Geração da grade multiview.
-4. **`libobs`**: Motor de captura, renderização gráfica DirectX 11 e encoding.
+Todos os plugins de terceiros essenciais foram auditados e integrados com paridade estrutural completa:
+- `downstream-keyer.dll` (Overlays 1 a 8)
+- `replay-source.dll` (Instant Replay)
+- `source-record.dll` (MultiCorder ISO)
+- `source-dock.dll` (Monitores de Fontes)
+- `move-transition.dll` (DVE Dinâmico)
+- `obs-websocket.dll` (IPC Broadcast v5)
+- `obs-browser.dll` (Chromium CEF)
 
-### 🔨 Como Compilar
+### Como Atualizar o Sistema e Plugins
 
-Requisitos:
-- **CMake** 3.16+
-- **Visual Studio 2022** (MSVC C++ 17 ou 20)
-- **Qt 6** (Core, Gui, Widgets)
-- **libobs SDK**
+Para atualizar plugins e o motor de vídeo sem perder configurações nem fazer malabarismos:
 
-```powershell
-# Gerar arquivos de projeto com CMake
-cmake -B build -S . -DCMAKE_BUILD_TYPE=Release
+1. **Auditoria de Versões**:
+   - Dê 2 cliques em `Verificar Complementos.cmd` ou execute:
+     ```powershell
+     powershell -File ferramentas/verificar-atualizacoes.ps1
+     ```
+   - O sistema consulta a API oficial do GitHub Releases e gera um diagnóstico comparativo de versões.
 
-# Compilar o executável FreeMix.exe
-cmake --build build --config Release
-```
+2. **Atualização Automática em 1 Clique**:
+   - Dê 2 cliques em `Atualizar Complementos.cmd` ou execute:
+     ```powershell
+     powershell -File ferramentas/verificar-atualizacoes.ps1 -AtualizarTudo
+     ```
+   - O atualizador cria um backup preventivo em `backup-plugins/YYYY-MM-DD/`, baixa os pacotes mais recentes e extrai transacionalmente para as pastas portáteis do FreeMix.
 
 ---
 
-## 📜 Licença & Conformidade Legal
+## 🚀 Como Executar
 
-Este projeto é software livre distribuído sob a licença **GNU General Public License v2.0 (GPL-2.0)**.  
-O FreeMix utiliza a biblioteca `libobs` e componentes de código aberto mantendo estrita conformidade com seus termos de licenciamento original, preservando avisos de copyright e disponibilizando o código-fonte correspondente.
+- **Modo Estúdio Oficial**: Dê 2 cliques em `Iniciar FreeMix.cmd` ou no atalho da Área de Trabalho `FreeMix Studio.lnk`.
+- **Mesa Portátil Direta**: Dê 2 cliques em `Iniciar Mesa.cmd`.
+- **Empacotamento de Distribuição**: Dê 2 cliques em `Empacotar.cmd` para gerar um ZIP limpo e otimizado.

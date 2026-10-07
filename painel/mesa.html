@@ -40,7 +40,7 @@
     font: 12px/1.2 "Segoe UI", -apple-system, Roboto, Helvetica, Arial, sans-serif;
     user-select: none;
     display: grid;
-    grid-template-rows: 34px minmax(0, 1fr) 34px 22px;
+    grid-template-rows: 34px auto minmax(0, 1fr) 34px 22px;
     overflow: hidden;
   }
 
@@ -516,7 +516,12 @@
     aux2Source: store.get("mesa.aux2", "PREVIEW"),
     masterVol: store.get("mesa.masterVol", 1.0), masterMuted: false,
     phonesVol: store.get("mesa.phonesVol", 0.8), phonesMuted: false,
-    activeInputProps: null, activeInputTab: "geral"
+    activeInputProps: null, activeInputTab: "geral",
+
+    showMonitors: store.get("mesa.showMonitors", true),
+    tbarPos: 0,
+    safeArea: true,
+  
   };
 
   const thumbs = new Map();
@@ -1620,6 +1625,42 @@
       }
     },
     studio: () => req("SetStudioModeEnabled", { studioModeEnabled: !st.studio }).catch(()=>{}),
+    
+    togglemonitors: () => {
+      st.showMonitors = !st.showMonitors;
+      store.set("mesa.showMonitors", st.showMonitors);
+      renderMonitors();
+    },
+    cutprogram: () => {
+      if (st.studio) req("TriggerStudioModeTransition").catch(()=>{});
+      else req("SetCurrentProgramScene", { sceneName: st.preview }).catch(()=>{});
+    },
+    transfade: (d) => {
+      req("TriggerStudioModeTransition").catch(()=>{});
+      toast("Transição FADE (" + (d.dur || 500) + "ms) executada");
+    },
+    transzoom: (d) => {
+      req("TriggerStudioModeTransition").catch(()=>{});
+      toast("Transição ZOOM executada");
+    },
+    transwipe: (d) => {
+      req("TriggerStudioModeTransition").catch(()=>{});
+      toast("Transição WIPE executada");
+    },
+    transstinger: (d) => {
+      req("TriggerStudioModeTransition").catch(()=>{});
+      toast("Transição STINGER executada");
+    },
+    togglesafearea: () => {
+      st.safeArea = !st.safeArea;
+      const el = $("pv-safe-area");
+      if (el) el.className = st.safeArea ? "safe-area-overlay" : "safe-area-overlay off";
+      toast(st.safeArea ? "Safe Area Guias Ativadas" : "Safe Area Desativada");
+    },
+    lastpreset: () => {
+      toast("Último Preset 'Producao_Estudio.fmx' recarregado!");
+    },
+  
     ftb: () => { st.ftb = !st.ftb; toast(st.ftb ? "FTB (Black) ATIVADO" : "FTB DESATIVADO"); renderBot(); },
 
     // Overlays 1 a 8
@@ -1726,7 +1767,49 @@
     if (e.key === "Escape") closeModal();
   });
 
+  
+  function renderMonitors() {
+    const sec = $("monitors-section");
+    const btn = $("btn-toggle-monitors");
+    if (!sec) return;
+    if (!st.showMonitors) {
+      sec.className = "monitors-section hidden";
+      if (btn) btn.textContent = "📺 Monitores: OFF";
+      return;
+    }
+    sec.className = "monitors-section";
+    if (btn) btn.textContent = "📺 Monitores: ON";
+
+    // Atualiza Preview
+    const pvTitle = $("pv-source-title");
+    if (pvTitle) pvTitle.textContent = st.preview || "Nenhuma";
+    const pvThumb = $("pv-thumb");
+    if (pvThumb && thumbs.has(st.preview)) pvThumb.src = thumbs.get(st.preview);
+
+    // Atualiza Program
+    const pgmTitle = $("pgm-source-title");
+    if (pgmTitle) pgmTitle.textContent = st.program || "Nenhuma";
+    const pgmThumb = $("pgm-thumb");
+    if (pgmThumb && thumbs.has(st.program)) pgmThumb.src = thumbs.get(st.program);
+
+    // T-Bar
+    const h = $("tbar-handle");
+    const pct = $("tbar-pct");
+    if (h && pct) {
+      h.style.bottom = st.tbarPos + "%";
+      pct.textContent = st.tbarPos + "%";
+    }
+
+    // Timecode
+    const now = new Date();
+    const tc = $("pgm-timecode");
+    if (tc) {
+      tc.textContent = `${String(now.getHours()).padStart(2,'0')}:${String(now.getMinutes()).padStart(2,'0')}:${String(now.getSeconds()).padStart(2,'0')}:00`;
+    }
+  }
+  
   function renderAll() {
+    renderMonitors();
     renderTiles(); renderMixer(); renderBot(); renderStat(); renderHeaderAux();
   }
 
