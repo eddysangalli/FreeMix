@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <title>FreeMix Studio - Menu Superior</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    :root {
+      --bg-top: #10141b;
+      --bg-btn: #18202c;
+      --bg-btn-hover: #222d3d;
+      --bg-btn-active: #0d5f2a;
+      --border-btn: #263445;
+      --border-btn-hover: #3a4f69;
+      --text-main: #dbe4ef;
+      --text-dim: #7f93aa;
+      --c-green: #00e676;
+      --c-orange: #f7931e;
+      --c-red: #ff3b30;
+      --c-blue: #2979ff;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; user-select: none; }
+    html, body {
+      width: 100%; height: 100%;
+      background: var(--bg-top);
+      color: var(--text-main);
+      font: 11.5px/1.2 "Segoe UI", -apple-system, Roboto, Helvetica, Arial, sans-serif;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      border-bottom: 1px solid #1a222f;
+    }
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      height: 36px;
+      padding: 0 8px;
+      gap: 6px;
+    }
+    .left-brand {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-weight: 800;
+      font-size: 12px;
+      letter-spacing: 0.5px;
+      color: #ffffff;
+    }
+    .brand-logo svg {
+      width: 18px;
+      height: 18px;
+      fill: var(--c-orange);
+    }
+    .brand-badge {
+      background: #18212e;
+      border: 1px solid #2a3a50;
+      color: var(--text-dim);
+      font-size: 10px;
+      font-weight: 600;
+      padding: 2px 7px;
+      border-radius: 3px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .brand-badge b { color: var(--text-main); }
+    .brand-badge .dirty { color: var(--c-red); display: none; }
+
+    .center-actions {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+    }
+    .btn-group {
+      display: flex;
+      align-items: center;
+      gap: 2px;
+      background: #0b0e13;
+      padding: 2px;
+      border-radius: 3px;
+      border: 1px solid #1c2635;
+    }
+    .btn {
+      height: 26px;
+      padding: 0 8px;
+      background: var(--bg-btn);
+      border: 1px solid var(--border-btn);
+      color: var(--text-main);
+      font-size: 11px;
+      font-weight: 600;
+      border-radius: 2px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      white-space: nowrap;
+      transition: all 0.1s ease;
+    }
+    .btn:hover {
+      background: var(--bg-btn-hover);
+      border-color: var(--border-btn-hover);
+      color: #ffffff;
+    }
+    .btn:active {
+      background: var(--bg-btn-active);
+      border-color: var(--c-green);
+      transform: translateY(1px);
+    }
+    .btn svg {
+      width: 13px;
+      height: 13px;
+      fill: currentColor;
+    }
+    .btn.accent {
+      background: #142a1d;
+      border-color: #235d39;
+      color: #a7f3d0;
+    }
+    .btn.accent:hover {
+      background: #1d3e2a;
+      border-color: var(--c-green);
+      color: #ffffff;
+    }
+
+    .right-tools {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-shrink: 0;
+    }
+    .aux-bar {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      background: #0c0f14;
+      padding: 2px 6px;
+      border-radius: 3px;
+      border: 1px solid #1c2635;
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--text-dim);
+    }
+    .aux-bar select {
+      background: #141b24;
+      border: 1px solid #28374a;
+      color: var(--c-green);
+      border-radius: 2px;
+      font-size: 10px;
+      font-weight: 700;
+      height: 20px;
+      padding: 0 4px;
+      outline: none;
+      cursor: pointer;
+    }
+
+    /* Modal Backdrop se aberto na topbar */
+    .modal-backdrop {
+      position: fixed; inset: 0; background: rgba(0,0,0,0.85);
+      display: none; align-items: center; justify-content: center; z-index: 9999;
+    }
+    .modal-backdrop.on { display: flex; }
+    .modal-dialog {
+      background: #121822; border: 1px solid #2a394d; border-radius: 4px;
+      width: 760px; max-width: 95vw; max-height: 85vh; display: flex; flex-direction: column;
+      box-shadow: 0 16px 48px rgba(0,0,0,0.85); overflow: hidden;
+    }
+    .modal-header {
+      height: 38px; background: #16202c; border-bottom: 1px solid #243346;
+      display: flex; align-items: center; justify-content: space-between; padding: 0 12px;
+      font-weight: 700; font-size: 12px;
+    }
+    .modal-body {
+      padding: 16px; overflow-y: auto; flex: 1; font-size: 11.5px;
+    }
+    .modal-close {
+      background: none; border: none; color: var(--text-dim); font-size: 16px; cursor: pointer;
+    }
+    .modal-close:hover { color: #fff; }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <!-- Identidade Broadcast -->
+    <div class="left-brand">
+      <div class="brand-logo">
+        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14.5v-9l6 4.5-6 4.5z"/></svg>
+        <span>FREEMIX <span style="color:var(--c-orange)">STUDIO</span></span>
+      </div>
+      <div class="brand-badge" id="preset-badge" title="Preset ativo de produção">
+        <span>Projeto:</span>
+        <b id="preset-name">Producao_Estudio.fmx</b>
+        <span class="dirty" id="preset-dirty">*</span>
+      </div>
+    </div>
+
+    <!-- Menus Principais estilo vMix -->
+    <div class="center-actions">
+      <!-- Bloco de Projetos / Presets -->
+      <div class="btn-group">
+        <button class="btn" data-act="newpreset" title="Novo Projeto / Preset Limpo">
+          <svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+          Novo
+        </button>
+        <button class="btn" data-act="openmodal" data-m="presets" title="Abrir Preset Salvo (*.fmx)">
+          <svg viewBox="0 0 24 24"><path d="M20 6h-8l-2-2H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm0 12H4V8h16v10z"/></svg>
+          Abrir
+        </button>
+        <button class="btn accent" data-act="savepreset" title="Salvar Projeto Atual">
+          <svg viewBox="0 0 24 24"><path d="M17 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V7l-4-4zm-5 16c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3zm3-10H5V5h10v4z"/></svg>
+          Salvar
+        </button>
+        <button class="btn" data-act="savepresetas" title="Salvar Como Nova Versão">Salvar Como</button>
+      </div>
+
+      <!-- Bloco de Centrais Operacionais (vMix Modules) -->
+      <div class="btn-group">
+        <button class="btn" data-act="openmodal" data-m="settings" title="Configurações do Estúdio (Vídeo, Áudio, Saídas, Rede, Gravação)">
+          ⚙ Configurações
+        </button>
+        <button class="btn" data-act="openmodal" data-m="shortcuts" title="Central de Atalhos de Teclado e MIDI Learn">
+          ⚡ Atalhos
+        </button>
+        <button class="btn" data-act="openmodal" data-m="datasources" title="Central de Fontes de Dados (CSV, Sheets, RSS, JSON)">
+          📊 DataSources
+        </button>
+        <button class="btn" data-act="openmodal" data-m="overlays8" title="Central de Overlays (8 Canais DSK Independentes)">
+          🔲 Overlays (8)
+        </button>
+        <button class="btn" data-act="openmodal" data-m="replay" title="Central de Replay Multi-Cam (Câmeras ISO e Players A/B)">
+          ⏪ Replay Multi-Cam
+        </button>
+        <button class="btn" data-act="openmodal" data-m="bonding" title="Multi-WAN Bonding Failover (Internet Combinada)">
+          🌐 Bonding
+        </button>
+        <button class="btn" data-act="openmodal" data-m="outputs" title="Central de Saídas (Fullscreen, NDI Alpha, Virtual Cam)">
+          Saídas
+        </button>
+        <button class="btn" data-act="openmodal" data-m="graphics" title="Galeria de Gráficos e GCs Broadcast">
+          Gráficos / GCs
+        </button>
+        <button class="btn" data-act="openmodal" data-m="audiomatrix" title="Matriz de Áudio & Mix-Minus">
+          Audio Matrix
+        </button>
+      </div>
+    </div>
+
+    <!-- Controles Rápidos do Lado Direito -->
+    <div class="right-tools">
+      <div class="aux-bar">
+        <span>AUX 1:</span>
+        <select id="aux1-sel" data-act="aux" data-aux="1">
+          <option>Preview</option>
+          <option selected>Program</option>
+          <option>Cam 1</option>
+          <option>Clean Feed</option>
+        </select>
+        <span>AUX 2:</span>
+        <select id="aux2-sel" data-act="aux" data-aux="2">
+          <option selected>Clean Feed</option>
+          <option>Program</option>
+          <option>Replay A</option>
+        </select>
+      </div>
+      <button class="btn" data-act="fullscreen" title="Tela Cheia no Monitor Externo">Fullscreen</button>
+      <button class="btn" data-act="multiview" title="Mosaico Multiview de Câmeras">Multiview</button>
+    </div>
+  </div>
+
+  <!-- Modal Container -->
+  <div class="modal-backdrop" id="top-modal-backdrop">
+    <div class="modal-dialog" id="top-modal-dialog">
+      <div class="modal-header">
+        <span id="top-modal-title">Central Operacional</span>
+        <button class="modal-close" id="top-modal-close">&times;</button>
+      </div>
+      <div class="modal-body" id="top-modal-body"></div>
+    </div>
+  </div>
+
+  <script>
+    "use strict";
+    const bc = ("BroadcastChannel" in window) ? new BroadcastChannel("freemix_channel") : null;
+
+    // Ações dos botões da TopBar
+    const ACT = {
+      newpreset: () => {
+        if (confirm("Deseja criar uma nova produção limpa?")) {
+          document.getElementById("preset-name").textContent = "Producao_Nova.fmx";
+          notify("PRESET_NEW", { name: "Producao_Nova.fmx" });
+        }
+      },
+      savepreset: () => {
+        const name = document.getElementById("preset-name").textContent;
+        document.getElementById("preset-dirty").style.display = "none";
+        notify("PRESET_SAVE", { name });
+        alert("Projeto salvo com sucesso: " + name);
+      },
+      savepresetas: () => {
+        const current = document.getElementById("preset-name").textContent;
+        const novo = prompt("Salvar projeto como (*.fmx):", current);
+        if (novo && novo.trim()) {
+          const fn = novo.endsWith(".fmx") ? novo : novo + ".fmx";
+          document.getElementById("preset-name").textContent = fn;
+          notify("PRESET_SAVEAS", { name: fn });
+          alert("Projeto salvo como: " + fn);
+        }
+      },
+      openmodal: (ds) => {
+        const m = ds.m;
+        notify("OPEN_MODAL", { modal: m });
+      },
+      fullscreen: () => notify("TRIGGER_FULLSCREEN", {}),
+      multiview: () => notify("TRIGGER_MULTIVIEW", {}),
+      aux: (ds) => notify("AUX_ROUTE", { aux: ds.aux })
+    };
+
+    function notify(type, payload) {
+      if (bc) bc.postMessage({ type, payload });
+      // Comunica também com a janela principal ou pai se estiver em iframe / doca
+      try {
+        if (window.parent && window.parent !== window) {
+          window.parent.postMessage({ type, payload }, "*");
+        }
+      } catch {}
+    }
+
+    // Escuta eventos de volta vindos da mesa de corte
+    if (bc) {
+      bc.onmessage = (ev) => {
+        const d = ev.data;
+        if (!d) return;
+        if (d.type === "UPDATE_PRESET_NAME") {
+          document.getElementById("preset-name").textContent = d.payload.name;
+        } else if (d.type === "SET_DIRTY") {
+          document.getElementById("preset-dirty").style.display = d.payload.dirty ? "inline" : "none";
+        }
+      };
+    }
+
+    document.addEventListener("click", (e) => {
+      const btn = e.target.closest("[data-act]");
+      if (!btn) return;
+      const act = btn.dataset.act;
+      if (ACT[act]) ACT[act](btn.dataset);
+    });
+
+    document.getElementById("top-modal-close")?.addEventListener("click", () => {
+      document.getElementById("top-modal-backdrop").className = "modal-backdrop";
+    });
+  </script>
+</body>
+</html>

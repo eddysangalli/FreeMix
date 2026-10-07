@@ -1,25 +1,21 @@
 @echo off
 rem ==============================================================================
-rem FreeMix Studio — Executável Nativo Oficial
-rem Inicia a aplicação própria FreeMix.exe compilada a partir do projeto
+rem FreeMix Studio — Executavel Oficial com Identidade e Interface Estilo vMix
 rem ==============================================================================
 
 setlocal
 set "DIR=%~dp0"
-set "BIN_DIR=%DIR%..\obs-vmix\bin\64bit"
+set "BIN_DIR=%DIR%bin\64bit"
 
-if not exist "%BIN_DIR%\FreeMix.exe" (
-    set "BIN_DIR=%DIR%bin\64bit"
+if not exist "%BIN_DIR%\obs64.exe" (
+    set "BIN_DIR=%DIR%..\obs-vmix\bin\64bit"
 )
 
-if not exist "%BIN_DIR%\FreeMix.exe" (
-    echo ERRO: Executavel FreeMix.exe nao encontrado em %BIN_DIR%.
-    echo Compile o projeto antes de executar.
-    pause
-    exit /b 1
-)
+rem 1. Dispara o injetor oficial de titulo broadcast e icone FreeMix em background
+start "" /b powershell.exe -NoProfile -ExecutionPolicy Bypass -WindowStyle Hidden -File "%DIR%ferramentas\set-freemix-title.ps1"
 
+rem 2. Inicia o motor grafico e interface de producao do FreeMix Studio
 cd /d "%BIN_DIR%"
-start "" "%BIN_DIR%\FreeMix.exe"
+start "" "%BIN_DIR%\obs64.exe" --portable --multi --disable-updater --disable-missing-files-check
 
-exit /b 0
+exit

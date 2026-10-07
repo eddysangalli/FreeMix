@@ -112,29 +112,42 @@ assert(replayEngine.playerA.state === "PLAYING" && replayEngine.playerB.state ==
 replayEngine.playerA.angle = 2; // Troca para ângulo VAR
 assert(replayEngine.playerA.angle === 2 && replayEngine.playerA.state === "PLAYING", "Ângulo trocado em tempo de reprodução para VAR sem interrupção");
 
-// 4. Teste de Integridade da UI (mesa.html)
-console.log('\n--- 4. Validação de Componentes na Interface mesa.html ---');
-const mesaPath = path.resolve('obs-vmix/painel/mesa.html');
+// 4. Teste de Integridade da UI (mesa.html e topbar.html)
+console.log('\n--- 4. Validação de Componentes na Interface mesa.html e topbar.html ---');
+const repoRoot = path.resolve('.');
+const mesaPath = fs.existsSync(path.join(repoRoot, 'painel', 'mesa.html'))
+  ? path.join(repoRoot, 'painel', 'mesa.html')
+  : path.join(repoRoot, '..', 'obs-vmix', 'painel', 'mesa.html');
+const topbarPath = fs.existsSync(path.join(repoRoot, 'painel', 'topbar.html'))
+  ? path.join(repoRoot, 'painel', 'topbar.html')
+  : path.join(repoRoot, '..', 'obs-vmix', 'painel', 'topbar.html');
+
 const mesaContent = fs.readFileSync(mesaPath, 'utf8');
+const topbarContent = fs.readFileSync(topbarPath, 'utf8');
 
-assert(mesaContent.includes('id="monitors-section"'), "Seção de Monitores Broadcast (Preview e Program) presente no DOM");
-assert(mesaContent.includes('id="tbar-track"'), "Alavanca T-Bar interativa presente no DOM");
-assert(mesaContent.includes('toggleoverlaytile'), "Acionadores rápidos dos 8 overlays presentes nos tiles");
-assert(mesaContent.includes('data-m="replay"'), "Central de Replay Multi-Cam acessível pelo header");
-assert(mesaContent.includes('data-m="datasources"'), "Central de DataSources acessível pelo header");
-assert(mesaContent.includes('data-m="shortcuts"'), "Central de Comandos & MIDI acessível pelo header");
-assert(mesaContent.includes('preset-dirty-indicator'), "Indicador de alterações não salvas (dirty state) presente");
+assert(!mesaContent.includes('id="monitors-section"'), "Monitores duplicados eliminados da mesa de corte (monitors-section ausente)");
+assert(mesaContent.includes('toggleoverlaytile'), "Acionadores rápidos dos 8 overlays presentes nos tiles de entrada");
+assert(mesaContent.includes('class="tiles"'), "Grade de Entradas de corte presente e desobstruída");
+assert(mesaContent.includes('class="mixer"'), "Mixer de áudio lateral presente com Master e Fones");
+assert(topbarContent.includes('data-act="newpreset"'), "Menu de Novo Preset presente na barra superior");
+assert(topbarContent.includes('data-m="settings"'), "Central de Configurações acessível pela barra superior");
+assert(topbarContent.includes('data-m="overlays8"'), "Central de 8 Overlays acessível pela barra superior");
+assert(topbarContent.includes('data-m="replay"'), "Central de Replay Multi-Cam acessível pela barra superior");
+assert(topbarContent.includes('data-m="datasources"'), "Central de DataSources acessível pela barra superior");
+assert(topbarContent.includes('data-m="bonding"'), "Central de Internet Bonding (Multi-WAN) acessível pela barra superior");
 
-// 5. Teste de Binários e Scripts Distribuídos
+// 5. Teste de Binários e Launchers
 console.log('\n--- 5. Validação de Binários e Launchers ---');
-const root = path.resolve('obs-vmix');
-const exePath = path.join(root, 'bin', '64bit', 'FreeMix.exe');
-const updateCmd = path.join(root, 'Atualizar Complementos.cmd');
-const verifyCmd = path.join(root, 'Verificar Complementos.cmd');
+const runtimeRoot = fs.existsSync(path.resolve('bin', '64bit'))
+  ? path.resolve('.')
+  : path.resolve('..', 'obs-vmix');
+const exePath = path.join(runtimeRoot, 'bin', '64bit', 'obs64.exe');
+const launcherCmd = path.join(runtimeRoot, 'Iniciar Mesa.cmd');
+const titleScript = path.join(runtimeRoot, 'ferramentas', 'set-freemix-title.ps1');
 
-assert(fs.existsSync(exePath), "Executável oficial FreeMix.exe compilado e presente em bin/64bit/");
-assert(fs.existsSync(updateCmd), "Launcher de atualização em 1 clique presente na raiz");
-assert(fs.existsSync(verifyCmd), "Launcher de verificação de complementos presente na raiz");
+assert(fs.existsSync(exePath), "Executável oficial do motor gráfico presente em bin/64bit/");
+assert(fs.existsSync(launcherCmd), "Launcher de inicialização Iniciar Mesa.cmd presente");
+assert(fs.existsSync(titleScript), "Injetor Win32 de identidade FreeMix set-freemix-title.ps1 presente");
 
 console.log('\n=================================================================');
 console.log(` RESULTADO FINAL: ${passCount} TESTES PASSADOS, ${failCount} FALHAS`);

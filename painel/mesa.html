@@ -39,7 +39,7 @@
     font: 12px/1.2 "Segoe UI", -apple-system, Roboto, Helvetica, Arial, sans-serif;
     user-select: none;
     display: grid;
-    grid-template-rows: 34px auto minmax(0, 1fr) 34px 22px;
+    grid-template-rows: 36px minmax(0, 1fr) 34px 22px;
     overflow: hidden;
   }
 
@@ -112,100 +112,6 @@
     padding: 0 4px; outline: none; cursor: pointer;
   }
 
-  /* ==========================================================================
-     MONITORES DE ESTÚDIO (PREVIEW & PROGRAM COM TRANSIÇÕES E T-BAR)
-     ========================================================================== */
-  .monitors-section {
-    display: grid;
-    grid-template-columns: 1fr 140px 1fr;
-    background: #090c10;
-    border-bottom: 1px solid var(--border-subtle);
-    height: 246px;
-    min-height: 200px;
-    position: relative;
-    user-select: none;
-    transition: all 0.2s ease;
-  }
-  .monitors-section.hidden { display: none !important; }
-
-  .monitor-box {
-    display: flex; flex-direction: column; background: #05070a;
-    position: relative; border: 1px solid #1a222c; overflow: hidden;
-  }
-  .monitor-box.pv { border-color: #38240a; }
-  .monitor-box.pv.active { border-color: var(--c-orange); box-shadow: inset 0 0 10px rgba(247,147,30,0.3); }
-  .monitor-box.pgm { border-color: #3b0d0d; }
-  .monitor-box.pgm.active { border-color: var(--c-red); box-shadow: inset 0 0 12px rgba(255,59,48,0.35); }
-
-  .monitor-bar {
-    height: 24px; background: #131822; display: flex; align-items: center;
-    justify-content: space-between; padding: 0 8px; font-size: 10.5px;
-    font-weight: 700; border-bottom: 1px solid #1e2633;
-  }
-  .monitor-badge {
-    padding: 2px 7px; border-radius: 2px; font-size: 10px; font-weight: 800; letter-spacing: 0.5px;
-  }
-  .monitor-badge.pv { background: #b86200; color: #fff; }
-  .monitor-badge.pgm {
-    background: #d32f2f; color: #fff; display: inline-flex; align-items: center; gap: 4px;
-  }
-  .monitor-badge.pgm .dot {
-    width: 6px; height: 6px; border-radius: 50%; background: #fff;
-    animation: pgm-blink 1s infinite;
-  }
-  @keyframes pgm-blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.2; } }
-
-  .monitor-screen {
-    flex: 1; background: #000; position: relative; display: flex;
-    align-items: center; justify-content: center; overflow: hidden;
-  }
-  .monitor-screen img { width: 100%; height: 100%; object-fit: contain; display: block; }
-  .safe-area-overlay {
-    position: absolute; inset: 7%; border: 1px dashed rgba(255,255,255,0.22); pointer-events: none;
-  }
-  .safe-area-overlay.off { display: none; }
-
-  /* Coluna Central de Transições */
-  .trans-column {
-    background: #10141d; border-left: 1px solid var(--border-subtle);
-    border-right: 1px solid var(--border-subtle); display: flex;
-    flex-direction: column; align-items: center; padding: 6px 4px; gap: 4px;
-  }
-  .cut-btn {
-    width: 100%; height: 32px; background: #0e8a16; color: #fff;
-    font-size: 13px; font-weight: 800; border-radius: 3px;
-    border: 1px solid #23c733; cursor: pointer;
-    box-shadow: 0 2px 6px rgba(14,138,22,0.4); transition: all 0.1s;
-  }
-  .cut-btn:hover { background: #11a61c; }
-  .cut-btn:active { transform: translateY(1px); }
-
-  .trans-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3px; width: 100%; }
-  .trans-btn {
-    height: 22px; background: #1a222d; border: 1px solid #283444;
-    color: #cad4e0; font-size: 9.5px; font-weight: 700; border-radius: 2px;
-    cursor: pointer; transition: all 0.1s;
-  }
-  .trans-btn:hover { background: #273547; color: #fff; border-color: #40546f; }
-  .trans-btn.ftb { background: #281010; border-color: #591d1d; color: #ff8585; }
-  .trans-btn.ftb.active { background: #8f1212; color: #fff; box-shadow: 0 0 8px #ff3b30; }
-
-  /* T-Bar */
-  .tbar-container {
-    flex: 1; width: 100%; display: flex; flex-direction: column;
-    align-items: center; justify-content: center; gap: 2px; padding: 3px 0;
-  }
-  .tbar-track {
-    width: 22px; flex: 1; background: #080a0e; border: 1px solid #232d3a;
-    border-radius: 11px; position: relative; display: flex; align-items: center; justify-content: center;
-    touch-action: none; cursor: pointer;
-  }
-  .tbar-handle {
-    width: 36px; height: 16px; background: linear-gradient(180deg, #4b5d75, #232d3a);
-    border: 1px solid #7892b3; border-radius: 3px; position: absolute; bottom: 0%;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.7); cursor: ns-resize;
-  }
-  .tbar-pct { font-size: 9px; font-weight: 700; color: var(--text-muted); font-family: Consolas, monospace; }
 
   /* ==========================================================================
      ÁREA CENTRAL: TILES DE ENTRADAS + MIXER DE ÁUDIO
@@ -419,12 +325,7 @@
       <button class="nav-btn" data-a="savepresetas" title="Salvar Como Nova Versão">Salvar Como</button>
       <button class="nav-btn" data-a="importpreset" title="Adicionar Entradas de Outro Preset">Importar</button>
 
-      <!-- Alternador de Monitores -->
-      <button class="nav-btn accent" data-a="togglemonitors" id="btn-toggle-monitors" title="Exibir / Ocultar Monitores de Preview e Program">
-        📺 Monitores: ON
-      </button>
 
-      <!-- Centrais Funcionais -->
       <button class="nav-btn" data-a="openmodal" data-m="settings" title="Configurações do Estúdio (8 Abas)">
         ⚙ Configurações
       </button>
@@ -469,70 +370,7 @@
     </div>
   </header>
 
-  <!-- ========================================================================
-       SEÇÃO DE MONITORES BROADCAST (PREVIEW, TRANSIÇÕES E PROGRAM)
-       ======================================================================== -->
-  <section class="monitors-section" id="monitors-section">
-    <!-- Monitor Preview -->
-    <div class="monitor-box pv active" id="pv-box">
-      <div class="monitor-bar">
-        <span class="monitor-badge pv">PREVIEW</span>
-        <span id="pv-source-title" style="color:var(--c-orange);font-weight:700">Prévia</span>
-        <span id="pv-res-badge" style="color:var(--text-muted);font-size:10px">1080p60</span>
-      </div>
-      <div class="monitor-screen" id="pv-screen">
-        <img id="pv-thumb" src="" alt="Preview">
-        <div class="safe-area-overlay" id="pv-safe-area"></div>
-      </div>
-      <div style="height:22px;background:#0d1117;display:flex;align-items:center;justify-content:space-between;padding:0 6px;border-top:1px solid #1a222c">
-        <div style="display:flex;gap:4px">
-          <button class="b" data-a="quick" data-v="pv" style="height:18px;font-size:9.5px">Quick Play</button>
-          <button class="b" data-a="togglesafearea" style="height:18px;font-size:9.5px">Safe Area</button>
-        </div>
-        <span style="font-size:9.5px;color:var(--text-muted)">Linha de Corte A</span>
-      </div>
-    </div>
 
-    <!-- Coluna Central de Transições & T-Bar -->
-    <div class="trans-column">
-      <button class="cut-btn" data-a="cutprogram">CUT</button>
-      <div class="trans-grid">
-        <button class="trans-btn" data-a="transfade" data-dur="500">FADE</button>
-        <button class="trans-btn" data-a="transzoom" data-dur="500">ZOOM</button>
-        <button class="trans-btn" data-a="transwipe" data-dur="500">WIPE</button>
-        <button class="trans-btn" data-a="transstinger" data-dur="1000">STINGER</button>
-      </div>
-
-      <!-- T-Bar Deslizante -->
-      <div class="tbar-container" id="tbar-wrap">
-        <div class="tbar-track" id="tbar-track">
-          <div class="tbar-handle" id="tbar-handle" style="bottom: 0%;"></div>
-        </div>
-        <span class="tbar-pct" id="tbar-pct">0%</span>
-      </div>
-
-      <button class="trans-btn ftb" data-a="ftb" id="trans-ftb-btn">FTB</button>
-    </div>
-
-    <!-- Monitor Program -->
-    <div class="monitor-box pgm active" id="pgm-box">
-      <div class="monitor-bar">
-        <span class="monitor-badge pgm"><span class="dot"></span>PROGRAM</span>
-        <span id="pgm-source-title" style="color:var(--c-red);font-weight:700">No Ar</span>
-        <span id="pgm-timecode" style="color:#ff8585;font-family:Consolas, monospace;font-size:10px">00:00:00:00</span>
-      </div>
-      <div class="monitor-screen" id="pgm-screen">
-        <img id="pgm-thumb" src="" alt="Program">
-      </div>
-      <div style="height:22px;background:#0d1117;display:flex;align-items:center;justify-content:space-between;padding:0 6px;border-top:1px solid #1a222c">
-        <span style="font-size:9.5px;color:var(--c-green);font-weight:700">● ON AIR MASTER</span>
-        <div style="display:flex;gap:4px">
-          <button class="b" data-a="toggleoverlay" data-ov="1" style="height:18px;font-size:9.5px">OV 1</button>
-          <button class="b" data-a="toggleoverlay" data-ov="2" style="height:18px;font-size:9.5px">OV 2</button>
-        </div>
-      </div>
-    </div>
-  </section>
 
   <!-- ========================================================================
        ÁREA CENTRAL (TILES DE VÍDEO + MIXER DE ÁUDIO)
@@ -755,42 +593,7 @@
     renderAll();
   }
 
-  /* ---- Renderização dos Monitores & T-Bar ---- */
-  function renderMonitors() {
-    const sec = $("monitors-section");
-    const btn = $("btn-toggle-monitors");
-    if (!sec) return;
-    if (!st.showMonitors) {
-      sec.className = "monitors-section hidden";
-      if (btn) btn.textContent = "📺 Monitores: OFF";
-      return;
-    }
-    sec.className = "monitors-section";
-    if (btn) btn.textContent = "📺 Monitores: ON";
 
-    const pvTitle = $("pv-source-title");
-    if (pvTitle) pvTitle.textContent = st.preview || "Nenhuma";
-    const pvThumb = $("pv-thumb");
-    if (pvThumb && thumbs.has(st.preview)) pvThumb.src = thumbs.get(st.preview);
-
-    const pgmTitle = $("pgm-source-title");
-    if (pgmTitle) pgmTitle.textContent = st.program || "Nenhuma";
-    const pgmThumb = $("pgm-thumb");
-    if (pgmThumb && thumbs.has(st.program)) pgmThumb.src = thumbs.get(st.program);
-
-    const h = $("tbar-handle");
-    const pct = $("tbar-pct");
-    if (h && pct) {
-      h.style.bottom = st.tbarPos + "%";
-      pct.textContent = Math.round(st.tbarPos) + "%";
-    }
-
-    const now = new Date();
-    const tc = $("pgm-timecode");
-    if (tc) {
-      tc.textContent = `${String(now.getHours()).padStart(2,'0')}:${String(now.getMinutes()).padStart(2,'0')}:${String(now.getSeconds()).padStart(2,'0')}:00`;
-    }
-  }
 
   /* ---- Renderização dos Tiles de Entradas com os 8 Overlays ---- */
   function renderTiles() {
@@ -1515,6 +1318,29 @@
   };
 
   /* ---- Eventos Globais ---- */
+  const bc = ("BroadcastChannel" in window) ? new BroadcastChannel("freemix_channel") : null;
+  if (bc) {
+    bc.onmessage = (ev) => {
+      const d = ev.data;
+      if (!d) return;
+      if (d.type === "OPEN_MODAL" && d.payload?.modal) {
+        openModal(d.payload.modal);
+      } else if (d.type === "PRESET_SAVE") {
+        A.savepreset();
+      } else if (d.type === "PRESET_SAVEAS") {
+        A.savepresetas();
+      } else if (d.type === "PRESET_NEW") {
+        A.newpreset();
+      }
+    };
+  }
+  window.addEventListener("message", (ev) => {
+    const d = ev.data;
+    if (d && d.type === "OPEN_MODAL" && d.payload?.modal) {
+      openModal(d.payload.modal);
+    }
+  });
+
   document.addEventListener("click", (e) => {
     const t = e.target.closest("[data-a]");
     if (!t) return;
@@ -1525,27 +1351,7 @@
   });
 
   function renderAll() {
-    renderMonitors(); renderTiles(); renderMixer(); renderBot(); renderStat();
-  }
-
-  // T-Bar Drag Interactivity
-  const tTrack = $("tbar-track");
-  if (tTrack) {
-    let dragging = false;
-    const updateTbar = (clientY) => {
-      const r = tTrack.getBoundingClientRect();
-      const pct = clamp(100 - ((clientY - r.top) / r.height) * 100, 0, 100);
-      st.tbarPos = pct;
-      renderMonitors();
-    };
-    tTrack.addEventListener("mousedown", (e) => { dragging = true; updateTbar(e.clientY); });
-    window.addEventListener("mousemove", (e) => { if (dragging) updateTbar(e.clientY); });
-    window.addEventListener("mouseup", () => {
-      if (dragging) {
-        dragging = false;
-        if (st.tbarPos > 90) { A.cutprogram(); st.tbarPos = 0; renderMonitors(); }
-      }
-    });
+    renderTiles(); renderMixer(); renderBot(); renderStat();
   }
 
   setInterval(renderStat, 1000);
