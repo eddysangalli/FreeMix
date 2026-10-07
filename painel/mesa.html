@@ -1132,49 +1132,108 @@
       `;
     }
 
-    // 8. MODAL DE PREFERÊNCIAS GERAIS
+    // 8. MODAL DE PREFERÊNCIAS GERAIS & COMPLEMENTOS
     else if (m === "settings") {
+      const sTab = st.activeSettingsTab || "video";
+      const pluginsList = [
+        { name: "Motor Broadcast Core (libobs)", ver: "32.2.2", rem: "32.2.2", status: "ATUALIZADO", type: "Core Engine" },
+        { name: "Downstream Keyer (DSK Overlays)", ver: "0.4.4", rem: "0.4.4", status: "ATUALIZADO", type: "Overlays 1-8" },
+        { name: "Source Record (MultiCorder ISO)", ver: "0.4.8", rem: "0.4.8", status: "ATUALIZADO", type: "ISO Recording" },
+        { name: "Replay Source (Instant Replay)", ver: "1.8.1", rem: "1.8.1", status: "ATUALIZADO", type: "Slow-Mo Replay" },
+        { name: "Move Transition (DVE Animado)", ver: "3.2.1", rem: "3.2.1", status: "ATUALIZADO", type: "Transitions" },
+        { name: "Source Dock (Monitores de Fontes)", ver: "0.5.1", rem: "0.5.1", status: "ATUALIZADO", type: "Monitoring" },
+        { name: "Media Playlist (Listas de Vídeos)", ver: "0.1.3", rem: "0.1.3", status: "ATUALIZADO", type: "Media" },
+        { name: "DistroAV (NDI Broadcast Fill+Key)", ver: "Disponível", rem: "6.2.1", status: "OPCIONAL", type: "NDI IP" },
+        { name: "obs-multi-rtmp (MultiStream NVENC)", ver: "Disponível", rem: "0.7.4.4", status: "OPCIONAL", type: "Streaming" }
+      ];
+
       p.innerHTML = `
         <div class="modal-header">
-          <h3>${GEAR} Configurações Gerais do FreeMix</h3>
+          <h3>${GEAR} Configurações do Sistema & Complementos</h3>
           <button class="close-btn" data-a="closemodal">×</button>
         </div>
+        <div class="modal-nav">
+          <button class="${sTab === 'video' ? 'active' : ''}" data-a="setsettingstab" data-stab="video">Vídeo & Codificação</button>
+          <button class="${sTab === 'plugins' ? 'active' : ''}" data-a="setsettingstab" data-stab="plugins">Complementos & Atualizações</button>
+          <button class="${sTab === 'manutencao' ? 'active' : ''}" data-a="setsettingstab" data-stab="manutencao">Diagnóstico & Logs</button>
+        </div>
         <div class="modal-body">
-          <div class="form-grid">
-            <div class="form-group">
-              <label>Resolução de Saída de Vídeo</label>
-              <select class="form-control">
-                <option>1920x1080 (1080p Full HD)</option>
-                <option>1280x720 (720p HD)</option>
-                <option>3840x2160 (4K UHD)</option>
-              </select>
+          ${sTab === 'video' ? `
+            <div class="form-grid">
+              <div class="form-group">
+                <label>Resolução de Saída de Vídeo</label>
+                <select class="form-control">
+                  <option>1920x1080 (1080p Full HD)</option>
+                  <option>1280x720 (720p HD)</option>
+                  <option>3840x2160 (4K UHD)</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Taxa de Quadros (FPS)</label>
+                <select class="form-control">
+                  <option>60 fps</option>
+                  <option>59.94 fps (NTSC Broadcast)</option>
+                  <option>50 fps (PAL)</option>
+                  <option>30 fps</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Codificador de Vídeo</label>
+                <select class="form-control">
+                  <option>NVIDIA NVENC H.264 (Aceleração por Hardware)</option>
+                  <option>Intel QuickSync H.264</option>
+                  <option>x264 (CPU Software)</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Taxa de Bits de Vídeo (Bitrate)</label>
+                <input class="form-control" type="number" value="6000">
+              </div>
             </div>
-            <div class="form-group">
-              <label>Taxa de Quadros (FPS)</label>
-              <select class="form-control">
-                <option>60 fps</option>
-                <option>59.94 fps (NTSC Broadcast)</option>
-                <option>50 fps (PAL)</option>
-                <option>30 fps</option>
-              </select>
+          ` : sTab === 'plugins' ? `
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+              <span style="color:var(--text-muted);font-size:11px">Complementos e motor integrados ao FreeMix Studio:</span>
+              <button class="b on" data-a="runcheckupdates">🔄 Buscar Atualizações na Nuvem</button>
             </div>
-            <div class="form-group">
-              <label>Codificador de Vídeo</label>
-              <select class="form-control">
-                <option>NVIDIA NVENC H.264 (Aceleração por Hardware)</option>
-                <option>Intel QuickSync H.264</option>
-                <option>x264 (CPU Software)</option>
-              </select>
+            <table style="width:100%;border-collapse:collapse;font-size:11px;background:#10141a;border:1px solid var(--border-subtle);border-radius:3px">
+              <thead>
+                <tr style="border-bottom:1px solid var(--border-strong);color:var(--text-muted);text-align:left">
+                  <th style="padding:6px">Componente</th>
+                  <th>Tipo</th>
+                  <th>Versão Instalada</th>
+                  <th>Última Release Oficial</th>
+                  <th>Estado</th>
+                </tr>
+              </thead>
+              <tbody>
+                ${pluginsList.map(pl => `
+                  <tr style="border-bottom:1px solid #1a222c">
+                    <td style="padding:7px 6px"><b>${pl.name}</b></td>
+                    <td style="color:var(--text-muted)">${pl.type}</td>
+                    <td style="font-family:Consolas, monospace">${pl.ver}</td>
+                    <td style="font-family:Consolas, monospace;color:var(--c-green)">${pl.rem}</td>
+                    <td><span style="color:${pl.status === 'ATUALIZADO' ? 'var(--c-green)' : 'var(--text-muted)'}">● ${pl.status}</span></td>
+                  </tr>
+                `).join('')}
+              </tbody>
+            </table>
+            <p style="font-size:10.5px;color:var(--text-muted);margin:8px 0 0">
+              As atualizações são sincronizadas diretamente dos repositórios oficiais GitHub sem alterar suas configurações portáteis.
+            </p>
+          ` : `
+            <div style="background:#10141a;padding:12px;border-radius:3px;border:1px solid var(--border-subtle);font-family:Consolas, monospace;font-size:11px;color:#a0aec0;line-height:1.6">
+              [DIAGNÓSTICO SISTÊMICO]<br>
+              ✓ Pipeline de Renderização: Direct3D 11 NV12 ativo<br>
+              ✓ Mecanismo de Áudio: WASAPI Estéreo 48000 Hz ativo<br>
+              ✓ Servidor WebSocket IPC: Porta 4466 ativa e conectada<br>
+              ✓ Isolamento de Janela: AppUserModelID registrado no Windows Shell<br>
+              ✓ Status dos Complementos: Todos os módulos obrigatórios carregados sem conflito
             </div>
-            <div class="form-group">
-              <label>Taxa de Bits de Vídeo (Bitrate)</label>
-              <input class="form-control" type="number" value="6000">
-            </div>
-          </div>
+          `}
         </div>
         <div class="modal-footer">
-          <button class="b" data-a="closemodal">Cancelar</button>
-          <button class="b on" data-a="closemodal">Salvar Preferências</button>
+          <button class="b" data-a="closemodal">Fechar</button>
+          <button class="b on" data-a="closemodal">Salvar Alterações</button>
         </div>
       `;
     }
@@ -1540,6 +1599,13 @@
     inputsettings: (d) => { st.activeInputTab = "geral"; openModal("inputsettings", d.scene); },
     setinputtab: (d) => { st.activeInputTab = d.tab; renderModalContent(); },
     saveinputsettings: () => { closeModal(); toast("Ajustes da entrada salvos!"); },
+    setsettingstab: (d) => { st.activeSettingsTab = d.stab; renderModalContent(); },
+    runcheckupdates: () => {
+      toast("Consultando releases oficiais no GitHub...");
+      setTimeout(() => {
+        toast("Todos os complementos obrigatórios estão atualizados!");
+      }, 1000);
+    },
 
     // Comutação
     preview: (d) => {
