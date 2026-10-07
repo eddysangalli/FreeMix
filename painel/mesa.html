@@ -296,6 +296,14 @@
   .tabs .c.find { width: auto; min-width: 24px; padding: 0 6px; background: var(--btn); display: inline-flex; align-items: center; gap: 4px; color: #e6ebf2; font-size: 11px; } .tabs .c.find svg { width: 12px; height: 12px; }
   .tabs .c.find.on { background: #e6ebf2; color: #10141a; }
   .catrow { display: grid !important; grid-template-columns: 22px 1fr; align-items: center; gap: 6px; margin-bottom: 4px !important; } .catrow i { width: 22px; height: 22px; border: 1px solid rgba(0, 0, 0, .5); }
+  /* Instant Replay Multi-Cam & Players A/B (SSD Broadcast) */
+  .rp-box { background: #13171f; border: 1px solid #2e3947; border-radius: 3px; padding: 8px; margin-bottom: 8px; }
+  .rp-box h4 { margin: 0 0 6px; font-size: 11px; text-transform: uppercase; color: #a4b3c6; display: flex; justify-content: space-between; align-items: center; }
+  .rp-cams-grid { display: flex; flex-wrap: wrap; gap: 6px; margin: 4px 0 6px; }
+  .rp-cam-item { display: inline-flex; align-items: center; gap: 4px; font-size: 11px; background: #1a202a; padding: 2px 7px; border: 1px solid #333f50; border-radius: 2px; }
+  .rp-events-table { width: 100%; border-collapse: collapse; font-size: 11px; }
+  .rp-events-table th { text-align: left; color: var(--mut); padding: 4px 6px; border-bottom: 1px solid #333f50; font-size: 10px; }
+  .rp-events-table td { padding: 4px 6px; border-bottom: 1px solid #222935; }
 </style>
 </head>
 <body>
@@ -408,10 +416,52 @@
   const resolveKind = (base) => (base === "playlist" ? st.kinds.find((k) => /playlist/.test(k)) || st.kinds.find((k) => k === "vlc_source") : st.kinds.filter((k) => k === base || k.startsWith(base + "_v")).sort().pop()) || "";
   const store = { get: (k, d) => { try { return JSON.parse(localStorage.getItem(k)) ?? d; } catch { return d; } }, set: (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); } catch { /* storage may be off */ } } };
 
+  const DEFAULT_SHORTCUTS = [
+    { id: "sc_cut", key: "Space", label: "Espaço", fn: "Cut", target: "", val: "" },
+    { id: "sc_fade", key: "Enter", label: "Enter", fn: "Fade", target: "", val: "500" },
+    { id: "sc_f1", key: "F1", label: "F1", fn: "PreviewInput", target: "1", val: "" },
+    { id: "sc_f2", key: "F2", label: "F2", fn: "PreviewInput", target: "2", val: "" },
+    { id: "sc_f3", key: "F3", label: "F3", fn: "PreviewInput", target: "3", val: "" },
+    { id: "sc_f4", key: "F4", label: "F4", fn: "PreviewInput", target: "4", val: "" },
+    { id: "sc_f5", key: "F5", label: "F5", fn: "PreviewInput", target: "5", val: "" },
+    { id: "sc_f6", key: "F6", label: "F6", fn: "PreviewInput", target: "6", val: "" },
+    { id: "sc_ov1", key: "Digit1", label: "1", fn: "OverlayInput1", target: "", val: "" },
+    { id: "sc_ov2", key: "Digit2", label: "2", fn: "OverlayInput2", target: "", val: "" },
+    { id: "sc_ov3", key: "Digit3", label: "3", fn: "OverlayInput3", target: "", val: "" },
+    { id: "sc_ov4", key: "Digit4", label: "4", fn: "OverlayInput4", target: "", val: "" },
+    { id: "sc_mute", key: "KeyM", label: "M", fn: "MasterAudio", target: "", val: "" },
+    { id: "sc_play", key: "KeyP", label: "P", fn: "PlayPause", target: "", val: "" },
+    { id: "sc_ftb", key: "KeyB", label: "B", fn: "FTB", target: "", val: "" },
+  ];
+  const SHORTCUT_FUNCTIONS = [
+    { id: "Cut", label: "Cut (Corte rápido)", needTarget: false },
+    { id: "Fade", label: "Fade (Transição suave)", needTarget: false },
+    { id: "Transition", label: "Transição atual", needTarget: false },
+    { id: "FTB", label: "FTB (Fade to Black)", needTarget: false },
+    { id: "PreviewInput", label: "PreviewInput (Entrada para Preview)", needTarget: true },
+    { id: "ActiveInput", label: "ActiveInput (Entrada para Programa)", needTarget: true },
+    { id: "OverlayInput1", label: "Overlay 1 (Liga/desliga)", needTarget: false },
+    { id: "OverlayInput2", label: "Overlay 2 (Liga/desliga)", needTarget: false },
+    { id: "OverlayInput3", label: "Overlay 3 (Liga/desliga)", needTarget: false },
+    { id: "OverlayInput4", label: "Overlay 4 (Liga/desliga)", needTarget: false },
+    { id: "OverlayInput5", label: "Overlay 5 (Liga/desliga)", needTarget: false },
+    { id: "OverlayInput6", label: "Overlay 6 (Liga/desliga)", needTarget: false },
+    { id: "OverlayInput7", label: "Overlay 7 (Liga/desliga)", needTarget: false },
+    { id: "OverlayInput8", label: "Overlay 8 (Liga/desliga)", needTarget: false },
+    { id: "MasterAudio", label: "MasterAudio (Mudo do Master)", needTarget: false },
+    { id: "AudioMute", label: "Audio (Mudo da Entrada)", needTarget: true },
+    { id: "PlayPause", label: "Play / Pause (Mídia ativa)", needTarget: false },
+    { id: "ReplayLive", label: "Replay Live (Voltar ao vivo)", needTarget: false },
+    { id: "ReplayMarkIn", label: "Replay Mark IN (Ponto inicial)", needTarget: false },
+    { id: "ReplayMarkOut", label: "Replay Mark OUT (Ponto final)", needTarget: false },
+  ];
+
   const st = {
     on: false, why: "conectando…", studio: true, scenes: [], program: "", preview: "", transitions: [], cur: "",
     rec: false, stream: false, vcam: false, recTc: "", streamTc: "", video: null, stats: null, kinds: [],
     audio: new Map(), keyers: null, items: new Map(), loop: new Map(), iso: new Map(), isoSel: store.get("mesa.iso", []), hasIso: false, pl: null, rp: [], rpBack: "", rpSpeed: 100, addType: "camera", addName: "", tags: store.get("mesa.tags", {}), filter: -1, mixer: store.get("mesa.mixer", true), pop: null,
+    shortcuts: store.get("mesa.shortcuts", DEFAULT_SHORTCUTS), capturingShortcut: false, capturedKey: null,
+    rpDisk: store.get("mesa.rp_disk", { rec: false, cams: ["CAM 1", "CAM 2"], activePlayer: "A", events: [], speed: 50, markIn: null }),
   };
   const thumbs = new Map();
   const blank = "data:image/svg+xml;utf8," + encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 9"><rect width="16" height="9" fill="#000"/></svg>`);
@@ -617,10 +667,174 @@
     }
   }
 
+  /* ---- central de atalhos e midi ---- */
+  let midiAccess = null, midiDevices = [];
+  function initMidi() {
+    if (navigator.requestMIDIAccess) {
+      navigator.requestMIDIAccess().then((access) => {
+        midiAccess = access; updateMidi();
+        access.onstatechange = () => updateMidi();
+      }).catch(() => {});
+    }
+  }
+  function updateMidi() {
+    if (!midiAccess) return;
+    midiDevices = [];
+    for (const input of midiAccess.inputs.values()) {
+      midiDevices.push(input.name || "Dispositivo MIDI");
+      input.onmidimessage = onMidiMessage;
+    }
+    if (st.pop === "shortcuts") renderPop();
+  }
+  function onMidiMessage(ev) {
+    const [status, d1, d2] = ev.data;
+    const cmd = status >> 4, ch = (status & 0xf) + 1;
+    if ((cmd === 9 && d2 > 0) || (cmd === 11 && d2 > 0)) {
+      const type = cmd === 9 ? "Note" : "CC";
+      const keyId = `MIDI:${ch}:${type}:${d1}`;
+      const label = `MIDI Ch${ch} ${type} ${d1}`;
+      if (st.capturingShortcut) {
+        st.capturedKey = { key: keyId, label };
+        st.capturingShortcut = false;
+        renderPop();
+        return;
+      }
+      const sc = st.shortcuts.find((s) => s.key === keyId);
+      if (sc) executeShortcut(sc);
+    }
+  }
+
+  async function executeShortcut(sc) {
+    try {
+      switch (sc.fn) {
+        case "Cut": {
+          if (st.studio) await req("TriggerStudioModeTransition");
+          else if (st.preview) await req("SetCurrentProgramScene", { sceneName: st.preview });
+          break;
+        }
+        case "Fade": {
+          const fade = kindName("fade_transition");
+          if (fade) await req("SetCurrentSceneTransition", { transitionName: fade });
+          if (sc.val && +sc.val > 0) await tryReq("SetCurrentSceneTransitionDuration", { transitionDuration: +sc.val });
+          if (st.studio) await req("TriggerStudioModeTransition");
+          break;
+        }
+        case "Transition": {
+          if (st.studio) await req("TriggerStudioModeTransition");
+          break;
+        }
+        case "FTB": {
+          const ftb = st.transitions.find((t) => /ftb|fade/i.test(t.name));
+          if (ftb) {
+            await req("SetCurrentSceneTransition", { transitionName: ftb.name });
+            if (st.studio) await req("TriggerStudioModeTransition");
+          }
+          break;
+        }
+        case "PreviewInput": {
+          let sceneName = sc.target;
+          if (/^\d+$/.test(sceneName)) {
+            const idx = +sceneName - 1;
+            if (st.scenes[idx]) sceneName = st.scenes[idx];
+          }
+          if (sceneName && st.scenes.includes(sceneName)) {
+            await req("SetCurrentPreviewScene", { sceneName });
+          }
+          break;
+        }
+        case "ActiveInput": {
+          let sceneName = sc.target;
+          if (/^\d+$/.test(sceneName)) {
+            const idx = +sceneName - 1;
+            if (st.scenes[idx]) sceneName = st.scenes[idx];
+          }
+          if (sceneName && st.scenes.includes(sceneName)) {
+            await req("SetCurrentProgramScene", { sceneName });
+          }
+          break;
+        }
+        case "OverlayInput1": case "OverlayInput2": case "OverlayInput3": case "OverlayInput4":
+        case "OverlayInput5": case "OverlayInput6": case "OverlayInput7": case "OverlayInput8": {
+          const kNum = parseInt(sc.fn.replace("OverlayInput", ""), 10);
+          const kIdx = kNum - 1;
+          if (st.preview) {
+            await A.ov({ k: kIdx, v: st.preview });
+          }
+          break;
+        }
+        case "MasterAudio": {
+          const master = "FreeMix Master";
+          const cur = st.audio.get(master);
+          if (cur) await req("SetInputMute", { inputName: master, inputMuted: !cur.muted });
+          break;
+        }
+        case "AudioMute": {
+          let name = sc.target;
+          if (/^\d+$/.test(name)) {
+            const idx = +name - 1;
+            if (st.scenes[idx]) name = st.scenes[idx];
+          }
+          if (name) await A.audio({ v: name });
+          break;
+        }
+        case "PlayPause": {
+          await A.top_pause();
+          break;
+        }
+        case "ReplayLive": {
+          await A.rplive();
+          break;
+        }
+        case "ReplayMarkIn": {
+          A.rpmarkin();
+          break;
+        }
+        case "ReplayMarkOut": {
+          A.rpmarkout();
+          break;
+        }
+      }
+    } catch (e) {
+      toast(`Atalho [${sc.label || sc.key}]: ${e.message}`, true);
+    }
+  }
+
   /* ---- actions ---- */
   const run = (p) => p?.catch?.((e) => toast(e.message, true));
   const kindName = (kind) => st.transitions.find((t) => t.kind === kind)?.name;
   const A = {
+    sc_capture: () => { st.capturingShortcut = true; renderPop(); },
+    sc_cancel_capture: () => { st.capturingShortcut = false; renderPop(); },
+    sc_add: () => {
+      if (!st.capturedKey) return toast("Pressione uma tecla ou controle MIDI antes de adicionar", true);
+      const fn = $("sc-fn")?.value || "Cut";
+      const target = $("sc-target")?.value?.trim() || "";
+      const val = $("sc-val")?.value?.trim() || "";
+      const id = "sc_" + Date.now();
+      st.shortcuts.push({ id, key: st.capturedKey.key, label: st.capturedKey.label, fn, target, val });
+      store.set("mesa.shortcuts", st.shortcuts);
+      tryReq("SetPersistentData", { realm: "OBS_WEBSOCKET_DATA_REALM_GLOBAL", slotName: "freemix_shortcuts", slotValue: JSON.stringify(st.shortcuts) });
+      st.capturedKey = null;
+      st.capturingShortcut = false;
+      renderPop();
+      toast("Atalho adicionado");
+    },
+    sc_del: (d) => {
+      st.shortcuts = st.shortcuts.filter((s) => s.id !== d.id);
+      store.set("mesa.shortcuts", st.shortcuts);
+      tryReq("SetPersistentData", { realm: "OBS_WEBSOCKET_DATA_REALM_GLOBAL", slotName: "freemix_shortcuts", slotValue: JSON.stringify(st.shortcuts) });
+      renderPop();
+      toast("Atalho removido");
+    },
+    sc_reset: () => {
+      st.shortcuts = JSON.parse(JSON.stringify(DEFAULT_SHORTCUTS));
+      store.set("mesa.shortcuts", st.shortcuts);
+      tryReq("SetPersistentData", { realm: "OBS_WEBSOCKET_DATA_REALM_GLOBAL", slotName: "freemix_shortcuts", slotValue: JSON.stringify(st.shortcuts) });
+      st.capturedKey = null;
+      st.capturingShortcut = false;
+      renderPop();
+      toast("Atalhos restaurados para o padrão");
+    },
     preview: (d) => run(st.studio ? req("SetCurrentPreviewScene", { sceneName: d.v }) : req("SetCurrentProgramScene", { sceneName: d.v })),
     quick: (d) => run((async () => { if (!st.studio) return req("SetCurrentProgramScene", { sceneName: d.v }); await req("SetCurrentPreviewScene", { sceneName: d.v }); await req("TriggerStudioModeTransition"); })()),
     cut: (d) => run((async () => {
@@ -676,10 +890,140 @@
       toast(`Ângulo de replay de ${cam}: últimos ${sec} s`);
     })()),
     rpgrab: () => run((async () => { for (const r of st.rp) await req("TriggerHotkeyByName", { hotkeyName: "ReplaySource.Replay", contextName: r.name }); toast("Lance capturado"); })()),
-    rpspeed: (d) => run((async () => { for (const r of st.rp) await req("SetInputSettings", { inputName: r.name, inputSettings: { speed_percent: +d.v } }); st.rpSpeed = +d.v; if (st.pop === "replay") renderPop(); })()),
+    rpspeed: (d) => run((async () => {
+      for (const r of st.rp) await req("SetInputSettings", { inputName: r.name, inputSettings: { speed_percent: +d.v } });
+      for (const p of ["Replay Player A", "Replay Player B"]) await tryReq("SetInputSettings", { inputName: p, inputSettings: { speed_percent: +d.v } });
+      st.rpSpeed = +d.v; if (st.pop === "replay") renderPop();
+    })()),
     rpmedia: (d) => run((async () => { for (const r of st.rp) await req("TriggerMediaInputAction", { inputName: r.name, mediaAction: "OBS_WEBSOCKET_MEDIA_INPUT_ACTION_" + d.v }); })()),
     rpair: (d) => { if (!st.rp.some((r) => r.scene === st.program)) st.rpBack = st.program; A.quick({ v: d.v }); },
     rplive: () => { if (st.rpBack) A.quick({ v: st.rpBack }); },
+    rptab: (d) => { st.rpDisk.tab = d.v; renderPop(); },
+    rpdisk_camtoggle: (d) => {
+      const c = new Set(st.rpDisk.cams || []);
+      c.has(d.v) ? c.delete(d.v) : c.add(d.v);
+      st.rpDisk.cams = [...c];
+      store.set("mesa.rp_disk", st.rpDisk);
+      renderPop();
+    },
+    rpdiskrec: () => run((async () => {
+      st.rpDisk.rec = !st.rpDisk.rec;
+      const on = st.rpDisk.rec;
+      const recDir = (await req("GetRecordDirectory")).recordDirectory.replace(/[\\/]+$/, "") + "\\replay";
+      const cams = (st.rpDisk.cams || []).filter((c) => st.scenes.includes(c));
+      for (const cam of cams) {
+        const inside = st.items.get(cam) || [];
+        const source = inside.length === 1 ? inside[0].name : cam;
+        const filterName = "FreeMix Replay Rec";
+        if (on) {
+          const settings = {
+            path: recDir,
+            filename_formatting: `replay_${cam.replace(/[\\/:*?"<>|]/g, "_")}_%CCYY-%MM-%DD_%hh-%mm-%ss`,
+            rec_format: "ts",
+            record_mode: 1
+          };
+          if (!(await tryReq("GetSourceFilter", { sourceName: source, filterName }))) {
+            await req("CreateSourceFilter", { sourceName: source, filterName, filterKind: "source_record_filter", filterSettings: settings });
+          } else {
+            await req("SetSourceFilterEnabled", { sourceName: source, filterName, filterEnabled: true });
+            await req("SetSourceFilterSettings", { sourceName: source, filterName, filterSettings: settings });
+          }
+        } else {
+          if (await tryReq("GetSourceFilter", { sourceName: source, filterName })) {
+            await req("SetSourceFilterSettings", { sourceName: source, filterName, filterSettings: { record_mode: 0 } });
+          }
+        }
+      }
+      st.rpDisk.startTime = on ? Date.now() : null;
+      store.set("mesa.rp_disk", st.rpDisk);
+      renderPop();
+      toast(on ? `Replay contínuo no SSD iniciado em ${recDir}` : "Gravação de Replay no SSD parada");
+    })()),
+    rpquickclip: (d) => run((async () => {
+      const sec = +d.v || 5;
+      const cam = (st.rpDisk.cams && st.rpDisk.cams[0]) || st.scenes.find((s) => s.startsWith("CAM")) || st.program || "CAM 1";
+      const evId = (st.rpDisk.events.length + 1);
+      const ev = {
+        id: evId,
+        name: `LANCE ${evId}`,
+        cam: cam,
+        dur: sec,
+        time: new Date().toLocaleTimeString(),
+        category: "Geral"
+      };
+      st.rpDisk.events.unshift(ev);
+      if (st.rpDisk.events.length > 20) st.rpDisk.events.pop();
+      store.set("mesa.rp_disk", st.rpDisk);
+      renderPop();
+      toast(`Lance de ${sec}s registrado (${cam})`);
+    })()),
+    rpmarkin: () => {
+      st.rpDisk.markIn = Date.now();
+      toast(`Mark IN registrado às ${new Date().toLocaleTimeString()}`);
+      if (st.pop === "replay") renderPop();
+    },
+    rpmarkout: () => {
+      const inT = st.rpDisk.markIn || (Date.now() - 5000);
+      const dur = Math.max(1, Math.round((Date.now() - inT) / 1000));
+      const cam = (st.rpDisk.cams && st.rpDisk.cams[0]) || st.scenes.find((s) => s.startsWith("CAM")) || st.program || "CAM 1";
+      const evId = (st.rpDisk.events.length + 1);
+      const ev = {
+        id: evId,
+        name: `LANCE ${evId}`,
+        cam: cam,
+        dur: dur,
+        time: new Date().toLocaleTimeString(),
+        category: "Geral"
+      };
+      st.rpDisk.events.unshift(ev);
+      st.rpDisk.markIn = null;
+      store.set("mesa.rp_disk", st.rpDisk);
+      if (st.pop === "replay") renderPop();
+      toast(`Mark OUT: Lance de ${dur}s salvo`);
+    },
+    rpplayera: (d) => run(A.rp_setup_player("A", d.v)),
+    rpplayerb: (d) => run(A.rp_setup_player("B", d.v)),
+    rp_setup_player: async (player, evId) => {
+      const scene = `REPLAY ${player}`, input = `Replay Player ${player}`;
+      const w = st.video?.baseWidth || 1920, h = st.video?.baseHeight || 1080;
+      if (!st.scenes.includes(scene)) {
+        await req("CreateScene", { sceneName: scene });
+      }
+      const existing = (st.items.get(scene) || []).find((i) => i.name === input);
+      if (!existing) {
+        const { sceneItemId } = await req("CreateInput", {
+          sceneName: scene,
+          inputName: input,
+          inputKind: "ffmpeg_source",
+          inputSettings: { is_local_file: true, looping: false, restart_on_activate: true, speed_percent: st.rpSpeed || 50 }
+        });
+        await tryReq("SetSceneItemTransform", {
+          sceneName: scene,
+          sceneItemId,
+          sceneItemTransform: { positionX: 0, positionY: 0, boundsType: "OBS_BOUNDS_SCALE_INNER", boundsWidth: w, boundsHeight: h, boundsAlignment: 0 }
+        });
+      } else {
+        await req("SetInputSettings", { inputName: input, inputSettings: { speed_percent: st.rpSpeed || 50 } });
+      }
+      st.rpDisk.activePlayer = player;
+      store.set("mesa.rp_disk", st.rpDisk);
+      renderPop();
+      toast(`Lance carregado no Player ${player}`);
+    },
+    rpplayerair: (d) => {
+      const player = d.v || st.rpDisk.activePlayer || "A";
+      const scene = `REPLAY ${player}`;
+      if (!st.rp.some((r) => r.scene === st.program) && st.program !== "REPLAY A" && st.program !== "REPLAY B") {
+        st.rpBack = st.program;
+      }
+      A.quick({ v: scene });
+    },
+    rpeventdel: (d) => {
+      st.rpDisk.events = (st.rpDisk.events || []).filter((e) => String(e.id) !== String(d.v));
+      store.set("mesa.rp_disk", st.rpDisk);
+      renderPop();
+      toast("Lance removido");
+    },
     presetload: () => run((async () => { const r = await req("GetSceneCollectionList"); st.presets = r.sceneCollections; st.preset = r.currentSceneCollectionName; if (st.pop === "presets") { renderPop(); if (st.popArg === "new") $("ps-name")?.focus(); } })()),
     presetopen: (d) => { if (d.v === st.preset) return closePop(); if (st.locked) return A.lockmsg(); if (st.rec || st.stream) return toast("Pare a gravação e a transmissão antes de trocar de preset", true); closePop(); run(req("SetCurrentSceneCollection", { sceneCollectionName: d.v })); },
     presetnew: () => run((async () => { const name = $("ps-name").value.trim(); if (!name) return toast("Dê um nome ao preset", true); if (st.rec || st.stream) return toast("Pare a gravação e a transmissão antes de criar um preset", true); closePop(); await req("CreateSceneCollection", { sceneCollectionName: name }); toast(`Preset "${name}" criado`); })()),
@@ -1278,7 +1622,7 @@
         <span class="pair">${cg("streamset", "Configurar a transmissão")}<button class="b${st.stream ? " live" : ""}" data-a="stream"${off}>Transmitir</button><button class="b dd" data-a="pop" data-v="streammenu"${off} title="Transmissão">▲</button>${tc(st.stream, st.streamTc)}</span>
         ${st.hasIso ? `<span class="pair">${cg("iso", "Escolher as entradas da gravação isolada")}<button class="b${[...st.iso.values()].some(Boolean) ? " live" : ""}" data-a="multicorder"${off} title="Grava cada entrada marcada no seu próprio arquivo">MultiGravação</button></span>` : ""}
         <span class="pair">${cg("playlist", "Lista de reprodução")}<button class="b" data-a="plstart"${off} title="Inicia ou pausa a lista de reprodução">Playlist</button></span></div>
-      <div class="g r">${st.kinds.includes("replay_source") ? `<button class="b${st.rp.some((r) => r.scene === st.program) ? " live" : ""}" data-a="pop" data-v="replay"${off}>Replay</button>` : ""}<button class="b" data-a="pop" data-v="overlay"${off}>Overlay</button>
+      <div class="g r">${(st.kinds.includes("replay_source") || st.hasIso) ? `<button class="b${(st.rp.some((r) => r.scene === st.program) || st.program === "REPLAY A" || st.program === "REPLAY B") ? " live" : ""}" data-a="pop" data-v="replay"${off}>Replay</button>` : ""}<button class="b" data-a="pop" data-v="overlay"${off}>Overlay</button>
         ${ib("pop", st.pop === "mainmenu" || st.pop === "busman", "Menu: gerenciador de barramentos de áudio", "M3 5h18v3H3zm0 5.5h18v3H3zM3 16h18v3H3z", true).replace('data-a="pop"', 'data-a="pop" data-v="mainmenu"')}${ib("pop", st.pop === "stats", "Ver estatísticas de desempenho", "M4 20V10h4v10zm6 0V4h4v16zm6 0v-7h4v7z", true).replace('data-a="pop"', 'data-a="pop" data-v="stats"')}${ib("pop", st.pop === "shortcuts", "Exibir os atalhos", "M4 4h7v7H4zm9 0h7v7h-7zM4 13h7v7H4zm9 0h7v7h-7z").replace('data-a="pop"', 'data-a="pop" data-v="shortcuts"')}${ib("snapshot", false, "Foto da saída, gravada na pasta de gravação", "M9 4 7.5 6H4v13h16V6h-3.5L15 4zm3 4.5a4 4 0 1 1 0 8 4 4 0 0 1 0-8z", true)}${ib("lock", st.locked, "Bloquear ou desbloquear botões como Fechar e parar a gravação", "M7 10V7a5 5 0 0 1 10 0v3h2v11H5V10zm2 0h6V7a3 3 0 0 0-6 0z").replace(' on"', ' on lockon"')}</div>`;
   }
   function renderStat() {
@@ -1303,7 +1647,7 @@
   }
   function renderPop() { renderPopBody(); placePop(); }
   function renderPopBody() {
-    const p = $("pop"); p.className = `pop on${st.pop === "gear" ? " right" : ""}${["add", "ext", "recset", "streamset", "audioset", "busman"].includes(st.pop) ? " wide" : ""}${st.pop === "ext" ? " xwide" : ""}`;
+    const p = $("pop"); p.className = `pop on${st.pop === "gear" ? " right" : ""}${["add", "ext", "recset", "streamset", "audioset", "busman", "shortcuts", "replay"].includes(st.pop) ? " wide" : ""}${st.pop === "ext" ? " xwide" : ""}`;
     if (st.pop === "add") {
       const t = TYPES.find((x) => x.id === st.addType) || TYPES[0], name = st.addName || `${t.id === "camera" ? "CAM" : t.label.toUpperCase().replace(/ \/.*/, "")} ${st.scenes.length + 1}`;
       p.innerHTML = `<h3>Input Select</h3><div class="add"><div class="types">${TYPES.map((x) => `<button class="${x.id === t.id ? "on" : ""}${x.kind && !resolveKind(x.kind) ? " off" : ""}" data-a="addtype" data-v="${x.id}">${x.label}</button>`).join("")}</div>
@@ -1328,11 +1672,61 @@
     else if (st.pop === "iso") { const any = [...st.iso.values()].some(Boolean); p.innerHTML = `<h3>MultiCorder: gravação isolada</h3><p>Cada entrada marcada é gravada no seu próprio arquivo, mesmo fora do ar. Cada uma usa um codificador a mais.</p>` + st.scenes.map((n) => `<label class="chk"><input type="checkbox" data-a="isotoggle" data-v="${esc(n)}"${st.isoSel.includes(n) ? " checked" : ""}${any ? " disabled" : ""}> ${esc(n)}${st.iso.get(n) ? ` <b class="iso">gravando</b>` : ""}</label>`).join("") + `<p style="margin-top:6px">Arquivos na pasta de gravação do perfil, subpasta <b>iso</b>.</p><div class="row">${any ? `<button class="b live" data-a="isostop">Parar</button>` : `<button class="b on" data-a="isostart">Iniciar</button>`}<button class="b" data-a="close">Fechar</button></div>`; }
     else if (st.pop === "playlist") { const pl = st.pl; p.innerHTML = `<h3>PlayList</h3>` + (pl ? `<p>Fonte <b>${esc(pl.name)}</b> na entrada <b>${esc(pl.scene)}</b>${pl.state ? " · " + pl.state : ""}${pl.time ? " · " + pl.time : ""}</p><div class="row"><button class="b" data-a="plact" data-v="PREVIOUS">Anterior</button><button class="b" data-a="plact" data-v="PLAY">Play</button><button class="b" data-a="plact" data-v="PAUSE">Pause</button><button class="b" data-a="plact" data-v="NEXT">Próximo</button><button class="b" data-a="plact" data-v="RESTART">Reiniciar</button></div><div class="row"><button class="b" data-a="pledit">Editar lista…</button><button class="b" data-a="plpvw">Mandar para o Preview</button><button class="b" data-a="close">Fechar</button></div>` : `<p>Nenhuma playlist ainda. Cria a entrada PLAYLIST e abre a janela do OBS para escolher os arquivos.</p><div class="row"><button class="b on" data-a="plcreate">Criar playlist</button><button class="b" data-a="close">Cancelar</button></div>`); }
     else if (st.pop === "replay") {
-      const cams = st.scenes.filter((n) => !st.rp.some((r) => r.scene === n)), onAir = st.rp.some((r) => r.scene === st.program);
-      p.innerHTML = `<h3>Replay</h3><p>Memória do programa agora: <b>${st.stats ? Math.round(st.stats.memoryUsage) : "?"} MB</b>. Cada ângulo ligado ocupa memória o tempo todo, mesmo sem uso.</p>` + (st.rp.length ? `<table>${st.rp.map((r) => `<tr><td><b>${esc(r.scene)}</b></td><td style="text-align:right"><button class="b${r.scene === st.program ? " live" : ""}" data-a="rpair" data-v="${esc(r.scene)}">No ar</button><button class="b" data-a="rpdel" data-v="${esc(r.scene)}" title="Desliga este ângulo e libera a memória dele"${r.scene === st.program ? " disabled" : ""}>Remover</button></td></tr>`).join("")}</table>
-        <div class="row"><button class="b on" data-a="rpgrab">Capturar lance</button><button class="b" data-a="rpmedia" data-v="PREVIOUS">Anterior</button><button class="b" data-a="rpmedia" data-v="NEXT">Próximo</button><button class="b" data-a="rpmedia" data-v="PAUSE">Pause</button><button class="b" data-a="rpmedia" data-v="PLAY">Play</button></div>
-        <div class="row">${[25, 50, 100].map((v) => `<button class="b${st.rpSpeed === v ? " on" : ""}" data-a="rpspeed" data-v="${v}">${v}%</button>`).join("")}<button class="b" data-a="rplive"${st.rpBack && onAir ? "" : " disabled"}>Voltar ao vivo</button></div>` : `<p>Nenhum ângulo ainda.</p>`)
-        + `<p style="margin-top:8px">Novo ângulo: guarda os últimos segundos da câmera na memória (custa caro: medi de 0,3 a 1 GB de RAM por segundo em 1080p, conforme onde a câmera aparece; confira a memória acima depois de criar).</p><div class="row"><select id="rp-cam">${cams.map((n) => `<option>${esc(n)}</option>`).join("")}</select><select id="rp-sec">${[3, 5, 8, 10, 15].map((v) => `<option value="${v}">${v} s</option>`).join("")}</select><button class="b" data-a="rpadd">Adicionar ângulo</button><button class="b" data-a="close">Fechar</button></div>`;
+      const cams = st.scenes.filter((n) => !st.rp.some((r) => r.scene === n)), onAir = st.rp.some((r) => r.scene === st.program) || st.program === "REPLAY A" || st.program === "REPLAY B";
+      const diskRec = !!st.rpDisk.rec;
+      const events = st.rpDisk.events || [];
+      const diskCams = st.scenes.filter((s) => s.startsWith("CAM") || s.includes("CÂMERA"));
+      p.innerHTML = `<h3>Replay Multi-Câmera (SSD &amp; Broadcast)</h3>`
+        + `<p style="margin:2px 0 6px;font-size:11px;color:var(--mut)">Memória do programa agora: <b>${st.stats ? Math.round(st.stats.memoryUsage) : "?"} MB</b> · Disco livre para gravação: <b>${st.stats ? (st.stats.availableDiskSpace / 1024).toFixed(1) : "?"} GB</b>.</p>`
+        + `<div class="rp-box">`
+        + `<h4><span>1. Sessão de Gravação Contínua em Disco (SSD)</span><span class="bdg${diskRec ? " on" : ""}">${diskRec ? "GRAVANDO SSD" : "SSD PARADO"}</span></h4>`
+        + `<p style="font-size:11px;margin:2px 0 6px">Gravação contínua em MPEG-TS (.ts) por câmera via hardware. Consumo de RAM zero.</p>`
+        + `<div class="row" style="align-items:center;margin-bottom:6px">`
+        + `<button class="b${diskRec ? " live" : " on"}" data-a="rpdiskrec" style="height:26px;font-weight:700">${diskRec ? "■ Parar Gravação SSD" : "● Iniciar Gravação SSD"}</button>`
+        + `<span style="font-size:11px;color:var(--tx)">Câmeras na sessão:</span>`
+        + `<div class="rp-cams-grid" style="margin:0">`
+        + (diskCams.length ? diskCams.map((c) => `<label class="rp-cam-item"><input type="checkbox" data-a="rpdisk_camtoggle" data-v="${esc(c)}"${(st.rpDisk.cams || []).includes(c) ? " checked" : ""}> ${esc(c)}</label>`).join("") : `<span style="color:var(--mut)">Nenhuma câmera detectada</span>`)
+        + `</div></div></div>`
+        + `<div class="rp-box">`
+        + `<h4>2. Captura Rápida de Lances &amp; Marcação</h4>`
+        + `<div class="row" style="margin:0 0 6px;align-items:center;gap:6px">`
+        + `<span style="font-size:11px;font-weight:600">Lances rápidos:</span>`
+        + `<button class="b on" data-a="rpquickclip" data-v="5">-5 s</button>`
+        + `<button class="b on" data-a="rpquickclip" data-v="10">-10 s</button>`
+        + `<button class="b on" data-a="rpquickclip" data-v="20">-20 s</button>`
+        + `<span style="width:1px;height:18px;background:var(--sep);margin:0 4px"></span>`
+        + `<button class="b" data-a="rpmarkin" title="Marca o início do lance">[Mark IN]</button>`
+        + `<button class="b" data-a="rpmarkout" title="Marca o final e salva o lance">[Mark OUT]</button>`
+        + `</div>`
+        + `</div>`
+        + `<div class="rp-box">`
+        + `<h4>3. Players Independentes A e B &amp; Saída</h4>`
+        + `<div class="row" style="margin:0 0 6px;align-items:center;gap:6px">`
+        + `<button class="b${st.rpDisk.activePlayer === "A" ? " on" : ""}" data-a="rpplayera" data-v="A">Player A${st.program === "REPLAY A" ? " (NO AR)" : ""}</button>`
+        + `<button class="b${st.rpDisk.activePlayer === "B" ? " on" : ""}" data-a="rpplayerb" data-v="B">Player B${st.program === "REPLAY B" ? " (NO AR)" : ""}</button>`
+        + `<span style="width:1px;height:18px;background:var(--sep);margin:0 4px"></span>`
+        + `<button class="b live" data-a="rpplayerair" data-v="${st.rpDisk.activePlayer}">No Ar (Player ${st.rpDisk.activePlayer})</button>`
+        + `<button class="b" data-a="rplive"${st.rpBack && onAir ? "" : " disabled"}>Voltar ao vivo</button>`
+        + `</div>`
+        + `<div class="row" style="margin:0;align-items:center;gap:6px">`
+        + `<span style="font-size:11px">Velocidade:</span>`
+        + [10, 25, 33, 50, 75, 100].map((v) => `<button class="b${st.rpSpeed === v ? " on" : ""}" data-a="rpspeed" data-v="${v}">${v}%</button>`).join("")
+        + `</div></div>`
+        + `<div class="rp-box">`
+        + `<h4>4. Lista de Lances / Eventos Salvos (${events.length})</h4>`
+        + (events.length ? `<div style="max-height:120px;overflow-y:auto"><table class="rp-events-table"><tr><th>Lance</th><th>Câmera</th><th>Duração</th><th>Horário</th><th style="text-align:right">Ações</th></tr>`
+          + events.map((e) => `<tr><td><b>${esc(e.name)}</b></td><td>${esc(e.cam)}</td><td>${e.dur} s</td><td>${e.time}</td>`
+            + `<td style="text-align:right"><button class="b" data-a="rpplayera" data-v="${e.id}" style="height:19px;padding:0 5px" title="Carregar no Player A">▶ A</button>`
+            + `<button class="b" data-a="rpplayerb" data-v="${e.id}" style="height:19px;padding:0 5px;margin-left:3px" title="Carregar no Player B">▶ B</button>`
+            + `<button class="b" data-a="rpeventdel" data-v="${e.id}" style="height:19px;padding:0 5px;margin-left:3px" title="Excluir">×</button></td></tr>`).join("")
+          + `</table></div>` : `<p style="font-size:11px;color:var(--mut);margin:0">Nenhum lance gravado. Use [-5s], [-10s] ou [Mark IN] / [Mark OUT].</p>`)
+        + `</div>`
+        + `<fieldset style="margin-top:6px"><legend>Buffer em Memória RAM (Ângulos rápidos legados)</legend>`
+        + (st.rp.length ? `<table>${st.rp.map((r) => `<tr><td><b>${esc(r.scene)}</b></td><td style="text-align:right"><button class="b${r.scene === st.program ? " live" : ""}" data-a="rpair" data-v="${esc(r.scene)}">No ar</button><button class="b" data-a="rpdel" data-v="${esc(r.scene)}" title="Desliga este ângulo e libera a memória dele"${r.scene === st.program ? " disabled" : ""}>Remover</button></td></tr>`).join("")}</table>
+          <div class="row" style="margin:6px 0 0"><button class="b on" data-a="rpgrab">Capturar lance</button><button class="b" data-a="rpmedia" data-v="PREVIOUS">Anterior</button><button class="b" data-a="rpmedia" data-v="NEXT">Próximo</button><button class="b" data-a="rpmedia" data-v="PAUSE">Pause</button><button class="b" data-a="rpmedia" data-v="PLAY">Play</button></div>` : `<p style="font-size:11px;color:var(--mut);margin:0 0 6px">Nenhum ângulo de memória ativo.</p>`)
+        + `<div class="row" style="margin:4px 0 0"><select id="rp-cam">${cams.map((n) => `<option>${esc(n)}</option>`).join("")}</select><select id="rp-sec">${[3, 5, 8, 10, 15].map((v) => `<option value="${v}">${v} s</option>`).join("")}</select><button class="b" data-a="rpadd">Adicionar ângulo</button></div>`
+        + `</fieldset>`
+        + `<div class="row end" style="margin-top:8px"><button class="b" data-a="close">Fechar</button></div>`;
     }
     else if (st.pop === "menu") { const name = st.popArg, v = esc(name), ins = st.items.get(name) || [];
       p.innerHTML = `<h3>${v}</h3><div class="menu">` + ins.map((i) => `<button data-a="props" data-v="${esc(i.name)}">Configurações de ${esc(i.name)}…</button>${st.gcNames.has(i.name) ? `<button data-a="gcedit" data-v="${esc(i.name)}"><b>Editar título…</b></button>` : ""}<button data-a="filters" data-v="${esc(i.name)}">Filtros de ${esc(i.name)}…</button>${i.kind === "browser_source" ? `<button data-a="calllink" data-v="${esc(i.name)}">Link do convidado (FreeMix Call)…</button>` : ""}`).join("")
@@ -1396,7 +1790,32 @@
     else if (st.pop === "streammenu") p.innerHTML = `<h3>Transmissão</h3><div class="menu"><button data-a="stream">${st.stream ? "Parar a transmissão" : "Iniciar a transmissão…"}</button><button data-a="pop" data-v="streamset">Configurações de transmissão…</button></div><div class="row" style="margin-top:8px"><button class="b" data-a="close">Fechar</button></div>`;
     else if (st.pop === "stats") { const s = st.stats, x = st.statsx || {}, row = (a, b) => `<tr><td><b>${a}</b></td><td>${b}</td></tr>`;
       p.innerHTML = `<h3>Estatísticas de desempenho</h3>` + (s ? `<table>${row("Quadros por segundo", s.activeFps.toFixed(2))}${row("Tempo de render", s.averageFrameRenderTime.toFixed(1) + " ms")}${row("Perdidos no render", `${s.renderSkippedFrames} de ${s.renderTotalFrames}`)}${row("Perdidos na saída", `${s.outputSkippedFrames} de ${s.outputTotalFrames}`)}${row("Processador (programa)", s.cpuUsage.toFixed(1) + " %")}${row("Memória", Math.round(s.memoryUsage) + " MB")}${row("Disco livre para gravar", (s.availableDiskSpace / 1024).toFixed(1) + " GB")}${row("Gravação", x.r?.outputActive ? `gravando há ${x.r.outputTimecode.slice(0, 8)} · ${(x.r.outputBytes / 1048576).toFixed(1)} MB` : "parada")}${row("Transmissão", x.t?.outputActive ? `no ar há ${x.t.outputTimecode.slice(0, 8)} · ${x.t.outputSkippedFrames} de ${x.t.outputTotalFrames} perdidos` : "parada")}</table>` : `<p>Lendo…</p>`) + `<div class="row" style="margin-top:8px"><button class="b" data-a="statsload">Atualizar</button><button class="b" data-a="close">Fechar</button></div>`; }
-    else if (st.pop === "shortcuts") p.innerHTML = `<h3>Atalhos</h3><p>Ainda não há atalhos configurados: a central de atalhos do FreeMix (teclado, MIDI, controladores) é uma das etapas pendentes.</p><div class="row"><button class="b" data-a="close">Fechar</button></div>`;
+    else if (st.pop === "shortcuts") {
+      p.className = "pop wide";
+      const scList = st.shortcuts || [];
+      const capturing = st.capturingShortcut;
+      const keyText = capturing ? "Pressione a tecla ou botão MIDI…" : (st.capturedKey ? st.capturedKey.label : "Pressionar tecla / MIDI…");
+      const midiTxt = midiDevices.length ? `<span style="color:#00e676">Controladores MIDI ativos: ${esc(midiDevices.join(", "))}</span>` : `<span style="color:var(--mut)">Nenhum controlador MIDI detectado (use o teclado)</span>`;
+      p.innerHTML = `<h3>Central de Atalhos (Teclado &amp; MIDI)</h3>`
+        + `<p style="font-size:11px;margin-bottom:6px">Comande o FreeMix por teclas do teclado ou controladoras físicas MIDI USB (AKAI, Launchpad, Stream Deck). ${midiTxt}</p>`
+        + `<div class="outs" style="max-height:220px;margin-bottom:8px"><table>`
+        + `<tr><th style="width:140px">Tecla / Controle</th><th>Função</th><th>Alvo / Parâmetro</th><th style="width:60px;text-align:right">Ação</th></tr>`
+        + (scList.length ? scList.map((sc) => {
+            const fDef = SHORTCUT_FUNCTIONS.find((f) => f.id === sc.fn);
+            const fnLabel = fDef ? fDef.label : sc.fn;
+            return `<tr><td><b class="bdg" style="color:#fff;background:#202834;border-color:#3d4c60">${esc(sc.label || sc.key)}</b></td>`
+              + `<td>${esc(fnLabel)}</td><td>${esc(sc.target || sc.val || "—")}</td>`
+              + `<td style="text-align:right"><button class="b" data-a="sc_del" data-id="${esc(sc.id)}" style="height:20px;padding:0 6px">Excluir</button></td></tr>`;
+          }).join("") : `<tr><td colspan="4" style="text-align:center;color:var(--mut)">Nenhum atalho configurado.</td></tr>`)
+        + `</table></div>`
+        + `<fieldset style="margin-bottom:8px"><legend>Adicionar novo atalho</legend><div class="row" style="align-items:center;gap:6px">`
+        + `<button class="b${capturing ? " on" : ""}" data-a="${capturing ? "sc_cancel_capture" : "sc_capture"}" style="min-width:180px;height:25px">${esc(keyText)}</button>`
+        + `<select id="sc-fn" style="height:25px">${SHORTCUT_FUNCTIONS.map((f) => `<option value="${f.id}">${esc(f.label)}</option>`).join("")}</select>`
+        + `<input id="sc-target" placeholder="Entrada ou valor (ex: 1)" style="height:25px;width:130px">`
+        + `<button class="b on" data-a="sc_add" style="height:25px">+ Adicionar</button>`
+        + `</div></fieldset>`
+        + `<div class="row end"><button class="b" data-a="sc_reset" title="Restaurar a lista padrão de atalhos do FreeMix">Restaurar Padrões</button><button class="b" data-a="close">Fechar</button></div>`;
+    }
     else if (st.pop === "audioset") { const s = st.aset, tab = st.asetTab || "geral";
       const sl = (label, fx, k, min, max, step, val, unit) => `<label>${label}: <b id="v-${fx}-${k}">${val}${unit}</b><input type="range" min="${min}" max="${max}" step="${step}" value="${val}" data-fx="${fx}" data-k="${k}" data-u="${unit}"></label>`;
       const has = (k) => s.kinds.includes(FX[k].k), fs = (k) => s[k]?.filterSettings || {}, chk = (k, label) => `<label class="chk"><input type="checkbox" data-fxon="${k}"${s[k] && s[k].filterEnabled ? " checked" : ""}> ${label}</label>`;
@@ -1443,7 +1862,36 @@
     A[t.dataset.a]?.(t.dataset);
     if (t.dataset.a === "studio") setTimeout(() => { if (st.pop === "gear") renderPop(); renderStat(); }, 300);
   });
-  document.addEventListener("keydown", (e) => { if (e.key === "Escape") closePop(); if (e.key === "Enter" && st.pop === "add") A.add(); if (e.key === "Enter" && st.pop === "rename") A.renamego(); if (e.key === "Enter" && st.pop === "saveas") A.saveasgo(); });
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") return closePop();
+    if (e.key === "Enter" && st.pop === "add") return A.add();
+    if (e.key === "Enter" && st.pop === "rename") return A.renamego();
+    if (e.key === "Enter" && st.pop === "saveas") return A.saveasgo();
+
+    if (st.capturingShortcut) {
+      e.preventDefault();
+      e.stopPropagation();
+      const code = e.code || e.key;
+      let label = e.key.length === 1 ? e.key.toUpperCase() : e.code;
+      if (code === "Space") label = "Espaço";
+      st.capturedKey = { key: code, label };
+      st.capturingShortcut = false;
+      renderPop();
+      return;
+    }
+
+    const tag = (e.target && e.target.tagName) || "";
+    if (tag === "INPUT" || tag === "TEXTAREA" || tag === "SELECT" || e.target?.isContentEditable) {
+      return;
+    }
+
+    const code = e.code || e.key;
+    const sc = st.shortcuts?.find((s) => s.key === code || s.key === e.key);
+    if (sc) {
+      e.preventDefault();
+      executeShortcut(sc);
+    }
+  });
   document.addEventListener("change", (e) => { const t = e.target; if (t.dataset && t.dataset.o) { st.outsel = st.outsel || {}; st.outsel[t.dataset.o] = { ...(st.outsel[t.dataset.o] || {}), [t.dataset.f]: t.value }; store.set("mesa.outs", st.outsel); } });
   const FX = { gain: { n: "FreeMix Ganho", k: "gain_filter" }, eq: { n: "FreeMix EQ", k: "basic_eq_filter" }, comp: { n: "FreeMix Compressor", k: "compressor_filter" }, gate: { n: "FreeMix Noise Gate", k: "noise_gate_filter" }, lim: { n: "FreeMix Limitador", k: "limiter_filter" } };
   document.addEventListener("input", (e) => {
@@ -1624,7 +2072,7 @@
       await sleep(200);
     }
   }
-  renderAll(); connect(); thumbLoop(); slowLoop(); mediaLoop();
+  renderAll(); connect(); thumbLoop(); slowLoop(); mediaLoop(); initMidi();
 </script>
 </body>
 </html>

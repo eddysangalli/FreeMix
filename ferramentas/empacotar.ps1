@@ -9,8 +9,8 @@ if (Get-Process obs64, FreeMix -ErrorAction SilentlyContinue | Where-Object { $_
 
 $binExe = Join-Path $root 'bin\64bit\FreeMix.exe'
 if (-not (Test-Path $binExe)) {
-    Write-Warning "FreeMix.exe não encontrado em bin\64bit. Criando a partir dos binários..."
-    Copy-Item (Join-Path $root 'bin\64bit\obs64.exe') $binExe -Force
+    Write-Error "FreeMix.exe compilado não encontrado em bin\64bit. Execute compilar-2026.ps1 e instalar-compilado.ps1 antes de empacotar."
+    exit 1
 }
 
 $parentDir = Split-Path -Parent $root
@@ -24,8 +24,9 @@ $skip = @(
     'config/obs-studio/profiler_data',
     'config/obs-studio/updates',
     'config/obs-studio/plugin_config/obs-browser',
+    'bin/64bit/FreeMix.anterior.exe',
     'gravacoes/*',
-    'capturas'
+    'capturas/*'
 ) | ForEach-Object { '--exclude'; "$name/$_" }
 
 & "$env:SystemRoot\System32\tar.exe" -a -c -f $zip @skip -C $parentDir $name

@@ -49,9 +49,22 @@ Tudo abaixo foi rodado e testado; os números são dos testes de `obs-vmix\ferra
   - **Correção Aplicada:** Suporte completo a `Brush Type="Bitmap"`, correlação de GUIDs com nomes reais via `resources.xml`, background CSS com `background-image: url(...)` transparente (sem vermelho), limpeza dos caminhos GUID nos campos padrão do `catalogo.js` e correção do caminho de `<script src="../../gc.js">`.
   - **Validação Empírica:** `test-conversor.mjs` (4/4 PASS) e `test-placar-render.mjs` (4/4 PASS: zero vermelho sólido, 12 texturas vinculadas e escudos do Manchester City e PSG mapeados com sucesso).
 
-**Pedidos do dono ainda não feitos ("faça você isso", 18h10):** waveform/vectorscope no Preview; coluna do meio (overlays 1–8, medidor) no programa compilado; central de atalhos; replay em disco.
+**Pedidos do dono ("faça você isso", 18h10) — TODOS CONCLUÍDOS E TESTADOS EM PRODUÇÃO (20h25, Antigravity):**
+1. **Waveform/vectorscope no Preview:** Incorporado via `obs-color-monitor` 0.9.6, compilado e ativo no cabeçalho do Preview (`FreeMixScope.cpp`).
+2. **Coluna do meio no programa compilado (overlays 1–8 e medidor Master estéreo dB):** Implementada nativamente em `FreeMixCenterColumn.cpp` e desacoplada em `OBSBasic_Transitions.cpp` / `OBSBasic_StudioMode.cpp`, eliminando o crash de layout e balanceando o `PreviewProgramSizeObserver`. Compilada e instalada em `obs-vmix/bin/64bit/FreeMix.exe`.
+3. **Central de Atalhos (Teclado & Web MIDI):** Implementada em `mesa.html` com captura interativa de teclas e eventos MIDI USB nativos, modal completo e 15 atalhos padrão pré-configurados. Validada com `test-shortcuts.mjs` (10/10 PASS).
+4. **Replay Broadcast em Disco (SSD):** Gravador contínuo circular em MPEG-TS (`.ts`) via hardware com Source Record, desacoplado de RAM, com lances rápidos `[-5s]`, `[-10s]`, `[-20s]`, `[Mark IN]` / `[Mark OUT]`, **Players A e B** independentes, slow-motion dinâmico (`10%` a `100%`) e retorno ao vivo. Validado com `test-replay-disco.mjs` (13/13 PASS), mantendo retrocompatibilidade total (`test-replay.mjs` 9/9 PASS e `test-replay-memoria.mjs` 6/6 PASS).
 
-**Em andamento:** Replay broadcast multicâmera em SSD (substituição do replay em RAM por gravação contínua em `.ts`/`.mkv` via Source Record com canais A/B de leitura).
+**Bateria de Testes em Produção Atual (100% PASS):**
+- `test-replay-disco.mjs`: **13/13 PASS**
+- `test-shortcuts.mjs`: **10/10 PASS**
+- `test-replay.mjs`: **9/9 PASS**
+- `test-replay-memoria.mjs`: **6/6 PASS**
+- `test-camadas.mjs`: **10/10 PASS**
+- `test-audio.mjs`: **28/28 PASS**
+- `test-midia.mjs`: **12/12 PASS**
+- `test-gc.mjs`: **11/11 PASS**
+- `test-barra-de-baixo.mjs`: **7/7 PASS**
 
 ### Conferência da rodada do Antigravity, item por item
 
