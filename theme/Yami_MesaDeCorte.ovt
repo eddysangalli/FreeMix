@@ -1,0 +1,450 @@
+@OBSThemeMeta {
+    name: 'Mesa de Corte';
+    id: 'local.mesadecorte.Yami';
+    extends: 'com.obsproject.Yami';
+    author: 'vmixtwste';
+    dark: 'true';
+}
+
+@OBSThemeVars {
+    /* Neutral dark greys, flat, square: switcher look instead of the stock rounded blue */
+    --grey1: #5a636e;
+    --grey2: #4a525c;
+    --grey3: #3c444e;
+    --grey4: #2f363f;
+    --grey5: #2a3038;
+    --grey6: #1f242b;
+    --grey7: #171b21;
+    --grey8: #0d0f12;
+
+    --mesa_preview: #f7931e;
+    --mesa_preview_dark: #d97a00;
+    --mesa_program: #0e7a0d;
+    --mesa_program_light: #16a014;
+    --mesa_input: #3c4858;
+    --mesa_onair: #c8281e;
+    --mesa_onair_light: #e23a2e;
+
+    --bg_window: var(--grey7);
+    --bg_base: var(--grey6);
+    --bg_preview: #000000;
+
+    /* Colour only where it means something: green = active, orange = preview, red = on air */
+    --primary: var(--mesa_program);
+    --primary_light: var(--mesa_program_light);
+    --primary_lighter: #3fc23c;
+    --primary_dark: #0a5c0a;
+    --primary_darker: #074207;
+
+    --danger: var(--mesa_onair);
+
+    --text: #e3e7ec;
+    --text_light: #ffffff;
+    --text_muted: #9aa3ad;
+
+    --border_color: var(--grey2);
+    --border_radius: 0px;
+    --border_radius_small: 0px;
+    --border_radius_large: 0px;
+
+    --input_bg: var(--grey4);
+    --input_bg_hover: var(--grey3);
+    --input_bg_focus: var(--grey8);
+    --input_border: var(--grey2);
+    --input_border_hover: var(--grey1);
+    --input_border_focus: var(--mesa_preview);
+
+    --list_item_bg_selected: var(--mesa_preview_dark);
+    --list_item_bg_hover: var(--grey3);
+
+    --button_bg: var(--grey4);
+    --button_bg_hover: var(--grey3);
+    --button_bg_down: var(--grey8);
+    --button_bg_disabled: var(--grey6);
+    --button_border: var(--grey2);
+    --button_border_hover: var(--grey1);
+    --button_border_focus: var(--grey1);
+
+    --tab_bg: var(--grey5);
+    --tab_bg_hover: var(--grey3);
+    --tab_bg_down: var(--mesa_input);
+    --tab_border: var(--grey2);
+    --tab_border_selected: var(--mesa_preview);
+
+    --scrollbar_handle: var(--grey3);
+    --scrollbar_bg: var(--grey8);
+    --scrollbar_hover: var(--grey2);
+    --scrollbar_down: var(--grey1);
+
+    --highlight_color: var(--mesa_preview);
+    --dock_title_padding: calc(2px + var(--padding_base));
+}
+
+/* Window chrome */
+
+QStatusBar,
+OBSBasicStatusBar {
+    background-color: var(--grey8);
+}
+
+QMenuBar {
+    background-color: var(--grey6);
+}
+
+QMainWindow::separator {
+    background: var(--grey8);
+    width: 3px;
+    height: 3px;
+}
+
+QMainWindow::separator:hover {
+    background: var(--mesa_preview);
+}
+
+/* Dock headers read as input title bars */
+
+QDockWidget {
+    font-weight: bold;
+}
+
+QDockWidget::title {
+    background-color: var(--mesa_input);
+    padding: var(--dock_title_padding);
+    text-align: left;
+}
+
+QDockWidget > QWidget {
+    background: var(--bg_window);
+}
+
+/* Preview / Program title bars */
+
+.label-preview-title {
+    font-size: var(--font_large);
+    font-weight: bold;
+    color: #ffffff;
+    background-color: var(--mesa_program);
+    padding: 3px 8px;
+    margin-bottom: 0px;
+}
+
+#previewLabel {
+    background-color: var(--mesa_preview);
+    color: #1a1206;
+}
+
+/* Scene buttons (grid mode) */
+
+SceneTree {
+    qproperty-gridItemWidth: 132;
+    qproperty-gridItemHeight: 44;
+}
+
+.list-grid SceneTree::item {
+    color: var(--text);
+    background-color: var(--grey4);
+    border: 1px solid var(--grey2);
+    border-radius: 0px;
+    margin: 2px;
+    font-weight: bold;
+}
+
+.list-grid SceneTree::item:hover {
+    background-color: var(--grey3);
+}
+
+.list-grid SceneTree::item:selected,
+.list-grid SceneTree::item:selected:hover {
+    background-color: var(--mesa_preview);
+    border-color: var(--mesa_preview_dark);
+    color: #1a1206;
+}
+
+.list-grid SceneTree::item:checked {
+    background-color: var(--mesa_program);
+    border-color: var(--mesa_program_light);
+    color: #ffffff;
+}
+
+/* Buttons */
+
+QPushButton {
+    font-weight: bold;
+}
+
+QPushButton:pressed {
+    background-color: var(--button_bg_down);
+}
+
+QPushButton:checked {
+    background-color: var(--mesa_program);
+    border-color: var(--mesa_program_light);
+}
+
+#transitionsFrame {
+    padding: 6px;
+    background: #171c23;
+    border-left: 1px solid #2d3644;
+    border-right: 1px solid #2d3644;
+}
+
+#transitionsFrame QPushButton {
+    min-height: 25px;
+    margin: 2px 0px;
+    font-size: 11px;
+    font-weight: 700;
+    color: #e5ebf2;
+    background-color: #2b3340;
+    border: 1px solid #445063;
+    border-radius: 2px;
+}
+
+#transitionsFrame QPushButton:hover {
+    background-color: #384354;
+    border-color: #5c6c84;
+    color: #ffffff;
+}
+
+#transitionsFrame QPushButton:pressed {
+    background-color: #1a2028;
+    border-color: #2b3340;
+}
+
+/* Record / stream turn red while running, the other outputs green */
+
+#streamButton:!hover:!pressed.state-active,
+#recordButton:!hover:!pressed.state-active,
+#broadcastButton:!hover:!pressed.state-active {
+    background: var(--mesa_onair);
+    border-color: var(--mesa_onair_light);
+}
+
+#streamButton:hover:!pressed.state-active,
+#recordButton:hover:!pressed.state-active,
+#broadcastButton:hover:!pressed.state-active {
+    background: var(--mesa_onair_light);
+}
+
+/* T-bar */
+
+.slider-tbar {
+    min-height: 32px;
+    padding: 4px 0px;
+}
+
+.slider-tbar::groove:horizontal {
+    height: 6px;
+    background: #0f1318;
+    border: 1px solid #364252;
+    border-radius: 2px;
+}
+
+.slider-tbar::sub-page:horizontal {
+    background: var(--mesa_program);
+    border-radius: 2px;
+}
+
+.slider-tbar::handle:horizontal {
+    background: #c8d0da;
+    border: 1px solid #1c222a;
+    width: 16px;
+    margin-top: -8px;
+    margin-bottom: -8px;
+    border-radius: 2px;
+}
+
+.slider-tbar::handle:horizontal:hover {
+    background: #ffffff;
+}
+
+/* Audio mixer */
+
+#stackedMixerArea QScrollArea {
+    background: var(--grey8);
+}
+
+#vVolumeWidgets VolumeControl {
+    border-right: 1px solid var(--grey5);
+}
+
+.btn-mute.checked {
+    background-color: var(--mesa_onair);
+}
+
+VolumeMeter {
+    qproperty-backgroundNominalColor: rgb(18,70,18);
+    qproperty-backgroundWarningColor: rgb(84,74,16);
+    qproperty-backgroundErrorColor: rgb(88,22,18);
+    qproperty-foregroundNominalColor: rgb(40,200,40);
+    qproperty-foregroundWarningColor: rgb(240,210,40);
+    qproperty-foregroundErrorColor: rgb(230,50,40);
+    qproperty-magnitudeColor: rgb(0,0,0);
+    qproperty-majorTickColor: var(--text);
+    qproperty-minorTickColor: var(--text_muted);
+}
+
+/* Tabs */
+
+QTabBar::tab:selected {
+    background-color: var(--mesa_input);
+}
+
+/* Embedded panel */
+
+QWidget {
+    font-family: 'Segoe UI', 'Open Sans', Arial, sans-serif;
+}
+
+QDockWidget#Mesa_extraBrowser {
+    font-size: 7pt;
+    font-weight: normal;
+    color: var(--text_muted);
+}
+
+QDockWidget#Mesa_extraBrowser::title {
+    background-color: var(--grey8);
+    padding: 1px 6px;
+}
+
+/* Preview without the zoom bar */
+
+#previewXContainer {
+    min-height: 0px;
+    max-height: 0px;
+    border: none;
+    margin: 0px;
+    padding: 0px;
+}
+
+#previewYScrollBar {
+    min-width: 0px;
+    max-width: 0px;
+    border: none;
+}
+
+/* Settings window & dialogs */
+
+QDialog {
+    background-color: #171b22;
+    color: #e6ebf2;
+}
+
+OBSBasicSettings {
+    background-color: #171b22;
+}
+
+OBSBasicSettings QListWidget {
+    background-color: #111419;
+    border: 1px solid #2b3340;
+    font-weight: 600;
+    outline: none;
+}
+
+OBSBasicSettings QListWidget::item {
+    padding: 9px 14px;
+    margin: 0px;
+    border-radius: 0px;
+    border-bottom: 1px solid #1a2028;
+    color: #b8c4d4;
+}
+
+OBSBasicSettings QListWidget::item:hover {
+    background-color: #232b36;
+    color: #ffffff;
+}
+
+OBSBasicSettings QListWidget::item:selected,
+OBSBasicSettings QListWidget::item:selected:hover,
+OBSBasicSettings QListWidget::item:selected:focus {
+    background: linear-gradient(90deg, #0e8a16, #09630f);
+    border-left: 3px solid #00e676;
+    color: #ffffff;
+    font-weight: 700;
+}
+
+OBSBasicSettings QGroupBox {
+    background: #1c222b;
+    border: 1px solid #2e3846;
+    margin-top: 24px;
+    padding: 12px 10px 10px 10px;
+    border-radius: 2px;
+}
+
+OBSBasicSettings QGroupBox::title {
+    subcontrol-origin: margin;
+    subcontrol-position: top left;
+    background: linear-gradient(180deg, #2a3442, #1f2733);
+    border: 1px solid #3d4a5c;
+    border-bottom: 2px solid #0e8a16;
+    color: #ffffff;
+    font-weight: 700;
+    padding: 4px 14px;
+    min-width: 200px;
+    border-radius: 2px;
+}
+
+/* Dialog controls & context menus */
+
+QMenu {
+    background-color: #1b2029;
+    border: 1px solid #364254;
+    padding: 4px 0px;
+}
+
+QMenu::item {
+    padding: 6px 24px 6px 20px;
+    color: #dbe2ed;
+}
+
+QMenu::item:selected {
+    background: #2a3545;
+    color: #ffffff;
+}
+
+QMenu::separator {
+    height: 1px;
+    background: #2b3543;
+    margin: 4px 6px;
+}
+
+QComboBox, QLineEdit, QSpinBox, QDoubleSpinBox {
+    background-color: #12151c;
+    border: 1px solid #323d4e;
+    color: #e6ebf2;
+    padding: 4px 8px;
+    border-radius: 2px;
+}
+
+QComboBox:hover, QLineEdit:hover, QSpinBox:hover {
+    border-color: #4b5a70;
+}
+
+QComboBox:focus, QLineEdit:focus, QSpinBox:focus {
+    border-color: #00e676;
+}
+
+QTabWidget::pane {
+    border: 1px solid #2b3340;
+    background-color: #171b22;
+}
+
+QTabBar::tab {
+    background: #1f2631;
+    border: 1px solid #2b3340;
+    color: #a8b4c4;
+    padding: 6px 14px;
+    margin-right: 2px;
+}
+
+QTabBar::tab:hover {
+    background: #283240;
+    color: #ffffff;
+}
+
+QTabBar::tab:selected {
+    background: #171b22;
+    border-top: 2px solid #00e676;
+    border-bottom: 1px solid #171b22;
+    color: #ffffff;
+    font-weight: 700;
+}

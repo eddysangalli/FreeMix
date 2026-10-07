@@ -1,0 +1,642 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Mesa</title>
+<style>
+  /* FreeMix - Interface de Controle Broadcast estilo vMix */
+  :root {
+    --bg: #14181f; --bar: #1c222b; --btn: #29313d; --btn-h: #374252; --bd: #3e4a5c; --band: #222934; --row: #1e242e; --sep: #2f3744;
+    --tx: #e6ebf2; --mut: #96a1b0; --dim: #5e6878;
+    --org: #f7931e; --org2: #d97a00; --grn: #0e8a16; --grn2: #09630f; --blu: #334052; --blu2: #242e3b; --red: #d92418;
+  }
+  * { box-sizing: border-box; }
+  html, body { height: 100%; margin: 0; }
+  body {
+    background: var(--bg); color: var(--tx); font: 12px/1.2 "Segoe UI", -apple-system, Tahoma, Arial, sans-serif; user-select: none;
+    display: grid; grid-template-rows: 24px minmax(0, 1fr) 34px 22px; overflow: hidden;
+  }
+  button { font: inherit; color: inherit; border: 0; background: none; padding: 0; cursor: pointer; }
+  input, select { font: inherit; }
+  .b { height: 25px; padding: 0 11px; background: var(--btn); border: 1px solid var(--bd); color: var(--tx); white-space: nowrap; display: inline-flex; align-items: center; justify-content: center; gap: 6px; font-weight: 600; border-radius: 2px; }
+  .b:hover { background: var(--btn-h); border-color: #55667e; color: #fff; }
+  .b.na, .b:disabled { color: var(--dim); background: #1a1f26; border-color: #2b3340; cursor: default; }
+  .b.live { background: var(--red); border-color: #ff5247; color: #fff; font-weight: 700; }
+  .b.on { background: var(--grn); border-color: #26c934; color: #fff; font-weight: 700; }
+  svg { width: 13px; height: 13px; fill: currentColor; flex: none; }
+  ::-webkit-scrollbar { width: 8px; height: 8px; } ::-webkit-scrollbar-track { background: #0c0f14; } ::-webkit-scrollbar-corner { background: #0c0f14; }
+  ::-webkit-scrollbar-thumb { background: #2f3847; border-radius: 4px; } ::-webkit-scrollbar-thumb:hover { background: #445166; }
+
+  /* category tabs & brand */
+  .tabs { display: flex; align-items: center; gap: 3px; padding: 0 8px; background: #161b22; border-bottom: 1px solid #28313e; }
+  .fm-brand { display: flex; align-items: center; gap: 5px; font-weight: 800; font-size: 12px; color: #fff; padding-right: 10px; margin-right: 6px; border-right: 1px solid #334052; letter-spacing: 0.5px; }
+  .fm-brand b { color: #00e676; }
+  .fm-brand .dot { width: 7px; height: 7px; border-radius: 50%; background: #00e676; display: inline-block; box-shadow: 0 0 8px #00e676; }
+  .tabs .c { width: 26px; height: 20px; border: 1px solid rgba(0, 0, 0, .45); border-radius: 2px; transition: transform 0.1s; }
+  .tabs .c:hover { transform: translateY(-1px); }
+  .tabs .c.all { width: auto; padding: 0 12px; background: #232b36; border: 1px solid #384659; font-weight: 700; font-size: 11px; color: #e6ebf2; border-radius: 2px; }
+  .tabs .c.all:hover { background: #2f3a4a; color: #fff; }
+  .tabs .c.on { outline: 2px solid #00e676; outline-offset: -1px; }
+  .tabs .sp { flex: 1; }
+  .tabs .mx { height: 21px; padding: 0 12px; display: flex; align-items: center; gap: 6px; font-weight: 700; font-size: 11px; background: #1a222c; border: 1px solid #364457; border-radius: 2px; color: #b8c4d4; }
+  .tabs .mx:hover { background: #24303f; color: #fff; }
+  .tabs .mx.on { background: #13391d; border-color: #2e8243; color: #8ef5ab; box-shadow: inset 0 0 6px rgba(46,130,67,0.4); }
+
+  /* inputs + audio mixer */
+  .mid { display: flex; min-height: 0; background: #0f1217; }
+  .tiles { flex: 1; display: flex; flex-wrap: wrap; align-content: flex-start; gap: 6px; padding: 6px 8px; overflow: auto; min-width: 0; }
+  .tile { width: 172px; background: #161b22; border: 1px solid #2b3340; border-radius: 3px; box-shadow: 0 3px 8px rgba(0,0,0,0.45); overflow: hidden; display: flex; flex-direction: column; }
+  .tile.is-out { border-color: var(--grn); box-shadow: 0 0 8px rgba(14, 138, 22, 0.4); }
+  .tile.is-pv { border-color: var(--org); box-shadow: 0 0 8px rgba(247, 147, 30, 0.4); }
+  .tt { height: 22px; display: flex; align-items: center; color: #fff; overflow: hidden; background: var(--blu); font-size: 11px; }
+  .tt .n { width: 26px; height: 100%; display: grid; place-items: center; font-weight: 700; flex: none; background: var(--blu2); border-right: 1px solid rgba(0,0,0,0.3); font-size: 11px; }
+  .tt .nm { padding: 0 6px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; flex: 1; font-weight: 700; }
+  .tt .tag { width: 11px; height: 11px; margin-right: 4px; border: 1px solid rgba(0, 0, 0, .5); flex: none; cursor: pointer; border-radius: 2px; }
+  .tt .iso, .pop .iso { background: var(--red); color: #fff; font-size: 9px; font-weight: 800; padding: 1px 4px; margin-right: 4px; flex: none; border-radius: 2px; }
+  .pop label.chk { display: flex; gap: 6px; align-items: center; margin-bottom: 3px; color: var(--tx); } .pop label.chk input { height: auto; }
+  .bot .arrow { width: 18px; padding: 0; border-left: 0; font-size: 9px; }
+  .tt .tag.none { border-color: transparent; } .tile:hover .tag.none { border: 1px dashed rgba(255, 255, 255, .45); }
+  .tt.pv { background: linear-gradient(180deg, #f7931e, #d47600); color: #000; } .tt.pv .n { background: #b86200; color: #fff; }
+  .tt.out { background: linear-gradient(180deg, #109115, #0a660e); } .tt.out .n { background: #07470a; }
+  .th { height: 97px; background: #000; display: block; width: 100%; position: relative; }
+  .th img { width: 100%; height: 100%; object-fit: contain; display: block; }
+  .tile.is-pv .th { outline: 2px solid #f7931e; outline-offset: -2px; }
+  .tile.is-out .th { outline: 2px solid #00e676; outline-offset: -2px; }
+  .r { display: flex; background: var(--row); border-top: 1px solid var(--sep); }
+  .r button { flex: 1; height: 20px; font-size: 10.5px; font-weight: 600; color: #b2bcc9; border-right: 1px solid var(--sep); white-space: nowrap; display: grid; place-items: center; background: #222832; }
+  .r button:last-child { border-right: 0; } .r button:hover { background: #323b49; color: #fff; }
+  .r button.na { color: #505966; cursor: default; background: #1c2129; } .r button.na:hover { background: #1c2129; color: #505966; }
+  .r button.on { background: var(--grn); color: #fff; font-weight: 700; }
+  .r .w2 { flex: 2; }
+  .empty { color: var(--mut); padding: 18px; line-height: 1.5; max-width: 520px; }
+  .mixer { flex: none; display: none; gap: 6px; padding: 6px 8px; background: #14181f; border-left: 1px solid #27313f; overflow-x: auto; max-width: 48vw; min-width: 170px; }
+  .mixer.on { display: flex; }
+  .mixer .none { color: var(--mut); width: 190px; padding: 8px; line-height: 1.5; }
+  .strip { width: 70px; display: flex; flex-direction: column; align-items: center; gap: 4px; background: #1b212b; border: 1px solid #2d3848; padding: 5px 4px; min-height: 0; border-radius: 3px; box-shadow: 0 2px 6px rgba(0,0,0,0.3); }
+  .strip .nm { width: 100%; text-align: center; font-size: 11px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: #e6ebf2; }
+  .strip .buses { display: flex; gap: 2px; width: 100%; justify-content: center; }
+  .strip .buses button { width: 18px; height: 14px; font-size: 9px; font-weight: 800; background: #161c24; border: 1px solid #2d3848; color: #8492a6; border-radius: 1px; }
+  .strip .buses button.on { background: #0e8a16; border-color: #00e676; color: #fff; }
+  .strip .bd { flex: 1; min-height: 52px; display: flex; gap: 3px; align-items: stretch; margin: 2px 0; }
+  .mt { width: 6px; background: #080a0d; position: relative; border-radius: 1px; }
+  .mt::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, #2fd13a 0 70%, #e8d21d 70% 88%, #e0352b 88%); clip-path: inset(calc((1 - var(--l, 0)) * 100%) 0 0 0); }
+  .fd { width: 18px; position: relative; touch-action: none; cursor: ns-resize; }
+  .fd::before { content: ""; position: absolute; left: 50%; top: 4px; bottom: 4px; width: 2px; margin-left: -1px; background: #505966; }
+  .fd i { position: absolute; left: 0; right: 0; height: 11px; bottom: calc(var(--v, 0) * (100% - 11px)); background: linear-gradient(180deg, #d8e0ea, #9ea8b5); border: 1px solid #1c222a; border-radius: 2px; box-shadow: 0 1px 3px rgba(0,0,0,0.5); }
+  .strip .db { font-size: 10px; color: #8fa0b5; font-variant-numeric: tabular-nums; font-family: Consolas, monospace; }
+  .strip .bt button { width: 34px; height: 18px; font-size: 10px; font-weight: 800; background: #252d3a; border: 1px solid #3c495c; display: grid; place-items: center; border-radius: 2px; color: #bcc7d6; }
+  .strip .bt button:hover { background: #303b4c; color: #fff; }
+  .strip .bt .muted { background: var(--red); border-color: #ef5a4f; color: #fff; }
+
+  /* bottom bar + status */
+  .bot { display: flex; align-items: center; justify-content: space-between; padding: 0 10px; background: #161b22; gap: 8px; border-top: 1px solid #28313e; }
+  .bot .g { display: flex; align-items: center; gap: 4px; }
+  .bot .g-center { display: flex; align-items: center; gap: 4px; }
+  .bot .sep-v { width: 1px; height: 18px; background: #2e3948; margin: 0 4px; }
+  .bot .tc { font: 700 12px Consolas, monospace; padding: 0 6px; color: #ffad99; background: #261715; border-radius: 2px; margin-left: 2px; }
+  .b.add-input { background: linear-gradient(180deg, #1d572a, #13391d); border-color: #2e8243; color: #8ef5ab; font-weight: 700; height: 26px; padding: 0 14px; font-size: 12px; box-shadow: 0 1px 4px rgba(0,0,0,0.3); }
+  .b.add-input:hover { background: linear-gradient(180deg, #276b37, #1b4d27); border-color: #3ec75e; color: #fff; }
+  .b.settings-btn { background: #222934; border-color: #384659; font-weight: 600; padding: 0 10px; gap: 6px; }
+  .b.settings-btn:hover { background: #2d3645; border-color: #4f617a; color: #fff; }
+  .stat { display: flex; align-items: center; gap: 14px; padding: 0 10px; background: #0c0f14; font-size: 11px; white-space: nowrap; overflow: hidden; border-top: 1px solid #19202a; }
+  .stat b { font-weight: 700; } .stat .res { color: #00e676; font-weight: 700; font-family: Consolas, monospace; } .stat .sp { flex: 1; }
+  .stat .ok { color: #00e676; } .stat .bad { color: #ff5252; }
+  .stat .clock { font-family: Consolas, monospace; color: #c0cad8; font-weight: 600; }
+
+  /* popovers */
+  .pop { position: fixed; z-index: 20; left: 8px; bottom: 58px; background: #1c222b; border: 1px solid #4a576b; padding: 10px; width: 330px; box-shadow: 0 14px 40px rgba(0, 0, 0, .75); display: none; border-radius: 4px; }
+  .pop.on { display: block; } .pop.right { left: auto; right: 8px; }
+  .pop h3 { margin: 0 0 8px; font-size: 13px; font-weight: 700; color: #fff; }
+  .pop label { display: grid; gap: 3px; margin-bottom: 8px; color: var(--mut); }
+  .pop input, .pop select { height: 25px; background: #10141a; border: 1px solid var(--bd); color: var(--tx); padding: 0 6px; border-radius: 2px; }
+  .pop .row { display: flex; gap: 6px; align-items: center; margin-top: 4px; flex-wrap: wrap; }
+  .pop p { margin: 0 0 8px; color: var(--mut); line-height: 1.45; }
+  .pop table { border-collapse: collapse; width: 100%; } .pop td { padding: 4px 6px 4px 0; border-top: 1px solid var(--sep); }
+  .pop .sw { width: 22px; height: 22px; border: 1px solid rgba(0, 0, 0, .5); border-radius: 2px; } .pop .sw.x { background: var(--btn); display: grid; place-items: center; }
+  .pop.wide { width: min(690px, calc(100vw - 16px)); left: 50%; transform: translateX(-50%); bottom: 32px; border-radius: 4px; overflow: hidden; }
+  .add { display: grid; grid-template-columns: 175px 1fr; gap: 0; height: min(270px, calc(100vh - 140px)); }
+  .add .types { overflow-y: auto; background: #10141a; border: 0; }
+  .add .types button { display: block; width: 100%; text-align: left; padding: 5px 10px; border-bottom: 0; font-size: 11.5px; font-weight: 600; color: #bcc7d6; }
+  .add .types button:hover { background: #1c222c; color: #fff; }
+  .add .types button.on { background: #0e8a16; color: #fff; font-weight: 700; }
+  .add .types button::before { content: ""; display: inline-block; width: 8px; height: 8px; margin-right: 8px; border: 2px solid #e3e7ec; vertical-align: -1px; }
+  .add .types button.off::before { border-color: var(--dim); }
+  .add .form { display: flex; flex-direction: column; background: #eef1f5; color: #15191e; padding: 10px 12px; overflow-y: auto; }
+  .add .form p { order: -1; margin: -10px -12px 10px; padding: 9px 12px; background: #10141a; color: #e3e7ec; font-size: 11.5px; }
+  .add .form label { color: #333a42; font-weight: 600; font-size: 11.5px; margin-bottom: 6px; }
+  .add .form input { background: #fff; color: #15191e; border: 1px solid #8f98a3; height: 25px; padding: 0 6px; border-radius: 2px; }
+  .pop.wide .row.end { margin: 0; padding: 8px 12px; background: var(--bar); gap: 8px; border-top: 1px solid #2a3340; }
+  .pop.wide .row.end .b { min-width: 96px; height: 26px; font-weight: 700; }
+  .r .ic { flex: none; width: 22px; } .r .ic svg { width: 12px; height: 12px; }
+  .tri { width: 0; height: 0; border-left: 7px solid currentColor; border-top: 4px solid transparent; border-bottom: 4px solid transparent; }
+  .toast { position: fixed; left: 50%; bottom: 60px; transform: translateX(-50%); background: #20262e; border: 1px solid #5a636e; padding: 7px 12px; z-index: 30; display: none; max-width: 80vw; border-radius: 3px; box-shadow: 0 4px 14px rgba(0,0,0,0.6); }
+  .toast.on { display: block; } .toast.err { border-color: #ef5a4f; color: #ffc4bf; }
+</style>
+</head>
+<body>
+  <div class="tabs" id="tabs"></div>
+  <div class="mid"><div class="tiles" id="tiles"></div><div class="mixer" id="mixer"></div></div>
+  <div class="bot" id="bot"></div>
+  <div class="stat" id="stat"></div>
+  <div class="pop" id="pop"></div>
+  <div class="toast" id="toast"></div>
+
+<script src="local.js"></script>
+<script>
+  "use strict";
+  const $ = (id) => document.getElementById(id);
+  const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+  const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+  const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
+  const LOCAL = window.MESA_LOCAL || {};
+  const GEAR = `<svg viewBox="0 0 24 24"><path d="M19.4 13a7.6 7.6 0 0 0 0-2l2-1.6-2-3.4-2.4 1a7.5 7.5 0 0 0-1.7-1L15 3.5h-4l-.4 2.5a7.5 7.5 0 0 0-1.7 1l-2.4-1-2 3.4L6.6 11a7.6 7.6 0 0 0 0 2l-2 1.6 2 3.4 2.4-1a7.5 7.5 0 0 0 1.7 1l.4 2.5h4l.4-2.5a7.5 7.5 0 0 0 1.7-1l2.4 1 2-3.4zM13 15.5a3.5 3.5 0 1 1 0-7 3.5 3.5 0 0 1 0 7z"/></svg>`;
+  const SPK = `<svg viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9zm11.5 3a4 4 0 0 0-2-3.5v7a4 4 0 0 0 2-3.5z"/></svg>`;
+  const MON = `<svg viewBox="0 0 24 24"><path d="M3 5h18v11H3zm6 14h6v-2H9z"/></svg>`;
+  const NA = "Sem equivalente no OBS";
+  const ISO = "Gravação ISO"; // nome do filtro do plugin Source Record em cada entrada gravada
+  const isMedia = (kind) => kind === "ffmpeg_source" || kind === "vlc_source" || /playlist/.test(kind);
+  const isPlaylist = (kind) => kind === "vlc_source" || /playlist/.test(kind);
+  const loopKey = (kind) => (kind === "ffmpeg_source" ? "looping" : "loop");
+  const COLORS = ["#3d6fb6", "#b63d3d", "#3d9a4f", "#c9861e", "#7a4fb0", "#2a9aa8", "#b8b23a"];
+  // Same order and names as a switcher's "Input Select" list; "kind" is the OBS source behind each one.
+  const TYPES = [
+    { id: "video", label: "Video", kind: "ffmpeg_source", hint: "Arquivo de vídeo. Ao criar, abre a janela do OBS para escolher o arquivo." },
+    { id: "list", label: "List", kind: "playlist", hint: "Lista de vídeos em sequência (plugin Media Playlist). Depois é comandada pelo botão PlayList." },
+    { id: "camera", label: "Camera", kind: "dshow_input", hint: "Câmera, placa de captura ou webcam. Ao criar, abre a janela do OBS para escolher dispositivo, resolução e taxa de quadros." },
+    { id: "ndi", label: "NDI", kind: "ndi_source", hint: "Fonte NDI da rede (precisa do plugin DistroAV e do NDI Runtime)." },
+    { id: "call", label: "FreeMix Call", kind: "browser_source", fields: [["callid", "ID da chamada (letras e números)", () => (st.callId ||= newCallId()), "text"]],
+      settings: (f, w, h, k) => ({ url: callUrls(callIdOf(f.callid, k)).view, width: w, height: h, reroute_audio: true, shutdown: false, restart_when_active: false }),
+      hint: "Convidado remoto pela internet (FreeMix Call): o convidado abre um link no celular ou PC e entra com vídeo e áudio direto no mixer. Usa conexão direta de alta velocidade; precisa de internet." },
+    { id: "desktop", label: "Desktop Capture", kind: "monitor_capture", hint: "Captura de um monitor." },
+    { id: "window", label: "Window Capture", kind: "window_capture", hint: "Captura de uma janela." },
+    { id: "stream", label: "Stream / SRT", kind: "ffmpeg_source", fields: [["url", "Endereço (rtmp://, srt://, rtsp://, http://)", "", "text"]], settings: (f) => ({ is_local_file: false, input: f.url }), hint: "Recebe um fluxo de rede." },
+    { id: "replay", label: "Instant Replay", kind: "replay_source", special: "replay", hint: "Abre a janela Replay para criar um ângulo a partir de uma câmera." },
+    { id: "image", label: "Image", kind: "image_source", hint: "Imagem parada (PNG, JPG…)." },
+    { id: "photos", label: "Photos", kind: "slideshow", hint: "Sequência de imagens." },
+    { id: "colour", label: "Colour", kind: "color_source", fields: [["color", "Cor", "#000000", "color"]], settings: (f, w, h) => ({ color: abgr(f.color), width: w, height: h }), hint: "Fundo de cor sólida." },
+    { id: "audio", label: "Audio", kind: "ffmpeg_source", hint: "Arquivo de áudio (trilha, vinheta)." },
+    { id: "audioin", label: "Audio Input", kind: "wasapi_input_capture", hint: "Microfone ou entrada da placa de som." },
+    { id: "title", label: "Title", kind: "text_gdiplus", fields: [["text", "Texto", "TÍTULO", "text"]], settings: (f) => ({ text: f.text }), hint: "Texto simples. Para GC completo use Web Browser." },
+    { id: "web", label: "Web Browser", kind: "browser_source", fields: [["url", "URL", "https://", "text"]], settings: (f, w, h) => ({ url: f.url, width: w, height: h }), hint: "Página web ou HTML local: placar, GC. Para convidado remoto use FreeMix Call." },
+    { id: "blank", label: "Blank", kind: "", hint: "Entrada vazia, para montar com várias fontes em Painéis › Fontes." },
+  ];
+  // VDO.Ninja: the guest publishes with ?push=ID, this OBS receives with ?view=ID. Optional return: the operator publishes
+  // the program (OBS Virtual Camera) as ID_ret from a browser and the guest link also views it.
+  const newCallId = () => "fm" + Array.from(crypto.getRandomValues(new Uint8Array(6)), (b) => "abcdefghjkmnpqrstuvwxyz23456789"[b % 31]).join("");
+  const callIdOf = (raw, k) => { const base = String(raw || "").replace(/[^A-Za-z0-9_]/g, "") || newCallId(); return k ? `${base}_${k}` : base; };
+  const callUrls = (id) => ({
+    view: `https://vdo.ninja/?view=${id}&cleanoutput`,
+    guest: `https://vdo.ninja/?push=${id}&webcam&label=Convidado`,
+    guestRet: `https://vdo.ninja/?push=${id}&webcam&label=Convidado&view=${id}_ret`,
+    ret: `https://vdo.ninja/?push=${id}_ret&webcam&label=Programa`,
+  });
+  const callIdFromUrl = (url) => (/vdo\.ninja\/.*[?&]view=([A-Za-z0-9_]+)/.exec(url || "") || [])[1] || "";
+  const abgr = (hex) => { const n = parseInt(hex.slice(1), 16); return (0xff000000 | ((n & 0xff) << 16) | (n & 0xff00) | (n >> 16)) >>> 0; };
+  const resolveKind = (base) => (base === "playlist" ? st.kinds.find((k) => /playlist/.test(k)) || st.kinds.find((k) => k === "vlc_source") : st.kinds.filter((k) => k === base || k.startsWith(base + "_v")).sort().pop()) || "";
+  const store = { get: (k, d) => { try { return JSON.parse(localStorage.getItem(k)) ?? d; } catch { return d; } }, set: (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); } catch { /* storage may be off */ } } };
+
+  const st = {
+    on: false, why: "conectando…", studio: true, scenes: [], program: "", preview: "", transitions: [], cur: "",
+    rec: false, stream: false, vcam: false, recTc: "", streamTc: "", video: null, stats: null, kinds: [],
+    audio: new Map(), keyers: null, items: new Map(), loop: new Map(), iso: new Map(), isoSel: store.get("mesa.iso", []), hasIso: false, pl: null, rp: [], rpBack: "", rpSpeed: 100, addType: "camera", addName: "", tags: store.get("mesa.tags", {}), filter: -1, mixer: store.get("mesa.mixer", true), pop: null,
+  };
+  const thumbs = new Map();
+  const blank = "data:image/svg+xml;utf8," + encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 9"><rect width="16" height="9" fill="#000"/></svg>`);
+  let toastTimer = 0;
+  const toast = (msg, err) => { const t = $("toast"); t.textContent = msg; t.className = `toast on${err ? " err" : ""}`; clearTimeout(toastTimer); toastTimer = setTimeout(() => { t.className = "toast"; }, err ? 5000 : 2200); };
+
+  /* ---- SHA-256 for the handshake (WebCrypto when the page has it, plain JS otherwise) ---- */
+  function sha256js(bytes) {
+    const K = [], H = [], isPrime = (n) => { for (let i = 2; i * i <= n; i++) if (n % i === 0) return false; return true; };
+    for (let n = 2; K.length < 64; n++) if (isPrime(n)) { if (H.length < 8) H.push((Math.sqrt(n) * 2 ** 32) >>> 0); K.push((Math.cbrt(n) * 2 ** 32) >>> 0); }
+    const len = bytes.length, total = ((len + 9 + 63) >> 6) << 6, m = new Uint8Array(total), dv = new DataView(m.buffer), w = new Uint32Array(64);
+    m.set(bytes); m[len] = 0x80; dv.setUint32(total - 4, len * 8); dv.setUint32(total - 8, Math.floor(len / 2 ** 29));
+    const rot = (x, n) => (x >>> n) | (x << (32 - n));
+    for (let o = 0; o < total; o += 64) {
+      for (let i = 0; i < 16; i++) w[i] = dv.getUint32(o + i * 4);
+      for (let i = 16; i < 64; i++) { const a = w[i - 15], b = w[i - 2]; w[i] = (w[i - 16] + (rot(a, 7) ^ rot(a, 18) ^ (a >>> 3)) + w[i - 7] + (rot(b, 17) ^ rot(b, 19) ^ (b >>> 10))) >>> 0; }
+      let [a, b, c, d, e, f, g, h] = H;
+      for (let i = 0; i < 64; i++) {
+        const t1 = (h + (rot(e, 6) ^ rot(e, 11) ^ rot(e, 25)) + ((e & f) ^ (~e & g)) + K[i] + w[i]) >>> 0, t2 = ((rot(a, 2) ^ rot(a, 13) ^ rot(a, 22)) + ((a & b) ^ (a & c) ^ (b & c))) >>> 0;
+        h = g; g = f; f = e; e = (d + t1) >>> 0; d = c; c = b; b = a; a = (t1 + t2) >>> 0;
+      }
+      [a, b, c, d, e, f, g, h].forEach((v, i) => { H[i] = (H[i] + v) >>> 0; });
+    }
+    const out = new Uint8Array(32); H.forEach((v, i) => new DataView(out.buffer).setUint32(i * 4, v)); return out;
+  }
+  const sha = async (text) => {
+    const data = new TextEncoder().encode(text);
+    const hash = crypto.subtle ? new Uint8Array(await crypto.subtle.digest("SHA-256", data)) : sha256js(data);
+    return btoa(String.fromCharCode(...hash));
+  };
+
+  /* ---- obs-websocket 5 ---- */
+  const SUBS = 1 | 4 | 8 | 16 | 64 | 128 | 1024 | 65536; // geral, cenas, entradas, transições, saídas, itens de cena, interface, medidores
+  let ws = null, seq = 0;
+  const pending = new Map();
+  const req = (type, data) => new Promise((res, rej) => {
+    if (!st.on) return rej(new Error("Sem conexão com o OBS"));
+    const id = String(++seq);
+    pending.set(id, { res, rej, type });
+    ws.send(JSON.stringify({ op: 6, d: { requestType: type, requestId: id, requestData: data } }));
+  });
+  const tryReq = (type, data) => req(type, data).catch(() => null);
+  const vendor = (type, data = {}) => req("CallVendorRequest", { vendorName: "downstream-keyer", requestType: type, requestData: data }).then((r) => r.responseData);
+  function connect() {
+    const mine = ws = new WebSocket(LOCAL.url || "ws://127.0.0.1:4455");
+    mine.onmessage = async (ev) => {
+      const m = JSON.parse(ev.data);
+      if (m.op === 0) {
+        const d = { rpcVersion: 1, eventSubscriptions: SUBS }, a = m.d.authentication;
+        if (a) d.authentication = await sha((await sha((LOCAL.password || "") + a.salt)) + a.challenge);
+        mine.send(JSON.stringify({ op: 1, d }));
+      } else if (m.op === 2) { st.on = true; st.why = ""; syncAll().catch((e) => toast(e.message, true)); }
+      else if (m.op === 5) m.d.eventType === "InputVolumeMeters" ? onMeters(m.d.eventData.inputs) : onEvent(m.d.eventType, m.d.eventData || {});
+      else if (m.op === 7) {
+        const p = pending.get(m.d.requestId); if (!p) return;
+        pending.delete(m.d.requestId);
+        m.d.requestStatus.result ? p.res(m.d.responseData || {}) : p.rej(new Error(m.d.requestStatus.comment || `${p.type} falhou (${m.d.requestStatus.code})`));
+      }
+    };
+    mine.onclose = (ev) => {
+      if (ws !== mine) return;
+      for (const p of pending.values()) p.rej(new Error("Conexão encerrada")); pending.clear();
+      st.on = false; st.why = ev.code === 4009 ? "senha recusada (confira painel/local.js)" : "sem conexão, tentando de novo…";
+      renderAll(); setTimeout(connect, 2500);
+    };
+  }
+
+  const setScenes = (list) => { st.scenes = list.slice().sort((a, b) => b.sceneIndex - a.sceneIndex).map((s) => s.sceneName); };
+  async function syncScenes() {
+    const r = await req("GetSceneList");
+    setScenes(r.scenes); st.program = r.currentProgramSceneName || ""; st.preview = r.currentPreviewSceneName || "";
+    renderTiles(); laterItems();
+  }
+  async function syncAudio() {
+    const { inputs } = await req("GetInputList");
+    const next = new Map();
+    for (const i of inputs) {
+      const v = await tryReq("GetInputVolume", { inputName: i.inputName }); if (!v) continue;
+      const m = await tryReq("GetInputMute", { inputName: i.inputName });
+      next.set(i.inputName, { mul: v.inputVolumeMul, db: v.inputVolumeDb, muted: !!m?.inputMuted });
+    }
+    st.audio = next; renderMixer();
+  }
+  async function syncKeyers() {
+    try {
+      // The keyer list does not carry what is on air; each keyer has to be asked for its current scene.
+      const r = await vendor("get_downstream_keyers"), k = [];
+      for (const x of (r.downstream_keyers || []).slice(0, 4)) k.push({ name: x.name, scene: (await vendor("dsk_get_scene", { dsk_name: x.name })).scene || "" });
+      if (JSON.stringify(k) !== JSON.stringify(st.keyers)) { st.keyers = k; renderTiles(); if (st.pop === "overlay") renderPop(); }
+    } catch { if (st.keyers !== null) { st.keyers = null; renderTiles(); } }
+  }
+  // What each entry (scene) holds: media sources for Loop, audio sources for Audio, the recording filter for MultiCorder.
+  async function syncItems() {
+    const items = new Map(), loop = new Map(), iso = new Map(), rp = []; let pl = null;
+    for (const name of st.scenes) {
+      const r = await tryReq("GetSceneItemList", { sceneName: name });
+      const list = (r?.sceneItems || []).filter((i) => i.inputKind).map((i) => ({ name: i.sourceName, kind: i.inputKind }));
+      items.set(name, list);
+      for (const i of list) {
+        if (isMedia(i.kind) && !loop.has(i.name)) loop.set(i.name, !!(await tryReq("GetInputSettings", { inputName: i.name }))?.inputSettings?.[loopKey(i.kind)]);
+        if (i.kind === "replay_source") rp.push({ name: i.name, scene: name });
+        if (isPlaylist(i.kind) && !pl) pl = { name: i.name, kind: i.kind, scene: name, state: st.pl?.state, time: st.pl?.time };
+      }
+      const f = st.hasIso ? await tryReq("GetSourceFilter", { sourceName: name, filterName: ISO }) : null;
+      iso.set(name, !!f && f.filterEnabled && f.filterSettings?.record_mode === 1);
+    }
+    st.items = items; st.loop = loop; st.iso = iso; st.pl = pl; st.rp = rp;
+    renderTiles(); renderBot(); if (st.pop === "iso" || st.pop === "playlist" || st.pop === "replay") renderPop();
+  }
+  let itemsTimer = 0;
+  const laterItems = () => { if (!itemsTimer) itemsTimer = setTimeout(() => { itemsTimer = 0; syncItems().catch(() => {}); }, 300); };
+  async function syncPl() {
+    if (!st.pl) return;
+    const r = await tryReq("GetMediaInputStatus", { inputName: st.pl.name }); if (!r) return;
+    const t = (ms) => (ms == null ? "" : new Date(ms).toISOString().slice(14, 19));
+    st.pl.state = { OBS_MEDIA_STATE_PLAYING: "tocando", OBS_MEDIA_STATE_PAUSED: "pausado", OBS_MEDIA_STATE_STOPPED: "parado", OBS_MEDIA_STATE_ENDED: "terminou" }[r.mediaState] || "";
+    st.pl.time = r.mediaDuration ? `${t(r.mediaCursor)} / ${t(r.mediaDuration)}` : "";
+    if (st.pop === "playlist") renderPop();
+  }
+  const sceneAudio = (name) => (st.items.get(name) || []).map((i) => i.name).filter((n) => st.audio.has(n));
+  async function syncAll() {
+    const [studio, tr, rec, stream, vcam, video, kinds] = await Promise.all([req("GetStudioModeEnabled"), req("GetSceneTransitionList"), tryReq("GetRecordStatus"), tryReq("GetStreamStatus"), tryReq("GetVirtualCamStatus"), req("GetVideoSettings"), req("GetInputKindList")]);
+    st.studio = studio.studioModeEnabled; st.transitions = tr.transitions.map((t) => ({ name: t.transitionName, kind: t.transitionKind })); st.cur = tr.currentSceneTransitionName;
+    st.rec = !!rec?.outputActive; st.stream = !!stream?.outputActive; st.vcam = !!vcam?.outputActive; st.video = video; st.kinds = kinds.inputKinds;
+    st.hasIso = !!(await tryReq("GetSourceFilterKindList"))?.sourceFilterKinds?.includes("source_record_filter");
+    await syncScenes(); await syncAudio(); await syncKeyers(); await syncItems(); st.stats = await tryReq("GetStats");
+    renderAll();
+  }
+  function onEvent(type, d) {
+    if (type === "CurrentProgramSceneChanged") { st.program = d.sceneName; renderTiles(); renderBot(); if (st.pop === "replay") renderPop(); }
+    else if (type === "CurrentPreviewSceneChanged") { st.preview = d.sceneName; renderTiles(); }
+    else if (type === "SceneListChanged") { setScenes(d.scenes); renderTiles(); laterItems(); }
+    else if (type === "SceneItemCreated" || type === "SceneItemRemoved") laterItems();
+    else if (type === "InputSettingsChanged") { if (st.loop.has(d.inputName)) laterItems(); } // only media sources matter here (Loop state)
+    else if (type === "SceneNameChanged" || type === "SceneCreated" || type === "SceneRemoved" || type === "CurrentSceneCollectionChanged") syncScenes().catch(() => {});
+    else if (type === "StudioModeStateChanged") { st.studio = d.studioModeEnabled; syncScenes().catch(() => {}); }
+    else if (type === "CurrentSceneTransitionChanged") st.cur = d.transitionName;
+    else if (type === "RecordStateChanged") { st.rec = d.outputActive; renderBot(); }
+    else if (type === "StreamStateChanged") { st.stream = d.outputActive; renderBot(); }
+    else if (type === "VirtualcamStateChanged") { st.vcam = d.outputActive; renderBot(); }
+    else if (type === "InputMuteStateChanged") { const a = st.audio.get(d.inputName); if (a) { a.muted = d.inputMuted; renderMixer(); renderTiles(); } }
+    else if (type === "InputVolumeChanged") { const a = st.audio.get(d.inputName); if (a && dragging !== d.inputName) { a.mul = d.inputVolumeMul; a.db = d.inputVolumeDb; paintFader(d.inputName); } }
+    else if (type === "InputCreated" || type === "InputRemoved" || type === "InputNameChanged") syncAudio().catch(() => {});
+  }
+  function onMeters(inputs) {
+    for (const i of inputs) {
+      const el = document.querySelector(`.strip[data-n="${CSS.escape(i.inputName)}"]`); if (!el) continue;
+      const peak = (ch) => { const mul = ch?.[1] ?? 0; return mul > 0 ? clamp((20 * Math.log10(mul) + 60) / 60, 0, 1) : 0; };
+      const l = peak(i.inputLevelsMul[0]), r = i.inputLevelsMul[1] ? peak(i.inputLevelsMul[1]) : l, bars = el.querySelectorAll(".mt");
+      bars[0].style.setProperty("--l", l.toFixed(3)); bars[1].style.setProperty("--l", r.toFixed(3));
+    }
+  }
+
+  /* ---- thumbnails: programa e preview a cada volta, as demais em rodízio ---- */
+  const shown = () => st.scenes.filter((n) => st.filter < 0 || st.tags[n] === st.filter);
+  async function thumbLoop() {
+    let turn = 0;
+    for (;;) {
+      const names = st.on && !document.hidden ? shown() : [];
+      if (!names.length) { await sleep(500); continue; }
+      const hot = [st.program, st.preview].filter((n) => names.includes(n)), cold = names.filter((n) => !hot.includes(n));
+      const batch = new Set(hot); for (let k = 0; k < 2 && cold.length; k++) batch.add(cold[turn++ % cold.length]);
+      for (const name of batch) {
+        const r = await tryReq("GetSourceScreenshot", { sourceName: name, imageFormat: "jpg", imageWidth: 256, imageCompressionQuality: 60 });
+        if (!r) continue;
+        thumbs.set(name, r.imageData);
+        const img = document.querySelector(`img[data-t="${CSS.escape(name)}"]`); if (img) img.src = r.imageData;
+      }
+      await sleep(110);
+    }
+  }
+  async function slowLoop() {
+    for (;;) {
+      await sleep(1000);
+      renderStat();
+      if (!st.on) continue;
+      if (st.rec) st.recTc = (await tryReq("GetRecordStatus"))?.outputTimecode?.slice(0, 8) || "";
+      if (st.stream) st.streamTc = (await tryReq("GetStreamStatus"))?.outputTimecode?.slice(0, 8) || "";
+      if (st.rec || st.stream) renderBot();
+      st.stats = await tryReq("GetStats");
+      await syncKeyers();
+      if (st.pop === "playlist") await syncPl();
+    }
+  }
+
+  /* ---- actions ---- */
+  const run = (p) => p?.catch?.((e) => toast(e.message, true));
+  const kindName = (kind) => st.transitions.find((t) => t.kind === kind)?.name;
+  const A = {
+    preview: (d) => run(st.studio ? req("SetCurrentPreviewScene", { sceneName: d.v }) : req("SetCurrentProgramScene", { sceneName: d.v })),
+    quick: (d) => run((async () => { if (!st.studio) return req("SetCurrentProgramScene", { sceneName: d.v }); await req("SetCurrentPreviewScene", { sceneName: d.v }); await req("TriggerStudioModeTransition"); })()),
+    cut: (d) => run((async () => {
+      const back = st.cur, cut = kindName("cut_transition");
+      if (cut && cut !== back) await req("SetCurrentSceneTransition", { transitionName: cut });
+      await req("SetCurrentProgramScene", { sceneName: d.v });
+      if (cut && cut !== back) { await sleep(120); await req("SetCurrentSceneTransition", { transitionName: back }); }
+    })()),
+    ov: (d) => run((async () => {
+      const k = st.keyers?.[+d.k]; if (!k) return toast("Canal de overlay não configurado no Downstream Keyer", true);
+      if (k.scene === d.v) await vendor("dsk_select_scene", { dsk_name: k.name, scene: "" });
+      else { await vendor("dsk_add_scene", { dsk_name: k.name, scene: d.v }); await sleep(80); const r = await vendor("dsk_select_scene", { dsk_name: k.name, scene: d.v }); if (!r.success) throw new Error("O keyer recusou a cena"); }
+      await sleep(120); await syncKeyers();
+    })()),
+    ovoff: (d) => run((async () => { await vendor("dsk_select_scene", { dsk_name: st.keyers[+d.k].name, scene: "" }); await sleep(120); await syncKeyers(); })()),
+    loop: (d) => run((async () => { for (const i of (st.items.get(d.v) || []).filter((i) => isMedia(i.kind))) await req("SetInputSettings", { inputName: i.name, inputSettings: { [loopKey(i.kind)]: !st.loop.get(i.name) } }); await syncItems(); })()),
+    audio: (d) => run((async () => { const ins = sceneAudio(d.v), on = ins.some((n) => !st.audio.get(n).muted); for (const n of ins) await req("SetInputMute", { inputName: n, inputMuted: on }); })()),
+    closeask: (d) => openPop("close", d.v),
+    closego: () => { const name = st.popArg; closePop(); run(req("RemoveScene", { sceneName: name })); },
+    isotoggle: (d) => { const sel = new Set(st.isoSel); sel.has(d.v) ? sel.delete(d.v) : sel.add(d.v); st.isoSel = [...sel]; store.set("mesa.iso", st.isoSel); renderPop(); },
+    multicorder: () => { if ([...st.iso.values()].some(Boolean)) return A.isostop(); if (!st.isoSel.some((n) => st.scenes.includes(n))) return openPop("iso"); A.isostart(); },
+    isostart: () => run((async () => {
+      const dir = (await req("GetRecordDirectory")).recordDirectory.replace(/[\\/]+$/, "") + "\\iso";
+      for (const name of st.isoSel.filter((n) => st.scenes.includes(n))) {
+        const settings = { path: dir, filename_formatting: `${name.replace(/[\\/:*?"<>|]/g, "_")} %CCYY-%MM-%DD %hh-%mm-%ss`, record_mode: 1 };
+        if (!(await tryReq("GetSourceFilter", { sourceName: name, filterName: ISO }))) await req("CreateSourceFilter", { sourceName: name, filterName: ISO, filterKind: "source_record_filter", filterSettings: settings });
+        else { await req("SetSourceFilterEnabled", { sourceName: name, filterName: ISO, filterEnabled: true }); await req("SetSourceFilterSettings", { sourceName: name, filterName: ISO, filterSettings: settings }); }
+      }
+      await sleep(500); await syncItems(); toast("Gravação isolada em " + dir);
+    })()),
+    isostop: () => run((async () => { for (const [name, on] of st.iso) if (on) await req("SetSourceFilterSettings", { sourceName: name, filterName: ISO, filterSettings: { record_mode: 0 } }); await sleep(500); await syncItems(); })()),
+    plcreate: () => run((async () => {
+      const kind = st.kinds.find((k) => /playlist/.test(k)) || st.kinds.find((k) => k === "vlc_source"); if (!kind) throw new Error("Nenhuma fonte de playlist instalada neste OBS");
+      const w = st.video?.baseWidth || 1920, h = st.video?.baseHeight || 1080;
+      if (!st.scenes.includes("PLAYLIST")) await req("CreateScene", { sceneName: "PLAYLIST" });
+      const { sceneItemId } = await req("CreateInput", { sceneName: "PLAYLIST", inputName: "Playlist", inputKind: kind, inputSettings: {} });
+      await tryReq("SetSceneItemTransform", { sceneName: "PLAYLIST", sceneItemId, sceneItemTransform: { positionX: 0, positionY: 0, boundsType: "OBS_BOUNDS_SCALE_INNER", boundsWidth: w, boundsHeight: h, boundsAlignment: 0 } });
+      closePop(); await tryReq("OpenInputPropertiesDialog", { inputName: "Playlist" });
+    })()),
+    pledit: () => run(req("OpenInputPropertiesDialog", { inputName: st.pl.name })),
+    plact: (d) => run((async () => { await req("TriggerMediaInputAction", { inputName: st.pl.name, mediaAction: "OBS_WEBSOCKET_MEDIA_INPUT_ACTION_" + d.v }); await sleep(300); await syncPl(); })()),
+    plpvw: () => A.preview({ v: st.pl.scene }),
+    rpadd: () => run((async () => {
+      const cam = $("rp-cam").value, sec = +$("rp-sec").value, inside = st.items.get(cam) || []; if (!cam) return;
+      // One source in the entry: buffer that source directly (lighter). Otherwise buffer the whole entry.
+      const source = inside.length === 1 ? inside[0].name : cam, scene = `REPLAY ${cam}`, input = `Replay ${cam}`, w = st.video?.baseWidth || 1920, h = st.video?.baseHeight || 1080;
+      await req("CreateScene", { sceneName: scene });
+      const { sceneItemId } = await req("CreateInput", { sceneName: scene, inputName: input, inputKind: "replay_source", inputSettings: { source, duration: sec * 1000, replays: 2, speed_percent: st.rpSpeed } });
+      // The plugin only attaches its capture filter to the camera on a settings update, not on creation.
+      await req("SetInputSettings", { inputName: input, inputSettings: { source, duration: sec * 1000 } });
+      await tryReq("SetSceneItemTransform", { sceneName: scene, sceneItemId, sceneItemTransform: { positionX: 0, positionY: 0, boundsType: "OBS_BOUNDS_SCALE_INNER", boundsWidth: w, boundsHeight: h, boundsAlignment: 0 } });
+      toast(`Ângulo de replay de ${cam}: últimos ${sec} s`);
+    })()),
+    rpgrab: () => run((async () => { for (const r of st.rp) await req("TriggerHotkeyByName", { hotkeyName: "ReplaySource.Replay", contextName: r.name }); toast("Lance capturado"); })()),
+    rpspeed: (d) => run((async () => { for (const r of st.rp) await req("SetInputSettings", { inputName: r.name, inputSettings: { speed_percent: +d.v } }); st.rpSpeed = +d.v; if (st.pop === "replay") renderPop(); })()),
+    rpmedia: (d) => run((async () => { for (const r of st.rp) await req("TriggerMediaInputAction", { inputName: r.name, mediaAction: "OBS_WEBSOCKET_MEDIA_INPUT_ACTION_" + d.v }); })()),
+    rpair: (d) => { if (!st.rp.some((r) => r.scene === st.program)) st.rpBack = st.program; A.quick({ v: d.v }); },
+    rplive: () => { if (st.rpBack) A.quick({ v: st.rpBack }); },
+    record: () => run(req("ToggleRecord")),
+    external: () => run(req("ToggleVirtualCam")),
+    stream: () => (st.stream ? run(req("StopStream")) : openPop("stream")),
+    streamgo: () => { closePop(); run(req("StartStream")); },
+    studio: () => run(req("SetStudioModeEnabled", { studioModeEnabled: !st.studio })),
+    filter: (d) => { st.filter = +d.v; renderTabs(); renderTiles(); },
+    mixer: () => { st.mixer = !st.mixer; store.set("mesa.mixer", st.mixer); renderTabs(); renderMixer(); },
+    mute: (d) => run(req("ToggleInputMute", { inputName: d.v })),
+    tag: (d) => openPop("tag", d.v),
+    settag: (d) => { if (d.c === "") delete st.tags[st.popArg]; else st.tags[st.popArg] = +d.c; store.set("mesa.tags", st.tags); closePop(); renderTiles(); },
+    pop: (d) => openPop(d.v),
+    close: () => closePop(),
+    addtype: (d) => { st.addName = $("add-name")?.dataset.edited ? $("add-name").value : ""; st.addType = d.v; renderPop(); },
+    add: () => run((async () => {
+      const t = TYPES.find((x) => x.id === st.addType) || TYPES[0];
+      if (t.special === "replay") return openPop("replay");
+      const base = $("add-name").value.trim(), n = clamp(Math.round(+$("add-n").value) || 1, 1, 8); if (!base) return toast("Dê um nome para a entrada", true);
+      const f = {}; for (const [key] of t.fields || []) f[key] = $("add-f-" + key).value;
+      if (t.id === "call") f.callid = callIdOf(f.callid, 0);
+      const kind = t.kind ? resolveKind(t.kind) : ""; if (t.kind && !kind) return toast("Este tipo de fonte não está instalado neste OBS", true);
+      const w = st.video?.baseWidth || 1920, h = st.video?.baseHeight || 1080; let last = "";
+      for (let k = 0; k < n; k++) {
+        const name = n > 1 ? `${base} ${k + 1}` : base;
+        await req("CreateScene", { sceneName: name });
+        if (!kind) continue;
+        last = `${name} (fonte)`;
+        const { sceneItemId } = await req("CreateInput", { sceneName: name, inputName: last, inputKind: kind, inputSettings: t.settings ? t.settings(f, w, h, n > 1 ? k + 1 : 0) : {} });
+        await tryReq("SetSceneItemTransform", { sceneName: name, sceneItemId, sceneItemTransform: { positionX: 0, positionY: 0, boundsType: "OBS_BOUNDS_SCALE_INNER", boundsWidth: w, boundsHeight: h, boundsAlignment: 0 } });
+      }
+      closePop(); st.addName = "";
+      if (!kind) return toast("Entrada vazia criada. Monte em Painéis › Fontes.");
+      if (t.id === "call") { st.callId = ""; return openPop("call", callIdOf(f.callid, n > 1 ? 1 : 0)); }
+      if (t.fields) return;
+      if (n === 1) await tryReq("OpenInputPropertiesDialog", { inputName: last });
+      else toast(`${n} entradas criadas. Use a engrenagem de cada uma para escolher o dispositivo.`);
+    })()),
+    menu: (d) => openPop("menu", d.v),
+    calllink: (d) => run((async () => {
+      const id = callIdFromUrl((await req("GetInputSettings", { inputName: d.v })).inputSettings?.url);
+      if (!id) return toast("Esta fonte não é uma chamada FreeMix Call", true);
+      openPop("call", id);
+    })()),
+    copy: (d) => {
+      const el = $(d.v); if (!el) return;
+      el.select();
+      const done = () => toast("Link copiado"), fail = () => toast("Não deu para copiar sozinho: o link está selecionado, use Ctrl+C", true);
+      if (navigator.clipboard?.writeText) navigator.clipboard.writeText(el.value).then(done, () => (document.execCommand("copy") ? done() : fail()));
+      else document.execCommand("copy") ? done() : fail();
+    },
+    playpause: (d) => run((async () => { for (const i of (st.items.get(d.v) || []).filter((i) => isMedia(i.kind))) { const playing = (await tryReq("GetMediaInputStatus", { inputName: i.name }))?.mediaState === "OBS_MEDIA_STATE_PLAYING"; await req("TriggerMediaInputAction", { inputName: i.name, mediaAction: "OBS_WEBSOCKET_MEDIA_INPUT_ACTION_" + (playing ? "PAUSE" : "PLAY") }); } })()),
+    props: (d) => { closePop(); run(req("OpenInputPropertiesDialog", { inputName: d.v })); },
+    filters: (d) => { closePop(); run(req("OpenInputFiltersDialog", { inputName: d.v })); },
+    projector: (d) => { closePop(); run(req("OpenSourceProjector", { sourceName: d.v, monitorIndex: -1 })); },
+    renameask: (d) => openPop("rename", d.v),
+    renamego: () => run((async () => {
+      const from = st.popArg, to = $("rn-name").value.trim(); if (!to || to === from) return closePop();
+      await req("SetSceneName", { sceneName: from, newSceneName: to });
+      if (st.tags[from] !== undefined) { st.tags[to] = st.tags[from]; delete st.tags[from]; store.set("mesa.tags", st.tags); }
+      closePop();
+    })()),
+  };
+
+  /* ---- render ---- */
+  function renderTabs() {
+    const used = new Set(Object.values(st.tags));
+    $("tabs").innerHTML = `<span class="fm-brand"><span class="dot"></span>Free<b>Mix</b></span>`
+      + `<button class="c all${st.filter < 0 ? " on" : ""}" data-a="filter" data-v="-1">Todas</button>`
+      + COLORS.map((c, i) => `<button class="c${st.filter === i ? " on" : ""}" style="background:${c};opacity:${used.has(i) ? 1 : .45}" data-a="filter" data-v="${i}" title="Mostrar só as entradas desta cor"></button>`).join("")
+      + `<span class="sp"></span><button class="mx${st.mixer ? " on" : ""}" data-a="mixer">${SPK} Mixer de áudio</button>`;
+  }
+  function renderTiles() {
+    const box = $("tiles");
+    if (!st.on) { box.innerHTML = `<div class="empty"><b>FreeMix sem conexão com o motor de vídeo</b><br>${esc(st.why)}<br>O painel usa o servidor WebSocket local deste OBS (Porta 4466).</div>`; return; }
+    const ov = (name) => [0, 1, 2, 3].map((k) => st.keyers?.[k] ? `<button class="${st.keyers[k].scene === name ? "on" : ""}" data-a="ov" data-k="${k}" data-v="${esc(name)}" title="Overlay ${k + 1}: liga/desliga esta entrada por cima do programa">${k + 1}</button>` : `<button class="na" title="Canal não configurado">${k + 1}</button>`).join("");
+    box.innerHTML = shown().map((name) => {
+      const isOut = name === st.program, isPv = st.studio && name === st.preview;
+      const cls = isOut ? "out" : isPv ? "pv" : "";
+      const tileCls = isOut ? " is-out" : isPv ? " is-pv" : "";
+      const tag = st.tags[name], v = esc(name);
+      const media = (st.items.get(name) || []).filter((i) => isMedia(i.kind)), aud = sceneAudio(name);
+      const closeB = isOut ? `<button class="na" title="Está no ar: tire do programa antes de fechar">Close</button>` : `<button data-a="closeask" data-v="${v}" title="Remove esta entrada">Close</button>`;
+      const loopB = media.length ? `<button class="${media.every((i) => st.loop.get(i.name)) ? "on" : ""}" data-a="loop" data-v="${v}" title="Repetir a mídia desta entrada">Loop</button>` : `<button class="na" title="Só para entradas com arquivo de vídeo ou áudio">Loop</button>`;
+      const audioB = aud.length ? `<button class="w2${aud.some((n) => !st.audio.get(n).muted) ? " on" : ""}" data-a="audio" data-v="${v}" title="Liga/desliga o áudio desta entrada">Audio</button>` : `<button class="w2 na" title="Entrada sem fonte de áudio">Audio</button>`;
+      return `<div class="tile${tileCls}" data-s="${v}"><div class="tt ${cls}"><span class="n">${st.scenes.indexOf(name) + 1}</span><span class="nm" title="${esc(name)}">${esc(name)}</span>${st.iso.get(name) ? `<b class="iso" title="Gravação isolada em andamento">ISO</b>` : ""}<i class="tag${tag === undefined ? " none" : ""}" style="background:${tag === undefined ? "transparent" : COLORS[tag]}" data-a="tag" data-v="${esc(name)}" title="Cor da entrada"></i></div>
+        <button class="th" data-a="preview" data-v="${esc(name)}" title="Clique: envia para o Preview"><img data-t="${esc(name)}" src="${thumbs.get(name) || blank}" alt=""></button>
+        <div class="r">${closeB}<button data-a="quick" data-v="${esc(name)}" title="Leva ao ar com a transição atual">Quick Play</button><button data-a="cut" data-v="${esc(name)}" title="Corte seco para o programa">Cut</button>${loopB}${media.length ? `<button class="ic" data-a="playpause" data-v="${v}" title="Play / Pause da mídia"><i class="tri"></i></button>` : `<button class="ic na" title="Só para entradas com mídia"><i class="tri"></i></button>`}</div>
+        <div class="r">${ov(name)}${audioB}<button class="ic" data-a="projector" data-v="${v}" title="Abrir em janela">${MON}</button><button class="ic" data-a="menu" data-v="${v}" title="Menu da entrada (ou clique direito)">${GEAR}</button></div></div>`;
+    }).join("") || `<div class="empty">Nenhuma entrada nesta cor.</div>`;
+  }
+  let dragging = null;
+  const paintFader = (name) => { const el = document.querySelector(`.strip[data-n="${CSS.escape(name)}"]`), a = st.audio.get(name); if (!el || !a) return; el.querySelector(".fd").style.setProperty("--v", Math.cbrt(clamp(a.mul, 0, 1)).toFixed(3)); el.querySelector(".db").textContent = a.mul <= 0 ? "-inf" : `${(20 * Math.log10(a.mul)).toFixed(1)} dB`; };
+  function renderMixer() {
+    const box = $("mixer"); box.className = `mixer${st.mixer ? " on" : ""}`;
+    if (!st.mixer) return;
+    box.innerHTML = [...st.audio].map(([name, a]) => `<div class="strip" data-n="${esc(name)}">
+      <div class="nm" title="${esc(name)}">${esc(name)}</div>
+      <div class="buses"><button class="on" title="Master (Transmissão)">M</button><button title="Aux A (Retorno Convidado)">A</button><button title="Aux B (Fones)">B</button></div>
+      <div class="bd"><div class="mt"></div><div class="mt"></div><div class="fd" data-f="${esc(name)}"><i></i></div></div>
+      <div class="db"></div>
+      <div class="bt"><button class="${a.muted ? "muted" : ""}" data-a="mute" data-v="${esc(name)}" title="Mudo">MUTE</button></div>
+    </div>`).join("")
+      || `<div class="none">Nenhuma fonte de áudio.<br>Adicione microfone e áudio do sistema em Configurações › Áudio, ou crie uma entrada de mídia.</div>`;
+    for (const name of st.audio.keys()) paintFader(name);
+    for (const f of box.querySelectorAll(".fd")) bindFader(f);
+  }
+  function bindFader(f) {
+    const name = f.dataset.f;
+    const move = (e) => { const r = f.getBoundingClientRect(), p = clamp(1 - (e.clientY - r.top - 5) / (r.height - 10), 0, 1), a = st.audio.get(name); a.mul = p ** 3; paintFader(name); run(req("SetInputVolume", { inputName: name, inputVolumeMul: a.mul })); };
+    f.onpointerdown = (e) => { dragging = name; f.setPointerCapture(e.pointerId); move(e); };
+    f.onpointermove = (e) => { if (dragging === name) move(e); };
+    f.onpointerup = f.onpointercancel = () => { dragging = null; };
+  }
+  function renderBot() {
+    const off = st.on ? "" : " disabled";
+    $("bot").innerHTML = `<div class="g"><button class="b add-input" data-a="pop" data-v="add"${off}>+ Add Input</button></div>
+      <div class="g-center">
+        <button class="b${st.rec ? " live" : ""}" data-a="record"${off}>Record</button>${st.rec ? `<span class="tc">${st.recTc}</span>` : ""}
+        <button class="b${st.vcam ? " on" : ""}" data-a="external"${off} title="Saída externa: câmera virtual do OBS">External</button>
+        <button class="b${st.stream ? " live" : ""}" data-a="stream"${off}>Stream</button>${st.stream ? `<span class="tc">${st.streamTc}</span>` : ""}
+        <span class="sep-v"></span>
+        ${st.hasIso ? `<button class="b${[...st.iso.values()].some(Boolean) ? " live" : ""}" data-a="multicorder"${off} title="Grava cada entrada marcada no seu próprio arquivo">MultiCorder</button><button class="b arrow" data-a="pop" data-v="iso"${off} title="Escolher entradas">▾</button>` : `<button class="b na" title="Plugin Source Record não carregado">MultiCorder</button>`}
+        <button class="b" data-a="pop" data-v="playlist"${off}>PlayList</button>
+        ${st.kinds.includes("replay_source") ? `<button class="b${st.rp.some((r) => r.scene === st.program) ? " live" : ""}" data-a="pop" data-v="replay"${off}>Replay</button>` : ""}
+        <button class="b" data-a="pop" data-v="overlay"${off}>Overlay</button>
+      </div>
+      <div class="g"><button class="b settings-btn" data-a="pop" data-v="gear"${off}>${GEAR} Settings</button></div>`;
+  }
+  function renderStat() {
+    const s = st.stats, v = st.video;
+    const res = v ? `${v.outputHeight}p${(v.fpsNumerator / v.fpsDenominator).toFixed(2).replace(/\.00$/, "")}` : "";
+    const now = new Date();
+    const clock = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}:${String(now.getSeconds()).padStart(2, '0')}`;
+    $("stat").innerHTML = `<span class="clock">${clock}</span>`
+      + (st.on ? `<span class="res">${res}</span>` + (s ? `<span>FPS: <b>${s.activeFps.toFixed(0)}</b></span><span>Render: <b>${s.averageFrameRenderTime.toFixed(1)} ms</b></span><span>CPU OBS: <b>${s.cpuUsage.toFixed(0)} %</b></span><span>Memória: <b>${s.memoryUsage.toFixed(0)} MB</b></span><span>Drops: <b>${s.outputSkippedFrames}</b></span>` : "") : "")
+      + `<span class="sp"></span><span><b>FreeMix</b></span><span>${st.studio ? "Modo Estúdio" : "Modo Direto"}</span><span class="${st.on ? "ok" : "bad"}">${st.on ? "● Online" : "● " + esc(st.why)}</span>`;
+  }
+  function renderPop() {
+    const p = $("pop"); p.className = `pop on${st.pop === "gear" ? " right" : ""}${st.pop === "add" ? " wide" : ""}`;
+    if (st.pop === "add") {
+      const t = TYPES.find((x) => x.id === st.addType) || TYPES[0], name = st.addName || `${t.id === "camera" ? "CAM" : t.label.toUpperCase().replace(/ \/.*/, "")} ${st.scenes.length + 1}`;
+      p.innerHTML = `<h3>Input Select</h3><div class="add"><div class="types">${TYPES.map((x) => `<button class="${x.id === t.id ? "on" : ""}${x.kind && !resolveKind(x.kind) ? " off" : ""}" data-a="addtype" data-v="${x.id}">${x.label}</button>`).join("")}</div>
+        <div class="form">${t.special ? "" : `<label>Nome<input id="add-name" maxlength="40" value="${esc(name)}"${st.addName ? ` data-edited="1"` : ""}></label>`}${(t.fields || []).map(([key, label, def, type]) => `<label>${label}<input id="add-f-${key}" type="${type}" value="${esc(typeof def === "function" ? def() : def)}"></label>`).join("")}
+        <p>${t.hint}${t.kind && !resolveKind(t.kind) ? " <b>Não instalado neste OBS.</b>" : ""}</p>${t.special ? "" : `<label class="inl">Number <input id="add-n" type="number" min="1" max="8" value="1"></label>`}</div></div>
+        <div class="row end"><button class="b on" data-a="add">OK</button><button class="b" data-a="close">Cancel</button></div>`;
+    }
+    else if (st.pop === "call") {
+      const u = callUrls(st.popArg), field = (id, label, value) => `<label>${label}<span class="row" style="margin:0;flex-wrap:nowrap"><input id="${id}" readonly value="${esc(value)}" style="flex:1;min-width:0"><button class="b" data-a="copy" data-v="${id}">Copiar</button></span></label>`;
+      p.innerHTML = `<h3>FreeMix Call · ${esc(st.popArg)}</h3>`
+        + field("call-guest", "1. Mande este link ao convidado (abre no celular ou PC, permite câmera e microfone)", u.guest)
+        + `<p>Quando ele entrar, o vídeo aparece na miniatura desta entrada e o áudio no mixer do FreeMix.</p>`
+        + `<details><summary style="cursor:pointer;color:var(--mut)">Retorno do programa para o convidado (opcional)</summary>`
+        + field("call-ret", "Ligue External (câmera virtual) e abra este link no navegador escolhendo a câmera “OBS Virtual Camera”", u.ret)
+        + field("call-guest-ret", "Mande ao convidado este link no lugar do primeiro: ele vê o programa ao vivo", u.guestRet)
+        + `<p>Cuidado com eco: o convidado deve usar fone, ou tire o áudio dele do retorno.</p></details>`
+        + `<div class="row"><button class="b" data-a="close">Fechar</button></div>`;
+    }
+    else if (st.pop === "stream") p.innerHTML = `<h3>Iniciar transmissão?</h3><p>Usa o serviço configurado em Configurações › Transmissão.</p><div class="row"><button class="b live" data-a="streamgo">Iniciar</button><button class="b" data-a="close">Cancelar</button></div>`;
+    else if (st.pop === "overlay") p.innerHTML = `<h3>Canais de overlay</h3>` + (st.keyers?.length ? `<table>${st.keyers.slice(0, 4).map((k, i) => `<tr><td><b>${i + 1}</b></td><td>${k.scene ? esc(k.scene) : `<span style="color:var(--mut)">desligado</span>`}</td><td style="text-align:right">${k.scene ? `<button class="b" data-a="ovoff" data-k="${i}">Desligar</button>` : ""}</td></tr>`).join("")}</table><p style="margin-top:8px">Use os botões 1–4 de cada entrada. Transição e tempo de cada canal ficam em Painéis › Downstream Keyer.</p>` : `<p>O plugin Downstream Keyer não respondeu.</p>`) + `<div class="row"><button class="b" data-a="close">Fechar</button></div>`;
+    else if (st.pop === "tag") p.innerHTML = `<h3>Cor de "${esc(st.popArg)}"</h3><div class="row">${COLORS.map((c, i) => `<button class="sw" style="background:${c}" data-a="settag" data-c="${i}"></button>`).join("")}<button class="sw x" data-a="settag" data-c="" title="Sem cor">×</button></div>`;
+    else if (st.pop === "close") p.innerHTML = `<h3>Fechar "${esc(st.popArg)}"?</h3><p>Remove a entrada e as fontes que só existem nela. Não dá para desfazer pelo painel.</p><div class="row"><button class="b live" data-a="closego">Fechar entrada</button><button class="b" data-a="close">Cancelar</button></div>`;
+    else if (st.pop === "iso") { const any = [...st.iso.values()].some(Boolean); p.innerHTML = `<h3>MultiCorder: gravação isolada</h3><p>Cada entrada marcada é gravada no seu próprio arquivo, mesmo fora do ar. Cada uma usa um codificador a mais.</p>` + st.scenes.map((n) => `<label class="chk"><input type="checkbox" data-a="isotoggle" data-v="${esc(n)}"${st.isoSel.includes(n) ? " checked" : ""}${any ? " disabled" : ""}> ${esc(n)}${st.iso.get(n) ? ` <b class="iso">gravando</b>` : ""}</label>`).join("") + `<p style="margin-top:6px">Arquivos na pasta de gravação do perfil, subpasta <b>iso</b>.</p><div class="row">${any ? `<button class="b live" data-a="isostop">Parar</button>` : `<button class="b on" data-a="isostart">Iniciar</button>`}<button class="b" data-a="close">Fechar</button></div>`; }
+    else if (st.pop === "playlist") { const pl = st.pl; p.innerHTML = `<h3>PlayList</h3>` + (pl ? `<p>Fonte <b>${esc(pl.name)}</b> na entrada <b>${esc(pl.scene)}</b>${pl.state ? " · " + pl.state : ""}${pl.time ? " · " + pl.time : ""}</p><div class="row"><button class="b" data-a="plact" data-v="PREVIOUS">Anterior</button><button class="b" data-a="plact" data-v="PLAY">Play</button><button class="b" data-a="plact" data-v="PAUSE">Pause</button><button class="b" data-a="plact" data-v="NEXT">Próximo</button><button class="b" data-a="plact" data-v="RESTART">Reiniciar</button></div><div class="row"><button class="b" data-a="pledit">Editar lista…</button><button class="b" data-a="plpvw">Mandar para o Preview</button><button class="b" data-a="close">Fechar</button></div>` : `<p>Nenhuma playlist ainda. Cria a entrada PLAYLIST e abre a janela do OBS para escolher os arquivos.</p><div class="row"><button class="b on" data-a="plcreate">Criar playlist</button><button class="b" data-a="close">Cancelar</button></div>`); }
+    else if (st.pop === "replay") {
+      const cams = st.scenes.filter((n) => !st.rp.some((r) => r.scene === n)), onAir = st.rp.some((r) => r.scene === st.program);
+      p.innerHTML = `<h3>Replay</h3>` + (st.rp.length ? `<table>${st.rp.map((r) => `<tr><td><b>${esc(r.scene)}</b></td><td style="text-align:right"><button class="b${r.scene === st.program ? " live" : ""}" data-a="rpair" data-v="${esc(r.scene)}">No ar</button></td></tr>`).join("")}</table>
+        <div class="row"><button class="b on" data-a="rpgrab">Capturar lance</button><button class="b" data-a="rpmedia" data-v="PREVIOUS">Anterior</button><button class="b" data-a="rpmedia" data-v="NEXT">Próximo</button><button class="b" data-a="rpmedia" data-v="PAUSE">Pause</button><button class="b" data-a="rpmedia" data-v="PLAY">Play</button></div>
+        <div class="row">${[25, 50, 100].map((v) => `<button class="b${st.rpSpeed === v ? " on" : ""}" data-a="rpspeed" data-v="${v}">${v}%</button>`).join("")}<button class="b" data-a="rplive"${st.rpBack && onAir ? "" : " disabled"}>Voltar ao vivo</button></div>` : `<p>Nenhum ângulo ainda.</p>`)
+        + `<p style="margin-top:8px">Novo ângulo: guarda os últimos segundos da câmera na memória (medido aqui: cerca de 0,27 GB de RAM por segundo em 1080p30, para o buffer e para cada um dos 2 lances guardados).</p><div class="row"><select id="rp-cam">${cams.map((n) => `<option>${esc(n)}</option>`).join("")}</select><select id="rp-sec">${[3, 5, 8, 10, 15].map((v) => `<option value="${v}">${v} s</option>`).join("")}</select><button class="b" data-a="rpadd">Adicionar ângulo</button><button class="b" data-a="close">Fechar</button></div>`;
+    }
+    else if (st.pop === "menu") { const name = st.popArg, v = esc(name), ins = st.items.get(name) || [];
+      p.innerHTML = `<h3>${v}</h3><div class="menu">` + ins.map((i) => `<button data-a="props" data-v="${esc(i.name)}">Configurações de ${esc(i.name)}…</button><button data-a="filters" data-v="${esc(i.name)}">Filtros de ${esc(i.name)}…</button>${i.kind === "browser_source" ? `<button data-a="calllink" data-v="${esc(i.name)}">Link do convidado (FreeMix Call)…</button>` : ""}`).join("")
+        + `<button data-a="renameask" data-v="${v}">Renomear…</button><button data-a="tag" data-v="${v}">Cor…</button><button data-a="projector" data-v="${v}">Abrir em janela</button>${name === st.program ? "" : `<button data-a="closeask" data-v="${v}">Fechar entrada</button>`}</div>`; }
+    else if (st.pop === "rename") p.innerHTML = `<h3>Renomear "${esc(st.popArg)}"</h3><label>Novo nome<input id="rn-name" maxlength="40" value="${esc(st.popArg)}"></label><div class="row"><button class="b on" data-a="renamego">OK</button><button class="b" data-a="close">Cancel</button></div>`;
+    else if (st.pop === "gear") p.innerHTML = `<h3>Painel</h3><p>${st.on ? "Conectado a " + esc(LOCAL.url || "") : esc(st.why)}</p><div class="row"><button class="b${st.studio ? " on" : ""}" data-a="studio">Modo estúdio (Preview + Programa)</button></div><p style="margin-top:8px">Cenas, fontes, mixer nativo e controles do OBS continuam no menu Painéis.</p><div class="row"><button class="b" data-a="close">Fechar</button></div>`;
+  }
+  const openPop = (id, arg) => { if (st.pop === id && st.popArg === arg) return closePop(); st.pop = id; st.popArg = arg; renderPop(); ($("add-name") || $("rn-name"))?.select(); };
+  const closePop = () => { st.pop = null; $("pop").className = "pop"; };
+  const renderAll = () => { renderTabs(); renderTiles(); renderMixer(); renderBot(); renderStat(); };
+
+  document.addEventListener("click", (e) => {
+    const t = e.target.closest("[data-a]");
+    if (!t) { if (st.pop && !e.target.closest(".pop")) closePop(); return; }
+    if (t.disabled) return;
+    A[t.dataset.a]?.(t.dataset);
+    if (t.dataset.a === "studio") setTimeout(() => { if (st.pop === "gear") renderPop(); renderStat(); }, 300);
+  });
+  document.addEventListener("keydown", (e) => { if (e.key === "Escape") closePop(); if (e.key === "Enter" && st.pop === "add") A.add(); if (e.key === "Enter" && st.pop === "rename") A.renamego(); });
+  document.addEventListener("contextmenu", (e) => { e.preventDefault(); const t = e.target.closest(".tile"); if (t) openPop("menu", t.dataset.s); });
+  document.addEventListener("input", (e) => { if (e.target.id === "add-name") e.target.dataset.edited = "1"; });
+
+  renderAll(); connect(); thumbLoop(); slowLoop();
+</script>
+</body>
+</html>

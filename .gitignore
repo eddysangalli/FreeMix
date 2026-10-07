@@ -1,0 +1,30 @@
+# Logs and crash dumps
+logs/
+*.log
+crashes/
+profiler_data/
+updates/
+
+# Build and temporary files
+node_modules/
+.temp/
+*.tmp
+scratch/
+
+# OBS caches and session storage
+plugin_config/obs-browser/
+Local Storage/
+Session Storage/
+
+# Recordings and screenshots
+gravacoes/
+*.mp4
+*.mkv
+*.mov
+*.ts
+*.flv
+
+# OS files
+Thumbs.db
+Desktop.ini
+.DS_Store
