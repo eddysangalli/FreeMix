@@ -9,8 +9,12 @@ $root = $PSScriptRoot; $src = Join-Path $root 'obs-vmix'; $dst = Join-Path $root
 $base = 'ba2f32b'   # OBS Studio 32.2.2, the commit the fork starts from
 $quiet = @('/NFL', '/NDL', '/NJH', '/NJS', '/NP', '/R:1', '/W:1')
 
-robocopy (Join-Path $src 'painel') (Join-Path $dst 'painel') /E /XF local.js @quiet | Out-Null
-robocopy (Join-Path $src 'ferramentas') (Join-Path $dst 'ferramentas') *.mjs *.ps1 *.py *.js *.cs @quiet | Out-Null
+# Titles imported by the operator (painel\gc\gt_titles) stay on the machine: they may be somebody else's work.
+robocopy (Join-Path $src 'painel') (Join-Path $dst 'painel') /E /XF local.js /XD gt_titles @quiet | Out-Null
+robocopy (Join-Path $src 'ferramentas') (Join-Path $dst 'ferramentas') *.mjs *.ps1 *.py *.js *.cs /XF scratch_* inspect_* @quiet | Out-Null
+# The gallery's catalogue is rebuilt from the templates that are in the repository.
+$node = Join-Path $root 'node24\node.exe'; if (-not (Test-Path -LiteralPath $node)) { $node = 'node' }
+& $node (Join-Path $dst 'ferramentas\gerar-catalogo-gc.mjs') | Out-Null
 Copy-Item -LiteralPath (Join-Path $src 'config\obs-studio\themes\Yami_MesaDeCorte.ovt') -Destination (Join-Path $dst 'theme\Yami_MesaDeCorte.ovt') -Force
 foreach ($f in 'Iniciar Mesa.cmd', 'FreeMix Studio.cmd', 'componentes.json') { Copy-Item -LiteralPath (Join-Path $src $f) -Destination (Join-Path $dst $f) -Force }
 foreach ($f in 'CONTINUAR.md', 'compilar-2026.ps1', 'sincronizar-github.ps1') { Copy-Item -LiteralPath (Join-Path $root $f) -Destination (Join-Path $dst $f) -Force }

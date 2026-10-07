@@ -18,7 +18,7 @@
   .b:disabled { color: #6b7480; background: #1b2229; border-color: #2c353e; cursor: default; }
   .b.dd { min-width: 0; width: 15px; padding: 0; margin-left: -5px; border-left-color: #1b2229; font-size: 8px; }
   .b.sq { min-width: 0; width: 24px; padding: 0; }
-  .clk { display: inline-flex; gap: 10px; margin-left: 10px; padding: 0 10px; height: 22px; align-items: center; background: #000; border: 1px solid #f2f5f8; font: 700 12px Consolas, monospace; } .clk b { color: #5a636e; } .clk b.on { color: #ff5a4f; } .clk #k-now { color: #f2f5f8; }
+  .clk { display: inline-flex; gap: 10px; margin-left: 10px; padding: 0 10px; height: 22px; align-items: center; background: #000; border: 1px solid #f2f5f8; font: 700 12px Consolas, monospace; } .clk b { color: #5a636e; } .clk b.on { color: #ff5a4f; } .clk b.now { color: #f2f5f8; } .clk b.amber { color: #ffb300; } .clk b.green { color: #3fd145; } .clk b[hidden] { display: none; }
   .lab { padding: 0 14px 0 10px; font-size: 12px; }
 </style>
 </head>
@@ -33,7 +33,7 @@
   </div>
   <div class="grp">
     <button class="b" data-do="fullscreen" title="Output em tela cheia no segundo monitor (em janela, se houver só um)">Tela Cheia</button><button class="b dd" data-open="ext" title="Central de saídas">▼</button>
-    <span class="clk" title="Relógio de produção: tempo de gravação, tempo de transmissão e hora"><b id="k-rec">REC 00:00:00</b><b id="k-str">NO AR 00:00:00</b><b id="k-now"></b></span>
+    <span class="clk" id="clk" title="Relógios de produção. Duplo clique: escolher o que cada um mostra (relógio, evento, gravação, transmissão, tempo restante)."><b id="k-rec">REC 00:00:00</b><b id="k-str">NO AR 00:00:00</b><b id="k-now" class="now"></b></span>
   </div>
   <div class="grp r">
     <button class="b" id="b-pause" data-do="pausethumbs" title="Pausa todas as entradas de vídeo que estão tocando">Pausar Entradas</button>
@@ -69,9 +69,11 @@
         on = true; paint();
         req("GetSceneCollectionList").then((c) => { $("lab").title = "Preset em uso: " + c.currentSceneCollectionName; }).catch(() => {});
         tell({ do: "state" }).catch(() => {}); // ask the panel which toggles are on
+        loadClocks();
       } else if (m.op === 5) {
         const d = m.d.eventData || {};
         if (m.d.eventType === "CurrentSceneCollectionChanged") $("lab").title = "Preset em uso: " + d.sceneCollectionName;
+        else if (m.d.eventType === "CustomEvent" && d.freemix && Array.isArray(d.freemix.clocks)) clocks = d.freemix.clocks;
         else if (m.d.eventType === "CustomEvent" && d.freemix && d.freemix.state) { $("b-pause").classList.toggle("on", !!d.freemix.state.paused); $("b-basic").classList.toggle("on", !!d.freemix.state.basic); }
       } else if (m.op === 7) {
         const p = pending.get(m.d.requestId); if (!p) return;
@@ -86,14 +88,48 @@
     tell(b.dataset.open ? { open: b.dataset.open, arg: b.dataset.arg || null } : { do: b.dataset.do }).catch(() => {});
   });
   document.addEventListener("contextmenu", (e) => e.preventDefault());
-  // Production clock: both counters come from the engine once a second.
+  // Production clocks: three slots, each one a clock, an event countdown, the recording time, the streaming time or
+  // the time left of the media on Output. They are set up in the panel (double click here opens that window) and
+  // kept in the engine's persistent data, slot "freemix_clocks", so both panels read the same thing.
+  const SLOTS = ["k-rec", "k-str", "k-now"];
+  let clocks = [{ type: "rec" }, { type: "stream" }, { type: "clock" }], mediaName = "", mediaAt = 0;
+  const two = (n) => String(n).padStart(2, "0"), hms = (ms) => { const s = Math.max(0, Math.floor(ms / 1000)); return `${two(Math.floor(s / 3600))}:${two(Math.floor(s / 60) % 60)}:${two(s % 60)}`; };
+  const todayAt = (hhmm) => { const m = /^(\d{1,2}):(\d{2})/.exec(hhmm || ""); if (!m) return null; const d = new Date(); d.setHours(+m[1], +m[2], 0, 0); return d.getTime(); };
+  const loadClocks = () => req("GetPersistentData", { realm: "OBS_WEBSOCKET_DATA_REALM_GLOBAL", slotName: "freemix_clocks" }).then((r) => { if (Array.isArray(r.slotValue)) clocks = r.slotValue; }).catch(() => {});
+  async function remaining() {
+    if (Date.now() - mediaAt > 2000) {
+      mediaAt = Date.now(); mediaName = "";
+      const p = await req("GetCurrentProgramScene").catch(() => null), items = p ? await req("GetSceneItemList", { sceneName: p.currentProgramSceneName }).catch(() => null) : null;
+      const m = ((items && items.sceneItems) || []).find((i) => /^(ffmpeg_source|vlc_source)$|playlist/.test(i.inputKind || "")); if (m) mediaName = m.sourceName;
+    }
+    if (!mediaName) return null;
+    const s = await req("GetMediaInputStatus", { inputName: mediaName }).catch(() => null);
+    return s && s.mediaDuration ? s.mediaDuration - s.mediaCursor : null;
+  }
+  async function clockText(c, rec, str) {
+    if (c.type === "rec") return { text: "REC " + (rec && rec.outputActive ? rec.outputTimecode.slice(0, 8) : "00:00:00"), cls: rec && rec.outputActive ? "on" : "" };
+    if (c.type === "stream") return { text: "NO AR " + (str && str.outputActive ? str.outputTimecode.slice(0, 8) : "00:00:00"), cls: str && str.outputActive ? "on" : "" };
+    if (c.type === "remaining") { const r = on ? await remaining() : null; return { text: "RESTA " + (r == null ? "--:--:--" : hms(r)), cls: r == null ? "" : r < 10000 ? "on" : "now" }; }
+    if (c.type === "event") {
+      const now = Date.now(), a = todayAt(c.start), b = todayAt(c.end);
+      if (a == null) return { text: "EVENTO --:--:--", cls: "" };
+      if (now < a) return { text: "EVENTO -" + hms(a - now), cls: "amber" };                       // before the start: counts down, amber
+      if (b != null && b > a) return now < b ? { text: "EVENTO " + hms(b - now), cls: "green" }    // during: time left, green
+        : { text: "EVENTO +" + hms(now - b), cls: "on" };                                           // after the end: time since, red
+      return { text: "EVENTO " + hms(now - a), cls: "green" };                                     // no end: time since the start, green
+    }
+    return { text: new Date(Date.now() + (+c.offset || 0) * 3600000).toLocaleTimeString("pt-BR", { hour12: !!c.ampm }), cls: "now" };
+  }
   setInterval(async () => {
-    $("k-now").textContent = new Date().toLocaleTimeString("pt-BR");
-    if (!on) return;
-    const [r, s] = await Promise.all([req("GetRecordStatus").catch(() => null), req("GetStreamStatus").catch(() => null)]);
-    $("k-rec").textContent = "REC " + (r && r.outputActive ? r.outputTimecode.slice(0, 8) : "00:00:00"); $("k-rec").classList.toggle("on", !!(r && r.outputActive));
-    $("k-str").textContent = "NO AR " + (s && s.outputActive ? s.outputTimecode.slice(0, 8) : "00:00:00"); $("k-str").classList.toggle("on", !!(s && s.outputActive));
+    const need = (t) => clocks.some((c) => c && c.type === t);
+    const [rec, str] = on ? await Promise.all([need("rec") ? req("GetRecordStatus").catch(() => null) : null, need("stream") ? req("GetStreamStatus").catch(() => null) : null]) : [null, null];
+    for (let i = 0; i < SLOTS.length; i++) {
+      const el = $(SLOTS[i]), c = clocks[i] || { type: "none" };
+      if (c.type === "none") { el.textContent = ""; el.hidden = true; continue; }
+      const r = await clockText(c, rec, str); el.hidden = false; el.textContent = r.text; el.className = r.cls;
+    }
   }, 1000);
+  document.getElementById("clk").addEventListener("dblclick", () => tell({ open: "clocks" }).catch(() => {}));
   paint(); connect();
 </script>
 </body>

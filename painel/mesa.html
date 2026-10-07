@@ -290,6 +290,12 @@
   .add .types button small { font-weight: 400; opacity: .75; margin-left: 4px; }
   .add .types button.dlive { box-shadow: inset 4px 0 0 var(--red); } .add .types button.dlive small { color: #ff8a80; opacity: 1; font-weight: 700; }
   .add .types button.derr { box-shadow: inset 4px 0 0 var(--org); } .add .types button.derr small { color: var(--org); opacity: 1; font-weight: 700; }
+  /* Category tabs with names, search tab, coloured line under the tabs. */
+  .tabs { border-bottom-width: 2px; }
+  .tabs .c.named { width: auto; min-width: 22px; padding: 0 9px; color: #fff; font-size: 11px; font-weight: 700; text-shadow: 0 1px 1px rgba(0, 0, 0, .55); white-space: nowrap; }
+  .tabs .c.find { width: auto; min-width: 24px; padding: 0 6px; background: var(--btn); display: inline-flex; align-items: center; gap: 4px; color: #e6ebf2; font-size: 11px; } .tabs .c.find svg { width: 12px; height: 12px; }
+  .tabs .c.find.on { background: #e6ebf2; color: #10141a; }
+  .catrow { display: grid !important; grid-template-columns: 22px 1fr; align-items: center; gap: 6px; margin-bottom: 4px !important; } .catrow i { width: 22px; height: 22px; border: 1px solid rgba(0, 0, 0, .5); }
 </style>
 </head>
 <body>
@@ -580,7 +586,7 @@
   }
 
   /* ---- thumbnails: programa e preview a cada volta, as demais em rodízio ---- */
-  const shown = () => st.scenes.filter((n) => st.filter < 0 || st.tags[n] === st.filter);
+  const shown = () => st.scenes.filter((n) => (st.filter === -2 ? n.toLowerCase().includes((st.find || "").toLowerCase()) : st.filter < 0 || st.tags[n] === st.filter));
   async function thumbLoop() {
     let turn = 0;
     for (;;) {
@@ -891,6 +897,17 @@
       if (gcOnAir().includes(name)) gcDefer.set(name, url); else await req("SetInputSettings", { inputName: name, inputSettings: { url } });
       cfg.d = d; toast("Título atualizado");
     })()),
+    catfind: () => openPop("catfind"),
+    catfindgo: () => { st.find = $("cf-find").value.trim(); store.set("mesa.find", st.find); st.filter = st.find ? -2 : -1; closePop(); renderTabs(); renderTiles(); },
+    catnames: () => openPop("catnames"),
+    catnamesgo: () => { st.catNames = COLORS.map((c, i) => $("cn-" + i).value.trim().slice(0, 16)); store.set("mesa.catnames", st.catNames); closePop(); renderTabs(); renderTiles(); },
+    clocksload: () => run((async () => { const r = await tryReq("GetPersistentData", { realm: "OBS_WEBSOCKET_DATA_REALM_GLOBAL", slotName: "freemix_clocks" }); st.clocks = Array.isArray(r?.slotValue) ? r.slotValue : CLOCK_DEFAULT.map((c) => ({ ...c })); if (st.pop === "clocks") renderPop(); })()),
+    clockssave: () => run((async () => {
+      st.clocks = clocksRead();
+      await req("SetPersistentData", { realm: "OBS_WEBSOCKET_DATA_REALM_GLOBAL", slotName: "freemix_clocks", slotValue: st.clocks });
+      await req("BroadcastCustomEvent", { eventData: { freemix: { clocks: st.clocks } } });
+      closePop(); toast("Relógios de produção atualizados");
+    })()),
     audioset: (d) => openPop("audioset", d.v),
     solo: (d) => run(req("SetInputAudioMonitorType", { inputName: d.v, monitorType: st.audio.get(d.v).mon !== "OBS_MONITORING_TYPE_NONE" ? "OBS_MONITORING_TYPE_NONE" : "OBS_MONITORING_TYPE_MONITOR_AND_OUTPUT" })),
     bus: (d) => run(req("SetInputAudioTracks", { inputName: d.v, inputAudioTracks: { [d.k]: !st.audio.get(d.v).tracks[d.k] } })),
@@ -927,6 +944,53 @@
     close: () => closePop(),
     gccat: (d) => { st.gcCat = d.v; renderPop(); },
     gcsel: (d) => { st.gcTpl = d.v; st.addName = $("add-name")?.dataset.edited ? $("add-name").value : ""; renderPop(); },
+    gtreload: () => run((async () => {
+      try {
+        const res = await fetch("gc/catalogo.js?t=" + Date.now());
+        const text = await res.text();
+        const match = text.match(/window\.GC_CATALOG\s*=\s*(\[[\s\S]*?\]);/);
+        if (match) {
+          const nextList = JSON.parse(match[1]);
+          window.GC_CATALOG = nextList;
+          GCS.length = 0;
+          GCS.push(...nextList);
+          renderPop();
+          toast(`${nextList.length} modelos na galeria de títulos`);
+        }
+      } catch (e) {
+        toast("Erro ao recarregar catálogo: " + e.message, true);
+      }
+    })()),
+    gtimportdialog: () => run((async () => {
+      toast("Abrindo seletor de arquivos do Windows…");
+      await req("SetPersistentData", {
+        realm: "OBS_WEBSOCKET_DATA_REALM_GLOBAL",
+        slotName: "freemix_cmd",
+        slotValue: { id: Date.now(), cmd: "import_gt" }
+      });
+      // Monitorar atualização do catálogo automaticamente
+      const prevCount = GCS.length;
+      for (let i = 0; i < 20; i++) {
+        await sleep(1500);
+        try {
+          const res = await fetch("gc/catalogo.js?t=" + Date.now());
+          const text = await res.text();
+          const match = text.match(/window\.GC_CATALOG\s*=\s*(\[[\s\S]*?\]);/);
+          if (match) {
+            const nextList = JSON.parse(match[1]);
+            if (nextList.length > prevCount) {
+              window.GC_CATALOG = nextList;
+              GCS.length = 0;
+              GCS.push(...nextList);
+              st.gcCat = "GT Titles vMix";
+              st.gcTpl = nextList[nextList.length - 1].id;
+              renderPop();
+              return toast(`Novo pacote de título "${nextList[nextList.length - 1].name}" importado com sucesso!`);
+            }
+          }
+        } catch {}
+      }
+    })()),
     gtimportinfo: () => openPop("gtimportinfo"),
     addtype: (d) => { st.addName = $("add-name")?.dataset.edited ? $("add-name").value : ""; st.addType = d.v; renderPop(); },
     add: () => run((async () => {
@@ -980,11 +1044,15 @@
 
   /* ---- render ---- */
   function renderTabs() {
-    const used = new Set(Object.values(st.tags));
+    const used = new Set(Object.values(st.tags)), names = st.catNames;
+    const tip = "mostrar só as entradas desta categoria. Clique direito: dar nome às categorias. Arraste uma miniatura até aqui para pôr a entrada nela.";
     $("tabs").innerHTML = `<span class="fm-brand"><span class="dot"></span>Free<b>Mix</b></span>`
-      + `<button class="c all${st.filter < 0 ? " on" : ""}" data-a="filter" data-v="-1">Todas</button>`
-      + COLORS.map((c, i) => `<button class="c${st.filter === i ? " on" : ""}" style="background:${c};opacity:${used.has(i) ? 1 : .45}" data-a="filter" data-v="${i}" title="Mostrar só as entradas desta cor"></button>`).join("")
+      + `<button class="c all${st.filter === -1 ? " on" : ""}" data-a="filter" data-v="-1" title="Mostrar todas as entradas. Clique direito: dar nome às categorias.">Todas</button>`
+      + COLORS.map((c, i) => `<button class="c${names[i] ? " named" : ""}${st.filter === i ? " on" : ""}" style="background:${c};opacity:${used.has(i) || names[i] ? 1 : .45}" data-a="filter" data-v="${i}" data-cat="${i}" title="${names[i] ? esc(names[i]) + ": " : "Categoria: "}${tip}">${esc(names[i] || "")}</button>`).join("")
+      + `<button class="c find${st.filter === -2 ? " on" : ""}" data-a="catfind" title="Busca: mostrar só as entradas cujo nome contém um texto. Clique de novo para trocar o texto.">${FIND}${st.filter === -2 && st.find ? `<span>${esc(st.find)}</span>` : ""}</button>`
       + `<span class="sp"></span><button class="mx${st.mixer ? " on" : ""}" data-a="mixer">${SPK} Mixer de áudio</button>`;
+    // The line under the tabs takes the colour of the selected category.
+    $("tabs").style.borderBottomColor = st.filter >= 0 ? COLORS[st.filter] : st.filter === -2 ? "#e6ebf2" : "";
   }
   function renderTiles() {
     const box = $("tiles");
@@ -1000,7 +1068,7 @@
       const loopB = media.length ? `<button class="${media.every((i) => st.loop.get(i.name)) ? "on" : ""}" data-a="loop" data-v="${v}" title="Repetir a mídia desta entrada">Loop</button>` : `<button class="na" title="Só para entradas com arquivo de vídeo ou áudio">Loop</button>`;
       const audioB = aud.length ? `<button class="w2${aud.some((n) => !st.audio.get(n).muted) ? " on" : ""}" data-a="audio" data-v="${v}" title="Liga/desliga o áudio desta entrada">Audio</button>` : `<button class="w2 na" title="Entrada sem fonte de áudio">Audio</button>`;
       return `<div class="tile${tileCls}" data-s="${v}"><div class="tt ${cls}"><span class="n">${st.scenes.indexOf(name) + 1}</span><span class="nm" title="${esc(name)}">${esc(name)}</span>${st.iso.get(name) ? `<b class="iso" title="Gravação isolada em andamento">ISO</b>` : ""}<i class="tag${tag === undefined ? " none" : ""}" style="background:${tag === undefined ? "transparent" : COLORS[tag]}" data-a="tag" data-v="${esc(name)}" title="Cor da entrada"></i>${isOut ? "" : `<button class="x" data-a="closeask" data-v="${v}" title="Fechar esta entrada">×</button>`}</div>
-        <button class="th" data-a="preview" data-v="${esc(name)}" title="Clique: envia para o Preview"><img data-t="${esc(name)}" src="${thumbs.get(name) || blank}" alt=""></button>
+        <button class="th" draggable="true" data-a="preview" data-v="${esc(name)}" title="Clique: envia para o Preview. Arraste até uma aba de categoria para pôr a entrada nela."><img data-t="${esc(name)}" src="${thumbs.get(name) || blank}" alt=""></button>
         <div class="r">${ov(name, 0)}<button class="w2" data-a="quick" data-v="${v}" title="GO: leva ao ar com a transição atual">GO</button><button class="w2" data-a="cut" data-v="${v}" title="Corte seco para o programa">Cut</button>${media.length ? loopB : ""}</div>
         <div class="r">${ov(name, 4)}${audioB}${media.length ? `<button class="ic" data-a="playpause" data-v="${v}" title="Play / Pause da mídia"><i class="tri"></i></button>` : ""}<button class="ic" data-a="projector" data-v="${v}" title="Abrir em janela">${MON}</button><button class="ic" data-a="menu" data-v="${v}" title="Configurações da entrada (ou clique direito)">${GEAR}</button></div></div>`;
     }).join("") || `<div class="empty">Nenhuma entrada nesta cor.</div>`;
@@ -1105,7 +1173,10 @@
     return `<div class="gc-picker-wrap">
       <label style="display:flex;justify-content:space-between;align-items:center;">
         <span>Galeria de títulos</span>
-        <button type="button" class="b" data-a="gtimportinfo" style="height:19px;font-size:10px;padding:0 7px;font-weight:600">📥 Importar .gtzip</button>
+        <span style="display:flex;gap:4px">
+          <button type="button" class="b on" data-a="gtimportdialog" style="height:21px;font-size:10.5px;padding:0 9px;font-weight:700" title="Escolha um arquivo .gtzip no Windows para importar">📂 Procurar .gtzip...</button>
+          <button type="button" class="b" data-a="gtreload" style="height:21px;font-size:11px;padding:0 6px" title="Recarregar modelos">↻</button>
+        </span>
       </label>
       <div class="gc-cat-bar">${cats.map(c => `<button type="button" class="gc-cat-btn${st.gcCat === c ? " on" : ""}" data-a="gccat" data-v="${esc(c)}">${esc(c)}</button>`).join("")}</div>
       <div class="gc-grid">
@@ -1141,6 +1212,25 @@
   // Lets the exit animation of the titles of an overlay be seen before the overlay itself is cut.
   const gcLeave = async (scene) => { const names = (st.items.get(scene) || []).filter((i) => st.gcNames.has(i.name)).map((i) => i.name); if (!names.length) return; for (const n of names) await gcEmit("freemix-gc", { name: n, show: false }); await sleep(550); };
   document.addEventListener("change", (e) => { if (e.target.id === "add-gc") { st.addName = $("add-name")?.dataset.edited ? $("add-name").value : ""; st.gcTpl = e.target.value; renderPop(); } });
+  // Categories of inputs: seven colours that may be given names, plus a search by name (filter -2).
+  const FIND = `<svg viewBox="0 0 24 24"><path d="M10 3a7 7 0 0 1 5.6 11.2l5 5-1.4 1.4-5-5A7 7 0 1 1 10 3zm0 2a5 5 0 1 0 0 10 5 5 0 0 0 0-10z"/></svg>`;
+  st.catNames = store.get("mesa.catnames", COLORS.map(() => "")); st.find = store.get("mesa.find", "");
+  document.addEventListener("dragstart", (e) => { const t = e.target.closest?.(".tile"); if (!t) return; e.dataTransfer.setData("text/plain", t.dataset.s); e.dataTransfer.effectAllowed = "move"; });
+  document.addEventListener("dragover", (e) => { if (e.target.closest?.(".c[data-cat], .c.all")) e.preventDefault(); });
+  document.addEventListener("drop", (e) => {
+    const c = e.target.closest?.(".c[data-cat], .c.all"), scene = e.dataTransfer?.getData("text/plain"); if (!c || !scene || !st.scenes.includes(scene)) return;
+    e.preventDefault();
+    if (c.dataset.cat === undefined) delete st.tags[scene]; else st.tags[scene] = +c.dataset.cat;
+    store.set("mesa.tags", st.tags); renderTabs(); renderTiles();
+  });
+  // Production clocks: shown in the top bar, set up here (the top bar is too thin for a window). The choice is kept
+  // in the engine's persistent data, slot "freemix_clocks", and told to the top bar with a custom event.
+  const CLOCK_TYPES = [["clock", "Relógio"], ["event", "Evento (contagem)"], ["rec", "Tempo de gravação"], ["stream", "Tempo de transmissão"], ["remaining", "Tempo restante da mídia no Output"], ["none", "Nada"]];
+  const CLOCK_DEFAULT = [{ type: "rec" }, { type: "stream" }, { type: "clock" }];
+  st.clocks = null;
+  const clocksRead = () => [0, 1, 2].map((i) => { const old = (st.clocks || CLOCK_DEFAULT)[i] || {}, v = (id) => $(id + i);
+    return { type: v("ck-t").value, offset: v("ck-o") ? +v("ck-o").value || 0 : old.offset || 0, ampm: v("ck-a") ? v("ck-a").checked : !!old.ampm, start: v("ck-s") ? v("ck-s").value : old.start || "", end: v("ck-e") ? v("ck-e").value : old.end || "" }; });
+  document.addEventListener("change", (e) => { if (e.target.dataset?.ck && st.pop === "clocks") { st.clocks = clocksRead(); renderPop(); } });
   let dragging = null;
   const paintFader = (name) => { const el = document.querySelector(`.strip[data-n="${CSS.escape(name)}"]`), a = st.audio.get(name); if (!el || !a) return; el.querySelector(".fd").style.setProperty("--v", Math.cbrt(clamp(a.mul, 0, 1)).toFixed(3)); el.querySelector(".fd").title = a.mul <= 0 ? "-inf" : `${(20 * Math.log10(a.mul)).toFixed(1)} dB`; };
   function renderMixer() {
@@ -1249,13 +1339,14 @@
         + `<button data-a="layers" data-v="${v}">Camadas: outras entradas por cima…</button><button data-a="audioadd" data-v="${v}">Juntar áudio a esta entrada…</button><button data-a="renameask" data-v="${v}">Renomear…</button><button data-a="tag" data-v="${v}">Cor…</button><button data-a="projector" data-v="${v}">Abrir em janela</button>${name === st.program ? "" : `<button data-a="closeask" data-v="${v}">Fechar entrada</button>`}</div>`; }
     else if (st.pop === "rename") p.innerHTML = `<h3>Renomear "${esc(st.popArg)}"</h3><label>Novo nome<input id="rn-name" maxlength="40" value="${esc(st.popArg)}"></label><div class="row"><button class="b on" data-a="renamego">OK</button><button class="b" data-a="close">Cancel</button></div>`;
     else if (st.pop === "gtimportinfo") {
-      p.innerHTML = `<h3>Importar pacotes de títulos (.gtzip)</h3>`
-        + `<p>O FreeMix converte pacotes de títulos no formato .gtzip em modelos HTML: camadas, gradientes, animações de entrada e saída, tickers e relógios. Use com títulos que você criou ou tem licença para usar.</p>`
-        + `<label>Comando no Terminal / Prompt para importar:</label>`
-        + `<div style="background:#0e1217;border:1px solid #2b3340;padding:8px 10px;border-radius:2px;font-family:Consolas,monospace;font-size:11.5px;color:#8ef5ab;margin-bottom:8px;user-select:text;-webkit-user-select:text;">node ferramentas/importar-gt-packs.mjs "caminho/do/arquivo.gtzip"</div>`
-        + `<p style="font-size:11px;color:var(--mut)">Para converter uma pasta inteira de pacotes baixados (lote):<br><span style="color:#e6ebf2;font-family:Consolas,monospace">node ferramentas/importar-gt-packs.mjs --dir "pasta/com/pacotes"</span></p>`
-        + `<p style="font-size:11px;color:#7cf795">Depois de converter, os títulos aparecem na aba "Importados" quando o programa for aberto de novo.</p>`
-        + `<div class="row end"><button class="b on" data-a="close">Entendi</button></div>`;
+      p.innerHTML = `<h3>Importar Pacotes GT Title (.gtzip)</h3>`
+        + `<p>O FreeMix converte automaticamente pacotes de títulos do vMix (.gtzip) com camadas vetoriais, gradientes, animações In/Out e relógios para modelos HTML5 broadcast.</p>`
+        + `<div style="text-align:center;padding:18px 10px;background:#0d1117;border:1px dashed #3a4759;border-radius:3px;margin:10px 0;">`
+        + `<button type="button" class="b on" data-a="gtimportdialog" style="height:32px;font-size:12px;padding:0 18px;font-weight:700">📂 Procurar Arquivo .gtzip no Computador…</button>`
+        + `<p style="margin:8px 0 0;font-size:11px;color:#8f9cb0">Abre o Explorador de Arquivos do Windows para você escolher seus pacotes .gtzip.</p>`
+        + `</div>`
+        + `<p style="font-size:11px;color:#00e676;font-weight:600">✓ Convertido instantaneamente e disponível na galeria sem reiniciar o programa.</p>`
+        + `<div class="row end"><button class="b" data-a="close">Fechar</button></div>`;
     }
     else if (st.pop === "presets") p.innerHTML = `<h3>Presets</h3><p>Cada preset é uma produção inteira: entradas, overlays, transições. O motor grava as alterações sozinho.</p><div class="menu" style="max-height:140px;overflow:auto">${(st.presets || []).map((n) => `<button data-a="presetopen" data-v="${esc(n)}">${n === st.preset ? "● " : ""}${esc(n)}${n === st.preset ? " (em uso)" : ""}</button>`).join("")}</div><label style="margin-top:8px">Novo preset<input id="ps-name" maxlength="40" placeholder="Nome da produção"></label><div class="row"><button class="b on" data-a="presetnew">Criar</button><button class="b" data-a="close">Fechar</button></div>`;
     else if (["recset", "streamset", "config"].includes(st.pop)) { const c = st.cfg, opt = (list, cur) => list.map(([v, l]) => `<option value="${v}"${v === cur ? " selected" : ""}>${l}</option>`).join("");
@@ -1331,9 +1422,17 @@
     else if (st.pop === "gcedit") { const { name, cfg } = st.gcEdit, tpl = gcTemplate(cfg.t);
       p.innerHTML = `<h3>Título · ${esc(name)}</h3><p>${esc(tpl.collection)} · ${esc(tpl.name)}</p>` + tpl.fields.map((x) => `<label>${esc(x.label)}<input id="gc-f-${x.key}" type="${gcType(x)}" value="${esc(cfg.d?.[x.key] ?? x.default)}"></label>`).join("")
         + `<p>Aplicar muda o título na hora, mesmo com ele no ar.</p><div class="row end"><button class="b on" data-a="gcapply">Aplicar</button><button class="b" data-a="close">Fechar</button></div>`; }
+    else if (st.pop === "catfind") p.innerHTML = `<h3>Busca de entradas</h3><label>Mostrar só as entradas cujo nome contém<input id="cf-find" maxlength="40" value="${esc(st.find)}" placeholder="Ex.: CAM"></label><div class="row"><button class="b on" data-a="catfindgo">OK</button><button class="b" data-a="close">Cancelar</button></div>`;
+    else if (st.pop === "catnames") p.innerHTML = `<h3>Categorias das entradas</h3><p>Dê um nome a cada cor. Sem nome, a aba mostra só a cor.</p>` + COLORS.map((c, i) => `<label class="catrow"><i style="background:${c}"></i><input id="cn-${i}" maxlength="16" value="${esc(st.catNames[i] || "")}" placeholder="sem nome"></label>`).join("") + `<div class="row"><button class="b on" data-a="catnamesgo">OK</button><button class="b" data-a="close">Cancelar</button></div>`;
+    else if (st.pop === "clocks") { const C = st.clocks;
+      p.innerHTML = `<h3>Relógios de produção</h3>` + (!C ? "<p>Lendo…</p>" : [0, 1, 2].map((i) => { const c = C[i] || { type: "none" };
+        return `<fieldset><legend>Relógio ${i + 1}</legend><label>Mostrar<select id="ck-t${i}" data-ck="1">${CLOCK_TYPES.map(([v, l]) => `<option value="${v}"${c.type === v ? " selected" : ""}>${l}</option>`).join("")}</select></label>`
+          + (c.type === "clock" ? `<label>Diferença de horas (outro fuso)<input id="ck-o${i}" type="number" min="-12" max="14" value="${+c.offset || 0}"></label><label class="chk"><input type="checkbox" id="ck-a${i}"${c.ampm ? " checked" : ""}> 12 horas (AM/PM)</label>` : "")
+          + (c.type === "event" ? `<label>Início<input id="ck-s${i}" type="time" value="${esc(c.start || "")}"></label><label>Fim (opcional)<input id="ck-e${i}" type="time" value="${esc(c.end || "")}"></label>` : "") + `</fieldset>`; }).join(""))
+        + `<p>Evento: antes do início conta em amarelo; durante, em verde; depois do fim, em vermelho.</p><div class="row end"><button class="b on" data-a="clockssave">OK</button><button class="b" data-a="close">Cancelar</button></div>`; }
     else if (st.pop === "gear") p.innerHTML = `<h3>Painel</h3><p>${st.on ? "Conectado a " + esc(LOCAL.url || "") : esc(st.why)}</p><div class="row"><button class="b${st.studio ? " on" : ""}" data-a="studio">Modo estúdio (Preview + Programa)</button></div><p style="margin-top:8px">Cenas, fontes, mixer nativo e controles do OBS continuam no menu Painéis.</p><div class="row"><button class="b" data-a="close">Fechar</button></div>`;
   }
-  const openPop = (id, arg) => { if (st.pop === id && st.popArg === arg) return closePop(); st.pop = id; st.popArg = arg; renderPop(); ($("add-name") || $("rn-name") || $("sa-name"))?.select(); if (["recset", "streamset", "config"].includes(id)) { st.cfg = null; renderPop(); A.cfgload(); } if (id === "presets") A.presetload(); if (id === "stats") A.statsload(); if (id === "streamset") { st.destTab = 0; syncDest(); } if (id === "call") syncRet(); if (id === "layers") { st.layers = null; A.layersload(); } if (id === "audioset") { st.aset = null; st.asetTab = "geral"; renderPop(); A.asetload(); } if (id === "ext") A.extload(); };
+  const openPop = (id, arg) => { if (st.pop === id && st.popArg === arg) return closePop(); st.pop = id; st.popArg = arg; renderPop(); ($("add-name") || $("rn-name") || $("sa-name"))?.select(); if (["recset", "streamset", "config"].includes(id)) { st.cfg = null; renderPop(); A.cfgload(); } if (id === "presets") A.presetload(); if (id === "stats") A.statsload(); if (id === "clocks") { st.clocks = null; A.clocksload(); } if (id === "streamset") { st.destTab = 0; syncDest(); } if (id === "call") syncRet(); if (id === "layers") { st.layers = null; A.layersload(); } if (id === "audioset") { st.aset = null; st.asetTab = "geral"; renderPop(); A.asetload(); } if (id === "ext") A.extload(); };
   const closePop = () => { const p = $("pop"); st.pop = null; p.className = "pop"; p.style.left = p.style.top = p.style.right = p.style.bottom = ""; };
   const renderAll = () => { renderTabs(); renderTiles(); renderMixer(); renderBot(); renderStat(); };
 
@@ -1354,7 +1453,7 @@
     else A.asetfx(d.fx, d.k, v);
   });
   document.addEventListener("change", (e) => { const d = e.target.dataset; if (d && d.fxon && st.aset) A.asetenable(d.fxon, e.target.checked); });
-  document.addEventListener("contextmenu", (e) => { e.preventDefault(); const t = e.target.closest(".tile"); if (t) openPop("menu", t.dataset.s); });
+  document.addEventListener("contextmenu", (e) => { e.preventDefault(); if (e.target.closest(".c")) return openPop("catnames"); const t = e.target.closest(".tile"); if (t) openPop("menu", t.dataset.s); });
   document.addEventListener("input", (e) => { if (e.target.id === "add-name") e.target.dataset.edited = "1"; });
 
   /* ---- Barra de Mídia (vMix 29 Broadcast Controls sob Preview e Output) ---- */

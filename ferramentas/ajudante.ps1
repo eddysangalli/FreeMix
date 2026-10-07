@@ -24,6 +24,10 @@ while (Running) {
     Start-Process powershell.exe -ArgumentList '-NoProfile', '-ExecutionPolicy', 'Bypass', '-WindowStyle', 'Hidden', '-File', "`"$PSScriptRoot\abrir-configuracoes.ps1`"" -WindowStyle Hidden
     continue
   }
+  if ($cmd.cmd -eq 'import_gt') {   # Windows file dialog to pick and import .gtzip title packages
+    Start-Process powershell.exe -ArgumentList '-NoProfile', '-ExecutionPolicy', 'Bypass', '-WindowStyle', 'Hidden', '-File', "`"$PSScriptRoot\importar-gt-dialog.ps1`"" -WindowStyle Hidden
+    continue
+  }
   if ($cmd.cmd -ne 'saveas' -or -not $cmd.name -or -not $cmd.from) { continue }
   # The production's own name is the "name" key at the first indentation level of its file. The file is matched as
   # text: Windows PowerShell cannot parse these files as JSON (keys that differ only in case, empty keys).

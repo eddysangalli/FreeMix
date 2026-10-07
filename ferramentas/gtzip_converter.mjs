@@ -228,6 +228,15 @@ function parseBrush(xmlSnippet, tagPrefix) {
       endPoint,
       stops
     };
+  } else if (brushType === 'Bitmap') {
+    const bmpMatch = innerContent.match(/<Bitmap\s+Source="([^"]*)"/i);
+    const src = bmpMatch ? bmpMatch[1] : '';
+    const filename = src ? path.basename(src.replace(/\\/g, '/')) : '';
+    return {
+      type: 'Bitmap',
+      source: filename,
+      rawSource: src
+    };
   } else {
     return {
       type: 'Solid',
@@ -241,6 +250,7 @@ function parseBrush(xmlSnippet, tagPrefix) {
  */
 function brushToCss(brush) {
   if (!brush) return 'transparent';
+  if (brush.type === 'Bitmap') return 'transparent';
   if (brush.type === 'Solid') {
     return brush.color;
   }
@@ -333,12 +343,22 @@ export function generateHtml(gtData, templateTitle = 'FreeMix GT Template', asse
       ];
 
       if (el.type === 'Rectangle') {
-        elemStyles.push(`background: ${brushToCss(el.fill)}`);
+        if (el.fill && el.fill.type === 'Bitmap') {
+          const filename = el.fill.source;
+          const localImgPath = assetFiles[filename] || filename;
+          elemStyles.push(`background-image: url('${localImgPath}')`);
+          elemStyles.push(`background-size: 100% 100%`);
+          elemStyles.push(`background-repeat: no-repeat`);
+          elemStyles.push(`background-position: center`);
+          elemStyles.push(`background-color: transparent`);
+        } else {
+          elemStyles.push(`background: ${brushToCss(el.fill)}`);
+        }
         elemStyles.push(`opacity: ${el.opacity}`);
         if (el.radiusX || el.radiusY) {
           elemStyles.push(`border-radius: ${el.radiusX}px / ${el.radiusY}px`);
         }
-        if (el.strokeThickness && el.stroke) {
+        if (el.strokeThickness && el.stroke && el.stroke.type !== 'Solid') {
           elemStyles.push(`border: ${el.strokeThickness}px solid ${brushToCss(el.stroke)}`);
           elemStyles.push(`box-sizing: border-box`);
         }
@@ -653,6 +673,20 @@ export function convertGtzipFile(gtzipPath, outputDir) {
   const xmlContent = fs.readFileSync(docPath, 'utf8');
   const gtData = parseGtXml(xmlContent);
 
+  // Mapear recursos pelo resources.xml (converte GUIDs para nomes reais de imagem)
+  const resPath = path.join(tempExtract, 'resources.xml');
+  const guidMap = {};
+  if (fs.existsSync(resPath)) {
+    const resXml = fs.readFileSync(resPath, 'utf8');
+    const resRegex = /<resource\s+filename="([^"]*)">\s*<source\s+guid="([^"]*)"/gi;
+    let rm;
+    while ((rm = resRegex.exec(resXml)) !== null) {
+      const origFilename = path.basename(rm[1].replace(/\\/g, '/'));
+      const guid = rm[2].trim();
+      guidMap[guid] = origFilename;
+    }
+  }
+
   // Mapear arquivos extraídos (imagens, thumbnail)
   const extractedFiles = fs.readdirSync(tempExtract);
   const assetMap = {};
@@ -670,6 +704,11 @@ export function convertGtzipFile(gtzipPath, outputDir) {
       }
     } else if (f.toLowerCase() === 'thumbnail.png') {
       fs.copyFileSync(fullPath, path.join(targetFolder, 'thumbnail.png'));
+    } else if (guidMap[f]) {
+      // Arquivo mapeado por GUID do resources.xml!
+      const realName = guidMap[f];
+      fs.copyFileSync(fullPath, path.join(targetFolder, realName));
+      assetMap[realName] = realName;
     } else if (f.endsWith('.png') || f.endsWith('.jpg') || f.endsWith('.jpeg')) {
       fs.copyFileSync(fullPath, path.join(targetFolder, f));
       assetMap[f] = f;
