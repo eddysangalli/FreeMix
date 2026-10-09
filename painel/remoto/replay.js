@@ -69,8 +69,8 @@ let replay = null, deck = 'A', busy = false, retentionDirty = false, eventsSigna
     function historyStep(){const parts=historyState?.frameRate?.split('/').map(Number);return parts?.[0]&&parts?.[1]?parts[1]/parts[0]:1/30;}
     function setHistoryButtons(confirmed){for(const id of ['history-back-frame','history-next-frame'])el(id).disabled=!historyState||busy;for(const id of ['history-in','history-out'])el(id).disabled=!confirmed;}
     function renderHistory(history){
-      if(!history){el('history-status').textContent='Nenhuma sessão gravada disponível.';return;}
-      if(historyState?.sessionId!==history.sessionId){historyIn=historyOut=historyConfirmed=null;el('history-image').hidden=true;}
+      if(!history){stopHistoryVideo();historyState=null;historyIn=historyOut=historyConfirmed=null;setHistoryButtons(false);el('history-status').textContent='Nenhuma sessão gravada disponível.';return;}
+      if(historyState?.sessionId!==history.sessionId){stopHistoryVideo();historyIn=historyOut=historyConfirmed=null;el('history-image').hidden=true;}
       historyState=history;const slider=el('history-seek'),cursor=el('history-cursor'),old=Number(slider.value),wasDisabled=slider.disabled;
       slider.min=cursor.min=history.start;slider.max=cursor.max=history.end;slider.step=cursor.step=historyStep();slider.disabled=cursor.disabled=false;
       slider.value=cursor.value=wasDisabled?Math.max(history.start,history.end-1):Math.min(history.end,Math.max(history.start,old));
@@ -81,11 +81,48 @@ let replay = null, deck = 'A', busy = false, retentionDirty = false, eventsSigna
     function refreshHistory(){request('history');}
     function historyCursorChanged(){el('history-cursor').value=Number(el('history-seek').value).toFixed(3);historyConfirmed=null;setHistoryButtons(false);}
     function historyPositionChanged(){if(!historyState)return;el('history-seek').value=Math.min(historyState.end,Math.max(historyState.start,Number(el('history-cursor').value)));historyCursorChanged();previewHistory();}
-    function previewHistory(){if(!historyState||busy)return;historyConfirmed=null;setHistoryButtons(false);request('history-frame',{sessionId:historyState.sessionId,cam:el('history-camera').value,cursor:Number(el('history-seek').value)});}
+    function previewHistory(){if(!historyState||busy)return;historyConfirmed=null;setHistoryButtons(false);if(replay?.historyPlaybackSupported)startHistoryVideo(Number(el('history-seek').value),false);else request('history-frame',{sessionId:historyState.sessionId,cam:el('history-camera').value,cursor:Number(el('history-seek').value)});}
     function stepHistory(delta){if(!historyState||busy)return;el('history-seek').value=Math.min(historyState.end,Math.max(historyState.start,Number(el('history-seek').value)+delta*historyStep()));historyCursorChanged();previewHistory();}
-    function markHistory(which){if(historyConfirmed===null)return;if(which==='in')historyIn=historyConfirmed;else historyOut=historyConfirmed;renderHistoryMarks();}
+    function markHistory(which){if(historyConfirmed===null)return;if(which==='in')historyIn=historyConfirmed;else historyOut=historyConfirmed;renderHistoryMarks();renewHistoryPin();}
     function renderHistoryMarks(){const valid=historyIn!==null&&historyOut!==null&&historyOut-historyIn>=.2&&historyOut-historyIn<=120&&historyIn>=historyState.start&&historyOut<=historyState.end;el('history-range').textContent='IN: '+(historyIn===null?'—':historyIn.toFixed(3)+' s')+' · OUT: '+(historyOut===null?'—':historyOut.toFixed(3)+' s')+(valid?' · '+(historyOut-historyIn).toFixed(3)+' s':'');el('history-save').disabled=!valid;}
     function saveHistoryRange(){if(el('history-save').disabled||busy)return;request('capture-range',{sessionId:historyState.sessionId,start:historyIn,end:historyOut});}
+    // This is a local, low-resolution monitoring proxy. Loaded replay players and
+    // saved clips retain the original quality and their existing A/B/C/D contract.
+    let historyPlayback=null,historyGeneration=0,historyRefreshAt=0,historyRefreshing=false,historyPinAt=0;
+    const historyViewerId=crypto.randomUUID();
+    async function historyApi(action,data={},signal){const response=await fetch('/api/replay',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action,...data}),signal:signal||AbortSignal.timeout(35000)});const result=await response.json();if(!response.ok||!result.success)throw Error(result.error||'Prévia indisponível');return result.replay;}
+    function stopHistoryVideo(){historyGeneration++;const own=historyPlayback;historyPlayback=null;if(own){own.controller.abort();URL.revokeObjectURL(own.url);}const video=el('history-video');video.pause();video.removeAttribute('src');video.load();video.hidden=true;el('history-play').textContent='▶ Reproduzir histórico';}
+    function updateHistoryVideoCursor(){const own=historyPlayback,video=el('history-video');if(!own||video.readyState<2)return;const cursor=Math.min(historyState.end,own.origin+video.currentTime);historyConfirmed=cursor;if(document.activeElement!==el('history-seek'))el('history-seek').value=cursor;el('history-cursor').value=cursor.toFixed(3);setHistoryButtons(true);}
+    async function appendHistoryProxy(own,meta,bytes){
+      if(own!==historyPlayback)return;
+      const sb=own.buffer;await new Promise((resolve,reject)=>{const clear=()=>{sb.removeEventListener('updateend',done);sb.removeEventListener('error',fail);own.controller.signal.removeEventListener('abort',abort);};const done=()=>{clear();resolve();},fail=()=>{clear();reject(Error('O navegador recusou os quadros da prévia'));},abort=()=>{clear();reject(Error('Busca substituída'));};sb.addEventListener('updateend',done,{once:true});sb.addEventListener('error',fail,{once:true});own.controller.signal.addEventListener('abort',abort,{once:true});try{sb.timestampOffset=meta.start-own.origin;sb.appendWindowStart=Math.max(0,meta.start-own.origin);sb.appendWindowEnd=meta.end-own.origin+.035;sb.appendBuffer(bytes);}catch(e){clear();reject(e);}});
+      if(own!==historyPlayback)return;own.end=meta.end;own.media.duration=Math.max(own.media.duration||0,meta.end-own.origin+.04);own.lastPrepareMs=meta.prepareMs;
+      const cutoff=el('history-video').currentTime-24;if(cutoff>0&&!sb.updating){sb.remove(0,cutoff);await new Promise(resolve=>sb.addEventListener('updateend',resolve,{once:true}));}
+    }
+    async function getHistoryProxy(own,cursor,from){const result=await historyApi('history-preview',{sessionId:own.sessionId,cam:own.cam,cursor,viewerId:historyViewerId,...(from!==undefined?{from}: {})},own.controller.signal);if(own!==historyPlayback)throw Error('Busca substituída');const meta=result.historyPreview;if(!meta||!meta.url.startsWith('/api/replay-preview/'))throw Error('O serviço não forneceu vídeo de prévia');const response=await fetch(meta.url,{signal:own.controller.signal});if(!response.ok)throw Error('Prévia expirou; escolha o ponto novamente');return {meta,bytes:await response.arrayBuffer()};}
+    async function startHistoryVideo(cursor,playing){
+      if(!historyState)return;stopHistoryVideo();const generation=historyGeneration,video=el('history-video');
+      if(!window.MediaSource||!MediaSource.isTypeSupported('video/mp4; codecs="avc1.42E02A,mp4a.40.2"')){el('history-status').textContent='Este navegador não oferece H.264/AAC para reprodução do histórico. Use os quadros ou o console em um navegador compatível.';request('history-frame',{sessionId:historyState.sessionId,cam:el('history-camera').value,cursor});return;}
+      const media=new MediaSource(),url=URL.createObjectURL(media),own={media,url,controller:new AbortController(),sessionId:historyState.sessionId,cam:el('history-camera').value,generation,loading:true};historyPlayback=own;el('history-image').hidden=true;video.hidden=false;video.src=url;video.muted=!el('history-audio').checked;el('history-status').textContent='Preparando vídeo e áudio do ponto escolhido…';
+      try{
+        await new Promise((resolve,reject)=>{media.addEventListener('sourceopen',resolve,{once:true});own.controller.signal.addEventListener('abort',()=>reject(Error('Busca substituída')),{once:true});});
+        const {meta,bytes}=await getHistoryProxy(own,cursor);own.origin=meta.start;own.buffer=media.addSourceBuffer('video/mp4; codecs="'+meta.codecs+'"');own.buffer.mode='segments';await appendHistoryProxy(own,meta,bytes);if(own!==historyPlayback)return;
+        video.currentTime=Math.max(0,meta.cursor-own.origin);own.loading=false;el('history-status').textContent='Prévia local · '+own.cam+' · vídeo e áudio'+(meta.hasAudio?'':' (sem áudio gravado)')+' · '+meta.prepareMs+' ms para preparar';
+        if(playing){await video.play();el('history-play').textContent='⏸ Pausar histórico';}updateHistoryVideoCursor();pumpHistoryVideo();
+      }catch(e){if(own!==historyPlayback)return;stopHistoryVideo();el('history-status').textContent=e.message;}
+    }
+    async function pumpHistoryVideo(){
+      const own=historyPlayback,video=el('history-video');if(!own||own.loading||own.end-own.origin-video.currentTime>5||!historyState)return;
+      const safeEnd=historyState.end-(historyState.recording ? .25 : 0);if(safeEnd-own.end<.5)return;
+      own.loading=true;try{const wasPaused=video.paused,{meta,bytes}=await getHistoryProxy(own,own.end+.001,own.end);if(own!==historyPlayback)return;if(meta.end<=own.end)return;await appendHistoryProxy(own,meta,bytes);if(!wasPaused||own.resumeWhenReady){await video.play();own.resumeWhenReady=false;el('history-play').textContent='⏸ Pausar histórico';}}catch(e){if(own===historyPlayback&&!own.controller.signal.aborted)el('history-status').textContent=e.message;}finally{own.loading=false;}
+    }
+    function toggleHistoryPlayback(){const video=el('history-video');if(!historyPlayback){startHistoryVideo(Number(el('history-seek').value),true);return;}if(video.paused){historyPlayback.resumeWhenReady=true;video.play().then(()=>{el('history-play').textContent='⏸ Pausar histórico';}).catch(e=>el('history-status').textContent=e.message);}else{video.pause();historyPlayback.resumeWhenReady=false;el('history-play').textContent='▶ Reproduzir histórico';}}
+    function historyMonitorAudio(){el('history-video').muted=!el('history-audio').checked;}
+    function followHistoryEnd(){if(historyState)startHistoryVideo(Math.max(historyState.start,historyState.end-2),true);}
+    async function renewHistoryPin(){if(historyIn===null||!historyState)return;historyPinAt=Date.now();try{await historyApi('history-pin',{sessionId:historyState.sessionId,start:historyIn,end:historyOut!==null&&historyOut>=historyIn&&historyOut-historyIn<=120?historyOut:Math.min(historyIn+120,historyState.end)});}catch(e){el('history-status').textContent=e.message;}}
+    async function autoHistory(){if(historyRefreshing||!replay?.historySupported||Date.now()-historyRefreshAt<(replay.rec?2500:6000))return;historyRefreshAt=Date.now();historyRefreshing=true;try{const result=await historyApi('history');const incoming=result.history;let expired=false;if(historyState&&incoming?.sessionId!==historyState.sessionId)stopHistoryVideo();if(historyPlayback&&incoming?.start>historyPlayback.origin+el('history-video').currentTime){stopHistoryVideo();historyConfirmed=null;expired=true;}if(historyIn!==null&&incoming?.start>historyIn){historyIn=historyOut=null;expired=true;}renderHistory(incoming);if(expired)el('history-status').textContent='O ponto expirou pela retenção. Escolha outro ponto.';el('history-play').disabled=!incoming||!result.historyPlaybackSupported;el('history-follow').disabled=!incoming||!result.historyPlaybackSupported;if(historyIn!==null&&Date.now()-historyPinAt>30000)renewHistoryPin();pumpHistoryVideo();}catch(e){if(!historyState)el('history-status').textContent=e.message;}finally{historyRefreshing=false;}}
+    el('history-video').addEventListener('timeupdate',updateHistoryVideoCursor);el('history-video').addEventListener('seeked',updateHistoryVideoCursor);el('history-video').addEventListener('ended',()=>{if(historyPlayback){historyPlayback.resumeWhenReady=!!historyState?.recording;el('history-play').textContent='▶ Reproduzir histórico';}});
+    setInterval(pumpHistoryVideo,500);window.addEventListener('pagehide',()=>{stopHistoryVideo();});
     let cameraSignature='';
     function renderCameraOptions(data){
       const choices=[...new Set([...(data.availableCams||[]),...Object.values(data.players||{}).map(p=>p.cam),...(data.events||[]).flatMap(e=>(e.clips||[]).map(c=>c.cam))])].filter(Boolean),signature=JSON.stringify(choices),select=el('audio-cam');
@@ -112,7 +149,7 @@ let replay = null, deck = 'A', busy = false, retentionDirty = false, eventsSigna
     function backToLive() { request('live'); }
     async function poll() {
       if (busy) return;
-      try { const response=await fetch('/api/replay',{signal:AbortSignal.timeout(5000)}); const result=await response.json(); if (result.success) render(result.replay); else el('rec-status').textContent=result.error; }
+      try { const response=await fetch('/api/replay',{signal:AbortSignal.timeout(5000)}); const result=await response.json(); if (result.success){render(result.replay);autoHistory();} else el('rec-status').textContent=result.error; }
       catch { el('rec-status').textContent='Sem conexão com o FreeMix'; }
     }
     poll(); setInterval(poll,1500);

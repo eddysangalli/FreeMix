@@ -14,6 +14,7 @@ import { Production,xml } from './controle-producao.mjs';
 import { OnlineUpdateEngine } from './atualizacao-online.mjs';
 import { DiagnosticCollector } from './diagnostico-producao.mjs';
 import { readDiagnosticZip } from './diagnostico-zip.mjs';
+import {servePreviewMedia} from './midia-preview-http.mjs';
 
 const ROOT=process.env.FREEMIX_ROOT||fileURLToPath(new URL('../',import.meta.url));
 const PANEL=process.env.FREEMIX_PANEL_DIR||join(ROOT,'painel'), PORT=Number(process.env.FREEMIX_API_PORT||8088);
@@ -110,7 +111,15 @@ const server=createServer(async(req,res)=>{
     }
     if(path.startsWith('/api/')||path==='/api'||path==='/ws'){
       if(!authorized(req))return json(res,401,{success:false,error:'Autorize este dispositivo com o código do computador FreeMix'});
-      if(path==='/api/control'&&req.method==='POST'&&false)throw Error('reserved');
+      if(path.startsWith('/api/replay-preview/')){
+        if(!local(req))return json(res,403,{success:false,error:'Prévia do histórico disponível somente neste computador'});
+        if(!['GET','HEAD'].includes(req.method)){res.setHeader('Allow','GET, HEAD');return json(res,405,{success:false,error:'Método inválido'});}
+        const previewToken=path.slice('/api/replay-preview/'.length);
+        if(!/^[0-9a-f]{32}$/.test(previewToken))return json(res,404,{success:false,error:'Prévia inválida'});
+        let lease;
+        try{lease=await replay.previewFile(previewToken);}catch{return json(res,404,{success:false,error:'Prévia expirada; atualize o histórico'});}
+        return await servePreviewMedia(req,res,lease);
+      }
       if(path.startsWith('/api/diagnostics')){
         if(!local(req))return json(res,403,{success:false,error:'Diagnóstico disponível somente neste computador'});
         if(path==='/api/diagnostics'&&req.method==='POST'){const data=await body(req);if(typeof data.note!=='undefined'&&typeof data.note!=='string'||typeof data.machineName!=='undefined'&&typeof data.machineName!=='string')throw Error('Dados inválidos');await diagnostics.generate({note:data.note,machineName:data.machineName});return json(res,200,diagnostics.summary());}
@@ -182,5 +191,5 @@ const ticker=setInterval(async()=>{if(!obs||connecting||pollingGeneration!==null
  finally{if(pollingGeneration===generation)pollingGeneration=null;}
 },1000);
 server.listen(PORT,process.env.FREEMIX_API_HOST||'127.0.0.1',()=>{console.log(`FreeMix: API e consoles na porta ${PORT}.`);startConnection();});
-function stop(){stopping=true;connectionGeneration++;connectionReady=false;production.sessionRecovery.finish('api-restart').catch(()=>{});clearInterval(ticker);clearTimeout(reconnectTimer);for(const c of clients)c.close();production.callEngine.returns.stop().catch(()=>{});production.networkEngine.stop().catch(()=>{});obs?.close();wss.close();callWss.close();server.close();}
+function stop(){if(stopping)return;stopping=true;connectionGeneration++;connectionReady=false;production.sessionRecovery.finish('api-restart').catch(()=>{});clearInterval(ticker);clearTimeout(reconnectTimer);for(const c of clients)c.close();production.callEngine.returns.stop().catch(()=>{});production.networkEngine.stop().catch(()=>{});replay.dispose().catch(e=>connectionError('replay-preview-close',e));iso.dispose().catch(e=>connectionError('iso-preview-close',e));obs?.close();wss.close();callWss.close();server.close();}
 process.on('SIGTERM',stop);process.on('SIGINT',stop);

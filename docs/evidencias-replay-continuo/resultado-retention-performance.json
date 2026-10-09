@@ -1,0 +1,31 @@
+{
+  "status": "PASS",
+  "at": "2026-10-09T20:17:26.386Z",
+  "operatorTouched": false,
+  "realMedia": true,
+  "nativeRecordingMocked": true,
+  "sourceResolution": "1920x1080",
+  "sourceFPS": "30000/1001",
+  "proxy": {
+    "token": "907fb61c25184aaea505496845c4faa5",
+    "start": 0,
+    "end": 8,
+    "cursor": 1,
+    "mime": "video/mp4",
+    "codecs": "avc1.42E02A,mp4a.40.2",
+    "bytes": 1324361,
+    "url": "/api/replay-preview/907fb61c25184aaea505496845c4faa5",
+    "hasAudio": true,
+    "frameRate": "30000/1001",
+    "prepareMs": 322,
+    "cacheHit": false
+  },
+  "elapsedMs": 385.05039999999997,
+  "checks": [
+    "1920x1080 NTSC source preserves30000/1001 FPS and prepares bounded eight-second low-resolution proxy in 385.1ms",
+    "Dispose preserves active leased media until the HTTP reader releases it",
+    "Retention purges only unpinned closed segments and preserves selected historical IN/OUT",
+    "Abandoned pin expires and allows retention to resume without retaining the whole session",
+    "Expired historical seek is rejected after retention advances"
+  ]
+}

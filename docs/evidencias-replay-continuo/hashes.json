@@ -1,0 +1,67 @@
+[
+  {
+    "path": "obs-vmix/ferramentas/replay-preview.mjs",
+    "sha256": "6fadf72f276c46de7b9640331e989a539863275a698df1316559de7da744a4af",
+    "bytes": 6991
+  },
+  {
+    "path": "obs-vmix/ferramentas/replay-disco.mjs",
+    "sha256": "c61e439ae6c27742fe14678fee01da3cf18a21c55df1d6e4cba03212262ee0cc",
+    "bytes": 68835
+  },
+  {
+    "path": "obs-vmix/painel/remoto/replay.js",
+    "sha256": "5a97a540b814cc5f8b746653e19c0caee47618e2c22dedc0c7deae5af171c5eb",
+    "bytes": 23469
+  },
+  {
+    "path": "obs-vmix/painel/remoto/replay.html",
+    "sha256": "6f8db2fd2ed32dbeb0873e529ba7cfaa302cbad0384ecf9e1da93d67d8bebb45",
+    "bytes": 17236
+  },
+  {
+    "path": "qa-finalizacao/replay-completo/test-real.mjs",
+    "sha256": "d2847cb3a73d65d54fd18546c99f2bd8b89812ba8ab5229319f096ea1f8306c8",
+    "bytes": 6407
+  },
+  {
+    "path": "qa-finalizacao/replay-completo/test-ui.mjs",
+    "sha256": "842712627710e51c1d89e828edde7884d3513673b2822b95984d92c272928986",
+    "bytes": 8799
+  },
+  {
+    "path": "qa-finalizacao/replay-completo/test-retention-performance.mjs",
+    "sha256": "dce4ec1abbee6ef138bdaaa84de36bd3a99e57905e0077244928bda8f1068edc",
+    "bytes": 4033
+  },
+  {
+    "path": "qa-finalizacao/replay-completo/test-silent.mjs",
+    "sha256": "1a2dcd5fdf97725749c521173cbbad64e711d3c9220ac6718493364fa5e4a77a",
+    "bytes": 3629
+  },
+  {
+    "path": "qa-finalizacao/replay-completo/resultado-real.json",
+    "sha256": "376b07f065da1ce86999caa77408bff7cc93fca5433fe26cba40f0e68e8948e0",
+    "bytes": 2646
+  },
+  {
+    "path": "qa-finalizacao/replay-completo/resultado-ui.json",
+    "sha256": "813894edc8061ea4cf619f61ce9b312b916e3b33ba634e8cf35d28168c53d86f",
+    "bytes": 6404
+  },
+  {
+    "path": "qa-finalizacao/replay-completo/resultado-retention-performance.json",
+    "sha256": "c6421d29fa854489d02c4663e04dbbc9a0294b4b150c617c5655fad4b3ab6120",
+    "bytes": 1078
+  },
+  {
+    "path": "qa-finalizacao/replay-completo/resultado-silent.json",
+    "sha256": "51a3a453b7c8a55ad50c86d00eb319cf907e6a1a5f262184243da4edd5d799a9",
+    "bytes": 452
+  },
+  {
+    "path": "qa-finalizacao/replay-completo/RELATORIO.md",
+    "sha256": "3c1c2494cae317d850c037345addcb5b37d0e1f715528d4e6fdccdbd6e1e96e1",
+    "bytes": 5837
+  }
+]

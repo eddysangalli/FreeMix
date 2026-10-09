@@ -1,0 +1,54 @@
+{
+  "status": "PASS",
+  "at": "2026-10-09T20:32:57.511Z",
+  "nativePid": 138940,
+  "operatorTouched": false,
+  "audibleMonitoring": false,
+  "checks": [
+    "Duas câmeras gravadas por SourceRecord/x264 no motor real, raiz e diretório privados",
+    "Proxy contínuo fMP4 decodifica vídeo real e áudio da gravação nativa, sem parar REC",
+    "Histórico cresce e ambos os arquivos continuam gravando durante e depois da prévia",
+    "IN/OUT histórico gera lance original de dois ângulos sem alterar Programa ou interromper REC"
+  ],
+  "firstHistory": {
+    "sessionId": "fd9e2e46-e169-47e9-b9f7-4624bb639915",
+    "start": 0,
+    "end": 6.321333999999999,
+    "recording": true,
+    "cameras": [
+      "QA Native Replay Camera 1 1791577964909",
+      "QA Native Replay Camera 2 1791577964912"
+    ],
+    "frameRate": "30/1"
+  },
+  "secondHistory": {
+    "sessionId": "fd9e2e46-e169-47e9-b9f7-4624bb639915",
+    "start": 0,
+    "end": 9.821334000000002,
+    "recording": true,
+    "cameras": [
+      "QA Native Replay Camera 1 1791577964909",
+      "QA Native Replay Camera 2 1791577964912"
+    ],
+    "frameRate": "30/1"
+  },
+  "previewPrepareMs": 356.3896000000004,
+  "preview": {
+    "token": "9c406d02fc084f7a98aae802211df3a3",
+    "start": 0,
+    "end": 6.204667,
+    "cursor": 1,
+    "mime": "video/mp4",
+    "codecs": "avc1.42E02A,mp4a.40.2",
+    "bytes": 318104,
+    "url": "/api/replay-preview/9c406d02fc084f7a98aae802211df3a3",
+    "hasAudio": true,
+    "frameRate": "30/1",
+    "prepareMs": 285,
+    "cacheHit": false
+  },
+  "audioRMS": 0.12145044240787067,
+  "limits": [
+    "Ensaio local de duas câmeras sintéticas, não homologação de genlock, horas de carga ou dispositivos físicos"
+  ]
+}

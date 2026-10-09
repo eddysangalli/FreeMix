@@ -1,0 +1,353 @@
+{
+  "status": "PASS",
+  "at": "2026-10-09T20:20:43.083Z",
+  "operatorTouched": false,
+  "port": 52050,
+  "realBrowserMedia": true,
+  "nativePlaybackMocked": true,
+  "checks": [
+    "Real browser AAC decode measured near440Hz; output gain0 leaves operator audio untouched",
+    "Edge decodes and plays real video continuously across three cached fMP4 chunks",
+    "Pause, historical seek, IN/OUT and real saved clips work at chosen playback positions",
+    "Playback at the growing recorded edge resumes as newly recorded blocks arrive",
+    "Real TS grows while REC is active; timeline extends automatically 2.99→6.75 seconds",
+    "Session replacement closes old video pipeline and discards old marks"
+  ],
+  "readyMs": 544.6884,
+  "seekMs": 43.45260000000053,
+  "browserAudio": {
+    "frequency": 445.3125,
+    "peakDb": -49.61088180541992,
+    "noiseDb": -106.3351821899414,
+    "sampleRate": 48000,
+    "audibleOutputGain": 0,
+    "context": "running",
+    "paused": false,
+    "muted": false,
+    "current": 1.730667
+  },
+  "samples": [
+    {
+      "at": 2735.5,
+      "current": 2.741333,
+      "origin": 0,
+      "end": 8,
+      "ready": 4,
+      "paused": false,
+      "frames": 56,
+      "dropped": 0,
+      "buffered": [
+        [
+          0,
+          7.999999
+        ]
+      ]
+    },
+    {
+      "at": 3738.2000000476837,
+      "current": 3.741333,
+      "origin": 0,
+      "end": 16,
+      "ready": 4,
+      "paused": false,
+      "frames": 86,
+      "dropped": 0,
+      "buffered": [
+        [
+          0,
+          15.999999
+        ]
+      ]
+    },
+    {
+      "at": 4740.799999952316,
+      "current": 4.741333,
+      "origin": 0,
+      "end": 16,
+      "ready": 4,
+      "paused": false,
+      "frames": 116,
+      "dropped": 0,
+      "buffered": [
+        [
+          0,
+          15.999999
+        ]
+      ]
+    },
+    {
+      "at": 5743.299999952316,
+      "current": 5.749747,
+      "origin": 0,
+      "end": 16,
+      "ready": 4,
+      "paused": false,
+      "frames": 147,
+      "dropped": 0,
+      "buffered": [
+        [
+          0,
+          15.999999
+        ]
+      ]
+    },
+    {
+      "at": 6746,
+      "current": 6.752,
+      "origin": 0,
+      "end": 16,
+      "ready": 4,
+      "paused": false,
+      "frames": 177,
+      "dropped": 0,
+      "buffered": [
+        [
+          0,
+          15.999999
+        ]
+      ]
+    },
+    {
+      "at": 7748.5,
+      "current": 7.752,
+      "origin": 0,
+      "end": 16,
+      "ready": 4,
+      "paused": false,
+      "frames": 207,
+      "dropped": 0,
+      "buffered": [
+        [
+          0,
+          15.999999
+        ]
+      ]
+    },
+    {
+      "at": 8752.899999976158,
+      "current": 8.757429,
+      "origin": 0,
+      "end": 16,
+      "ready": 4,
+      "paused": false,
+      "frames": 237,
+      "dropped": 0,
+      "buffered": [
+        [
+          0,
+          15.999999
+        ]
+      ]
+    },
+    {
+      "at": 9756,
+      "current": 9.76,
+      "origin": 0,
+      "end": 16,
+      "ready": 4,
+      "paused": false,
+      "frames": 267,
+      "dropped": 0,
+      "buffered": [
+        [
+          0,
+          15.999999
+        ]
+      ]
+    },
+    {
+      "at": 10758.899999976158,
+      "current": 10.76,
+      "origin": 0,
+      "end": 16,
+      "ready": 4,
+      "paused": false,
+      "frames": 297,
+      "dropped": 0,
+      "buffered": [
+        [
+          0,
+          15.999999
+        ]
+      ]
+    },
+    {
+      "at": 11760.799999952316,
+      "current": 11.76,
+      "origin": 0,
+      "end": 24,
+      "ready": 4,
+      "paused": false,
+      "frames": 327,
+      "dropped": 0,
+      "buffered": [
+        [
+          0,
+          23.999999
+        ]
+      ]
+    },
+    {
+      "at": 12764,
+      "current": 12.769056,
+      "origin": 0,
+      "end": 24,
+      "ready": 4,
+      "paused": false,
+      "frames": 357,
+      "dropped": 0,
+      "buffered": [
+        [
+          0,
+          23.999999
+        ]
+      ]
+    },
+    {
+      "at": 13765.299999952316,
+      "current": 13.770504,
+      "origin": 0,
+      "end": 24,
+      "ready": 4,
+      "paused": false,
+      "frames": 387,
+      "dropped": 0,
+      "buffered": [
+        [
+          0,
+          23.999999
+        ]
+      ]
+    },
+    {
+      "at": 14767.100000023842,
+      "current": 14.770667,
+      "origin": 0,
+      "end": 24,
+      "ready": 4,
+      "paused": false,
+      "frames": 417,
+      "dropped": 0,
+      "buffered": [
+        [
+          0,
+          23.999999
+        ]
+      ]
+    },
+    {
+      "at": 15769,
+      "current": 15.770667,
+      "origin": 0,
+      "end": 24,
+      "ready": 4,
+      "paused": false,
+      "frames": 447,
+      "dropped": 0,
+      "buffered": [
+        [
+          0,
+          23.999999
+        ]
+      ]
+    },
+    {
+      "at": 16772.700000047684,
+      "current": 16.770667,
+      "origin": 0,
+      "end": 24,
+      "ready": 4,
+      "paused": false,
+      "frames": 478,
+      "dropped": 0,
+      "buffered": [
+        [
+          0,
+          23.999999
+        ]
+      ]
+    },
+    {
+      "at": 17775.399999976158,
+      "current": 17.781234,
+      "origin": 0,
+      "end": 24,
+      "ready": 4,
+      "paused": false,
+      "frames": 508,
+      "dropped": 0,
+      "buffered": [
+        [
+          0,
+          23.999999
+        ]
+      ]
+    },
+    {
+      "at": 18778.100000023842,
+      "current": 18.781333,
+      "origin": 0,
+      "end": 24,
+      "ready": 4,
+      "paused": false,
+      "frames": 538,
+      "dropped": 0,
+      "buffered": [
+        [
+          0,
+          23.999999
+        ]
+      ]
+    },
+    {
+      "at": 19779.899999976158,
+      "current": 19.781333,
+      "origin": 0,
+      "end": 32,
+      "ready": 4,
+      "paused": false,
+      "frames": 568,
+      "dropped": 0,
+      "buffered": [
+        [
+          0,
+          31.999999
+        ]
+      ]
+    },
+    {
+      "at": 20781.700000047684,
+      "current": 20.781333,
+      "origin": 0,
+      "end": 32,
+      "ready": 4,
+      "paused": false,
+      "frames": 598,
+      "dropped": 0,
+      "buffered": [
+        [
+          0,
+          31.999999
+        ]
+      ]
+    },
+    {
+      "at": 21784.5,
+      "current": 21.790959,
+      "origin": 0,
+      "end": 32,
+      "ready": 4,
+      "paused": false,
+      "frames": 628,
+      "dropped": 0,
+      "buffered": [
+        [
+          0,
+          31.999999
+        ]
+      ]
+    }
+  ],
+  "mediaRequests": 9,
+  "errors": []
+}

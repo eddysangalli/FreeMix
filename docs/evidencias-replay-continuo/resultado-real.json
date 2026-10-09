@@ -1,0 +1,83 @@
+{
+  "status": "PASS",
+  "at": "2026-10-09T20:24:04.084Z",
+  "operatorTouched": false,
+  "nativeTransportMocked": true,
+  "proxyMediaReal": true,
+  "checks": [
+    "Real fragmented H.264/AAC proxy, monotonic PTS and original 30 fps; bounded 8 seconds",
+    "Repeated seek reuses immutable cache rather than re-encoding",
+    "Cross-segment 7–15 second proxy starts at requested frame (RGB MAE 2.116)",
+    "Decoded preview contains real PCM audio, RMS 0.08807",
+    "Cache eviction preserves active HTTP read leases; idempotent release permits bounded cleanup",
+    "Only one encoder and one pending seek; newest request supersedes older requests during metadata discovery",
+    "Old sessions, invalid positions and arbitrary file tokens are rejected",
+    "History playback never stops REC, changes Programme or controls A/B/C/D players"
+  ],
+  "timings": [
+    {
+      "cursor": 2,
+      "elapsedMs": 195.00900000000007,
+      "token": "53cdbd46f8f846e69b40e3e99311ab8b",
+      "start": 0,
+      "end": 8,
+      "mime": "video/mp4",
+      "codecs": "avc1.42E02A,mp4a.40.2",
+      "bytes": 1397697,
+      "url": "/api/replay-preview/53cdbd46f8f846e69b40e3e99311ab8b",
+      "hasAudio": true,
+      "frameRate": "30/1",
+      "prepareMs": 193,
+      "cacheHit": false
+    },
+    {
+      "cursor": 2,
+      "elapsedMs": 0.4783999999999651,
+      "token": "53cdbd46f8f846e69b40e3e99311ab8b",
+      "start": 0,
+      "end": 8,
+      "mime": "video/mp4",
+      "codecs": "avc1.42E02A,mp4a.40.2",
+      "bytes": 1397697,
+      "url": "/api/replay-preview/53cdbd46f8f846e69b40e3e99311ab8b",
+      "hasAudio": true,
+      "frameRate": "30/1",
+      "prepareMs": 193,
+      "cacheHit": true
+    },
+    {
+      "cursor": 7,
+      "from": 7,
+      "elapsedMs": 221.5623999999999,
+      "token": "f99d8f5780734b86983dce2a8b8130f5",
+      "start": 7,
+      "end": 15,
+      "mime": "video/mp4",
+      "codecs": "avc1.42E02A,mp4a.40.2",
+      "bytes": 1358983,
+      "url": "/api/replay-preview/f99d8f5780734b86983dce2a8b8130f5",
+      "hasAudio": true,
+      "frameRate": "30/1",
+      "prepareMs": 221,
+      "cacheHit": false
+    },
+    {
+      "cursor": 20,
+      "elapsedMs": 224.13580000000002,
+      "token": "4c73520648e84ca9883ec65c144e089f",
+      "start": 16,
+      "end": 24,
+      "mime": "video/mp4",
+      "codecs": "avc1.42E02A,mp4a.40.2",
+      "bytes": 1382422,
+      "url": "/api/replay-preview/4c73520648e84ca9883ec65c144e089f",
+      "hasAudio": true,
+      "frameRate": "30/1",
+      "prepareMs": 223,
+      "cacheHit": false
+    }
+  ],
+  "frameMAE": 2.116070601851852,
+  "audioRMS": 0.08807176817353582,
+  "sourceDuration": 32.021333
+}

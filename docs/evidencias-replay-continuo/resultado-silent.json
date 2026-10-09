@@ -1,0 +1,16 @@
+{
+  "status": "PASS",
+  "at": "2026-10-09T20:24:12.424Z",
+  "operatorTouched": false,
+  "realBrowserMedia": true,
+  "nativeTransportMocked": true,
+  "checks": [
+    "Real source without an audio track plays through the same MSE pipeline and reports no recorded audio"
+  ],
+  "sample": {
+    "time": 3.999722,
+    "status": "Prévia local · CAM 1 · vídeo e áudio (sem áudio gravado) · 133 ms para preparar",
+    "frames": 105
+  },
+  "errors": []
+}

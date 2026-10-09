@@ -6,6 +6,7 @@ import { createHash, randomUUID } from "node:crypto";
 import { mkdir, readFile, writeFile, rename, stat, unlink, readdir, lstat } from "node:fs/promises";
 import { join, resolve, relative } from "node:path";
 import { frameRate, replayCameraOptions, frameTargets, seekTargets, estimateAudioOffset } from './replay-sincronia.mjs';
+import {ReplayPreview,PREVIEW_SECONDS} from './replay-preview.mjs';
 
 const isoDefaults = () => ({format:'mpegts',directory:'',prefix:'cam',encoder:'default',crf:23,audio:'input',audioSourceUUID:'',splitSeconds:0,width:0,height:0,fpsDivisor:1,bitrate:0,perInput:{}});
 export function isoRecordingOptions(value={}, nested=false) {
@@ -59,6 +60,9 @@ export class DiskReplay {
     this.internalProgramTarget = null;
     this.ffmpeg = process.env.FREEMIX_FFMPEG || (existsSync(join(root,"runtime","ffmpeg.exe")) ? join(root,"runtime","ffmpeg.exe") : "ffmpeg");
     this.ffprobe = process.env.FREEMIX_FFPROBE || (existsSync(join(root,"runtime","ffprobe.exe")) ? join(root,"runtime","ffprobe.exe") : "ffprobe");
+    this.preview = new ReplayPreview({root,ffmpeg:this.ffmpeg,probe:file=>this.probe(file),session:()=>this.state.session});
+    this.historyPin=null;
+    this.previewRequests=new Map();
   }
 
   async req(type, data) {
@@ -125,12 +129,15 @@ export class DiskReplay {
   }
 
   command(action, data = {}) {
+    // Proxy encoding must never hold the recording/transport mutation queue.
+    if(action==='history-preview')return this.historyPreview(data);
     const work = this.queue.then(async () => {
       await this.scopeState();
       switch (action) {
         case "status": return this.status();
         case "history": return { ...await this.status(), history: await this.history() };
         case "history-frame": return { ...await this.status(), ...await this.historyFrame(data) };
+        case "history-pin": await this.pinHistory(data);break;
         case "capture-range": await this.captureRange(data); break;
         case "program-changed": await this.programChanged(data); break;
         case "start": await this.start(data.cams); break;
@@ -196,7 +203,7 @@ export class DiskReplay {
       else if(this.programScene!==list.currentProgramSceneName)this.onProgramChanged(list.currentProgramSceneName)?.catch(e=>{this.state.playbackError=e.message;this.onChange(this.state);});
     }
     const players={...this.state.players};for(const player of REPLAY_PLAYERS)if(players[player]){const media=await this.optional('GetMediaInputStatus',{inputName:`Replay Player ${player}`});if(media)players[player]={...players[player],mediaCursor:media.mediaCursor,mediaDuration:media.mediaDuration,mediaState:media.mediaState};}
-    return { ...this.state, historySupported:this.recordingFolder==='replay',programAutoplaySupported:this.recordingFolder==='replay',playerIds:REPLAY_PLAYERS,players, ...(audioChoices?{audioChoices,audioBusSourceSupported:this.isoBusSourceCapture,audioSourceLimit:this.isoBusSourceCapture?'Bus independente deve ficar sem rotas M/A/B: captura PCM própria, fora das trilhas globais. Folhas públicas ainda exigem trilha 1.':'Fonte direta exige folha pública com trilha 1 já habilitada; buses isolados não são capturados diretamente por este SourceRecord. Use sua rota A/B e escolha Bus A/B.'}:{}), program: list.currentProgramSceneName, preview: list.currentPreviewSceneName,
+    return { ...this.state, historySupported:this.recordingFolder==='replay',historyPlaybackSupported:this.recordingFolder==='replay',programAutoplaySupported:this.recordingFolder==='replay',playerIds:REPLAY_PLAYERS,players, ...(audioChoices?{audioChoices,audioBusSourceSupported:this.isoBusSourceCapture,audioSourceLimit:this.isoBusSourceCapture?'Bus independente deve ficar sem rotas M/A/B: captura PCM própria, fora das trilhas globais. Folhas públicas ainda exigem trilha 1.':'Fonte direta exige folha pública com trilha 1 já habilitada; buses isolados não são capturados diretamente por este SourceRecord. Use sua rota A/B e escolha Bus A/B.'}:{}), program: list.currentProgramSceneName, preview: list.currentPreviewSceneName,
       availableCams: list.scenes.map((s) => s.sceneName).filter((n) => !n.startsWith("REPLAY ") && n !== "FreeMix Barramentos") };
   }
 
@@ -365,7 +372,8 @@ export class DiskReplay {
       }
       if(purge&&cam.segments.length){const end=cam.segments.at(-1).start+cam.segments.at(-1).duration,cutoff=end-session.retention.minutes*60;
         const marked=this.state.markIn?.positions?.find(p=>p.name===cam.name)?.end;
-        for(const segment of cam.segments){if(segment.deleted||!segment.closed||segment.start+segment.duration>=cutoff||(marked!==undefined&&segment.start+segment.duration>=marked))continue;
+        const pin=this.historyPin?.sessionId===session.id&&this.historyPin.expires>Date.now()?this.historyPin:null;
+        for(const segment of cam.segments){if(segment.deleted||!segment.closed||segment.start+segment.duration>=cutoff||(marked!==undefined&&segment.start+segment.duration>=marked)||(pin&&segment.start+segment.duration>=pin.start&&segment.start<=pin.end)||this.preview.isReadingSource(segment.file))continue;
           const expected=resolve(session.dir,segment.name);if(resolve(segment.file)!==expected||!pattern.test(segment.name)||relative(resolve(session.dir),expected).startsWith('..'))throw new Error("Segmento fora da sessão");
           const info=await lstat(expected);if(!info.isFile()||info.isSymbolicLink())throw new Error("Retenção recusou arquivo irregular");
           await unlink(expected);segment.deleted=true;changed=true;
@@ -411,6 +419,36 @@ export class DiskReplay {
     const jpeg=await execute(this.ffmpeg,['-hide_banner','-v','error','-nostdin','-ss',String(Math.max(0,localAt-3)),'-copyts','-i',file,'-vf',`trim=start=${Math.round((localAt+containerStart)*90000)/90000},setpts=PTS-STARTPTS,scale=640:-2`,'-frames:v','1','-an','-c:v','mjpeg','-q:v','3','-f','image2pipe','pipe:1'],15000,true);
     if(!jpeg.length)throw Error('Quadro ainda não disponível. Volte um pouco na timeline');
     return {history,historyFrame:{cursor:at,cam:cam.name,image:'data:image/jpeg;base64,'+jpeg.toString('base64')}};
+  }
+
+  async historyPreview(d) {
+    const viewer=String(d.viewerId||'legacy');if(!/^[a-zA-Z0-9-]{1,64}$/.test(viewer))throw Error('Identificador de prévia inválido');
+    const sequence=(this.previewRequests.get(viewer)||0)+1;this.previewRequests.delete(viewer);this.previewRequests.set(viewer,sequence);if(this.previewRequests.size>64)this.previewRequests.delete(this.previewRequests.keys().next().value);
+    await this.scopeState();const ranges=await this.positions(false),history=await this.history(ranges);
+    if(!history||d.sessionId!==history.sessionId)throw Error('A sessão mudou. Atualize a timeline');
+    const cursor=Number(d.cursor),cam=ranges.find(r=>r.name===d.cam);
+    if(!cam||!Number.isFinite(cursor)||cursor<history.start||cursor>history.end)throw Error('Posição ou câmera fora do histórico');
+    const safeEnd=history.end-(history.recording ? .25 : 0),at=Math.min(cursor,safeEnd-.05);
+    if(at<history.start)throw Error('Aguarde mais vídeo no histórico');
+    let start=Math.max(history.start,Math.floor(at/PREVIEW_SECONDS)*PREVIEW_SECONDS);
+    if(d.from!==undefined){const from=Number(d.from);if(!Number.isFinite(from)||from<history.start||from>at||at-from>.1)throw Error('Continuação fora do histórico');start=from;}
+    const end=Math.min(start+PREVIEW_SECONDS,safeEnd);
+    if(end-start<.2)throw Error('Ainda não há vídeo suficiente neste ponto');
+    const selected=this.state.session.segmented?cam.segments.filter(p=>!p.deleted&&p.start<end&&p.start+p.duration>start):[{file:cam.file,start:0}];
+    if(!selected.length)throw Error('Trecho expirado pela retenção');
+    const parts=await Promise.all(selected.map(async p=>{const info=await lstat(p.file);if(!info.isFile()||info.isSymbolicLink())throw Error('Arquivo histórico irregular');return {file:p.file,start:p.start,size:info.size,mtimeMs:info.mtimeMs};}));
+    if(this.previewRequests.get(viewer)!==sequence)throw Error('Prévia substituída por uma busca mais recente');
+    this.preview.ffmpeg=this.ffmpeg;const historyPreview=await this.preview.prepare({sessionId:history.sessionId,cam:cam.name,start,end,cursor:at,parts,immutable:history.recording&&end<safeEnd-.5});
+    return {...await this.status(),history,historyPreview};
+  }
+  previewFile(token){return this.preview.file(token);}
+  dispose(){return this.preview.close();}
+  async pinHistory(d){
+    if(d.clear===true){this.historyPin=null;return;}
+    const history=await this.history(),start=Number(d.start),end=Number(d.end??Math.min(start+120,history?.end));
+    if(!history||d.sessionId!==history.sessionId||!Number.isFinite(start)||!Number.isFinite(end)||start<history.start||end>history.end||end<start||end-start>120)throw Error('Marcas fora do histórico disponível');
+    // An abandoned tab cannot keep the complete recording forever. UI renews while open.
+    this.historyPin={sessionId:history.sessionId,start,end,expires:Date.now()+120000};
   }
 
   async captureRange(d) {

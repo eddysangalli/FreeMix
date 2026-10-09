@@ -260,6 +260,12 @@
     <label>Câmera <select id="history-camera" onchange="previewHistory()"></select></label>
     <p id="history-status" role="status">Inicie REC SSD e atualize o histórico para navegar.</p>
     <img id="history-image" alt="Quadro escolhido na gravação" hidden style="width:100%;max-width:640px;aspect-ratio:16/9;object-fit:contain;background:#000">
+    <video id="history-video" hidden muted playsinline preload="auto" style="width:100%;max-width:640px;aspect-ratio:16/9;object-fit:contain;background:#000"></video>
+    <div class="mark-row">
+      <button id="history-play" disabled onclick="toggleHistoryPlayback()">▶ Reproduzir histórico</button>
+      <button id="history-follow" disabled onclick="followHistoryEnd()">Ir ao fim gravado</button>
+      <label><input id="history-audio" type="checkbox" onchange="historyMonitorAudio()"> Ouvir prévia neste computador</label>
+    </div>
     <input id="history-seek" class="timeline" aria-label="Posição no histórico" type="range" min="0" max="0" value="0" step="0.033333" disabled oninput="historyCursorChanged()" onchange="previewHistory()">
     <label>Posição (segundos) <input id="history-cursor" type="number" min="0" step="0.033333" disabled onchange="historyPositionChanged()"></label>
     <button id="history-back-frame" disabled onclick="stepHistory(-1)">◀ Quadro no histórico</button>
