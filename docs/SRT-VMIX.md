@@ -1,5 +1,9 @@
 # SRT com transparência para vMix
 
+**Atualização do teste do operador:** a recomposição de um SRT packed 4:2:0 funcionou com quatro entradas: SRT, Virtual da máscara, Mix renderizando a máscara e outro Mix renderizando a cor. Use aspecto **Widescreen** nas fontes, Zoom X=2/Y=1, Pan X=+1 (Fill) / −1 (Key), Pan Y=0, Crop X 0–960 / 960–1920 no projeto 1920×1080. Aplique Key/Fill **no Mix da cor apontando para o Mix da máscara**, depois de retirar o Key/Fill da entrada SRT original. Aplicação antes dos recortes/Mix mostrou transparência/cortes incorretos.
+
+O protótipo de alpha em uma entrada Web Browser foi **abortado após desempenho ruim com vídeo real no vMix**. Não usar essa rota na demonstração. O histórico está em `../archived/limpeza-demo-20261009/experimento-alpha-web/VIDEO-ALPHA-UMA-ENTRADA.md`.
+
 Primeiro salve e feche o FreeMix normalmente e abra **ABRIR-FREEMIX.cmd** na raiz. A atualização nova só é aplicada com a mesa fechada. Não basta atualizar a página de configurações.
 
 ## Um SRT: cor e máscara lado a lado em 4:2:0
@@ -11,7 +15,7 @@ Primeiro salve e feche o FreeMix normalmente e abra **ABRIR-FREEMIX.cmd** na rai
 5. Salve e inicie a saída. Conteúdo 1280×720 transmite 2560×720: imagem à esquerda, máscara à direita. Um receptor comum mostra as duas metades; a transparência precisa ser recomposta.
 6. No vMix, crie uma **Virtual Input** da recepção para separar as metades. O vMix oferece Crop em Position e **Colour Key → Key/Fill Input** para usar outra entrada como máscara.
 
-**Etapa ainda não homologada:** verificar se o Key/Fill usa a máscara já recortada da Virtual Input. Se ele usa a imagem original antes dos ajustes, recortar sozinho não resolve: a metade Key precisa ser renderizada numa entrada Mix. Não há afirmação de que esta recomposição já foi testada no vMix. As duas metades são sincronizadas no próprio quadro recebido.
+**Resultado assistido:** recortar sozinho não resolveu o Key/Fill. O operador conseguiu recompor usando um Mix renderizando a máscara e outro Mix renderizando a cor, como descrito acima. As duas metades são sincronizadas no próprio quadro recebido. Movimento prolongado e transmissão pela internet continuam sem homologação.
 
 ## Dois SRTs: Fill e Key em portas diferentes
 

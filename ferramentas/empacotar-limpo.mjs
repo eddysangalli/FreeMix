@@ -16,8 +16,9 @@ const runtimeTools=['recuperacao-estados.mjs','audio-buses-producao.mjs','efeito
 for(const f of runtimeTools){await mkdir(dirname(join(dest,'ferramentas',f)),{recursive:true});await cp(join(root,'ferramentas',f),join(dest,'ferramentas',f));}for(const folder of ['licenses','docs'])if(existsSync(join(root,folder)))await cp(join(root,folder),join(dest,folder),{recursive:true,filter});
 for(const f of ['package.json','package-lock.json','componentes.json','portable_mode.txt','LEIA-ME.md','VALIDACAO.md','FONTES.md','FreeMix Studio.cmd','Iniciar Mesa.cmd','Empacotar.cmd','Verificar Complementos.cmd','Atualizar Complementos.cmd','Atualizar FreeMix.cmd','update-public.pem'])await cp(join(root,f),join(dest,f));
 await cp(join(root,'PESQUISA-VMIX.md'),join(dest,'PESQUISA-VMIX.md'));
-await cp(join(workspace,'INSTALAR-FREEMIX.cmd'),join(dest,'INSTALAR-FREEMIX.cmd'));await cp(join(workspace,'CONFIGURAR-REDE-FREEMIX.cmd'),join(dest,'CONFIGURAR-REDE-FREEMIX.cmd'));
-for(const f of ['CONTINUAR.md','PENDENCIAS.md','ENTREGA-ATUAL.md','design-qa.md'])await cp(join(workspace,f),join(dest,'docs',f));
+await cp(join(workspace,'INSTALAR-FREEMIX.cmd'),join(dest,'INSTALAR-FREEMIX.cmd'));
+await writeFile(join(dest,'CONFIGURAR-REDE-FREEMIX.cmd'),'@echo off\r\nsetlocal\r\n"%~dp0runtime\\freemix-network-setup.exe" --root "%~dp0" %*\r\npause\r\n');
+for(const f of ['CONTINUAR.md','PENDENCIAS.md','PENDENCIAS-REAIS.md','ENTREGA-ATUAL.md'])await cp(join(workspace,'docs',f),join(dest,'docs',f));
 await cp(join(workspace,'freemix-app/build_2026/rundir/RelWithDebInfo/bin/64bit/FreeMix.exe'),join(dest,'bin/64bit/FreeMix.exe'));
 const native=join(workspace,'freemix-app/build_2026/rundir/RelWithDebInfo/obs-plugins/64bit/obs-ffmpeg.dll');if(existsSync(native))await cp(native,join(dest,'obs-plugins/64bit/obs-ffmpeg.dll'));
 await mkdir(join(dest,'runtime'),{recursive:true});await cp(existsSync(join(root,'runtime/node.exe'))?join(root,'runtime/node.exe'):join(workspace,'node24/node.exe'),join(dest,'runtime/node.exe'));await cp(existsSync(join(root,'runtime/LICENSE-Node.txt'))?join(root,'runtime/LICENSE-Node.txt'):join(workspace,'node24/LICENSE'),join(dest,'runtime/LICENSE-Node.txt'));

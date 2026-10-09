@@ -1,5 +1,29 @@
 # FreeMix — entrega SRT 4:4:4 e alpha
 
+## Instalação e organização — 09/10
+
+Instalador Windows offline em `entregas/FreeMix-Studio-Setup-0.1.0-local.20261009153453.exe`; abra pela raiz `INSTALAR-FREEMIX.cmd`. Fontes em `scripts/installer-windows`. Instalação nova com assinatura/hash, portas livres e atalhos; não migra automaticamente a mesa. Não inclui desinstalador nem Authenticode. Conferência em raiz temporária separada, documentada em INSTALACAO.md.
+
+Documentos atuais foram reunidos em `docs`, scripts auxiliares em `scripts` e versões anteriores/experimentos encerrados em `archived/limpeza-demo-20261009`. `obs-vmix` permanece a instalação de uso; `freemix-app` é o código nativo; `FreeMix` é o repositório Git do produto. Seu runtime gerado duplicado foi arquivado. Root CONTINUAR é somente apontador para este documento.
+
+As seções abaixo preservam a cronologia dos testes. O estado final do experimento alpha-web é ABORTADO; resultados anteriores não são indicação de uso atual.
+
+## Protótipo vídeo alpha por uma entrada de navegador — 09/10
+
+**ABORTADO para uso operacional por pedido do operador:** o teste real com vídeo foi rejeitado por lentidão, travamentos, avanço/retrocesso aparente e atraso local. As provas Edge/quadros sintéticos não homologam esse comportamento no vMix. Não recomendar esta rota para vídeo nem internet; WAN não foi testada. A saída Horizontal para 18460 foi parada, desabilitada e configurada sem início automático. O receptor próprio de PID 43420 foi encerrado; HTTP 18750 e UDP 18460 estão livres. FreeMix/vMix permaneceram abertos. Fontes e recibos foram conservados como histórico do experimento, sem promoção a release. Próxima alternativa apenas em análise: receptor nativo SRT→NDI com alpha e áudio.
+
+Correção do teste assistido: o operador realmente trocou Horizontal para TITLE 25, enquanto a saída paralela Teste Alpha Web continuava com TITLE 15. A duplicação criada pelo agente causou a confusão. O teste foi unificado: Horizontal / índice 0 / Saída 2 agora envia TITLE 25 a 18460; saída de teste índice 3 foi parada, desabilitada e liberada. Receptor reconectou, geração 2, vídeo chegando, única saída habilitada. Para trocar a fonte, editar Horizontal. As etiquetas da navegação web agora incluem o nome real do destino. Não encerrar/reiniciar motor/vMix para esse ajuste.
+
+Teste assistido no operador: uma saída livre, **Teste Alpha Web / índice 3 / Saída 5**, foi configurada para SRT Caller 127.0.0.1:18460 com a mesma origem packed 420 da saída Horizontal; demais configurações de destinos permaneceram idênticas. Esta alteração de teste foi feita na mesa, diferente dos ensaios isolados abaixo. Receptor conectado; operador confirmou vídeo no Web Browser vMix. Edge decodificou a transmissão real em 1920×1080. Ajuste no MSE preserva duração do GOP em vez de saltar para os últimos 250 ms a cada fragmento: 150 quadros renderizados em cinco segundos após estar pronto. Fonte deve ser trocada nessa Saída 5, não na Horizontal 18360. Confirmação de transparência sobre fundo no vMix continua pendente.
+
+Correção adicional do assistente SRT: o botão de confirmar agora compõe a URL com todos os valores visíveis (IP/porta/modo/latência), preservando parâmetros avançados. Antes, sem um evento `change` individual, a confirmação podia manter a porta antiga. Regressão `resultado-srt-port-submit.json` e ensaio existente `resultado-srt-conexao-ui.json` passaram; saída ativa continua protegida. A janela de configuração já aberta precisa ser reaberta para carregar o JavaScript novo; não reiniciamos o motor nem alteramos o destino ativo do operador.
+
+`ABRIR-RECEPTOR-ALPHA.cmd` / `obs-vmix/ferramentas/alpha-web-receptor.mjs` recebem vídeo H.264 4:2:0 com cor/máscara lado a lado, remuxam sem recodificação para MP4 fragmentado e recompõem alpha do mesmo quadro em WebGL. **Não redesenha GC HTML**: qualquer fonte/composição com alpha real, inclusive chroma aplicado, pode alimentar o transporte. Serviço separado, HTTP 18750 / SRT 18460; guia `VIDEO-ALPHA-UMA-ENTRADA.md`. Nada foi publicado externamente.
+
+Ensaios isolados: `resultado-alpha-web-video.json` PASS (movimento, alpha 0/130/255 nominal 0/128/255, entrada tardia, queda transparente, reconexão) e `resultado-alpha-web-fullhd.json` PASS (1920×1080 lógico / 3840×1080 packed, 30 fps na origem). Navegador Edge headless, sem alterar operador/vMix. Sem áudio; Chromium embutido no vMix, duração prolongada, latência e WAN ainda precisam validação. Não confundir protótipo de fonte adicional com os ZIPs nativos assinados anteriores.
+
+O operador confirmou em prints que SRT packed 4:2:0 chega ao vMix e a recomposição funciona com **SRT + Virtual + Mix Key + Mix Fill**, ambos com aspecto Widescreen; Key/Fill aplicado entre os dois Mix renderizados. Aplicar diretamente na fonte recortada causou opacidade/enquadramento errados. A nova entrada de navegador é tentativa de eliminar esses quatro auxiliares, ainda não declarada homologada no vMix.
+
 ## SRT para vMix — 4:2:0 e Fill/Key, 09/10
 
 O motor agora oferece três modos de transparência SRT: `packed` em 4:2:0 ou 4:4:4 (cor e máscara no mesmo quadro), e `fill`/`key` separados em 4:2:0 (duas portas, largura original). Todos usam x264/H.264 e uma entrada/composição com alpha real. O formato 4:2:0 reduz a resolução de cor; a máscara cinza usa a luminância em resolução completa. O modo separado conserva áudio em ambos os envios: silencie a Key no receptor. Duas conexões não garantem sincronismo de quadro/genlock.

@@ -1,0 +1,38 @@
+{
+  "at": "2026-10-09T17:43:54.054Z",
+  "root": "C:\\Users\\eddyr\\AppData\\Local\\Temp\\FreeMix-QA-Installer-91fd2da603b44a5587e79bfb9ad1de17\\FreeMix Studio",
+  "version": "0.1.0-local.20261009153453",
+  "apiPort": 18189,
+  "wsPort": 4466,
+  "operatorConfigurationTouched": false,
+  "routes": [
+    {
+      "route": "/settings",
+      "status": 200
+    },
+    {
+      "route": "/saidas?context=external",
+      "status": 200
+    },
+    {
+      "route": "/saidas?context=streaming",
+      "status": 200
+    },
+    {
+      "route": "/iso",
+      "status": 200
+    },
+    {
+      "route": "/calls",
+      "status": 200
+    }
+  ],
+  "apiPid": 207912,
+  "nativePid": 128136,
+  "shutdown": {
+    "error": "qaClose requires an isolated QA root",
+    "success": false
+  },
+  "status": "FAIL",
+  "error": "Expected values to be strictly equal:\n\nfalse !== true\n"
+}

@@ -1,0 +1,14 @@
+{
+  "status": "PASS",
+  "at": "2026-10-09T14:51:10.5794558-03:00",
+  "moves": 97,
+  "rootLaunchers": [
+    "ABRIR-FREEMIX.cmd",
+    "INSTALAR-FREEMIX.cmd",
+    "COLETAR-LOGS.cmd"
+  ],
+  "scriptsSyntax": true,
+  "setupSha256": "ae377cada202e3240b268ca8b9f4ac50ecce571a1793139bdc87f8f0e046c074",
+  "runtimeProof": "resultado-installer-runtime-20261009.json",
+  "operatorSettingsMoved": false
+}

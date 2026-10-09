@@ -21,7 +21,7 @@ cmake --preset windows-x64 -B build_2026
 cmake --build build_2026 --config RelWithDebInfo
 ```
 
-O executável e plugins OBS saem em `build_2026/rundir/RelWithDebInfo`. Versão de CMake, Visual Studio, Qt/CEF e demais dependências precisam satisfazer os presets da base fixada. `compilar-2026.ps1` preserva a receita do ambiente de desenvolvimento original; seus caminhos pressupõem a organização original da máquina e não são um instalador universal.
+O executável e plugins OBS saem em `build_2026/rundir/RelWithDebInfo`. Versão de CMake, Visual Studio, Qt/CEF e demais dependências precisam satisfazer os presets da base fixada. `scripts/build/compilar-2026.ps1` preserva a receita do ambiente de desenvolvimento original; seus caminhos pressupõem a organização original da máquina e não são um instalador universal.
 
 Os módulos JavaScript do produto ficam em `ferramentas/`, as telas em `painel/` e o kit Linux em `servidor/`. `package-lock.json` fixa as dependências npm. O portátil exige também runtime, binários e plugins descritos em `componentes.json`; um clone do Git, sozinho, não é uma instalação executável.
 

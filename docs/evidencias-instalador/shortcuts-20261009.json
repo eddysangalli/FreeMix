@@ -1,0 +1,14 @@
+[
+  {
+    "created": "C:\\Users\\eddyr\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\FreeMix Studio.lnk",
+    "target": "C:\\Users\\eddyr\\AppData\\Local\\Temp\\FreeMix-QA-Installer-91fd2da603b44a5587e79bfb9ad1de17\\FreeMix Studio\\FreeMix Studio.cmd",
+    "cwd": "C:\\Users\\eddyr\\AppData\\Local\\Temp\\FreeMix-QA-Installer-91fd2da603b44a5587e79bfb9ad1de17\\FreeMix Studio",
+    "icon": "C:\\Users\\eddyr\\AppData\\Local\\Temp\\FreeMix-QA-Installer-91fd2da603b44a5587e79bfb9ad1de17\\FreeMix Studio\\bin\\64bit\\FreeMix.exe,0"
+  },
+  {
+    "created": "D:\\Users\\eddyr\\OneDrive\\Área de Trabalho\\FreeMix Studio.lnk",
+    "target": "C:\\Users\\eddyr\\AppData\\Local\\Temp\\FreeMix-QA-Installer-91fd2da603b44a5587e79bfb9ad1de17\\FreeMix Studio\\FreeMix Studio.cmd",
+    "cwd": "C:\\Users\\eddyr\\AppData\\Local\\Temp\\FreeMix-QA-Installer-91fd2da603b44a5587e79bfb9ad1de17\\FreeMix Studio",
+    "icon": "C:\\Users\\eddyr\\AppData\\Local\\Temp\\FreeMix-QA-Installer-91fd2da603b44a5587e79bfb9ad1de17\\FreeMix Studio\\bin\\64bit\\FreeMix.exe,0"
+  }
+]

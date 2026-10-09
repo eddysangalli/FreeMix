@@ -1,0 +1,38 @@
+{
+  "at": "2026-10-09T17:47:39.974Z",
+  "root": "C:\\Users\\eddyr\\AppData\\Local\\Temp\\FreeMix-QA-Installer-91fd2da603b44a5587e79bfb9ad1de17\\FreeMix-QA-Installed-Studio",
+  "version": "0.1.0-local.20261009153453",
+  "apiPort": 18189,
+  "wsPort": 4466,
+  "operatorConfigurationTouched": false,
+  "routes": [
+    {
+      "route": "/settings",
+      "status": 200
+    },
+    {
+      "route": "/saidas?context=external",
+      "status": 200
+    },
+    {
+      "route": "/saidas?context=streaming",
+      "status": 200
+    },
+    {
+      "route": "/iso",
+      "status": 200
+    },
+    {
+      "route": "/calls",
+      "status": 200
+    }
+  ],
+  "apiPid": 22560,
+  "nativePid": 47572,
+  "shutdown": {
+    "success": true
+  },
+  "nativeExited": true,
+  "ownedApiStopped": true,
+  "status": "PASS"
+}
