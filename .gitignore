@@ -61,3 +61,5 @@ src/**/obj/
 scratch_*/
 scratch_*
 build*/
+!scripts/build/
+!scripts/build/*.ps1
