@@ -38,13 +38,15 @@ A [documentação NDI de quadros](https://docs.ndi.video/all/developing-with-ndi
 
 ## Base atual e próximos incrementos
 
+Atualização após teste no operador: a rota web foi abortada por lentidão/travamentos e atraso com vídeo real no vMix, mesmo localmente. Encerramos o envio/receptor. A prioridade abaixo de fechar o receptor web fica cancelada; a alternativa a avaliar passa a ser um receptor nativo SRT→NDI com alpha/áudio, comparado ao NDI Bridge do Everton. Nenhum EXE desses ZIPs foi testado até aqui.
+
 FreeMix já possui protocolo multipath próprio `FMXB`, AES-GCM, agregação ponderada, XOR FEC/NACK, medição explícita e receptor privado exportável, conforme `CONTINUAR.md` e `obs-vmix/ferramentas/bonding-producao.mjs`. **Não é srtla**, sem interoperabilidade direta documentada. Testes com duas operadoras/WAN continuam pendentes.
 
 O protótipo `alpha-web-receptor.mjs` recebe pixels de qualquer fonte packed-alpha, mantém H.264 no remux e recompõe em WebGL; não redesenha GC HTML. Movimento, alpha e Full HD passaram em navegador Edge, em isolamento. Sem áudio nessa versão; vMix real/WAN ainda precisam validação.
 
 Três incrementos concretos, em ordem:
 
-1. **Fechar o receptor web:** testar no Web Browser real do vMix, medir atraso, acrescentar AAC sincronizado e definir política ao perder vídeo. Escopo H.264 4:2:0/SDR; sem alegação de alpha universal ou WAN homologada.
+1. **Receptor web cancelado:** o teste real reprovou a rota; não ampliar esse protótipo nem afirmar que os testes Edge o homologaram.
 2. **Receptor nativo FreeMix SRT→NDI/OMT:** começar com packed, recompor RGBA e enviar áudio do Fill. Depois oferecer duas fontes pareadas por tempo e chroma no receptor. Uma fonte no switcher; pareamento software não cria genlock físico.
 3. **Operação WAN do bonding próprio:** assistente das duas pontas, diagnóstico de porta/rota/interface e métricas por caminho; prova com duas operadoras e receptor remoto. Aproveita AES/FEC/NACK existentes, sem alegar compatibilidade srtla ou publicar infraestrutura automaticamente.
 

@@ -1,5 +1,7 @@
 # Vídeo com alpha em uma entrada de navegador
 
+**Protótipo abortado em 09/10/2026.** O operador rejeitou o teste com vídeo real no vMix por lentidão, travamentos, avanço/retrocesso aparente e atraso, mesmo localmente. Não utilizar como entrega operacional. O envio de teste e o receptor foram encerrados. As instruções e provas abaixo são registro do experimento; testes sintéticos/Edge não comprovam desempenho aceitável no vMix. Internet não foi testada.
+
 Este receptor recebe **vídeo real**, não recria um título HTML. Uma câmera com chroma key aplicado, um GC, um vídeo ou uma composição com transparência podem alimentar a mesma saída packed-alpha existente do FreeMix.
 
 Fluxo: **entrada com alpha → SRT H.264 4:2:0 cor+máscara → FFmpeg remux sem recodificar → MP4 fragmentado/WebSocket → navegador/WebGL → alpha do vMix**. Cor e máscara são extraídas do mesmo quadro. A recomposição ocorre antes de o vMix aplicar enquadramento/overlay.

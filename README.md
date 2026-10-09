@@ -4,7 +4,7 @@ Código do FreeMix baseado no OBS Studio 32.2.2, com interface de mesa de produ�
 
 Entrega local de referência: **0.1.0-local.20261009153453**. As funcionalidades e seus limites estão em [CONTINUAR.md](CONTINUAR.md). A lista concreta para terminar cada pendência está em [PENDENCIAS-REAIS.md](PENDENCIAS-REAIS.md).
 
-Protótipo adicional: [vídeo com alpha em uma entrada Web Browser](VIDEO-ALPHA-UMA-ENTRADA.md), usando SRT packed H.264 4:2:0 e recomposição de pixels em WebGL. Movimento, reconexão e Full HD passaram em Edge isolado; vMix real e WAN ainda precisam validação. Sem áudio nessa versão. Não altera a release nativa acima. [Análise dos bridges e bonding](ANALISE-BRIDGES-CHARGEXDEV.md).
+Experimento [vídeo com alpha em uma entrada Web Browser](VIDEO-ALPHA-UMA-ENTRADA.md): **abortado pelo operador após reprovação com vídeo real no vMix**, por lentidão, travamentos e atraso local. Provas Edge/sintéticas foram preservadas como histórico e não homologam a rota. Serviço e envio de teste encerrados; sem áudio e sem teste WAN. Não altera a release nativa acima. [Análise dos bridges e bonding](ANALISE-BRIDGES-CHARGEXDEV.md).
 
 ## Código incluído
 
