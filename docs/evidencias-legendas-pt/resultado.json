@@ -1,0 +1,88 @@
+{
+  "at": "2026-10-09T20:27:19.224Z",
+  "status": "PASS",
+  "scope": "Motor real, fala portuguesa sintética Windows Maria; não homologa microfone/ruído/sotaques/endurance",
+  "root": "C:\\Users\\eddyr\\AppData\\Local\\Temp\\FreeMix-QA-Installer-91fd2da603b44a5587e79bfb9ad1de17\\FreeMix-QA-Installed-Studio",
+  "nativePid": 90520,
+  "operatorTouched": false,
+  "userAudioSentExternally": false,
+  "audibleOutput": false,
+  "model": "whisper tiny multilingual",
+  "snapshots": [
+    {
+      "elapsedMs": 501,
+      "text": " Portar de..."
+    },
+    {
+      "elapsedMs": 1757,
+      "text": " Boa tarde"
+    },
+    {
+      "elapsedMs": 4016,
+      "text": " Estamos ao vivo"
+    },
+    {
+      "elapsedMs": 5521,
+      "text": " Estamos ao vivo com as notícias"
+    },
+    {
+      "elapsedMs": 6776,
+      "text": " Estamos ao vivo com as notícias da cidade"
+    },
+    {
+      "elapsedMs": 9035,
+      "text": " A previsão é de cheio"
+    },
+    {
+      "elapsedMs": 10543,
+      "text": " A previsão é de chuva amanhã pela..."
+    },
+    {
+      "elapsedMs": 11797,
+      "text": " A previsão é de chuva amanhã pela manhã"
+    },
+    {
+      "elapsedMs": 15812,
+      "text": " o trânsito e..."
+    },
+    {
+      "elapsedMs": 16567,
+      "text": " O trânsito está tranquilo e as escolas funcionam normal"
+    },
+    {
+      "elapsedMs": 17570,
+      "text": " O trânsito está tranquilo e as escolas funcionam normalmente"
+    },
+    {
+      "elapsedMs": 19325,
+      "text": " Obrigado pelo"
+    },
+    {
+      "elapsedMs": 20332,
+      "text": " Obrigado pela sua companhia"
+    }
+  ],
+  "targets": [
+    "boa tarde",
+    "noticias da cidade",
+    "previsao",
+    "chuva",
+    "transito",
+    "escolas",
+    "companhia"
+  ],
+  "matches": [
+    "boa tarde",
+    "noticias da cidade",
+    "previsao",
+    "chuva",
+    "transito",
+    "escolas",
+    "companhia"
+  ],
+  "firstTextMs": 501,
+  "checks": [
+    "Modelo local multilíngue com idioma português, destinos cloud desligados"
+  ],
+  "elapsedMs": 31339
+}
