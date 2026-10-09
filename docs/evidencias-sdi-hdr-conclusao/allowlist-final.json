@@ -1,0 +1,292 @@
+{
+  "buildTargets": [
+    "decklink",
+    "obs-studio"
+  ],
+  "nativeBuilt": true,
+  "sourceFiles": [
+    "freemix-app/plugins/decklink/FreeMixDecklinkHdrContract.hpp",
+    "freemix-app/plugins/decklink/decklink-output.cpp",
+    "freemix-app/plugins/decklink/DecklinkOutput.hpp",
+    "freemix-app/plugins/decklink/decklink-device.hpp",
+    "freemix-app/plugins/decklink/decklink-device.cpp",
+    "freemix-app/plugins/decklink/decklink-device-instance.hpp",
+    "freemix-app/plugins/decklink/decklink-device-instance.cpp",
+    "freemix-app/plugins/decklink/OBSVideoFrame.h",
+    "freemix-app/plugins/decklink/OBSVideoFrame.cpp",
+    "freemix-app/frontend/widgets/FreeMixSdiOutput.hpp",
+    "freemix-app/frontend/widgets/FreeMixVideoTransports.hpp",
+    "obs-vmix/ferramentas/saidas-sdi.mjs",
+    "obs-vmix/ferramentas/saidas-producao.mjs",
+    "obs-vmix/ferramentas/saidas-hdr.mjs",
+    "obs-vmix/painel/remoto/saidas-sdi-hdr-ui.js",
+    "obs-vmix/painel/remoto/saidas.html"
+  ],
+  "hashes": [
+    {
+      "path": "freemix-app/plugins/decklink/FreeMixDecklinkHdrContract.hpp",
+      "bytes": 7000,
+      "sha256": "16d1f1ead7394700cb7b3e7909078f6fbbbcd32d3e401c27da543b5da8b3da8c"
+    },
+    {
+      "path": "freemix-app/plugins/decklink/decklink-output.cpp",
+      "bytes": 14983,
+      "sha256": "3ab662cbb1eead6c86edeb754f6ac172f13197983e66ed0038eed57cb7b729ed"
+    },
+    {
+      "path": "freemix-app/plugins/decklink/DecklinkOutput.hpp",
+      "bytes": 1009,
+      "sha256": "d880a7b2224528a1dba03385ecc47193e4cddc3cdd931895839015e04ab74544"
+    },
+    {
+      "path": "freemix-app/plugins/decklink/decklink-device.hpp",
+      "bytes": 2520,
+      "sha256": "5d1a0727edc7d94d84a4c7b7df9541f3bdfdede8e7e2c83ba5303b754c4e4824"
+    },
+    {
+      "path": "freemix-app/plugins/decklink/decklink-device.cpp",
+      "bytes": 7140,
+      "sha256": "980aa5e419a582d0129eea7a1ba293571fdbe83cc49f59e8318a9a190a56da7d"
+    },
+    {
+      "path": "freemix-app/plugins/decklink/decklink-device-instance.hpp",
+      "bytes": 7545,
+      "sha256": "2819b07ee056fb1262d5a6441fdbe7fd5cf21c0e53ebaa72b07352e71238f844"
+    },
+    {
+      "path": "freemix-app/plugins/decklink/decklink-device-instance.cpp",
+      "bytes": 26864,
+      "sha256": "6300e52a5c08bfc1ae245b3f4f259641cb4d9e4f83474d82bf6e2663083d47ea"
+    },
+    {
+      "path": "freemix-app/plugins/decklink/OBSVideoFrame.h",
+      "bytes": 4431,
+      "sha256": "527d28c4eb946757aadfc569fc1266aa7640262ea62d89174e135ded61606aef"
+    },
+    {
+      "path": "freemix-app/plugins/decklink/OBSVideoFrame.cpp",
+      "bytes": 6860,
+      "sha256": "6c5c5d32fd7ac47b747cd976027d61e09db3ccb1748ca8e31b1082c2e644ed90"
+    },
+    {
+      "path": "freemix-app/frontend/widgets/FreeMixSdiOutput.hpp",
+      "bytes": 10570,
+      "sha256": "41c519b334ba53d0e6c92a15fcb44a9ffbca79a27db20b5bd552db0567e008f6"
+    },
+    {
+      "path": "freemix-app/frontend/widgets/FreeMixVideoTransports.hpp",
+      "bytes": 3592,
+      "sha256": "54c8633951bc1091892d7cb4127bc3b7bd58ac0561af51c48fe27bb290fca52a"
+    },
+    {
+      "path": "obs-vmix/ferramentas/saidas-sdi.mjs",
+      "bytes": 2052,
+      "sha256": "93b550696f2b50e7bd69139868a70173c96e5450b890542a0e8d13e928f6dc70"
+    },
+    {
+      "path": "obs-vmix/ferramentas/saidas-producao.mjs",
+      "bytes": 12871,
+      "sha256": "1d27f389ddaa837c7e757eb1629aa250b894ab0af222b626cc70ccbb0b771f32"
+    },
+    {
+      "path": "obs-vmix/ferramentas/saidas-hdr.mjs",
+      "bytes": 2186,
+      "sha256": "d9d24d2ea4de1ad2e1e1cbb6cfa41d9b80b486ee59a91529b4453fc6bd63b8b9"
+    },
+    {
+      "path": "obs-vmix/painel/remoto/saidas-sdi-hdr-ui.js",
+      "bytes": 6185,
+      "sha256": "4033a009da2d8b443e7ac84c82c766bf9bfa64eb9cf2a40f038362921bbc1c78"
+    },
+    {
+      "path": "obs-vmix/painel/remoto/saidas.html",
+      "bytes": 20324,
+      "sha256": "dc7c06bfc5f38123ec634424aa4ca71e2cd82789ce9d5f39d2c4bc3ff241c40d"
+    },
+    {
+      "path": "docs/PLANO-SDI-HDR-POST-CANDIDATO.md",
+      "bytes": 3599,
+      "sha256": "ed5b9a0871747899b89d0f327f88ed86bceade47100d0094c563a6c49d14f9eb"
+    },
+    {
+      "path": "docs/RELATORIO-SDI-HDR-POST-CANDIDATO-20261009.md",
+      "bytes": 8358,
+      "sha256": "d8040e2cd57533558746003dde7d74add7b21ad96c98b069c7c8e610f91013a6"
+    },
+    {
+      "path": "docs/HDR-CONTRATOS-TRANSPORTES-20261009.md",
+      "bytes": 6650,
+      "sha256": "fc4b1305f63986fe452c221238e0bcbc2e513343662f4f07be483667aaa87650"
+    },
+    {
+      "path": "qa-finalizacao/sdi-hdr/check-frontend-syntax.ps1",
+      "bytes": 1757,
+      "sha256": "7f2d2c3f72736ec7d88181984025923cda967da491b6913652f205395226db39"
+    },
+    {
+      "path": "qa-finalizacao/sdi-hdr/check-native-syntax.ps1",
+      "bytes": 1791,
+      "sha256": "b0aa1a5fa0891f7e2f1240dda1a3dfc396b8ed5fad1f9717dad2d8fb2e34b997"
+    },
+    {
+      "path": "qa-finalizacao/sdi-hdr/native-guards-stage2.log",
+      "bytes": 39635,
+      "sha256": "efdbe1c620b1864f16339fae80f1dbb135405005227870cbf97dbd64f99a04f0"
+    },
+    {
+      "path": "qa-finalizacao/sdi-hdr/patch-mensagem-decklink-driver.patch",
+      "bytes": 656,
+      "sha256": "df22b67cf029a2f69665647e625c2cbe68cea77792cb73ffdc313605ed589006"
+    },
+    {
+      "path": "qa-finalizacao/sdi-hdr/resultado-coherent-stage2-payload.json",
+      "bytes": 15572,
+      "sha256": "f5f73c4048b7c6550ffa002ccfe0797cc002fc168b7e5b05a9d665b9d5a64ac1"
+    },
+    {
+      "path": "qa-finalizacao/sdi-hdr/resultado-contract.json",
+      "bytes": 396,
+      "sha256": "624e975f3c3b47af3ec0289927ed61a045816c2cc033725b0277b01cc66b8be4"
+    },
+    {
+      "path": "qa-finalizacao/sdi-hdr/resultado-frontend-syntax.json",
+      "bytes": 138,
+      "sha256": "ea4e2878591e0e3ea77bb7965499527f4741ab1bb5fff1c60a69daf284bf3b72"
+    },
+    {
+      "path": "qa-finalizacao/sdi-hdr/resultado-js-contract.json",
+      "bytes": 541,
+      "sha256": "d916cb7f4dd79f3036b796040ec1035bd31f1009f953689a94fe7df99c60c808"
+    },
+    {
+      "path": "qa-finalizacao/sdi-hdr/resultado-native-guards.json",
+      "bytes": 2128,
+      "sha256": "ab80c32e4c226e1d6a082e5e596b737a6223f30eef3f21a3ac5675290d0818f5"
+    },
+    {
+      "path": "qa-finalizacao/sdi-hdr/resultado-sdk-frame.json",
+      "bytes": 434,
+      "sha256": "dcad835930d0573cccea338645699d604ea391c30710e0de9348fe95fcebf4d6"
+    },
+    {
+      "path": "qa-finalizacao/sdi-hdr/resultado-syntax.json",
+      "bytes": 426,
+      "sha256": "8f2ae58a2efe20776f8c1950c30d02d882855bb19196220c2227f64eaccae9da"
+    },
+    {
+      "path": "qa-finalizacao/sdi-hdr/resultado-ui.json",
+      "bytes": 3923,
+      "sha256": "b207df6217af217c51c64ec07c902074ac8276fe5a45f8fab03d509cf1331e7a"
+    },
+    {
+      "path": "qa-finalizacao/sdi-hdr/stage2-snapshot.json",
+      "bytes": 884,
+      "sha256": "ee00ca3096b8d403a7961fd92a43eb946aec04185cd8bfc71780e787fa07fe8d"
+    },
+    {
+      "path": "qa-finalizacao/sdi-hdr/test-contract.cpp",
+      "bytes": 5635,
+      "sha256": "91405e6d324d740ea4b036326022e3add75d07b4cec77e14d81bf33c5f77cdf3"
+    },
+    {
+      "path": "qa-finalizacao/sdi-hdr/test-contract.ps1",
+      "bytes": 1560,
+      "sha256": "8b45ef478c9ae73f7f99b56b0b8bcaca6eac5571b55bc6f699f984bba10b4f1d"
+    },
+    {
+      "path": "qa-finalizacao/sdi-hdr/test-js-contract.mjs",
+      "bytes": 3557,
+      "sha256": "6e7a335efd7383a6c32196d81b19ce10e64a282d7b4856c313eedc2332124e72"
+    },
+    {
+      "path": "qa-finalizacao/sdi-hdr/test-native-guards.mjs",
+      "bytes": 7464,
+      "sha256": "bd1024bf53476be5f3f974a725a6dbb0cca40c7b864370a2e56656b61d6ee20b"
+    },
+    {
+      "path": "qa-finalizacao/sdi-hdr/test-sdk-frame.cpp",
+      "bytes": 3778,
+      "sha256": "2873daacd9250a92fbe5ab5b83ea604d9b76344ad84031584b0602abc524fd10"
+    },
+    {
+      "path": "qa-finalizacao/sdi-hdr/test-sdk-frame.ps1",
+      "bytes": 2184,
+      "sha256": "be95682cd42a73043e1a20c89d40e8f675050b2d3f7af712985268d20382e5f3"
+    },
+    {
+      "path": "qa-finalizacao/sdi-hdr/test-ui.mjs",
+      "bytes": 5892,
+      "sha256": "53320e71fc085726849617fdf1233808b4f03a63492b143146670faaa5ff60f1"
+    },
+    {
+      "path": "qa-finalizacao/sdi-hdr/ui-600.png",
+      "bytes": 94050,
+      "sha256": "b71dc39392c1c1ba09ad222143f5f97ee64dd1e446a4065f1127ddcc897c02cb"
+    }
+  ],
+  "operatorTouched": false,
+  "sealedAt": "2026-10-09T22:31:40.8660426Z",
+  "hardwareVerified": false,
+  "qaFiles": [
+    "qa-finalizacao/sdi-hdr/check-frontend-syntax.ps1",
+    "qa-finalizacao/sdi-hdr/check-native-syntax.ps1",
+    "qa-finalizacao/sdi-hdr/native-guards-stage2.log",
+    "qa-finalizacao/sdi-hdr/patch-mensagem-decklink-driver.patch",
+    "qa-finalizacao/sdi-hdr/resultado-coherent-stage2-payload.json",
+    "qa-finalizacao/sdi-hdr/resultado-contract.json",
+    "qa-finalizacao/sdi-hdr/resultado-frontend-syntax.json",
+    "qa-finalizacao/sdi-hdr/resultado-js-contract.json",
+    "qa-finalizacao/sdi-hdr/resultado-native-guards.json",
+    "qa-finalizacao/sdi-hdr/resultado-sdk-frame.json",
+    "qa-finalizacao/sdi-hdr/resultado-syntax.json",
+    "qa-finalizacao/sdi-hdr/resultado-ui.json",
+    "qa-finalizacao/sdi-hdr/stage2-snapshot.json",
+    "qa-finalizacao/sdi-hdr/test-contract.cpp",
+    "qa-finalizacao/sdi-hdr/test-contract.ps1",
+    "qa-finalizacao/sdi-hdr/test-js-contract.mjs",
+    "qa-finalizacao/sdi-hdr/test-native-guards.mjs",
+    "qa-finalizacao/sdi-hdr/test-sdk-frame.cpp",
+    "qa-finalizacao/sdi-hdr/test-sdk-frame.ps1",
+    "qa-finalizacao/sdi-hdr/test-ui.mjs",
+    "qa-finalizacao/sdi-hdr/ui-600.png"
+  ],
+  "sharedBuildWritten": false,
+  "postCandidate": "20261009213415",
+  "docFiles": [
+    "docs/PLANO-SDI-HDR-POST-CANDIDATO.md",
+    "docs/RELATORIO-SDI-HDR-POST-CANDIDATO-20261009.md",
+    "docs/HDR-CONTRATOS-TRANSPORTES-20261009.md"
+  ],
+  "remaining": [
+    "Repeat negative guards after next build with refined error text",
+    "Real DeckLink driver/device capability query",
+    "Physical SDI HDR format, metadata, audio sync, restart and endurance"
+  ],
+  "status": "READY_FOR_ROOT_FINAL_MIRROR",
+  "nativeBuiltHead": "772db16",
+  "nativeSourceHead": "a98f62b",
+  "nativeRuntimeGuardResult": "PASS_NEGATIVE_GUARDS_NO_DECKLINK_MODULE",
+  "nativeRuntimeHdrSupport": "INCONCLUSIVE_DECKLINK_MODULE_NOT_INITIALIZED",
+  "nativeGuards": [
+    {
+      "path": "bin/64bit/FreeMix.exe",
+      "sha256": "50327ff7df67627533b2a2560d8be2a877858ccd79a350b6905a9a5ba52878d4"
+    },
+    {
+      "path": "bin/64bit/obs.dll",
+      "sha256": "f78813a5d33bcdff88900bf38c7e591a94662e41c378eed9b31f4e02fff13367"
+    },
+    {
+      "path": "bin/64bit/obs-frontend-api.dll",
+      "sha256": "bd76bf520d8bab1445cacdc8898f96e3d247866773da9aa6c658f22496c642a9"
+    },
+    {
+      "path": "obs-plugins/64bit/decklink.dll",
+      "sha256": "b7336a8f88ca4b827b565a4bc75f632990c9772d05f1048a14f9ddd375e8e079"
+    },
+    {
+      "path": "obs-plugins/64bit/obs-ffmpeg.dll",
+      "sha256": "148c90f88c9deae26e2c28ee22fb3ed7dba3afd25bdb7e00f1091b53d9553b30"
+    }
+  ]
+}

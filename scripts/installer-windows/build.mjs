@@ -7,11 +7,11 @@ import {dirname, resolve, basename, join} from 'node:path';
 import {fileURLToPath} from 'node:url';
 
 const here=dirname(fileURLToPath(import.meta.url));
-const workspace=resolve(here,'../..');
 const args=process.argv.slice(2), options={};
 for(const arg of args) { if(arg==='--stub-only'){options['--stub-only']=true;continue;} const i=arg.indexOf('='); if(i<0) throw Error('Use --zip=... e --output=... [--stub-only]'); const name=arg.slice(0,i), value=arg.slice(i+1); if(!['--zip','--output'].includes(name)||!value||options[name])throw Error('Argumento inválido: '+name); options[name]=value; }
-const zip=resolve(options['--zip']??join(workspace,'entregas/FreeMix-Completo-0.1.0-local.20261009153453.zip'));
-const output=resolve(options['--output']??join(workspace,'entregas/FreeMix-Studio-Setup-0.1.0-local.20261009153453.exe'));
+if(!options['--zip']||!options['--output'])throw Error('Informe --zip=CAMINHO_ASSINADO e --output=CAMINHO_NOVO. O builder não escolhe uma release automaticamente.');
+const zip=resolve(options['--zip']);
+const output=resolve(options['--output']);
 const root=basename(zip,'.zip');
 if(!/^FreeMix-Completo-[A-Za-z0-9._-]+$/.test(root))throw Error('Nome do pacote completo inválido.');
 if(zip.toLowerCase()===output.toLowerCase())throw Error('A saída deve ser diferente do pacote de entrada.');

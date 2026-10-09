@@ -1,3 +1,7 @@
+# Fontes posteriores a 213415 — em conferência
+
+A série em fork/manifest.json já contém as alterações posteriores de SDI HDR e seek/EOF de mídia. Sua árvore foi verificada contra o Native; isso não muda o instalador 213415 nem comprova a aprovação do novo replay multicâmera. Leia docs/PENDENCIAS-REAIS.md e fork/source-verification.json para separar fontes, builds e ensaios.
+
 # Fontes da entrega completa 213415
 
 Estado em 2026-10-09T22:14:45.649Z. Native99e5944cf61aacc4c07167ef867d4ce52a752ae6, EXE1c045e5d43bae20eca9b15df50d73d297b9d433e381027eb861f0ff21f014744. As fontes/painéis operacionais estão no repositório FreeMix, com 14 patches completos sobre a base OBS fixada em fork/manifest.json; reconstrução em docs/BUILD-FROM-SOURCE.md. O pacote guarda snapshot das fontes Native e as licenças correspondentes.

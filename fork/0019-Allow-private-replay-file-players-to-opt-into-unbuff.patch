@@ -1,0 +1,29 @@
+From fb98b14c071fa89146f74dc8c26157c2ce9026ee Mon Sep 17 00:00:00 2001
+From: Eddy Sangalli <eddyrodrigues@outlook.com>
+Date: Fri, 9 Oct 2026 19:38:40 -0300
+Subject: [PATCH] Allow private replay file players to opt into unbuffered
+ presentation
+
+---
+ plugins/obs-ffmpeg/obs-ffmpeg-source.c | 5 +++++
+ 1 file changed, 5 insertions(+)
+
+diff --git a/plugins/obs-ffmpeg/obs-ffmpeg-source.c b/plugins/obs-ffmpeg/obs-ffmpeg-source.c
+index 9b2d085..c92cc4b 100644
+--- a/plugins/obs-ffmpeg/obs-ffmpeg-source.c
++++ b/plugins/obs-ffmpeg/obs-ffmpeg-source.c
+@@ -470,6 +470,11 @@ static void ffmpeg_source_update(void *data, obs_data_t *settings)
+ 	s->buffering_mb = (int)obs_data_get_int(settings, "buffering_mb");
+ 	s->speed_percent = speed_percent;
+ 	s->is_local_file = is_local_file;
++	/* Only private Replay file players opt in. Network/media defaults keep
++	 * their existing async buffering; paired Replay uses the newest decoded
++	 * image at each render tick rather than independent async queue origins. */
++	obs_source_set_async_unbuffered(s->source,
++				       is_local_file && obs_data_get_bool(settings, "freemix_replay_unbuffered"));
+ 	s->seekable = obs_data_get_bool(settings, "seekable");
+ 	s->ffmpeg_options = ffmpeg_options ? bstrdup(ffmpeg_options) : NULL;
+ 	s->is_stinger = is_stinger;
+-- 
+2.56.0.windows.1
+

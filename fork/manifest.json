@@ -1,8 +1,8 @@
 {
   "upstream": "https://github.com/obsproject/obs-studio.git",
   "base": "ba2f32bdf791005443988a4955e963663e16b1ed",
-  "head": "99e5944cf61aacc4c07167ef867d4ce52a752ae6",
-  "version": "0.1.0-local.20261009213415",
+  "head": "fb98b14c071fa89146f74dc8c26157c2ce9026ee",
+  "version": "0.1.0-local.20261009223334",
   "patches": [
     {
       "path": "0001-feat-branding-replace-OBS-identity-with-FreeMix-Stud.patch",
@@ -59,7 +59,27 @@
     {
       "path": "0014-Add-manual-PQ-and-HLG-OMT-HDR-outputs-with-unique-se.patch",
       "sha256": "30488e1dcb098052b8f3ae130252c29168ade7887c30eaa2041a33e9d7a23ee7"
+    },
+    {
+      "path": "0015-Add-independent-SDI-HDR-and-rebase-local-media-seek-.patch",
+      "sha256": "d79ee331f6d55cb9f226e62e1b9e88daa65a2312cbe3efee5993c40809139aa7"
+    },
+    {
+      "path": "0016-Avoid-submitting-two-frames-at-the-seek-presentation.patch",
+      "sha256": "0b297d442ebd80d2dd9d6dc431ec247647e12896389570c8271dff83919a4873"
+    },
+    {
+      "path": "0017-Explain-missing-DeckLink-driver-separately-from-HDR-.patch",
+      "sha256": "c184d8f014642430b3041837d279c4b85461cc5cda7e2c248dc9c50221842c33"
+    },
+    {
+      "path": "0018-Restart-persistent-off-air-media-explicitly-after-EO.patch",
+      "sha256": "878ce8c0dc4a398b896446b8b3dabf533acf50053084e8f04710d7dbf9987695"
+    },
+    {
+      "path": "0019-Allow-private-replay-file-players-to-opt-into-unbuff.patch",
+      "sha256": "b39abe479be6ede851f2d394cf8e8b952bb3c2f1f3d1a0c3a977a114645f079f"
     }
   ],
-  "sourceUpdatedAt": "2026-10-09T21:34:21.978Z"
+  "sourceUpdatedAt": "2026-10-09T22:42:35.559Z"
 }

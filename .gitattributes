@@ -5,6 +5,9 @@
 *.pdf binary
 docs/native-source/frontend/widgets/vendor/** -whitespace
 # Preserve exact upstream/native consultation bytes; patches remain canonical.
+docs/native-source/** -text
+docs/native-source/plugins/obs-color-monitor/**/.clang-format -whitespace
+docs/native-source/plugins/obs-color-monitor/.clang-format -whitespace
 docs/native-source/frontend/cmake/windows/obs.manifest -whitespace
 docs/native-source/plugins/downstream-keyer/data/locale/es-ES.ini -whitespace
 licenses/freemix-omt-sdk/libomt-original.h -whitespace

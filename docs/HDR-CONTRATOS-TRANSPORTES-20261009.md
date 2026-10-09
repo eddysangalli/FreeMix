@@ -24,6 +24,8 @@ OMT anunciou `HighBitDepth`, `ColorSpace=Undefined` e nenhum metadataHDR, precis
 
 ## SRT e SDI
 
+Atualização posterior ao candidato Native99: SDI HDR recebeu implementação em fonte com view P416 PQ/HLG, RGB10 final, metadados explícitos e preflight do driver. Contrato/SDK mock/UI/sintaxe passaram; build/link do root e sinal físico continuam pendentes. Consulte `RELATORIO-SDI-HDR-POST-CANDIDATO-20261009.md`. Os parágrafos abaixo descrevem a situação do candidato anterior, não atribuem a implementação ao seu EXE.
+
 SRT transporta o vídeo codificado; PQ/HLG depende do pixel format10bits e dos metadados do codec. O fonte OBS existente suporta PQ/HLG em NVENCHEVC/AV1 e no muxerFFmpeg, mas a saída independente FreeMix desta entrega fixaNV12/I4448bits. Ela não implementa uma opçãoHDR. Uma nova rota precisa selecionar P010, encoder10bits, primárias/matrizBT2020 e transferência correta, e comprovar o bitstream com receptor/ffprobe. Não habilitamos um controle que apenas marcaHDR no formulário.
 
 O plugin DeckLink original contém caminho PQ e metadados HDR condicionado ao dispositivo/driver. A central FreeMix usa `force_sdr:true` e a view própria BGRA8BT709. A central precisa de implementação e ensaio físico adicional, além de uma placa compatível; conectar hardware não torna HDR esta rota.

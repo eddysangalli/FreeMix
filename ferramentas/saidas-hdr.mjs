@@ -4,7 +4,7 @@
 export const outputHdrContracts = Object.freeze({
  NDI:Object.freeze({hdrSupported:false,status:'requires_ndi_advanced_sdk_and_hdr_renderer',reason:'Envio HDR NDI exige NDI Advanced SDK licenciado e render PQ/HLG. Esta saída usa BT.709 SDR8.',reference:'https://docs.ndi.video/all/developing-with-ndi/sdk/hdr'}),
  OMT:Object.freeze({hdrSupported:false,status:'sdr_path_use_separate_manual_hdr_output',separateHdrAction:'outputs_omt_hdr',reason:'Estes controles OMT produzem BT.709 SDR, inclusive PA16. Para vídeo HDR opaco, abra OMT HDR abaixo: fonte HDR real e PQ/HLG correspondente configurado manualmente no receptor.',reference:'https://github.com/openmediatransport/omtplugin/blob/master/README.md'}),
- SDI:Object.freeze({hdrSupported:false,status:'unsupported_in_integrated_sdr_path',reason:'A saída SDI integrada usa SDR. HDR exige caminho PQ, metadados e dispositivo/driver homologados na ferramenta DeckLink original.'}),
+ SDI:Object.freeze({hdrSupported:false,status:'sdr_path_use_explicit_driver_preflight_hdr',separateHdrAction:'outputs_sdi',reason:'Os controles padrão SDI usam SDR. Abra SDI HDR para uma fonte HDR própria, PQ/HLG e metadados confirmados. O driver precisa aceitar SDI/Rec.2020/RGB10/metadados; a placa e o receptor requerem homologação física.'}),
  SRT:Object.freeze({hdrSupported:false,status:'independent_destination_hdr_not_implemented',reason:'Esta saída independente usa SDR8. HDR SRT exige render P010/PQ ou HLG, encoder 10 bits compatível e validação dos metadados no receptor.'})
 });
 

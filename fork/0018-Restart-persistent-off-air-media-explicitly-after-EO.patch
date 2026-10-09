@@ -1,0 +1,27 @@
+From 9261ca393cd074b86d4508b524e3c3d5a7e33681 Mon Sep 17 00:00:00 2001
+From: Eddy Sangalli <eddyrodrigues@outlook.com>
+Date: Fri, 9 Oct 2026 19:32:54 -0300
+Subject: [PATCH] Restart persistent off-air media explicitly after EOF
+
+---
+ plugins/obs-ffmpeg/obs-ffmpeg-source.c | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+diff --git a/plugins/obs-ffmpeg/obs-ffmpeg-source.c b/plugins/obs-ffmpeg/obs-ffmpeg-source.c
+index 3ea54bf..9b2d085 100644
+--- a/plugins/obs-ffmpeg/obs-ffmpeg-source.c
++++ b/plugins/obs-ffmpeg/obs-ffmpeg-source.c
+@@ -714,7 +714,9 @@ static void ffmpeg_source_restart(void *data)
+ {
+ 	struct ffmpeg_source *s = data;
+ 
+-	if (obs_source_showing(s->source))
++	/* A file kept open while hidden must also accept an explicit restart.
++	 * Replay cues off-air players after EOF without changing Programme. */
++	if (obs_source_showing(s->source) || !s->close_when_inactive)
+ 		ffmpeg_source_start(s);
+ 
+ 	set_media_state(s, OBS_MEDIA_STATE_PLAYING);
+-- 
+2.56.0.windows.1
+

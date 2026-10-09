@@ -2,7 +2,7 @@
 
 O motor ativo é o fork C++ do OBS Studio 32.2.2. As pastas `src/` e `plugins/obs-freemix/` contêm protótipos anteriores; não são o motor da entrega atual.
 
-`fork/manifest.json` fixa o commit upstream completo e a ordem/hash dos catorze patches. A série contém toda a mudança nativa, inclusive as fontes e headers novos que estavam fora de commits anteriores. `docs/native-source/` é uma cópia de consulta das fontes modificadas; a série em `fork/` é a referência para reconstruir a árvore.
+`fork/manifest.json` fixa o commit upstream completo e a ordem/hash de todos os patches da versão indicada. A série contém toda a mudança nativa, inclusive as fontes e headers novos que estavam fora de commits anteriores. `docs/native-source/` é uma cópia de consulta das fontes modificadas; a série em `fork/` é a referência para reconstruir a árvore.
 
 Com Git e Node.js 20+:
 
@@ -30,3 +30,5 @@ As fontes locais modificadas de Source Record estão em `licenses/freemix-source
 As chaves privadas de assinatura, credenciais, dados do operador, node_modules, DLLs/executáveis, builds e ZIPs de distribuição ficam fora do Git. Os hashes dos ZIPs locais estão em `docs/releases/`.
 
 Verificação desta sincronização: a série foi aplicada em índice isolado sobre a base fixada, e a árvore resultante comparada à árvore do motor local. Isso comprova completude dos patches; não equivale a uma nova compilação num Windows limpo. As provas de execução correspondem aos builds identificados nos relatórios.
+
+A sincronização de uma árvore Native local commitada usa scripts/distribuicao/exportar-fontes-native.mjs com --native=REPO_NATIVE --product=REPO_PRODUTO --head=COMMIT_COMPLETO --version=VERSAO. O exportador preserva patches existentes, verifica a árvore completa em índice TEMP separado e copia somente blobs commitados; fork/source-verification.json identifica os hashes das fontes. Não gera binários nem marca uma release homologada.

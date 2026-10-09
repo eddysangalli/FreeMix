@@ -1,8 +1,8 @@
 # Distribuição Windows e importação explícita
 
-O instalador padrão cria uma instalação nova/vazia e não abre o motor. O pacote público deve continuar limpo; projetos do operador não entram no ZIP. O builder recusa sobrescrever um EXE existente. Este conjunto ainda não produz uma nova release final.
+O instalador padrão cria uma instalação nova/vazia e não abre o motor. O pacote de distribuição continua limpo; projetos do operador não entram no ZIP. O builder recusa sobrescrever um EXE existente. O instalador 213415 passou por duas instalações reais e startup integrado em raízes TEMP; novas correções exigem outra versão e outra rodada de verificação.
 
-`node scripts/installer-windows/build.mjs --stub-only` compila os executáveis de teste com o compilador .NET Framework local. Para a próxima release integrada, o responsável deve fornecer `--zip=CAMINHO_ASSINADO --output=CAMINHO_NOVO`. O ZIP é anexado por streaming e validado por SHA-256 mais o manifesto Ed25519 existente. Não há certificado Authenticode disponível.
+`node scripts/installer-windows/build.mjs --zip=CAMINHO_ASSINADO --output=CAMINHO_NOVO --stub-only` compila os executáveis de teste com o compilador .NET Framework local. Ambos os caminhos são obrigatórios; o builder não usa uma versão antiga como padrão. Sem `--stub-only`, gera o EXE completo no destino novo. O ZIP é anexado por streaming e validado por SHA-256 mais o manifesto Ed25519 existente. Não há certificado Authenticode disponível.
 
 O EXE suporta `--verify` (somente integridade), `--silent --dest=PASTA_NOVA`, `--api-port=N`, `--ws-port=N`, `--no-shortcuts`, `--log=ARQUIVO`, `--import-project=PASTA_UUID.fmx` e `--project-name=NOME`. Sem opções de importação, a instalação permanece limpa. O botão de importação da interface é opt-in. A cópia criada recebe outro ID, coleção e perfil; as credenciais não são copiadas e nenhuma saída ou automação é iniciada.
 

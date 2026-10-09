@@ -1,0 +1,1048 @@
+From 772db16d7b4227b7fb9281cfe1237dc59058cb9e Mon Sep 17 00:00:00 2001
+From: Eddy Sangalli <eddyrodrigues@outlook.com>
+Date: Fri, 9 Oct 2026 19:18:13 -0300
+Subject: [PATCH] Add independent SDI HDR and rebase local media seek
+ presentation
+
+---
+ frontend/widgets/FreeMixSdiOutput.hpp         |  40 +++++--
+ frontend/widgets/FreeMixVideoTransports.hpp   |   7 +-
+ plugins/decklink/DecklinkOutput.hpp           |   5 +-
+ .../decklink/FreeMixDecklinkHdrContract.hpp   | 103 +++++++++++++++++
+ plugins/decklink/OBSVideoFrame.cpp            |  42 +++++--
+ plugins/decklink/OBSVideoFrame.h              |   5 +-
+ plugins/decklink/decklink-device-instance.cpp | 105 ++++++++++++++----
+ plugins/decklink/decklink-device-instance.hpp |  77 +++++--------
+ plugins/decklink/decklink-device.cpp          |   7 ++
+ plugins/decklink/decklink-device.hpp          |   6 +
+ plugins/decklink/decklink-output.cpp          |  84 +++++++++++++-
+ plugins/obs-ffmpeg/obs-ffmpeg-source.c        |   6 +-
+ shared/media-playback/media-playback/media.c  |  31 ++++--
+ 13 files changed, 415 insertions(+), 103 deletions(-)
+ create mode 100644 plugins/decklink/FreeMixDecklinkHdrContract.hpp
+
+diff --git a/frontend/widgets/FreeMixSdiOutput.hpp b/frontend/widgets/FreeMixSdiOutput.hpp
+index 4e088af..71f8444 100644
+--- a/frontend/widgets/FreeMixSdiOutput.hpp
++++ b/frontend/widgets/FreeMixSdiOutput.hpp
+@@ -3,10 +3,25 @@
+ #include "FreeMixVideoTransports.hpp"
+ #include "FreeMixAudioRouting.hpp"
+ #include <obs-frontend-api.h>
+-#include <QDir>
+ #include <string>
+ #include <memory>
++#include <callback/proc.h>
+ namespace freemix_sdi {
++inline OBSDataAutoRelease Settings(obs_data_t *config){OBSDataAutoRelease s=obs_data_create();obs_data_set_string(s,"device_hash",obs_data_get_string(config,"deviceHash"));obs_data_set_int(s,"mode_id",obs_data_get_int(config,"modeId"));obs_data_set_int(s,"keyer",obs_data_get_int(config,"keyer"));obs_data_set_bool(s,"force_sdr",!obs_data_get_bool(config,"hdr"));obs_data_set_bool(s,"freemix_hdr",obs_data_get_bool(config,"hdr"));obs_data_set_string(s,"hdr_transfer",obs_data_get_string(config,"hdrTransfer"));OBSDataAutoRelease m=obs_data_get_obj(config,"hdrMetadata");if(m)obs_data_set_obj(s,"hdr_metadata",m);obs_data_set_bool(s,"auto_start",false);return s;}
++inline std::string HdrPreflight(obs_data_t *config,bool (*isPrivate)(obs_source_t *),obs_data_t *proof){
++ if(obs_data_get_int(config,"audioTrack")<0||obs_data_get_int(config,"audioTrack")>2)return "Áudio HDR deve ser Master/A/B ou bus público";
++ if(obs_data_get_int(config,"keyer")||obs_data_get_bool(config,"alpha")||obs_data_get_bool(config,"fillKey"))return "HDR SDI é opaco: alpha e keyer Fill+Key são incompatíveis";
++ OBSSourceAutoRelease source=obs_get_source_by_uuid(obs_data_get_string(config,"sourceUuid"));if(!source||isPrivate(source))return "Selecione uma fonte HDR pública por UUID";
++ const auto space=obs_source_get_color_space(source,0,nullptr);if(space!=GS_CS_709_EXTENDED&&space!=GS_CS_709_SCRGB)return "A fonte não declara HDR/float; SDR não pode ser rotulado PQ/HLG";
++ const auto w=obs_source_get_width(source),h=obs_source_get_height(source);if(!w||!h||w>7680||h>4320)return "Dimensões da fonte HDR inválidas";
++ const std::string audioUuid=obs_data_get_string(config,"audioSourceUuid");if(!audioUuid.empty()){OBSSourceAutoRelease audio=obs_get_source_by_uuid(audioUuid.c_str());if(!FreeMixAudioBusAllowed(audio))return "Áudio independente deve ser um bus público com tracks globais desligadas";}
++ OBSDataAutoRelease settings=Settings(config);calldata_t call;calldata_init(&call);calldata_set_ptr(&call,"config",settings.Get());calldata_set_ptr(&call,"response",proof);
++ const bool found=proc_handler_call(obs_get_proc_handler(),"freemix_decklink_hdr_preflight",&call);calldata_free(&call);
++ if(!found)return "Plugin DeckLink não possui contrato HDR compatível; atualize o motor";
++ if(!obs_data_get_bool(proof,"success"))return obs_data_get_string(proof,"error");
++ if(obs_data_get_int(proof,"width")<=0||obs_data_get_int(proof,"height")<=0||obs_data_get_int(proof,"width")>7680||obs_data_get_int(proof,"height")>4320||obs_data_get_int(proof,"fpsNum")<=0||obs_data_get_int(proof,"fpsDen")<=0)return "Driver retornou dimensões/FPS HDR inválidos";
++ return "";
++}
+ inline OBSOutputAutoRelease &Output(){static OBSOutputAutoRelease value;return value;}
+ inline obs_view_t *&View(){static obs_view_t *value=nullptr;return value;}
+ inline OBSSceneAutoRelease &Scene(){static OBSSceneAutoRelease value;return value;}
+@@ -15,29 +30,40 @@ inline void Stop(){if(Output()&&obs_output_active(Output()))obs_output_force_sto
+ inline std::string Path(){char *folder=obs_frontend_get_current_profile_path();const std::string path=folder?std::string(folder)+"/freemix-sdi.json":"";bfree(folder);return path;}
+ inline void Request(obs_data_t *request,obs_data_t *response,bool (*isPrivate)(obs_source_t *)){
+  const std::string action=obs_data_get_string(request,"action"),path=Path();OBSDataAutoRelease config=path.empty()?nullptr:obs_data_create_from_json_file(path.c_str());if(!config)config=obs_data_create();
+- std::string error;const bool active=Output()&&obs_output_active(Output());
++ std::string error;const bool active=Output()&&obs_output_active(Output());OBSDataAutoRelease hdrProof=obs_data_create();
+  if(action=="configure"){
+   if(active)error="Pare SDI antes de configurar";
+   else{OBSDataAutoRelease proposed=obs_data_get_obj(request,"config");if(!proposed)error="Configuração SDI ausente";else{
+    OBSDataAutoRelease transports=FreeMixVideoTransports(),deck=obs_data_get_obj(transports,"decklink");OBSDataArrayAutoRelease devices=obs_data_get_array(deck,"devices");bool valid=false;
+-   for(size_t n=0;n<obs_data_array_count(devices);n++){OBSDataAutoRelease device=obs_data_array_item(devices,n);if(std::string(obs_data_get_string(device,"hash"))!=obs_data_get_string(proposed,"deviceHash"))continue;OBSDataArrayAutoRelease modes=obs_data_get_array(device,"modes"),keyers=obs_data_get_array(device,"keyers");bool mode=false,key=false;for(size_t i=0;i<obs_data_array_count(modes);i++){OBSDataAutoRelease v=obs_data_array_item(modes,i);mode|=obs_data_get_int(v,"value")==obs_data_get_int(proposed,"modeId");}for(size_t i=0;i<obs_data_array_count(keyers);i++){OBSDataAutoRelease v=obs_data_array_item(keyers,i);key|=obs_data_get_int(v,"value")==obs_data_get_int(proposed,"keyer");}valid=mode&&key;}
++   for(size_t n=0;n<obs_data_array_count(devices);n++){OBSDataAutoRelease device=obs_data_array_item(devices,n);if(std::string(obs_data_get_string(device,"hash"))!=obs_data_get_string(proposed,"deviceHash"))continue;OBSDataArrayAutoRelease modes=obs_data_get_array(device,obs_data_get_bool(proposed,"hdr")?"hdrModes":"modes"),keyers=obs_data_get_array(device,"keyers");bool mode=false,key=false;for(size_t i=0;i<obs_data_array_count(modes);i++){OBSDataAutoRelease v=obs_data_array_item(modes,i);mode|=obs_data_get_int(v,"value")==obs_data_get_int(proposed,"modeId");}for(size_t i=0;i<obs_data_array_count(keyers);i++){OBSDataAutoRelease v=obs_data_array_item(keyers,i);key|=obs_data_get_int(v,"value")==obs_data_get_int(proposed,"keyer");}valid=mode&&key;}
+    OBSSourceAutoRelease selected=obs_get_source_by_uuid(obs_data_get_string(proposed,"sourceUuid"));
+    if(selected&&isPrivate(selected))error="SDI recusado: fonte contém áudio privado";
+    else if(!valid)error="Dispositivo, modo FPS ou keyer SDI não anunciado pelo driver";
+-   else if(obs_data_get_bool(proposed,"hdr"))error="HDR SDI requer a ferramenta original e homologação do dispositivo; esta rota preserva SDR";
++   else if(obs_data_get_bool(proposed,"hdr"))error=HdrPreflight(proposed,isPrivate,hdrProof);
+    else if(obs_data_get_int(proposed,"audioTrack")<0||obs_data_get_int(proposed,"audioTrack")>2)error="Áudio SDI deve ser Master/A/B ou UUID de bus isolado";
+-   else{config=obs_data_get_obj(request,"config");obs_data_erase(config,"active");obs_data_set_bool(config,"autoStart",false);if(path.empty()||!obs_data_save_json_safe(config,path.c_str(),"tmp","bak"))error="Não foi possível salvar configuração SDI no perfil";}
++   if(error.empty()){config=obs_data_get_obj(request,"config");obs_data_erase(config,"active");obs_data_set_bool(config,"autoStart",false);if(path.empty()||!obs_data_save_json_safe(config,path.c_str(),"tmp","bak"))error="Não foi possível salvar configuração SDI no perfil";}
+   }}
+  }else if(action=="start"){
+   if(!active){OBSDataAutoRelease validate=obs_data_create(),validated=obs_data_create();obs_data_set_string(validate,"action","configure");obs_data_set_obj(validate,"config",config);Request(validate,validated,isPrivate);if(!obs_data_get_bool(validated,"success"))error=obs_data_get_string(validated,"error");
+-   if(error.empty()){Stop();OBSDataAutoRelease settings=obs_data_create();obs_data_set_string(settings,"device_hash",obs_data_get_string(config,"deviceHash"));obs_data_set_int(settings,"mode_id",obs_data_get_int(config,"modeId"));obs_data_set_int(settings,"keyer",obs_data_get_int(config,"keyer"));obs_data_set_bool(settings,"force_sdr",true);obs_data_set_bool(settings,"auto_start",false);video_t *video=obs_get_video();const std::string uuid=obs_data_get_string(config,"sourceUuid"),audioUuid=obs_data_get_string(config,"audioSourceUuid");
+-    if(!uuid.empty()){OBSSourceAutoRelease source=obs_get_source_by_uuid(uuid.c_str());obs_video_info info={};if(!source||!obs_get_video_info(&info))error="Fonte SDI ausente";else{info.base_width=info.output_width=obs_source_get_width(source);info.base_height=info.output_height=obs_source_get_height(source);info.output_format=VIDEO_FORMAT_BGRA;info.colorspace=VIDEO_CS_709;info.range=VIDEO_RANGE_FULL;if(!info.base_width||!info.base_height||info.base_width>3840||info.base_height>3840)error="Dimensões SDI inválidas";else{Scene()=obs_scene_create_private("FreeMix SDI scene");if(!obs_scene_add(Scene(),source))error="Não foi possível criar cena SDI";else{View()=obs_view_create();obs_view_set_source(View(),0,obs_scene_get_source(Scene()));video=obs_view_add2(View(),&info);if(!video)error="View SDI indisponível";}}}}
++   if(error.empty()){Stop();OBSDataAutoRelease settings=Settings(config);const bool hdr=obs_data_get_bool(config,"hdr");video_t *video=obs_get_video();const std::string uuid=obs_data_get_string(config,"sourceUuid"),audioUuid=obs_data_get_string(config,"audioSourceUuid");
++    if(hdr)error=HdrPreflight(config,isPrivate,hdrProof);
++    if(error.empty()&&!uuid.empty()){OBSSourceAutoRelease source=obs_get_source_by_uuid(uuid.c_str());obs_video_info info={};if(!source||!obs_get_video_info(&info))error="Fonte SDI ausente";else{
++     info.base_width=info.output_width=obs_source_get_width(source);info.base_height=info.output_height=obs_source_get_height(source);info.output_format=VIDEO_FORMAT_BGRA;info.colorspace=VIDEO_CS_709;info.range=VIDEO_RANGE_FULL;
++     if(hdr){info.output_width=uint32_t(obs_data_get_int(hdrProof,"width"));info.output_height=uint32_t(obs_data_get_int(hdrProof,"height"));info.fps_num=uint32_t(obs_data_get_int(hdrProof,"fpsNum"));info.fps_den=uint32_t(obs_data_get_int(hdrProof,"fpsDen"));info.output_format=VIDEO_FORMAT_P416;info.colorspace=std::string(obs_data_get_string(config,"hdrTransfer"))=="hlg"?VIDEO_CS_2100_HLG:VIDEO_CS_2100_PQ;info.range=VIDEO_RANGE_PARTIAL;}
++     if(!info.base_width||!info.base_height||info.base_width>7680||info.base_height>4320)error="Dimensões SDI inválidas";
++     else{obs_source_t *renderSource=source.Get();if(!hdr){Scene()=obs_scene_create_private("FreeMix SDI scene");if(!obs_scene_add(Scene(),source))error="Não foi possível criar cena SDI";else renderSource=obs_scene_get_source(Scene());}
++      if(error.empty()){View()=obs_view_create();if(!View())error="View SDI indisponível";else{obs_view_set_source(View(),0,renderSource);video=obs_view_add2(View(),&info);if(!video)error="View SDI indisponível";}}
++     }
++    }}
+     if(error.empty()&&!audioUuid.empty())Audio()=FreeMixSourceAudio::Open(audioUuid,"FreeMix SDI PCM",error);
+     if(error.empty()){Output()=obs_output_create("decklink_output","FreeMix SDI Output",settings,nullptr);if(!Output())error="Plugin DeckLink indisponível";else{obs_output_set_media(Output(),video,Audio()?Audio()->Audio():obs_get_audio());obs_output_set_mixers(Output(),Audio()?1ULL:1ULL<<uint32_t(obs_data_get_int(config,"audioTrack")));if(!obs_output_start(Output()))error="Driver não iniciou SDI; confira dispositivo e modo/FPS";}}
+     if(!error.empty())Stop();
+    }
+   }
++ }else if(action=="preflight"){OBSDataAutoRelease proposed=obs_data_get_obj(request,"config");auto *c=proposed?proposed.Get():config.Get();if(!obs_data_get_bool(c,"hdr"))error="Preflight HDR requer HDR habilitado";else error=HdrPreflight(c,isPrivate,hdrProof);
+  }else if(action=="stop")Stop();else if(action!="state")error="Ação SDI inválida";
++ obs_data_set_obj(response,"hdrPreflight",hdrProof);obs_data_set_bool(response,"hdrAlphaSupported",false);obs_data_set_bool(response,"physicalHdrVerified",false);
++ struct Sources{obs_data_array_t *rows;bool (*privateSource)(obs_source_t *);};OBSDataArrayAutoRelease hdrSources=obs_data_array_create();Sources list{hdrSources.Get(),isPrivate};auto enumerate=[](void *p,obs_source_t *s){auto &l=*static_cast<Sources *>(p);const auto cs=obs_source_get_color_space(s,0,nullptr);if(!l.privateSource(s)&&(cs==GS_CS_709_EXTENDED||cs==GS_CS_709_SCRGB)&&obs_source_get_width(s)&&obs_source_get_height(s)){OBSDataAutoRelease row=obs_data_create();obs_data_set_string(row,"uuid",obs_source_get_uuid(s));obs_data_set_string(row,"name",obs_source_get_name(s));obs_data_array_push_back(l.rows,row);}return true;};obs_enum_sources(enumerate,&list);obs_enum_scenes(enumerate,&list);obs_data_set_array(response,"hdrSources",hdrSources);
+  obs_data_set_bool(response,"success",error.empty());if(!error.empty())obs_data_set_string(response,"error",error.c_str());obs_data_set_bool(response,"active",Output()&&obs_output_active(Output()));obs_data_set_obj(response,"config",config);OBSDataAutoRelease transports=FreeMixVideoTransports();obs_data_set_obj(response,"capabilities",transports);obs_data_set_bool(response,"autoStart",false);
+ }
+ }
+diff --git a/frontend/widgets/FreeMixVideoTransports.hpp b/frontend/widgets/FreeMixVideoTransports.hpp
+index 37990b6..80bf6b5 100644
+--- a/frontend/widgets/FreeMixVideoTransports.hpp
++++ b/frontend/widgets/FreeMixVideoTransports.hpp
+@@ -12,11 +12,13 @@ inline OBSDataAutoRelease FreeMixVideoTransports()
+  obs_data_set_bool(decklink,"pluginLoaded",loaded);
+  obs_data_set_string(decklink,"outputId","decklink_output");
+  obs_data_set_string(decklink,"configuration","native-tools-decklink");
+- obs_data_set_string(decklink,"hdrStatus","unsupported_in_integrated_sdr_path");
++ obs_data_set_string(decklink,"hdrStatus","requires_explicit_driver_preflight");
+  obs_data_set_bool(decklink,"hdrSupported",false);
+  OBSDataArrayAutoRelease devices=obs_data_array_create();
+  // decklink_output_properties explicitly ignores context (original OBS source).
+  obs_properties_t *props=loaded?obs_get_output_properties("decklink_output"):nullptr;
++ obs_data_set_bool(decklink,"hdrOutputImplemented",props&&obs_properties_get(props,"freemix_hdr_contract"));
++ obs_data_set_bool(decklink,"hdrPhysicalVerified",false);
+  obs_property_t *list=props?obs_properties_get(props,"device_hash"):nullptr;
+  if(list)for(size_t n=0;n<obs_property_list_item_count(list)&&n<64;++n){
+   const char *hash=obs_property_list_item_string(list,n);
+@@ -35,7 +37,8 @@ inline OBSDataAutoRelease FreeMixVideoTransports()
+     obs_data_array_push_back(std::string(key)=="keyer"?keyers:modes,item);
+    }
+   }
+-  obs_data_set_array(device,"modes",modes);obs_data_set_array(device,"keyers",keyers);obs_data_array_push_back(devices,device);
++  OBSDataArrayAutoRelease hdrModes=obs_data_array_create();auto *hdrOptions=obs_properties_get(props,"freemix_hdr_modes");if(hdrOptions)for(size_t i=0;i<obs_property_list_item_count(hdrOptions)&&i<256;++i){if(obs_property_list_item_disabled(hdrOptions,i))continue;OBSDataAutoRelease row=obs_data_create();obs_data_set_int(row,"value",obs_property_list_item_int(hdrOptions,i));obs_data_set_string(row,"name",obs_property_list_item_name(hdrOptions,i));obs_data_array_push_back(hdrModes,row);}
++  obs_data_set_array(device,"hdrModes",hdrModes);obs_data_set_array(device,"modes",modes);obs_data_set_array(device,"keyers",keyers);obs_data_array_push_back(devices,device);
+  }
+  if(props)obs_properties_destroy(props);
+  obs_data_set_array(decklink,"devices",devices);obs_data_set_bool(decklink,"hardwareAvailable",obs_data_array_count(devices)>0);
+diff --git a/plugins/decklink/DecklinkOutput.hpp b/plugins/decklink/DecklinkOutput.hpp
+index 2627937..06f2339 100644
+--- a/plugins/decklink/DecklinkOutput.hpp
++++ b/plugins/decklink/DecklinkOutput.hpp
+@@ -3,6 +3,7 @@
+ #include "DecklinkBase.h"
+ 
+ #include <media-io/video-scaler.h>
++#include "FreeMixDecklinkHdrContract.hpp"
+ 
+ class DeckLinkOutput : public DecklinkBase {
+ protected:
+@@ -15,12 +16,14 @@ protected:
+ public:
+ 	const char *deviceHash;
+ 	long long modeID;
+-	uint64_t start_timestamp;
++	std::atomic<uint64_t> start_timestamp{0};
+ 	uint32_t audio_samplerate;
+ 	size_t audio_planes;
+ 	size_t audio_size;
+ 	int keyerMode;
+ 	bool force_sdr;
++	bool freemixHdr = false;
++	freemix_decklink_hdr::Metadata hdrMetadata;
+ 
+ 	DeckLinkOutput(obs_output_t *output, DeckLinkDeviceDiscovery *discovery);
+ 	virtual ~DeckLinkOutput(void);
+diff --git a/plugins/decklink/FreeMixDecklinkHdrContract.hpp b/plugins/decklink/FreeMixDecklinkHdrContract.hpp
+new file mode 100644
+index 0000000..24a3e2b
+--- /dev/null
++++ b/plugins/decklink/FreeMixDecklinkHdrContract.hpp
+@@ -0,0 +1,103 @@
++#pragma once
++// SDK manual: RGBX10LE uses limited RGB64..940, R[31:22]/G[21:12]/B[11:2].
++// Its rows must be aligned to256 bytes. Input P416 is native16-bit Y + UV444.
++// This contract never decodes PQ/HLG into SDR or passes pixels through8bits.
++#include <algorithm>
++#include <cmath>
++#include <cstdint>
++#include <cstring>
++#include <string>
++#if defined(_M_X64) || defined(__SSE2__)
++#include <emmintrin.h>
++#endif
++
++namespace freemix_decklink_hdr {
++enum class Transfer : int64_t { Invalid = -1, Pq = 2, Hlg = 3 };
++inline Transfer Parse(const std::string &s) { return s == "pq" ? Transfer::Pq : s == "hlg" ? Transfer::Hlg : Transfer::Invalid; }
++struct Metadata {
++ Transfer transfer = Transfer::Invalid;
++ bool confirmed = false;
++ double redX=.708, redY=.292, greenX=.170, greenY=.797, blueX=.131, blueY=.046, whiteX=.3127, whiteY=.329;
++ double maxMastering=0, minMastering=0, maxContent=0, maxAverage=0;
++};
++inline bool FiniteRange(double x,double lo,double hi) { return std::isfinite(x)&&x>=lo&&x<=hi; }
++inline std::string Validate(const Metadata &m) {
++ if(m.transfer!=Transfer::Pq&&m.transfer!=Transfer::Hlg)return "Select PQ or HLG transfer";
++ if(!m.confirmed)return "Confirm the output mastering metadata; source metadata is not inferred";
++ const double coords[]={m.redX,m.redY,m.greenX,m.greenY,m.blueX,m.blueY,m.whiteX,m.whiteY};
++ for(double x:coords)if(!FiniteRange(x,0.,1.))return "HDR primaries and white point must be finite0..1";
++ if(m.redX+m.redY>1.||m.greenX+m.greenY>1.||m.blueX+m.blueY>1.||m.whiteX+m.whiteY>1.||m.redY<=0||m.greenY<=0||m.blueY<=0||m.whiteY<=0)return "HDR primary/white chromaticities are invalid";
++ if(!FiniteRange(m.maxMastering,1.,10000.)||!FiniteRange(m.minMastering,.0001,6.5535)||m.minMastering>=m.maxMastering)return "Explicit mastering luminance required in nits";
++ if(!FiniteRange(m.maxContent,1.,10000.)||!FiniteRange(m.maxAverage,1.,10000.)||m.maxAverage>m.maxContent)return "Explicit valid MaxCLL/MaxFALL required in nits";
++ return {};
++}
++struct Capabilities { bool hdrMetadata=false, colorspaceMetadata=false, pq=false, hlg=false, rec2020Mode=false, tenBitRgbMode=false, exactMode=false, sdiConnection=false; };
++inline std::string Preflight(const Metadata &m,const Capabilities &c,bool hdrSource,bool privateSource,int keyer) {
++ if(const auto error=Validate(m);!error.empty())return error;
++ if(privateSource)return "Private director audio cannot leave via SDI";
++ if(!hdrSource)return "Select a real HDR/float source; SDR relabeling is refused";
++ if(keyer!=0)return "HDR alpha/keyer is unsupported in RGBX10LE";
++ if(!c.hdrMetadata||!c.colorspaceMetadata)return "Driver must advertise HDR and colorspace metadata";
++ if(!(m.transfer==Transfer::Pq?c.pq:c.hlg))return "Driver does not advertise the selected PQ/HLG dynamic range";
++ if(!c.sdiConnection||!c.rec2020Mode)return "Selected SDI mode must advertise Rec2020";
++ if(!c.tenBitRgbMode||!c.exactMode)return "DoesSupportVideoMode must accept exact RGBX10LE without conversion";
++ return {};
++}
++inline size_t RowBytes(size_t width) { return ((width+63)/64)*256; }
++inline uint16_t Quantize(double component) { return uint16_t(64+uint16_t(std::clamp(component,0.,1.)*876.+.5)); }
++inline uint32_t Pack(double r,double g,double b) { return uint32_t(Quantize(r))<<22|uint32_t(Quantize(g))<<12|uint32_t(Quantize(b))<<2; }
++inline uint16_t Read16(const uint8_t *p) { return uint16_t(p[0])|uint16_t(p[1])<<8; }
++inline int64_t AudioStreamTime(uint64_t timestamp,uint64_t start,int64_t preroll,int64_t duration,int64_t scale) {
++ if(timestamp<start||preroll<0||duration<=0||scale<=0)return -1;
++ const auto ns=timestamp-start;
++ return int64_t((ns/1000000000ULL)*48000ULL+(ns%1000000000ULL)*48000ULL/1000000000ULL)+preroll*duration*48000/scale;
++}
++// Incomplete explicit HDR starts must not leave connector/audio/callback on.
++template<class Output> struct StartupRollback {
++ Output *output;
++ bool video=false,audio=false,callback=false,playbackAttempted=false,committed=false;
++ explicit StartupRollback(Output *value):output(value){}
++ ~StartupRollback(){
++  if(committed||!output)return;
++  if(callback)output->SetScheduledFrameCompletionCallback(nullptr);
++  if(playbackAttempted){int64_t actual=0;output->StopScheduledPlayback(0,&actual,1000);}
++  if(audio)output->DisableAudioOutput();
++  if(video)output->DisableVideoOutput();
++ }
++};
++inline bool ConvertP416(const uint8_t *y,const uint8_t *uv,size_t yStride,size_t uvStride,uint8_t *dest,size_t destStride,size_t width,size_t height) {
++ if(!y||!uv||!dest||!width||width>7680||!height||height>4320||yStride<width*2||uvStride<width*4||destStride<RowBytes(width))return false;
++ for(size_t row=0;row<height;row++) {
++  const auto *luma=y+row*yStride,*chroma=uv+row*uvStride;auto *out=dest+row*destStride;
++  size_t x=0;
++#if defined(_M_X64) || defined(__SSE2__)
++  const auto zero=_mm_setzero_si128();
++  const auto uvCenter=_mm_set1_epi32(32768),yBlack=_mm_set1_epi32(4096);
++  const auto yScale=_mm_set1_ps(1.f/56064.f),uvScale=_mm_set1_ps(1.f/57344.f);
++  const auto clamp0=_mm_setzero_ps(),clamp1=_mm_set1_ps(1.f),rgbScale=_mm_set1_ps(876.f),rgbBlackAndRound=_mm_set1_ps(64.5f);
++  for(;x+4<=width;x+=4) {
++   const auto yy16=_mm_loadl_epi64(reinterpret_cast<const __m128i*>(luma+x*2));
++   const auto yy=_mm_mul_ps(_mm_cvtepi32_ps(_mm_sub_epi32(_mm_unpacklo_epi16(yy16,zero),yBlack)),yScale);
++   const auto chroma16=_mm_loadu_si128(reinterpret_cast<const __m128i*>(chroma+x*4));
++   const auto lo=_mm_unpacklo_epi16(chroma16,zero),hi=_mm_unpackhi_epi16(chroma16,zero);
++   const auto cb32=_mm_unpacklo_epi64(_mm_shuffle_epi32(lo,_MM_SHUFFLE(2,0,2,0)),_mm_shuffle_epi32(hi,_MM_SHUFFLE(2,0,2,0)));
++   const auto cr32=_mm_unpacklo_epi64(_mm_shuffle_epi32(lo,_MM_SHUFFLE(3,1,3,1)),_mm_shuffle_epi32(hi,_MM_SHUFFLE(3,1,3,1)));
++   const auto cb=_mm_mul_ps(_mm_cvtepi32_ps(_mm_sub_epi32(cb32,uvCenter)),uvScale),cr=_mm_mul_ps(_mm_cvtepi32_ps(_mm_sub_epi32(cr32,uvCenter)),uvScale);
++   const auto r=_mm_add_ps(yy,_mm_mul_ps(cr,_mm_set1_ps(1.4746f))),b=_mm_add_ps(yy,_mm_mul_ps(cb,_mm_set1_ps(1.8814f)));
++   const auto g=_mm_sub_ps(_mm_sub_ps(yy,_mm_mul_ps(cb,_mm_set1_ps(.1645531268f))),_mm_mul_ps(cr,_mm_set1_ps(.5713531268f)));
++   const auto quant=[&](__m128 c){return _mm_cvttps_epi32(_mm_add_ps(_mm_mul_ps(_mm_min_ps(clamp1,_mm_max_ps(clamp0,c)),rgbScale),rgbBlackAndRound));};
++   const auto words=_mm_or_si128(_mm_or_si128(_mm_slli_epi32(quant(r),22),_mm_slli_epi32(quant(g),12)),_mm_slli_epi32(quant(b),2));
++   _mm_storeu_si128(reinterpret_cast<__m128i*>(out+x*4),words);
++  }
++#endif
++  for(;x<width;x++) {
++   const double yy=(double(Read16(luma+x*2))-4096.)/56064.;
++   const double cb=(double(Read16(chroma+x*4))-32768.)/57344.,cr=(double(Read16(chroma+x*4+2))-32768.)/57344.;
++   const double r=yy+1.4746*cr,b=yy+1.8814*cb,g=(yy-.2627*r-.0593*b)/.678;
++   const auto word=Pack(r,g,b);std::memcpy(out+x*4,&word,sizeof word);
++  }
++  std::memset(out+width*4,0,destStride-width*4);
++ }
++ return true;
++}
++}
+diff --git a/plugins/decklink/OBSVideoFrame.cpp b/plugins/decklink/OBSVideoFrame.cpp
+index 1bf5483..a92c033 100644
+--- a/plugins/decklink/OBSVideoFrame.cpp
++++ b/plugins/decklink/OBSVideoFrame.cpp
+@@ -2,17 +2,19 @@
+ 
+ OBSVideoFrame::OBSVideoFrame(long width, long height, BMDPixelFormat pixelFormat)
+ {
+-	int bpp = 2;
+ 	this->width = width;
+ 	this->height = height;
+-	this->rowBytes = width * bpp;
+-	this->data = new unsigned char[width * height * bpp + 1];
++	this->rowBytes = pixelFormat == bmdFormat10BitRGBXLE ? long(freemix_decklink_hdr::RowBytes(width)) :
++		pixelFormat == bmdFormat10BitYUV ? ((width + 47) / 48) * 128 :
++		pixelFormat == bmdFormat8BitBGRA ? width * 4 : width * 2;
++	this->data = new unsigned char[size_t(this->rowBytes) * size_t(height) + 1]{};
++	this->flags = bmdFrameFlagDefault;
+ 	this->pixelFormat = pixelFormat;
+ }
+ 
+ OBSVideoFrame::~OBSVideoFrame()
+ {
+-	delete this->data;
++	delete[] this->data;
+ }
+ 
+ HRESULT OBSVideoFrame::SetFlags(BMDFrameFlags newFlags)
+@@ -87,7 +89,11 @@ HRESULT OBSVideoFrame::GetBytes(void **buffer)
+ 
+ #define CompareREFIID(iid1, iid2) (memcmp(&iid1, &iid2, sizeof(REFIID)) == 0)
+ 
+-HDRVideoFrame::HDRVideoFrame(IDeckLinkMutableVideoFrame *frame) : m_videoFrame(frame), m_refCount(1) {}
++HDRVideoFrame::HDRVideoFrame(IDeckLinkMutableVideoFrame *frame, const freemix_decklink_hdr::Metadata *metadata)
++	: m_videoFrame(frame), m_refCount(1), explicitMetadata(metadata != nullptr)
++{
++	if (metadata) hdrMetadata = *metadata;
++}
+ 
+ HRESULT HDRVideoFrame::QueryInterface(REFIID iid, LPVOID *ppv)
+ {
+@@ -104,7 +110,8 @@ HRESULT HDRVideoFrame::QueryInterface(REFIID iid, LPVOID *ppv)
+ 		*ppv = static_cast<IDeckLinkVideoFrameMetadataExtensions *>(this);
+ 	} else {
+ 		*ppv = nullptr;
+-		return E_NOINTERFACE;
++		// Preserve SDK ancillary interfaces on the underlying output frame.
++		return m_videoFrame->QueryInterface(iid, ppv);
+ 	}
+ 
+ 	AddRef();
+@@ -129,11 +136,12 @@ ULONG HDRVideoFrame::Release(void)
+ 
+ HRESULT HDRVideoFrame::GetInt(BMDDeckLinkFrameMetadataID metadataID, int64_t *value)
+ {
++	if (!value) return E_INVALIDARG;
+ 	HRESULT result = S_OK;
+ 
+ 	switch (metadataID) {
+ 	case bmdDeckLinkFrameMetadataHDRElectroOpticalTransferFunc:
+-		*value = 2;
++		*value = explicitMetadata ? int64_t(hdrMetadata.transfer) : 2;
+ 		break;
+ 
+ 	case bmdDeckLinkFrameMetadataColorspace:
+@@ -150,6 +158,25 @@ HRESULT HDRVideoFrame::GetInt(BMDDeckLinkFrameMetadataID metadataID, int64_t *va
+ 
+ HRESULT HDRVideoFrame::GetFloat(BMDDeckLinkFrameMetadataID metadataID, double *value)
+ {
++	if (!value) return E_INVALIDARG;
++	if (explicitMetadata) {
++		switch (metadataID) {
++		case bmdDeckLinkFrameMetadataHDRDisplayPrimariesRedX: *value=hdrMetadata.redX; break;
++		case bmdDeckLinkFrameMetadataHDRDisplayPrimariesRedY: *value=hdrMetadata.redY; break;
++		case bmdDeckLinkFrameMetadataHDRDisplayPrimariesGreenX: *value=hdrMetadata.greenX; break;
++		case bmdDeckLinkFrameMetadataHDRDisplayPrimariesGreenY: *value=hdrMetadata.greenY; break;
++		case bmdDeckLinkFrameMetadataHDRDisplayPrimariesBlueX: *value=hdrMetadata.blueX; break;
++		case bmdDeckLinkFrameMetadataHDRDisplayPrimariesBlueY: *value=hdrMetadata.blueY; break;
++		case bmdDeckLinkFrameMetadataHDRWhitePointX: *value=hdrMetadata.whiteX; break;
++		case bmdDeckLinkFrameMetadataHDRWhitePointY: *value=hdrMetadata.whiteY; break;
++		case bmdDeckLinkFrameMetadataHDRMaxDisplayMasteringLuminance: *value=hdrMetadata.maxMastering; break;
++		case bmdDeckLinkFrameMetadataHDRMinDisplayMasteringLuminance: *value=hdrMetadata.minMastering; break;
++		case bmdDeckLinkFrameMetadataHDRMaximumContentLightLevel: *value=hdrMetadata.maxContent; break;
++		case bmdDeckLinkFrameMetadataHDRMaximumFrameAverageLightLevel: *value=hdrMetadata.maxAverage; break;
++		default: return E_INVALIDARG;
++		}
++		return S_OK;
++	}
+ 	HRESULT result = S_OK;
+ 
+ 	switch (metadataID) {
+@@ -222,6 +249,7 @@ HRESULT HDRVideoFrame::GetString(BMDDeckLinkFrameMetadataID, decklink_string_t *
+ 
+ HRESULT HDRVideoFrame::GetBytes(BMDDeckLinkFrameMetadataID, void *, uint32_t *bufferSize)
+ {
++	if (!bufferSize) return E_INVALIDARG;
+ 	*bufferSize = 0;
+ 	// Not expecting GetBytes
+ 	return E_INVALIDARG;
+diff --git a/plugins/decklink/OBSVideoFrame.h b/plugins/decklink/OBSVideoFrame.h
+index b6c09e6..4e8a34a 100644
+--- a/plugins/decklink/OBSVideoFrame.h
++++ b/plugins/decklink/OBSVideoFrame.h
+@@ -3,6 +3,7 @@
+ #include "platform.hpp"
+ #include "obs.hpp"
+ #include <atomic>
++#include "FreeMixDecklinkHdrContract.hpp"
+ 
+ class OBSVideoFrame : public IDeckLinkMutableVideoFrame {
+ private:
+@@ -73,7 +74,7 @@ public:
+ 
+ class HDRVideoFrame : public IDeckLinkVideoFrame, public IDeckLinkVideoFrameMetadataExtensions {
+ public:
+-	HDRVideoFrame(IDeckLinkMutableVideoFrame *frame);
++	HDRVideoFrame(IDeckLinkMutableVideoFrame *frame, const freemix_decklink_hdr::Metadata *metadata = nullptr);
+ 	virtual ~HDRVideoFrame() {}
+ 
+ 	// IUnknown interface
+@@ -111,4 +112,6 @@ public:
+ private:
+ 	ComPtr<IDeckLinkMutableVideoFrame> m_videoFrame;
+ 	std::atomic<ULONG> m_refCount;
++	bool explicitMetadata = false;
++	freemix_decklink_hdr::Metadata hdrMetadata;
+ };
+diff --git a/plugins/decklink/decklink-device-instance.cpp b/plugins/decklink/decklink-device-instance.cpp
+index b1376c8..2517b6d 100644
+--- a/plugins/decklink/decklink-device-instance.cpp
++++ b/plugins/decklink/decklink-device-instance.cpp
+@@ -550,12 +550,14 @@ bool DeckLinkDeviceInstance::StartOutput(DeckLinkDeviceMode *mode_)
+ 	if (!device->GetOutput(&output_)) {
+ 		return false;
+ 	}
++	freemix_decklink_hdr::StartupRollback<IDeckLinkOutput> rollback(output_.Get());
+ 
+ 	const HRESULT videoResult = output_->EnableVideoOutput(mode_->GetDisplayMode(), bmdVideoOutputFlagDefault);
+ 	if (videoResult != S_OK) {
+ 		LOG(LOG_ERROR, "Failed to enable video output");
+ 		return false;
+ 	}
++	rollback.video = true;
+ 
+ 	const HRESULT audioResult = output_->EnableAudioOutput(bmdAudioSampleRate48kHz, bmdAudioSampleType16bitInteger,
+ 							       2, bmdAudioOutputStreamTimestamped);
+@@ -563,6 +565,7 @@ bool DeckLinkDeviceInstance::StartOutput(DeckLinkDeviceMode *mode_)
+ 		LOG(LOG_ERROR, "Failed to enable audio output");
+ 		return false;
+ 	}
++	rollback.audio = true;
+ 
+ 	if (!mode_->GetFrameRate(&frameDuration, &frameTimescale)) {
+ 		LOG(LOG_ERROR, "Failed to get frame rate");
+@@ -576,17 +579,18 @@ bool DeckLinkDeviceInstance::StartOutput(DeckLinkDeviceMode *mode_)
+ 			deckLinkKeyer->Enable(keyerMode == 1);
+ 			deckLinkKeyer->SetLevel(255);
+ 		} else {
+-			deckLinkKeyer->Disable();
++			if (deckLinkKeyer->Disable() != S_OK && decklinkOutput->freemixHdr) return false;
+ 		}
+ 	}
+ 
+ 	frameQueueDecklinkToObs.reset();
+ 	frameQueueObsToDecklink.reset();
+ 
+-	const int rowSize = decklinkOutput->GetWidth() * 4;
++	const int rowSize = decklinkOutput->freemixHdr ? int(freemix_decklink_hdr::RowBytes(decklinkOutput->GetWidth())) : decklinkOutput->GetWidth() * 4;
++	outputRowBytes = size_t(rowSize);
+ 	const int frameSize = rowSize * decklinkOutput->GetHeight();
+ 	for (std::vector<uint8_t> &blob : frameBlobs) {
+-		blob.assign(frameSize, 0);
++		try { blob.assign(frameSize, 0); } catch (const std::bad_alloc &) { return false; }
+ 		frameQueueDecklinkToObs.push(blob.data());
+ 	}
+ 	activeBlob = nullptr;
+@@ -594,11 +598,16 @@ bool DeckLinkDeviceInstance::StartOutput(DeckLinkDeviceMode *mode_)
+ 	struct obs_video_info ovi;
+ 	const enum video_colorspace colorspace = obs_get_video_info(&ovi) ? ovi.colorspace : VIDEO_CS_DEFAULT;
+ 	const bool source_hdr = (colorspace == VIDEO_CS_2100_PQ) || (colorspace == VIDEO_CS_2100_HLG);
+-	const bool enable_hdr =
++	const bool enable_hdr = decklinkOutput->freemixHdr || (
+ 		source_hdr &&
+-		(obs_output_get_video_conversion(decklinkOutput->GetOutput())->colorspace == VIDEO_CS_2100_PQ);
++		(obs_output_get_video_conversion(decklinkOutput->GetOutput())->colorspace == VIDEO_CS_2100_PQ));
+ 	BMDPixelFormat pixelFormat = enable_hdr ? bmdFormat10BitRGBXLE : bmdFormat8BitBGRA;
+ 	const int64_t minimumPrerollFrames = std::max(device->GetMinimumPrerollFrames(), INT64_C(3));
++	outputPrerollFrames = minimumPrerollFrames;
++	if (decklinkOutput->freemixHdr && minimumPrerollFrames > 4) {
++		LOG(LOG_ERROR, "HDR driver requires more than four outstanding frames");
++		return false;
++	}
+ 	for (int64_t i = 0; i < minimumPrerollFrames; ++i) {
+ 		ComPtr<IDeckLinkMutableVideoFrame> decklinkOutputFrame;
+ 		HRESULT result = output_->CreateVideoFrame(decklinkOutput->GetWidth(), decklinkOutput->GetHeight(),
+@@ -608,11 +617,21 @@ bool DeckLinkDeviceInstance::StartOutput(DeckLinkDeviceMode *mode_)
+ 			blog(LOG_ERROR, "failed to create video frame 0x%X", result);
+ 			return false;
+ 		}
++		if (decklinkOutput->freemixHdr) {
++			void *bytes = nullptr;
++			if (decklinkOutputFrame->GetBytes(&bytes) != S_OK || !bytes) return false;
++			const uint32_t black = freemix_decklink_hdr::Pack(0, 0, 0);
++			for (int y = 0; y < decklinkOutput->GetHeight(); ++y) {
++				auto *row = static_cast<uint8_t *>(bytes) + size_t(y) * rowSize;
++				for (int x = 0; x < decklinkOutput->GetWidth(); ++x) memcpy(row + size_t(x) * 4, &black, 4);
++				memset(row + size_t(decklinkOutput->GetWidth()) * 4, 0, rowSize - size_t(decklinkOutput->GetWidth()) * 4);
++			}
++		}
+ 
+ 		IDeckLinkVideoFrame *theFrame = decklinkOutputFrame.Get();
+ 		ComPtr<HDRVideoFrame> decklinkOutputHDRFrame;
+ 		if (enable_hdr) {
+-			*decklinkOutputHDRFrame.Assign() = new HDRVideoFrame(decklinkOutputFrame);
++			try { *decklinkOutputHDRFrame.Assign() = new HDRVideoFrame(decklinkOutputFrame, decklinkOutput->freemixHdr ? &decklinkOutput->hdrMetadata : nullptr); } catch (const std::bad_alloc &) { return false; }
+ 			theFrame = decklinkOutputHDRFrame.Get();
+ 		}
+ 
+@@ -625,28 +644,48 @@ bool DeckLinkDeviceInstance::StartOutput(DeckLinkDeviceMode *mode_)
+ 	totalFramesScheduled = minimumPrerollFrames;
+ 
+ 	*renderDelegate.Assign() = new RenderDelegate<DeckLinkDeviceInstance>(this);
+-	output_->SetScheduledFrameCompletionCallback(renderDelegate);
+-
+-	output_->StartScheduledPlayback(0, 100, 1.0);
+-
+-	mode = mode_;
+-	output = std::move(output_);
++	if (output_->SetScheduledFrameCompletionCallback(renderDelegate) != S_OK) return false;
++	rollback.callback = true;
++	{
++		std::lock_guard<std::mutex> lock(outputMutex);
++		mode = mode_;
++		output = output_;
++		outputRunning = true;
++	}
++	rollback.playbackAttempted = true;
++	if (output_->StartScheduledPlayback(0, 1000, 1.0) != S_OK) {
++		std::lock_guard<std::mutex> lock(outputMutex);
++		outputRunning = false;
++		output.Clear();
++		mode = nullptr;
++		return false;
++	}
++	rollback.committed = true;
+ 
+ 	return true;
+ }
+ 
+ bool DeckLinkDeviceInstance::StopOutput()
+ {
+-	if (mode == nullptr || output == nullptr) {
+-		return false;
++	ComPtr<IDeckLinkOutput> stopping;
++	{
++		std::lock_guard<std::mutex> lock(outputMutex);
++		if (!output) return false;
++		outputRunning = false;
++		stopping = output;
+ 	}
+ 
+ 	LOG(LOG_INFO, "Stopping output of '%s'...", GetDevice()->GetDisplayName().c_str());
+ 
+-	output->SetScheduledFrameCompletionCallback(NULL);
+-	output->DisableVideoOutput();
+-	output->DisableAudioOutput();
++	// Detach/stop outside the mutex: SDK calls may wait for the callback.
++	stopping->SetScheduledFrameCompletionCallback(nullptr);
++	BMDTimeValue actualStop = 0;
++	stopping->StopScheduledPlayback(0, &actualStop, 1000);
++	stopping->DisableAudioOutput();
++	stopping->DisableVideoOutput();
++	std::lock_guard<std::mutex> lock(outputMutex);
+ 	output.Clear();
++	mode = nullptr;
+ 	renderDelegate.Clear();
+ 	frameQueueDecklinkToObs.reset();
+ 	frameQueueObsToDecklink.reset();
+@@ -656,6 +695,8 @@ bool DeckLinkDeviceInstance::StopOutput()
+ 
+ void DeckLinkDeviceInstance::UpdateVideoFrame(video_data *frame)
+ {
++	std::lock_guard<std::mutex> lock(outputMutex);
++	if (!outputRunning || !frame) return;
+ 	auto decklinkOutput = dynamic_cast<DeckLinkOutput *>(decklink);
+ 	if (decklinkOutput == nullptr) {
+ 		return;
+@@ -663,15 +704,26 @@ void DeckLinkDeviceInstance::UpdateVideoFrame(video_data *frame)
+ 
+ 	uint8_t *const blob = frameQueueDecklinkToObs.pop();
+ 	if (blob) {
+-		memcpy(blob, frame->data[0], frame->linesize[0] * decklinkOutput->GetHeight());
++		const auto width = size_t(decklinkOutput->GetWidth()), height = size_t(decklinkOutput->GetHeight());
++		if (decklinkOutput->freemixHdr) {
++			if (!freemix_decklink_hdr::ConvertP416(frame->data[0], frame->data[1], frame->linesize[0], frame->linesize[1], blob, outputRowBytes, width, height)) {
++				frameQueueDecklinkToObs.push(blob);
++				return;
++			}
++		} else {
++			if (!frame->data[0] || frame->linesize[0] < width * 4) { frameQueueDecklinkToObs.push(blob); return; }
++			for (size_t y = 0; y < height; ++y) memcpy(blob + y * outputRowBytes, frame->data[0] + y * frame->linesize[0], width * 4);
++		}
+ 		frameQueueObsToDecklink.push(blob);
+ 	}
+ }
+ 
+ void DeckLinkDeviceInstance::ScheduleVideoFrame(IDeckLinkVideoFrame *frame)
+ {
++	std::lock_guard<std::mutex> lock(outputMutex);
++	if (!outputRunning || !output || !frame) return;
+ 	void *bytes;
+-	if (SUCCEEDED(frame->GetBytes(&bytes))) {
++	if (SUCCEEDED(frame->GetBytes(&bytes)) && bytes) {
+ 		uint8_t *blob = frameQueueObsToDecklink.pop();
+ 		if (blob) {
+ 			if (activeBlob) {
+@@ -686,7 +738,8 @@ void DeckLinkDeviceInstance::ScheduleVideoFrame(IDeckLinkVideoFrame *frame)
+ 		if (blob) {
+ 			memcpy(bytes, blob, frameSize);
+ 		} else {
+-			memset(bytes, 0, frameSize);
++			auto *route = dynamic_cast<DeckLinkOutput *>(decklink);
++			if (!route || !route->freemixHdr) memset(bytes, 0, frameSize);
+ 		}
+ 
+ 		output->ScheduleVideoFrame(frame, totalFramesScheduled * frameDuration, frameDuration, frameTimescale);
+@@ -696,8 +749,16 @@ void DeckLinkDeviceInstance::ScheduleVideoFrame(IDeckLinkVideoFrame *frame)
+ 
+ void DeckLinkDeviceInstance::WriteAudio(audio_data *frames)
+ {
+-	uint32_t sampleFramesWritten;
+-	output->WriteAudioSamplesSync(frames->data[0], frames->frames, &sampleFramesWritten);
++	std::lock_guard<std::mutex> lock(outputMutex);
++	if (!outputRunning || !output || !frames || !frames->data[0]) return;
++	uint32_t sampleFramesWritten = 0;
++	auto *route = dynamic_cast<DeckLinkOutput *>(decklink);
++	if (route && route->freemixHdr) {
++		const auto time = freemix_decklink_hdr::AudioStreamTime(frames->timestamp, route->start_timestamp.load(), outputPrerollFrames, frameDuration, frameTimescale);
++		if (time < 0) return;
++		const auto result = output->ScheduleAudioSamples(frames->data[0], frames->frames, time, 48000, &sampleFramesWritten);
++		if (result != S_OK || sampleFramesWritten != frames->frames) LOG(LOG_WARNING, "SDI HDR audio scheduling incomplete: HRESULT %08x, samples %u/%u", result, sampleFramesWritten, frames->frames);
++	} else output->WriteAudioSamplesSync(frames->data[0], frames->frames, &sampleFramesWritten);
+ }
+ 
+ #define TIME_BASE 1000000000
+diff --git a/plugins/decklink/decklink-device-instance.hpp b/plugins/decklink/decklink-device-instance.hpp
+index c4ac535..d108088 100644
+--- a/plugins/decklink/decklink-device-instance.hpp
++++ b/plugins/decklink/decklink-device-instance.hpp
+@@ -8,6 +8,7 @@
+ #include "OBSVideoFrame.h"
+ #include <atomic>
+ #include <vector>
++#include <mutex>
+ 
+ class AudioRepacker;
+ class DecklinkBase;
+@@ -34,11 +35,11 @@ public:
+ };
+ 
+ /*
+-Unbounded SPSC Queue with modifications:
++Bounded SPSC ring; three reusable frame buffers, plus one sentinel slot.
++The former node-cache queue exhausted its cache after three pushes. Indices
++now wrap, a full queue returns false, and reset requires stopped producers.
++Original queue reference and license retained below:
+ https://www.1024cores.net/home/lock-free-algorithms/queues/unbounded-spsc-queue
+-- Convert to bounded. Fixed node cache is part of the class layout.
+-- Queue doesn't handle push failure because it should never be full.
+-- Templated type has been replaced with a hard-coded type.
+ The license text has been copied below.
+ Copyright (c) 2010-2011 Dmitry Vyukov. All rights reserved.
+ Redistribution and use in source and binary forms, with or without modification,
+@@ -65,66 +66,36 @@ either expressed or implied, of Dmitry Vyukov.
+ static constexpr size_t FrameQueueFrameCount = 3;
+ class FrameQueue {
+ private:
+-	/* Intel may grab two 64-byte cache lines */
+-	static constexpr size_t FalseSharingSize = 128;
+-
+-	struct Node {
+-		std::atomic<Node *> next = nullptr;
+-		uint8_t *frame = nullptr;
+-	};
+-
+-	struct alignas(FalseSharingSize) PaddedNode {
+-		Node node;
+-		uint8_t padding[FalseSharingSize - sizeof(struct Node)]{};
+-	};
+-
+-	PaddedNode cache[FrameQueueFrameCount + 1];
+-
+-	alignas(FalseSharingSize) Node *front;
+-	alignas(FalseSharingSize) Node *back;
+-	Node *cache_list;
++	static constexpr size_t Capacity = FrameQueueFrameCount + 1;
++	uint8_t *frames[Capacity]{};
++	alignas(128) std::atomic<size_t> readIndex{0};
++	alignas(128) std::atomic<size_t> writeIndex{0};
+ 
+ public:
+ 	FrameQueue() { reset(); }
+ 
+ 	void reset()
+ 	{
+-		for (size_t i = 0; i < FrameQueueFrameCount; ++i) {
+-			cache[i].node.next.store(&cache[i + 1].node, std::memory_order_relaxed);
+-		}
+-
+-		Node &last = cache[FrameQueueFrameCount].node;
+-		last.next.store(nullptr, std::memory_order_relaxed);
+-		last.frame = nullptr;
+-
+-		front = &last;
+-		back = &last;
+-		cache_list = &cache[0].node;
++		readIndex.store(0, std::memory_order_relaxed);
++		writeIndex.store(0, std::memory_order_relaxed);
+ 	}
+ 
+-	void push(uint8_t *v)
++	bool push(uint8_t *v)
+ 	{
+-		Node *const n = cache_list;
+-		cache_list = cache_list->next.load(std::memory_order_relaxed);
+-
+-		n->next.store(nullptr, std::memory_order_relaxed);
+-		n->frame = v;
+-
+-		back->next.store(n, std::memory_order_release);
+-
+-		back = n;
++		const auto write = writeIndex.load(std::memory_order_relaxed);
++		const auto next = (write + 1) % Capacity;
++		if (next == readIndex.load(std::memory_order_acquire)) return false;
++		frames[write] = v;
++		writeIndex.store(next, std::memory_order_release);
++		return true;
+ 	}
+ 
+ 	uint8_t *pop()
+ 	{
+-		uint8_t *frame = nullptr;
+-
+-		Node *const n_front = front->next.load(std::memory_order_consume);
+-		if (n_front != nullptr) {
+-			frame = n_front->frame;
+-			front = n_front;
+-		}
+-
++		const auto read = readIndex.load(std::memory_order_relaxed);
++		if (read == writeIndex.load(std::memory_order_acquire)) return nullptr;
++		auto *frame = frames[read];
++		readIndex.store((read + 1) % Capacity, std::memory_order_release);
+ 		return frame;
+ 	}
+ };
+@@ -165,6 +136,10 @@ protected:
+ 	BMDTimeScale frameTimescale;
+ 	BMDTimeScale totalFramesScheduled;
+ 	ComPtr<RenderDelegate<DeckLinkDeviceInstance>> renderDelegate;
++	std::mutex outputMutex;
++	bool outputRunning = false;
++	size_t outputRowBytes = 0;
++	int64_t outputPrerollFrames = 0;
+ 
+ 	void FinalizeStream();
+ 	void SetupVideoFormat(DeckLinkDeviceMode *mode_);
+diff --git a/plugins/decklink/decklink-device.cpp b/plugins/decklink/decklink-device.cpp
+index b1af538..89b169b 100644
+--- a/plugins/decklink/decklink-device.cpp
++++ b/plugins/decklink/decklink-device.cpp
+@@ -100,6 +100,8 @@ bool DeckLinkDevice::Init()
+ 	attributes->GetFlag(BMDDeckLinkSupportsInternalKeying, &supportsInternalKeyer);
+ 
+ 	attributes->GetFlag(BMDDeckLinkSupportsHDRMetadata, &supportsHDRMetadata);
++	attributes->GetFlag(BMDDeckLinkSupportsColorspaceMetadata, &supportsColorspaceMetadata);
++	attributes->GetInt(BMDDeckLinkSupportedDynamicRange, &supportedDynamicRange);
+ 
+ 	// Sub Device Counts
+ 	attributes->GetInt(BMDDeckLinkSubDeviceIndex, &subDeviceIndex);
+@@ -246,6 +248,11 @@ bool DeckLinkDevice::GetSupportsHDRMetadata(void) const
+ 	return supportsHDRMetadata;
+ }
+ 
++bool DeckLinkDevice::GetConfiguration(IDeckLinkConfiguration **configuration)
++{
++	return device->QueryInterface(IID_IDeckLinkConfiguration, (void **)configuration) == S_OK;
++}
++
+ int64_t DeckLinkDevice::GetSubDeviceCount()
+ {
+ 	return numSubDevices;
+diff --git a/plugins/decklink/decklink-device.hpp b/plugins/decklink/decklink-device.hpp
+index 107b34d..92cd1f4 100644
+--- a/plugins/decklink/decklink-device.hpp
++++ b/plugins/decklink/decklink-device.hpp
+@@ -20,6 +20,8 @@ class DeckLinkDevice {
+ 	decklink_bool_t supportsExternalKeyer = false;
+ 	decklink_bool_t supportsInternalKeyer = false;
+ 	decklink_bool_t supportsHDRMetadata = false;
++	decklink_bool_t supportsColorspaceMetadata = false;
++	int64_t supportedDynamicRange = 0;
+ 	int64_t subDeviceIndex = 0;
+ 	int64_t numSubDevices = 0;
+ 	int64_t minimumPrerollFrames = 3;
+@@ -50,6 +52,10 @@ public:
+ 	bool GetSupportsExternalKeyer(void) const;
+ 	bool GetSupportsInternalKeyer(void) const;
+ 	bool GetSupportsHDRMetadata(void) const;
++	bool GetSupportsColorspaceMetadata(void) const { return supportsColorspaceMetadata; }
++	int64_t GetSupportedDynamicRange(void) const { return supportedDynamicRange; }
++	int64_t GetVideoOutputConnections(void) const { return supportedVideoOutputConnections; }
++	bool GetConfiguration(IDeckLinkConfiguration **configuration);
+ 	int64_t GetSubDeviceCount();
+ 	int64_t GetSubDeviceIndex();
+ 	int64_t GetMinimumPrerollFrames();
+diff --git a/plugins/decklink/decklink-output.cpp b/plugins/decklink/decklink-output.cpp
+index beef096..5199998 100644
+--- a/plugins/decklink/decklink-output.cpp
++++ b/plugins/decklink/decklink-output.cpp
+@@ -1,4 +1,5 @@
+ #include <obs-module.h>
++#include <obs.hpp>
+ #include <obs-avc.h>
+ 
+ #include "const.h"
+@@ -10,6 +11,57 @@
+ 
+ #include <media-io/video-scaler.h>
+ #include <util/util_uint64.h>
++#include <callback/proc.h>
++
++static freemix_decklink_hdr::Metadata freemix_hdr_metadata(obs_data_t *settings)
++{
++ using namespace freemix_decklink_hdr;
++ Metadata m;m.transfer=Parse(obs_data_get_string(settings,"hdr_transfer"));
++ OBSDataAutoRelease data=obs_data_get_obj(settings,"hdr_metadata");
++ if(!data)return m;
++ m.confirmed=obs_data_get_bool(data,"confirmed");
++ m.redX=obs_data_get_double(data,"redX");m.redY=obs_data_get_double(data,"redY");
++ m.greenX=obs_data_get_double(data,"greenX");m.greenY=obs_data_get_double(data,"greenY");
++ m.blueX=obs_data_get_double(data,"blueX");m.blueY=obs_data_get_double(data,"blueY");
++ m.whiteX=obs_data_get_double(data,"whiteX");m.whiteY=obs_data_get_double(data,"whiteY");
++ m.maxMastering=obs_data_get_double(data,"maxMastering");m.minMastering=obs_data_get_double(data,"minMastering");
++ m.maxContent=obs_data_get_double(data,"maxContent");m.maxAverage=obs_data_get_double(data,"maxAverage");return m;
++}
++
++static std::string freemix_hdr_driver_preflight(DeckLinkDevice *device, DeckLinkDeviceMode *mode,
++ const freemix_decklink_hdr::Metadata &metadata,int keyer,obs_data_t *response=nullptr)
++{
++ using namespace freemix_decklink_hdr;
++ if(!device||!mode)return "DeckLink device/mode unavailable";
++ Capabilities c;c.hdrMetadata=device->GetSupportsHDRMetadata();c.colorspaceMetadata=device->GetSupportsColorspaceMetadata();
++ const auto ranges=device->GetSupportedDynamicRange();c.pq=(ranges&bmdDynamicRangeHDRStaticPQ)!=0;c.hlg=(ranges&bmdDynamicRangeHDRStaticHLG)!=0;
++ c.rec2020Mode=(mode->GetDisplayModeFlags()&bmdDisplayModeColorspaceRec2020)!=0;
++ ComPtr<IDeckLinkConfiguration> configuration;int64_t connection=0;
++ c.sdiConnection=(device->GetVideoOutputConnections()&bmdVideoConnectionSDI)!=0&&device->GetConfiguration(&configuration)&&
++  configuration->GetInt(bmdDeckLinkConfigVideoOutputConnection,&connection)==S_OK&&(connection&bmdVideoConnectionSDI)!=0;
++ ComPtr<IDeckLinkOutput> output;BMDDisplayMode actual=bmdModeUnknown;decklink_bool_t supported=false;
++ if(device->GetOutput(&output)&&output->DoesSupportVideoMode(bmdVideoConnectionSDI,mode->GetDisplayMode(),bmdFormat10BitRGBXLE,
++  bmdNoVideoOutputConversion,bmdSupportedVideoModeDefault,&actual,&supported)==S_OK){c.tenBitRgbMode=!!supported;c.exactMode=actual==mode->GetDisplayMode();}
++ if(response){
++  obs_data_set_bool(response,"hdrMetadata",c.hdrMetadata);obs_data_set_bool(response,"colorspaceMetadata",c.colorspaceMetadata);
++  obs_data_set_bool(response,"pqSupported",c.pq);obs_data_set_bool(response,"hlgSupported",c.hlg);obs_data_set_bool(response,"rec2020Mode",c.rec2020Mode);
++  obs_data_set_bool(response,"tenBitRgbMode",c.tenBitRgbMode);obs_data_set_bool(response,"exactMode",c.exactMode);obs_data_set_bool(response,"configuredSdiConnection",c.sdiConnection);
++  obs_data_set_int(response,"width",mode->GetWidth());obs_data_set_int(response,"height",mode->GetHeight());BMDTimeValue duration=0;BMDTimeScale scale=0;
++  if(mode->GetFrameRate(&duration,&scale)){obs_data_set_int(response,"fpsNum",scale);obs_data_set_int(response,"fpsDen",duration);}
++ }
++ return Preflight(metadata,c,true,false,keyer);
++}
++
++static void freemix_hdr_query(void *,calldata_t *call)
++{
++ auto *settings=static_cast<obs_data_t*>(calldata_ptr(call,"config"));auto *response=static_cast<obs_data_t*>(calldata_ptr(call,"response"));
++ if(!response)return;obs_data_set_int(response,"contractVersion",1);
++ if(!settings){obs_data_set_bool(response,"success",false);obs_data_set_string(response,"error","SDI HDR settings missing");return;}
++ ComPtr<DeckLinkDevice> device;device.Set(deviceEnum->FindByHash(obs_data_get_string(settings,DEVICE_HASH)));
++ auto *mode=device?device->FindOutputMode(obs_data_get_int(settings,MODE_ID)):nullptr;
++ const auto error=freemix_hdr_driver_preflight(device.Get(),mode,freemix_hdr_metadata(settings),int(obs_data_get_int(settings,KEYER)),response);
++ obs_data_set_bool(response,"success",error.empty());if(!error.empty())obs_data_set_string(response,"error",error.c_str());
++}
+ 
+ static void decklink_output_destroy(void *data)
+ {
+@@ -25,11 +77,14 @@ static void *decklink_output_create(obs_data_t *settings, obs_output_t *output)
+ 	decklinkOutput->modeID = obs_data_get_int(settings, MODE_ID);
+ 	decklinkOutput->keyerMode = (int)obs_data_get_int(settings, KEYER);
+ 	decklinkOutput->force_sdr = obs_data_get_bool(settings, FORCE_SDR);
++	decklinkOutput->freemixHdr = obs_data_get_bool(settings,"freemix_hdr");
++	decklinkOutput->hdrMetadata = freemix_hdr_metadata(settings);
+ 
+ 	ComPtr<DeckLinkDevice> device;
+ 	device.Set(deviceEnum->FindByHash(decklinkOutput->deviceHash));
+ 	if (device) {
+ 		DeckLinkDeviceMode *mode = device->FindOutputMode(decklinkOutput->modeID);
++		if (!mode) return decklinkOutput;
+ 
+ 		struct video_scale_info to = {};
+ 		to.format = VIDEO_FORMAT_BGRA;
+@@ -38,6 +93,8 @@ static void *decklink_output_create(obs_data_t *settings, obs_output_t *output)
+ 		to.range = VIDEO_RANGE_FULL;
+ 		to.colorspace = (device->GetSupportsHDRMetadata() && !decklinkOutput->force_sdr) ? VIDEO_CS_2100_PQ
+ 												 : VIDEO_CS_709;
++		if(decklinkOutput->freemixHdr){to.format=VIDEO_FORMAT_P416;to.range=VIDEO_RANGE_PARTIAL;
++		 to.colorspace=decklinkOutput->hdrMetadata.transfer==freemix_decklink_hdr::Transfer::Hlg?VIDEO_CS_2100_HLG:VIDEO_CS_2100_PQ;}
+ 
+ 		obs_output_set_video_conversion(output, &to);
+ 	}
+@@ -53,6 +110,7 @@ static void decklink_output_update(void *data, obs_data_t *settings)
+ 	decklink->modeID = obs_data_get_int(settings, MODE_ID);
+ 	decklink->keyerMode = (int)obs_data_get_int(settings, KEYER);
+ 	decklink->force_sdr = obs_data_get_bool(settings, FORCE_SDR);
++	decklink->freemixHdr=obs_data_get_bool(settings,"freemix_hdr");decklink->hdrMetadata=freemix_hdr_metadata(settings);
+ }
+ 
+ static bool decklink_output_start(void *data)
+@@ -69,9 +127,10 @@ static bool decklink_output_start(void *data)
+ 		return false;
+ 	}
+ 
+-	decklink->audio_samplerate = aoi.samples_per_sec;
+-	decklink->audio_planes = 2;
+-	decklink->audio_size = get_audio_size(AUDIO_FORMAT_16BIT, aoi.speakers, 1);
++	// Raw callback receives the explicit conversion below: interleaved stereo48k.
++	decklink->audio_samplerate = 48000;
++	decklink->audio_planes = 1;
++	decklink->audio_size = get_audio_size(AUDIO_FORMAT_16BIT, SPEAKERS_STEREO, 1);
+ 
+ 	decklink->start_timestamp = 0;
+ 
+@@ -84,6 +143,15 @@ static bool decklink_output_start(void *data)
+ 	}
+ 
+ 	DeckLinkDeviceMode *mode = device->FindOutputMode(decklink->modeID);
++	if (!mode) return false;
++	if(decklink->freemixHdr){
++	 const auto error=freemix_hdr_driver_preflight(device.Get(),mode,decklink->hdrMetadata,decklink->keyerMode);
++	 if(!error.empty()){obs_output_set_last_error(decklink->GetOutput(),error.c_str());return false;}
++	 const auto *v=video_output_get_info(obs_output_video(decklink->GetOutput()));
++	 const auto cs=decklink->hdrMetadata.transfer==freemix_decklink_hdr::Transfer::Hlg?VIDEO_CS_2100_HLG:VIDEO_CS_2100_PQ;
++	 if(!v||v->format!=VIDEO_FORMAT_P416||v->colorspace!=cs||v->range!=VIDEO_RANGE_PARTIAL||v->width!=uint32_t(mode->GetWidth())||v->height!=uint32_t(mode->GetHeight())||!mode->IsEqualFrameRate(v->fps_num,v->fps_den)){
++	  obs_output_set_last_error(decklink->GetOutput(),"SDI HDR requires independent P416 limited-range PQ/HLG view matching device dimensions/FPS");return false;}
++	}
+ 
+ 	struct obs_video_info ovi;
+ 	if (!obs_get_video_info(&ovi)) {
+@@ -91,7 +159,7 @@ static bool decklink_output_start(void *data)
+ 		return false;
+ 	}
+ 
+-	if (!mode->IsEqualFrameRate(ovi.fps_num, ovi.fps_den)) {
++	if (!decklink->freemixHdr && !mode->IsEqualFrameRate(ovi.fps_num, ovi.fps_den)) {
+ 		LOG(LOG_ERROR, "Start failed: FPS mismatch!");
+ 		return false;
+ 	}
+@@ -112,6 +180,7 @@ static bool decklink_output_start(void *data)
+ 	obs_output_set_audio_conversion(decklink->GetOutput(), &conversion);
+ 
+ 	if (!obs_output_begin_data_capture(decklink->GetOutput(), 0)) {
++		decklink->Deactivate();
+ 		return false;
+ 	}
+ 
+@@ -211,6 +280,7 @@ static bool decklink_output_device_changed(obs_properties_t *props, obs_property
+ 
+ 		obs_property_list_clear(modeList);
+ 		obs_property_list_clear(keyerList);
++		auto *hdrModeList=obs_properties_get(props,"freemix_hdr_modes");if(hdrModeList)obs_property_list_clear(hdrModeList);
+ 
+ 		ComPtr<DeckLinkDevice> device;
+ 		device.Set(deviceEnum->FindByHash(hash));
+@@ -221,6 +291,8 @@ static bool decklink_output_device_changed(obs_properties_t *props, obs_property
+ 			obs_property_list_item_disable(keyerList, 0, true);
+ 		} else {
+ 			const std::vector<DeckLinkDeviceMode *> &modes = device->GetOutputModes();
++			auto *hdrModes = obs_properties_get(props,"freemix_hdr_modes");
++			if(hdrModes){obs_property_list_clear(hdrModes);for(auto *mode:modes)obs_property_list_add_int(hdrModes,mode->GetName().c_str(),mode->GetId());}
+ 
+ 			struct obs_video_info ovi;
+ 			if (obs_get_video_info(&ovi)) {
+@@ -259,11 +331,14 @@ static obs_properties_t *decklink_output_properties(void *unused)
+ 	fill_out_devices(list);
+ 
+ 	obs_properties_add_list(props, MODE_ID, TEXT_MODE, OBS_COMBO_TYPE_LIST, OBS_COMBO_FORMAT_INT);
++	auto *hdrModes=obs_properties_add_list(props,"freemix_hdr_modes","FreeMix HDR driver modes",OBS_COMBO_TYPE_LIST,OBS_COMBO_FORMAT_INT);obs_property_set_visible(hdrModes,false);
+ 
+ 	obs_properties_add_bool(props, AUTO_START, TEXT_AUTO_START);
+ 	obs_properties_add_bool(props, FORCE_SDR, TEXT_FORCE_SDR);
+ 
+ 	obs_properties_add_list(props, KEYER, TEXT_ENABLE_KEYER, OBS_COMBO_TYPE_LIST, OBS_COMBO_FORMAT_INT);
++	// Capability marker only; a driver/mode preflight is required before HDR start.
++	auto *hdr=obs_properties_add_bool(props,"freemix_hdr_contract","FreeMix explicit HDR contract1");obs_property_set_visible(hdr,false);
+ 
+ 	return props;
+ }
+@@ -275,6 +350,7 @@ static const char *decklink_output_get_name(void *)
+ 
+ struct obs_output_info create_decklink_output_info()
+ {
++	static bool registered=false;if(!registered){registered=true;proc_handler_add(obs_get_proc_handler(),"void freemix_decklink_hdr_preflight(in ptr config, in ptr response)",freemix_hdr_query,nullptr);}
+ 	struct obs_output_info decklink_output_info = {};
+ 
+ 	decklink_output_info.id = "decklink_output";
+diff --git a/plugins/obs-ffmpeg/obs-ffmpeg-source.c b/plugins/obs-ffmpeg/obs-ffmpeg-source.c
+index 2624115..3ea54bf 100644
+--- a/plugins/obs-ffmpeg/obs-ffmpeg-source.c
++++ b/plugins/obs-ffmpeg/obs-ffmpeg-source.c
+@@ -259,7 +259,11 @@ static void preload_frame(void *opaque, struct obs_source_frame *f)
+ static void seek_frame(void *opaque, struct obs_source_frame *f)
+ {
+ 	struct ffmpeg_source *s = opaque;
+-	obs_source_set_video_frame(s->source, f);
++	/* Drop only old seek-timeline images before publishing the selected one.
++	 * Otherwise normal async playback can retain frames from before seek. */
++	obs_source_output_video(s->source, NULL);
++	obs_source_preload_video(s->source, f);
++	obs_source_show_preloaded_video(s->source);
+ }
+ 
+ static void get_audio(void *opaque, struct obs_source_audio *a)
+diff --git a/shared/media-playback/media-playback/media.c b/shared/media-playback/media-playback/media.c
+index 2ebe924..9f1dfd0 100644
+--- a/shared/media-playback/media-playback/media.c
++++ b/shared/media-playback/media-playback/media.c
+@@ -585,7 +585,18 @@ static void seek_to(mp_media_t *m, int64_t pos)
+ 			if ((skip_video && m->v.eof) || (skip_audio && m->a.eof))
+ 				break;
+ 		}
+-		if (m->has_video && m->pause && m->v_preload_cb && m->v.frame_ready)
++		/* A seek is a new presentation timeline. Keeping the old origin makes
++		 * the decoder cursor jump while OBS still presents queued old images.
++		 * Re-anchor audio and video together to the current wall clock. */
++		if (m->v.frame_ready || m->a.frame_ready) {
++			m->base_ts = 0;
++			m->play_sys_ts = (int64_t)os_gettime_ns();
++			m->start_ts = m->next_pts_ns = mp_media_get_next_min_pts(m);
++			m->next_ns = 0;
++		}
++		/* Publish the selected image immediately for paused AND playing seeks.
++		 * This does not consume it; the regular playback callback follows. */
++		if (m->has_video && m->v_seek_cb && m->v.frame_ready)
+ 			mp_media_next_video(m, true);
+ 		if (!m->has_video && m->has_audio && m->pause && m->a.frame_ready)
+ 			remember_presented_pts(m, m->a.frame_pts);
+@@ -770,7 +781,13 @@ static bool init_avformat(mp_media_t *m)
+ 
+ static void reset_ts(mp_media_t *m)
+ {
+-	m->base_ts += mp_media_get_base_pts(m);
++	/* Local resume must not add the absolute clip position to presentation
++	 * time. At 50% that delays the first image even with matching cursors.
++	 * Preserve the upstream streaming clock path. */
++	if (m->is_local_file)
++		m->base_ts = 0;
++	else
++		m->base_ts += mp_media_get_base_pts(m);
+ 	m->play_sys_ts = (int64_t)os_gettime_ns();
+ 	m->start_ts = m->next_pts_ns = mp_media_get_next_min_pts(m);
+ 	m->next_ns = 0;
+@@ -1047,12 +1064,12 @@ void mp_media_stop(mp_media_t *m)
+ 
+ int64_t mp_media_get_current_time(mp_media_t *m)
+ {
+-	/* Decoder next_pts can be a frame or an audio packet ahead of the paused
+-	 * image. Report submitted video PTS or the audio-only packet start when
+-	 * paused; retain the playback clock while playing. Callback PTS uses the
+-	 * existing speed-scaled nanosecond timeline, hence the same conversion. */
++	/* Report submitted video PTS in both states. Decoder next_pts can be
++	 * ahead of the displayed image and is not a confirmation of a seek.
++	 * Audio-only sources use their submitted packet start. Callback PTS uses
++	 * the speed-scaled timeline, hence the same conversion. */
+ 	pthread_mutex_lock(&m->mutex);
+-	bool presented = m->pause && m->presented_valid;
++	bool presented = m->presented_valid;
+ 	int64_t pts = m->presented_pts;
+ 	pthread_mutex_unlock(&m->mutex);
+ 	if (presented)
+-- 
+2.56.0.windows.1
+

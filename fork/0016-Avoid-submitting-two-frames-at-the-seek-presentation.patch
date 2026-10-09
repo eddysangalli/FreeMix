@@ -1,0 +1,27 @@
+From 22e923e95752ca6354b593a872a78c4a36005697 Mon Sep 17 00:00:00 2001
+From: Eddy Sangalli <eddyrodrigues@outlook.com>
+Date: Fri, 9 Oct 2026 19:27:13 -0300
+Subject: [PATCH] Avoid submitting two frames at the seek presentation instant
+
+---
+ shared/media-playback/media-playback/media.c | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/shared/media-playback/media-playback/media.c b/shared/media-playback/media-playback/media.c
+index 9f1dfd0..4d70642 100644
+--- a/shared/media-playback/media-playback/media.c
++++ b/shared/media-playback/media-playback/media.c
+@@ -600,6 +600,10 @@ static void seek_to(mp_media_t *m, int64_t pos)
+ 			mp_media_next_video(m, true);
+ 		if (!m->has_video && m->has_audio && m->pause && m->a.frame_ready)
+ 			remember_presented_pts(m, m->a.frame_pts);
++		/* The seek clock is already anchored to this frame. Do not force
++		 * delta=0 again when preparing its successor, which would submit
++		 * two different frames at the same presentation instant. */
++		m->seek_next_ts = false;
+ 	}
+ }
+ 
+-- 
+2.56.0.windows.1
+

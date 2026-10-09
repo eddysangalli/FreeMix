@@ -12,11 +12,13 @@ inline OBSDataAutoRelease FreeMixVideoTransports()
  obs_data_set_bool(decklink,"pluginLoaded",loaded);
  obs_data_set_string(decklink,"outputId","decklink_output");
  obs_data_set_string(decklink,"configuration","native-tools-decklink");
- obs_data_set_string(decklink,"hdrStatus","unsupported_in_integrated_sdr_path");
+ obs_data_set_string(decklink,"hdrStatus","requires_explicit_driver_preflight");
  obs_data_set_bool(decklink,"hdrSupported",false);
  OBSDataArrayAutoRelease devices=obs_data_array_create();
  // decklink_output_properties explicitly ignores context (original OBS source).
  obs_properties_t *props=loaded?obs_get_output_properties("decklink_output"):nullptr;
+ obs_data_set_bool(decklink,"hdrOutputImplemented",props&&obs_properties_get(props,"freemix_hdr_contract"));
+ obs_data_set_bool(decklink,"hdrPhysicalVerified",false);
  obs_property_t *list=props?obs_properties_get(props,"device_hash"):nullptr;
  if(list)for(size_t n=0;n<obs_property_list_item_count(list)&&n<64;++n){
   const char *hash=obs_property_list_item_string(list,n);
@@ -35,7 +37,8 @@ inline OBSDataAutoRelease FreeMixVideoTransports()
     obs_data_array_push_back(std::string(key)=="keyer"?keyers:modes,item);
    }
   }
-  obs_data_set_array(device,"modes",modes);obs_data_set_array(device,"keyers",keyers);obs_data_array_push_back(devices,device);
+  OBSDataArrayAutoRelease hdrModes=obs_data_array_create();auto *hdrOptions=obs_properties_get(props,"freemix_hdr_modes");if(hdrOptions)for(size_t i=0;i<obs_property_list_item_count(hdrOptions)&&i<256;++i){if(obs_property_list_item_disabled(hdrOptions,i))continue;OBSDataAutoRelease row=obs_data_create();obs_data_set_int(row,"value",obs_property_list_item_int(hdrOptions,i));obs_data_set_string(row,"name",obs_property_list_item_name(hdrOptions,i));obs_data_array_push_back(hdrModes,row);}
+  obs_data_set_array(device,"hdrModes",hdrModes);obs_data_set_array(device,"modes",modes);obs_data_set_array(device,"keyers",keyers);obs_data_array_push_back(devices,device);
  }
  if(props)obs_properties_destroy(props);
  obs_data_set_array(decklink,"devices",devices);obs_data_set_bool(decklink,"hardwareAvailable",obs_data_array_count(devices)>0);
