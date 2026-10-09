@@ -1,8 +1,10 @@
-# FreeMix — pendências e limites de 0.1.0-local.20261009045022
+# FreeMix — pendências e limites da entrega corrente
 
 As implementações desta rodada têm provas locais. O que segue continua separado e não é declarado concluído por esses ensaios.
 
 Veja [Pendências reais e critérios para encerrar](PENDENCIAS-REAIS.md): separa desenvolvimento, homologação e infraestrutura, com o trabalho concreto para concluir cada item.
+
+Estabilidade: fechamento pelo X com painéis CEF passou na correção dirigida. O muxer SRT recebeu correção da limpeza entre reconexões. Compatibilidade de decoder continua uma exigência do receptor: o vMix desta máquina encerrou a recepção do perfil High 4:4:4/alpha empacotado; use 4:2:0 sem alpha nele. A prova local em FFmpeg/OBS não homologa automaticamente outro decoder.
 
 ## Limites de implementação ou tecnologia
 

@@ -2,6 +2,14 @@
 
 A entrega corrente é identificada em entregas/ULTIMA-ATUALIZACAO.json e nos manifests assinados dos ZIPs. O launcher aplica somente com a instalação salva e fechada; não atribuir a versão nova a uma mesa que continua aberta com o executável anterior. Pacotes anteriores permanecem imutáveis.
 
+## Encerramento e reconexão SRT — correção de 09/10
+
+O fechamento principal agora recusa eventos reentrantes durante a confirmação/encerramento e aguarda o destrutor dos painéis CEF. Painéis são removidos com a janela principal ainda íntegra; sua exclusão adiada não compete com a destruição do pai. A cópia corrigida passou no fechamento pelo X, com Salvar e fechar, três painéis, fechamento simultâneo de um painel e consultas ao motor: saída 0, nenhum novo crash (`resultado-close-reentry-fixed-20261009.json`). O cenário antigo também passou; isso não prova a causa exata do relatório Qt original.
+
+No muxer SRT/MPEG-TS, reconectar agora descarta os pacotes e o contexto da conexão anterior. Escrita fica bloqueada até o cabeçalho do novo contexto estar inicializado. Corrigida também a limpeza dos ponteiros após falha/fechamento do transporte. Essa fila residual era um caminho concreto para a divisão por zero durante as reconexões observadas.
+
+O teste do operador confirmou conexão SRT com o vMix, seguida de `SRT.ExitingDueToDecoderFailure` no perfil High 4:4:4 com alpha empacotado. Para este vMix use 4:2:0 sem alpha. O contrato alpha empacotado exige receptor compatível e recomposição, como OBS com decodificação por software e shader fornecido; não é alpha universal de SRT.
+
 ## SRT 4:4:4 e alpha, validado localmente
 
 - SRT independente aceita H.264/x264, I444 e alpha empacotado: Fill esquerdo e Key cinza direito no mesmo quadro. O receptor precisa dividir/recompor, conforme `obs-vmix/ferramentas/GUIA-SRT-444-ALPHA.md`. Sem seleção avançada, permanece 4:2:0 e sem alpha.

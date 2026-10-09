@@ -1,0 +1,81 @@
+{
+  "root": "C:/Users/eddyr/AppData/Local/Temp/FreeMix-QA-Close-Reentry-20261009",
+  "apiPort": 18313,
+  "wsPort": 14613,
+  "started": "2026-10-09T14:31:56.217Z",
+  "operatorUntouched": true,
+  "polls": [
+    {
+      "n": 0,
+      "success": true,
+      "at": "2026-10-09T14:32:10.723Z"
+    },
+    {
+      "n": 1,
+      "success": true,
+      "at": "2026-10-09T14:32:10.789Z"
+    },
+    {
+      "n": 2,
+      "success": true,
+      "busy": true,
+      "closing": true,
+      "at": "2026-10-09T14:32:10.856Z"
+    },
+    {
+      "n": 3,
+      "success": true,
+      "busy": true,
+      "closing": true,
+      "at": "2026-10-09T14:32:10.922Z"
+    },
+    {
+      "n": 4,
+      "success": true,
+      "busy": true,
+      "closing": true,
+      "at": "2026-10-09T14:32:10.989Z"
+    },
+    {
+      "n": 5,
+      "success": true,
+      "busy": true,
+      "closing": true,
+      "at": "2026-10-09T14:32:11.056Z"
+    }
+  ],
+  "status": "PASS",
+  "nativePid": 28796,
+  "identity": {
+    "pid": 28796,
+    "path": "C:/Users/eddyr/AppData/Local/Temp/FreeMix-QA-Close-Reentry-20261009/bin/64bit/FreeMix.exe"
+  },
+  "exeSha256": "60db8e83162f28809f740a303c7eb15757ce57d17519b6e072fd37e8b45aa464",
+  "outputsActive": [],
+  "apiPid": 157332,
+  "panel": {
+    "url": "http://127.0.0.1:18313/settings",
+    "visible": true
+  },
+  "closeMethod": "WM_CLOSE + Salvar e fechar",
+  "closeDriver": "WM_CLOSE with confirmation; repeat=True; panelFirst=True",
+  "nativeExit": {
+    "code": 0,
+    "signal": null,
+    "at": "2026-10-09T14:32:14.399Z"
+  },
+  "newCrashes": [],
+  "shutdownLogLines": [
+    "11:32:01.209: ==== Startup complete ===============================================",
+    "11:32:01.411: All scene data cleared",
+    "11:32:10.812: ==== Shutting down ==================================================",
+    "11:32:12.958: All scene data cleared",
+    "11:32:14.045: [obs-websocket] [obs_module_unload] Shutting down...",
+    "11:32:14.327: == Profiler Results =============================",
+    "11:32:14.328: =================================================",
+    "11:32:14.328: == Profiler Time Between Calls ==================",
+    "11:32:14.328: =================================================",
+    "11:32:14.331: Number of memory leaks: 14"
+  ],
+  "finished": "2026-10-09T14:32:14.425Z"
+}

@@ -1,7 +1,7 @@
 From d1387c4ab55d88f42dde4c7ab89481573992e215 Mon Sep 17 00:00:00 2001
 From: Eddy Sangalli <eddyrodrigues@outlook.com>
 Date: Wed, 7 Oct 2026 18:11:02 -0300
-Subject: [PATCH 5/9] feat(frontend): multistream, preset as a document, exit
+Subject: [PATCH 05/10] feat(frontend): multistream, preset as a document, exit
  question
 
 Multistream (widgets/FreeMixMultistream.cpp): up to four streaming

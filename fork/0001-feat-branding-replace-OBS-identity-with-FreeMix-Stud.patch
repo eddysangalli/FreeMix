@@ -1,8 +1,8 @@
 From 4ffb4315026a20ec075dbf4fa45d385d15c679d0 Mon Sep 17 00:00:00 2001
 From: Eddy Sangalli <eddyrodrigues@outlook.com>
 Date: Wed, 7 Oct 2026 12:10:59 -0300
-Subject: [PATCH 1/9] feat(branding): replace OBS identity with FreeMix Studio
- native branding and icons
+Subject: [PATCH 01/10] feat(branding): replace OBS identity with FreeMix
+ Studio native branding and icons
 
 ---
  frontend/CMakeLists.txt               |   2 +-

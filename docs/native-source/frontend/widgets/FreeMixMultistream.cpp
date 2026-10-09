@@ -1325,6 +1325,7 @@ void RequestGetMasterLevel(obs_data_t *, obs_data_t *response, void *)
 
 std::map<std::string, QPointer<QDialog>> panelWindows;
 unsigned panelDeletionDepth = 0;
+bool pendingMainClose = false;
 void RequestOpenPanel(obs_data_t *request, obs_data_t *response, void *)
 {
  const QString raw = QString::fromUtf8(obs_data_get_string(request, "url"));
@@ -1356,9 +1357,18 @@ void RequestOpenPanel(obs_data_t *request, obs_data_t *response, void *)
     const auto found = panelWindows.find(key);
     if (found != panelWindows.end() && found->second == owned) panelWindows.erase(found);
     QTimer::singleShot(0, OBSBasic::Get(), [owned]() {
+     // Parent teardown and CEF destruction run nested Qt event loops.
+     // A queued close must never delete a dialog already being torn down.
+     if (frontendClosing || !owned) return;
      ++panelDeletionDepth;
+     owned->setProperty("freemixDeleting", true);
      delete owned.data();
      --panelDeletionDepth;
+     if (!panelDeletionDepth && pendingMainClose && !frontendClosing) {
+      pendingMainClose = false;
+      QPointer<OBSBasic> main = OBSBasic::Get();
+      QTimer::singleShot(0, main.data(), [main]() { if (main) main->close(); });
+     }
     });
    });
    window->setAttribute(Qt::WA_NativeWindow);
@@ -1717,10 +1727,35 @@ void OnFrontendEvent(enum obs_frontend_event event, void *)
 
 } // namespace
 
+bool FreeMixMultistreamDeferClose()
+{
+ if (!panelDeletionDepth) return false;
+ pendingMainClose = true;
+ return true;
+}
+
 void FreeMixMultistreamBeginClose()
 {
  frontendClosing = true;
  if (talkTimer) talkTimer->stop();
+ // Close CEF panels while the main window is still intact. Include panels
+ // removed from the registry whose deferred deletion has not run yet.
+ panelWindows.clear();
+ auto *main = OBSBasic::Get();
+ if (!main) return;
+ std::vector<QPointer<QDialog>> closingPanels;
+ for (auto *dialog : main->findChildren<QDialog *>(QString(), Qt::FindDirectChildrenOnly)) {
+  if (dialog->objectName() == "freemixPanelWindow") closingPanels.emplace_back(dialog);
+ }
+ ++panelDeletionDepth;
+ for (const auto &dialog : closingPanels) {
+  if (!dialog || dialog->property("freemixDeleting").toBool()) continue;
+  dialog->setProperty("freemixDeletionQueued", true);
+  dialog->setProperty("freemixDeleting", true);
+  dialog->hide();
+  delete dialog.data();
+ }
+ --panelDeletionDepth;
 }
 
 void FreeMixMultistreamInit()

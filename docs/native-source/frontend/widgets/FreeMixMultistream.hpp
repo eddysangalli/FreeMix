@@ -22,3 +22,5 @@
 void FreeMixMultistreamInit();
 // Mark shutdown before browser docks enter their nested Qt event loop.
 void FreeMixMultistreamBeginClose();
+// Defer main-window close until a CEF panel destructor has returned.
+bool FreeMixMultistreamDeferClose();

@@ -13,7 +13,7 @@
         "bin/64bit/obs.dll"
       ],
       "sha256": {
-        "bin/64bit/FreeMix.exe": "82b743e26ba4c592d76df5dcde827a0bf95f3025e101736a28ca7f0edaf76621",
+        "bin/64bit/FreeMix.exe": "60db8e83162f28809f740a303c7eb15757ce57d17519b6e072fd37e8b45aa464",
         "bin/64bit/obs.dll": "bb050a55a20f8c55105f0d80c777a1f30274dc84928591ecdce77829f00b651e"
       }
     },
@@ -964,11 +964,11 @@
       "obs-plugins/64bit/obs-ffmpeg.dll"
     ],
     "sha256": {
-      "bin/64bit/FreeMix.exe": "7e84b16e44080f7cb2e635110f8703ee14abfa7db81cc271f2aac591b0b9b72e",
+      "bin/64bit/FreeMix.exe": "60db8e83162f28809f740a303c7eb15757ce57d17519b6e072fd37e8b45aa464",
       "runtime/node.exe": "ba4e6d110e8c1592a1ecd390f6b05f3da124b13871a5be62b341a07a853c6c32",
       "runtime/ffmpeg.exe": "09948d4cdd0650da6ff5a87577469f2a218dc2615ae379f8f734d24c49de0f73",
       "runtime/ffprobe.exe": "a6618e99bb58869ded3c6f37b53aa1a8d701c3591dbb7b5b317d47369c112be2",
-      "obs-plugins/64bit/obs-ffmpeg.dll": "2376ee21a90e67742f40e81257bba0b994ab45cf205ef9f413af441311b0bc05"
+      "obs-plugins/64bit/obs-ffmpeg.dll": "7d2d4fd4bcf628d606b73bf6f48ee1f5103ce3559e0abb1c1cae1b037a6509e8"
     },
     "node": "v24.21.0",
     "ffmpeg": "ffmpeg version 8.1.1-full_build-www.gyan.dev Copyright (c) 2000-2026 the FFmpeg developers",
@@ -977,21 +977,29 @@
       "qrcode": "1.5.4",
       "exceljs": "4.4.0"
     },
-    "nativeCommit": "12f48a617b97cdb386cfd822c5e243e1de641370",
+    "nativeCommit": "e2ec8f12166e8a329fa9f29951ddc2510baad28f",
     "nativePatch": [
       "shared/media-playback/media-playback/media.c",
-      "frontend/widgets/FreeMixMultistream.cpp"
+      "frontend/widgets/FreeMixMultistream.cpp",
+      "frontend/widgets/FreeMixMultistream.hpp",
+      "frontend/widgets/OBSBasic.cpp",
+      "plugins/obs-ffmpeg/obs-ffmpeg-mpegts.c"
     ],
     "ndi": {
       "version": "6.3.2.0",
       "localOnly": true,
       "includedInDistribution": false,
       "sha256": "2b6602075868ba4401f82f417d72424805d69b11ca86078023d0d489ff45dd84"
+    },
+    "nativeExeSha256": "60db8e83162f28809f740a303c7eb15757ce57d17519b6e072fd37e8b45aa464",
+    "nativeArtifacts": {
+      "bin/64bit/FreeMix.exe": "60db8e83162f28809f740a303c7eb15757ce57d17519b6e072fd37e8b45aa464",
+      "obs-plugins/64bit/obs-ffmpeg.dll": "7d2d4fd4bcf628d606b73bf6f48ee1f5103ce3559e0abb1c1cae1b037a6509e8"
     }
   },
   "incremento": {
-    "version": "0.1.0-local.20261009135628",
-    "base": "0.1.0-local.20261009045022",
+    "version": "0.1.0-local.20261009144437",
+    "base": "0.1.0-local.20261009135628",
     "nativeSource": "docs/native-source",
     "implemented": [
       "98preferências nativas e schema dinâmico encoder",
@@ -1055,14 +1063,26 @@
       "internetTested": false,
       "hdr": false,
       "proof": "docs/evidencias-srt444/resultado-srt444-keyfix-20261009.json",
-      "exeSha256": "82b743e26ba4c592d76df5dcde827a0bf95f3025e101736a28ca7f0edaf76621"
+      "exeSha256": "82b743e26ba4c592d76df5dcde827a0bf95f3025e101736a28ca7f0edaf76621",
+      "evidenceScope": "historical-prior-executable",
+      "rerunOnCurrentExecutable": false
     },
-    "clonedCandidate": "0.1.0-local.20261009131633",
+    "clonedCandidate": "0.1.0-local.20261009135628",
     "navigation": {
       "transmitir": "MultiStream",
       "externo": "SRT / NDI / OMT / SDI"
     },
-    "operatorApplied": false
+    "operatorApplied": false,
+    "closureFix": {
+      "proof": "docs/evidencias-encerramento/resultado-close-reentry-fixed-20261009.json",
+      "exeSha256": "60db8e83162f28809f740a303c7eb15757ce57d17519b6e072fd37e8b45aa464",
+      "nativeCommit": "e2ec8f12166e8a329fa9f29951ddc2510baad28f"
+    },
+    "srtReconnectFix": {
+      "proof": "docs/evidencias-encerramento/resultado-srt-reconnect-fixed-20261009.json",
+      "pluginSha256": "7d2d4fd4bcf628d606b73bf6f48ee1f5103ce3559e0abb1c1cae1b037a6509e8",
+      "receivedCases": 3
+    }
   },
   "provenanceInventories": [
     {
@@ -1080,6 +1100,10 @@
     {
       "name": "ndi-runtime",
       "path": "docs/provenance/ndi-runtime-inventario-copia.json"
+    },
+    {
+      "name": "encerramento-native",
+      "path": "docs/provenance/encerramento-native.json"
     }
   ]
 }

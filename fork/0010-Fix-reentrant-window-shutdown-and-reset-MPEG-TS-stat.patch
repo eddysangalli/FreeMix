@@ -1,0 +1,237 @@
+From e2ec8f12166e8a329fa9f29951ddc2510baad28f Mon Sep 17 00:00:00 2001
+From: Eddy Sangalli <eddyrodrigues@outlook.com>
+Date: Fri, 9 Oct 2026 11:29:45 -0300
+Subject: [PATCH 10/10] Fix reentrant window shutdown and reset MPEG-TS state
+ on reconnect
+
+---
+ frontend/widgets/FreeMixMultistream.cpp | 35 ++++++++++++++++
+ frontend/widgets/FreeMixMultistream.hpp |  2 +
+ frontend/widgets/OBSBasic.cpp           |  8 ++++
+ plugins/obs-ffmpeg/obs-ffmpeg-mpegts.c  | 53 +++++++++++++++----------
+ 4 files changed, 77 insertions(+), 21 deletions(-)
+
+diff --git a/frontend/widgets/FreeMixMultistream.cpp b/frontend/widgets/FreeMixMultistream.cpp
+index 7d357ab..1cf587c 100644
+--- a/frontend/widgets/FreeMixMultistream.cpp
++++ b/frontend/widgets/FreeMixMultistream.cpp
+@@ -1325,6 +1325,7 @@ void RequestGetMasterLevel(obs_data_t *, obs_data_t *response, void *)
+ 
+ std::map<std::string, QPointer<QDialog>> panelWindows;
+ unsigned panelDeletionDepth = 0;
++bool pendingMainClose = false;
+ void RequestOpenPanel(obs_data_t *request, obs_data_t *response, void *)
+ {
+  const QString raw = QString::fromUtf8(obs_data_get_string(request, "url"));
+@@ -1356,9 +1357,18 @@ void RequestOpenPanel(obs_data_t *request, obs_data_t *response, void *)
+     const auto found = panelWindows.find(key);
+     if (found != panelWindows.end() && found->second == owned) panelWindows.erase(found);
+     QTimer::singleShot(0, OBSBasic::Get(), [owned]() {
++     // Parent teardown and CEF destruction run nested Qt event loops.
++     // A queued close must never delete a dialog already being torn down.
++     if (frontendClosing || !owned) return;
+      ++panelDeletionDepth;
++     owned->setProperty("freemixDeleting", true);
+      delete owned.data();
+      --panelDeletionDepth;
++     if (!panelDeletionDepth && pendingMainClose && !frontendClosing) {
++      pendingMainClose = false;
++      QPointer<OBSBasic> main = OBSBasic::Get();
++      QTimer::singleShot(0, main.data(), [main]() { if (main) main->close(); });
++     }
+     });
+    });
+    window->setAttribute(Qt::WA_NativeWindow);
+@@ -1717,10 +1727,35 @@ void OnFrontendEvent(enum obs_frontend_event event, void *)
+ 
+ } // namespace
+ 
++bool FreeMixMultistreamDeferClose()
++{
++ if (!panelDeletionDepth) return false;
++ pendingMainClose = true;
++ return true;
++}
++
+ void FreeMixMultistreamBeginClose()
+ {
+  frontendClosing = true;
+  if (talkTimer) talkTimer->stop();
++ // Close CEF panels while the main window is still intact. Include panels
++ // removed from the registry whose deferred deletion has not run yet.
++ panelWindows.clear();
++ auto *main = OBSBasic::Get();
++ if (!main) return;
++ std::vector<QPointer<QDialog>> closingPanels;
++ for (auto *dialog : main->findChildren<QDialog *>(QString(), Qt::FindDirectChildrenOnly)) {
++  if (dialog->objectName() == "freemixPanelWindow") closingPanels.emplace_back(dialog);
++ }
++ ++panelDeletionDepth;
++ for (const auto &dialog : closingPanels) {
++  if (!dialog || dialog->property("freemixDeleting").toBool()) continue;
++  dialog->setProperty("freemixDeletionQueued", true);
++  dialog->setProperty("freemixDeleting", true);
++  dialog->hide();
++  delete dialog.data();
++ }
++ --panelDeletionDepth;
+ }
+ 
+ void FreeMixMultistreamInit()
+diff --git a/frontend/widgets/FreeMixMultistream.hpp b/frontend/widgets/FreeMixMultistream.hpp
+index bce8a2e..4201bc8 100644
+--- a/frontend/widgets/FreeMixMultistream.hpp
++++ b/frontend/widgets/FreeMixMultistream.hpp
+@@ -22,3 +22,5 @@
+ void FreeMixMultistreamInit();
+ // Mark shutdown before browser docks enter their nested Qt event loop.
+ void FreeMixMultistreamBeginClose();
++// Defer main-window close until a CEF panel destructor has returned.
++bool FreeMixMultistreamDeferClose();
+diff --git a/frontend/widgets/OBSBasic.cpp b/frontend/widgets/OBSBasic.cpp
+index ba468fe..1d0ad15 100644
+--- a/frontend/widgets/OBSBasic.cpp
++++ b/frontend/widgets/OBSBasic.cpp
+@@ -1730,6 +1730,14 @@ void OBSBasic::close()
+ void OBSBasic::closeEvent(QCloseEvent *event)
+ {
+ 	if (isClosePromptOpen() || isClosing()) {
++		// QCloseEvent starts accepted. CEF and the confirmation dialog pump
++		// nested events; accepting another close here permits WA_DeleteOnClose
++		// to destroy the main window while its first close is still running.
++		event->ignore();
++		return;
++	}
++	if (FreeMixMultistreamDeferClose()) {
++		event->ignore();
+ 		return;
+ 	}
+ 
+diff --git a/plugins/obs-ffmpeg/obs-ffmpeg-mpegts.c b/plugins/obs-ffmpeg/obs-ffmpeg-mpegts.c
+index fcd1141..0c12f4a 100644
+--- a/plugins/obs-ffmpeg/obs-ffmpeg-mpegts.c
++++ b/plugins/obs-ffmpeg/obs-ffmpeg-mpegts.c
+@@ -354,8 +354,9 @@ static inline int connect_mpegts_url(struct ffmpeg_output *stream, bool is_rist)
+ 	return 0;
+ fail:
+ 	stream->has_connected = false;
++	stream->h = NULL;
+ 
+-	if (uc) {
++	if (uc && uc->priv_data) {
+ 		if (is_rist)
+ 			librist_close(uc);
+ 		else
+@@ -555,20 +556,17 @@ static void close_mpegts_url(struct ffmpeg_output *stream, bool is_rist)
+ 	} else {
+ 		err = libsrt_close(h);
+ 	}
+-	av_freep(&h->priv_data);
+-	av_freep(&h);
+-	h = NULL;
+-
+ 	/* close custom avio_context for srt or rist */
+ 	AVIOContext *s = stream->s;
+-	if (!s)
+-		return;
+-
+-	avio_flush(s);
+-	s->opaque = NULL;
+-	av_freep(&s->buffer);
+-	avio_context_free(&s);
+-	s = NULL;
++	if (s) {
++		/* av_write_trailer already attempted the final flush. The transport
++		 * is closed above, so flushing now would use a closed URLContext. */
++		s->opaque = NULL;
++		av_freep(&s->buffer);
++		avio_context_free(&stream->s);
++	}
++	av_freep(&h->priv_data);
++	av_freep(&stream->h);
+ 
+ 	if (err)
+ 		info("[ffmpeg mpegts muxer]: Error closing URL %s", stream->ff_data.config.url);
+@@ -753,6 +751,12 @@ static int mpegts_process_packet(struct ffmpeg_output *stream)
+ 	int ret = 0;
+ 
+ 	pthread_mutex_lock(&stream->write_mutex);
++	/* A new connection has its own AVFormatContext. Never consume packets
++	 * until avformat_write_header has initialized its internal PTS fractions. */
++	if (!stream->ff_data.initialized) {
++		pthread_mutex_unlock(&stream->write_mutex);
++		return 0;
++	}
+ 	if (stream->packets.num) {
+ 		packet = stream->packets.array[0];
+ 		da_erase(stream->packets, 0);
+@@ -1056,6 +1060,10 @@ fail:
+ static bool start(void *data)
+ {
+ 	struct ffmpeg_output *stream = data;
++	/* obs_output_signal_stop schedules reconnect without calling our stop
++	 * callback. The failed writer can leave queued packets and a muxer behind.
++	 * Discard that entire generation before creating the next AVFormatContext. */
++	ffmpeg_mpegts_full_stop(stream);
+ 	if (!set_config(stream))
+ 		return false;
+ 
+@@ -1068,9 +1076,7 @@ static void ffmpeg_mpegts_full_stop(void *data)
+ {
+ 	struct ffmpeg_output *stream = data;
+ 
+-	if (active(stream)) {
+-		ffmpeg_mpegts_deactivate(stream);
+-	}
++	ffmpeg_mpegts_deactivate(stream);
+ 	ffmpeg_mpegts_data_free(stream, &stream->ff_data);
+ }
+ 
+@@ -1078,7 +1084,7 @@ static void stop(void *data, bool signal, uint64_t ts)
+ {
+ 	struct ffmpeg_output *stream = data;
+ 
+-	if (active(stream)) {
++	if (active(stream) || stream->write_thread_active || stream->ff_data.output) {
+ 		/* bypassed when called by destroy ==> no draining, instant stop */
+ 		if (ts > 0) {
+ 			/* this controls the draining of all packets in the write_threads when we stop */
+@@ -1181,8 +1187,10 @@ static bool ffmpeg_mpegts_start(void *data)
+ 	if (os_atomic_load_bool(&stream->start_stop_thread_active))
+ 		pthread_join(stream->start_stop_thread, NULL);
+ 
+-	if (stream->write_thread_active)
++	if (stream->write_thread_active) {
+ 		pthread_join(stream->write_thread, NULL);
++		stream->write_thread_active = false;
++	}
+ 
+ 	stream->audio_start_ts = 0;
+ 	stream->video_start_ts = 0;
+@@ -1325,9 +1333,7 @@ static void ffmpeg_mpegts_data(void *data, struct encoder_packet *packet)
+ 	struct ffmpeg_data *ff_data = &stream->ff_data;
+ 	int code;
+ 	if (!stream->got_headers) {
+-		if (get_extradata(stream)) {
+-			stream->got_headers = true;
+-		} else {
++		if (!get_extradata(stream)) {
+ 			warn("Failed to retrieve headers");
+ 			code = OBS_OUTPUT_INVALID_STREAM;
+ 			goto fail;
+@@ -1338,7 +1344,12 @@ static void ffmpeg_mpegts_data(void *data, struct encoder_packet *packet)
+ 			goto fail;
+ 		}
+ 		av_dump_format(ff_data->output, 0, NULL, 1);
++		/* Publish readiness only after a successful header, synchronized with
++		 * the writer's queue lock. Encoder callbacks are serialized by libobs. */
++		pthread_mutex_lock(&stream->write_mutex);
+ 		ff_data->initialized = true;
++		stream->got_headers = true;
++		pthread_mutex_unlock(&stream->write_mutex);
+ 	}
+ 
+ 	if (!active(stream))
+-- 
+2.56.0.windows.1
+

@@ -1730,6 +1730,14 @@ void OBSBasic::close()
 void OBSBasic::closeEvent(QCloseEvent *event)
 {
 	if (isClosePromptOpen() || isClosing()) {
+		// QCloseEvent starts accepted. CEF and the confirmation dialog pump
+		// nested events; accepting another close here permits WA_DeleteOnClose
+		// to destroy the main window while its first close is still running.
+		event->ignore();
+		return;
+	}
+	if (FreeMixMultistreamDeferClose()) {
+		event->ignore();
 		return;
 	}
 

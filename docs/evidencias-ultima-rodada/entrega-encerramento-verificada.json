@@ -1,0 +1,22 @@
+{
+  "version": "0.1.0-local.20261009144437",
+  "package": "entregas/FreeMix-Atualizacao-0.1.0-local.20261009144437",
+  "incrementalZip": "entregas/FreeMix-Atualizacao-0.1.0-local.20261009144437.zip",
+  "fullZip": "entregas/FreeMix-Completo-0.1.0-local.20261009144437.zip",
+  "zipSha256": "89a12ae83ce779ce1171b15a80fd36b3a516b3e0a80fba33a0946af628ca0cfd",
+  "fullZipSha256": "f7b13081ce586d812adcff299d1af2cc524b1db863c792249e8fb73c7af93544",
+  "at": "2026-10-09T14:48:44.339Z",
+  "closureProof": "qa-portatil/resultado-close-reentry-fixed-20261009.json",
+  "srtReconnectProof": "qa-portatil/resultado-srt-reconnect-fixed-20261009.json",
+  "artifacts": {
+    "bin/64bit/FreeMix.exe": "60db8e83162f28809f740a303c7eb15757ce57d17519b6e072fd37e8b45aa464",
+    "obs-plugins/64bit/obs-ffmpeg.dll": "7d2d4fd4bcf628d606b73bf6f48ee1f5103ce3559e0abb1c1cae1b037a6509e8"
+  },
+  "nativeCommit": "e2ec8f12166e8a329fa9f29951ddc2510baad28f",
+  "testedExe": "60db8e83162f28809f740a303c7eb15757ce57d17519b6e072fd37e8b45aa464",
+  "zipSignaturesVerified": true,
+  "zipPayloadCRCAndHashesPreviouslyVerified": true,
+  "zipBytesRechecked": true,
+  "historicalSrtExeSha256": "82b743e26ba4c592d76df5dcde827a0bf95f3025e101736a28ca7f0edaf76621",
+  "operatorTouched": false
+}

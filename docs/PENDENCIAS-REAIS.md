@@ -8,6 +8,8 @@ Externo ganhou acesso direto a NDI/OMT/SDI, precisão PA16 e rascunhos por emiss
 
 Organização operacional solicitada: Transmitir abre MultiStream; SRT, NDI e OMT ficam em Externo. Perfis externos são preparados como rascunho, sem iniciar envio.
 
+Atualização de estabilidade: corrigidos eventos reentrantes de fechamento e a destruição dos painéis CEF; o teste pelo X com três painéis e fechamento concorrente passou com saída 0 e sem crash novo. Corrigida a fila residual/contexto do muxer em reconexões SRT. O log do vMix desta máquina mostra falha do decoder após receber High 4:4:4 com alpha empacotado. Use 4:2:0 sem alpha nesse receptor; OBS/FFmpeg com recomposição continuam o caminho para o contrato packed. A correção do emissor não adiciona suporte a codecs no receptor.
+
 SRT apresenta primeiro os campos essenciais de conteúdo, áudio, resolução e conexão; detalhes de encoder, FPS, overlays e alpha ficam em Avançado. O guia abre separadamente, sem ocupar o formulário. A prova final da tela simplificada acompanha a entrega; abrir/configurar não inicia saída automaticamente.
 
 ## Implementações parciais que ainda exigem desenvolvimento

@@ -1,7 +1,7 @@
 From 64cb00961b7068d7e05941e6b4ac0c18d0282b19 Mon Sep 17 00:00:00 2001
 From: Eddy Sangalli <eddyrodrigues@outlook.com>
 Date: Fri, 9 Oct 2026 09:06:15 -0300
-Subject: [PATCH 7/9] feat(broadcast): integrate native audio, independent
+Subject: [PATCH 07/10] feat(broadcast): integrate native audio, independent
  outputs and recovery-safe video resets
 
 Integrate Master/bus routing, private call audio, NDI Fill+Key, OMT PA16,

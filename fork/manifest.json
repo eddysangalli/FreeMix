@@ -1,44 +1,48 @@
 {
   "upstream": "https://github.com/obsproject/obs-studio.git",
   "base": "ba2f32bdf791005443988a4955e963663e16b1ed",
-  "head": "12f48a617b97cdb386cfd822c5e243e1de641370",
-  "version": "0.1.0-local.20261009135628",
+  "head": "e2ec8f12166e8a329fa9f29951ddc2510baad28f",
+  "version": "0.1.0-local.20261009144437",
   "patches": [
     {
       "path": "0001-feat-branding-replace-OBS-identity-with-FreeMix-Stud.patch",
-      "sha256": "dfa2134f25a7657965121eb2058bb9c8df0381c3d5ea67a36bdd976b0c4cb2a1"
+      "sha256": "7591ceb46f43011e223ce04c82b1913f31d875e446938003fa668fa0d3162ef9"
     },
     {
       "path": "0002-feat-preview-native-Safe-Area-with-12-guide-modes-gr.patch",
-      "sha256": "9def62c547c5c7b2d93ef83c99b6a7c251076671e2a532dbdc728cc847133fd6"
+      "sha256": "3f1935a15ba8630d26e2e28a04f9805e4e27d1a187b7294a7823ce2b40d907cc"
     },
     {
       "path": "0003-feat-security-close-prompt-lock-with-critical-broadc.patch",
-      "sha256": "66fde3523aa663585fea32eb7cf6e81c16ae32366edb7c0f7daed10df3827c11"
+      "sha256": "76b601d2e260147ea1f0b1196cbb2fb42b541878a5af593478e7fd5d80e022fe"
     },
     {
       "path": "0004-feat-overlays-build-Downstream-Keyer-in-tree-fix-uni.patch",
-      "sha256": "688b1b064ff5b13b2269005bd6d378be4de1d111ba7f89b88ccc1ab64bf83829"
+      "sha256": "09a2368664d39d70901aa3425e6bb1b45e14d8eaa88f244d9b1c14ed6d863a8a"
     },
     {
       "path": "0005-feat-frontend-multistream-preset-as-a-document-exit-.patch",
-      "sha256": "0df15c79c885f2b0d094467d5bea324b4d9d3f163e9f746398249f02e077fe36"
+      "sha256": "b032aa2268d11661b0e96adb20d23b47f0a4c8ced4ca375223306bfc5b2e1876"
     },
     {
       "path": "0006-feat-broadcast-waveform-vectorscope-no-preview-colun.patch",
-      "sha256": "b4ba6f5651ef7655c49003d6f35ee6930420e8d651e2b8e901a2a2d20cb8686a"
+      "sha256": "054e06c82da4ee08f67361c513fc8a7d37fcfcc907630604270de0f63ab82e9a"
     },
     {
       "path": "0007-feat-broadcast-integrate-native-audio-independent-ou.patch",
-      "sha256": "75964be356b79247284fc1a5f71b8bee0afc02feb3a1c08d29f92f724548f348"
+      "sha256": "b8c03e4d1b9dea09595228446924b3c5cfcc464f98ba42722ed3356a2a2dd3da"
     },
     {
       "path": "0008-fix-frontend-guard-shutdown-reentry-and-complete-Fre.patch",
-      "sha256": "802470d8af7be1962ec71f5ba773402f382a019a9e0728784a5d60f2a0316eb8"
+      "sha256": "4023f22f25356d07f6997076cf88da373d873ae7ed70819bbc878a021e1ab7a6"
     },
     {
       "path": "0009-feat-srt-add-verified-4-4-4-and-synchronized-packed-.patch",
-      "sha256": "b10dbde046b4cd2db5da98702555981b64a402b0136b1993cd223ec0491587e4"
+      "sha256": "a4a95237f2d1afb49aa337c95bdab0a544aeaa4e0cc0d6d7a476ccfa1792ad4e"
+    },
+    {
+      "path": "0010-Fix-reentrant-window-shutdown-and-reset-MPEG-TS-stat.patch",
+      "sha256": "ed1b18a24d212401e2cb4b4acd1f4a10260e666f3a3bb4720e6f107fb3b2a64e"
     }
   ]
 }

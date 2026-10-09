@@ -1,7 +1,7 @@
 From 12f48a617b97cdb386cfd822c5e243e1de641370 Mon Sep 17 00:00:00 2001
 From: Eddy Sangalli <eddyrodrigues@outlook.com>
 Date: Fri, 9 Oct 2026 10:01:28 -0300
-Subject: [PATCH 9/9] feat(srt): add verified 4:4:4 and synchronized packed
+Subject: [PATCH 09/10] feat(srt): add verified 4:4:4 and synchronized packed
  alpha output
 
 Encode an independent I444 view through x264 and MPEG-TS/SRT. Pack straight Fill and grayscale Key into one frame, retain destination configuration, and guard unsupported codec/protocol combinations. Rebind the shader texture between techniques.

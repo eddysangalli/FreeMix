@@ -7,13 +7,33 @@ Primeiro salve e feche o FreeMix desta instalação e abra **ABRIR-FREEMIX.cmd**
 1. No vMix, adicione uma entrada Stream / SRT em **Listener**, porta **18360**, latência **120 ms**.
 2. No FreeMix, abra **Externo → SRT / RIST** e clique numa saída livre à esquerda.
 3. Deixe **Conteúdo: Programa**, **Caller**, IP **127.0.0.1**, porta **18360**, latência **120 ms**. Clique **Transmitir esta saída**. A URL é montada automaticamente.
-4. Comece sem alpha e em 4:2:0. O decoder do vMix precisa aceitar o perfil escolhido para testar 4:4:4. Alpha empacotado não é recomposto automaticamente no vMix.
+4. Comece sem alpha e em 4:2:0. Nesta instalação o vMix recebeu, mas rejeitou o perfil 4:4:4 com alpha empacotado por falha do decoder. Para esse perfil, use OBS com decodificação por software e o filtro abaixo.
 
 Salvar configuração apenas guarda os dados; Transmitir esta saída guarda o rascunho e inicia o envio. Pare a saída antes de alterar seus parâmetros.
+
+## Mesmo computador, recebendo no OBS
+
+Use porta **18361** se o vMix já estiver ouvindo em 18360. Dois receptores não devem disputar a mesma porta.
+
+1. No OBS, em Fontes, clique **+ → Fonte de mídia**, dê o nome **SRT FreeMix** e confirme.
+2. Desmarque **Arquivo local**. No campo **Entrada**, cole `srt://0.0.0.0:18361?mode=listener&latency=120000`.
+3. Deixe **Formato de entrada** vazio e **decodificação por hardware** desmarcada. Clique OK.
+4. No FreeMix, abra **Externo → SRT / RIST**, selecione uma saída livre e use Caller, IP **127.0.0.1**, porta **18361**, latência **120 ms**. A URL gerada é `srt://127.0.0.1:18361?mode=caller&latency=120000`.
+5. Comece com Programa, H.264/x264, 4:2:0 sem alpha e clique **Transmitir esta saída**. Abra o receptor antes de iniciar o emissor.
+6. Depois da imagem básica funcionar, pare o envio, selecione uma entrada transparente, prepare 4:4:4 com alpha e configure a recomposição abaixo. Use a mesma porta18361 em ambos os lados.
 
 ## Outro computador, pela rede ZeroTier
 
 Ambos precisam entrar na mesma rede privada e ser autorizados no ZeroTier Central. Pegue o **Managed IP do receptor**. No receptor, prepare SRT Listener na porta **18360**. No FreeMix, use Caller, aquele IP e latência inicial de **500 ms**. Os IPs listados na tela são desta máquina; eles não substituem o IP do receptor. Se o Windows bloquear o programa receptor, autorize o tráfego nessa rede.
+
+Passo a passo com OBS remoto:
+
+1. Crie uma rede privada em ZeroTier Central e copie seu Network ID.
+2. Nos dois computadores, abra ZeroTier na bandeja → Join Network e cole o mesmo Network ID.
+3. Em Members no painel, autorize os dois dispositivos e confirme status OK. Copie o Managed IP do computador que recebe.
+4. No OBS receptor, crie Fonte de mídia com Arquivo local desmarcado, hardware desmarcado, Formato vazio e Entrada `srt://0.0.0.0:18361?mode=listener&latency=500000`.
+5. No FreeMix, use Caller, IP **do receptor na ZeroTier**, porta18361, latência500ms. Abra a fonte receptora primeiro e depois inicie a saída. Não use127.0.0.1 para outro computador.
+6. Se a conexão não chegar, confira autorização/Managed IP e a permissão do OBS para UDP18361 no firewall do receptor pela rede ZeroTier. Não desative o firewall. A rede ZeroTier substitui o acesso direto ao IP público e o encaminhamento da porta SRT no roteador.
 
 ## Alpha, recebendo no OBS
 

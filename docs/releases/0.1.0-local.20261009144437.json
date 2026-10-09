@@ -1,0 +1,19 @@
+{
+  "version": "0.1.0-local.20261009144437",
+  "package": "entregas/FreeMix-Atualizacao-0.1.0-local.20261009144437",
+  "incrementalZip": "entregas/FreeMix-Atualizacao-0.1.0-local.20261009144437.zip",
+  "fullZip": "entregas/FreeMix-Completo-0.1.0-local.20261009144437.zip",
+  "zipSha256": "89a12ae83ce779ce1171b15a80fd36b3a516b3e0a80fba33a0946af628ca0cfd",
+  "fullZipSha256": "f7b13081ce586d812adcff299d1af2cc524b1db863c792249e8fb73c7af93544",
+  "at": "2026-10-09T14:48:44.339Z",
+  "binariesInGit": false,
+  "distribution": "ZIPs locais assinados; não carregados como release nesta sincronização",
+  "largeExternalSources": [
+    {
+      "path": "licenses/advanced-scene-switcher/advanced-scene-switcher-1.36.1-source.tar.xz",
+      "size": 481141292,
+      "sha256": "1e8c66e18c1d999c47f1e69a3978df3121a5d1ebaf5d77cdae7d73d062d53ce2",
+      "reason": "Fonte oficial grande preservada no ZIP completo; baixar conforme proveniência"
+    }
+  ]
+}

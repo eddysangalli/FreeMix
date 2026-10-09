@@ -1,7 +1,7 @@
 From 7072c33d942cdef0247cabdee478c84c0137c06d Mon Sep 17 00:00:00 2001
 From: Eddy Sangalli <eddyrodrigues@outlook.com>
 Date: Fri, 9 Oct 2026 09:40:00 -0300
-Subject: [PATCH 8/9] fix(frontend): guard shutdown reentry and complete
+Subject: [PATCH 08/10] fix(frontend): guard shutdown reentry and complete
  FreeMix settings metadata
 
 Mark the FreeMix frontend as closing before browser docks begin destruction, block widget inspection and panel creation during shutdown, and schedule panel destruction only once. Return actionable panel errors.

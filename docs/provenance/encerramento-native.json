@@ -1,0 +1,46 @@
+{
+  "nativeCommit": "e2ec8f12166e8a329fa9f29951ddc2510baad28f",
+  "baseVersion": "0.1.0-local.20261009135628",
+  "createdAt": "2026-10-09T14:44:37.092Z",
+  "exeSha256": "60db8e83162f28809f740a303c7eb15757ce57d17519b6e072fd37e8b45aa464",
+  "artifacts": {
+    "bin/64bit/FreeMix.exe": "60db8e83162f28809f740a303c7eb15757ce57d17519b6e072fd37e8b45aa464",
+    "obs-plugins/64bit/obs-ffmpeg.dll": "7d2d4fd4bcf628d606b73bf6f48ee1f5103ce3559e0abb1c1cae1b037a6509e8"
+  },
+  "sources": [
+    {
+      "source": "frontend/widgets/FreeMixMultistream.cpp",
+      "path": "docs/native-source/frontend/widgets/FreeMixMultistream.cpp",
+      "sha256": "6d9504ba6e41cb452feba11e0dcb40b86a5b269a0436e1c99ab596a500908f1b"
+    },
+    {
+      "source": "frontend/widgets/FreeMixMultistream.hpp",
+      "path": "docs/native-source/frontend/widgets/FreeMixMultistream.hpp",
+      "sha256": "5290dc2b7d2a8f9a2b1d288109b1e8d823f39f598691598668f79a39e74083d6"
+    },
+    {
+      "source": "frontend/widgets/OBSBasic.cpp",
+      "path": "docs/native-source/frontend/widgets/OBSBasic.cpp",
+      "sha256": "099612a5cc6c379a74b84341d333d122a509a7ff6606b2dface359204f4aebb7"
+    },
+    {
+      "source": "plugins/obs-ffmpeg/obs-ffmpeg-mpegts.c",
+      "path": "docs/native-source/plugins/obs-ffmpeg/obs-ffmpeg-mpegts.c",
+      "sha256": "527b4cb45199dc6e4666d0c3986ae04c0b60599f725757a8c1f916d03a9ff404"
+    }
+  ],
+  "ui": [
+    "painel/remoto/saidas-srt-ui.js",
+    "painel/docs/srt-alpha.html"
+  ],
+  "closureProof": "docs/evidencias-encerramento/resultado-close-reentry-fixed-20261009.json",
+  "regressionProofs": [
+    "docs/evidencias-encerramento/resultado-close-reentry-fixed-20261009.json",
+    "docs/evidencias-encerramento/resultado-srt-reconnect-fixed-20261009.json"
+  ],
+  "historicalSrtEvidence": {
+    "testedExeSha256": "82b743e26ba4c592d76df5dcde827a0bf95f3025e101736a28ca7f0edaf76621",
+    "rerunOnCurrentExecutable": false
+  },
+  "operatorTouched": false
+}

@@ -1,0 +1,209 @@
+{
+  "started": "2026-10-09T14:43:25.221Z",
+  "root": "C:/Users/eddyr/AppData/Local/Temp/FreeMix-QA-SRT-Reconnect-20261009",
+  "wsPort": 14614,
+  "apiPort": 18314,
+  "apiStarted": false,
+  "receiverPort": 18364,
+  "operatorTouched": false,
+  "vmixTouched": false,
+  "status": "PASS",
+  "cases": [
+    {
+      "index": 1,
+      "status": "PASS",
+      "receivedBytes": 1597812,
+      "decodedFrames": 65,
+      "decodedUs": 2188000,
+      "elapsedMs": 2865,
+      "receiver": {
+        "code": 0,
+        "signal": null
+      },
+      "analysis": {
+        "bytes": 1597812,
+        "video": {
+          "codec": "h264",
+          "profile": "High 4:4:4 Predictive",
+          "pixFmt": "yuvj444p",
+          "width": 640,
+          "height": 180,
+          "frames": 65
+        },
+        "audio": {
+          "codec": "aac",
+          "frames": 105
+        },
+        "duration": 2.197333
+      },
+      "live": {
+        "active": true,
+        "state": "live",
+        "error": ""
+      },
+      "output": {
+        "outputActive": true,
+        "outputBytes": 1651376,
+        "outputCongestion": 0,
+        "outputDuration": 2299,
+        "outputReconnecting": false,
+        "outputSkippedFrames": 0,
+        "outputTimecode": "00:00:02.299",
+        "outputTotalFrames": 69
+      }
+    },
+    {
+      "index": 2,
+      "status": "PASS",
+      "receivedBytes": 1597812,
+      "decodedFrames": 65,
+      "decodedUs": 2188000,
+      "elapsedMs": 7286,
+      "receiver": {
+        "code": 0,
+        "signal": null
+      },
+      "analysis": {
+        "bytes": 1597812,
+        "video": {
+          "codec": "h264",
+          "profile": "High 4:4:4 Predictive",
+          "pixFmt": "yuvj444p",
+          "width": 640,
+          "height": 180,
+          "frames": 65
+        },
+        "audio": {
+          "codec": "aac",
+          "frames": 105
+        },
+        "duration": 2.197333
+      },
+      "live": {
+        "active": true,
+        "state": "live",
+        "error": ""
+      },
+      "output": {
+        "outputActive": true,
+        "outputBytes": 1651376,
+        "outputCongestion": 0,
+        "outputDuration": 2299,
+        "outputReconnecting": false,
+        "outputSkippedFrames": 0,
+        "outputTimecode": "00:00:02.299",
+        "outputTotalFrames": 69
+      }
+    },
+    {
+      "index": 3,
+      "status": "PASS",
+      "receivedBytes": 3862648,
+      "decodedFrames": 153,
+      "decodedUs": 5077333,
+      "elapsedMs": 10248,
+      "receiver": {
+        "code": 0,
+        "signal": null
+      },
+      "analysis": {
+        "bytes": 3862648,
+        "video": {
+          "codec": "h264",
+          "profile": "High 4:4:4 Predictive",
+          "pixFmt": "yuvj444p",
+          "width": 640,
+          "height": 180,
+          "frames": 153
+        },
+        "audio": {
+          "codec": "aac",
+          "frames": 238
+        },
+        "duration": 5.121333
+      },
+      "live": {
+        "active": true,
+        "state": "live",
+        "error": ""
+      },
+      "output": {
+        "outputActive": true,
+        "outputBytes": 3852198,
+        "outputCongestion": 0,
+        "outputDuration": 5233,
+        "outputReconnecting": false,
+        "outputSkippedFrames": 0,
+        "outputTimecode": "00:00:05.233",
+        "outputTotalFrames": 157
+      }
+    }
+  ],
+  "hashes": {
+    "exe": "60db8e83162f28809f740a303c7eb15757ce57d17519b6e072fd37e8b45aa464",
+    "obs": "bb050a55a20f8c55105f0d80c777a1f30274dc84928591ecdce77829f00b651e",
+    "mux": "7d2d4fd4bcf628d606b73bf6f48ee1f5103ce3559e0abb1c1cae1b037a6509e8"
+  },
+  "exeSha256": "60db8e83162f28809f740a303c7eb15757ce57d17519b6e072fd37e8b45aa464",
+  "pluginSha256": "7d2d4fd4bcf628d606b73bf6f48ee1f5103ce3559e0abb1c1cae1b037a6509e8",
+  "resumedSameNative": true,
+  "nativePid": 106932,
+  "sceneUuid": "b8253cbf-cd6a-4f5d-908e-7479a6e6a925",
+  "mediaStarted": "2026-10-09T14:43:25.685Z",
+  "stable": {
+    "frames": 151,
+    "outUs": 5054667,
+    "output": {
+      "outputActive": true,
+      "outputBytes": 3852198,
+      "outputCongestion": 0,
+      "outputDuration": 5233,
+      "outputReconnecting": false,
+      "outputSkippedFrames": 0,
+      "outputTimecode": "00:00:05.233",
+      "outputTotalFrames": 157
+    }
+  },
+  "outputIdle": true,
+  "outputListAfter": {
+    "outputs": [
+      {
+        "outputActive": false,
+        "outputFlags": {
+          "OBS_OUTPUT_AUDIO": true,
+          "OBS_OUTPUT_ENCODED": true,
+          "OBS_OUTPUT_MULTI_TRACK": true,
+          "OBS_OUTPUT_SERVICE": false,
+          "OBS_OUTPUT_VIDEO": true
+        },
+        "outputHeight": 0,
+        "outputKind": "ffmpeg_muxer",
+        "outputName": "simple_file_output",
+        "outputWidth": 0
+      },
+      {
+        "outputActive": false,
+        "outputFlags": {
+          "OBS_OUTPUT_AUDIO": false,
+          "OBS_OUTPUT_ENCODED": false,
+          "OBS_OUTPUT_MULTI_TRACK": false,
+          "OBS_OUTPUT_SERVICE": false,
+          "OBS_OUTPUT_VIDEO": true
+        },
+        "outputHeight": 720,
+        "outputKind": "virtualcam_output",
+        "outputName": "virtualcam_output",
+        "outputWidth": 1280
+      }
+    ]
+  },
+  "shutdown": {
+    "success": true
+  },
+  "nativeExit": {
+    "code": 0,
+    "monitorExit": 0
+  },
+  "newCrashes": [],
+  "finished": "2026-10-09T14:43:47.217Z"
+}

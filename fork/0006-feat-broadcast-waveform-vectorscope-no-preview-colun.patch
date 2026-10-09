@@ -1,10 +1,10 @@
 From a76f99a20ecae3ffcce10a20dd889d5bebc3bd51 Mon Sep 17 00:00:00 2001
 From: Eddy Sangalli <eddyrodrigues@outlook.com>
 Date: Wed, 7 Oct 2026 19:54:27 -0300
-Subject: [PATCH 6/9] =?UTF-8?q?feat(broadcast):=20waveform/vectorscope=20n?=
- =?UTF-8?q?o=20preview,=20coluna=20central=20com=20overlays=201-8=20e=20me?=
- =?UTF-8?q?didor=20master=20est=C3=A9reo,=20desacoplamento=20seguro=20do?=
- =?UTF-8?q?=20layout=20de=20transi=C3=A7=C3=B5es?=
+Subject: [PATCH 06/10] =?UTF-8?q?feat(broadcast):=20waveform/vectorscope?=
+ =?UTF-8?q?=20no=20preview,=20coluna=20central=20com=20overlays=201-8=20e?=
+ =?UTF-8?q?=20medidor=20master=20est=C3=A9reo,=20desacoplamento=20seguro?=
+ =?UTF-8?q?=20do=20layout=20de=20transi=C3=A7=C3=B5es?=
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
