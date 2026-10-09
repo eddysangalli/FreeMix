@@ -1,0 +1,22 @@
+{
+  "scope": "Assisted local operator test, not isolated fixture",
+  "configuredExtraOutput": {
+    "index": 3,
+    "name": "Teste Alpha Web",
+    "srtPort": 18460,
+    "autoStart": false
+  },
+  "priorOutputConfigurationsPreserved": true,
+  "receiverConnected": true,
+  "vmixUserReport": "Apareceu o vídeo",
+  "edge": {
+    "width": 1920,
+    "height": 1080,
+    "ready": true,
+    "error": null,
+    "renderedDuringFiveSeconds": 150
+  },
+  "vmixAlphaOverBackgroundConfirmed": false,
+  "audio": false,
+  "wanTested": false
+}

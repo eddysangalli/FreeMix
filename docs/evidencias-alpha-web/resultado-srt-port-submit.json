@@ -4,6 +4,7 @@
   "operatorTouched": false,
   "checks": [
     "Submit uses current visible port and preserves advanced parameters",
+    "Typing updates the draft URL immediately without blur",
     "Active output remains protected from connection edits"
   ]
 }

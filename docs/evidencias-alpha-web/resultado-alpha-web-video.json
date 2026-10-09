@@ -42,14 +42,14 @@
     ]
   },
   "receiver": {
-    "connected": false,
+    "connected": true,
     "fragments": 38,
-    "bytes": 3152625,
-    "restarts": 2,
-    "lastVideoAt": 1791563950145,
+    "bytes": 3158459,
+    "restarts": 1,
+    "lastVideoAt": 1791565954319,
     "generation": 2,
-    "viewers": 0,
-    "port": 50282,
+    "viewers": 2,
+    "port": 54600,
     "srtPort": 18461,
     "transport": "SRT H.264 4:2:0 packed → fragmented MP4 → WebGL alpha",
     "audio": false

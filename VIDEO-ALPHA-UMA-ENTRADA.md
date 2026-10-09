@@ -14,6 +14,10 @@ Fluxo: **entrada com alpha → SRT H.264 4:2:0 cor+máscara → FFmpeg remux sem
 5. No vMix, **Adicionar Entrada → Web Browser**. Cole o link da tela do receptor. Configure **1920×1080**, a resolução lógica, e mantenha posição/zoom padrão. A cor e transparência chegam juntas nessa única entrada; não adicione SRT, Virtual Input, máscara, Key/Fill ou Mix para este caminho.
 6. Use a nova entrada como overlay sobre o fundo. Para câmera com chroma key, selecione a fonte/composição **depois do filtro**, onde o verde já virou alpha. Enviar vídeo verde opaco não cria transparência.
 
+Nesta mesa foi criada a saída **Teste Alpha Web (Saída 5)** para 18460, copiando a origem da saída anterior sem modificar os outros destinos. Para trocar o vídeo que chega à entrada Web Browser, altere **essa saída**: Parar → Conteúdo "Entrada / composição própria" → Entrada desejada → Salvar → Iniciar. Alterar a saída Horizontal de 18360 afeta o teste SRT anterior.
+
+O operador confirmou que o vídeo apareceu no Web Browser do vMix. A mesma transmissão real passou na decodificação Edge em 1920×1080; após ajustar a reprodução por GOP, foram renderizados 150 quadros em cinco segundos. Transparência sobre fundo no vMix, áudio e WAN permanecem verificações separadas. Ao carregar o ajuste de reprodução, atualize apenas a página dessa entrada de navegador.
+
 Se a página ficar transparente sem vídeo, abra **diagnóstico do vídeo** na tela do receptor e confirme a saída SRT ativa. O diagnóstico mostra a resolução lógica e quantidade de quadros. Navegadores sem H.264/MSE/WebGL compatíveis exibem erro no diagnóstico. Após perda de sinal, o canvas é limpo, e não um último quadro congelado. Reconexão refaz a sessão de vídeo.
 
 Fechar a janela do `.cmd` encerra só o receptor. Um receptor iniciado pelo agente pode ser reutilizado: se aparecer porta ocupada, abra a tela 18750 existente em vez de iniciar outro.

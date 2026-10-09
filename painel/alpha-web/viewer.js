@@ -23,7 +23,7 @@
   const generation=++session;queue=[];sb=null;if(objectURL)URL.revokeObjectURL(objectURL);video.pause();video.removeAttribute('src');video.load();clear();
   if(!window.MediaSource||!MediaSource.isTypeSupported(mime)){state.error='Este navegador não decodifica '+mime;report(state.error);return;}
   mse=new MediaSource();objectURL=URL.createObjectURL(mse);video.src=objectURL;
-  mse.addEventListener('sourceopen',()=>{if(generation!==session)return;try{sb=mse.addSourceBuffer(mime);sb.addEventListener('updateend',()=>{if(sb.buffered.length){const start=sb.buffered.start(0),end=sb.buffered.end(sb.buffered.length-1);if(video.currentTime<start||end-video.currentTime>1.5)video.currentTime=Math.max(start,end-.25);video.play().catch(()=>{});}pump();});pump();}catch(e){state.error=e.message;report(state.error);}});
+  mse.addEventListener('sourceopen',()=>{if(generation!==session)return;try{sb=mse.addSourceBuffer(mime);let previousEnd=null,fragmentSeconds=1;sb.addEventListener('updateend',()=>{if(sb.buffered.length){const start=sb.buffered.start(0),end=sb.buffered.end(sb.buffered.length-1),delta=previousEnd===null?end-start:end-previousEnd;if(delta>0&&delta<20)fragmentSeconds=delta;previousEnd=end;const target=fragmentSeconds+.3;if(video.currentTime<start)video.currentTime=start;else if(end-video.currentTime>Math.max(1.5,target+1))video.currentTime=Math.max(start,end-target);video.play().catch(()=>{});}pump();});pump();}catch(e){state.error=e.message;report(state.error);}});
  }
  function connect(){
   ws=new WebSocket(location.href.replace(/^http/,'ws').replace(/\?.*$/,'').replace(/\/$/,'')+'/ws');ws.binaryType='arraybuffer';
