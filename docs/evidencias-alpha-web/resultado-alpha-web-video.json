@@ -1,0 +1,57 @@
+{
+  "success": true,
+  "scope": "Vídeo sintético em movimento, SRT isolado 18461, navegador Chromium/Edge; não modifica FreeMix/vMix do operador",
+  "checks": [
+    "URL sem chave de leitura recusada",
+    "SRT H.264 4:2:0 → MP4 sem recodificação → vídeo WebGL, alpha 0/128/255",
+    "Quadros recebidos mudam: vídeo real em movimento, sem reconstrução de títulos HTML",
+    "Segundo receptor abre durante transmissão em andamento",
+    "Perda de vídeo limpa o alpha; não mantém quadro congelado",
+    "Nova conexão SRT reabre o vídeo sem reiniciar o navegador"
+  ],
+  "operatorTouched": false,
+  "vmixTouched": false,
+  "initial": {
+    "state": {
+      "frames": 30,
+      "ready": true,
+      "error": null,
+      "width": 320,
+      "height": 180,
+      "reconnects": 0
+    },
+    "pixels": [
+      [
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        7,
+        11,
+        75,
+        130
+      ],
+      [
+        0,
+        231,
+        255,
+        255
+      ]
+    ]
+  },
+  "receiver": {
+    "connected": false,
+    "fragments": 38,
+    "bytes": 3152625,
+    "restarts": 2,
+    "lastVideoAt": 1791563950145,
+    "generation": 2,
+    "viewers": 0,
+    "port": 50282,
+    "srtPort": 18461,
+    "transport": "SRT H.264 4:2:0 packed → fragmented MP4 → WebGL alpha",
+    "audio": false
+  }
+}

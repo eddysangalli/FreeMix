@@ -1,5 +1,9 @@
 # SRT com transparência para vMix
 
+**Atualização do teste do operador:** a recomposição de um SRT packed 4:2:0 funcionou com quatro entradas: SRT, Virtual da máscara, Mix renderizando a máscara e outro Mix renderizando a cor. Use aspecto **Widescreen** nas fontes, Zoom X=2/Y=1, Pan X=+1 (Fill) / −1 (Key), Pan Y=0, Crop X 0–960 / 960–1920 no projeto 1920×1080. Aplique Key/Fill **no Mix da cor apontando para o Mix da máscara**, depois de retirar o Key/Fill da entrada SRT original. Aplicação antes dos recortes/Mix mostrou transparência/cortes incorretos.
+
+Novo protótipo para receber **vídeo com alpha em uma única entrada Web Browser**: `VIDEO-ALPHA-UMA-ENTRADA.md`. Não recria títulos em HTML: recebe o vídeo packed, remuxa e recompõe a transparência do quadro. O protótipo passou em Edge, inclusive Full HD; recepção no vMix e WAN ainda são testes pendentes.
+
 Primeiro salve e feche o FreeMix normalmente e abra **ABRIR-FREEMIX.cmd** na raiz. A atualização nova só é aplicada com a mesa fechada. Não basta atualizar a página de configurações.
 
 ## Um SRT: cor e máscara lado a lado em 4:2:0

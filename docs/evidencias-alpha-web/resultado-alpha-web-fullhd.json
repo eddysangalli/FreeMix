@@ -1,0 +1,32 @@
+{
+  "success": true,
+  "scope": "Full HD lógico 1920×1080 / packed 3840×1080, 30 fps, vídeo sintético, SRT loopback 18462, Edge headless",
+  "operatorTouched": false,
+  "vmixTouched": false,
+  "video": {
+    "frames": 30,
+    "ready": true,
+    "error": null,
+    "width": 1920,
+    "height": 1080,
+    "reconnects": 0,
+    "alpha": [
+      0,
+      130,
+      255
+    ]
+  },
+  "receiver": {
+    "connected": false,
+    "fragments": 18,
+    "bytes": 21228013,
+    "restarts": 1,
+    "lastVideoAt": 1791564061610,
+    "generation": 1,
+    "viewers": 0,
+    "port": 61541,
+    "srtPort": 18462,
+    "transport": "SRT H.264 4:2:0 packed → fragmented MP4 → WebGL alpha",
+    "audio": false
+  }
+}

@@ -50,6 +50,7 @@ Desktop.ini
 **/ice-import.json
 **/.env
 **/.env.*
+/config/alpha-web-receptor/
 *.exe
 *.dll
 *.pdb

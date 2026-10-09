@@ -1,5 +1,13 @@
 # FreeMix — entrega SRT 4:4:4 e alpha
 
+## Protótipo vídeo alpha por uma entrada de navegador — 09/10
+
+`ABRIR-RECEPTOR-ALPHA.cmd` / `obs-vmix/ferramentas/alpha-web-receptor.mjs` recebem vídeo H.264 4:2:0 com cor/máscara lado a lado, remuxam sem recodificação para MP4 fragmentado e recompõem alpha do mesmo quadro em WebGL. **Não redesenha GC HTML**: qualquer fonte/composição com alpha real, inclusive chroma aplicado, pode alimentar o transporte. Serviço separado, HTTP 18750 / SRT 18460; guia `VIDEO-ALPHA-UMA-ENTRADA.md`. Nada foi publicado externamente.
+
+Ensaios isolados: `resultado-alpha-web-video.json` PASS (movimento, alpha 0/130/255 nominal 0/128/255, entrada tardia, queda transparente, reconexão) e `resultado-alpha-web-fullhd.json` PASS (1920×1080 lógico / 3840×1080 packed, 30 fps na origem). Navegador Edge headless, sem alterar operador/vMix. Sem áudio; Chromium embutido no vMix, duração prolongada, latência e WAN ainda precisam validação. Não confundir protótipo de fonte adicional com os ZIPs nativos assinados anteriores.
+
+O operador confirmou em prints que SRT packed 4:2:0 chega ao vMix e a recomposição funciona com **SRT + Virtual + Mix Key + Mix Fill**, ambos com aspecto Widescreen; Key/Fill aplicado entre os dois Mix renderizados. Aplicar diretamente na fonte recortada causou opacidade/enquadramento errados. A nova entrada de navegador é tentativa de eliminar esses quatro auxiliares, ainda não declarada homologada no vMix.
+
 ## SRT para vMix — 4:2:0 e Fill/Key, 09/10
 
 O motor agora oferece três modos de transparência SRT: `packed` em 4:2:0 ou 4:4:4 (cor e máscara no mesmo quadro), e `fill`/`key` separados em 4:2:0 (duas portas, largura original). Todos usam x264/H.264 e uma entrada/composição com alpha real. O formato 4:2:0 reduz a resolução de cor; a máscara cinza usa a luminância em resolução completa. O modo separado conserva áudio em ambos os envios: silencie a Key no receptor. Duas conexões não garantem sincronismo de quadro/genlock.

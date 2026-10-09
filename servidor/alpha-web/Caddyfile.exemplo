@@ -1,0 +1,11 @@
+# Replace the domain, configure DNS, and expose UDP 18460 on the server separately.
+# Caddy handles HTTPS and WebSocket upgrades; the Node server stays on loopback.
+alpha.seu-dominio.com {
+    @video path /alpha/*
+    handle @video {
+        reverse_proxy 127.0.0.1:18750
+    }
+    handle {
+        respond "Not found" 404
+    }
+}
