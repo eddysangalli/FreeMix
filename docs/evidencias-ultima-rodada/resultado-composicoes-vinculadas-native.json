@@ -1,0 +1,24 @@
+{
+  "status": "PASS",
+  "at": "2026-10-09T20:18:39.334Z",
+  "nativePid": 128600,
+  "root": "C:\\Users\\eddyr\\AppData\\Local\\Temp\\FreeMix-QA-Installer-91fd2da603b44a5587e79bfb9ad1de17\\FreeMix-QA-Installed-Studio",
+  "operatorTouched": false,
+  "checks": [
+    "Troca H/V usa a mesma câmera e preserva transformações reais distintas",
+    "Renderização nativa das duas orientações confirma fonte nova, sem a antiga",
+    "Desfazer pela variante restaura as duas fontes e enquadramentos nativos",
+    "Fundo H/V e desfazer aplicados no motor real",
+    "Camada bloqueada impede troca parcial das versões",
+    "Desvincular torna a troca independente",
+    "Programa e saídas da raiz QA preservados; operador não acessado"
+  ],
+  "frames": [
+    "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\composicoes-vinculadas-native\\horizontal-blue.png",
+    "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\composicoes-vinculadas-native\\vertical-blue.png"
+  ],
+  "limitations": [
+    "Undo de conteúdo retido somente nesta sessão",
+    "Ensaio local, sem saída física ou WAN"
+  ]
+}

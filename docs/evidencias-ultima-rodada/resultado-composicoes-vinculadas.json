@@ -1,0 +1,13 @@
+{
+  "status": "PASS",
+  "at": "2026-10-09T20:15:28.450Z",
+  "scope": "Regressão de propagação/rollback/undo com transporte simulado; não é prova visual do motor",
+  "checks": [
+    "Troca de câmera H→V mantém enquadramento e recorte distintos",
+    "Desfazer por qualquer versão restaura conteúdo e modos nas duas",
+    "Fundo compartilhado preserva modo de cada orientação e suporta desfazer",
+    "Falha após mutação parcial reverte todas as versões e não cria undo falso",
+    "Camada bloqueada e dependência circular impedem a troca antes de alterar o motor",
+    "Desfazer recusa topologia alterada sem modificar cenas"
+  ]
+}

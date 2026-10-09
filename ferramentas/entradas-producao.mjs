@@ -32,10 +32,10 @@ export function slotRects(layout,portrait=false,aspect=16/9){
  return [[.025,.025,.4625,.4625],[.5125,.025,.4625,.4625],[.025,.5125,.4625,.4625],[.5125,.5125,.4625,.4625]];
 }
 export class InputEngine{
- constructor(production){this.p=production;this.scope=null;this.entries={};this.templates=[];this.histories=new Map();this.speakerStates=new Map();this.speakerBusy=false;}
- async setScope(scope){if(this.scope===scope)return;this.maskKinds=(await this.p.req('GetSourceFilterKindList')).sourceFilterKinds;this.scope=scope;this.histories.clear();this.speakerStates.clear();this.file=join(this.p.root,'config/obs-studio/plugin_config/freemix-inputs',createHash('sha256').update(scope).digest('hex').slice(0,24)+'.json');try{const data=JSON.parse(await readFile(this.file,'utf8'));this.entries=data.entries||{};this.templates=data.templates||[];}catch(e){if(e.code!=='ENOENT')throw e;this.entries={};this.templates=[];}}
+ constructor(production){this.p=production;this.scope=null;this.entries={};this.templates=[];this.histories=new Map();this.contentHistories=new Map();this.speakerStates=new Map();this.speakerBusy=false;}
+ async setScope(scope){if(this.scope===scope)return;this.maskKinds=(await this.p.req('GetSourceFilterKindList')).sourceFilterKinds;this.scope=scope;this.histories.clear();this.contentHistories.clear();this.speakerStates.clear();this.file=join(this.p.root,'config/obs-studio/plugin_config/freemix-inputs',createHash('sha256').update(scope).digest('hex').slice(0,24)+'.json');try{const data=JSON.parse(await readFile(this.file,'utf8'));this.entries=data.entries||{};this.templates=data.templates||[];}catch(e){if(e.code!=='ENOENT')throw e;this.entries={};this.templates=[];}}
  async save(){await mkdir(join(this.file,'..'),{recursive:true});await writeFile(this.file+'.tmp',JSON.stringify({format:2,entries:this.entries,templates:this.templates},null,2));await rename(this.file+'.tmp',this.file);}
- decorate(inputs,video){return inputs.map(i=>{const meta=structuredClone(this.entries[i.key]||{});if(meta.composition){meta.composition.maskEngines={advanced:this.maskKinds?.includes(advancedMaskKind)===true};const rects=slotRects(meta.composition.layout,video.baseHeight>video.baseWidth,video.baseWidth/video.baseHeight);meta.composition.slots.forEach((s,n)=>s.defaultRect=rects[n]);}return {...i,...meta,key:i.key,name:i.name,number:i.number};});}
+ decorate(inputs,video){return inputs.map(i=>{const meta=structuredClone(this.entries[i.key]||{});if(meta.composition){meta.composition.contentUndoAvailable=!!this.contentHistories.get(meta.composition.syncGroup)?.length;meta.composition.maskEngines={advanced:this.maskKinds?.includes(advancedMaskKind)===true};const rects=slotRects(meta.composition.layout,video.baseHeight>video.baseWidth,video.baseWidth/video.baseHeight);meta.composition.slots.forEach((s,n)=>s.defaultRect=rects[n]);}return {...i,...meta,key:i.key,name:i.name,number:i.number};});}
  presets(){return structuredClone(compositionPresets);}
  async frame(input){const scene=await this.scene(input);if(!this.entries[scene.sceneUuid]?.composition)throw Error('Selecione uma composição');const v=await this.p.req('GetVideoSettings'),scale=Math.min(1,960/Math.max(v.baseWidth,v.baseHeight));return (await this.p.req('GetSourceScreenshot',{sourceUuid:scene.sceneUuid,imageFormat:'png',imageWidth:Math.round(v.baseWidth*scale),imageHeight:Math.round(v.baseHeight*scale)})).imageData;}
  async scene(key){const r=await this.p.req('GetSceneList'),s=r.scenes.find(s=>s.sceneUuid===key||s.sceneName===key);if(!s)throw Error('Entrada não encontrada');return s;}
@@ -122,9 +122,32 @@ export class InputEngine{
     operations.push({next:{...d,input:key},old:{input:key,type:old.type,mode:old.mode,file:old.file,source:old.source,color:meta.composition.color}});
    }
   }
+  // Fit/crop is geometry: changing it in H must not overwrite V's framing.
+  for(const op of operations)if(op.next.input!==selected.sceneUuid)op.next.mode=op.old.mode;
   const attempted=[];
-  try{for(const op of operations){attempted.push(op);await this[method](op.next);}this.last={...this.last,synchronized:targets.map(([key])=>key)};}
+  try{for(const op of operations){attempted.push(op);await this[method](op.next);}this.last={...this.last,synchronized:targets.map(([key])=>key)};
+   const history=this.contentHistories.get(comp.syncGroup)||[];
+   history.push({method,operations:structuredClone(operations)});this.contentHistories.set(comp.syncGroup,history.slice(-20));}
   catch(e){const errors=[];for(const op of attempted.reverse())try{await this[method](op.old);}catch(r){errors.push(r.message);}throw Error(e.message+(errors.length?' — restauração incompleta: '+errors.join('; '):' — alterações nas versões revertidas'));}
+ }
+ async contentUndo(d){
+  const selected=await this.scene(d.input),comp=this.entries[selected.sceneUuid]?.composition;
+  const history=comp?.syncGroup&&this.contentHistories.get(comp.syncGroup),event=history?.at(-1);
+  if(!event)throw Error('Nenhuma troca de conteúdo H/V para desfazer nesta sessão');
+  const live=(await this.p.req('GetSceneList')).scenes;
+  for(const op of event.operations){
+   const target=this.entries[op.old.input]?.composition;
+   if(!target||target.syncGroup!==comp.syncGroup||!live.some(s=>s.sceneUuid===op.old.input))throw Error('O vínculo mudou; a troca anterior não pode ser desfeita');
+   if(event.method==='replace'){
+    const slot=target.slots.find(s=>s.id===op.old.slot);
+    if(!slot||slot.locked)throw Error('Desbloqueie as camadas vinculadas antes de desfazer');
+    await this.scene(op.old.source);
+   }else if(op.old.type==='input')await this.scene(op.old.source);
+   else if(op.old.type==='image')await localBackground(this.p.root,op.old.file);
+  }
+  const attempted=[];
+  try{for(const op of event.operations){attempted.push(op);await this[event.method](op.old);}history.pop();this.last={synchronized:event.operations.map(op=>op.old.input),contentUndone:true};}
+  catch(e){const errors=[];for(const op of attempted.reverse())try{await this[event.method](op.next);}catch(r){errors.push(r.message);}throw Error(e.message+(errors.length?' — restauração incompleta: '+errors.join('; '):' — desfazer cancelado, conteúdo anterior preservado'));}
  }
  async link(d){
   const scene=await this.scene(d.input),comp=this.entries[scene.sceneUuid]?.composition;if(!comp)throw Error('Selecione uma composição');
@@ -243,5 +266,5 @@ export class InputEngine{
  async remove(d){const scene=await this.scene(d.input),meta=this.entries[scene.sceneUuid],live=new Set((await this.p.req('GetSceneList')).scenes.map(s=>s.sceneUuid));if(Object.entries(this.entries).some(([key,entry])=>key!==scene.sceneUuid&&live.has(key)&&(entry.composition?.backgroundSpec?.source===scene.sceneUuid||entry.composition?.slots.some(slot=>slot.inputKey===scene.sceneUuid))))throw Error('Entrada usada em outra composição. Troque os slots/fundo ou remova a composição dependente primeiro.');await this.p.req('RemoveScene',{sceneName:scene.sceneName});await this.waitSceneRemoved(scene.sceneUuid);await this.removeArtifacts(meta);delete this.entries[scene.sceneUuid];this.speakerStates.delete(scene.sceneUuid);await this.save();}
  async removeArtifacts(meta){const comp=meta?.composition;if(!comp)return;for(const slot of comp.slots){if(slot.wrapper?.name?.startsWith('FreeMix Slot '))await this.p.optional('RemoveScene',{sceneName:slot.wrapper.name});for(const part of Object.values(slot.decorations||{}))if(part.source?.startsWith('FreeMix '))await this.p.optional('RemoveInput',{inputName:part.source});}if(comp.backgroundSpec?.ownedSource?.startsWith('FreeMix Fundo '))await this.p.optional('RemoveInput',{inputName:comp.backgroundSpec.ownedSource});if(comp.background?.startsWith('Fundo '))await this.p.optional('RemoveInput',{inputName:comp.background});}
  async prunePrivateScenes(){const scenes=(await this.p.req('GetSceneList')).scenes,live=new Set(scenes.map(s=>s.sceneUuid));let changed=false;for(const [uuid,meta]of Object.entries(this.entries))if(meta.composition&&!live.has(uuid)){await this.removeArtifacts(meta);delete this.entries[uuid];changed=true;}if(changed)await this.save();}
- async execute(action,d){if(action==='input_link')return this.link(d);if(action==='input_background')return this.synchronized(d,'background');if(action==='input_anchor')return this.anchor(d);if(action==='input_variant')return this.variant(d);if(action==='input_speaker')return this.speaker(d);if(action==='input_remove')return this.remove(d);if(action==='input_style')return this.style(d);if(action==='input_template')return this.template(d);if(action==='input_create')return this.create(d);if(action==='input_slot')return this.synchronized(d,'replace');if(action==='input_tags')return this.tags(d);if(action==='input_geometry')return this.geometry(d);if(action==='input_reorder')return this.reorder(d);if(action==='input_layer')return this.layer(d);if(action==='input_align')return this.align(d);if(action==='input_undo')return this.undo(d);if(action==='input_duplicate')return this.duplicate(d);throw Error('Comando de entrada inválido');}
+ async execute(action,d){if(action==='input_content_undo')return this.contentUndo(d);if(action==='input_link')return this.link(d);if(action==='input_background')return this.synchronized(d,'background');if(action==='input_anchor')return this.anchor(d);if(action==='input_variant')return this.variant(d);if(action==='input_speaker')return this.speaker(d);if(action==='input_remove')return this.remove(d);if(action==='input_style')return this.style(d);if(action==='input_template')return this.template(d);if(action==='input_create')return this.create(d);if(action==='input_slot')return this.synchronized(d,'replace');if(action==='input_tags')return this.tags(d);if(action==='input_geometry')return this.geometry(d);if(action==='input_reorder')return this.reorder(d);if(action==='input_layer')return this.layer(d);if(action==='input_align')return this.align(d);if(action==='input_undo')return this.undo(d);if(action==='input_duplicate')return this.duplicate(d);throw Error('Comando de entrada inválido');}
 }
