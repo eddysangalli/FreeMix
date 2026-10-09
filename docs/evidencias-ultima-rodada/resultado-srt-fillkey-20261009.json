@@ -1,0 +1,105 @@
+{
+  "started": "2026-10-09T15:29:46.941Z",
+  "root": "C:/Users/eddyr/AppData/Local/Temp/FreeMix-QA-SRT-FillKey-20261009",
+  "operatorTouched": false,
+  "vmixTouched": false,
+  "status": "PASS",
+  "artifacts": {
+    "bin/64bit/FreeMix.exe": "947724cf99c8babdf43d7c032de7bb43192694e7d08f7ecbaa133b631ac5d14d",
+    "obs-plugins/64bit/obs-ffmpeg.dll": "7d2d4fd4bcf628d606b73bf6f48ee1f5103ce3559e0abb1c1cae1b037a6509e8"
+  },
+  "cases": [
+    {
+      "mode": "packed",
+      "port": 18366,
+      "codec": "h264",
+      "profile": "High",
+      "format": "yuv420p",
+      "width": 640,
+      "height": 240,
+      "frames": 90
+    },
+    {
+      "mode": "fill",
+      "port": 18367,
+      "codec": "h264",
+      "profile": "High",
+      "format": "yuv420p",
+      "width": 320,
+      "height": 240,
+      "frames": 90
+    },
+    {
+      "mode": "key",
+      "port": 18368,
+      "codec": "h264",
+      "profile": "High",
+      "format": "yuv420p",
+      "width": 320,
+      "height": 240,
+      "frames": 90
+    }
+  ],
+  "pid": 132068,
+  "capabilities": {
+    "separate": true,
+    "packed420": true,
+    "frameLocked": false
+  },
+  "keyBands": [
+    [
+      0,
+      0,
+      0
+    ],
+    [
+      128,
+      128,
+      128
+    ],
+    [
+      255,
+      255,
+      255
+    ]
+  ],
+  "packedVersusSeparateKeyMAE": 0,
+  "outputList": {
+    "outputs": [
+      {
+        "outputActive": false,
+        "outputFlags": {
+          "OBS_OUTPUT_AUDIO": true,
+          "OBS_OUTPUT_ENCODED": true,
+          "OBS_OUTPUT_MULTI_TRACK": true,
+          "OBS_OUTPUT_SERVICE": false,
+          "OBS_OUTPUT_VIDEO": true
+        },
+        "outputHeight": 0,
+        "outputKind": "ffmpeg_muxer",
+        "outputName": "simple_file_output",
+        "outputWidth": 0
+      },
+      {
+        "outputActive": false,
+        "outputFlags": {
+          "OBS_OUTPUT_AUDIO": false,
+          "OBS_OUTPUT_ENCODED": false,
+          "OBS_OUTPUT_MULTI_TRACK": false,
+          "OBS_OUTPUT_SERVICE": false,
+          "OBS_OUTPUT_VIDEO": true
+        },
+        "outputHeight": 720,
+        "outputKind": "virtualcam_output",
+        "outputName": "virtualcam_output",
+        "outputWidth": 1280
+      }
+    ]
+  },
+  "nativeExit": {
+    "code": 0,
+    "signal": null
+  },
+  "newCrashes": [],
+  "finished": "2026-10-09T15:29:58.340Z"
+}

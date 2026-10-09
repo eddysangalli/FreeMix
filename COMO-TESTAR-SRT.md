@@ -1,5 +1,7 @@
 # SRT: teste simples e alpha
 
+Para os novos modos 4:2:0 com transparência, siga [SRT-VMIX.md](SRT-VMIX.md). O formato packed420 leva cor/máscara no mesmo SRT; Fill/Key separado usa duas portas. A recepção/recomposição no vMix ainda precisa de teste manual.
+
 Primeiro salve e feche o FreeMix desta instalação e abra **ABRIR-FREEMIX.cmd**. A versão anterior `20261009045022` não oferece o 4:4:4/alpha novo; por isso os controles aparecem bloqueados nela. Transmitir abre MultiStream. SRT, NDI e OMT ficam em **Externo**.
 
 ## Mesmo computador, recebendo no vMix

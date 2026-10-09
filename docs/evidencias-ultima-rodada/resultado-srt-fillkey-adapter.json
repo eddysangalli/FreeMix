@@ -1,0 +1,20 @@
+{
+  "at": "2026-10-09T15:26:52.365Z",
+  "operatorTouched": false,
+  "apiRealCalled": false,
+  "passed": true,
+  "checks": [
+    {
+      "name": "Validação SRT/444/x264/máscara/largura/capability e defaults compatíveis",
+      "passed": true
+    },
+    {
+      "name": "Configure encaminha/readback e preserva campos omitidos + chave anterior",
+      "passed": true
+    },
+    {
+      "name": "Perfil persiste formato; perfil antigo sem campos não apaga o formato atual",
+      "passed": true
+    }
+  ]
+}

@@ -16,3 +16,6 @@ Recursos anteriores e limites: CONTINUAR.md. Pendências reais e trabalho necess
 Exemplo local FreeMix → vMix: entrada SRT Listener na porta 18360, latência 120 ms; FreeMix caller srt://127.0.0.1:18360?mode=caller&latency=120000. Use 4:2:0 sem alpha neste vMix: o log do teste confirmou recepção seguida de falha no decoder para o perfil 4:4:4 com alpha empacotado. Para esse perfil use OBS com recomposição; alpha packed não é recomposto automaticamente no vMix.
 
 Os executáveis/runtime ficam nos ZIPs locais. GitHub guarda fontes e uma série completa de patches sobre o OBS fixado. VPS/domínio, hardware, internet, HDR completo, GTZIP ainda não suportado e acabamento universal das telas continuam com critérios explícitos em PENDENCIAS-REAIS.md.
+
+
+SRT 4:2:0 com máscara lado a lado e Fill/Key em duas portas foi implementado; veja SRT-VMIX.md. Recepção FFmpeg local passou, incluindo máscara 0/128/255. Recomposição no vMix ainda precisa ser conferida. Aplique somente com a mesa salva e fechada, por ABRIR-FREEMIX.cmd.

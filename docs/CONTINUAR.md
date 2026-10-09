@@ -1,5 +1,16 @@
 # FreeMix — entrega SRT 4:4:4 e alpha
 
+## SRT para vMix — 4:2:0 e Fill/Key, 09/10
+
+O motor agora oferece três modos de transparência SRT: `packed` em 4:2:0 ou 4:4:4 (cor e máscara no mesmo quadro), e `fill`/`key` separados em 4:2:0 (duas portas, largura original). Todos usam x264/H.264 e uma entrada/composição com alpha real. O formato 4:2:0 reduz a resolução de cor; a máscara cinza usa a luminância em resolução completa. O modo separado conserva áudio em ambos os envios: silencie a Key no receptor. Duas conexões não garantem sincronismo de quadro/genlock.
+
+Prova local: `qa-portatil/resultado-srt-fillkey-20261009.json`, três receptores FFmpeg nas portas isoladas 18366–18368, 90 quadros decodificados por modo, H.264 High/yuv420p, máscara 0/128/255 e diferença média 0 entre a Key separada e a metade Key do packed. Native SHA-256 947724cf99c8babdf43d7c032de7bb43192694e7d08f7ecbaa133b631ac5d14d, saída 0, nenhum novo crash. UI e adapter passaram; o teste não modificou o vMix/operador. Falhas iniciais de contexto UI e referência da fixture foram preservadas.
+
+vMix: a recepção 4:2:0 e a recomposição Key/Fill ainda precisam ser conferidas na mesa. Para um SRT único, o transporte preserva as metades no mesmo quadro, mas precisamos validar se o Key/Fill usa o Crop da Virtual Input; pode exigir um Mix renderizando a metade Key. Isso não foi declarado concluído. Guia: SRT-VMIX.md.
+
+A correção de reconexão/divisão por zero permanece no obs-ffmpeg.dll SHA-256 7d2d4fd4bcf628d606b73bf6f48ee1f5103ce3559e0abb1c1cae1b037a6509e8. O relatório de 12:16 foi recebido com a instalação antiga ainda aplicada (135628). Atualização somente após salvar e fechar normalmente, pelo ABRIR-FREEMIX.cmd; o agente não reiniciou o operador.
+
+
 A entrega corrente é identificada em entregas/ULTIMA-ATUALIZACAO.json e nos manifests assinados dos ZIPs. O launcher aplica somente com a instalação salva e fechada; não atribuir a versão nova a uma mesa que continua aberta com o executável anterior. Pacotes anteriores permanecem imutáveis.
 
 ## Encerramento e reconexão SRT — correção de 09/10
@@ -8,11 +19,11 @@ O fechamento principal agora recusa eventos reentrantes durante a confirmação/
 
 No muxer SRT/MPEG-TS, reconectar agora descarta os pacotes e o contexto da conexão anterior. Escrita fica bloqueada até o cabeçalho do novo contexto estar inicializado. Corrigida também a limpeza dos ponteiros após falha/fechamento do transporte. Essa fila residual era um caminho concreto para a divisão por zero durante as reconexões observadas.
 
-O teste do operador confirmou conexão SRT com o vMix, seguida de `SRT.ExitingDueToDecoderFailure` no perfil High 4:4:4 com alpha empacotado. Para este vMix use 4:2:0 sem alpha. O contrato alpha empacotado exige receptor compatível e recomposição, como OBS com decodificação por software e shader fornecido; não é alpha universal de SRT.
+O teste do operador confirmou conexão SRT com o vMix, seguida de `SRT.ExitingDueToDecoderFailure` no perfil High 4:4:4 com alpha empacotado. Para este vMix use 4:2:0 sem alpha. O contrato alpha empacotado, agora também disponível em 4:2:0, exige receptor compatível e recomposição, como OBS com decodificação por software e shader fornecido; não é alpha universal de SRT.
 
 ## SRT 4:4:4 e alpha, validado localmente
 
-- SRT independente aceita H.264/x264, I444 e alpha empacotado: Fill esquerdo e Key cinza direito no mesmo quadro. O receptor precisa dividir/recompor, conforme `obs-vmix/ferramentas/GUIA-SRT-444-ALPHA.md`. Sem seleção avançada, permanece 4:2:0 e sem alpha.
+- SRT independente aceita H.264/x264, I444 ou NV12 e alpha empacotado: Fill esquerdo e Key cinza direito no mesmo quadro. O receptor precisa dividir/recompor, conforme `obs-vmix/ferramentas/GUIA-SRT-444-ALPHA.md`. Sem seleção avançada, permanece 4:2:0 e sem alpha.
 - Prova loopback: dez segundos, 320×180 lógico/640×180 transmitido, 30 fps, High 4:4:4 Predictive/yuvj444p; alpha 0/128/255 com MAE 0 e RGB MAE 0,202. Native encerrado normalmente, sem crash novo, operador preservado. Não comprova Full HD/internet/HDR.
 - Primeira prova `qa-portatil/resultado-srt444-20261009.json` conserva o FAIL inicial do Key e o PASS de 444 sem alpha. A correção passou em `resultado-srt444-keyfix-20261009.json`; EXE SHA-256 `82b743e26ba4c592d76df5dcde827a0bf95f3025e101736a28ca7f0edaf76621`.
 - Externo em `/saidas?context=external`, com abas NDI/OMT/SDI, precisão real e configurações por emissor sem autostart. Evidências: `resultado-saidas-external-ui.json`, `resultado-saidas-external-real.json`, `resultado-srt-formato-adapter.json`, `resultado-srt-formato-ui.json` e `resultado-srt-acesso-guia.json`.

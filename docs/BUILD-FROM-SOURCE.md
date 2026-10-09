@@ -2,7 +2,7 @@
 
 O motor ativo é o fork C++ do OBS Studio 32.2.2. As pastas `src/` e `plugins/obs-freemix/` contêm protótipos anteriores; não são o motor da entrega atual.
 
-`fork/manifest.json` fixa o commit upstream completo e a ordem/hash dos dez patches. A série contém toda a mudança nativa, inclusive as fontes e headers novos que estavam fora de commits anteriores. `docs/native-source/` é uma cópia de consulta das fontes modificadas; a série em `fork/` é a referência para reconstruir a árvore.
+`fork/manifest.json` fixa o commit upstream completo e a ordem/hash dos onze patches. A série contém toda a mudança nativa, inclusive as fontes e headers novos que estavam fora de commits anteriores. `docs/native-source/` é uma cópia de consulta das fontes modificadas; a série em `fork/` é a referência para reconstruir a árvore.
 
 Com Git e Node.js 20+:
 

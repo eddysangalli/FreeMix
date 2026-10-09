@@ -1,0 +1,14 @@
+{
+  "version": "0.1.0-local.20261009153453",
+  "package": "entregas/FreeMix-Atualizacao-0.1.0-local.20261009153453",
+  "incrementalZip": "entregas/FreeMix-Atualizacao-0.1.0-local.20261009153453.zip",
+  "fullZip": "entregas/FreeMix-Completo-0.1.0-local.20261009153453.zip",
+  "zipSha256": "73554e12cdb9b5dcf83b71b3a3594663e73de3146378362ca49424aba319206b",
+  "fullZipSha256": "5d4a761e67e640a02d352730b4ae8f220d2a6b0a35fd1b064bbc30686d4504b7",
+  "at": "2026-10-09T15:40:57.746Z",
+  "nativeHead": "7d4650d3e078e81671f53fbf0578a761031812bc",
+  "binariesInGit": false,
+  "operatorDataUploaded": false,
+  "vmixTested": false,
+  "localReceiversPassed": true
+}

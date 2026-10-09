@@ -2,11 +2,11 @@
 
 Código do FreeMix baseado no OBS Studio 32.2.2, com interface de mesa de produção, saídas independentes, composições, GC, Calls, replay, áudio e automação.
 
-Entrega local de referência: **0.1.0-local.20261009144437**. As funcionalidades e seus limites estão em [CONTINUAR.md](CONTINUAR.md). A lista concreta para terminar cada pendência está em [PENDENCIAS-REAIS.md](PENDENCIAS-REAIS.md).
+Entrega local de referência: **0.1.0-local.20261009153453**. As funcionalidades e seus limites estão em [CONTINUAR.md](CONTINUAR.md). A lista concreta para terminar cada pendência está em [PENDENCIAS-REAIS.md](PENDENCIAS-REAIS.md).
 
 ## Código incluído
 
-- `fork/`: série completa de dez patches sobre um commit upstream fixado, incluindo todas as alterações nativas da entrega.
+- `fork/`: série completa de onze patches sobre um commit upstream fixado, incluindo todas as alterações nativas da entrega.
 - `ferramentas/`: API local, controle, áudio, saídas, Calls, bonding, recuperação, instalador, atualização e ZIP de diagnóstico.
 - `painel/`: mesa, configuração, 156 presets de composição e biblioteca de títulos.
 - `servidor/`: kit Linux para feed HTTPS, TURN e receptor, preparado para implantação explícita.
@@ -38,3 +38,5 @@ O botão e `COLETAR-LOGS.cmd` geram diagnóstico local sanitizado, encaminhado m
 O fork do OBS mantém a licença GPL e os avisos correspondentes. Os componentes de terceiros mantêm suas licenças e termos próprios; consulte `LICENSE`, `licenses/` e os registros de proveniência antes de redistribuir.
 
 Correção de estabilidade: fechamento reentrante de janelas CEF e limpeza do muxer SRT entre reconexões. Provas dirigidas acompanham docs/evidencias-encerramento. O vMix desta instalação rejeitou o perfil 4:4:4/alpha packed; use 4:2:0 sem alpha nele e OBS com recomposição para packed.
+
+SRT: o novo modo lado a lado também usa H.264 4:2:0; Fill e Key separados usam duas portas. Recepção FFmpeg local validada em três modos, alpha 0/128/255; recomposição no vMix e sincronismo entre conexões permanecem testes externos. Veja SRT-VMIX.md.

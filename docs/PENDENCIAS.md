@@ -1,5 +1,16 @@
 # FreeMix — pendências e limites da entrega corrente
 
+## SRT para vMix — 4:2:0 e Fill/Key, 09/10
+
+O motor agora oferece três modos de transparência SRT: `packed` em 4:2:0 ou 4:4:4 (cor e máscara no mesmo quadro), e `fill`/`key` separados em 4:2:0 (duas portas, largura original). Todos usam x264/H.264 e uma entrada/composição com alpha real. O formato 4:2:0 reduz a resolução de cor; a máscara cinza usa a luminância em resolução completa. O modo separado conserva áudio em ambos os envios: silencie a Key no receptor. Duas conexões não garantem sincronismo de quadro/genlock.
+
+Prova local: `qa-portatil/resultado-srt-fillkey-20261009.json`, três receptores FFmpeg nas portas isoladas 18366–18368, 90 quadros decodificados por modo, H.264 High/yuv420p, máscara 0/128/255 e diferença média 0 entre a Key separada e a metade Key do packed. Native SHA-256 947724cf99c8babdf43d7c032de7bb43192694e7d08f7ecbaa133b631ac5d14d, saída 0, nenhum novo crash. UI e adapter passaram; o teste não modificou o vMix/operador. Falhas iniciais de contexto UI e referência da fixture foram preservadas.
+
+vMix: a recepção 4:2:0 e a recomposição Key/Fill ainda precisam ser conferidas na mesa. Para um SRT único, o transporte preserva as metades no mesmo quadro, mas precisamos validar se o Key/Fill usa o Crop da Virtual Input; pode exigir um Mix renderizando a metade Key. Isso não foi declarado concluído. Guia: SRT-VMIX.md.
+
+A correção de reconexão/divisão por zero permanece no obs-ffmpeg.dll SHA-256 7d2d4fd4bcf628d606b73bf6f48ee1f5103ce3559e0abb1c1cae1b037a6509e8. O relatório de 12:16 foi recebido com a instalação antiga ainda aplicada (135628). Atualização somente após salvar e fechar normalmente, pelo ABRIR-FREEMIX.cmd; o agente não reiniciou o operador.
+
+
 As implementações desta rodada têm provas locais. O que segue continua separado e não é declarado concluído por esses ensaios.
 
 Veja [Pendências reais e critérios para encerrar](PENDENCIAS-REAIS.md): separa desenvolvimento, homologação e infraestrutura, com o trabalho concreto para concluir cada item.

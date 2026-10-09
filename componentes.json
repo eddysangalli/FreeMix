@@ -13,7 +13,7 @@
         "bin/64bit/obs.dll"
       ],
       "sha256": {
-        "bin/64bit/FreeMix.exe": "60db8e83162f28809f740a303c7eb15757ce57d17519b6e072fd37e8b45aa464",
+        "bin/64bit/FreeMix.exe": "947724cf99c8babdf43d7c032de7bb43192694e7d08f7ecbaa133b631ac5d14d",
         "bin/64bit/obs.dll": "bb050a55a20f8c55105f0d80c777a1f30274dc84928591ecdce77829f00b651e"
       }
     },
@@ -977,13 +977,14 @@
       "qrcode": "1.5.4",
       "exceljs": "4.4.0"
     },
-    "nativeCommit": "e2ec8f12166e8a329fa9f29951ddc2510baad28f",
+    "nativeCommit": "7d4650d3e078e81671f53fbf0578a761031812bc",
     "nativePatch": [
       "shared/media-playback/media-playback/media.c",
       "frontend/widgets/FreeMixMultistream.cpp",
       "frontend/widgets/FreeMixMultistream.hpp",
       "frontend/widgets/OBSBasic.cpp",
-      "plugins/obs-ffmpeg/obs-ffmpeg-mpegts.c"
+      "plugins/obs-ffmpeg/obs-ffmpeg-mpegts.c",
+      "frontend/widgets/FreeMixSrtAlpha.hpp"
     ],
     "ndi": {
       "version": "6.3.2.0",
@@ -991,15 +992,15 @@
       "includedInDistribution": false,
       "sha256": "2b6602075868ba4401f82f417d72424805d69b11ca86078023d0d489ff45dd84"
     },
-    "nativeExeSha256": "60db8e83162f28809f740a303c7eb15757ce57d17519b6e072fd37e8b45aa464",
+    "nativeExeSha256": "947724cf99c8babdf43d7c032de7bb43192694e7d08f7ecbaa133b631ac5d14d",
     "nativeArtifacts": {
-      "bin/64bit/FreeMix.exe": "60db8e83162f28809f740a303c7eb15757ce57d17519b6e072fd37e8b45aa464",
+      "bin/64bit/FreeMix.exe": "947724cf99c8babdf43d7c032de7bb43192694e7d08f7ecbaa133b631ac5d14d",
       "obs-plugins/64bit/obs-ffmpeg.dll": "7d2d4fd4bcf628d606b73bf6f48ee1f5103ce3559e0abb1c1cae1b037a6509e8"
     }
   },
   "incremento": {
-    "version": "0.1.0-local.20261009144437",
-    "base": "0.1.0-local.20261009135628",
+    "version": "0.1.0-local.20261009153453",
+    "base": "0.1.0-local.20261009144437",
     "nativeSource": "docs/native-source",
     "implemented": [
       "98preferências nativas e schema dinâmico encoder",
@@ -1082,6 +1083,14 @@
       "proof": "docs/evidencias-encerramento/resultado-srt-reconnect-fixed-20261009.json",
       "pluginSha256": "7d2d4fd4bcf628d606b73bf6f48ee1f5103ce3559e0abb1c1cae1b037a6509e8",
       "receivedCases": 3
+    },
+    "srtFillKey": {
+      "nativeHead": "7d4650d3e078e81671f53fbf0578a761031812bc",
+      "proof": "docs/evidencias-srt-fillkey/resultado-srt-fillkey-20261009.json",
+      "packed420": true,
+      "separate420": true,
+      "vmixTested": false,
+      "frameLockedAcrossSessions": false
     }
   },
   "provenanceInventories": [
@@ -1104,6 +1113,10 @@
     {
       "name": "encerramento-native",
       "path": "docs/provenance/encerramento-native.json"
+    },
+    {
+      "name": "srt-fillkey",
+      "path": "docs/provenance/srt-fillkey.json"
     }
   ]
 }

@@ -1,8 +1,8 @@
 {
   "upstream": "https://github.com/obsproject/obs-studio.git",
   "base": "ba2f32bdf791005443988a4955e963663e16b1ed",
-  "head": "e2ec8f12166e8a329fa9f29951ddc2510baad28f",
-  "version": "0.1.0-local.20261009144437",
+  "head": "7d4650d3e078e81671f53fbf0578a761031812bc",
+  "version": "0.1.0-local.20261009153453",
   "patches": [
     {
       "path": "0001-feat-branding-replace-OBS-identity-with-FreeMix-Stud.patch",
@@ -43,6 +43,10 @@
     {
       "path": "0010-Fix-reentrant-window-shutdown-and-reset-MPEG-TS-stat.patch",
       "sha256": "ed1b18a24d212401e2cb4b4acd1f4a10260e666f3a3bb4720e6f107fb3b2a64e"
+    },
+    {
+      "path": "0011-Add-compatible-SRT-packed-and-separate-Fill-Key-420-.patch",
+      "sha256": "ffe038a847acb5d7adbd0ebaaf001206c67dfd7fb6b48665e51526f9fcf50084"
     }
   ]
 }

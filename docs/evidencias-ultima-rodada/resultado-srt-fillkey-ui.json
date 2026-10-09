@@ -1,0 +1,25 @@
+{
+  "at": "2026-10-09T15:29:05.469Z",
+  "operatorTouched": false,
+  "apiRealCalled": false,
+  "checks": [
+    {
+      "name": "Botão prepara SRT/x264/444/máscara e largura de transporte, sem iniciar ou salvar",
+      "passed": true
+    },
+    {
+      "name": "Rascunho resiste à atualização e configure inclui campos novos",
+      "passed": true
+    },
+    {
+      "name": "Packed420 e Fill/Key420 preparados sem autostart, Key enviado ao adapter",
+      "passed": true
+    },
+    {
+      "name": "Readback recompõe seleção e orientação explícita ao receptor",
+      "passed": true
+    }
+  ],
+  "passed": true,
+  "jsErrors": []
+}
