@@ -253,6 +253,22 @@
     </div>
   </div>
 
+  <section style="padding:12px;border:1px solid var(--border);margin-bottom:12px" aria-label="Timeline da gravação">
+    <h2 style="font-size:16px">Timeline da gravação</h2>
+    <p>Volte no histórico, confira o quadro e marque os pontos do lance. A gravação continua; esta prévia fica fora do Programa. Atualizar histórico inclui o vídeo gravado desde a última consulta. Cada lance pode ter de 0,2 a 120 segundos.</p>
+    <button id="history-refresh" onclick="refreshHistory()">Atualizar histórico</button>
+    <label>Câmera <select id="history-camera" onchange="previewHistory()"></select></label>
+    <p id="history-status" role="status">Inicie REC SSD e atualize o histórico para navegar.</p>
+    <img id="history-image" alt="Quadro escolhido na gravação" hidden style="width:100%;max-width:640px;aspect-ratio:16/9;object-fit:contain;background:#000">
+    <input id="history-seek" class="timeline" aria-label="Posição no histórico" type="range" min="0" max="0" value="0" step="0.033333" disabled oninput="historyCursorChanged()" onchange="previewHistory()">
+    <label>Posição (segundos) <input id="history-cursor" type="number" min="0" step="0.033333" disabled onchange="historyPositionChanged()"></label>
+    <button id="history-back-frame" disabled onclick="stepHistory(-1)">◀ Quadro no histórico</button>
+    <button id="history-next-frame" disabled onclick="stepHistory(1)">Quadro no histórico ▶</button>
+    <button id="history-in" disabled onclick="markHistory('in')">IN no ponto escolhido</button>
+    <button id="history-out" disabled onclick="markHistory('out')">OUT no ponto escolhido</button>
+    <p id="history-range">IN: — · OUT: —</p>
+    <button id="history-save" disabled onclick="saveHistoryRange()">Salvar lance de IN até OUT</button>
+  </section>
   <div id="replay-config" style="padding:12px"><h2 style="font-size:16px;margin-bottom:8px">Câmeras e gravação do Replay</h2><p>Selecione até oito entradas com REC parado. Iniciar gravação SSD grava os ângulos; não coloca o Replay no ar. Os arquivos usam a pasta de gravações configurada no FreeMix, numa subpasta replay.</p><div id="cam-select"></div><button id="record-btn" class="btn-quick" onclick="toggleRecording()">Iniciar gravação SSD</button><p id="message" role="status"></p></div><div class="clip-quick-row">
     <button class="btn-quick" onclick="quickClip(5)">-5s</button>
     <button class="btn-quick" onclick="quickClip(10)">-10s</button>

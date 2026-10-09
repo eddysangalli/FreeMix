@@ -55,6 +55,8 @@ export class DiskReplay {
     this.scope = null;
     this.isoBusSourceCapture = false;
     this.queue = Promise.resolve();
+    this.programScene = null;
+    this.internalProgramTarget = null;
     this.ffmpeg = process.env.FREEMIX_FFMPEG || (existsSync(join(root,"runtime","ffmpeg.exe")) ? join(root,"runtime","ffmpeg.exe") : "ffmpeg");
     this.ffprobe = process.env.FREEMIX_FFPROBE || (existsSync(join(root,"runtime","ffprobe.exe")) ? join(root,"runtime","ffprobe.exe") : "ffprobe");
   }
@@ -111,6 +113,8 @@ export class DiskReplay {
     try { this.state = { ...empty(), ...JSON.parse(await readFile(this.file, "utf8")) }; }
     catch (e) { if (e.code !== "ENOENT") throw e; this.state = empty(); }
     this.scope = currentSceneCollectionName;
+    this.programScene = null;
+    this.internalProgramTarget = null;
   }
 
   async save() {
@@ -125,6 +129,10 @@ export class DiskReplay {
       await this.scopeState();
       switch (action) {
         case "status": return this.status();
+        case "history": return { ...await this.status(), history: await this.history() };
+        case "history-frame": return { ...await this.status(), ...await this.historyFrame(data) };
+        case "capture-range": await this.captureRange(data); break;
+        case "program-changed": await this.programChanged(data); break;
         case "start": await this.start(data.cams); break;
         case "configure":
           if(this.recordingFolder!=='iso')throw Error('Opções exclusivas da MultiGravação');
@@ -183,8 +191,12 @@ export class DiskReplay {
     const audioChoices=this.recordingFolder==='iso'?await this.isoAudioSources():undefined;
     if(this.recordingFolder==='iso'&&this.state.rec&&this.state.session?.options){const selected=[this.state.session.options,...this.state.session.cams.map(c=>c.options)].filter(o=>o?.audio==='source');if(selected.some(o=>!audioChoices.some(s=>s.key===o.audioSourceUUID))){await this.stop();this.state.interrupted={at:Date.now(),reason:'Fonte de áudio ISO removida, privada ou sem trilha 1 disponível',sessionId:this.state.session?.id};await this.save();}}
     const list = await this.req("GetSceneList");
+    if(this.recordingFolder==='replay') {
+      if(this.programScene===null)this.programScene=list.currentProgramSceneName;
+      else if(this.programScene!==list.currentProgramSceneName)this.onProgramChanged(list.currentProgramSceneName)?.catch(e=>{this.state.playbackError=e.message;this.onChange(this.state);});
+    }
     const players={...this.state.players};for(const player of REPLAY_PLAYERS)if(players[player]){const media=await this.optional('GetMediaInputStatus',{inputName:`Replay Player ${player}`});if(media)players[player]={...players[player],mediaCursor:media.mediaCursor,mediaDuration:media.mediaDuration,mediaState:media.mediaState};}
-    return { ...this.state, playerIds:REPLAY_PLAYERS,players, ...(audioChoices?{audioChoices,audioBusSourceSupported:this.isoBusSourceCapture,audioSourceLimit:this.isoBusSourceCapture?'Bus independente deve ficar sem rotas M/A/B: captura PCM própria, fora das trilhas globais. Folhas públicas ainda exigem trilha 1.':'Fonte direta exige folha pública com trilha 1 já habilitada; buses isolados não são capturados diretamente por este SourceRecord. Use sua rota A/B e escolha Bus A/B.'}:{}), program: list.currentProgramSceneName, preview: list.currentPreviewSceneName,
+    return { ...this.state, historySupported:this.recordingFolder==='replay',programAutoplaySupported:this.recordingFolder==='replay',playerIds:REPLAY_PLAYERS,players, ...(audioChoices?{audioChoices,audioBusSourceSupported:this.isoBusSourceCapture,audioSourceLimit:this.isoBusSourceCapture?'Bus independente deve ficar sem rotas M/A/B: captura PCM própria, fora das trilhas globais. Folhas públicas ainda exigem trilha 1.':'Fonte direta exige folha pública com trilha 1 já habilitada; buses isolados não são capturados diretamente por este SourceRecord. Use sua rota A/B e escolha Bus A/B.'}:{}), program: list.currentProgramSceneName, preview: list.currentPreviewSceneName,
       availableCams: list.scenes.map((s) => s.sceneName).filter((n) => !n.startsWith("REPLAY ") && n !== "FreeMix Barramentos") };
   }
 
@@ -349,7 +361,7 @@ export class DiskReplay {
         if(segment?.closed)continue;
         const file=join(session.dir,entry.name);let info;try{info=await this.probe(file);}catch{continue;}
         if(!segment){const prior=cam.segments.at(-1);segment={name:entry.name,file,start:prior?prior.start+prior.duration:0};cam.segments.push(segment);changed=true;}
-        segment.duration=info.duration;segment.closed=closed;changed ||= closed;
+        segment.duration=info.duration;segment.frameRate=info.frameRate;segment.closed=closed;changed ||= closed;
       }
       if(purge&&cam.segments.length){const end=cam.segments.at(-1).start+cam.segments.at(-1).duration,cutoff=end-session.retention.minutes*60;
         const marked=this.state.markIn?.positions?.find(p=>p.name===cam.name)?.end;
@@ -363,15 +375,73 @@ export class DiskReplay {
     if(changed)await this.save();
   }
 
-  async positions() {
+  async positions(requireRecording = true) {
     await this.status();
-    if (!this.state.rec || !this.state.session) throw new Error("Inicie a gravação SSD antes de marcar um lance");
-    if(this.state.session.segmented) {await this.segments(false);return this.state.session.cams.map(cam=>{const list=cam.segments.filter(s=>!s.deleted);if(!list.length)throw new Error("Nenhum segmento reproduzível");return {...cam,end:list.at(-1).start+list.at(-1).duration,earliest:list[0].start};});}
+    if (!this.state.session || (requireRecording && !this.state.rec)) throw new Error("Inicie a gravação SSD antes de marcar um lance");
+    if(this.state.session.segmented) {await this.segments(false);return this.state.session.cams.map(cam=>{const list=cam.segments.filter(s=>!s.deleted);if(!list.length)throw new Error("Nenhum segmento reproduzível");return {...cam,end:list.at(-1).start+list.at(-1).duration,earliest:list[0].start,frameRate:list.at(-1).frameRate||null};});}
     const values = await Promise.all(this.state.session.cams.map(async (cam) => {
       const media = await this.probe(cam.file);
-      return { ...cam, end: media.duration, containerStart: media.containerStart };
+      return { ...cam, end: media.duration, containerStart: media.containerStart, frameRate: media.frameRate };
     }));
     return values;
+  }
+
+  async history(positions) {
+    if(this.recordingFolder!=='replay'||!this.state.session)return null;
+    const ranges=positions||await this.positions(false);
+    const start=Math.max(...ranges.map(r=>r.earliest||0)),end=Math.min(...ranges.map(r=>r.end));
+    if(end<=start)throw Error('Ainda não há histórico comum reproduzível nas câmeras');
+    return {sessionId:this.state.session.id,start,end,recording:this.state.rec,cameras:ranges.map(r=>r.name),frameRate:ranges[0].frameRate||null};
+  }
+
+  async historyFrame(d) {
+    const ranges=await this.positions(false),history=await this.history(ranges);
+    if(!history||d.sessionId!==history.sessionId)throw Error('A sessão mudou. Atualize a timeline');
+    const cursor=Number(d.cursor);
+    if(!Number.isFinite(cursor)||cursor<history.start||cursor>history.end)throw Error('Posição fora do histórico disponível');
+    const cam=ranges.find(r=>r.name===d.cam);
+    if(!cam)throw Error('Selecione uma câmera da sessão');
+    const at=Math.min(cursor,Math.max(history.start,history.end-0.1));
+    let file=cam.file,localAt=at,containerStart=cam.containerStart;
+    if(this.state.session.segmented){
+      const part=cam.segments.find(s=>!s.deleted&&s.start<=at&&s.start+s.duration>at);
+      if(!part)throw Error('Este trecho já expirou pela retenção');
+      file=part.file;localAt=at-part.start;containerStart=(await this.probe(file)).containerStart;
+    }
+    const jpeg=await execute(this.ffmpeg,['-hide_banner','-v','error','-nostdin','-ss',String(Math.max(0,localAt-3)),'-copyts','-i',file,'-vf',`trim=start=${Math.round((localAt+containerStart)*90000)/90000},setpts=PTS-STARTPTS,scale=640:-2`,'-frames:v','1','-an','-c:v','mjpeg','-q:v','3','-f','image2pipe','pipe:1'],15000,true);
+    if(!jpeg.length)throw Error('Quadro ainda não disponível. Volte um pouco na timeline');
+    return {history,historyFrame:{cursor:at,cam:cam.name,image:'data:image/jpeg;base64,'+jpeg.toString('base64')}};
+  }
+
+  async captureRange(d) {
+    const ranges=await this.positions(false),history=await this.history(ranges);
+    if(!history||d.sessionId!==history.sessionId)throw Error('A sessão mudou. Atualize a timeline');
+    const start=Number(d.start),end=Number(d.end);
+    if(!Number.isFinite(start)||!Number.isFinite(end)||start<history.start||end>history.end||end-start<0.2||end-start>120)throw Error('Escolha IN e OUT dentro do histórico, com duração de 0,2 a 120 segundos');
+    await this.makeEvent(ranges.map(r=>({...r,start,end})));
+  }
+
+  onProgramChanged(sceneName) {
+    if(this.recordingFolder!=='replay'||sceneName===this.programScene)return;
+    const previous=this.programScene;this.programScene=sceneName;
+    if(this.internalProgramTarget===sceneName){this.internalProgramTarget=null;return;}
+    return this.command('program-changed',{sceneName,previous});
+  }
+
+  async programChanged({sceneName,previous}) {
+    const current=(await this.req('GetSceneList')).currentProgramSceneName;
+    if(current!==sceneName)return;
+    const player=/^REPLAY ([ABCD])$/.exec(sceneName)?.[1];
+    if(!player||!this.state.players[player]){await this.applyPlayerAudio();return;}
+    const input=`Replay Player ${player}`,settings=await this.req('GetInputSettings',{inputName:input});
+    if(settings.inputSettings.local_file!==this.state.players[player].file)return;
+    if(previous&&!/^REPLAY [ABCD]$/.test(previous))this.state.back=previous;
+    if(this.state.linked&&/^REPLAY [ABCD]$/.test(previous||''))await this.align(true);
+    else {
+      await this.req('TriggerMediaInputAction',{inputName:input,mediaAction:'OBS_WEBSOCKET_MEDIA_INPUT_ACTION_RESTART'});
+      if(this.state.linked)await Promise.all(Object.keys(this.state.players).filter(id=>id!==player).map(id=>this.req('TriggerMediaInputAction',{inputName:`Replay Player ${id}`,mediaAction:'OBS_WEBSOCKET_MEDIA_INPUT_ACTION_RESTART'})));
+    }
+    this.state.activePlayer=player;await this.applyPlayerAudio();await this.save();
   }
 
   async capture(seconds) {
@@ -506,11 +576,13 @@ export class DiskReplay {
     if (settings.inputSettings.local_file !== this.state.players[player].file) throw new Error("O arquivo do player foi alterado. Carregue o lance novamente.");
     await this.probe(this.state.players[player].file);
     if(this.state.linked && list.currentProgramSceneName?.startsWith("REPLAY ")){
-      await this.align(true);await this.req("SetCurrentProgramScene",{sceneName:`REPLAY ${player}`});
-      await this.waitFor("GetSceneList",{},s=>s.currentProgramSceneName===`REPLAY ${player}`);this.state.activePlayer=player;await this.applyPlayerAudio();await this.save();return;
+      await this.align(true);this.internalProgramTarget=`REPLAY ${player}`;await this.req("SetCurrentProgramScene",{sceneName:`REPLAY ${player}`});
+      await this.waitFor("GetSceneList",{},s=>s.currentProgramSceneName===`REPLAY ${player}`);this.internalProgramTarget=null;this.state.activePlayer=player;await this.applyPlayerAudio();await this.save();return;
     }
+    this.internalProgramTarget=`REPLAY ${player}`;
     await this.req("SetCurrentProgramScene", { sceneName: `REPLAY ${player}` });
     await this.waitFor("GetSceneList", {}, (s) => s.currentProgramSceneName === `REPLAY ${player}`);
+    this.internalProgramTarget=null;
     // The source must be showing before its native RESTART actually starts the decoder.
     await this.req("TriggerMediaInputAction", { inputName: input, mediaAction: "OBS_WEBSOCKET_MEDIA_INPUT_ACTION_RESTART" });
     if(this.state.linked)await Promise.all(Object.keys(this.state.players).filter(id=>id!==player).map(id=>this.req("TriggerMediaInputAction",{inputName:`Replay Player ${id}`,mediaAction:"OBS_WEBSOCKET_MEDIA_INPUT_ACTION_RESTART"})));
@@ -522,8 +594,10 @@ export class DiskReplay {
 
   async live() {
     if (!this.state.back) throw new Error("Nenhuma entrada ao vivo anterior foi guardada");
+    this.internalProgramTarget=this.state.back;
     await this.req("SetCurrentProgramScene", { sceneName: this.state.back });
     await this.waitFor("GetSceneList", {}, (s) => s.currentProgramSceneName === this.state.back);
+    this.internalProgramTarget=null;
     await this.applyPlayerAudio();
     await this.save();
   }

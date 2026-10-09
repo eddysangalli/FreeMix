@@ -1,4 +1,5 @@
 let replay = null, deck = 'A', busy = false, retentionDirty = false, eventsSignature = '';
+    let historyState=null,historyIn=null,historyOut=null,historyConfirmed=null;
     if(new URLSearchParams(location.search).get('view')==='settings') {
       document.title='FreeMix · Configurações do Replay';
       document.getElementById('replay-camera-audio').open=true;
@@ -16,13 +17,17 @@ let replay = null, deck = 'A', busy = false, retentionDirty = false, eventsSigna
         if (!response.ok || !result.success) throw new Error(result.error || 'Operação recusada');
         if(action==='retention')retentionDirty=false;
         render(result.replay);
-        el('message').textContent = action === 'capture' || action === 'mark-out' ? 'Vídeo do lance salvo.' : 'Operação confirmada pelo motor.';
+        if(Object.hasOwn(result.replay,'history'))renderHistory(result.replay.history);
+        if(result.replay.historyFrame){const frame=result.replay.historyFrame;historyConfirmed=frame.cursor;el('history-seek').value=frame.cursor;el('history-cursor').value=frame.cursor.toFixed(3);el('history-image').src=frame.image;el('history-image').hidden=false;el('history-status').textContent=frame.cam+' · quadro em '+frame.cursor.toFixed(3)+' s';setHistoryButtons(true);}
+        el('message').textContent = ['capture','mark-out','capture-range'].includes(action) ? 'Vídeo do lance salvo.' : 'Operação confirmada pelo motor.';
         if (navigator.vibrate) navigator.vibrate(25);
       } catch (error) { el('message').textContent = error.message; }
-      finally { busy = false;el('import-btn').disabled=false; }
+      finally { busy = false;el('import-btn').disabled=false;setHistoryButtons(historyConfirmed!==null); }
     }
     function renderBase(data) {
       replay = data;
+      el('history-refresh').disabled=!data.historySupported;
+      if(!data.historySupported)el('history-status').textContent='A timeline aguarda a atualização do serviço de controle. A gravação existente continua ativa.';
       renderCameraOptions(data);
       el('retention-save').disabled=!!data.rec;
       if(!retentionDirty){el('retention-enabled').checked=!!data.retention?.enabled;el('retention-minutes').value=data.retention?.minutes||30;}
@@ -61,6 +66,26 @@ let replay = null, deck = 'A', busy = false, retentionDirty = false, eventsSigna
     function time(ms){const s=Math.max(0,Number(ms)||0)/1000;return String(Math.floor(s/60)).padStart(2,'0')+':'+String(Math.floor(s%60)).padStart(2,'0');}
     function render(data){if(!data)return;renderBase(data);for(const player of ['A','B','C','D']){const media=data.players?.[player],slider=el('seek-'+player),duration=media?.mediaDuration||Number(media?.duration||0)*1000,cursor=media?.mediaCursor||0;slider.max=Math.max(0,duration);slider.disabled=!media;if(document.activeElement!==slider)slider.value=Math.min(cursor,duration);el('position-'+player).textContent=time(cursor)+' / '+time(duration)+(media?.mediaState==='OBS_MEDIA_STATE_PLAYING'?' · reproduzindo':media?.mediaState==='OBS_MEDIA_STATE_PAUSED'?' · pausado':'');}const recoverable=!data.rec&&data.markIn&&data.session&&data.markIn.sessionId===data.session.id;el('interruption').hidden=!recoverable&&!data.interrupted;el('recover-in').disabled=!recoverable;el('interruption-text').textContent=recoverable?'Há um IN aberto com gravação parada. Recupere o vídeo disponível até o fim (máximo 120 segundos).':data.interrupted?.reason||'';el('events-total').textContent=(data.events?.length||0)+' lances · '+time((data.events||[]).reduce((sum,e)=>sum+(Number(e.dur)||0)*1000,0))+' totais';}
     function seekPlayer(player,cursor){request('seek',{player,cursor:Number(cursor)});}
+    function historyStep(){const parts=historyState?.frameRate?.split('/').map(Number);return parts?.[0]&&parts?.[1]?parts[1]/parts[0]:1/30;}
+    function setHistoryButtons(confirmed){for(const id of ['history-back-frame','history-next-frame'])el(id).disabled=!historyState||busy;for(const id of ['history-in','history-out'])el(id).disabled=!confirmed;}
+    function renderHistory(history){
+      if(!history){el('history-status').textContent='Nenhuma sessão gravada disponível.';return;}
+      if(historyState?.sessionId!==history.sessionId){historyIn=historyOut=historyConfirmed=null;el('history-image').hidden=true;}
+      historyState=history;const slider=el('history-seek'),cursor=el('history-cursor'),old=Number(slider.value),wasDisabled=slider.disabled;
+      slider.min=cursor.min=history.start;slider.max=cursor.max=history.end;slider.step=cursor.step=historyStep();slider.disabled=cursor.disabled=false;
+      slider.value=cursor.value=wasDisabled?Math.max(history.start,history.end-1):Math.min(history.end,Math.max(history.start,old));
+      const camera=el('history-camera'),selected=camera.value;camera.replaceChildren();for(const name of history.cameras){const o=document.createElement('option');o.textContent=name;camera.append(o);}if(history.cameras.includes(selected))camera.value=selected;
+      el('history-status').textContent='Histórico disponível: '+history.start.toFixed(3)+' até '+history.end.toFixed(3)+' s. Mova o cursor para conferir o quadro.';
+      setHistoryButtons(historyConfirmed!==null);renderHistoryMarks();
+    }
+    function refreshHistory(){request('history');}
+    function historyCursorChanged(){el('history-cursor').value=Number(el('history-seek').value).toFixed(3);historyConfirmed=null;setHistoryButtons(false);}
+    function historyPositionChanged(){if(!historyState)return;el('history-seek').value=Math.min(historyState.end,Math.max(historyState.start,Number(el('history-cursor').value)));historyCursorChanged();previewHistory();}
+    function previewHistory(){if(!historyState||busy)return;historyConfirmed=null;setHistoryButtons(false);request('history-frame',{sessionId:historyState.sessionId,cam:el('history-camera').value,cursor:Number(el('history-seek').value)});}
+    function stepHistory(delta){if(!historyState||busy)return;el('history-seek').value=Math.min(historyState.end,Math.max(historyState.start,Number(el('history-seek').value)+delta*historyStep()));historyCursorChanged();previewHistory();}
+    function markHistory(which){if(historyConfirmed===null)return;if(which==='in')historyIn=historyConfirmed;else historyOut=historyConfirmed;renderHistoryMarks();}
+    function renderHistoryMarks(){const valid=historyIn!==null&&historyOut!==null&&historyOut-historyIn>=.2&&historyOut-historyIn<=120&&historyIn>=historyState.start&&historyOut<=historyState.end;el('history-range').textContent='IN: '+(historyIn===null?'—':historyIn.toFixed(3)+' s')+' · OUT: '+(historyOut===null?'—':historyOut.toFixed(3)+' s')+(valid?' · '+(historyOut-historyIn).toFixed(3)+' s':'');el('history-save').disabled=!valid;}
+    function saveHistoryRange(){if(el('history-save').disabled||busy)return;request('capture-range',{sessionId:historyState.sessionId,start:historyIn,end:historyOut});}
     let cameraSignature='';
     function renderCameraOptions(data){
       const choices=[...new Set([...(data.availableCams||[]),...Object.values(data.players||{}).map(p=>p.cam),...(data.events||[]).flatMap(e=>(e.clips||[]).map(c=>c.cam))])].filter(Boolean),signature=JSON.stringify(choices),select=el('audio-cam');

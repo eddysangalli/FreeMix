@@ -846,7 +846,7 @@ body.popup-mode #pop[data-panel="add"] .add .types { display:flex; flex-directio
   }
 
   /* ---- thumbnails: programa e preview a cada volta, as demais em rodízio ---- */
-  const shown = () => st.scenes.filter((n) => n !== "REPLAY A" && n !== "REPLAY B" && (st.filter === -2 ? n.toLowerCase().includes((st.find || "").toLowerCase()) : st.filter < 0 || st.tags[n] === st.filter) && (!st.tagFilter || st.inputTags?.[n]?.includes(st.tagFilter)));
+  const shown = () => st.scenes.filter((n) => (st.filter === -2 ? n.toLowerCase().includes((st.find || "").toLowerCase()) : st.filter < 0 || st.tags[n] === st.filter) && (!st.tagFilter || st.inputTags?.[n]?.includes(st.tagFilter)));
   async function thumbLoop() {
     let turn = 0;
     for (;;) {
