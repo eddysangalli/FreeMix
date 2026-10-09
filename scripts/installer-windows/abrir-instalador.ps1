@@ -12,6 +12,12 @@ if (Test-Path -LiteralPath $pointer) {
 }
 $installer = Join-Path $deliveries $name
 if (-not (Test-Path -LiteralPath $installer -PathType Leaf)) { throw 'Instalador completo não encontrado na pasta entregas.' }
+if ($null -ne $receipt) {
+    $expectedHash = [string]$receipt.sha256
+    if ($expectedHash -notmatch '^[a-fA-F0-9]{64}$') { throw 'O apontador não contém o SHA-256 do instalador verificado.' }
+    $actualHash = (Get-FileHash -LiteralPath $installer -Algorithm SHA256).Hash
+    if ($actualHash -ne $expectedHash) { throw 'O instalador foi alterado ou está incompleto. Reaplique a entrega antes de abrir.' }
+}
 if ($Check) { Write-Output $installer; exit 0 }
 $result = Start-Process -FilePath $installer -Wait -PassThru
 exit $result.ExitCode

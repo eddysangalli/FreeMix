@@ -1,0 +1,19 @@
+{
+  "status": "PASS",
+  "root": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\entregas\\FreeMix-Ponte-Alpha-Beta-20261009220522",
+  "exeSha256": "d75aa9b586f70d292e83c916e7a624b1d69634a85fdbcc3444d6be6e839432aa",
+  "files": 49,
+  "dependencyClosureVerified": true,
+  "isolatedCliExitCodes": [
+    2,
+    1
+  ],
+  "networkOpened": false,
+  "operatorTouched": false,
+  "at": "2026-10-09T22:05:24.788Z",
+  "zip": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\entregas\\FreeMix-Ponte-Alpha-Beta-20261009220522.zip",
+  "zipBytes": 62892552,
+  "zipSha256": "def9cdaaeab0a2048a5be56324db89755bb17338a62a2ed79c7f50ce7d5dce09",
+  "zipPayloadVerified": true,
+  "zipCheckedAt": "2026-10-09T22:05:47.413203+00:00"
+}

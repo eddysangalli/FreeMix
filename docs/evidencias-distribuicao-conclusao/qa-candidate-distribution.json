@@ -1,0 +1,133 @@
+{
+  "at": "2026-10-09T22:01:57.636Z",
+  "evidenceKind": "full-integrated-candidate-with-owned-import-and-secret-fixtures",
+  "qaRoot": "C:\\Users\\eddyr\\AppData\\Local\\Temp\\FreeMix-QA-Distribution-YmIrcq",
+  "installed": "C:\\Users\\eddyr\\AppData\\Local\\Temp\\FreeMix-QA-Distribution-YmIrcq\\Installed Studio with spaces",
+  "packageRoot": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\entregas\\FreeMix-Completo-0.1.0-local.20261009213415",
+  "setupExe": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\entregas\\FreeMix-Studio-Setup-0.1.0-local.20261009213415.exe",
+  "operatorTouched": false,
+  "appStarted": false,
+  "checks": [
+    {
+      "name": "actual integrated EXE installs signed full candidate into independent isolated path with spaces and no shortcuts/launch/firewall",
+      "status": "PASS",
+      "apiPort": 51282,
+      "wsPort": 51283,
+      "manifestHash": "4e0ea5546c77f508bc5ec66e8c4c9866928a64c591e831cde76913fdc7d442e2"
+    },
+    {
+      "name": "three new DLLs and Native match signed candidate manifest; pinned licensed NDI verified without loading engine",
+      "status": "PASS",
+      "components": [
+        {
+          "path": "obs-plugins/64bit/obs-localvocal.dll",
+          "sha256": "93d62d37950ad18ca35abcb15ba659235557097e47480be9a9c3b9b38a50c3ab"
+        },
+        {
+          "path": "obs-plugins/64bit/advanced-scene-switcher.dll",
+          "sha256": "699b1f15067fd27dd0aca42a5108b4b1be6d1e863085aabec71cbdfaab294cc0"
+        },
+        {
+          "path": "obs-plugins/64bit/advanced-scene-switcher-lib.dll",
+          "sha256": "5b0e93759d1d544d39371ce7bbe3f7e962a39fead1fe1f6b0cb2d3774d91b24f"
+        },
+        {
+          "path": "bin/64bit/FreeMix.exe",
+          "sha256": "1c045e5d43bae20eca9b15df50d73d297b9d433e381027eb861f0ff21f014744"
+        }
+      ],
+      "ndiSha256": "2b6602075868ba4401f82f417d72424805d69b11ca86078023d0d489ff45dd84"
+    },
+    {
+      "name": "new websocket credential generated",
+      "status": "PASS"
+    },
+    {
+      "name": "actual EXE refuses a nonempty installation and preserves its generated credentials",
+      "status": "PASS"
+    },
+    {
+      "name": "project preview diagnoses bundled and missing media plus devices/fonts",
+      "status": "PASS"
+    },
+    {
+      "name": "preview hash prevents stale or unconfirmed import",
+      "status": "PASS"
+    },
+    {
+      "name": "opt-in project import preserves UUID/media and removes credentials/autostart",
+      "status": "PASS",
+      "sourcePreserved": true,
+      "websocketCredentialUnchanged": true
+    },
+    {
+      "name": "concurrent launcher serialized with no duplicate service",
+      "status": "PASS"
+    },
+    {
+      "name": "diagnostic ZIP sanitizes token/cookie/SRT/streamkey/JWT fixtures and includes crash/startup/network/dependency status",
+      "status": "PASS",
+      "zipSha256": "55ffc6d37fa000762585aeb2cf35951d562f04ed6525830ff75064033ab4d96b",
+      "files": 7
+    },
+    {
+      "name": "installed COLETAR-LOGS.cmd targets bundled Node/collector and actual installed entrypoint produces sanitized ZIP without explorer/Native/CEF",
+      "status": "PASS",
+      "cliZipSha256": "7f514ad8e1cef65f886ded7b6d891b01b0cfc1ed65ac8ef5aa1562f72d0aaa3d",
+      "cliFiles": 7
+    },
+    {
+      "name": "actual EXE --import-project opt-in creates independent credentials, sanitized copied project and no autostart; its real uninstaller preserves project data",
+      "status": "PASS",
+      "optinRoot": "C:\\Users\\eddyr\\AppData\\Local\\Temp\\FreeMix-QA-Distribution-YmIrcq\\Opt-in Studio with spaces",
+      "registryRemoved": true
+    },
+    {
+      "name": "uninstall dry-run preserves every file",
+      "status": "PASS"
+    },
+    {
+      "name": "conservative uninstall removes matching immutable files and preserves migrated project/config/media/modified files",
+      "status": "PASS",
+      "removed": 9398,
+      "preservedModified": 1,
+      "registryRemoved": true
+    }
+  ],
+  "manifestHash": "4e0ea5546c77f508bc5ec66e8c4c9866928a64c591e831cde76913fdc7d442e2",
+  "version": "0.1.0-local.20261009213415",
+  "setupSha256": "8b1398c5b46435bff9518c4841756aa41754f971456a357366779864b0577773",
+  "independentFiles": {
+    "files": 9531,
+    "hardlinks": false,
+    "junctions": false
+  },
+  "components": [
+    {
+      "path": "obs-plugins/64bit/obs-localvocal.dll",
+      "sha256": "93d62d37950ad18ca35abcb15ba659235557097e47480be9a9c3b9b38a50c3ab"
+    },
+    {
+      "path": "obs-plugins/64bit/advanced-scene-switcher.dll",
+      "sha256": "699b1f15067fd27dd0aca42a5108b4b1be6d1e863085aabec71cbdfaab294cc0"
+    },
+    {
+      "path": "obs-plugins/64bit/advanced-scene-switcher-lib.dll",
+      "sha256": "5b0e93759d1d544d39371ce7bbe3f7e962a39fead1fe1f6b0cb2d3774d91b24f"
+    },
+    {
+      "path": "bin/64bit/FreeMix.exe",
+      "sha256": "1c045e5d43bae20eca9b15df50d73d297b9d433e381027eb861f0ff21f014744"
+    }
+  ],
+  "registryKey": "Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\FreeMixStudio-1e32862fc6b98d84",
+  "status": "PASS",
+  "limits": [
+    "No Authenticode certificate",
+    "Windows clean VM and physical hardware not exercised",
+    "Snapshot format is a local hash-verified directory, not a signed public release",
+    "No new final release generated",
+    "Project and secret contents are synthetic owned fixtures; full package installation and component checks use actual integrated candidate",
+    "No Native/CEF or physical hardware started; no shortcuts/firewall/autorun changed"
+  ]
+}

@@ -7,3 +7,5 @@ Transmitir: MultiStream. Externo: SRT/NDI/OMT/SDI. Ajustes de gravação, MultiG
 Diagnósticos ou COLETAR-LOGS.cmd gera um ZIP local sanitizado; revise e encaminhe manualmente por e-mail/WhatsApp. Configurar rede é opcional e pede elevação do Windows; nenhuma regra é aplicada ao instalar.
 
 Leia docs/ENTREGA-ATUAL.md e docs/PENDENCIAS-REAIS.md para evidências e limites. O receptor alpha de navegador foi abortado. A ponte nativa alpha está em beta separada. Sem homologação de hardware/WAN/Windows limpo nesta rodada.
+
+Instalador 213415 conferido: duas instalações reais e respectivas desinstalações; startup Native/NDI e nove janelas essenciais, sem ativar a mesa do operador. HDR SDI, nova correção de sincronismo A/B e investigação das alocações de fechamento seguem ativos e entrarão em outra versão.

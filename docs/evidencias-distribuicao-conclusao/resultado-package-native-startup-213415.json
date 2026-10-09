@@ -1,0 +1,33 @@
+{
+  "status": "PASS",
+  "root": "C:\\Users\\eddyr\\AppData\\Local\\Temp\\FreeMix-QA-Package-Startup-xGduwH",
+  "version": "0.1.0-local.20261009213415",
+  "operatorTouched": false,
+  "firewallApplied": false,
+  "shortcutsCreated": false,
+  "nativeCloseMs": 776,
+  "newCrashArtifacts": 0,
+  "nativeUnfreedAllocations": [
+    2
+  ],
+  "apiPort": 54542,
+  "wsPort": 54543,
+  "nativePid": 187164,
+  "apiPid": 165052,
+  "nativeSha256": "1c045e5d43bae20eca9b15df50d73d297b9d433e381027eb861f0ff21f014744",
+  "limits": [
+    "Current Windows development machine; not a clean VM",
+    "No physical audio/video/controller devices started",
+    "HTTP route checks are not visual approval of every CEF dialog",
+    "Cooperative close observed; detached Native exit code is not captured here",
+    "Native unfreed allocations are reported, not asserted to be zero"
+  ],
+  "at": "2026-10-09T22:00:22.773Z",
+  "checks": [
+    "Pacote completo assinado instalado em TEMP novo, credenciais locais geradas e zero abertura automática",
+    "Launcher instalado inicia API + Native real, barramentos e NDI; REC/stream/saídas ficam parados e gravações apontam para a nova raiz",
+    "Nove janelas essenciais retornam HTML e o estado confirma conexão ao motor desta instalação",
+    "Reabrir controle reutiliza a API própria sem duplicar serviço",
+    "Native real fecha cooperativamente após carregamento da suíte de plugins"
+  ]
+}

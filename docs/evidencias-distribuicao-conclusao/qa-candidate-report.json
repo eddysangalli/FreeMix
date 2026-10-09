@@ -1,0 +1,106 @@
+{
+  "at": "2026-10-09T22:09:53.147Z",
+  "status": "PASS",
+  "sources": [
+    {
+      "path": "scripts\\installer-windows\\qa\\candidate-context.mjs",
+      "sha256": "d911bf44d3f8bbf2f31783e6803391ad872c0f03a5ab56614e678547124e2130"
+    },
+    {
+      "path": "scripts\\installer-windows\\qa\\candidate-credentials.mjs",
+      "sha256": "4522d2507371fa336cbabf21b7b3ddcbd948263272db55f4cb0cabef32b0f7df"
+    },
+    {
+      "path": "scripts\\installer-windows\\qa\\CANDIDATE-QA.md",
+      "sha256": "bc4bc7e7134a6acb43dab25a38c4558a307c28aea7445e46225323e2aaa86a8c"
+    },
+    {
+      "path": "scripts\\installer-windows\\qa\\candidate-report.mjs",
+      "sha256": "623f1d3743a3f9ae32e03a6f34f3064012bab2ef794d36383293ede7cc522e66"
+    },
+    {
+      "path": "scripts\\installer-windows\\qa\\distribution.mjs",
+      "sha256": "c44a13f9f2dee358d4ad87867d556e14fb8260007e5aa520eb7a15a48cc7b07a"
+    },
+    {
+      "path": "scripts\\installer-windows\\qa\\integration-report.mjs",
+      "sha256": "1375967a09ee9c5b23efeed336acabf3fd7d50b43c71b68e9b2b52a6b851cea2"
+    },
+    {
+      "path": "scripts\\installer-windows\\qa\\migration-guards.mjs",
+      "sha256": "6454f90fae3e560671db0b269af141ae5dec2bccc66e3a8b5f230051a118060f"
+    },
+    {
+      "path": "scripts\\installer-windows\\qa\\ownership.ps1",
+      "sha256": "ced68d74862e8088b59b9a830b6af65f8948973a94d14074777fcdad38afc5ec"
+    },
+    {
+      "path": "scripts\\installer-windows\\qa\\preparation.mjs",
+      "sha256": "41905cdcba09d8bf0d7b4c750d8094448d220088b27fa4ff237744426e186152"
+    },
+    {
+      "path": "scripts\\installer-windows\\qa\\recovery-state.mjs",
+      "sha256": "ad47df562aa875f16a1fa78974124014536fd4960328f44274f36dbfdcb32e5e"
+    },
+    {
+      "path": "scripts\\installer-windows\\qa\\startup-api.mjs",
+      "sha256": "e8dffb5b3973423d33ce647e598059c3e7988a32de185e83ffecc1ff740343f3"
+    },
+    {
+      "path": "scripts\\installer-windows\\qa\\test-candidate-context.mjs",
+      "sha256": "0ded37f29f6f90f8c123d5d23d5b380657780b1b70012c93d47a2e07ef6e61fe"
+    },
+    {
+      "path": "scripts\\installer-windows\\qa\\ui-matrix.mjs",
+      "sha256": "69b76117a2e414ed8fda590b761fef53b41bb9988a86e09bc7dabec7f6bb0353"
+    },
+    {
+      "path": "scripts\\installer-windows\\qa\\uninstall-resume.mjs",
+      "sha256": "58b3c83b808ac5218185e61f69e4a97fdc7600e6cd53a29f8d9e06669dc4917c"
+    },
+    {
+      "path": "scripts\\installer-windows\\qa\\verify-setup.mjs",
+      "sha256": "1f3c9f9b7cdf9d9591737b722984a9cc36391c3d83b231a7b560ee8bc11491c2"
+    }
+  ],
+  "fullCandidate": [
+    {
+      "path": "scripts\\installer-windows\\build\\qa-candidate-setup-verify.json",
+      "sha256": "7651b9b1cca3495f33e9a5fb96de1754de840723c858f228fb8adaed1d2d21ec",
+      "status": "PASS",
+      "evidenceKind": "full-integrated-candidate",
+      "setupSha256": "8b1398c5b46435bff9518c4841756aa41754f971456a357366779864b0577773"
+    },
+    {
+      "path": "scripts\\installer-windows\\build\\qa-candidate-distribution.json",
+      "sha256": "f1163b7bb816798c44c8e3fdb3aa3ce0df2e169d8faadc16646873141a717d76",
+      "status": "PASS",
+      "evidenceKind": "full-integrated-candidate-with-owned-import-and-secret-fixtures",
+      "packageRoot": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\entregas\\FreeMix-Completo-0.1.0-local.20261009213415",
+      "setupSha256": "8b1398c5b46435bff9518c4841756aa41754f971456a357366779864b0577773"
+    },
+    {
+      "path": "scripts\\installer-windows\\build\\qa-candidate-credentials.json",
+      "sha256": "5902f3a94ce47a01a37fdd0a98a654b2140c2e3f84856f17234e3fa8516b72d0",
+      "status": "PASS",
+      "evidenceKind": "full-integrated-candidate-credentials",
+      "setupSha256": "8b1398c5b46435bff9518c4841756aa41754f971456a357366779864b0577773"
+    }
+  ],
+  "fixtures": [
+    {
+      "path": "scripts/installer-windows/build/qa-candidate-context.json",
+      "sha256": "1c8fa15c5b56819fc300ba23274994aa19a0a8b2b4988e0f1fce4e9e941d4895",
+      "evidenceKind": "harness-fixtures-only"
+    }
+  ],
+  "operatorTouched": false,
+  "nativeStarted": false,
+  "cefStarted": false,
+  "finalReleaseGenerated": false,
+  "limits": [
+    "No Authenticode/clean Windows/hardware homologation",
+    "Native opening owned by principal",
+    "Offline project/diagnostic secret data are synthetic fixtures; complete candidate installation/uninstall/components are real"
+  ]
+}
