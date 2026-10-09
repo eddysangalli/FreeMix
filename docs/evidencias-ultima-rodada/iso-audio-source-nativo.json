@@ -1,0 +1,19 @@
+{
+  "root": "C:\\Users\\eddyr\\AppData\\Local\\Temp\\FreeMix-QA-Parallel-Calls-20261008",
+  "passed": 4,
+  "checks": [
+    "Bus real disponível e UUID persistido",
+    "SourceRecord resolve nome novo por UUID no start",
+    "Arquivo ISO contém PCM real do bus independente",
+    "Bus permanece fora de todas as trilhas globais"
+  ],
+  "busKey": "57bac280-5aef-4ae4-a2c0-af044844e2fb",
+  "sourceKey": "46874bf7-d4c3-43ca-b2f9-2e5357cdbd6e",
+  "sceneName": "QA ISO Audio Source 1791500072041",
+  "file": "C:\\Users\\eddyr\\AppData\\Local\\Temp\\FreeMix-QA-Parallel-Calls-20261008\\gravacoes\\iso\\cb59fa3b-430b-4de3-8715-3d62f2d119d0\\source-uuid-1.ts",
+  "peak": 0.0690443366765976,
+  "rms": 0.03230581253915073,
+  "frames": 238592,
+  "globalTracks": false,
+  "operatorUntouched": true
+}

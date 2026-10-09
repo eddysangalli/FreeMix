@@ -1,0 +1,9 @@
+{
+  "at": "2026-10-08T22:28:34.735Z",
+  "pass": true,
+  "checks": [
+    "Clone desativa inferência/arquivo/stream/tradução sem tocar original",
+    "Modelo Whisper externo, modelo tracker e shader inventariados para cópia/remap"
+  ],
+  "fixtureOnly": true
+}

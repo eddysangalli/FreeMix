@@ -1,0 +1,11 @@
+{
+  "root": "C:\\Users\\eddyr\\AppData\\Local\\Temp\\FreeMix-QA-Recovery-20261008",
+  "checks": [
+    "Destinos globais do perfil recuperados em perfil novo: conteúdo UUID, tamanho, barramento, nome preservados e disabled/autoStartfalse",
+    "Mix3 configure640x360 recuperado do JSON de perfil; configuração original de destinos byteidêntica"
+  ],
+  "operatorTouched": false,
+  "nativePid": 104004,
+  "apiPid": 111584,
+  "pass": true
+}

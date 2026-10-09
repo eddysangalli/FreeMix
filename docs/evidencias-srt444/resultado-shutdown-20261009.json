@@ -1,0 +1,80 @@
+{
+  "root": "C:/Users/eddyr/AppData/Local/Temp/FreeMix-QA-Shutdown-20261009",
+  "apiPort": 18311,
+  "wsPort": 14611,
+  "started": "2026-10-09T12:43:38.068Z",
+  "operatorUntouched": true,
+  "polls": [
+    {
+      "n": 0,
+      "success": true,
+      "at": "2026-10-09T12:43:52.726Z"
+    },
+    {
+      "n": 1,
+      "success": true,
+      "at": "2026-10-09T12:43:52.793Z"
+    },
+    {
+      "n": 2,
+      "success": true,
+      "at": "2026-10-09T12:43:52.860Z"
+    },
+    {
+      "n": 3,
+      "success": true,
+      "at": "2026-10-09T12:43:52.926Z"
+    },
+    {
+      "n": 4,
+      "success": true,
+      "busy": true,
+      "closing": true,
+      "at": "2026-10-09T12:43:53.462Z"
+    },
+    {
+      "n": 5,
+      "disconnect": "CallVendorRequest: 207 OBS is not ready to perform the request.",
+      "at": "2026-10-09T12:43:53.528Z"
+    }
+  ],
+  "status": "PASS",
+  "resumedSameNative": true,
+  "nativePid": 87016,
+  "identity": {
+    "pid": 87016,
+    "path": "C:/Users/eddyr/AppData/Local/Temp/FreeMix-QA-Shutdown-20261009/bin/64bit/FreeMix.exe"
+  },
+  "exeSha256": "e75c63a476a3a48ae6e11e71d0600e48ada08a895152e6e111f4b80dd430647e",
+  "outputsActive": [],
+  "apiPid": 177428,
+  "panel": {
+    "url": "http://127.0.0.1:18311/settings",
+    "visible": true
+  },
+  "shutdown": {
+    "success": true
+  },
+  "nativeExit": {
+    "code": 0,
+    "monitorExit": 0,
+    "at": "2026-10-09T12:43:56.217Z"
+  },
+  "newCrashes": [],
+  "shutdownLogLines": [
+    "09:42:20.662: ==== Startup complete ===============================================",
+    "09:42:20.865: All scene data cleared",
+    "09:43:52.974: ==== Shutting down ==================================================",
+    "09:43:54.498: All scene data cleared",
+    "09:43:55.063: [obs-websocket] [obs_module_unload] Shutting down...",
+    "09:43:55.814: == Profiler Results =============================",
+    "09:43:55.814: =================================================",
+    "09:43:55.814: == Profiler Time Between Calls ==================",
+    "09:43:55.814: =================================================",
+    "09:43:55.823: Number of memory leaks: 14"
+  ],
+  "finished": "2026-10-09T12:43:58.229Z",
+  "apiLauncherPid": 185368,
+  "apiStoppedOwnPid": 177428,
+  "cleanupAt": "2026-10-09T12:45:29.973Z"
+}

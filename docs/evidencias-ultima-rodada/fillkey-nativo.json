@@ -1,0 +1,301 @@
+{
+  "at": "2026-10-09T01:49:52.793Z",
+  "root": "C:\\Users\\eddyr\\AppData\\Local\\Temp\\FreeMix-QA-Parallel-Outputs-20261008",
+  "checks": [
+    "Own QA motor identity",
+    "DeckLink discovery returns explicit hardware status",
+    "No false network HDR/high precision claim",
+    "OMT FillKey capability is present and outputs idle",
+    "Native readback confirms one slot paired two network names",
+    "Key name collision against another sender is rejected",
+    "Actual Fill and Key decoded pixels and shared timestamps",
+    "Pair stops and Program preserved",
+    "Cleanup leaves motor responsive"
+  ],
+  "identity": {
+    "docks": [
+      {
+        "name": "scenesDock",
+        "title": "Entradas",
+        "titleBarHeight": -1,
+        "visible": false
+      },
+      {
+        "name": "sourcesDock",
+        "title": "Layers",
+        "titleBarHeight": -1,
+        "visible": false
+      },
+      {
+        "name": "mixerDock",
+        "title": "Mixer de áudio",
+        "titleBarHeight": -1,
+        "visible": false
+      },
+      {
+        "name": "transitionsDock",
+        "title": "Transições de cena",
+        "titleBarHeight": -1,
+        "visible": false
+      },
+      {
+        "name": "controlsDock",
+        "title": "Controls",
+        "titleBarHeight": -1,
+        "visible": false
+      },
+      {
+        "name": "statsDock",
+        "title": "Estatísticas",
+        "titleBarHeight": -1,
+        "visible": false
+      },
+      {
+        "name": "AudioMonitorDock",
+        "title": "Monitor de Áudio",
+        "titleBarHeight": -1,
+        "visible": false
+      },
+      {
+        "name": "DownstreamKeyerDock",
+        "title": "Downstream Keyer",
+        "titleBarHeight": -1,
+        "visible": false
+      },
+      {
+        "name": "Menu_extraBrowser",
+        "title": "Menu",
+        "titleBarHeight": 0,
+        "visible": true
+      },
+      {
+        "name": "Mesa_extraBrowser",
+        "title": "Mesa",
+        "titleBarHeight": 0,
+        "visible": true
+      }
+    ],
+    "executable": "C:/Users/eddyr/AppData/Local/Temp/FreeMix-QA-Parallel-Outputs-20261008/bin/64bit/FreeMix.exe",
+    "layout": [
+      {
+        "background": "#1e2328",
+        "height": 653,
+        "name": "preview",
+        "visible": true,
+        "width": 882,
+        "x": 5,
+        "y": 78
+      },
+      {
+        "height": 26,
+        "name": "previewLabel",
+        "visible": true,
+        "width": 882,
+        "x": 5,
+        "y": 52
+      },
+      {
+        "height": 441,
+        "name": "freemixTransitionColumn",
+        "visible": true,
+        "width": 124,
+        "x": 905,
+        "y": 52
+      },
+      {
+        "height": 59,
+        "name": "freemixOverlayButtons",
+        "visible": true,
+        "width": 106,
+        "x": 905,
+        "y": 310
+      },
+      {
+        "height": 122,
+        "name": "freemixProductionClocks",
+        "visible": true,
+        "width": 106,
+        "x": 905,
+        "y": 371
+      },
+      {
+        "height": 394,
+        "name": "Mesa_extraBrowser",
+        "visible": true,
+        "width": 1920,
+        "x": 0,
+        "y": 735
+      }
+    ],
+    "nativeSettingsOpen": false,
+    "panels": [],
+    "pid": 196228,
+    "success": true,
+    "title": "FreeMix Studio - QA Recuperada 1791471993153"
+  },
+  "exeSha256": "ef523cbb598b138044aa7b9960ee06efdd1beb510cbb7df8fdbb9bff87b2aa64",
+  "transports": {
+    "decklink": {
+      "configuration": "native-tools-decklink",
+      "devices": [],
+      "hardwareAvailable": false,
+      "hdrStatus": "requires_device_and_driver_validation",
+      "outputId": "decklink_output",
+      "pluginLoaded": false
+    },
+    "networkColorSpace": "BT709 SDR",
+    "networkHdrSupported": false,
+    "networkHighPrecisionAlpha": false,
+    "networkPrecisionBits": 8
+  },
+  "started": {
+    "active": true,
+    "alpha": false,
+    "alphaSupported": true,
+    "audioSourceSelectable": true,
+    "audioSourceUuid": "",
+    "audioTrack": 0,
+    "audioTrackSelectable": true,
+    "available": true,
+    "backend": "freemix_omt_output",
+    "capturedFrames": 0,
+    "connections": 0,
+    "fillKey": true,
+    "fillKeySupported": true,
+    "hdrSupported": false,
+    "height": 180,
+    "keyName": "FreeMix-QA-Fill-1791510592793 Key",
+    "maxAudioTrack": 2,
+    "mode": "source",
+    "networkName": "FreeMix-QA-Fill-1791510592793",
+    "networkNameEditable": true,
+    "outputName": "FreeMix OMT Main Output",
+    "precisionBits": 8,
+    "receiverStatus": "disconnected",
+    "senderId": 0,
+    "senders": [
+      {
+        "active": true,
+        "alpha": false,
+        "audioSourceUuid": "",
+        "audioTrack": 0,
+        "capturedFrames": 0,
+        "connections": 0,
+        "fillKey": true,
+        "height": 180,
+        "keyName": "FreeMix-QA-Fill-1791510592793 Key",
+        "mode": "source",
+        "networkName": "FreeMix-QA-Fill-1791510592793",
+        "receiverStatus": "disconnected",
+        "senderId": 0,
+        "sourceUuid": "cac423b7-6d24-4b46-b927-5e78df91b7e1",
+        "width": 320
+      },
+      {
+        "active": false,
+        "capturedFrames": 0,
+        "connections": -1,
+        "receiverStatus": "unknown",
+        "senderId": 1
+      },
+      {
+        "active": false,
+        "capturedFrames": 0,
+        "connections": -1,
+        "receiverStatus": "unknown",
+        "senderId": 2
+      },
+      {
+        "active": false,
+        "capturedFrames": 0,
+        "connections": -1,
+        "receiverStatus": "unknown",
+        "senderId": 3
+      }
+    ],
+    "sendersPerProtocol": 4,
+    "sourceIndependent": true,
+    "sourceUuid": "cac423b7-6d24-4b46-b927-5e78df91b7e1",
+    "success": true,
+    "width": 320,
+    "outputActive": true
+  },
+  "receiver": {
+    "at": 1791510600.783058,
+    "checks": [
+      {
+        "label": "Both SDK receivers decode frames",
+        "passed": true
+      },
+      {
+        "label": "Fill and Key share actual media timestamps",
+        "passed": true
+      },
+      {
+        "label": "Key derives opaque grayscale from alpha 0/128/255",
+        "passed": true
+      },
+      {
+        "label": "Fill preserves premultiplied source RGB 0/128/255",
+        "passed": true
+      },
+      {
+        "label": "Key sender carries no audio",
+        "passed": true
+      }
+    ],
+    "videoFrames": [
+      150,
+      151
+    ],
+    "audioFrames": [
+      2,
+      0
+    ],
+    "commonTimestamps": 150,
+    "lastSamples": [
+      [
+        [
+          0,
+          0,
+          0,
+          255
+        ],
+        [
+          1,
+          128,
+          1,
+          255
+        ],
+        [
+          0,
+          254,
+          0,
+          255
+        ]
+      ],
+      [
+        [
+          0,
+          0,
+          0,
+          255
+        ],
+        [
+          128,
+          128,
+          128,
+          255
+        ],
+        [
+          255,
+          255,
+          255,
+          255
+        ]
+      ]
+    ],
+    "passed": true
+  },
+  "passed": true
+}

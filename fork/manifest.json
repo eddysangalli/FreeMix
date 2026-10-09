@@ -1,0 +1,44 @@
+{
+  "upstream": "https://github.com/obsproject/obs-studio.git",
+  "base": "ba2f32bdf791005443988a4955e963663e16b1ed",
+  "head": "12f48a617b97cdb386cfd822c5e243e1de641370",
+  "version": "0.1.0-local.20261009135628",
+  "patches": [
+    {
+      "path": "0001-feat-branding-replace-OBS-identity-with-FreeMix-Stud.patch",
+      "sha256": "dfa2134f25a7657965121eb2058bb9c8df0381c3d5ea67a36bdd976b0c4cb2a1"
+    },
+    {
+      "path": "0002-feat-preview-native-Safe-Area-with-12-guide-modes-gr.patch",
+      "sha256": "9def62c547c5c7b2d93ef83c99b6a7c251076671e2a532dbdc728cc847133fd6"
+    },
+    {
+      "path": "0003-feat-security-close-prompt-lock-with-critical-broadc.patch",
+      "sha256": "66fde3523aa663585fea32eb7cf6e81c16ae32366edb7c0f7daed10df3827c11"
+    },
+    {
+      "path": "0004-feat-overlays-build-Downstream-Keyer-in-tree-fix-uni.patch",
+      "sha256": "688b1b064ff5b13b2269005bd6d378be4de1d111ba7f89b88ccc1ab64bf83829"
+    },
+    {
+      "path": "0005-feat-frontend-multistream-preset-as-a-document-exit-.patch",
+      "sha256": "0df15c79c885f2b0d094467d5bea324b4d9d3f163e9f746398249f02e077fe36"
+    },
+    {
+      "path": "0006-feat-broadcast-waveform-vectorscope-no-preview-colun.patch",
+      "sha256": "b4ba6f5651ef7655c49003d6f35ee6930420e8d651e2b8e901a2a2d20cb8686a"
+    },
+    {
+      "path": "0007-feat-broadcast-integrate-native-audio-independent-ou.patch",
+      "sha256": "75964be356b79247284fc1a5f71b8bee0afc02feb3a1c08d29f92f724548f348"
+    },
+    {
+      "path": "0008-fix-frontend-guard-shutdown-reentry-and-complete-Fre.patch",
+      "sha256": "802470d8af7be1962ec71f5ba773402f382a019a9e0728784a5d60f2a0316eb8"
+    },
+    {
+      "path": "0009-feat-srt-add-verified-4-4-4-and-synchronized-packed-.patch",
+      "sha256": "b10dbde046b4cd2db5da98702555981b64a402b0136b1993cd223ec0491587e4"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "passed": true,
+  "root": "C:\\Users\\eddyr\\AppData\\Local\\Temp\\FreeMix-QA-Recovery-20261008",
+  "checks": [
+    "Real composition/GC/delay/AFV changes produce complete deterministic post-snapshot plan",
+    "Native snapshot includes transitive JS/font dependency files and queried plugin/kind inventory",
+    "New production restores composition/GC/AFV/delay, original operational content preserved (native transition order may serialize differently)",
+    "Replay starts no stream, recording, network return, replay/ISO or talkback",
+    "Recovery diagnosis compares real native capabilities and plugin hashes"
+  ],
+  "snapshot": "e79ee330-8895-4f80-b073-32fedc4243a5",
+  "recovered": "QA Recuperacao Transitiva 1791486370998 Recuperada",
+  "limit": "One isolated native session, local static assets and silent synthetic audio; font visual rendering and hardware adapters not claimed. Original operational content compared semantically, not byte-identical transition ordering."
+}

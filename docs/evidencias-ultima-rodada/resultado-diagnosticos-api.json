@@ -1,0 +1,15 @@
+{
+  "passed": 5,
+  "at": "2026-10-09T03:38:02.747Z",
+  "root": "C:\\Users\\eddyr\\AppData\\Local\\Temp\\FreeMix-QA-Diagnostic-5mFY7o",
+  "port": 18106,
+  "motorConnected": false,
+  "cases": [
+    "tela servida em QA sem motor",
+    "origem externa recusada",
+    "ZIP real via POST e download validado",
+    "prévia do mesmo ZIP",
+    "ID/caminho inválido recusado"
+  ],
+  "zipBytes": 2688
+}

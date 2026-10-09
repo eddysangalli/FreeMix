@@ -1,0 +1,14 @@
+{
+  "at": "2026-10-09T01:50:06.641Z",
+  "root": "C:\\Users\\eddyr\\AppData\\Local\\Temp\\FreeMix-QA-Recovery-20261008",
+  "checks": [
+    "CreateScene/CreateInput/settings/transform via OBSWS externo à API gera journal full real",
+    "Cópia recuperada mantém UUID/cor/transform nativos sem iniciar saídas"
+  ],
+  "operatorTouched": false,
+  "nativePid": 201188,
+  "snapshot": "6370147f-ea1e-4e14-9519-b4fd8fd089a8",
+  "original": "QA Saída Recuperada 1791496959144",
+  "recovered": "Native Events 1791510607779 Recuperada",
+  "pass": true
+}

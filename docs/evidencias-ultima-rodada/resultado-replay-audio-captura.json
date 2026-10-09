@@ -1,0 +1,29 @@
+{
+  "root": "C:\\Users\\eddyr\\AppData\\Local\\Temp\\FreeMix-QA-Recovery-20261008",
+  "operatorTouched": false,
+  "at": "2026-10-08T22:23:23.423Z",
+  "pass": true,
+  "checks": [
+    "Áudio por entrada substitui filtro anterior que gravava Master",
+    "TS de cada câmera contém tom próprio: 440Hz e 880Hz, PCM decodificado com energia real"
+  ],
+  "measured": [
+    {
+      "cam": "Audio Replay 440 mv03rtu1",
+      "file": "C:\\Users\\eddyr\\AppData\\Local\\Temp\\FreeMix-QA-Recovery-20261008\\gravacoes\\qa-autosave\\replay\\72ffc5da-54b0-459c-ba48-152390d3f1e7\\cam-1.ts",
+      "hz": 440.3669724770642,
+      "rms": 0.0901909896779215,
+      "seconds": 1.1306458333333333,
+      "frequencyMethod": "median-period-between-zero-crossings-ignores-initial-silence"
+    },
+    {
+      "cam": "Audio Replay 880 mv03rtu1",
+      "file": "C:\\Users\\eddyr\\AppData\\Local\\Temp\\FreeMix-QA-Recovery-20261008\\gravacoes\\qa-autosave\\replay\\72ffc5da-54b0-459c-ba48-152390d3f1e7\\cam-2.ts",
+      "hz": 872.7272727272727,
+      "rms": 0.09050760175081747,
+      "seconds": 1.1306458333333333,
+      "frequencyMethod": "median-period-between-zero-crossings-ignores-initial-silence"
+    }
+  ],
+  "limits": "Dois arquivos sintéticos locais. Dispositivos/ASIO, relógio de captura físico e escuta humana não homologados."
+}

@@ -1,0 +1,55 @@
+{
+  "at": "2026-10-09T03:28:41.437Z",
+  "root": "C:\\Users\\eddyr\\AppData\\Local\\Temp\\FreeMix-QA-Recovery-20261008",
+  "operatorTouched": false,
+  "pass": true,
+  "checks": [
+    "Seek pausado 3900ms em loop mostra frame117 real comparado FFmpeg",
+    "Cruzar OUT reinicia loop e pausa com cursor do novo ciclo",
+    "Áudio-only seek600 reporta começo do pacote preparado, sem avanço artificial do fim",
+    "DiskReplay seek de áudio-only executa Native sem exigir FPS"
+  ],
+  "observations": [
+    {
+      "name": "Seek Loop 1791516521443",
+      "target": 3900,
+      "afterSeek": {
+        "mediaCursor": 3900,
+        "mediaDuration": 4000,
+        "mediaState": "OBS_MEDIA_STATE_PAUSED"
+      },
+      "pixels": {
+        "actualMean": [
+          220,
+          220,
+          220
+        ],
+        "expectedMean": [
+          220,
+          220,
+          220
+        ]
+      },
+      "afterLoop": {
+        "mediaCursor": 300,
+        "mediaDuration": 4000,
+        "mediaState": "OBS_MEDIA_STATE_PAUSED"
+      }
+    },
+    {
+      "name": "Seek Audio 1791516521443",
+      "target": 600,
+      "afterSeek": {
+        "mediaCursor": 600,
+        "mediaDuration": 2000,
+        "mediaState": "OBS_MEDIA_STATE_PAUSED"
+      },
+      "diskSeek": {
+        "mediaCursor": 900,
+        "mediaDuration": 2000,
+        "mediaState": "OBS_MEDIA_STATE_PAUSED"
+      }
+    }
+  ],
+  "dllSha256": "2376ee21a90e67742f40e81257bba0b994ab45cf205ef9f413af441311b0bc05"
+}

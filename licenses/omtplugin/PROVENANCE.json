@@ -1,0 +1,15 @@
+{
+  "releaseUrl": "https://github.com/openmediatransport/omtplugin/releases/tag/v1.0.0.19",
+  "version": "v1.0.0.19",
+  "asset": "https://github.com/openmediatransport/omtplugin/releases/download/v1.0.0.19/omtplugin-windows-1.0.0.19.zip",
+  "sha256": "7fe0b33a746c143f2fb8178062035947190835ef9c29f937728ee9e2a4c22a6b",
+  "officialDigest": "sha256:7fe0b33a746c143f2fb8178062035947190835ef9c29f937728ee9e2a4c22a6b",
+  "verifiedAgainstOfficialDigest": true,
+  "downloadedAt": "2026-10-08T14:45:23.625Z",
+  "license": "MIT",
+  "source": "https://github.com/openmediatransport/omtplugin/tree/v1.0.0.19",
+  "activatedOnNextLaunch": true,
+  "outputEnabledByDefault": false,
+  "qaLoadResult": "qa-ndi/omt-load-result.json",
+  "qaLoopResult": "qa-ndi/omt-loop-result.json"
+}

@@ -1,0 +1,40 @@
+{
+  "at": "2026-10-09T12:38:17.419Z",
+  "operatorTouched": false,
+  "apiRealCalled": false,
+  "checks": [
+    {
+      "name": "Schema Native corresponde aos 10 formatos do widget OBS; enumeração rejeita arbitrários",
+      "passed": true,
+      "formats": [
+        "flv",
+        "mkv",
+        "mp4",
+        "mov",
+        "hybrid_mp4",
+        "hybrid_mov",
+        "fragmented_mp4",
+        "fragmented_mov",
+        "mpegts",
+        "hls"
+      ]
+    },
+    {
+      "name": "Aplicação nativa envia só campo alterado e preserva enum legado inalterado",
+      "passed": true
+    },
+    {
+      "name": "Releitura detecta edição concorrente do mesmo campo e preserva rascunho sem aplicar",
+      "passed": true
+    }
+  ],
+  "passed": true,
+  "applied": [
+    {
+      "action": "settings_apply",
+      "category": "outputAdvanced",
+      "recordNoSpaces": true
+    }
+  ],
+  "jsErrors": []
+}

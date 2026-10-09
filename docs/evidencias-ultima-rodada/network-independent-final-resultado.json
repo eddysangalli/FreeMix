@@ -1,0 +1,234 @@
+{
+  "at": "2026-10-08T20:46:18.105Z",
+  "passed": true,
+  "root": "C:\\Users\\eddyr\\AppData\\Local\\Temp\\FreeMix-QA-Parallel-Outputs-20261008",
+  "identity": {
+    "docks": [
+      {
+        "name": "scenesDock",
+        "title": "Entradas",
+        "titleBarHeight": -1,
+        "visible": false
+      },
+      {
+        "name": "sourcesDock",
+        "title": "Layers",
+        "titleBarHeight": -1,
+        "visible": false
+      },
+      {
+        "name": "mixerDock",
+        "title": "Mixer de áudio",
+        "titleBarHeight": -1,
+        "visible": false
+      },
+      {
+        "name": "transitionsDock",
+        "title": "Transições de cena",
+        "titleBarHeight": -1,
+        "visible": false
+      },
+      {
+        "name": "controlsDock",
+        "title": "Controls",
+        "titleBarHeight": -1,
+        "visible": false
+      },
+      {
+        "name": "statsDock",
+        "title": "Estatísticas",
+        "titleBarHeight": -1,
+        "visible": false
+      },
+      {
+        "name": "AudioMonitorDock",
+        "title": "Monitor de Áudio",
+        "titleBarHeight": -1,
+        "visible": false
+      },
+      {
+        "name": "DownstreamKeyerDock",
+        "title": "Downstream Keyer",
+        "titleBarHeight": -1,
+        "visible": false
+      },
+      {
+        "name": "Menu_extraBrowser",
+        "title": "Menu",
+        "titleBarHeight": 160,
+        "visible": false
+      },
+      {
+        "name": "Mesa_extraBrowser",
+        "title": "Mesa",
+        "titleBarHeight": 160,
+        "visible": false
+      }
+    ],
+    "executable": "C:/Users/eddyr/AppData/Local/Temp/FreeMix-QA-Parallel-Outputs-20261008/bin/64bit/FreeMix.exe",
+    "layout": [
+      {
+        "background": "#1e2328",
+        "height": 32,
+        "name": "preview",
+        "visible": false,
+        "width": 100,
+        "x": 0,
+        "y": 0
+      },
+      {
+        "height": 30,
+        "name": "previewLabel",
+        "visible": false,
+        "width": 100,
+        "x": 0,
+        "y": 0
+      },
+      {
+        "height": 480,
+        "name": "freemixTransitionColumn",
+        "visible": false,
+        "width": 124,
+        "x": 0,
+        "y": 0
+      },
+      {
+        "height": 30,
+        "name": "freemixOverlayButtons",
+        "visible": false,
+        "width": 100,
+        "x": 0,
+        "y": 0
+      },
+      {
+        "height": 122,
+        "name": "freemixProductionClocks",
+        "visible": false,
+        "width": 100,
+        "x": 0,
+        "y": 0
+      },
+      {
+        "height": 600,
+        "name": "Mesa_extraBrowser",
+        "visible": false,
+        "width": 460,
+        "x": 0,
+        "y": 0
+      }
+    ],
+    "nativeSettingsOpen": false,
+    "panels": [],
+    "pid": 84036,
+    "success": true,
+    "title": "FreeMix Studio - QA Recuperada 1791471993153"
+  },
+  "exeSha256": "04e73b1780de23aae7e6fa7378af26a33d2fc4311eedb6fd6475b7afa736041f",
+  "ndi": {
+    "protocol": "NDI",
+    "name": "FreeMix-QA-Independent-NDI",
+    "videoFrames": 120,
+    "audioFrames": 188,
+    "rms": 0.08836673200130463,
+    "peakHz": 440,
+    "expectedHz": 440,
+    "pixelsBGR": [
+      [
+        2,
+        255,
+        0
+      ],
+      [
+        2,
+        255,
+        0
+      ],
+      [
+        2,
+        255,
+        0
+      ],
+      [
+        2,
+        255,
+        0
+      ],
+      [
+        2,
+        255,
+        0
+      ]
+    ],
+    "passed": true
+  },
+  "omt": {
+    "protocol": "OMT",
+    "name": "PCMOTION (OBS Output)",
+    "videoFrames": 104,
+    "audioFrames": 163,
+    "rms": 0.08836888521909714,
+    "peakHz": 660,
+    "expectedHz": 660,
+    "pixelsBGR": [
+      [
+        245,
+        0,
+        3
+      ],
+      [
+        245,
+        0,
+        3
+      ],
+      [
+        245,
+        0,
+        3
+      ],
+      [
+        245,
+        0,
+        3
+      ],
+      [
+        245,
+        0,
+        3
+      ]
+    ],
+    "passed": true
+  },
+  "checks": [
+    "Native QA path identity",
+    "Plugins and independent source/bus capabilities loaded",
+    "Network outputs start disabled",
+    "Removed source is refused before network start",
+    "NDI and OMT hold different video UUIDs and selected bus",
+    "Own QA identity",
+    "OMT stopped and source/bus capable",
+    "OMT private blue video and post-BusB660 audio received",
+    "Main Program UUID preserved",
+    "OMT stopped"
+  ],
+  "cleanup": {
+    "nativePid": 84036,
+    "nativeSavedClosed": true,
+    "apiPid": 33700,
+    "apiClosed": true
+  },
+  "initialFixture": {
+    "passed": false,
+    "reason": "Receiver OMT looked up native unknown-name placeholder. Sender sent175frames. Retested OMT only with actual official config default OBS Output."
+  },
+  "nativeFollowUp": {
+    "compiledInProof": false,
+    "change": "OMT networkName readback now reads original plugin omtplugin.json if settings dialog source not created; default OBS Output. Data flow unchanged; central final build pending."
+  },
+  "limits": [
+    "One sender per protocol",
+    "OMT name follows original global plugin settings",
+    "Bus Master/A/B is actual post-bus selected audio, not video source audio",
+    "No external LAN/hardware/interoperability endurance test",
+    "No automatic network sender restart on application restart"
+  ]
+}

@@ -1,0 +1,67 @@
+{
+  "at": "2026-10-08T22:30:32.507Z",
+  "checks": [
+    "MIDI mapping validates ranges and rejects conflicting output route",
+    "OSC bound to localhost only; external binding rejected",
+    "Actual UDP fire executes saved binding and returns confirmed active/state feedback",
+    "Unknown binding and OSC bundle rejected, no arbitrary action dispatch",
+    "Release while talkback press is pending closes confirmed private lease",
+    "Stop invalidates queued OSC actions and releases leases",
+    "Mapping and port persist per production without OSC auto-start",
+    "MIDIOutput.send produces real note/channel bytes from confirmed state, deduplicated",
+    "MIDI CC reflects 50% volume and focus/disconnect fail closed without SysEx",
+    "Recording, streaming, preview, media, tally and talk events reflect state edges",
+    "Declarative output/variant/media actions normalize to bounded existing identities"
+  ],
+  "scope": "OSC real localhost UDP; MIDIOutput semantic double; no physical hardware",
+  "osc": {
+    "active": false,
+    "received": 6,
+    "rejected": 2,
+    "executed": 2,
+    "sent": 8,
+    "errors": 0,
+    "lastError": "Envelope OSC inválido",
+    "port": 60278,
+    "host": "127.0.0.1",
+    "subscribers": 0,
+    "protocol": "OSC 1.0 bounded messages",
+    "feedback": "/freemix/feedback [id,enabled,available,active,volume,lastSuccess]",
+    "state": "/freemix/state [connected,recording,streaming,program,preview]",
+    "commands": [
+      "/freemix/read [id?]",
+      "/freemix/subscribe [0|1]",
+      "/freemix/fire [id,down|up,value?]",
+      "/freemix/hold []"
+    ],
+    "limits": "Localhost; IDs previamente salvos; sem bundles, scripts ou acesso remoto; máximo 8 clientes."
+  },
+  "feedbackBytes": [
+    [
+      145,
+      60,
+      127
+    ],
+    [
+      145,
+      60,
+      0
+    ],
+    [
+      177,
+      60,
+      64
+    ],
+    [
+      145,
+      60,
+      0
+    ],
+    [
+      177,
+      60,
+      0
+    ]
+  ],
+  "passed": true
+}

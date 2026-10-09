@@ -1,0 +1,76 @@
+{
+  "at": "2026-10-09T12:28:38.335Z",
+  "passed": true,
+  "kind": "isolated-browser-mock-no-native-outputs",
+  "checks": [
+    "External direct OMT exposes its form only",
+    "Opening only reads state",
+    "Sender2 PA16/name/audio readback",
+    "Refresh preserves pending edits",
+    "NDI form is distinct and omits PA16",
+    "Protocol switch preserves its own draft",
+    "Sender3 remains separate",
+    "Sender switch returns to pending draft",
+    "Explicit reload restores motor values",
+    "Prepare PA16 only edits form",
+    "Explicit start emits existing PA16/UUID contract (mock only)",
+    "Active sender protects settings and reports PA16",
+    "Explicit stop addresses only selected sender",
+    "Older motor explicitly reports unknown precision and requires selection",
+    "Explicit precision resolves older motor fallback",
+    "Missing SDI hardware has disabled start",
+    "Virtual camera readback without automatic start",
+    "Projector uses existing explicit contract",
+    "Default destination editor preserved",
+    "Narrow output UI has no horizontal overflow",
+    "No browser errors"
+  ],
+  "actions": [
+    {
+      "action": "outputs_get"
+    },
+    {
+      "action": "outputs_get"
+    },
+    {
+      "action": "outputs_network",
+      "protocol": "OMT",
+      "command": "start",
+      "senderId": 1,
+      "name": "OMT Two",
+      "groups": "QA group",
+      "mode": "source",
+      "input": "a1234567-1234-1234-1234-123456789012",
+      "audioTrack": 1,
+      "audioSourceUuid": "",
+      "alpha": true,
+      "fillKey": false,
+      "keyName": "",
+      "precisionBits": 16
+    },
+    {
+      "action": "outputs_network",
+      "protocol": "OMT",
+      "command": "stop",
+      "senderId": 1
+    },
+    {
+      "action": "outputs_get"
+    },
+    {
+      "action": "settings_get"
+    },
+    {
+      "action": "settings_projector",
+      "mix": "PROGRAM"
+    },
+    {
+      "action": "outputs_get"
+    }
+  ],
+  "pageErrors": [],
+  "screenshots": [
+    "saidas-externo-omt-pa16.png",
+    "saidas-externo-mobile.png"
+  ]
+}

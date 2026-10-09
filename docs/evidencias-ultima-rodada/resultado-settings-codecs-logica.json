@@ -1,0 +1,11 @@
+{
+  "success": true,
+  "checks": [
+    "Somente encoders presentes no motor; alias OBS AV1/HEVC reais",
+    "Enhanced RTMP exige confirmação específica para AV1/HEVC",
+    "HLS aceita HEVC e bloqueia AV1 ausente no muxer",
+    "Endpoint HLS YouTube e correspondência de protocolo validados",
+    "Gravação AV1 no MP4 híbrido e encoder indisponível recusado",
+    "Importação/exportação conserva destino sem exportar chave"
+  ]
+}

@@ -1,0 +1,99 @@
+{
+  "archive": "obs-vmix\\licenses\\advanced-scene-switcher\\advanced-scene-switcher-1.36.1-source.tar.xz",
+  "files": 24867,
+  "buildFiles": [
+    "advanced-scene-switcher-1.36.1-source/plugins/CMakeLists.txt",
+    "advanced-scene-switcher-1.36.1-source/tests/CMakeLists.txt",
+    "advanced-scene-switcher-1.36.1-source/CMakeLists.txt",
+    "advanced-scene-switcher-1.36.1-source/.gitmodules"
+  ],
+  "dependencyFiles": {
+    "asio": 1559,
+    "cpp-httplib": 322,
+    "json": 1138,
+    "jsoncons": 1677,
+    "leptonica": 982,
+    "libremidi": 902,
+    "libusb": 158,
+    "opencv": 6893,
+    "opencv_contrib": 3863,
+    "openvr": 740,
+    "paho.mqtt.cpp": 759,
+    "tesseract": 1090,
+    "websocketpp": 271,
+    "whisper.cpp": 2002
+  },
+  "examples": {
+    "asio": [
+      "advanced-scene-switcher-1.36.1-source/deps/asio/.git",
+      "advanced-scene-switcher-1.36.1-source/deps/asio/.appveyor.yml",
+      "advanced-scene-switcher-1.36.1-source/deps/asio/.cirrus.yml"
+    ],
+    "cpp-httplib": [
+      "advanced-scene-switcher-1.36.1-source/deps/cpp-httplib/meson_options.txt",
+      "advanced-scene-switcher-1.36.1-source/deps/cpp-httplib/README-stream.md",
+      "advanced-scene-switcher-1.36.1-source/deps/cpp-httplib/README-websocket.md"
+    ],
+    "json": [
+      "advanced-scene-switcher-1.36.1-source/deps/json/single_include/nlohmann/json_fwd.hpp",
+      "advanced-scene-switcher-1.36.1-source/deps/json/single_include/nlohmann/json.hpp",
+      "advanced-scene-switcher-1.36.1-source/deps/json/LICENSE.MIT"
+    ],
+    "jsoncons": [
+      "advanced-scene-switcher-1.36.1-source/deps/jsoncons/fuzzers/fuzz_csv_encoder.cpp",
+      "advanced-scene-switcher-1.36.1-source/deps/jsoncons/fuzzers/fuzz_bson_parser_max.cpp",
+      "advanced-scene-switcher-1.36.1-source/deps/jsoncons/fuzzers/fuzz_json_encoder.cpp"
+    ],
+    "leptonica": [
+      "advanced-scene-switcher-1.36.1-source/deps/leptonica/prog/comap.100.jpg",
+      "advanced-scene-switcher-1.36.1-source/deps/leptonica/prog/juditharismax.jpg",
+      "advanced-scene-switcher-1.36.1-source/deps/leptonica/prog/rgb16.tif"
+    ],
+    "libremidi": [
+      "advanced-scene-switcher-1.36.1-source/deps/libremidi/LICENSE.md",
+      "advanced-scene-switcher-1.36.1-source/deps/libremidi/examples/midifile_dump.cpp",
+      "advanced-scene-switcher-1.36.1-source/deps/libremidi/examples/qmidiin.cpp"
+    ],
+    "libusb": [
+      "advanced-scene-switcher-1.36.1-source/deps/libusb/INSTALL_WIN.txt",
+      "advanced-scene-switcher-1.36.1-source/deps/libusb/.travis.yml",
+      "advanced-scene-switcher-1.36.1-source/deps/libusb/.gitattributes"
+    ],
+    "opencv": [
+      "advanced-scene-switcher-1.36.1-source/deps/opencv/modules/calib/CMakeLists.txt",
+      "advanced-scene-switcher-1.36.1-source/deps/opencv/modules/calib/doc/pics/robot-world_hand-eye_figure.png",
+      "advanced-scene-switcher-1.36.1-source/deps/opencv/modules/calib/doc/pics/distortion_examples2.png"
+    ],
+    "opencv_contrib": [
+      "advanced-scene-switcher-1.36.1-source/deps/opencv_contrib/modules/ximgproc/tutorials/images/09.jpg",
+      "advanced-scene-switcher-1.36.1-source/deps/opencv_contrib/modules/ximgproc/tutorials/images/10.jpg",
+      "advanced-scene-switcher-1.36.1-source/deps/opencv_contrib/modules/ximgproc/tutorials/images/01.jpg"
+    ],
+    "openvr": [
+      "advanced-scene-switcher-1.36.1-source/deps/openvr/.gitattributes",
+      "advanced-scene-switcher-1.36.1-source/deps/openvr/.git",
+      "advanced-scene-switcher-1.36.1-source/deps/openvr/CMakeLists.txt"
+    ],
+    "paho.mqtt.cpp": [
+      "advanced-scene-switcher-1.36.1-source/deps/paho.mqtt.cpp/NOTICE",
+      "advanced-scene-switcher-1.36.1-source/deps/paho.mqtt.cpp/CODING_STYLE.md",
+      "advanced-scene-switcher-1.36.1-source/deps/paho.mqtt.cpp/CHANGELOG.md"
+    ],
+    "tesseract": [
+      "advanced-scene-switcher-1.36.1-source/deps/tesseract/snap/snapcraft.yaml",
+      "advanced-scene-switcher-1.36.1-source/deps/tesseract/.gitattributes",
+      "advanced-scene-switcher-1.36.1-source/deps/tesseract/.mailmap"
+    ],
+    "websocketpp": [
+      "advanced-scene-switcher-1.36.1-source/deps/websocketpp/websocketpp/random/none.hpp",
+      "advanced-scene-switcher-1.36.1-source/deps/websocketpp/websocketpp/random/random_device.hpp",
+      "advanced-scene-switcher-1.36.1-source/deps/websocketpp/websocketpp/uri.hpp"
+    ],
+    "whisper.cpp": [
+      "advanced-scene-switcher-1.36.1-source/deps/whisper.cpp/models/requirements-parakeet.txt",
+      "advanced-scene-switcher-1.36.1-source/deps/whisper.cpp/models/generate-coreml-model.sh",
+      "advanced-scene-switcher-1.36.1-source/deps/whisper.cpp/models/convert-parakeet-to-ggml.py"
+    ]
+  },
+  "allDependenciesContainFiles": true
+}

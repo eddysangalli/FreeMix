@@ -1,0 +1,27 @@
+{
+  "at": "2026-10-08T22:32:57.268Z",
+  "pass": true,
+  "checks": [
+    {
+      "name": "Ordem XML preservada e ticker sem texto duplicado",
+      "ok": true
+    },
+    {
+      "name": "Canvas e animação respeitam título vertical",
+      "ok": true
+    },
+    {
+      "name": "Recursos e fontes locais, sem pedido automático externo",
+      "ok": true
+    },
+    {
+      "name": "Elemento não suportado gera aviso explícito",
+      "ok": true
+    },
+    {
+      "name": "Arquivo GTZIP real extraído com dimensões, recursos e avisos no manifesto",
+      "ok": true
+    }
+  ],
+  "limits": "Fixture local; formatos vetoriais/efeitos proprietários não são convertidos universalmente"
+}

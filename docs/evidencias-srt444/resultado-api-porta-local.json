@@ -1,0 +1,25 @@
+{
+  "at": "2026-10-09T13:14:52.555Z",
+  "operatorTouched": false,
+  "processesStarted": false,
+  "apiCalled": false,
+  "checks": [
+    {
+      "name": "Serviço estrangeiro na padrão e no primeiro fallback: escolhe 18189",
+      "passed": true
+    },
+    {
+      "name": "Porta QA explícita ocupada falha sem procurar outras portas",
+      "passed": true
+    },
+    {
+      "name": "Persistência atômica altera só replayUrl/porta, preserva WS/credenciais e rejeita ownership estrangeiro",
+      "passed": true
+    },
+    {
+      "name": "API já pertencente à instalação é reutilizada sem deslocar a porta",
+      "passed": true
+    }
+  ],
+  "passed": true
+}

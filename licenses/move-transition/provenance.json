@@ -1,0 +1,44 @@
+{
+  "dll": "obs-vmix/obs-plugins/64bit/move-transition.dll",
+  "sha256": "6347a095db4e5dde219610a6d680ac0be073fa963944bfc47c172991e6427326",
+  "version": "3.2.1 (native QA log)",
+  "dataFiles": [
+    {
+      "path": "obs-vmix/data/obs-plugins/move-transition/effects/unorm.effect",
+      "sha256": "1a8a1c002cbbd1eea49a2ce4b6e69a42f11b574d4d89ce06bf844354f38672b3"
+    },
+    {
+      "path": "obs-vmix/data/obs-plugins/move-transition/locale/de-DE.ini",
+      "sha256": "8e01ab33f00c54abeb4fab226cb6ee7990e76f6903bd84458a44329360104490"
+    },
+    {
+      "path": "obs-vmix/data/obs-plugins/move-transition/locale/en-US.ini",
+      "sha256": "9de438851067f1bf26e81db8f1a66e540fd6ba415eaef287b30b66b581f48917"
+    },
+    {
+      "path": "obs-vmix/data/obs-plugins/move-transition/locale/es-ES.ini",
+      "sha256": "931b002f6c0a987cdab7a32ad73f1347f6b6de8dc21f063901b2142003412e4c"
+    },
+    {
+      "path": "obs-vmix/data/obs-plugins/move-transition/locale/nl-NL.ini",
+      "sha256": "61dd1d51e5ce0d94dc5b6d77cef1dc2f0f1ef9751c2528e0717cda24a02c5ba2"
+    },
+    {
+      "path": "obs-vmix/data/obs-plugins/move-transition/locale/pt-BR.ini",
+      "sha256": "22ca31f215230da10cc4f07b459dedccef56771d157b4c8380bbde876ac42843"
+    },
+    {
+      "path": "obs-vmix/data/obs-plugins/move-transition/locale/ru-RU.ini",
+      "sha256": "078a9582ce68fb915122659c2ca093dbd10779e0b3264b707f642990efebd55a"
+    },
+    {
+      "path": "obs-vmix/data/obs-plugins/move-transition/locale/zh-CN.ini",
+      "sha256": "610bb95876e584d1cb1958ed663871c4361582706ac5244dbd9df8f8e1ba45ad"
+    }
+  ],
+  "upstream": "https://github.com/exeldro/obs-move-transition",
+  "source": "https://github.com/exeldro/obs-move-transition/tree/3.2.1",
+  "license": "https://raw.githubusercontent.com/exeldro/obs-move-transition/3.2.1/LICENSE",
+  "sourceArchive": "qa-portatil/move-transition-provenance/obs-move-transition-3.2.1-source.zip",
+  "sourceSha256": "0fef0d9dd9c891ef2fb99cfd34d372b1dbc29cd4d95cd7739ea9b80ffc4b9b9b"
+}

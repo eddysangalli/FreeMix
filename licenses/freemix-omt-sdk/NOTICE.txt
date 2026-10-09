@@ -1,0 +1,2 @@
+FreeMix OMT per-sender bridge uses official Open Media Transport SDK, MIT license. Original portable SDK included in qa-ndi/omt-sdk. Official distribution: https://github.com/openmediatransport/libomtnet/releases . Installed libomt.dll SHA256 673b1d33222295f1c9190c54cefc89d5e322301702532e2c8fe78a16e8aa28da
+Header preserved except removal of automatic import-library pragma for runtime resolution. Original header included.

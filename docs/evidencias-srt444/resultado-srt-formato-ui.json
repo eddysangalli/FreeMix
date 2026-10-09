@@ -1,0 +1,21 @@
+{
+  "at": "2026-10-09T12:50:31.483Z",
+  "operatorTouched": false,
+  "apiRealCalled": false,
+  "checks": [
+    {
+      "name": "Botão prepara SRT/x264/444/máscara e largura de transporte, sem iniciar ou salvar",
+      "passed": true
+    },
+    {
+      "name": "Rascunho resiste à atualização e configure inclui campos novos",
+      "passed": true
+    },
+    {
+      "name": "Readback recompõe seleção e orientação explícita ao receptor",
+      "passed": true
+    }
+  ],
+  "passed": true,
+  "jsErrors": []
+}

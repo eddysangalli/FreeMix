@@ -1,0 +1,151 @@
+{
+  "root": "C:/Users/eddyr/AppData/Local/Temp/FreeMix-QA-SRT444-20261009",
+  "apiPort": 18312,
+  "wsPort": 14612,
+  "srtListener": "127.0.0.1:18360",
+  "started": "2026-10-09T12:55:26.522Z",
+  "exeSha256": "addc250a7215d04baa8b0b3de58517db1cefcdc5046873f6ca2342d4ee623f02",
+  "operatorUntouched": true,
+  "cases": [
+    {
+      "name": "444-none",
+      "live": {
+        "active": true,
+        "state": "live",
+        "error": "",
+        "chroma": "444",
+        "alphaMode": "none",
+        "encodedWidth": 320,
+        "encodedHeight": 180
+      },
+      "receiverArgs": [
+        "-hide_banner",
+        "-loglevel",
+        "warning",
+        "-y",
+        "-probesize",
+        "2000000",
+        "-analyzeduration",
+        "1000000",
+        "-i",
+        "srt://127.0.0.1:18360?mode=listener&latency=120000&timeout=15000000",
+        "-map",
+        "0:v:0",
+        "-map",
+        "0:a?",
+        "-c",
+        "copy",
+        "-t",
+        "10",
+        "-f",
+        "mpegts",
+        "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-portatil\\srt444-alpha-20261009\\444-none.ts"
+      ],
+      "receiver": {
+        "code": 0,
+        "signal": null,
+        "stderr": ""
+      },
+      "analysis": {
+        "name": "444-none",
+        "bytes": 7646524,
+        "duration": 10.021333,
+        "bitrateMbps": 6.1041971162918145,
+        "video": {
+          "codec": "h264",
+          "profile": "High 4:4:4 Predictive",
+          "pixFmt": "yuvj444p",
+          "width": 320,
+          "height": 180,
+          "fps": "30/1",
+          "colorRange": "pc"
+        },
+        "frameBytes": 230400
+      }
+    },
+    {
+      "name": "444-packed",
+      "live": {
+        "active": true,
+        "state": "live",
+        "error": "",
+        "chroma": "444",
+        "alphaMode": "packed",
+        "encodedWidth": 640,
+        "encodedHeight": 180
+      },
+      "receiverArgs": [
+        "-hide_banner",
+        "-loglevel",
+        "warning",
+        "-y",
+        "-probesize",
+        "2000000",
+        "-analyzeduration",
+        "1000000",
+        "-i",
+        "srt://127.0.0.1:18360?mode=listener&latency=120000&timeout=15000000",
+        "-map",
+        "0:v:0",
+        "-map",
+        "0:a?",
+        "-c",
+        "copy",
+        "-t",
+        "10",
+        "-f",
+        "mpegts",
+        "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-portatil\\srt444-alpha-20261009\\444-packed.ts"
+      ],
+      "receiver": {
+        "code": 0,
+        "signal": null,
+        "stderr": ""
+      },
+      "analysis": {
+        "name": "444-packed",
+        "bytes": 7646524,
+        "duration": 10.021333,
+        "bitrateMbps": 6.1041971162918145,
+        "video": {
+          "codec": "h264",
+          "profile": "High 4:4:4 Predictive",
+          "pixFmt": "yuvj444p",
+          "width": 640,
+          "height": 180,
+          "fps": "30/1",
+          "colorRange": "pc"
+        },
+        "frameBytes": 460800,
+        "recomposed": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-portatil\\srt444-alpha-20261009\\444-packed-recomposed.png",
+        "alpha": {
+          "mae": 128.00277777777777,
+          "max": 255,
+          "edgeMae": 139.05555555555554,
+          "sampleBands": [
+            0,
+            0,
+            0
+          ]
+        },
+        "color": {
+          "mae": 0.20208333333333334
+        }
+      }
+    }
+  ],
+  "status": "FAIL",
+  "nativePid": 201216,
+  "sourceUuid": "bbc1d467-e77a-426f-8079-d42d8c31b3eb",
+  "error": "{\"mae\":128.00277777777777,\"max\":255,\"edgeMae\":139.05555555555554,\"sampleBands\":[0,0,0]}",
+  "shutdown": {
+    "success": true
+  },
+  "nativeExit": {
+    "code": 0,
+    "signal": null
+  },
+  "newCrashes": [],
+  "apiStoppedOwnPid": 13972,
+  "finished": "2026-10-09T12:56:04.545Z"
+}

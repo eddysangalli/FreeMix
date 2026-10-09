@@ -1,0 +1,12 @@
+{
+  "at": "2026-10-09T01:50:52.844Z",
+  "root": "C:\\Users\\eddyr\\AppData\\Local\\Temp\\FreeMix-QA-Parallel-Outputs-20261008",
+  "pid": 196228,
+  "executable": "C:/Users/eddyr/AppData/Local/Temp/FreeMix-QA-Parallel-Outputs-20261008/bin/64bit/FreeMix.exe",
+  "exeSha256": "ef523cbb598b138044aa7b9960ee06efdd1beb510cbb7df8fdbb9bff87b2aa64",
+  "closedBeforeShutdownRequest": true,
+  "shutdownRequestSent": false,
+  "passed": true,
+  "evidenceLog": "2026-10-08 22-49-20.txt",
+  "notes": "QA terminou antes do comando do agente. Encerramento normal observado no log e PID ausente; não foi atribuído ao shutdown_idle do agente."
+}

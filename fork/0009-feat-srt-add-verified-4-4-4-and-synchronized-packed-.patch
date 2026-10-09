@@ -1,0 +1,353 @@
+From 12f48a617b97cdb386cfd822c5e243e1de641370 Mon Sep 17 00:00:00 2001
+From: Eddy Sangalli <eddyrodrigues@outlook.com>
+Date: Fri, 9 Oct 2026 10:01:28 -0300
+Subject: [PATCH 9/9] feat(srt): add verified 4:4:4 and synchronized packed
+ alpha output
+
+Encode an independent I444 view through x264 and MPEG-TS/SRT. Pack straight Fill and grayscale Key into one frame, retain destination configuration, and guard unsupported codec/protocol combinations. Rebind the shader texture between techniques.
+
+Verified loopback reception: High 4:4:4 Predictive, full range, 640x180 at 30 fps; reconstructed alpha MAE 0 and RGB MAE 0.202 over a ten-second test. Normal isolated shutdown, exit zero and no crash. Internet/Full HD capacity and receiver interoperability remain separate validation.
+---
+ frontend/widgets/FreeMixMultistream.cpp | 70 +++++++++++++++++-----
+ frontend/widgets/FreeMixSrtAlpha.hpp    | 77 +++++++++++++++++++++++++
+ 2 files changed, 132 insertions(+), 15 deletions(-)
+ create mode 100644 frontend/widgets/FreeMixSrtAlpha.hpp
+
+diff --git a/frontend/widgets/FreeMixMultistream.cpp b/frontend/widgets/FreeMixMultistream.cpp
+index 2ee6106..7d357ab 100644
+--- a/frontend/widgets/FreeMixMultistream.cpp
++++ b/frontend/widgets/FreeMixMultistream.cpp
+@@ -30,6 +30,7 @@
+ #include "FreeMixOmtOutput.hpp"
+ #include "FreeMixNdiOutput.hpp"
+ #include "FreeMixSdiOutput.hpp"
++#include "FreeMixSrtAlpha.hpp"
+ #include <chrono>
+ #include <QTimer>
+ #include "FreeMixCenterColumn.hpp"
+@@ -325,6 +326,7 @@ struct Destination {
+ 	uint32_t bitrate = 4000, audioTrack = 0, mixId = 2;
+ 	bool stingerAudio=true;
+ 	std::string encoder = "obs_x264";
++	std::string chroma = "420", alphaMode = "none";
+ 	uint32_t fpsDivisor = 1, overlaysMask = 0;
+ 	std::array<uint32_t,8> overlayChannels = {7,8,9,10,11,12,13,14};
+ 	bool autoStart = true;
+@@ -344,7 +346,10 @@ struct Destination {
+ 	std::unique_ptr<FreeMixSourceAudio> sourceAudio;
+ 	obs_view_t *view = nullptr;
+ 	obs_scene_t *renderScene = nullptr;
++	OBSSourceAutoRelease packedAlphaSource;
++	obs_sceneitem_t *contentItem = nullptr;
+ 	std::array<obs_scene_t *,8> overlayFrames = {};
++	std::array<obs_sceneitem_t *,8> packedOverlayItems = {};
+ 	std::array<std::string,8> overlayUuids;
+ 	std::string renderedUuid;
+ 	bool restart = false;
+@@ -366,6 +371,8 @@ void WriteVideoConfig(obs_data_t *item, const Destination &d)
+ 	obs_data_set_int(item,"mixId",d.mixId);
+ 	obs_data_set_bool(item,"stingerAudio",d.stingerAudio);
+ 	obs_data_set_string(item, "encoder", d.encoder.c_str());
++	obs_data_set_string(item,"chroma",d.chroma.c_str());
++	obs_data_set_string(item,"alphaMode",d.alphaMode.c_str());
+ 	obs_data_set_int(item, "fpsDivisor", d.fpsDivisor);
+ 	obs_data_set_int(item, "overlaysMask", d.overlaysMask);
+ 	OBSDataArrayAutoRelease channels=obs_data_array_create();for(const auto channel:d.overlayChannels){OBSDataAutoRelease c=obs_data_create();obs_data_set_int(c,"channel",channel);obs_data_array_push_back(channels,c);}obs_data_set_array(item,"overlayChannels",channels);
+@@ -386,6 +393,8 @@ void ReadVideoConfig(obs_data_t *item, Destination &d)
+ 	d.mixId=obs_data_has_user_value(item,"mixId")?uint32_t(obs_data_get_int(item,"mixId")):2;
+ 	d.stingerAudio=!obs_data_has_user_value(item,"stingerAudio")||obs_data_get_bool(item,"stingerAudio");
+ 	d.encoder = obs_data_has_user_value(item, "encoder") ? obs_data_get_string(item, "encoder") : "obs_x264";
++	d.chroma = obs_data_has_user_value(item,"chroma") ? obs_data_get_string(item,"chroma") : "420";
++	d.alphaMode = obs_data_has_user_value(item,"alphaMode") ? obs_data_get_string(item,"alphaMode") : "none";
+ 	d.fpsDivisor = obs_data_has_user_value(item, "fpsDivisor") ? uint32_t(obs_data_get_int(item, "fpsDivisor")) : 1;
+ 	d.overlaysMask = uint32_t(obs_data_get_int(item, "overlaysMask"));
+ 	OBSDataArrayAutoRelease channels=obs_data_get_array(item,"overlayChannels");if(channels&&obs_data_array_count(channels)==8){for(size_t i=0;i<8;i++){OBSDataAutoRelease c=obs_data_array_item(channels,i);d.overlayChannels[i]=uint32_t(obs_data_get_int(c,"channel"));}}else d.overlayChannels={7,8,9,10,11,12,13,14};
+@@ -394,7 +403,7 @@ void ReadVideoConfig(obs_data_t *item, Destination &d)
+ }
+ bool SameVideoConfig(const Destination &a, const Destination &b)
+ {
+-	return a.audioSourceUuid==b.audioSourceUuid&&a.enhancedRtmp==b.enhancedRtmp&&a.protocol==b.protocol&&a.mode == b.mode && a.sourceUuid == b.sourceUuid && a.width == b.width && a.height == b.height && a.bitrate == b.bitrate && a.audioTrack == b.audioTrack && a.mixId==b.mixId && a.stingerAudio==b.stingerAudio && a.fill == b.fill && a.encoder == b.encoder && a.fpsDivisor == b.fpsDivisor && a.overlaysMask == b.overlaysMask && a.overlayChannels == b.overlayChannels;
++	return a.chroma==b.chroma&&a.alphaMode==b.alphaMode&&a.audioSourceUuid==b.audioSourceUuid&&a.enhancedRtmp==b.enhancedRtmp&&a.protocol==b.protocol&&a.mode == b.mode && a.sourceUuid == b.sourceUuid && a.width == b.width && a.height == b.height && a.bitrate == b.bitrate && a.audioTrack == b.audioTrack && a.mixId==b.mixId && a.stingerAudio==b.stingerAudio && a.fill == b.fill && a.encoder == b.encoder && a.fpsDivisor == b.fpsDivisor && a.overlaysMask == b.overlaysMask && a.overlayChannels == b.overlayChannels;
+ }
+ std::string ValidateVideoConfig(const Destination &d)
+ {
+@@ -405,11 +414,20 @@ std::string ValidateVideoConfig(const Destination &d)
+ 	const char *codec = obs_get_encoder_codec(d.encoder.c_str());
+ 	if (!KnownVideoCodec(codec) || obs_get_encoder_type(d.encoder.c_str()) != OBS_ENCODER_VIDEO) return "selected H264/HEVC/AV1 encoder is not loaded";
+ 	if(d.protocol!="auto"&&d.protocol!="rtmp"&&d.protocol!="rtmps"&&d.protocol!="srt"&&d.protocol!="rist"&&d.protocol!="hls")return "unknown output protocol";
++	if(d.chroma!="420"&&d.chroma!="444")return "select chroma 420 or 444";
++	if(d.alphaMode!="none"&&d.alphaMode!="packed")return "select alpha none or packed";
++	if(d.chroma=="444"||d.alphaMode=="packed"){
++	 const bool srt=d.protocol=="srt"||(d.protocol=="auto"&&QUrl(QString::fromStdString(d.server)).scheme().compare("srt",Qt::CaseInsensitive)==0);
++	 if(!srt)return "4:4:4 and packed alpha require SRT";
++	 if(d.encoder!="obs_x264")return "SRT 4:4:4/packed alpha requires the verified obs_x264 encoder";
++	 if(d.alphaMode=="packed"&&d.chroma!="444")return "packed alpha requires explicit 4:4:4 chroma";
++	 if(d.alphaMode=="packed"&&d.width>1920)return "packed alpha logical width must not exceed 1920 (encoded width is doubled)";
++	}
+ 	if (d.width < 128 || d.width > 3840 || d.height < 128 || d.height > 3840 || d.width % 2 || d.height % 2) return "resolution must be even, between 128 and 3840";
+ 	if (d.bitrate < 100 || d.bitrate > 50000) return "video bitrate must be between 100 and 50000 kbps";
+ 	if (d.audioTrack > 2) return "select Master, A or B";
+ 	if(!d.audioSourceUuid.empty()){
+-	 if(d.mode=="shared")return "independent audio requires independent video encoders";
++	 if(d.mode=="shared"&&d.chroma!="444"&&d.alphaMode!="packed")return "independent audio requires independent video encoders";
+ 	 OBSSourceAutoRelease audio=obs_get_source_by_uuid(d.audioSourceUuid.c_str());if(!FreeMixAudioBusAllowed(audio))return "select an independent public audio bus with global tracks disabled";
+ 	}
+ 	if (d.enabled && d.mode == "source" && d.sourceUuid.empty()) return "select a source";
+@@ -673,6 +691,7 @@ void Describe(obs_data_t *out)
+ 			obs_data_set_bool(item, "active", d.output && obs_output_active(d.output));
+ 			obs_data_set_bool(item, "recording", !d.recordPath.empty() && d.output);
+ 			obs_data_set_string(item, "renderedUuid", d.renderedUuid.c_str());
++			obs_data_set_int(item,"encodedWidth",d.alphaMode=="packed"?d.width*2:d.width);obs_data_set_int(item,"encodedHeight",d.height);obs_data_set_string(item,"alphaLayout",d.alphaMode=="packed"?"fill-left-key-right":"none");
+ 			obs_data_array_push_back(list, item);
+ 		}
+ 	}
+@@ -682,6 +701,8 @@ void Describe(obs_data_t *out)
+ 	obs_data_set_bool(out, "independentVideo", true);
+ 	obs_data_set_bool(out, "independentAudio", true);
+ 	obs_data_set_bool(out,"audioSourceSelectable",true);
++	const bool srt444=OutputLoaded("ffmpeg_mpegts_muxer")&&obs_get_encoder_type("obs_x264")==OBS_ENCODER_VIDEO&&KnownVideoCodec(obs_get_encoder_codec("obs_x264"));
++	obs_data_set_bool(out,"srtChroma444Supported",srt444);obs_data_set_bool(out,"srtPackedAlphaSupported",srt444);obs_data_set_int(out,"srtPackedAlphaMaxWidth",1920);obs_data_set_string(out,"srt444Encoder","obs_x264");obs_data_set_string(out,"srtAlphaLayout","fill-left-key-right");
+ 	OBSDataAutoRelease videoTransports=FreeMixVideoTransports();obs_data_set_obj(out,"videoTransports",videoTransports);
+ 	OBSDataArrayAutoRelease audioSources=obs_data_array_create();
+ 	obs_enum_sources([](void *param,obs_source_t *source){if(FreeMixAudioBusAllowed(source)){OBSDataAutoRelease row=obs_data_create();obs_data_set_string(row,"uuid",obs_source_get_uuid(source));obs_data_set_string(row,"name",obs_source_get_name(source));obs_data_array_push_back(static_cast<obs_data_array_t *>(param),row);}return true;},audioSources.Get());
+@@ -885,6 +906,9 @@ void ReleaseOutput(Destination &d)
+ 	if(d.independentAudio){audio_output_close(d.independentAudio);d.independentAudio=nullptr;}d.audioMix.reset();
+ 	d.sourceAudio.reset();
+ 	if (d.view) { obs_view_remove(d.view); obs_view_destroy(d.view); d.view = nullptr; }
++	d.packedAlphaSource=nullptr;
++	for(auto &item:d.packedOverlayItems){if(item)obs_sceneitem_remove(item);item=nullptr;}
++	d.contentItem=nullptr;
+ 	for(size_t i=0;i<8;i++){if(d.overlayFrames[i])obs_scene_release(d.overlayFrames[i]);d.overlayFrames[i]=nullptr;d.overlayUuids[i].clear();}
+ 	if (d.renderScene) { obs_scene_release(d.renderScene); d.renderScene = nullptr; }
+ 	d.renderedUuid.clear();
+@@ -924,7 +948,7 @@ bool UpdateOutputOverlay(Destination &d, uint32_t channel, obs_source_t *overlay
+ 	const size_t i=channel-1;
+ 	const std::string uuid=overlay?obs_source_get_uuid(overlay):"";
+ 	if(uuid==d.overlayUuids[i]&&(!overlay||d.overlayFrames[i]))return true;
+-	obs_view_set_source(d.view,channel,nullptr);
++	if(d.alphaMode=="packed"){if(d.packedOverlayItems[i])obs_sceneitem_remove(d.packedOverlayItems[i]);d.packedOverlayItems[i]=nullptr;}else obs_view_set_source(d.view,channel,nullptr);
+ 	if(d.overlayFrames[i])obs_scene_release(d.overlayFrames[i]);
+ 	d.overlayFrames[i]=nullptr;d.overlayUuids[i].clear();
+ 	if(!overlay)return true;
+@@ -940,12 +964,18 @@ bool UpdateOutputOverlay(Destination &d, uint32_t channel, obs_source_t *overlay
+ 	vec2 scale,pos;vec2_set(&scale,factor,factor);vec2_set(&pos,(float(d.width)-sw*factor)/2,(float(d.height)-sh*factor)/2);
+ 	obs_sceneitem_set_scale(item,&scale);obs_sceneitem_set_pos(item,&pos);obs_sceneitem_set_alignment(item,OBS_ALIGN_LEFT|OBS_ALIGN_TOP);
+ 	d.overlayFrames[i]=frame;d.overlayUuids[i]=uuid;
+-	obs_view_set_source(d.view,channel,obs_scene_get_source(frame));
++	if(d.alphaMode=="packed"){
++	 d.packedOverlayItems[i]=obs_scene_add(d.renderScene,obs_scene_get_source(frame));
++	 if(!d.packedOverlayItems[i])return false;
++	 obs_sceneitem_set_alignment(d.packedOverlayItems[i],OBS_ALIGN_LEFT|OBS_ALIGN_TOP);
++	}else obs_view_set_source(d.view,channel,obs_scene_get_source(frame));
+ 	return true;
+ }
+ 
+ void StartOne(Destination &d, size_t index)
+ {
++	const std::string validation=ValidateVideoConfig(d);if(!validation.empty()){Fail(d,validation);return;}
++	const bool independent=d.mode!="shared"||d.chroma=="444"||d.alphaMode=="packed";
+ 	std::string server, key;
+ 	{
+ 		std::lock_guard<std::recursive_mutex> lock(destinationsMutex);
+@@ -956,7 +986,7 @@ void StartOne(Destination &d, size_t index)
+ 	OBSOutputAutoRelease main = obs_frontend_get_streaming_output();
+ 	obs_encoder_t *video = main ? obs_output_get_video_encoder(main) : nullptr;
+ 	obs_encoder_t *audio = main ? obs_output_get_audio_encoder(main, 0) : nullptr;
+-	if (d.mode == "shared" && (!video || !audio)) {
++	if (!independent && (!video || !audio)) {
+ 		Fail(d, "the encoders of the main stream are not available");
+ 		return;
+ 	}
+@@ -977,10 +1007,10 @@ void StartOne(Destination &d, size_t index)
+ 	}
+ 	if(d.recordPath.empty()&&(!url.isValid()||url.host().isEmpty()||(protocol=="hls"?scheme!="http"&&scheme!="https":scheme!=protocol)||(protocol!="rtmp"&&protocol!="rtmps"&&protocol!="srt"&&protocol!="rist"&&protocol!="hls"))){Fail(d,"server URL does not match the selected output protocol");return;}
+ 	if(!OutputLoaded(type)){Fail(d,"selected output backend is not loaded");return;}
+-	const char *videoCodec=d.mode=="shared"?obs_encoder_get_codec(video):obs_get_encoder_codec(d.encoder.c_str());
++	const char *videoCodec=!independent?obs_encoder_get_codec(video):obs_get_encoder_codec(d.encoder.c_str());
+ 	if(!videoCodec){Fail(d,"selected video encoder is no longer loaded");return;}
+ 	if(d.recordPath.empty()&&(protocol=="rtmp"||protocol=="rtmps")&&std::string(videoCodec)!="h264"&&!d.enhancedRtmp){Fail(d,"confirm that this destination supports Enhanced RTMP for HEVC/AV1");return;}
+-	if(!CodecIn(obs_get_output_supported_video_codecs(type),videoCodec)||!CodecIn(obs_get_output_supported_audio_codecs(type),d.mode=="shared"?obs_encoder_get_codec(audio):"aac")){Fail(d,"selected codec is not supported by this output protocol/container");return;}
++	if(!CodecIn(obs_get_output_supported_video_codecs(type),videoCodec)||!CodecIn(obs_get_output_supported_audio_codecs(type),!independent?obs_encoder_get_codec(audio):"aac")){Fail(d,"selected codec is not supported by this output protocol/container");return;}
+ 
+ 	if (d.recordPath.empty()) d.service = obs_service_create(protocol=="hls"?"freemix_hls":"rtmp_custom", id.c_str(), settings, nullptr);
+ 	if(d.service){const char **supported=obs_service_get_supported_video_codecs(d.service);if(supported){bool valid=false;for(size_t n=0;supported[n];n++)if(std::string(supported[n])==videoCodec)valid=true;if(!valid){Fail(d,"selected codec is not supported by this streaming service");return;}}}
+@@ -991,8 +1021,8 @@ void StartOne(Destination &d, size_t index)
+ 		Fail(d, "could not create the output");
+ 		return;
+ 	}
+-	if (d.mode != "shared") {
+-		OBSSourceAutoRelease source = (d.mode == "program" || d.mode == "clean") ? obs_frontend_get_current_scene() : d.mode == "preview" ? obs_frontend_get_current_preview_scene() : d.mode == "mix" && EnsureIndependentMix(independentMixes[d.mixId-2]) ? obs_source_get_ref(independentMixes[d.mixId-2].transition) : obs_get_source_by_uuid(d.sourceUuid.c_str());
++	if (independent) {
++		OBSSourceAutoRelease source = (d.mode == "shared" || d.mode == "program" || d.mode == "clean") ? obs_frontend_get_current_scene() : d.mode == "preview" ? obs_frontend_get_current_preview_scene() : d.mode == "mix" && EnsureIndependentMix(independentMixes[d.mixId-2]) ? obs_source_get_ref(independentMixes[d.mixId-2].transition) : obs_get_source_by_uuid(d.sourceUuid.c_str());
+ 		bool privateSource = false;
+ 		if (source) {
+ 			OBSDataAutoRelease data = obs_source_get_private_settings(source);
+@@ -1005,11 +1035,14 @@ void StartOne(Destination &d, size_t index)
+ 		if (!source || privateSource) { Fail(d, privateSource ? "private director source cannot be sent" : "source no longer exists"); return; }
+ 		obs_video_info info;
+ 		if (!obs_get_video_info(&info)) { Fail(d, "video is unavailable"); return; }
+-		info.base_width = info.output_width = d.width;
++		info.base_width = info.output_width = d.alphaMode=="packed"?d.width*2:d.width;
+ 		info.base_height = info.output_height = d.height;
+-		info.output_format = VIDEO_FORMAT_NV12;
++		info.output_format = d.chroma=="444"?VIDEO_FORMAT_I444:VIDEO_FORMAT_NV12;
++		if(d.chroma=="444"){info.colorspace=VIDEO_CS_709;info.range=VIDEO_RANGE_FULL;}
+ 		d.renderScene = obs_scene_create_private(id.c_str());
++		if(d.alphaMode=="packed"){OBSDataAutoRelease frameSettings=obs_source_get_settings(obs_scene_get_source(d.renderScene));obs_data_set_bool(frameSettings,"custom_size",true);obs_data_set_int(frameSettings,"cx",d.width);obs_data_set_int(frameSettings,"cy",d.height);obs_source_load(obs_scene_get_source(d.renderScene));}
+ 		obs_sceneitem_t *item = obs_scene_add(d.renderScene, source);
++		d.contentItem=item;
+ 		if (!item) { Fail(d, "could not compose source"); return; }
+ 		// Transition cached dimensions update on the next video tick. Mix 2 already
+ 		// has validated, fixed frame dimensions, including an immediate Cut/start.
+@@ -1023,7 +1056,8 @@ void StartOne(Destination &d, size_t index)
+ 		obs_sceneitem_set_alignment(item, OBS_ALIGN_LEFT | OBS_ALIGN_TOP);
+ 		d.view = obs_view_create();
+ 		if (!d.view) { Fail(d, "could not create view"); return; }
+-		obs_view_set_source(d.view, 0, obs_scene_get_source(d.renderScene));
++		if(d.alphaMode=="packed"){d.packedAlphaSource=freemix_srt_alpha::Create(obs_scene_get_source(d.renderScene),d.width,d.height);if(!d.packedAlphaSource){Fail(d,"could not create SRT Fill/Key packed alpha renderer");return;}}
++		obs_view_set_source(d.view, 0, d.packedAlphaSource?d.packedAlphaSource.Get():obs_scene_get_source(d.renderScene));
+ 		video_t *viewVideo = obs_view_add2(d.view, &info);
+ 		if (!viewVideo) { Fail(d, "could not create independent video"); return; }
+ 		OBSDataAutoRelease videoSettings = obs_data_create();
+@@ -1033,13 +1067,16 @@ void StartOne(Destination &d, size_t index)
+ 		obs_data_set_string(videoSettings, "preset", d.encoder == "obs_x264" ? "veryfast" : d.encoder.find("nvenc") != std::string::npos ? "p5" : "balanced");
+ 		if(d.service)obs_service_apply_encoder_settings(d.service,videoSettings,nullptr);
+ 		if(d.encoder=="obs_x264")obs_data_set_string(videoSettings,"tune","zerolatency");
++		if(d.chroma=="444")obs_data_set_string(videoSettings,"profile","high444");
+ 		d.videoEncoder = obs_video_encoder_create(d.encoder.c_str(), (id+"_video").c_str(), videoSettings, nullptr);
+ 		OBSDataAutoRelease audioSettings = obs_data_create(); obs_data_set_int(audioSettings, "bitrate", 160);
+ 		if(d.service)obs_service_apply_encoder_settings(d.service,videoSettings,audioSettings);
++		if(d.chroma=="444")obs_data_set_string(videoSettings,"profile","high444");
+ 		if(!d.audioSourceUuid.empty()){std::string error;d.sourceAudio=FreeMixSourceAudio::Open(d.audioSourceUuid,id+" PCM",error);if(!d.sourceAudio){Fail(d,error.c_str());return;}}
+ 		d.audioEncoder = obs_audio_encoder_create("ffmpeg_aac", (id+"_audio").c_str(), audioSettings, d.sourceAudio?0:d.audioTrack, nullptr);
+ 		if (!d.videoEncoder || !d.audioEncoder) { Fail(d, "could not create independent encoders"); return; }
+ 		obs_encoder_set_video(d.videoEncoder, viewVideo);
++		if(d.chroma=="444")obs_encoder_set_preferred_video_format(d.videoEncoder,VIDEO_FORMAT_I444);
+ 		if (!obs_encoder_set_frame_rate_divisor(d.videoEncoder, d.fpsDivisor)) { Fail(d, "could not set output FPS divisor"); return; }
+ 		if(d.mode=="mix"&&d.stingerAudio){
+ 			obs_audio_info audioInfo;if(!obs_get_audio_info(&audioInfo)){Fail(d,"audio is unavailable");return;}
+@@ -1085,7 +1122,7 @@ void RefreshProgramVideos()
+ 	OBSSourceAutoRelease program=obs_frontend_get_current_scene();
+ 	if(!program)return;
+ 	for(Destination &d:destinations){
+-		if((d.mode!="program"&&d.mode!="clean"&&d.mode!="preview")||!d.view||!d.renderScene)continue;
++		if((d.mode!="program"&&d.mode!="clean"&&d.mode!="preview"&&!(d.mode=="shared"&&(d.chroma=="444"||d.alphaMode=="packed")))||!d.view||!d.renderScene)continue;
+ 		OBSSourceAutoRelease source=d.mode=="preview"?obs_frontend_get_current_preview_scene():obs_source_get_ref(program);
+ 		if(!source||d.renderedUuid==obs_source_get_uuid(source))continue;
+ 		bool privateSource=false;
+@@ -1093,9 +1130,11 @@ void RefreshProgramVideos()
+ 		if(privateSource){Fail(d,"private director source cannot be sent");continue;}
+ 		const uint32_t sw=obs_source_get_width(source),sh=obs_source_get_height(source);
+ 		if(!sw||!sh){Fail(d,"source has no video dimensions");continue;}
+-		obs_scene_enum_items(d.renderScene,[](obs_scene_t *,obs_sceneitem_t *item,void *){obs_sceneitem_remove(item);return true;},nullptr);
++		if(d.alphaMode=="packed"){if(d.contentItem)obs_sceneitem_remove(d.contentItem);d.contentItem=nullptr;}else obs_scene_enum_items(d.renderScene,[](obs_scene_t *,obs_sceneitem_t *item,void *){obs_sceneitem_remove(item);return true;},nullptr);
+ 		obs_sceneitem_t *item=obs_scene_add(d.renderScene,source);
++		d.contentItem=item;
+ 		if(!item){Fail(d,"could not compose source");continue;}
++		if(d.alphaMode=="packed")obs_sceneitem_set_order(item,OBS_ORDER_MOVE_BOTTOM);
+ 		const float factor=d.fill?std::max(float(d.width)/sw,float(d.height)/sh):std::min(float(d.width)/sw,float(d.height)/sh);
+ 		vec2 scale,position;vec2_set(&scale,factor,factor);vec2_set(&position,(float(d.width)-sw*factor)/2,(float(d.height)-sh*factor)/2);
+ 		obs_sceneitem_set_scale(item,&scale);obs_sceneitem_set_pos(item,&position);obs_sceneitem_set_alignment(item,OBS_ALIGN_LEFT|OBS_ALIGN_TOP);
+@@ -1182,6 +1221,7 @@ void RequestSet(obs_data_t *request, obs_data_t *response, void *)
+ 				d.name=next.name; d.server=next.server; d.key=next.key; d.enabled=next.enabled;d.protocol=next.protocol;d.enhancedRtmp=next.enhancedRtmp;
+ 				d.mode=next.mode; d.sourceUuid=next.sourceUuid; d.audioSourceUuid=next.audioSourceUuid; d.width=next.width; d.height=next.height; d.bitrate=next.bitrate; d.audioTrack=next.audioTrack; d.mixId=next.mixId; d.autoStart=next.autoStart; d.fill=next.fill;
+ 				d.encoder=next.encoder; d.fpsDivisor=next.fpsDivisor; d.overlaysMask=next.overlaysMask; d.overlayChannels=next.overlayChannels;d.stingerAudio=next.stingerAudio;
++				d.chroma=next.chroma;d.alphaMode=next.alphaMode;
+ 				if (!d.enabled) { d.manuallyStarted=false; d.manuallyStopped=false; }
+ 			}
+ 		}
+@@ -1204,7 +1244,7 @@ void RequestControlDestination(obs_data_t *request, obs_data_t *response, void *
+ 			else if (action=="start" || action=="record") {
+ 				if (d.output) error="destination already running";
+ 				else if (!d.enabled) error="enable this destination first";
+-				else if (action=="record" && (d.mode=="shared" || !QFileInfo(path).isAbsolute() || !path.endsWith(".mkv",Qt::CaseInsensitive) || QFileInfo::exists(path) || !QFileInfo(QFileInfo(path).absolutePath()).isDir())) error="select independent video and a new absolute MKV path";
++				else if (action=="record" && ((d.mode=="shared"&&d.chroma!="444"&&d.alphaMode!="packed") || !QFileInfo(path).isAbsolute() || !path.endsWith(".mkv",Qt::CaseInsensitive) || QFileInfo::exists(path) || !QFileInfo(QFileInfo(path).absolutePath()).isDir())) error="select independent video and a new absolute MKV path";
+ 				else {
+ 					d.manuallyStarted=true; d.manuallyStopped=false;
+ 					if(action=="record") d.recordPath=path.toStdString();
+diff --git a/frontend/widgets/FreeMixSrtAlpha.hpp b/frontend/widgets/FreeMixSrtAlpha.hpp
+new file mode 100644
+index 0000000..92423b4
+--- /dev/null
++++ b/frontend/widgets/FreeMixSrtAlpha.hpp
+@@ -0,0 +1,77 @@
++// One encoded frame contains straight RGB Fill (left) and opaque grayscale Key
++// (right). Both halves come from one transparent scene render, so their timing
++// cannot diverge. A receiver must unpack the halves and merge Key as alpha.
++#pragma once
++#include <obs.hpp>
++#include <graphics/graphics.h>
++#include <graphics/vec4.h>
++#include <memory>
++
++namespace freemix_srt_alpha {
++struct Packed {
++ obs_source_t *owner=nullptr;
++ OBSSourceAutoRelease source;
++ uint32_t width=0,height=0;
++ gs_texrender_t *texture=nullptr;
++ gs_effect_t *effect=nullptr;
++ ~Packed(){obs_enter_graphics();if(effect)gs_effect_destroy(effect);if(texture)gs_texrender_destroy(texture);obs_leave_graphics();}
++};
++inline const char *EffectCode(){return R"shader(
++uniform float4x4 ViewProj;
++uniform texture2d image;
++sampler_state texSampler { Filter = Linear; AddressU = Clamp; AddressV = Clamp; };
++struct VertData { float4 pos : POSITION; float2 uv : TEXCOORD0; };
++VertData VS(VertData v) { v.pos = mul(float4(v.pos.xyz, 1.0), ViewProj); return v; }
++float4 FillPS(VertData v) : TARGET {
++ float4 c = image.Sample(texSampler, v.uv);
++ return float4(c.a > 0.0001 ? saturate(c.rgb / c.a) : float3(0.0, 0.0, 0.0), 1.0);
++}
++float4 KeyPS(VertData v) : TARGET {
++ float a = saturate(image.Sample(texSampler, v.uv).a);
++ return float4(a, a, a, 1.0);
++}
++technique Fill { pass { vertex_shader = VS(v); pixel_shader = FillPS(v); } }
++technique Key { pass { vertex_shader = VS(v); pixel_shader = KeyPS(v); } }
++)shader";}
++inline void *Allocate(obs_data_t *settings,obs_source_t *owner){
++ auto p=std::make_unique<Packed>();p->owner=owner;p->width=uint32_t(obs_data_get_int(settings,"width"));p->height=uint32_t(obs_data_get_int(settings,"height"));
++ if(!p->width||p->width>1920||!p->height||p->height>3840||p->width%2||p->height%2)return nullptr;
++ obs_enter_graphics();p->texture=gs_texrender_create(GS_RGBA,GS_ZS_NONE);char *error=nullptr;p->effect=gs_effect_create(EffectCode(),"FreeMix SRT packed alpha",&error);if(error){blog(LOG_ERROR,"FreeMix SRT alpha shader: %s",error);bfree(error);}obs_leave_graphics();
++ if(!p->texture||!p->effect)return nullptr;return p.release();
++}
++inline void Draw(void *data,gs_effect_t *){
++ auto &p=*static_cast<Packed *>(data);if(!p.source||obs_source_removed(p.source))return;
++ const uint32_t sw=obs_source_get_width(p.source),sh=obs_source_get_height(p.source);if(!sw||!sh)return;
++ gs_texrender_reset(p.texture);if(!gs_texrender_begin_with_color_space(p.texture,p.width,p.height,GS_CS_SRGB))return;
++ vec4 transparent={};gs_clear(GS_CLEAR_COLOR,&transparent,0.0f,0);
++ gs_blend_state_push();gs_blend_function(GS_BLEND_ONE,GS_BLEND_INVSRCALPHA);
++ gs_ortho(0,float(sw),0,float(sh),-100,100);obs_source_video_render(p.source);gs_blend_state_pop();gs_texrender_end(p.texture);
++ gs_effect_set_texture(gs_effect_get_param_by_name(p.effect,"image"),gs_texrender_get_texture(p.texture));
++ gs_blend_state_push();gs_blend_function(GS_BLEND_ONE,GS_BLEND_ZERO);gs_matrix_push();
++ while(gs_effect_loop(p.effect,"Fill"))gs_draw_sprite(gs_texrender_get_texture(p.texture),0,p.width,p.height);
++ gs_matrix_translate3f(float(p.width),0.0f,0.0f);
++ // Ending Fill clears effect parameter values; bind the captured frame again
++ // before Key so both techniques sample the same non-null texture.
++ gs_effect_set_texture(gs_effect_get_param_by_name(p.effect,"image"),gs_texrender_get_texture(p.texture));
++ while(gs_effect_loop(p.effect,"Key"))gs_draw_sprite(gs_texrender_get_texture(p.texture),0,p.width,p.height);
++ gs_matrix_pop();gs_blend_state_pop();
++}
++inline void Register(){
++ static bool registered=false;if(registered)return;registered=true;
++ obs_source_info info={};info.id="freemix_srt_alpha_pack";info.type=OBS_SOURCE_TYPE_INPUT;
++ info.output_flags=OBS_SOURCE_VIDEO|OBS_SOURCE_CUSTOM_DRAW|OBS_SOURCE_DO_NOT_DUPLICATE;
++ info.get_name=[](void *){return "FreeMix SRT Fill + Key packed";};info.create=Allocate;
++ info.destroy=[](void *data){delete static_cast<Packed *>(data);};info.video_render=Draw;
++ info.get_width=[](void *data){return static_cast<Packed *>(data)->width*2;};
++ info.get_height=[](void *data){return static_cast<Packed *>(data)->height;};
++ info.enum_active_sources=[](void *data,obs_source_enum_proc_t callback,void *param){auto &p=*static_cast<Packed *>(data);if(p.source)callback(p.owner,p.source,param);};
++ info.enum_all_sources=info.enum_active_sources;
++ obs_register_source(&info);
++}
++inline obs_source_t *Create(obs_source_t *source,uint32_t width,uint32_t height){
++ if(!source)return nullptr;Register();OBSDataAutoRelease settings=obs_data_create();obs_data_set_int(settings,"width",width);obs_data_set_int(settings,"height",height);
++ obs_source_t *packed=obs_source_create_private("freemix_srt_alpha_pack","FreeMix SRT packed alpha",settings);
++ if(packed){auto *context=static_cast<Packed *>(obs_obj_get_data(packed));if(!context){obs_source_release(packed);return nullptr;}context->source=obs_source_get_ref(source);}
++ return packed;
++}
++}
+-- 
+2.56.0.windows.1
+

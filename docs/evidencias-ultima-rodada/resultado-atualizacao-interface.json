@@ -1,0 +1,27 @@
+{
+  "at": "2026-10-08T22:40:48.021Z",
+  "pass": true,
+  "kind": "browser-fixture-only",
+  "checks": [
+    {
+      "name": "Estado inicial não consulta rede nem permite download",
+      "pass": true
+    },
+    {
+      "name": "Configure/check/download explícitos e pacote visível",
+      "pass": true
+    },
+    {
+      "name": "Desativação sem aplicação ou comandos de transmissão",
+      "pass": true
+    }
+  ],
+  "actions": [
+    "update_read",
+    "update_configure",
+    "update_check",
+    "update_download",
+    "update_configure"
+  ],
+  "pageErrors": []
+}

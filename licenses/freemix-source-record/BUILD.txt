@@ -1,0 +1,4 @@
+Modified Source Record 0.4.8 FreeMix local fork, GPL-2.0. Complete upstream source ZIP pinned in PROVENANCE.json. Modified source-record.c, version.h and obs-websocket-api.h included. Build against the matching FreeMix OBS tree:
+cmake -S . -B build -A x64 -DFREEMIX_OBS_ROOT=C:/path/to/freemix-app
+cmake --build build --config RelWithDebInfo --parallel 1
+The engine must already supply build_2026 import libraries and obs deps. No PDB is distributed. Install only while the target native engine is closed. Premix read uses a 50 ms bounded buffer and project rate; AV sync across hardware remains an acceptance test.

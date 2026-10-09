@@ -1,0 +1,17 @@
+{
+  "passed": 3,
+  "checks": [
+    "Detector local produziu caixas de faces reais",
+    "Fonte compartilhada permanece sem filtros",
+    "Tracking nativo reenquadrou imagem local"
+  ],
+  "greenPixels": 718,
+  "bluePixels": 512,
+  "trackedPixelDifference": 16.36100368923611,
+  "trackingRendered": true,
+  "fixture": "Imagem anexada pelo usuário, referência local somente QA",
+  "frameFeed": "GetSourceScreenshot alimenta render do motor minimizado; sem transmissão",
+  "sceneName": "QA Face Tracking 1791498355728",
+  "sceneKey": "899b93fb-fc7e-486f-822d-7231d19d8fb6",
+  "videoTrackingEnduranceTested": false
+}

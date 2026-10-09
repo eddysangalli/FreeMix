@@ -1,0 +1,27 @@
+{
+  "testedAt": "2026-10-08T19:16:13.287Z",
+  "root": "C:\\Users\\eddyr\\AppData\\Local\\Temp\\FreeMix-QA-Parallel-Calls-20261008",
+  "apiPort": 18098,
+  "checks": [
+    "QA privada confirmada sem saídas ativas",
+    "máscara de slot renderiza centro e transparência",
+    "mesma fonte no outro slot permanece inteira",
+    "máscara não altera filtros da fonte compartilhada",
+    "cena privada não aparece como entrada lógica",
+    "polígono arbitrário renderizado no motor",
+    "sombra difusa usa imagem alfa nativa real",
+    "variante vertical e âncora independentes",
+    "variante não move composição horizontal",
+    "locutor A enquadrado por medidores reais",
+    "novo locutor troca enquadramento nativo",
+    "posição manual cancela enquadramento automático"
+  ],
+  "passed": 12,
+  "externalTraffic": false,
+  "physicalMicrophone": false,
+  "frames": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-portatil\\composicao-estilos-evidencias",
+  "limitations": [
+    "SDR: filtro OBS de máscara não é aplicado em HDR 709_EXTENDED",
+    "Variante vertical é composição independente selecionável na saída, não adaptação automática de todos os GCs"
+  ]
+}

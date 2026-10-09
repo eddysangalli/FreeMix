@@ -1,0 +1,9 @@
+{
+  "passed": 4,
+  "checks": [
+    "Parâmetros de shader/tracking limitados",
+    "Toggle sem settings preserva parâmetros existentes",
+    "Mic privado real excluído mesmo sem state.calls",
+    "Legenda rejeita seleção de mic privado"
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "at": "2026-10-09T03:42:46.662Z",
+  "mode": "source audit only; no builder/app/network invoked",
+  "previousVersion": "0.1.0-local.20261008224357",
+  "checks": [
+    {
+      "name": "New runtime modules copied explicitly",
+      "passed": true
+    },
+    {
+      "name": "All relative runtime imports in package allowlist",
+      "passed": true
+    },
+    {
+      "name": "Portable diagnostic BAT and documentation explicitly included",
+      "passed": true
+    },
+    {
+      "name": "New native headers included with source",
+      "passed": true
+    },
+    {
+      "name": "Collector gathers log/text only, excludes config-like names and dumps",
+      "passed": true
+    },
+    {
+      "name": "No collector upload or remote network client",
+      "passed": true
+    },
+    {
+      "name": "ZIP manifest does not include itself",
+      "passed": true
+    },
+    {
+      "name": "Collector bounded and excludes symlinks",
+      "passed": true
+    },
+    {
+      "name": "Sealed previous version remains same",
+      "passed": true
+    },
+    {
+      "name": "No generated diagnostic archive or identity in new allowlist",
+      "passed": true
+    }
+  ],
+  "missingRuntimeImports": [],
+  "passed": true,
+  "builderSha256": "2822c393485b2f837007c9fd8511b8006aeeddd906ce2da68f185aa99df274f6"
+}

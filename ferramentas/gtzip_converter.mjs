@@ -21,6 +21,10 @@ export function parseGtXml(xmlContent) {
   const rootAttrs = rootCompMatch ? parseAttributes(rootCompMatch[1]) : {};
   const width = parseFloat(rootAttrs.Width) || 1920;
   const height = parseFloat(rootAttrs.Height) || 1080;
+  if(!Number.isFinite(width)||!Number.isFinite(height)||width<16||height<16||width>8192||height>8192)throw Error("Dimensões do título fora de 16 a 8192 pixels");
+  const warnings=[];if(/<!DOCTYPE|<!ENTITY/i.test(cleanXml))throw Error('DTD/entidades externas não permitidas em títulos');
+  for(const node of cleanXml.matchAll(/<Brush\s+([^>]+)>?/gi)){const type=parseAttributes(node[1]).Type;if(type&&!['Solid','SolidColor','LinearGradient','Bitmap'].includes(type))warnings.push('Brush não convertido: '+type);}
+  for(const tag of [...new Set([...cleanXml.matchAll(/<(Video|Group|Mesh|Effect|Particle|Shader|ImageSequence)\b/gi)].map(m=>m[1]))])warnings.push("Elemento não convertido: "+tag);
 
   const layers = [];
   const storyboards = [];
@@ -40,12 +44,14 @@ export function parseGtXml(xmlContent) {
         type: aMatch[1],
         target: aAttrs.Object,
         delay: parseFloat(aAttrs.Delay) || 0,
-        duration: parseFloat(aAttrs.Duration) || 0.5,
+        duration: aAttrs.Duration===undefined?.5:Math.max(0,Math.min(30,parseFloat(aAttrs.Duration)||0)),
+        scale:Math.max(.01,Math.min(10,parseFloat(aAttrs.Scale)||.01)),
+        angle:Math.max(-360,Math.min(360,parseFloat(aAttrs.Angle)||90)),
         direction: aAttrs.Direction || 'Left',
         interpolation: aAttrs.Interpolation || 'CubicEasingIn'
       });
     }
-    storyboards.push({ type: sbType, animations: anims });
+    for(const node of sbMatch[2].matchAll(/<([A-Za-z][\w]*)\s+([^>]+)\/>/g)){const a=parseAttributes(node[2]);if(a.Object&&!['Fade','Fly','Zoom','Rotate','None'].includes(node[1]))warnings.push('Animação não convertida: '+node[1]+' ('+a.Object+')');}storyboards.push({ type: sbType, animations: anims });
   }
 
   // Extrair todas as Layers
@@ -67,6 +73,7 @@ export function parseGtXml(xmlContent) {
     };
 
     const layerBody = layerMatch[2];
+    const tickerRanges=[...layerBody.matchAll(/<Ticker\s+[^>]+>[\s\S]*?<\/Ticker>/gi)].map(m=>[m.index,m.index+m[0].length]);
 
     // Extrair Rectangles
     const rectRegex = /<Rectangle\s+([^>]+)>([\s\S]*?)<\/Rectangle>/gi;
@@ -92,13 +99,14 @@ export function parseGtXml(xmlContent) {
         fill: parseBrush(rBody, 'Rectangle.Fill'),
         stroke: parseBrush(rBody, 'Rectangle.Stroke')
       };
-      layer.elements.push(rect);
+      rect.order=rMatch.index;layer.elements.push(rect);
     }
 
     // Extrair TextBlocks
     const tbRegex = /<TextBlock\s+([^>]+)>([\s\S]*?)<\/TextBlock>/gi;
     let tbMatch;
     while ((tbMatch = tbRegex.exec(layerBody)) !== null) {
+      if(tickerRanges.some(([start,end])=>tbMatch.index>=start&&tbMatch.index<end))continue;
       const tbAttrs = parseAttributes(tbMatch[1]);
       const tbDim = parseCoords(tbAttrs.Dimensions, [200, 50, 0]);
       const tbLoc = parseCoords(tbAttrs.Location, [0, 0, 0]);
@@ -123,7 +131,7 @@ export function parseGtXml(xmlContent) {
         fill: parseBrush(tbBody, 'TextBlock.Fill'),
         stroke: parseBrush(tbBody, 'TextBlock.Stroke')
       };
-      layer.elements.push(textBlock);
+      textBlock.order=tbMatch.index;layer.elements.push(textBlock);
     }
 
     // Extrair Images
@@ -148,7 +156,7 @@ export function parseGtXml(xmlContent) {
         sizeMode: imgAttrs.SizeMode || 'Stretch',
         source: src
       };
-      layer.elements.push(image);
+      image.order=imgMatch.index;layer.elements.push(image);
     }
 
     // Extrair Tickers
@@ -177,13 +185,14 @@ export function parseGtXml(xmlContent) {
         text: tbAttrs.Text || 'Ticker text',
         fill: parseBrush(tickBody, 'Ticker.Fill')
       };
-      layer.elements.push(ticker);
+      ticker.order=tickMatch.index;layer.elements.push(ticker);
     }
 
+    const shapeRegex=/<(Ellipse|Polygon|Path)\s+([^>]+?)(?:\/>|>([\s\S]*?)<\/\1>)/gi;let shapeMatch;while((shapeMatch=shapeRegex.exec(layerBody))){const type=shapeMatch[1],attrs=parseAttributes(shapeMatch[2]),dim=parseCoords(attrs.Dimensions,[100,100,0]),loc=parseCoords(attrs.Location);let geometry='';if(type==='Polygon'){geometry=attrs.Points||'';if(!/^[\d.,+\-\s]+$/.test(geometry)||geometry.trim().split(/[\s,]+/).length<6){warnings.push('Polygon sem Points numéricos: '+(attrs.Name||''));continue;}}if(type==='Path'){geometry=attrs.Data||'';if(!geometry||geometry.length>20000||!/^[MLCQAZHTVSmlcqazhtvs\d.,+\-\s]+$/.test(geometry)){warnings.push('Path não convertido: exige Data SVG compatível ('+(attrs.Name||'')+')');continue;}}layer.elements.push({type,name:attrs.Name||type,x:loc[0],y:loc[1],width:dim[0],height:dim[1],geometry,opacity:attrs.Opacity===undefined?1:Math.max(0,Math.min(1,Number(attrs.Opacity)||0)),strokeThickness:Math.max(0,Math.min(100,Number(attrs.StrokeThickness)||0)),fill:parseBrush(shapeMatch[3]||'',type+'.Fill'),stroke:parseBrush(shapeMatch[3]||'',type+'.Stroke'),order:shapeMatch.index});}layer.elements.sort((a,b)=>a.order-b.order);
     layers.push(layer);
   }
 
-  return { width, height, layers, storyboards };
+  return { width, height, layers, storyboards, warnings };
 }
 
 /**
@@ -272,6 +281,9 @@ function brushToCss(brush) {
  */
 export function generateHtml(gtData, templateTitle = 'FreeMix GT Template', assetFiles = {}) {
   const { width, height, layers, storyboards } = gtData;
+  const warnings=gtData.warnings||(gtData.warnings=[]);
+  const family=value=>String(value||"Arial").replace(/[^\p{L}\p{N} _-]/gu," ").trim()||"Arial";
+  const fontRules=Object.entries(assetFiles).filter(([f])=>/\.(ttf|otf|woff2?)$/i.test(f)).map(([f,url])=>`@font-face{font-family:"${family(path.basename(f,path.extname(f)))}";src:url("${encodeURI(url).replaceAll("\"","%22").replaceAll("'","%27")}");font-display:swap;}`).join("\n");
 
   // Mapear animações de Storyboard
   const inStoryboard = storyboards.find(s => s.type === 'TransitionIn') || storyboards[0] || { animations: [] };
@@ -302,7 +314,7 @@ export function generateHtml(gtData, templateTitle = 'FreeMix GT Template', asse
           id: el.name,
           label: el.name,
           type: 'image',
-          default: el.source ? path.basename(el.source) : ''
+          default: el.source ? path.basename(el.source.replace(/\\/g, '/')) : ''
         });
       }
     });
@@ -342,10 +354,10 @@ export function generateHtml(gtData, templateTitle = 'FreeMix GT Template', asse
         `height: ${el.height}px`
       ];
 
-      if (el.type === 'Rectangle') {
+      if(['Ellipse','Polygon','Path'].includes(el.type)){elemStyles.push('opacity: '+el.opacity);const fill=el.fill?.type==='Solid'?convertColor(el.fill.color):'transparent',stroke=el.stroke?.type==='Solid'?convertColor(el.stroke.color):'transparent';if(el.fill&&el.fill.type!=='Solid')warnings.push('Brush da forma '+el.name+' não convertido: '+el.fill.type);const shape=el.type==='Ellipse'?'<ellipse cx="'+el.width/2+'" cy="'+el.height/2+'" rx="'+el.width/2+'" ry="'+el.height/2+'"/>':el.type==='Polygon'?'<polygon points="'+escapeHtml(el.geometry)+'"/>':'<path d="'+escapeHtml(el.geometry)+'"/>';layerHtml+=`<svg id="obj-${safeId}" class="gt-object" data-name="${escapeHtml(el.name)}" style="${elemStyles.join('; ')}" viewBox="0 0 ${el.width} ${el.height}"><g fill="${escapeHtml(fill)}" stroke="${escapeHtml(stroke)}" stroke-width="${el.strokeThickness}">${shape}</g></svg>`;}else if (el.type === 'Rectangle') {
         if (el.fill && el.fill.type === 'Bitmap') {
           const filename = el.fill.source;
-          const localImgPath = assetFiles[filename] || filename;
+          const localImgPath = encodeURI(assetFiles[filename] || filename).replaceAll("'",'%27').replaceAll('(', '%28').replaceAll(')', '%29');
           elemStyles.push(`background-image: url('${localImgPath}')`);
           elemStyles.push(`background-size: 100% 100%`);
           elemStyles.push(`background-repeat: no-repeat`);
@@ -358,7 +370,7 @@ export function generateHtml(gtData, templateTitle = 'FreeMix GT Template', asse
         if (el.radiusX || el.radiusY) {
           elemStyles.push(`border-radius: ${el.radiusX}px / ${el.radiusY}px`);
         }
-        if (el.strokeThickness && el.stroke && el.stroke.type !== 'Solid') {
+        if (el.strokeThickness && el.stroke && el.stroke.type === 'Solid') {
           elemStyles.push(`border: ${el.strokeThickness}px solid ${brushToCss(el.stroke)}`);
           elemStyles.push(`box-sizing: border-box`);
         }
@@ -367,7 +379,7 @@ export function generateHtml(gtData, templateTitle = 'FreeMix GT Template', asse
         elemStyles.push(`display: flex`);
         elemStyles.push(`align-items: ${el.verticalAlign === 'top' ? 'flex-start' : el.verticalAlign === 'bottom' ? 'flex-end' : 'center'}`);
         elemStyles.push(`justify-content: ${el.textAlign === 'left' ? 'flex-start' : el.textAlign === 'right' ? 'flex-end' : 'center'}`);
-        elemStyles.push(`font-family: '${el.fontFamily}', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif`);
+        elemStyles.push(`font-family: '${family(el.fontFamily)}', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif`);
         elemStyles.push(`font-size: ${el.fontSize}px`);
         elemStyles.push(`font-weight: ${el.fontWeight}`);
         elemStyles.push(`color: ${brushToCss(el.fill)}`);
@@ -380,8 +392,8 @@ export function generateHtml(gtData, templateTitle = 'FreeMix GT Template', asse
         const isClock = el.text.includes('{0:');
         layerHtml += `\n    <div id="field-${escapeId(el.name)}" class="gt-object gt-text ${isClock ? 'gt-clock' : ''}" style="${elemStyles.join('; ')}" data-name="${escapeHtml(el.name)}" data-format="${escapeHtml(el.text)}">${isClock ? '--:--' : escapeHtml(el.text)}</div>`;
       } else if (el.type === 'Image') {
-        const filename = el.source ? path.basename(el.source) : '';
-        const localImgPath = assetFiles[filename] || filename;
+        const filename = el.source ? path.basename(el.source.replace(/\\/g, '/')) : '';
+        const localImgPath = encodeURI(assetFiles[filename] || filename).replaceAll("'",'%27').replaceAll('(', '%28').replaceAll(')', '%29');
         elemStyles.push(`background-image: url('${localImgPath}')`);
         elemStyles.push(`background-size: ${el.sizeMode === 'Stretch' ? '100% 100%' : 'contain'}`);
         elemStyles.push(`background-repeat: no-repeat`);
@@ -392,7 +404,7 @@ export function generateHtml(gtData, templateTitle = 'FreeMix GT Template', asse
         elemStyles.push(`overflow: hidden`);
         elemStyles.push(`display: flex`);
         elemStyles.push(`align-items: center`);
-        elemStyles.push(`font-family: '${el.fontFamily}', sans-serif`);
+        elemStyles.push(`font-family: '${family(el.fontFamily)}', sans-serif`);
         elemStyles.push(`font-size: ${el.fontSize}px`);
         elemStyles.push(`font-weight: ${el.fontWeight}`);
         elemStyles.push(`color: ${brushToCss(el.fill)}`);
@@ -403,7 +415,7 @@ export function generateHtml(gtData, templateTitle = 'FreeMix GT Template', asse
       }
 
       // Adicionar animação se houver
-      generateKeyframeRules(cssRules, safeId, el.name, elInAnim, elOutAnim);
+      generateKeyframeRules(cssRules, safeId, el.name, elInAnim, elOutAnim, width, height);
     });
 
     layerHtml += `\n  </div>`;
@@ -414,11 +426,9 @@ export function generateHtml(gtData, templateTitle = 'FreeMix GT Template', asse
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=1920, height=1080, initial-scale=1.0">
+  <meta name="viewport" content="width=${width}, height=${height}, initial-scale=1.0">
   <title>${escapeHtml(templateTitle)} - FreeMix Broadcast GC</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;600;700;800&family=Oswald:wght@400;600;700&family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+
   <style>
     * {
       box-sizing: border-box;
@@ -426,8 +436,8 @@ export function generateHtml(gtData, templateTitle = 'FreeMix GT Template', asse
       padding: 0;
     }
     html, body {
-      width: 1920px;
-      height: 1080px;
+      width: ${width}px;
+      height: ${height}px;
       overflow: hidden;
       background: transparent;
       margin: 0;
@@ -437,17 +447,18 @@ export function generateHtml(gtData, templateTitle = 'FreeMix GT Template', asse
     }
     #gc-root {
       position: relative;
-      width: 1920px;
-      height: 1080px;
+      width: ${width}px;
+      height: ${height}px;
       transform-origin: top left;
     }
     
     /* Animações Padrão de Transição In / Out */
     @keyframes ticker-scroll {
-      0% { transform: translateX(1920px); }
+      0% { transform: translateX(${width}px); }
       100% { transform: translateX(-100%); }
     }
 
+    ${fontRules}
     ${cssRules.join('\n\n    ')}
   </style>
 </head>
@@ -462,7 +473,7 @@ export function generateHtml(gtData, templateTitle = 'FreeMix GT Template', asse
      * Fornece API padronizada para Overlays, Title Editor e Data Sources
      */
     window.FreeMixTitle = {
-      data: ${JSON.stringify(fields, null, 2)},
+      data: ${JSON.stringify(fields, null, 2).replaceAll('<','\\u003c')},
       
       // Atualizar campos de texto / imagens dinamicamente
       updateFields(dataObj) {
@@ -527,10 +538,14 @@ export function generateHtml(gtData, templateTitle = 'FreeMix GT Template', asse
     initClocks();
 
     // Integração com o protocolo nativo de GC do FreeMix (painel/gc/gc.js)
+    window.FreeMixGCCompatibility={version:1,animation:true,clock:false,style:false};
+    let timeline={};
     window.GC = {
+      configure(t){timeline=t||{};},
       play(data) {
         if (data) window.FreeMixTitle.updateFields(data);
         window.FreeMixTitle.transitionIn();
+        const epoch=timeline.animationStartedAt;if(Number.isFinite(epoch)&&epoch>0){requestAnimationFrame(()=>document.getAnimations().filter(a=>a.animationName!=='ticker-scroll').forEach(a=>a.currentTime=Math.max(0,Date.now()-epoch)));}
       },
       stop() {
         window.FreeMixTitle.transitionOut();
@@ -560,70 +575,9 @@ export function generateHtml(gtData, templateTitle = 'FreeMix GT Template', asse
 /**
  * Constrói keyframes CSS para animações Fly e Fade do GT Title
  */
-function generateKeyframeRules(cssRules, safeId, objName, inAnim, outAnim) {
-  if (inAnim) {
-    const delay = inAnim.delay || 0;
-    const dur = inAnim.duration || 0.5;
-    const animName = `anim-in-${safeId}`;
-
-    let fromCss = '';
-    let toCss = 'opacity: 1; transform: translate(0, 0);';
-
-    if (inAnim.type === 'Fade') {
-      fromCss = 'opacity: 0;';
-    } else if (inAnim.type === 'Fly') {
-      if (inAnim.direction === 'Right') {
-        fromCss = 'transform: translateX(1920px); opacity: 0;';
-      } else if (inAnim.direction === 'Left') {
-        fromCss = 'transform: translateX(-1920px); opacity: 0;';
-      } else if (inAnim.direction === 'Top') {
-        fromCss = 'transform: translateY(-1080px); opacity: 0;';
-      } else {
-        fromCss = 'transform: translateY(1080px); opacity: 0;';
-      }
-    } else {
-      fromCss = 'opacity: 0;';
-    }
-
-    cssRules.push(`@keyframes ${animName} {
-      0% { ${fromCss} }
-      100% { ${toCss} }
-    }
-    .animate-in #obj-${safeId},
-    .animate-in [data-name="${escapeHtml(objName)}"] {
-      animation: ${animName} ${dur}s cubic-bezier(0.16, 1, 0.3, 1) ${delay}s both;
-    }`);
-  }
-
-  if (outAnim) {
-    const delay = outAnim.delay || 0;
-    const dur = outAnim.duration || 0.4;
-    const animName = `anim-out-${safeId}`;
-
-    let toCss = '';
-    if (outAnim.type === 'Fade') {
-      toCss = 'opacity: 0;';
-    } else if (outAnim.type === 'Fly') {
-      if (outAnim.direction === 'Right') {
-        toCss = 'transform: translateX(1920px); opacity: 0;';
-      } else if (outAnim.direction === 'Left') {
-        toCss = 'transform: translateX(-1920px); opacity: 0;';
-      } else {
-        toCss = 'transform: translateY(1080px); opacity: 0;';
-      }
-    } else {
-      toCss = 'opacity: 0;';
-    }
-
-    cssRules.push(`@keyframes ${animName} {
-      0% { opacity: 1; transform: translate(0, 0); }
-      100% { ${toCss} }
-    }
-    .animate-out #obj-${safeId},
-    .animate-out [data-name="${escapeHtml(objName)}"] {
-      animation: ${animName} ${dur}s cubic-bezier(0.7, 0, 0.84, 0) ${delay}s both;
-    }`);
-  }
+function generateKeyframeRules(cssRules,safeId,objName,inAnim,outAnim,width=1920,height=1080){
+ const curves={Linear:'linear',CubicEasingIn:'cubic-bezier(.55,.055,.675,.19)',CubicEasingOut:'cubic-bezier(.215,.61,.355,1)',CubicEasingInOut:'cubic-bezier(.645,.045,.355,1)'};
+ for(const[phase,a]of[['in',inAnim],['out',outAnim]]){if(!a||a.type==='None')continue;let hidden='opacity:0;',visible='opacity:1;transform:none;';if(a.type==='Fly'){const axis=['Left','Right'].includes(a.direction)?'X':'Y',distance=axis==='X'?width:height,sign=['Left','Top'].includes(a.direction)?'-':'';hidden+='transform:translate'+axis+'('+sign+distance+'px);';}else if(a.type==='Zoom'){hidden+='transform:scale('+a.scale+');';}else if(a.type==='Rotate'){hidden+='transform:rotate('+a.angle+'deg);';}const name='anim-'+phase+'-'+safeId;cssRules.push('@keyframes '+name+'{from{'+(phase==='in'?hidden:visible)+'}to{'+(phase==='in'?visible:hidden)+'}}.animate-'+phase+' [data-name="'+escapeHtml(objName)+'"]{transform-origin:center;animation:'+name+' '+a.duration+'s '+(curves[a.interpolation]||'ease')+' '+Math.max(0,Math.min(30,a.delay||0))+'s both;}');}
 }
 
 function escapeId(str) {
@@ -651,18 +605,23 @@ export function convertGtzipFile(gtzipPath, outputDir) {
   }
 
   const baseName = path.basename(gtzipPath, '.gtzip');
-  const targetFolder = path.join(outputDir, baseName.replace(/[^a-zA-Z0-9_\-\s]/g, '').trim());
+  const folderName = baseName.replace(/[^a-zA-Z0-9_\-\s]/g, '').trim();
+  if (!folderName) throw new Error('O nome do título não contém caracteres válidos');
+  const targetFolder = path.join(outputDir, folderName);
+  if (fs.existsSync(targetFolder) && fs.lstatSync(targetFolder).isSymbolicLink()) throw new Error('Destino do título é um link');
 
   if (!fs.existsSync(targetFolder)) {
     fs.mkdirSync(targetFolder, { recursive: true });
   }
 
   // Extrair conteúdo temporário
-  const tempExtract = path.join(targetFolder, '_raw_extracted');
-  if (fs.existsSync(tempExtract)) fs.rmSync(tempExtract, { recursive: true, force: true });
-  fs.mkdirSync(tempExtract, { recursive: true });
+  const tempExtract = fs.mkdtempSync(path.join(path.resolve(targetFolder), '_raw_extracted-'));
+  const entries=cp.execFileSync('tar.exe',['-tf',gtzipPath],{encoding:'utf8',windowsHide:true}).split(/\r?\n/).filter(Boolean);
+  if(entries.some(entry=>{const n=entry.replaceAll('\\','/');return n.startsWith('/')||n.includes(':')||n.split('/').includes('..');}))throw new Error('Pacote de títulos contém caminho fora da pasta de extração');
+  const detail=cp.execFileSync('tar.exe',['-tvf',gtzipPath],{encoding:'utf8',windowsHide:true});
+  if(detail.split(/\r?\n/).some(line=>/^[lh]/.test(line)))throw new Error('Links não são permitidos nos títulos');
 
-  cp.execSync(`tar -xf "${gtzipPath}" -C "${tempExtract}"`);
+  cp.execFileSync('tar.exe',['-xf',gtzipPath,'-C',tempExtract],{windowsHide:true});
 
   // Ler document.xml
   const docPath = path.join(tempExtract, 'document.xml');
@@ -689,15 +648,19 @@ export function convertGtzipFile(gtzipPath, outputDir) {
 
   // Mapear arquivos extraídos (imagens, thumbnail)
   const extractedFiles = fs.readdirSync(tempExtract);
+  const allowedAsset=f=>/\.(png|jpe?g|webp|bmp|gif|ttf|otf|woff2?)$/i.test(f);
   const assetMap = {};
 
   for (const f of extractedFiles) {
     const fullPath = path.join(tempExtract, f);
-    const stat = fs.statSync(fullPath);
+    const stat = fs.lstatSync(fullPath);
+    if (stat.isSymbolicLink()) throw new Error('Recurso do título é um link');
     if (stat.isDirectory()) {
       // Subpastas com arquivos de imagem
       const subFiles = fs.readdirSync(fullPath);
       for (const sf of subFiles) {
+        if (!fs.lstatSync(path.join(fullPath, sf)).isFile()) continue;
+        if(!allowedAsset(sf)){gtData.warnings.push('Recurso não copiado: '+sf);continue;}
         const destName = `${f}_${sf}`;
         fs.copyFileSync(path.join(fullPath, sf), path.join(targetFolder, destName));
         assetMap[sf] = destName;
@@ -707,9 +670,10 @@ export function convertGtzipFile(gtzipPath, outputDir) {
     } else if (guidMap[f]) {
       // Arquivo mapeado por GUID do resources.xml!
       const realName = guidMap[f];
+      if(!allowedAsset(realName)){gtData.warnings.push("Recurso não copiado: "+realName);continue;}
       fs.copyFileSync(fullPath, path.join(targetFolder, realName));
       assetMap[realName] = realName;
-    } else if (f.endsWith('.png') || f.endsWith('.jpg') || f.endsWith('.jpeg')) {
+    } else if (/\.(png|jpe?g|webp|bmp|gif|ttf|otf|woff2?)$/i.test(f)) {
       fs.copyFileSync(fullPath, path.join(targetFolder, f));
       assetMap[f] = f;
     }
@@ -726,8 +690,11 @@ export function convertGtzipFile(gtzipPath, outputDir) {
     resolution: { width: gtData.width, height: gtData.height },
     thumbnail: 'thumbnail.png',
     entrypoint: 'index.html',
+    freemixCompatibility: {version:1,animation:true,clock:false,style:false},
     layersCount: gtData.layers.length,
     storyboards: gtData.storyboards.map(s => ({ type: s.type, count: s.animations.length })),
+    warnings: gtData.warnings,
+    resources: Object.keys(assetMap),
     fields: []
   };
 
@@ -768,6 +735,8 @@ export function convertGtzipFile(gtzipPath, outputDir) {
   fs.writeFileSync(path.join(targetFolder, `${slug}.json`), JSON.stringify(gcDescriptor, null, 2), 'utf8');
 
   // Limpar pasta temporária
+  const cleanupRelative=path.relative(path.resolve(targetFolder),path.resolve(tempExtract));
+  if(!cleanupRelative.startsWith('_raw_extracted-')||cleanupRelative.includes(path.sep)||path.isAbsolute(cleanupRelative))throw new Error('Pasta temporária fora do título');
   fs.rmSync(tempExtract, { recursive: true, force: true });
 
   console.log(`[CONVERTIDO COM SUCESSO] -> ${targetFolder}`);

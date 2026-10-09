@@ -1,0 +1,415 @@
+{
+  "root": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\obs-vmix",
+  "installed": [
+    {
+      "path": "data/obs-plugins/advanced-scene-switcher/licenses/LICENSE-asio",
+      "size": 1361,
+      "sha256": "beb8e42e9d6b4284e03304d05a81a0755200a965fc8d0a5e0aea1e84cf805d6e"
+    },
+    {
+      "path": "data/obs-plugins/advanced-scene-switcher/licenses/LICENSE-cpp-httplib",
+      "size": 1097,
+      "sha256": "bb546eae5924d8ee842e0e567e6d533c5824bdebccf605f99a5b3429034e6697"
+    },
+    {
+      "path": "data/obs-plugins/advanced-scene-switcher/licenses/LICENSE-json",
+      "size": 1097,
+      "sha256": "b9715282b2f1db1359a919bb3a542dd4362fd9e38ae72d421367eb11abe62eec"
+    },
+    {
+      "path": "data/obs-plugins/advanced-scene-switcher/licenses/LICENSE-jsoncons",
+      "size": 1576,
+      "sha256": "88790a489250911e98b3a0059842886846758b45cde330949d0afc8a97d75a42"
+    },
+    {
+      "path": "data/obs-plugins/advanced-scene-switcher/licenses/LICENSE-leptonica",
+      "size": 1547,
+      "sha256": "4af89052bb48065a0e6b286ba94b2537a1e032734bac4c7970a50d775f68e1f2"
+    },
+    {
+      "path": "data/obs-plugins/advanced-scene-switcher/licenses/LICENSE-libremidi",
+      "size": 4707,
+      "sha256": "4b6e5e220237e475d2acadbc1ccfd8e8b13318583bcd2b906ea164d215e8ace6"
+    },
+    {
+      "path": "data/obs-plugins/advanced-scene-switcher/licenses/LICENSE-libusb",
+      "size": 26940,
+      "sha256": "319daefe38ebeead3df178e5937898a52d67c0c795f54f1c0bb10ac3b9cffb63"
+    },
+    {
+      "path": "data/obs-plugins/advanced-scene-switcher/licenses/LICENSE-opencv",
+      "size": 11560,
+      "sha256": "3ddf9be5c28fe27dad143a5dc76eea25222ad1dd68934a047064e56ed2fa40c5"
+    },
+    {
+      "path": "data/obs-plugins/advanced-scene-switcher/licenses/LICENSE-openvr",
+      "size": 1515,
+      "sha256": "9e6d1480fb68e86ceafed312f7e67dadcdc2a99b350b710d624b8f0f0f1a2329"
+    },
+    {
+      "path": "data/obs-plugins/advanced-scene-switcher/licenses/LICENSE-paho-mqtt",
+      "size": 532,
+      "sha256": "d4783387d9d32f96e9629cca4283ac2230b3c7964dd448f49e3873eb3168e243"
+    },
+    {
+      "path": "data/obs-plugins/advanced-scene-switcher/licenses/LICENSE-tesseract",
+      "size": 11560,
+      "sha256": "3ddf9be5c28fe27dad143a5dc76eea25222ad1dd68934a047064e56ed2fa40c5"
+    },
+    {
+      "path": "data/obs-plugins/advanced-scene-switcher/licenses/LICENSE-websocketpp",
+      "size": 7577,
+      "sha256": "60a06a5c9e347a4047348672a22c76b4b5344bd7d7513da34950f7716a93ddbc"
+    },
+    {
+      "path": "data/obs-plugins/advanced-scene-switcher/licenses/LICENSE-whisper",
+      "size": 1099,
+      "sha256": "bcd8ec749126d45cb06737d0690295d73df4b6e7e194205bcf91190368f27285"
+    },
+    {
+      "path": "data/obs-plugins/advanced-scene-switcher/locale/de-DE.ini",
+      "size": 67231,
+      "sha256": "31f0161a0b8445135a7abb7e42022578f39e748258ac8c94003887d07a01e2e4"
+    },
+    {
+      "path": "data/obs-plugins/advanced-scene-switcher/locale/en-US.ini",
+      "size": 258885,
+      "sha256": "19e3d89f0c532424c6a01db459ee44d771e4ed289cd86d1014f8d488c51bad59"
+    },
+    {
+      "path": "data/obs-plugins/advanced-scene-switcher/locale/es-ES.ini",
+      "size": 57242,
+      "sha256": "3df127f74a408f4fb700b1da53c974304847df00a2e390df9891444001b41315"
+    },
+    {
+      "path": "data/obs-plugins/advanced-scene-switcher/locale/fr-FR.ini",
+      "size": 96122,
+      "sha256": "c7ed054cf8b87890fd36b44aab69b4a90fd0bf87250334d58174e36a4339b5d7"
+    },
+    {
+      "path": "data/obs-plugins/advanced-scene-switcher/locale/ja-JP.ini",
+      "size": 238080,
+      "sha256": "b145a9ad7ea706bd37dc681ed903217e91c54b2a532db9a813b66ab450dc5811"
+    },
+    {
+      "path": "data/obs-plugins/advanced-scene-switcher/locale/pt-BR.ini",
+      "size": 180386,
+      "sha256": "5d53e46d6de12ae957fb19b2baf8fc7ef8357b8bee01a4823f795ca519d1dc1a"
+    },
+    {
+      "path": "data/obs-plugins/advanced-scene-switcher/locale/ru-RU.ini",
+      "size": 39739,
+      "sha256": "d7be6a8d4a14da121c291582c436ced689be398b2a5c55b6ca9c3285c6c7e560"
+    },
+    {
+      "path": "data/obs-plugins/advanced-scene-switcher/locale/tr-TR.ini",
+      "size": 47461,
+      "sha256": "615a43b793e7063ea9aacef29871156633aa3196306b56d68322ee54f2462490"
+    },
+    {
+      "path": "data/obs-plugins/advanced-scene-switcher/locale/zh-CN.ini",
+      "size": 186020,
+      "sha256": "222aa0f90d58a33e7dc65eb893fbeba425a7b3c04529d4a7fbdb1aa02fd94a63"
+    },
+    {
+      "path": "data/obs-plugins/advanced-scene-switcher/res/cascadeClassifiers/haarcascade_eye_tree_eyeglasses.xml",
+      "size": 1128193,
+      "sha256": "b33fdcf429e512120e176ffd451a0750650cc6ead1f843e0e6d69b811868d824"
+    },
+    {
+      "path": "data/obs-plugins/advanced-scene-switcher/res/cascadeClassifiers/haarcascade_eye.xml",
+      "size": 521766,
+      "sha256": "f974c03e65daf1e1a3c2242407e8bfbbd66776a77759f94923074cc2dac29979"
+    },
+    {
+      "path": "data/obs-plugins/advanced-scene-switcher/res/cascadeClassifiers/haarcascade_frontalface_alt_tree.xml",
+      "size": 3748256,
+      "sha256": "973ff840a27c1371febe540536ea277d8592458ff8914bb21cdf6f2327395ec2"
+    },
+    {
+      "path": "data/obs-plugins/advanced-scene-switcher/res/cascadeClassifiers/haarcascade_frontalface_alt.xml",
+      "size": 946032,
+      "sha256": "bd672875c8b90c5cc832d8077acb8405be0d3b970e62b12c06c210374e3c3b0c"
+    },
+    {
+      "path": "data/obs-plugins/advanced-scene-switcher/res/cascadeClassifiers/haarcascade_frontalface_alt2.xml",
+      "size": 861012,
+      "sha256": "6e8fac74c150b1662166552056fdaf628de68332f25022c38f293b485f428f17"
+    },
+    {
+      "path": "data/obs-plugins/advanced-scene-switcher/res/cascadeClassifiers/haarcascade_frontalface_default.xml",
+      "size": 1290445,
+      "sha256": "593c7b96bfedf804daa0a365d73a35518531562889b40dad1725d5ad9db61ff6"
+    },
+    {
+      "path": "data/obs-plugins/advanced-scene-switcher/res/cascadeClassifiers/haarcascade_fullbody.xml",
+      "size": 654757,
+      "sha256": "0910e4945468312098f11b4b9c954eb433f9ed6ff571902e517eba0a9e6ef9ad"
+    },
+    {
+      "path": "data/obs-plugins/advanced-scene-switcher/res/cascadeClassifiers/haarcascade_lefteye_2splits.xml",
+      "size": 333029,
+      "sha256": "040327a53d1d2cd8eb21e745f739ee0eb898e7b5bf68813607f0dac965819acf"
+    },
+    {
+      "path": "data/obs-plugins/advanced-scene-switcher/res/cascadeClassifiers/haarcascade_lowerbody.xml",
+      "size": 546570,
+      "sha256": "ceae0fc2dcb7277f5b18a307ef9f31b7ef2f96a6829afea388f54a9ec9a2fafe"
+    },
+    {
+      "path": "data/obs-plugins/advanced-scene-switcher/res/cascadeClassifiers/haarcascade_profileface.xml",
+      "size": 1157563,
+      "sha256": "dfe4b1ad4381e26fbf4c5788fd09cf2c9425db4dfc44bb6588ed0c91414d8480"
+    },
+    {
+      "path": "data/obs-plugins/advanced-scene-switcher/res/cascadeClassifiers/haarcascade_righteye_2splits.xml",
+      "size": 334418,
+      "sha256": "c5b7151f52ea293f37b92192ab6958ba6889be22a6f669b4ff1d0b3481b3354e"
+    },
+    {
+      "path": "data/obs-plugins/advanced-scene-switcher/res/cascadeClassifiers/haarcascade_upperbody.xml",
+      "size": 1076143,
+      "sha256": "b629ad81cdfdbfaa21798ddf3ac776e4449504e58f5363cfde8f14368e9bf70c"
+    },
+    {
+      "path": "data/obs-plugins/advanced-scene-switcher/res/images/DarkAdvanced.svg",
+      "size": 2025,
+      "sha256": "aa318739e58fcccc6a5c75e3fcc82d0576c54e0656725a7c3be5608fafd1286c"
+    },
+    {
+      "path": "data/obs-plugins/advanced-scene-switcher/res/images/DarkDoubleDown.svg",
+      "size": 799,
+      "sha256": "57a44ac94ccd5d612b7e02e5feb4d9a159749b7ab3e120811f84fae519ab3d7b"
+    },
+    {
+      "path": "data/obs-plugins/advanced-scene-switcher/res/images/DarkDoubleUp.svg",
+      "size": 761,
+      "sha256": "e172d86489af33d4bef44c019b10056bb6139ddaa6cd1abe20351bea05494110"
+    },
+    {
+      "path": "data/obs-plugins/advanced-scene-switcher/res/images/DarkGroup.svg",
+      "size": 1762,
+      "sha256": "586e4fe9d7c658ebade121b645932455b137db399251e0aaa822117e399ae748"
+    },
+    {
+      "path": "data/obs-plugins/advanced-scene-switcher/res/images/DarkNote.svg",
+      "size": 3227,
+      "sha256": "5a9586255a01ae49f8e6a684f323c632428abfe1655eb22036e830c451890b2b"
+    },
+    {
+      "path": "data/obs-plugins/advanced-scene-switcher/res/images/DarkNotEqual.svg",
+      "size": 941,
+      "sha256": "73333a06c28e6a6ee1876bff42333bbba0d31245a3e5e713c0b25a342310e341"
+    },
+    {
+      "path": "data/obs-plugins/advanced-scene-switcher/res/images/DarkRegex.svg",
+      "size": 824,
+      "sha256": "effb82f6e515f560d9b25416ed32ffc0604f438daaa203c4d20cab217c1f49d2"
+    },
+    {
+      "path": "data/obs-plugins/advanced-scene-switcher/res/images/DarkSearch.svg",
+      "size": 1392,
+      "sha256": "7f4b562a8a9599657dad6a3872473f8e66043aa43682aaa474c0cb9fc229e883"
+    },
+    {
+      "path": "data/obs-plugins/advanced-scene-switcher/res/images/DarkTime.svg",
+      "size": 1791,
+      "sha256": "f4234183a246fb0cb7b99da201c4df059d2b8cb8b641e209c804c55705131a3b"
+    },
+    {
+      "path": "data/obs-plugins/advanced-scene-switcher/res/images/DarkVariable.svg",
+      "size": 982,
+      "sha256": "ae141592c3afd849e4dcf12014f93393e38028b870e4f2dd64f688adac617b3d"
+    },
+    {
+      "path": "data/obs-plugins/advanced-scene-switcher/res/images/LightAdvanced.svg",
+      "size": 2025,
+      "sha256": "33c18eb557a4cbedd13d08ef57a30b64641fc05488d7b6b2522a90a0a41ed09a"
+    },
+    {
+      "path": "data/obs-plugins/advanced-scene-switcher/res/images/LightDoubleDown.svg",
+      "size": 799,
+      "sha256": "87985346baab7b330269132e4c55842e99bc6b4cb3d5c3dd43ff6c7a817c5c9e"
+    },
+    {
+      "path": "data/obs-plugins/advanced-scene-switcher/res/images/LightDoubleUp.svg",
+      "size": 765,
+      "sha256": "41a39c538c29d8447f38915ef4520872f9227c6396a3b8f7ab3e03db5f1379b7"
+    },
+    {
+      "path": "data/obs-plugins/advanced-scene-switcher/res/images/LightGroup.svg",
+      "size": 1762,
+      "sha256": "a9b7feb81cedd64f01370e7780a5524790a02ccd0a0a5b23e6819b7b758897b8"
+    },
+    {
+      "path": "data/obs-plugins/advanced-scene-switcher/res/images/LightNote.svg",
+      "size": 3227,
+      "sha256": "c2f043a2470f1e1fc8e2e49fbed48bafd90d85af8557f9440f2a9662d52bc8fe"
+    },
+    {
+      "path": "data/obs-plugins/advanced-scene-switcher/res/images/LightNotEqual.svg",
+      "size": 941,
+      "sha256": "c877c25d18f172614ffdb46bfe92e0fe432945f1a2921baec41160339a3d5945"
+    },
+    {
+      "path": "data/obs-plugins/advanced-scene-switcher/res/images/LightRegex.svg",
+      "size": 824,
+      "sha256": "2ea031cf10a56a607b1cf26c61d399b2275ae6a6709d889914cfb22659126912"
+    },
+    {
+      "path": "data/obs-plugins/advanced-scene-switcher/res/images/LightSearch.svg",
+      "size": 1392,
+      "sha256": "e6bdf7bd416d4114b917536a6b05d89c60e8ea06b845eae89d5daa826bda04ce"
+    },
+    {
+      "path": "data/obs-plugins/advanced-scene-switcher/res/images/LightTime.svg",
+      "size": 1791,
+      "sha256": "26260246c03464ec408f6e372961a91e36de39768727d8207a8c95d1328cad88"
+    },
+    {
+      "path": "data/obs-plugins/advanced-scene-switcher/res/images/LightVariable.svg",
+      "size": 982,
+      "sha256": "514ba17e0dc09275e27d2cad6f792afb3feeda0c1349fc9326134553ad50367c"
+    },
+    {
+      "path": "data/obs-plugins/advanced-scene-switcher/res/images/logo.ico",
+      "size": 32038,
+      "sha256": "435ae53d78f89ec4325843828d9fb580b0979c51e628af1c260a671165cbce70"
+    },
+    {
+      "path": "data/obs-plugins/advanced-scene-switcher/res/ocr/eng.traineddata",
+      "size": 23466654,
+      "sha256": "daa0c97d651c19fba3b25e81317cd697e9908c8208090c94c3905381c23fc047"
+    },
+    {
+      "path": "data/obs-plugins/advanced-scene-switcher/res/speech/ggml-tiny-q8_0.bin",
+      "size": 43537433,
+      "sha256": "c2085835d3f50733e2ff6e4b41ae8a2b8d8110461e18821b09a15c40c42d1cca"
+    },
+    {
+      "path": "obs-plugins/64bit/advanced-scene-switcher-lib.dll",
+      "size": 5885440,
+      "sha256": "62d0fb240b5c92c99fe045e697e6c28180a0089b0289c66cf56caada9580b605"
+    },
+    {
+      "path": "obs-plugins/64bit/advanced-scene-switcher.dll",
+      "size": 12288,
+      "sha256": "c358655827137c613a8873e3ac88efa452aabbf473c8d10c75bfa0a150041487"
+    },
+    {
+      "path": "obs-plugins/64bit/advanced-scene-switcher-plugins/advanced-scene-switcher-base.dll",
+      "size": 2443264,
+      "sha256": "dc9423a1100a89bcd072f421c15ffded49cd7bf396e294b0a838cf91c06f0f17"
+    },
+    {
+      "path": "obs-plugins/64bit/advanced-scene-switcher-plugins/advanced-scene-switcher-http.dll",
+      "size": 5744640,
+      "sha256": "7e296d842bd173bf4b63c5fa12f60e3a05decb9d5f23a9a810bf0cbd31a1c617"
+    },
+    {
+      "path": "obs-plugins/64bit/advanced-scene-switcher-plugins/advanced-scene-switcher-macro-schedule.dll",
+      "size": 262656,
+      "sha256": "6bfbaf1589809199bb485675dabe227de3595283d191ce96997676b814c53cf7"
+    },
+    {
+      "path": "obs-plugins/64bit/advanced-scene-switcher-plugins/advanced-scene-switcher-midi.dll",
+      "size": 229888,
+      "sha256": "f57f5da4d4adb6df5e8d87371257f5a2a79eebe23530d8addc1fd2b614ce3bf2"
+    },
+    {
+      "path": "obs-plugins/64bit/advanced-scene-switcher-plugins/advanced-scene-switcher-mqtt.dll",
+      "size": 5460480,
+      "sha256": "83b390387c37fdafd307106d6bf882dfddb54425558afdfe1e8e6fa58a522ced"
+    },
+    {
+      "path": "obs-plugins/64bit/advanced-scene-switcher-plugins/advanced-scene-switcher-opencv.dll",
+      "size": 2806272,
+      "sha256": "874afc4e7556c680e7f621c9eb4c74dc6200e3298420580d47ef9971887b6cce"
+    },
+    {
+      "path": "obs-plugins/64bit/advanced-scene-switcher-plugins/advanced-scene-switcher-openvr.dll",
+      "size": 71680,
+      "sha256": "3ad30acb45d2789166332259efd7cc194aa2c0ed2058f13f452c898f62953b33"
+    },
+    {
+      "path": "obs-plugins/64bit/advanced-scene-switcher-plugins/advanced-scene-switcher-scripting.dll",
+      "size": 351744,
+      "sha256": "7c8f0b339d6db1c23a26b95eeb358a6d43fec9ddbb3624b5ab9e7118945ca50b"
+    },
+    {
+      "path": "obs-plugins/64bit/advanced-scene-switcher-plugins/advanced-scene-switcher-speech.dll",
+      "size": 53820928,
+      "sha256": "178674f182d3408dcaa7e137023b41e98802e54a6d9234fcb93fb829a814672a"
+    },
+    {
+      "path": "obs-plugins/64bit/advanced-scene-switcher-plugins/advanced-scene-switcher-stream-deck.dll",
+      "size": 94720,
+      "sha256": "de312b406e741ca4bf785b23ce1a0c7499999e410449f8a6e0d5e9d4d04ed1ab"
+    },
+    {
+      "path": "obs-plugins/64bit/advanced-scene-switcher-plugins/advanced-scene-switcher-twitch.dll",
+      "size": 6991872,
+      "sha256": "3b988abfa4c4021911b5e856870c094801aaaf0ee618e4a5c2859551f64a9ef7"
+    },
+    {
+      "path": "obs-plugins/64bit/advanced-scene-switcher-plugins/advanced-scene-switcher-usb.dll",
+      "size": 92160,
+      "sha256": "fb70196809851b398af6e5093dbe7acd45028adc1fdd90193e718c0b8e77588b"
+    },
+    {
+      "path": "obs-plugins/64bit/advanced-scene-switcher-plugins/libopencv_core500.dll",
+      "size": 5590016,
+      "sha256": "1b846a0d0a47ce3d14eae6211c33da36541aed9045f8bddfcb3617bacf1ea17d"
+    },
+    {
+      "path": "obs-plugins/64bit/advanced-scene-switcher-plugins/libopencv_features500.dll",
+      "size": 983552,
+      "sha256": "4df1339b9a02197955df3e720792f83a90190b36e16183333b5344281a3353e9"
+    },
+    {
+      "path": "obs-plugins/64bit/advanced-scene-switcher-plugins/libopencv_flann500.dll",
+      "size": 592896,
+      "sha256": "1b9a74b24dda2f40362d6c03f9970708f5905fcdd39c2034e3c0e297b9c6a639"
+    },
+    {
+      "path": "obs-plugins/64bit/advanced-scene-switcher-plugins/libopencv_geometry500.dll",
+      "size": 2609664,
+      "sha256": "204ac15530a8afb92684c571d8a3e650a9ba669aa7afadf470c1530aca3dfc6e"
+    },
+    {
+      "path": "obs-plugins/64bit/advanced-scene-switcher-plugins/libopencv_imgcodecs500.dll",
+      "size": 2886144,
+      "sha256": "7e0d283c5d6617a664c537eb16dd98480977173580986f6277329cb0456bf01e"
+    },
+    {
+      "path": "obs-plugins/64bit/advanced-scene-switcher-plugins/libopencv_imgproc500.dll",
+      "size": 10033152,
+      "sha256": "c87aa8470c6ded8b30da6017ac211fcdeef79bbe5c963acce89a336699aead67"
+    },
+    {
+      "path": "obs-plugins/64bit/advanced-scene-switcher-plugins/libopencv_objdetect500.dll",
+      "size": 1907712,
+      "sha256": "9b1acab13c073cbbef8c650f138302769df1fdac049936384c67d36052f707aa"
+    },
+    {
+      "path": "obs-plugins/64bit/advanced-scene-switcher-plugins/libopencv_xobjdetect500.dll",
+      "size": 493568,
+      "sha256": "fe2dcc007c8f6a5b17b2e0fd0fff97493c06aebfdf018a830faba1f6dd7a255c"
+    },
+    {
+      "path": "obs-plugins/64bit/advanced-scene-switcher-plugins/libusb-1.0.dll",
+      "size": 166400,
+      "sha256": "e3cf5013753b75426f3eb4d54387e6b3db68563abae8d8fdb55080e60f5d6613"
+    },
+    {
+      "path": "obs-plugins/64bit/advanced-scene-switcher-plugins/openvr_api.dll",
+      "size": 818904,
+      "sha256": "c3314d8822729fb7550d070f75c3efdd2d099965e53416b2901996fc6cee744f"
+    },
+    {
+      "path": "obs-plugins/64bit/obs_google_caption_plugin.dll",
+      "size": 1132544,
+      "sha256": "1c4e2ac6601b0d2bb04d174cb5b275bda007ea075725ad12283e04a2a2fb1969"
+    }
+  ]
+}

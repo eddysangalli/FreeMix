@@ -1,0 +1,14 @@
+{
+  "at": "2026-10-09T01:45:56.502Z",
+  "pass": true,
+  "root": "C:\\Users\\eddyr\\AppData\\Local\\Temp\\FreeMix-QA-Events-Time-jPXsbN",
+  "checks": [
+    "Telemetria e mutações API suprimidas",
+    "Burst Native vira um estado completo, hash encadeado e sem payload secreto",
+    "Mudança de coleção invalida lote antigo",
+    "Checkpoint explícito inclui mídia e configurações das saídas sem iniciar nada",
+    "Alinhamento temporal de quatro fontes, FPS diferentes/VFR/áudio; step quadro continua CFR",
+    "DiskReplay permite seek de áudio-only sem inventar taxa de quadros"
+  ],
+  "limit": "Fixtures lógicas; nenhuma genlock física, fonte externa ou transmissão."
+}

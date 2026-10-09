@@ -1,0 +1,19 @@
+*.patch -text -whitespace
+*.zip binary
+*.png binary
+*.ico binary
+*.pdf binary
+docs/native-source/frontend/widgets/vendor/** -whitespace
+# Preserve exact upstream/native consultation bytes; patches remain canonical.
+docs/native-source/frontend/cmake/windows/obs.manifest -whitespace
+docs/native-source/plugins/downstream-keyer/data/locale/es-ES.ini -whitespace
+licenses/freemix-omt-sdk/libomt-original.h -whitespace
+painel/remoto/vendor/ninjasdk/vdoninja-sdk.js -whitespace
+*.sh text eol=lf
+*.cmd text eol=crlf
+*.mjs text eol=lf
+*.js text eol=lf
+*.html text eol=lf
+*.css text eol=lf
+*.json text eol=lf
+licenses/ndi-runtime/Processing.NDI.Lib.Licenses.txt -whitespace

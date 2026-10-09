@@ -1,0 +1,7 @@
+{
+  "version": "0.1.0-local.20261009135628",
+  "createdAt": "2026-10-09T13:56:28.608Z",
+  "channel": "local-candidate",
+  "kind": "incremental-update",
+  "baseVersion": "0.1.0-local.20261009045022"
+}

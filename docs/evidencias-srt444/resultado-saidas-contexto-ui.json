@@ -1,0 +1,22 @@
+{
+  "at": "2026-10-09T13:28:37.246Z",
+  "operatorTouched": false,
+  "apiRealCalled": false,
+  "mediaStarted": false,
+  "checks": [
+    {
+      "name": "Transmitir abre MultiStream; principal tem comandos explícitos e SRT/NDI ficam fora",
+      "passed": true
+    },
+    {
+      "name": "Externo oferece SRT/NDI/OMT; rascunho persiste por destino e novo SRT exige saída livre clicada",
+      "passed": true
+    },
+    {
+      "name": "Sem vaga SRT bloqueia salvar/preparar e não reinterpreta RTMP existente",
+      "passed": true
+    }
+  ],
+  "passed": true,
+  "jsErrors": []
+}

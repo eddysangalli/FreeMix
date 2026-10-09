@@ -1,0 +1,8 @@
+{
+  "pass": true,
+  "checks": [
+    "Plano mostra registros de estado e passos",
+    "Mapeamento JSON enviado na recuperação",
+    "Resultado informa isolamento do perfil de saída"
+  ]
+}

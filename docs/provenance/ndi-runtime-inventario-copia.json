@@ -1,0 +1,41 @@
+{
+  "runtime": {
+    "version": "6.3.2.0",
+    "sha256": "2b6602075868ba4401f82f417d72424805d69b11ca86078023d0d489ff45dd84",
+    "bytes": 29863120,
+    "architecture": "x64"
+  },
+  "files": [
+    {
+      "source": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-ndi\\sdk-distribution\\release-runtime\\Processing.NDI.Lib.x64.dll",
+      "destination": "runtime/ndi-v6/Processing.NDI.Lib.x64.dll",
+      "sha256": "2b6602075868ba4401f82f417d72424805d69b11ca86078023d0d489ff45dd84"
+    },
+    {
+      "source": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-ndi\\sdk-distribution\\release-runtime\\NDI SDK License Agreement.pdf",
+      "destination": "licenses/ndi-runtime/NDI SDK License Agreement.pdf",
+      "sha256": "11ae13ae038d5af06d2fd5f9e55cbbdb97e75d2526656a0dbaa4dafcb7bf48e6"
+    },
+    {
+      "source": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-ndi\\sdk-distribution\\release-runtime\\Processing.NDI.Lib.Licenses.txt",
+      "destination": "licenses/ndi-runtime/Processing.NDI.Lib.Licenses.txt",
+      "sha256": "9f18e17e95324b1907c4de45f676ce2fedbc0a5c4ff6ed451b31c3fcb1229b8d"
+    },
+    {
+      "source": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-ndi\\sdk-distribution\\release-runtime\\PROVENANCE.json",
+      "destination": "licenses/ndi-runtime/PROVENANCE.json",
+      "sha256": "bdca38bbfa2160592f0402f5cc8095d84d68f34d063a6db46b20ea8ee6a8bb04"
+    },
+    {
+      "source": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-ndi\\sdk-distribution\\release-runtime\\TERMS.md",
+      "destination": "licenses/ndi-runtime/TERMS.md",
+      "sha256": "276e1df14d3bb3484743e5872ef66804c8fbd694152050920a378abcb2fc38f9"
+    }
+  ],
+  "redistributable": true,
+  "distributionConditions": "SDK EULA incorporated and attribution/link visible; no NDI Tools redistributed",
+  "lifecycleVerified": true,
+  "proof": "qa-portatil/audio-direto-nativo.json",
+  "normalClose": "qa-portatil/audio-direto-qa-fechada.json",
+  "operatorUntouched": true
+}

@@ -1,0 +1,169 @@
+{
+  "at": "2026-10-08T20:15:55.599Z",
+  "checks": [
+    {
+      "name": "22 modelos próprios, 11 layouts e duas orientações",
+      "pass": true
+    },
+    {
+      "name": "texto escapado, campos desconhecidos, URLs e estilos inválidos rejeitados",
+      "pass": true
+    },
+    {
+      "name": "salvar/duplicar/importar IDs próprios e persistir por projeto",
+      "pass": true
+    },
+    {
+      "name": "importação inválida integral não muda biblioteca",
+      "pass": true
+    },
+    {
+      "name": "prepare vertical configura navegador 1080×1920 sem ir ao ar; off preserva outro overlay",
+      "pass": true
+    },
+    {
+      "name": "troca de modelo e remoção bloqueadas no ar",
+      "pass": true
+    },
+    {
+      "name": "catálogo preserva o importado e miniaturas PNG dos 22 modelos",
+      "pass": true
+    }
+  ],
+  "browser": [
+    {
+      "id": "fm_headline_horizontal",
+      "width": 1920,
+      "height": 1080,
+      "pass": true
+    },
+    {
+      "id": "fm_headline_vertical",
+      "width": 1080,
+      "height": 1920,
+      "pass": true
+    },
+    {
+      "id": "fm_lowerthird_horizontal",
+      "width": 1920,
+      "height": 1080,
+      "pass": true
+    },
+    {
+      "id": "fm_lowerthird_vertical",
+      "width": 1080,
+      "height": 1920,
+      "pass": true
+    },
+    {
+      "id": "fm_two_names_horizontal",
+      "width": 1920,
+      "height": 1080,
+      "pass": true
+    },
+    {
+      "id": "fm_two_names_vertical",
+      "width": 1080,
+      "height": 1920,
+      "pass": true
+    },
+    {
+      "id": "fm_credits_horizontal",
+      "width": 1920,
+      "height": 1080,
+      "pass": true
+    },
+    {
+      "id": "fm_credits_vertical",
+      "width": 1080,
+      "height": 1920,
+      "pass": true
+    },
+    {
+      "id": "fm_agenda_horizontal",
+      "width": 1920,
+      "height": 1080,
+      "pass": true
+    },
+    {
+      "id": "fm_agenda_vertical",
+      "width": 1080,
+      "height": 1920,
+      "pass": true
+    },
+    {
+      "id": "fm_countdown_horizontal",
+      "width": 1920,
+      "height": 1080,
+      "pass": true
+    },
+    {
+      "id": "fm_countdown_vertical",
+      "width": 1080,
+      "height": 1920,
+      "pass": true
+    },
+    {
+      "id": "fm_scoreboard_horizontal",
+      "width": 1920,
+      "height": 1080,
+      "pass": true
+    },
+    {
+      "id": "fm_scoreboard_vertical",
+      "width": 1080,
+      "height": 1920,
+      "pass": true
+    },
+    {
+      "id": "fm_stats_horizontal",
+      "width": 1920,
+      "height": 1080,
+      "pass": true
+    },
+    {
+      "id": "fm_stats_vertical",
+      "width": 1080,
+      "height": 1920,
+      "pass": true
+    },
+    {
+      "id": "fm_bug_horizontal",
+      "width": 1920,
+      "height": 1080,
+      "pass": true
+    },
+    {
+      "id": "fm_bug_vertical",
+      "width": 1080,
+      "height": 1920,
+      "pass": true
+    },
+    {
+      "id": "fm_social_horizontal",
+      "width": 1920,
+      "height": 1080,
+      "pass": true
+    },
+    {
+      "id": "fm_social_vertical",
+      "width": 1080,
+      "height": 1920,
+      "pass": true
+    },
+    {
+      "id": "fm_fullscreen_horizontal",
+      "width": 1920,
+      "height": 1080,
+      "pass": true
+    },
+    {
+      "id": "fm_fullscreen_vertical",
+      "width": 1080,
+      "height": 1920,
+      "pass": true
+    }
+  ],
+  "operatorTouched": false,
+  "pass": true
+}

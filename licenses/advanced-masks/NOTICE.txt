@@ -1,0 +1,7 @@
+Advanced Masks 1.5.4 — FiniteSingularity
+Unmodified official Windows64 release.
+Repository: https://github.com/FiniteSingularity/obs-advanced-masks
+Release: https://github.com/FiniteSingularity/obs-advanced-masks/releases/tag/v1.5.4
+Corresponding tagged source and build scripts: source-v1.5.4.zip (included).
+License text: LICENSE.txt. Release ZIP digest verified against GitHub asset digest.
+No installer, activation, or remote service used.

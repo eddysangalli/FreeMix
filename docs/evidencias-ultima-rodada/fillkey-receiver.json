@@ -1,0 +1,77 @@
+{
+  "at": 1791510600.783058,
+  "checks": [
+    {
+      "label": "Both SDK receivers decode frames",
+      "passed": true
+    },
+    {
+      "label": "Fill and Key share actual media timestamps",
+      "passed": true
+    },
+    {
+      "label": "Key derives opaque grayscale from alpha 0/128/255",
+      "passed": true
+    },
+    {
+      "label": "Fill preserves premultiplied source RGB 0/128/255",
+      "passed": true
+    },
+    {
+      "label": "Key sender carries no audio",
+      "passed": true
+    }
+  ],
+  "videoFrames": [
+    150,
+    151
+  ],
+  "audioFrames": [
+    2,
+    0
+  ],
+  "commonTimestamps": 150,
+  "lastSamples": [
+    [
+      [
+        0,
+        0,
+        0,
+        255
+      ],
+      [
+        1,
+        128,
+        1,
+        255
+      ],
+      [
+        0,
+        254,
+        0,
+        255
+      ]
+    ],
+    [
+      [
+        0,
+        0,
+        0,
+        255
+      ],
+      [
+        128,
+        128,
+        128,
+        255
+      ],
+      [
+        255,
+        255,
+        255,
+        255
+      ]
+    ]
+  ],
+  "passed": true
+}

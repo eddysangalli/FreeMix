@@ -1,0 +1,8 @@
+{
+  "pass": true,
+  "checks": [
+    "Quatro ações determinísticas de GC salvo e fundo por entrada normalizadas",
+    "Recusados criação/ID inexistente/JSON inválido/campo extra/texto objeto/número textual/booleano textual/imagem nova/fonte ausente"
+  ],
+  "rejections": 10
+}

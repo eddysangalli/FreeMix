@@ -1,7 +1,7 @@
 From 7eaf3a7c94d49f380cd4e8f186a2aa2cda257ede Mon Sep 17 00:00:00 2001
 From: Eddy Sangalli <eddyrodrigues@outlook.com>
 Date: Wed, 7 Oct 2026 12:11:21 -0300
-Subject: [PATCH 3/6] feat(security): close prompt lock with critical broadcast
+Subject: [PATCH 3/9] feat(security): close prompt lock with critical broadcast
  warning during recording/streaming
 
 ---

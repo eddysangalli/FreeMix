@@ -1,0 +1,15 @@
+{
+  "root": "C:\\Users\\eddyr\\AppData\\Local\\Temp\\FreeMix-QA-Recovery-20261008",
+  "checks": [
+    "Macro real quatro passos concluída: editar/preparar/ar GC existente e fundo de composição",
+    "Plano pós-snapshot contém quatro passos íntegros e validados com metadata GC",
+    "Cópia recuperada reaplica UUID/campos GC/overlay/fundo reais sem iniciar saídas; original byte idêntico"
+  ],
+  "at": "2026-10-08T20:39:16.156Z",
+  "operatorTouched": false,
+  "nativePid": 83172,
+  "apiPid": 90100,
+  "snapshot": "4682675c-2227-43a6-b437-3cfb6ddd93fc",
+  "recovered": "QA Journal GC 1791491956395 Restaurada",
+  "pass": true
+}

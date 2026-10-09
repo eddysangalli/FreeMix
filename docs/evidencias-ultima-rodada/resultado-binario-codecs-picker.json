@@ -1,0 +1,11 @@
+{
+  "success": true,
+  "sha256": "f12e341199bbfa3bd917c9da95efa1f3a5255fe603f286c2bafdbf2cd1812114",
+  "checks": [
+    "35 campos de preferências nativas",
+    "Gravação principal NVENC HEVC e AV1 comprovada sem reiniciar via ResetOutputs",
+    "Picker nativo assíncrono: UUID desconhecido rejeitado; escolha física adiada"
+  ],
+  "proof": "resultado-settings-codecs-nativo.json",
+  "at": "2026-10-08T20:21:55.316Z"
+}

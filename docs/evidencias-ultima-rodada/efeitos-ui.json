@@ -1,0 +1,26 @@
+{
+  "passed": 4,
+  "checks": [
+    "Filtro existente carregado na seleção",
+    "Blur ativado por comando da UI",
+    "Quadro nativo renderizado na tela",
+    "Nova fonte de legenda automaticamente selecionada"
+  ],
+  "audioOptions": [
+    "QA Vermelho tom",
+    "QA Azul tom",
+    "Convidado A Integrado QA",
+    "Convidado B Integrado QA",
+    "Programa audio QA",
+    "Replay Player A",
+    "QA Offline Captions 1791498158556 Speech"
+  ],
+  "blurEnabled": true,
+  "captionOutput": "QA Effects UI Legend texto",
+  "input": "QA Effects 1791498109439",
+  "previewLoaded": true,
+  "previewWidth": 960,
+  "status": "Nova legenda selecionada. Escolha o áudio e aplique; coloque a entrada como overlay na Mesa.",
+  "previewRoute": "/api/effects-frame",
+  "failedCompositionOnlyPreviewCorrected": true
+}

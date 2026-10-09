@@ -1,0 +1,5 @@
+{
+  "domain": "freemix.seudominio.com",
+  "publicIPv4": "SEU_IP_PUBLICO",
+  "bondingPort": 19101
+}

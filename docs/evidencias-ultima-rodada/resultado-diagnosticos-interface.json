@@ -1,0 +1,9 @@
+{
+  "passed": 1,
+  "at": "2026-10-09T03:19:41.862Z",
+  "kind": "browser-real-api-no-native",
+  "cases": [
+    "Botão gerou ZIP local e mostrou link/prévia"
+  ],
+  "screenshotAvailable": false
+}

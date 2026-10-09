@@ -1,0 +1,98 @@
+{
+  "at": "2026-10-09T03:42:46.814Z",
+  "mode": "read-only inventory/source audit; no package/app/install run",
+  "checks": [
+    {
+      "name": "SDK license and lifecycle inventory explicitly approved",
+      "passed": true
+    },
+    {
+      "name": "Exactly one pinned SDK DLL and four pinned notices",
+      "passed": true
+    },
+    {
+      "name": "Actual source hash runtime/ndi-v6/Processing.NDI.Lib.x64.dll",
+      "passed": true
+    },
+    {
+      "name": "Actual source hash licenses/ndi-runtime/NDI SDK License Agreement.pdf",
+      "passed": true
+    },
+    {
+      "name": "Actual source hash licenses/ndi-runtime/Processing.NDI.Lib.Licenses.txt",
+      "passed": true
+    },
+    {
+      "name": "Actual source hash licenses/ndi-runtime/PROVENANCE.json",
+      "passed": true
+    },
+    {
+      "name": "Actual source hash licenses/ndi-runtime/TERMS.md",
+      "passed": true
+    },
+    {
+      "name": "Incremental exception is exact runtime path",
+      "passed": true
+    },
+    {
+      "name": "Full exception is exact runtime path",
+      "passed": true
+    },
+    {
+      "name": "Runtime module and before-staging proofs included",
+      "passed": true
+    },
+    {
+      "name": "NDI attribution/link visibly present",
+      "passed": true
+    },
+    {
+      "name": "Receipt not failed audio-direto-nativo.json",
+      "passed": true
+    },
+    {
+      "name": "Receipt not failed audio-direto-logica.json",
+      "passed": true
+    },
+    {
+      "name": "Receipt not failed ndi-runtime-logica.json",
+      "passed": true
+    },
+    {
+      "name": "Receipt not failed ndi-runtime-integrado.json",
+      "passed": true
+    }
+  ],
+  "summaries": [
+    {
+      "name": "audio-direto-nativo.json",
+      "passed": true,
+      "error": false
+    },
+    {
+      "name": "audio-direto-logica.json",
+      "passed": 4,
+      "error": false
+    },
+    {
+      "name": "ndi-runtime-logica.json",
+      "passed": 6,
+      "error": false
+    },
+    {
+      "name": "ndi-runtime-integrado.json",
+      "passed": true,
+      "error": false
+    }
+  ],
+  "passed": true,
+  "runtimeSha256": "2b6602075868ba4401f82f417d72424805d69b11ca86078023d0d489ff45dd84",
+  "licenseDocumentation": "https://docs.ndi.video/all/developing-with-ndi/sdk/software-distribution",
+  "strictAllowlist": [
+    "runtime/ndi-v6/Processing.NDI.Lib.x64.dll",
+    "licenses/ndi-runtime/NDI SDK License Agreement.pdf",
+    "licenses/ndi-runtime/Processing.NDI.Lib.Licenses.txt",
+    "licenses/ndi-runtime/PROVENANCE.json",
+    "licenses/ndi-runtime/TERMS.md"
+  ]
+}

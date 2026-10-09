@@ -1,7 +1,7 @@
 From b6e0b54036ae5b1ba3b6f5fb4681da7a321dcbdb Mon Sep 17 00:00:00 2001
 From: Eddy Sangalli <eddyrodrigues@outlook.com>
 Date: Wed, 7 Oct 2026 18:11:02 -0300
-Subject: [PATCH 4/6] feat(overlays): build Downstream Keyer in-tree, fix
+Subject: [PATCH 4/9] feat(overlays): build Downstream Keyer in-tree, fix
  uninitialised hide-after
 
 Downstream Keyer 0.4.4 by Exeldro (GPL-2.0) is now built as part of FreeMix

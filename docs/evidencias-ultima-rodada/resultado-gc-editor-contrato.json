@@ -1,0 +1,10 @@
+{
+  "checks": [
+    "Save confirmado por ID, readback dos campos e ações habilitadas sem dirty",
+    "Duplicar seleciona novo ID e mantém campos",
+    "Trocar orientação inicia título independente até salvar"
+  ],
+  "operatorTouched": false,
+  "root": "C:\\Users\\eddyr\\AppData\\Local\\Temp\\FreeMix-GC-UI-Contract-4WqRtX",
+  "pass": true
+}

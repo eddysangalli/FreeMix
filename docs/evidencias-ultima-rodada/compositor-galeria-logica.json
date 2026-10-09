@@ -1,0 +1,11 @@
+{
+  "testedAt": "2026-10-08T20:07:41.032Z",
+  "checks": [
+    "catálogo original acima de 40 geometrias",
+    "todos os presets têm número correto, limites e motor idêntico à miniatura",
+    "2 a 16 fontes em ambas orientações",
+    "fundo rejeita URL, caminho relativo e executável"
+  ],
+  "passed": 4,
+  "presets": 156
+}

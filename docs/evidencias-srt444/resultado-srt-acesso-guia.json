@@ -1,0 +1,32 @@
+{
+  "at": "2026-10-09T13:14:52.665Z",
+  "operatorTouched": false,
+  "nativeStarted": false,
+  "apiCalled": false,
+  "checks": [
+    {
+      "name": "Link contextual da transmissão e foco único sem preparar/iniciar automaticamente",
+      "passed": true,
+      "evidence": "Inspeção dirigida das fontes; sem API/mesa"
+    },
+    {
+      "name": "Comando crop/split/alphamerge do guia gera PNG lógico com alpha intermediário",
+      "passed": true,
+      "width": 32,
+      "height": 16,
+      "pixelRGBA": [
+        254,
+        0,
+        0,
+        128
+      ],
+      "scope": "Arquivo sintético H.264 4:4:4 local; não é prova da transmissão Native/WAN"
+    }
+  ],
+  "sha256": {
+    "obs-vmix/painel/remoto/settings.js": "c6e18b25a52b5e79a0d0484851be1edfad79c4953839a7741416cb5f7e485af0",
+    "obs-vmix/painel/remoto/saidas-srt-ui.js": "24882da20bc9afb481c961e1631fe3e11d0b4cc279a4e3e7b07e9d8afedb273f",
+    "obs-vmix/ferramentas/GUIA-SRT-444-ALPHA.md": "41393c83a1983924c31f6c8b0d1f33e827de282c6a08844916a59f50ee9bc9d7"
+  },
+  "passed": true
+}

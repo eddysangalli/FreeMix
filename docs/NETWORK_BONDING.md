@@ -1,12 +1,12 @@
 # Transmissão por Múltiplas Conexões (Multi-WAN & Bonding) — FreeMix
 
-> **Especificação Técnica & Manual de Engenharia de Rede Broadcast**
+> **Especificação futura — NÃO IMPLEMENTADA nem homologada no pacote local de 08/10/2026.** Não existe receptor de recomposição entregue. O texto descreve comportamento pretendido, não funcionalidades disponíveis.
 
 ---
 
 ## 1. Princípios de Operação e os Três Modos
 
-A transmissão externa crítica exige proteção contra queda de link de internet e oscilação de banda. O FreeMix implementa nativamente três modos de operação multi-caminho:
+A transmissão externa crítica exige proteção contra queda de link de internet e oscilação de banda. A proposta prevê três modos de operação multi-caminho:
 
 | Modo de Operação | Comportamento de Rede | Aplicação & Vantagens |
 | :--- | :--- | :--- |
@@ -19,7 +19,7 @@ A transmissão externa crítica exige proteção contra queda de link de interne
 ## 2. Diversidade Real de Caminhos e Bind de Interfaces
 
 Abrir múltiplos sockets pelo roteador padrão **não garante redundância** se ambos utilizarem a mesma rota de saída do Windows.  
-O `NetworkBondingManager` realiza `bind()` explícito ao endereço IP IPv4 de cada interface de rede física selecionada pelo operador:
+O `NetworkBondingManager` proposto deverá realizar `bind()` explícito ao endereço IP IPv4 de cada interface de rede física selecionada pelo operador:
 - **Caminho A**: Adaptador de rede cabeada Ethernet (`192.168.1.x` via Provedor A).
 - **Caminho B**: Adaptador Wi-Fi conectado a hotspot celular 5G ou Provedor B (`192.168.15.x`).
 
@@ -27,7 +27,7 @@ O `NetworkBondingManager` realiza `bind()` explícito ao endereço IP IPv4 de ca
 
 ## 3. O Receptor de Recomposição (`freemix-bonding-relay`)
 
-Para entregar fluxos protegidos a plataformas como YouTube, Twitch ou estúdios remotos que aceitam apenas uma conexão RTMP/SRT convencional, o ecossistema FreeMix inclui o **Receptor de Recomposição**:
+Para entregar fluxos protegidos a plataformas como YouTube, Twitch ou estúdios remotos que aceitam apenas uma conexão RTMP/SRT convencional, será necessário implementar o **Receptor de Recomposição**:
 
 ```
 +------------------+         Caminho A (Ethernet)

@@ -1,0 +1,26 @@
+{
+  "root": "C:\\Users\\eddyr\\AppData\\Local\\Temp\\FreeMix-QA-Parallel-Calls-20261008",
+  "passed": 3,
+  "checks": [
+    "Filtro offline usa modelo local e nenhum destino cloud",
+    "Inferência CPU converte fala sintética local em texto real",
+    "Desliga inferência e configura português sem ativar cloud"
+  ],
+  "recognized": [
+    ",\n\n",
+    "o\n\n",
+    "e\n\n",
+    "T\n\n",
+    "This, w\n\n",
+    "This, welcom\n\n",
+    "This, welcome to F\n\n"
+  ],
+  "languageRecognitionTested": "English synthetic offline speech",
+  "portugueseModelConfigured": true,
+  "portugueseRecognitionTested": false,
+  "userAudioSentExternally": false,
+  "sourceKey": "946f6845-bc8e-4c1b-8b01-59380ee57da5",
+  "sceneName": "QA Offline Captions 1791498158556",
+  "captionScene": "QA Offline Captions 1791498158556 Text",
+  "captionSource": "28cd1dd1-a2d1-4eeb-9161-cd04b12b6781"
+}

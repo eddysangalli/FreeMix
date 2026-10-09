@@ -1,0 +1,18 @@
+{
+  "testedAt": "2026-10-08T19:11:57.764Z",
+  "checks": [
+    "polígono sem área recusado",
+    "máscara valida limites normalizados",
+    "elipse preserva centro e recorta cantos",
+    "polígono livre rasterizado",
+    "máscara PNG alfa real",
+    "âncora vertical respeita centro 9:16",
+    "âncora não invade margem",
+    "locutor exige debounce e exclui diretor mais alto",
+    "permanência impede troca rápida",
+    "troca após permanência e debounce",
+    "silêncio não inventa locutor",
+    "enquadramento fica dentro da orientação"
+  ],
+  "passed": 12
+}

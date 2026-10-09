@@ -1,0 +1,10 @@
+{
+  "at": "2026-10-08T22:28:34.327Z",
+  "pass": true,
+  "checks": [
+    "Passo um quadro envia player e delta",
+    "Editor envia áudio/volume/mute/offset da câmera",
+    "Silêncio geral e slider NTSC racional"
+  ],
+  "requestContractOnly": true
+}

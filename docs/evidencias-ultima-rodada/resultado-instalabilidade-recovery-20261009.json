@@ -1,0 +1,57 @@
+{
+  "at": "2026-10-09T04:26:37.674Z",
+  "checks": [
+    {
+      "name": "read-only x64 PE import parsing",
+      "pass": true
+    },
+    {
+      "name": "present sidecar resolved without executing DLL",
+      "pass": true
+    },
+    {
+      "name": "missing sidecar diagnosed rather than claiming installed",
+      "pass": true
+    },
+    {
+      "name": "malformed binary rejected",
+      "pass": true
+    },
+    {
+      "name": "actual local libobs import headers verified, no load",
+      "pass": true,
+      "imports": [
+        "avcodec-62.dll",
+        "avformat-62.dll",
+        "avutil-60.dll",
+        "swscale-9.dll",
+        "swresample-6.dll",
+        "zlib.dll",
+        "AVRT.dll",
+        "dwmapi.dll",
+        "dxgi.dll",
+        "WINMM.dll",
+        "RPCRT4.dll",
+        "w32-pthreads.dll",
+        "KERNEL32.dll",
+        "USER32.dll",
+        "SHELL32.dll",
+        "ole32.dll",
+        "OLEAUT32.dll",
+        "ADVAPI32.dll",
+        "VCRUNTIME140.dll",
+        "api-ms-win-crt-math-l1-1-0.dll",
+        "api-ms-win-crt-stdio-l1-1-0.dll",
+        "api-ms-win-crt-string-l1-1-0.dll",
+        "api-ms-win-crt-heap-l1-1-0.dll",
+        "api-ms-win-crt-runtime-l1-1-0.dll",
+        "api-ms-win-crt-time-l1-1-0.dll",
+        "api-ms-win-crt-utility-l1-1-0.dll",
+        "api-ms-win-crt-convert-l1-1-0.dll",
+        "api-ms-win-crt-locale-l1-1-0.dll",
+        "api-ms-win-crt-filesystem-l1-1-0.dll"
+      ]
+    }
+  ],
+  "driversInstalled": false
+}

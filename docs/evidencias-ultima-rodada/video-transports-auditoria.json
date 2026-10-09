@@ -1,0 +1,39 @@
+{
+  "at": "2026-10-09T01:38:34.745Z",
+  "plugins": {
+    "obs-vmix/obs-plugins/64bit": [
+      "decklink-captions.dll",
+      "decklink-captions.pdb",
+      "decklink-output-ui.dll",
+      "decklink-output-ui.pdb",
+      "decklink.dll",
+      "decklink.pdb",
+      "libomt.dll",
+      "omtplugin.dll"
+    ],
+    "freemix-app/build_2026/rundir/RelWithDebInfo/obs-plugins/64bit": [
+      "decklink-captions.dll",
+      "decklink-captions.pdb",
+      "decklink-output-ui.dll",
+      "decklink-output-ui.pdb",
+      "decklink.dll",
+      "decklink.pdb"
+    ]
+  },
+  "omtSdk": {
+    "highBitDepthFormats": true,
+    "hdrMetadata": false,
+    "currentWrapper": "BGRA8 BT709 SDR",
+    "notes": "SDK format declarations do not prove an OBS high precision renderer path"
+  },
+  "decklink": {
+    "sourcePresent": true,
+    "hardwareProof": false,
+    "notes": "Original OBS output discovers device modes and External/Internal keyer. HDR requires device HDR metadata and compatible Desktop Video driver."
+  },
+  "sources": [
+    "https://github.com/obsproject/obs-studio/blob/master/plugins/decklink/decklink-output.cpp",
+    "https://github.com/obsproject/obs-studio/blob/master/plugins/decklink/decklink-device-instance.cpp",
+    "https://github.com/openmediatransport/libomtnet/blob/master/PROTOCOL.md"
+  ]
+}

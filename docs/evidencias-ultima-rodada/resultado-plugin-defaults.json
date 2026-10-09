@@ -1,0 +1,9 @@
+{
+  "success": true,
+  "checks": [
+    "Plugins novos preparados OFF, entrada e original preservados",
+    "Configuração existente do operador preservada integralmente",
+    "Preparação idempotente; sem plugin nada muda; módulos inválidos rejeitados"
+  ],
+  "at": "2026-10-08T20:31:34.796Z"
+}

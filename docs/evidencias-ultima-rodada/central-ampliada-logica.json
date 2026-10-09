@@ -1,0 +1,23 @@
+{
+  "passed": true,
+  "fieldCount": 97,
+  "categories": [
+    "general",
+    "appearance",
+    "audio",
+    "advanced",
+    "outputAdvanced",
+    "projectors",
+    "performance",
+    "networkOutput",
+    "files",
+    "audioTracks"
+  ],
+  "checks": [
+    "Categorias e campos únicos extraídos da tabela Native, sem seção de credenciais",
+    "Texto, resolução, divisão de arquivos e reconexão validados antes de mutação",
+    "Encoders usam vendor Native, preview sem apply, revision/payload inválidos recusados"
+  ],
+  "scope": "Contratos de validação e roteamento; prova Native separada",
+  "at": "2026-10-09T04:08:49.973Z"
+}

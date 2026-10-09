@@ -1,0 +1,23 @@
+{
+  "at": "2026-10-08T22:37:52.326Z",
+  "root": "C:\\Users\\eddyr\\AppData\\Local\\Temp\\FreeMix-QA-Updater-KmxQZK",
+  "pass": true,
+  "checks": [
+    {
+      "name": "Aplicação assinada sem PowerShell, arquivos iguais dispensam substituição",
+      "ok": true
+    },
+    {
+      "name": "Configuração privada preservada",
+      "ok": true
+    },
+    {
+      "name": "Rollback restaura o arquivo anterior",
+      "ok": true
+    },
+    {
+      "name": "Falha injetada recupera automaticamente o arquivo",
+      "ok": true
+    }
+  ]
+}

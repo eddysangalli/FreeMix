@@ -1,0 +1,16 @@
+{
+  "passed": true,
+  "root": "C:/Users/eddyr/AppData/Local/Temp/FreeMix-QA-Responsive-20261008",
+  "checks": [
+    "Saída RAW câmera virtual original inativa existe antes do reset",
+    "Reset de vídeo640x360 seguido de GetOutputList tem dimensões novas sem AV",
+    "Resolução original restaurada e motor responde sem saída ativa"
+  ],
+  "build": {
+    "freemix-app/build_2026/rundir/RelWithDebInfo/bin/64bit/FreeMix.exe": "7e84b16e44080f7cb2e635110f8703ee14abfa7db81cc271f2aac591b0b9b72e",
+    "freemix-app/build_2026/rundir/RelWithDebInfo/bin/64bit/obs.dll": "bb050a55a20f8c55105f0d80c777a1f30274dc84928591ecdce77829f00b651e",
+    "freemix-app/build_2026/rundir/RelWithDebInfo/obs-plugins/64bit/obs-ffmpeg.dll": "2376ee21a90e67742f40e81257bba0b994ab45cf205ef9f413af441311b0bc05"
+  },
+  "operatorUntouched": true,
+  "at": "2026-10-09T04:35:14.010Z"
+}

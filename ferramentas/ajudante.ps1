@@ -11,6 +11,26 @@ $seen = 0
 function Running { [bool](Get-Process obs64, FreeMix -ErrorAction SilentlyContinue | Where-Object { $_.Path -like "$root\*" }) }
 $deadline = (Get-Date).AddSeconds(90)
 while (-not (Running) -and (Get-Date) -lt $deadline) { Start-Sleep -Milliseconds 500 }
+
+# Iniciar Servidor Multi-Operador e API vMix (Porta 8088)
+$nodeExe = "node.exe"
+$localNode = Join-Path $root 'runtime\node.exe'
+if (-not (Test-Path -LiteralPath $localNode)) { $localNode = Join-Path $root '..\node24\node.exe' }
+if (Test-Path $localNode) { $nodeExe = (Resolve-Path $localNode).Path }
+$srvProc = $null
+try {
+  $env:FREEMIX_ROOT = $root
+  $apiInfoRaw = & $nodeExe (Join-Path $PSScriptRoot 'iniciar-api.mjs')
+  if ($LASTEXITCODE -ne 0) { throw 'O servidor local nao iniciou.' }
+  $apiInfo = $apiInfoRaw | ConvertFrom-Json
+  $srvProc = Get-Process -Id $apiInfo.pid -ErrorAction Stop
+} catch {
+  $taskLogDir = Join-Path $cfg 'plugin_config\freemix-control'
+  New-Item -ItemType Directory -Path $taskLogDir -Force | Out-Null
+  $_ | Out-String | Set-Content -LiteralPath (Join-Path $taskLogDir 'erro-inicializacao-api.log') -Encoding UTF8
+}
+
+try {
 while (Running) {
   Start-Sleep -Milliseconds 400
   $file = Get-ChildItem (Join-Path $cfg 'plugin_config\obs-websocket') -Recurse -Filter *.json | Where-Object { $_.LastWriteTime -gt (Get-Date).AddSeconds(-20) } | Where-Object { (Get-Content $_.FullName -Raw) -match '"freemix_cmd"' } | Select-Object -First 1
@@ -44,5 +64,12 @@ while (Running) {
   $line = '    "name": ' + ($cmd.name | ConvertTo-Json)
   $new = ([regex]$top).Replace($text, { param($x) $line }, 1)
   if ($new -eq $text -or -not $new.Contains($line)) { continue }   # only write when the copy really carries the new name
+  $new = [regex]::Replace($new, '("record_mode"\s*:\s*)1(?=\s*[,}])', '${1}0')
   [System.IO.File]::WriteAllText($dst, $new, $utf8)
+  & $nodeExe (Join-Path $PSScriptRoot 'clonar-preset.mjs') $cmd.from $cmd.name
+}
+} finally {
+  if ($srvProc -and -not $apiInfo.reused -and -not $srvProc.HasExited) {
+    Stop-Process -Id $srvProc.Id -Force -ErrorAction SilentlyContinue
+  }
 }

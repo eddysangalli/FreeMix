@@ -1,0 +1,93 @@
+{
+  "testedAt": "2026-10-08T22:18:10.966Z",
+  "checks": [
+    "lacunas simultâneas nos dois caminhos solicitaram NACK",
+    "cache retransmitiu datagramas AES originais",
+    "nenhuma perda após recuperação NACK",
+    "MPEGTS byte a byte igual após perdas em ambos caminhos",
+    "cache finito dentro da janela",
+    "fila de solicitações limitada",
+    "NACK repetido recusado por replay guard",
+    "NACK adulterado não permite retransmissão"
+  ],
+  "passed": 8,
+  "sender": {
+    "active": true,
+    "packets": 448,
+    "bytes": 588440,
+    "invalid": 0,
+    "dropped": 0,
+    "nackReceived": 29,
+    "retransmitted": 339,
+    "nackRejected": 31,
+    "paths": [
+      {
+        "host": "127.0.0.1",
+        "port": 57054,
+        "localAddress": "127.0.0.1",
+        "weight": 1,
+        "sent": 450,
+        "dataSent": 221,
+        "paritySent": 57,
+        "retrySent": 172,
+        "bytes": 612456,
+        "errors": 0,
+        "lastError": null
+      },
+      {
+        "host": "127.0.0.1",
+        "port": 57055,
+        "localAddress": "127.0.0.2",
+        "weight": 1,
+        "sent": 449,
+        "dataSent": 227,
+        "paritySent": 55,
+        "retrySent": 167,
+        "bytes": 612188,
+        "errors": 0,
+        "lastError": null
+      }
+    ],
+    "mode": "aggregate",
+    "bandwidthAggregated": true,
+    "fecGroup": 4,
+    "fecSent": 112,
+    "encryption": "AES-256-GCM",
+    "cachedPackets": 448
+  },
+  "receiver": {
+    "active": true,
+    "received": 567,
+    "unique": 448,
+    "delivered": 448,
+    "duplicatesOrLate": 114,
+    "missing": 0,
+    "invalid": 0,
+    "unauthorized": 0,
+    "overflow": 0,
+    "outputErrors": 0,
+    "buffered": 0,
+    "nackSent": 58,
+    "fecReceived": 112,
+    "fecRecovered": 107,
+    "fecExpired": 0,
+    "paths": {
+      "127.0.0.1:57055": 284,
+      "127.0.0.1:57054": 283
+    },
+    "encryption": "AES-256-GCM",
+    "cachedPayloads": 448,
+    "pendingFecGroups": 0
+  },
+  "inputBytes": 588440,
+  "outputBytes": 588440,
+  "nackEncrypted": true,
+  "externalTraffic": false,
+  "bandwidthAggregated": true,
+  "fec": true,
+  "limitations": [
+    "Duas versões atualizadas para NACK",
+    "Retransmissão deve chegar dentro da janela de jitter",
+    "Agregação local, duas perdas por grupo acima do FEC recuperadas por NACK; WAN não homologada"
+  ]
+}

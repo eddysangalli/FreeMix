@@ -1,0 +1,187 @@
+{
+  "at": "2026-10-09T04:30:46.520Z",
+  "root": "C:\\Users\\eddyr\\AppData\\Local\\Temp\\FreeMix-QA-Video-Replay-20261009",
+  "identity": {
+    "docks": [
+      {
+        "name": "scenesDock",
+        "title": "Entradas",
+        "titleBarHeight": -1,
+        "visible": false
+      },
+      {
+        "name": "sourcesDock",
+        "title": "Layers",
+        "titleBarHeight": -1,
+        "visible": false
+      },
+      {
+        "name": "mixerDock",
+        "title": "Mixer de áudio",
+        "titleBarHeight": -1,
+        "visible": false
+      },
+      {
+        "name": "transitionsDock",
+        "title": "Transições de cena",
+        "titleBarHeight": -1,
+        "visible": false
+      },
+      {
+        "name": "controlsDock",
+        "title": "Controls",
+        "titleBarHeight": -1,
+        "visible": false
+      },
+      {
+        "name": "statsDock",
+        "title": "Estatísticas",
+        "titleBarHeight": -1,
+        "visible": false
+      },
+      {
+        "name": "AudioMonitorDock",
+        "title": "Monitor de Áudio",
+        "titleBarHeight": -1,
+        "visible": false
+      },
+      {
+        "name": "DownstreamKeyerDock",
+        "title": "Downstream Keyer",
+        "titleBarHeight": -1,
+        "visible": false
+      },
+      {
+        "name": "Menu_extraBrowser",
+        "title": "Menu",
+        "titleBarHeight": 0,
+        "visible": true
+      },
+      {
+        "name": "Mesa_extraBrowser",
+        "title": "Mesa",
+        "titleBarHeight": 0,
+        "visible": true
+      }
+    ],
+    "executable": "C:/Users/eddyr/AppData/Local/Temp/FreeMix-QA-Video-Replay-20261009/bin/64bit/FreeMix.exe",
+    "layout": [
+      {
+        "background": "#1e2328",
+        "height": 677,
+        "name": "preview",
+        "visible": true,
+        "width": 882,
+        "x": 5,
+        "y": 54
+      },
+      {
+        "height": 26,
+        "name": "previewLabel",
+        "visible": true,
+        "width": 882,
+        "x": 5,
+        "y": 28
+      },
+      {
+        "height": 441,
+        "name": "freemixTransitionColumn",
+        "visible": true,
+        "width": 124,
+        "x": 905,
+        "y": 28
+      },
+      {
+        "height": 59,
+        "name": "freemixOverlayButtons",
+        "visible": true,
+        "width": 106,
+        "x": 905,
+        "y": 286
+      },
+      {
+        "height": 122,
+        "name": "freemixProductionClocks",
+        "visible": true,
+        "width": 106,
+        "x": 905,
+        "y": 347
+      },
+      {
+        "height": 394,
+        "name": "Mesa_extraBrowser",
+        "visible": true,
+        "width": 1920,
+        "x": 0,
+        "y": 735
+      }
+    ],
+    "nativeSettingsOpen": false,
+    "panels": [],
+    "pid": 45508,
+    "success": true,
+    "title": "FreeMix Studio - QA Recuperada 1791471993153"
+  },
+  "outputs": [
+    {
+      "outputActive": false,
+      "outputFlags": {
+        "OBS_OUTPUT_AUDIO": true,
+        "OBS_OUTPUT_ENCODED": false,
+        "OBS_OUTPUT_MULTI_TRACK": false,
+        "OBS_OUTPUT_SERVICE": false,
+        "OBS_OUTPUT_VIDEO": true
+      },
+      "outputHeight": 180,
+      "outputKind": "freemix_omt_output",
+      "outputName": "FreeMix OMT Main Output",
+      "outputWidth": 320
+    },
+    {
+      "outputActive": false,
+      "outputFlags": {
+        "OBS_OUTPUT_AUDIO": true,
+        "OBS_OUTPUT_ENCODED": false,
+        "OBS_OUTPUT_MULTI_TRACK": false,
+        "OBS_OUTPUT_SERVICE": false,
+        "OBS_OUTPUT_VIDEO": true
+      },
+      "outputHeight": 180,
+      "outputKind": "freemix_ndi_output",
+      "outputName": "FreeMix NDI Main Output",
+      "outputWidth": 320
+    },
+    {
+      "outputActive": false,
+      "outputFlags": {
+        "OBS_OUTPUT_AUDIO": true,
+        "OBS_OUTPUT_ENCODED": true,
+        "OBS_OUTPUT_MULTI_TRACK": true,
+        "OBS_OUTPUT_SERVICE": false,
+        "OBS_OUTPUT_VIDEO": true
+      },
+      "outputHeight": 0,
+      "outputKind": "ffmpeg_muxer",
+      "outputName": "simple_file_output",
+      "outputWidth": 0
+    },
+    {
+      "outputActive": false,
+      "outputFlags": {
+        "OBS_OUTPUT_AUDIO": false,
+        "OBS_OUTPUT_ENCODED": false,
+        "OBS_OUTPUT_MULTI_TRACK": false,
+        "OBS_OUTPUT_SERVICE": false,
+        "OBS_OUTPUT_VIDEO": true
+      },
+      "outputHeight": 180,
+      "outputKind": "virtualcam_output",
+      "outputName": "virtualcam_output",
+      "outputWidth": 320
+    }
+  ],
+  "shutdown": {
+    "success": true
+  },
+  "passed": true
+}

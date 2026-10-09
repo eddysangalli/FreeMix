@@ -1,0 +1,71 @@
+{
+  "testedAt": "2026-10-08T22:12:15.896Z",
+  "root": "C:\\Users\\eddyr\\AppData\\Local\\Temp\\FreeMix-QA-Parallel-Calls-20261008",
+  "checks": [
+    "Raiz QA e saídas idle verificadas",
+    "Motor submix e ASIO plugin detectados",
+    "Bus nativo nasce fora de todas as trilhas",
+    "Submix emite PCM estéreo real",
+    "Ganho individual dobra pico real",
+    "Ciclo nativo rejeitado",
+    "Rotas A/B usam pré-trilhas5/6 sem1–4",
+    "Direct Out no dispositivo real preservado desligado",
+    "Fonte que vira diretor privado é removida do áudio do submix",
+    "Fonte privada recusada nativamente"
+  ],
+  "passed": 10,
+  "half": {
+    "frames": 31680,
+    "peak": 0.044189453125,
+    "rms": 0.022777366690624676
+  },
+  "full": {
+    "frames": 31200,
+    "peak": 0.08837890625,
+    "rms": 0.04695502029570485
+  },
+  "privateAudio": {
+    "frames": 31200,
+    "peak": 0,
+    "rms": 0
+  },
+  "renderDevices": [
+    {
+      "id": "{0.0.0.00000000}.{5226ece3-5a7b-41d6-b6ce-3058b6978093}",
+      "name": "CABLE Input (VB-Audio Virtual Cable)"
+    },
+    {
+      "id": "{0.0.0.00000000}.{7cdb3755-e893-4628-85e0-009bb520b893}",
+      "name": "Speakers (2- Realtek(R) Audio)"
+    },
+    {
+      "id": "{0.0.0.00000000}.{9b52f907-3479-4c78-89dc-333069b3f76c}",
+      "name": "CX156A (NVIDIA High Definition Audio)"
+    }
+  ],
+  "asioDrivers": [
+    {
+      "id": "Realtek ASIO",
+      "name": "Realtek ASIO"
+    },
+    {
+      "id": "Soundcraft USB Audio ASIO",
+      "name": "Soundcraft USB Audio ASIO"
+    },
+    {
+      "id": "US-1800",
+      "name": "US-1800"
+    },
+    {
+      "id": "X-AIR ASIO Driver",
+      "name": "X-AIR ASIO Driver"
+    }
+  ],
+  "asioPluginLoaded": true,
+  "asioHardwareCaptured": false,
+  "directOutPhysicalListening": false,
+  "nativeScreenshotRequired": false,
+  "externalTraffic": false,
+  "busKey": "ad35f9c6-454b-459f-9d3d-5de3b8209a5f",
+  "uiNativeDelayMs": 200
+}

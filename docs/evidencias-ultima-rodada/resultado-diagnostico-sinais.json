@@ -1,0 +1,32 @@
+{
+  "at": "2026-10-08T22:30:34.575Z",
+  "root": "C:/Users/eddyr/AppData/Local/Temp/FreeMix-QA-Responsive-20261008",
+  "pass": true,
+  "checks": [
+    {
+      "name": "Imagem real capturada sem mudar programa",
+      "ok": true
+    },
+    {
+      "name": "Imagem estática sem movimento esperado não gera congelamento falso",
+      "ok": true
+    },
+    {
+      "name": "Mudança de pixels observada no motor",
+      "ok": true
+    },
+    {
+      "name": "Desativação remove monitor e preserva saída",
+      "ok": true
+    },
+    {
+      "name": "Relógio parado e alerta de movimento são distinguidos (fixture)",
+      "ok": true
+    },
+    {
+      "name": "Troca de projeto não retoma monitor automaticamente",
+      "ok": true
+    }
+  ],
+  "operatorTouched": false
+}

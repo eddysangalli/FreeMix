@@ -1,0 +1,67 @@
+{
+  "passed": true,
+  "checks": 4,
+  "proof": [
+    "Identidade do EXE atual e hashes integrados",
+    "SourceRecord premix/ASIO/NDI/OMT/bus reais carregados",
+    "Motor/API/barramentos prontos sem outputs ativos",
+    "Janelas extras e diagnóstico respondem localmente"
+  ],
+  "routes": [
+    {
+      "route": "/iso",
+      "status": 200,
+      "bytes": 2923
+    },
+    {
+      "route": "/settings?category=recording",
+      "status": 200,
+      "bytes": 1928
+    },
+    {
+      "route": "/settings?category=streaming",
+      "status": 200,
+      "bytes": 1928
+    },
+    {
+      "route": "/compor",
+      "status": 200,
+      "bytes": 2472
+    },
+    {
+      "route": "/efeitos",
+      "status": 200,
+      "bytes": 3042
+    },
+    {
+      "route": "/sinais",
+      "status": 200,
+      "bytes": 1362
+    },
+    {
+      "route": "/atualizacao",
+      "status": 200,
+      "bytes": 1653
+    },
+    {
+      "route": "/diagnosticos",
+      "status": 200,
+      "bytes": 1913
+    },
+    {
+      "route": "/api/diagnostics",
+      "status": 200,
+      "bytes": 29
+    }
+  ],
+  "root": "C:\\Users\\eddyr\\AppData\\Local\\Temp\\FreeMix-QA-Parallel-Calls-20261008",
+  "files": {
+    "bin/64bit/FreeMix.exe": "ef523cbb598b138044aa7b9960ee06efdd1beb510cbb7df8fdbb9bff87b2aa64",
+    "obs-plugins/64bit/obs-ffmpeg.dll": "2376ee21a90e67742f40e81257bba0b994ab45cf205ef9f413af441311b0bc05",
+    "obs-plugins/64bit/source-record.dll": "63e4f4c4fe77382b24eb03085a62e3da7ac8e77554be5f6f94dcf17c885987e8",
+    "runtime/ndi-v6/Processing.NDI.Lib.x64.dll": "2b6602075868ba4401f82f417d72424805d69b11ca86078023d0d489ff45dd84"
+  },
+  "operatorTouched": false,
+  "externalTransmission": false,
+  "at": "2026-10-09T03:37:25.267Z"
+}

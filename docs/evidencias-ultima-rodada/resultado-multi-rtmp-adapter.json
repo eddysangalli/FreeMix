@@ -1,0 +1,31 @@
+{
+  "at": "2026-10-08T22:35:15.369Z",
+  "pass": true,
+  "kind": "fixture-contract-not-plugin-runtime",
+  "checks": [
+    {
+      "name": "Contrato real, isolamento de ID e segredos",
+      "pass": true
+    },
+    {
+      "name": "Consulta por ID combina state e stats reais, sem mutações",
+      "pass": true
+    },
+    {
+      "name": "Vendor ausente não é erro das saídas",
+      "pass": true
+    },
+    {
+      "name": "Não inventar instalado/desinstalado em falha de conexão ou resposta",
+      "pass": true
+    },
+    {
+      "name": "Campos do README não simulam métricas reais",
+      "pass": true
+    },
+    {
+      "name": "Integração consulta apenas explicitamente e UI não oferece start",
+      "pass": true
+    }
+  ]
+}

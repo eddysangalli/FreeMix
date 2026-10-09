@@ -1,0 +1,35 @@
+{
+  "at": "2026-10-08T22:04:32.973Z",
+  "root": "C:\\Users\\eddyr\\AppData\\Local\\Temp\\FreeMix-QA-GC-Assets-yWHkVO",
+  "peerRoot": "C:\\Users\\eddyr\\AppData\\Local\\Temp\\FreeMix-QA-GC-Import-hRUbDm",
+  "checks": [
+    {
+      "name": "variante vertical mantém imagem e vínculo H/V",
+      "ok": true
+    },
+    {
+      "name": "conteúdo sincroniza preservando posição horizontal",
+      "ok": true
+    },
+    {
+      "name": "exportação inclui asset pelo hash",
+      "ok": true
+    },
+    {
+      "name": "importação preserva vínculo interno e remapeia grupo",
+      "ok": true
+    },
+    {
+      "name": "arquivo de tipo falso rejeitado",
+      "ok": true
+    },
+    {
+      "name": "referência fora dos assets rejeitada",
+      "ok": true
+    },
+    {
+      "name": "desvincular interrompe a propagação",
+      "ok": true
+    }
+  ]
+}

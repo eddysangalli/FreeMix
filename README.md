@@ -1,79 +1,38 @@
-# FreeMix Studio — Suite Profissional de Produção Broadcast
+# FreeMix Studio
 
-O **FreeMix Studio** é uma plataforma de produção ao vivo de alta performance inspirada na ergonomia e no fluxo operacional do **vMix** e **TriCaster**, utilizando a biblioteca `libobs` como motor de captura, renderização gráfica, processamento de áudio e transmissão.
+Código do FreeMix baseado no OBS Studio 32.2.2, com interface de mesa de produção, saídas independentes, composições, GC, Calls, replay, áudio e automação.
 
-> **Estado real do projeto (07/10/2026): leia [`CONTINUAR.md`](CONTINUAR.md).** Ele diz o que existe, o que foi testado e o que falta. O restante deste README e a pasta `docs` descrevem a intenção do produto e, em vários pontos, dão como pronto o que ainda não foi feito. O programa de verdade é o OBS Studio 32.2.2 mais os patches da pasta [`fork`](fork/LEIAME.md); as pastas `src` e `plugins/obs-freemix` são um rascunho anterior que nunca compilou.
+Entrega local de referência: **0.1.0-local.20261009135628**. As funcionalidades e seus limites estão em [CONTINUAR.md](CONTINUAR.md). A lista concreta para terminar cada pendência está em [PENDENCIAS-REAIS.md](PENDENCIAS-REAIS.md).
 
----
+## Código incluído
 
-## 🎯 Arquitetura de Produto
+- `fork/`: série completa de nove patches sobre um commit upstream fixado, incluindo todas as alterações nativas da entrega.
+- `ferramentas/`: API local, controle, áudio, saídas, Calls, bonding, recuperação, instalador, atualização e ZIP de diagnóstico.
+- `painel/`: mesa, configuração, 156 presets de composição e biblioteca de títulos.
+- `servidor/`: kit Linux para feed HTTPS, TURN e receptor, preparado para implantação explícita.
+- `licenses/` e `docs/provenance/`: licenças, fontes locais de componentes modificados e referências/hashes das dependências.
+- `docs/evidencias-ultima-rodada/`: recibos dos ensaios locais, com escopo e limites.
 
-1. **Executável Nativo Oficial**:
-   - Binário compilado `FreeMix.exe` (.NET 7 x64 / WinExe nativo) localizado em `bin/64bit/FreeMix.exe`.
-   - Ícone oficial PE Win32 de alta resolução (`freemix.ico`).
-   - Identificador explícito no Windows Shell (`AppUserModelID: FreeMix.Studio.BroadcastSuite.1.0`), isolando o aplicativo na Barra de Tarefas sem exibir cara ou janelas do OBS.
+## Reconstrução e uso
 
-2. **Barra Superior de Presets e Menus Broadcast (Acima de Tudo)**:
-   - Posicionada no topo do estúdio, acima dos monitores de Preview e Program:
-     - `[Novo]`: Inicia um preset de estúdio limpo.
-     - `[Abrir]`: Carrega projetos de produção (`*.fmx` ou coleções de cenas).
-     - `[Salvar]`: Salva instantaneamente todas as entradas, filtros e rotas.
-     - `[Salvar Como]`: Cria cópias e versões do preset.
-     - `[Último]`: Recarrega o último estado de estúdio utilizado.
-     - `[📺 Monitores: ON/OFF]`: Alterna entre visão completa de estúdio e mesa compacta.
-     - `[⚙ Configurações]`: Central de preferências com 7 abas organizadas e modais centralizados com backdrop blur.
+Leia [BUILD-FROM-SOURCE.md](docs/BUILD-FROM-SOURCE.md). Os patches têm manifesto e verificação de hashes; um teste em índice isolado confere que reproduzem a árvore nativa local.
 
-3. **Monitores de Estúdio Integrados**:
-   - **Monitor de Preview (Prévia)**: Borda verde/laranja, tally visual, resolução `1080p60`, guias de Safe Area (80%/90%) e botão Quick Play.
-   - **Central de Transições & T-Bar**:
-     - Corte seco `CUT` em verde vivo.
-     - Transições suaves: `FADE` (250/500/1000ms), `ZOOM`, `WIPE`, `STINGER 1..4`.
-     - `T-Bar Broadcast Interativo`: alavanca deslizante proporcional de 0% a 100%.
-     - `FTB (Fade to Black)`: botão de segurança de emergência com LED pulsante.
-   - **Monitor de Program (PGM / No Ar)**: Borda vermelha forte, tally `● ON AIR` piscante, relógio com timecode em tempo real e atalhos de Overlays rápidos.
+O Git guarda fontes e documentação. Binários, runtimes, builds, configurações do operador, gravações e chaves privadas não fazem parte do checkout. Os ZIPs locais assinados são descritos em [docs/releases/](docs/releases/). A fonte externa grande do Advanced Scene Switcher fica identificada pela proveniência/hash e acompanha o portátil completo.
 
-4. **Entradas & Overlays Estilo vMix**:
-   - Grade dinâmica de entradas (Tiles com miniaturas vivas, áudio meters e tally de estado).
-   - **8 Canais de Overlays Independentes** (DSK 1 a 8) acionáveis diretamente em cada entrada.
-   - **Central de Replay Multi-Cam**: até 4 câmeras ISO simultâneas, marcação de In/Out e velocidades de 10% a 100%.
-   - **DataSources**: integração de dados dinâmicos com Excel, Google Sheets, CSV e JSON.
-   - **Transmissão Multi-WAN / Bonding LiveU**: agregação de interfaces (Ethernet + Wi-Fi + 5G) e failover hitless via RIST.
+Na máquina de desenvolvimento original, abra a instalação por `ABRIR-FREEMIX.cmd` na raiz do workspace, após salvar e fechar o FreeMix correspondente. Num portátil extraído, use `FreeMix Studio.cmd`. O launcher inicia motor e API juntos. Um clone deste repositório, sem os componentes compilados, não é um portátil pronto para executar.
 
----
+`src/` e `plugins/obs-freemix/` são protótipos anteriores preservados como referência; o motor desta entrega é a série OBS em `fork/`. Documentos antigos de arquitetura/roadmap descrevem também intenções históricas e devem ser lidos junto do estado atual.
 
-## 🛠 Gerenciamento e Atualização de Complementos (Sem Malabarismos)
+Transmitir abre MultiStream; Externo reúne SRT, NDI, OMT e SDI. O SRT tem conexão por modo/IP/porta/latência e ajustes avançados recolhidos. H.264 4:4:4 e alpha empacotado foram comprovados em loopback; o receptor OBS precisa do shader fornecido e Crop/Pad. Internet e Full HD continuam com validação pendente.
 
-Todos os plugins de terceiros essenciais foram auditados e integrados com paridade estrutural completa:
-- `downstream-keyer.dll` (Overlays 1 a 8)
-- `replay-source.dll` (Instant Replay)
-- `source-record.dll` (MultiCorder ISO)
-- `source-dock.dll` (Monitores de Fontes)
-- `move-transition.dll` (DVE Dinâmico)
-- `obs-websocket.dll` (IPC Broadcast v5)
-- `obs-browser.dll` (Chromium CEF)
+## Estado e pendências
 
-### Como Atualizar o Sistema e Plugins
+Há provas locais para saídas/codecs, áudio, composições, recuperação, controles, NDI/OMT, replay e estabilidade no escopo descrito pelos relatórios. Isso não equivale a homologação de internet, placas, interfaces de áudio, todos os drivers ou todos os serviços de transmissão.
 
-Para atualizar plugins e o motor de vídeo sem perder configurações nem fazer malabarismos:
+HDR completo, modelos GTZIP ainda não suportados e acabamento das telas têm trabalho restante. Calls externos, bonding WAN, vídeo/áudio/controladores físicos, destinos reais e Windows limpo precisam de uma rodada de validação dirigida. VPS/domínio e licenças são dependências explícitas. Critérios e trabalho para fechar cada item: [PENDENCIAS-REAIS.md](PENDENCIAS-REAIS.md).
 
-1. **Auditoria de Versões**:
-   - Dê 2 cliques em `Verificar Complementos.cmd` ou execute:
-     ```powershell
-     powershell -File ferramentas/verificar-atualizacoes.ps1
-     ```
-   - O sistema consulta a API oficial do GitHub Releases e gera um diagnóstico comparativo de versões.
+O botão e `COLETAR-LOGS.cmd` geram diagnóstico local sanitizado, encaminhado manualmente por e-mail/WhatsApp. Nenhum envio automático de logs, serviço público ou transmissão externa é iniciado por este repositório.
 
-2. **Atualização Automática em 1 Clique**:
-   - Dê 2 cliques em `Atualizar Complementos.cmd` ou execute:
-     ```powershell
-     powershell -File ferramentas/verificar-atualizacoes.ps1 -AtualizarTudo
-     ```
-   - O atualizador cria um backup preventivo em `backup-plugins/YYYY-MM-DD/`, baixa os pacotes mais recentes e extrai transacionalmente para as pastas portáteis do FreeMix.
+## Licença
 
----
-
-## 🚀 Como Executar
-
-- **Modo Estúdio Oficial**: Dê 2 cliques em `Iniciar FreeMix.cmd` ou no atalho da Área de Trabalho `FreeMix Studio.lnk`.
-- **Mesa Portátil Direta**: Dê 2 cliques em `Iniciar Mesa.cmd`.
-- **Empacotamento de Distribuição**: Dê 2 cliques em `Empacotar.cmd` para gerar um ZIP limpo e otimizado.
+O fork do OBS mantém a licença GPL e os avisos correspondentes. Os componentes de terceiros mantêm suas licenças e termos próprios; consulte `LICENSE`, `licenses/` e os registros de proveniência antes de redistribuir.

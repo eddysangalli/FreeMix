@@ -1,0 +1,11 @@
+{
+  "success": true,
+  "checks": [
+    "UI streaming HLS: H264 e HEVC descobertos, AV1 ausente",
+    "UI streaming RTMP: NVENC AV1 e HEVC disponíveis, confirmação Enhanced RTMP visível",
+    "Configurações completas OBS acessíveis; mudanças de seleção usadas para observação, sem aplicar"
+  ],
+  "screenshot": "qa-portatil/settings-codecs-protocolos-ui.png",
+  "observedWith": "CUA navegador local QA18097",
+  "at": "2026-10-08T20:21:55.291Z"
+}

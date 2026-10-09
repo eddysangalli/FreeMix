@@ -1,0 +1,23 @@
+# Recuperação por eventos nativos e transporte temporal do Replay
+
+Implementação local em 08/10/2026, preservando a instalação do operador. Fontes de produto: `ferramentas/recuperacao-eventos.mjs`, `sessao-producao.mjs`, `recuperacao-estados.mjs`, `replay-sincronia.mjs`, `replay-disco.mjs`; patch estreito `shared/media-playback/media-playback/media.c` no motor.
+
+## Recuperação
+
+Eventos persistidos de cenas, itens, entradas, áudio, filtros, transições e perfil são agrupados por 700 ms de silêncio, com limite de 5 s durante edição contínua. O journal registra os tipos e quantidade dos eventos, sem copiar o payload OBSWS que pode conter URLs/senhas. A captura salva coleção, metadados, configurações das saídas e dependências locais efetivamente encontradas, com os mesmos hashes e validações dos backups `.fmx` existentes. Alterações idênticas não deixam uma segunda cópia armazenada: somente a pasta UUID recém-criada, dentro do histórico privado, pode ser descartada.
+
+`beginMutation()/endMutation()` suprimem os eventos produzidos pelas próprias ações da API, que já têm journal. Eventos produzidos pela própria captura são suprimidos. Uma mudança de coleção cancela o lote anterior; o nome corrente no motor é verificado antes e depois da captura. Telemetria, medidores e cursores de mídia não geram snapshots. `capture(true)` passa a ser um checkpoint completo com mídias locais e configurações de saídas; autosave periódico mantém o modo leve.
+
+Restauração continua em produção/perfil novos, com saídas, filtros de gravação, controladores e automações desativados. Arquivos ausentes, dependências calculadas dinamicamente, plugins não instalados e dispositivos físicos continuam diagnosticados, sem inventar conteúdo. OBSWS não emite um evento universal de “arquivo salvo”: o fluxo de Save da API precisa chamar o checkpoint explicitamente. Alterações não emitidas por eventos observáveis não têm recuperação imediata garantida.
+
+Provas lógicas: `qa-portatil/resultado-recuperacao-eventos-replay-tempo.json` (6 verificações) e `resultado-native-dedupe.json` (3 verificações). Prova nativa `resultado-native-eventos-recovery.json`: 2 PASS via cliente OBSWS independente da API, criando cena/fonte, alterando cor/transformação, produzindo snapshot completo e restaurando UUID/cor/posição em produção nova, sem iniciar saídas. A instalação foi conferida por caminho do executável e hash da raiz; operador preservado.
+
+## Replay
+
+Seek comum e alinhamento passam a aceitar clipes somente de áudio, VFR e taxas diferentes, por tempo da mídia e offsets manuais convertidos quando a taxa é conhecida. Um offset em quadros sem taxa confirmada é rejeitado. O passo de quadro permanece restrito a CFR de mesma taxa. Comandos de transporte/seek dos players vinculados são enviados em paralelo; alinhamento em reprodução compensa o tempo gasto pelos requests e registra divergências medidas após o comando. Isso é sincronismo por software de A/B; não promete genlock ou amostragem simultânea de hardware. O planejador matemático aceita múltiplas fontes, mas a interface operacional continua A/B.
+
+A prova dirigida anterior ao patch (`resultado-replay-seek-dirigido.json`) confirmou falhas: seek de loop para 3900 ms permaneceu no quadro em 166 ms; áudio-only para 600 ms retornou 685 ms. A primeira compilação confirmou áudio-only em 600 e 900 ms, mas manteve a falha de seek perto de OUT, tanto com áudio quanto em vídeo sozinho (`resultado-seek-diagnose.json`). Isso localizou a falha no EOF do demux: o código de seek pausado interrompia a preparação antes de drenar os últimos quadros do decoder.
+
+O patch final de `media.c` drena o decoder após EOF, limpa o estado de EOF quando outro seek é realizado e não abandona preroll quando somente a outra trilha termina. O clock pausado usa PTS efetivamente submetido ou início do pacote áudio preparado, protegidos pelo mutex. Não altera velocidade, áudio enviado ou clock em reprodução.
+
+Prova final `qa-portatil/resultado-replay-seek-corrigido.json`: **4 PASS**. Seek pausado para 3900 ms confirmou cursor 3900 e imagem do quadro 117 comparada ao FFmpeg (RGB médio 220/220/220 em ambos); reproduzir além de OUT reiniciou o loop e pausou em 300 ms; áudio-only pausado confirmou 600 ms; `DiskReplay.seekPlayer` executou seek de áudio-only para 900 ms no motor real. Screenshot: `qa-portatil/replay-seek-frame-117.png`. DLL privada ensaiada SHA-256 `2376ee21a90e67742f40e81257bba0b994ab45cf205ef9f413af441311b0bc05`. A DLL do operador não foi substituída e a QA foi encerrada (`resultado-replay-quadros-encerrada.json`). Os recibos de falha/diagnóstico anteriores foram preservados; não são apresentados como PASS.

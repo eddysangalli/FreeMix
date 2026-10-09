@@ -1,0 +1,9 @@
+{
+  "pass": true,
+  "checks": [
+    "Estados posteriores cobrem criações, mas não apagam lacuna de transmissão externa",
+    "Assets GC por token hash restaurados; hash divergente recusado",
+    "Mapeamento explícito só aceita dependências conhecidas e arquivo local real",
+    "Locutor/controladores permanecem desativados na cópia"
+  ]
+}

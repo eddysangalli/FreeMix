@@ -1,0 +1,18 @@
+{
+  "count": 1,
+  "rows": [
+    {
+      "paths": {
+        "file": "gt_titles/PLACAR CENTRAL/index.html",
+        "thumbnail": "gt_titles/PLACAR CENTRAL/thumbnail.png"
+      },
+      "resources": [
+        "Manchester_City_Football_Club.png",
+        "PSG.png",
+        "../../gc.js",
+        "../gc.js"
+      ],
+      "folder": "gt_titles/PLACAR CENTRAL"
+    }
+  ]
+}

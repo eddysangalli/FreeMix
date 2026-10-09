@@ -1,0 +1,11 @@
+{
+  "testedAt": "2026-10-08T19:08:48.486Z",
+  "root": "C:\\Users\\eddyr\\AppData\\Local\\Temp\\FreeMix-QA-Parallel-Calls-20261008",
+  "checks": [
+    "RemoveScene aguarda atualização da lista nativa",
+    "API permanece conectada após remover composição",
+    "Wrapper e decoração privados removidos"
+  ],
+  "passed": 3,
+  "externalTraffic": false
+}

@@ -1,0 +1,16 @@
+{
+  "passed": 7,
+  "root": "C:\\Users\\eddyr\\AppData\\Local\\Temp\\FreeMix-QA-Diagnostic-5mFY7o",
+  "zipBytes": 2684,
+  "sha256": "c34e0945d885641535ab8ccb999e1859b1ee8c5f446649e56fbbafa570f027ff",
+  "cases": [
+    "credenciais e dados pessoais removidos",
+    "logs e crash úteis preservados",
+    "allowlist exclui projetos mídia dump",
+    "limites e truncamento declarados",
+    "ZIP CRC/hash validado e corrupção recusada",
+    "geração concorrente recusada",
+    "ID estável sem envio automático"
+  ],
+  "at": "2026-10-09T03:27:43.339Z"
+}

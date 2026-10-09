@@ -1,0 +1,139 @@
+{
+  "at": "2026-10-08T22:54:21.102Z",
+  "pass": true,
+  "scope": "fixture-policy-and-loopback-UDP-only",
+  "wanVerified": false,
+  "capacityMeasured": false,
+  "mediaLossMeasured": false,
+  "checks": [
+    {
+      "name": "Padrão manual/duplicação e validação do timeout",
+      "pass": true
+    },
+    {
+      "name": "Retirada/reentrada com duas respostas e pesos RTT limitados sem Mbps inventados",
+      "pass": true
+    },
+    {
+      "name": "Duas rotas UDP locais com RTT autenticado real",
+      "pass": true
+    },
+    {
+      "name": "AES/FEC preservados: 24 TS idênticos, seis perdas recuperadas por XOR",
+      "pass": true
+    },
+    {
+      "name": "Probe adulterado/replay rejeitados e reply tem domínio HKDF separado",
+      "pass": true
+    },
+    {
+      "name": "Blackhole real retira rota por timeout e 16 TS seguem pela rota saudável",
+      "pass": true
+    },
+    {
+      "name": "Reentrada real após respostas autenticadas e retorno da distribuição",
+      "pass": true
+    },
+    {
+      "name": "Todos offline bloqueiam mídia, preservam probes/cache limitado sem fallback fictício",
+      "pass": true
+    }
+  ],
+  "sender": {
+    "active": true,
+    "packets": 49,
+    "bytes": 9212,
+    "invalid": 0,
+    "dropped": 0,
+    "nackReceived": 0,
+    "retransmitted": 0,
+    "nackRejected": 0,
+    "paths": [
+      {
+        "host": "127.0.0.1",
+        "port": 51439,
+        "localAddress": "127.0.0.1",
+        "weight": 4,
+        "sent": 41,
+        "dataSent": 32,
+        "paritySent": 9,
+        "retrySent": 0,
+        "bytes": 9820,
+        "errors": 0,
+        "lastError": null,
+        "healthStatus": "offline",
+        "effectiveWeight": 0,
+        "healthStarted": 34.5685,
+        "lastAck": 2439.7041,
+        "rttMs": 1.3060016601562467,
+        "goodReplies": 0,
+        "healthSent": 10,
+        "healthReplies": 7,
+        "healthTimeouts": 1,
+        "healthRejected": 0,
+        "mediaLossMeasured": false,
+        "capacityMbps": null
+      },
+      {
+        "host": "127.0.0.1",
+        "port": 51440,
+        "localAddress": "127.0.0.1",
+        "weight": 4,
+        "sent": 19,
+        "dataSent": 16,
+        "paritySent": 3,
+        "retrySent": 0,
+        "bytes": 4532,
+        "errors": 0,
+        "lastError": null,
+        "healthStatus": "offline",
+        "effectiveWeight": 0,
+        "healthStarted": 34.753,
+        "lastAck": 2439.7858,
+        "rttMs": 2.0225875000000166,
+        "goodReplies": 0,
+        "healthSent": 10,
+        "healthReplies": 4,
+        "healthTimeouts": 2,
+        "healthRejected": 0,
+        "mediaLossMeasured": false,
+        "capacityMbps": null
+      }
+    ],
+    "mode": "aggregate",
+    "bandwidthAggregated": true,
+    "fecGroup": 4,
+    "fecSent": 12,
+    "adaptive": true,
+    "healthBlockedWire": 1,
+    "healthMeasurement": "authenticated RTT/timeout; no media-loss or capacity estimate",
+    "encryption": "AES-256-GCM",
+    "cachedPackets": 0
+  },
+  "receiver": {
+    "active": true,
+    "received": 54,
+    "unique": 48,
+    "delivered": 48,
+    "duplicatesOrLate": 2,
+    "missing": 0,
+    "invalid": 0,
+    "unauthorized": 0,
+    "overflow": 0,
+    "outputErrors": 0,
+    "buffered": 0,
+    "nackSent": 0,
+    "fecReceived": 12,
+    "fecRecovered": 8,
+    "fecExpired": 0,
+    "healthRequests": 11,
+    "healthRejected": 2,
+    "paths": {
+      "127.0.0.1:51439": 38,
+      "127.0.0.1:51440": 16
+    },
+    "encryption": "AES-256-GCM",
+    "cachedPayloads": 48,
+    "pendingFecGroups": 0
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "created": "2026-10-09T13:12:09.678Z",
+  "files": [
+    {
+      "file": "qa-portatil/resultado-srt444-20261009.json",
+      "bytes": 3745,
+      "sha256": "65b2c1e8dd1fbf0698565d40fd60d68cd79d8e4686939a45101fc4f05554b3d7"
+    },
+    {
+      "file": "qa-portatil/resultado-srt444-keyfix-20261009.json",
+      "bytes": 2463,
+      "sha256": "c0cbbee993f68ad6ea5d1a6173437a9953ae167f3a4ef0195a4ffa49cc58e2c1"
+    },
+    {
+      "file": "qa-portatil/RELATORIO-SRT444-20261009.md",
+      "bytes": 3924,
+      "sha256": "280def710b75e13ae8df49b0b9cf0371b69d8eb75d906a49de50c7491f7fbc6b"
+    },
+    {
+      "file": "qa-portatil/srt444-alpha-20261009/fixture.json",
+      "bytes": 339,
+      "sha256": "7c319080065d227eb54296975762da924bc0557481442596cb2dd63d90d8bf16"
+    },
+    {
+      "file": "qa-portatil/srt444-alpha-20261009/analytic-rgba.png",
+      "bytes": 3495,
+      "sha256": "54b5d5c38890341c744afe15091d85e29b4bd9f42726776006607347593533ef"
+    },
+    {
+      "file": "qa-portatil/srt444-alpha-20261009/444-none.ts",
+      "bytes": 7646524,
+      "sha256": "e9d0522ed55ac11838afb9318690d151231105cede26826595fe9160e3dfd74c"
+    },
+    {
+      "file": "qa-portatil/srt444-alpha-20261009/first-failure/444-packed.ts",
+      "bytes": 7646524,
+      "sha256": "0650c1d0ac7f6bd8270ec84428664c5abc6f52ef1a2b05a3a273645ddaf5bdb1"
+    },
+    {
+      "file": "qa-portatil/srt444-alpha-20261009/444-packed.ts",
+      "bytes": 7646524,
+      "sha256": "0f485f8cca490ad72cdd0e92736b3f36b9385fa240c5aebc007024a83ba40557"
+    },
+    {
+      "file": "qa-portatil/srt444-alpha-20261009/444-packed-recomposed.png",
+      "bytes": 1612,
+      "sha256": "c25c45179f10f4afb8a4da40689d114c4ccca8425ac453693a2578c4ce6978ee"
+    },
+    {
+      "file": "obs-vmix/painel/efeitos/srt-packed-alpha.shader",
+      "bytes": 640,
+      "sha256": "0ab64755932741542e22b14a476744398ce5e07e8a97f8804eec89a195fd26dc"
+    },
+    {
+      "file": "qa-portatil/GUIA-OBS-SRT-ALPHA-PACKED-20261009.md",
+      "bytes": 3216,
+      "sha256": "9007f7c932e11bd77cb2241fbfd3d02f462b397f32d65002bccfc9ffe6f510db"
+    },
+    {
+      "file": "qa-portatil/resultado-srt444-obs-filter-20261009.json",
+      "bytes": 2113,
+      "sha256": "eeb40826d8864ff82ca38d0b67db7f84fd3cdf185012f5d0ce3103fb50f02131"
+    }
+  ]
+}

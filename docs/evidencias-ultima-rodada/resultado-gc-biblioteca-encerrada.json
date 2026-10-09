@@ -1,0 +1,11 @@
+{
+  "root": "C:/Users/eddyr/AppData/Local/Temp/FreeMix-QA-Recovery-20261008",
+  "wsPort": 14479,
+  "apiPort": 18104,
+  "nativePid": 69032,
+  "apiPid": 13808,
+  "presetSaved": true,
+  "outputsInactive": true,
+  "operatorTouched": false,
+  "note": "Closure verified by existing exclusive-QA helper after GC checks. This new receipt identifies the GC run."
+}

@@ -1,0 +1,15 @@
+{
+  "passed": true,
+  "root": "C:\\Users\\eddyr\\AppData\\Local\\Temp\\FreeMix-QA-Feed-Servidor-OB3rrQ",
+  "checks": [
+    "TLS real com CA de QA, feed, assinatura e payload servidos na mesma origem",
+    "Servidor somente leitura recusa upload, configuração privada e traversal",
+    "Payload alterado é recusado antes da inicialização e após a conferência",
+    "Templates não expõem controle, credenciais são locais e existentes são preservadas"
+  ],
+  "publiclyPublished": false,
+  "caddyRuntimeTested": false,
+  "coturnRuntimeTested": false,
+  "operatorTouched": false,
+  "at": "2026-10-09T04:35:14.309Z"
+}

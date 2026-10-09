@@ -1,0 +1,10 @@
+{
+  "version": "v1.0.0.19",
+  "source": "https://github.com/openmediatransport/libomtnet/releases/download/v1.0.0.19/OpenMediaTransport.Binaries.Release.v1.0.0.19.zip",
+  "sha256": "c62460174499dabe703e3e57372daf5f1dd95f890355d11e30052b9ed35bdac4",
+  "officialDigest": "sha256:c62460174499dabe703e3e57372daf5f1dd95f890355d11e30052b9ed35bdac4",
+  "dllSha256": "673b1d33222295f1c9190c54cefc89d5e322301702532e2c8fe78a16e8aa28da",
+  "headerChanges": "Removed automatic MSVC import-library pragma only; API structs/declarations unchanged",
+  "wrapper": "frontend/widgets/FreeMixOmtOutput.hpp",
+  "originalPluginPreserved": true
+}

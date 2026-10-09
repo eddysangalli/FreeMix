@@ -1,7 +1,7 @@
 From 3504a16e38e2e5957278cd2909ab3cc6ba93ceba Mon Sep 17 00:00:00 2001
 From: Eddy Sangalli <eddyrodrigues@outlook.com>
 Date: Wed, 7 Oct 2026 12:11:12 -0300
-Subject: [PATCH 2/6] feat(preview): native Safe Area with 12 guide modes,
+Subject: [PATCH 2/9] feat(preview): native Safe Area with 12 guide modes,
  grids and center crosshair
 
 ---

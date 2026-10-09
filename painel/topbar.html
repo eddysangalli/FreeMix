@@ -7,7 +7,7 @@
   /* Barra superior do FreeMix, na disposição de uma mesa de produção: Preset à esquerda, Tela Cheia no centro,
      Pausar Entradas / Básico / Configurar / ? à direita. Cada botão executa algo real; as janelas abrem na mesa
      de baixo porque esta barra é baixa demais para mostrá-las. */
-  :root { --bar: #0d1013; --btn: #2a3540; --btn-h: #364452; --bd: #4b5967; --tx: #f2f5f8; --on: #0e7a0d; }
+  :root { --bar: #0a0f14; --btn: #293038; --btn-h: #404b56; --bd: #607081; --tx: #f2f5f8; --on: #006400; }
   * { box-sizing: border-box; }
   html, body { height: 100%; margin: 0; }
   body { background: var(--bar); color: var(--tx); font: 700 11px/1 "Segoe UI", Tahoma, Arial, sans-serif; user-select: none; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; padding: 0 4px; overflow: hidden; white-space: nowrap; }
@@ -20,6 +20,20 @@
   .b.sq { min-width: 0; width: 24px; padding: 0; }
   .clk { display: inline-flex; gap: 10px; margin-left: 10px; padding: 0 10px; height: 22px; align-items: center; background: #000; border: 1px solid #f2f5f8; font: 700 12px Consolas, monospace; } .clk b { color: #5a636e; } .clk b.on { color: #ff5a4f; } .clk b.now { color: #f2f5f8; } .clk b.amber { color: #ffb300; } .clk b.green { color: #3fd145; } .clk b[hidden] { display: none; }
   .lab { padding: 0 14px 0 10px; font-size: 12px; }
+body:not(.clocks-only) .clk { display:none; }
+body.clocks-only { display:block; padding:0; }
+body.clocks-only .grp { display:none; }
+body.clocks-only .grp:nth-of-type(2) { display:block; }
+body.clocks-only button { display:none; }
+body.clocks-only .clk { position:fixed; top:0; left:0; right:0; height:88px; margin:0; padding:3px; display:flex; flex-direction:column; justify-content:space-evenly; gap:2px; font-size:12px; }
+body.clocks-only .clk b.now { font-size:22px; }
+.rapid-talk { display:none; }
+body.clocks-only .rapid-talk { display:grid; position:fixed; top:90px; left:0; right:0; height:30px; grid-template-columns:minmax(0,1fr) 22px; gap:2px; }
+.rapid-talk select { width:100%; min-width:0; background:#293038; color:#fff; border:1px solid #607081; font:11px 'Segoe UI',sans-serif; }
+body.clocks-only .rapid-talk button { display:block; width:100%; min-width:0; height:30px; background:#404b56; border:1px solid #607081; color:#fff; font:700 11px 'Segoe UI',sans-serif; padding:0; touch-action:none; }
+.rapid-talk button:disabled { color:#a5acb4; background:#293038; cursor:default; }
+.rapid-talk button.active { background:#ff0000 !important; color:#fff; }
+.rapid-talk small { white-space:normal; overflow:hidden; font:10px/11px 'Segoe UI',sans-serif; color:#b8c4d0; }
 </style>
 </head>
 <body>
@@ -36,16 +50,25 @@
     <span class="clk" id="clk" title="Relógios de produção. Duplo clique: escolher o que cada um mostra (relógio, evento, gravação, transmissão, tempo restante)."><b id="k-rec">REC 00:00:00</b><b id="k-str">NO AR 00:00:00</b><b id="k-now" class="now"></b></span>
   </div>
   <div class="grp r">
+    <button class="b" data-open="datasources" title="Tabelas CSV, JSON e Excel vinculadas ao GC">Dados</button>
+    <button class="b" data-open="compositions" title="Criar entrevista, PiP e trocar os participantes por slots">Compor</button><button class="b" data-open="calls" title="Convidados, retorno e mic privado">Calls</button>
     <button class="b" id="b-pause" data-do="pausethumbs" title="Pausa todas as entradas de vídeo que estão tocando">Pausar Entradas</button>
     <button class="b" id="b-basic" data-do="basic" title="Mostra ou esconde os botões avançados da janela">Básico</button>
-    <button class="b" data-open="config" title="Vídeo da produção">Configurar</button><button class="b dd" data-open="cfgmenu" title="Todas as configurações">▼</button>
+    <button class="b" data-open="settings" title="Configurações FreeMix">Configurar</button><button class="b dd" data-open="cfgmenu" title="Todas as configurações">▼</button>
     <button class="b sq" data-open="help" title="Ajuda">?</button>
   </div>
 
+  <div class="rapid-talk" id="rapid-talk">
+    <button id="talk-hold" disabled title="Segure para falar. Soltar fecha o microfone privado.">Talkback</button>
+    <button class="b sq" id="talk-settings" data-open="calls" aria-label="Configurar Talkback" title="Microfone privado e convidados do botão Talkback">⋮</button>
+    <small id="talk-status" role="status" hidden>Configure o mic em Calls.</small>
+  </div>
 <script src="local.js"></script>
+<script src="talkback-rapido.js"></script>
 <script>
   "use strict";
   const $ = (id) => document.getElementById(id), LOCAL = window.MESA_LOCAL || {};
+  if(new URLSearchParams(location.search).get("mode")==="clocks")document.body.classList.add("clocks-only");
   const b64 = (buf) => btoa(String.fromCharCode(...new Uint8Array(buf)));
   const sha = async (text) => b64(await crypto.subtle.digest("SHA-256", new TextEncoder().encode(text)));
   let ws = null, seq = 0, on = false;

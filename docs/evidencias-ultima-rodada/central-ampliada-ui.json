@@ -1,0 +1,16 @@
+{
+  "passed": true,
+  "method": "CUA navegador local isolado com DOM e screenshot",
+  "apiPort": 18105,
+  "checks": [
+    "Formulário Arquivos e divisão carregado do motor com controles editáveis e duas colunas em largura1422",
+    "Parâmetros dos encoders carregaram propriedades x264 reais e bloqueio explícito de apply no modoSimple",
+    "Larguras observadas1422,777,555 sem overflow horizontal do documento",
+    "Em largura555 o maior limite direito dos controles foi493.78 e o rodapé com botões estava visível",
+    "Screenshot da janela menor confirmou menu em duas colunas, formulário rolável e rodapé acessível"
+  ],
+  "temporaryViewportReset": true,
+  "temporaryTabClosed": true,
+  "operatorUntouched": true,
+  "visualOneToOneUniversal": false
+}

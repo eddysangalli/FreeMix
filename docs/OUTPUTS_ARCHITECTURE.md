@@ -1,8 +1,10 @@
 # FreeMix — Central de Saídas, Roteamento e Vídeo Profissional
 
+> Estado conferido em 08/10/2026: este documento descreve a arquitetura alvo. A matriz independente completa ainda não foi entregue. Executável atual: projetores e câmera virtual reais; RTMP principal e até quatro destinos extras com vídeo/áudio/encoders compartilhados. Escolher conteúdo/qualidade por destino, mixes horizontal/vertical e transportes profissionais permanecem na lista `PENDENCIAS.md`. Não interpretar as capacidades projetadas abaixo como recursos homologados.
+
 ## 1. Visão Geral da Arquitetura
 
-A Central de Saídas do FreeMix opera como uma matriz de roteamento independente que desacopla rigorosamente a **Origem de Conteúdo** do **Meio de Transporte (Destino)**.
+A Central de Saídas projetada deve desacoplar a **Origem de Conteúdo** do **Meio de Transporte (Destino)**.
 
 Em produções ao vivo profissionais (padrão broadcast/vMix), a mesa de corte não deve limitar o envio de sinais apenas ao sinal de Programa principal. A Central de Saídas gerencia múltiplos feeds simultâneos com canais de áudio, resoluções, taxas de quadros e opções de canal alfa (Fill + Key) específicos por destino.
 
@@ -26,9 +28,9 @@ Em produções ao vivo profissionais (padrão broadcast/vMix), a mesa de corte n
 | **Monitores e Projetores** | `OpenVideoMixProjector`<br>`OpenSourceProjector`<br>`GetMonitorList` | Fullscreen em monitores reais (0..N) ou Janela Flutuante (-1). Suporta Program, Preview, Multiview e Fontes/Cenas. | OBS WebSocket v5 **não** possui chamada para fechar projetores abertos. O ciclo de vida fechamento/reposicionamento avançado requer gestão pelo plugin nativo FreeMix. |
 | **Câmera Virtual** | `StartVirtualCam`<br>`StopVirtualCam`<br>`GetVirtualCamStatus` | DirectShow Virtual Device para Teams, Zoom, vMix e navegadores web (1080p, sem áudio). | 1 saída global por instância OBS. |
 | **Transmissão (RTMP / SRT)** | `StartStream`<br>`StopStream`<br>`GetStreamStatus` | Transmissão primária com codificação por hardware (NVENC/QSV/x264). Métricas reais: bitrate, timecode, drops, congestionamento. | Configurada no perfil de streaming ativo. |
-| **Multistream** | OBS `adv_stream` / `obs-multi-rtmp` / Aitum Stream Suite | Envio simultâneo para YouTube, Twitch, Facebook ou servidores privados RTMP/SRT. | Falhas e quedas de rede são tratadas individualmente por endpoint, sem derrubar as demais transmissões. |
+| **Multistream** | `FreeMixMultistream.cpp`, outputs RTMP nativos | Principal + quatro extras compartilham vídeo, áudio e encoders. | Origem, qualidade e áudio independentes ainda precisam de implementação e recepção simultânea de dois conteúdos distintos. |
 | **DeckLink / SDI** | `decklink.dll` / `decklink-output-ui.dll` | Saída SDI/HDMI em placas Blackmagic Design. Suporta vídeo normal, Fill + Key Externo (2 canais SDI síncronos) e Keyer Interno. | **Requer hardware físico e drivers Blackmagic Desktop Video**. Quando ausente, a Central reporta estado `indisponível` com diagnóstico explícito. |
-| **NDI (DistroAV)** | `distroav.dll` / NDI Runtime 5.x+ | Saída de rede Gigabit NDI com baixa latência e suporte a canal alfa completo (RGBA 32-bit para GC externo). | Requer NDI Runtime instalado no Windows. O Preview NDI por design OBS não transporta áudio. |
+| **NDI (DistroAV)** | DistroAV 6.2.1 portátil x64, OBS 31.1.1+, NDI Runtime 6.3+ | Plugin oficial baixado e hash conferido; ainda não carregado no FreeMix. | Nesta máquina foram detectados runtimes 5.5.4 e 4.5.1; runtime 6.3+ não confirmado. DLL/dados do plugin e runtime são dependências distintas. Validação de recepção/envio/áudio/tally/alpha ainda pendente. |
 | **OMT (Open Media Transport)** | `omtplugin.dll` | Transporte IP ultrarrápido aberto com áudio multicanal e suporte a transparência. | Requer módulo compilado do OMT no diretório de plugins. |
 
 ---

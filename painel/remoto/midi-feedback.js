@@ -1,0 +1,9 @@
+(function(root){'use strict';
+ function create(access,getState,onError=()=>{},isActive=()=>true){const sent=new Map();let timer=null,wasActive=false;
+  function tick(){const state=getState()||{},active=isActive(),routes=new Set();for(const item of(state.controllers?.items||[])){const f=item.midiFeedback;if(!f?.enabled||!f.outputId||!['note','cc'].includes(f.message)||!Number.isInteger(f.channel)||f.channel<1||f.channel>16||!Number.isInteger(f.number)||f.number<0||f.number>127)continue;const port=access.outputs.get(f.outputId);if(!port||port.state!=='connected')continue;const a=state.controllers?.activators?.find(a=>a.id===item.id),ready=active&&state.connected&&item.enabled&&a?.available;const value=ready&&(f.value==='volume')?Math.max(0,Math.min(127,Math.round(Number(a.volume||0)/100*127))):ready&&a.active?f.onValue??127:f.offValue??0;const status=(f.message==='cc'?0xb0:0x90)|(f.channel-1),key=f.outputId+':'+status+':'+f.number;routes.add(key);if(sent.get(key)?.value===value)continue;try{port.send([status,f.number,value]);sent.set(key,{port,status,number:f.number,value});}catch(e){onError(e);}}
+   for(const[key,old]of sent)if(!routes.has(key)){try{if(old.port.state==='connected')old.port.send([old.status,old.number,0]);}catch(e){onError(e);}sent.delete(key);}wasActive=active;return{routes:sent.size,active:wasActive};}
+  function stop(){clearInterval(timer);timer=null;for(const old of sent.values())try{if(old.port.state==='connected')old.port.send([old.status,old.number,0]);}catch{}sent.clear();}
+  return{tick,start(){if(!timer)timer=setInterval(tick,200);tick();},stop,status(){return{routes:sent.size,active:wasActive};}};
+ }
+ root.FreeMixMidiFeedback={create};
+})(typeof window==='undefined'?globalThis:window);

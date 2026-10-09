@@ -1,0 +1,15 @@
+{
+  "passed": true,
+  "at": "2026-10-08T22:39:43.702Z",
+  "scope": "Browser fixture real MacroEngine/ControllerEngine; no native commands, physical MIDI or WAN",
+  "checks": [
+    "UI OSC porta salva 19129, sem estado ativo persistido; Start/Stop observados no browser",
+    "UI salva macro declarativa e gatilho RecordingStop desligado; leitura dos arquivos confirma IDs e ação",
+    "OSC read responde novamente mesmo com estado sem alterações; assinatura mantém deduplicação"
+  ],
+  "screenshots": [
+    "controllers-feedback-ui.jpg",
+    "controllers-macros-ui.jpg"
+  ],
+  "browserErrors": []
+}

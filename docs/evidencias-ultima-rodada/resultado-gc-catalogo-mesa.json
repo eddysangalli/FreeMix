@@ -1,0 +1,10 @@
+{
+  "success": true,
+  "checks": [
+    "Quatro modelos antigos + importado + 22 próprios disponíveis",
+    "Objeto e campos importados preservados sem editar catálogo original",
+    "Recarregar catálogo preserva novos importados e não duplica modelos"
+  ],
+  "models": 22,
+  "at": "2026-10-08T21:00:02.790Z"
+}

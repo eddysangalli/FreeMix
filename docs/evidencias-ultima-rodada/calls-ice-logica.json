@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "checks": [
+    "Kit ICE importável, credenciais ocultas no status e entradas inválidas recusadas",
+    "SDK VDO.Ninja carregado produz RTCConfiguration relay e credenciais TURN reais, sem abrir rede"
+  ],
+  "externalConnectionTested": false,
+  "credentialsPrinted": false,
+  "at": "2026-10-09T04:27:44.386Z"
+}

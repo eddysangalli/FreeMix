@@ -33,10 +33,10 @@ export function convertColor(hexArgb) {
  */
 export function parseAttributes(tagStr) {
   const attrs = {};
-  const regex = /([a-zA-Z0-9_\-.:]+)="([^"]*)"/g;
+  const regex = /([a-zA-Z0-9_\-.:]+)\s*=\s*(["'])([\s\S]*?)\2/g;
   let match;
   while ((match = regex.exec(tagStr)) !== null) {
-    attrs[match[1]] = match[2];
+    attrs[match[1]] = match[3].replace(/&(?:amp|lt|gt|quot|apos|#\d+|#x[a-f\d]+);/gi,s=>{const named={'&amp;':'&','&lt;':'<','&gt;':'>','&quot;':'"','&apos;':"'"};if(named[s])return named[s];const n=s[2].toLowerCase()==='x'?parseInt(s.slice(3,-1),16):parseInt(s.slice(2,-1),10);return n>0&&n<=0x10ffff?String.fromCodePoint(n):'';});
   }
   return attrs;
 }
@@ -49,7 +49,3 @@ export function parseCoords(str, def = [0, 0, 0]) {
   const parts = str.split(',').map(s => parseFloat(s.trim()));
   return [parts[0] || 0, parts[1] || 0, parts[2] || 0];
 }
-
-console.log('Módulo de utilitários de cor e parser testado:');
-console.log('#FF4B56A7 ->', convertColor('#FF4B56A7'));
-console.log('#80FF0000 ->', convertColor('#80FF0000'));

@@ -1,0 +1,14 @@
+{
+  "url": "https://downloads.ndi.tv/SDK/NDI_SDK/NDI%206%20SDK.exe",
+  "downloadedAt": "2026-10-09T03:30:09.013Z",
+  "sha256": "4d5dd36a1c7c7634f408bf459b068787cce6f5310a3efe832d76b1ddeb54e499",
+  "executed": false,
+  "globallyInstalled": false,
+  "sdkVersion": "6.3.2.0",
+  "dllSha256": "2b6602075868ba4401f82f417d72424805d69b11ca86078023d0d489ff45dd84",
+  "sourceMember": "app/Bin/x64/Processing.NDI.Lib.x64.dll",
+  "documentation": "https://docs.ndi.video/all/developing-with-ndi/sdk/software-distribution",
+  "license": "https://downloads.ndi.tv/SDK/NDI_SDK/NDI%20SDK%20License%20Agreement.pdf",
+  "distribution": "Only SDK Bin/x64 runtime used by the bundled desktop product; SDK EULA and third-party licenses included. No Tools, SDK utilities, import libraries or SDK whole distribution.",
+  "localOnlyRuntimeUntouched": true
+}

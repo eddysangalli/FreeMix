@@ -1,0 +1,264 @@
+{
+  "at": "2026-10-09T04:23:40.237Z",
+  "ports": [
+    18210,
+    18211,
+    18212,
+    18213,
+    18214,
+    18215
+  ],
+  "checks": [
+    {
+      "name": "authenticated capability and path health",
+      "pass": true
+    },
+    {
+      "name": "real limited UDP goodput distinguishes throttled paths",
+      "pass": true,
+      "measurement": {
+        "paths": [
+          {
+            "localAddress": "127.0.0.1",
+            "host": "127.0.0.1",
+            "port": 18214,
+            "samples": [
+              {
+                "targetMbps": 1,
+                "attemptedPackets": 17,
+                "receivedPackets": 17,
+                "elapsedMs": 201.69060000000013,
+                "lossPercent": 0,
+                "sentMbps": 0.9197453921997351,
+                "goodputMbps": 0.9197453921997351
+              },
+              {
+                "targetMbps": 4,
+                "attemptedPackets": 72,
+                "receivedPackets": 72,
+                "elapsedMs": 204.43550000000005,
+                "lossPercent": 0,
+                "sentMbps": 3.843089874312435,
+                "goodputMbps": 3.843089874312435
+              },
+              {
+                "targetMbps": 16,
+                "attemptedPackets": 285,
+                "receivedPackets": 285,
+                "elapsedMs": 200.63010000000008,
+                "lossPercent": 0,
+                "sentMbps": 15.500764840370406,
+                "goodputMbps": 15.500764840370406
+              }
+            ],
+            "capacityMbps": 15.500764840370406
+          },
+          {
+            "localAddress": "127.0.0.1",
+            "host": "127.0.0.1",
+            "port": 18215,
+            "samples": [
+              {
+                "targetMbps": 1,
+                "attemptedPackets": 18,
+                "receivedPackets": 18,
+                "elapsedMs": 203.36760000000004,
+                "lossPercent": 0,
+                "sentMbps": 0.9658175638597297,
+                "goodputMbps": 0.9658175638597297
+              },
+              {
+                "targetMbps": 4,
+                "attemptedPackets": 72,
+                "receivedPackets": 72,
+                "elapsedMs": 202.51400000000012,
+                "lossPercent": 0,
+                "sentMbps": 3.879554006142783,
+                "goodputMbps": 3.879554006142783
+              },
+              {
+                "targetMbps": 16,
+                "attemptedPackets": 286,
+                "receivedPackets": 90,
+                "elapsedMs": 202.42620000000034,
+                "lossPercent": 68.53146853146853,
+                "sentMbps": 15.417134738487384,
+                "goodputMbps": 4.851545896726798
+              }
+            ],
+            "capacityMbps": 3.879554006142783
+          }
+        ],
+        "at": 1791519816970,
+        "maxProbeBytesPerPath": 5242880,
+        "externalHomologation": false
+      }
+    },
+    {
+      "name": "allocation uses measured received bandwidth",
+      "pass": true,
+      "weights": [
+        80,
+        20
+      ]
+    },
+    {
+      "name": "per-path first-send media loss plus FEC/NACK delivery",
+      "pass": true,
+      "paths": [
+        {
+          "host": "127.0.0.1",
+          "port": 18214,
+          "localAddress": "127.0.0.1",
+          "weight": 1,
+          "sent": 202,
+          "dataSent": 187,
+          "paritySent": 12,
+          "retrySent": 3,
+          "bytes": 287032,
+          "errors": 0,
+          "healthRejected": 0,
+          "lastError": null,
+          "healthStatus": "healthy",
+          "effectiveWeight": 85,
+          "healthStarted": 38.8613,
+          "lastAck": 4047.3688,
+          "rttMs": 2.331997327995304,
+          "goodReplies": 2,
+          "healthSent": 11,
+          "healthReplies": 11,
+          "healthTimeouts": 0,
+          "mediaLossMeasured": true,
+          "capacityMbps": 15.500764840370406,
+          "measurementReady": true,
+          "mediaLossPercent": 0,
+          "recentMediaLossPercent": 0,
+          "mediaExpected": 187,
+          "mediaReceived": 187,
+          "capacityMeasuredAt": 1791519816118,
+          "measurementRejected": 0,
+          "availableMeasuredMbps": 12.400611872296325,
+          "capacitySamples": [
+            {
+              "targetMbps": 1,
+              "attemptedPackets": 17,
+              "receivedPackets": 17,
+              "elapsedMs": 201.69060000000013,
+              "lossPercent": 0,
+              "sentMbps": 0.9197453921997351,
+              "goodputMbps": 0.9197453921997351
+            },
+            {
+              "targetMbps": 4,
+              "attemptedPackets": 72,
+              "receivedPackets": 72,
+              "elapsedMs": 204.43550000000005,
+              "lossPercent": 0,
+              "sentMbps": 3.843089874312435,
+              "goodputMbps": 3.843089874312435
+            },
+            {
+              "targetMbps": 16,
+              "attemptedPackets": 285,
+              "receivedPackets": 285,
+              "elapsedMs": 200.63010000000008,
+              "lossPercent": 0,
+              "sentMbps": 15.500764840370406,
+              "goodputMbps": 15.500764840370406
+            }
+          ],
+          "capacityMeaning": "delivered wire goodput at tested rates; lower bound, not NIC speed/WAN guarantee",
+          "mediaReceivedBytes": 246092,
+          "mediaFeedbackAt": 1791519818372,
+          "mediaLossWindowMs": 400,
+          "mediaLossScope": "first send before FEC/retransmission; late arrivals reconcile"
+        },
+        {
+          "host": "127.0.0.1",
+          "port": 18215,
+          "localAddress": "127.0.0.1",
+          "weight": 1,
+          "sent": 51,
+          "dataSent": 13,
+          "paritySent": 38,
+          "retrySent": 0,
+          "bytes": 73028,
+          "errors": 0,
+          "healthRejected": 0,
+          "lastError": null,
+          "healthStatus": "healthy",
+          "effectiveWeight": 15,
+          "healthStarted": 39.094,
+          "lastAck": 4047.6064,
+          "rttMs": 2.579002991008805,
+          "goodReplies": 2,
+          "healthSent": 11,
+          "healthReplies": 11,
+          "healthTimeouts": 0,
+          "mediaLossMeasured": true,
+          "capacityMbps": 3.879554006142783,
+          "measurementReady": true,
+          "mediaLossPercent": 30.76923076923077,
+          "recentMediaLossPercent": 30.76923076923077,
+          "mediaExpected": 13,
+          "mediaReceived": 9,
+          "capacityMeasuredAt": 1791519816970,
+          "measurementRejected": 0,
+          "availableMeasuredMbps": 2.1486760649406182,
+          "capacitySamples": [
+            {
+              "targetMbps": 1,
+              "attemptedPackets": 18,
+              "receivedPackets": 18,
+              "elapsedMs": 203.36760000000004,
+              "lossPercent": 0,
+              "sentMbps": 0.9658175638597297,
+              "goodputMbps": 0.9658175638597297
+            },
+            {
+              "targetMbps": 4,
+              "attemptedPackets": 72,
+              "receivedPackets": 72,
+              "elapsedMs": 202.51400000000012,
+              "lossPercent": 0,
+              "sentMbps": 3.879554006142783,
+              "goodputMbps": 3.879554006142783
+            },
+            {
+              "targetMbps": 16,
+              "attemptedPackets": 286,
+              "receivedPackets": 90,
+              "elapsedMs": 202.42620000000034,
+              "lossPercent": 68.53146853146853,
+              "sentMbps": 15.417134738487384,
+              "goodputMbps": 4.851545896726798
+            }
+          ],
+          "capacityMeaning": "delivered wire goodput at tested rates; lower bound, not NIC speed/WAN guarantee",
+          "mediaReceivedBytes": 11844,
+          "mediaFeedbackAt": 1791519818372,
+          "mediaLossWindowMs": 400,
+          "mediaLossScope": "first send before FEC/retransmission; late arrivals reconcile"
+        }
+      ],
+      "received": 200,
+      "fec": 3,
+      "retries": 3
+    },
+    {
+      "name": "authentication rejects tampered measurement envelope",
+      "pass": true
+    },
+    {
+      "name": "manual default, measured allocation validation and remote receiver interface context",
+      "pass": true
+    },
+    {
+      "name": "private portable receiver dependency manifest and CLI dry check",
+      "pass": true,
+      "folder": "C:\\Users\\eddyr\\AppData\\Local\\Temp\\FreeMix-Receiver-18210-gzQOyt\\config\\obs-studio\\plugin_config\\freemix-network\\receptor-portatil-129db4c8-c488-4953-a928-94cf744afa5d",
+      "manifestFiles": 6
+    }
+  ],
+  "wanTested": false
+}

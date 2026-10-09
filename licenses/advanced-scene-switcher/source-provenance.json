@@ -1,0 +1,34 @@
+{
+  "repo": "WarmUpTill/SceneSwitcher",
+  "version": "1.36.1",
+  "url": "https://github.com/WarmUpTill/SceneSwitcher/releases/download/1.36.1/advanced-scene-switcher-1.36.1-source.tar.xz",
+  "sha256": "1e8c66e18c1d999c47f1e69a3978df3121a5d1ebaf5d77cdae7d73d062d53ce2",
+  "size": 481141292,
+  "sourceKind": "Official upstream release source archive including build files and populated dependency source directories",
+  "contentAudit": {
+    "files": 24867,
+    "dependencyFiles": {
+      "asio": 1559,
+      "cpp-httplib": 322,
+      "json": 1138,
+      "jsoncons": 1677,
+      "leptonica": 982,
+      "libremidi": 902,
+      "libusb": 158,
+      "opencv": 6893,
+      "opencv_contrib": 3863,
+      "openvr": 740,
+      "paho.mqtt.cpp": 759,
+      "tesseract": 1090,
+      "websocketpp": 271,
+      "whisper.cpp": 2002
+    },
+    "buildFiles": [
+      "advanced-scene-switcher-1.36.1-source/plugins/CMakeLists.txt",
+      "advanced-scene-switcher-1.36.1-source/tests/CMakeLists.txt",
+      "advanced-scene-switcher-1.36.1-source/CMakeLists.txt",
+      "advanced-scene-switcher-1.36.1-source/.gitmodules"
+    ],
+    "rebuildPerformed": false
+  }
+}

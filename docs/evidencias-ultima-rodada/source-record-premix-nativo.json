@@ -1,0 +1,25 @@
+{
+  "at": "2026-10-08T22:53:26.442Z",
+  "root": "C:\\Users\\eddyr\\AppData\\Local\\Temp\\FreeMix-QA-SourceRecord-Premix-1791499637635",
+  "pid": 119616,
+  "checks": [
+    "Private native identity matches launched QA",
+    "Capability marker in plugin native defaults",
+    "No external output active",
+    "SourceRecord file has real independent bus AAC PCM",
+    "Independent bus global mixers remain zero",
+    "Filter teardown leaves no SourceRecord output active",
+    "Scene removal after filter teardown preserves responsive native"
+  ],
+  "exeSha256": "35678e1657509e2a5c1c1153b3e0f1915018668e161b44dc76c741388204298e",
+  "pluginSha256": "63e4f4c4fe77382b24eb03085a62e3da7ac8e77554be5f6f94dcf17c885987e8",
+  "file": "C:\\Users\\eddyr\\AppData\\Local\\Temp\\FreeMix-QA-SourceRecord-Premix-1791499637635\\gravacoes\\premix-proof.ts",
+  "peak": 0.06896030157804489,
+  "rms": 0.032296588946904695,
+  "samples": 208896,
+  "passed": true,
+  "cleanup": {
+    "savedClosed": true,
+    "pid": 119616
+  }
+}

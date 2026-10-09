@@ -1,0 +1,32 @@
+{
+  "at": "2026-10-08T22:35:45.671Z",
+  "pass": true,
+  "kind": "browser-fixture-not-native-plugin",
+  "checks": [
+    {
+      "name": "Ausência de plugin isolada",
+      "pass": true
+    },
+    {
+      "name": "Telemetria real visível e consulta por ID",
+      "pass": true
+    },
+    {
+      "name": "Sem polling externo ou comando de transmissão",
+      "pass": true
+    }
+  ],
+  "actions": [
+    {
+      "action": "outputs_external_read"
+    },
+    {
+      "action": "outputs_external_read"
+    },
+    {
+      "action": "outputs_external_read",
+      "id": "abc"
+    }
+  ],
+  "pageErrors": []
+}

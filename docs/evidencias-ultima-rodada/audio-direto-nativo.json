@@ -1,0 +1,301 @@
+{
+  "root": "C:\\Users\\eddyr\\AppData\\Local\\Temp\\FreeMix-QA-Parallel-Calls-20261008",
+  "checks": [
+    "Native é somente a QA própria",
+    "Seleção nativa disponível e UUID salvo",
+    "Arquivo AAC contém PCM real do bus após rename",
+    "Transmissão SRT local entrega AAC440 do bus independente",
+    "NDI e OMT recebem vídeo verde e PCM440 do bus mixers0",
+    "Senders param sem afetar saídas paralelas",
+    "Fonte e bus continuam com seis trilhas globais desligadas",
+    "UUID de folha/mic rejeitado pelo caminho Native",
+    "Remoção de bus e teardown mantêm Native responsivo"
+  ],
+  "at": "2026-10-09T03:29:01.264Z",
+  "exeSha256": "ef523cbb598b138044aa7b9960ee06efdd1beb510cbb7df8fdbb9bff87b2aa64",
+  "busUuid": "5b8239c6-0357-476c-a630-fe64f8d31b90",
+  "file": {
+    "path": "C:\\Users\\eddyr\\AppData\\Local\\Temp\\FreeMix-QA-Parallel-Calls-20261008\\gravacoes\\audio-direct-1791516541289\\bus440.mkv",
+    "peak": 0.1367638111114502,
+    "rms": 0.06461018718921992,
+    "samples": 135168
+  },
+  "srt": {
+    "file": "C:\\Users\\eddyr\\AppData\\Local\\Temp\\FreeMix-QA-Parallel-Calls-20261008\\gravacoes\\audio-direct-1791516541289\\srt-bus440.ts",
+    "rms": 0.06469305194595812,
+    "hz": 440,
+    "samples": 96256,
+    "loopback": true
+  },
+  "network": [
+    {
+      "active": true,
+      "alpha": false,
+      "alphaSupported": true,
+      "audioSourceSelectable": true,
+      "audioSourceUuid": "5b8239c6-0357-476c-a630-fe64f8d31b90",
+      "audioTrack": 0,
+      "audioTrackSelectable": true,
+      "available": true,
+      "backend": "ndi_output",
+      "capturedFrames": 0,
+      "connections": -1,
+      "fillKey": false,
+      "fillKeySupported": false,
+      "groups": "FreeMix-QA-Local",
+      "hdrSupported": false,
+      "height": 180,
+      "keyName": "",
+      "maxAudioTrack": 2,
+      "mode": "source",
+      "networkName": "FreeMix-QA-Direct-NDI",
+      "networkNameEditable": true,
+      "outputName": "FreeMix NDI Main Output",
+      "precisionBits": 8,
+      "receiverStatus": "unknown",
+      "senderId": 0,
+      "senders": [
+        {
+          "active": true,
+          "alpha": false,
+          "audioSourceUuid": "5b8239c6-0357-476c-a630-fe64f8d31b90",
+          "audioTrack": 0,
+          "capturedFrames": 0,
+          "connections": -1,
+          "fillKey": false,
+          "height": 180,
+          "keyName": "",
+          "mode": "source",
+          "networkName": "FreeMix-QA-Direct-NDI",
+          "receiverStatus": "unknown",
+          "senderId": 0,
+          "sourceUuid": "d4bae6a5-05d9-4f7f-b6e8-64774a2a5390",
+          "width": 320
+        },
+        {
+          "active": false,
+          "capturedFrames": 0,
+          "connections": -1,
+          "receiverStatus": "unknown",
+          "senderId": 1
+        },
+        {
+          "active": false,
+          "capturedFrames": 0,
+          "connections": -1,
+          "receiverStatus": "unknown",
+          "senderId": 2
+        },
+        {
+          "active": false,
+          "capturedFrames": 0,
+          "connections": -1,
+          "receiverStatus": "unknown",
+          "senderId": 3
+        }
+      ],
+      "sendersPerProtocol": 4,
+      "sourceIndependent": true,
+      "sourceUuid": "d4bae6a5-05d9-4f7f-b6e8-64774a2a5390",
+      "success": true,
+      "width": 320,
+      "outputActive": true
+    },
+    {
+      "active": true,
+      "alpha": false,
+      "alphaSupported": true,
+      "audioSourceSelectable": true,
+      "audioSourceUuid": "5b8239c6-0357-476c-a630-fe64f8d31b90",
+      "audioTrack": 0,
+      "audioTrackSelectable": true,
+      "available": true,
+      "backend": "freemix_omt_output",
+      "capturedFrames": 0,
+      "connections": 0,
+      "fillKey": false,
+      "fillKeySupported": true,
+      "hdrSupported": false,
+      "height": 180,
+      "keyName": "",
+      "maxAudioTrack": 2,
+      "mode": "source",
+      "networkName": "FreeMix-QA-Direct-OMT",
+      "networkNameEditable": true,
+      "outputName": "FreeMix OMT Main Output",
+      "precisionBits": 8,
+      "receiverStatus": "disconnected",
+      "senderId": 0,
+      "senders": [
+        {
+          "active": true,
+          "alpha": false,
+          "audioSourceUuid": "5b8239c6-0357-476c-a630-fe64f8d31b90",
+          "audioTrack": 0,
+          "capturedFrames": 0,
+          "connections": 0,
+          "fillKey": false,
+          "height": 180,
+          "keyName": "",
+          "mode": "source",
+          "networkName": "FreeMix-QA-Direct-OMT",
+          "receiverStatus": "disconnected",
+          "senderId": 0,
+          "sourceUuid": "d4bae6a5-05d9-4f7f-b6e8-64774a2a5390",
+          "width": 320
+        },
+        {
+          "active": false,
+          "capturedFrames": 0,
+          "connections": -1,
+          "receiverStatus": "unknown",
+          "senderId": 1
+        },
+        {
+          "active": false,
+          "capturedFrames": 0,
+          "connections": -1,
+          "receiverStatus": "unknown",
+          "senderId": 2
+        },
+        {
+          "active": false,
+          "capturedFrames": 0,
+          "connections": -1,
+          "receiverStatus": "unknown",
+          "senderId": 3
+        }
+      ],
+      "sendersPerProtocol": 4,
+      "sourceIndependent": true,
+      "sourceUuid": "d4bae6a5-05d9-4f7f-b6e8-64774a2a5390",
+      "success": true,
+      "width": 320,
+      "outputActive": true
+    }
+  ],
+  "receivers": [
+    {
+      "protocol": "NDI",
+      "name": "FreeMix-QA-Direct-NDI",
+      "videoFrames": 121,
+      "audioFrames": 188,
+      "rms": 0.045824047178030014,
+      "peakHz": 440,
+      "expectedHz": 440,
+      "pixelsBGR": [
+        [
+          0,
+          255,
+          0
+        ],
+        [
+          0,
+          255,
+          0
+        ],
+        [
+          0,
+          255,
+          0
+        ],
+        [
+          0,
+          255,
+          0
+        ],
+        [
+          0,
+          255,
+          0
+        ]
+      ],
+      "alphaCornersCenter": [
+        [
+          255,
+          255
+        ],
+        [
+          255,
+          255
+        ],
+        [
+          255,
+          255
+        ],
+        [
+          255,
+          255
+        ],
+        [
+          255,
+          255
+        ]
+      ],
+      "alphaRequired": false,
+      "passed": true
+    },
+    {
+      "protocol": "OMT",
+      "name": "PCMOTION (FreeMix-QA-Direct-OMT)",
+      "videoFrames": 111,
+      "audioFrames": 174,
+      "rms": 0.04589276760816574,
+      "peakHz": 440,
+      "expectedHz": 440,
+      "pixelsBGR": [
+        [
+          2,
+          254,
+          1
+        ],
+        [
+          2,
+          254,
+          1
+        ],
+        [
+          2,
+          254,
+          1
+        ],
+        [
+          2,
+          254,
+          1
+        ],
+        [
+          2,
+          254,
+          1
+        ]
+      ],
+      "alphaCornersCenter": [
+        [
+          255,
+          255
+        ],
+        [
+          255,
+          255
+        ],
+        [
+          255,
+          255
+        ],
+        [
+          255,
+          255
+        ],
+        [
+          255,
+          255
+        ]
+      ],
+      "alphaRequired": false,
+      "passed": true
+    }
+  ],
+  "passed": true,
+  "operatorUntouched": true
+}

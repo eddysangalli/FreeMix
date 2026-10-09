@@ -1,0 +1,13 @@
+{
+  "testedAt": "2026-10-08T20:20:55.845Z",
+  "root": "C:\\Users\\eddyr\\AppData\\Local\\Temp\\FreeMix-QA-Parallel-Calls-20261008",
+  "apiPort": 18098,
+  "checks": [
+    "API local entrega imagem PNG real do compositor",
+    "captura conserva aspect e limita tamanho a960",
+    "variante escolhe preset vertical correspondente",
+    "fundo da variante acompanha viewport vertical",
+    "variante usa imagem privada própria e conserva horizontal"
+  ],
+  "passed": 5
+}

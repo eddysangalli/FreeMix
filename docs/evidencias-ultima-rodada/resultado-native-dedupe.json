@@ -1,0 +1,10 @@
+{
+  "at": "2026-10-09T01:46:13.193Z",
+  "pass": true,
+  "root": "C:\\Users\\eddyr\\AppData\\Local\\Temp\\FreeMix-QA-Native-Dedupe-hF2JEv",
+  "checks": [
+    "Hash dos arquivos evita armazenar snapshot nativo idêntico",
+    "Remove somente UUID novo privado e conserva ponto anterior",
+    "Registro sem mudança mantém encadeamento íntegro"
+  ]
+}

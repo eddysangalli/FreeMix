@@ -1,0 +1,26 @@
+{
+  "at": "2026-10-08T22:58:25.893Z",
+  "runtimeImportClosureMissing": [],
+  "inventoryChecks": [
+    {
+      "name": "source-record",
+      "files": 9,
+      "bad": [],
+      "lifecycleVerified": true
+    },
+    {
+      "name": "efeitos",
+      "files": 249,
+      "bad": []
+    },
+    {
+      "name": "asio",
+      "files": 3,
+      "bad": []
+    }
+  ],
+  "oldManifestMetadataEntries": [],
+  "privateGCAssetsPresent": 0,
+  "oldCatalogInherited": false,
+  "readOnlyProductAudit": true
+}

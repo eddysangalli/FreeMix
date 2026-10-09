@@ -1,0 +1,9 @@
+{
+  "passed": true,
+  "checks": [
+    "Requested anchor governs alignment",
+    "100ms offset equals3frames",
+    "Rejected engine alignment rolls back metadata"
+  ],
+  "nativeRepeated": false
+}

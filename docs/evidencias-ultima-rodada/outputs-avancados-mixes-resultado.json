@@ -1,0 +1,294 @@
+{
+  "root": "C:\\Users\\eddyr\\AppData\\Local\\Temp\\FreeMix-QA-Parallel-Outputs-20261008",
+  "checks": [
+    "Native QA identity",
+    "Native lists Mixes2/3/4",
+    "Stinger configured",
+    "Mix programs swap separately",
+    "Main program unchanged",
+    "No extra outputs remain after stop",
+    "Mix2 Stinger video and Mix3 Fade independent",
+    "Destination selected BusA440 plus private Stinger880",
+    "Other mix retains BusB660 without Stinger880",
+    "Master keeps Bus220 without Stinger880"
+  ],
+  "at": "2026-10-08T19:17:19.677Z",
+  "files": [
+    "C:\\Users\\eddyr\\AppData\\Local\\Temp\\FreeMix-QA-Parallel-Outputs-20261008/gravacoes/mixes-234-1791487039677/out0.mkv",
+    "C:\\Users\\eddyr\\AppData\\Local\\Temp\\FreeMix-QA-Parallel-Outputs-20261008/gravacoes/mixes-234-1791487039677/out1.mkv",
+    "C:\\Users\\eddyr\\AppData\\Local\\Temp\\FreeMix-QA-Parallel-Outputs-20261008/gravacoes/mixes-234-1791487039677/out2.mkv",
+    "C:\\Users\\eddyr\\AppData\\Local\\Temp\\FreeMix-QA-Parallel-Outputs-20261008/gravacoes/mixes-234-1791487039677/out3.mkv"
+  ],
+  "binary": {
+    "exeHash": "238e16c71d08653be6305cd620be0a3d1c8a4e112ebc1f8c0483212ec2c18ca3",
+    "at": "2026-10-08T19:17:07.549Z"
+  },
+  "mergeAvailable": true,
+  "mixState": {
+    "fill": true,
+    "height": 360,
+    "mixId": 2,
+    "mixes": [
+      {
+        "fill": true,
+        "height": 360,
+        "mixId": 2,
+        "positionX": 0.5,
+        "positionY": 0.5,
+        "previewUuid": "4d63bfc5-6d43-40bd-a657-dd51e04e3396",
+        "programUuid": "00691e3e-9dbe-4f35-8c7e-4b91202d8532",
+        "stingerAudioPackets": 66,
+        "stingerAudioPeak": 0.24870383739471436,
+        "stingerAudioSources": 1,
+        "stingerAudioTimestamp": 492152668931334,
+        "transitionUuid": "032f613b-f364-4a25-ab78-0f1cb07eb78c",
+        "transitioning": false,
+        "transitions": [
+          {
+            "kind": "move_transition",
+            "name": "Merge · movimento de fontes (Move)",
+            "uuid": "builtin:move_transition"
+          },
+          {
+            "kind": "cut_transition",
+            "name": "Cut",
+            "uuid": "35e79695-433f-4fe4-87a1-34ac22472287"
+          },
+          {
+            "kind": "fade_transition",
+            "name": "Fade",
+            "uuid": "31029673-5122-47b6-978c-430e5dd5db9c"
+          },
+          {
+            "kind": "swipe_transition",
+            "name": "Wipe",
+            "uuid": "cf2a415a-9e21-4bc1-b5cb-3b47d3ec970a"
+          },
+          {
+            "kind": "obs_stinger_transition",
+            "name": "QA Stinger real",
+            "uuid": "032f613b-f364-4a25-ab78-0f1cb07eb78c"
+          },
+          {
+            "kind": "slide_transition",
+            "name": "Slide",
+            "uuid": "02f630e1-201d-4124-a60e-8fbe139828e4"
+          }
+        ],
+        "width": 640,
+        "zoom": 1
+      },
+      {
+        "fill": true,
+        "height": 640,
+        "mixId": 3,
+        "positionX": 0.5,
+        "positionY": 0.5,
+        "previewUuid": "00691e3e-9dbe-4f35-8c7e-4b91202d8532",
+        "programUuid": "4d63bfc5-6d43-40bd-a657-dd51e04e3396",
+        "stingerAudioPackets": 0,
+        "stingerAudioPeak": 0,
+        "stingerAudioSources": 0,
+        "stingerAudioTimestamp": 0,
+        "transitionUuid": "",
+        "transitioning": false,
+        "transitions": [
+          {
+            "kind": "move_transition",
+            "name": "Merge · movimento de fontes (Move)",
+            "uuid": "builtin:move_transition"
+          },
+          {
+            "kind": "cut_transition",
+            "name": "Cut",
+            "uuid": "35e79695-433f-4fe4-87a1-34ac22472287"
+          },
+          {
+            "kind": "fade_transition",
+            "name": "Fade",
+            "uuid": "31029673-5122-47b6-978c-430e5dd5db9c"
+          },
+          {
+            "kind": "swipe_transition",
+            "name": "Wipe",
+            "uuid": "cf2a415a-9e21-4bc1-b5cb-3b47d3ec970a"
+          },
+          {
+            "kind": "obs_stinger_transition",
+            "name": "QA Stinger real",
+            "uuid": "032f613b-f364-4a25-ab78-0f1cb07eb78c"
+          },
+          {
+            "kind": "slide_transition",
+            "name": "Slide",
+            "uuid": "02f630e1-201d-4124-a60e-8fbe139828e4"
+          }
+        ],
+        "width": 360,
+        "zoom": 1
+      },
+      {
+        "fill": true,
+        "height": 360,
+        "mixId": 4,
+        "positionX": 0.5,
+        "positionY": 0.5,
+        "previewUuid": "4e25a436-3d16-4b1e-8be2-fd53ae76b58f",
+        "programUuid": "bf2c0e31-c946-4db7-95c3-0106b30b9d18",
+        "stingerAudioPackets": 0,
+        "stingerAudioPeak": 0,
+        "stingerAudioSources": 0,
+        "stingerAudioTimestamp": 0,
+        "transitionUuid": "builtin:move_transition",
+        "transitioning": false,
+        "transitions": [
+          {
+            "kind": "move_transition",
+            "name": "Merge · movimento de fontes (Move)",
+            "uuid": "builtin:move_transition"
+          },
+          {
+            "kind": "cut_transition",
+            "name": "Cut",
+            "uuid": "35e79695-433f-4fe4-87a1-34ac22472287"
+          },
+          {
+            "kind": "fade_transition",
+            "name": "Fade",
+            "uuid": "31029673-5122-47b6-978c-430e5dd5db9c"
+          },
+          {
+            "kind": "swipe_transition",
+            "name": "Wipe",
+            "uuid": "cf2a415a-9e21-4bc1-b5cb-3b47d3ec970a"
+          },
+          {
+            "kind": "obs_stinger_transition",
+            "name": "QA Stinger real",
+            "uuid": "032f613b-f364-4a25-ab78-0f1cb07eb78c"
+          },
+          {
+            "kind": "slide_transition",
+            "name": "Slide",
+            "uuid": "02f630e1-201d-4124-a60e-8fbe139828e4"
+          }
+        ],
+        "width": 640,
+        "zoom": 1
+      }
+    ],
+    "positionX": 0.5,
+    "positionY": 0.5,
+    "previewUuid": "4d63bfc5-6d43-40bd-a657-dd51e04e3396",
+    "programUuid": "00691e3e-9dbe-4f35-8c7e-4b91202d8532",
+    "stingerAudioPackets": 66,
+    "stingerAudioPeak": 0.24870383739471436,
+    "stingerAudioSources": 1,
+    "stingerAudioTimestamp": 492152668931334,
+    "success": true,
+    "transitionUuid": "032f613b-f364-4a25-ab78-0f1cb07eb78c",
+    "transitioning": false,
+    "transitions": [
+      {
+        "kind": "move_transition",
+        "name": "Merge · movimento de fontes (Move)",
+        "uuid": "builtin:move_transition"
+      },
+      {
+        "kind": "cut_transition",
+        "name": "Cut",
+        "uuid": "35e79695-433f-4fe4-87a1-34ac22472287"
+      },
+      {
+        "kind": "fade_transition",
+        "name": "Fade",
+        "uuid": "31029673-5122-47b6-978c-430e5dd5db9c"
+      },
+      {
+        "kind": "swipe_transition",
+        "name": "Wipe",
+        "uuid": "cf2a415a-9e21-4bc1-b5cb-3b47d3ec970a"
+      },
+      {
+        "kind": "obs_stinger_transition",
+        "name": "QA Stinger real",
+        "uuid": "032f613b-f364-4a25-ab78-0f1cb07eb78c"
+      },
+      {
+        "kind": "slide_transition",
+        "name": "Slide",
+        "uuid": "02f630e1-201d-4124-a60e-8fbe139828e4"
+      }
+    ],
+    "width": 640,
+    "zoom": 1
+  },
+  "pixels": {
+    "mix2": [
+      254,
+      1,
+      0
+    ],
+    "stinger": [
+      255,
+      239,
+      0
+    ],
+    "mix2After": [
+      0,
+      0,
+      255
+    ],
+    "mix3": [
+      0,
+      0,
+      253
+    ],
+    "mix3After": [
+      253,
+      1,
+      0
+    ]
+  },
+  "audio": {
+    "chosenBus": {
+      "220": 0.0003697476645432774,
+      "440": 0.17525307109696747,
+      "660": 0.0004091146236742259,
+      "880": 0.00004200579811648199
+    },
+    "stinger": {
+      "220": 0.00010769986247424266,
+      "440": 0.1753141045750522,
+      "660": 0.0004392504917153259,
+      "880": 0.17403563784757342
+    },
+    "busB": {
+      "220": 1.464682036561839e-7,
+      "440": 4.993139697836484e-7,
+      "660": 0.17671157823965292,
+      "880": 2.207279426874285e-7
+    },
+    "master": {
+      "220": 0.1766592507088462,
+      "440": 5.375658406372606e-7,
+      "660": 7.009431655617732e-7,
+      "880": 2.0020057821054074e-7
+    }
+  },
+  "merge": [
+    {
+      "x": null,
+      "count": 0
+    },
+    {
+      "x": null,
+      "count": 0
+    },
+    {
+      "x": null,
+      "count": 0
+    }
+  ],
+  "error": "AssertionError [ERR_ASSERTION]: Merge actually moves shared source through intermediate position\n    at check (file:///D:/DRIVE/IA/antigravity/vmixtwste/qa-portatil/outputs-avancados-mixes-test.mjs:2:314)\n    at file:///D:/DRIVE/IA/antigravity/vmixtwste/qa-portatil/outputs-avancados-mixes-test.mjs:22:99\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)"
+}

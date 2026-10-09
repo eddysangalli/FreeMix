@@ -1,0 +1,26 @@
+{
+  "at": "2026-10-09T13:54:19.988Z",
+  "operatorTouched": false,
+  "apiRealCalled": false,
+  "mediaStarted": false,
+  "checks": [
+    {
+      "name": "Sem SRT selecionado mostra seleção de saída livre e oculta o formulário massivo",
+      "passed": true
+    },
+    {
+      "name": "Clique livre prepara rascunho Programa/720p/H264420; conexão e ações visíveis, qualidade/mix/overlays em Avançado",
+      "passed": true
+    },
+    {
+      "name": "Rascunho sobrevive a aba/index, RIST não usa assistente SRT, MultiStream mantém estrutura original",
+      "passed": true
+    }
+  ],
+  "defaultSave": {
+    "url": "srt://127.0.0.1:18360?mode=caller&latency=120000",
+    "started": false
+  },
+  "passed": true,
+  "jsErrors": []
+}

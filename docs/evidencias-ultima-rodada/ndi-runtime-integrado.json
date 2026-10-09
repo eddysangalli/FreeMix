@@ -1,0 +1,28 @@
+{
+  "passed": true,
+  "root": "C:\\Users\\eddyr\\AppData\\Local\\Temp\\FreeMix-QA-Parallel-Calls-20261008",
+  "started": {
+    "ndiLoaded": true,
+    "ndiRuntime": {
+      "version": "6.3.2.0",
+      "sha256": "2b6602075868ba4401f82f417d72424805d69b11ca86078023d0d489ff45dd84",
+      "bytes": 29863120,
+      "architecture": "x64",
+      "path": "C:\\Users\\eddyr\\AppData\\Local\\Temp\\FreeMix-QA-Parallel-Calls-20261008\\runtime\\ndi-v6\\Processing.NDI.Lib.x64.dll",
+      "environmentVariable": "NDI_RUNTIME_DIR_V6",
+      "scope": "process-only",
+      "globalEnvironmentChanged": false,
+      "globallyInstalled": false,
+      "verifiedAt": "2026-10-09T03:36:01.479Z"
+    }
+  },
+  "files": {
+    "bin/64bit/FreeMix.exe": "ef523cbb598b138044aa7b9960ee06efdd1beb510cbb7df8fdbb9bff87b2aa64",
+    "obs-plugins/64bit/obs-ffmpeg.dll": "2376ee21a90e67742f40e81257bba0b994ab45cf205ef9f413af441311b0bc05",
+    "obs-plugins/64bit/source-record.dll": "63e4f4c4fe77382b24eb03085a62e3da7ac8e77554be5f6f94dcf17c885987e8",
+    "runtime/ndi-v6/Processing.NDI.Lib.x64.dll": "2b6602075868ba4401f82f417d72424805d69b11ca86078023d0d489ff45dd84"
+  },
+  "sourceAvailable": true,
+  "operatorTouched": false,
+  "at": "2026-10-09T03:37:25.269Z"
+}

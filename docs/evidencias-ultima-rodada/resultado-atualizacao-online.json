@@ -1,0 +1,42 @@
+{
+  "at": "2026-10-08T22:39:34.051Z",
+  "pass": true,
+  "root": "C:\\Users\\eddyr\\AppData\\Local\\Temp\\FreeMix-QA-HTTPS-y4CSkq",
+  "kind": "signature/hash-fixtures-and-real-local-TLS-rejection",
+  "published": false,
+  "operatorTouched": false,
+  "checks": [
+    {
+      "name": "Read/configure não consultam rede; config desativada relê",
+      "pass": true
+    },
+    {
+      "name": "HTTPS mesma origem e sem segredos obrigatórios",
+      "pass": true
+    },
+    {
+      "name": "Ed25519 pinado e versão posterior verificam antes de disponibilizar",
+      "pass": true
+    },
+    {
+      "name": "Caminhos, duplicados Windows e limites assinados",
+      "pass": true
+    },
+    {
+      "name": "Download adulterado não publica pasta pronta; instalação preservada",
+      "pass": true
+    },
+    {
+      "name": "Download streaming completo compatível com atualizador local",
+      "pass": true
+    },
+    {
+      "name": "Revalidação bloqueia downgrade após mudança instalada",
+      "pass": true
+    },
+    {
+      "name": "TLS real rejeita certificado não confiável sem bypass",
+      "pass": true
+    }
+  ]
+}

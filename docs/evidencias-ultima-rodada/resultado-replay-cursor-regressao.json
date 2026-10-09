@@ -1,0 +1,7 @@
+{
+  "pass": false,
+  "completedChecks": [],
+  "error": "Tentativa opcional loop/áudio-only não completou o assert de seek3900; não contabilizada como PASS.",
+  "qaClosedAfterAttempt": true,
+  "operatorTouched": false
+}

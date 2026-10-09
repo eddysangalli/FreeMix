@@ -1,0 +1,90 @@
+{
+  "root": "C:\\Users\\eddyr\\AppData\\Local\\Temp\\FreeMix-QA-Recovery-20261008",
+  "at": "2026-10-08T20:35:20.240Z",
+  "recognitionStarted": false,
+  "automationStarted": false,
+  "operatorTouched": false,
+  "apiPid": 89892,
+  "nativePid": 90460,
+  "exeSHA": "123e55f0bfb480a85e12047b6887cb5c68c5abf4cd58d764f4c995ae62282fed",
+  "tools": {
+    "success": true,
+    "tools": [
+      {
+        "enabled": true,
+        "id": 0,
+        "label": "Assistente de configuração"
+      },
+      {
+        "enabled": true,
+        "id": 2,
+        "label": "Gerenciador de plugins"
+      },
+      {
+        "enabled": true,
+        "id": 4,
+        "label": "Troca Avançada de Cenas"
+      },
+      {
+        "enabled": true,
+        "id": 5,
+        "label": "Configurações de Saída NDI®"
+      },
+      {
+        "enabled": true,
+        "id": 6,
+        "label": "Legendas (Experimental)"
+      },
+      {
+        "enabled": true,
+        "id": 7,
+        "label": "Alternador automático de cenas"
+      },
+      {
+        "enabled": true,
+        "id": 8,
+        "label": "Temporizador de saída"
+      },
+      {
+        "enabled": true,
+        "id": 9,
+        "label": "Scripts"
+      },
+      {
+        "enabled": true,
+        "id": 10,
+        "label": "Novo painel de cores..."
+      },
+      {
+        "enabled": true,
+        "id": 11,
+        "label": "Configurações do servidor WebSocket"
+      },
+      {
+        "enabled": true,
+        "id": 12,
+        "label": "OMT Output Settings"
+      },
+      {
+        "enabled": true,
+        "id": 13,
+        "label": "Source Dock"
+      },
+      {
+        "enabled": true,
+        "id": 14,
+        "label": "Cloud Closed Captions"
+      }
+    ]
+  },
+  "invalid": {
+    "error": "Stop outputs and refresh the tools list before opening",
+    "success": false
+  },
+  "pass": true,
+  "openAdvanced": {
+    "scheduled": true,
+    "success": true
+  },
+  "openEvidence": "Qt QAction queued successfully, recognition/automation not started; dialog visual approval not asserted"
+}

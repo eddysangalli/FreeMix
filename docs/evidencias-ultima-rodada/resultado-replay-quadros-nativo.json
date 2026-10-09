@@ -1,0 +1,59 @@
+{
+  "at": "2026-10-08T22:25:40.581Z",
+  "pass": true,
+  "root": "C:\\Users\\eddyr\\AppData\\Local\\Temp\\FreeMix-QA-Recovery-20261008",
+  "collection": "Replay Frame QA 19b64e14",
+  "checks": [
+    "Native A quadro 28 / B quadro 30: PNGs correspondem aos quadros FFmpeg e ao mesmo momento visual após offset",
+    "Avanço de um quadro preserva timeline do arquivo em slow motion 50%",
+    "Troca A/B no Programa com áudio exclusivo do ângulo, ganho B -6 dB confirmado",
+    "Silêncio geral e volta ao vivo deixam ambos os players mudos"
+  ],
+  "pixels": [
+    {
+      "player": "A",
+      "frame": 28,
+      "mean": [
+        228,
+        228,
+        228
+      ],
+      "expectedMean": [
+        228,
+        228,
+        228
+      ],
+      "nextMean": [
+        236,
+        236,
+        236
+      ],
+      "adjacentFrameDistinguished": true
+    },
+    {
+      "player": "B",
+      "frame": 30,
+      "mean": [
+        228,
+        228,
+        228
+      ],
+      "expectedMean": [
+        228,
+        228,
+        228
+      ],
+      "nextMean": [
+        236,
+        236,
+        236
+      ],
+      "adjacentFrameDistinguished": true
+    }
+  ],
+  "files": {
+    "CAM A": "C:\\Users\\eddyr\\AppData\\Local\\Temp\\FreeMix-QA-Recovery-20261008\\gravacoes\\replay\\frame-fixture-a25fca63-17b9-4584-a0c8-8723c63d007e\\CAM-A.mp4",
+    "CAM B": "C:\\Users\\eddyr\\AppData\\Local\\Temp\\FreeMix-QA-Recovery-20261008\\gravacoes\\replay\\frame-fixture-a25fca63-17b9-4584-a0c8-8723c63d007e\\CAM-B.mp4"
+  },
+  "limits": "Fixture local CFR. Sem genlock, captura multicâmera física, escuta humana ou endurance."
+}

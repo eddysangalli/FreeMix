@@ -1,0 +1,51 @@
+{
+  "at": "2026-10-09T12:33:43.210Z",
+  "root": "C:/Users/eddyr/AppData/Local/Temp/FreeMix-QA-Menus-20261009",
+  "apiPort": 18310,
+  "operatorTouched": false,
+  "profileApplied": false,
+  "installationId": "de0fa97eb33ac9076677a74aab346df054c17756a19949e3ee99ae96813c6e9b",
+  "apiPid": 169000,
+  "checks": [
+    {
+      "name": "Central lê dimensões e sampleRate reais do motor; categorias operacionais ausentes",
+      "passed": true
+    },
+    {
+      "name": "recording: encoder nativo correto, campos do outro destino ausentes; rascunho preservado e descartado por releitura",
+      "passed": true,
+      "mode": "Simple"
+    },
+    {
+      "name": "streaming: encoder nativo correto, campos do outro destino ausentes; rascunho preservado e descartado por releitura",
+      "passed": true,
+      "mode": "Simple"
+    }
+  ],
+  "files": [
+    {
+      "name": "settings.html",
+      "sha256": "61a9ff3012141c862c7e6305328aae1ac9d96eaa01dbb4cf6daf3bfd36177fea",
+      "qaSha256": "61a9ff3012141c862c7e6305328aae1ac9d96eaa01dbb4cf6daf3bfd36177fea"
+    },
+    {
+      "name": "settings.js",
+      "sha256": "396afada72ea1ea71194285265e682aee9c48befefe4131612ee4c24ae5a9c95",
+      "qaSha256": "396afada72ea1ea71194285265e682aee9c48befefe4131612ee4c24ae5a9c95"
+    },
+    {
+      "name": "settings-help.js",
+      "sha256": "e0b1c9b06f998e8bc07d2096ef63d68a7e1614e588450a5b3d149e604d1c8f66",
+      "qaSha256": "e0b1c9b06f998e8bc07d2096ef63d68a7e1614e588450a5b3d149e604d1c8f66"
+    }
+  ],
+  "passed": true,
+  "actions": [
+    "settings_get",
+    "settings_get",
+    "settings_get",
+    "settings_get",
+    "settings_get"
+  ],
+  "jsErrors": []
+}

@@ -1,0 +1,18 @@
+{
+  "repo": "ratwithacompiler/OBS-captions-plugin",
+  "tag": "v0.33",
+  "commit": "ce3a76cb096695e46d64b69a7819f7c291de376b",
+  "url": "https://codeload.github.com/ratwithacompiler/OBS-captions-plugin/zip/refs/tags/v0.33",
+  "size": 1970103,
+  "sha256": "efe89bbde052b3061fd0fe9aefbf00c099b35d36d234ff1972abccec9209b1bb",
+  "sourceFiles": 16,
+  "buildFiles": [
+    "OBS-captions-plugin-0.33/CI/grpc/googleapis_CMakeLists.txt",
+    "OBS-captions-plugin-0.33/CMakeLists.txt",
+    "OBS-captions-plugin-0.33/lib/CMakeLists.txt",
+    "OBS-captions-plugin-0.33/lib/caption_stream/CMakeLists.txt",
+    "OBS-captions-plugin-0.33/lib/caption_stream/speech_apis/google_http_older/CMakeLists.txt",
+    "OBS-captions-plugin-0.33/lib/caption_stream/speech_apis/grpc_speech_api/CMakeLists.txt"
+  ],
+  "submodules": 0
+}

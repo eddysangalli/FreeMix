@@ -1,0 +1,93 @@
+{
+  "at": "2026-10-08T22:19:00.137Z",
+  "scope": "localhost synthetic MPEG-TS only",
+  "checks": [
+    "48 variable-size TS packets reconstructed exactly after one data loss per four",
+    "Twelve losses recovered by authenticated XOR parity without NACK",
+    "Data sent once across two weighted 2:1 paths, no duplication",
+    "Parity shares sequence only with a separate HKDF key domain; tampering rejected",
+    "Recovery caches bounded by configured window",
+    "Malformed authenticated-control envelope rejected; disabled NACK stays inert"
+  ],
+  "sender": {
+    "active": true,
+    "packets": 52,
+    "bytes": 37976,
+    "invalid": 0,
+    "dropped": 0,
+    "nackReceived": 0,
+    "retransmitted": 0,
+    "nackRejected": 1,
+    "paths": [
+      {
+        "host": "127.0.0.1",
+        "port": 58709,
+        "localAddress": "127.0.0.1",
+        "weight": 2,
+        "sent": 43,
+        "dataSent": 35,
+        "paritySent": 8,
+        "retrySent": 0,
+        "bytes": 36972,
+        "errors": 0,
+        "lastError": null
+      },
+      {
+        "host": "127.0.0.1",
+        "port": 58710,
+        "localAddress": "127.0.0.1",
+        "weight": 1,
+        "sent": 22,
+        "dataSent": 17,
+        "paritySent": 5,
+        "retrySent": 0,
+        "bytes": 19184,
+        "errors": 0,
+        "lastError": null
+      }
+    ],
+    "mode": "aggregate",
+    "bandwidthAggregated": true,
+    "fecGroup": 4,
+    "fecSent": 13,
+    "encryption": "AES-256-GCM",
+    "cachedPackets": 0
+  },
+  "receiver": {
+    "active": true,
+    "received": 53,
+    "unique": 52,
+    "delivered": 52,
+    "duplicatesOrLate": 0,
+    "missing": 0,
+    "invalid": 0,
+    "unauthorized": 1,
+    "overflow": 0,
+    "outputErrors": 0,
+    "buffered": 0,
+    "nackSent": 0,
+    "fecReceived": 13,
+    "fecRecovered": 13,
+    "fecExpired": 0,
+    "paths": {
+      "127.0.0.1:58709": 35,
+      "127.0.0.1:58710": 17
+    },
+    "encryption": "AES-256-GCM",
+    "cachedPayloads": 52,
+    "pendingFecGroups": 0
+  },
+  "pathCounts": [
+    {
+      "data": 35,
+      "fec": 8,
+      "dropped": 8
+    },
+    {
+      "data": 17,
+      "fec": 5,
+      "dropped": 5
+    }
+  ],
+  "passed": true
+}

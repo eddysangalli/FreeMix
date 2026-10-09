@@ -1,0 +1,13 @@
+{
+  "passed": true,
+  "version": "0.1.0-local.20261009135628",
+  "base": "ba2f32bdf791005443988a4955e963663e16b1ed",
+  "nativeHead": "12f48a617b97cdb386cfd822c5e243e1de641370",
+  "patches": 9,
+  "resultingTree": "f0376992fbda9ffc3543e141a9d1f38e2565f1aa",
+  "allPatchesVerified": true,
+  "treeMatchesNativeHead": true,
+  "checkoutChanged": false,
+  "operatorTouched": false,
+  "at": "2026-10-09T14:01:21.056Z"
+}

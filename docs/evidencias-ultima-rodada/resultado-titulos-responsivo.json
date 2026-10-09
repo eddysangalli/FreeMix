@@ -1,0 +1,39 @@
+{
+  "at": "2026-10-08T22:09:18.526Z",
+  "checks": [
+    {
+      "columns": "370.66px 370.677px 370.677px 370.677px 370.677px",
+      "footerVisible": true,
+      "formHeight": 1127,
+      "galleryHeight": 432,
+      "horizontalOverflow": false,
+      "size": [
+        2133,
+        1200
+      ]
+    },
+    {
+      "columns": "377.118px 377.118px",
+      "footerVisible": true,
+      "formHeight": 705,
+      "galleryHeight": 340,
+      "horizontalOverflow": false,
+      "size": [
+        1000,
+        777
+      ]
+    },
+    {
+      "columns": "434.896px",
+      "footerVisible": true,
+      "formHeight": 664,
+      "horizontalOverflow": false,
+      "size": [
+        466,
+        888
+      ]
+    }
+  ],
+  "passed": true,
+  "method": "CUA browser DOM and screenshots; operator preserved"
+}

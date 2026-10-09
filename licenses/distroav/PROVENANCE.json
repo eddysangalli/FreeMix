@@ -1,0 +1,10 @@
+{
+  "version": "6.2.1",
+  "license": "GPL-2.0-or-later",
+  "source": "https://github.com/DistroAV/DistroAV/tree/6.2.1",
+  "sourceArchive": "https://github.com/DistroAV/DistroAV/releases/download/6.2.1/distroav-6.2.1-source.tar.xz",
+  "asset": "https://github.com/DistroAV/DistroAV/releases/download/6.2.1/distroav-6.2.1-windows-x64-portable.zip",
+  "packageSha256": "aefea7d559c898abaf1e2f0faeb569168ce4bb43bc0e9451d2b7dda37af308f7",
+  "dllSha256": "0cb0cd42256b4a9eef7193292ecd603f64067d798a59c21c33422a7860c6478d",
+  "activatedOnNextLaunch": true
+}

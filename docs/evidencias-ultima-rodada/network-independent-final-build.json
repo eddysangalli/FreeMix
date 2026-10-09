@@ -1,0 +1,506 @@
+{
+  "root": "C:\\Users\\eddyr\\AppData\\Local\\Temp\\FreeMix-QA-Parallel-Outputs-20261008",
+  "at": "2026-10-08T20:48:38.123Z",
+  "checks": [
+    "Own final EXE identity",
+    "NDI independent source and selected bus available",
+    "OMT independent source and selected bus available",
+    "OMT readback exact configured/default real name",
+    "Both senders stay off on boot",
+    "H264 HEVC AV1 encoder discovery preserved",
+    "HLS SRT RIST RTMP protocol discovery preserved"
+  ],
+  "identity": {
+    "docks": [
+      {
+        "name": "scenesDock",
+        "title": "Entradas",
+        "titleBarHeight": -1,
+        "visible": false
+      },
+      {
+        "name": "sourcesDock",
+        "title": "Layers",
+        "titleBarHeight": -1,
+        "visible": false
+      },
+      {
+        "name": "mixerDock",
+        "title": "Mixer de áudio",
+        "titleBarHeight": -1,
+        "visible": false
+      },
+      {
+        "name": "transitionsDock",
+        "title": "Transições de cena",
+        "titleBarHeight": -1,
+        "visible": false
+      },
+      {
+        "name": "controlsDock",
+        "title": "Controls",
+        "titleBarHeight": -1,
+        "visible": false
+      },
+      {
+        "name": "statsDock",
+        "title": "Estatísticas",
+        "titleBarHeight": -1,
+        "visible": false
+      },
+      {
+        "name": "AudioMonitorDock",
+        "title": "Monitor de Áudio",
+        "titleBarHeight": -1,
+        "visible": false
+      },
+      {
+        "name": "DownstreamKeyerDock",
+        "title": "Downstream Keyer",
+        "titleBarHeight": -1,
+        "visible": false
+      },
+      {
+        "name": "Menu_extraBrowser",
+        "title": "Menu",
+        "titleBarHeight": 160,
+        "visible": false
+      },
+      {
+        "name": "Mesa_extraBrowser",
+        "title": "Mesa",
+        "titleBarHeight": 160,
+        "visible": false
+      }
+    ],
+    "executable": "C:/Users/eddyr/AppData/Local/Temp/FreeMix-QA-Parallel-Outputs-20261008/bin/64bit/FreeMix.exe",
+    "layout": [
+      {
+        "background": "#1e2328",
+        "height": 32,
+        "name": "preview",
+        "visible": false,
+        "width": 100,
+        "x": 0,
+        "y": 0
+      },
+      {
+        "height": 30,
+        "name": "previewLabel",
+        "visible": false,
+        "width": 100,
+        "x": 0,
+        "y": 0
+      },
+      {
+        "height": 480,
+        "name": "freemixTransitionColumn",
+        "visible": false,
+        "width": 124,
+        "x": 0,
+        "y": 0
+      },
+      {
+        "height": 30,
+        "name": "freemixOverlayButtons",
+        "visible": false,
+        "width": 100,
+        "x": 0,
+        "y": 0
+      },
+      {
+        "height": 122,
+        "name": "freemixProductionClocks",
+        "visible": false,
+        "width": 100,
+        "x": 0,
+        "y": 0
+      },
+      {
+        "height": 600,
+        "name": "Mesa_extraBrowser",
+        "visible": false,
+        "width": 460,
+        "x": 0,
+        "y": 0
+      }
+    ],
+    "nativeSettingsOpen": false,
+    "panels": [],
+    "pid": 36176,
+    "success": true,
+    "title": "FreeMix Studio - QA Recuperada 1791471993153"
+  },
+  "exeSha256": "2bb4c2a0c7d0b3493cb37fd350c60d5dca4b6869baf0d6dc195255a8957cd854",
+  "ndi": {
+    "installed": true,
+    "sourceAvailable": true,
+    "available": true,
+    "outputAvailable": true,
+    "outputCreated": false,
+    "outputActive": false,
+    "outputName": "FreeMix NDI Main Output",
+    "networkName": "FreeMix Programa",
+    "nativeBridge": true,
+    "sourceIndependent": true,
+    "audioTrackSelectable": true,
+    "sendersPerProtocol": 1,
+    "mode": "program",
+    "sourceUuid": "",
+    "audioTrack": 0,
+    "width": 0,
+    "height": 0,
+    "outputs": [],
+    "runtimeVersion": "6.3.2.0",
+    "pluginVersion": "6.2.1",
+    "needsOutputInitialization": false,
+    "initializationHint": null
+  },
+  "omt": {
+    "installed": true,
+    "sourceAvailable": true,
+    "available": true,
+    "nativeBridge": true,
+    "outputAvailable": true,
+    "outputCreated": false,
+    "outputActive": false,
+    "outputName": "FreeMix OMT Main Output",
+    "networkName": "OBS Output",
+    "networkNameEditable": false,
+    "sourceIndependent": true,
+    "audioTrackSelectable": true,
+    "sendersPerProtocol": 1,
+    "mode": "program",
+    "sourceUuid": "",
+    "audioTrack": 0,
+    "width": 0,
+    "height": 0,
+    "outputs": [],
+    "needsOutputInitialization": false
+  },
+  "capabilities": {
+    "capabilitiesVersion": 2,
+    "destinations": [
+      {
+        "active": false,
+        "audioTrack": 0,
+        "autoStart": false,
+        "bitrate": 1400,
+        "enabled": true,
+        "encoder": "obs_nvenc_hevc_tex",
+        "enhancedRtmp": false,
+        "error": "",
+        "fill": true,
+        "fpsDivisor": 2,
+        "height": 360,
+        "key": "",
+        "mixId": 2,
+        "mode": "program",
+        "name": "HEVC file",
+        "overlayChannels": [
+          {
+            "channel": 7
+          },
+          {
+            "channel": 8
+          },
+          {
+            "channel": 9
+          },
+          {
+            "channel": 10
+          },
+          {
+            "channel": 11
+          },
+          {
+            "channel": 12
+          },
+          {
+            "channel": 13
+          },
+          {
+            "channel": 14
+          }
+        ],
+        "overlaysMask": 0,
+        "protocol": "auto",
+        "recording": false,
+        "renderedUuid": "",
+        "server": "",
+        "sourceUuid": "",
+        "state": "idle",
+        "stingerAudio": false,
+        "width": 640
+      },
+      {
+        "active": false,
+        "audioTrack": 0,
+        "autoStart": false,
+        "bitrate": 1400,
+        "enabled": true,
+        "encoder": "obs_nvenc_av1_tex",
+        "enhancedRtmp": false,
+        "error": "",
+        "fill": true,
+        "fpsDivisor": 2,
+        "height": 360,
+        "key": "",
+        "mixId": 2,
+        "mode": "program",
+        "name": "AV1 file",
+        "overlayChannels": [
+          {
+            "channel": 7
+          },
+          {
+            "channel": 8
+          },
+          {
+            "channel": 9
+          },
+          {
+            "channel": 10
+          },
+          {
+            "channel": 11
+          },
+          {
+            "channel": 12
+          },
+          {
+            "channel": 13
+          },
+          {
+            "channel": 14
+          }
+        ],
+        "overlaysMask": 0,
+        "protocol": "auto",
+        "recording": false,
+        "renderedUuid": "",
+        "server": "",
+        "sourceUuid": "",
+        "state": "idle",
+        "stingerAudio": false,
+        "width": 640
+      },
+      {
+        "active": false,
+        "audioTrack": 0,
+        "autoStart": false,
+        "bitrate": 1400,
+        "enabled": true,
+        "encoder": "obs_nvenc_h264_tex",
+        "enhancedRtmp": false,
+        "error": "",
+        "fill": true,
+        "fpsDivisor": 2,
+        "height": 360,
+        "key": "",
+        "mixId": 2,
+        "mode": "program",
+        "name": "HLS PUT",
+        "overlayChannels": [
+          {
+            "channel": 7
+          },
+          {
+            "channel": 8
+          },
+          {
+            "channel": 9
+          },
+          {
+            "channel": 10
+          },
+          {
+            "channel": 11
+          },
+          {
+            "channel": 12
+          },
+          {
+            "channel": 13
+          },
+          {
+            "channel": 14
+          }
+        ],
+        "overlaysMask": 0,
+        "protocol": "hls",
+        "recording": false,
+        "renderedUuid": "",
+        "server": "http://127.0.0.1:59262/live.m3u8",
+        "sourceUuid": "",
+        "state": "idle",
+        "stingerAudio": false,
+        "width": 640
+      },
+      {
+        "active": false,
+        "audioTrack": 0,
+        "autoStart": true,
+        "bitrate": 4000,
+        "enabled": false,
+        "encoder": "obs_x264",
+        "enhancedRtmp": false,
+        "error": "",
+        "fill": false,
+        "fpsDivisor": 1,
+        "height": 720,
+        "key": "",
+        "mixId": 2,
+        "mode": "shared",
+        "name": "",
+        "overlayChannels": [
+          {
+            "channel": 7
+          },
+          {
+            "channel": 8
+          },
+          {
+            "channel": 9
+          },
+          {
+            "channel": 10
+          },
+          {
+            "channel": 11
+          },
+          {
+            "channel": 12
+          },
+          {
+            "channel": 13
+          },
+          {
+            "channel": 14
+          }
+        ],
+        "overlaysMask": 0,
+        "protocol": "auto",
+        "recording": false,
+        "renderedUuid": "",
+        "server": "",
+        "sourceUuid": "",
+        "state": "idle",
+        "stingerAudio": true,
+        "width": 1280
+      }
+    ],
+    "encoders": [
+      {
+        "codec": "av1",
+        "id": "ffmpeg_svt_av1",
+        "name": "SVT-AV1"
+      },
+      {
+        "codec": "av1",
+        "id": "ffmpeg_aom_av1",
+        "name": "AOM AV1"
+      },
+      {
+        "codec": "h264",
+        "id": "obs_nvenc_h264_tex",
+        "name": "NVIDIA NVENC H.264"
+      },
+      {
+        "codec": "hevc",
+        "id": "obs_nvenc_hevc_tex",
+        "name": "NVIDIA NVENC HEVC"
+      },
+      {
+        "codec": "av1",
+        "id": "obs_nvenc_av1_tex",
+        "name": "NVIDIA NVENC AV1"
+      },
+      {
+        "codec": "h264",
+        "id": "obs_qsv11_v2",
+        "name": "QuickSync H.264"
+      },
+      {
+        "codec": "hevc",
+        "id": "obs_qsv11_hevc",
+        "name": "QuickSync HEVC"
+      },
+      {
+        "codec": "h264",
+        "id": "obs_x264",
+        "name": "x264"
+      }
+    ],
+    "fpsDen": 1,
+    "fpsNum": 30,
+    "hlsService": "freemix_hls",
+    "independentAudio": true,
+    "independentVideo": true,
+    "main_active": false,
+    "max": 4,
+    "maxFpsDivisor": 8,
+    "overlaySelection": true,
+    "protocols": [
+      {
+        "audioCodecs": "aac",
+        "available": true,
+        "enhancedRtmp": true,
+        "id": "rtmp",
+        "outputId": "rtmp_output",
+        "videoCodecs": "h264;hevc;av1"
+      },
+      {
+        "audioCodecs": "aac",
+        "available": true,
+        "enhancedRtmp": true,
+        "id": "rtmps",
+        "outputId": "rtmp_output",
+        "videoCodecs": "h264;hevc;av1"
+      },
+      {
+        "audioCodecs": "aac;opus",
+        "available": true,
+        "enhancedRtmp": false,
+        "id": "srt",
+        "outputId": "ffmpeg_mpegts_muxer",
+        "videoCodecs": "h264;hevc"
+      },
+      {
+        "audioCodecs": "aac;opus",
+        "available": true,
+        "enhancedRtmp": false,
+        "id": "rist",
+        "outputId": "ffmpeg_mpegts_muxer",
+        "videoCodecs": "h264;hevc"
+      },
+      {
+        "audioCodecs": "aac",
+        "available": true,
+        "enhancedRtmp": false,
+        "id": "hls",
+        "outputId": "ffmpeg_hls_muxer",
+        "videoCodecs": "h264;hevc"
+      }
+    ],
+    "recordingVideoCodecs": [
+      {
+        "codec": "h264"
+      },
+      {
+        "codec": "hevc"
+      },
+      {
+        "codec": "av1"
+      }
+    ],
+    "success": true
+  },
+  "passed": true,
+  "cleanup": {
+    "nativePid": 36176,
+    "nativeSavedClosed": true,
+    "apiPid": 70888,
+    "apiClosed": true
+  }
+}

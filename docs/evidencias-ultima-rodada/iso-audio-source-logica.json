@@ -1,0 +1,9 @@
+{
+  "passed": 4,
+  "checks": [
+    "Configuração fonte persistida por UUID, nome rejeitado",
+    "Todas as opções antigas preservadas",
+    "Mic e retorno excluídos por UUID/tipo nativo mesmo renomeados",
+    "Mudança do diretor revalida e rejeita seleção existente"
+  ]
+}

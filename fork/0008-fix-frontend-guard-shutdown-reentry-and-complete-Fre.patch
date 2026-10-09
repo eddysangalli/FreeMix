@@ -1,0 +1,252 @@
+From 7072c33d942cdef0247cabdee478c84c0137c06d Mon Sep 17 00:00:00 2001
+From: Eddy Sangalli <eddyrodrigues@outlook.com>
+Date: Fri, 9 Oct 2026 09:40:00 -0300
+Subject: [PATCH 8/9] fix(frontend): guard shutdown reentry and complete
+ FreeMix settings metadata
+
+Mark the FreeMix frontend as closing before browser docks begin destruction, block widget inspection and panel creation during shutdown, and schedule panel destruction only once. Return actionable panel errors.
+
+Expose precision, groups and backend state per network sender. Match recording formats to the original OBS settings widget, including hybrid and fragmented MP4/MOV.
+
+Set the FreeMix Windows manifest, application display and taskbar identity; update tray and crash-dialog labels while retaining upstream attribution.
+---
+ frontend/OBSApp.cpp                     |  1 +
+ frontend/cmake/windows/obs.manifest     |  2 +-
+ frontend/obs-main.cpp                   | 15 +++++++++++----
+ frontend/widgets/FreeMixMultistream.cpp | 24 +++++++++++++++++++-----
+ frontend/widgets/FreeMixMultistream.hpp |  2 ++
+ frontend/widgets/FreeMixPreferences.cpp |  2 +-
+ frontend/widgets/OBSBasic.cpp           |  1 +
+ frontend/widgets/OBSBasic_SysTray.cpp   |  4 ++--
+ 8 files changed, 38 insertions(+), 13 deletions(-)
+
+diff --git a/frontend/OBSApp.cpp b/frontend/OBSApp.cpp
+index 89f0f51..c47fc1c 100644
+--- a/frontend/OBSApp.cpp
++++ b/frontend/OBSApp.cpp
+@@ -913,6 +913,7 @@ OBSApp::OBSApp(int &argc, char **argv, profiler_name_store_t *store)
+ 	  appLaunchUUID_(QUuid::createUuid())
+ {
+ 	installNativeEventFilter(new OBS::NativeEventFilter);
++	setApplicationDisplayName("FreeMix Studio");
+ 
+ 	/* fix float handling */
+ #if defined(Q_OS_UNIX)
+diff --git a/frontend/cmake/windows/obs.manifest b/frontend/cmake/windows/obs.manifest
+index c5d4297..ebeb94f 100644
+--- a/frontend/cmake/windows/obs.manifest
++++ b/frontend/cmake/windows/obs.manifest
+@@ -1,6 +1,6 @@
+ <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+ <assembly manifestVersion="1.0" xmlns="urn:schemas-microsoft-com:asm.v1">
+-    <description>OBS Studio</description>
++    <description>FreeMix Studio</description>
+     <trustInfo xmlns="urn:schemas-microsoft-com:asm.v3">
+         <security>
+             <requestedPrivileges>
+diff --git a/frontend/obs-main.cpp b/frontend/obs-main.cpp
+index df0ec63..5766f6a 100644
+--- a/frontend/obs-main.cpp
++++ b/frontend/obs-main.cpp
+@@ -714,7 +714,7 @@ static int run_program(fstream &logFile, int argc, char *argv[])
+ #ifdef _WIN32
+ 
+ #define CRASH_MESSAGE                                                      \
+-	"Woops, OBS has crashed!\n\nWould you like to copy the crash log " \
++	"FreeMix has crashed!\n\nWould you like to copy the crash log " \
+ 	"to the clipboard? The crash log will still be saved to:\n\n%s"
+ 
+ static void main_crash_handler(const char *format, va_list args, void * /* param */)
+@@ -761,7 +761,7 @@ static void main_crash_handler(const char *format, va_list args, void * /* param
+ 
+ 	string finalMessage = string(message_buffer.get(), message_buffer.get() + size);
+ 
+-	int ret = MessageBoxA(NULL, finalMessage.c_str(), "OBS has crashed!", MB_YESNO | MB_ICONERROR | MB_TASKMODAL);
++	int ret = MessageBoxA(NULL, finalMessage.c_str(), "FreeMix has crashed!", MB_YESNO | MB_ICONERROR | MB_TASKMODAL);
+ 
+ 	if (ret == IDYES) {
+ 		size_t len = strlen(text);
+@@ -820,7 +820,7 @@ static inline bool arg_is(const char *arg, const char *long_form, const char *sh
+ 
+ #ifdef _WIN32
+ static constexpr char vcRunErrorTitle[] = "Outdated Visual C++ Runtime";
+-static constexpr char vcRunErrorMsg[] = "OBS Studio requires a newer version of the Microsoft Visual C++ "
++static constexpr char vcRunErrorMsg[] = "FreeMix Studio requires a newer version of the Microsoft Visual C++ "
+ 					"Redistributables.\n\nYou will now be directed to the download page.";
+ static constexpr char vcRunInstallerUrl[] = "https://obsproject.com/visual-studio-2022-runtimes";
+ 
+@@ -932,6 +932,13 @@ int main(int argc, char *argv[])
+ 	SetSearchPathMode(BASE_SEARCH_PATH_ENABLE_SAFE_SEARCHMODE | BASE_SEARCH_PATH_PERMANENT);
+ 	SetDefaultDllDirectories(LOAD_LIBRARY_SEARCH_DEFAULT_DIRS);
+ 	SetDllDirectoryW(L"");
++	// Use the same Windows taskbar identity as the FreeMix launcher.
++	if (HMODULE shell = LoadLibraryExW(L"shell32.dll", nullptr, LOAD_LIBRARY_SEARCH_SYSTEM32)) {
++		using SetAppId = HRESULT(WINAPI *)(PCWSTR);
++		if (auto setAppId = reinterpret_cast<SetAppId>(GetProcAddress(shell, "SetCurrentProcessExplicitAppUserModelID")))
++			setAppId(L"FreeMix.Studio.BroadcastSuite.1.0");
++		FreeLibrary(shell);
++	}
+ 	load_debug_privilege();
+ 	base_set_crash_handler(main_crash_handler, nullptr);
+ 
+@@ -1057,7 +1064,7 @@ int main(int argc, char *argv[])
+ 			exit(0);
+ 
+ 		} else if (arg_is(argv[i], "--version", "-V")) {
+-			std::cout << "OBS Studio - " << App()->GetVersionString(false) << "\n";
++			std::cout << "FreeMix Studio - " << App()->GetVersionString(false) << "\n";
+ 			exit(0);
+ 		}
+ 	}
+diff --git a/frontend/widgets/FreeMixMultistream.cpp b/frontend/widgets/FreeMixMultistream.cpp
+index b2e6539..2ee6106 100644
+--- a/frontend/widgets/FreeMixMultistream.cpp
++++ b/frontend/widgets/FreeMixMultistream.cpp
+@@ -228,7 +228,7 @@ void RequestNetworkOutput(obs_data_t *request, obs_data_t *response, void *)
+    const char *name=settings?obs_data_get_string(settings,"nameProperty"):nullptr;obs_data_set_string(response,"networkName",name&&*name?name:"OBS Output");
+   }
+   else obs_data_set_string(response,"networkName","FreeMix Programa");
+-  OBSDataArrayAutoRelease senders=obs_data_array_create();for(int n=0;n<(protocol=="NDI"||omtSdk?4:1);n++){const std::string key=protocol+":"+std::to_string(n);const auto o=networkOutputs.find(key);const auto m=networkMedia.find(key);OBSDataAutoRelease item=obs_data_create();obs_data_set_int(item,"senderId",n);const bool on=o!=networkOutputs.end()&&o->second&&obs_output_active(o->second);obs_data_set_bool(item,"active",on);if(m!=networkMedia.end()){const auto &state=*m->second;obs_data_set_string(item,"mode",state.mode.c_str());obs_data_set_string(item,"sourceUuid",state.sourceUuid.c_str());obs_data_set_string(item,"networkName",state.name.c_str());obs_data_set_int(item,"audioTrack",state.audioTrack);obs_data_set_string(item,"audioSourceUuid",state.audioSourceUuid.c_str());obs_data_set_bool(item,"alpha",state.alpha);obs_data_set_bool(item,"fillKey",state.fillKey);obs_data_set_string(item,"keyName",state.keyName.c_str());obs_data_set_int(item,"width",state.width);obs_data_set_int(item,"height",state.height);}const int connected=o!=networkOutputs.end()?(protocol=="NDI"?freemix_ndi::Connections(o->second):freemix_omt::Connections(o->second)):-1;obs_data_set_int(item,"connections",connected);obs_data_set_string(item,"receiverStatus",connected<0?"unknown":connected>0?"connected":"disconnected");obs_data_set_int(item,"capturedFrames",o!=networkOutputs.end()&&o->second?int64_t(obs_output_get_total_frames(o->second)):0);obs_data_array_push_back(senders,item);}obs_data_set_array(response,"senders",senders);
++  OBSDataArrayAutoRelease senders=obs_data_array_create();for(int n=0;n<(protocol=="NDI"||omtSdk?4:1);n++){const std::string key=protocol+":"+std::to_string(n);const auto o=networkOutputs.find(key);const auto m=networkMedia.find(key);OBSDataAutoRelease item=obs_data_create();obs_data_set_int(item,"senderId",n);const bool on=o!=networkOutputs.end()&&o->second&&obs_output_active(o->second);obs_data_set_bool(item,"active",on);obs_data_set_bool(item,"outputCreated",o!=networkOutputs.end()&&o->second);obs_data_set_string(item,"backend",o!=networkOutputs.end()&&o->second?obs_output_get_id(o->second):type);if(m!=networkMedia.end()){const auto &state=*m->second;obs_data_set_string(item,"mode",state.mode.c_str());obs_data_set_string(item,"sourceUuid",state.sourceUuid.c_str());obs_data_set_string(item,"networkName",state.name.c_str());obs_data_set_int(item,"audioTrack",state.audioTrack);obs_data_set_string(item,"audioSourceUuid",state.audioSourceUuid.c_str());obs_data_set_bool(item,"alpha",state.alpha);obs_data_set_int(item,"precisionBits",state.precisionBits);obs_data_set_string(item,"groups",state.groups.c_str());obs_data_set_bool(item,"fillKey",state.fillKey);obs_data_set_string(item,"keyName",state.keyName.c_str());obs_data_set_int(item,"width",state.width);obs_data_set_int(item,"height",state.height);}const int connected=o!=networkOutputs.end()?(protocol=="NDI"?freemix_ndi::Connections(o->second):freemix_omt::Connections(o->second)):-1;obs_data_set_int(item,"connections",connected);obs_data_set_string(item,"receiverStatus",connected<0?"unknown":connected>0?"connected":"disconnected");obs_data_set_int(item,"capturedFrames",o!=networkOutputs.end()&&o->second?int64_t(obs_output_get_total_frames(o->second)):0);obs_data_array_push_back(senders,item);}obs_data_set_array(response,"senders",senders);
+   obs_data_set_bool(response,"success",error.empty());if(!error.empty())obs_data_set_string(response,"error",error.c_str());
+  },Qt::BlockingQueuedConnection);
+ }
+@@ -1291,13 +1291,15 @@ void RequestOpenPanel(obs_data_t *request, obs_data_t *response, void *)
+  const QString title = QString::fromUtf8(obs_data_get_string(request, "title")).left(100);
+  QMetaObject::invokeMethod(OBSBasic::Get(), [raw, title, response]() {
+ #ifdef BROWSER_AVAILABLE
+-  if (panelDeletionDepth) { obs_data_set_bool(response, "success", false); return; }
++  auto *main = OBSBasic::Get();
++  if (!main || main->isClosing() || frontendClosing) { obs_data_set_bool(response, "success", false); obs_data_set_string(response, "error", "O FreeMix está encerrando. Nenhuma janela será aberta."); return; }
++  if (panelDeletionDepth) { obs_data_set_bool(response, "success", false); obs_data_set_string(response, "error", "Uma janela está sendo fechada. Tente abrir novamente."); return; }
+   const QUrl url(raw);
+   const QString panelRoot = QDir(QCoreApplication::applicationDirPath() + "/../../painel").canonicalPath();
+   const bool file = url.isLocalFile() && !panelRoot.isEmpty() &&
+    QFileInfo(url.toLocalFile()).canonicalFilePath().startsWith(panelRoot + "/", Qt::CaseInsensitive);
+   const bool local = url.scheme() == "http" && (url.host() == "127.0.0.1" || url.host() == "localhost") && url.userInfo().isEmpty();
+-  if (!cef || (!file && !local)) { obs_data_set_bool(response, "success", false); return; }
++  if (!cef || (!file && !local)) { obs_data_set_bool(response, "success", false); obs_data_set_string(response, "error", !cef ? "O navegador interno não está disponível." : "A janela precisa usar um endereço local do FreeMix."); return; }
+   auto &window = panelWindows[raw.toStdString()];
+   if (!window) {
+    window = new QDialog(OBSBasic::Get(), Qt::Window | Qt::WindowMinMaxButtonsHint | Qt::WindowCloseButtonHint);
+@@ -1309,6 +1311,8 @@ void RequestOpenPanel(obs_data_t *request, obs_data_t *response, void *)
+    const QPointer<QDialog> owned = window;
+    const std::string key = raw.toStdString();
+    QObject::connect(window, &QDialog::finished, OBSBasic::Get(), [owned, key](int) {
++    if (!owned || owned->property("freemixDeletionQueued").toBool()) return;
++    owned->setProperty("freemixDeletionQueued", true);
+     const auto found = panelWindows.find(key);
+     if (found != panelWindows.end() && found->second == owned) panelWindows.erase(found);
+     QTimer::singleShot(0, OBSBasic::Get(), [owned]() {
+@@ -1321,7 +1325,7 @@ void RequestOpenPanel(obs_data_t *request, obs_data_t *response, void *)
+    auto *layout = new QVBoxLayout(window);
+    layout->setContentsMargins(0, 0, 0, 0);
+    QCefWidget *browser = cef->create_widget(window, raw.toUtf8().constData(), nullptr);
+-   if (!browser) { delete window.data(); obs_data_set_bool(response, "success", false); return; }
++   if (!browser) { delete window.data(); obs_data_set_bool(response, "success", false); obs_data_set_string(response, "error", "O navegador interno não conseguiu criar a janela."); return; }
+    browser->allowAllPopups(true);
+    layout->addWidget(browser);
+    const QRect screen = OBSBasic::Get()->screen()->availableGeometry();
+@@ -1333,6 +1337,7 @@ void RequestOpenPanel(obs_data_t *request, obs_data_t *response, void *)
+   obs_data_set_bool(response, "success", true);
+ #else
+   obs_data_set_bool(response, "success", false);
++  obs_data_set_string(response, "error", "Esta compilação não inclui o navegador interno.");
+ #endif
+  }, Qt::BlockingQueuedConnection);
+ }
+@@ -1347,6 +1352,8 @@ void RequestClosePanel(obs_data_t *request, obs_data_t *response, void *)
+ {
+  const std::string key = obs_data_get_string(request, "url");
+  QMetaObject::invokeMethod(OBSBasic::Get(), [key, response]() {
++  auto *main = OBSBasic::Get();
++  if (!main || main->isClosing() || frontendClosing) { obs_data_set_bool(response, "success", false); obs_data_set_string(response, "error", "O FreeMix está encerrando."); return; }
+   const auto found = panelWindows.find(key);
+   const QPointer<QDialog> window = found == panelWindows.end() ? nullptr : found->second;
+   obs_data_set_bool(response, "success", window && !panelDeletionDepth);
+@@ -1359,10 +1366,11 @@ void RequestGetInterface(obs_data_t *request, obs_data_t *response, void *)
+  const bool show = obs_data_get_bool(request, "show");
+  QMetaObject::invokeMethod(OBSBasic::Get(), [response, capture, show]() {
+   auto *main = OBSBasic::Get();
+-   if (panelDeletionDepth) {
++   if (!main || main->isClosing() || frontendClosing || panelDeletionDepth) {
+     obs_data_set_int(response, "pid", QCoreApplication::applicationPid());
+     obs_data_set_string(response, "executable", QCoreApplication::applicationFilePath().toUtf8().constData());
+     obs_data_set_bool(response, "interfaceBusy", true);
++    obs_data_set_bool(response, "closing", !main || main->isClosing() || frontendClosing);
+     obs_data_set_bool(response, "success", true);
+     return;
+    }
+@@ -1669,6 +1677,12 @@ void OnFrontendEvent(enum obs_frontend_event event, void *)
+ 
+ } // namespace
+ 
++void FreeMixMultistreamBeginClose()
++{
++ frontendClosing = true;
++ if (talkTimer) talkTimer->stop();
++}
++
+ void FreeMixMultistreamInit()
+ {
+ 	RegisterHlsService();
+diff --git a/frontend/widgets/FreeMixMultistream.hpp b/frontend/widgets/FreeMixMultistream.hpp
+index 8b3983e..bce8a2e 100644
+--- a/frontend/widgets/FreeMixMultistream.hpp
++++ b/frontend/widgets/FreeMixMultistream.hpp
+@@ -20,3 +20,5 @@
+ /* Call once, on the interface thread, after the frontend API exists and before the first scene collection is
+  * loaded. See FreeMixMultistream.cpp for what it sets up. */
+ void FreeMixMultistreamInit();
++// Mark shutdown before browser docks enter their nested Qt event loop.
++void FreeMixMultistreamBeginClose();
+diff --git a/frontend/widgets/FreeMixPreferences.cpp b/frontend/widgets/FreeMixPreferences.cpp
+index 5130f92..5196914 100644
+--- a/frontend/widgets/FreeMixPreferences.cpp
++++ b/frontend/widgets/FreeMixPreferences.cpp
+@@ -55,7 +55,7 @@ const Field fields[] = {
+  {"outputAdvanced","recordAudioEncoder","Encoder de áudio da gravação avançada",PROFILE,"AdvOut","RecAudioEncoder","string","ffmpeg_aac","@audio"},
+  {"outputAdvanced","streamTrack","Trilha de áudio da transmissão",PROFILE,"AdvOut","TrackIndex","integer","1","",1,6},
+  {"outputAdvanced","recordTracks","Trilhas da gravação (máscara 1 a 63)",PROFILE,"AdvOut","RecTracks","integer","1","",1,63},
+- {"outputAdvanced","recordFormat","Formato avançado de gravação",PROFILE,"AdvOut","RecFormat2","string","mkv","mkv|mp4|fragmented_mp4|mov|flv|avi"},
++ {"outputAdvanced","recordFormat","Formato avançado de gravação",PROFILE,"AdvOut","RecFormat2","string","mkv","flv|mkv|mp4|mov|hybrid_mp4|hybrid_mov|fragmented_mp4|fragmented_mov|mpegts|hls"},
+  {"outputAdvanced","rescaleRecord","Reescalar gravação avançada",PROFILE,"AdvOut","RecRescale","bool","false",""},
+  {"outputAdvanced","replaySeconds","Replay buffer (segundos)",PROFILE,"AdvOut","RecRBTime","integer","20","",1,3600},
+  {"outputAdvanced","replayMegabytes","Replay buffer (MB)",PROFILE,"AdvOut","RecRBSize","integer","512","",1,32768},
+diff --git a/frontend/widgets/OBSBasic.cpp b/frontend/widgets/OBSBasic.cpp
+index abaaa47..ba468fe 100644
+--- a/frontend/widgets/OBSBasic.cpp
++++ b/frontend/widgets/OBSBasic.cpp
+@@ -2022,6 +2022,7 @@ void OBSBasic::closeWindow()
+ 	blog(LOG_INFO, SHUTDOWN_SEPARATOR);
+ 
+ 	isClosing_ = true;
++	FreeMixMultistreamBeginClose();
+ 
+ 	/* While closing, a resize event to OBSQTDisplay could be triggered.
+ 	 * The graphics thread on macOS dispatches a lambda function to be
+diff --git a/frontend/widgets/OBSBasic_SysTray.cpp b/frontend/widgets/OBSBasic_SysTray.cpp
+index 1557d87..3319bcc 100644
+--- a/frontend/widgets/OBSBasic_SysTray.cpp
++++ b/frontend/widgets/OBSBasic_SysTray.cpp
+@@ -30,7 +30,7 @@ void OBSBasic::SystemTrayInit()
+ 	QIcon trayIconFile = QIcon(":/res/images/freemix.png");
+ #endif
+ 	trayIcon = new QSystemTrayIcon(QIcon::fromTheme("obs-tray", trayIconFile), this);
+-	trayIcon->setToolTip("OBS Studio");
++	trayIcon->setToolTip("FreeMix Studio");
+ 
+ 	trayMenu = new QMenu(this);
+ 
+@@ -102,7 +102,7 @@ void OBSBasic::SysTrayNotify(const QString &text, QSystemTrayIcon::MessageIcon n
+ {
+ 	if (trayIcon && trayIcon->isVisible() && QSystemTrayIcon::supportsMessages()) {
+ 		QSystemTrayIcon::MessageIcon icon = QSystemTrayIcon::MessageIcon(n);
+-		trayIcon->showMessage("OBS Studio", text, icon, 10000);
++		trayIcon->showMessage("FreeMix Studio", text, icon, 10000);
+ 	}
+ }
+ 
+-- 
+2.56.0.windows.1
+

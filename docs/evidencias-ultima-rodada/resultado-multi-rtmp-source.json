@@ -1,0 +1,228 @@
+{
+  "at": "2026-10-08T22:29:15.283Z",
+  "repository": "https://github.com/davidcool/obs-multi-rtmp-websocket-support",
+  "commit": "d81f40b769c4f1460132d8bc06207027c681e359",
+  "commitDate": "2026-09-10T11:47:50Z",
+  "license": {
+    "key": "gpl-2.0",
+    "name": "GNU General Public License v2.0",
+    "spdx_id": "GPL-2.0",
+    "url": "https://api.github.com/licenses/gpl-2.0",
+    "node_id": "MDc6TGljZW5zZTg="
+  },
+  "defaultBranch": "main",
+  "releaseCount": 2,
+  "releases": [
+    {
+      "tag": "v0.7.4.3-ws0.3",
+      "published": "2026-09-10T12:00:21Z",
+      "prerelease": false,
+      "assets": [
+        {
+          "name": "obs-multi-rtmp-0.7.4.3-flatpak-x86_64.flatpak",
+          "size": 3927512,
+          "url": "https://github.com/davidcool/obs-multi-rtmp-websocket-support/releases/download/v0.7.4.3-ws0.3/obs-multi-rtmp-0.7.4.3-flatpak-x86_64.flatpak"
+        },
+        {
+          "name": "obs-multi-rtmp-0.7.4.3-macos-universal.pkg",
+          "size": 452554,
+          "url": "https://github.com/davidcool/obs-multi-rtmp-websocket-support/releases/download/v0.7.4.3-ws0.3/obs-multi-rtmp-0.7.4.3-macos-universal.pkg"
+        },
+        {
+          "name": "obs-multi-rtmp-0.7.4.3-windows-x64-Installer.exe",
+          "size": 1550277,
+          "url": "https://github.com/davidcool/obs-multi-rtmp-websocket-support/releases/download/v0.7.4.3-ws0.3/obs-multi-rtmp-0.7.4.3-windows-x64-Installer.exe"
+        },
+        {
+          "name": "obs-multi-rtmp-0.7.4.3-windows-x64.zip",
+          "size": 2432819,
+          "url": "https://github.com/davidcool/obs-multi-rtmp-websocket-support/releases/download/v0.7.4.3-ws0.3/obs-multi-rtmp-0.7.4.3-windows-x64.zip"
+        },
+        {
+          "name": "obs-multi-rtmp-0.7.4.3-x86_64-linux-gnu-ubuntu-24.04-dbgsym.ddeb",
+          "size": 5360928,
+          "url": "https://github.com/davidcool/obs-multi-rtmp-websocket-support/releases/download/v0.7.4.3-ws0.3/obs-multi-rtmp-0.7.4.3-x86_64-linux-gnu-ubuntu-24.04-dbgsym.ddeb"
+        },
+        {
+          "name": "obs-multi-rtmp-0.7.4.3-x86_64-linux-gnu-ubuntu-24.04.deb",
+          "size": 232226,
+          "url": "https://github.com/davidcool/obs-multi-rtmp-websocket-support/releases/download/v0.7.4.3-ws0.3/obs-multi-rtmp-0.7.4.3-x86_64-linux-gnu-ubuntu-24.04.deb"
+        }
+      ]
+    },
+    {
+      "tag": "v0.7.3.0-ws0.1",
+      "published": "2025-09-23T14:28:00Z",
+      "prerelease": false,
+      "assets": [
+        {
+          "name": "obs-multi-rtmp-0.7.3.0-websocket-0.1.0.0-windows-x64.zip",
+          "size": 2264139,
+          "url": "https://github.com/davidcool/obs-multi-rtmp-websocket-support/releases/download/v0.7.3.0-ws0.1/obs-multi-rtmp-0.7.3.0-websocket-0.1.0.0-windows-x64.zip"
+        }
+      ]
+    }
+  ],
+  "files": [
+    {
+      "path": "README.md",
+      "size": 15673,
+      "sha256": "62a5103c62b03f20b73744f478fd23f462c562a7dcb86c8bad0a78acd19e9ea8"
+    },
+    {
+      "path": "LICENSE",
+      "size": 18092,
+      "sha256": "8177f97513213526df2cf6184d8ff986c675afb514d4e68a404010521b880643"
+    },
+    {
+      "path": "CMakeLists.txt",
+      "size": 3291,
+      "sha256": "84846fa364229f04dd3307fde1201da37f3e718b679fcd02dbd36ab6e01266d6"
+    },
+    {
+      "path": "CMakePresets.json",
+      "size": 5417,
+      "sha256": "5d56528db293c32e1e22bfee296ef06620944530848eb255bb7e6b4f83f0e586"
+    },
+    {
+      "path": "buildspec.json",
+      "size": 1750,
+      "sha256": "6a6bb749a19f750088c8f3b54ab2492fa84f221bf9907c1f60f793f3a20e8363"
+    },
+    {
+      "path": ".github/workflows/build-project.yaml",
+      "size": 14657,
+      "sha256": "48512c93863e9377943d17b9fc36d0bf7ef04edec64017a72d534ca116635e91"
+    },
+    {
+      "path": ".github/workflows/check-format.yaml",
+      "size": 613,
+      "sha256": "d8be070737de050148229feb9bfd89312279597a844aecbba6cee6ca6a0e06b4"
+    },
+    {
+      "path": ".github/workflows/dispatch.yaml",
+      "size": 406,
+      "sha256": "a4dacc0fdc8c09af8ef9df2404ad0f5d5deef1a56f1fd56efc5cf46b61130fca"
+    },
+    {
+      "path": ".github/workflows/push.yaml",
+      "size": 4011,
+      "sha256": "eb1e5cf90f8ad4bcecc73dbbb659200f7d3474a8f65e5429a5fe601ed9f17701"
+    },
+    {
+      "path": "docs/Readme.md",
+      "size": 3381,
+      "sha256": "f864381bcc96b9b239c68f79614f885a79d3d56f96c61dc31c6e8669c7ec294c"
+    },
+    {
+      "path": "python_tests/_diagnose_multi_rtmp.py",
+      "size": 16791,
+      "sha256": "d7ff54fa8abd6c3a28857497c1097b9b62dfe4ca6cefec95fea2c0f5188ffbb2"
+    },
+    {
+      "path": "src/edit-widget.cpp",
+      "size": 41300,
+      "sha256": "6ad1c872df77448ec5bb99709a701c4ab8446865a3758a781d342f3e01f9161d"
+    },
+    {
+      "path": "src/edit-widget.h",
+      "size": 207,
+      "sha256": "ef701a1e4bea54ac767ea88ff30f4c76582c780da4e1dbff0905d83837bef86d"
+    },
+    {
+      "path": "src/helpers.cpp",
+      "size": 21,
+      "sha256": "1c7cdaa56cee5e149f460172f08927e8b06ce2c171522befd77b3b001f952c16"
+    },
+    {
+      "path": "src/helpers.h",
+      "size": 364,
+      "sha256": "ba2961aa1cb863a33da9c5387b2f295776c53ca21fade144c565163468dc4c20"
+    },
+    {
+      "path": "src/json-util.hpp",
+      "size": 673,
+      "sha256": "e1544e7f5dc8795807d43b9712f160779a3e5d50179afec4326d8d22899206d9"
+    },
+    {
+      "path": "src/multi-output-widget.cpp",
+      "size": 23113,
+      "sha256": "306b03d61d9de44c381d93699f88f9b0df6b1c0605067524fbfeac399d16500f"
+    },
+    {
+      "path": "src/multi-output-widget.h",
+      "size": 1914,
+      "sha256": "2995dbf9f28d7cb44f8136e5bd910993a4fd7babac3ab2c7433bac8adffb52a9"
+    },
+    {
+      "path": "src/obs-multi-rtmp.cpp",
+      "size": 2752,
+      "sha256": "d8a432bc95a6a6dc266990748c316ada430facc110b7da0f5a4f84383ea47c61"
+    },
+    {
+      "path": "src/obs-multi-rtmp.h",
+      "size": 197,
+      "sha256": "999e02d5f551dc09388802e05faabb9ec175d163ea8ff64f9676e70efe695f01"
+    },
+    {
+      "path": "src/obs-properties-widget.cpp",
+      "size": 14818,
+      "sha256": "1660a7ca6187d727e133d282ae052b9dfc429d6932ee7cd8b955bb3217b07387"
+    },
+    {
+      "path": "src/obs-properties-widget.h",
+      "size": 380,
+      "sha256": "c02dfebfc129419209bc25f18424a9e37b934b922a559ca4eb4f61884a1b69df"
+    },
+    {
+      "path": "src/output-config.cpp",
+      "size": 10323,
+      "sha256": "455aa699ee606f32a271d8a38f8ef36fc9a5add0414238ac0ea807889ee99a0e"
+    },
+    {
+      "path": "src/output-config.h",
+      "size": 1747,
+      "sha256": "1f67c53ea233324d4d95b24d5bc4d7f8d152ed7e89e39f15654bccd551a6146f"
+    },
+    {
+      "path": "src/pch.h",
+      "size": 1007,
+      "sha256": "8553053c3d4ca9c0cc26e07cdf4f880ae6172186a24ec7239e41da31cf823937"
+    },
+    {
+      "path": "src/plugin-support.h",
+      "size": 1034,
+      "sha256": "8152e059645dc0d4758ef584e3c65c2ad988a552344a04aae72a87df022ebf7d"
+    },
+    {
+      "path": "src/protocols.cpp",
+      "size": 861,
+      "sha256": "2c727e14779078d9118fb9a6ff6de624d3bc67bca3ff0e0eeccf82a1a171c55f"
+    },
+    {
+      "path": "src/protocols.h",
+      "size": 367,
+      "sha256": "4d9c980fee555372d97944df5b8a11bacd9049527a982e5d172240530d193760"
+    },
+    {
+      "path": "src/push-widget.cpp",
+      "size": 29801,
+      "sha256": "5a0d4380a16acb15c5833339adb4178f8381602c431570c281ef736b148ae620"
+    },
+    {
+      "path": "src/push-widget.h",
+      "size": 850,
+      "sha256": "6e1d1046803c0019d9f5858fd8785bab40f524633612b86f42346aa60518e58c"
+    },
+    {
+      "path": "src/ws_vendor.cpp",
+      "size": 30586,
+      "sha256": "ab0257c7a2e272d611e19e6d830f6ad13241b4387d62d93018c277d40065c444"
+    },
+    {
+      "path": "src/ws_vendor.hpp",
+      "size": 4422,
+      "sha256": "685fec32b7f43004501a223afc8ae4f350c89a54c1ba5ce5f66073ff7aa20a6c"
+    }
+  ]
+}

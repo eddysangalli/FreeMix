@@ -1,0 +1,11 @@
+{
+  "testedAt": "2026-10-08T20:37:41.208Z",
+  "passed": 5,
+  "checks": [
+    "círculo compensa escala externa da caixa",
+    "seis formas mapeiam IDs reais do plugin",
+    "feather usa enum e pixels do shader",
+    "validação rejeita valores inválidos",
+    "presets antigos mantêm schema nativo"
+  ]
+}

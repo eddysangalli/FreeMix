@@ -1,0 +1,13 @@
+{
+  "at": "2026-10-08T22:27:42.221Z",
+  "root": "C:\\Users\\eddyr\\AppData\\Local\\Temp\\FreeMix-Replay-Frame-Logic-dfgGi8",
+  "pass": true,
+  "checks": [
+    "NTSC racional e offsets de dois quadros",
+    "Taxas incompatíveis, VFR e offset fracionário recusados",
+    "Passo A/B pausa e confirma cursores deslocados por quadro",
+    "Áudio segue Programa, volume por câmera, antigo mudo antes do novo e volta ao vivo silenciosa",
+    "Troca do áudio gravado recusada durante REC sem mutação",
+    "Persistência do offset por produção"
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "testedAt": "2026-10-08T20:38:48.347Z",
+  "root": "C:\\Users\\eddyr\\AppData\\Local\\Temp\\FreeMix-QA-Parallel-Calls-20261008",
+  "apiPort": 18098,
+  "passed": 7,
+  "checks": [
+    "plugin descoberto e capacidade exposta",
+    "seis formas reais geram seis renders distintos",
+    "mesma câmera no outro slot não recebe wrapper/filtro",
+    "centro mascarado e outro slot continuam vermelhos, canto revela fundo",
+    "suavização altera pixels misturados do contorno",
+    "troca explícita preserva fallback nativo sem interseção de filtros",
+    "troca de volta aplica parâmetros e remove máscara nativa"
+  ],
+  "images": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-portatil\\compositor-advanced-masks-evidencias",
+  "operatorUntouched": true
+}

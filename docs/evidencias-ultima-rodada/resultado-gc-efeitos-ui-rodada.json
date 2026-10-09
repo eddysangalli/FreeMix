@@ -1,0 +1,22 @@
+{
+  "at": "2026-10-09T04:33:22.876Z",
+  "root": "C:\\Users\\eddyr\\AppData\\Local\\Temp\\FreeMix-QA-GC-Efeitos-20261009",
+  "operatorTouched": false,
+  "externalTransmission": false,
+  "checks": [
+    {
+      "name": "UI HTML H/V cria vínculo por UUID, sincroniza campos/estilo e relógio por API real",
+      "passed": true
+    },
+    {
+      "name": "UI 3D mostra 11 controles XYZ/FOV e projeção; PTZ confirma capability real",
+      "passed": true
+    },
+    {
+      "name": "Interface não altera Programa; nenhum erro JavaScript",
+      "passed": true
+    }
+  ],
+  "passed": true,
+  "finalResponsive": true
+}

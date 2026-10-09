@@ -1,0 +1,9 @@
+{
+  "passed": 4,
+  "checks": [
+    "Bus UUID estrito disponível; nome/mic ausentes rejeitados",
+    "Motor antigo não recebe seleção silenciosa",
+    "NDI/OMT encaminham bus UUID sem trocar fallback M/A/B",
+    "Rede rejeita seleção bus quando Native não anuncia suporte"
+  ]
+}

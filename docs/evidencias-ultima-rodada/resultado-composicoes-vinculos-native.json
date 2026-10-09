@@ -1,0 +1,32 @@
+{
+  "at": "2026-10-08T22:21:22.429Z",
+  "root": "C:/Users/eddyr/AppData/Local/Temp/FreeMix-QA-Responsive-20261008",
+  "checks": [
+    {
+      "name": "Variante H/V vinculada em cenas nativas distintas",
+      "ok": true
+    },
+    {
+      "name": "Troca de câmera confirmada em ambas as cenas, sem alterar geometria",
+      "ok": true
+    },
+    {
+      "name": "Fundo vertical sincroniza com horizontal",
+      "ok": true
+    },
+    {
+      "name": "Camada bloqueada impede alteração parcial do vínculo",
+      "ok": true
+    },
+    {
+      "name": "Desvincular mantém conteúdo independente",
+      "ok": true
+    },
+    {
+      "name": "Programa e saídas preservados",
+      "ok": true
+    }
+  ],
+  "pass": true,
+  "operatorTouched": false
+}

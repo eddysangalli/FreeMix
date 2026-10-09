@@ -1,0 +1,14 @@
+{
+  "testedAt": "2026-10-08T20:30:23.174Z",
+  "passed": 4,
+  "checks": [
+    "clique recolhe galeria, abre etapa2 e esconde editor antigo",
+    "miniatura+3 campos numerados+nome+Criar492px visíveis emviewport800; piorcaso16 campos testado",
+    "criação real QA FluxoFinal seleciona nova entrada e reabre editor",
+    "Trocarlayout reabre biblioteca"
+  ],
+  "viewport": {
+    "height": 800
+  },
+  "createButtonBottom": 492.12
+}

@@ -1,0 +1,17 @@
+{
+  "passed": true,
+  "checks": [
+    "Comment-only module is ignored; bare module and runtime endpoint remain diagnostic references",
+    "Transitive HTML to JS/import/export/fetch/new URL/CSS/font/image literals copied; dynamic import diagnosed",
+    "Transitive path escape blocked",
+    "Missing local transitive asset blocks complete media snapshot",
+    "Composition/GC/AFV/delay edits normalize against current UUIDs and slots",
+    "Mask and anchors normalized; invalid polygon and unknown evolving style fields rejected",
+    "Private director, unknown GC data, missing slots and stream commands denied",
+    "Global flag persisted; duplicate physical key prevented across global/focused scopes",
+    "HTTP adapter dispatches saved target only; dynamic payload injection blocked",
+    "Inventory records queried kinds, plugin hashes, missing configured device and font family limits"
+  ],
+  "operatorTouched": false,
+  "limit": "Filesystem and normalized dispatch fixtures; hardware, Qt global hotkeys and full native recovery are separate."
+}

@@ -1,0 +1,12 @@
+{
+  "at": "2026-10-09T04:34:03.420Z",
+  "root": "C:\\Users\\eddyr\\AppData\\Local\\Temp\\FreeMix-QA-GC-Efeitos-20261009",
+  "operatorTouched": false,
+  "normalClose": true,
+  "shutdownResponse": {
+    "success": true
+  },
+  "nativeExited": true,
+  "apiStopped": true,
+  "passed": true
+}

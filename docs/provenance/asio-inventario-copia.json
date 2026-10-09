@@ -1,0 +1,39 @@
+{
+  "schema": 1,
+  "download": {
+    "url": "https://github.com/Andersama/obs-asio/releases/download/v3.2.1f/obs-asio-3.2.1-windows-x64.zip",
+    "sha256": "cb9606decbcec0c71bf2a1c161b1121f6efac18627f532a6c380ae49fbc1b247",
+    "published": "2024-05-21T21:45:51Z",
+    "version": "v3.2.1f",
+    "verifiedOfficialChecksum": true
+  },
+  "sourceRepository": "https://github.com/Andersama/obs-asio",
+  "sourceTag": "v3.2.1f",
+  "license": "GPL-3.0",
+  "files": [
+    {
+      "source": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-portatil\\audio-avancado-provenance\\asio-binary\\obs-plugins\\64bit\\obs-asio.dll",
+      "destination": "obs-plugins/64bit/obs-asio.dll",
+      "size": 951296,
+      "sha256": "f694bcb7f0ccd9d1f47533f7ca3d8c89e7ed0668ac481e4974bdf7f127ea45cf"
+    },
+    {
+      "source": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-portatil\\audio-avancado-provenance\\asio-binary\\data\\obs-plugins\\obs-asio\\locale\\en-US.ini",
+      "destination": "data/obs-plugins/obs-asio/locale/en-US.ini",
+      "size": 830,
+      "sha256": "95988d8311e883ea879e319174c8698f8d4faef6907e8279f9f6003800c6e6a5"
+    },
+    {
+      "source": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-portatil\\audio-avancado-provenance\\asio-LICENSE",
+      "destination": "licenses/obs-asio/LICENSE",
+      "size": 35147,
+      "sha256": "8ceb4b9ee5adedde47b31e975c1d90c73ad27b6b165a1dcd80c7c545eb65b903"
+    }
+  ],
+  "count": 3,
+  "symbolsExcluded": [
+    "obs-asio.pdb"
+  ],
+  "installation": "staging/portable somente; nenhum driver físico instalado por este manifesto",
+  "hardwareVerified": false
+}

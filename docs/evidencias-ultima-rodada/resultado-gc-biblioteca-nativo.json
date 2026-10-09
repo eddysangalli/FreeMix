@@ -1,0 +1,15 @@
+{
+  "root": "C:\\Users\\eddyr\\AppData\\Local\\Temp\\FreeMix-QA-Recovery-20261008",
+  "at": "2026-10-08T20:12:22.692Z",
+  "checks": [
+    "Horizontal real CEF/DSK/source screenshot não vazio",
+    "Edição no ar/evento e persistência URL ao sair",
+    "Entrada vertical real com canvas1080×1920",
+    "Backup .fmx GC namespace e renderer/lifecycle transitivos",
+    "Restauração nova biblioteca GC preservando original e saídas inativas",
+    "Editor real HTTP/API galeria/campos/salvar/seleção e versão vertical"
+  ],
+  "operatorTouched": false,
+  "pass": true,
+  "note": "Native/backup checks completed earlier in same private motor session; editor retested alone after .js browser resource fix. Initial validation of Windows path corrected; Recovery load allowlist fixed before successful restore."
+}

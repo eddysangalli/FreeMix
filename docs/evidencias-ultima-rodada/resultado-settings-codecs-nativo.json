@@ -1,0 +1,26 @@
+{
+  "success": true,
+  "checks": [
+    "35 preferências nativas e disponibilidade NVENC AV1/HEVC",
+    "Seleção avançada dinâmica inclui os encoders AV1 reais",
+    "Gravação principal AV1 aplica encoder sem reinício e arquivo válido",
+    "Gravação principal HEVC aplica encoder sem reinício e arquivo válido",
+    "Configuração principal preserva HLS e encoder HEVC nativo",
+    "AV1/HLS rejeitado sem mudar serviço atual",
+    "Picker nativo rejeita sessão inexistente; interação de arquivo fica para operador"
+  ],
+  "files": [
+    {
+      "codec": "av1",
+      "path": "C:/Users/eddyr/AppData/Local/Temp/FreeMix-QA-Outputs-20261008/gravacoes/settings-codecs/2026-10-08 17-11-53.mkv",
+      "duration": "1.535000"
+    },
+    {
+      "codec": "hevc",
+      "path": "C:/Users/eddyr/AppData/Local/Temp/FreeMix-QA-Outputs-20261008/gravacoes/settings-codecs/2026-10-08 17-11-56.mkv",
+      "duration": "1.566000"
+    }
+  ],
+  "root": "C:/Users/eddyr/AppData/Local/Temp/FreeMix-QA-Outputs-20261008",
+  "limits": "HLS principal configurado, sem envio externo; transporte HLS nativo comprovado pela QA das saídas extras. Picker não acionado automaticamente."
+}

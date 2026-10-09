@@ -1,0 +1,14 @@
+{
+  "success": true,
+  "checks": [
+    "Leitura nativa de cinco categorias e campos tipados",
+    "Export/Import nativo sem segredos; somente rascunho",
+    "Campos/tipos inválidos rejeitados pelas duas camadas",
+    "Apply persistente com readback; padrões exigem reinício informado",
+    "Hotkey registrado no motor dispara Preview real e eventos down/up",
+    "Remoção limpa registro nativo sem prender ação"
+  ],
+  "root": "C:/Users/eddyr/AppData/Local/Temp/FreeMix-QA-Outputs-20261008",
+  "nativeFields": 31,
+  "limits": "Disparo pela API de hotkey real do OBS, sem pressionar teclado físico/background; configurações testadas por persistência/readback, requerem reinício para aplicar DSP/tema."
+}

@@ -1,0 +1,18 @@
+import {readdir,lstat} from 'node:fs/promises';
+import {createReadStream} from 'node:fs';
+import {join} from 'node:path';
+import {createHash} from 'node:crypto';
+const pluginHashes=new Map();
+async function pluginHash(file,info){const previous=pluginHashes.get(file);if(previous?.size===info.size&&previous?.mtimeMs===info.mtimeMs)return previous.sha256;const hash=createHash('sha256');for await(const data of createReadStream(file))hash.update(data);const sha256=hash.digest('hex');pluginHashes.set(file,{size:info.size,mtimeMs:info.mtimeMs,sha256});return sha256;}
+async function query(p,type,data={}){try{const result=await p.req(type,data);if(!result)throw Error('Resposta indisponível');return {result};}catch(e){return {error:e.message};}}
+export async function recoveryInventory(p,collection){
+ const [version,kinds,filters]=await Promise.all([query(p,'GetVersion'),query(p,'GetInputKindList'),query(p,'GetSourceFilterKindList')]),plugins=[],devices=[],fontFaces=new Set(),usedKinds=new Set();
+ for(const folder of ['obs-plugins/64bit','obs-plugins']){const path=join(p.root,folder);let entries;try{if((await lstat(path)).isSymbolicLink())throw Error('Pasta de plugins é link');entries=await readdir(path,{withFileTypes:true});}catch(e){if(e.code==='ENOENT')continue;plugins.push({path:folder,error:e.message});continue;}for(const e of entries){if(!e.isFile()||e.isSymbolicLink()||!e.name.endsWith('.dll'))continue;const file=join(path,e.name),info=await lstat(file);if(info.isSymbolicLink())throw Error('Plugin é link');plugins.push({path:folder+'/'+e.name,size:info.size,sha256:await pluginHash(file,info)});}}
+ const sources=collection.sources||[];for(const source of sources){if(source.id&&!['scene','group'].includes(source.id))usedKinds.add(source.versioned_id||source.id);const settings=source.settings||{};if(settings.font?.face)fontFaces.add(settings.font.face);
+  const properties=['video_device_id','audio_device_id','device_id'].filter(k=>settings[k]!==undefined);
+  for(const propertyName of properties){const listed=await query(p,'GetInputPropertiesListPropertyItems',{inputName:source.name,propertyName});const items=(listed.result?.propertyItems||[]).map(i=>({name:i.itemName,value:i.itemValue,enabled:i.itemEnabled}));devices.push({source:source.name,kind:source.id,property:propertyName,configured:settings[propertyName],available:listed.error?null:items.some(i=>i.enabled!==false&&i.value===settings[propertyName]),choices:items,error:listed.error||null});}
+ }
+ let fontFiles=[];try{fontFiles=(await readdir(join(process.env.WINDIR||'C:/Windows','Fonts'),{withFileTypes:true})).filter(e=>e.isFile()&&!e.isSymbolicLink()).map(e=>e.name);}catch{}
+ return {capturedAt:Date.now(),version:version.result||null,inputKinds:kinds.result?.inputKinds||[],filterKinds:filters.result?.sourceFilterKinds||[],usedKinds:[...usedKinds],plugins,devices,fonts:{requestedFaces:[...fontFaces],systemFiles:fontFiles,verification:'Arquivos de fontes inventariados; nomes de família exigem resolução pelo sistema operacional'},errors:[version.error,kinds.error,filters.error].filter(Boolean)};
+}
+export function inventoryDifference(before,after){const available=new Set(after.inputKinds),pluginMap=new Map(after.plugins.map(p=>[p.path,p])),missingKinds=before.usedKinds.filter(k=>!available.has(k)),changedPlugins=before.plugins.filter(p=>p.sha256&&pluginMap.get(p.path)?.sha256!==p.sha256).map(p=>({path:p.path,status:pluginMap.has(p.path)?'different':'missing'}));return {missingKinds,changedPlugins,devices:after.devices.filter(d=>d.available!==true),fonts:before.fonts.requestedFaces,errors:after.errors,limit:'Inventário é diagnóstico. Não reinstala plugins, dispositivos ou fontes nem homologa hardware.'};}

@@ -1,0 +1,35 @@
+{
+  "at": "2026-10-08T22:20:38.674Z",
+  "root": "C:/Users/eddyr/AppData/Local/Temp/FreeMix-QA-Responsive-20261008",
+  "checks": [
+    {
+      "name": "Imagem local por hash renderizada no CEF nativo",
+      "pixel": [
+        0,
+        255,
+        0,
+        255
+      ],
+      "ok": true
+    },
+    {
+      "name": "Fonte TTF carregada no CEF difere materialmente do fallback",
+      "changedChannels": 10275,
+      "ok": true
+    },
+    {
+      "name": "Variante vinculada criada com canvas vertical real",
+      "ok": true
+    },
+    {
+      "name": "Edição vertical propaga conteúdo preservando geometria horizontal",
+      "ok": true
+    },
+    {
+      "name": "Fonte importada e edição no ar persistem na fonte nativa",
+      "ok": true
+    }
+  ],
+  "pass": true,
+  "operatorTouched": false
+}

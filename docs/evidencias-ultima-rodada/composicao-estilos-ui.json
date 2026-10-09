@@ -1,0 +1,14 @@
+{
+  "testedAt": "2026-10-08T19:17:13.900Z",
+  "url": "http://127.0.0.1:18098/compor",
+  "checks": [
+    "Editor conectado à QA",
+    "Grupo de estilo abre opções de máscara",
+    "Polígono exibe pares de coordenadas",
+    "Raio oculto quando não usado",
+    "Botão de variante vertical presente"
+  ],
+  "passed": 5,
+  "polygonVisible": true,
+  "radiusVisible": false
+}

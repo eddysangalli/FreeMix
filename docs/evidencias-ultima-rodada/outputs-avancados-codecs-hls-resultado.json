@@ -1,0 +1,527 @@
+{
+  "root": "C:\\Users\\eddyr\\AppData\\Local\\Temp\\FreeMix-QA-Parallel-Outputs-20261008",
+  "at": "2026-10-08T20:06:42.900Z",
+  "checks": [
+    "Native QA identity",
+    "Native capabilities include HEVC and AV1 NVENC",
+    "HLS service and native backend advertised",
+    "Reject incompatible srt/av1 before network",
+    "Reject incompatible hls/av1 before network",
+    "Reject incompatible rtmp/av1 before network",
+    "Real hevc MKV decoded with AAC",
+    "Real av1 MKV decoded with AAC",
+    "HLS HTTP PUT playlist and segments written",
+    "Native HLS segment contains H264 and AAC",
+    "No extra outputs retained after stop"
+  ],
+  "binary": {
+    "exeHash": "074dfe583c989abab98ce74e35c49113fddda0d8fe2c08be84e2aadc188e8529",
+    "at": "2026-10-08T20:05:58.336Z"
+  },
+  "capabilities": {
+    "encoders": [
+      {
+        "codec": "av1",
+        "id": "ffmpeg_svt_av1",
+        "name": "SVT-AV1"
+      },
+      {
+        "codec": "av1",
+        "id": "ffmpeg_aom_av1",
+        "name": "AOM AV1"
+      },
+      {
+        "codec": "h264",
+        "id": "obs_nvenc_h264_tex",
+        "name": "NVIDIA NVENC H.264"
+      },
+      {
+        "codec": "hevc",
+        "id": "obs_nvenc_hevc_tex",
+        "name": "NVIDIA NVENC HEVC"
+      },
+      {
+        "codec": "av1",
+        "id": "obs_nvenc_av1_tex",
+        "name": "NVIDIA NVENC AV1"
+      },
+      {
+        "codec": "h264",
+        "id": "obs_qsv11_v2",
+        "name": "QuickSync H.264"
+      },
+      {
+        "codec": "hevc",
+        "id": "obs_qsv11_hevc",
+        "name": "QuickSync HEVC"
+      },
+      {
+        "codec": "h264",
+        "id": "obs_x264",
+        "name": "x264"
+      }
+    ],
+    "protocols": [
+      {
+        "audioCodecs": "aac",
+        "available": true,
+        "enhancedRtmp": true,
+        "id": "rtmp",
+        "outputId": "rtmp_output",
+        "videoCodecs": "h264;hevc;av1"
+      },
+      {
+        "audioCodecs": "aac",
+        "available": true,
+        "enhancedRtmp": true,
+        "id": "rtmps",
+        "outputId": "rtmp_output",
+        "videoCodecs": "h264;hevc;av1"
+      },
+      {
+        "audioCodecs": "aac;opus",
+        "available": true,
+        "enhancedRtmp": false,
+        "id": "srt",
+        "outputId": "ffmpeg_mpegts_muxer",
+        "videoCodecs": "h264;hevc"
+      },
+      {
+        "audioCodecs": "aac;opus",
+        "available": true,
+        "enhancedRtmp": false,
+        "id": "rist",
+        "outputId": "ffmpeg_mpegts_muxer",
+        "videoCodecs": "h264;hevc"
+      },
+      {
+        "audioCodecs": "aac",
+        "available": true,
+        "enhancedRtmp": false,
+        "id": "hls",
+        "outputId": "ffmpeg_hls_muxer",
+        "videoCodecs": "h264;hevc"
+      }
+    ],
+    "hlsService": "freemix_hls"
+  },
+  "port": 59262,
+  "files": [
+    "C:\\Users\\eddyr\\AppData\\Local\\Temp\\FreeMix-QA-Parallel-Outputs-20261008/gravacoes/codec-hls-1791490002901/hevc.mkv",
+    "C:\\Users\\eddyr\\AppData\\Local\\Temp\\FreeMix-QA-Parallel-Outputs-20261008/gravacoes/codec-hls-1791490002901/av1.mkv"
+  ],
+  "writes": [
+    {
+      "path": "/live.m3u8",
+      "bytes": 100
+    },
+    {
+      "path": "/live0.ts",
+      "bytes": 411720
+    },
+    {
+      "path": "/live.m3u8",
+      "bytes": 127
+    },
+    {
+      "path": "/live1.ts",
+      "bytes": 414540
+    },
+    {
+      "path": "/live.m3u8",
+      "bytes": 154
+    },
+    {
+      "path": "/live2.ts",
+      "bytes": 413976
+    },
+    {
+      "path": "/live.m3u8",
+      "bytes": 181
+    },
+    {
+      "path": "/live3.ts",
+      "bytes": 414540
+    },
+    {
+      "path": "/live4.ts",
+      "bytes": 180104
+    },
+    {
+      "path": "/live.m3u8",
+      "bytes": 223
+    }
+  ],
+  "probes": [
+    {
+      "streams": [
+        {
+          "index": 0,
+          "codec_name": "hevc",
+          "codec_long_name": "H.265 / HEVC (High Efficiency Video Coding)",
+          "profile": "Main",
+          "codec_type": "video",
+          "codec_tag_string": "[0][0][0][0]",
+          "codec_tag": "0x0000",
+          "width": 640,
+          "height": 360,
+          "coded_width": 640,
+          "coded_height": 384,
+          "has_b_frames": 1,
+          "sample_aspect_ratio": "1:1",
+          "display_aspect_ratio": "16:9",
+          "pix_fmt": "yuv420p",
+          "level": 63,
+          "color_range": "tv",
+          "color_space": "bt709",
+          "color_transfer": "bt709",
+          "color_primaries": "bt709",
+          "chroma_location": "left",
+          "view_ids_available": "",
+          "view_pos_available": "",
+          "r_frame_rate": "15/1",
+          "avg_frame_rate": "15/1",
+          "time_base": "1/1000",
+          "start_pts": 0,
+          "start_time": "0.000000",
+          "extradata_size": 130,
+          "disposition": {
+            "default": 0,
+            "dub": 0,
+            "original": 0,
+            "comment": 0,
+            "lyrics": 0,
+            "karaoke": 0,
+            "forced": 0,
+            "hearing_impaired": 0,
+            "visual_impaired": 0,
+            "clean_effects": 0,
+            "attached_pic": 0,
+            "timed_thumbnails": 0,
+            "non_diegetic": 0,
+            "captions": 0,
+            "descriptions": 0,
+            "metadata": 0,
+            "dependent": 0,
+            "still_image": 0,
+            "multilayer": 0
+          },
+          "tags": {
+            "DURATION": "00:00:06.734000000"
+          }
+        },
+        {
+          "index": 1,
+          "codec_name": "aac",
+          "codec_long_name": "AAC (Advanced Audio Coding)",
+          "profile": "LC",
+          "codec_type": "audio",
+          "codec_tag_string": "[0][0][0][0]",
+          "codec_tag": "0x0000",
+          "mime_codec_string": "mp4a.40.2",
+          "sample_fmt": "fltp",
+          "sample_rate": "48000",
+          "channels": 2,
+          "channel_layout": "stereo",
+          "bits_per_sample": 0,
+          "initial_padding": 1024,
+          "r_frame_rate": "0/0",
+          "avg_frame_rate": "0/0",
+          "time_base": "1/1000",
+          "start_pts": 0,
+          "start_time": "0.000000",
+          "extradata_size": 5,
+          "disposition": {
+            "default": 0,
+            "dub": 0,
+            "original": 0,
+            "comment": 0,
+            "lyrics": 0,
+            "karaoke": 0,
+            "forced": 0,
+            "hearing_impaired": 0,
+            "visual_impaired": 0,
+            "clean_effects": 0,
+            "attached_pic": 0,
+            "timed_thumbnails": 0,
+            "non_diegetic": 0,
+            "captions": 0,
+            "descriptions": 0,
+            "metadata": 0,
+            "dependent": 0,
+            "still_image": 0,
+            "multilayer": 0
+          },
+          "tags": {
+            "title": "freemix_destino_1_audio",
+            "DURATION": "00:00:06.570000000"
+          }
+        }
+      ],
+      "format": {
+        "filename": "C:\\Users\\eddyr\\AppData\\Local\\Temp\\FreeMix-QA-Parallel-Outputs-20261008/gravacoes/codec-hls-1791490002901/hevc.mkv",
+        "nb_streams": 2,
+        "nb_programs": 0,
+        "nb_stream_groups": 0,
+        "format_name": "matroska,webm",
+        "format_long_name": "Matroska / WebM",
+        "start_time": "0.000000",
+        "duration": "6.734000",
+        "size": "1301921",
+        "bit_rate": "1546683",
+        "probe_score": 100,
+        "tags": {
+          "ENCODER": "Lavf62.12.102"
+        }
+      }
+    },
+    {
+      "streams": [
+        {
+          "index": 0,
+          "codec_name": "av1",
+          "codec_long_name": "Alliance for Open Media AV1",
+          "profile": "Main",
+          "codec_type": "video",
+          "codec_tag_string": "[0][0][0][0]",
+          "codec_tag": "0x0000",
+          "mime_codec_string": "av01.0.01M.08.0.110.01.01.01.0",
+          "width": 640,
+          "height": 360,
+          "coded_width": 640,
+          "coded_height": 360,
+          "has_b_frames": 0,
+          "sample_aspect_ratio": "1:1",
+          "display_aspect_ratio": "16:9",
+          "pix_fmt": "yuv420p",
+          "level": 1,
+          "color_range": "tv",
+          "color_space": "bt709",
+          "color_transfer": "bt709",
+          "color_primaries": "bt709",
+          "chroma_location": "left",
+          "r_frame_rate": "15/1",
+          "avg_frame_rate": "15/1",
+          "time_base": "1/1000",
+          "start_pts": 0,
+          "start_time": "0.000000",
+          "extradata_size": 20,
+          "disposition": {
+            "default": 0,
+            "dub": 0,
+            "original": 0,
+            "comment": 0,
+            "lyrics": 0,
+            "karaoke": 0,
+            "forced": 0,
+            "hearing_impaired": 0,
+            "visual_impaired": 0,
+            "clean_effects": 0,
+            "attached_pic": 0,
+            "timed_thumbnails": 0,
+            "non_diegetic": 0,
+            "captions": 0,
+            "descriptions": 0,
+            "metadata": 0,
+            "dependent": 0,
+            "still_image": 0,
+            "multilayer": 0
+          },
+          "tags": {
+            "DURATION": "00:00:07.800000000"
+          }
+        },
+        {
+          "index": 1,
+          "codec_name": "aac",
+          "codec_long_name": "AAC (Advanced Audio Coding)",
+          "profile": "LC",
+          "codec_type": "audio",
+          "codec_tag_string": "[0][0][0][0]",
+          "codec_tag": "0x0000",
+          "mime_codec_string": "mp4a.40.2",
+          "sample_fmt": "fltp",
+          "sample_rate": "48000",
+          "channels": 2,
+          "channel_layout": "stereo",
+          "bits_per_sample": 0,
+          "initial_padding": 1024,
+          "r_frame_rate": "0/0",
+          "avg_frame_rate": "0/0",
+          "time_base": "1/1000",
+          "start_pts": 0,
+          "start_time": "0.000000",
+          "extradata_size": 5,
+          "disposition": {
+            "default": 0,
+            "dub": 0,
+            "original": 0,
+            "comment": 0,
+            "lyrics": 0,
+            "karaoke": 0,
+            "forced": 0,
+            "hearing_impaired": 0,
+            "visual_impaired": 0,
+            "clean_effects": 0,
+            "attached_pic": 0,
+            "timed_thumbnails": 0,
+            "non_diegetic": 0,
+            "captions": 0,
+            "descriptions": 0,
+            "metadata": 0,
+            "dependent": 0,
+            "still_image": 0,
+            "multilayer": 0
+          },
+          "tags": {
+            "title": "freemix_destino_2_audio",
+            "DURATION": "00:00:07.786000000"
+          }
+        }
+      ],
+      "format": {
+        "filename": "C:\\Users\\eddyr\\AppData\\Local\\Temp\\FreeMix-QA-Parallel-Outputs-20261008/gravacoes/codec-hls-1791490002901/av1.mkv",
+        "nb_streams": 2,
+        "nb_programs": 0,
+        "nb_stream_groups": 0,
+        "format_name": "matroska,webm",
+        "format_long_name": "Matroska / WebM",
+        "start_time": "0.000000",
+        "duration": "7.800000",
+        "size": "163103",
+        "bit_rate": "167285",
+        "probe_score": 100,
+        "tags": {
+          "ENCODER": "Lavf62.12.102"
+        }
+      }
+    }
+  ],
+  "playlist": "#EXTM3U\n#EXT-X-VERSION:3\n#EXT-X-TARGETDURATION:2\n#EXT-X-MEDIA-SEQUENCE:0\n#EXTINF:2.000000,\nlive0.ts\n#EXTINF:2.000000,\nlive1.ts\n#EXTINF:2.000000,\nlive2.ts\n#EXTINF:2.000000,\nlive3.ts\n#EXTINF:0.866667,\nlive4.ts\n#EXT-X-ENDLIST\n",
+  "hlsProbe": {
+    "streams": [
+      {
+        "index": 0,
+        "codec_name": "h264",
+        "codec_long_name": "H.264 / AVC / MPEG-4 AVC / MPEG-4 part 10",
+        "profile": "High",
+        "codec_type": "video",
+        "codec_tag_string": "[27][0][0][0]",
+        "codec_tag": "0x001b",
+        "mime_codec_string": "avc1.640016",
+        "width": 640,
+        "height": 360,
+        "coded_width": 640,
+        "coded_height": 360,
+        "has_b_frames": 1,
+        "sample_aspect_ratio": "1:1",
+        "display_aspect_ratio": "16:9",
+        "pix_fmt": "yuv420p",
+        "level": 22,
+        "color_range": "tv",
+        "color_space": "bt709",
+        "color_transfer": "bt709",
+        "color_primaries": "bt709",
+        "chroma_location": "left",
+        "field_order": "progressive",
+        "is_avc": "false",
+        "nal_length_size": "0",
+        "ts_id": "1",
+        "ts_packetsize": "188",
+        "id": "0x100",
+        "r_frame_rate": "15/1",
+        "avg_frame_rate": "15/1",
+        "time_base": "1/90000",
+        "start_pts": 12000,
+        "start_time": "0.133333",
+        "duration_ts": 180000,
+        "duration": "2.000000",
+        "bits_per_raw_sample": "8",
+        "extradata_size": 49,
+        "disposition": {
+          "default": 0,
+          "dub": 0,
+          "original": 0,
+          "comment": 0,
+          "lyrics": 0,
+          "karaoke": 0,
+          "forced": 0,
+          "hearing_impaired": 0,
+          "visual_impaired": 0,
+          "clean_effects": 0,
+          "attached_pic": 0,
+          "timed_thumbnails": 0,
+          "non_diegetic": 0,
+          "captions": 0,
+          "descriptions": 0,
+          "metadata": 0,
+          "dependent": 0,
+          "still_image": 0,
+          "multilayer": 0
+        }
+      },
+      {
+        "index": 1,
+        "codec_name": "aac",
+        "codec_long_name": "AAC (Advanced Audio Coding)",
+        "profile": "LC",
+        "codec_type": "audio",
+        "codec_tag_string": "[15][0][0][0]",
+        "codec_tag": "0x000f",
+        "mime_codec_string": "mp4a.40.2",
+        "sample_fmt": "fltp",
+        "sample_rate": "48000",
+        "channels": 2,
+        "channel_layout": "stereo",
+        "bits_per_sample": 0,
+        "initial_padding": 0,
+        "ts_id": "1",
+        "ts_packetsize": "188",
+        "id": "0x101",
+        "r_frame_rate": "0/0",
+        "avg_frame_rate": "0/0",
+        "time_base": "1/90000",
+        "start_pts": 10080,
+        "start_time": "0.112000",
+        "duration_ts": 170880,
+        "duration": "1.898667",
+        "bit_rate": "162369",
+        "disposition": {
+          "default": 0,
+          "dub": 0,
+          "original": 0,
+          "comment": 0,
+          "lyrics": 0,
+          "karaoke": 0,
+          "forced": 0,
+          "hearing_impaired": 0,
+          "visual_impaired": 0,
+          "clean_effects": 0,
+          "attached_pic": 0,
+          "timed_thumbnails": 0,
+          "non_diegetic": 0,
+          "captions": 0,
+          "descriptions": 0,
+          "metadata": 0,
+          "dependent": 0,
+          "still_image": 0,
+          "multilayer": 0
+        }
+      }
+    ],
+    "format": {
+      "filename": "C:\\Users\\eddyr\\AppData\\Local\\Temp\\FreeMix-QA-Parallel-Outputs-20261008/gravacoes/codec-hls-1791490002901/live0.ts",
+      "nb_streams": 2,
+      "nb_programs": 1,
+      "nb_stream_groups": 0,
+      "format_name": "mpegts",
+      "format_long_name": "MPEG-TS (MPEG-2 Transport Stream)",
+      "start_time": "0.112000",
+      "duration": "2.021333",
+      "size": "411720",
+      "bit_rate": "1629498",
+      "probe_score": 50
+    }
+  },
+  "passed": true
+}

@@ -1,0 +1,19 @@
+{
+  "at": "2026-10-08T21:55:02.464Z",
+  "baseVersion": "0.1.0-local.20261008210111",
+  "type": "web-hotfix",
+  "changes": [
+    {
+      "file": "painel/mesa.html",
+      "sha256": "d8ce85dce5c84cc5dfa58327c06b2411de00e8860e9c6604d4d027648f358fbf"
+    },
+    {
+      "file": "painel/remoto/codecs-mesa.js",
+      "sha256": "99f3629606d79f510636d1ac488e7517aeeff6d9ccbd1e172961105c467a6015"
+    }
+  ],
+  "backup": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\archived\\hotfix-codecs-mesa\\20261008215502",
+  "operatorRestarted": false,
+  "profileChanged": false,
+  "zipBaseUnmodified": true
+}

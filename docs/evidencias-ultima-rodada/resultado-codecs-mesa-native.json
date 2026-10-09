@@ -1,0 +1,24 @@
+{
+  "at": "2026-10-08T21:54:04.664Z",
+  "checks": [
+    {
+      "name": "picker de transmissão salvou AV1 no motor",
+      "ok": true
+    },
+    {
+      "name": "protocolo RTMP confirmado",
+      "ok": true
+    },
+    {
+      "name": "HEVC e AV1 anunciados pelo motor",
+      "ok": true
+    },
+    {
+      "name": "nenhuma transmissão ou gravação iniciada",
+      "ok": true
+    }
+  ],
+  "encoder": "nvenc_av1",
+  "protocol": "rtmp",
+  "operatorUntouched": true
+}

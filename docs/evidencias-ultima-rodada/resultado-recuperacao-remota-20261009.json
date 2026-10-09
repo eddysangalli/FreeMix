@@ -1,0 +1,51 @@
+{
+  "at": "2026-10-09T04:31:33.125Z",
+  "checks": [
+    {
+      "name": "transitive static capture and explicit dynamic response, no navigation or JS execution",
+      "pass": true,
+      "files": 6,
+      "hits": [
+        "/page.html",
+        "/api/live",
+        "/style.css",
+        "/logo.png",
+        "/main.js",
+        "/font.woff2"
+      ],
+      "policy": "Static capture: scripts, connections, frames and forms disabled by CSP; dynamic URL responses stored explicitly, no runtime reconstruction or remote execution"
+    },
+    {
+      "name": "download limits, origin redirects, credentials and default TLS guard",
+      "pass": true
+    },
+    {
+      "name": "full .fmx hashes and restore into new production offline, original preserved",
+      "pass": true,
+      "root": "C:\\Users\\eddyr\\AppData\\Local\\Temp\\FreeMix-Recovery-Remote-18216-bzlMbP",
+      "snapshot": "01817344-4c89-402f-8014-fd2c9ac97390",
+      "diagnostics": [
+        {
+          "source": "Remoto",
+          "status": "remote-materialized-offline",
+          "address": "http://127.0.0.1:18216/page.html"
+        },
+        {
+          "source": "Sem copia",
+          "status": "remote-disabled",
+          "address": "https://other.invalid/private"
+        }
+      ]
+    },
+    {
+      "name": "captured content tampering rejected before restore",
+      "pass": true
+    },
+    {
+      "name": "actual TLS rejects untrusted certificate without bypass",
+      "pass": true
+    }
+  ],
+  "nativeMotorTested": false,
+  "externalNetworkUsed": false
+}

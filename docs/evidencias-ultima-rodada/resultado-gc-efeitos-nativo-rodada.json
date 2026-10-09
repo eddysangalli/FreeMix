@@ -1,0 +1,46 @@
+{
+  "at": "2026-10-09T04:19:07.160Z",
+  "root": "C:\\Users\\eddyr\\AppData\\Local\\Temp\\FreeMix-QA-GC-Efeitos-20261009",
+  "operatorTouched": false,
+  "externalTransmission": false,
+  "checks": [
+    {
+      "name": "XYZ/FOV renderizados pelo shader, origem compartilhada sem filtro",
+      "passed": true,
+      "redPixels": 55012
+    },
+    {
+      "name": "Tracking facial do plugin gera pan/tilt VISCA TCP real para receptor loopback",
+      "passed": true,
+      "packets": 10,
+      "moveCommands": 1
+    },
+    {
+      "name": "Parar tracking remove filtro; controle nativo permanece responsivo",
+      "passed": true
+    }
+  ],
+  "mediaBefore": {
+    "mediaCursor": 933,
+    "mediaDuration": 12000,
+    "mediaState": "OBS_MEDIA_STATE_PLAYING"
+  },
+  "activeBefore": {
+    "videoActive": true,
+    "videoShowing": true
+  },
+  "passed": true,
+  "finalResponsive": true,
+  "packets": [
+    "81010001ff",
+    "8101060100000303ff",
+    "8101040700ff",
+    "810106010c050202ff",
+    "8101040735ff",
+    "81090447ff",
+    "81090447ff",
+    "81090447ff",
+    "81090447ff",
+    "81090447ff"
+  ]
+}

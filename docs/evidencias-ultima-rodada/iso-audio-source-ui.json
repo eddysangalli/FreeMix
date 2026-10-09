@@ -1,0 +1,16 @@
+{
+  "hint": "Fonte direta indisponível na rota atual. Selecione uma fonte pública com trilha 1 ou use Entrada / Master / Bus A / Bus B.",
+  "modeOptions": [
+    "input",
+    "master",
+    "source",
+    "bus-a",
+    "bus-b",
+    "all-tracks"
+  ],
+  "ownSourceControlPresent": true,
+  "sourceOptions": [
+    "Selecione fonte pública"
+  ],
+  "width": "320"
+}

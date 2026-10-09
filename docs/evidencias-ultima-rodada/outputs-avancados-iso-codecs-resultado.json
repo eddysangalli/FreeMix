@@ -1,0 +1,119 @@
+{
+  "root": "C:\\Users\\eddyr\\AppData\\Local\\Temp\\FreeMix-QA-Parallel-Outputs-20261008",
+  "at": "2026-10-08T20:16:46.266Z",
+  "checks": [
+    "Native QA identity",
+    "ISO rejects AV1 with TS before filter creation",
+    "ISO applies codec/container validation to inherited per-input options",
+    "Source Record writes both actual codecs",
+    "ISO hevc MKV and safe MP4 preserve codec",
+    "ISO hevc keeps AAC,640x360/15FPS",
+    "ISO HEVC MP4 uses hvc1",
+    "ISO av1 MKV and safe MP4 preserve codec",
+    "ISO av1 keeps AAC,640x360/15FPS"
+  ],
+  "session": {
+    "id": "1b6d230f-b657-4c36-be25-8f018e0df4dc",
+    "startedAt": 1791490606367,
+    "dir": "C:\\Users\\eddyr\\AppData\\Local\\Temp\\FreeMix-QA-Parallel-Outputs-20261008\\gravacoes\\iso-codecs\\iso\\ccfc2e0a-f74c-431a-abd0-36287abcb8c8",
+    "cams": [
+      {
+        "name": "M234 Red",
+        "source": "M234 Red",
+        "file": "C:\\Users\\eddyr\\AppData\\Local\\Temp\\FreeMix-QA-Parallel-Outputs-20261008\\gravacoes\\iso-codecs\\iso\\1b6d230f-b657-4c36-be25-8f018e0df4dc\\cam-1.mkv",
+        "dir": "C:\\Users\\eddyr\\AppData\\Local\\Temp\\FreeMix-QA-Parallel-Outputs-20261008\\gravacoes\\iso-codecs\\iso\\1b6d230f-b657-4c36-be25-8f018e0df4dc",
+        "options": {
+          "format": "mp4_safe",
+          "directory": "C:\\Users\\eddyr\\AppData\\Local\\Temp\\FreeMix-QA-Parallel-Outputs-20261008/gravacoes/iso-codecs",
+          "prefix": "cam",
+          "encoder": "obs_nvenc_hevc_tex",
+          "crf": 23,
+          "audio": "master",
+          "splitSeconds": 0,
+          "width": 640,
+          "height": 360,
+          "fpsDivisor": 2,
+          "bitrate": 1400,
+          "perInput": {
+            "M234 Blue": {
+              "encoder": "obs_nvenc_av1_tex"
+            }
+          }
+        },
+        "expectedCodec": "hevc",
+        "index": 1,
+        "segments": [],
+        "basename": "cam-1",
+        "extension": ".mkv",
+        "files": [
+          "C:\\Users\\eddyr\\AppData\\Local\\Temp\\FreeMix-QA-Parallel-Outputs-20261008\\gravacoes\\iso-codecs\\iso\\1b6d230f-b657-4c36-be25-8f018e0df4dc\\cam-1.mkv"
+        ],
+        "owned": true,
+        "finalFiles": [
+          "C:\\Users\\eddyr\\AppData\\Local\\Temp\\FreeMix-QA-Parallel-Outputs-20261008\\gravacoes\\iso-codecs\\iso\\1b6d230f-b657-4c36-be25-8f018e0df4dc\\cam-1.mp4"
+        ]
+      },
+      {
+        "name": "M234 Blue",
+        "source": "M234 Blue",
+        "file": "C:\\Users\\eddyr\\AppData\\Local\\Temp\\FreeMix-QA-Parallel-Outputs-20261008\\gravacoes\\iso-codecs\\iso\\1b6d230f-b657-4c36-be25-8f018e0df4dc\\cam-2.mkv",
+        "dir": "C:\\Users\\eddyr\\AppData\\Local\\Temp\\FreeMix-QA-Parallel-Outputs-20261008\\gravacoes\\iso-codecs\\iso\\1b6d230f-b657-4c36-be25-8f018e0df4dc",
+        "options": {
+          "format": "mp4_safe",
+          "directory": "C:\\Users\\eddyr\\AppData\\Local\\Temp\\FreeMix-QA-Parallel-Outputs-20261008/gravacoes/iso-codecs",
+          "prefix": "cam",
+          "encoder": "obs_nvenc_av1_tex",
+          "crf": 23,
+          "audio": "master",
+          "splitSeconds": 0,
+          "width": 640,
+          "height": 360,
+          "fpsDivisor": 2,
+          "bitrate": 1400,
+          "perInput": {
+            "M234 Blue": {
+              "encoder": "obs_nvenc_av1_tex"
+            }
+          }
+        },
+        "expectedCodec": "av1",
+        "index": 2,
+        "segments": [],
+        "basename": "cam-2",
+        "extension": ".mkv",
+        "files": [
+          "C:\\Users\\eddyr\\AppData\\Local\\Temp\\FreeMix-QA-Parallel-Outputs-20261008\\gravacoes\\iso-codecs\\iso\\1b6d230f-b657-4c36-be25-8f018e0df4dc\\cam-2.mkv"
+        ],
+        "owned": true,
+        "finalFiles": [
+          "C:\\Users\\eddyr\\AppData\\Local\\Temp\\FreeMix-QA-Parallel-Outputs-20261008\\gravacoes\\iso-codecs\\iso\\1b6d230f-b657-4c36-be25-8f018e0df4dc\\cam-2.mp4"
+        ]
+      }
+    ],
+    "segmented": false,
+    "retention": {
+      "minutes": 30,
+      "segmentSeconds": 60,
+      "enabled": false
+    },
+    "options": {
+      "format": "mp4_safe",
+      "directory": "C:\\Users\\eddyr\\AppData\\Local\\Temp\\FreeMix-QA-Parallel-Outputs-20261008/gravacoes/iso-codecs",
+      "prefix": "cam",
+      "encoder": "obs_nvenc_hevc_tex",
+      "crf": 23,
+      "audio": "master",
+      "splitSeconds": 0,
+      "width": 640,
+      "height": 360,
+      "fpsDivisor": 2,
+      "bitrate": 1400,
+      "perInput": {
+        "M234 Blue": {
+          "encoder": "obs_nvenc_av1_tex"
+        }
+      }
+    }
+  },
+  "passed": true
+}

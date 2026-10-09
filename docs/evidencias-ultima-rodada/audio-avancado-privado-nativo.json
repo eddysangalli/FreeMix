@@ -1,0 +1,8 @@
+{
+  "passed": 2,
+  "checks": [
+    "Contexto stale exclui diretor nativo real da lista",
+    "Saída direta recusa mic privado antes de criar filtro"
+  ],
+  "operatorUntouched": true
+}

@@ -1,0 +1,13 @@
+{
+  "version": "0.1.0-local.20261009135628",
+  "package": "entregas/FreeMix-Atualizacao-0.1.0-local.20261009135628",
+  "incrementalZip": "entregas/FreeMix-Atualizacao-0.1.0-local.20261009135628.zip",
+  "fullZip": "entregas/FreeMix-Completo-0.1.0-local.20261009135628.zip",
+  "zipSha256": "da0e0ec1888a646f7b1c7e471506328c1cf0b5f8200dd5259399a9e5123d2548",
+  "fullZipSha256": "d675f7b64ada6d3c4f5fc90d15d87450860301f24fa93fcebae1630616063a24",
+  "at": "2026-10-09T14:01:19.120Z",
+  "srtProof": "resultado-srt444-keyfix-20261009.json",
+  "receiverProof": "resultado-srt444-obs-filter-20261009.json",
+  "testedExe": "82b743e26ba4c592d76df5dcde827a0bf95f3025e101736a28ca7f0edaf76621",
+  "operatorTouched": false
+}

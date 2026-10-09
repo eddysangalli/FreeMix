@@ -1,0 +1,64 @@
+{
+  "passed": true,
+  "at": "2026-10-08T19:25:07.613Z",
+  "mixesAudioReceipt": "outputs-avancados-mixes-resultado.json",
+  "mergeReceipt": "outputs-avancados-merge-resultado.json",
+  "checks": [
+    "Native QA identity",
+    "Native lists Mixes2/3/4",
+    "Stinger configured",
+    "Mix programs swap separately",
+    "Main program unchanged",
+    "No extra outputs remain after stop",
+    "Mix2 Stinger video and Mix3 Fade independent",
+    "Destination selected BusA440 plus private Stinger880",
+    "Other mix retains BusB660 without Stinger880",
+    "Master keeps Bus220 without Stinger880",
+    "Native QA identity",
+    "Main program preserved",
+    "Output released after stop",
+    "Merge moves source through real intermediate positions"
+  ],
+  "audio": {
+    "chosenBus": {
+      "220": 0.0003697476645432774,
+      "440": 0.17525307109696747,
+      "660": 0.0004091146236742259,
+      "880": 0.00004200579811648199
+    },
+    "stinger": {
+      "220": 0.00010769986247424266,
+      "440": 0.1753141045750522,
+      "660": 0.0004392504917153259,
+      "880": 0.17403563784757342
+    },
+    "busB": {
+      "220": 1.464682036561839e-7,
+      "440": 4.993139697836484e-7,
+      "660": 0.17671157823965292,
+      "880": 2.207279426874285e-7
+    },
+    "master": {
+      "220": 0.1766592507088462,
+      "440": 5.375658406372606e-7,
+      "660": 7.009431655617732e-7,
+      "880": 2.0020057821054074e-7
+    }
+  },
+  "mergeFrames": [
+    "qa-portatil/outputs-avancados-merge-before.png",
+    "qa-portatil/outputs-avancados-merge-during.png",
+    "qa-portatil/outputs-avancados-merge-after.png"
+  ],
+  "binary": {
+    "exeHash": "48e50ab4936c6b3dbf3e92ebd72ad4dd4954e30c38c099b8da726c85ca633825",
+    "at": "2026-10-08T19:24:18.519Z"
+  },
+  "limits": [
+    "Mixes 2/3/4; 4 extra destinations",
+    "Stinger private destination PCM has 80ms buffer",
+    "Merge uses loaded Move 3.2.1; absence rejects explicitly",
+    "No claim for WAN or physical hardware"
+  ],
+  "root": "C:\\Users\\eddyr\\AppData\\Local\\Temp\\FreeMix-QA-Parallel-Outputs-20261008"
+}

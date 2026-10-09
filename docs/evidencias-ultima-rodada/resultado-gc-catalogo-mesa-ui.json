@@ -1,0 +1,139 @@
+{
+  "testedAt": "2026-10-08T21:02:51.091Z",
+  "apiPort": 18098,
+  "passed": 4,
+  "checks": [
+    "4 antigos + 1 importado + 22 próprios = 27 cards na Mesa",
+    "Manchete Vertical selecionável com campos reais",
+    "importado legado permanece selecionável",
+    "recarregar catálogo mantém 27 e importado selecionado"
+  ],
+  "modelCount": 27,
+  "ownCount": 22,
+  "verticalCount": 11,
+  "cards": [
+    {
+      "id": "esporte_placar",
+      "name": "Placar com Cronômetro Dinâmico"
+    },
+    {
+      "id": "jornal_lower_third",
+      "name": "Identificação de Entrevistado (Lower Third)"
+    },
+    {
+      "id": "jornal_urgente",
+      "name": "Tarja Plantão / Notícia Urgente"
+    },
+    {
+      "id": "marca_bug_relogio",
+      "name": "Marca de Canto com Relógio (Bug)"
+    },
+    {
+      "id": "qa_importado_legado",
+      "name": "QA GC Importado legado"
+    },
+    {
+      "id": "fm_headline_horizontal",
+      "name": "Manchete · Horizontal"
+    },
+    {
+      "id": "fm_headline_vertical",
+      "name": "Manchete · Vertical"
+    },
+    {
+      "id": "fm_lowerthird_horizontal",
+      "name": "Nome e cargo · Horizontal"
+    },
+    {
+      "id": "fm_lowerthird_vertical",
+      "name": "Nome e cargo · Vertical"
+    },
+    {
+      "id": "fm_two_names_horizontal",
+      "name": "Dois entrevistados · Horizontal"
+    },
+    {
+      "id": "fm_two_names_vertical",
+      "name": "Dois entrevistados · Vertical"
+    },
+    {
+      "id": "fm_credits_horizontal",
+      "name": "Créditos · Horizontal"
+    },
+    {
+      "id": "fm_credits_vertical",
+      "name": "Créditos · Vertical"
+    },
+    {
+      "id": "fm_agenda_horizontal",
+      "name": "Agenda · Horizontal"
+    },
+    {
+      "id": "fm_agenda_vertical",
+      "name": "Agenda · Vertical"
+    },
+    {
+      "id": "fm_countdown_horizontal",
+      "name": "Contagem regressiva · Horizontal"
+    },
+    {
+      "id": "fm_countdown_vertical",
+      "name": "Contagem regressiva · Vertical"
+    },
+    {
+      "id": "fm_scoreboard_horizontal",
+      "name": "Placar e relógio · Horizontal"
+    },
+    {
+      "id": "fm_scoreboard_vertical",
+      "name": "Placar e relógio · Vertical"
+    },
+    {
+      "id": "fm_stats_horizontal",
+      "name": "Comparativo estatístico · Horizontal"
+    },
+    {
+      "id": "fm_stats_vertical",
+      "name": "Comparativo estatístico · Vertical"
+    },
+    {
+      "id": "fm_bug_horizontal",
+      "name": "Marca e relógio · Horizontal"
+    },
+    {
+      "id": "fm_bug_vertical",
+      "name": "Marca e relógio · Vertical"
+    },
+    {
+      "id": "fm_social_horizontal",
+      "name": "Redes sociais · Horizontal"
+    },
+    {
+      "id": "fm_social_vertical",
+      "name": "Redes sociais · Vertical"
+    },
+    {
+      "id": "fm_fullscreen_horizontal",
+      "name": "Cartão de informação · Horizontal"
+    },
+    {
+      "id": "fm_fullscreen_vertical",
+      "name": "Cartão de informação · Vertical"
+    }
+  ],
+  "screenshot": "gc-catalogo-mesa-ui-vertical.png",
+  "operatorUntouched": true,
+  "catalogRestored": true,
+  "restoredSha": "946f2ca88c28ede49929a99c837b3bb1ccb3c45b917301972ea6d1a50f792061",
+  "qaShutdown": {
+    "root": "C:\\Users\\eddyr\\AppData\\Local\\Temp\\FreeMix-QA-Parallel-Calls-20261008",
+    "apiPort": 18098,
+    "pid": 81404,
+    "apiPid": 31096,
+    "normalClose": true,
+    "outputsIdle": true,
+    "operatorUntouched": true,
+    "closedAt": "2026-10-08T21:03:01.471Z"
+  },
+  "sourcesChanged": false
+}

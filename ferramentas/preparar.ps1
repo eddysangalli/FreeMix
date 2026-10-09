@@ -7,6 +7,21 @@ $cfg = Join-Path $root 'config\obs-studio'
 $mark = Join-Path $cfg 'raiz.txt'
 $old = if (Test-Path $mark) { (Get-Content $mark -Raw).Trim() } else { 'D:\DRIVE\IA\antigravity\vmixtwste\obs-vmix' }
 
+# The bundled FreeMix theme is maintained by the application. Keep its previous bytes before an update;
+# other themes and all profile/preset choices remain owned by the operator.
+if (-not (Get-Process obs64, FreeMix -ErrorAction SilentlyContinue | Where-Object { $_.Path -like "$root\*" })) {
+  $taskThemeSource=Join-Path $root 'painel\tema-padrao.ovt'
+  $taskThemeFolder=Join-Path $cfg 'themes'
+  $taskThemeTarget=Join-Path $taskThemeFolder 'Yami_MesaDeCorte.ovt'
+  if(Test-Path -LiteralPath $taskThemeSource){
+    if(-not(Test-Path -LiteralPath $taskThemeFolder)){New-Item -ItemType Directory -Path $taskThemeFolder | Out-Null}
+    if(-not(Test-Path -LiteralPath $taskThemeTarget) -or (Get-FileHash -LiteralPath $taskThemeSource).Hash -ne (Get-FileHash -LiteralPath $taskThemeTarget).Hash){
+      if((Test-Path -LiteralPath $taskThemeTarget) -and -not(Test-Path -LiteralPath ($taskThemeTarget+'.anterior'))){Copy-Item -LiteralPath $taskThemeTarget -Destination ($taskThemeTarget+'.anterior')}
+      Copy-Item -LiteralPath $taskThemeSource -Destination $taskThemeTarget -Force
+    }
+  }
+}
+
 # Every start: the keyer plugin (Downstream Keyer 0.4.4) leaves the "hide after" time of a keyer created at run
 # time uninitialised and saves that garbage with the preset. On the next start such a keyer drops its scene right
 # after showing it: an overlay that will not stay on, or the audio buses going off air (no sound on Master).

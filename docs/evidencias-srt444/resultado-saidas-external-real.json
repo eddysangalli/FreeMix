@@ -1,0 +1,623 @@
+{
+  "at": "2026-10-09T12:34:35.155Z",
+  "root": "C:/Users/eddyr/AppData/Local/Temp/FreeMix-QA-Menus-20261009",
+  "url": "http://127.0.0.1:18310/saidas?context=external&transport=omt",
+  "realNative": true,
+  "outputsStarted": false,
+  "checks": [
+    "Own QA executable identity",
+    "Actual API and motor connected",
+    "Two native OMT sender readbacks available",
+    "Per-sender precision/groups/backend fields supplied by motor",
+    "Second test sender is stopped; first is preserved as found",
+    "Real native panel opened",
+    "Native reports independent OMT window visible",
+    "Real UI linked to QA motor, OMT panel visible",
+    "Real UI sender1 precision matches native",
+    "Real UI sender2 precision/name separate",
+    "Actual API refresh preserves pending sender2 draft",
+    "PA16 prepares source mode and alpha without native start",
+    "Real QA inputs populate source choices",
+    "Selecting real QA transparent input enables explicit start",
+    "Real NDI form hides OMT precision",
+    "Readback proves no output started by preparation",
+    "No real-page browser errors"
+  ],
+  "identity": {
+    "docks": [
+      {
+        "name": "scenesDock",
+        "title": "Entradas",
+        "titleBarHeight": -1,
+        "visible": false
+      },
+      {
+        "name": "sourcesDock",
+        "title": "Layers",
+        "titleBarHeight": -1,
+        "visible": false
+      },
+      {
+        "name": "mixerDock",
+        "title": "Mixer de áudio",
+        "titleBarHeight": -1,
+        "visible": false
+      },
+      {
+        "name": "transitionsDock",
+        "title": "Transições de cena",
+        "titleBarHeight": -1,
+        "visible": false
+      },
+      {
+        "name": "controlsDock",
+        "title": "Controls",
+        "titleBarHeight": -1,
+        "visible": false
+      },
+      {
+        "name": "statsDock",
+        "title": "Estatísticas",
+        "titleBarHeight": -1,
+        "visible": false
+      },
+      {
+        "name": "advss-status-dock",
+        "title": "Troca Avançada de Cenas",
+        "titleBarHeight": -1,
+        "visible": false
+      },
+      {
+        "name": "AudioMonitorDock",
+        "title": "Monitor de Áudio",
+        "titleBarHeight": -1,
+        "visible": false
+      },
+      {
+        "name": "DownstreamKeyerDock",
+        "title": "Downstream Keyer",
+        "titleBarHeight": -1,
+        "visible": false
+      },
+      {
+        "name": "cloud_closed_captions_dock_main",
+        "title": "Captions",
+        "titleBarHeight": -1,
+        "visible": false
+      },
+      {
+        "name": "Menu_extraBrowser",
+        "title": "Menu",
+        "titleBarHeight": 0,
+        "visible": true
+      },
+      {
+        "name": "Mesa_extraBrowser",
+        "title": "Mesa",
+        "titleBarHeight": 0,
+        "visible": true
+      }
+    ],
+    "executable": "C:/Users/eddyr/AppData/Local/Temp/FreeMix-QA-Menus-20261009/bin/64bit/FreeMix.exe",
+    "layout": [
+      {
+        "background": "#1e2328",
+        "height": 498,
+        "name": "preview",
+        "visible": true,
+        "width": 883,
+        "x": 5,
+        "y": 54
+      },
+      {
+        "height": 26,
+        "name": "previewLabel",
+        "visible": true,
+        "width": 883,
+        "x": 5,
+        "y": 28
+      },
+      {
+        "height": 441,
+        "name": "freemixTransitionColumn",
+        "visible": true,
+        "width": 124,
+        "x": 906,
+        "y": 28
+      },
+      {
+        "height": 59,
+        "name": "freemixOverlayButtons",
+        "visible": true,
+        "width": 106,
+        "x": 906,
+        "y": 286
+      },
+      {
+        "height": 122,
+        "name": "freemixProductionClocks",
+        "visible": true,
+        "width": 106,
+        "x": 906,
+        "y": 347
+      },
+      {
+        "height": 573,
+        "name": "Mesa_extraBrowser",
+        "visible": true,
+        "width": 1920,
+        "x": 0,
+        "y": 556
+      }
+    ],
+    "nativeSettingsOpen": false,
+    "panels": [
+      {
+        "height": 850,
+        "independent": true,
+        "title": "FreeMix · ext",
+        "visible": true,
+        "width": 1200
+      },
+      {
+        "height": 850,
+        "independent": true,
+        "title": "FreeMix QA · OMT alpha / PA16",
+        "visible": true,
+        "width": 1200
+      }
+    ],
+    "pid": 80436,
+    "success": true,
+    "title": "FreeMix Studio - QA Recuperada 1791471993153"
+  },
+  "exeSha256": "dbeb2edee912fe1e37abfe856a6686621cfced69d9434e82baba0475f1cd4117",
+  "health": {
+    "success": true,
+    "app": "FreeMix",
+    "protocol": 1,
+    "installationId": "de0fa97eb33ac9076677a74aab346df054c17756a19949e3ee99ae96813c6e9b",
+    "pid": 169000,
+    "connected": true,
+    "transportConnected": true,
+    "connectionErrors": {},
+    "port": 18310
+  },
+  "network": [
+    {
+      "active": true,
+      "alpha": true,
+      "alphaSupported": true,
+      "audioSourceSelectable": true,
+      "audioSourceUuid": "",
+      "audioTrack": 0,
+      "audioTrackSelectable": true,
+      "available": true,
+      "backend": "freemix_omt_output",
+      "capturedFrames": 3673,
+      "connections": 2,
+      "fillKey": false,
+      "fillKeySupported": true,
+      "hdrSupported": false,
+      "height": 720,
+      "keyName": "",
+      "maxAudioTrack": 2,
+      "mode": "source",
+      "networkName": "FreeMix OMT 1",
+      "networkNameEditable": true,
+      "outputName": "FreeMix OMT Main Output",
+      "pa16Supported": true,
+      "precisionBits": 8,
+      "receiverStatus": "connected",
+      "senderId": 0,
+      "senders": [
+        {
+          "active": true,
+          "alpha": true,
+          "audioSourceUuid": "",
+          "audioTrack": 0,
+          "backend": "freemix_omt_output",
+          "capturedFrames": 3673,
+          "connections": 2,
+          "fillKey": false,
+          "groups": "",
+          "height": 720,
+          "keyName": "",
+          "mode": "source",
+          "networkName": "FreeMix OMT 1",
+          "outputCreated": true,
+          "precisionBits": 8,
+          "receiverStatus": "connected",
+          "senderId": 0,
+          "sourceUuid": "54278dd4-ea3b-4d62-9d13-a2bcccb94b3c",
+          "width": 1280
+        },
+        {
+          "active": false,
+          "alpha": false,
+          "audioSourceUuid": "",
+          "audioTrack": 0,
+          "backend": "omtoutput",
+          "capturedFrames": 0,
+          "connections": -1,
+          "fillKey": false,
+          "groups": "",
+          "height": 0,
+          "keyName": "",
+          "mode": "program",
+          "networkName": "",
+          "outputCreated": false,
+          "precisionBits": 8,
+          "receiverStatus": "unknown",
+          "senderId": 1,
+          "sourceUuid": "",
+          "width": 0
+        },
+        {
+          "active": false,
+          "backend": "omtoutput",
+          "capturedFrames": 0,
+          "connections": -1,
+          "outputCreated": false,
+          "receiverStatus": "unknown",
+          "senderId": 2
+        },
+        {
+          "active": false,
+          "backend": "omtoutput",
+          "capturedFrames": 0,
+          "connections": -1,
+          "outputCreated": false,
+          "receiverStatus": "unknown",
+          "senderId": 3
+        }
+      ],
+      "sendersPerProtocol": 4,
+      "sourceIndependent": true,
+      "sourceUuid": "54278dd4-ea3b-4d62-9d13-a2bcccb94b3c",
+      "success": true,
+      "width": 1280
+    },
+    {
+      "active": false,
+      "alpha": false,
+      "alphaSupported": true,
+      "audioSourceSelectable": true,
+      "audioSourceUuid": "",
+      "audioTrack": 0,
+      "audioTrackSelectable": true,
+      "available": true,
+      "backend": "freemix_omt_output",
+      "capturedFrames": 0,
+      "connections": -1,
+      "fillKey": false,
+      "fillKeySupported": true,
+      "hdrSupported": false,
+      "height": 0,
+      "keyName": "",
+      "maxAudioTrack": 2,
+      "mode": "program",
+      "networkName": "OBS Output",
+      "networkNameEditable": true,
+      "outputName": "FreeMix OMT Sender 2",
+      "pa16Supported": true,
+      "precisionBits": 8,
+      "receiverStatus": "unknown",
+      "senderId": 1,
+      "senders": [
+        {
+          "active": true,
+          "alpha": true,
+          "audioSourceUuid": "",
+          "audioTrack": 0,
+          "backend": "freemix_omt_output",
+          "capturedFrames": 3673,
+          "connections": 2,
+          "fillKey": false,
+          "groups": "",
+          "height": 720,
+          "keyName": "",
+          "mode": "source",
+          "networkName": "FreeMix OMT 1",
+          "outputCreated": true,
+          "precisionBits": 8,
+          "receiverStatus": "connected",
+          "senderId": 0,
+          "sourceUuid": "54278dd4-ea3b-4d62-9d13-a2bcccb94b3c",
+          "width": 1280
+        },
+        {
+          "active": false,
+          "alpha": false,
+          "audioSourceUuid": "",
+          "audioTrack": 0,
+          "backend": "freemix_omt_output",
+          "capturedFrames": 0,
+          "connections": -1,
+          "fillKey": false,
+          "groups": "",
+          "height": 0,
+          "keyName": "",
+          "mode": "program",
+          "networkName": "",
+          "outputCreated": false,
+          "precisionBits": 8,
+          "receiverStatus": "unknown",
+          "senderId": 1,
+          "sourceUuid": "",
+          "width": 0
+        },
+        {
+          "active": false,
+          "backend": "freemix_omt_output",
+          "capturedFrames": 0,
+          "connections": -1,
+          "outputCreated": false,
+          "receiverStatus": "unknown",
+          "senderId": 2
+        },
+        {
+          "active": false,
+          "backend": "freemix_omt_output",
+          "capturedFrames": 0,
+          "connections": -1,
+          "outputCreated": false,
+          "receiverStatus": "unknown",
+          "senderId": 3
+        }
+      ],
+      "sendersPerProtocol": 4,
+      "sourceIndependent": true,
+      "sourceUuid": "",
+      "success": true,
+      "width": 0
+    }
+  ],
+  "openPanel": {
+    "success": true
+  },
+  "panels": {
+    "docks": [
+      {
+        "name": "scenesDock",
+        "title": "Entradas",
+        "titleBarHeight": -1,
+        "visible": false
+      },
+      {
+        "name": "sourcesDock",
+        "title": "Layers",
+        "titleBarHeight": -1,
+        "visible": false
+      },
+      {
+        "name": "mixerDock",
+        "title": "Mixer de áudio",
+        "titleBarHeight": -1,
+        "visible": false
+      },
+      {
+        "name": "transitionsDock",
+        "title": "Transições de cena",
+        "titleBarHeight": -1,
+        "visible": false
+      },
+      {
+        "name": "controlsDock",
+        "title": "Controls",
+        "titleBarHeight": -1,
+        "visible": false
+      },
+      {
+        "name": "statsDock",
+        "title": "Estatísticas",
+        "titleBarHeight": -1,
+        "visible": false
+      },
+      {
+        "name": "advss-status-dock",
+        "title": "Troca Avançada de Cenas",
+        "titleBarHeight": -1,
+        "visible": false
+      },
+      {
+        "name": "AudioMonitorDock",
+        "title": "Monitor de Áudio",
+        "titleBarHeight": -1,
+        "visible": false
+      },
+      {
+        "name": "DownstreamKeyerDock",
+        "title": "Downstream Keyer",
+        "titleBarHeight": -1,
+        "visible": false
+      },
+      {
+        "name": "cloud_closed_captions_dock_main",
+        "title": "Captions",
+        "titleBarHeight": -1,
+        "visible": false
+      },
+      {
+        "name": "Menu_extraBrowser",
+        "title": "Menu",
+        "titleBarHeight": 0,
+        "visible": true
+      },
+      {
+        "name": "Mesa_extraBrowser",
+        "title": "Mesa",
+        "titleBarHeight": 0,
+        "visible": true
+      }
+    ],
+    "executable": "C:/Users/eddyr/AppData/Local/Temp/FreeMix-QA-Menus-20261009/bin/64bit/FreeMix.exe",
+    "layout": [
+      {
+        "background": "#1e2328",
+        "height": 498,
+        "name": "preview",
+        "visible": true,
+        "width": 883,
+        "x": 5,
+        "y": 54
+      },
+      {
+        "height": 26,
+        "name": "previewLabel",
+        "visible": true,
+        "width": 883,
+        "x": 5,
+        "y": 28
+      },
+      {
+        "height": 441,
+        "name": "freemixTransitionColumn",
+        "visible": true,
+        "width": 124,
+        "x": 906,
+        "y": 28
+      },
+      {
+        "height": 59,
+        "name": "freemixOverlayButtons",
+        "visible": true,
+        "width": 106,
+        "x": 906,
+        "y": 286
+      },
+      {
+        "height": 122,
+        "name": "freemixProductionClocks",
+        "visible": true,
+        "width": 106,
+        "x": 906,
+        "y": 347
+      },
+      {
+        "height": 573,
+        "name": "Mesa_extraBrowser",
+        "visible": true,
+        "width": 1920,
+        "x": 0,
+        "y": 556
+      }
+    ],
+    "nativeSettingsOpen": false,
+    "panels": [
+      {
+        "height": 850,
+        "independent": true,
+        "title": "FreeMix · ext",
+        "visible": true,
+        "width": 1200
+      },
+      {
+        "height": 850,
+        "independent": true,
+        "title": "FreeMix QA · OMT alpha / PA16",
+        "visible": true,
+        "width": 1200
+      }
+    ],
+    "pid": 80436,
+    "success": true,
+    "title": "FreeMix Studio - QA Recuperada 1791471993153"
+  },
+  "after": {
+    "active": false,
+    "alpha": false,
+    "alphaSupported": true,
+    "audioSourceSelectable": true,
+    "audioSourceUuid": "",
+    "audioTrack": 0,
+    "audioTrackSelectable": true,
+    "available": true,
+    "backend": "freemix_omt_output",
+    "capturedFrames": 0,
+    "connections": -1,
+    "fillKey": false,
+    "fillKeySupported": true,
+    "hdrSupported": false,
+    "height": 0,
+    "keyName": "",
+    "maxAudioTrack": 2,
+    "mode": "program",
+    "networkName": "OBS Output",
+    "networkNameEditable": true,
+    "outputName": "FreeMix OMT Sender 2",
+    "pa16Supported": true,
+    "precisionBits": 8,
+    "receiverStatus": "unknown",
+    "senderId": 1,
+    "senders": [
+      {
+        "active": true,
+        "alpha": true,
+        "audioSourceUuid": "",
+        "audioTrack": 0,
+        "backend": "freemix_omt_output",
+        "capturedFrames": 3800,
+        "connections": 2,
+        "fillKey": false,
+        "groups": "",
+        "height": 720,
+        "keyName": "",
+        "mode": "source",
+        "networkName": "FreeMix OMT 1",
+        "outputCreated": true,
+        "precisionBits": 8,
+        "receiverStatus": "connected",
+        "senderId": 0,
+        "sourceUuid": "54278dd4-ea3b-4d62-9d13-a2bcccb94b3c",
+        "width": 1280
+      },
+      {
+        "active": false,
+        "alpha": false,
+        "audioSourceUuid": "",
+        "audioTrack": 0,
+        "backend": "freemix_omt_output",
+        "capturedFrames": 0,
+        "connections": -1,
+        "fillKey": false,
+        "groups": "",
+        "height": 0,
+        "keyName": "",
+        "mode": "program",
+        "networkName": "",
+        "outputCreated": false,
+        "precisionBits": 8,
+        "receiverStatus": "unknown",
+        "senderId": 1,
+        "sourceUuid": "",
+        "width": 0
+      },
+      {
+        "active": false,
+        "backend": "freemix_omt_output",
+        "capturedFrames": 0,
+        "connections": -1,
+        "outputCreated": false,
+        "receiverStatus": "unknown",
+        "senderId": 2
+      },
+      {
+        "active": false,
+        "backend": "freemix_omt_output",
+        "capturedFrames": 0,
+        "connections": -1,
+        "outputCreated": false,
+        "receiverStatus": "unknown",
+        "senderId": 3
+      }
+    ],
+    "sendersPerProtocol": 4,
+    "sourceIndependent": true,
+    "sourceUuid": "",
+    "success": true,
+    "width": 0
+  },
+  "browserErrors": [],
+  "passed": true
+}

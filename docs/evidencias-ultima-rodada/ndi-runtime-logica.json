@@ -1,0 +1,24 @@
+{
+  "passed": 6,
+  "checks": [
+    "SDK x64 real 6.3.2 pinado",
+    "PE truncado recusado",
+    "Arquitetura x86 recusada",
+    "Versão antiga recusada",
+    "Ambiente apenas da abertura substitui caminho herdado legado",
+    "Runtime ausente bloqueia abertura incompleta"
+  ],
+  "receipt": {
+    "version": "6.3.2.0",
+    "sha256": "2b6602075868ba4401f82f417d72424805d69b11ca86078023d0d489ff45dd84",
+    "bytes": 29863120,
+    "architecture": "x64",
+    "path": "C:\\Users\\eddyr\\AppData\\Local\\Temp\\FreeMix-QA-Parallel-Calls-20261008\\runtime\\ndi-v6\\Processing.NDI.Lib.x64.dll",
+    "environmentVariable": "NDI_RUNTIME_DIR_V6",
+    "scope": "process-only",
+    "globalEnvironmentChanged": false,
+    "globallyInstalled": false,
+    "verifiedAt": "2026-10-09T03:35:16.560Z"
+  },
+  "operatorUntouched": true
+}

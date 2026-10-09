@@ -1,0 +1,484 @@
+{
+  "at": "2026-10-09T04:31:26.487Z",
+  "root": "C:\\Users\\eddyr\\AppData\\Local\\Temp\\FreeMix-QA-Video-Replay-20261009",
+  "exeSha256": "7e84b16e44080f7cb2e635110f8703ee14abfa7db81cc271f2aac591b0b9b72e",
+  "ffmpegSha256": "2376ee21a90e67742f40e81257bba0b994ab45cf205ef9f413af441311b0bc05",
+  "passed": true,
+  "operatorTouched": false,
+  "network": {
+    "ndi": {
+      "checks": {
+        "Both receivers decode": true,
+        "Same timecodes": true,
+        "Key grayscale alpha": true,
+        "Fill premultiplied green": true,
+        "Key has no audio": true
+      },
+      "videoFrames": [
+        86,
+        95
+      ],
+      "commonTimecodes": 86,
+      "audioFrames": [
+        85,
+        0
+      ],
+      "passed": true
+    },
+    "omt": {
+      "checks": {
+        "Decoded PA16 frames": true,
+        "HighBitDepth/Alpha flags": true,
+        "Alpha is true non-BGRA8 precision": true
+      },
+      "frames": 105,
+      "lastFrames": [
+        {
+          "timestamp": 5252994749855,
+          "alpha": 49152,
+          "flags": 22,
+          "codec": "PA16",
+          "stride": 640,
+          "width": 320,
+          "height": 180,
+          "y": 17152
+        },
+        {
+          "timestamp": 5252995083188,
+          "alpha": 49152,
+          "flags": 22,
+          "codec": "PA16",
+          "stride": 640,
+          "width": 320,
+          "height": 180,
+          "y": 17152
+        },
+        {
+          "timestamp": 5252995416521,
+          "alpha": 49152,
+          "flags": 22,
+          "codec": "PA16",
+          "stride": 640,
+          "width": 320,
+          "height": 180,
+          "y": 17152
+        },
+        {
+          "timestamp": 5252995749855,
+          "alpha": 49152,
+          "flags": 22,
+          "codec": "PA16",
+          "stride": 640,
+          "width": 320,
+          "height": 180,
+          "y": 17152
+        },
+        {
+          "timestamp": 5252996083188,
+          "alpha": 49152,
+          "flags": 22,
+          "codec": "PA16",
+          "stride": 640,
+          "width": 320,
+          "height": 180,
+          "y": 17152
+        }
+      ],
+      "passed": true
+    }
+  },
+  "replay": {
+    "at": "2026-10-09T04:30:04.643Z",
+    "root": "C:\\Users\\eddyr\\AppData\\Local\\Temp\\FreeMix-QA-Video-Replay-20261009",
+    "checks": [
+      "QA executable/PID identity",
+      "Own outputs inactive",
+      "SDI refuses nonexistent device/keyer without creating output",
+      "Four real native players loaded",
+      "Automatic common-audio offsets confirmed",
+      "Four native frame cursors aligned with calibrated offsets",
+      "Player D takes Program with exclusive audio",
+      "Truncated TS becomes verified copy and original unchanged"
+    ],
+    "operatorTouched": false,
+    "exeSha256": "7e84b16e44080f7cb2e635110f8703ee14abfa7db81cc271f2aac591b0b9b72e",
+    "sdi": {
+      "active": false,
+      "autoStart": false,
+      "capabilities": {
+        "decklink": {
+          "configuration": "native-tools-decklink",
+          "devices": [],
+          "hardwareAvailable": false,
+          "hdrStatus": "requires_device_and_driver_validation",
+          "outputId": "decklink_output",
+          "pluginLoaded": false
+        },
+        "networkColorSpace": "BT709 SDR",
+        "networkHdrSupported": false,
+        "networkHighPrecisionAlpha": false,
+        "networkPrecisionBits": 8
+      },
+      "config": {},
+      "success": true
+    },
+    "calibration": {
+      "at": 1791520207899,
+      "anchor": "A",
+      "results": {
+        "B": {
+          "offsetMs": 100,
+          "confidence": 0.9999941158260437,
+          "margin": 0.950716209940364,
+          "samples": 8000,
+          "sampleRate": 2000,
+          "method": "pcm-cross-correlation",
+          "hardwareGenlock": false,
+          "offsetFrames": 3
+        },
+        "C": {
+          "offsetMs": 200,
+          "confidence": 0.9999943403211957,
+          "margin": 0.9514004709717907,
+          "samples": 8000,
+          "sampleRate": 2000,
+          "method": "pcm-cross-correlation",
+          "hardwareGenlock": false,
+          "offsetFrames": 6
+        },
+        "D": {
+          "offsetMs": 300,
+          "confidence": 0.9999934016670111,
+          "margin": 0.9476195595813179,
+          "samples": 8000,
+          "sampleRate": 2000,
+          "method": "pcm-cross-correlation",
+          "hardwareGenlock": false,
+          "offsetFrames": 9
+        }
+      },
+      "method": "decoded-common-audio",
+      "hardwareGenlock": false
+    },
+    "cursors": [
+      {
+        "mediaCursor": 1000,
+        "mediaDuration": 4000,
+        "mediaState": "OBS_MEDIA_STATE_PAUSED"
+      },
+      {
+        "mediaCursor": 1100,
+        "mediaDuration": 4000,
+        "mediaState": "OBS_MEDIA_STATE_PAUSED"
+      },
+      {
+        "mediaCursor": 1200,
+        "mediaDuration": 4000,
+        "mediaState": "OBS_MEDIA_STATE_PAUSED"
+      },
+      {
+        "mediaCursor": 1300,
+        "mediaDuration": 4000,
+        "mediaState": "OBS_MEDIA_STATE_PAUSED"
+      }
+    ],
+    "repair": {
+      "id": "38d2d7e7-7d70-4524-b733-99f66b90d2ea",
+      "name": "QA damaged TS",
+      "cam": "Recuperado",
+      "dur": 3.266,
+      "createdAt": 1791520208780,
+      "time": "01:30:08",
+      "recovered": true,
+      "repair": {
+        "originalPreserved": true,
+        "maxSeconds": 120,
+        "decodedVerified": true,
+        "lossPossible": true
+      },
+      "clips": [
+        {
+          "cam": "Recuperado",
+          "file": "C:\\Users\\eddyr\\AppData\\Local\\Temp\\FreeMix-QA-Video-Replay-20261009\\gravacoes\\replay\\recuperados\\38d2d7e7-7d70-4524-b733-99f66b90d2ea\\clip.mkv",
+          "start": 0,
+          "end": 3.266,
+          "duration": 3.266
+        }
+      ]
+    },
+    "passed": true,
+    "after": {
+      "outputs": [
+        {
+          "outputActive": false,
+          "outputFlags": {
+            "OBS_OUTPUT_AUDIO": true,
+            "OBS_OUTPUT_ENCODED": false,
+            "OBS_OUTPUT_MULTI_TRACK": false,
+            "OBS_OUTPUT_SERVICE": false,
+            "OBS_OUTPUT_VIDEO": true
+          },
+          "outputHeight": 180,
+          "outputKind": "freemix_omt_output",
+          "outputName": "FreeMix OMT Main Output",
+          "outputWidth": 320
+        },
+        {
+          "outputActive": false,
+          "outputFlags": {
+            "OBS_OUTPUT_AUDIO": true,
+            "OBS_OUTPUT_ENCODED": false,
+            "OBS_OUTPUT_MULTI_TRACK": false,
+            "OBS_OUTPUT_SERVICE": false,
+            "OBS_OUTPUT_VIDEO": true
+          },
+          "outputHeight": 180,
+          "outputKind": "freemix_ndi_output",
+          "outputName": "FreeMix NDI Main Output",
+          "outputWidth": 320
+        },
+        {
+          "outputActive": false,
+          "outputFlags": {
+            "OBS_OUTPUT_AUDIO": true,
+            "OBS_OUTPUT_ENCODED": true,
+            "OBS_OUTPUT_MULTI_TRACK": true,
+            "OBS_OUTPUT_SERVICE": false,
+            "OBS_OUTPUT_VIDEO": true
+          },
+          "outputHeight": 0,
+          "outputKind": "ffmpeg_muxer",
+          "outputName": "simple_file_output",
+          "outputWidth": 0
+        },
+        {
+          "outputActive": false,
+          "outputFlags": {
+            "OBS_OUTPUT_AUDIO": false,
+            "OBS_OUTPUT_ENCODED": false,
+            "OBS_OUTPUT_MULTI_TRACK": false,
+            "OBS_OUTPUT_SERVICE": false,
+            "OBS_OUTPUT_VIDEO": true
+          },
+          "outputHeight": 180,
+          "outputKind": "virtualcam_output",
+          "outputName": "virtualcam_output",
+          "outputWidth": 320
+        }
+      ]
+    }
+  },
+  "logic": {
+    "at": "2026-10-09T04:17:41.523Z",
+    "checks": [
+      "Four validated player IDs",
+      "Frame targets include all four distinct offsets",
+      "PCM automatic alignment finds non-grid offset",
+      "Silence does not invent clock alignment"
+    ],
+    "calibration": {
+      "offsetMs": 186.5,
+      "confidence": 1,
+      "margin": 0.9720479455066494,
+      "samples": 16000,
+      "sampleRate": 2000,
+      "method": "pcm-cross-correlation",
+      "hardwareGenlock": false
+    },
+    "passed": true
+  },
+  "shutdown": {
+    "at": "2026-10-09T04:30:46.520Z",
+    "root": "C:\\Users\\eddyr\\AppData\\Local\\Temp\\FreeMix-QA-Video-Replay-20261009",
+    "identity": {
+      "docks": [
+        {
+          "name": "scenesDock",
+          "title": "Entradas",
+          "titleBarHeight": -1,
+          "visible": false
+        },
+        {
+          "name": "sourcesDock",
+          "title": "Layers",
+          "titleBarHeight": -1,
+          "visible": false
+        },
+        {
+          "name": "mixerDock",
+          "title": "Mixer de áudio",
+          "titleBarHeight": -1,
+          "visible": false
+        },
+        {
+          "name": "transitionsDock",
+          "title": "Transições de cena",
+          "titleBarHeight": -1,
+          "visible": false
+        },
+        {
+          "name": "controlsDock",
+          "title": "Controls",
+          "titleBarHeight": -1,
+          "visible": false
+        },
+        {
+          "name": "statsDock",
+          "title": "Estatísticas",
+          "titleBarHeight": -1,
+          "visible": false
+        },
+        {
+          "name": "AudioMonitorDock",
+          "title": "Monitor de Áudio",
+          "titleBarHeight": -1,
+          "visible": false
+        },
+        {
+          "name": "DownstreamKeyerDock",
+          "title": "Downstream Keyer",
+          "titleBarHeight": -1,
+          "visible": false
+        },
+        {
+          "name": "Menu_extraBrowser",
+          "title": "Menu",
+          "titleBarHeight": 0,
+          "visible": true
+        },
+        {
+          "name": "Mesa_extraBrowser",
+          "title": "Mesa",
+          "titleBarHeight": 0,
+          "visible": true
+        }
+      ],
+      "executable": "C:/Users/eddyr/AppData/Local/Temp/FreeMix-QA-Video-Replay-20261009/bin/64bit/FreeMix.exe",
+      "layout": [
+        {
+          "background": "#1e2328",
+          "height": 677,
+          "name": "preview",
+          "visible": true,
+          "width": 882,
+          "x": 5,
+          "y": 54
+        },
+        {
+          "height": 26,
+          "name": "previewLabel",
+          "visible": true,
+          "width": 882,
+          "x": 5,
+          "y": 28
+        },
+        {
+          "height": 441,
+          "name": "freemixTransitionColumn",
+          "visible": true,
+          "width": 124,
+          "x": 905,
+          "y": 28
+        },
+        {
+          "height": 59,
+          "name": "freemixOverlayButtons",
+          "visible": true,
+          "width": 106,
+          "x": 905,
+          "y": 286
+        },
+        {
+          "height": 122,
+          "name": "freemixProductionClocks",
+          "visible": true,
+          "width": 106,
+          "x": 905,
+          "y": 347
+        },
+        {
+          "height": 394,
+          "name": "Mesa_extraBrowser",
+          "visible": true,
+          "width": 1920,
+          "x": 0,
+          "y": 735
+        }
+      ],
+      "nativeSettingsOpen": false,
+      "panels": [],
+      "pid": 45508,
+      "success": true,
+      "title": "FreeMix Studio - QA Recuperada 1791471993153"
+    },
+    "outputs": [
+      {
+        "outputActive": false,
+        "outputFlags": {
+          "OBS_OUTPUT_AUDIO": true,
+          "OBS_OUTPUT_ENCODED": false,
+          "OBS_OUTPUT_MULTI_TRACK": false,
+          "OBS_OUTPUT_SERVICE": false,
+          "OBS_OUTPUT_VIDEO": true
+        },
+        "outputHeight": 180,
+        "outputKind": "freemix_omt_output",
+        "outputName": "FreeMix OMT Main Output",
+        "outputWidth": 320
+      },
+      {
+        "outputActive": false,
+        "outputFlags": {
+          "OBS_OUTPUT_AUDIO": true,
+          "OBS_OUTPUT_ENCODED": false,
+          "OBS_OUTPUT_MULTI_TRACK": false,
+          "OBS_OUTPUT_SERVICE": false,
+          "OBS_OUTPUT_VIDEO": true
+        },
+        "outputHeight": 180,
+        "outputKind": "freemix_ndi_output",
+        "outputName": "FreeMix NDI Main Output",
+        "outputWidth": 320
+      },
+      {
+        "outputActive": false,
+        "outputFlags": {
+          "OBS_OUTPUT_AUDIO": true,
+          "OBS_OUTPUT_ENCODED": true,
+          "OBS_OUTPUT_MULTI_TRACK": true,
+          "OBS_OUTPUT_SERVICE": false,
+          "OBS_OUTPUT_VIDEO": true
+        },
+        "outputHeight": 0,
+        "outputKind": "ffmpeg_muxer",
+        "outputName": "simple_file_output",
+        "outputWidth": 0
+      },
+      {
+        "outputActive": false,
+        "outputFlags": {
+          "OBS_OUTPUT_AUDIO": false,
+          "OBS_OUTPUT_ENCODED": false,
+          "OBS_OUTPUT_MULTI_TRACK": false,
+          "OBS_OUTPUT_SERVICE": false,
+          "OBS_OUTPUT_VIDEO": true
+        },
+        "outputHeight": 180,
+        "outputKind": "virtualcam_output",
+        "outputName": "virtualcam_output",
+        "outputWidth": 320
+      }
+    ],
+    "shutdown": {
+      "success": true
+    },
+    "passed": true
+  },
+  "limitations": [
+    "SDI requires compatible hardware/driver; invalid device refused",
+    "SDR BT709 only; no advertised HDR metadata route",
+    "Audio calibration needs common recorded reference; no physical genlock",
+    "Repair preserves original; missing frames/packets can be lost",
+    "Initial QA video reset exposed libobs raw media rebind bug, preserved separately and root fixed; final receiver/replay tests used offline320x180"
+  ]
+}

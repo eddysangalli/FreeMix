@@ -1,0 +1,23 @@
+{
+  "root": "C:\\Users\\eddyr\\AppData\\Local\\Temp\\FreeMix-QA-Parallel-Calls-20261008",
+  "checks": [
+    "QA própria e saídas idle",
+    "Três plugins reais e modelo offline presentes",
+    "Blur real modifica pixels e reduz bordas",
+    "Câmera/fonte compartilhada permanece sem filtros",
+    "Painel3D rende perspectiva distinta",
+    "Tracking nativo configurável, aspectovertical confirmado"
+  ],
+  "passed": 6,
+  "metrics": {
+    "originalEdge": 166.29551798459474,
+    "blurEdge": 17.584834993993358,
+    "blurDiff": 5.971478949652778,
+    "panelDiff": 151.5090798611111
+  },
+  "faceRecognitionTested": false,
+  "sceneName": "QA Effects 1791498109439",
+  "sceneKey": "2dd5cf7c-04db-4944-93d2-214012c62bc6",
+  "sourceKey": "6a3e4230-31f7-4781-a704-6dc41b5f0465",
+  "externalAudioSent": false
+}

@@ -1,0 +1,10 @@
+{
+  "testedAt": "2026-10-08T20:18:21.543Z",
+  "checks": [
+    "arraste encaixa os centros horizontal e vertical",
+    "alça encaixa bordas de tamanho nas guias",
+    "fora de sete pixels a geometria livre é conservada",
+    "borda vertical própria serve de guia"
+  ],
+  "passed": 4
+}

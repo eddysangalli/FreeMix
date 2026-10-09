@@ -1,0 +1,83 @@
+{
+  "status": "PASS",
+  "root": "C:/Users/eddyr/AppData/Local/Temp/FreeMix-QA-SRT444-20261009",
+  "operatorUntouched": true,
+  "noNewStream": true,
+  "started": "2026-10-09T13:09:42.299Z",
+  "checks": [
+    "Own QA and outputs idle",
+    "Shader compiled without last_error",
+    "GPU restored alpha bands within 2 levels",
+    "Native source dimensions 320x180 after crop",
+    "GPU composite matches reference RGB"
+  ],
+  "shaderSha256": "0ab64755932741542e22b14a476744398ce5e07e8a97f8804eec89a195fd26dc",
+  "nativePid": 158416,
+  "filters": [
+    {
+      "name": "FreeMix SRT Alpha Unpack",
+      "kind": "shader_filter",
+      "index": 0,
+      "enabled": true,
+      "settings": {
+        "from_file": true,
+        "override_entire_effect": false,
+        "shader_file_name": "C:/Users/eddyr/AppData/Local/Temp/FreeMix-QA-SRT444-20261009/painel/efeitos/srt-packed-alpha.shader"
+      }
+    },
+    {
+      "name": "Crop packed Key after unpack",
+      "kind": "crop_filter",
+      "index": 1,
+      "enabled": true,
+      "settings": {
+        "bottom": 0,
+        "left": 0,
+        "relative": true,
+        "right": 320,
+        "top": 0
+      }
+    }
+  ],
+  "shaderSettings": {
+    "from_file": true,
+    "override_entire_effect": false,
+    "shader_file_name": "C:/Users/eddyr/AppData/Local/Temp/FreeMix-QA-SRT444-20261009/painel/efeitos/srt-packed-alpha.shader"
+  },
+  "alpha": {
+    "mae": 0,
+    "max": 0,
+    "sampleBands": [
+      0,
+      128,
+      255
+    ]
+  },
+  "referenceLinearAlpha": true,
+  "composite": {
+    "mae": 0.147734375,
+    "max": 2,
+    "region": "Screenshot pixels x0..319,y40..159; initial sampled region"
+  },
+  "shutdown": {
+    "success": true
+  },
+  "nativeExit": {
+    "code": 0,
+    "signal": null
+  },
+  "newCrashes": [],
+  "apiStoppedOwnPid": 183772,
+  "finished": "2026-10-09T13:10:09.376Z",
+  "compositeFull": {
+    "mae": 0.2423456790123457,
+    "max": 54,
+    "region": {
+      "x": 0,
+      "y": 0,
+      "width": 480,
+      "height": 270
+    },
+    "includes": "all alpha bands, edges, 1-pixel chroma pattern and ramp in actual GPU screenshot bounding box"
+  }
+}

@@ -1,5 +1,7 @@
 # FreeMix — Matriz de Integração e Arquitetura do Núcleo Nativo
 
+> Revisão de 08/10/2026: decisões de arquitetura e integrações propostas. Aitum, Branch Output, multiview livre, OMT, bonding e mixes independentes não foram incorporados ao executável atual. Multistream atual usa código FreeMix e encoders compartilhados; ISO usa Source Record. DistroAV 6.2.1 está apenas em staging, exige NDI Runtime 6.3+ e ainda não foi homologado no fork. Consulte `PENDENCIAS.md` para o estado verificável.
+
 ## 1. Visão Geral e Princípios Arquiteturais
 
 O FreeMix evolui de um conjunto de scripts e painéis visuais para um ecossistema broadcast profissional estruturado sobre o OBS Studio 32 portátil. A premissa central é a **separação estrita de responsabilidades**, a **eliminação de controles cosméticos sem ação de motor** e o **desacoplamento formal entre conteúdo/composição e protocolo de transporte**.

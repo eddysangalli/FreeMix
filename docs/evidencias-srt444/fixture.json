@@ -1,0 +1,19 @@
+{
+  "width": 320,
+  "height": 180,
+  "alphaBands": [
+    0,
+    128,
+    255
+  ],
+  "alphaRampRows": [
+    160,
+    179
+  ],
+  "chromaAlternatingRows": [
+    0,
+    39
+  ],
+  "pngSha256": "54b5d5c38890341c744afe15091d85e29b4bd9f42726776006607347593533ef",
+  "rawSha256": "86319a213032dfc29b83ac359a29771f79b69d1c206a644c781d6198770d56f0"
+}

@@ -1,0 +1,23 @@
+{
+  "testedAt": "2026-10-08T20:12:52.499Z",
+  "root": "C:\\Users\\eddyr\\AppData\\Local\\Temp\\FreeMix-QA-Parallel-Calls-20261008",
+  "apiPort": 18098,
+  "checks": [
+    "QA isolada, sem gravação/transmissão",
+    "preset destaque gera slots reais e UUIDs",
+    "imagem copiada ao projeto sem vínculo externo",
+    "fundo preencher calcula recorte nativo",
+    "fundo aparece nos espaços da composição renderizada",
+    "fundo caber inteiro remove recortes anteriores",
+    "fundo por entrada conserva UUID e remove imagem privada",
+    "ciclo de composição no fundo bloqueado",
+    "16 fontes verticais no viewport 9:16 real",
+    "editor persiste arraste na posição do motor",
+    "duplicação preserva fundo por entrada sem modificar fonte",
+    "consulta de picker desconhecido recusada"
+  ],
+  "passed": 12,
+  "presets": 156,
+  "frames": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-portatil\\compositor-galeria-evidencias",
+  "externalTraffic": false
+}

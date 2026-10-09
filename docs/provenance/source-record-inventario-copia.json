@@ -1,0 +1,53 @@
+{
+  "files": [
+    {
+      "source": "qa-portatil\\source-record-private\\build\\RelWithDebInfo\\source-record.dll",
+      "destination": "obs-plugins/64bit/source-record.dll",
+      "sha256": "63e4f4c4fe77382b24eb03085a62e3da7ac8e77554be5f6f94dcf17c885987e8"
+    },
+    {
+      "source": "obs-vmix\\licenses\\freemix-source-record\\source-record.c",
+      "destination": "licenses\\freemix-source-record\\source-record.c",
+      "sha256": "3be6495676487da307b77c3cb5dc23c103203c10b167493e3407d3d244e1697a"
+    },
+    {
+      "source": "obs-vmix\\licenses\\freemix-source-record\\obs-websocket-api.h",
+      "destination": "licenses\\freemix-source-record\\obs-websocket-api.h",
+      "sha256": "da5b5e9465cc313d0e4ba234a290330ccd3cf368d045f21409240d5649aef2f1"
+    },
+    {
+      "source": "obs-vmix\\licenses\\freemix-source-record\\version.h",
+      "destination": "licenses\\freemix-source-record\\version.h",
+      "sha256": "8d494f75808fd76b99fbf04b149b37bd62a7ae7ce79656a6c11d897be1341ff7"
+    },
+    {
+      "source": "obs-vmix\\licenses\\freemix-source-record\\LICENSE",
+      "destination": "licenses\\freemix-source-record\\LICENSE",
+      "sha256": "8177f97513213526df2cf6184d8ff986c675afb514d4e68a404010521b880643"
+    },
+    {
+      "source": "obs-vmix\\licenses\\freemix-source-record\\CMakeLists.txt",
+      "destination": "licenses\\freemix-source-record\\CMakeLists.txt",
+      "sha256": "b698f12e22c2229d1d2e5118543707ab1f64d158465eb582beae683caecdc197"
+    },
+    {
+      "source": "obs-vmix\\licenses\\freemix-source-record\\obs-source-record-original-source.zip",
+      "destination": "licenses\\freemix-source-record\\obs-source-record-original-source.zip",
+      "sha256": "02ae42d0426901594d6396327ae065989056416b9092de871e3c0142827e4355"
+    },
+    {
+      "source": "obs-vmix\\licenses\\freemix-source-record\\PROVENANCE.json",
+      "destination": "licenses\\freemix-source-record\\PROVENANCE.json",
+      "sha256": "ef8377043077c00bdd48eb6f9b95c8e15233e2663dc5662f32e24316e4a064a9"
+    },
+    {
+      "source": "obs-vmix\\licenses\\freemix-source-record\\BUILD.txt",
+      "destination": "licenses\\freemix-source-record\\BUILD.txt",
+      "sha256": "49fcd47642681b566af20dc7f73eb48e5973518c69410d0134fbdfbd880ed30a"
+    }
+  ],
+  "pluginVersion": "0.4.8-freemix-private-bus1",
+  "proof": "qa-portatil/source-record-premix-nativo.json",
+  "lifecycleVerified": true,
+  "operatorDLLUnchanged": true
+}
