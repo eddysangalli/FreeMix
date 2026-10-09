@@ -2,6 +2,8 @@
 
 ## Protótipo vídeo alpha por uma entrada de navegador — 09/10
 
+Correção adicional do assistente SRT: o botão de confirmar agora compõe a URL com todos os valores visíveis (IP/porta/modo/latência), preservando parâmetros avançados. Antes, sem um evento `change` individual, a confirmação podia manter a porta antiga. Regressão `resultado-srt-port-submit.json` e ensaio existente `resultado-srt-conexao-ui.json` passaram; saída ativa continua protegida. A janela de configuração já aberta precisa ser reaberta para carregar o JavaScript novo; não reiniciamos o motor nem alteramos o destino ativo do operador.
+
 `ABRIR-RECEPTOR-ALPHA.cmd` / `obs-vmix/ferramentas/alpha-web-receptor.mjs` recebem vídeo H.264 4:2:0 com cor/máscara lado a lado, remuxam sem recodificação para MP4 fragmentado e recompõem alpha do mesmo quadro em WebGL. **Não redesenha GC HTML**: qualquer fonte/composição com alpha real, inclusive chroma aplicado, pode alimentar o transporte. Serviço separado, HTTP 18750 / SRT 18460; guia `VIDEO-ALPHA-UMA-ENTRADA.md`. Nada foi publicado externamente.
 
 Ensaios isolados: `resultado-alpha-web-video.json` PASS (movimento, alpha 0/130/255 nominal 0/128/255, entrada tardia, queda transparente, reconexão) e `resultado-alpha-web-fullhd.json` PASS (1920×1080 lógico / 3840×1080 packed, 30 fps na origem). Navegador Edge headless, sem alterar operador/vMix. Sem áudio; Chromium embutido no vMix, duração prolongada, latência e WAN ainda precisam validação. Não confundir protótipo de fonte adicional com os ZIPs nativos assinados anteriores.

@@ -1,0 +1,14 @@
+{
+  "status": "PASS",
+  "passed": 4,
+  "checks": [
+    "Defaults create explicit browser draft, no automatic save/start",
+    "Saved URI parsed without changing address or parameters",
+    "Editing one field preserves other advanced parameters and exposes local IPs distinctly",
+    "Active or unselected output cannot be edited; no API command"
+  ],
+  "errors": [],
+  "fixtureOnly": true,
+  "operatorUntouched": true,
+  "sourceSha256": "c621d8d25e7e30771ba26db9ca823942936a39ba366a713217deea69bc94dc1d"
+}

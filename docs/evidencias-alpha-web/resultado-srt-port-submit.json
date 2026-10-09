@@ -1,0 +1,9 @@
+{
+  "success": true,
+  "fixtureOnly": true,
+  "operatorTouched": false,
+  "checks": [
+    "Submit uses current visible port and preserves advanced parameters",
+    "Active output remains protected from connection edits"
+  ]
+}
