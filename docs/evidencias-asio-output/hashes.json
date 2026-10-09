@@ -1,0 +1,97 @@
+[
+  {
+    "path": "freemix-app/frontend/widgets/FreeMixAsioOutput.cpp",
+    "sha256": "a1fba1dc1c3491cb491fa482825034e24e15d1781c8cfac241af0405e19de389",
+    "bytes": 11251
+  },
+  {
+    "path": "freemix-app/frontend/widgets/FreeMixAsioOutput.hpp",
+    "sha256": "1dbc298c8cc8737252f2b37bc927977524107f33531aca5990da925013dfb4a3",
+    "bytes": 2598
+  },
+  {
+    "path": "freemix-app/frontend/widgets/FreeMixAudioRouting.cpp",
+    "sha256": "697b61c9e11c6372339649f74272bc52c7f56389a3dc9c13f67536710c5ff818",
+    "bytes": 23292
+  },
+  {
+    "path": "freemix-app/frontend/cmake/ui-widgets.cmake",
+    "sha256": "635b30338784150d083479cc206c376e3a5c0d47b92d0df0a8f9234f3f27ff4d",
+    "bytes": 2577
+  },
+  {
+    "path": "obs-vmix/ferramentas/audio-buses-producao.mjs",
+    "sha256": "1e2897859efa25c9699e1e64cf628d9a9e2c9f9f50a30a7bb17cc7e7bf40cbd5",
+    "bytes": 14388
+  },
+  {
+    "path": "obs-vmix/painel/remoto/audio.html",
+    "sha256": "475525ead68674cce0349f02791898fe57ba05a7ebc7dbba0a53548812092b27",
+    "bytes": 6271
+  },
+  {
+    "path": "obs-vmix/painel/remoto/audio-buses.js",
+    "sha256": "bb5aca29b52fe55f66ac892547da61f5c4c2ef08c76886ead324198736ad3f8f",
+    "bytes": 9666
+  },
+  {
+    "path": "qa-finalizacao/asio-output/test-asio.cpp",
+    "sha256": "55a1c606d9f7dbae4cf83a0e7f5565f6e64fd0590701bd0ed1d158eb2d37dcd0",
+    "bytes": 8328
+  },
+  {
+    "path": "qa-finalizacao/asio-output/test-api-ui.mjs",
+    "sha256": "f1cd6a2a2ff2da96b1d14e488ae4dbbefba934c6bbfbcdd5c9d24b9a02b92928",
+    "bytes": 6532
+  },
+  {
+    "path": "qa-finalizacao/asio-output/resultado-native.json",
+    "sha256": "2c12d51fedb7744c58962cde2f4b60a34c0208caf1ce0873230268a3c9643c0a",
+    "bytes": 486
+  },
+  {
+    "path": "qa-finalizacao/asio-output/resultado-bridge-compile.json",
+    "sha256": "69a76c54a320b4d7f2b877b09f5f99896c62d28bacddb6ce02d49b37688202bf",
+    "bytes": 354
+  },
+  {
+    "path": "qa-finalizacao/asio-output/resultado-api-ui.json",
+    "sha256": "7c275c0a79ce07638193f24eb1017e600cf7ff6706166a1ab87a056ee7ca11b0",
+    "bytes": 1028
+  },
+  {
+    "path": "qa-finalizacao/asio-output/RELATORIO.md",
+    "sha256": "c6151ebf50df2891be7fede52cfc46883625752a1686acd9f03f693195d265bf",
+    "bytes": 6320
+  },
+  {
+    "path": "freemix-app/deps/asio-sdk/FREEMIX-PROVENANCE.md",
+    "sha256": "e7dae329a7ebe36928c01aa5511b63f260cbcd0598fd95ff9db84f6d445d118d",
+    "bytes": 770
+  },
+  {
+    "path": "freemix-app/deps/asio-sdk/LICENSE.txt",
+    "sha256": "61e56814f24b32216884b2db0b4dcc317111a5ab354d54d19dd9fc13d71b1c7a",
+    "bytes": 2640
+  },
+  {
+    "path": "freemix-app/deps/asio-sdk/README.md",
+    "sha256": "50ca264d2f71c877732689a9613a104d9ce75147f9cf4313e4802d0e36922d5f",
+    "bytes": 8322
+  },
+  {
+    "path": "freemix-app/deps/asio-sdk/common/asio.h",
+    "sha256": "93d2f80d49b4ac9c963514e7c1307ab5111d8104246192233745beb058534ea1",
+    "bytes": 44265
+  },
+  {
+    "path": "freemix-app/deps/asio-sdk/common/asiosys.h",
+    "sha256": "f44a1ed0fd7c056ff047aeebc4c05a8c185f0585a24d8debc55c70107777dbef",
+    "bytes": 2165
+  },
+  {
+    "path": "freemix-app/deps/asio-sdk/common/iasiodrv.h",
+    "sha256": "86ad4788452c74823653cf57d4bd557c48bb6542d7e6eb7fff80102c705a066d",
+    "bytes": 2379
+  }
+]

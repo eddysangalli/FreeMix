@@ -55,7 +55,7 @@ export class AudioRoutingEngine{
  execute(action,d={}){return this.queue(()=>this.command(action,d));}
  async command(action,d){
   if(!this.scope)throw Error('Aguarde a conexão e identificação da produção');
-  if(action.startsWith('audio_routing_bus_')||['audio_routing_direct','audio_routing_asio_create','audio_routing_devices'].includes(action)){await this.busEngine.command(action,d);this.last=this.summary();return;}
+  if(action.startsWith('audio_routing_bus_')||action.startsWith('audio_routing_asio_output_')||['audio_routing_direct','audio_routing_asio_create','audio_routing_devices'].includes(action)){await this.busEngine.command(action,d);this.last=this.summary();return;}
   if(action==='audio_routing_get'){if(d.key)await this.inspect(d.key);this.last=this.summary();return;}
   const row=this.source(d.key),entry=this.config.sources[row.key]||{};
   if(action==='audio_routing_afv'){

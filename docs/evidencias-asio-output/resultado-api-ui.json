@@ -1,0 +1,44 @@
+{
+  "status": "PASS",
+  "at": "2026-10-09T20:38:08.882Z",
+  "operatorTouched": false,
+  "physicalDriverOpened": false,
+  "nativeVendorMocked": true,
+  "httpAndBrowserReal": true,
+  "checks": [
+    "Private, loopback and colliding channels rejected before any native driver command",
+    "Real HTTP/browser UI configures two stereo sources on distinct pairs without starting playback",
+    "Explicit start/stop/control-panel and running-edit lock are wired to native vendor contract"
+  ],
+  "calls": [
+    {
+      "asioAction": "configure",
+      "driverId": "{00000000-0000-0000-0000-000000000001}",
+      "routes": [
+        {
+          "uuid": "public",
+          "left": 0,
+          "right": 1,
+          "gain": 1
+        },
+        {
+          "uuid": "bus",
+          "left": 2,
+          "right": 3,
+          "gain": 1
+        }
+      ],
+      "bufferFrames": 0
+    },
+    {
+      "asioAction": "start"
+    },
+    {
+      "asioAction": "control-panel"
+    },
+    {
+      "asioAction": "stop"
+    }
+  ],
+  "errors": []
+}

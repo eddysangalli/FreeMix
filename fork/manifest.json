@@ -1,7 +1,7 @@
 {
   "upstream": "https://github.com/obsproject/obs-studio.git",
   "base": "ba2f32bdf791005443988a4955e963663e16b1ed",
-  "head": "a0d77efd432976371262f2585dd7112b82c9bfe4",
+  "head": "b4a9f569d13727c245b673f517962e53ac21e037",
   "version": "0.1.0-local.20261009153453",
   "patches": [
     {
@@ -51,7 +51,11 @@
     {
       "path": "0012-Fix-Fill-Key-straight-colour-and-silent-SRT-Key-audi.patch",
       "sha256": "eeca9ae9d14d11e876f4428ce31d42bff10bf639fa5d69a667b195305a724331"
+    },
+    {
+      "path": "0013-Add-explicit-multichannel-ASIO-playback-host-with-bo.patch",
+      "sha256": "fc313d71fcb87361d9fcb7d05e765e0815cbcf1ec6f5c5ceedcab599a91b05f2"
     }
   ],
-  "sourceUpdatedAt": "2026-10-09T20:37:54.593Z"
+  "sourceUpdatedAt": "2026-10-09T20:42:27.797Z"
 }

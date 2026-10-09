@@ -1,0 +1,1747 @@
+From b4a9f569d13727c245b673f517962e53ac21e037 Mon Sep 17 00:00:00 2001
+From: Eddy Sangalli <eddyrodrigues@outlook.com>
+Date: Fri, 9 Oct 2026 17:42:02 -0300
+Subject: [PATCH] Add explicit multichannel ASIO playback host with bounded RT
+ buffers
+
+---
+ deps/asio-sdk/FREEMIX-PROVENANCE.md      |   11 +
+ deps/asio-sdk/LICENSE.txt                |   45 +
+ deps/asio-sdk/README.md                  |  167 ++++
+ deps/asio-sdk/common/asio.h              | 1078 ++++++++++++++++++++++
+ deps/asio-sdk/common/asiosys.h           |   97 ++
+ deps/asio-sdk/common/iasiodrv.h          |   53 ++
+ frontend/cmake/ui-widgets.cmake          |    2 +
+ frontend/widgets/FreeMixAsioOutput.cpp   |   72 ++
+ frontend/widgets/FreeMixAsioOutput.hpp   |   57 ++
+ frontend/widgets/FreeMixAudioRouting.cpp |   52 ++
+ 10 files changed, 1634 insertions(+)
+ create mode 100644 deps/asio-sdk/FREEMIX-PROVENANCE.md
+ create mode 100644 deps/asio-sdk/LICENSE.txt
+ create mode 100644 deps/asio-sdk/README.md
+ create mode 100644 deps/asio-sdk/common/asio.h
+ create mode 100644 deps/asio-sdk/common/asiosys.h
+ create mode 100644 deps/asio-sdk/common/iasiodrv.h
+ create mode 100644 frontend/widgets/FreeMixAsioOutput.cpp
+ create mode 100644 frontend/widgets/FreeMixAsioOutput.hpp
+
+diff --git a/deps/asio-sdk/FREEMIX-PROVENANCE.md b/deps/asio-sdk/FREEMIX-PROVENANCE.md
+new file mode 100644
+index 0000000..569e9bd
+--- /dev/null
++++ b/deps/asio-sdk/FREEMIX-PROVENANCE.md
+@@ -0,0 +1,11 @@
++# Official ASIO interfaces
++
++Only `common/asio.h`, `common/asiosys.h`, `common/iasiodrv.h`, README.md and LICENSE.txt from the official SDK are included. Files are unmodified.
++
++- SDK: ASIO-SDK_2.3.4_2025-10-15.zip
++- Official source: https://www.steinberg.net/asiosdk / https://download.steinberg.net/sdk_downloads/ASIO-SDK_2.3.4_2025-10-15.zip
++- ZIP SHA256: D5EBF0C20DD2C5F43771FD0C1418F4B361BF52434EE670097CFA6B3A335E2ECA
++- FreeMix explicitly selects the official **GPL Version 3** alternative in LICENSE.txt section b. No proprietary SDK license is selected and no ASIO logo is distributed.
++- ASIO is a trademark of Steinberg Media Technologies GmbH.
++
++Keep this folder together with native frontend sources and preserve the license/attribution in source distributions.
+diff --git a/deps/asio-sdk/LICENSE.txt b/deps/asio-sdk/LICENSE.txt
+new file mode 100644
+index 0000000..84abc28
+--- /dev/null
++++ b/deps/asio-sdk/LICENSE.txt
+@@ -0,0 +1,45 @@
++//-----------------------------------------------------------------------------
++// LICENSE
++// (c) 2025, Steinberg Media Technologies GmbH, All Rights Reserved
++//-----------------------------------------------------------------------------
++This license applies only to files referencing this license,
++for other files of the Software Development Kit the respective embedded license text
++is applicable.
++
++This Software Development Kit is licensed under the terms of the Steinberg ASIO License,
++or alternatively under the terms of the General Public License (GPL) Version 3.
++You may use the Software Development Kit according to either of these licenses as it is
++most appropriate for your project on a case-by-case basis (commercial or not).
++
++a) Proprietary Steinberg ASIO License
++The Software Development Kit may not be distributed in parts or its entirety
++without prior written agreement by Steinberg Media Technologies GmbH.
++The SDK must not be used to re-engineer or manipulate any technology used
++in any Steinberg or Third-party application or software module,
++unless permitted by law.
++Neither the name of the Steinberg Media Technologies GmbH nor the names of its
++contributors may be used to endorse or promote products derived from this
++software without specific prior written permission.
++Before publishing a software under the proprietary license, you need to obtain a copy
++of the License Agreement signed by Steinberg Media Technologies GmbH.
++The Steinberg ASIO SDK License Agreement can be found at:
++www.steinberg.net/en/company/developers.html
++
++THE SDK IS PROVIDED BY STEINBERG MEDIA TECHNOLOGIES GMBH "AS IS" AND
++ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
++WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
++IN NO EVENT SHALL STEINBERG MEDIA TECHNOLOGIES GMBH BE LIABLE FOR ANY DIRECT,
++INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
++DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
++LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
++OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
++OF THE POSSIBILITY OF SUCH DAMAGE.
++
++b) General Public License (GPL) Version 3
++Details of these licenses can be found at: www.gnu.org/licenses/gpl-3.0.html
++
++Best Practice recommendation:
++Please refer to the Steinberg ASIO usage guidelines for the use of ASIO, ASIO logo and ASIO 
++compatible logos.
++//----------------------------------------------------------------------------------
+diff --git a/deps/asio-sdk/README.md b/deps/asio-sdk/README.md
+new file mode 100644
+index 0000000..36bee5f
+--- /dev/null
++++ b/deps/asio-sdk/README.md
+@@ -0,0 +1,167 @@
++# Welcome to ASIO 2.3 SDK Interfaces 
++
++<p align="center">
++<img src="Steinberg ASIO Logo Artwork/ASIO-compatible-logo-Steinberg-TM-BW.png" alt="ASIO Logo" width="150"/>
++
++</p>
++
++Here are located all interfaces definitions and examples of **ASIO 2.3** (Audio Stream Input/Outpu). The low-latency, high-performance audio standard.
++ 
++## Table Of Contents
++
++1. [Introduction](#100)
++1. [Dual Licensing](#200)
++1. [Trademark and Logo Usage](#300)
++1. [Frequently Asked Questions (FAQ)](#400)
++1. [Additional Resources](#500)
++1. [Contributing](#600)
++1. [SDK Content](#700)
++
++<div id='100'/>
++
++## Introduction
++
++
++Audio Stream Input/Output (ASIO) fulfills the requirements of professional audio recording and playback by supporting variable bit depths and sample rates, multi-channel operation, and synchronization. This ensures low latency, high performance, straightforward setup, and stable audio recording for the user.  
++
++The entire system becomes controllable and offers complete and immediate access to the audio system's capabilities. Since its introduction, ASIO has become a supported standard by leading audio hardware manufacturers. 
++
++<div id='200'/>
++
++## Dual Licensing
++
++Developers can choose between two options: 
++ - Use of the **proprietary ASIO SDK license**, for use cases that benefit from closed-source licensing.
++ - Adopt the [General Public License (GPL) Version 3](https://www.gnu.org/licenses/gpl-3.0.en.html) for full open-source integration.
++
++Both options grant access to the same SDK. 
++ 
++<div id='300'/>
++
++## Trademark and Logo Usage 
++
++### General Principle 
++
++Trademark usage (e.g. "**ASIO**" name or logo) is optional under [GPLv3 License](https://www.gnu.org/licenses/gpl-3.0.en.html), but, if used, must comply with Steinberg's official trademark rules, just like under the proprietary license.
++
++<img src="Steinberg ASIO Logo Artwork/ASIO-compatible-logo-Steinberg-TM-BW.png" alt="ASIO Logo" width="150"/>
++ 
++### Permitted Use (if selected) 
++
++If you choose to use the **ASIO** Compatible Logo or refer to the **ASIO** trademark under either license: 
++
++- Logos must be used in unaltered form.
++- Use must follow the official usage guidelines provided in the SDK.
++- The trademark/logo must appear only in clear product-related contexts, such as: 
++    - Splash screens 
++    - About boxes 
++    - Product websites 
++    - Documentation and manuals 
++
++This ensures legal compliance and brand consistency. 
++
++### Prohibited Use 
++
++- Using “ASIO” (or derivatives like “ASIOi”) in company or product names.
++- Applying the logo or trademark to non-ASIO-compatible products.
++- Associating the trademark with offensive, obscene, or inappropriate content.
++
++---
++### ASIO trademark and/or ASIO Compatible Logo 
++
++(Applies If Trademark or Logo Is Used — **GPLv3** or **Proprietary**) 
++
++If you choose to display the **ASIO** trademark and/or **ASIO Compatible Logo**, you must observe the *Steinberg ASIO Usage Guidelines*. 
++
++*Purpose*: To assist Steinberg in enforcing and protecting the **ASIO** trademark in international jurisdictions.
++
++
++### Notes for Open-Source Developers 
++
++- The *Steinberg ASIO Usage Guidelines* are included in the SDK.
++- Use of branding is not required under [GPLv3 License](https://www.gnu.org/licenses/gpl-3.0.en.html), but if you choose to use it, trademark compliance is mandatory.
++- Non-compliance with logo guidelines does not affect your **GPLv3** rights (but may result in trademark violations).
++
++### Best Practice Recommendation 
++
++Although optional, we encourage developers using **ASIO** under [GPLv3 License](https://www.gnu.org/licenses/gpl-3.0.en.html) to follow the *Steinberg ASIO Usage Guidelines*: 
++
++It fosters ecosystem-wide recognition, improves end-user trust, and supports the long-term visibility of the **ASIO** brand.
++
++<div id='400'/>
++
++## Frequently Asked Questions (FAQ)
++
++### Do I need to update my existing ASIO-based products to [GPLv3 License](https://www.gnu.org/licenses/gpl-3.0.en.html)? 
++- No. You may continue using the proprietary license for existing products. 
++
++### Can I switch to [GPLv3 License](https://www.gnu.org/licenses/gpl-3.0.en.html)? 
++- Yes, if your product is released under [GPLv3 License](https://www.gnu.org/licenses/gpl-3.0.en.html) terms (including source code disclosure). 
++
++### Can I use the ASIO logo under [GPLv3 License](https://www.gnu.org/licenses/gpl-3.0.en.html)? 
++- Yes, but only if you comply with the trademark rules outlined above. 
++
++<div id='500'/>
++
++## Additional Resources
++
++- [GPLv3 License Text (GNU.org)](https://www.gnu.org/licenses/gpl-3.0.en.html) 
++- [Wikipedia: GNU General Public License Version 3](https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3)
++- [ASIO Forum](https://forums.steinberg.net/c/developer/asio)
++- Questions? Contact: [reception@steinberg.de](mailto:reception@steinberg.de)
++
++<div id='600'/>
++
++## Contributing
++
++For bug reports and features requests, please visit the [ASIO/VST3 Developer Forum](https://sdk.steinberg.net).
++
++<div id='700'/>
++
++## SDK Content
++
++| Filename              | Comment                                            |
++| --------------------- | -------------------------------------------------- |
++|README.md              | this file                                          |
++|changes.txt            | contains change information between SDK releases   |
++|Steinberg ASIO SDK 2.3.pdf | ASIO SDK 2.3 specification documentation       |
++|Steinberg ASIO Licensing Agreement.pdf |  Proprietary Licencing Agreement   |
++|Steinberg ASIO Usage Guidelines.pdf |  Usage Guidlines                      |
++|LICENSE.txt            | Dual license:  Proprietary Agreement and GPLv3     |
++|**common**             | |
++|asio.h                 | ASIO C definition                                  |
++|iasiodrv.h             | interface definition for the ASIO driver class     |
++|asio.cpp               | asio host interface (not used on MacOS)            |
++|asiodrvr.h             |                                                    |
++|asiodrvr.cpp           | ASIO driver class base definition                  |
++|combase.h              | (Windows only)                                     |
++|combase.cpp            | COM base definitions (Windows only)                |
++|dllentry.cpp           | DLL functions (Windows only)                       |
++|register.cpp           | driver self registration functionality             |
++|wxdebug.h              |                                                    |
++|debugmessage.cpp       | some debugging help                                |
++|LICENSE.txt            | license applied to all file in this folder         |
++|**host**               | |
++|asiodrivers.h          | |
++|asiodrivers.cpp        | ASIO driver managment (enumeration and instantiation)|
++|ASIOConvertSamples.h   | |
++|ASIOConvertSamples.cpp | sample data format conversion class                |
++|ginclude.h             | platform specific definitions                      |
++|**host/pc**            | |
++|asiolist.h             | (Windows only)                                     |
++|asiolist.cpp           | instantiates an ASIO driver via the COM model (Windows only)  |
++|**host/sample**        | |
++|hostsample.cpp         | a simple console app which shows ASIO hosting      |
++|hostsample.dsp         | MSVC++ 5.0 project                                 |
++|hostsample.vcproj      | Visual Studio 2005 project (32 and 64 bit targets) |
++|**driver/asiosample**  | |
++|asiosmpl.h             |                                                    |
++|asiosmpl.cpp           | ASIO 2.0 sample driver                             |
++|wintimer.cpp           | bufferSwitch() wakeup thread (Windows only)        |
++|asiosample.def         | Windows DLL module export definition (Windows only) |
++|mactimer.cpp           | bufferSwitch() wakeup thread (MacOS only)          |
++|macnanosecs.cpp        | Macintosh system reference time (MacOS only)       |
++|makesamp.cpp           | Macintosh driver object instantiation (MacOS only) |
++|**driver/asiosample/asiosample** | |
++|asiosample.dsp         | MSVC++ 5.0 project                                 |
++|asiosample.vcproj      | Visual Studio 2005 project (32 and 64 bit targets) |
+diff --git a/deps/asio-sdk/common/asio.h b/deps/asio-sdk/common/asio.h
+new file mode 100644
+index 0000000..8a6e310
+--- /dev/null
++++ b/deps/asio-sdk/common/asio.h
+@@ -0,0 +1,1078 @@
++//------------------------------------------------------------------------
++// Project     : ASIO SDK
++//
++// Category    : Interfaces
++// Filename    : common/asio.h
++// Created by  : Steinberg, 05/1996
++// Description : Steinberg Audio Stream I/O API v2.3
++// 	ASIO functions entries which translate the ASIO interface to the
++//  asiodrvr class methods
++// 	2005 - Added support for DSD sample data (in cooperation with Sony)
++// 	2012 - Added support for drop out detection
++//
++//-----------------------------------------------------------------------------
++// This file is part of a Steinberg SDK. It is subject to the license terms
++// in the LICENSE file found in the top-level directory of this distribution
++// and at www.steinberg.net/sdklicenses. 
++// No part of the SDK, including this file, may be copied, modified, propagated,
++// or distributed except according to the terms contained in the LICENSE file.
++//-----------------------------------------------------------------------------
++
++/*
++	ASIO Interface Specification v 2.3
++
++	basic concept is an i/o synchronous double-buffer scheme:
++
++	on bufferSwitch(index == 0), host will read/write:
++
++		after ASIOStart(), the
++  read  first input buffer A (index 0)
++	|   will be invalid (empty)
++	*   ------------------------
++	|------------------------|-----------------------|
++	|                        |                       |
++	|  Input Buffer A (0)    |   Input Buffer B (1)  |
++	|                        |                       |
++	|------------------------|-----------------------|
++	|                        |                       |
++	|  Output Buffer A (0)   |   Output Buffer B (1) |
++	|                        |                       |
++	|------------------------|-----------------------|
++	*                        -------------------------
++	|                        before calling ASIOStart(),
++  write                      host will have filled output
++                             buffer B (index 1) already
++
++  *please* take special care of proper statement of input
++  and output latencies (see ASIOGetLatencies()), these
++  control sequencer sync accuracy
++
++*/
++
++//---------------------------------------------------------------------------------------------------
++//---------------------------------------------------------------------------------------------------
++
++/*
++prototypes summary:
++
++ASIOError ASIOInit(ASIODriverInfo *info);
++ASIOError ASIOExit(void);
++ASIOError ASIOStart(void);
++ASIOError ASIOStop(void);
++ASIOError ASIOGetChannels(long *numInputChannels, long *numOutputChannels);
++ASIOError ASIOGetLatencies(long *inputLatency, long *outputLatency);
++ASIOError ASIOGetBufferSize(long *minSize, long *maxSize, long *preferredSize, long *granularity);
++ASIOError ASIOCanSampleRate(ASIOSampleRate sampleRate);
++ASIOError ASIOGetSampleRate(ASIOSampleRate *currentRate);
++ASIOError ASIOSetSampleRate(ASIOSampleRate sampleRate);
++ASIOError ASIOGetClockSources(ASIOClockSource *clocks, long *numSources);
++ASIOError ASIOSetClockSource(long reference);
++ASIOError ASIOGetSamplePosition (ASIOSamples *sPos, ASIOTimeStamp *tStamp);
++ASIOError ASIOGetChannelInfo(ASIOChannelInfo *info);
++ASIOError ASIOCreateBuffers(ASIOBufferInfo *bufferInfos, long numChannels,
++	long bufferSize, ASIOCallbacks *callbacks);
++ASIOError ASIODisposeBuffers(void);
++ASIOError ASIOControlPanel(void);
++void *ASIOFuture(long selector, void *params);
++ASIOError ASIOOutputReady(void);
++
++*/
++
++//---------------------------------------------------------------------------------------------------
++//---------------------------------------------------------------------------------------------------
++
++#ifndef __ASIO_H
++#define __ASIO_H
++
++// force 4 byte alignment
++#if defined(_MSC_VER) && !defined(__MWERKS__) 
++#pragma pack(push,4)
++#elif PRAGMA_ALIGN_SUPPORTED
++#pragma options align = native
++#endif
++
++//- - - - - - - - - - - - - - - - - - - - - - - - -
++// Type definitions
++//- - - - - - - - - - - - - - - - - - - - - - - - -
++
++// number of samples data type is 64 bit integer
++#if NATIVE_INT64
++	typedef long long int ASIOSamples;
++#else
++	typedef struct ASIOSamples {
++		unsigned long hi;
++		unsigned long lo;
++	} ASIOSamples;
++#endif
++
++// Timestamp data type is 64 bit integer,
++// Time format is Nanoseconds.
++#if NATIVE_INT64
++	typedef long long int ASIOTimeStamp ;
++#else
++	typedef struct ASIOTimeStamp {
++		unsigned long hi;
++		unsigned long lo;
++	} ASIOTimeStamp;
++#endif
++
++// Samplerates are expressed in IEEE 754 64 bit double float,
++// native format as host computer
++#if IEEE754_64FLOAT
++	typedef double ASIOSampleRate;
++#else
++	typedef struct ASIOSampleRate {
++		char ieee[8];
++	} ASIOSampleRate;
++#endif
++
++// Boolean values are expressed as long
++typedef long ASIOBool;
++enum {
++	ASIOFalse = 0,
++	ASIOTrue = 1
++};
++
++// Sample Types are expressed as long
++typedef long ASIOSampleType;
++enum {
++	ASIOSTInt16MSB   = 0,
++	ASIOSTInt24MSB   = 1,		// used for 20 bits as well
++	ASIOSTInt32MSB   = 2,
++	ASIOSTFloat32MSB = 3,		// IEEE 754 32 bit float
++	ASIOSTFloat64MSB = 4,		// IEEE 754 64 bit double float
++
++	// these are used for 32 bit data buffer, with different alignment of the data inside
++	// 32 bit PCI bus systems can be more easily used with these
++	ASIOSTInt32MSB16 = 8,		// 32 bit data with 16 bit alignment
++	ASIOSTInt32MSB18 = 9,		// 32 bit data with 18 bit alignment
++	ASIOSTInt32MSB20 = 10,		// 32 bit data with 20 bit alignment
++	ASIOSTInt32MSB24 = 11,		// 32 bit data with 24 bit alignment
++	
++	ASIOSTInt16LSB   = 16,
++	ASIOSTInt24LSB   = 17,		// used for 20 bits as well
++	ASIOSTInt32LSB   = 18,
++	ASIOSTFloat32LSB = 19,		// IEEE 754 32 bit float, as found on Intel x86 architecture
++	ASIOSTFloat64LSB = 20, 		// IEEE 754 64 bit double float, as found on Intel x86 architecture
++
++	// these are used for 32 bit data buffer, with different alignment of the data inside
++	// 32 bit PCI bus systems can more easily used with these
++	ASIOSTInt32LSB16 = 24,		// 32 bit data with 18 bit alignment
++	ASIOSTInt32LSB18 = 25,		// 32 bit data with 18 bit alignment
++	ASIOSTInt32LSB20 = 26,		// 32 bit data with 20 bit alignment
++	ASIOSTInt32LSB24 = 27,		// 32 bit data with 24 bit alignment
++
++	//	ASIO DSD format.
++	ASIOSTDSDInt8LSB1   = 32,		// DSD 1 bit data, 8 samples per byte. First sample in Least significant bit.
++	ASIOSTDSDInt8MSB1   = 33,		// DSD 1 bit data, 8 samples per byte. First sample in Most significant bit.
++	ASIOSTDSDInt8NER8	= 40,		// DSD 8 bit data, 1 sample per byte. No Endianness required.
++
++	ASIOSTLastEntry
++};
++
++/*-----------------------------------------------------------------------------
++// DSD operation and buffer layout
++// Definition by Steinberg/Sony Oxford.
++//
++// We have tried to treat DSD as PCM and so keep a consistant structure across
++// the ASIO interface.
++//
++// DSD's sample rate is normally referenced as a multiple of 44.1Khz, so
++// the standard sample rate is refered to as 64Fs (or 2.8224Mhz). We looked
++// at making a special case for DSD and adding a field to the ASIOFuture that
++// would allow the user to select the Over Sampleing Rate (OSR) as a seperate
++// entity but decided in the end just to treat it as a simple value of
++// 2.8224Mhz and use the standard interface to set it.
++//
++// The second problem was the "word" size, in PCM the word size is always a
++// greater than or equal to 8 bits (a byte). This makes life easy as we can
++// then pack the samples into the "natural" size for the machine.
++// In DSD the "word" size is 1 bit. This is not a major problem and can easily
++// be dealt with if we ensure that we always deal with a multiple of 8 samples.
++//
++// DSD brings with it another twist to the Endianness religion. How are the
++// samples packed into the byte. It would be nice to just say the most significant
++// bit is always the first sample, however there would then be a performance hit
++// on little endian machines. Looking at how some of the processing goes...
++// Little endian machines like the first sample to be in the Least Significant Bit,
++//   this is because when you write it to memory the data is in the correct format
++//   to be shifted in and out of the words.
++// Big endian machine prefer the first sample to be in the Most Significant Bit,
++//   again for the same reasion.
++//
++// And just when things were looking really muddy there is a proposed extension to
++// DSD that uses 8 bit word sizes. It does not care what endianness you use.
++//
++// Switching the driver between DSD and PCM mode
++// ASIOFuture allows for extending the ASIO API quite transparently.
++// See kAsioSetIoFormat, kAsioGetIoFormat, kAsioCanDoIoFormat
++//
++//-----------------------------------------------------------------------------*/
++
++
++//- - - - - - - - - - - - - - - - - - - - - - - - -
++// Error codes
++//- - - - - - - - - - - - - - - - - - - - - - - - -
++
++typedef long ASIOError;
++enum {
++	ASE_OK = 0,             // This value will be returned whenever the call succeeded
++	ASE_SUCCESS = 0x3f4847a0,	// unique success return value for ASIOFuture calls
++	ASE_NotPresent = -1000, // hardware input or output is not present or available
++	ASE_HWMalfunction,      // hardware is malfunctioning (can be returned by any ASIO function)
++	ASE_InvalidParameter,   // input parameter invalid
++	ASE_InvalidMode,        // hardware is in a bad mode or used in a bad mode
++	ASE_SPNotAdvancing,     // hardware is not running when sample position is inquired
++	ASE_NoClock,            // sample clock or rate cannot be determined or is not present
++	ASE_NoMemory            // not enough memory for completing the request
++};
++
++//---------------------------------------------------------------------------------------------------
++//---------------------------------------------------------------------------------------------------
++
++//- - - - - - - - - - - - - - - - - - - - - - - - -
++// Time Info support
++//- - - - - - - - - - - - - - - - - - - - - - - - -
++
++typedef struct ASIOTimeCode
++{       
++	double          speed;                  // speed relation (fraction of nominal speed)
++	                                        // optional; set to 0. or 1. if not supported
++	ASIOSamples     timeCodeSamples;        // time in samples
++	unsigned long   flags;                  // some information flags (see below)
++	char future[64];
++} ASIOTimeCode;
++
++typedef enum ASIOTimeCodeFlags
++{
++	kTcValid                = 1,
++	kTcRunning              = 1 << 1,
++	kTcReverse              = 1 << 2,
++	kTcOnspeed              = 1 << 3,
++	kTcStill                = 1 << 4,
++	
++	kTcSpeedValid           = 1 << 8
++}  ASIOTimeCodeFlags;
++
++typedef struct AsioTimeInfo
++{
++	double          speed;                  // absolute speed (1. = nominal)
++	ASIOTimeStamp   systemTime;             // system time related to samplePosition, in nanoseconds
++	                                        // on mac, must be derived from Microseconds() (not UpTime()!)
++	                                        // on windows, must be derived from timeGetTime()
++	ASIOSamples     samplePosition;
++	ASIOSampleRate  sampleRate;             // current rate
++	unsigned long flags;                    // (see below)
++	char reserved[12];
++} AsioTimeInfo;
++
++typedef enum AsioTimeInfoFlags
++{
++	kSystemTimeValid        = 1,            // must always be valid
++	kSamplePositionValid    = 1 << 1,       // must always be valid
++	kSampleRateValid        = 1 << 2,
++	kSpeedValid             = 1 << 3,
++	
++	kSampleRateChanged      = 1 << 4,
++	kClockSourceChanged     = 1 << 5
++} AsioTimeInfoFlags;
++
++typedef struct ASIOTime                          // both input/output
++{
++	long reserved[4];                       // must be 0
++	struct AsioTimeInfo     timeInfo;       // required
++	struct ASIOTimeCode     timeCode;       // optional, evaluated if (timeCode.flags & kTcValid)
++} ASIOTime;
++
++/*
++
++using time info:
++it is recommended to use the new method with time info even if the asio
++device does not support timecode; continuous calls to ASIOGetSamplePosition
++and ASIOGetSampleRate are avoided, and there is a more defined relationship
++between callback time and the time info.
++
++see the example below.
++to initiate time info mode, after you have received the callbacks pointer in
++ASIOCreateBuffers, you will call the asioMessage callback with kAsioSupportsTimeInfo
++as the argument. if this returns 1, host has accepted time info mode.
++now host expects the new callback bufferSwitchTimeInfo to be used instead
++of the old bufferSwitch method. the ASIOTime structure is assumed to be valid
++and accessible until the callback returns.
++
++using time code:
++if the device supports reading time code, it will call host's asioMessage callback
++with kAsioSupportsTimeCode as the selector. it may then fill the according
++fields and set the kTcValid flag.
++host will call the future method with the kAsioEnableTimeCodeRead selector when
++it wants to enable or disable tc reading by the device. you should also support
++the kAsioCanTimeInfo and kAsioCanTimeCode selectors in ASIOFuture (see example).
++
++note:
++the AsioTimeInfo/ASIOTimeCode pair is supposed to work in both directions.
++as a matter of convention, the relationship between the sample
++position counter and the time code at buffer switch time is
++(ignoring offset between tc and sample pos when tc is running):
++
++on input:	sample 0 -> input  buffer sample 0 -> time code 0
++on output:	sample 0 -> output buffer sample 0 -> time code 0
++
++this means that for 'real' calculations, one has to take into account
++the according latencies.
++
++example:
++
++ASIOTime asioTime;
++
++in createBuffers()
++{
++	memset(&asioTime, 0, sizeof(ASIOTime));
++	AsioTimeInfo* ti = &asioTime.timeInfo;
++	ti->sampleRate = theSampleRate;
++	ASIOTimeCode* tc = &asioTime.timeCode;
++	tc->speed = 1.;
++	timeInfoMode = false;
++	canTimeCode = false;
++	if(callbacks->asioMessage(kAsioSupportsTimeInfo, 0, 0, 0) == 1)
++	{
++		timeInfoMode = true;
++#if kCanTimeCode
++		if(callbacks->asioMessage(kAsioSupportsTimeCode, 0, 0, 0) == 1)
++			canTimeCode = true;
++#endif
++	}
++}
++
++void switchBuffers(long doubleBufferIndex, bool processNow)
++{
++	if(timeInfoMode)
++	{
++		AsioTimeInfo* ti = &asioTime.timeInfo;
++		ti->flags =	kSystemTimeValid | kSamplePositionValid | kSampleRateValid;
++		ti->systemTime = theNanoSeconds;
++		ti->samplePosition = theSamplePosition;
++		if(ti->sampleRate != theSampleRate)
++			ti->flags |= kSampleRateChanged;
++		ti->sampleRate = theSampleRate;
++
++#if kCanTimeCode
++		if(canTimeCode && timeCodeEnabled)
++		{
++			ASIOTimeCode* tc = &asioTime.timeCode;
++			tc->timeCodeSamples = tcSamples;						// tc in samples
++			tc->flags = kTcValid | kTcRunning | kTcOnspeed;			// if so...
++		}
++		ASIOTime* bb = callbacks->bufferSwitchTimeInfo(&asioTime, doubleBufferIndex, processNow ? ASIOTrue : ASIOFalse);
++#else
++		callbacks->bufferSwitchTimeInfo(&asioTime, doubleBufferIndex, processNow ? ASIOTrue : ASIOFalse);
++#endif
++	}
++	else
++		callbacks->bufferSwitch(doubleBufferIndex, ASIOFalse);
++}
++
++ASIOError ASIOFuture(long selector, void *params)
++{
++	switch(selector)
++	{
++		case kAsioEnableTimeCodeRead:
++			timeCodeEnabled = true;
++			return ASE_SUCCESS;
++		case kAsioDisableTimeCodeRead:
++			timeCodeEnabled = false;
++			return ASE_SUCCESS;
++		case kAsioCanTimeInfo:
++			return ASE_SUCCESS;
++		#if kCanTimeCode
++		case kAsioCanTimeCode:
++			return ASE_SUCCESS;
++		#endif
++	}
++	return ASE_NotPresent;
++};
++
++*/
++
++//- - - - - - - - - - - - - - - - - - - - - - - - -
++// application's audio stream handler callbacks
++//- - - - - - - - - - - - - - - - - - - - - - - - -
++
++typedef struct ASIOCallbacks
++{
++	void (*bufferSwitch) (long doubleBufferIndex, ASIOBool directProcess);
++		// bufferSwitch indicates that both input and output are to be processed.
++		// the current buffer half index (0 for A, 1 for B) determines
++		// - the output buffer that the host should start to fill. the other buffer
++		//   will be passed to output hardware regardless of whether it got filled
++		//   in time or not.
++		// - the input buffer that is now filled with incoming data. Note that
++		//   because of the synchronicity of i/o, the input always has at
++		//   least one buffer latency in relation to the output.
++		// directProcess suggests to the host whether it should immedeately
++		// start processing (directProcess == ASIOTrue), or whether its process
++		// should be deferred because the call comes from a very low level
++		// (for instance, a high level priority interrupt), and direct processing
++		// would cause timing instabilities for the rest of the system. If in doubt,
++		// directProcess should be set to ASIOFalse.
++		// Note: bufferSwitch may be called at interrupt time for highest efficiency.
++
++	void (*sampleRateDidChange) (ASIOSampleRate sRate);
++		// gets called when the AudioStreamIO detects a sample rate change
++		// If sample rate is unknown, 0 is passed (for instance, clock loss
++		// when externally synchronized).
++
++	long (*asioMessage) (long selector, long value, void* message, double* opt);
++		// generic callback for various purposes, see selectors below.
++		// note this is only present if the asio version is 2 or higher
++
++	ASIOTime* (*bufferSwitchTimeInfo) (ASIOTime* params, long doubleBufferIndex, ASIOBool directProcess);
++		// new callback with time info. makes ASIOGetSamplePosition() and various
++		// calls to ASIOGetSampleRate obsolete,
++		// and allows for timecode sync etc. to be preferred; will be used if
++		// the driver calls asioMessage with selector kAsioSupportsTimeInfo.
++} ASIOCallbacks;
++
++// asioMessage selectors
++enum
++{
++	kAsioSelectorSupported = 1,	// selector in <value>, returns 1L if supported,
++								// 0 otherwise
++    kAsioEngineVersion,			// returns engine (host) asio implementation version,
++								// 2 or higher
++	kAsioResetRequest,			// request driver reset. if accepted, this
++								// will close the driver (ASIO_Exit() ) and
++								// re-open it again (ASIO_Init() etc). some
++								// drivers need to reconfigure for instance
++								// when the sample rate changes, or some basic
++								// changes have been made in ASIO_ControlPanel().
++								// returns 1L; note the request is merely passed
++								// to the application, there is no way to determine
++								// if it gets accepted at this time (but it usually
++								// will be).
++	kAsioBufferSizeChange,		// not yet supported, will currently always return 0L.
++								// for now, use kAsioResetRequest instead.
++								// once implemented, the new buffer size is expected
++								// in <value>, and on success returns 1L
++	kAsioResyncRequest,			// the driver went out of sync, such that
++								// the timestamp is no longer valid. this
++								// is a request to re-start the engine and
++								// slave devices (sequencer). returns 1 for ok,
++								// 0 if not supported.
++	kAsioLatenciesChanged, 		// the drivers latencies have changed. The engine
++								// will refetch the latencies.
++	kAsioSupportsTimeInfo,		// if host returns true here, it will expect the
++								// callback bufferSwitchTimeInfo to be called instead
++								// of bufferSwitch
++	kAsioSupportsTimeCode,		// 
++	kAsioMMCCommand,			// unused - value: number of commands, message points to mmc commands
++	kAsioSupportsInputMonitor,	// kAsioSupportsXXX return 1 if host supports this
++	kAsioSupportsInputGain,     // unused and undefined
++	kAsioSupportsInputMeter,    // unused and undefined
++	kAsioSupportsOutputGain,    // unused and undefined
++	kAsioSupportsOutputMeter,   // unused and undefined
++	kAsioOverload,              // driver detected an overload
++
++	kAsioNumMessageSelectors
++};
++
++//---------------------------------------------------------------------------------------------------
++//---------------------------------------------------------------------------------------------------
++
++//- - - - - - - - - - - - - - - - - - - - - - - - -
++// (De-)Construction
++//- - - - - - - - - - - - - - - - - - - - - - - - -
++
++typedef struct ASIODriverInfo
++{
++	long asioVersion;		// currently, 2
++	long driverVersion;		// driver specific
++	char name[32];
++	char errorMessage[124];
++	void *sysRef;			// on input: system reference
++							// (Windows: application main window handle, Mac & SGI: 0)
++} ASIODriverInfo;
++
++ASIOError ASIOInit(ASIODriverInfo *info);
++/* Purpose:
++	  Initialize the AudioStreamIO.
++	Parameter:
++	  info: pointer to an ASIODriver structure:
++	    - asioVersion:
++			- on input, the host version. *** Note *** this is 0 for earlier asio
++			implementations, and the asioMessage callback is implemeted
++			only if asioVersion is 2 or greater. sorry but due to a design fault
++			the driver doesn't have access to the host version in ASIOInit :-(
++			added selector for host (engine) version in the asioMessage callback
++			so we're ok from now on.
++			- on return, asio implementation version.
++			  older versions are 1
++			  if you support this version (namely, ASIO_outputReady() )
++			  this should be 2 or higher. also see the note in
++			  ASIO_getTimeStamp() !
++	    - version: on return, the driver version (format is driver specific)
++	    - name: on return, a null-terminated string containing the driver's name
++		- error message: on return, should contain a user message describing
++		  the type of error that occured during ASIOInit(), if any.
++		- sysRef: platform specific
++	Returns:
++	  If neither input nor output is present ASE_NotPresent
++	  will be returned.
++	  ASE_NoMemory, ASE_HWMalfunction are other possible error conditions
++*/
++
++ASIOError ASIOExit(void);
++/* Purpose:
++	  Terminates the AudioStreamIO.
++	Parameter:
++	  None.
++	Returns:
++	  If neither input nor output is present ASE_NotPresent
++	  will be returned.
++	Notes: this implies ASIOStop() and ASIODisposeBuffers(),
++	  meaning that no host callbacks must be accessed after ASIOExit().
++*/
++
++//- - - - - - - - - - - - - - - - - - - - - - - - -
++// Start/Stop
++//- - - - - - - - - - - - - - - - - - - - - - - - -
++
++ASIOError ASIOStart(void);
++/* Purpose:
++	  Start input and output processing synchronously.
++	  This will
++	  - reset the sample counter to zero
++	  - start the hardware (both input and output)
++	    The first call to the hosts' bufferSwitch(index == 0) then tells
++	    the host to read from input buffer A (index 0), and start
++	    processing to output buffer A while output buffer B (which
++	    has been filled by the host prior to calling ASIOStart())
++	    is possibly sounding (see also ASIOGetLatencies()) 
++	Parameter:
++	  None.
++	Returns:
++	  If neither input nor output is present, ASE_NotPresent
++	  will be returned.
++	  If the hardware fails to start, ASE_HWMalfunction will be returned.
++	Notes:
++	  There is no restriction on the time that ASIOStart() takes
++	  to perform (that is, it is not considered a realtime trigger).
++*/
++
++ASIOError ASIOStop(void);
++/* Purpose:
++	  Stops input and output processing altogether.
++	Parameter:
++	  None.
++	Returns:
++	  If neither input nor output is present ASE_NotPresent
++	  will be returned.
++	Notes:
++	  On return from ASIOStop(), the driver must in no
++	  case call the hosts' bufferSwitch() routine.
++*/
++
++//- - - - - - - - - - - - - - - - - - - - - - - - -
++// Inquiry methods and sample rate
++//- - - - - - - - - - - - - - - - - - - - - - - - -
++
++ASIOError ASIOGetChannels(long *numInputChannels, long *numOutputChannels);
++/* Purpose:
++	  Returns number of individual input/output channels.
++	Parameter:
++	  numInputChannels will hold the number of available input channels
++	  numOutputChannels will hold the number of available output channels
++	Returns:
++	  If no input/output is present ASE_NotPresent will be returned.
++	  If only inputs, or only outputs are available, the according
++	  other parameter will be zero, and ASE_OK is returned.
++*/
++
++ASIOError ASIOGetLatencies(long *inputLatency, long *outputLatency);
++/* Purpose:
++	  Returns the input and output latencies. This includes
++	  device specific delays, like FIFOs etc.
++	Parameter:
++	  inputLatency will hold the 'age' of the first sample frame
++	  in the input buffer when the hosts reads it in bufferSwitch()
++	  (this is theoretical, meaning it does not include the overhead
++	  and delay between the actual physical switch, and the time
++	  when bufferSitch() enters).
++	  This will usually be the size of one block in sample frames, plus
++	  device specific latencies.
++
++	  outputLatency will specify the time between the buffer switch,
++	  and the time when the next play buffer will start to sound.
++	  The next play buffer is defined as the one the host starts
++	  processing after (or at) bufferSwitch(), indicated by the
++	  index parameter (0 for buffer A, 1 for buffer B).
++	  It will usually be either one block, if the host writes directly
++	  to a dma buffer, or two or more blocks if the buffer is 'latched' by
++	  the driver. As an example, on ASIOStart(), the host will have filled
++	  the play buffer at index 1 already; when it gets the callback (with
++	  the parameter index == 0), this tells it to read from the input
++	  buffer 0, and start to fill the play buffer 0 (assuming that now
++	  play buffer 1 is already sounding). In this case, the output
++	  latency is one block. If the driver decides to copy buffer 1
++	  at that time, and pass it to the hardware at the next slot (which
++	  is most commonly done, but should be avoided), the output latency
++	  becomes two blocks instead, resulting in a total i/o latency of at least
++	  3 blocks. As memory access is the main bottleneck in native dsp processing,
++	  and to acheive less latency, it is highly recommended to try to avoid
++	  copying (this is also why the driver is the owner of the buffers). To
++	  summarize, the minimum i/o latency can be acheived if the input buffer
++	  is processed by the host into the output buffer which will physically
++	  start to sound on the next time slice. Also note that the host expects
++	  the bufferSwitch() callback to be accessed for each time slice in order
++	  to retain sync, possibly recursively; if it fails to process a block in
++	  time, it will suspend its operation for some time in order to recover.
++	Returns:
++	  If no input/output is present ASE_NotPresent will be returned.
++*/
++
++ASIOError ASIOGetBufferSize(long *minSize, long *maxSize, long *preferredSize, long *granularity);
++/* Purpose:
++	  Returns min, max, and preferred buffer sizes for input/output
++	Parameter:
++	  minSize will hold the minimum buffer size
++	  maxSize will hold the maxium possible buffer size
++	  preferredSize will hold the preferred buffer size (a size which
++	  best fits performance and hardware requirements)
++	  granularity will hold the granularity at which buffer sizes
++	  may differ. Usually, the buffer size will be a power of 2;
++	  in this case, granularity will hold -1 on return, signalling
++	  possible buffer sizes starting from minSize, increased in
++	  powers of 2 up to maxSize.
++	Returns:
++	  If no input/output is present ASE_NotPresent will be returned.
++	Notes:
++	  When minimum and maximum buffer size are equal,
++	  the preferred buffer size has to be the same value as well; granularity
++	  should be 0 in this case.
++*/
++
++ASIOError ASIOCanSampleRate(ASIOSampleRate sampleRate);
++/* Purpose:
++	  Inquires the hardware for the available sample rates.
++	Parameter:
++	  sampleRate is the rate in question.
++	Returns:
++	  If the inquired sample rate is not supported, ASE_NoClock will be returned.
++	  If no input/output is present ASE_NotPresent will be returned.
++*/
++ASIOError ASIOGetSampleRate(ASIOSampleRate *currentRate);
++/* Purpose:
++	  Get the current sample Rate.
++	Parameter:
++	  currentRate will hold the current sample rate on return.
++	Returns:
++	  If sample rate is unknown, sampleRate will be 0 and ASE_NoClock will be returned.
++	  If no input/output is present ASE_NotPresent will be returned.
++	Notes:
++*/
++
++ASIOError ASIOSetSampleRate(ASIOSampleRate sampleRate);
++/* Purpose:
++	  Set the hardware to the requested sample Rate. If sampleRate == 0,
++	  enable external sync.
++	Parameter:
++	  sampleRate: on input, the requested rate
++	Returns:
++	  If sampleRate is unknown ASE_NoClock will be returned.
++	  If the current clock is external, and sampleRate is != 0,
++	  ASE_InvalidMode will be returned
++	  If no input/output is present ASE_NotPresent will be returned.
++	Notes:
++*/
++
++typedef struct ASIOClockSource
++{
++	long index;					// as used for ASIOSetClockSource()
++	long associatedChannel;		// for instance, S/PDIF or AES/EBU
++	long associatedGroup;		// see channel groups (ASIOGetChannelInfo())
++	ASIOBool isCurrentSource;	// ASIOTrue if this is the current clock source
++	char name[32];				// for user selection
++} ASIOClockSource;
++
++ASIOError ASIOGetClockSources(ASIOClockSource *clocks, long *numSources);
++/* Purpose:
++	  Get the available external audio clock sources
++	Parameter:
++	  clocks points to an array of ASIOClockSource structures:
++	  	- index: this is used to identify the clock source
++	  	  when ASIOSetClockSource() is accessed, should be
++	  	  an index counting from zero
++	  	- associatedInputChannel: the first channel of an associated
++	  	  input group, if any.
++	  	- associatedGroup: the group index of that channel.
++	  	  groups of channels are defined to seperate for
++	  	  instance analog, S/PDIF, AES/EBU, ADAT connectors etc,
++	  	  when present simultaniously. Note that associated channel
++	  	  is enumerated according to numInputs/numOutputs, means it
++	  	  is independant from a group (see also ASIOGetChannelInfo())
++	  	  inputs are associated to a clock if the physical connection
++	  	  transfers both data and clock (like S/PDIF, AES/EBU, or
++	  	  ADAT inputs). if there is no input channel associated with
++	  	  the clock source (like Word Clock, or internal oscillator), both
++	  	  associatedChannel and associatedGroup should be set to -1.
++	  	- isCurrentSource: on exit, ASIOTrue if this is the current clock
++	  	  source, ASIOFalse else
++		- name: a null-terminated string for user selection of the available sources.
++	  numSources:
++	      on input: the number of allocated array members
++	      on output: the number of available clock sources, at least
++	      1 (internal clock generator).
++	Returns:
++	  If no input/output is present ASE_NotPresent will be returned.
++	Notes:
++*/
++
++ASIOError ASIOSetClockSource(long index);
++/* Purpose:
++	  Set the audio clock source
++	Parameter:
++	  index as obtained from an inquiry to ASIOGetClockSources()
++	Returns:
++	  If no input/output is present ASE_NotPresent will be returned.
++	  If the clock can not be selected because an input channel which
++	  carries the current clock source is active, ASE_InvalidMode
++	  *may* be returned (this depends on the properties of the driver
++	  and/or hardware).
++	Notes:
++	  Should *not* return ASE_NoClock if there is no clock signal present
++	  at the selected source; this will be inquired via ASIOGetSampleRate().
++	  It should call the host callback procedure sampleRateHasChanged(),
++	  if the switch causes a sample rate change, or if no external clock
++	  is present at the selected source.
++*/
++
++ASIOError ASIOGetSamplePosition (ASIOSamples *sPos, ASIOTimeStamp *tStamp);
++/* Purpose:
++	  Inquires the sample position/time stamp pair.
++	Parameter:
++	  sPos will hold the sample position on return. The sample
++	  position is reset to zero when ASIOStart() gets called.
++	  tStamp will hold the system time when the sample position
++	  was latched.
++	Returns:
++	  If no input/output is present, ASE_NotPresent will be returned.
++	  If there is no clock, ASE_SPNotAdvancing will be returned.
++	Notes:
++
++	  in order to be able to synchronise properly,
++	  the sample position / time stamp pair must refer to the current block,
++	  that is, the engine will call ASIOGetSamplePosition() in its bufferSwitch()
++	  callback and expect the time for the current block. thus, when requested
++	  in the very first bufferSwitch after ASIO_Start(), the sample position
++	  should be zero, and the time stamp should refer to the very time where
++	  the stream was started. it also means that the sample position must be
++	  block aligned. the driver must ensure proper interpolation if the system
++	  time can not be determined for the block position. the driver is responsible
++	  for precise time stamps as it usually has most direct access to lower
++	  level resources. proper behaviour of ASIO_GetSamplePosition() and ASIO_GetLatencies()
++	  are essential for precise media synchronization!
++*/
++
++typedef struct ASIOChannelInfo
++{
++	long channel;			// on input, channel index
++	ASIOBool isInput;		// on input
++	ASIOBool isActive;		// on exit
++	long channelGroup;		// dto
++	ASIOSampleType type;	// dto
++	char name[32];			// dto
++} ASIOChannelInfo;
++
++ASIOError ASIOGetChannelInfo(ASIOChannelInfo *info);
++/* Purpose:
++	  retreive information about the nature of a channel
++	Parameter:
++	  info: pointer to a ASIOChannelInfo structure with
++	  	- channel: on input, the channel index of the channel in question.
++	  	- isInput: on input, ASIOTrue if info for an input channel is
++	  	  requested, else output
++		- channelGroup: on return, the channel group that the channel
++		  belongs to. For drivers which support different types of
++		  channels, like analog, S/PDIF, AES/EBU, ADAT etc interfaces,
++		  there should be a reasonable grouping of these types. Groups
++		  are always independant form a channel index, that is, a channel
++		  index always counts from 0 to numInputs/numOutputs regardless
++		  of the group it may belong to.
++		  There will always be at least one group (group 0). Please
++		  also note that by default, the host may decide to activate
++		  channels 0 and 1; thus, these should belong to the most
++		  useful type (analog i/o, if present).
++	  	- type: on return, contains the sample type of the channel
++	  	- isActive: on return, ASIOTrue if channel is active as it was
++	  	  installed by ASIOCreateBuffers(), ASIOFalse else
++	  	- name:  describing the type of channel in question. Used to allow
++	  	  for user selection, and enabling of specific channels. examples:
++	      "Analog In", "SPDIF Out" etc
++	Returns:
++	  If no input/output is present ASE_NotPresent will be returned.
++	Notes:
++	  If possible, the string should be organised such that the first
++	  characters are most significantly describing the nature of the
++	  port, to allow for identification even if the view showing the
++	  port name is too small to display more than 8 characters, for
++	  instance.
++*/
++
++//- - - - - - - - - - - - - - - - - - - - - - - - -
++// Buffer preparation
++//- - - - - - - - - - - - - - - - - - - - - - - - -
++
++typedef struct ASIOBufferInfo
++{
++	ASIOBool isInput;			// on input:  ASIOTrue: input, else output
++	long channelNum;			// on input:  channel index
++	void *buffers[2];			// on output: double buffer addresses
++} ASIOBufferInfo;
++
++ASIOError ASIOCreateBuffers(ASIOBufferInfo *bufferInfos, long numChannels,
++	long bufferSize, ASIOCallbacks *callbacks);
++
++/* Purpose:
++	  Allocates input/output buffers for all input and output channels to be activated.
++	Parameter:
++	  bufferInfos is a pointer to an array of ASIOBufferInfo structures:
++	    - isInput: on input, ASIOTrue if the buffer is to be allocated
++	      for an input, output buffer else
++	    - channelNum: on input, the index of the channel in question
++	      (counting from 0)
++	    - buffers: on exit, 2 pointers to the halves of the channels' double-buffer.
++	      the size of the buffer(s) of course depend on both the ASIOSampleType
++	      as obtained from ASIOGetChannelInfo(), and bufferSize
++	  numChannels is the sum of all input and output channels to be created;
++	  thus bufferInfos is a pointer to an array of numChannels ASIOBufferInfo
++	  structures.
++	  bufferSize selects one of the possible buffer sizes as obtained from
++	  ASIOGetBufferSizes().
++	  callbacks is a pointer to an ASIOCallbacks structure.
++	Returns:
++	  If not enough memory is available ASE_NoMemory will be returned.
++	  If no input/output is present ASE_NotPresent will be returned.
++	  If bufferSize is not supported, or one or more of the bufferInfos elements
++	  contain invalid settings, ASE_InvalidMode will be returned.
++	Notes:
++	  If individual channel selection is not possible but requested,
++	  the driver has to handle this. namely, bufferSwitch() will only
++	  have filled buffers of enabled outputs. If possible, processing
++	  and buss activities overhead should be avoided for channels which
++	  were not enabled here.
++*/
++
++ASIOError ASIODisposeBuffers(void);
++/* Purpose:
++	  Releases all buffers for the device.
++	Parameter:
++	  None.
++	Returns:
++	  If no buffer were ever prepared, ASE_InvalidMode will be returned.
++	  If no input/output is present ASE_NotPresent will be returned.
++	Notes:
++	  This implies ASIOStop().
++*/
++
++ASIOError ASIOControlPanel(void);
++/* Purpose:
++	  request the driver to start a control panel component
++	  for device specific user settings. This will not be
++	  accessed on some platforms (where the component is accessed
++	  instead).
++	Parameter:
++	  None.
++	Returns:
++	  If no panel is available ASE_NotPresent will be returned.
++	  Actually, the return code is ignored.
++	Notes:
++	  if the user applied settings which require a re-configuration
++	  of parts or all of the enigine and/or driver (such as a change of
++	  the block size), the asioMessage callback can be used (see
++	  ASIO_Callbacks).
++*/
++
++ASIOError ASIOFuture(long selector, void *params);
++/* Purpose:
++	  various
++	Parameter:
++	  selector: operation Code as to be defined. zero is reserved for
++	  testing purposes.
++	  params: depends on the selector; usually pointer to a structure
++	  for passing and retreiving any type and amount of parameters.
++	Returns:
++	  the return value is also selector dependant. if the selector
++	  is unknown, ASE_InvalidParameter should be returned to prevent
++	  further calls with this selector. on success, ASE_SUCCESS
++	  must be returned (note: ASE_OK is *not* sufficient!)
++	Notes:
++	  see selectors defined below.	  
++*/
++
++enum
++{
++	kAsioEnableTimeCodeRead = 1,	// no arguments
++	kAsioDisableTimeCodeRead,		// no arguments
++	kAsioSetInputMonitor,			// ASIOInputMonitor* in params
++	kAsioTransport,					// ASIOTransportParameters* in params
++	kAsioSetInputGain,				// ASIOChannelControls* in params, apply gain
++	kAsioGetInputMeter,				// ASIOChannelControls* in params, fill meter
++	kAsioSetOutputGain,				// ASIOChannelControls* in params, apply gain
++	kAsioGetOutputMeter,			// ASIOChannelControls* in params, fill meter
++	kAsioCanInputMonitor,			// no arguments for kAsioCanXXX selectors
++	kAsioCanTimeInfo,
++	kAsioCanTimeCode,
++	kAsioCanTransport,
++	kAsioCanInputGain,
++	kAsioCanInputMeter,
++	kAsioCanOutputGain,
++	kAsioCanOutputMeter,
++	kAsioOptionalOne,
++	
++	//	DSD support
++	//	The following extensions are required to allow switching
++	//	and control of the DSD subsystem.
++	kAsioSetIoFormat			= 0x23111961,		/* ASIOIoFormat * in params.			*/
++	kAsioGetIoFormat			= 0x23111983,		/* ASIOIoFormat * in params.			*/
++	kAsioCanDoIoFormat			= 0x23112004,		/* ASIOIoFormat * in params.			*/
++	
++	// Extension for drop out detection
++	kAsioCanReportOverload			= 0x24042012,	/* return ASE_SUCCESS if driver can detect and report overloads */
++	
++	kAsioGetInternalBufferSamples	= 0x25042012	/* ASIOInternalBufferInfo * in params. Deliver size of driver internal buffering, return ASE_SUCCESS if supported */
++};
++
++typedef struct ASIOInputMonitor
++{
++	long input;		// this input was set to monitor (or off), -1: all
++	long output;	// suggested output for monitoring the input (if so)
++	long gain;		// suggested gain, ranging 0 - 0x7fffffffL (-inf to +12 dB)
++	ASIOBool state;	// ASIOTrue => on, ASIOFalse => off
++	long pan;		// suggested pan, 0 => all left, 0x7fffffff => right
++} ASIOInputMonitor;
++
++typedef struct ASIOChannelControls
++{
++	long channel;			// on input, channel index
++	ASIOBool isInput;		// on input
++	long gain;				// on input,  ranges 0 thru 0x7fffffff
++	long meter;				// on return, ranges 0 thru 0x7fffffff
++	char future[32];
++} ASIOChannelControls;
++
++typedef struct ASIOTransportParameters
++{
++	long command;		// see enum below
++	ASIOSamples samplePosition;
++	long track;
++	long trackSwitches[16];		// 512 tracks on/off
++	char future[64];
++} ASIOTransportParameters;
++
++enum
++{
++	kTransStart = 1,
++	kTransStop,
++	kTransLocate,		// to samplePosition
++	kTransPunchIn,
++	kTransPunchOut,
++	kTransArmOn,		// track
++	kTransArmOff,		// track
++	kTransMonitorOn,	// track
++	kTransMonitorOff,	// track
++	kTransArm,			// trackSwitches
++	kTransMonitor		// trackSwitches
++};
++
++/*
++// DSD support
++//	Some notes on how to use ASIOIoFormatType.
++//
++//	The caller will fill the format with the request types.
++//	If the board can do the request then it will leave the
++//	values unchanged. If the board does not support the
++//	request then it will change that entry to Invalid (-1)
++//
++//	So to request DSD then
++//
++//	ASIOIoFormat NeedThis={kASIODSDFormat};
++//
++//	if(ASE_SUCCESS != ASIOFuture(kAsioSetIoFormat,&NeedThis) ){
++//		// If the board did not accept one of the parameters then the
++//		// whole call will fail and the failing parameter will
++//		// have had its value changes to -1.
++//	}
++//
++// Note: Switching between the formats need to be done before the "prepared"
++// state (see ASIO 2 documentation) is entered.
++*/
++typedef long int ASIOIoFormatType;
++enum ASIOIoFormatType_e
++{
++	kASIOFormatInvalid = -1,
++	kASIOPCMFormat = 0,
++	kASIODSDFormat = 1,
++};
++
++typedef struct ASIOIoFormat_s
++{
++	ASIOIoFormatType	FormatType;
++	char				future[512-sizeof(ASIOIoFormatType)];
++} ASIOIoFormat;
++
++// Extension for drop detection
++// Note: Refers to buffering that goes beyond the double buffer e.g. used by USB driver designs
++typedef struct ASIOInternalBufferInfo
++{
++	long inputSamples;			// size of driver's internal input buffering which is included in getLatencies
++	long outputSamples;			// size of driver's internal output buffering which is included in getLatencies
++} ASIOInternalBufferInfo;
++
++
++ASIOError ASIOOutputReady(void);
++/* Purpose:
++	  this tells the driver that the host has completed processing
++	  the output buffers. if the data format required by the hardware
++	  differs from the supported asio formats, but the hardware
++	  buffers are DMA buffers, the driver will have to convert
++	  the audio stream data; as the bufferSwitch callback is
++	  usually issued at dma block switch time, the driver will
++	  have to convert the *previous* host buffer, which increases
++	  the output latency by one block.
++	  when the host finds out that ASIOOutputReady() returns
++	  true, it will issue this call whenever it completed
++	  output processing. then the driver can convert the
++	  host data directly to the dma buffer to be played next,
++	  reducing output latency by one block.
++	  another way to look at it is, that the buffer switch is called
++	  in order to pass the *input* stream to the host, so that it can
++	  process the input into the output, and the output stream is passed
++	  to the driver when the host has completed its process.
++	Parameter:
++		None
++	Returns:
++	  only if the above mentioned scenario is given, and a reduction
++	  of output latency can be acheived by this mechanism, should
++	  ASE_OK be returned. otherwise (and usually), ASE_NotPresent
++	  should be returned in order to prevent further calls to this
++	  function. note that the host may want to determine if it is
++	  to use this when the system is not yet fully initialized, so
++	  ASE_OK should always be returned if the mechanism makes sense.	  
++	Notes:
++	  please remeber to adjust ASIOGetLatencies() according to
++	  whether ASIOOutputReady() was ever called or not, if your
++	  driver supports this scenario.
++	  also note that the engine may fail to call ASIO_OutputReady()
++	  in time in overload cases. as already mentioned, bufferSwitch
++      should be called for every block regardless of whether a block
++      could be processed in time.
++*/
++
++// restore old alignment
++#if defined(_MSC_VER) && !defined(__MWERKS__) 
++#pragma pack(pop)
++#elif PRAGMA_ALIGN_SUPPORTED
++#pragma options align = reset
++#endif
++
++#endif
++
+diff --git a/deps/asio-sdk/common/asiosys.h b/deps/asio-sdk/common/asiosys.h
+new file mode 100644
+index 0000000..5d4c32d
+--- /dev/null
++++ b/deps/asio-sdk/common/asiosys.h
+@@ -0,0 +1,97 @@
++//------------------------------------------------------------------------
++// Project     : ASIO SDK
++//
++// Category    : Interfaces
++// Filename    : common/asiosys.h
++// Created by  : Steinberg, 05/1996
++// Description : Steinberg Audio Stream I/O
++//
++//-----------------------------------------------------------------------------
++// This file is part of a Steinberg SDK. It is subject to the license terms
++// in the LICENSE file found in the top-level directory of this distribution
++// and at www.steinberg.net/sdklicenses. 
++// No part of the SDK, including this file, may be copied, modified, propagated,
++// or distributed except according to the terms contained in the LICENSE file.
++//-----------------------------------------------------------------------------
++
++#ifndef __asiosys__
++	#define __asiosys__
++
++	#if defined(_WIN32) || defined(_WIN64)
++		#undef MAC 
++		#define PPC 0
++		#define WINDOWS 1
++		#define SGI 0
++		#define SUN 0
++		#define LINUX 0
++		#define BEOS 0
++
++		#define NATIVE_INT64 0
++		#define IEEE754_64FLOAT 1
++	
++	#elif BEOS
++		#define MAC 0
++		#define PPC 0
++		#define WINDOWS 0
++		#define PC 0
++		#define SGI 0
++		#define SUN 0
++		#define LINUX 0
++		
++		#define NATIVE_INT64 0
++		#define IEEE754_64FLOAT 1
++		
++		#ifndef DEBUG
++			#define DEBUG 0
++		 	#if DEBUG
++		 		void DEBUGGERMESSAGE(char *string);
++		 	#else
++		  		#define DEBUGGERMESSAGE(a)
++			#endif
++		#endif
++
++	#elif SGI
++		#define MAC 0
++		#define PPC 0
++		#define WINDOWS 0
++		#define PC 0
++		#define SUN 0
++		#define LINUX 0
++		#define BEOS 0
++		
++		#define NATIVE_INT64 0
++		#define IEEE754_64FLOAT 1
++		
++		#ifndef DEBUG
++			#define DEBUG 0
++		 	#if DEBUG
++		 		void DEBUGGERMESSAGE(char *string);
++		 	#else
++		  		#define DEBUGGERMESSAGE(a)
++			#endif
++		#endif
++
++	#else	// MAC
++		#define MAC 1
++		#define PPC 1
++		#define WINDOWS 0
++		#define PC 0
++		#define SGI 0
++		#define SUN 0
++		#define LINUX 0
++		#define BEOS 0
++
++		#define NATIVE_INT64 0
++		#define IEEE754_64FLOAT 1
++
++		#ifndef DEBUG
++			#define DEBUG 0
++			#if DEBUG
++				void DEBUGGERMESSAGE(char *string);
++			#else
++				#define DEBUGGERMESSAGE(a)
++			#endif
++		#endif
++	#endif
++
++#endif
+diff --git a/deps/asio-sdk/common/iasiodrv.h b/deps/asio-sdk/common/iasiodrv.h
+new file mode 100644
+index 0000000..6c8af18
+--- /dev/null
++++ b/deps/asio-sdk/common/iasiodrv.h
+@@ -0,0 +1,53 @@
++//------------------------------------------------------------------------
++// Project     : ASIO SDK
++//
++// Category    : Interfaces
++// Filename    : common/iasiodrv.h
++// Created by  : Steinberg, 05/1996
++// Description : Steinberg Audio Stream I/O API v2.3
++//
++//-----------------------------------------------------------------------------
++// This file is part of a Steinberg SDK. It is subject to the license terms
++// in the LICENSE file found in the top-level directory of this distribution
++// and at www.steinberg.net/sdklicenses. 
++// No part of the SDK, including this file, may be copied, modified, propagated,
++// or distributed except according to the terms contained in the LICENSE file.
++//-----------------------------------------------------------------------------
++
++#include "asiosys.h"
++#include "asio.h"
++
++/* Forward Declarations */ 
++
++#ifndef __ASIODRIVER_FWD_DEFINED__
++#define __ASIODRIVER_FWD_DEFINED__
++typedef interface IASIO IASIO;
++#endif 	/* __ASIODRIVER_FWD_DEFINED__ */
++
++interface IASIO : public IUnknown
++{
++
++	virtual ASIOBool init(void *sysHandle) = 0;
++	virtual void getDriverName(char *name) = 0;	
++	virtual long getDriverVersion() = 0;
++	virtual void getErrorMessage(char *string) = 0;	
++	virtual ASIOError start() = 0;
++	virtual ASIOError stop() = 0;
++	virtual ASIOError getChannels(long *numInputChannels, long *numOutputChannels) = 0;
++	virtual ASIOError getLatencies(long *inputLatency, long *outputLatency) = 0;
++	virtual ASIOError getBufferSize(long *minSize, long *maxSize,
++		long *preferredSize, long *granularity) = 0;
++	virtual ASIOError canSampleRate(ASIOSampleRate sampleRate) = 0;
++	virtual ASIOError getSampleRate(ASIOSampleRate *sampleRate) = 0;
++	virtual ASIOError setSampleRate(ASIOSampleRate sampleRate) = 0;
++	virtual ASIOError getClockSources(ASIOClockSource *clocks, long *numSources) = 0;
++	virtual ASIOError setClockSource(long reference) = 0;
++	virtual ASIOError getSamplePosition(ASIOSamples *sPos, ASIOTimeStamp *tStamp) = 0;
++	virtual ASIOError getChannelInfo(ASIOChannelInfo *info) = 0;
++	virtual ASIOError createBuffers(ASIOBufferInfo *bufferInfos, long numChannels,
++		long bufferSize, ASIOCallbacks *callbacks) = 0;
++	virtual ASIOError disposeBuffers() = 0;
++	virtual ASIOError controlPanel() = 0;
++	virtual ASIOError future(long selector,void *opt) = 0;
++	virtual ASIOError outputReady() = 0;
++};
+diff --git a/frontend/cmake/ui-widgets.cmake b/frontend/cmake/ui-widgets.cmake
+index 47c712d..5ac6f5b 100644
+--- a/frontend/cmake/ui-widgets.cmake
++++ b/frontend/cmake/ui-widgets.cmake
+@@ -34,6 +34,8 @@ target_sources(
+     widgets/FreeMixCallAudio.hpp
+     widgets/FreeMixAudioRouting.cpp
+     widgets/FreeMixAudioRouting.hpp
++    widgets/FreeMixAsioOutput.cpp
++    widgets/FreeMixAsioOutput.hpp
+     widgets/FreeMixGlobalHotkeys.cpp
+     widgets/FreeMixGlobalHotkeys.hpp
+     widgets/FreeMixPreferences.cpp
+diff --git a/frontend/widgets/FreeMixAsioOutput.cpp b/frontend/widgets/FreeMixAsioOutput.cpp
+new file mode 100644
+index 0000000..4def90c
+--- /dev/null
++++ b/frontend/widgets/FreeMixAsioOutput.cpp
+@@ -0,0 +1,72 @@
++#include "FreeMixAsioOutput.hpp"
++#include <algorithm>
++#include <cmath>
++#include <cstring>
++#include <set>
++#pragma comment(lib,"ole32.lib")
++#pragma comment(lib,"advapi32.lib")
++
++std::atomic<FreeMixAsioOutput *> FreeMixAsioOutput::active{nullptr};
++namespace {
++bool Okay(ASIOError e){return e==ASE_OK||e==ASE_SUCCESS;}
++std::string UTF8(const wchar_t *s){int n=WideCharToMultiByte(CP_UTF8,0,s,-1,nullptr,0,nullptr,nullptr);if(n<2)return {};std::string out(size_t(n),0);WideCharToMultiByte(CP_UTF8,0,s,-1,out.data(),n,nullptr,nullptr);out.pop_back();return out;}
++}
++std::vector<FreeMixAsioDriver> FreeMixAsioOutput::Drivers(){
++ std::vector<FreeMixAsioDriver> list;HKEY root=nullptr;
++ if(RegOpenKeyExW(HKEY_LOCAL_MACHINE,L"SOFTWARE\\ASIO",0,KEY_READ|KEY_WOW64_64KEY,&root)!=ERROR_SUCCESS)return list;
++ for(DWORD index=0;index<256;index++){wchar_t name[256]{};DWORD len=256;if(RegEnumKeyExW(root,index,name,&len,nullptr,nullptr,nullptr,nullptr)!=ERROR_SUCCESS)break;HKEY key=nullptr;if(RegOpenKeyExW(root,name,0,KEY_READ,&key)!=ERROR_SUCCESS)continue;wchar_t clsid[128]{},description[512]{};DWORD bytes=sizeof(clsid);const auto ok=RegGetValueW(key,nullptr,L"CLSID",RRF_RT_REG_SZ,nullptr,clsid,&bytes);bytes=sizeof(description);RegGetValueW(key,nullptr,L"Description",RRF_RT_REG_SZ,nullptr,description,&bytes);RegCloseKey(key);CLSID guid{};if(ok==ERROR_SUCCESS&&SUCCEEDED(CLSIDFromString(clsid,&guid)))list.push_back({UTF8(clsid),UTF8(*description?description:name)});}
++ RegCloseKey(root);return list;
++}
++size_t FreeMixAsioOutput::SampleBytes(ASIOSampleType t){switch(t){case ASIOSTInt16MSB:case ASIOSTInt16LSB:return 2;case ASIOSTInt24MSB:case ASIOSTInt24LSB:return 3;case ASIOSTFloat64MSB:case ASIOSTFloat64LSB:return 8;case ASIOSTInt32MSB:case ASIOSTInt32LSB:case ASIOSTFloat32MSB:case ASIOSTFloat32LSB:case ASIOSTInt32MSB16:case ASIOSTInt32MSB18:case ASIOSTInt32MSB20:case ASIOSTInt32MSB24:case ASIOSTInt32LSB16:case ASIOSTInt32LSB18:case ASIOSTInt32LSB20:case ASIOSTInt32LSB24:return 4;default:return 0;}}
++bool FreeMixAsioOutput::Encode(ASIOSampleType t,float x,void *output){
++ const size_t bytes=SampleBytes(t);if(!bytes)return false;x=std::isfinite(x)?std::clamp(x,-1.f,1.f):0.f;
++ const bool little=t>=ASIOSTInt16LSB;uint64_t bits=0;
++ if(t==ASIOSTFloat32MSB||t==ASIOSTFloat32LSB){uint32_t value;std::memcpy(&value,&x,4);bits=value;}
++ else if(t==ASIOSTFloat64MSB||t==ASIOSTFloat64LSB){double value=x;std::memcpy(&bits,&value,8);}
++ else {int precision=int(bytes*8);if(t>=ASIOSTInt32MSB16&&t<=ASIOSTInt32MSB24)precision=16+int(t-ASIOSTInt32MSB16)*2+(t==ASIOSTInt32MSB24?2:0);if(t>=ASIOSTInt32LSB16&&t<=ASIOSTInt32LSB24)precision=16+int(t-ASIOSTInt32LSB16)*2+(t==ASIOSTInt32LSB24?2:0);const int64_t maximum=(int64_t(1)<<(precision-1))-1,minimum=-(int64_t(1)<<(precision-1));const int64_t value=x<=-1?minimum:std::clamp<int64_t>(std::llround(double(x)*double(maximum)),minimum,maximum);bits=uint64_t(value);}
++ auto *dest=static_cast<uint8_t *>(output);for(size_t n=0;n<bytes;n++)dest[little?n:bytes-1-n]=uint8_t(bits>>(n*8));return true;
++}
++FreeMixAsioOutput::~FreeMixAsioOutput(){Stop();}
++bool FreeMixAsioOutput::Start(const std::string &id,const std::vector<FreeMixAsioRoute> &r,uint32_t sampleRate,long buffer,void *window,std::string &error){
++ if(running||driver||active.load()){error="Pare a saída ASIO antes de alterar driver ou canais";return false;}
++ if(id.size()>80){error="Identificador ASIO inválido";return false;}std::wstring wide(id.begin(),id.end());CLSID guid{};if(FAILED(CLSIDFromString(wide.c_str(),&guid))){error="CLSID ASIO inválido";return false;}
++ const auto known=Drivers();if(std::none_of(known.begin(),known.end(),[&](const auto &d){return d.id==id;})){error="Driver ASIO instalado não encontrado";return false;}
++ const auto co=CoInitializeEx(nullptr,COINIT_APARTMENTTHREADED);if(FAILED(co)&&co!=RPC_E_CHANGED_MODE){error="COM indisponível para o driver ASIO";return false;}comOwned=SUCCEEDED(co);
++ IASIO *instance=nullptr;const HRESULT opened=CoCreateInstance(guid,nullptr,CLSCTX_INPROC_SERVER,guid,reinterpret_cast<void **>(&instance));if(FAILED(opened)||!instance){if(comOwned)CoUninitialize();comOwned=false;error="Não foi possível abrir o driver ASIO";return false;}
++ ownsReference=true;if(!StartInjected(instance,r,sampleRate,buffer,window,error)){if(!driver&&ownsReference)instance->Release();Stop();return false;}return true;
++}
++bool FreeMixAsioOutput::StartInjected(IASIO *instance,const std::vector<FreeMixAsioRoute> &r,uint32_t sampleRate,long requested,void *window,std::string &error){
++ if(driver||running||active.load()||!instance||r.empty()||r.size()>8||sampleRate<8000||sampleRate>192000){error="ASIO: driver, taxa ou rotas inválidas";return false;}
++ driver=instance;auto fail=[&](const char *message){error=message;Stop();return false;};
++ if(!driver->init(window))return fail("Driver ASIO recusou inicialização");
++ long inputs=0;if(!Okay(driver->getChannels(&inputs,&outputs))||outputs<2||outputs>256)return fail("Driver ASIO sem canais de saída válidos");
++ if(!Okay(driver->canSampleRate(sampleRate)))return fail("Driver não aceita a taxa de áudio do projeto");ASIOSampleRate current=0;if(!Okay(driver->getSampleRate(&current)))return fail("Driver não informou sample rate");if(current!=sampleRate&&!Okay(driver->setSampleRate(sampleRate)))return fail("Driver recusou sample rate");if(!Okay(driver->getSampleRate(&current))||current!=sampleRate)return fail("Sample rate ASIO diferente do projeto");
++ long minimum=0,maximum=0,preferred=0,granularity=0;if(!Okay(driver->getBufferSize(&minimum,&maximum,&preferred,&granularity)))return fail("Buffer ASIO indisponível");frames=requested?requested:preferred;if(frames<minimum||frames>maximum||frames<16||frames>8192||(granularity==-1&&(frames&(frames-1)))||(granularity>0&&(frames-minimum)%granularity))return fail("Tamanho de buffer inválido para o driver");
++ std::set<int> used;routeCount=r.size();rate=sampleRate;fault=0;callbackCount=rendered=underruns=overruns=invalid=clipped=0;
++ for(size_t i=0;i<routeCount;i++){const auto &route=r[i];if(route.uuid.empty()||!std::isfinite(route.gain)||route.gain<0||route.gain>2||route.left<0||route.right<0||route.left>=outputs||route.right>=outputs||!used.insert(route.left).second||!used.insert(route.right).second)return fail("Rotas ASIO inválidas ou canais sobrepostos");routes[i]=route;queues[i].read=queues[i].write=0;for(size_t ch=0;ch<2;ch++){auto &b=buffers[i*2+ch];b={};b.isInput=ASIOFalse;b.channelNum=ch?route.right:route.left;ASIOChannelInfo info{};info.channel=b.channelNum;info.isInput=ASIOFalse;if(!Okay(driver->getChannelInfo(&info))||!SampleBytes(info.type))return fail("Formato ASIO não suportado (PCM necessário)");types[i*2+ch]=info.type;}}
++ FreeMixAsioOutput *empty=nullptr;if(!active.compare_exchange_strong(empty,this))return fail("Outra saída ASIO já controla os callbacks");
++ callbacks={Switch,RateChanged,Message,SwitchTime};if(!Okay(driver->createBuffers(buffers.data(),long(routeCount*2),frames,&callbacks)))return fail("Driver recusou buffers de reprodução");created=true;
++ for(size_t i=0;i<routeCount*2;i++)for(size_t half=0;half<2;half++){if(!buffers[i].buffers[half])return fail("Driver devolveu buffer nulo");std::memset(buffers[i].buffers[half],0,size_t(frames)*SampleBytes(types[i]));}
++ long inputLatency=0;driver->getLatencies(&inputLatency,&latency);outputReadySupported=Okay(driver->outputReady());running=true;if(!Okay(driver->start()))return fail("Driver recusou iniciar playback ASIO");return true;
++}
++void FreeMixAsioOutput::Stop(){running=false;if(driver){driver->stop();FreeMixAsioOutput *mine=this;active.compare_exchange_strong(mine,nullptr);if(created)driver->disposeBuffers();if(ownsReference)driver->Release();driver=nullptr;}created=false;ownsReference=false;if(comOwned)CoUninitialize();comOwned=false;}
++bool FreeMixAsioOutput::ControlPanel(std::string &error){if(!driver){error="Inicie explicitamente a saída antes de abrir o painel do driver";return false;}if(!Okay(driver->controlPanel())){error="Driver recusou seu painel";return false;}return true;}
++void FreeMixAsioOutput::Silence(int reason){fault=reason;}
++void FreeMixAsioOutput::Push(size_t route,const float *left,const float *right,uint32_t count,float gain){
++ if(!running||fault||route>=routeCount||!left||!count)return;auto &queue=queues[route];const uint64_t w=queue.write.load(std::memory_order_relaxed),r=queue.read.load(std::memory_order_acquire);if(count>Capacity||w-r+count>Capacity){overruns+=count;return;}
++ gain=std::isfinite(gain)?std::clamp(gain,0.f,2.f):0;for(size_t frame=0;frame<count;frame++)for(size_t ch=0;ch<2;ch++){float x=(ch&&right?right:left)[frame]*gain*routes[route].gain;if(!std::isfinite(x)){invalid++;x=0;}else if(x< -1||x>1){clipped++;x=std::clamp(x,-1.f,1.f);}queue.pcm[((w+frame)%Capacity)*2+ch]=x;}
++ queue.write.store(w+count,std::memory_order_release);
++}
++void FreeMixAsioOutput::render(long half){
++ if(half<0||half>1||!created)return;callbackCount++;rendered+=frames;
++ for(size_t i=0;i<routeCount;i++){auto &queue=queues[i];const uint64_t r=queue.read.load(std::memory_order_relaxed),w=queue.write.load(std::memory_order_acquire);const size_t available=running&&!fault?size_t(std::min<uint64_t>(w-r,uint64_t(frames))):0;if(running&&!fault&&available<size_t(frames))underruns+=size_t(frames)-available;
++  for(size_t ch=0;ch<2;ch++){auto *dest=static_cast<uint8_t *>(buffers[i*2+ch].buffers[half]);const size_t bytes=SampleBytes(types[i*2+ch]);for(size_t frame=0;frame<size_t(frames);frame++)Encode(types[i*2+ch],frame<available?queue.pcm[((r+frame)%Capacity)*2+ch]:0,dest+frame*bytes);}
++  queue.read.store(fault?w:r+available,std::memory_order_release);
++ }
++ if(outputReadySupported&&driver)driver->outputReady();
++}
++void FreeMixAsioOutput::Switch(long half,ASIOBool){if(auto *host=active.load(std::memory_order_acquire))host->render(half);}
++ASIOTime *FreeMixAsioOutput::SwitchTime(ASIOTime *time,long half,ASIOBool direct){if(time&&(time->timeInfo.flags&kSampleRateValid))if(auto *host=active.load())if(time->timeInfo.sampleRate!=host->rate)host->Silence(1);Switch(half,direct);return time;}
++void FreeMixAsioOutput::RateChanged(ASIOSampleRate rate){if(auto *host=active.load())if(rate!=host->rate)host->Silence(1);}
++long FreeMixAsioOutput::Message(long selector,long value,void *,double *){if(selector==kAsioSelectorSupported)return value==kAsioResetRequest||value==kAsioResyncRequest||value==kAsioBufferSizeChange||value==kAsioEngineVersion||value==kAsioSupportsTimeInfo;if(selector==kAsioEngineVersion)return 2;if(selector==kAsioSupportsTimeInfo)return 1;if(selector==kAsioResetRequest||selector==kAsioResyncRequest||selector==kAsioBufferSizeChange){if(auto *host=active.load())host->Silence(2);return 1;}return 0;}
++FreeMixAsioMetrics FreeMixAsioOutput::Metrics()const{FreeMixAsioMetrics out;out.running=running;out.sampleRate=rate;out.bufferFrames=frames;out.outputs=outputs;out.outputLatency=latency;out.callbacks=callbackCount;out.frames=rendered;out.underrunFrames=underruns;out.overrunFrames=overruns;out.invalidSamples=invalid;out.clippedSamples=clipped;out.fault=fault;for(size_t i=0;i<routeCount;i++){const uint64_t read=queues[i].read.load(),write=queues[i].write.load();out.queued[i]=std::min<uint64_t>(write>=read?write-read:0,Capacity);}return out;}
+diff --git a/frontend/widgets/FreeMixAsioOutput.hpp b/frontend/widgets/FreeMixAsioOutput.hpp
+new file mode 100644
+index 0000000..5831443
+--- /dev/null
++++ b/frontend/widgets/FreeMixAsioOutput.hpp
+@@ -0,0 +1,57 @@
++#pragma once
++// GPL-3.0-or-later. SDK interfaces use the official GPLv3 licensing option.
++#ifndef NOMINMAX
++#define NOMINMAX
++#endif
++#include <windows.h>
++#include <unknwn.h>
++#include "../../deps/asio-sdk/common/iasiodrv.h"
++#include <array>
++#include <atomic>
++#include <cstdint>
++#include <memory>
++#include <string>
++#include <vector>
++
++struct FreeMixAsioRoute { std::string uuid; int left=0,right=1; float gain=1; };
++struct FreeMixAsioDriver { std::string id,name; };
++struct FreeMixAsioMetrics {
++ bool running=false; uint32_t sampleRate=0; long bufferFrames=0,outputs=0,outputLatency=0;
++ uint64_t callbacks=0,frames=0,underrunFrames=0,overrunFrames=0,invalidSamples=0,clippedSamples=0;
++ int fault=0; std::array<uint64_t,8> queued{};
++};
++
++// One dedicated output driver. GUI owns lifecycle; audio callbacks never open a
++// device, allocate, block, call libobs or perform logging/registry operations.
++class FreeMixAsioOutput {
++ static constexpr uint64_t Capacity=16384;
++ struct Queue { std::vector<float> pcm=std::vector<float>(Capacity*2); std::atomic<uint64_t> read{0},write{0}; };
++ std::array<Queue,8> queues;
++ std::array<ASIOBufferInfo,16> buffers{};
++ std::array<ASIOSampleType,16> types{};
++ ASIOCallbacks callbacks{};
++ std::array<FreeMixAsioRoute,8> routes;
++ IASIO *driver=nullptr; size_t routeCount=0; long frames=0,outputs=0,latency=0; uint32_t rate=0;
++ bool ownsReference=false,created=false,outputReadySupported=false,comOwned=false;
++ std::atomic<bool> running{false}; std::atomic<int> fault{0};
++ std::atomic<uint64_t> callbackCount{0},rendered{0},underruns{0},overruns{0},invalid{0},clipped{0};
++ static std::atomic<FreeMixAsioOutput *> active;
++ static void Switch(long,ASIOBool);
++ static ASIOTime *SwitchTime(ASIOTime *,long,ASIOBool);
++ static void RateChanged(ASIOSampleRate);
++ static long Message(long,long,void *,double *);
++ void render(long);
++public:
++ ~FreeMixAsioOutput();
++ static std::vector<FreeMixAsioDriver> Drivers(); // read-only registry enumeration, no COM driver open
++ bool Start(const std::string &,const std::vector<FreeMixAsioRoute> &,uint32_t,long,void *,std::string &);
++ // Test seam: same native IASIO interface and callback path; no registration.
++ bool StartInjected(IASIO *,const std::vector<FreeMixAsioRoute> &,uint32_t,long,void *,std::string &);
++ void Stop();
++ bool ControlPanel(std::string &);
++ void Push(size_t,const float *,const float *,uint32_t,float gain=1);
++ void Silence(int reason=3); // latch fault until an explicit stop/start
++ FreeMixAsioMetrics Metrics() const;
++ static size_t SampleBytes(ASIOSampleType);
++ static bool Encode(ASIOSampleType,float,void *);
++};
+diff --git a/frontend/widgets/FreeMixAudioRouting.cpp b/frontend/widgets/FreeMixAudioRouting.cpp
+index 5373dd9..740b4f9 100644
+--- a/frontend/widgets/FreeMixAudioRouting.cpp
++++ b/frontend/widgets/FreeMixAudioRouting.cpp
+@@ -1,9 +1,13 @@
+ // Independent stereo submixes. No implicit connection to global recording mixes.
+ #include "FreeMixAudioRouting.hpp"
++#include "FreeMixAsioOutput.hpp"
++#include <obs-frontend-api.h>
+ #include <obs.hpp>
+ #include <util/platform.h>
+ #include <QCoreApplication>
+ #include <QMetaObject>
++#include <QTimer>
++#include <QWidget>
+ #include <algorithm>
+ #include <atomic>
+ #include <chrono>
+@@ -136,9 +140,57 @@ std::unique_ptr<FreeMixSourceAudio> FreeMixSourceAudio::Open(const std::string &
+ }
+ audio_t *FreeMixSourceAudio::Audio()const{return impl->audio;}
+ bool FreeMixSourceAudio::Valid()const{return FreeMixAudioBusAllowed(impl->source);}
++
++namespace {
++bool AsioPublicSource(obs_source_t *s){
++ if(!s||obs_source_removed(s)||!obs_source_enabled(s)||!(obs_source_get_output_flags(s)&OBS_SOURCE_AUDIO)||(obs_source_get_output_flags(s)&OBS_SOURCE_COMPOSITE))return false;
++ const std::string kind=obs_source_get_id(s);if(kind=="asio_input_capture"||kind=="wasapi_output_capture"||kind=="wasapi_process_output_capture")return false; // prevent hardware feedback loops
++ if(FreeMixAudioBusAllowed(s)){
++  OBSDataAutoRelease settings=obs_source_get_settings(s);OBSDataArrayAutoRelease members=obs_data_get_array(settings,"sources");if(!members||obs_data_array_count(members)>32)return false;
++  for(size_t i=0;i<obs_data_array_count(members);i++){OBSDataAutoRelease row=obs_data_array_item(members,i);OBSSourceAutoRelease member=obs_get_source_by_uuid(obs_data_get_string(row,"uuid"));if(!member||Private(member)||std::string(obs_source_get_id(member))=="asio_input_capture"||std::string(obs_source_get_id(member))=="wasapi_output_capture"||std::string(obs_source_get_id(member))=="wasapi_process_output_capture")return false;}
++  return true;
++ }
++ return !Private(s);
++}
++struct AsioSession {
++ struct Tap { AsioSession *owner; size_t route; obs_source_t *source; bool lease=false; };
++ FreeMixAsioOutput output;std::vector<FreeMixAsioRoute> routes;std::vector<Tap *> taps;
++ std::string driverId,error;long buffer=0;uint32_t rate=0;QTimer *timer=nullptr;bool configured=false;uint64_t lastCallbacks=0,lastCallbackAt=0;
++ static void Capture(void *param,obs_source_t *source,const audio_data *audio,bool muted){
++  auto *tap=static_cast<Tap *>(param);if(!audio||!audio->frames||audio->frames>8192)return;
++  OBSDataAutoRelease privateSettings=obs_source_get_private_settings(source);if(obs_source_removed(source)||!obs_source_enabled(source)||obs_data_get_bool(privateSettings,"freemix_director_private")){tap->owner->output.Silence(3);return;}
++  auto *left=reinterpret_cast<const float *>(audio->data[0]);auto *right=reinterpret_cast<const float *>(audio->data[1]);
++  tap->owner->output.Push(tap->route,left,right,audio->frames,muted?0.f:obs_source_get_volume(source));
++ }
++ void Stop(){for(auto *tap:taps)obs_source_remove_audio_capture_callback(tap->source,Capture,tap);output.Stop();for(auto *tap:taps){if(tap->lease)obs_source_dec_active(tap->source);obs_source_release(tap->source);delete tap;}taps.clear();}
++ static void Event(enum obs_frontend_event event,void *param){if(event==OBS_FRONTEND_EVENT_SCENE_COLLECTION_CHANGING||event==OBS_FRONTEND_EVENT_SCENE_COLLECTION_CLEANUP||event==OBS_FRONTEND_EVENT_PROFILE_CHANGING||event==OBS_FRONTEND_EVENT_EXIT){auto &self=*static_cast<AsioSession *>(param);self.Stop();self.configured=false;self.routes.clear();}}
++ void Init(){if(timer)return;timer=new QTimer(qApp);timer->setInterval(250);QObject::connect(timer,&QTimer::timeout,qApp,[this](){const auto status=output.Metrics();if(!status.running)return;const uint64_t now=os_gettime_ns();if(status.callbacks!=lastCallbacks){lastCallbacks=status.callbacks;lastCallbackAt=now;}if(now-lastCallbackAt>2000000000ULL){error="Saída parada: driver sem callbacks por dois segundos";output.Silence(4);Stop();return;}obs_audio_info info{};if(status.fault||!obs_get_audio_info(&info)||info.samples_per_sec!=rate){error=status.fault==3?"Saída parada: fonte removida ou mic privado":"Saída parada por mudança de clock, buffer ou taxa de áudio";Stop();return;}for(auto *tap:taps)if(!AsioPublicSource(tap->source)){output.Silence(3);error="Saída parada: fonte removida, privada ou rota de feedback";Stop();return;}});timer->start();QObject::connect(qApp,&QCoreApplication::aboutToQuit,qApp,[this](){Stop();});obs_frontend_add_event_callback(Event,this);}
++ bool Configure(obs_data_t *request){
++  if(output.Metrics().running){error="Pare ASIO antes de editar as rotas";return false;}
++  const std::string id=obs_data_get_string(request,"driverId");const auto drivers=FreeMixAsioOutput::Drivers();if(std::none_of(drivers.begin(),drivers.end(),[&](const auto &d){return d.id==id;})){error="Driver ASIO instalado não encontrado";return false;}
++  OBSDataArrayAutoRelease rows=obs_data_get_array(request,"routes");if(!rows||!obs_data_array_count(rows)||obs_data_array_count(rows)>8){error="Escolha de uma até oito rotas estéreo";return false;}
++  std::vector<FreeMixAsioRoute> next;std::set<int> used;for(size_t i=0;i<obs_data_array_count(rows);i++){OBSDataAutoRelease row=obs_data_array_item(rows,i);FreeMixAsioRoute route;route.uuid=obs_data_get_string(row,"uuid");route.left=int(obs_data_get_int(row,"left"));route.right=int(obs_data_get_int(row,"right"));route.gain=float(obs_data_has_user_value(row,"gain")?obs_data_get_double(row,"gain"):1);OBSSourceAutoRelease source=obs_get_source_by_uuid(route.uuid.c_str());if(!AsioPublicSource(source)||route.left<0||route.right<0||route.left>255||route.right>255||!used.insert(route.left).second||!used.insert(route.right).second||!std::isfinite(route.gain)||route.gain<0||route.gain>2){error="Fonte ASIO privada/ausente, feedback, ganho inválido ou canais repetidos";return false;}next.push_back(route);}
++  const int64_t requested=obs_data_get_int(request,"bufferFrames");if(requested<0||requested>8192||(requested>0&&requested<16)){error="Buffer deve ser automático (0) ou 16–8192 frames";return false;}
++  obs_audio_info info{};if(!obs_get_audio_info(&info)){error="Áudio do projeto indisponível";return false;}driverId=id;routes=std::move(next);buffer=long(requested);rate=info.samples_per_sec;configured=true;error.clear();return true;
++ }
++ bool Start(){if(!configured){error="Configure driver, fonte e canais antes de iniciar";return false;}if(output.Metrics().running){error="ASIO já está ativo";return false;}obs_audio_info info{};if(!obs_get_audio_info(&info)||info.samples_per_sec!=rate){error="Taxa do projeto mudou; configure ASIO novamente";return false;}
++  for(size_t i=0;i<routes.size();i++){auto *source=obs_get_source_by_uuid(routes[i].uuid.c_str());if(!AsioPublicSource(source)){if(source)obs_source_release(source);error="Fonte ASIO removida, privada ou com feedback";Stop();return false;}taps.push_back(new Tap{this,i,source});}
++  auto *window=static_cast<QWidget *>(obs_frontend_get_main_window());if(!output.Start(driverId,routes,rate,buffer,window?reinterpret_cast<void *>(window->winId()):nullptr,error)){Stop();return false;}
++  lastCallbacks=0;lastCallbackAt=os_gettime_ns();for(auto *tap:taps){if(obs_source_get_audio_mixers(tap->source)==0){obs_source_inc_active(tap->source);tap->lease=true;}obs_source_add_audio_capture_callback(tap->source,Capture,tap);}error.clear();return true;
++ }
++ void State(obs_data_t *response){Init();const auto metrics=output.Metrics();OBSDataAutoRelease status=obs_data_create();obs_data_set_bool(status,"supported",true);obs_data_set_bool(status,"running",metrics.running);obs_data_set_bool(status,"configured",configured);obs_data_set_bool(status,"hardwareVerified",false);obs_data_set_bool(status,"autostart",false);obs_data_set_string(status,"driverId",driverId.c_str());obs_data_set_string(status,"error",error.c_str());obs_data_set_int(status,"sampleRate",metrics.running?metrics.sampleRate:rate);obs_data_set_int(status,"bufferFrames",metrics.bufferFrames);obs_data_set_int(status,"configuredBufferFrames",buffer);obs_data_set_int(status,"outputChannels",metrics.outputs);obs_data_set_int(status,"outputLatencyFrames",metrics.outputLatency);obs_data_set_double(status,"outputLatencyMs",metrics.sampleRate?double(metrics.outputLatency)*1000/metrics.sampleRate:0);obs_data_set_int(status,"callbacks",metrics.callbacks);obs_data_set_int(status,"frames",metrics.frames);obs_data_set_int(status,"underrunFrames",metrics.underrunFrames);obs_data_set_int(status,"overrunFrames",metrics.overrunFrames);obs_data_set_int(status,"invalidSamples",metrics.invalidSamples);obs_data_set_int(status,"clippedSamples",metrics.clippedSamples);obs_data_set_int(status,"fault",metrics.fault);
++  OBSDataArrayAutoRelease devices=obs_data_array_create();for(const auto &driver:FreeMixAsioOutput::Drivers()){OBSDataAutoRelease row=obs_data_create();obs_data_set_string(row,"id",driver.id.c_str());obs_data_set_string(row,"name",driver.name.c_str());obs_data_array_push_back(devices,row);}obs_data_set_array(status,"drivers",devices);
++  OBSDataArrayAutoRelease rows=obs_data_array_create();for(size_t i=0;i<routes.size();i++){const auto &route=routes[i];OBSDataAutoRelease row=obs_data_create();obs_data_set_string(row,"uuid",route.uuid.c_str());obs_data_set_int(row,"left",route.left);obs_data_set_int(row,"right",route.right);obs_data_set_double(row,"gain",route.gain);obs_data_set_int(row,"queuedFrames",metrics.queued[i]);obs_data_array_push_back(rows,row);}obs_data_set_array(status,"routes",rows);obs_data_set_obj(response,"asioOutputCapabilities",status);
++ }
++};
++AsioSession &Asio(){static auto *session=new AsioSession;return *session;} // process lifetime; qApp stop owns cleanup
++}
+ void FreeMixAudioRoutingRegister(){static bool registered=false;if(registered)return;registered=true;obs_source_info info{};info.id="freemix_audio_bus";info.type=OBS_SOURCE_TYPE_INPUT;info.output_flags=OBS_SOURCE_AUDIO|OBS_SOURCE_DO_NOT_DUPLICATE;info.get_name=[](void *){return "FreeMix Independent Audio Bus";};info.create=Create;info.destroy=Destroy;info.update=Update;info.icon_type=OBS_ICON_TYPE_AUDIO_OUTPUT;obs_register_source(&info);}
+ void FreeMixAudioCapabilitiesRequest(obs_data_t *request,obs_data_t *response,void *){
+  QMetaObject::invokeMethod(qApp,[request,response](){
++  auto &asio=Asio();const std::string asioAction=obs_data_get_string(request,"asioAction");bool asioOkay=true;
++  if(asioAction=="configure")asioOkay=asio.Configure(request);else if(asioAction=="start")asioOkay=asio.Start();else if(asioAction=="stop"){asio.Stop();asio.error.clear();}else if(asioAction=="control-panel")asioOkay=asio.output.ControlPanel(asio.error);else if(!asioAction.empty()&&asioAction!="state"){asio.error="Ação ASIO inválida";asioOkay=false;}
++  asio.State(response);if(!asioOkay){obs_data_set_bool(response,"success",false);obs_data_set_string(response,"error",asio.error.c_str());return;}
+   // Audio Monitor properties requires a live filter context and dereferences
+   // it unconditionally. Query libobs' WASAPI enumeration instead of passing
+   // nullptr through obs_get_source_properties("audio_monitor").
+-- 
+2.56.0.windows.1
+

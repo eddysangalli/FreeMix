@@ -1,0 +1,11 @@
+{
+  "status": "PASS",
+  "at": "2026-10-09T20:39:24.3399683Z",
+  "nativeBridgeCompileOnly": true,
+  "flags": "/WX /W3 /permissive- /EHsc /std:c++17 /MD /utf-8",
+  "physicalDriverOpened": false,
+  "operatorTouched": false,
+  "object": "qa-finalizacao/asio-output/bridge.obj",
+  "compiler": "MSVC 14.44.35207 x64",
+  "sharedBuildModified": false
+}

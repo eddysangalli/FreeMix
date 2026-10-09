@@ -1,9 +1,13 @@
 // Independent stereo submixes. No implicit connection to global recording mixes.
 #include "FreeMixAudioRouting.hpp"
+#include "FreeMixAsioOutput.hpp"
+#include <obs-frontend-api.h>
 #include <obs.hpp>
 #include <util/platform.h>
 #include <QCoreApplication>
 #include <QMetaObject>
+#include <QTimer>
+#include <QWidget>
 #include <algorithm>
 #include <atomic>
 #include <chrono>
@@ -136,9 +140,57 @@ std::unique_ptr<FreeMixSourceAudio> FreeMixSourceAudio::Open(const std::string &
 }
 audio_t *FreeMixSourceAudio::Audio()const{return impl->audio;}
 bool FreeMixSourceAudio::Valid()const{return FreeMixAudioBusAllowed(impl->source);}
+
+namespace {
+bool AsioPublicSource(obs_source_t *s){
+ if(!s||obs_source_removed(s)||!obs_source_enabled(s)||!(obs_source_get_output_flags(s)&OBS_SOURCE_AUDIO)||(obs_source_get_output_flags(s)&OBS_SOURCE_COMPOSITE))return false;
+ const std::string kind=obs_source_get_id(s);if(kind=="asio_input_capture"||kind=="wasapi_output_capture"||kind=="wasapi_process_output_capture")return false; // prevent hardware feedback loops
+ if(FreeMixAudioBusAllowed(s)){
+  OBSDataAutoRelease settings=obs_source_get_settings(s);OBSDataArrayAutoRelease members=obs_data_get_array(settings,"sources");if(!members||obs_data_array_count(members)>32)return false;
+  for(size_t i=0;i<obs_data_array_count(members);i++){OBSDataAutoRelease row=obs_data_array_item(members,i);OBSSourceAutoRelease member=obs_get_source_by_uuid(obs_data_get_string(row,"uuid"));if(!member||Private(member)||std::string(obs_source_get_id(member))=="asio_input_capture"||std::string(obs_source_get_id(member))=="wasapi_output_capture"||std::string(obs_source_get_id(member))=="wasapi_process_output_capture")return false;}
+  return true;
+ }
+ return !Private(s);
+}
+struct AsioSession {
+ struct Tap { AsioSession *owner; size_t route; obs_source_t *source; bool lease=false; };
+ FreeMixAsioOutput output;std::vector<FreeMixAsioRoute> routes;std::vector<Tap *> taps;
+ std::string driverId,error;long buffer=0;uint32_t rate=0;QTimer *timer=nullptr;bool configured=false;uint64_t lastCallbacks=0,lastCallbackAt=0;
+ static void Capture(void *param,obs_source_t *source,const audio_data *audio,bool muted){
+  auto *tap=static_cast<Tap *>(param);if(!audio||!audio->frames||audio->frames>8192)return;
+  OBSDataAutoRelease privateSettings=obs_source_get_private_settings(source);if(obs_source_removed(source)||!obs_source_enabled(source)||obs_data_get_bool(privateSettings,"freemix_director_private")){tap->owner->output.Silence(3);return;}
+  auto *left=reinterpret_cast<const float *>(audio->data[0]);auto *right=reinterpret_cast<const float *>(audio->data[1]);
+  tap->owner->output.Push(tap->route,left,right,audio->frames,muted?0.f:obs_source_get_volume(source));
+ }
+ void Stop(){for(auto *tap:taps)obs_source_remove_audio_capture_callback(tap->source,Capture,tap);output.Stop();for(auto *tap:taps){if(tap->lease)obs_source_dec_active(tap->source);obs_source_release(tap->source);delete tap;}taps.clear();}
+ static void Event(enum obs_frontend_event event,void *param){if(event==OBS_FRONTEND_EVENT_SCENE_COLLECTION_CHANGING||event==OBS_FRONTEND_EVENT_SCENE_COLLECTION_CLEANUP||event==OBS_FRONTEND_EVENT_PROFILE_CHANGING||event==OBS_FRONTEND_EVENT_EXIT){auto &self=*static_cast<AsioSession *>(param);self.Stop();self.configured=false;self.routes.clear();}}
+ void Init(){if(timer)return;timer=new QTimer(qApp);timer->setInterval(250);QObject::connect(timer,&QTimer::timeout,qApp,[this](){const auto status=output.Metrics();if(!status.running)return;const uint64_t now=os_gettime_ns();if(status.callbacks!=lastCallbacks){lastCallbacks=status.callbacks;lastCallbackAt=now;}if(now-lastCallbackAt>2000000000ULL){error="Saída parada: driver sem callbacks por dois segundos";output.Silence(4);Stop();return;}obs_audio_info info{};if(status.fault||!obs_get_audio_info(&info)||info.samples_per_sec!=rate){error=status.fault==3?"Saída parada: fonte removida ou mic privado":"Saída parada por mudança de clock, buffer ou taxa de áudio";Stop();return;}for(auto *tap:taps)if(!AsioPublicSource(tap->source)){output.Silence(3);error="Saída parada: fonte removida, privada ou rota de feedback";Stop();return;}});timer->start();QObject::connect(qApp,&QCoreApplication::aboutToQuit,qApp,[this](){Stop();});obs_frontend_add_event_callback(Event,this);}
+ bool Configure(obs_data_t *request){
+  if(output.Metrics().running){error="Pare ASIO antes de editar as rotas";return false;}
+  const std::string id=obs_data_get_string(request,"driverId");const auto drivers=FreeMixAsioOutput::Drivers();if(std::none_of(drivers.begin(),drivers.end(),[&](const auto &d){return d.id==id;})){error="Driver ASIO instalado não encontrado";return false;}
+  OBSDataArrayAutoRelease rows=obs_data_get_array(request,"routes");if(!rows||!obs_data_array_count(rows)||obs_data_array_count(rows)>8){error="Escolha de uma até oito rotas estéreo";return false;}
+  std::vector<FreeMixAsioRoute> next;std::set<int> used;for(size_t i=0;i<obs_data_array_count(rows);i++){OBSDataAutoRelease row=obs_data_array_item(rows,i);FreeMixAsioRoute route;route.uuid=obs_data_get_string(row,"uuid");route.left=int(obs_data_get_int(row,"left"));route.right=int(obs_data_get_int(row,"right"));route.gain=float(obs_data_has_user_value(row,"gain")?obs_data_get_double(row,"gain"):1);OBSSourceAutoRelease source=obs_get_source_by_uuid(route.uuid.c_str());if(!AsioPublicSource(source)||route.left<0||route.right<0||route.left>255||route.right>255||!used.insert(route.left).second||!used.insert(route.right).second||!std::isfinite(route.gain)||route.gain<0||route.gain>2){error="Fonte ASIO privada/ausente, feedback, ganho inválido ou canais repetidos";return false;}next.push_back(route);}
+  const int64_t requested=obs_data_get_int(request,"bufferFrames");if(requested<0||requested>8192||(requested>0&&requested<16)){error="Buffer deve ser automático (0) ou 16–8192 frames";return false;}
+  obs_audio_info info{};if(!obs_get_audio_info(&info)){error="Áudio do projeto indisponível";return false;}driverId=id;routes=std::move(next);buffer=long(requested);rate=info.samples_per_sec;configured=true;error.clear();return true;
+ }
+ bool Start(){if(!configured){error="Configure driver, fonte e canais antes de iniciar";return false;}if(output.Metrics().running){error="ASIO já está ativo";return false;}obs_audio_info info{};if(!obs_get_audio_info(&info)||info.samples_per_sec!=rate){error="Taxa do projeto mudou; configure ASIO novamente";return false;}
+  for(size_t i=0;i<routes.size();i++){auto *source=obs_get_source_by_uuid(routes[i].uuid.c_str());if(!AsioPublicSource(source)){if(source)obs_source_release(source);error="Fonte ASIO removida, privada ou com feedback";Stop();return false;}taps.push_back(new Tap{this,i,source});}
+  auto *window=static_cast<QWidget *>(obs_frontend_get_main_window());if(!output.Start(driverId,routes,rate,buffer,window?reinterpret_cast<void *>(window->winId()):nullptr,error)){Stop();return false;}
+  lastCallbacks=0;lastCallbackAt=os_gettime_ns();for(auto *tap:taps){if(obs_source_get_audio_mixers(tap->source)==0){obs_source_inc_active(tap->source);tap->lease=true;}obs_source_add_audio_capture_callback(tap->source,Capture,tap);}error.clear();return true;
+ }
+ void State(obs_data_t *response){Init();const auto metrics=output.Metrics();OBSDataAutoRelease status=obs_data_create();obs_data_set_bool(status,"supported",true);obs_data_set_bool(status,"running",metrics.running);obs_data_set_bool(status,"configured",configured);obs_data_set_bool(status,"hardwareVerified",false);obs_data_set_bool(status,"autostart",false);obs_data_set_string(status,"driverId",driverId.c_str());obs_data_set_string(status,"error",error.c_str());obs_data_set_int(status,"sampleRate",metrics.running?metrics.sampleRate:rate);obs_data_set_int(status,"bufferFrames",metrics.bufferFrames);obs_data_set_int(status,"configuredBufferFrames",buffer);obs_data_set_int(status,"outputChannels",metrics.outputs);obs_data_set_int(status,"outputLatencyFrames",metrics.outputLatency);obs_data_set_double(status,"outputLatencyMs",metrics.sampleRate?double(metrics.outputLatency)*1000/metrics.sampleRate:0);obs_data_set_int(status,"callbacks",metrics.callbacks);obs_data_set_int(status,"frames",metrics.frames);obs_data_set_int(status,"underrunFrames",metrics.underrunFrames);obs_data_set_int(status,"overrunFrames",metrics.overrunFrames);obs_data_set_int(status,"invalidSamples",metrics.invalidSamples);obs_data_set_int(status,"clippedSamples",metrics.clippedSamples);obs_data_set_int(status,"fault",metrics.fault);
+  OBSDataArrayAutoRelease devices=obs_data_array_create();for(const auto &driver:FreeMixAsioOutput::Drivers()){OBSDataAutoRelease row=obs_data_create();obs_data_set_string(row,"id",driver.id.c_str());obs_data_set_string(row,"name",driver.name.c_str());obs_data_array_push_back(devices,row);}obs_data_set_array(status,"drivers",devices);
+  OBSDataArrayAutoRelease rows=obs_data_array_create();for(size_t i=0;i<routes.size();i++){const auto &route=routes[i];OBSDataAutoRelease row=obs_data_create();obs_data_set_string(row,"uuid",route.uuid.c_str());obs_data_set_int(row,"left",route.left);obs_data_set_int(row,"right",route.right);obs_data_set_double(row,"gain",route.gain);obs_data_set_int(row,"queuedFrames",metrics.queued[i]);obs_data_array_push_back(rows,row);}obs_data_set_array(status,"routes",rows);obs_data_set_obj(response,"asioOutputCapabilities",status);
+ }
+};
+AsioSession &Asio(){static auto *session=new AsioSession;return *session;} // process lifetime; qApp stop owns cleanup
+}
 void FreeMixAudioRoutingRegister(){static bool registered=false;if(registered)return;registered=true;obs_source_info info{};info.id="freemix_audio_bus";info.type=OBS_SOURCE_TYPE_INPUT;info.output_flags=OBS_SOURCE_AUDIO|OBS_SOURCE_DO_NOT_DUPLICATE;info.get_name=[](void *){return "FreeMix Independent Audio Bus";};info.create=Create;info.destroy=Destroy;info.update=Update;info.icon_type=OBS_ICON_TYPE_AUDIO_OUTPUT;obs_register_source(&info);}
 void FreeMixAudioCapabilitiesRequest(obs_data_t *request,obs_data_t *response,void *){
  QMetaObject::invokeMethod(qApp,[request,response](){
+  auto &asio=Asio();const std::string asioAction=obs_data_get_string(request,"asioAction");bool asioOkay=true;
+  if(asioAction=="configure")asioOkay=asio.Configure(request);else if(asioAction=="start")asioOkay=asio.Start();else if(asioAction=="stop"){asio.Stop();asio.error.clear();}else if(asioAction=="control-panel")asioOkay=asio.output.ControlPanel(asio.error);else if(!asioAction.empty()&&asioAction!="state"){asio.error="Ação ASIO inválida";asioOkay=false;}
+  asio.State(response);if(!asioOkay){obs_data_set_bool(response,"success",false);obs_data_set_string(response,"error",asio.error.c_str());return;}
   // Audio Monitor properties requires a live filter context and dereferences
   // it unconditionally. Query libobs' WASAPI enumeration instead of passing
   // nullptr through obs_get_source_properties("audio_monitor").

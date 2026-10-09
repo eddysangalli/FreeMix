@@ -34,6 +34,8 @@ target_sources(
     widgets/FreeMixCallAudio.hpp
     widgets/FreeMixAudioRouting.cpp
     widgets/FreeMixAudioRouting.hpp
+    widgets/FreeMixAsioOutput.cpp
+    widgets/FreeMixAsioOutput.hpp
     widgets/FreeMixGlobalHotkeys.cpp
     widgets/FreeMixGlobalHotkeys.hpp
     widgets/FreeMixPreferences.cpp
