@@ -1,0 +1,3529 @@
+[
+  {
+    "at": "2026-10-09T21:28:00.5554005Z",
+    "nativePid": 149716,
+    "wallMs": 158001.10000002384,
+    "cursor": 127.2,
+    "processes": [
+      {
+        "pid": 149716,
+        "name": "FreeMix",
+        "workingSetBytes": 1054703616,
+        "privateBytes": 3784699904,
+        "cpuSeconds": 64.046875,
+        "threads": 173
+      },
+      {
+        "pid": 27048,
+        "name": "obs-browser-page",
+        "workingSetBytes": 27668480,
+        "privateBytes": 8982528,
+        "cpuSeconds": 0.5625,
+        "threads": 18
+      },
+      {
+        "pid": 106716,
+        "name": "obs-browser-page",
+        "workingSetBytes": 25391104,
+        "privateBytes": 11395072,
+        "cpuSeconds": 0.0,
+        "threads": 12
+      },
+      {
+        "pid": 135396,
+        "name": "obs-browser-page",
+        "workingSetBytes": 18423808,
+        "privateBytes": 7446528,
+        "cpuSeconds": 0.0625,
+        "threads": 8
+      },
+      {
+        "pid": 171788,
+        "name": "obs-browser-page",
+        "workingSetBytes": 154460160,
+        "privateBytes": 213446656,
+        "cpuSeconds": 12.734375,
+        "threads": 69
+      },
+      {
+        "pid": 173548,
+        "name": "obs-browser-page",
+        "workingSetBytes": 91983872,
+        "privateBytes": 52948992,
+        "cpuSeconds": 4.453125,
+        "threads": 26
+      },
+      {
+        "pid": 199024,
+        "name": "obs-browser-page",
+        "workingSetBytes": 19730432,
+        "privateBytes": 7122944,
+        "cpuSeconds": 0.234375,
+        "threads": 9
+      },
+      {
+        "pid": 70576,
+        "name": "obs-ffmpeg-mux",
+        "workingSetBytes": 11993088,
+        "privateBytes": 15802368,
+        "cpuSeconds": 0.71875,
+        "threads": 2
+      },
+      {
+        "pid": 71744,
+        "name": "obs-ffmpeg-mux",
+        "workingSetBytes": 13000704,
+        "privateBytes": 15884288,
+        "cpuSeconds": 1.296875,
+        "threads": 2
+      }
+    ]
+  },
+  {
+    "at": "2026-10-09T21:28:24.4370811Z",
+    "nativePid": 149716,
+    "wallMs": 182001.5,
+    "cursor": 151.2,
+    "processes": [
+      {
+        "pid": 149716,
+        "name": "FreeMix",
+        "workingSetBytes": 1054523392,
+        "privateBytes": 3784736768,
+        "cpuSeconds": 72.40625,
+        "threads": 172
+      },
+      {
+        "pid": 27048,
+        "name": "obs-browser-page",
+        "workingSetBytes": 27676672,
+        "privateBytes": 8982528,
+        "cpuSeconds": 0.578125,
+        "threads": 18
+      },
+      {
+        "pid": 106716,
+        "name": "obs-browser-page",
+        "workingSetBytes": 25391104,
+        "privateBytes": 11395072,
+        "cpuSeconds": 0.0,
+        "threads": 12
+      },
+      {
+        "pid": 135396,
+        "name": "obs-browser-page",
+        "workingSetBytes": 18423808,
+        "privateBytes": 7446528,
+        "cpuSeconds": 0.0625,
+        "threads": 8
+      },
+      {
+        "pid": 171788,
+        "name": "obs-browser-page",
+        "workingSetBytes": 154460160,
+        "privateBytes": 213434368,
+        "cpuSeconds": 14.328125,
+        "threads": 69
+      },
+      {
+        "pid": 173548,
+        "name": "obs-browser-page",
+        "workingSetBytes": 97558528,
+        "privateBytes": 56188928,
+        "cpuSeconds": 5.0,
+        "threads": 26
+      },
+      {
+        "pid": 199024,
+        "name": "obs-browser-page",
+        "workingSetBytes": 19730432,
+        "privateBytes": 7122944,
+        "cpuSeconds": 0.234375,
+        "threads": 9
+      },
+      {
+        "pid": 70576,
+        "name": "obs-ffmpeg-mux",
+        "workingSetBytes": 11952128,
+        "privateBytes": 15761408,
+        "cpuSeconds": 0.84375,
+        "threads": 2
+      },
+      {
+        "pid": 71744,
+        "name": "obs-ffmpeg-mux",
+        "workingSetBytes": 13012992,
+        "privateBytes": 15896576,
+        "cpuSeconds": 1.453125,
+        "threads": 2
+      }
+    ]
+  },
+  {
+    "at": "2026-10-09T21:28:48.1562774Z",
+    "nativePid": 149716,
+    "wallMs": 206000.5,
+    "cursor": 175.2,
+    "processes": [
+      {
+        "pid": 149716,
+        "name": "FreeMix",
+        "workingSetBytes": 1053868032,
+        "privateBytes": 3784736768,
+        "cpuSeconds": 80.09375,
+        "threads": 172
+      },
+      {
+        "pid": 27048,
+        "name": "obs-browser-page",
+        "workingSetBytes": 27697152,
+        "privateBytes": 8994816,
+        "cpuSeconds": 0.609375,
+        "threads": 19
+      },
+      {
+        "pid": 106716,
+        "name": "obs-browser-page",
+        "workingSetBytes": 25391104,
+        "privateBytes": 11395072,
+        "cpuSeconds": 0.0,
+        "threads": 12
+      },
+      {
+        "pid": 135396,
+        "name": "obs-browser-page",
+        "workingSetBytes": 18423808,
+        "privateBytes": 7446528,
+        "cpuSeconds": 0.0625,
+        "threads": 8
+      },
+      {
+        "pid": 171788,
+        "name": "obs-browser-page",
+        "workingSetBytes": 154431488,
+        "privateBytes": 213581824,
+        "cpuSeconds": 15.859375,
+        "threads": 69
+      },
+      {
+        "pid": 173548,
+        "name": "obs-browser-page",
+        "workingSetBytes": 93163520,
+        "privateBytes": 50757632,
+        "cpuSeconds": 5.65625,
+        "threads": 26
+      },
+      {
+        "pid": 199024,
+        "name": "obs-browser-page",
+        "workingSetBytes": 19730432,
+        "privateBytes": 7122944,
+        "cpuSeconds": 0.234375,
+        "threads": 9
+      },
+      {
+        "pid": 70576,
+        "name": "obs-ffmpeg-mux",
+        "workingSetBytes": 12005376,
+        "privateBytes": 15814656,
+        "cpuSeconds": 0.96875,
+        "threads": 2
+      },
+      {
+        "pid": 71744,
+        "name": "obs-ffmpeg-mux",
+        "workingSetBytes": 13021184,
+        "privateBytes": 15896576,
+        "cpuSeconds": 1.640625,
+        "threads": 2
+      }
+    ]
+  },
+  {
+    "at": "2026-10-09T21:29:11.8569130Z",
+    "nativePid": 149716,
+    "wallMs": 230000.90000009537,
+    "cursor": 199.2,
+    "processes": [
+      {
+        "pid": 149716,
+        "name": "FreeMix",
+        "workingSetBytes": 1035083776,
+        "privateBytes": 3784736768,
+        "cpuSeconds": 88.53125,
+        "threads": 172
+      },
+      {
+        "pid": 27048,
+        "name": "obs-browser-page",
+        "workingSetBytes": 27705344,
+        "privateBytes": 8994816,
+        "cpuSeconds": 0.671875,
+        "threads": 19
+      },
+      {
+        "pid": 106716,
+        "name": "obs-browser-page",
+        "workingSetBytes": 25391104,
+        "privateBytes": 11395072,
+        "cpuSeconds": 0.0,
+        "threads": 12
+      },
+      {
+        "pid": 135396,
+        "name": "obs-browser-page",
+        "workingSetBytes": 18427904,
+        "privateBytes": 7446528,
+        "cpuSeconds": 0.0625,
+        "threads": 8
+      },
+      {
+        "pid": 171788,
+        "name": "obs-browser-page",
+        "workingSetBytes": 154427392,
+        "privateBytes": 213577728,
+        "cpuSeconds": 17.6875,
+        "threads": 69
+      },
+      {
+        "pid": 173548,
+        "name": "obs-browser-page",
+        "workingSetBytes": 95485952,
+        "privateBytes": 53100544,
+        "cpuSeconds": 6.296875,
+        "threads": 26
+      },
+      {
+        "pid": 199024,
+        "name": "obs-browser-page",
+        "workingSetBytes": 19730432,
+        "privateBytes": 7122944,
+        "cpuSeconds": 0.234375,
+        "threads": 9
+      },
+      {
+        "pid": 70576,
+        "name": "obs-ffmpeg-mux",
+        "workingSetBytes": 12005376,
+        "privateBytes": 15814656,
+        "cpuSeconds": 1.109375,
+        "threads": 2
+      },
+      {
+        "pid": 71744,
+        "name": "obs-ffmpeg-mux",
+        "workingSetBytes": 13021184,
+        "privateBytes": 15896576,
+        "cpuSeconds": 1.921875,
+        "threads": 2
+      }
+    ]
+  },
+  {
+    "at": "2026-10-09T21:29:35.4872954Z",
+    "nativePid": 149716,
+    "wallMs": 254000.30000007153,
+    "cursor": 223.2,
+    "processes": [
+      {
+        "pid": 149716,
+        "name": "FreeMix",
+        "workingSetBytes": 1004150784,
+        "privateBytes": 3784728576,
+        "cpuSeconds": 96.6875,
+        "threads": 172
+      },
+      {
+        "pid": 27048,
+        "name": "obs-browser-page",
+        "workingSetBytes": 27713536,
+        "privateBytes": 8994816,
+        "cpuSeconds": 0.71875,
+        "threads": 19
+      },
+      {
+        "pid": 106716,
+        "name": "obs-browser-page",
+        "workingSetBytes": 25391104,
+        "privateBytes": 11395072,
+        "cpuSeconds": 0.0,
+        "threads": 12
+      },
+      {
+        "pid": 135396,
+        "name": "obs-browser-page",
+        "workingSetBytes": 18427904,
+        "privateBytes": 7446528,
+        "cpuSeconds": 0.0625,
+        "threads": 8
+      },
+      {
+        "pid": 171788,
+        "name": "obs-browser-page",
+        "workingSetBytes": 154402816,
+        "privateBytes": 213532672,
+        "cpuSeconds": 19.484375,
+        "threads": 68
+      },
+      {
+        "pid": 173548,
+        "name": "obs-browser-page",
+        "workingSetBytes": 98742272,
+        "privateBytes": 56553472,
+        "cpuSeconds": 6.8125,
+        "threads": 26
+      },
+      {
+        "pid": 199024,
+        "name": "obs-browser-page",
+        "workingSetBytes": 19730432,
+        "privateBytes": 7122944,
+        "cpuSeconds": 0.234375,
+        "threads": 9
+      },
+      {
+        "pid": 70576,
+        "name": "obs-ffmpeg-mux",
+        "workingSetBytes": 11988992,
+        "privateBytes": 15843328,
+        "cpuSeconds": 1.171875,
+        "threads": 2
+      },
+      {
+        "pid": 71744,
+        "name": "obs-ffmpeg-mux",
+        "workingSetBytes": 13021184,
+        "privateBytes": 15896576,
+        "cpuSeconds": 2.0625,
+        "threads": 2
+      }
+    ]
+  },
+  {
+    "at": "2026-10-09T21:29:59.1261038Z",
+    "nativePid": 149716,
+    "wallMs": 278000.90000009537,
+    "cursor": 247.2,
+    "processes": [
+      {
+        "pid": 149716,
+        "name": "FreeMix",
+        "workingSetBytes": 1004490752,
+        "privateBytes": 3784699904,
+        "cpuSeconds": 105.859375,
+        "threads": 172
+      },
+      {
+        "pid": 27048,
+        "name": "obs-browser-page",
+        "workingSetBytes": 27660288,
+        "privateBytes": 8900608,
+        "cpuSeconds": 0.75,
+        "threads": 17
+      },
+      {
+        "pid": 106716,
+        "name": "obs-browser-page",
+        "workingSetBytes": 25391104,
+        "privateBytes": 11395072,
+        "cpuSeconds": 0.0,
+        "threads": 12
+      },
+      {
+        "pid": 135396,
+        "name": "obs-browser-page",
+        "workingSetBytes": 18427904,
+        "privateBytes": 7446528,
+        "cpuSeconds": 0.0625,
+        "threads": 8
+      },
+      {
+        "pid": 171788,
+        "name": "obs-browser-page",
+        "workingSetBytes": 154386432,
+        "privateBytes": 213504000,
+        "cpuSeconds": 21.265625,
+        "threads": 67
+      },
+      {
+        "pid": 173548,
+        "name": "obs-browser-page",
+        "workingSetBytes": 100470784,
+        "privateBytes": 57888768,
+        "cpuSeconds": 7.421875,
+        "threads": 26
+      },
+      {
+        "pid": 199024,
+        "name": "obs-browser-page",
+        "workingSetBytes": 19730432,
+        "privateBytes": 7122944,
+        "cpuSeconds": 0.234375,
+        "threads": 9
+      },
+      {
+        "pid": 70576,
+        "name": "obs-ffmpeg-mux",
+        "workingSetBytes": 12017664,
+        "privateBytes": 15843328,
+        "cpuSeconds": 1.28125,
+        "threads": 2
+      },
+      {
+        "pid": 71744,
+        "name": "obs-ffmpeg-mux",
+        "workingSetBytes": 13033472,
+        "privateBytes": 15929344,
+        "cpuSeconds": 2.296875,
+        "threads": 2
+      }
+    ]
+  },
+  {
+    "at": "2026-10-09T21:30:22.7333041Z",
+    "nativePid": 149716,
+    "wallMs": 302000.5,
+    "cursor": 271.2,
+    "processes": [
+      {
+        "pid": 149716,
+        "name": "FreeMix",
+        "workingSetBytes": 1004728320,
+        "privateBytes": 3784921088,
+        "cpuSeconds": 113.71875,
+        "threads": 171
+      },
+      {
+        "pid": 27048,
+        "name": "obs-browser-page",
+        "workingSetBytes": 27803648,
+        "privateBytes": 8957952,
+        "cpuSeconds": 0.828125,
+        "threads": 18
+      },
+      {
+        "pid": 106716,
+        "name": "obs-browser-page",
+        "workingSetBytes": 25505792,
+        "privateBytes": 11436032,
+        "cpuSeconds": 0.0,
+        "threads": 13
+      },
+      {
+        "pid": 135396,
+        "name": "obs-browser-page",
+        "workingSetBytes": 18538496,
+        "privateBytes": 7487488,
+        "cpuSeconds": 0.0625,
+        "threads": 9
+      },
+      {
+        "pid": 171788,
+        "name": "obs-browser-page",
+        "workingSetBytes": 154693632,
+        "privateBytes": 213594112,
+        "cpuSeconds": 23.078125,
+        "threads": 68
+      },
+      {
+        "pid": 173548,
+        "name": "obs-browser-page",
+        "workingSetBytes": 94519296,
+        "privateBytes": 51163136,
+        "cpuSeconds": 7.921875,
+        "threads": 27
+      },
+      {
+        "pid": 199024,
+        "name": "obs-browser-page",
+        "workingSetBytes": 19845120,
+        "privateBytes": 7159808,
+        "cpuSeconds": 0.234375,
+        "threads": 10
+      },
+      {
+        "pid": 70576,
+        "name": "obs-ffmpeg-mux",
+        "workingSetBytes": 12144640,
+        "privateBytes": 15912960,
+        "cpuSeconds": 1.359375,
+        "threads": 3
+      },
+      {
+        "pid": 71744,
+        "name": "obs-ffmpeg-mux",
+        "workingSetBytes": 13139968,
+        "privateBytes": 15962112,
+        "cpuSeconds": 2.375,
+        "threads": 3
+      }
+    ]
+  },
+  {
+    "at": "2026-10-09T21:30:46.4124681Z",
+    "nativePid": 149716,
+    "wallMs": 324001.3000000715,
+    "cursor": 293.2,
+    "processes": [
+      {
+        "pid": 149716,
+        "name": "FreeMix",
+        "workingSetBytes": 1004830720,
+        "privateBytes": 3784966144,
+        "cpuSeconds": 122.546875,
+        "threads": 171
+      },
+      {
+        "pid": 27048,
+        "name": "obs-browser-page",
+        "workingSetBytes": 27807744,
+        "privateBytes": 8957952,
+        "cpuSeconds": 0.90625,
+        "threads": 18
+      },
+      {
+        "pid": 106716,
+        "name": "obs-browser-page",
+        "workingSetBytes": 25505792,
+        "privateBytes": 11436032,
+        "cpuSeconds": 0.0,
+        "threads": 13
+      },
+      {
+        "pid": 135396,
+        "name": "obs-browser-page",
+        "workingSetBytes": 18538496,
+        "privateBytes": 7487488,
+        "cpuSeconds": 0.0625,
+        "threads": 9
+      },
+      {
+        "pid": 171788,
+        "name": "obs-browser-page",
+        "workingSetBytes": 154689536,
+        "privateBytes": 213594112,
+        "cpuSeconds": 24.71875,
+        "threads": 68
+      },
+      {
+        "pid": 173548,
+        "name": "obs-browser-page",
+        "workingSetBytes": 97050624,
+        "privateBytes": 53977088,
+        "cpuSeconds": 8.515625,
+        "threads": 27
+      },
+      {
+        "pid": 199024,
+        "name": "obs-browser-page",
+        "workingSetBytes": 19845120,
+        "privateBytes": 7159808,
+        "cpuSeconds": 0.25,
+        "threads": 10
+      },
+      {
+        "pid": 70576,
+        "name": "obs-ffmpeg-mux",
+        "workingSetBytes": 12148736,
+        "privateBytes": 15908864,
+        "cpuSeconds": 1.375,
+        "threads": 3
+      },
+      {
+        "pid": 71744,
+        "name": "obs-ffmpeg-mux",
+        "workingSetBytes": 13144064,
+        "privateBytes": 15962112,
+        "cpuSeconds": 2.515625,
+        "threads": 3
+      }
+    ]
+  },
+  {
+    "at": "2026-10-09T21:31:09.9214595Z",
+    "nativePid": 149716,
+    "wallMs": 348000.8000000715,
+    "cursor": 317.2,
+    "processes": [
+      {
+        "pid": 149716,
+        "name": "FreeMix",
+        "workingSetBytes": 1004937216,
+        "privateBytes": 3785060352,
+        "cpuSeconds": 130.21875,
+        "threads": 171
+      },
+      {
+        "pid": 27048,
+        "name": "obs-browser-page",
+        "workingSetBytes": 27811840,
+        "privateBytes": 8957952,
+        "cpuSeconds": 0.984375,
+        "threads": 18
+      },
+      {
+        "pid": 106716,
+        "name": "obs-browser-page",
+        "workingSetBytes": 25505792,
+        "privateBytes": 11436032,
+        "cpuSeconds": 0.0,
+        "threads": 13
+      },
+      {
+        "pid": 135396,
+        "name": "obs-browser-page",
+        "workingSetBytes": 18538496,
+        "privateBytes": 7487488,
+        "cpuSeconds": 0.0625,
+        "threads": 9
+      },
+      {
+        "pid": 171788,
+        "name": "obs-browser-page",
+        "workingSetBytes": 154685440,
+        "privateBytes": 213594112,
+        "cpuSeconds": 26.3125,
+        "threads": 68
+      },
+      {
+        "pid": 173548,
+        "name": "obs-browser-page",
+        "workingSetBytes": 99717120,
+        "privateBytes": 56971264,
+        "cpuSeconds": 9.1875,
+        "threads": 27
+      },
+      {
+        "pid": 199024,
+        "name": "obs-browser-page",
+        "workingSetBytes": 19845120,
+        "privateBytes": 7159808,
+        "cpuSeconds": 0.25,
+        "threads": 10
+      },
+      {
+        "pid": 70576,
+        "name": "obs-ffmpeg-mux",
+        "workingSetBytes": 12156928,
+        "privateBytes": 15908864,
+        "cpuSeconds": 1.4375,
+        "threads": 3
+      },
+      {
+        "pid": 71744,
+        "name": "obs-ffmpeg-mux",
+        "workingSetBytes": 13144064,
+        "privateBytes": 15962112,
+        "cpuSeconds": 2.703125,
+        "threads": 3
+      }
+    ]
+  },
+  {
+    "at": "2026-10-09T21:31:33.6741709Z",
+    "nativePid": 149716,
+    "wallMs": 372000.2000000477,
+    "cursor": 341.2,
+    "processes": [
+      {
+        "pid": 149716,
+        "name": "FreeMix",
+        "workingSetBytes": 1004941312,
+        "privateBytes": 3785060352,
+        "cpuSeconds": 138.5625,
+        "threads": 171
+      },
+      {
+        "pid": 27048,
+        "name": "obs-browser-page",
+        "workingSetBytes": 27820032,
+        "privateBytes": 8957952,
+        "cpuSeconds": 1.015625,
+        "threads": 18
+      },
+      {
+        "pid": 106716,
+        "name": "obs-browser-page",
+        "workingSetBytes": 25505792,
+        "privateBytes": 11436032,
+        "cpuSeconds": 0.0,
+        "threads": 13
+      },
+      {
+        "pid": 135396,
+        "name": "obs-browser-page",
+        "workingSetBytes": 18538496,
+        "privateBytes": 7487488,
+        "cpuSeconds": 0.0625,
+        "threads": 9
+      },
+      {
+        "pid": 171788,
+        "name": "obs-browser-page",
+        "workingSetBytes": 154718208,
+        "privateBytes": 213585920,
+        "cpuSeconds": 27.96875,
+        "threads": 68
+      },
+      {
+        "pid": 173548,
+        "name": "obs-browser-page",
+        "workingSetBytes": 93966336,
+        "privateBytes": 50262016,
+        "cpuSeconds": 9.59375,
+        "threads": 27
+      },
+      {
+        "pid": 199024,
+        "name": "obs-browser-page",
+        "workingSetBytes": 19845120,
+        "privateBytes": 7159808,
+        "cpuSeconds": 0.25,
+        "threads": 10
+      },
+      {
+        "pid": 70576,
+        "name": "obs-ffmpeg-mux",
+        "workingSetBytes": 12156928,
+        "privateBytes": 15908864,
+        "cpuSeconds": 1.515625,
+        "threads": 3
+      },
+      {
+        "pid": 71744,
+        "name": "obs-ffmpeg-mux",
+        "workingSetBytes": 13144064,
+        "privateBytes": 15962112,
+        "cpuSeconds": 2.796875,
+        "threads": 3
+      }
+    ]
+  },
+  {
+    "at": "2026-10-09T21:31:57.3894600Z",
+    "nativePid": 149716,
+    "wallMs": 396000.7000000477,
+    "cursor": 365.2,
+    "processes": [
+      {
+        "pid": 149716,
+        "name": "FreeMix",
+        "workingSetBytes": 1005031424,
+        "privateBytes": 3785154560,
+        "cpuSeconds": 147.015625,
+        "threads": 171
+      },
+      {
+        "pid": 27048,
+        "name": "obs-browser-page",
+        "workingSetBytes": 27803648,
+        "privateBytes": 8925184,
+        "cpuSeconds": 1.046875,
+        "threads": 17
+      },
+      {
+        "pid": 106716,
+        "name": "obs-browser-page",
+        "workingSetBytes": 25526272,
+        "privateBytes": 11403264,
+        "cpuSeconds": 0.0,
+        "threads": 12
+      },
+      {
+        "pid": 135396,
+        "name": "obs-browser-page",
+        "workingSetBytes": 18558976,
+        "privateBytes": 7450624,
+        "cpuSeconds": 0.0625,
+        "threads": 8
+      },
+      {
+        "pid": 171788,
+        "name": "obs-browser-page",
+        "workingSetBytes": 154718208,
+        "privateBytes": 213569536,
+        "cpuSeconds": 29.703125,
+        "threads": 67
+      },
+      {
+        "pid": 173548,
+        "name": "obs-browser-page",
+        "workingSetBytes": 96546816,
+        "privateBytes": 53096448,
+        "cpuSeconds": 10.03125,
+        "threads": 26
+      },
+      {
+        "pid": 199024,
+        "name": "obs-browser-page",
+        "workingSetBytes": 19845120,
+        "privateBytes": 7159808,
+        "cpuSeconds": 0.25,
+        "threads": 10
+      },
+      {
+        "pid": 70576,
+        "name": "obs-ffmpeg-mux",
+        "workingSetBytes": 12165120,
+        "privateBytes": 15872000,
+        "cpuSeconds": 1.671875,
+        "threads": 2
+      },
+      {
+        "pid": 71744,
+        "name": "obs-ffmpeg-mux",
+        "workingSetBytes": 13135872,
+        "privateBytes": 15896576,
+        "cpuSeconds": 3.09375,
+        "threads": 2
+      }
+    ]
+  },
+  {
+    "at": "2026-10-09T21:32:21.0244584Z",
+    "nativePid": 149716,
+    "wallMs": 420001.3000000715,
+    "cursor": 389.2,
+    "processes": [
+      {
+        "pid": 149716,
+        "name": "FreeMix",
+        "workingSetBytes": 1005305856,
+        "privateBytes": 3785424896,
+        "cpuSeconds": 155.671875,
+        "threads": 171
+      },
+      {
+        "pid": 27048,
+        "name": "obs-browser-page",
+        "workingSetBytes": 27815936,
+        "privateBytes": 8925184,
+        "cpuSeconds": 1.109375,
+        "threads": 17
+      },
+      {
+        "pid": 106716,
+        "name": "obs-browser-page",
+        "workingSetBytes": 25526272,
+        "privateBytes": 11403264,
+        "cpuSeconds": 0.0,
+        "threads": 12
+      },
+      {
+        "pid": 135396,
+        "name": "obs-browser-page",
+        "workingSetBytes": 18554880,
+        "privateBytes": 7446528,
+        "cpuSeconds": 0.078125,
+        "threads": 8
+      },
+      {
+        "pid": 171788,
+        "name": "obs-browser-page",
+        "workingSetBytes": 154701824,
+        "privateBytes": 213565440,
+        "cpuSeconds": 31.28125,
+        "threads": 67
+      },
+      {
+        "pid": 173548,
+        "name": "obs-browser-page",
+        "workingSetBytes": 99147776,
+        "privateBytes": 56041472,
+        "cpuSeconds": 10.65625,
+        "threads": 26
+      },
+      {
+        "pid": 199024,
+        "name": "obs-browser-page",
+        "workingSetBytes": 19824640,
+        "privateBytes": 7122944,
+        "cpuSeconds": 0.25,
+        "threads": 9
+      },
+      {
+        "pid": 70576,
+        "name": "obs-ffmpeg-mux",
+        "workingSetBytes": 12165120,
+        "privateBytes": 15872000,
+        "cpuSeconds": 1.765625,
+        "threads": 2
+      },
+      {
+        "pid": 71744,
+        "name": "obs-ffmpeg-mux",
+        "workingSetBytes": 13160448,
+        "privateBytes": 15929344,
+        "cpuSeconds": 3.25,
+        "threads": 2
+      }
+    ]
+  },
+  {
+    "at": "2026-10-09T21:32:44.6863335Z",
+    "nativePid": 149716,
+    "wallMs": 442000.60000002384,
+    "cursor": 411.2,
+    "processes": [
+      {
+        "pid": 149716,
+        "name": "FreeMix",
+        "workingSetBytes": 1005469696,
+        "privateBytes": 3785572352,
+        "cpuSeconds": 163.1875,
+        "threads": 170
+      },
+      {
+        "pid": 27048,
+        "name": "obs-browser-page",
+        "workingSetBytes": 27820032,
+        "privateBytes": 8925184,
+        "cpuSeconds": 1.140625,
+        "threads": 17
+      },
+      {
+        "pid": 106716,
+        "name": "obs-browser-page",
+        "workingSetBytes": 25526272,
+        "privateBytes": 11403264,
+        "cpuSeconds": 0.0,
+        "threads": 12
+      },
+      {
+        "pid": 135396,
+        "name": "obs-browser-page",
+        "workingSetBytes": 18554880,
+        "privateBytes": 7446528,
+        "cpuSeconds": 0.078125,
+        "threads": 8
+      },
+      {
+        "pid": 171788,
+        "name": "obs-browser-page",
+        "workingSetBytes": 154718208,
+        "privateBytes": 213573632,
+        "cpuSeconds": 33.1875,
+        "threads": 67
+      },
+      {
+        "pid": 173548,
+        "name": "obs-browser-page",
+        "workingSetBytes": 101707776,
+        "privateBytes": 58781696,
+        "cpuSeconds": 11.1875,
+        "threads": 26
+      },
+      {
+        "pid": 199024,
+        "name": "obs-browser-page",
+        "workingSetBytes": 19824640,
+        "privateBytes": 7122944,
+        "cpuSeconds": 0.25,
+        "threads": 9
+      },
+      {
+        "pid": 70576,
+        "name": "obs-ffmpeg-mux",
+        "workingSetBytes": 12165120,
+        "privateBytes": 15872000,
+        "cpuSeconds": 1.921875,
+        "threads": 2
+      },
+      {
+        "pid": 71744,
+        "name": "obs-ffmpeg-mux",
+        "workingSetBytes": 13160448,
+        "privateBytes": 15929344,
+        "cpuSeconds": 3.453125,
+        "threads": 2
+      }
+    ]
+  },
+  {
+    "at": "2026-10-09T21:33:08.3610462Z",
+    "nativePid": 149716,
+    "wallMs": 466000.2000000477,
+    "cursor": 435.2,
+    "processes": [
+      {
+        "pid": 149716,
+        "name": "FreeMix",
+        "workingSetBytes": 1005506560,
+        "privateBytes": 3785601024,
+        "cpuSeconds": 171.546875,
+        "threads": 171
+      },
+      {
+        "pid": 27048,
+        "name": "obs-browser-page",
+        "workingSetBytes": 27828224,
+        "privateBytes": 8925184,
+        "cpuSeconds": 1.203125,
+        "threads": 17
+      },
+      {
+        "pid": 106716,
+        "name": "obs-browser-page",
+        "workingSetBytes": 25526272,
+        "privateBytes": 11403264,
+        "cpuSeconds": 0.0,
+        "threads": 12
+      },
+      {
+        "pid": 135396,
+        "name": "obs-browser-page",
+        "workingSetBytes": 18554880,
+        "privateBytes": 7446528,
+        "cpuSeconds": 0.078125,
+        "threads": 8
+      },
+      {
+        "pid": 171788,
+        "name": "obs-browser-page",
+        "workingSetBytes": 154718208,
+        "privateBytes": 213569536,
+        "cpuSeconds": 34.859375,
+        "threads": 67
+      },
+      {
+        "pid": 173548,
+        "name": "obs-browser-page",
+        "workingSetBytes": 95653888,
+        "privateBytes": 52051968,
+        "cpuSeconds": 11.640625,
+        "threads": 26
+      },
+      {
+        "pid": 199024,
+        "name": "obs-browser-page",
+        "workingSetBytes": 19824640,
+        "privateBytes": 7122944,
+        "cpuSeconds": 0.25,
+        "threads": 9
+      },
+      {
+        "pid": 70576,
+        "name": "obs-ffmpeg-mux",
+        "workingSetBytes": 12165120,
+        "privateBytes": 15872000,
+        "cpuSeconds": 1.984375,
+        "threads": 2
+      },
+      {
+        "pid": 71744,
+        "name": "obs-ffmpeg-mux",
+        "workingSetBytes": 13160448,
+        "privateBytes": 15929344,
+        "cpuSeconds": 3.59375,
+        "threads": 2
+      }
+    ]
+  },
+  {
+    "at": "2026-10-09T21:33:31.9402852Z",
+    "nativePid": 149716,
+    "wallMs": 490001,
+    "cursor": 459.2,
+    "processes": [
+      {
+        "pid": 149716,
+        "name": "FreeMix",
+        "workingSetBytes": 1005518848,
+        "privateBytes": 3785609216,
+        "cpuSeconds": 179.21875,
+        "threads": 171
+      },
+      {
+        "pid": 27048,
+        "name": "obs-browser-page",
+        "workingSetBytes": 27840512,
+        "privateBytes": 8925184,
+        "cpuSeconds": 1.21875,
+        "threads": 17
+      },
+      {
+        "pid": 106716,
+        "name": "obs-browser-page",
+        "workingSetBytes": 25526272,
+        "privateBytes": 11403264,
+        "cpuSeconds": 0.0,
+        "threads": 12
+      },
+      {
+        "pid": 135396,
+        "name": "obs-browser-page",
+        "workingSetBytes": 18554880,
+        "privateBytes": 7446528,
+        "cpuSeconds": 0.078125,
+        "threads": 8
+      },
+      {
+        "pid": 171788,
+        "name": "obs-browser-page",
+        "workingSetBytes": 154714112,
+        "privateBytes": 213569536,
+        "cpuSeconds": 36.84375,
+        "threads": 67
+      },
+      {
+        "pid": 173548,
+        "name": "obs-browser-page",
+        "workingSetBytes": 98234368,
+        "privateBytes": 54882304,
+        "cpuSeconds": 12.03125,
+        "threads": 26
+      },
+      {
+        "pid": 199024,
+        "name": "obs-browser-page",
+        "workingSetBytes": 19824640,
+        "privateBytes": 7122944,
+        "cpuSeconds": 0.265625,
+        "threads": 9
+      },
+      {
+        "pid": 70576,
+        "name": "obs-ffmpeg-mux",
+        "workingSetBytes": 12165120,
+        "privateBytes": 15872000,
+        "cpuSeconds": 2.0625,
+        "threads": 2
+      },
+      {
+        "pid": 71744,
+        "name": "obs-ffmpeg-mux",
+        "workingSetBytes": 13160448,
+        "privateBytes": 15929344,
+        "cpuSeconds": 3.734375,
+        "threads": 2
+      }
+    ]
+  },
+  {
+    "at": "2026-10-09T21:33:55.4110265Z",
+    "nativePid": 149716,
+    "wallMs": 514000.8000000715,
+    "cursor": 483.2,
+    "processes": [
+      {
+        "pid": 149716,
+        "name": "FreeMix",
+        "workingSetBytes": 1005531136,
+        "privateBytes": 3785580544,
+        "cpuSeconds": 186.984375,
+        "threads": 171
+      },
+      {
+        "pid": 27048,
+        "name": "obs-browser-page",
+        "workingSetBytes": 27844608,
+        "privateBytes": 8904704,
+        "cpuSeconds": 1.28125,
+        "threads": 17
+      },
+      {
+        "pid": 106716,
+        "name": "obs-browser-page",
+        "workingSetBytes": 25526272,
+        "privateBytes": 11403264,
+        "cpuSeconds": 0.0,
+        "threads": 12
+      },
+      {
+        "pid": 135396,
+        "name": "obs-browser-page",
+        "workingSetBytes": 18554880,
+        "privateBytes": 7446528,
+        "cpuSeconds": 0.078125,
+        "threads": 8
+      },
+      {
+        "pid": 171788,
+        "name": "obs-browser-page",
+        "workingSetBytes": 154918912,
+        "privateBytes": 213782528,
+        "cpuSeconds": 38.703125,
+        "threads": 67
+      },
+      {
+        "pid": 173548,
+        "name": "obs-browser-page",
+        "workingSetBytes": 100872192,
+        "privateBytes": 57839616,
+        "cpuSeconds": 12.703125,
+        "threads": 26
+      },
+      {
+        "pid": 199024,
+        "name": "obs-browser-page",
+        "workingSetBytes": 19824640,
+        "privateBytes": 7122944,
+        "cpuSeconds": 0.265625,
+        "threads": 9
+      },
+      {
+        "pid": 70576,
+        "name": "obs-ffmpeg-mux",
+        "workingSetBytes": 12165120,
+        "privateBytes": 15872000,
+        "cpuSeconds": 2.171875,
+        "threads": 2
+      },
+      {
+        "pid": 71744,
+        "name": "obs-ffmpeg-mux",
+        "workingSetBytes": 13160448,
+        "privateBytes": 15929344,
+        "cpuSeconds": 3.84375,
+        "threads": 2
+      }
+    ]
+  },
+  {
+    "at": "2026-10-09T21:34:18.8901210Z",
+    "nativePid": 149716,
+    "wallMs": 538001,
+    "cursor": 507.2,
+    "processes": [
+      {
+        "pid": 149716,
+        "name": "FreeMix",
+        "workingSetBytes": 1005699072,
+        "privateBytes": 3785744384,
+        "cpuSeconds": 194.90625,
+        "threads": 171
+      },
+      {
+        "pid": 27048,
+        "name": "obs-browser-page",
+        "workingSetBytes": 27881472,
+        "privateBytes": 8945664,
+        "cpuSeconds": 1.3125,
+        "threads": 17
+      },
+      {
+        "pid": 106716,
+        "name": "obs-browser-page",
+        "workingSetBytes": 25526272,
+        "privateBytes": 11403264,
+        "cpuSeconds": 0.0,
+        "threads": 12
+      },
+      {
+        "pid": 135396,
+        "name": "obs-browser-page",
+        "workingSetBytes": 18554880,
+        "privateBytes": 7446528,
+        "cpuSeconds": 0.078125,
+        "threads": 8
+      },
+      {
+        "pid": 171788,
+        "name": "obs-browser-page",
+        "workingSetBytes": 155004928,
+        "privateBytes": 213843968,
+        "cpuSeconds": 40.171875,
+        "threads": 67
+      },
+      {
+        "pid": 173548,
+        "name": "obs-browser-page",
+        "workingSetBytes": 93908992,
+        "privateBytes": 50028544,
+        "cpuSeconds": 13.296875,
+        "threads": 26
+      },
+      {
+        "pid": 199024,
+        "name": "obs-browser-page",
+        "workingSetBytes": 19824640,
+        "privateBytes": 7122944,
+        "cpuSeconds": 0.265625,
+        "threads": 9
+      },
+      {
+        "pid": 70576,
+        "name": "obs-ffmpeg-mux",
+        "workingSetBytes": 12165120,
+        "privateBytes": 15872000,
+        "cpuSeconds": 2.28125,
+        "threads": 2
+      },
+      {
+        "pid": 71744,
+        "name": "obs-ffmpeg-mux",
+        "workingSetBytes": 13160448,
+        "privateBytes": 15929344,
+        "cpuSeconds": 4.109375,
+        "threads": 2
+      }
+    ]
+  },
+  {
+    "at": "2026-10-09T21:34:42.5430044Z",
+    "nativePid": 149716,
+    "wallMs": 560001.1000000238,
+    "cursor": 529.2,
+    "processes": [
+      {
+        "pid": 149716,
+        "name": "FreeMix",
+        "workingSetBytes": 1005776896,
+        "privateBytes": 3785863168,
+        "cpuSeconds": 203.84375,
+        "threads": 171
+      },
+      {
+        "pid": 27048,
+        "name": "obs-browser-page",
+        "workingSetBytes": 27893760,
+        "privateBytes": 8945664,
+        "cpuSeconds": 1.359375,
+        "threads": 17
+      },
+      {
+        "pid": 106716,
+        "name": "obs-browser-page",
+        "workingSetBytes": 25526272,
+        "privateBytes": 11403264,
+        "cpuSeconds": 0.0,
+        "threads": 12
+      },
+      {
+        "pid": 135396,
+        "name": "obs-browser-page",
+        "workingSetBytes": 18554880,
+        "privateBytes": 7446528,
+        "cpuSeconds": 0.078125,
+        "threads": 8
+      },
+      {
+        "pid": 171788,
+        "name": "obs-browser-page",
+        "workingSetBytes": 155000832,
+        "privateBytes": 213839872,
+        "cpuSeconds": 41.765625,
+        "threads": 67
+      },
+      {
+        "pid": 173548,
+        "name": "obs-browser-page",
+        "workingSetBytes": 96817152,
+        "privateBytes": 53276672,
+        "cpuSeconds": 13.96875,
+        "threads": 26
+      },
+      {
+        "pid": 199024,
+        "name": "obs-browser-page",
+        "workingSetBytes": 19824640,
+        "privateBytes": 7122944,
+        "cpuSeconds": 0.265625,
+        "threads": 9
+      },
+      {
+        "pid": 70576,
+        "name": "obs-ffmpeg-mux",
+        "workingSetBytes": 12165120,
+        "privateBytes": 15872000,
+        "cpuSeconds": 2.375,
+        "threads": 2
+      },
+      {
+        "pid": 71744,
+        "name": "obs-ffmpeg-mux",
+        "workingSetBytes": 13160448,
+        "privateBytes": 15929344,
+        "cpuSeconds": 4.25,
+        "threads": 2
+      }
+    ]
+  },
+  {
+    "at": "2026-10-09T21:35:06.1551022Z",
+    "nativePid": 149716,
+    "wallMs": 584000.8000000715,
+    "cursor": 553.2,
+    "processes": [
+      {
+        "pid": 149716,
+        "name": "FreeMix",
+        "workingSetBytes": 1006096384,
+        "privateBytes": 3786174464,
+        "cpuSeconds": 211.640625,
+        "threads": 172
+      },
+      {
+        "pid": 27048,
+        "name": "obs-browser-page",
+        "workingSetBytes": 27901952,
+        "privateBytes": 8945664,
+        "cpuSeconds": 1.484375,
+        "threads": 17
+      },
+      {
+        "pid": 106716,
+        "name": "obs-browser-page",
+        "workingSetBytes": 25526272,
+        "privateBytes": 11403264,
+        "cpuSeconds": 0.0,
+        "threads": 12
+      },
+      {
+        "pid": 135396,
+        "name": "obs-browser-page",
+        "workingSetBytes": 18554880,
+        "privateBytes": 7446528,
+        "cpuSeconds": 0.078125,
+        "threads": 8
+      },
+      {
+        "pid": 171788,
+        "name": "obs-browser-page",
+        "workingSetBytes": 155000832,
+        "privateBytes": 213843968,
+        "cpuSeconds": 43.3125,
+        "threads": 67
+      },
+      {
+        "pid": 173548,
+        "name": "obs-browser-page",
+        "workingSetBytes": 99160064,
+        "privateBytes": 55984128,
+        "cpuSeconds": 14.515625,
+        "threads": 26
+      },
+      {
+        "pid": 199024,
+        "name": "obs-browser-page",
+        "workingSetBytes": 19824640,
+        "privateBytes": 7122944,
+        "cpuSeconds": 0.265625,
+        "threads": 9
+      },
+      {
+        "pid": 70576,
+        "name": "obs-ffmpeg-mux",
+        "workingSetBytes": 12181504,
+        "privateBytes": 15904768,
+        "cpuSeconds": 2.4375,
+        "threads": 3
+      },
+      {
+        "pid": 71744,
+        "name": "obs-ffmpeg-mux",
+        "workingSetBytes": 13189120,
+        "privateBytes": 15974400,
+        "cpuSeconds": 4.4375,
+        "threads": 3
+      }
+    ]
+  },
+  {
+    "at": "2026-10-09T21:35:29.8447727Z",
+    "nativePid": 149716,
+    "wallMs": 608000.6000000238,
+    "cursor": 577.2,
+    "processes": [
+      {
+        "pid": 149716,
+        "name": "FreeMix",
+        "workingSetBytes": 1006202880,
+        "privateBytes": 3786264576,
+        "cpuSeconds": 220.28125,
+        "threads": 172
+      },
+      {
+        "pid": 27048,
+        "name": "obs-browser-page",
+        "workingSetBytes": 27971584,
+        "privateBytes": 9007104,
+        "cpuSeconds": 1.515625,
+        "threads": 19
+      },
+      {
+        "pid": 106716,
+        "name": "obs-browser-page",
+        "workingSetBytes": 25579520,
+        "privateBytes": 11476992,
+        "cpuSeconds": 0.0,
+        "threads": 14
+      },
+      {
+        "pid": 135396,
+        "name": "obs-browser-page",
+        "workingSetBytes": 18612224,
+        "privateBytes": 7516160,
+        "cpuSeconds": 0.078125,
+        "threads": 10
+      },
+      {
+        "pid": 171788,
+        "name": "obs-browser-page",
+        "workingSetBytes": 155021312,
+        "privateBytes": 213860352,
+        "cpuSeconds": 44.84375,
+        "threads": 68
+      },
+      {
+        "pid": 173548,
+        "name": "obs-browser-page",
+        "workingSetBytes": 102641664,
+        "privateBytes": 59756544,
+        "cpuSeconds": 15.15625,
+        "threads": 28
+      },
+      {
+        "pid": 199024,
+        "name": "obs-browser-page",
+        "workingSetBytes": 19869696,
+        "privateBytes": 7184384,
+        "cpuSeconds": 0.265625,
+        "threads": 11
+      },
+      {
+        "pid": 70576,
+        "name": "obs-ffmpeg-mux",
+        "workingSetBytes": 12181504,
+        "privateBytes": 15904768,
+        "cpuSeconds": 2.59375,
+        "threads": 3
+      },
+      {
+        "pid": 71744,
+        "name": "obs-ffmpeg-mux",
+        "workingSetBytes": 13189120,
+        "privateBytes": 15974400,
+        "cpuSeconds": 4.625,
+        "threads": 3
+      }
+    ]
+  },
+  {
+    "at": "2026-10-09T21:35:53.5592710Z",
+    "nativePid": 149716,
+    "wallMs": 632000.6000000238,
+    "cursor": 601.2,
+    "processes": [
+      {
+        "pid": 149716,
+        "name": "FreeMix",
+        "workingSetBytes": 1006362624,
+        "privateBytes": 3786448896,
+        "cpuSeconds": 228.390625,
+        "threads": 172
+      },
+      {
+        "pid": 27048,
+        "name": "obs-browser-page",
+        "workingSetBytes": 27975680,
+        "privateBytes": 9007104,
+        "cpuSeconds": 1.546875,
+        "threads": 19
+      },
+      {
+        "pid": 106716,
+        "name": "obs-browser-page",
+        "workingSetBytes": 25579520,
+        "privateBytes": 11476992,
+        "cpuSeconds": 0.0,
+        "threads": 14
+      },
+      {
+        "pid": 135396,
+        "name": "obs-browser-page",
+        "workingSetBytes": 18612224,
+        "privateBytes": 7516160,
+        "cpuSeconds": 0.09375,
+        "threads": 10
+      },
+      {
+        "pid": 171788,
+        "name": "obs-browser-page",
+        "workingSetBytes": 155041792,
+        "privateBytes": 213872640,
+        "cpuSeconds": 46.578125,
+        "threads": 68
+      },
+      {
+        "pid": 173548,
+        "name": "obs-browser-page",
+        "workingSetBytes": 95416320,
+        "privateBytes": 51724288,
+        "cpuSeconds": 15.703125,
+        "threads": 28
+      },
+      {
+        "pid": 199024,
+        "name": "obs-browser-page",
+        "workingSetBytes": 19869696,
+        "privateBytes": 7184384,
+        "cpuSeconds": 0.265625,
+        "threads": 11
+      },
+      {
+        "pid": 70576,
+        "name": "obs-ffmpeg-mux",
+        "workingSetBytes": 12156928,
+        "privateBytes": 15867904,
+        "cpuSeconds": 2.71875,
+        "threads": 3
+      },
+      {
+        "pid": 71744,
+        "name": "obs-ffmpeg-mux",
+        "workingSetBytes": 13139968,
+        "privateBytes": 15912960,
+        "cpuSeconds": 4.8125,
+        "threads": 3
+      }
+    ]
+  },
+  {
+    "at": "2026-10-09T21:36:17.1420732Z",
+    "nativePid": 149716,
+    "wallMs": 656001.1000000238,
+    "cursor": 625.2,
+    "processes": [
+      {
+        "pid": 149716,
+        "name": "FreeMix",
+        "workingSetBytes": 1006444544,
+        "privateBytes": 3786420224,
+        "cpuSeconds": 236.265625,
+        "threads": 171
+      },
+      {
+        "pid": 27048,
+        "name": "obs-browser-page",
+        "workingSetBytes": 27979776,
+        "privateBytes": 9007104,
+        "cpuSeconds": 1.609375,
+        "threads": 19
+      },
+      {
+        "pid": 106716,
+        "name": "obs-browser-page",
+        "workingSetBytes": 25579520,
+        "privateBytes": 11476992,
+        "cpuSeconds": 0.0,
+        "threads": 14
+      },
+      {
+        "pid": 135396,
+        "name": "obs-browser-page",
+        "workingSetBytes": 18612224,
+        "privateBytes": 7516160,
+        "cpuSeconds": 0.09375,
+        "threads": 10
+      },
+      {
+        "pid": 171788,
+        "name": "obs-browser-page",
+        "workingSetBytes": 155033600,
+        "privateBytes": 213876736,
+        "cpuSeconds": 48.25,
+        "threads": 68
+      },
+      {
+        "pid": 173548,
+        "name": "obs-browser-page",
+        "workingSetBytes": 98410496,
+        "privateBytes": 54984704,
+        "cpuSeconds": 16.296875,
+        "threads": 28
+      },
+      {
+        "pid": 199024,
+        "name": "obs-browser-page",
+        "workingSetBytes": 19869696,
+        "privateBytes": 7184384,
+        "cpuSeconds": 0.265625,
+        "threads": 11
+      },
+      {
+        "pid": 70576,
+        "name": "obs-ffmpeg-mux",
+        "workingSetBytes": 12165120,
+        "privateBytes": 15872000,
+        "cpuSeconds": 2.796875,
+        "threads": 2
+      },
+      {
+        "pid": 71744,
+        "name": "obs-ffmpeg-mux",
+        "workingSetBytes": 13172736,
+        "privateBytes": 15945728,
+        "cpuSeconds": 4.9375,
+        "threads": 2
+      }
+    ]
+  },
+  {
+    "at": "2026-10-09T21:36:40.7727411Z",
+    "nativePid": 149716,
+    "wallMs": 680000.3000000715,
+    "cursor": 649.2,
+    "processes": [
+      {
+        "pid": 149716,
+        "name": "FreeMix",
+        "workingSetBytes": 1006456832,
+        "privateBytes": 3786420224,
+        "cpuSeconds": 245.421875,
+        "threads": 171
+      },
+      {
+        "pid": 27048,
+        "name": "obs-browser-page",
+        "workingSetBytes": 27951104,
+        "privateBytes": 8945664,
+        "cpuSeconds": 1.671875,
+        "threads": 17
+      },
+      {
+        "pid": 106716,
+        "name": "obs-browser-page",
+        "workingSetBytes": 25546752,
+        "privateBytes": 11415552,
+        "cpuSeconds": 0.0,
+        "threads": 12
+      },
+      {
+        "pid": 135396,
+        "name": "obs-browser-page",
+        "workingSetBytes": 18575360,
+        "privateBytes": 7450624,
+        "cpuSeconds": 0.09375,
+        "threads": 8
+      },
+      {
+        "pid": 171788,
+        "name": "obs-browser-page",
+        "workingSetBytes": 155037696,
+        "privateBytes": 213848064,
+        "cpuSeconds": 49.875,
+        "threads": 67
+      },
+      {
+        "pid": 173548,
+        "name": "obs-browser-page",
+        "workingSetBytes": 100888576,
+        "privateBytes": 57757696,
+        "cpuSeconds": 16.734375,
+        "threads": 26
+      },
+      {
+        "pid": 199024,
+        "name": "obs-browser-page",
+        "workingSetBytes": 19836928,
+        "privateBytes": 7122944,
+        "cpuSeconds": 0.265625,
+        "threads": 9
+      },
+      {
+        "pid": 70576,
+        "name": "obs-ffmpeg-mux",
+        "workingSetBytes": 12165120,
+        "privateBytes": 15872000,
+        "cpuSeconds": 2.90625,
+        "threads": 2
+      },
+      {
+        "pid": 71744,
+        "name": "obs-ffmpeg-mux",
+        "workingSetBytes": 13172736,
+        "privateBytes": 15945728,
+        "cpuSeconds": 5.125,
+        "threads": 2
+      }
+    ]
+  },
+  {
+    "at": "2026-10-09T21:37:04.3664645Z",
+    "nativePid": 149716,
+    "wallMs": 702000.9000000954,
+    "cursor": 671.2,
+    "processes": [
+      {
+        "pid": 149716,
+        "name": "FreeMix",
+        "workingSetBytes": 1006465024,
+        "privateBytes": 3786424320,
+        "cpuSeconds": 253.75,
+        "threads": 171
+      },
+      {
+        "pid": 27048,
+        "name": "obs-browser-page",
+        "workingSetBytes": 27951104,
+        "privateBytes": 8945664,
+        "cpuSeconds": 1.6875,
+        "threads": 17
+      },
+      {
+        "pid": 106716,
+        "name": "obs-browser-page",
+        "workingSetBytes": 25546752,
+        "privateBytes": 11415552,
+        "cpuSeconds": 0.0,
+        "threads": 12
+      },
+      {
+        "pid": 135396,
+        "name": "obs-browser-page",
+        "workingSetBytes": 18575360,
+        "privateBytes": 7450624,
+        "cpuSeconds": 0.09375,
+        "threads": 8
+      },
+      {
+        "pid": 171788,
+        "name": "obs-browser-page",
+        "workingSetBytes": 155004928,
+        "privateBytes": 213831680,
+        "cpuSeconds": 51.4375,
+        "threads": 67
+      },
+      {
+        "pid": 173548,
+        "name": "obs-browser-page",
+        "workingSetBytes": 94208000,
+        "privateBytes": 50221056,
+        "cpuSeconds": 17.359375,
+        "threads": 26
+      },
+      {
+        "pid": 199024,
+        "name": "obs-browser-page",
+        "workingSetBytes": 19836928,
+        "privateBytes": 7122944,
+        "cpuSeconds": 0.265625,
+        "threads": 9
+      },
+      {
+        "pid": 70576,
+        "name": "obs-ffmpeg-mux",
+        "workingSetBytes": 12165120,
+        "privateBytes": 15872000,
+        "cpuSeconds": 2.953125,
+        "threads": 2
+      },
+      {
+        "pid": 71744,
+        "name": "obs-ffmpeg-mux",
+        "workingSetBytes": 13172736,
+        "privateBytes": 15945728,
+        "cpuSeconds": 5.25,
+        "threads": 2
+      }
+    ]
+  },
+  {
+    "at": "2026-10-09T21:37:27.9051125Z",
+    "nativePid": 149716,
+    "wallMs": 726000.5,
+    "cursor": 695.2,
+    "processes": [
+      {
+        "pid": 149716,
+        "name": "FreeMix",
+        "workingSetBytes": 1006481408,
+        "privateBytes": 3786420224,
+        "cpuSeconds": 262.15625,
+        "threads": 171
+      },
+      {
+        "pid": 27048,
+        "name": "obs-browser-page",
+        "workingSetBytes": 27955200,
+        "privateBytes": 8945664,
+        "cpuSeconds": 1.71875,
+        "threads": 17
+      },
+      {
+        "pid": 106716,
+        "name": "obs-browser-page",
+        "workingSetBytes": 25546752,
+        "privateBytes": 11415552,
+        "cpuSeconds": 0.0,
+        "threads": 12
+      },
+      {
+        "pid": 135396,
+        "name": "obs-browser-page",
+        "workingSetBytes": 18575360,
+        "privateBytes": 7450624,
+        "cpuSeconds": 0.09375,
+        "threads": 8
+      },
+      {
+        "pid": 171788,
+        "name": "obs-browser-page",
+        "workingSetBytes": 154992640,
+        "privateBytes": 213819392,
+        "cpuSeconds": 53.0,
+        "threads": 67
+      },
+      {
+        "pid": 173548,
+        "name": "obs-browser-page",
+        "workingSetBytes": 96673792,
+        "privateBytes": 52989952,
+        "cpuSeconds": 17.921875,
+        "threads": 26
+      },
+      {
+        "pid": 199024,
+        "name": "obs-browser-page",
+        "workingSetBytes": 19836928,
+        "privateBytes": 7122944,
+        "cpuSeconds": 0.265625,
+        "threads": 9
+      },
+      {
+        "pid": 70576,
+        "name": "obs-ffmpeg-mux",
+        "workingSetBytes": 12165120,
+        "privateBytes": 15872000,
+        "cpuSeconds": 3.03125,
+        "threads": 2
+      },
+      {
+        "pid": 71744,
+        "name": "obs-ffmpeg-mux",
+        "workingSetBytes": 13123584,
+        "privateBytes": 15884288,
+        "cpuSeconds": 5.5,
+        "threads": 2
+      }
+    ]
+  },
+  {
+    "at": "2026-10-09T21:37:51.5049948Z",
+    "nativePid": 149716,
+    "wallMs": 750000.4000000954,
+    "cursor": 719.2,
+    "processes": [
+      {
+        "pid": 149716,
+        "name": "FreeMix",
+        "workingSetBytes": 1006460928,
+        "privateBytes": 3786395648,
+        "cpuSeconds": 270.71875,
+        "threads": 171
+      },
+      {
+        "pid": 27048,
+        "name": "obs-browser-page",
+        "workingSetBytes": 27955200,
+        "privateBytes": 8945664,
+        "cpuSeconds": 1.734375,
+        "threads": 17
+      },
+      {
+        "pid": 106716,
+        "name": "obs-browser-page",
+        "workingSetBytes": 25546752,
+        "privateBytes": 11415552,
+        "cpuSeconds": 0.0,
+        "threads": 12
+      },
+      {
+        "pid": 135396,
+        "name": "obs-browser-page",
+        "workingSetBytes": 18575360,
+        "privateBytes": 7450624,
+        "cpuSeconds": 0.09375,
+        "threads": 8
+      },
+      {
+        "pid": 171788,
+        "name": "obs-browser-page",
+        "workingSetBytes": 154992640,
+        "privateBytes": 213819392,
+        "cpuSeconds": 54.6875,
+        "threads": 67
+      },
+      {
+        "pid": 173548,
+        "name": "obs-browser-page",
+        "workingSetBytes": 99176448,
+        "privateBytes": 55783424,
+        "cpuSeconds": 18.53125,
+        "threads": 26
+      },
+      {
+        "pid": 199024,
+        "name": "obs-browser-page",
+        "workingSetBytes": 19836928,
+        "privateBytes": 7122944,
+        "cpuSeconds": 0.265625,
+        "threads": 9
+      },
+      {
+        "pid": 70576,
+        "name": "obs-ffmpeg-mux",
+        "workingSetBytes": 12169216,
+        "privateBytes": 15876096,
+        "cpuSeconds": 3.09375,
+        "threads": 2
+      },
+      {
+        "pid": 71744,
+        "name": "obs-ffmpeg-mux",
+        "workingSetBytes": 13180928,
+        "privateBytes": 15953920,
+        "cpuSeconds": 5.703125,
+        "threads": 2
+      }
+    ]
+  },
+  {
+    "at": "2026-10-09T21:38:15.0317628Z",
+    "nativePid": 149716,
+    "wallMs": 774000.3000000715,
+    "cursor": 743.2,
+    "processes": [
+      {
+        "pid": 149716,
+        "name": "FreeMix",
+        "workingSetBytes": 1006440448,
+        "privateBytes": 3786366976,
+        "cpuSeconds": 278.796875,
+        "threads": 171
+      },
+      {
+        "pid": 27048,
+        "name": "obs-browser-page",
+        "workingSetBytes": 27926528,
+        "privateBytes": 8896512,
+        "cpuSeconds": 1.78125,
+        "threads": 17
+      },
+      {
+        "pid": 106716,
+        "name": "obs-browser-page",
+        "workingSetBytes": 25546752,
+        "privateBytes": 11415552,
+        "cpuSeconds": 0.0,
+        "threads": 12
+      },
+      {
+        "pid": 135396,
+        "name": "obs-browser-page",
+        "workingSetBytes": 18575360,
+        "privateBytes": 7450624,
+        "cpuSeconds": 0.109375,
+        "threads": 8
+      },
+      {
+        "pid": 171788,
+        "name": "obs-browser-page",
+        "workingSetBytes": 155058176,
+        "privateBytes": 213864448,
+        "cpuSeconds": 56.375,
+        "threads": 67
+      },
+      {
+        "pid": 173548,
+        "name": "obs-browser-page",
+        "workingSetBytes": 100360192,
+        "privateBytes": 57270272,
+        "cpuSeconds": 19.125,
+        "threads": 26
+      },
+      {
+        "pid": 199024,
+        "name": "obs-browser-page",
+        "workingSetBytes": 19836928,
+        "privateBytes": 7122944,
+        "cpuSeconds": 0.265625,
+        "threads": 9
+      },
+      {
+        "pid": 70576,
+        "name": "obs-ffmpeg-mux",
+        "workingSetBytes": 12169216,
+        "privateBytes": 15876096,
+        "cpuSeconds": 3.171875,
+        "threads": 2
+      },
+      {
+        "pid": 71744,
+        "name": "obs-ffmpeg-mux",
+        "workingSetBytes": 13131776,
+        "privateBytes": 15892480,
+        "cpuSeconds": 5.921875,
+        "threads": 2
+      }
+    ]
+  },
+  {
+    "at": "2026-10-09T21:38:38.4544831Z",
+    "nativePid": 149716,
+    "wallMs": 796000.6000000238,
+    "cursor": 765.2,
+    "processes": [
+      {
+        "pid": 149716,
+        "name": "FreeMix",
+        "workingSetBytes": 1006481408,
+        "privateBytes": 3786412032,
+        "cpuSeconds": 286.671875,
+        "threads": 171
+      },
+      {
+        "pid": 27048,
+        "name": "obs-browser-page",
+        "workingSetBytes": 27938816,
+        "privateBytes": 8925184,
+        "cpuSeconds": 1.8125,
+        "threads": 17
+      },
+      {
+        "pid": 106716,
+        "name": "obs-browser-page",
+        "workingSetBytes": 25546752,
+        "privateBytes": 11415552,
+        "cpuSeconds": 0.0,
+        "threads": 12
+      },
+      {
+        "pid": 135396,
+        "name": "obs-browser-page",
+        "workingSetBytes": 18575360,
+        "privateBytes": 7450624,
+        "cpuSeconds": 0.109375,
+        "threads": 8
+      },
+      {
+        "pid": 171788,
+        "name": "obs-browser-page",
+        "workingSetBytes": 155054080,
+        "privateBytes": 213864448,
+        "cpuSeconds": 57.765625,
+        "threads": 67
+      },
+      {
+        "pid": 173548,
+        "name": "obs-browser-page",
+        "workingSetBytes": 93405184,
+        "privateBytes": 49688576,
+        "cpuSeconds": 19.796875,
+        "threads": 26
+      },
+      {
+        "pid": 199024,
+        "name": "obs-browser-page",
+        "workingSetBytes": 19836928,
+        "privateBytes": 7122944,
+        "cpuSeconds": 0.265625,
+        "threads": 9
+      },
+      {
+        "pid": 70576,
+        "name": "obs-ffmpeg-mux",
+        "workingSetBytes": 12177408,
+        "privateBytes": 15876096,
+        "cpuSeconds": 3.265625,
+        "threads": 2
+      },
+      {
+        "pid": 71744,
+        "name": "obs-ffmpeg-mux",
+        "workingSetBytes": 13180928,
+        "privateBytes": 15953920,
+        "cpuSeconds": 6.09375,
+        "threads": 2
+      }
+    ]
+  },
+  {
+    "at": "2026-10-09T21:39:01.9333825Z",
+    "nativePid": 149716,
+    "wallMs": 820000.4000000954,
+    "cursor": 789.2,
+    "processes": [
+      {
+        "pid": 149716,
+        "name": "FreeMix",
+        "workingSetBytes": 1006481408,
+        "privateBytes": 3786412032,
+        "cpuSeconds": 294.34375,
+        "threads": 171
+      },
+      {
+        "pid": 27048,
+        "name": "obs-browser-page",
+        "workingSetBytes": 27938816,
+        "privateBytes": 8925184,
+        "cpuSeconds": 1.84375,
+        "threads": 17
+      },
+      {
+        "pid": 106716,
+        "name": "obs-browser-page",
+        "workingSetBytes": 25546752,
+        "privateBytes": 11415552,
+        "cpuSeconds": 0.0,
+        "threads": 12
+      },
+      {
+        "pid": 135396,
+        "name": "obs-browser-page",
+        "workingSetBytes": 18575360,
+        "privateBytes": 7450624,
+        "cpuSeconds": 0.109375,
+        "threads": 8
+      },
+      {
+        "pid": 171788,
+        "name": "obs-browser-page",
+        "workingSetBytes": 155066368,
+        "privateBytes": 213872640,
+        "cpuSeconds": 59.328125,
+        "threads": 67
+      },
+      {
+        "pid": 173548,
+        "name": "obs-browser-page",
+        "workingSetBytes": 96215040,
+        "privateBytes": 52813824,
+        "cpuSeconds": 20.3125,
+        "threads": 26
+      },
+      {
+        "pid": 199024,
+        "name": "obs-browser-page",
+        "workingSetBytes": 19836928,
+        "privateBytes": 7122944,
+        "cpuSeconds": 0.265625,
+        "threads": 9
+      },
+      {
+        "pid": 70576,
+        "name": "obs-ffmpeg-mux",
+        "workingSetBytes": 12177408,
+        "privateBytes": 15876096,
+        "cpuSeconds": 3.375,
+        "threads": 2
+      },
+      {
+        "pid": 71744,
+        "name": "obs-ffmpeg-mux",
+        "workingSetBytes": 13180928,
+        "privateBytes": 15953920,
+        "cpuSeconds": 6.234375,
+        "threads": 2
+      }
+    ]
+  },
+  {
+    "at": "2026-10-09T21:39:25.5900472Z",
+    "nativePid": 149716,
+    "wallMs": 844000.1000000238,
+    "cursor": 813.2,
+    "processes": [
+      {
+        "pid": 149716,
+        "name": "FreeMix",
+        "workingSetBytes": 1006465024,
+        "privateBytes": 3786371072,
+        "cpuSeconds": 303.015625,
+        "threads": 170
+      },
+      {
+        "pid": 27048,
+        "name": "obs-browser-page",
+        "workingSetBytes": 27951104,
+        "privateBytes": 8925184,
+        "cpuSeconds": 1.90625,
+        "threads": 17
+      },
+      {
+        "pid": 106716,
+        "name": "obs-browser-page",
+        "workingSetBytes": 25546752,
+        "privateBytes": 11415552,
+        "cpuSeconds": 0.0,
+        "threads": 12
+      },
+      {
+        "pid": 135396,
+        "name": "obs-browser-page",
+        "workingSetBytes": 18575360,
+        "privateBytes": 7450624,
+        "cpuSeconds": 0.109375,
+        "threads": 8
+      },
+      {
+        "pid": 171788,
+        "name": "obs-browser-page",
+        "workingSetBytes": 155041792,
+        "privateBytes": 213860352,
+        "cpuSeconds": 61.109375,
+        "threads": 67
+      },
+      {
+        "pid": 173548,
+        "name": "obs-browser-page",
+        "workingSetBytes": 99414016,
+        "privateBytes": 55508992,
+        "cpuSeconds": 20.8125,
+        "threads": 26
+      },
+      {
+        "pid": 199024,
+        "name": "obs-browser-page",
+        "workingSetBytes": 19836928,
+        "privateBytes": 7122944,
+        "cpuSeconds": 0.265625,
+        "threads": 9
+      },
+      {
+        "pid": 70576,
+        "name": "obs-ffmpeg-mux",
+        "workingSetBytes": 12177408,
+        "privateBytes": 15876096,
+        "cpuSeconds": 3.515625,
+        "threads": 2
+      },
+      {
+        "pid": 71744,
+        "name": "obs-ffmpeg-mux",
+        "workingSetBytes": 13156352,
+        "privateBytes": 15953920,
+        "cpuSeconds": 6.328125,
+        "threads": 2
+      }
+    ]
+  },
+  {
+    "at": "2026-10-09T21:39:49.1959455Z",
+    "nativePid": 149716,
+    "wallMs": 868000.5,
+    "cursor": 837.2,
+    "processes": [
+      {
+        "pid": 149716,
+        "name": "FreeMix",
+        "workingSetBytes": 1006465024,
+        "privateBytes": 3786375168,
+        "cpuSeconds": 310.8125,
+        "threads": 170
+      },
+      {
+        "pid": 27048,
+        "name": "obs-browser-page",
+        "workingSetBytes": 27955200,
+        "privateBytes": 8925184,
+        "cpuSeconds": 1.90625,
+        "threads": 17
+      },
+      {
+        "pid": 106716,
+        "name": "obs-browser-page",
+        "workingSetBytes": 25546752,
+        "privateBytes": 11415552,
+        "cpuSeconds": 0.0,
+        "threads": 12
+      },
+      {
+        "pid": 135396,
+        "name": "obs-browser-page",
+        "workingSetBytes": 18575360,
+        "privateBytes": 7450624,
+        "cpuSeconds": 0.109375,
+        "threads": 8
+      },
+      {
+        "pid": 171788,
+        "name": "obs-browser-page",
+        "workingSetBytes": 155058176,
+        "privateBytes": 213864448,
+        "cpuSeconds": 62.578125,
+        "threads": 67
+      },
+      {
+        "pid": 173548,
+        "name": "obs-browser-page",
+        "workingSetBytes": 102043648,
+        "privateBytes": 58470400,
+        "cpuSeconds": 21.421875,
+        "threads": 26
+      },
+      {
+        "pid": 199024,
+        "name": "obs-browser-page",
+        "workingSetBytes": 19836928,
+        "privateBytes": 7122944,
+        "cpuSeconds": 0.265625,
+        "threads": 9
+      },
+      {
+        "pid": 70576,
+        "name": "obs-ffmpeg-mux",
+        "workingSetBytes": 12177408,
+        "privateBytes": 15876096,
+        "cpuSeconds": 3.578125,
+        "threads": 2
+      },
+      {
+        "pid": 71744,
+        "name": "obs-ffmpeg-mux",
+        "workingSetBytes": 13180928,
+        "privateBytes": 15953920,
+        "cpuSeconds": 6.5,
+        "threads": 2
+      }
+    ]
+  },
+  {
+    "at": "2026-10-09T21:40:12.7974890Z",
+    "nativePid": 149716,
+    "wallMs": 892000.5,
+    "cursor": 861.2,
+    "processes": [
+      {
+        "pid": 149716,
+        "name": "FreeMix",
+        "workingSetBytes": 1006657536,
+        "privateBytes": 3786579968,
+        "cpuSeconds": 319.921875,
+        "threads": 171
+      },
+      {
+        "pid": 27048,
+        "name": "obs-browser-page",
+        "workingSetBytes": 27963392,
+        "privateBytes": 8925184,
+        "cpuSeconds": 1.90625,
+        "threads": 17
+      },
+      {
+        "pid": 106716,
+        "name": "obs-browser-page",
+        "workingSetBytes": 25546752,
+        "privateBytes": 11415552,
+        "cpuSeconds": 0.0,
+        "threads": 12
+      },
+      {
+        "pid": 135396,
+        "name": "obs-browser-page",
+        "workingSetBytes": 18575360,
+        "privateBytes": 7450624,
+        "cpuSeconds": 0.109375,
+        "threads": 8
+      },
+      {
+        "pid": 171788,
+        "name": "obs-browser-page",
+        "workingSetBytes": 155054080,
+        "privateBytes": 213868544,
+        "cpuSeconds": 64.203125,
+        "threads": 67
+      },
+      {
+        "pid": 173548,
+        "name": "obs-browser-page",
+        "workingSetBytes": 95358976,
+        "privateBytes": 50798592,
+        "cpuSeconds": 22.0,
+        "threads": 26
+      },
+      {
+        "pid": 199024,
+        "name": "obs-browser-page",
+        "workingSetBytes": 19836928,
+        "privateBytes": 7122944,
+        "cpuSeconds": 0.265625,
+        "threads": 9
+      },
+      {
+        "pid": 70576,
+        "name": "obs-ffmpeg-mux",
+        "workingSetBytes": 12177408,
+        "privateBytes": 15876096,
+        "cpuSeconds": 3.65625,
+        "threads": 2
+      },
+      {
+        "pid": 71744,
+        "name": "obs-ffmpeg-mux",
+        "workingSetBytes": 13180928,
+        "privateBytes": 15953920,
+        "cpuSeconds": 6.625,
+        "threads": 2
+      }
+    ]
+  },
+  {
+    "at": "2026-10-09T21:40:36.4368399Z",
+    "nativePid": 149716,
+    "wallMs": 914000.5,
+    "cursor": 883.2,
+    "processes": [
+      {
+        "pid": 149716,
+        "name": "FreeMix",
+        "workingSetBytes": 1006653440,
+        "privateBytes": 3786579968,
+        "cpuSeconds": 328.390625,
+        "threads": 171
+      },
+      {
+        "pid": 27048,
+        "name": "obs-browser-page",
+        "workingSetBytes": 27967488,
+        "privateBytes": 8925184,
+        "cpuSeconds": 1.921875,
+        "threads": 17
+      },
+      {
+        "pid": 106716,
+        "name": "obs-browser-page",
+        "workingSetBytes": 25546752,
+        "privateBytes": 11415552,
+        "cpuSeconds": 0.0,
+        "threads": 12
+      },
+      {
+        "pid": 135396,
+        "name": "obs-browser-page",
+        "workingSetBytes": 18575360,
+        "privateBytes": 7450624,
+        "cpuSeconds": 0.109375,
+        "threads": 8
+      },
+      {
+        "pid": 171788,
+        "name": "obs-browser-page",
+        "workingSetBytes": 155041792,
+        "privateBytes": 213872640,
+        "cpuSeconds": 65.6875,
+        "threads": 67
+      },
+      {
+        "pid": 173548,
+        "name": "obs-browser-page",
+        "workingSetBytes": 97886208,
+        "privateBytes": 53649408,
+        "cpuSeconds": 22.8125,
+        "threads": 26
+      },
+      {
+        "pid": 199024,
+        "name": "obs-browser-page",
+        "workingSetBytes": 19836928,
+        "privateBytes": 7122944,
+        "cpuSeconds": 0.265625,
+        "threads": 9
+      },
+      {
+        "pid": 70576,
+        "name": "obs-ffmpeg-mux",
+        "workingSetBytes": 12177408,
+        "privateBytes": 15876096,
+        "cpuSeconds": 3.734375,
+        "threads": 2
+      },
+      {
+        "pid": 71744,
+        "name": "obs-ffmpeg-mux",
+        "workingSetBytes": 13180928,
+        "privateBytes": 15953920,
+        "cpuSeconds": 6.796875,
+        "threads": 2
+      }
+    ]
+  },
+  {
+    "at": "2026-10-09T21:40:59.8777225Z",
+    "nativePid": 149716,
+    "wallMs": 938000.6000000238,
+    "cursor": 907.2,
+    "processes": [
+      {
+        "pid": 149716,
+        "name": "FreeMix",
+        "workingSetBytes": 1006845952,
+        "privateBytes": 3786825728,
+        "cpuSeconds": 337.0,
+        "threads": 171
+      },
+      {
+        "pid": 27048,
+        "name": "obs-browser-page",
+        "workingSetBytes": 27971584,
+        "privateBytes": 8904704,
+        "cpuSeconds": 1.9375,
+        "threads": 17
+      },
+      {
+        "pid": 106716,
+        "name": "obs-browser-page",
+        "workingSetBytes": 25546752,
+        "privateBytes": 11415552,
+        "cpuSeconds": 0.0,
+        "threads": 12
+      },
+      {
+        "pid": 135396,
+        "name": "obs-browser-page",
+        "workingSetBytes": 18575360,
+        "privateBytes": 7450624,
+        "cpuSeconds": 0.109375,
+        "threads": 8
+      },
+      {
+        "pid": 171788,
+        "name": "obs-browser-page",
+        "workingSetBytes": 154992640,
+        "privateBytes": 213815296,
+        "cpuSeconds": 67.4375,
+        "threads": 67
+      },
+      {
+        "pid": 173548,
+        "name": "obs-browser-page",
+        "workingSetBytes": 100618240,
+        "privateBytes": 56467456,
+        "cpuSeconds": 23.4375,
+        "threads": 26
+      },
+      {
+        "pid": 199024,
+        "name": "obs-browser-page",
+        "workingSetBytes": 19836928,
+        "privateBytes": 7122944,
+        "cpuSeconds": 0.265625,
+        "threads": 9
+      },
+      {
+        "pid": 70576,
+        "name": "obs-ffmpeg-mux",
+        "workingSetBytes": 12177408,
+        "privateBytes": 15876096,
+        "cpuSeconds": 3.8125,
+        "threads": 2
+      },
+      {
+        "pid": 71744,
+        "name": "obs-ffmpeg-mux",
+        "workingSetBytes": 13180928,
+        "privateBytes": 15953920,
+        "cpuSeconds": 7.046875,
+        "threads": 2
+      }
+    ]
+  },
+  {
+    "at": "2026-10-09T21:41:23.5414315Z",
+    "nativePid": 149716,
+    "wallMs": 962000.1000000238,
+    "cursor": 931.2,
+    "processes": [
+      {
+        "pid": 149716,
+        "name": "FreeMix",
+        "workingSetBytes": 1006841856,
+        "privateBytes": 3786825728,
+        "cpuSeconds": 345.359375,
+        "threads": 171
+      },
+      {
+        "pid": 27048,
+        "name": "obs-browser-page",
+        "workingSetBytes": 27979776,
+        "privateBytes": 8904704,
+        "cpuSeconds": 1.984375,
+        "threads": 17
+      },
+      {
+        "pid": 106716,
+        "name": "obs-browser-page",
+        "workingSetBytes": 25546752,
+        "privateBytes": 11415552,
+        "cpuSeconds": 0.0,
+        "threads": 12
+      },
+      {
+        "pid": 135396,
+        "name": "obs-browser-page",
+        "workingSetBytes": 18575360,
+        "privateBytes": 7450624,
+        "cpuSeconds": 0.109375,
+        "threads": 8
+      },
+      {
+        "pid": 171788,
+        "name": "obs-browser-page",
+        "workingSetBytes": 154996736,
+        "privateBytes": 213848064,
+        "cpuSeconds": 69.09375,
+        "threads": 67
+      },
+      {
+        "pid": 173548,
+        "name": "obs-browser-page",
+        "workingSetBytes": 103460864,
+        "privateBytes": 59609088,
+        "cpuSeconds": 24.046875,
+        "threads": 26
+      },
+      {
+        "pid": 199024,
+        "name": "obs-browser-page",
+        "workingSetBytes": 19836928,
+        "privateBytes": 7122944,
+        "cpuSeconds": 0.265625,
+        "threads": 9
+      },
+      {
+        "pid": 70576,
+        "name": "obs-ffmpeg-mux",
+        "workingSetBytes": 12132352,
+        "privateBytes": 15826944,
+        "cpuSeconds": 3.859375,
+        "threads": 2
+      },
+      {
+        "pid": 71744,
+        "name": "obs-ffmpeg-mux",
+        "workingSetBytes": 13180928,
+        "privateBytes": 15953920,
+        "cpuSeconds": 7.203125,
+        "threads": 2
+      }
+    ]
+  },
+  {
+    "at": "2026-10-09T21:41:47.1386960Z",
+    "nativePid": 149716,
+    "wallMs": 986000.8000000715,
+    "cursor": 955.2,
+    "processes": [
+      {
+        "pid": 149716,
+        "name": "FreeMix",
+        "workingSetBytes": 1006833664,
+        "privateBytes": 3786756096,
+        "cpuSeconds": 353.3125,
+        "threads": 170
+      },
+      {
+        "pid": 27048,
+        "name": "obs-browser-page",
+        "workingSetBytes": 27971584,
+        "privateBytes": 8896512,
+        "cpuSeconds": 2.015625,
+        "threads": 17
+      },
+      {
+        "pid": 106716,
+        "name": "obs-browser-page",
+        "workingSetBytes": 25546752,
+        "privateBytes": 11415552,
+        "cpuSeconds": 0.0,
+        "threads": 12
+      },
+      {
+        "pid": 135396,
+        "name": "obs-browser-page",
+        "workingSetBytes": 18575360,
+        "privateBytes": 7450624,
+        "cpuSeconds": 0.109375,
+        "threads": 8
+      },
+      {
+        "pid": 171788,
+        "name": "obs-browser-page",
+        "workingSetBytes": 155070464,
+        "privateBytes": 213876736,
+        "cpuSeconds": 70.8125,
+        "threads": 67
+      },
+      {
+        "pid": 173548,
+        "name": "obs-browser-page",
+        "workingSetBytes": 96436224,
+        "privateBytes": 51765248,
+        "cpuSeconds": 24.796875,
+        "threads": 26
+      },
+      {
+        "pid": 199024,
+        "name": "obs-browser-page",
+        "workingSetBytes": 19836928,
+        "privateBytes": 7122944,
+        "cpuSeconds": 0.265625,
+        "threads": 9
+      },
+      {
+        "pid": 70576,
+        "name": "obs-ffmpeg-mux",
+        "workingSetBytes": 12152832,
+        "privateBytes": 15847424,
+        "cpuSeconds": 3.96875,
+        "threads": 2
+      },
+      {
+        "pid": 71744,
+        "name": "obs-ffmpeg-mux",
+        "workingSetBytes": 13180928,
+        "privateBytes": 15953920,
+        "cpuSeconds": 7.34375,
+        "threads": 2
+      }
+    ]
+  },
+  {
+    "at": "2026-10-09T21:42:10.6739109Z",
+    "nativePid": 149716,
+    "wallMs": 1010000.3000000715,
+    "cursor": 979.2,
+    "processes": [
+      {
+        "pid": 149716,
+        "name": "FreeMix",
+        "workingSetBytes": 1006985216,
+        "privateBytes": 3786846208,
+        "cpuSeconds": 360.765625,
+        "threads": 171
+      },
+      {
+        "pid": 27048,
+        "name": "obs-browser-page",
+        "workingSetBytes": 28004352,
+        "privateBytes": 8945664,
+        "cpuSeconds": 2.078125,
+        "threads": 17
+      },
+      {
+        "pid": 106716,
+        "name": "obs-browser-page",
+        "workingSetBytes": 25546752,
+        "privateBytes": 11415552,
+        "cpuSeconds": 0.0,
+        "threads": 12
+      },
+      {
+        "pid": 135396,
+        "name": "obs-browser-page",
+        "workingSetBytes": 18575360,
+        "privateBytes": 7450624,
+        "cpuSeconds": 0.109375,
+        "threads": 8
+      },
+      {
+        "pid": 171788,
+        "name": "obs-browser-page",
+        "workingSetBytes": 155058176,
+        "privateBytes": 213880832,
+        "cpuSeconds": 72.40625,
+        "threads": 67
+      },
+      {
+        "pid": 173548,
+        "name": "obs-browser-page",
+        "workingSetBytes": 99565568,
+        "privateBytes": 55144448,
+        "cpuSeconds": 25.421875,
+        "threads": 26
+      },
+      {
+        "pid": 199024,
+        "name": "obs-browser-page",
+        "workingSetBytes": 19836928,
+        "privateBytes": 7122944,
+        "cpuSeconds": 0.265625,
+        "threads": 9
+      },
+      {
+        "pid": 70576,
+        "name": "obs-ffmpeg-mux",
+        "workingSetBytes": 12177408,
+        "privateBytes": 15876096,
+        "cpuSeconds": 4.109375,
+        "threads": 2
+      },
+      {
+        "pid": 71744,
+        "name": "obs-ffmpeg-mux",
+        "workingSetBytes": 13193216,
+        "privateBytes": 15958016,
+        "cpuSeconds": 7.578125,
+        "threads": 2
+      }
+    ]
+  },
+  {
+    "at": "2026-10-09T21:42:34.3906170Z",
+    "nativePid": 149716,
+    "wallMs": 1032000.5,
+    "cursor": 1001.2,
+    "processes": [
+      {
+        "pid": 149716,
+        "name": "FreeMix",
+        "workingSetBytes": 1007001600,
+        "privateBytes": 3786846208,
+        "cpuSeconds": 368.015625,
+        "threads": 171
+      },
+      {
+        "pid": 27048,
+        "name": "obs-browser-page",
+        "workingSetBytes": 28008448,
+        "privateBytes": 8945664,
+        "cpuSeconds": 2.140625,
+        "threads": 17
+      },
+      {
+        "pid": 106716,
+        "name": "obs-browser-page",
+        "workingSetBytes": 25546752,
+        "privateBytes": 11415552,
+        "cpuSeconds": 0.0,
+        "threads": 12
+      },
+      {
+        "pid": 135396,
+        "name": "obs-browser-page",
+        "workingSetBytes": 18575360,
+        "privateBytes": 7450624,
+        "cpuSeconds": 0.109375,
+        "threads": 8
+      },
+      {
+        "pid": 171788,
+        "name": "obs-browser-page",
+        "workingSetBytes": 155070464,
+        "privateBytes": 213884928,
+        "cpuSeconds": 74.046875,
+        "threads": 67
+      },
+      {
+        "pid": 173548,
+        "name": "obs-browser-page",
+        "workingSetBytes": 101507072,
+        "privateBytes": 57442304,
+        "cpuSeconds": 26.171875,
+        "threads": 26
+      },
+      {
+        "pid": 199024,
+        "name": "obs-browser-page",
+        "workingSetBytes": 19836928,
+        "privateBytes": 7122944,
+        "cpuSeconds": 0.265625,
+        "threads": 9
+      },
+      {
+        "pid": 70576,
+        "name": "obs-ffmpeg-mux",
+        "workingSetBytes": 12177408,
+        "privateBytes": 15876096,
+        "cpuSeconds": 4.1875,
+        "threads": 2
+      },
+      {
+        "pid": 71744,
+        "name": "obs-ffmpeg-mux",
+        "workingSetBytes": 13193216,
+        "privateBytes": 15958016,
+        "cpuSeconds": 7.75,
+        "threads": 2
+      }
+    ]
+  },
+  {
+    "at": "2026-10-09T21:42:57.9427281Z",
+    "nativePid": 149716,
+    "wallMs": 1056000.4000000954,
+    "cursor": 1025.2,
+    "processes": [
+      {
+        "pid": 149716,
+        "name": "FreeMix",
+        "workingSetBytes": 1007095808,
+        "privateBytes": 3786936320,
+        "cpuSeconds": 375.0625,
+        "threads": 171
+      },
+      {
+        "pid": 27048,
+        "name": "obs-browser-page",
+        "workingSetBytes": 28012544,
+        "privateBytes": 8945664,
+        "cpuSeconds": 2.203125,
+        "threads": 17
+      },
+      {
+        "pid": 106716,
+        "name": "obs-browser-page",
+        "workingSetBytes": 25546752,
+        "privateBytes": 11415552,
+        "cpuSeconds": 0.0,
+        "threads": 12
+      },
+      {
+        "pid": 135396,
+        "name": "obs-browser-page",
+        "workingSetBytes": 18575360,
+        "privateBytes": 7450624,
+        "cpuSeconds": 0.109375,
+        "threads": 8
+      },
+      {
+        "pid": 171788,
+        "name": "obs-browser-page",
+        "workingSetBytes": 155086848,
+        "privateBytes": 213897216,
+        "cpuSeconds": 75.734375,
+        "threads": 67
+      },
+      {
+        "pid": 173548,
+        "name": "obs-browser-page",
+        "workingSetBytes": 94720000,
+        "privateBytes": 49819648,
+        "cpuSeconds": 26.953125,
+        "threads": 26
+      },
+      {
+        "pid": 199024,
+        "name": "obs-browser-page",
+        "workingSetBytes": 19836928,
+        "privateBytes": 7122944,
+        "cpuSeconds": 0.265625,
+        "threads": 9
+      },
+      {
+        "pid": 70576,
+        "name": "obs-ffmpeg-mux",
+        "workingSetBytes": 12152832,
+        "privateBytes": 15847424,
+        "cpuSeconds": 4.25,
+        "threads": 2
+      },
+      {
+        "pid": 71744,
+        "name": "obs-ffmpeg-mux",
+        "workingSetBytes": 13197312,
+        "privateBytes": 15958016,
+        "cpuSeconds": 7.96875,
+        "threads": 2
+      }
+    ]
+  },
+  {
+    "at": "2026-10-09T21:43:21.6028056Z",
+    "nativePid": 149716,
+    "wallMs": 1080001.8000000715,
+    "cursor": 1049.2,
+    "processes": [
+      {
+        "pid": 149716,
+        "name": "FreeMix",
+        "workingSetBytes": 1007095808,
+        "privateBytes": 3786936320,
+        "cpuSeconds": 382.953125,
+        "threads": 171
+      },
+      {
+        "pid": 27048,
+        "name": "obs-browser-page",
+        "workingSetBytes": 28012544,
+        "privateBytes": 8945664,
+        "cpuSeconds": 2.234375,
+        "threads": 17
+      },
+      {
+        "pid": 106716,
+        "name": "obs-browser-page",
+        "workingSetBytes": 25546752,
+        "privateBytes": 11415552,
+        "cpuSeconds": 0.0,
+        "threads": 12
+      },
+      {
+        "pid": 135396,
+        "name": "obs-browser-page",
+        "workingSetBytes": 18575360,
+        "privateBytes": 7450624,
+        "cpuSeconds": 0.109375,
+        "threads": 8
+      },
+      {
+        "pid": 171788,
+        "name": "obs-browser-page",
+        "workingSetBytes": 155086848,
+        "privateBytes": 213901312,
+        "cpuSeconds": 77.75,
+        "threads": 67
+      },
+      {
+        "pid": 173548,
+        "name": "obs-browser-page",
+        "workingSetBytes": 97861632,
+        "privateBytes": 53215232,
+        "cpuSeconds": 27.4375,
+        "threads": 26
+      },
+      {
+        "pid": 199024,
+        "name": "obs-browser-page",
+        "workingSetBytes": 19836928,
+        "privateBytes": 7122944,
+        "cpuSeconds": 0.265625,
+        "threads": 9
+      },
+      {
+        "pid": 70576,
+        "name": "obs-ffmpeg-mux",
+        "workingSetBytes": 12177408,
+        "privateBytes": 15876096,
+        "cpuSeconds": 4.328125,
+        "threads": 2
+      },
+      {
+        "pid": 71744,
+        "name": "obs-ffmpeg-mux",
+        "workingSetBytes": 13197312,
+        "privateBytes": 15958016,
+        "cpuSeconds": 8.1875,
+        "threads": 2
+      }
+    ]
+  },
+  {
+    "at": "2026-10-09T21:43:45.0260764Z",
+    "nativePid": 149716,
+    "wallMs": 1104000.4000000954,
+    "cursor": 1073.2,
+    "processes": [
+      {
+        "pid": 149716,
+        "name": "FreeMix",
+        "workingSetBytes": 1007190016,
+        "privateBytes": 3787026432,
+        "cpuSeconds": 390.03125,
+        "threads": 171
+      },
+      {
+        "pid": 27048,
+        "name": "obs-browser-page",
+        "workingSetBytes": 28016640,
+        "privateBytes": 8945664,
+        "cpuSeconds": 2.25,
+        "threads": 17
+      },
+      {
+        "pid": 106716,
+        "name": "obs-browser-page",
+        "workingSetBytes": 25546752,
+        "privateBytes": 11415552,
+        "cpuSeconds": 0.0,
+        "threads": 12
+      },
+      {
+        "pid": 135396,
+        "name": "obs-browser-page",
+        "workingSetBytes": 18575360,
+        "privateBytes": 7450624,
+        "cpuSeconds": 0.109375,
+        "threads": 8
+      },
+      {
+        "pid": 171788,
+        "name": "obs-browser-page",
+        "workingSetBytes": 155074560,
+        "privateBytes": 213897216,
+        "cpuSeconds": 79.3125,
+        "threads": 67
+      },
+      {
+        "pid": 173548,
+        "name": "obs-browser-page",
+        "workingSetBytes": 100458496,
+        "privateBytes": 56156160,
+        "cpuSeconds": 28.15625,
+        "threads": 26
+      },
+      {
+        "pid": 199024,
+        "name": "obs-browser-page",
+        "workingSetBytes": 19836928,
+        "privateBytes": 7122944,
+        "cpuSeconds": 0.265625,
+        "threads": 9
+      },
+      {
+        "pid": 70576,
+        "name": "obs-ffmpeg-mux",
+        "workingSetBytes": 12177408,
+        "privateBytes": 15876096,
+        "cpuSeconds": 4.40625,
+        "threads": 2
+      },
+      {
+        "pid": 71744,
+        "name": "obs-ffmpeg-mux",
+        "workingSetBytes": 13197312,
+        "privateBytes": 15958016,
+        "cpuSeconds": 8.40625,
+        "threads": 2
+      }
+    ]
+  },
+  {
+    "at": "2026-10-09T21:44:08.6602101Z",
+    "nativePid": 149716,
+    "wallMs": 1126000.8000000715,
+    "cursor": 1095.2,
+    "processes": [
+      {
+        "pid": 149716,
+        "name": "FreeMix",
+        "workingSetBytes": 1007218688,
+        "privateBytes": 3787030528,
+        "cpuSeconds": 396.9375,
+        "threads": 171
+      },
+      {
+        "pid": 27048,
+        "name": "obs-browser-page",
+        "workingSetBytes": 28020736,
+        "privateBytes": 8945664,
+        "cpuSeconds": 2.28125,
+        "threads": 17
+      },
+      {
+        "pid": 106716,
+        "name": "obs-browser-page",
+        "workingSetBytes": 25546752,
+        "privateBytes": 11415552,
+        "cpuSeconds": 0.0,
+        "threads": 12
+      },
+      {
+        "pid": 135396,
+        "name": "obs-browser-page",
+        "workingSetBytes": 18575360,
+        "privateBytes": 7450624,
+        "cpuSeconds": 0.109375,
+        "threads": 8
+      },
+      {
+        "pid": 171788,
+        "name": "obs-browser-page",
+        "workingSetBytes": 155070464,
+        "privateBytes": 213893120,
+        "cpuSeconds": 81.109375,
+        "threads": 67
+      },
+      {
+        "pid": 173548,
+        "name": "obs-browser-page",
+        "workingSetBytes": 102408192,
+        "privateBytes": 58388480,
+        "cpuSeconds": 28.65625,
+        "threads": 26
+      },
+      {
+        "pid": 199024,
+        "name": "obs-browser-page",
+        "workingSetBytes": 19836928,
+        "privateBytes": 7122944,
+        "cpuSeconds": 0.265625,
+        "threads": 9
+      },
+      {
+        "pid": 70576,
+        "name": "obs-ffmpeg-mux",
+        "workingSetBytes": 12177408,
+        "privateBytes": 15876096,
+        "cpuSeconds": 4.53125,
+        "threads": 2
+      },
+      {
+        "pid": 71744,
+        "name": "obs-ffmpeg-mux",
+        "workingSetBytes": 13197312,
+        "privateBytes": 15958016,
+        "cpuSeconds": 8.59375,
+        "threads": 2
+      }
+    ]
+  },
+  {
+    "at": "2026-10-09T21:44:32.3363082Z",
+    "nativePid": 149716,
+    "wallMs": 1150000.3000000715,
+    "cursor": 1119.2,
+    "processes": [
+      {
+        "pid": 149716,
+        "name": "FreeMix",
+        "workingSetBytes": 1007222784,
+        "privateBytes": 3787030528,
+        "cpuSeconds": 403.765625,
+        "threads": 171
+      },
+      {
+        "pid": 27048,
+        "name": "obs-browser-page",
+        "workingSetBytes": 28033024,
+        "privateBytes": 8945664,
+        "cpuSeconds": 2.328125,
+        "threads": 17
+      },
+      {
+        "pid": 106716,
+        "name": "obs-browser-page",
+        "workingSetBytes": 25546752,
+        "privateBytes": 11415552,
+        "cpuSeconds": 0.0,
+        "threads": 12
+      },
+      {
+        "pid": 135396,
+        "name": "obs-browser-page",
+        "workingSetBytes": 18575360,
+        "privateBytes": 7450624,
+        "cpuSeconds": 0.109375,
+        "threads": 8
+      },
+      {
+        "pid": 171788,
+        "name": "obs-browser-page",
+        "workingSetBytes": 155082752,
+        "privateBytes": 213901312,
+        "cpuSeconds": 82.75,
+        "threads": 67
+      },
+      {
+        "pid": 173548,
+        "name": "obs-browser-page",
+        "workingSetBytes": 96215040,
+        "privateBytes": 51343360,
+        "cpuSeconds": 29.46875,
+        "threads": 26
+      },
+      {
+        "pid": 199024,
+        "name": "obs-browser-page",
+        "workingSetBytes": 19836928,
+        "privateBytes": 7122944,
+        "cpuSeconds": 0.265625,
+        "threads": 9
+      },
+      {
+        "pid": 70576,
+        "name": "obs-ffmpeg-mux",
+        "workingSetBytes": 12177408,
+        "privateBytes": 15876096,
+        "cpuSeconds": 4.625,
+        "threads": 2
+      },
+      {
+        "pid": 71744,
+        "name": "obs-ffmpeg-mux",
+        "workingSetBytes": 13197312,
+        "privateBytes": 15958016,
+        "cpuSeconds": 8.6875,
+        "threads": 2
+      }
+    ]
+  },
+  {
+    "at": "2026-10-09T21:44:55.8719018Z",
+    "nativePid": 149716,
+    "wallMs": 1174001.1000000238,
+    "cursor": 1143.2,
+    "processes": [
+      {
+        "pid": 149716,
+        "name": "FreeMix",
+        "workingSetBytes": 1007321088,
+        "privateBytes": 3787120640,
+        "cpuSeconds": 410.75,
+        "threads": 171
+      },
+      {
+        "pid": 27048,
+        "name": "obs-browser-page",
+        "workingSetBytes": 28033024,
+        "privateBytes": 8945664,
+        "cpuSeconds": 2.359375,
+        "threads": 17
+      },
+      {
+        "pid": 106716,
+        "name": "obs-browser-page",
+        "workingSetBytes": 25546752,
+        "privateBytes": 11415552,
+        "cpuSeconds": 0.0,
+        "threads": 12
+      },
+      {
+        "pid": 135396,
+        "name": "obs-browser-page",
+        "workingSetBytes": 18575360,
+        "privateBytes": 7450624,
+        "cpuSeconds": 0.109375,
+        "threads": 8
+      },
+      {
+        "pid": 171788,
+        "name": "obs-browser-page",
+        "workingSetBytes": 155062272,
+        "privateBytes": 213884928,
+        "cpuSeconds": 84.5625,
+        "threads": 67
+      },
+      {
+        "pid": 173548,
+        "name": "obs-browser-page",
+        "workingSetBytes": 98721792,
+        "privateBytes": 54132736,
+        "cpuSeconds": 30.15625,
+        "threads": 26
+      },
+      {
+        "pid": 199024,
+        "name": "obs-browser-page",
+        "workingSetBytes": 19836928,
+        "privateBytes": 7122944,
+        "cpuSeconds": 0.265625,
+        "threads": 9
+      },
+      {
+        "pid": 70576,
+        "name": "obs-ffmpeg-mux",
+        "workingSetBytes": 12181504,
+        "privateBytes": 15876096,
+        "cpuSeconds": 4.71875,
+        "threads": 2
+      },
+      {
+        "pid": 71744,
+        "name": "obs-ffmpeg-mux",
+        "workingSetBytes": 13197312,
+        "privateBytes": 15958016,
+        "cpuSeconds": 8.828125,
+        "threads": 2
+      }
+    ]
+  },
+  {
+    "at": "2026-10-09T21:45:19.2381257Z",
+    "nativePid": 149716,
+    "wallMs": 1198000.4000000954,
+    "cursor": 1167.2,
+    "processes": []
+  }
+]

@@ -1,0 +1,1 @@
+{"state":"stopped","videoFrames":35728,"audioFrames":55827,"audioSamplesPerChannel":57166848,"droppedLateFrames":146,"reconnects":8,"maxVideoProcessMs":10.47,"width":1280,"height":720,"firstVideoPtsUs":21333,"lastVideoPtsUs":1200388528,"firstAudioPtsUs":0,"lastAudioPtsUs":1200384528,"browser":false,"externalHomologation":false}

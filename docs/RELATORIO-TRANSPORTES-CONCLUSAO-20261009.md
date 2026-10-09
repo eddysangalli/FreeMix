@@ -99,3 +99,27 @@ obs-vmix/painel/remoto/saidas.html
 ```
 
 QA: `test-native-alpha-bridge.py`, `capture-ndi-fillkey*.py`, `capture-omt-fillkey-straight.py`, `test-native-ndi*.mjs`, `test-native-omt-fillkey-conclusion.mjs`, `test-srt-key-silent-conclusion.mjs`, `preparar-qa-transport-conclusion.mjs`, `test-output-contracts-20261009.mjs`, `test-bonding-adaptativo-conclusao-20261009.mjs`, `test-server-kit-syntax.mjs`, `test-hdr-output-contracts-20261009.mjs`, `gerar-fixture-hdr.py`, `capture-omt-hdr.py`, `test-native-omt-hdr-20261009.mjs`, `check-omt-hdr-header.ps1`, `test-omt-hdr-ui-20261009.mjs` e respectivos recibos em `qa-finalizacao/`. Nenhum arquivo central da API, configuraÃ§Ã£o do operador, release selada ou Git mirror foi alterado por esta frente.
+
+
+## Endurance nativa de vídeo pós-chroma:20 minutos
+
+`qa-finalizacao/resultado-native-alpha-endurance-20261009.json` e recibos completos em `qa-finalizacao/bridge-endurance/full2-*.json`: **PASS**. O teste criou dois arquivos H.264 de vídeo em movimento, com fundo verde opaco e áudio440Hz, aplicou o filtro chroma nativo de verdade e enviou a origem transparente em packed420 lógico1280×720. A ponte decodificou SRT e o SDK NDI oficial recebeu1280×720 BGRA com alpha e áudio. Nenhum navegador, GC HTML, vMix ou configuração do operador foi usado.
+
+- Native final testado: `1c045e5d43bae20eca9b15df50d73d297b9d433e381027eb861f0ff21f014744`.
+- Ponte da endurance: `3dcc80034b2d0b067fd05e08c3566660850288a693e61f990ffd6d90166680fb`.
+- 35.711 quadros em1200s, **29,759fps incluindo as quedas**;57.143.296 amostras/canal, pico440Hz e RMS0,0620.
+- Zero erros de PTS de vídeo/áudio e zero erros de alpha nas1184 amostras; todas mostraram fundo transparente, marcador opaco e faixa parcialmente transparente.
+- Aos5/10/15min, o SRT parou2s, mudou a origem entre dois vídeos e voltou. Ambas as cores chegaram;3 quadros transparentes apagaram a imagem anterior. Maior intervalo de recepção2,609s. Não é reconexão sem interrupção.
+- Latência aproximada da renderização Native até o receptor NDI: mediana530ms, p95543ms, máximo547ms fora das quedas. Medida por contador gravado no vídeo, screenshot da origem e correção da idade da amostra IPC; requisições de screenshot30–57ms e quantização de um quadro limitam a precisão. Não mede WAN nem tempo de câmera até monitor.
+- Ponte: RSS mediana53,43MiB, pico55,88MiB; CPU mediana25% e p9540,6% **na base de um core**. Native completo: RSS mediana859,89MiB; CPU mediana57,8% de um core. Não é garantia de carga em outra máquina ou de ausência de vazamentos.
+- Native e ponte encerraram com exit0 e sem novo arquivo de crash. O log Native ainda registra `Number of memory leaks:1`, já observado nas provas anteriores; não declaramos leak-free.
+
+O contador antigo `droppedLateFrames:146` agrega descartes de áudio e vídeo tanto por atraso quanto por PTS repetido. **Não equivale a146 quadros visuais perdidos.** A versão final separa esses quatro contadores. A primeira tentativa, interrompida aos118s por erro WinError5 na renomeação do JSON de instrumentação dentro do Drive, foi preservada em `full-orchestrator.json`; a instrumentação passou a gravar progresso em TEMP e esperar o término real do stop antes de solicitar fechamento Native.
+
+### Ponte final e descoberta padrão
+
+O EXE separado final é `%TEMP%/FreeMix-QA-NativeAlpha-Final-Counters-Build/FreeMix-Alpha-Bridge.exe`, SHA-256 `d75aa9b586f70d292e83c916e7a624b1d69634a85fdbcc3444d6be6e839432aa`. Depois do binário da endurance, mudaram somente: grupo NDI padrão para descoberta sem Access Manager customizado, retorno1/2 para falha fatal/argumentos e contadores diagnósticos separados. A conversão, alpha, áudio e pacing não foram alterados.
+
+`smoke-final-default-orchestrator.json`:40s de vídeo pós-chroma,1201 quadros,1.921.024 amostras/canal, descoberta oficial NDI **sem grupo ou IP adicional**, zero erros PTS/alpha e zero descartes nos quatro contadores, Native/ponte exit0. `resultado-native-alpha-cli-20261009.json`:4 casos PASS para erro fatal e argumentos.
+
+A prova de20min pertence ao SHA3dcc; o SHA final d75 tem smoke40s e CLI. Não atribuir20min ao EXE final. O receptor ainda é ferramenta separada, sem promoção automática ao instalador; ensaio real no vMix e em outra máquina continua pendente. Guia: [RECEPTOR-NATIVO-ALPHA.md](RECEPTOR-NATIVO-ALPHA.md).

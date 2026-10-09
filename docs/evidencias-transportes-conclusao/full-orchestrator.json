@@ -1,0 +1,802 @@
+{
+  "status": "FAIL",
+  "started": "2026-10-09T21:21:02.340Z",
+  "durationRequestedSeconds": 1200,
+  "root": "C:\\Users\\eddyr\\AppData\\Local\\Temp/FreeMix-QA-AlphaEndurance-full-20261009",
+  "wsPort": 14675,
+  "apiPort": 18895,
+  "srtPort": 18960,
+  "operatorTouched": false,
+  "vmixTouched": false,
+  "browser": false,
+  "nativeSha256": "1c045e5d43bae20eca9b15df50d73d297b9d433e381027eb861f0ff21f014744",
+  "bridgeSha256": "3dcc80034b2d0b067fd05e08c3566660850288a693e61f990ffd6d90166680fb",
+  "controlledInterruptions": [],
+  "latencyEstimates": [
+    {
+      "elapsedSeconds": 1,
+      "approximateSourceCursorToNdiMs": 668.2646484375,
+      "frameId": 30,
+      "ipcSampleAgeMs": 431.7353515625,
+      "renderedSourceFrameId": 60,
+      "approximateRenderedSourceToNdiMs": 543.7646484375,
+      "screenshotRequestMs": 49
+    },
+    {
+      "elapsedSeconds": 2.075,
+      "approximateSourceCursorToNdiMs": 645.7501627604167,
+      "frameId": 61,
+      "ipcSampleAgeMs": 486.91650390625
+    },
+    {
+      "elapsedSeconds": 3.078,
+      "approximateSourceCursorToNdiMs": 645.9547526041665,
+      "frameId": 91,
+      "ipcSampleAgeMs": 486.7119140625
+    },
+    {
+      "elapsedSeconds": 4.081,
+      "approximateSourceCursorToNdiMs": 648.5997721354165,
+      "frameId": 121,
+      "ipcSampleAgeMs": 484.06689453125
+    },
+    {
+      "elapsedSeconds": 5.085,
+      "approximateSourceCursorToNdiMs": 648.970865885417,
+      "frameId": 151,
+      "ipcSampleAgeMs": 483.69580078125
+    },
+    {
+      "elapsedSeconds": 6.087,
+      "approximateSourceCursorToNdiMs": 650.377604166667,
+      "frameId": 181,
+      "ipcSampleAgeMs": 484.2890625,
+      "renderedSourceFrameId": 212,
+      "approximateRenderedSourceToNdiMs": 533.0442708333333,
+      "screenshotRequestMs": 32
+    },
+    {
+      "elapsedSeconds": 7.136,
+      "approximateSourceCursorToNdiMs": 656.200032552083,
+      "frameId": 212,
+      "ipcSampleAgeMs": 510.13330078125
+    },
+    {
+      "elapsedSeconds": 8.139,
+      "approximateSourceCursorToNdiMs": 657.087483723958,
+      "frameId": 242,
+      "ipcSampleAgeMs": 509.245849609375
+    },
+    {
+      "elapsedSeconds": 9.142,
+      "approximateSourceCursorToNdiMs": 659.1966145833339,
+      "frameId": 272,
+      "ipcSampleAgeMs": 507.13671875
+    },
+    {
+      "elapsedSeconds": 10.145,
+      "approximateSourceCursorToNdiMs": 656.5503743489589,
+      "frameId": 302,
+      "ipcSampleAgeMs": 509.782958984375
+    },
+    {
+      "elapsedSeconds": 11.148,
+      "approximateSourceCursorToNdiMs": 645.819580078125,
+      "frameId": 333,
+      "ipcSampleAgeMs": 487.180419921875,
+      "renderedSourceFrameId": 364,
+      "approximateRenderedSourceToNdiMs": 525.6529134114583,
+      "screenshotRequestMs": 41
+    },
+    {
+      "elapsedSeconds": 12.212,
+      "approximateSourceCursorToNdiMs": 647.52490234375,
+      "frameId": 363,
+      "ipcSampleAgeMs": 552.47509765625
+    },
+    {
+      "elapsedSeconds": 13.215,
+      "approximateSourceCursorToNdiMs": 648.453857421875,
+      "frameId": 393,
+      "ipcSampleAgeMs": 551.546142578125
+    },
+    {
+      "elapsedSeconds": 14.219,
+      "approximateSourceCursorToNdiMs": 645.6845703125,
+      "frameId": 423,
+      "ipcSampleAgeMs": 554.3154296875
+    },
+    {
+      "elapsedSeconds": 15.221,
+      "approximateSourceCursorToNdiMs": 680.654541015625,
+      "frameId": 453,
+      "ipcSampleAgeMs": 552.345458984375
+    },
+    {
+      "elapsedSeconds": 16.223,
+      "approximateSourceCursorToNdiMs": 667.8600260416661,
+      "frameId": 484,
+      "ipcSampleAgeMs": 531.806640625,
+      "renderedSourceFrameId": 516,
+      "approximateRenderedSourceToNdiMs": 519.8600260416667,
+      "screenshotRequestMs": 30
+    },
+    {
+      "elapsedSeconds": 17.267,
+      "approximateSourceCursorToNdiMs": 660.2262369791679,
+      "frameId": 514,
+      "ipcSampleAgeMs": 572.4404296875
+    },
+    {
+      "elapsedSeconds": 18.269,
+      "approximateSourceCursorToNdiMs": 660.7648111979179,
+      "frameId": 544,
+      "ipcSampleAgeMs": 571.90185546875
+    },
+    {
+      "elapsedSeconds": 19.272,
+      "approximateSourceCursorToNdiMs": 661.8353678385429,
+      "frameId": 574,
+      "ipcSampleAgeMs": 570.831298828125
+    },
+    {
+      "elapsedSeconds": 20.275,
+      "approximateSourceCursorToNdiMs": 646.8250325520821,
+      "frameId": 605,
+      "ipcSampleAgeMs": 552.50830078125
+    },
+    {
+      "elapsedSeconds": 21.277,
+      "approximateSourceCursorToNdiMs": 651.1016438802071,
+      "frameId": 635,
+      "ipcSampleAgeMs": 548.231689453125,
+      "renderedSourceFrameId": 668,
+      "approximateRenderedSourceToNdiMs": 535.768310546875,
+      "screenshotRequestMs": 32
+    },
+    {
+      "elapsedSeconds": 22.324,
+      "approximateSourceCursorToNdiMs": 671.5943196614571,
+      "frameId": 665,
+      "ipcSampleAgeMs": 594.739013671875
+    },
+    {
+      "elapsedSeconds": 23.327,
+      "approximateSourceCursorToNdiMs": 668.7928059895821,
+      "frameId": 695,
+      "ipcSampleAgeMs": 597.54052734375
+    },
+    {
+      "elapsedSeconds": 24.33,
+      "approximateSourceCursorToNdiMs": 667.8741048177071,
+      "frameId": 725,
+      "ipcSampleAgeMs": 598.459228515625
+    },
+    {
+      "elapsedSeconds": 25.333,
+      "approximateSourceCursorToNdiMs": 656.859619140625,
+      "frameId": 756,
+      "ipcSampleAgeMs": 576.140380859375
+    },
+    {
+      "elapsedSeconds": 26.335,
+      "approximateSourceCursorToNdiMs": 658.219482421875,
+      "frameId": 786,
+      "ipcSampleAgeMs": 574.780517578125,
+      "renderedSourceFrameId": 820,
+      "approximateRenderedSourceToNdiMs": 538.0528157552083,
+      "screenshotRequestMs": 41
+    },
+    {
+      "elapsedSeconds": 27.391,
+      "approximateSourceCursorToNdiMs": 670.961669921875,
+      "frameId": 816,
+      "ipcSampleAgeMs": 629.038330078125
+    },
+    {
+      "elapsedSeconds": 28.393,
+      "approximateSourceCursorToNdiMs": 676.08544921875,
+      "frameId": 846,
+      "ipcSampleAgeMs": 623.91455078125
+    },
+    {
+      "elapsedSeconds": 29.396,
+      "approximateSourceCursorToNdiMs": 662.3458658854179,
+      "frameId": 877,
+      "ipcSampleAgeMs": 604.32080078125
+    },
+    {
+      "elapsedSeconds": 30.399,
+      "approximateSourceCursorToNdiMs": 659.9562174479167,
+      "frameId": 7,
+      "ipcSampleAgeMs": 606.71044921875
+    },
+    {
+      "elapsedSeconds": 31.401,
+      "approximateSourceCursorToNdiMs": 664.0382486979167,
+      "frameId": 37,
+      "ipcSampleAgeMs": 602.62841796875,
+      "renderedSourceFrameId": 72,
+      "approximateRenderedSourceToNdiMs": 544.5382486979167,
+      "screenshotRequestMs": 39
+    },
+    {
+      "elapsedSeconds": 32.453,
+      "approximateSourceCursorToNdiMs": 651.7838541666665,
+      "frameId": 67,
+      "ipcSampleAgeMs": 655.8828125
+    },
+    {
+      "elapsedSeconds": 33.457,
+      "approximateSourceCursorToNdiMs": 674.9513346354165,
+      "frameId": 97,
+      "ipcSampleAgeMs": 657.71533203125
+    },
+    {
+      "elapsedSeconds": 34.458,
+      "approximateSourceCursorToNdiMs": 666.286458333333,
+      "frameId": 128,
+      "ipcSampleAgeMs": 633.046875
+    },
+    {
+      "elapsedSeconds": 35.461,
+      "approximateSourceCursorToNdiMs": 664.716878255208,
+      "frameId": 158,
+      "ipcSampleAgeMs": 634.616455078125
+    },
+    {
+      "elapsedSeconds": 36.463,
+      "approximateSourceCursorToNdiMs": 667.393147786458,
+      "frameId": 188,
+      "ipcSampleAgeMs": 631.940185546875,
+      "renderedSourceFrameId": 223,
+      "approximateRenderedSourceToNdiMs": 519.2264811197917,
+      "screenshotRequestMs": 31
+    },
+    {
+      "elapsedSeconds": 37.508,
+      "approximateSourceCursorToNdiMs": 657.869466145833,
+      "frameId": 218,
+      "ipcSampleAgeMs": 675.4638671875
+    },
+    {
+      "elapsedSeconds": 38.511,
+      "approximateSourceCursorToNdiMs": 645.42041015625,
+      "frameId": 249,
+      "ipcSampleAgeMs": 654.57958984375
+    },
+    {
+      "elapsedSeconds": 39.515,
+      "approximateSourceCursorToNdiMs": 647.30419921875,
+      "frameId": 279,
+      "ipcSampleAgeMs": 654.69580078125
+    },
+    {
+      "elapsedSeconds": 40.518,
+      "approximateSourceCursorToNdiMs": 648.470947265625,
+      "frameId": 309,
+      "ipcSampleAgeMs": 656.529052734375
+    },
+    {
+      "elapsedSeconds": 41.52,
+      "approximateSourceCursorToNdiMs": 648.880126953125,
+      "frameId": 339,
+      "ipcSampleAgeMs": 659.119873046875,
+      "renderedSourceFrameId": 375,
+      "approximateRenderedSourceToNdiMs": 523.880126953125,
+      "screenshotRequestMs": 34
+    },
+    {
+      "elapsedSeconds": 42.569,
+      "approximateSourceCursorToNdiMs": 660.42529296875,
+      "frameId": 369,
+      "ipcSampleAgeMs": 705.57470703125
+    },
+    {
+      "elapsedSeconds": 43.574,
+      "approximateSourceCursorToNdiMs": 648.8465983072911,
+      "frameId": 400,
+      "ipcSampleAgeMs": 683.820068359375
+    },
+    {
+      "elapsedSeconds": 44.576,
+      "approximateSourceCursorToNdiMs": 650.1056315104161,
+      "frameId": 430,
+      "ipcSampleAgeMs": 682.56103515625
+    },
+    {
+      "elapsedSeconds": 45.579,
+      "approximateSourceCursorToNdiMs": 652.2504069010411,
+      "frameId": 460,
+      "ipcSampleAgeMs": 680.416259765625
+    },
+    {
+      "elapsedSeconds": 46.58,
+      "approximateSourceCursorToNdiMs": 651.2298990885411,
+      "frameId": 490,
+      "ipcSampleAgeMs": 681.436767578125,
+      "renderedSourceFrameId": 527,
+      "approximateRenderedSourceToNdiMs": 532.8965657552083,
+      "screenshotRequestMs": 38
+    },
+    {
+      "elapsedSeconds": 47.638,
+      "approximateSourceCursorToNdiMs": 649.1150716145821,
+      "frameId": 521,
+      "ipcSampleAgeMs": 717.21826171875
+    },
+    {
+      "elapsedSeconds": 48.642,
+      "approximateSourceCursorToNdiMs": 650.1741536458321,
+      "frameId": 551,
+      "ipcSampleAgeMs": 716.1591796875
+    },
+    {
+      "elapsedSeconds": 49.646,
+      "approximateSourceCursorToNdiMs": 649.0403645833321,
+      "frameId": 581,
+      "ipcSampleAgeMs": 717.29296875
+    },
+    {
+      "elapsedSeconds": 50.649,
+      "approximateSourceCursorToNdiMs": 650.4795735677071,
+      "frameId": 611,
+      "ipcSampleAgeMs": 715.853759765625
+    },
+    {
+      "elapsedSeconds": 51.651,
+      "approximateSourceCursorToNdiMs": 648.2024739583321,
+      "frameId": 641,
+      "ipcSampleAgeMs": 718.130859375,
+      "renderedSourceFrameId": 679,
+      "approximateRenderedSourceToNdiMs": 533.0358072916667,
+      "screenshotRequestMs": 31
+    },
+    {
+      "elapsedSeconds": 52.697,
+      "approximateSourceCursorToNdiMs": 660.71875,
+      "frameId": 672,
+      "ipcSampleAgeMs": 739.28125
+    },
+    {
+      "elapsedSeconds": 53.701,
+      "approximateSourceCursorToNdiMs": 659.188720703125,
+      "frameId": 702,
+      "ipcSampleAgeMs": 740.811279296875
+    },
+    {
+      "elapsedSeconds": 54.704,
+      "approximateSourceCursorToNdiMs": 662.303466796875,
+      "frameId": 732,
+      "ipcSampleAgeMs": 737.696533203125
+    },
+    {
+      "elapsedSeconds": 55.706,
+      "approximateSourceCursorToNdiMs": 659.021484375,
+      "frameId": 762,
+      "ipcSampleAgeMs": 740.978515625
+    },
+    {
+      "elapsedSeconds": 56.71,
+      "approximateSourceCursorToNdiMs": 646.4093424479179,
+      "frameId": 793,
+      "ipcSampleAgeMs": 720.25732421875,
+      "renderedSourceFrameId": 831,
+      "approximateRenderedSourceToNdiMs": 525.9093424479167,
+      "screenshotRequestMs": 41
+    },
+    {
+      "elapsedSeconds": 57.769,
+      "approximateSourceCursorToNdiMs": 654.7941080729179,
+      "frameId": 823,
+      "ipcSampleAgeMs": 777.87255859375
+    },
+    {
+      "elapsedSeconds": 58.773,
+      "approximateSourceCursorToNdiMs": 656.1803385416679,
+      "frameId": 853,
+      "ipcSampleAgeMs": 776.486328125
+    },
+    {
+      "elapsedSeconds": 59.775,
+      "approximateSourceCursorToNdiMs": 655.7755533854179,
+      "frameId": 883,
+      "ipcSampleAgeMs": 776.89111328125
+    },
+    {
+      "elapsedSeconds": 60.778,
+      "approximateSourceCursorToNdiMs": 659.0245768229167,
+      "frameId": 13,
+      "ipcSampleAgeMs": 773.64208984375
+    },
+    {
+      "elapsedSeconds": 61.78,
+      "approximateSourceCursorToNdiMs": 642.5872395833333,
+      "frameId": 44,
+      "ipcSampleAgeMs": 756.74609375,
+      "renderedSourceFrameId": 83,
+      "approximateRenderedSourceToNdiMs": 525.25390625,
+      "screenshotRequestMs": 36
+    },
+    {
+      "elapsedSeconds": 62.831,
+      "approximateSourceCursorToNdiMs": 666.6729329427085,
+      "frameId": 74,
+      "ipcSampleAgeMs": 799.660400390625
+    },
+    {
+      "elapsedSeconds": 63.834,
+      "approximateSourceCursorToNdiMs": 661.8289388020835,
+      "frameId": 104,
+      "ipcSampleAgeMs": 804.50439453125
+    },
+    {
+      "elapsedSeconds": 64.837,
+      "approximateSourceCursorToNdiMs": 661.043782552083,
+      "frameId": 134,
+      "ipcSampleAgeMs": 805.28955078125
+    },
+    {
+      "elapsedSeconds": 65.84,
+      "approximateSourceCursorToNdiMs": 652.12548828125,
+      "frameId": 165,
+      "ipcSampleAgeMs": 780.87451171875
+    },
+    {
+      "elapsedSeconds": 66.842,
+      "approximateSourceCursorToNdiMs": 653.58203125,
+      "frameId": 195,
+      "ipcSampleAgeMs": 779.41796875,
+      "renderedSourceFrameId": 235,
+      "approximateRenderedSourceToNdiMs": 536.9153645833333,
+      "screenshotRequestMs": 34
+    },
+    {
+      "elapsedSeconds": 67.893,
+      "approximateSourceCursorToNdiMs": 667.771240234375,
+      "frameId": 225,
+      "ipcSampleAgeMs": 832.228759765625
+    },
+    {
+      "elapsedSeconds": 68.896,
+      "approximateSourceCursorToNdiMs": 668.203369140625,
+      "frameId": 255,
+      "ipcSampleAgeMs": 831.796630859375
+    },
+    {
+      "elapsedSeconds": 69.899,
+      "approximateSourceCursorToNdiMs": 667.277099609375,
+      "frameId": 285,
+      "ipcSampleAgeMs": 832.722900390625
+    },
+    {
+      "elapsedSeconds": 70.903,
+      "approximateSourceCursorToNdiMs": 652.8397623697911,
+      "frameId": 316,
+      "ipcSampleAgeMs": 813.826904296875
+    },
+    {
+      "elapsedSeconds": 71.906,
+      "approximateSourceCursorToNdiMs": 653.5834147135411,
+      "frameId": 346,
+      "ipcSampleAgeMs": 813.083251953125,
+      "renderedSourceFrameId": 387,
+      "approximateRenderedSourceToNdiMs": 538.0834147135417,
+      "screenshotRequestMs": 31
+    },
+    {
+      "elapsedSeconds": 72.95,
+      "approximateSourceCursorToNdiMs": 649.2958170572911,
+      "frameId": 376,
+      "ipcSampleAgeMs": 854.370849609375
+    },
+    {
+      "elapsedSeconds": 73.962,
+      "approximateSourceCursorToNdiMs": 668.7320963541661,
+      "frameId": 406,
+      "ipcSampleAgeMs": 863.9345703125
+    },
+    {
+      "elapsedSeconds": 74.966,
+      "approximateSourceCursorToNdiMs": 655.6795247395839,
+      "frameId": 437,
+      "ipcSampleAgeMs": 843.65380859375
+    },
+    {
+      "elapsedSeconds": 75.969,
+      "approximateSourceCursorToNdiMs": 654.6526692708339,
+      "frameId": 467,
+      "ipcSampleAgeMs": 844.6806640625
+    },
+    {
+      "elapsedSeconds": 76.973,
+      "approximateSourceCursorToNdiMs": 652.5032552083321,
+      "frameId": 497,
+      "ipcSampleAgeMs": 846.830078125,
+      "renderedSourceFrameId": 539,
+      "approximateRenderedSourceToNdiMs": 538.169921875,
+      "screenshotRequestMs": 30
+    },
+    {
+      "elapsedSeconds": 78.017,
+      "approximateSourceCursorToNdiMs": 646.2830403645821,
+      "frameId": 527,
+      "ipcSampleAgeMs": 887.05029296875
+    },
+    {
+      "elapsedSeconds": 79.019,
+      "approximateSourceCursorToNdiMs": 647.5862630208321,
+      "frameId": 557,
+      "ipcSampleAgeMs": 885.7470703125
+    },
+    {
+      "elapsedSeconds": 80.02,
+      "approximateSourceCursorToNdiMs": 638.840087890625,
+      "frameId": 588,
+      "ipcSampleAgeMs": 861.159912109375
+    },
+    {
+      "elapsedSeconds": 81.022,
+      "approximateSourceCursorToNdiMs": 671.32666015625,
+      "frameId": 618,
+      "ipcSampleAgeMs": 861.67333984375
+    },
+    {
+      "elapsedSeconds": 82.025,
+      "approximateSourceCursorToNdiMs": 672.656982421875,
+      "frameId": 648,
+      "ipcSampleAgeMs": 860.343017578125,
+      "renderedSourceFrameId": 690,
+      "approximateRenderedSourceToNdiMs": 524.656982421875,
+      "screenshotRequestMs": 30
+    },
+    {
+      "elapsedSeconds": 83.069,
+      "approximateSourceCursorToNdiMs": 667.0849609375,
+      "frameId": 678,
+      "ipcSampleAgeMs": 898.9150390625
+    },
+    {
+      "elapsedSeconds": 84.072,
+      "approximateSourceCursorToNdiMs": 649.3988444010429,
+      "frameId": 709,
+      "ipcSampleAgeMs": 883.267822265625
+    },
+    {
+      "elapsedSeconds": 85.074,
+      "approximateSourceCursorToNdiMs": 652.3505045572929,
+      "frameId": 739,
+      "ipcSampleAgeMs": 880.316162109375
+    },
+    {
+      "elapsedSeconds": 86.077,
+      "approximateSourceCursorToNdiMs": 649.1183268229179,
+      "frameId": 769,
+      "ipcSampleAgeMs": 883.54833984375
+    },
+    {
+      "elapsedSeconds": 87.08,
+      "approximateSourceCursorToNdiMs": 652.9027506510429,
+      "frameId": 799,
+      "ipcSampleAgeMs": 879.763916015625,
+      "renderedSourceFrameId": 842,
+      "approximateRenderedSourceToNdiMs": 535.5694173177083,
+      "screenshotRequestMs": 36
+    },
+    {
+      "elapsedSeconds": 88.129,
+      "approximateSourceCursorToNdiMs": 673.8785807291679,
+      "frameId": 829,
+      "ipcSampleAgeMs": 925.7880859375
+    },
+    {
+      "elapsedSeconds": 89.13,
+      "approximateSourceCursorToNdiMs": 659.3377278645821,
+      "frameId": 860,
+      "ipcSampleAgeMs": 906.99560546875
+    },
+    {
+      "elapsedSeconds": 90.133,
+      "approximateSourceCursorToNdiMs": 663.5725911458321,
+      "frameId": 890,
+      "ipcSampleAgeMs": 902.7607421875
+    },
+    {
+      "elapsedSeconds": 91.136,
+      "approximateSourceCursorToNdiMs": 662.9217122395835,
+      "frameId": 20,
+      "ipcSampleAgeMs": 903.41162109375
+    },
+    {
+      "elapsedSeconds": 92.138,
+      "approximateSourceCursorToNdiMs": 658.3828938802083,
+      "frameId": 50,
+      "ipcSampleAgeMs": 907.950439453125,
+      "renderedSourceFrameId": 94,
+      "approximateRenderedSourceToNdiMs": 543.7162272135417,
+      "screenshotRequestMs": 30
+    },
+    {
+      "elapsedSeconds": 93.182,
+      "approximateSourceCursorToNdiMs": 640.375244140625,
+      "frameId": 81,
+      "ipcSampleAgeMs": 925.624755859375
+    },
+    {
+      "elapsedSeconds": 94.184,
+      "approximateSourceCursorToNdiMs": 643.785400390625,
+      "frameId": 111,
+      "ipcSampleAgeMs": 925.214599609375
+    },
+    {
+      "elapsedSeconds": 95.186,
+      "approximateSourceCursorToNdiMs": 650.96875,
+      "frameId": 141,
+      "ipcSampleAgeMs": 921.03125
+    },
+    {
+      "elapsedSeconds": 96.188,
+      "approximateSourceCursorToNdiMs": 675.40283203125,
+      "frameId": 171,
+      "ipcSampleAgeMs": 924.59716796875
+    },
+    {
+      "elapsedSeconds": 97.191,
+      "approximateSourceCursorToNdiMs": 677.961669921875,
+      "frameId": 201,
+      "ipcSampleAgeMs": 922.038330078125,
+      "renderedSourceFrameId": 245,
+      "approximateRenderedSourceToNdiMs": 525.1283365885417,
+      "screenshotRequestMs": 39
+    },
+    {
+      "elapsedSeconds": 98.244,
+      "approximateSourceCursorToNdiMs": 648.255289713542,
+      "frameId": 232,
+      "ipcSampleAgeMs": 951.411376953125
+    },
+    {
+      "elapsedSeconds": 99.247,
+      "approximateSourceCursorToNdiMs": 649.2782389322911,
+      "frameId": 262,
+      "ipcSampleAgeMs": 950.388427734375
+    },
+    {
+      "elapsedSeconds": 100.25,
+      "approximateSourceCursorToNdiMs": 645.2137858072911,
+      "frameId": 292,
+      "ipcSampleAgeMs": 954.452880859375
+    },
+    {
+      "elapsedSeconds": 101.253,
+      "approximateSourceCursorToNdiMs": 645.5934244791661,
+      "frameId": 322,
+      "ipcSampleAgeMs": 954.0732421875
+    },
+    {
+      "elapsedSeconds": 102.255,
+      "approximateSourceCursorToNdiMs": 670.8899739583339,
+      "frameId": 353,
+      "ipcSampleAgeMs": 928.443359375,
+      "renderedSourceFrameId": 397,
+      "approximateRenderedSourceToNdiMs": 521.7233072916667,
+      "screenshotRequestMs": 33
+    },
+    {
+      "elapsedSeconds": 103.301,
+      "approximateSourceCursorToNdiMs": 661.7967122395839,
+      "frameId": 383,
+      "ipcSampleAgeMs": 971.53662109375
+    },
+    {
+      "elapsedSeconds": 104.303,
+      "approximateSourceCursorToNdiMs": 660.0906575520839,
+      "frameId": 413,
+      "ipcSampleAgeMs": 973.24267578125
+    },
+    {
+      "elapsedSeconds": 105.306,
+      "approximateSourceCursorToNdiMs": 658.6221516927089,
+      "frameId": 443,
+      "ipcSampleAgeMs": 974.711181640625
+    },
+    {
+      "elapsedSeconds": 106.309,
+      "approximateSourceCursorToNdiMs": 661.0645345052089,
+      "frameId": 473,
+      "ipcSampleAgeMs": 972.268798828125
+    },
+    {
+      "elapsedSeconds": 107.312,
+      "approximateSourceCursorToNdiMs": 643.298095703125,
+      "frameId": 504,
+      "ipcSampleAgeMs": 956.701904296875,
+      "renderedSourceFrameId": 549,
+      "approximateRenderedSourceToNdiMs": 525.798095703125,
+      "screenshotRequestMs": 35
+    },
+    {
+      "elapsedSeconds": 108.362,
+      "approximateSourceCursorToNdiMs": 670.06591796875,
+      "frameId": 534,
+      "ipcSampleAgeMs": 995.93408203125
+    },
+    {
+      "elapsedSeconds": 109.366,
+      "approximateSourceCursorToNdiMs": 663.28271484375,
+      "frameId": 564,
+      "ipcSampleAgeMs": 1002.71728515625
+    },
+    {
+      "elapsedSeconds": 110.369,
+      "approximateSourceCursorToNdiMs": 665.531494140625,
+      "frameId": 594,
+      "ipcSampleAgeMs": 1000.468505859375
+    },
+    {
+      "elapsedSeconds": 111.372,
+      "approximateSourceCursorToNdiMs": 653.0807291666679,
+      "frameId": 625,
+      "ipcSampleAgeMs": 979.5859375
+    },
+    {
+      "elapsedSeconds": 112.375,
+      "approximateSourceCursorToNdiMs": 654.2347819010429,
+      "frameId": 655,
+      "ipcSampleAgeMs": 978.431884765625,
+      "renderedSourceFrameId": 701,
+      "approximateRenderedSourceToNdiMs": 540.9014485677083,
+      "screenshotRequestMs": 28
+    },
+    {
+      "elapsedSeconds": 113.42,
+      "approximateSourceCursorToNdiMs": 647.2865397135429,
+      "frameId": 715,
+      "ipcSampleAgeMs": 19.380126953125
+    },
+    {
+      "elapsedSeconds": 114.422,
+      "approximateSourceCursorToNdiMs": 677.9479166666679,
+      "frameId": 745,
+      "ipcSampleAgeMs": 21.71875
+    },
+    {
+      "elapsedSeconds": 115.425,
+      "approximateSourceCursorToNdiMs": 673.9479166666679,
+      "frameId": 745,
+      "ipcSampleAgeMs": 1025.71875
+    },
+    {
+      "elapsedSeconds": 116.428,
+      "approximateSourceCursorToNdiMs": 664.6761067708321,
+      "frameId": 776,
+      "ipcSampleAgeMs": 1001.6572265625
+    },
+    {
+      "elapsedSeconds": 117.432,
+      "approximateSourceCursorToNdiMs": 661.2747395833321,
+      "frameId": 806,
+      "ipcSampleAgeMs": 1005.05859375,
+      "renderedSourceFrameId": 853,
+      "approximateRenderedSourceToNdiMs": 543.6080729166667,
+      "screenshotRequestMs": 36
+    }
+  ],
+  "nativePid": 57636,
+  "bridgePid": 137712,
+  "progress": {
+    "elapsedSeconds": 117.432,
+    "frames": 3477,
+    "audioSamples": 5565440,
+    "ptsErrors": 0,
+    "alphaFailures": 0,
+    "foregroundColorsSeen": [
+      "red"
+    ]
+  },
+  "error": "AssertionError [ERR_ASSERTION]: Traceback (most recent call last):\r\n  File \"D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\capture-native-alpha-endurance.py\", line 44, in <module>\r\n    stats['processSamples'].append({'elapsedSeconds':now-started,**procs});save()\r\n  File \"D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\capture-native-alpha-endurance.py\", line 12, in save\r\n    data={**stats,'motionIds':len(stats['motionIds'])};tmp=folder/(tag+'-receiver.tmp');tmp.write_text(json.dumps(data,indent=2));tmp.replace(folder/(tag+'-receiver.json'))\r\n  File \"C:\\Users\\eddyr\\AppData\\Local\\Programs\\Python\\Python310\\lib\\pathlib.py\", line 1247, in replace\r\n    self._accessor.replace(self, target)\r\nPermissionError: [WinError 5] Acesso negado: 'D:\\\\DRIVE\\\\IA\\\\antigravity\\\\vmixtwste\\\\qa-finalizacao\\\\bridge-endurance\\\\full-receiver.tmp' -> 'D:\\\\DRIVE\\\\IA\\\\antigravity\\\\vmixtwste\\\\qa-finalizacao\\\\bridge-endurance\\\\full-receiver.json'\r\n\n\n1 !== 0\n\n    at file:///D:/DRIVE/IA/antigravity/vmixtwste/qa-finalizacao/test-native-alpha-endurance.mjs:30:9",
+  "bridgeForcedStop": true,
+  "nativeExit": null,
+  "finished": "2026-10-09T21:23:17.018Z",
+  "latencyMethod": "Approximation from burned frame counter and Native media cursor with IPC sample-age correction; includes±oneframe/readout jitter, not measured networkonewaylatency"
+}

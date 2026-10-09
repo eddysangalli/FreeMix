@@ -1,0 +1,102 @@
+[
+  {
+    "path": "qa-finalizacao/replay-completo/make-cef-bootstrap.py",
+    "bytes": 1506,
+    "sha256": "ef795d2312b0728638c55b4131d76fe1e8d6a791e75cee40df0eab3af475761a"
+  },
+  {
+    "path": "qa-finalizacao/replay-completo/cef-bootstrap.mjs",
+    "bytes": 5213,
+    "sha256": "dab98fea5c58d1b999ad6819665d55a14987c8ac70f3e323cfb8db7a4d1ccc1b"
+  },
+  {
+    "path": "qa-finalizacao/replay-completo/cef-instrument.js",
+    "bytes": 3695,
+    "sha256": "b01e1250a45ffedce12327d436bb454a94e81edef6c4f19af7d567f2cab78249"
+  },
+  {
+    "path": "qa-finalizacao/replay-completo/test-cef-native.mjs",
+    "bytes": 10713,
+    "sha256": "68d046e1f99303b8ee6d9ffb40a5d6b786ae2e83be6f8f705836986d77d92083"
+  },
+  {
+    "path": "qa-finalizacao/replay-completo/sample-cef-resources.ps1",
+    "bytes": 1544,
+    "sha256": "551d22b83e85fc4f5eade8a0b9348fdcd43c1dfad36cb50d2d01bf047274175f"
+  },
+  {
+    "path": "qa-finalizacao/replay-completo/sample-recorded-audio.mjs",
+    "bytes": 1717,
+    "sha256": "b790a39fcd44d672c28514ffb27abe58b88241e486acb67d9406533e0bde7208"
+  },
+  {
+    "path": "qa-finalizacao/replay-completo/review-cef-evidence.mjs",
+    "bytes": 3908,
+    "sha256": "4e4621fa4298a9bc3526bd0fa624fb586eefcc236d875a98429225518ac90cdf"
+  },
+  {
+    "path": "qa-finalizacao/replay-completo/summarize-cef.mjs",
+    "bytes": 3011,
+    "sha256": "d7359e35fb77a30c0364c1ed81c2c794500cc933f3c7d7048de31b78fc07042f"
+  },
+  {
+    "path": "qa-finalizacao/replay-completo/README-CEF-QA.md",
+    "bytes": 6021,
+    "sha256": "2906eb5f31bdada6b809e569fbabb98c30ff553a20561527e4a0b2d11cbf00c8"
+  },
+  {
+    "path": "qa-finalizacao/replay-completo/RELATORIO.md",
+    "bytes": 6723,
+    "sha256": "09a6bf71b2ded33ea5a5c48f184657c6096b8ab35626d7b0f00091cedbc1903c"
+  },
+  {
+    "path": "qa-finalizacao/replay-completo/cef-native/resultado-cef-native.json",
+    "bytes": 403450,
+    "sha256": "e02c3aa0f7a88be32c9b5b1f6bfdf1029f51b0201f0fdfa95fd3b1049ef14d96"
+  },
+  {
+    "path": "qa-finalizacao/replay-completo/cef-native/resultado-cef-native-reviewed.json",
+    "bytes": 404753,
+    "sha256": "aea322b771e9be15f37103dcdf61ecfca98e8f5f2523d99b3eb12de3b7e6775a"
+  },
+  {
+    "path": "qa-finalizacao/replay-completo/cef-native/browser-reports.json",
+    "bytes": 264444,
+    "sha256": "0f44b656febe91064c578709714860a48de90932a5b85c6bc26d4deed51f564f"
+  },
+  {
+    "path": "qa-finalizacao/replay-completo/cef-native/summary.json",
+    "bytes": 10033,
+    "sha256": "e12d2092a84bf424f1f59aff92a12de24de8af32cc8792959c72869a69d08b20"
+  },
+  {
+    "path": "qa-finalizacao/replay-completo/cef-native/resource-samples.json",
+    "bytes": 88925,
+    "sha256": "1c18a9b5f3977051022d10e2d56226ffe28e78894f68e323f2659684a703dc6f"
+  },
+  {
+    "path": "qa-finalizacao/replay-completo/cef-native/native.log",
+    "bytes": 68710,
+    "sha256": "ae37102dfdc76f3d8333924536917e4ccb5e142549e3881bda856a06381d8338"
+  },
+  {
+    "path": "qa-finalizacao/replay-completo/cef-native/cef-panel.png",
+    "bytes": 95431,
+    "sha256": "fc41a610f1fde8263ae2dd129c1e0e60342c6719fb67da72c1e2852ca068aaa2"
+  },
+  {
+    "path": "qa-finalizacao/replay-completo/cef-native/record-directory-after-start.json",
+    "bytes": 362,
+    "sha256": "08bb6414de7ca6f5ce99912148b06c6b77cdf8c1fc149974a7388ea2460790d9"
+  },
+  {
+    "path": "qa-finalizacao/replay-completo/cef-native/cache-mid-run.json",
+    "bytes": 238,
+    "sha256": "510ac8e1e17188f1b9ff6f431663e6c60ac3bcf7ff839c17dcd320500aa9f399"
+  },
+  {
+    "path": "qa-finalizacao/replay-completo/cef-native/recorded-audio-near-tail.json",
+    "bytes": 1757,
+    "sha256": "54abb923ad9ac60ebb6ed51cb0a78cec0834d861af0e06a65bf9ba539a5341db"
+  }
+]

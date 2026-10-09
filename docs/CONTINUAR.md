@@ -1,8 +1,8 @@
 ## Estado prioritário — 09/10/2026, 18h05
 
-O trabalho até 13/10 permanece ativo. Leia PLANO-CONCLUSAO-20261013.md para os donos dos arquivos, entregas e evidências. O Git do produto está em `feat/native-menus-config-screens`, commit `3e6a1dc`.
+O trabalho até 13/10 permanece ativo. Leia PLANO-CONCLUSAO-20261013.md para os donos dos arquivos, entregas e evidências. O Git do produto está em `feat/native-menus-config-screens`, commit `eabd031`.
 
-Replay, ASIO, distribuição, recuperação e Fill/Key foram integrados nas fontes. O pacote 153453 é anterior a essas integrações e permanece imutável. GTZIP, HDR manual por OMT e correções de fechamento LocalVocal/SceneSwitcher foram integrados nas fontes com provas locais. Recuperação .fmx dos títulos passou no Native final 1c045e5d. Controladores foram congelados e espelhados com 12 provas de software e 26 casos de navegador. Ainda faltam ensaios prolongados e o novo instalador. Relatórios antigos não comprovam a entrega atual.
+Replay, ASIO, distribuição, recuperação e Fill/Key foram integrados nas fontes. O pacote 153453 é anterior a essas integrações e permanece imutável. GTZIP, HDR manual por OMT e correções de fechamento LocalVocal/SceneSwitcher foram integrados nas fontes com provas locais. Recuperação .fmx dos títulos passou no Native final 1c045e5d. Controladores foram congelados e espelhados com 12 provas de software e 26 casos de navegador. Ensaios de 20 minutos de replay CEF e ponte nativa alpha concluídos, com recibos e limites. O candidato 213415 está sendo selado e conferido; ainda não é instalação entregue. Próximas frentes: HDR SDI e alinhamento multicâmera. Relatórios antigos não comprovam a entrega atual.
 
 Os ensaios físicos e de WAN, o envio HDR por NDI Advanced SDK e a publicação em domínio próprio dependem dos recursos correspondentes. Não publicar automaticamente nem alterar a mesa do operador.
 

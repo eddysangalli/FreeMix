@@ -1,0 +1,31 @@
+{
+  "status": "PASS",
+  "checkedAt": "2026-10-09T21:38:07.922Z",
+  "exe": "C:\\Users\\eddyr\\AppData\\Local\\Temp/FreeMix-QA-NativeAlpha-Final-Counters-Build/FreeMix-Alpha-Bridge.exe",
+  "sha256": "d75aa9b586f70d292e83c916e7a624b1d69634a85fdbcc3444d6be6e839432aa",
+  "operatorTouched": false,
+  "vmixTouched": false,
+  "networkOpened": false,
+  "results": [
+    {
+      "name": "Fatal missing NDI runtime",
+      "exitCode": 1,
+      "stderr": "Official NDI runtime unavailable"
+    },
+    {
+      "name": "Invalid duration text",
+      "exitCode": 2,
+      "stderr": "Invalid arguments: invalid stoi argument"
+    },
+    {
+      "name": "Negative duration",
+      "exitCode": 2,
+      "stderr": "Invalid arguments: Seconds must not be negative"
+    },
+    {
+      "name": "Missing required arguments",
+      "exitCode": 2,
+      "stderr": "FreeMix native packed-alpha receiver\r\n--input srt://0.0.0.0:18460?mode=listener&latency=120000 --ndi-runtime <official DLL> [--name name] [--receipt json] [--seconds n] [--once]"
+    }
+  ]
+}

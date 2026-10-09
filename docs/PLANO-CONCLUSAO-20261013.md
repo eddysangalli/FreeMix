@@ -66,3 +66,7 @@ GTZIP congelado: 21 fontes e três recibos hash-verificados espelhados; recupera
 LocalVocal e dois DLLs SceneSwitcher têm patches, fontes oficiais, licenças e receitas reproduzidas. Suíte completa com NDI fechou normalmente em 876/892 ms. Entrarão apenas no pacote novo, sem sobrescrever operador. Packager agora calcula fechamento de 97 módulos, inclui NDI pinado e aceita overlays explícitos de plugins por SHA-256.
 
 Donos atuais: auditoria_pendencias_reais executa Replay/CEF20min; transportes_rede_conclusao executa ponte Native alpha20min; installer_exe corrige reconexão/feedback/releases de controladores e verifica24 casosUI. Root prepara selagem, instalador e integração final. Ensaios interrompidos por falhas de isolamento/instrumentação são preservados como FAIL, não resultados de mídia homologados.
+
+## Integração em 2026-10-09T21:57:17.226Z
+
+Native99e5944/EXE1c045e5d e 14 patches reproduzíveis no candidato213415. ReplayCEF20min e ponte nativa alpha20min concluídos; falhas de isolamento/instrumentação preservadas. auditoria_pendencias_reais mede alinhamento multicâmera; transportes_rede_conclusao implementa SDIHDR; installer_exe confere o EXE selado, duas instalações reais, importação/ZIP e desinstalação. Root faz início completo pelo launcher instalado, selagem e Git. Ponte permanece beta separada, sem inclusão automática no instalador.

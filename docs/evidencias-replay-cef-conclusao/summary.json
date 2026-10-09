@@ -1,0 +1,395 @@
+{
+  "status": "PASS",
+  "realCEF": true,
+  "nativeSha256": "1c045e5d43bae20eca9b15df50d73d297b9d433e381027eb861f0ff21f014744",
+  "boot": {
+    "type": "boot",
+    "at": 353.7000000476837,
+    "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.6533.120 OBS/32.2.2 Safari/537.36",
+    "mse": true,
+    "codec": true
+  },
+  "seconds": 1199.9994000000954,
+  "seeks": [
+    {
+      "target": 10,
+      "elapsedMs": 548.2999999523163
+    },
+    {
+      "target": 13,
+      "elapsedMs": 185.80000007152557
+    },
+    {
+      "target": 1,
+      "elapsedMs": 392
+    }
+  ],
+  "audio": {
+    "type": "audio",
+    "at": 2351.899999976158,
+    "initialMuted": true,
+    "mutedAfterOptIn": false,
+    "frequency": 445.3125,
+    "peakDb": -46.66326141357422,
+    "context": "running",
+    "audibleOutputGain": 0
+  },
+  "clipDurations": [
+    {
+      "cam": "QA CEF Camera 1",
+      "duration": 3
+    },
+    {
+      "cam": "QA CEF Camera 2",
+      "duration": 3
+    }
+  ],
+  "firstHistoryEnd": 7.588000999999999,
+  "lastHistoryEnd": 1210.588001,
+  "framesAfterLastSeek": 35051,
+  "droppedAfterLastSeek": 0,
+  "waitingEvents": 3,
+  "unexpectedStalls": 0,
+  "previewRequests": 155,
+  "previewPreparationMs": {
+    "p50": 317.2430999998469,
+    "p95": 347.8921000000046,
+    "max": 478.91079999999783
+  },
+  "javascriptExceptions": 0,
+  "exit": {
+    "code": 0,
+    "signal": null
+  },
+  "shutdownMs": 1016,
+  "ownForcedCleanup": false,
+  "operatorTouched": false,
+  "resources": [
+    {
+      "wallSeconds": 158.00110000002385,
+      "privateMiB": 3926.97265625,
+      "workingSetMiB": 1351.6953125,
+      "processes": 9
+    },
+    {
+      "wallSeconds": 182.0015,
+      "privateMiB": 3930.05859375,
+      "workingSetMiB": 1356.8203125,
+      "processes": 9
+    },
+    {
+      "wallSeconds": 206.0005,
+      "privateMiB": 3925.08203125,
+      "workingSetMiB": 1352.0546875,
+      "processes": 9
+    },
+    {
+      "wallSeconds": 230.00090000009536,
+      "privateMiB": 3927.3125,
+      "workingSetMiB": 1336.36328125,
+      "processes": 9
+    },
+    {
+      "wallSeconds": 254.00030000007152,
+      "privateMiB": 3930.58203125,
+      "workingSetMiB": 1309.9375,
+      "processes": 9
+    },
+    {
+      "wallSeconds": 278.0009000000954,
+      "privateMiB": 3931.7421875,
+      "workingSetMiB": 1311.8828125,
+      "processes": 9
+    },
+    {
+      "wallSeconds": 302.0005,
+      "privateMiB": 3925.890625,
+      "workingSetMiB": 1307.41015625,
+      "processes": 9
+    },
+    {
+      "wallSeconds": 324.0013000000715,
+      "privateMiB": 3928.61328125,
+      "workingSetMiB": 1309.9296875,
+      "processes": 9
+    },
+    {
+      "wallSeconds": 348.00080000007154,
+      "privateMiB": 3931.55859375,
+      "workingSetMiB": 1312.58203125,
+      "processes": 9
+    },
+    {
+      "wallSeconds": 372.0002000000477,
+      "privateMiB": 3925.15234375,
+      "workingSetMiB": 1307.140625,
+      "processes": 9
+    },
+    {
+      "wallSeconds": 396.0007000000477,
+      "privateMiB": 3927.734375,
+      "workingSetMiB": 1309.7109375,
+      "processes": 9
+    },
+    {
+      "wallSeconds": 420.0013000000715,
+      "privateMiB": 3930.7890625,
+      "workingSetMiB": 1312.44921875,
+      "processes": 9
+    },
+    {
+      "wallSeconds": 442.00060000002384,
+      "privateMiB": 3933.55078125,
+      "workingSetMiB": 1315.06640625,
+      "processes": 9
+    },
+    {
+      "wallSeconds": 466.0002000000477,
+      "privateMiB": 3927.15625,
+      "workingSetMiB": 1309.3359375,
+      "processes": 9
+    },
+    {
+      "wallSeconds": 490.001,
+      "privateMiB": 3929.86328125,
+      "workingSetMiB": 1311.81640625,
+      "processes": 9
+    },
+    {
+      "wallSeconds": 514.0008000000715,
+      "privateMiB": 3932.83984375,
+      "workingSetMiB": 1314.54296875,
+      "processes": 9
+    },
+    {
+      "wallSeconds": 538.001,
+      "privateMiB": 3925.64453125,
+      "workingSetMiB": 1308.1796875,
+      "processes": 9
+    },
+    {
+      "wallSeconds": 560.0011000000238,
+      "privateMiB": 3928.8515625,
+      "workingSetMiB": 1311.03515625,
+      "processes": 9
+    },
+    {
+      "wallSeconds": 584.0008000000715,
+      "privateMiB": 3931.80859375,
+      "workingSetMiB": 1313.625,
+      "processes": 9
+    },
+    {
+      "wallSeconds": 608.0006000000238,
+      "privateMiB": 3935.76171875,
+      "workingSetMiB": 1317.28125,
+      "processes": 9
+    },
+    {
+      "wallSeconds": 632.0006000000238,
+      "privateMiB": 3928.1953125,
+      "workingSetMiB": 1310.49609375,
+      "processes": 9
+    },
+    {
+      "wallSeconds": 656.0011000000238,
+      "privateMiB": 3931.31640625,
+      "workingSetMiB": 1313.46484375,
+      "processes": 9
+    },
+    {
+      "wallSeconds": 680.0003000000715,
+      "privateMiB": 3933.6953125,
+      "workingSetMiB": 1315.71875,
+      "processes": 9
+    },
+    {
+      "wallSeconds": 702.0009000000954,
+      "privateMiB": 3926.49609375,
+      "workingSetMiB": 1309.32421875,
+      "processes": 9
+    },
+    {
+      "wallSeconds": 726.0005,
+      "privateMiB": 3929.0625,
+      "workingSetMiB": 1311.63671875,
+      "processes": 9
+    },
+    {
+      "wallSeconds": 750.0004000000954,
+      "privateMiB": 3931.7734375,
+      "workingSetMiB": 1314.0625,
+      "processes": 9
+    },
+    {
+      "wallSeconds": 774.0003000000715,
+      "privateMiB": 3933.1015625,
+      "workingSetMiB": 1315.16015625,
+      "processes": 9
+    },
+    {
+      "wallSeconds": 796.0006000000238,
+      "privateMiB": 3926,
+      "workingSetMiB": 1308.62890625,
+      "processes": 9
+    },
+    {
+      "wallSeconds": 820.0004000000954,
+      "privateMiB": 3928.98828125,
+      "workingSetMiB": 1311.3203125,
+      "processes": 9
+    },
+    {
+      "wallSeconds": 844.0001000000238,
+      "privateMiB": 3931.5078125,
+      "workingSetMiB": 1314.3203125,
+      "processes": 9
+    },
+    {
+      "wallSeconds": 868.0005,
+      "privateMiB": 3934.33984375,
+      "workingSetMiB": 1316.87109375,
+      "processes": 9
+    },
+    {
+      "wallSeconds": 892.0005,
+      "privateMiB": 3927.22265625,
+      "workingSetMiB": 1310.68359375,
+      "processes": 9
+    },
+    {
+      "wallSeconds": 914.0005,
+      "privateMiB": 3929.9453125,
+      "workingSetMiB": 1313.08203125,
+      "processes": 9
+    },
+    {
+      "wallSeconds": 938.0006000000238,
+      "privateMiB": 3932.79296875,
+      "workingSetMiB": 1315.828125,
+      "processes": 9
+    },
+    {
+      "wallSeconds": 962.0001000000238,
+      "privateMiB": 3935.7734375,
+      "workingSetMiB": 1318.50390625,
+      "processes": 9
+    },
+    {
+      "wallSeconds": 986.0008000000715,
+      "privateMiB": 3928.265625,
+      "workingSetMiB": 1311.87890625,
+      "processes": 9
+    },
+    {
+      "wallSeconds": 1010.0003000000715,
+      "privateMiB": 3931.65625,
+      "workingSetMiB": 1315.0625,
+      "processes": 9
+    },
+    {
+      "wallSeconds": 1032.0005,
+      "privateMiB": 3933.8515625,
+      "workingSetMiB": 1316.9453125,
+      "processes": 9
+    },
+    {
+      "wallSeconds": 1056.0004000000954,
+      "privateMiB": 3926.65234375,
+      "workingSetMiB": 1310.5625,
+      "processes": 9
+    },
+    {
+      "wallSeconds": 1080.0018000000716,
+      "privateMiB": 3929.921875,
+      "workingSetMiB": 1313.58203125,
+      "processes": 9
+    },
+    {
+      "wallSeconds": 1104.0004000000954,
+      "privateMiB": 3932.80859375,
+      "workingSetMiB": 1316.140625,
+      "processes": 9
+    },
+    {
+      "wallSeconds": 1126.0008000000714,
+      "privateMiB": 3934.9375,
+      "workingSetMiB": 1318.02734375,
+      "processes": 9
+    },
+    {
+      "wallSeconds": 1150.0003000000715,
+      "privateMiB": 3928.2265625,
+      "workingSetMiB": 1312.1484375,
+      "processes": 9
+    },
+    {
+      "wallSeconds": 1174.0011000000238,
+      "privateMiB": 3930.95703125,
+      "workingSetMiB": 1314.6171875,
+      "processes": 9
+    }
+  ],
+  "hashes": [
+    {
+      "path": "obs-vmix/painel/remoto/replay.html",
+      "bytes": 17236,
+      "sha256": "6f8db2fd2ed32dbeb0873e529ba7cfaa302cbad0384ecf9e1da93d67d8bebb45"
+    },
+    {
+      "path": "obs-vmix/painel/remoto/replay.js",
+      "bytes": 23469,
+      "sha256": "5a97a540b814cc5f8b746653e19c0caee47618e2c22dedc0c7deae5af171c5eb"
+    },
+    {
+      "path": "obs-vmix/ferramentas/replay-disco.mjs",
+      "bytes": 68835,
+      "sha256": "c61e439ae6c27742fe14678fee01da3cf18a21c55df1d6e4cba03212262ee0cc"
+    },
+    {
+      "path": "obs-vmix/ferramentas/replay-preview.mjs",
+      "bytes": 6991,
+      "sha256": "6fadf72f276c46de7b9640331e989a539863275a698df1316559de7da744a4af"
+    },
+    {
+      "path": "qa-finalizacao/replay-completo/cef-bootstrap.mjs",
+      "bytes": 5213,
+      "sha256": "dab98fea5c58d1b999ad6819665d55a14987c8ac70f3e323cfb8db7a4d1ccc1b"
+    },
+    {
+      "path": "qa-finalizacao/replay-completo/cef-instrument.js",
+      "bytes": 3695,
+      "sha256": "b01e1250a45ffedce12327d436bb454a94e81edef6c4f19af7d567f2cab78249"
+    },
+    {
+      "path": "qa-finalizacao/replay-completo/test-cef-native.mjs",
+      "bytes": 10713,
+      "sha256": "68d046e1f99303b8ee6d9ffb40a5d6b786ae2e83be6f8f705836986d77d92083"
+    },
+    {
+      "path": "qa-finalizacao/replay-completo/README-CEF-QA.md",
+      "bytes": 6021,
+      "sha256": "2906eb5f31bdada6b809e569fbabb98c30ff553a20561527e4a0b2d11cbf00c8"
+    },
+    {
+      "path": "qa-finalizacao/replay-completo/cef-native/cef-panel.png",
+      "bytes": 95431,
+      "sha256": "fc41a610f1fde8263ae2dd129c1e0e60342c6719fb67da72c1e2852ca068aaa2"
+    },
+    {
+      "path": "qa-finalizacao/replay-completo/cef-native/native.log",
+      "bytes": 68710,
+      "sha256": "ae37102dfdc76f3d8333924536917e4ccb5e142549e3881bda856a06381d8338"
+    },
+    {
+      "path": "qa-finalizacao/replay-completo/cef-native/record-directory-after-start.json",
+      "bytes": 362,
+      "sha256": "08bb6414de7ca6f5ce99912148b06c6b77cdf8c1fc149974a7388ea2460790d9"
+    },
+    {
+      "path": "qa-finalizacao/replay-completo/cef-native/cache-mid-run.json",
+      "bytes": 238,
+      "sha256": "510ac8e1e17188f1b9ff6f431663e6c60ac3bcf7ff839c17dcd320500aa9f399"
+    }
+  ]
+}

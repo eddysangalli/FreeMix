@@ -1,0 +1,132 @@
+{
+  "status": "PASS",
+  "analysedAt": "2026-10-09T21:46:56.021Z",
+  "sourceReceipt": "qa-finalizacao/bridge-endurance/full2-orchestrator.json",
+  "nativeSha256": "1c045e5d43bae20eca9b15df50d73d297b9d433e381027eb861f0ff21f014744",
+  "bridgeSha256": "3dcc80034b2d0b067fd05e08c3566660850288a693e61f990ffd6d90166680fb",
+  "seconds": 1200,
+  "receivedFrames": 35711,
+  "receivedFramesPerWallSecondIncludingOutages": 29.759166666666665,
+  "audioSamples": 57143296,
+  "audioPeakHz": 440,
+  "audioRms": 0.062030401080846786,
+  "videoPtsErrors": 0,
+  "audioPtsErrors": 0,
+  "alphaFailures": 0,
+  "transparentSamples": 1184,
+  "opaqueSamples": 1184,
+  "partialAlphaSamples": 1184,
+  "foregroundColorsSeen": [
+    "red",
+    "blue"
+  ],
+  "blankFramesOnLinkLoss": 3,
+  "maxReceiveGapSecondsIncludingOutages": 2.609000000054948,
+  "controlledInterruptions": [
+    {
+      "elapsedSeconds": 300.047,
+      "pauseSeconds": 2,
+      "selectedSource": "477e5f4c-dfd2-4018-b900-d70030ef2c1d"
+    },
+    {
+      "elapsedSeconds": 600.124,
+      "pauseSeconds": 2,
+      "selectedSource": "48eb2307-15c3-46eb-901d-bfa87c5a8c64"
+    },
+    {
+      "elapsedSeconds": 900.373,
+      "pauseSeconds": 2,
+      "selectedSource": "477e5f4c-dfd2-4018-b900-d70030ef2c1d"
+    }
+  ],
+  "approximateRenderedSourceToNdiMsSteady": {
+    "samples": 229,
+    "min": 506.28385416666663,
+    "median": 530.3363444010417,
+    "p95": 543.3466796875,
+    "max": 546.730712890625
+  },
+  "screenshotRequestMs": {
+    "samples": 235,
+    "min": 30,
+    "median": 36,
+    "p95": 51,
+    "max": 57
+  },
+  "resources": {
+    "native": {
+      "rssMiB": {
+        "samples": 1184,
+        "min": 834.84765625,
+        "median": 859.890625,
+        "p95": 985.765625,
+        "max": 991.8984375
+      },
+      "cpuPercentOneCoreBasis": {
+        "samples": 1184,
+        "min": 21.9,
+        "median": 57.8,
+        "p95": 81.2,
+        "max": 103.1
+      },
+      "early60To120SecondsRssMiB": 988.29296875,
+      "final60SecondsRssMiB": 860.4765625
+    },
+    "bridge": {
+      "rssMiB": {
+        "samples": 1184,
+        "min": 48.16796875,
+        "median": 53.4296875,
+        "p95": 55.68359375,
+        "max": 55.87890625
+      },
+      "cpuPercentOneCoreBasis": {
+        "samples": 1184,
+        "min": 2.2,
+        "median": 25,
+        "p95": 40.6,
+        "max": 52.3
+      },
+      "early60To120SecondsRssMiB": 52.76171875,
+      "final60SecondsRssMiB": 53.578125
+    }
+  },
+  "bridge": {
+    "state": "stopped",
+    "videoFrames": 35728,
+    "audioFrames": 55827,
+    "audioSamplesPerChannel": 57166848,
+    "droppedLateFrames": 146,
+    "reconnects": 8,
+    "maxVideoProcessMs": 10.47,
+    "width": 1280,
+    "height": 720,
+    "firstVideoPtsUs": 21333,
+    "lastVideoPtsUs": 1200388528,
+    "firstAudioPtsUs": 0,
+    "lastAudioPtsUs": 1200384528,
+    "browser": false,
+    "externalHomologation": false
+  },
+  "legacyBridgeMixedDiscardCounter": true,
+  "legacyBridgeDiscardCounterMeaning": "In the endurance binary, droppedLateFrames aggregates audio and video discarded for lateness or repeated PTS. It is not a count of visual frames lost; the final binary separates these four counters.",
+  "nativeExit": {
+    "code": 0,
+    "signal": null
+  },
+  "bridgeExit": {
+    "code": 0,
+    "signal": null
+  },
+  "operatorTouched": false,
+  "vmixTouched": false,
+  "browserUsed": false,
+  "wanVerified": false,
+  "limits": [
+    "Synthetic moving H.264 input uses actual Native chroma filter, then 1280x720 logical packed420 SRT and official NDI SDK reception; no hardware or vMix acceptance.",
+    "Frame counter latency is a local approximation with screenshot request timing, IPC age correction and one-frame quantization; media cursor can read ahead.",
+    "CPU uses one-core basis. Native memory includes the full Qt/video process. A 20-minute measurement is not a long-term memory-leak guarantee.",
+    "The separate bridge has no OMT/HDR receiving path and is not promoted automatically into the installer.",
+    "The first endurance attempt ended on a Drive file-rename PermissionError in the measurement harness after 118 seconds; its failed receipt is preserved."
+  ]
+}

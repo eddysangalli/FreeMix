@@ -1,21 +1,13 @@
-# FreeMix — correção de encerramento e reconexão SRT
+# FreeMix — candidato completo 0.1.0-local.20261009213415
 
-Use ABRIR-FREEMIX.cmd na raiz. Salve e feche a instalação correspondente antes: o launcher aplica o pacote assinado mais recente, cria backup, preserva configurações e inicia serviço + motor juntos. A versão e os ZIPs correntes estão em entregas/ULTIMA-ATUALIZACAO.json; cada ZIP tem SHA-256 ao lado. Nenhuma mesa aberta é encerrada pelo atualizador.
+Este candidato reúne Native99e5944, 14 patches, NDI6.3.2, plugins de fechamento reconstruídos e fontes/licenças correspondentes. A assinatura Ed25519 e os hashes de todos os arquivos serão conferidos antes da liberação. O instalador só será apontado como atual depois do ensaio pelo EXE real em raízes temporárias.
 
-- SRT: saída independente x264/H.264 4:4:4; alpha empacotado com Fill à esquerda e Key em cinza à direita no mesmo quadro. Teste real de dez segundos, 320×180 lógico/640×180 transmitido, 30 fps, alpha 0/128/255 sem erro. A largura transmitida é o dobro da útil. Internet, Full HD e HDR não foram comprovados.
-- OBS receptor: filtro fornecido em painel/efeitos/srt-packed-alpha.shader, seguido de Crop/Pad para retirar a metade direita. Plugin obs-shaderfilter necessário no receptor. Prova GPU com quadro recebido passou. Guia completo em ferramentas/GUIA-SRT-444-ALPHA.md, com ZeroTier e comandos FFmpeg.
-- Transmitir abre MultiStream. Externo reúne SRT, NDI, OMT e SDI com campos por destino/emissor, sem autostart. Configurações gerais organizadas com descrições; gravação, transmissão, externo e multigravação ficam nos seus próprios módulos. Editor original completo permanece acessível.
-- SRT usa um formulário inicial enxuto para conteúdo, áudio, resolução e conexão. Encoder, FPS, overlays e alpha ficam em Avançado; o guia abre separadamente.
-- Janelas extras: corrigida resposta CORS de saúde usada pela mesa local. O launcher seleciona outra porta quando há conflito com vMix/outro programa e preserva credenciais. Uma mesa já aberta guarda o endereço antigo até ser reaberta.
-- Encerramento: eventos de fechar repetidos são recusados durante confirmação/destruição; fechamento principal aguarda o destrutor dos painéis CEF. Teste pelo X com três painéis, Salvar e fechar e consultas simultâneas passou com saída 0 e nenhum novo crash. Isso valida o cenário dirigido, sem atribuir a ele a causa exata do relatório Qt original.
-- Reconexão SRT: limpeza da fila/contexto anteriores e proteção contra escrita antes do cabeçalho; limpeza dos ponteiros do transporte. A compatibilidade do receptor continua separada da estabilidade do emissor.
-- Diagnóstico beta: COLETAR-LOGS.cmd gera ZIP local sanitizado para encaminhamento manual. Nenhum dado foi enviado automaticamente.
+A instalação nova terá atalho FreeMix Studio, portas/credenciais locais próprias e importação de .fmx explícita. Abra pelo atalho ou FreeMix Studio.cmd; ele inicia controle e motor juntos. Não copie configurações da mesa manualmente nem execute apenas bin/64bit/FreeMix.exe. A instalação do operador não foi substituída.
 
-Recursos anteriores e limites: CONTINUAR.md. Pendências reais e trabalho necessário para fechar cada uma: PENDENCIAS-REAIS.md. Provas desta atualização acompanham docs/evidencias-srt444 no pacote. O primeiro FAIL de Key foi preservado e superado pela prova corrigida; não foi escondido.
+Transmitir abre MultiStream. Externo reúne SRT/NDI/OMT/SDI; gravação e multigravação têm ajustes nas respectivas engrenagens. Replay inclui timeline do histórico durante REC, prévia, IN/OUT e A/B com autoplay no ar. O ensaio CEF real de 20 minutos não mostrou stalls recorrentes; alinhamento multicâmera dirigido segue em conferência.
 
-Exemplo local FreeMix → vMix: entrada SRT Listener na porta 18360, latência 120 ms; FreeMix caller srt://127.0.0.1:18360?mode=caller&latency=120000. Use 4:2:0 sem alpha neste vMix: o log do teste confirmou recepção seguida de falha no decoder para o perfil 4:4:4 com alpha empacotado. Para esse perfil use OBS com recomposição; alpha packed não é recomposto automaticamente no vMix.
+Para beta, Diagnósticos ou COLETAR-LOGS.cmd gera ZIP local sanitizado para envio manual por e-mail/WhatsApp. Nenhum upload ou publicação externa é feito automaticamente.
 
-Os executáveis/runtime ficam nos ZIPs locais. GitHub guarda fontes e uma série completa de patches sobre o OBS fixado. VPS/domínio, hardware, internet, HDR completo, GTZIP ainda não suportado e acabamento universal das telas continuam com critérios explícitos em PENDENCIAS-REAIS.md.
+OMT SDR com alpha e HDR P216 manual PQ/HLG têm provas locais distintas. NDI HDR exige Advanced SDK licenciado. HDR SDI está em implementação e não pertence a este Native. A ponte nativa SRT→NDI alpha tem endurance local de 20 minutos, mas permanece beta separada; o receptor alpha WebBrowser foi abortado e não é recomendado.
 
-
-SRT 4:2:0 com máscara lado a lado e Fill/Key em duas portas foi implementado; veja SRT-VMIX.md. Recepção FFmpeg local passou, incluindo máscara 0/128/255. Recomposição no vMix ainda precisa ser conferida. Aplique somente com a mesa salva e fechada, por ABRIR-FREEMIX.cmd.
+Pendências, recursos e critérios: PENDENCIAS-REAIS.md. Ensaios locais não homologam hardware, WAN, Windows limpo ou qualquer modelo GTZIP. Os recibos preservam FAIL iniciais e a revisão explícita de tolerância de um quadro no ensaio CEF. Há uma alocação Native não liberada no fechamento, ainda sob investigação.
