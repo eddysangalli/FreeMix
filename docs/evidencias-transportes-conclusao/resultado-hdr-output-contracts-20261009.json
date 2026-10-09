@@ -1,0 +1,76 @@
+{
+  "status": "PASS",
+  "finished": "2026-10-09T20:40:36.392Z",
+  "operatorTouched": false,
+  "nativeRequests": 0,
+  "scope": "HDR refusal before Native mutation and truthful capability reporting; no physical HDR validation",
+  "contracts": {
+    "NDI": {
+      "hdrSupported": false,
+      "status": "requires_ndi_advanced_sdk_and_hdr_renderer",
+      "reason": "Envio HDR NDI exige NDI Advanced SDK licenciado e render PQ/HLG. Esta saída usa BT.709 SDR8.",
+      "reference": "https://docs.ndi.video/all/developing-with-ndi/sdk/hdr"
+    },
+    "OMT": {
+      "hdrSupported": false,
+      "status": "integrated_renderer_sdr_manual_hdr_not_implemented",
+      "reason": "Esta saída OMT produz BT.709 SDR, inclusive PA16. HDR exige render PQ/HLG e configuração compatível no receptor; o protocolo atual não anuncia a transferência automaticamente.",
+      "reference": "https://github.com/openmediatransport/omtplugin/blob/master/README.md"
+    },
+    "SDI": {
+      "hdrSupported": false,
+      "status": "unsupported_in_integrated_sdr_path",
+      "reason": "A saída SDI integrada usa SDR. HDR exige caminho PQ, metadados e dispositivo/driver homologados na ferramenta DeckLink original."
+    },
+    "SRT": {
+      "hdrSupported": false,
+      "status": "independent_destination_hdr_not_implemented",
+      "reason": "Esta saída independente usa SDR8. HDR SRT exige render P010/PQ ou HLG, encoder 10 bits compatível e validação dos metadados no receptor."
+    }
+  },
+  "cases": [
+    {
+      "action": "outputs_sdi",
+      "protocol": "SDI",
+      "nativeRequests": 0
+    },
+    {
+      "action": "outputs_configure",
+      "protocol": "SDI",
+      "nativeRequests": 0
+    },
+    {
+      "action": "outputs_sdi",
+      "protocol": "SDI",
+      "nativeRequests": 0
+    },
+    {
+      "action": "outputs_network",
+      "protocol": "NDI",
+      "nativeRequests": 0
+    },
+    {
+      "action": "outputs_network",
+      "protocol": "OMT",
+      "nativeRequests": 0
+    },
+    {
+      "action": "directStart",
+      "protocol": "NDI",
+      "nativeRequests": 0
+    },
+    {
+      "action": "directStart",
+      "protocol": "OMT",
+      "nativeRequests": 0
+    }
+  ],
+  "hashes": {
+    "obs-vmix/ferramentas/saidas-hdr.mjs": "40180d91ee844a779fde875623ad5f059a7d7749de8a9de6213aff62732617f0",
+    "obs-vmix/ferramentas/saidas-srt.mjs": "3f3f6118c1a4f0d0f99f9bdf317c850c9f29709bd16ef8048a76d77c5e5e358f",
+    "obs-vmix/ferramentas/saidas-producao.mjs": "d04ab7e45403e50861ee03c1a3ace70af250cfb59e3085a10edb4132f9603d2e",
+    "obs-vmix/ferramentas/ndi-producao.mjs": "9a4e132c468a0c8da4eaf5c97f4d6b919ec82a74f120d8b2f3068bf3026ed085",
+    "obs-vmix/ferramentas/omt-producao.mjs": "15a632b6d1c80c9926710066e345931a76a7fe5cebd45b33221175b52aa98c5c",
+    "obs-vmix/painel/remoto/saidas-external-ui.js": "c554d5b3091e9095dfb999a742016fa074c6922d31d59279deafb66d6e96a6bd"
+  }
+}

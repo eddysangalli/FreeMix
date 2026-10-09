@@ -1,5 +1,7 @@
 // Destination-only SRT format contract. No shared/global video settings are altered.
+import {assertSdrOutputRequest} from './saidas-hdr.mjs';
 export function srtDestinationOptions(data,before={},capabilities={}){
+ assertSdrOutputRequest('SRT',data);
  const chroma=data.chroma===undefined?(before.chroma??'420'):data.chroma,alphaMode=data.alphaMode===undefined?(before.alphaMode??'none'):data.alphaMode;
  if(!['420','444'].includes(chroma)||!['none','packed','fill','key'].includes(alphaMode))throw Error('Selecione 4:2:0/4:4:4 e um modo de alpha válido');
  if(chroma==='420'&&alphaMode==='none')return{chroma,alphaMode};

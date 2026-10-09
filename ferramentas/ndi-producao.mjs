@@ -1,6 +1,7 @@
 // DistroAV control uses the real registered OBS types and outputs. No simulated ON state.
 import {readFile,readdir} from 'node:fs/promises';
 import {join} from 'node:path';
+import {assertSdrOutputRequest,outputHdrContracts} from './saidas-hdr.mjs';
 export const NDI_OUTPUT='NDI Main Output';
 const pendingSettings=new WeakMap();
 async function nativeRequest(obs,action,data={}) {
@@ -19,7 +20,7 @@ export async function ndiRead(obs,{root,senderId=0}={}) {
   if(files.length){const log=await readFile(join(root,'config/obs-studio/logs',files.at(-1)),'utf8');runtimeVersion=log.match(/NDI Library Version detected: ([\d.]+)/)?.[1]||null;pluginVersion=log.match(/you can haz DistroAV \(Version ([\d.]+)\)/)?.[1]||null;}
  }catch{}
  const controllable=Boolean(native?.available||output);
- return {installed:sourceAvailable,sourceAvailable,available:native?.available??sourceAvailable,outputAvailable:controllable,outputCreated:Boolean(output),outputActive:native?.active??Boolean(output?.outputActive),outputName:native?.outputName||NDI_OUTPUT,networkName:native?.networkName||null,groups:native?.groups||'',nativeBridge:Boolean(native),sourceIndependent:!!native?.sourceIndependent,audioSourceSelectable:!!native?.audioSourceSelectable,audioSourceUuid:native?.audioSourceUuid||'',audioTrackSelectable:!!native?.audioTrackSelectable,sendersPerProtocol:native?.sendersPerProtocol||1,senderId:native?.senderId||0,senders:native?.senders||[],fillKeySupported:!!native?.fillKeySupported,fillKey:!!native?.fillKey,keyName:native?.keyName||'',alphaSupported:!!native?.alphaSupported,alpha:!!native?.alpha,connections:native?.connections??-1,receiverStatus:native?.receiverStatus||'unknown',capturedFrames:native?.capturedFrames||0,backend:native?.backend||null,mode:native?.mode||'program',sourceUuid:native?.sourceUuid||'',audioTrack:native?.audioTrack||0,width:native?.width||0,height:native?.height||0,outputs,runtimeVersion,pluginVersion,needsOutputInitialization:sourceAvailable&&!controllable,initializationHint:sourceAvailable&&!controllable?'Ative Main Output nas configurações DistroAV para criar a saída. O plugin 6.2.1 não cria a saída quando ela está desligada na inicialização.':null};
+ return {hdrSupported:false,hdrContract:outputHdrContracts.NDI,installed:sourceAvailable,sourceAvailable,available:native?.available??sourceAvailable,outputAvailable:controllable,outputCreated:Boolean(output),outputActive:native?.active??Boolean(output?.outputActive),outputName:native?.outputName||NDI_OUTPUT,networkName:native?.networkName||null,groups:native?.groups||'',nativeBridge:Boolean(native),sourceIndependent:!!native?.sourceIndependent,audioSourceSelectable:!!native?.audioSourceSelectable,audioSourceUuid:native?.audioSourceUuid||'',audioTrackSelectable:!!native?.audioTrackSelectable,sendersPerProtocol:native?.sendersPerProtocol||1,senderId:native?.senderId||0,senders:native?.senders||[],fillKeySupported:!!native?.fillKeySupported,fillKey:!!native?.fillKey,keyName:native?.keyName||'',alphaSupported:!!native?.alphaSupported,alpha:!!native?.alpha,connections:native?.connections??-1,receiverStatus:native?.receiverStatus||'unknown',capturedFrames:native?.capturedFrames||0,backend:native?.backend||null,mode:native?.mode||'program',sourceUuid:native?.sourceUuid||'',audioTrack:native?.audioTrack||0,width:native?.width||0,height:native?.height||0,outputs,runtimeVersion,pluginVersion,needsOutputInitialization:sourceAvailable&&!controllable,initializationHint:sourceAvailable&&!controllable?'Ative Main Output nas configurações DistroAV para criar a saída. O plugin 6.2.1 não cria a saída quando ela está desligada na inicialização.':null};
 }
 export async function ndiConfigure(obs,{name,groups}={}) {
  const state=await ndiRead(obs);
@@ -34,6 +35,7 @@ export async function ndiConfigure(obs,{name,groups}={}) {
  return obs.req('GetOutputSettings',{outputName:state.outputName});
 }
 export async function ndiStart(obs,options={}) {
+ assertSdrOutputRequest('NDI',options);
  const senderId=Number(options.senderId??0),state=await ndiRead(obs,{senderId});if(options.hdr||Number(options.precisionBits??8)!==8)throw Error('Esta rota NDI suporta SDR8; HDR/PA16 não estão configurados');
  if(!Number.isInteger(senderId)||senderId<0||senderId>=(state.sendersPerProtocol||1))throw Error('Sender NDI indisponível neste motor');
  if(options.fillKey&&(!state.fillKeySupported||options.mode!=='source'))throw Error('Fill+Key NDI exige SDK oficial e entrada independente');
