@@ -1,0 +1,356 @@
+{
+  "status": "HASH_VERIFIED_MIRROR",
+  "at": "2026-10-09T23:24:48.301Z",
+  "replay": "MEDIA_AND_NORMAL_REPLAY_CLEANUP_PASS_NATIVE19",
+  "nativeFixes": "QA_LEDGER_2_TO_0_THREE_MODES_PRODUCTION20_BUILD_PENDING",
+  "limits": [
+    "Software A/B <=1 frame, not physical genlock",
+    "SourceRecord auxiliary playback recorders excluded from normal replay cleanup proof",
+    "No new installer approved"
+  ],
+  "operatorTouched": false,
+  "files": [
+    {
+      "source": "obs-vmix/ferramentas/replay-disco.mjs",
+      "target": "ferramentas/replay-disco.mjs",
+      "sourceSha256": "b6d380e0f88c7c08ec01181efda9fd4d8aa343a8a4775bb831b8c7924efc0f49",
+      "outputSha256": "0abfbd5dcc31836246caee17c0015bacc73f1a75a26f3a6ef14c71a82a2be9bd"
+    },
+    {
+      "source": "obs-vmix/ferramentas/replay-sincronia.mjs",
+      "target": "ferramentas/replay-sincronia.mjs",
+      "sourceSha256": "dafbd121ada9fc6ea60cb38daf35378ee14a24cd616ab138b409cda10df60377",
+      "outputSha256": "dafbd121ada9fc6ea60cb38daf35378ee14a24cd616ab138b409cda10df60377"
+    },
+    {
+      "source": "obs-vmix/painel/remoto/replay.js",
+      "target": "painel/remoto/replay.js",
+      "sourceSha256": "1a63609614933bd16e5d6b3d1681f127266f2a871b8ecc714218fea51c0f830f",
+      "outputSha256": "d48eefda6780dd3e5f9b541e5485ab50bba5e6454b4958c237921031652fb9bd"
+    },
+    {
+      "source": "qa-finalizacao/replay-sincronia-native/README.md",
+      "target": "qa-finalizacao/replay-sincronia-native/README.md",
+      "sourceSha256": "5ed0c653995e62983a82f60cd25289a57ff5268dd7fc71e232450e4574d55b1e",
+      "outputSha256": "5ed0c653995e62983a82f60cd25289a57ff5268dd7fc71e232450e4574d55b1e"
+    },
+    {
+      "source": "qa-finalizacao/replay-sincronia-native/bootstrap.mjs",
+      "target": "qa-finalizacao/replay-sincronia-native/bootstrap.mjs",
+      "sourceSha256": "cdab8fca46e63cf3d601994a63a790f238d05cff7e69eb1ba1e62992682824c0",
+      "outputSha256": "f528d314fbb8ac6d0e1146a1d81f41e5609bd4c125490a6e42124d3c75bc3230"
+    },
+    {
+      "source": "qa-finalizacao/replay-sincronia-native/media-tools.mjs",
+      "target": "qa-finalizacao/replay-sincronia-native/media-tools.mjs",
+      "sourceSha256": "d5efac8e17e20e4812632921a64df8c3795e20e9933655b231dd779612158e83",
+      "outputSha256": "d5efac8e17e20e4812632921a64df8c3795e20e9933655b231dd779612158e83"
+    },
+    {
+      "source": "qa-finalizacao/replay-sincronia-native/test-native-patch.mjs",
+      "target": "qa-finalizacao/replay-sincronia-native/test-native-patch.mjs",
+      "sourceSha256": "c05f7593b582a6227a3a8c91c3e3c68f9a310aded00c036d62881f417767e205",
+      "outputSha256": "8254405bf3450017202a1204a83510e736518fe2bd4f8fe5d2a65204a62ea136"
+    },
+    {
+      "source": "qa-finalizacao/replay-sincronia-native/test-eof.mjs",
+      "target": "qa-finalizacao/replay-sincronia-native/test-eof.mjs",
+      "sourceSha256": "3c71f85ea9d8c1e9361a69fc25f38644cdcdff9a2318502431693f6a75f9b778",
+      "outputSha256": "e9a105c7a9072f67b45d47297fe29ffff7e7e7e363754226b0c59cb6da113c6a"
+    },
+    {
+      "source": "qa-finalizacao/replay-sincronia-native/test-audio-seek.mjs",
+      "target": "qa-finalizacao/replay-sincronia-native/test-audio-seek.mjs",
+      "sourceSha256": "5d53db0c71b54137da573da71f2ba4573b44c1f3e91a649908217e85f6ce6784",
+      "outputSha256": "b3e67502543a0f5f9e855703aa0a019f4aedac2666b05c7754417afe55b78491"
+    },
+    {
+      "source": "qa-finalizacao/replay-sincronia-native/test-stop-cleanup.mjs",
+      "target": "qa-finalizacao/replay-sincronia-native/test-stop-cleanup.mjs",
+      "sourceSha256": "0770ade97396cc84cefd8177b628ebc61cfde220576d9922e4f6dc3ced00c304",
+      "outputSha256": "6b47cb904ecb7ee2a806fffe3a0dca70e4cd3896ad6d891182f94c6cd413f834"
+    },
+    {
+      "source": "qa-finalizacao/replay-sincronia-native/test-audio-policy.mjs",
+      "target": "qa-finalizacao/replay-sincronia-native/test-audio-policy.mjs",
+      "sourceSha256": "fa90d4050fde445a3b0b358c85d50e58fda7befb078bee9363e1610757e0ebdb",
+      "outputSha256": "82aea9437f436017d4bdfad35c4f7130dc57521e7123b8013eb3c61d0121b3ee"
+    },
+    {
+      "source": "qa-finalizacao/replay-sincronia-native/test-vfr-probe.mjs",
+      "target": "qa-finalizacao/replay-sincronia-native/test-vfr-probe.mjs",
+      "sourceSha256": "e59002b6a4f2c8edf702e809e630608c6b1b00a61c940439f4e1f3c8f3226090",
+      "outputSha256": "b21930e158fa188bc60be8f9f35db07f0db42ff22ad73298206ee4732556ff3f"
+    },
+    {
+      "source": "qa-finalizacao/replay-sincronia-native/audio-pcm-analysis.mjs",
+      "target": "qa-finalizacao/replay-sincronia-native/audio-pcm-analysis.mjs",
+      "sourceSha256": "1c0e57d1f1814af484bd2a4a844f9c5a94bbbf7b9ce4e0bb74a3d6b0089312fb",
+      "outputSha256": "1c0e57d1f1814af484bd2a4a844f9c5a94bbbf7b9ce4e0bb74a3d6b0089312fb"
+    },
+    {
+      "source": "qa-finalizacao/replay-sincronia-native/analyse-continuity.mjs",
+      "target": "qa-finalizacao/replay-sincronia-native/analyse-continuity.mjs",
+      "sourceSha256": "dd34301e59d922ee293f63ffa84ef42e8806d3c9783e231e442490fe657ef257",
+      "outputSha256": "dd34301e59d922ee293f63ffa84ef42e8806d3c9783e231e442490fe657ef257"
+    },
+    {
+      "source": "qa-finalizacao/replay-sincronia-native/audit-original-counters.mjs",
+      "target": "qa-finalizacao/replay-sincronia-native/audit-original-counters.mjs",
+      "sourceSha256": "e52d584b6b30b70b26dc3520fd03dae24f5a0642c238fb6227e919bd909acfa8",
+      "outputSha256": "e52d584b6b30b70b26dc3520fd03dae24f5a0642c238fb6227e919bd909acfa8"
+    },
+    {
+      "source": "qa-finalizacao/replay-sincronia-native/make-audio-seek.mjs",
+      "target": "qa-finalizacao/replay-sincronia-native/make-audio-seek.mjs",
+      "sourceSha256": "14cdc79c64f754740259ff2de09b795d9b0eefa942cf37f8bed0cffc2779114a",
+      "outputSha256": "14cdc79c64f754740259ff2de09b795d9b0eefa942cf37f8bed0cffc2779114a"
+    },
+    {
+      "source": "qa-finalizacao/replay-sincronia-native/make-rate-counters.mjs",
+      "target": "qa-finalizacao/replay-sincronia-native/make-rate-counters.mjs",
+      "sourceSha256": "0d0dfaa87e435241e0263998eb7aad85d381f7be3c498b908a3aceaeff9905c8",
+      "outputSha256": "0d0dfaa87e435241e0263998eb7aad85d381f7be3c498b908a3aceaeff9905c8"
+    },
+    {
+      "source": "qa-finalizacao/replay-sincronia-native/qa-pcm-probe.cpp",
+      "target": "qa-finalizacao/replay-sincronia-native/qa-pcm-probe.cpp",
+      "sourceSha256": "d3f275d41d7c9a609f2d2c21a4f9a7c68b3b7fdb77966099f105d0594165c502",
+      "outputSha256": "d3f275d41d7c9a609f2d2c21a4f9a7c68b3b7fdb77966099f105d0594165c502"
+    },
+    {
+      "source": "qa-finalizacao/replay-sincronia-native/build-pcm-probe.cmd",
+      "target": "qa-finalizacao/replay-sincronia-native/build-pcm-probe.cmd",
+      "sourceSha256": "175ecb4450763153c2b20aa70d300b12045ee683cb288a453a6473d428a99019",
+      "outputSha256": "175ecb4450763153c2b20aa70d300b12045ee683cb288a453a6473d428a99019"
+    },
+    {
+      "source": "qa-finalizacao/replay-sincronia-native/build-stacks.cmd",
+      "target": "qa-finalizacao/replay-sincronia-native/build-stacks.cmd",
+      "sourceSha256": "3f0664800a6227d09522cba0baac8142e5613beb6f5fad9477bd1b92eb07d0e2",
+      "outputSha256": "3f0664800a6227d09522cba0baac8142e5613beb6f5fad9477bd1b92eb07d0e2"
+    },
+    {
+      "source": "qa-finalizacao/replay-sincronia-native/native-patch/REVISAO.md",
+      "target": "qa-finalizacao/replay-sincronia-native/native-patch/REVISAO.md",
+      "sourceSha256": "6bbdcc852263ad161c0c34f3799c8413326d2ed1519d11ee5ce727d148730a8c",
+      "outputSha256": "6bbdcc852263ad161c0c34f3799c8413326d2ed1519d11ee5ce727d148730a8c"
+    },
+    {
+      "source": "qa-finalizacao/replay-sincronia-native/native-patch/replay-seek-presentation.patch",
+      "target": "qa-finalizacao/replay-sincronia-native/native-patch/replay-seek-presentation.patch",
+      "sourceSha256": "80ef3254ef26bbceb0f4d20c2d4a0e637e39a3ddbc679d12737cbbd8a8f6d70b",
+      "outputSha256": "80ef3254ef26bbceb0f4d20c2d4a0e637e39a3ddbc679d12737cbbd8a8f6d70b"
+    },
+    {
+      "source": "qa-finalizacao/replay-sincronia-native/native-patch/replay-seek-reactivate.patch",
+      "target": "qa-finalizacao/replay-sincronia-native/native-patch/replay-seek-reactivate.patch",
+      "sourceSha256": "15e1333ea2dd4cedc35781dc52e564f05a840442676e440455fd272bd1b187c0",
+      "outputSha256": "15e1333ea2dd4cedc35781dc52e564f05a840442676e440455fd272bd1b187c0"
+    },
+    {
+      "source": "qa-finalizacao/replay-sincronia-native/native-patch/replay-seek-clock-delta.patch",
+      "target": "qa-finalizacao/replay-sincronia-native/native-patch/replay-seek-clock-delta.patch",
+      "sourceSha256": "cfdc0f65197ba107505166b898bbb34caba1ac67e3ba9c0e9dcba5401384984c",
+      "outputSha256": "cfdc0f65197ba107505166b898bbb34caba1ac67e3ba9c0e9dcba5401384984c"
+    },
+    {
+      "source": "qa-finalizacao/replay-sincronia-native/native-patch/replay-restart-offair.patch",
+      "target": "qa-finalizacao/replay-sincronia-native/native-patch/replay-restart-offair.patch",
+      "sourceSha256": "c5361138fc6900fcf4aa48fecc550abafb18eaf68d09fe23bab6cbf812fec170",
+      "outputSha256": "c5361138fc6900fcf4aa48fecc550abafb18eaf68d09fe23bab6cbf812fec170"
+    },
+    {
+      "source": "qa-finalizacao/replay-sincronia-native/native-patch/replay-unbuffered-optin.patch",
+      "target": "qa-finalizacao/replay-sincronia-native/native-patch/replay-unbuffered-optin.patch",
+      "sourceSha256": "0ae874d3628762beb46e69e31df16184d69b040ec8222ca39e68652542fada5d",
+      "outputSha256": "0ae874d3628762beb46e69e31df16184d69b040ec8222ca39e68652542fada5d"
+    },
+    {
+      "source": "qa-finalizacao/replay-sincronia-native/resultado-holdview-final.json",
+      "target": "qa-finalizacao/replay-sincronia-native/resultado-holdview-final.json",
+      "sourceSha256": "0c32614d74f3cf7249c76a0946d5a166ad1029602bb80c178b46c58829f5f2cd",
+      "outputSha256": "0c32614d74f3cf7249c76a0946d5a166ad1029602bb80c178b46c58829f5f2cd"
+    },
+    {
+      "source": "qa-finalizacao/replay-sincronia-native/native-receipt-final.json",
+      "target": "qa-finalizacao/replay-sincronia-native/native-receipt-final.json",
+      "sourceSha256": "b6c503b795b407aa15dcafec98803d3734345d61f43a1b8800f739521bd66e6f",
+      "outputSha256": "b6c503b795b407aa15dcafec98803d3734345d61f43a1b8800f739521bd66e6f"
+    },
+    {
+      "source": "qa-finalizacao/replay-sincronia-native/resultado-pcm-holdview-final.json",
+      "target": "qa-finalizacao/replay-sincronia-native/resultado-pcm-holdview-final.json",
+      "sourceSha256": "d7092afc10f228557d5656758ed02503d26361140e2021a6dc30a51c777deb2c",
+      "outputSha256": "d7092afc10f228557d5656758ed02503d26361140e2021a6dc30a51c777deb2c"
+    },
+    {
+      "source": "qa-finalizacao/replay-sincronia-native/resumo-stage5-final.json",
+      "target": "qa-finalizacao/replay-sincronia-native/resumo-stage5-final.json",
+      "sourceSha256": "de747986e81f49b68cd984e32889f69a0eabfd80ab29884ea375124ff339fdfc",
+      "outputSha256": "de747986e81f49b68cd984e32889f69a0eabfd80ab29884ea375124ff339fdfc"
+    },
+    {
+      "source": "qa-finalizacao/replay-sincronia-native/resultado-eof.json",
+      "target": "qa-finalizacao/replay-sincronia-native/resultado-eof.json",
+      "sourceSha256": "ece4881796c7a162f8eaade52a1b457342cbc9eda25d1afe993b0594e5b90c9b",
+      "outputSha256": "ece4881796c7a162f8eaade52a1b457342cbc9eda25d1afe993b0594e5b90c9b"
+    },
+    {
+      "source": "qa-finalizacao/replay-sincronia-native/resultado-audio-seek.json",
+      "target": "qa-finalizacao/replay-sincronia-native/resultado-audio-seek.json",
+      "sourceSha256": "69b3740738580644c4249a0bedc199364cbff18c7fde9a905c18ba831730e2d6",
+      "outputSha256": "69b3740738580644c4249a0bedc199364cbff18c7fde9a905c18ba831730e2d6"
+    },
+    {
+      "source": "qa-finalizacao/replay-sincronia-native/resultado-audio-policy.json",
+      "target": "qa-finalizacao/replay-sincronia-native/resultado-audio-policy.json",
+      "sourceSha256": "95bdb84dbca7d014da99ea0fb10dca3e5b0cb844c7c03fc5fa6c49184751f380",
+      "outputSha256": "95bdb84dbca7d014da99ea0fb10dca3e5b0cb844c7c03fc5fa6c49184751f380"
+    },
+    {
+      "source": "qa-finalizacao/replay-sincronia-native/rates/resultado.json",
+      "target": "qa-finalizacao/replay-sincronia-native/rates/resultado.json",
+      "sourceSha256": "dc101c726ed9db30eecb51d72269a255d0add46d4113944691a403f5784829dc",
+      "outputSha256": "dc101c726ed9db30eecb51d72269a255d0add46d4113944691a403f5784829dc"
+    },
+    {
+      "source": "qa-finalizacao/replay-sincronia-native/original-cadence-counter-audit.json",
+      "target": "qa-finalizacao/replay-sincronia-native/original-cadence-counter-audit.json",
+      "sourceSha256": "afe8a1831202f1d90d499eb2d62cb19d4f7a7a30660d8cc279f6b862b206e48d",
+      "outputSha256": "afe8a1831202f1d90d499eb2d62cb19d4f7a7a30660d8cc279f6b862b206e48d"
+    },
+    {
+      "source": "qa-finalizacao/replay-sincronia-native/resultado-native-stage2-fail.json",
+      "target": "qa-finalizacao/replay-sincronia-native/resultado-native-stage2-fail.json",
+      "sourceSha256": "dbcb6fcb810e10677ed009b3613b7c96182c21b7822871f2f8585302f061fbf1",
+      "outputSha256": "dbcb6fcb810e10677ed009b3613b7c96182c21b7822871f2f8585302f061fbf1"
+    },
+    {
+      "source": "qa-finalizacao/replay-sincronia-native/resultado-native-stage3-fail.json",
+      "target": "qa-finalizacao/replay-sincronia-native/resultado-native-stage3-fail.json",
+      "sourceSha256": "8f96dc8fa80303b1f72dd766d6760697dad03d85ec6cdff12a36d83673a3d3bf",
+      "outputSha256": "8f96dc8fa80303b1f72dd766d6760697dad03d85ec6cdff12a36d83673a3d3bf"
+    },
+    {
+      "source": "qa-finalizacao/replay-sincronia-native/resultado-native-stage3-settle0-fail.json",
+      "target": "qa-finalizacao/replay-sincronia-native/resultado-native-stage3-settle0-fail.json",
+      "sourceSha256": "8a3d214c50bebac6f0ca590083968f7959c498bdc359610af2478210e1ebb26a",
+      "outputSha256": "8a3d214c50bebac6f0ca590083968f7959c498bdc359610af2478210e1ebb26a"
+    },
+    {
+      "source": "qa-finalizacao/replay-sincronia-native/resultado-native-stage5-settle0-fail.json",
+      "target": "qa-finalizacao/replay-sincronia-native/resultado-native-stage5-settle0-fail.json",
+      "sourceSha256": "69de769191cfd0db0c4808ef257d1ff33bf6256af8958f09181156768a5a8556",
+      "outputSha256": "69de769191cfd0db0c4808ef257d1ff33bf6256af8958f09181156768a5a8556"
+    },
+    {
+      "source": "qa-finalizacao/replay-sincronia-native/resultado-native-stage5-deadband1-fail.json",
+      "target": "qa-finalizacao/replay-sincronia-native/resultado-native-stage5-deadband1-fail.json",
+      "sourceSha256": "3f7aeb7b4141a5634a192dda3173b88500dacd2997eade621ef810a7098c3fae",
+      "outputSha256": "3f7aeb7b4141a5634a192dda3173b88500dacd2997eade621ef810a7098c3fae"
+    },
+    {
+      "source": "qa-finalizacao/replay-sincronia-native/resultado-stage5-coordinated-source-record-audio-fail.json",
+      "target": "qa-finalizacao/replay-sincronia-native/resultado-stage5-coordinated-source-record-audio-fail.json",
+      "sourceSha256": "fada8a4f822318c3b20f36df6c091ab141e9ec454b5be44b285ab0e83734dd25",
+      "outputSha256": "fada8a4f822318c3b20f36df6c091ab141e9ec454b5be44b285ab0e83734dd25"
+    },
+    {
+      "source": "qa-finalizacao/replay-sincronia-native/resultado-stage5-coordinated-media-pass-close-fail.json",
+      "target": "qa-finalizacao/replay-sincronia-native/resultado-stage5-coordinated-media-pass-close-fail.json",
+      "sourceSha256": "ea8ffb879a59bee41636b1d6241e972922e142d2b544af24286406c72a50c01e",
+      "outputSha256": "ea8ffb879a59bee41636b1d6241e972922e142d2b544af24286406c72a50c01e"
+    },
+    {
+      "source": "qa-finalizacao/replay-sincronia-native/resultado-stage5-coordinated-media-pass-cleanup-fail.json",
+      "target": "qa-finalizacao/replay-sincronia-native/resultado-stage5-coordinated-media-pass-cleanup-fail.json",
+      "sourceSha256": "f060e4d2ff317cfc27c8c63b9fa47947cad26960545eed1ff64b587551f63fe1",
+      "outputSha256": "f060e4d2ff317cfc27c8c63b9fa47947cad26960545eed1ff64b587551f63fe1"
+    },
+    {
+      "source": "qa-finalizacao/replay-sincronia-native/resultado-stage5-coordinated-stop-first-refusal.json",
+      "target": "qa-finalizacao/replay-sincronia-native/resultado-stage5-coordinated-stop-first-refusal.json",
+      "sourceSha256": "ced466d9f5a5061d5d909d5ee5350a02b04daa904ed5ee5d28a9508f05b08705",
+      "outputSha256": "ced466d9f5a5061d5d909d5ee5350a02b04daa904ed5ee5d28a9508f05b08705"
+    },
+    {
+      "source": "qa-finalizacao/replay-sincronia-native/resultado-stage5-coordinated-disable-refusal.json",
+      "target": "qa-finalizacao/replay-sincronia-native/resultado-stage5-coordinated-disable-refusal.json",
+      "sourceSha256": "f9552b3a07d434b8bb48970cec8d3f88973719068d17a20677a64115db53c6a3",
+      "outputSha256": "f9552b3a07d434b8bb48970cec8d3f88973719068d17a20677a64115db53c6a3"
+    },
+    {
+      "source": "qa-finalizacao/replay-sincronia-native/resultado-holdview-late-fixture-fail.json",
+      "target": "qa-finalizacao/replay-sincronia-native/resultado-holdview-late-fixture-fail.json",
+      "sourceSha256": "b4e153ef1e0759d1c98f8aa74aa5b7985cd8fd36b8c77218fd7adea0d5b685fe",
+      "outputSha256": "b4e153ef1e0759d1c98f8aa74aa5b7985cd8fd36b8c77218fd7adea0d5b685fe"
+    },
+    {
+      "source": "qa-finalizacao/replay-sincronia-native/resultado-audio-seek-transition-window-fail.json",
+      "target": "qa-finalizacao/replay-sincronia-native/resultado-audio-seek-transition-window-fail.json",
+      "sourceSha256": "649f5a586ab58778e53fb18076ace1201d242cbfc2734e43c4f5e3bbdbe6af17",
+      "outputSha256": "649f5a586ab58778e53fb18076ace1201d242cbfc2734e43c4f5e3bbdbe6af17"
+    },
+    {
+      "source": "qa-finalizacao/replay-sincronia-native/resultado-stop-pair-remove-first.json",
+      "target": "qa-finalizacao/replay-sincronia-native/resultado-stop-pair-remove-first.json",
+      "sourceSha256": "bab8066ed43b95a7613baf8af70e8da3129c75fb16168c8a99e5d310c24dd24a",
+      "outputSha256": "bab8066ed43b95a7613baf8af70e8da3129c75fb16168c8a99e5d310c24dd24a"
+    },
+    {
+      "source": "qa-finalizacao/shutdown-allocation-remediation-qa/freemix-shutdown-two-leaks.patch",
+      "target": "qa-finalizacao/shutdown-allocation-remediation-qa/freemix-shutdown-two-leaks.patch",
+      "sourceSha256": "2cfbc4a0249f54e63e2a483cc1f5dc2a507ae2090a1e1b2368496ef8da4531b6",
+      "outputSha256": "2cfbc4a0249f54e63e2a483cc1f5dc2a507ae2090a1e1b2368496ef8da4531b6"
+    },
+    {
+      "source": "qa-finalizacao/shutdown-allocation-remediation-qa/fix-provenance.json",
+      "target": "qa-finalizacao/shutdown-allocation-remediation-qa/fix-provenance.json",
+      "sourceSha256": "d0c01fd68a3c0817f899c94af4bf80f21fe9fd199ea738e08b11448502832ab0",
+      "outputSha256": "d0c01fd68a3c0817f899c94af4bf80f21fe9fd199ea738e08b11448502832ab0"
+    },
+    {
+      "source": "qa-finalizacao/shutdown-allocation-remediation-qa/report.json",
+      "target": "qa-finalizacao/shutdown-allocation-remediation-qa/report.json",
+      "sourceSha256": "4cb5a203db214f20d2f7628ceab821795fcd5b8178fa96af5dd660e366518eca",
+      "outputSha256": "4cb5a203db214f20d2f7628ceab821795fcd5b8178fa96af5dd660e366518eca"
+    },
+    {
+      "source": "qa-finalizacao/shutdown-allocation-remediation-qa/updater-test.json",
+      "target": "qa-finalizacao/shutdown-allocation-remediation-qa/updater-test.json",
+      "sourceSha256": "b702ac74e7cb76b102a8757d89f6e3c289c95ba3c6b94a4e95155a4819140c7e",
+      "outputSha256": "b702ac74e7cb76b102a8757d89f6e3c289c95ba3c6b94a4e95155a4819140c7e"
+    },
+    {
+      "source": "qa-finalizacao/shutdown-allocation-remediation-qa/README.md",
+      "target": "qa-finalizacao/shutdown-allocation-remediation-qa/README.md",
+      "sourceSha256": "2c21131838403a575c583cd6244cfafb07e9170e0a580bd4aaa74c2d34f42712",
+      "outputSha256": "2c21131838403a575c583cd6244cfafb07e9170e0a580bd4aaa74c2d34f42712"
+    },
+    {
+      "source": "qa-finalizacao/shutdown-allocation-remediation-qa/fix-after/frontend/widgets/OBSBasic_SceneCollections.cpp",
+      "target": "qa-finalizacao/shutdown-allocation-remediation-qa/fix-after/frontend/widgets/OBSBasic_SceneCollections.cpp",
+      "sourceSha256": "c7da9ceec5aacb551e3b6a6bb0b40271844e67803b47c07259b3bbc1c16e5b6e",
+      "outputSha256": "c7da9ceec5aacb551e3b6a6bb0b40271844e67803b47c07259b3bbc1c16e5b6e"
+    },
+    {
+      "source": "qa-finalizacao/shutdown-allocation-remediation-qa/fix-after/shared/file-updater/file-updater/file-updater.c",
+      "target": "qa-finalizacao/shutdown-allocation-remediation-qa/fix-after/shared/file-updater/file-updater/file-updater.c",
+      "sourceSha256": "e9d386a06d130e2a27973fc548311e8b9c0dec56c4db9fd0cf2ea0eb67c23aa0",
+      "outputSha256": "e9d386a06d130e2a27973fc548311e8b9c0dec56c4db9fd0cf2ea0eb67c23aa0"
+    },
+    {
+      "source": "qa-finalizacao/replay-sincronia-native/ALLOWLIST-FINAL.json",
+      "target": "qa-finalizacao/replay-sincronia-native/ALLOWLIST-FINAL.json",
+      "sourceSha256": "66f0351afc1c750d8e4c984cb0d04f83f67b9b11c8aef91b9439dee2e627ea8e",
+      "outputSha256": "66f0351afc1c750d8e4c984cb0d04f83f67b9b11c8aef91b9439dee2e627ea8e"
+    },
+    {
+      "source": "qa-finalizacao/shutdown-allocation-remediation-qa/production-delivery-allowlist.json",
+      "target": "qa-finalizacao/shutdown-allocation-remediation-qa/production-delivery-allowlist.json",
+      "sourceSha256": "42a3a2d3c324bd3ee61b510bf045e8bd3a24201ec9a65885dcfc997a23b37099",
+      "outputSha256": "42a3a2d3c324bd3ee61b510bf045e8bd3a24201ec9a65885dcfc997a23b37099"
+    }
+  ]
+}

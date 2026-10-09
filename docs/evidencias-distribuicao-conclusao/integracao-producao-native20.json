@@ -1,0 +1,63 @@
+{
+  "status": "HASH_VERIFIED_MIRROR",
+  "operatorTouched": false,
+  "nativeHead": "6cbf07641c501cb6b319c6bf7000b805fdce625c",
+  "counter": [
+    0,
+    0,
+    0
+  ],
+  "trackerIncluded": false,
+  "files": [
+    {
+      "path": "qa-finalizacao/shutdown-allocation-production20-qa/matrix-production.mjs",
+      "sourceSha256": "1d7f60a62096e4e242506abfba10d584310c942cbe6e1f1debfefb9edf33a4f8",
+      "outputSha256": "34d2e22aa2c44227f536fb9d2770a74e24aa1b72649b673529944c62e9c279ea"
+    },
+    {
+      "path": "qa-finalizacao/shutdown-allocation-production20-qa/prepare-harness.mjs",
+      "sourceSha256": "5d7607e69bb57e6842da0a265c664030753dd2ae0d09ae1a36e6158a386c1dbf",
+      "outputSha256": "5d7607e69bb57e6842da0a265c664030753dd2ae0d09ae1a36e6158a386c1dbf"
+    },
+    {
+      "path": "qa-finalizacao/shutdown-allocation-production20-qa/finalize.mjs",
+      "sourceSha256": "8fbd959d453989289069d6c084bfcb8d2e55efdfdbfb3169fc4c4e7e9fc2c920",
+      "outputSha256": "8fbd959d453989289069d6c084bfcb8d2e55efdfdbfb3169fc4c4e7e9fc2c920"
+    },
+    {
+      "path": "qa-finalizacao/shutdown-allocation-production20-qa/README.md",
+      "sourceSha256": "ac9686a52827391e2564f306bf7de99ce5df9ea8f71d84d292faf9f6e9c992f8",
+      "outputSha256": "ac9686a52827391e2564f306bf7de99ce5df9ea8f71d84d292faf9f6e9c992f8"
+    },
+    {
+      "path": "qa-finalizacao/shutdown-allocation-production20-qa/matrix-result.json",
+      "sourceSha256": "0960bd2c758b8eae4f5cf4a9d006af6b876e5f6d369556a020a0ec6739c73c0d",
+      "outputSha256": "0960bd2c758b8eae4f5cf4a9d006af6b876e5f6d369556a020a0ec6739c73c0d"
+    },
+    {
+      "path": "qa-finalizacao/shutdown-allocation-production20-qa/report.json",
+      "sourceSha256": "0d7ff1faed093f42dcfa17dfdd9b8aa5d0d7e8a73fa66237feba860f0ebd064e",
+      "outputSha256": "0d7ff1faed093f42dcfa17dfdd9b8aa5d0d7e8a73fa66237feba860f0ebd064e"
+    },
+    {
+      "path": "qa-finalizacao/shutdown-allocation-production20-qa/direct-no-api-binary-hashes.json",
+      "sourceSha256": "4f5768d725d7662762af58f9ebba0b9774677299778607812e55481286699477",
+      "outputSha256": "4f5768d725d7662762af58f9ebba0b9774677299778607812e55481286699477"
+    },
+    {
+      "path": "qa-finalizacao/shutdown-allocation-production20-qa/launcher-control-binary-hashes.json",
+      "sourceSha256": "4f5768d725d7662762af58f9ebba0b9774677299778607812e55481286699477",
+      "outputSha256": "4f5768d725d7662762af58f9ebba0b9774677299778607812e55481286699477"
+    },
+    {
+      "path": "qa-finalizacao/shutdown-allocation-production20-qa/direct-with-api-binary-hashes.json",
+      "sourceSha256": "4f5768d725d7662762af58f9ebba0b9774677299778607812e55481286699477",
+      "outputSha256": "4f5768d725d7662762af58f9ebba0b9774677299778607812e55481286699477"
+    },
+    {
+      "path": "qa-finalizacao/shutdown-allocation-production20-qa/delivery-allowlist.json",
+      "sourceSha256": "919af75c214750277a1dc1bed3fdbbc4894cdf9501af1fcd10622f9868100764",
+      "outputSha256": "919af75c214750277a1dc1bed3fdbbc4894cdf9501af1fcd10622f9868100764"
+    }
+  ]
+}

@@ -31,6 +31,21 @@ qa-finalizacao/installer-next-candidate-runner.mjs -text whitespace=blank-at-eol
 qa-finalizacao/test-installer-next-runner-guards.mjs -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
 qa-finalizacao/installer-next-runner-guards.json -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
 docs/QA-PROXIMO-INSTALADOR-SEM-SOBRESCREVER-20261009.md -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+qa-finalizacao/replay-sincronia-native/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+qa-finalizacao/shutdown-allocation-remediation-qa/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+qa-finalizacao/input-title-two-sizes*/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+qa-finalizacao/title-preview-patch*/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+qa-finalizacao/input-title-previews-allowlist-20261009.json -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+qa-finalizacao/test-input-title-two-sizes.mjs -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+qa-finalizacao/render-legacy-title-previews.mjs -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+qa-finalizacao/verify-input-title-previews.mjs -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+docs/RELATORIO-INPUT-TITLE-RESPONSIVO-PREVIAS-20261009.md -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
 licenses/ndi-runtime/Processing.NDI.Lib.Licenses.txt -whitespace
 painel/gc/fontes-livres/OFL-BebasNeue.txt -text -whitespace
 *.ttf binary
+
+qa-finalizacao/replay-sincronia-native/bootstrap.mjs -text whitespace=blank-at-eol,space-before-tab,cr-at-eol
+*.patch -text -whitespace
+qa-finalizacao/replay-sincronia-native/*.mjs -text whitespace=-blank-at-eof,blank-at-eol,space-before-tab,cr-at-eol
+qa-finalizacao/shutdown-allocation-production20-qa/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+qa-finalizacao/multicorder-replay-container/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol

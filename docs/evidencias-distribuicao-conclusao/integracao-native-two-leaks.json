@@ -1,0 +1,20 @@
+{
+  "status": "PRODUCTION_SOURCE_INTEGRATED_BUILD_PENDING",
+  "head": "6cbf07641c501cb6b319c6bf7000b805fdce625c",
+  "patchSha256": "2cfbc4a0249f54e63e2a483cc1f5dc2a507ae2090a1e1b2368496ef8da4531b6",
+  "files": [
+    {
+      "path": "frontend/widgets/OBSBasic_SceneCollections.cpp",
+      "canonicalLfSha256": "c7da9ceec5aacb551e3b6a6bb0b40271844e67803b47c07259b3bbc1c16e5b6e",
+      "worktreeSha256": "0eac189bfd2f4ccdcc5fb312e0b707662f342db9b774863f9b80fc40b5145188"
+    },
+    {
+      "path": "shared/file-updater/file-updater/file-updater.c",
+      "canonicalLfSha256": "e9d386a06d130e2a27973fc548311e8b9c0dec56c4db9fd0cf2ea0eb67c23aa0",
+      "worktreeSha256": "137dd8a2248cc5e8e67c602317b26132caf647e56dcc4c9ae5697b43cf9af806"
+    }
+  ],
+  "normalization": "QA pins are LF; existing Native worktree CRLF retained",
+  "qaInstrumentationIncluded": false,
+  "operatorTouched": false
+}

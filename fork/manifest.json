@@ -1,8 +1,8 @@
 {
   "upstream": "https://github.com/obsproject/obs-studio.git",
   "base": "ba2f32bdf791005443988a4955e963663e16b1ed",
-  "head": "fb98b14c071fa89146f74dc8c26157c2ce9026ee",
-  "version": "0.1.0-local.20261009223334",
+  "head": "6cbf07641c501cb6b319c6bf7000b805fdce625c",
+  "version": "0.1.0-local.20261009233334",
   "patches": [
     {
       "path": "0001-feat-branding-replace-OBS-identity-with-FreeMix-Stud.patch",
@@ -79,7 +79,11 @@
     {
       "path": "0019-Allow-private-replay-file-players-to-opt-into-unbuff.patch",
       "sha256": "b39abe479be6ede851f2d394cf8e8b952bb3c2f1f3d1a0c3a977a114645f079f"
+    },
+    {
+      "path": "0020-Release-missing-file-list-and-updater-ETags-on-all-s.patch",
+      "sha256": "97df637594cddee1d374812b0def49dcd8f89e6df701926fda6d0392b431b90a"
     }
   ],
-  "sourceUpdatedAt": "2026-10-09T22:42:35.559Z"
+  "sourceUpdatedAt": "2026-10-09T23:27:58.070Z"
 }

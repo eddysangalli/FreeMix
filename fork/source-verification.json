@@ -1,12 +1,12 @@
 {
   "status": "PASS",
-  "at": "2026-10-09T22:42:35.559Z",
+  "at": "2026-10-09T23:27:58.070Z",
   "base": "ba2f32bdf791005443988a4955e963663e16b1ed",
-  "head": "fb98b14c071fa89146f74dc8c26157c2ce9026ee",
-  "version": "0.1.0-local.20261009223334",
-  "patches": 19,
-  "resultTree": "4eda3d2a24ce309f8aadd4cf7dbe2eb4db5c5f05",
-  "expectedTree": "4eda3d2a24ce309f8aadd4cf7dbe2eb4db5c5f05",
+  "head": "6cbf07641c501cb6b319c6bf7000b805fdce625c",
+  "version": "0.1.0-local.20261009233334",
+  "patches": 20,
+  "resultTree": "ec1b13a92f404f49527cdd88e91ccdf4275e050a",
+  "expectedTree": "ec1b13a92f404f49527cdd88e91ccdf4275e050a",
   "sourceFiles": [
     {
       "path": "deps/asio-sdk/FREEMIX-PROVENANCE.md",
@@ -250,8 +250,8 @@
     },
     {
       "path": "frontend/widgets/OBSBasic_SceneCollections.cpp",
-      "bytes": 53344,
-      "sha256": "2106fa6bcb79c0e097fdc3010fce28a76d99202da4077b23ca262e4af75c9411"
+      "bytes": 53390,
+      "sha256": "c7da9ceec5aacb551e3b6a6bb0b40271844e67803b47c07259b3bbc1c16e5b6e"
     },
     {
       "path": "frontend/widgets/OBSBasic_Scenes.cpp",
@@ -882,6 +882,11 @@
       "path": "plugins/obs-ffmpeg/obs-ffmpeg-source.c",
       "bytes": 25445,
       "sha256": "43b3bbcdee729571ba871c2b4c82ca26d1d9744fbcfe686467b3a47d5e722f54"
+    },
+    {
+      "path": "shared/file-updater/file-updater/file-updater.c",
+      "bytes": 13555,
+      "sha256": "e9d386a06d130e2a27973fc548311e8b9c0dec56c4db9fd0cf2ea0eb67c23aa0"
     },
     {
       "path": "shared/media-playback/media-playback/media.c",

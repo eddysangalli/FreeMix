@@ -1510,6 +1510,8 @@ retryScene:
 
 	if (!App()->IsMissingFilesCheckDisabled()) {
 		ShowMissingFilesDialog(files);
+	} else {
+		obs_missing_files_destroy(files);
 	}
 
 	disableSaving--;

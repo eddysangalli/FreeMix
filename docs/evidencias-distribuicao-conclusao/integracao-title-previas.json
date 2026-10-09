@@ -1,0 +1,216 @@
+{
+  "status": "HASH_VERIFIED_MIRROR",
+  "at": "2026-10-09T23:26:43.889Z",
+  "assets": 4,
+  "previews": 27,
+  "responsiveBrowsers": [
+    {
+      "width": 600,
+      "height": 600
+    },
+    {
+      "width": 1920,
+      "height": 1080
+    }
+  ],
+  "nativeTestedAtTheseSizes": false,
+  "operatorTouched": false,
+  "files": [
+    {
+      "source": "qa-finalizacao/test-input-title-two-sizes.mjs",
+      "target": "qa-finalizacao/test-input-title-two-sizes.mjs",
+      "inputSha256": "0d18535a1b752a59c92a4d9d0bffcc347d192ee1a446c882717af2314ab69b0e",
+      "outputSha256": "0d18535a1b752a59c92a4d9d0bffcc347d192ee1a446c882717af2314ab69b0e"
+    },
+    {
+      "source": "qa-finalizacao/render-legacy-title-previews.mjs",
+      "target": "qa-finalizacao/render-legacy-title-previews.mjs",
+      "inputSha256": "95b3f67bda6468cd8f81e1fe808ff690c03ef87c128e78c7e39648d0e60b2693",
+      "outputSha256": "95b3f67bda6468cd8f81e1fe808ff690c03ef87c128e78c7e39648d0e60b2693"
+    },
+    {
+      "source": "qa-finalizacao/verify-input-title-previews.mjs",
+      "target": "qa-finalizacao/verify-input-title-previews.mjs",
+      "inputSha256": "86a434ecfc3f7c5cf8126639c2737ccbce3aad7f54f64c5d4df908847a518389",
+      "outputSha256": "86a434ecfc3f7c5cf8126639c2737ccbce3aad7f54f64c5d4df908847a518389"
+    },
+    {
+      "source": "docs/RELATORIO-INPUT-TITLE-RESPONSIVO-PREVIAS-20261009.md",
+      "target": "docs/RELATORIO-INPUT-TITLE-RESPONSIVO-PREVIAS-20261009.md",
+      "inputSha256": "8735e3257d64524233eb8da12893b31d9bbe4153039cdafcce8ca702b980bb33",
+      "outputSha256": "8735e3257d64524233eb8da12893b31d9bbe4153039cdafcce8ca702b980bb33"
+    },
+    {
+      "source": "qa-finalizacao/title-preview-patch-final/resultado.json",
+      "target": "qa-finalizacao/title-preview-patch-final/resultado.json",
+      "inputSha256": "004639855c65b05730b1a7571f59c3cef75f253716c2c9e6676845f41a19228f",
+      "outputSha256": "004639855c65b05730b1a7571f59c3cef75f253716c2c9e6676845f41a19228f"
+    },
+    {
+      "source": "qa-finalizacao/title-preview-patch-final/verificacao.json",
+      "target": "qa-finalizacao/title-preview-patch-final/verificacao.json",
+      "inputSha256": "c42010d45dc3522d4b1af41f4325b9497c6729faff1f46862e9938a163cf82ce",
+      "outputSha256": "c42010d45dc3522d4b1af41f4325b9497c6729faff1f46862e9938a163cf82ce"
+    },
+    {
+      "source": "qa-finalizacao/input-title-two-sizes-proof/resultado.json",
+      "target": "qa-finalizacao/input-title-two-sizes-proof/resultado.json",
+      "inputSha256": "71d9d1e2b0359dac05dc802aa437c46fcf7cd1190ee282436b062171a5f38bf3",
+      "outputSha256": "71d9d1e2b0359dac05dc802aa437c46fcf7cd1190ee282436b062171a5f38bf3"
+    },
+    {
+      "source": "qa-finalizacao/input-title-two-sizes-patched/resultado.json",
+      "target": "qa-finalizacao/input-title-two-sizes-patched/resultado.json",
+      "inputSha256": "31578dfc2c33799ea1003b7a7d035c67ad56e59bd4230ea60bb35c101ae2d6bd",
+      "outputSha256": "31578dfc2c33799ea1003b7a7d035c67ad56e59bd4230ea60bb35c101ae2d6bd"
+    },
+    {
+      "source": "qa-finalizacao/input-title-two-sizes/resultado.json",
+      "target": "qa-finalizacao/input-title-two-sizes/resultado.json",
+      "inputSha256": "152075b8ab048279e9f34a9a92b5b8d0289ce6949c1692ea51ec9615cb964ac0",
+      "outputSha256": "152075b8ab048279e9f34a9a92b5b8d0289ce6949c1692ea51ec9615cb964ac0"
+    },
+    {
+      "source": "qa-finalizacao/input-title-two-sizes-final/resultado.json",
+      "target": "qa-finalizacao/input-title-two-sizes-final/resultado.json",
+      "inputSha256": "d1cd2fe2805af54e116c2c5ed72b34c68f35b0b68a50336f88e8bb9a6d3769fd",
+      "outputSha256": "d1cd2fe2805af54e116c2c5ed72b34c68f35b0b68a50336f88e8bb9a6d3769fd"
+    },
+    {
+      "source": "qa-finalizacao/title-preview-patch/resultado.json",
+      "target": "qa-finalizacao/title-preview-patch/resultado.json",
+      "inputSha256": "43bd5374644159b2b3d3bff461dbf38f8c6b04c82943cdba021f2b7af2b6c5fd",
+      "outputSha256": "43bd5374644159b2b3d3bff461dbf38f8c6b04c82943cdba021f2b7af2b6c5fd"
+    },
+    {
+      "source": "qa-finalizacao/input-title-two-sizes-proof/input-1920x1080.png",
+      "target": "qa-finalizacao/input-title-two-sizes-proof/input-1920x1080.png",
+      "inputSha256": "b50143707b2be3b7fcc1f78af2cc0532c8e533b1185b2fea93fd9a1447da8770",
+      "outputSha256": "b50143707b2be3b7fcc1f78af2cc0532c8e533b1185b2fea93fd9a1447da8770"
+    },
+    {
+      "source": "qa-finalizacao/input-title-two-sizes-proof/input-600x600.png",
+      "target": "qa-finalizacao/input-title-two-sizes-proof/input-600x600.png",
+      "inputSha256": "e60e430364aefbc819c031f65c72d1aadd0db80570d7d604c2b7ee90e0d310d4",
+      "outputSha256": "e60e430364aefbc819c031f65c72d1aadd0db80570d7d604c2b7ee90e0d310d4"
+    },
+    {
+      "source": "qa-finalizacao/input-title-two-sizes-proof/title-1920x1080-fields.png",
+      "target": "qa-finalizacao/input-title-two-sizes-proof/title-1920x1080-fields.png",
+      "inputSha256": "749fcbe652dab7c05bb2bd822ce124ab7443f93ed2d4a59d6209bdc44dd2c416",
+      "outputSha256": "749fcbe652dab7c05bb2bd822ce124ab7443f93ed2d4a59d6209bdc44dd2c416"
+    },
+    {
+      "source": "qa-finalizacao/input-title-two-sizes-proof/title-1920x1080-top.png",
+      "target": "qa-finalizacao/input-title-two-sizes-proof/title-1920x1080-top.png",
+      "inputSha256": "4d839d58e1b2a3f1dffd8081f66ff884e64565e0ef99de08a5cf3bd68e12d023",
+      "outputSha256": "4d839d58e1b2a3f1dffd8081f66ff884e64565e0ef99de08a5cf3bd68e12d023"
+    },
+    {
+      "source": "qa-finalizacao/input-title-two-sizes-proof/title-600x600-fields.png",
+      "target": "qa-finalizacao/input-title-two-sizes-proof/title-600x600-fields.png",
+      "inputSha256": "2fd9121ec0a8c998dd0c0d4c8753049a430329f32361f8399975e6ebe59675d7",
+      "outputSha256": "2fd9121ec0a8c998dd0c0d4c8753049a430329f32361f8399975e6ebe59675d7"
+    },
+    {
+      "source": "qa-finalizacao/input-title-two-sizes-proof/title-600x600-top.png",
+      "target": "qa-finalizacao/input-title-two-sizes-proof/title-600x600-top.png",
+      "inputSha256": "8cb7e09dcf2aca37cae483f8aa72ac1a13f5c8cbfcc3c914618d1b3190dc660e",
+      "outputSha256": "8cb7e09dcf2aca37cae483f8aa72ac1a13f5c8cbfcc3c914618d1b3190dc660e"
+    },
+    {
+      "source": "qa-finalizacao/input-title-two-sizes-patched/input-1920x1080.png",
+      "target": "qa-finalizacao/input-title-two-sizes-patched/input-1920x1080.png",
+      "inputSha256": "b50143707b2be3b7fcc1f78af2cc0532c8e533b1185b2fea93fd9a1447da8770",
+      "outputSha256": "b50143707b2be3b7fcc1f78af2cc0532c8e533b1185b2fea93fd9a1447da8770"
+    },
+    {
+      "source": "qa-finalizacao/input-title-two-sizes-patched/input-600x600.png",
+      "target": "qa-finalizacao/input-title-two-sizes-patched/input-600x600.png",
+      "inputSha256": "e60e430364aefbc819c031f65c72d1aadd0db80570d7d604c2b7ee90e0d310d4",
+      "outputSha256": "e60e430364aefbc819c031f65c72d1aadd0db80570d7d604c2b7ee90e0d310d4"
+    },
+    {
+      "source": "qa-finalizacao/input-title-two-sizes-patched/title-1920x1080-fields.png",
+      "target": "qa-finalizacao/input-title-two-sizes-patched/title-1920x1080-fields.png",
+      "inputSha256": "f4a7226472d0436b1ad69f535cfb7db262cdd4c74843f8c66d4e40d72f44ad9e",
+      "outputSha256": "f4a7226472d0436b1ad69f535cfb7db262cdd4c74843f8c66d4e40d72f44ad9e"
+    },
+    {
+      "source": "qa-finalizacao/input-title-two-sizes-patched/title-1920x1080-top.png",
+      "target": "qa-finalizacao/input-title-two-sizes-patched/title-1920x1080-top.png",
+      "inputSha256": "9dd0cc9ab2a2b91d312240a43154f9b06f3adf9743197b0ae53f85b3630f28aa",
+      "outputSha256": "9dd0cc9ab2a2b91d312240a43154f9b06f3adf9743197b0ae53f85b3630f28aa"
+    },
+    {
+      "source": "qa-finalizacao/input-title-two-sizes-patched/title-600x600-fields.png",
+      "target": "qa-finalizacao/input-title-two-sizes-patched/title-600x600-fields.png",
+      "inputSha256": "2fd9121ec0a8c998dd0c0d4c8753049a430329f32361f8399975e6ebe59675d7",
+      "outputSha256": "2fd9121ec0a8c998dd0c0d4c8753049a430329f32361f8399975e6ebe59675d7"
+    },
+    {
+      "source": "qa-finalizacao/input-title-two-sizes-patched/title-600x600-top.png",
+      "target": "qa-finalizacao/input-title-two-sizes-patched/title-600x600-top.png",
+      "inputSha256": "8114fb31132f30065c4d0676074fc131eceafa490f7009207a589847e1f35ea2",
+      "outputSha256": "8114fb31132f30065c4d0676074fc131eceafa490f7009207a589847e1f35ea2"
+    },
+    {
+      "source": "qa-finalizacao/title-preview-patch-final/painel/gc/esportes/placar.png",
+      "target": "qa-finalizacao/title-preview-patch-final/painel/gc/esportes/placar.png",
+      "inputSha256": "ae3cbf2678bface6c44256815a6dc2a5f7151f80cf8833a7b110b6d281042dd0",
+      "outputSha256": "ae3cbf2678bface6c44256815a6dc2a5f7151f80cf8833a7b110b6d281042dd0"
+    },
+    {
+      "source": "qa-finalizacao/title-preview-patch-final/painel/gc/jornalismo/lower_third.png",
+      "target": "qa-finalizacao/title-preview-patch-final/painel/gc/jornalismo/lower_third.png",
+      "inputSha256": "6c0bb2ec14929899ac04b781651c77360bf24f1c082fe7d67e338c17c91c13e0",
+      "outputSha256": "6c0bb2ec14929899ac04b781651c77360bf24f1c082fe7d67e338c17c91c13e0"
+    },
+    {
+      "source": "qa-finalizacao/title-preview-patch-final/painel/gc/jornalismo/urgente.png",
+      "target": "qa-finalizacao/title-preview-patch-final/painel/gc/jornalismo/urgente.png",
+      "inputSha256": "27707fb1ae0b391299e08c2df48e3a23621a2d58d2ecfa83c63d853e61b4be7b",
+      "outputSha256": "27707fb1ae0b391299e08c2df48e3a23621a2d58d2ecfa83c63d853e61b4be7b"
+    },
+    {
+      "source": "qa-finalizacao/title-preview-patch-final/painel/gc/marca/bug_relogio.png",
+      "target": "qa-finalizacao/title-preview-patch-final/painel/gc/marca/bug_relogio.png",
+      "inputSha256": "271f544b0878c11c375ff0e26daeca1c7c080c5505db8981e6d951158fc1e240",
+      "outputSha256": "271f544b0878c11c375ff0e26daeca1c7c080c5505db8981e6d951158fc1e240"
+    },
+    {
+      "source": "qa-finalizacao/title-preview-patch-final/painel/gc/esportes/placar.png",
+      "target": "painel/gc/esportes/placar.png",
+      "inputSha256": "ae3cbf2678bface6c44256815a6dc2a5f7151f80cf8833a7b110b6d281042dd0",
+      "outputSha256": "ae3cbf2678bface6c44256815a6dc2a5f7151f80cf8833a7b110b6d281042dd0",
+      "runtimeTarget": "obs-vmix/painel/gc/esportes/placar.png"
+    },
+    {
+      "source": "qa-finalizacao/title-preview-patch-final/painel/gc/jornalismo/lower_third.png",
+      "target": "painel/gc/jornalismo/lower_third.png",
+      "inputSha256": "6c0bb2ec14929899ac04b781651c77360bf24f1c082fe7d67e338c17c91c13e0",
+      "outputSha256": "6c0bb2ec14929899ac04b781651c77360bf24f1c082fe7d67e338c17c91c13e0",
+      "runtimeTarget": "obs-vmix/painel/gc/jornalismo/lower_third.png"
+    },
+    {
+      "source": "qa-finalizacao/title-preview-patch-final/painel/gc/jornalismo/urgente.png",
+      "target": "painel/gc/jornalismo/urgente.png",
+      "inputSha256": "27707fb1ae0b391299e08c2df48e3a23621a2d58d2ecfa83c63d853e61b4be7b",
+      "outputSha256": "27707fb1ae0b391299e08c2df48e3a23621a2d58d2ecfa83c63d853e61b4be7b",
+      "runtimeTarget": "obs-vmix/painel/gc/jornalismo/urgente.png"
+    },
+    {
+      "source": "qa-finalizacao/title-preview-patch-final/painel/gc/marca/bug_relogio.png",
+      "target": "painel/gc/marca/bug_relogio.png",
+      "inputSha256": "271f544b0878c11c375ff0e26daeca1c7c080c5505db8981e6d951158fc1e240",
+      "outputSha256": "271f544b0878c11c375ff0e26daeca1c7c080c5505db8981e6d951158fc1e240",
+      "runtimeTarget": "obs-vmix/painel/gc/marca/bug_relogio.png"
+    },
+    {
+      "source": "qa-finalizacao/input-title-previews-allowlist-20261009.json",
+      "target": "qa-finalizacao/input-title-previews-allowlist-20261009.json",
+      "inputSha256": "6b6053276787d839246d404cb12224c352af9b8aaf9f6f848c8c7cb2d60b0533",
+      "outputSha256": "6b6053276787d839246d404cb12224c352af9b8aaf9f6f848c8c7cb2d60b0533"
+    }
+  ]
+}

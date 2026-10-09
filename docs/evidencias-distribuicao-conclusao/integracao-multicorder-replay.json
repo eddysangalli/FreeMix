@@ -1,0 +1,65 @@
+{
+  "status": "HASH_VERIFIED_MIRROR",
+  "nativeHead": "6cbf07641c501cb6b319c6bf7000b805fdce625c",
+  "operatorTouched": false,
+  "files": [
+    {
+      "path": "qa-finalizacao/multicorder-replay-container/audit-package.json",
+      "sourceSha256": "931ad59691b448c49921f72ed27b0d1a864101250d3cec80bd4cd1bc50a999bf",
+      "outputSha256": "931ad59691b448c49921f72ed27b0d1a864101250d3cec80bd4cd1bc50a999bf"
+    },
+    {
+      "path": "qa-finalizacao/multicorder-replay-container/README.md",
+      "sourceSha256": "aaa86d210fac05433fc00caaf1d6abc0b3c66810ac1c7bc3364e6e5022a5207b",
+      "outputSha256": "aaa86d210fac05433fc00caaf1d6abc0b3c66810ac1c7bc3364e6e5022a5207b"
+    },
+    {
+      "path": "qa-finalizacao/multicorder-replay-container/prepare.mjs",
+      "sourceSha256": "e6cc4777c775ed03a4d962b453c952c891ab371972fedd17f4f9e2b149326cfa",
+      "outputSha256": "e6cc4777c775ed03a4d962b453c952c891ab371972fedd17f4f9e2b149326cfa"
+    },
+    {
+      "path": "qa-finalizacao/multicorder-replay-container/test.mjs",
+      "sourceSha256": "9d3dc7cb5eb35f52312e21f452147d161d6a256aa1789987cc5964c318bebe44",
+      "outputSha256": "977006368e802680a80afb1e8e0552a00112dde262a45fbe664501348d2a7cd5"
+    },
+    {
+      "path": "qa-finalizacao/multicorder-replay-container/resultado.json",
+      "sourceSha256": "1935b7327f1b9e86614bf93fa51b0958e6cb18d20cede2a73a42ee7b9a22034e",
+      "outputSha256": "1935b7327f1b9e86614bf93fa51b0958e6cb18d20cede2a73a42ee7b9a22034e"
+    },
+    {
+      "path": "qa-finalizacao/multicorder-replay-container/resultado-startup-fixture-fail.json",
+      "sourceSha256": "1ce25bd38ce9387882c5b24dfe92153bc566329558180547ad02575bd209c707",
+      "outputSha256": "1ce25bd38ce9387882c5b24dfe92153bc566329558180547ad02575bd209c707"
+    },
+    {
+      "path": "qa-finalizacao/multicorder-replay-container/product-copy/controle.js",
+      "sourceSha256": "f37c237d28c93d1ef7e8f57270ed2619ef3c098c47c1f2df1a8c388fc1001b7a",
+      "outputSha256": "f37c237d28c93d1ef7e8f57270ed2619ef3c098c47c1f2df1a8c388fc1001b7a"
+    },
+    {
+      "path": "qa-finalizacao/multicorder-replay-container/ALLOWLIST.json",
+      "sourceSha256": "4818c0ace58e5f2bb7cfc03331bde31ce6dff21de24f5f399b0d15ec1efb1afb",
+      "outputSha256": "4818c0ace58e5f2bb7cfc03331bde31ce6dff21de24f5f399b0d15ec1efb1afb"
+    }
+  ],
+  "ui": {
+    "path": "painel/remoto/controle.js",
+    "sourceSha256": "f37c237d28c93d1ef7e8f57270ed2619ef3c098c47c1f2df1a8c388fc1001b7a",
+    "outputSha256": "12827c3b1ce1b274f25a7ffc484c1708f74bdd02674b81cdee38e5b790383436"
+  },
+  "cycles": [
+    30,
+    50,
+    100
+  ],
+  "outputsAfterStop": 0,
+  "shutdownAccepted": true,
+  "exitCode": 0,
+  "nativeCloseMs": 655,
+  "limits": [
+    "Composition/container recorded, not SourceRecord directly attached to ffmpeg players",
+    "No general endurance or physical device acceptance implied"
+  ]
+}
