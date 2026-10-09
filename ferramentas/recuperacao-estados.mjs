@@ -1,6 +1,8 @@
 // Whole confirmed project states preserve created UUIDs and media. Never replay start/stop commands.
 export const stateMutations=new Set(['input_create','input_duplicate','input_variant','input_remove','input_template','input_reorder','input_undo','input_speaker','input_background','gc_library_save','gc_library_duplicate','gc_library_remove','gc_library_import','outputs_configure','outputs_mix','outputs_profile_save','outputs_profile_load','macro_save','macro_remove','controller_save','controller_delete','queue_save','queue_remove']);
 for(const action of ['gc_library_asset','gc_library_variant','gc_library_unlink','native_state'])stateMutations.add(action);
+// Content undo is session-only history; recovery stores the resulting H/V project state instead.
+for(const action of ['input_link','input_content_undo'])stateMutations.add(action);
 import {join,resolve,dirname,isAbsolute} from 'node:path';import {lstat} from 'node:fs/promises';
 import {mkdir,readFile,writeFile} from 'node:fs/promises';import {createHash} from 'node:crypto';
 export function gcAssetDependencies(root,metadata){const files=new Set();const walk=v=>{if(!v||typeof v!=='object')return;for(const[k,x]of Object.entries(v)){if(['imageAsset','fontAsset'].includes(k)&&x){if(typeof x!=='string'||!/^[a-f0-9]{64}\.(?:png|jpe?g|webp|bmp|ttf|otf|woff2)$/i.test(x))throw Error('Asset GC inválido na recuperação');files.add(join(root,'painel/gc/biblioteca/assets',x));}else walk(x);}};walk(metadata);return [...files].map(path=>({path}));}

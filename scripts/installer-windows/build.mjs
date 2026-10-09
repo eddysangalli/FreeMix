@@ -1,5 +1,5 @@
 import {createReadStream, createWriteStream} from 'node:fs';
-import {mkdir, stat, writeFile, rename, rm} from 'node:fs/promises';
+import {mkdir, stat, writeFile, rename, rm, access} from 'node:fs/promises';
 import {pipeline} from 'node:stream/promises';
 import {createHash} from 'node:crypto';
 import {execFileSync} from 'node:child_process';
@@ -9,12 +9,13 @@ import {fileURLToPath} from 'node:url';
 const here=dirname(fileURLToPath(import.meta.url));
 const workspace=resolve(here,'../..');
 const args=process.argv.slice(2), options={};
-for(const arg of args) { const i=arg.indexOf('='); if(i<0) throw Error('Use --zip=... e --output=...'); const name=arg.slice(0,i), value=arg.slice(i+1); if(!['--zip','--output'].includes(name)||!value||options[name])throw Error('Argumento inválido: '+name); options[name]=value; }
+for(const arg of args) { if(arg==='--stub-only'){options['--stub-only']=true;continue;} const i=arg.indexOf('='); if(i<0) throw Error('Use --zip=... e --output=... [--stub-only]'); const name=arg.slice(0,i), value=arg.slice(i+1); if(!['--zip','--output'].includes(name)||!value||options[name])throw Error('Argumento inválido: '+name); options[name]=value; }
 const zip=resolve(options['--zip']??join(workspace,'entregas/FreeMix-Completo-0.1.0-local.20261009153453.zip'));
 const output=resolve(options['--output']??join(workspace,'entregas/FreeMix-Studio-Setup-0.1.0-local.20261009153453.exe'));
 const root=basename(zip,'.zip');
 if(!/^FreeMix-Completo-[A-Za-z0-9._-]+$/.test(root))throw Error('Nome do pacote completo inválido.');
 if(zip.toLowerCase()===output.toLowerCase())throw Error('A saída deve ser diferente do pacote de entrada.');
+if(!options['--stub-only']&&await access(output).then(()=>true,()=>false))throw Error('A saída já existe. Entregas seladas não são sobrescritas; use --output=CAMINHO_NOVO.');
 const size=(await stat(zip)).size;
 if(size<22||size>5e9)throw Error('Tamanho ZIP inválido.');
 await mkdir(join(here,'build'),{recursive:true}); await mkdir(dirname(output),{recursive:true});
@@ -24,7 +25,11 @@ const generated=join(here,'build/PayloadInfo.cs'), stub=join(here,'build/FreeMix
 await writeFile(generated,`namespace FreeMixSetup { internal static class PayloadInfo { public const string Sha256 = "${sha}"; public const long Length = ${size}L; public const string Root = "${root}"; public const string Version = "${root.slice('FreeMix-Completo-'.length)}"; } }\n`);
 const framework=join(process.env.WINDIR??'C:/Windows','Microsoft.NET/Framework64/v4.0.30319');
 console.log('Compilando WinForms .NET Framework x64...');
-execFileSync(join(framework,'csc.exe'),['/nologo','/target:winexe','/platform:x64','/optimize+','/utf8output','/out:'+stub,'/reference:System.dll','/reference:System.Core.dll','/reference:System.Drawing.dll','/reference:System.Windows.Forms.dll','/reference:'+join(framework,'System.IO.Compression.dll'),join(here,'Setup.cs'),generated],{stdio:'inherit',windowsHide:true});
+const uninstaller=join(here,'build/FreeMix-Uninstall.exe');
+const common=['/nologo','/target:winexe','/platform:x64','/optimize+','/utf8output','/reference:System.dll','/reference:System.Core.dll','/reference:System.Drawing.dll','/reference:System.Windows.Forms.dll','/reference:System.Web.Extensions.dll'];
+execFileSync(join(framework,'csc.exe'),[...common,'/out:'+uninstaller,join(here,'Uninstall.cs')],{stdio:'inherit',windowsHide:true});
+execFileSync(join(framework,'csc.exe'),[...common,'/main:FreeMixSetup.Program','/out:'+stub,'/reference:'+join(framework,'System.IO.Compression.dll'),'/resource:'+uninstaller+',FreeMixSetup.Uninstall.exe',join(here,'Setup.cs'),join(here,'Uninstall.cs'),generated],{stdio:'inherit',windowsHide:true});
+if(options['--stub-only']){console.log(JSON.stringify({stub,uninstaller,payloadSha256:sha,uninstallerIncluded:true,finalReleaseGenerated:false,authenticodeSigned:false}));process.exit(0);}
 const partial=output+'.partial';
 try {
   console.log('Montando EXE único (streaming)...');
@@ -35,6 +40,6 @@ try {
   await rename(partial,output);
 } catch(error) { await rm(partial,{force:true});throw error; }
 const exeHash=createHash('sha256');for await(const chunk of createReadStream(output))exeHash.update(chunk);
-const result={format:1,output,bytes:(await stat(output)).size,sha256:exeHash.digest('hex'),payload:{zip,bytes:size,sha256:sha,root},authenticodeSigned:false,uninstallerIncluded:false,builtAt:new Date().toISOString()};
+const result={format:1,output,bytes:(await stat(output)).size,sha256:exeHash.digest('hex'),payload:{zip,bytes:size,sha256:sha,root},authenticodeSigned:false,uninstallerIncluded:true,builtAt:new Date().toISOString()};
 await writeFile(output+'.build.json',JSON.stringify(result,null,2)+'\n');
 console.log(JSON.stringify(result,null,2));

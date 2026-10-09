@@ -1,0 +1,491 @@
+{
+  "status": "PASS",
+  "operatorTouched": false,
+  "apiFixture": true,
+  "profileApplied": false,
+  "checks": [
+    {
+      "screen": "settings?category=audio",
+      "width": 900,
+      "height": 650,
+      "dpi": 1,
+      "cssViewport": {
+        "width": 900,
+        "height": 650
+      },
+      "status": "PASS",
+      "overflow": false,
+      "footerVisible": true
+    },
+    {
+      "screen": "recuperacao",
+      "width": 900,
+      "height": 650,
+      "dpi": 1,
+      "cssViewport": {
+        "width": 900,
+        "height": 650
+      },
+      "status": "PASS",
+      "overflow": false,
+      "footerVisible": false
+    },
+    {
+      "screen": "diagnosticos",
+      "width": 900,
+      "height": 650,
+      "dpi": 1,
+      "cssViewport": {
+        "width": 900,
+        "height": 650
+      },
+      "status": "PASS",
+      "overflow": false,
+      "footerVisible": false
+    },
+    {
+      "screen": "settings?category=audio",
+      "width": 900,
+      "height": 650,
+      "dpi": 1.25,
+      "cssViewport": {
+        "width": 720,
+        "height": 520
+      },
+      "status": "PASS",
+      "overflow": false,
+      "footerVisible": true
+    },
+    {
+      "screen": "recuperacao",
+      "width": 900,
+      "height": 650,
+      "dpi": 1.25,
+      "cssViewport": {
+        "width": 720,
+        "height": 520
+      },
+      "status": "PASS",
+      "overflow": false,
+      "footerVisible": false
+    },
+    {
+      "screen": "diagnosticos",
+      "width": 900,
+      "height": 650,
+      "dpi": 1.25,
+      "cssViewport": {
+        "width": 720,
+        "height": 520
+      },
+      "status": "PASS",
+      "overflow": false,
+      "footerVisible": false
+    },
+    {
+      "screen": "settings?category=audio",
+      "width": 900,
+      "height": 650,
+      "dpi": 1.5,
+      "cssViewport": {
+        "width": 600,
+        "height": 433
+      },
+      "status": "PASS",
+      "overflow": false,
+      "footerVisible": true
+    },
+    {
+      "screen": "recuperacao",
+      "width": 900,
+      "height": 650,
+      "dpi": 1.5,
+      "cssViewport": {
+        "width": 600,
+        "height": 433
+      },
+      "status": "PASS",
+      "overflow": false,
+      "footerVisible": false
+    },
+    {
+      "screen": "diagnosticos",
+      "width": 900,
+      "height": 650,
+      "dpi": 1.5,
+      "cssViewport": {
+        "width": 600,
+        "height": 433
+      },
+      "status": "PASS",
+      "overflow": false,
+      "footerVisible": false
+    },
+    {
+      "screen": "settings?category=audio",
+      "width": 900,
+      "height": 650,
+      "dpi": 2,
+      "cssViewport": {
+        "width": 450,
+        "height": 325
+      },
+      "status": "PASS",
+      "overflow": false,
+      "footerVisible": true
+    },
+    {
+      "screen": "recuperacao",
+      "width": 900,
+      "height": 650,
+      "dpi": 2,
+      "cssViewport": {
+        "width": 450,
+        "height": 325
+      },
+      "status": "PASS",
+      "overflow": false,
+      "footerVisible": false
+    },
+    {
+      "screen": "diagnosticos",
+      "width": 900,
+      "height": 650,
+      "dpi": 2,
+      "cssViewport": {
+        "width": 450,
+        "height": 325
+      },
+      "status": "PASS",
+      "overflow": false,
+      "footerVisible": false
+    },
+    {
+      "screen": "settings?category=audio",
+      "width": 1280,
+      "height": 720,
+      "dpi": 1,
+      "cssViewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "status": "PASS",
+      "overflow": false,
+      "footerVisible": true
+    },
+    {
+      "screen": "recuperacao",
+      "width": 1280,
+      "height": 720,
+      "dpi": 1,
+      "cssViewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "status": "PASS",
+      "overflow": false,
+      "footerVisible": false
+    },
+    {
+      "screen": "diagnosticos",
+      "width": 1280,
+      "height": 720,
+      "dpi": 1,
+      "cssViewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "status": "PASS",
+      "overflow": false,
+      "footerVisible": false
+    },
+    {
+      "screen": "settings?category=audio",
+      "width": 1280,
+      "height": 720,
+      "dpi": 1.25,
+      "cssViewport": {
+        "width": 1024,
+        "height": 576
+      },
+      "status": "PASS",
+      "overflow": false,
+      "footerVisible": true
+    },
+    {
+      "screen": "recuperacao",
+      "width": 1280,
+      "height": 720,
+      "dpi": 1.25,
+      "cssViewport": {
+        "width": 1024,
+        "height": 576
+      },
+      "status": "PASS",
+      "overflow": false,
+      "footerVisible": false
+    },
+    {
+      "screen": "diagnosticos",
+      "width": 1280,
+      "height": 720,
+      "dpi": 1.25,
+      "cssViewport": {
+        "width": 1024,
+        "height": 576
+      },
+      "status": "PASS",
+      "overflow": false,
+      "footerVisible": false
+    },
+    {
+      "screen": "settings?category=audio",
+      "width": 1280,
+      "height": 720,
+      "dpi": 1.5,
+      "cssViewport": {
+        "width": 853,
+        "height": 480
+      },
+      "status": "PASS",
+      "overflow": false,
+      "footerVisible": true
+    },
+    {
+      "screen": "recuperacao",
+      "width": 1280,
+      "height": 720,
+      "dpi": 1.5,
+      "cssViewport": {
+        "width": 853,
+        "height": 480
+      },
+      "status": "PASS",
+      "overflow": false,
+      "footerVisible": false
+    },
+    {
+      "screen": "diagnosticos",
+      "width": 1280,
+      "height": 720,
+      "dpi": 1.5,
+      "cssViewport": {
+        "width": 853,
+        "height": 480
+      },
+      "status": "PASS",
+      "overflow": false,
+      "footerVisible": false
+    },
+    {
+      "screen": "settings?category=audio",
+      "width": 1280,
+      "height": 720,
+      "dpi": 2,
+      "cssViewport": {
+        "width": 640,
+        "height": 360
+      },
+      "status": "PASS",
+      "overflow": false,
+      "footerVisible": true
+    },
+    {
+      "screen": "recuperacao",
+      "width": 1280,
+      "height": 720,
+      "dpi": 2,
+      "cssViewport": {
+        "width": 640,
+        "height": 360
+      },
+      "status": "PASS",
+      "overflow": false,
+      "footerVisible": false
+    },
+    {
+      "screen": "diagnosticos",
+      "width": 1280,
+      "height": 720,
+      "dpi": 2,
+      "cssViewport": {
+        "width": 640,
+        "height": 360
+      },
+      "status": "PASS",
+      "overflow": false,
+      "footerVisible": false
+    },
+    {
+      "screen": "settings?category=audio",
+      "width": 1920,
+      "height": 1080,
+      "dpi": 1,
+      "cssViewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "status": "PASS",
+      "overflow": false,
+      "footerVisible": true
+    },
+    {
+      "screen": "recuperacao",
+      "width": 1920,
+      "height": 1080,
+      "dpi": 1,
+      "cssViewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "status": "PASS",
+      "overflow": false,
+      "footerVisible": false
+    },
+    {
+      "screen": "diagnosticos",
+      "width": 1920,
+      "height": 1080,
+      "dpi": 1,
+      "cssViewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "status": "PASS",
+      "overflow": false,
+      "footerVisible": false
+    },
+    {
+      "screen": "settings?category=audio",
+      "width": 1920,
+      "height": 1080,
+      "dpi": 1.25,
+      "cssViewport": {
+        "width": 1536,
+        "height": 864
+      },
+      "status": "PASS",
+      "overflow": false,
+      "footerVisible": true
+    },
+    {
+      "screen": "recuperacao",
+      "width": 1920,
+      "height": 1080,
+      "dpi": 1.25,
+      "cssViewport": {
+        "width": 1536,
+        "height": 864
+      },
+      "status": "PASS",
+      "overflow": false,
+      "footerVisible": false
+    },
+    {
+      "screen": "diagnosticos",
+      "width": 1920,
+      "height": 1080,
+      "dpi": 1.25,
+      "cssViewport": {
+        "width": 1536,
+        "height": 864
+      },
+      "status": "PASS",
+      "overflow": false,
+      "footerVisible": false
+    },
+    {
+      "screen": "settings?category=audio",
+      "width": 1920,
+      "height": 1080,
+      "dpi": 1.5,
+      "cssViewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "status": "PASS",
+      "overflow": false,
+      "footerVisible": true
+    },
+    {
+      "screen": "recuperacao",
+      "width": 1920,
+      "height": 1080,
+      "dpi": 1.5,
+      "cssViewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "status": "PASS",
+      "overflow": false,
+      "footerVisible": false
+    },
+    {
+      "screen": "diagnosticos",
+      "width": 1920,
+      "height": 1080,
+      "dpi": 1.5,
+      "cssViewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "status": "PASS",
+      "overflow": false,
+      "footerVisible": false
+    },
+    {
+      "screen": "settings?category=audio",
+      "width": 1920,
+      "height": 1080,
+      "dpi": 2,
+      "cssViewport": {
+        "width": 960,
+        "height": 540
+      },
+      "status": "PASS",
+      "overflow": false,
+      "footerVisible": true
+    },
+    {
+      "screen": "recuperacao",
+      "width": 1920,
+      "height": 1080,
+      "dpi": 2,
+      "cssViewport": {
+        "width": 960,
+        "height": 540
+      },
+      "status": "PASS",
+      "overflow": false,
+      "footerVisible": false
+    },
+    {
+      "screen": "diagnosticos",
+      "width": 1920,
+      "height": 1080,
+      "dpi": 2,
+      "cssViewport": {
+        "width": 960,
+        "height": 540
+      },
+      "status": "PASS",
+      "overflow": false,
+      "footerVisible": false
+    }
+  ],
+  "errors": [],
+  "requests": [
+    "settings_get",
+    "settings_get",
+    "settings_get",
+    "settings_get",
+    "settings_get",
+    "settings_get",
+    "settings_get",
+    "settings_get",
+    "settings_get",
+    "settings_get",
+    "settings_get",
+    "settings_get"
+  ]
+}

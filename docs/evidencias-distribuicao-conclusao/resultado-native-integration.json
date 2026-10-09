@@ -1,0 +1,16 @@
+{
+  "status": "PASS",
+  "at": "2026-10-09T20:48:14.624Z",
+  "nativePid": 81580,
+  "root": "C:\\Users\\eddyr\\AppData\\Local\\Temp\\FreeMix-QA-Integration-ee1259f8-03b5-4c65-86f9-eb6c5e77df9d",
+  "operatorTouched": false,
+  "physicalDriverOpened": false,
+  "asioDriverCount": 4,
+  "checks": [
+    "Host ASIO integrado responde no motor real, enumera sem abrir driver e rejeita configuração inválida sem playback",
+    "Importação online de .fmx em coleção/perfil novos confirma títulos/UUIDs no motor real e rejeita hash antigo",
+    "Destinos SRT mantêm 4:4:4/alpha packed/origem, permanecem desativados e sem autostart"
+  ],
+  "outputsStarted": false,
+  "sourcePreserved": true
+}

@@ -19,6 +19,11 @@ body[data-page=iso] main{display:grid;gap:12px}body[data-page=iso] #message{min-
 @media(max-width:700px){header{flex-wrap:wrap}header button{margin-left:0}.settings{grid-template-columns:1fr}.settings nav{grid-template-columns:repeat(2,minmax(0,1fr))}.settings label{grid-template-columns:1fr}.iso-top{grid-template-columns:1fr}.iso-actions{flex-direction:row;align-items:center}.iso-actions #iso-start{min-height:42px}.iso-actions h2{min-width:90px}#iso-options label{grid-template-columns:1fr}.iso-footer{flex-direction:column;align-items:stretch}}
 /* Explicitly hidden conditional fields must remain hidden despite layout rules. */
 [hidden]{display:none!important}
+/* Field descriptions stay with their own field while searching and reflowing. */
+.settings label>.field-help{grid-column:1/-1;max-width:none;margin:0 0 6px;line-height:1.45;color:#495660}
+.settings .native-fields label.native-check{display:grid;grid-template-columns:22px minmax(0,1fr)}
+.settings .native-fields label.native-check input{grid-column:1;grid-row:1;max-width:22px}
+.settings .native-fields label.native-check>.field-help{grid-column:1/-1;grid-row:2}
 /* Fit operator dialogs at desktop DPI and narrow browser windows. */
 header{flex-wrap:wrap;padding:6px 10px;gap:8px}header h1{font-size:16px}
 main,section,.card,.form,.grid,.row,fieldset{min-width:0}main{width:100%}fieldset{border:1px solid #c2c8ce;padding:12px;margin:12px 0}legend{padding:0 5px;font-weight:600}
@@ -29,3 +34,31 @@ input:not([type=checkbox]):not([type=radio]),select,textarea{min-width:0;max-wid
 @media(max-width:1050px){.native-fields{grid-template-columns:1fr}}
 @media(max-width:700px){.settings-nav nav{grid-template-columns:repeat(2,minmax(0,1fr));max-height:240px}.settings .native-fields label{grid-template-columns:1fr}.foot{position:sticky;bottom:0;flex-wrap:wrap;z-index:4}.foot button{min-width:90px;flex:1}.iso-format-tabs{flex-wrap:wrap}.iso-table-wrap{overflow:auto}.iso-table-wrap table{min-width:600px}}
 @media(min-width:701px){body[data-page=settings]{height:100vh;overflow:hidden;display:flex;flex-direction:column}body[data-page=settings] header{flex:none}body[data-page=settings] main{display:flex;flex-direction:column;flex:1;min-height:0;width:100%;box-sizing:border-box}body[data-page=settings] .settings{flex:1;min-height:0;overflow:hidden}body[data-page=settings] .settings nav{min-height:0;overflow-y:auto}body[data-page=settings] .settings nav button{padding:8px 10px}body[data-page=settings] .settings section{min-height:0;overflow:auto}body[data-page=settings] .foot{flex:none}}
+/* These dialogs keep commands reachable under 125/150/200% desktop scaling. */
+body[data-page=settings] #message{max-height:18vh;overflow:auto;overflow-wrap:anywhere;flex:none}
+body[data-page=settings] .settings section{scroll-padding:18px}
+body[data-page=settings] .settings-editor{height:65vh;min-height:280px;max-width:100%}
+body[data-page=settings] .native-fields label>.field-help{grid-column:1/-1;margin:0;line-height:1.45}
+body[data-page=settings] .native-fields label.native-check{display:grid;grid-template-columns:22px minmax(0,1fr);flex-direction:initial}
+body[data-page=settings] .native-fields label.native-check>.field-help{grid-column:1/-1}
+body[data-page=recuperacao],body[data-page=diagnosticos]{min-height:100vh;overflow-x:hidden}
+body[data-page=recuperacao] .workspace{grid-template-columns:minmax(250px,320px) minmax(0,1fr);align-items:start}
+body[data-page=recuperacao] section{min-width:0;padding:14px}
+body[data-page=recuperacao] label{display:grid;grid-template-columns:1fr;gap:7px;margin:12px 0;align-items:start;line-height:1.45}
+body[data-page=recuperacao] label:has(input[type=checkbox]){display:flex;flex-wrap:nowrap}
+body[data-page=recuperacao] input[type=checkbox]{flex:none;margin-top:3px}
+body[data-page=recuperacao] input:not([type=checkbox]):not([type=radio]),body[data-page=recuperacao] textarea{width:100%}
+body[data-page=recuperacao] table{table-layout:fixed;font-size:12px}
+body[data-page=recuperacao] th:first-child{width:38px}
+body[data-page=recuperacao] th:last-child{width:70px}
+body[data-page=recuperacao] td,body[data-page=recuperacao] th{overflow-wrap:anywhere;padding:8px 5px}
+body[data-page=recuperacao] #report,body[data-page=recuperacao] #session-status,body[data-page=recuperacao] #import-project-report{white-space:pre-wrap;overflow-wrap:anywhere;max-height:45vh;overflow:auto}
+body[data-page=recuperacao] .project-import{border:1px solid var(--line);padding:14px;margin:0 0 20px}
+body[data-page=recuperacao] .row button{flex:1;min-width:150px}
+body[data-page=diagnosticos] main{width:100%}
+body[data-page=diagnosticos] #download{display:inline-block;border:1px solid var(--line);padding:10px;color:#9dceff}
+body[data-page=recuperacao] button,body[data-page=diagnosticos] button{min-height:36px}
+@media(max-width:1100px){body[data-page=recuperacao] .workspace{grid-template-columns:minmax(250px,30%) minmax(0,1fr)}body[data-page=recuperacao] .row button{width:100%}}
+@media(max-width:760px){body[data-page=recuperacao] .workspace{grid-template-columns:1fr}body[data-page=settings] .settings{grid-template-columns:1fr}body[data-page=settings] .settings-nav nav{grid-template-columns:repeat(2,minmax(0,1fr));max-height:160px}body[data-page=settings] .settings section{min-height:0;padding:14px}body[data-page=settings] .foot{position:sticky;bottom:0;z-index:4;flex-wrap:wrap;background:var(--bg)}body[data-page=settings] .foot button{flex:1;min-width:90px}body[data-page=settings] .settings-editor{height:65vh;min-height:260px}}
+@media(max-width:760px){body[data-page=settings]{height:100vh;overflow:hidden;display:flex;flex-direction:column}body[data-page=settings] header{flex:none}body[data-page=settings] main{display:flex;flex-direction:column;flex:1;min-height:0}body[data-page=settings] .settings{flex:1;min-height:0;overflow:hidden;grid-template-rows:auto minmax(0,1fr)}body[data-page=settings] .settings-nav{max-height:150px;overflow:hidden}body[data-page=settings] .settings-nav nav{max-height:100px;overflow:auto}body[data-page=settings] .settings section{overflow:auto}body[data-page=settings] .foot{position:static;flex:none;padding:6px 0}body[data-page=settings] .foot button{padding:7px 5px}body[data-page=settings] .settings label{grid-template-columns:1fr}}
+@media(max-height:550px){body[data-page=settings] header{padding:4px 8px;gap:6px}body[data-page=settings] .settings-nav{max-height:82px}body[data-page=settings] .settings-nav>input{margin:4px 6px;padding:4px 6px;min-height:25px}body[data-page=settings] .settings-nav nav{max-height:44px}body[data-page=settings] .settings nav button{padding:5px 8px;font-size:12px}body[data-page=settings] .settings section{padding:10px}body[data-page=settings] .foot{padding:4px 0}body[data-page=settings] .foot button{padding:5px}body[data-page=settings] #message{max-height:12vh}}

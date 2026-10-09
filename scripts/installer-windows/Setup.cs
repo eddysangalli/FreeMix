@@ -13,11 +13,13 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Web.Script.Serialization;
+using Microsoft.Win32;
 
 namespace FreeMixSetup {
     internal sealed class Options {
         public bool Silent, Verify, NoShortcuts;
-        public string Destination, Log;
+        public string Destination, Log, ImportProject, ProjectName;
         public int ApiPort, WsPort;
         public static Options Parse(string[] args) {
             Options o = new Options(); HashSet<string> seen = new HashSet<string>();
@@ -31,6 +33,8 @@ namespace FreeMixSetup {
                 else if (key == "--no-shortcuts" && value == null) o.NoShortcuts = true;
                 else if (key == "--dest" && !String.IsNullOrWhiteSpace(value)) o.Destination = value;
                 else if (key == "--log" && !String.IsNullOrWhiteSpace(value)) o.Log = value;
+                else if (key == "--import-project" && !String.IsNullOrWhiteSpace(value)) o.ImportProject = value;
+                else if (key == "--project-name" && !String.IsNullOrWhiteSpace(value)) o.ProjectName = value;
                 else if (key == "--api-port") o.ApiPort = ParsePort(value);
                 else if (key == "--ws-port") o.WsPort = ParsePort(value);
                 else throw new Exception("Argumento desconhecido ou vazio: " + key);
@@ -62,30 +66,34 @@ namespace FreeMixSetup {
     }
 
     internal sealed class SetupForm : Form {
-        readonly Options options; readonly TextBox folder; readonly Label status; readonly ProgressBar progress; readonly Button install, browse;
+        readonly Options options; readonly TextBox folder, project; readonly CheckBox importProject; readonly Label status; readonly ProgressBar progress; readonly Button install, browse;
         bool running;
         public SetupForm(Options o) {
-            options = o; Text = "Instalar FreeMix Studio"; ClientSize = new Size(630, 315); FormBorderStyle = FormBorderStyle.FixedDialog; MaximizeBox = false; StartPosition = FormStartPosition.CenterScreen;
+            options = o; Text = "Instalar FreeMix Studio"; ClientSize = new Size(630, 395); FormBorderStyle = FormBorderStyle.FixedDialog; MaximizeBox = false; StartPosition = FormStartPosition.CenterScreen;
             Font = new Font("Segoe UI", 10); BackColor = Color.FromArgb(246, 248, 252);
             Label title = new Label { Text = "FreeMix Studio", Font = new Font("Segoe UI", 22, FontStyle.Bold), Location = new Point(25, 20), AutoSize = true };
             Label description = new Label { Text = "Instalação completa e offline para este usuário.\nEscolha uma pasta nova ou completamente vazia.", Location = new Point(28, 72), Size = new Size(570, 48) };
             folder = new TextBox { Text = o.Destination ?? Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Programs", "FreeMix Studio"), Location = new Point(28, 132), Size = new Size(462, 28) };
             browse = new Button { Text = "Procurar…", Location = new Point(499, 130), Size = new Size(103, 31) };
             browse.Click += delegate { using (FolderBrowserDialog picker = new FolderBrowserDialog()) { picker.Description = "Selecione uma pasta nova ou vazia para o FreeMix Studio"; picker.ShowNewFolderButton = true; if (Directory.Exists(folder.Text)) picker.SelectedPath = folder.Text; if (picker.ShowDialog(this) == DialogResult.OK) folder.Text = picker.SelectedPath; } };
-            status = new Label { Text = "Cria atalhos na Área de Trabalho e no Menu Iniciar. Não abre o programa.", Location = new Point(28, 175), Size = new Size(574, 46) };
-            progress = new ProgressBar { Location = new Point(28, 227), Size = new Size(574, 13), Minimum = 0, Maximum = 100 };
-            install = new Button { Text = "Instalar", Location = new Point(475, 259), Size = new Size(127, 34) }; install.Click += async delegate {
+            importProject = new CheckBox { Text = "Importar explicitamente uma cópia local .fmx (opcional)", Checked = !String.IsNullOrWhiteSpace(o.ImportProject), Location = new Point(28, 176), Size = new Size(574, 28) };
+            project = new TextBox { Text = o.ImportProject ?? "", Location = new Point(28, 209), Size = new Size(574, 28), Enabled = importProject.Checked };
+            importProject.CheckedChanged += delegate { project.Enabled = importProject.Checked; };
+            status = new Label { Text = "Sem importar, começa com a mesa limpa. Cria atalhos e desinstalador.\nNão abre o programa; a importação remove credenciais e início automático.", Location = new Point(28, 250), Size = new Size(574, 46) };
+            progress = new ProgressBar { Location = new Point(28, 307), Size = new Size(574, 13), Minimum = 0, Maximum = 100 };
+            install = new Button { Text = "Instalar", Location = new Point(475, 339), Size = new Size(127, 34) }; install.Click += async delegate {
                 if (!running && install.Text == "Fechar") { Close(); return; }
-                options.Destination = folder.Text;
+                options.Destination = folder.Text; options.ImportProject = importProject.Checked ? project.Text : null;
                 try { Installer.ValidateDestination(options.Destination); } catch (Exception e) { MessageBox.Show(this, e.Message, "Escolha outra pasta", MessageBoxButtons.OK, MessageBoxIcon.Warning); return; }
-                running = true; install.Enabled = false; browse.Enabled = false; folder.Enabled = false;
+                if (importProject.Checked && String.IsNullOrWhiteSpace(project.Text)) { MessageBox.Show(this, "Informe o caminho da pasta UUID.fmx criada pela Recuperação do FreeMix.", "Projeto", MessageBoxButtons.OK, MessageBoxIcon.Warning); return; }
+                running = true; install.Enabled = false; browse.Enabled = false; folder.Enabled = false; importProject.Enabled = false; project.Enabled = false;
                 int result = await Task.Run(delegate { return Installer.Run(options, UpdateProgress); });
                 running = false; install.Enabled = true; install.Text = "Fechar";
                 if (result == 0) status.Text = "Instalação concluída. Use o atalho FreeMix Studio para começar.";
                 else MessageBox.Show(this, "A instalação falhou. " + Installer.LastError + "\n\nRegistro: " + Installer.LastLog, "FreeMix Studio", MessageBoxButtons.OK, MessageBoxIcon.Error);
             };
             FormClosing += delegate(object sender, FormClosingEventArgs e) { if (running) e.Cancel = true; };
-            Controls.AddRange(new Control[] { title, description, folder, browse, status, progress, install });
+            Controls.AddRange(new Control[] { title, description, folder, browse, importProject, project, status, progress, install });
         }
         void UpdateProgress(string text, int percent) { if (IsHandleCreated) BeginInvoke((Action)delegate { status.Text = text; progress.Value = Math.Max(0, Math.Min(100, percent)); }); }
     }
@@ -137,10 +145,12 @@ namespace FreeMixSetup {
                             if (process.ExitCode != 0) throw new Exception("O instalador offline recusou ou não concluiu a instalação (código " + process.ExitCode + "). Consulte o registro.");
                         }
                         installed = true;
+                        if (!String.IsNullOrWhiteSpace(options.ImportProject)) ImportProject(Path.GetFullPath(options.Destination), options, log, report);
                         report("Criando os atalhos…", 95);
                         List<string> shortcuts = options.NoShortcuts ? new List<string>() : CreateShortcuts(Path.GetFullPath(options.Destination));
+                        WriteUninstaller(Path.GetFullPath(options.Destination), shortcuts);
                         WriteReceipt(Path.GetFullPath(options.Destination), api, ws, shortcuts);
-                        log.WriteLine("INSTALL PASS; appStarted=false; firewallApplied=false; apiPort=" + api + "; wsPort=" + ws + "; shortcuts=" + shortcuts.Count + "; uninstallRegistered=false");
+                        log.WriteLine("INSTALL PASS; appStarted=false; firewallApplied=false; apiPort=" + api + "; wsPort=" + ws + "; shortcuts=" + shortcuts.Count + "; uninstallRegistered=true");
                         report("Instalação concluída.", 100); return 0;
                     } catch (Exception e) { LastError = installed ? "Os arquivos foram instalados, mas a finalização falhou. " + e.Message + " A instalação foi mantida no destino escolhido; use FreeMix Studio.cmd nessa pasta." : e.Message; log.WriteLine("FAIL: installed=" + installed.ToString().ToLowerInvariant() + "; " + Sanitize(LastError)); report("Falha: " + LastError, 0); return 1; }
                     finally { if (scratch != null) { try { SafeDelete(scratch); } catch (Exception e) { log.WriteLine("Temporary cleanup pending: " + Sanitize(e.Message)); } } }
@@ -227,7 +237,37 @@ namespace FreeMixSetup {
         }
         static void Set(Type type, object target, string name, string value) { type.InvokeMember(name, BindingFlags.SetProperty, null, target, new object[] { value }); }
         static string Json(string s) { return "\"" + s.Replace("\\", "\\\\").Replace("\"", "\\\"").Replace("\r", "\\r").Replace("\n", "\\n") + "\""; }
-        static void WriteReceipt(string root, int api, int ws, List<string> shortcuts) { string path = Path.Combine(root, "installer-setup.json"); NoLinks(path); List<string> quoted = shortcuts.ConvertAll<string>(Json); using (StreamWriter writer = new StreamWriter(new FileStream(path, FileMode.CreateNew, FileAccess.Write), new UTF8Encoding(false))) writer.Write("{\"format\":1,\"version\":" + Json(PayloadInfo.Version) + ",\"payloadSha256\":" + Json(PayloadInfo.Sha256) + ",\"apiPort\":" + api + ",\"wsPort\":" + ws + ",\"appStarted\":false,\"firewallApplied\":false,\"uninstallRegistered\":false,\"shortcuts\":[" + String.Join(",", quoted.ToArray()) + "]}"); }
+        static void WriteReceipt(string root, int api, int ws, List<string> shortcuts) { string path = Path.Combine(root, "installer-setup.json"); NoLinks(path); List<string> quoted = shortcuts.ConvertAll<string>(Json); using (StreamWriter writer = new StreamWriter(new FileStream(path, FileMode.CreateNew, FileAccess.Write), new UTF8Encoding(false))) writer.Write("{\"format\":1,\"version\":" + Json(PayloadInfo.Version) + ",\"payloadSha256\":" + Json(PayloadInfo.Sha256) + ",\"apiPort\":" + api + ",\"wsPort\":" + ws + ",\"appStarted\":false,\"firewallApplied\":false,\"uninstallRegistered\":true,\"shortcuts\":[" + String.Join(",", quoted.ToArray()) + "]}"); }
+        static void ImportProject(string root, Options options, StreamWriter log, Action<string,int> report) {
+            string node = Path.Combine(root, "runtime", "node.exe"), cli = Path.Combine(root, "ferramentas", "recuperacao-importacao.mjs"); NoLinks(cli);
+            if (!File.Exists(cli)) throw new Exception("Esta entrega não inclui a importação de projeto. A instalação limpa foi mantida.");
+            string arguments = Quote(cli) + " " + Quote("--root=" + root) + " " + Quote("--project=" + Path.GetFullPath(options.ImportProject)) + (String.IsNullOrWhiteSpace(options.ProjectName) ? "" : " " + Quote("--name=" + options.ProjectName));
+            report("Conferindo o projeto escolhido e suas dependências…", 85);
+            string preview = RunTool(node, arguments, root); JavaScriptSerializer json = new JavaScriptSerializer { MaxJsonLength = 2 * 1024 * 1024 }; Dictionary<string,object> value = json.Deserialize<Dictionary<string,object>>(preview);
+            string hash = Convert.ToString(value["manifestHash"]); if (!System.Text.RegularExpressions.Regex.IsMatch(hash, "^[a-f0-9]{64}$")) throw new Exception("Prévia de projeto inválida.");
+            log.WriteLine("PROJECT PREVIEW: " + Sanitize(preview));
+            string result = RunTool(node, arguments + " --apply " + Quote("--expected-hash=" + hash), root); log.WriteLine("PROJECT IMPORT: " + Sanitize(result));
+        }
+        static string RunTool(string exe, string arguments, string root) {
+            ProcessStartInfo psi = new ProcessStartInfo(exe, arguments) { WorkingDirectory = root, UseShellExecute = false, CreateNoWindow = true, RedirectStandardOutput = true, RedirectStandardError = true };
+            using (Process process = new Process { StartInfo = psi }) {
+                Task<string> output, error; if (!process.Start()) throw new Exception("Falha ao iniciar a importação."); output = process.StandardOutput.ReadToEndAsync(); error = process.StandardError.ReadToEndAsync(); process.WaitForExit();
+                if (process.ExitCode != 0) throw new Exception("Importação não concluída: " + Sanitize(error.Result.Trim())); if (output.Result.Length > 2 * 1024 * 1024) throw new Exception("Recibo de importação excessivo."); return output.Result.Trim();
+            }
+        }
+        static string HashFile(string path) { using (FileStream stream = File.OpenRead(path)) using (SHA256 sha = SHA256.Create()) return BitConverter.ToString(sha.ComputeHash(stream)).Replace("-", "").ToLowerInvariant(); }
+        static void WriteUninstaller(string root, List<string> shortcuts) {
+            string executable = Path.Combine(root, "Desinstalar FreeMix.exe"), planPath = Path.Combine(root, "uninstall-files.json"); NoLinks(executable); NoLinks(planPath);
+            using (Stream resource = Assembly.GetExecutingAssembly().GetManifestResourceStream("FreeMixSetup.Uninstall.exe")) using (FileStream target = new FileStream(executable, FileMode.CreateNew, FileAccess.Write)) { if (resource == null) throw new Exception("Desinstalador ausente no instalador."); resource.CopyTo(target); }
+            JavaScriptSerializer json = new JavaScriptSerializer { MaxJsonLength = 16 * 1024 * 1024 }; string manifestPath = Path.Combine(root,"manifest.json"); NoLinks(manifestPath); if (new FileInfo(manifestPath).Length > 16 * 1024 * 1024) throw new Exception("Manifesto excessivo.");
+            Dictionary<string, object> manifest = json.Deserialize<Dictionary<string, object>>(File.ReadAllText(manifestPath)); List<object> files = new List<object>(), links = new List<object>();
+            foreach (object raw in (System.Collections.IEnumerable)manifest["files"]) { Dictionary<string, object> item = (Dictionary<string, object>)raw; if (FreeMixUninstall.Program.OwnedPath((string)item["path"])) files.Add(item); }
+            foreach (string path in shortcuts) links.Add(new Dictionary<string, object> { {"path",path}, {"sha256",HashFile(path)} });
+            string registryKey = "Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\FreeMixStudio-" + BitConverter.ToString(SHA256.Create().ComputeHash(Encoding.UTF8.GetBytes(root.ToLowerInvariant()))).Replace("-", "").ToLowerInvariant().Substring(0,16);
+            Dictionary<string, object> plan = new Dictionary<string, object> { {"format",1}, {"root",root}, {"version",PayloadInfo.Version}, {"files",files}, {"shortcuts",links}, {"registryKey",registryKey}, {"preserveData",true} };
+            File.WriteAllText(planPath,json.Serialize(plan),new UTF8Encoding(false));
+            using (RegistryKey key = Registry.CurrentUser.CreateSubKey(registryKey)) { key.SetValue("DisplayName","FreeMix Studio"); key.SetValue("DisplayVersion",PayloadInfo.Version); key.SetValue("Publisher","FreeMix Studio"); key.SetValue("InstallLocation",root); key.SetValue("UninstallString",Quote(executable)); key.SetValue("QuietUninstallString",Quote(executable)+" --silent --apply"); key.SetValue("DisplayIcon",Path.Combine(root,"bin\\64bit\\FreeMix.exe")); key.SetValue("NoModify",1,RegistryValueKind.DWord); key.SetValue("NoRepair",1,RegistryValueKind.DWord); }
+        }
         static void SafeDelete(string root) { NoLinks(root); foreach (string path in Directory.GetFileSystemEntries(root)) { NoLinks(path); if (Directory.Exists(path)) SafeDelete(path); else File.Delete(path); } Directory.Delete(root); }
     }
 

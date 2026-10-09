@@ -1,0 +1,261 @@
+{
+  "at": "2026-10-09T20:42:46.228Z",
+  "status": "READY_FOR_INTEGRATION",
+  "owner": "installer_exe",
+  "sources": [
+    {
+      "path": "scripts/installer-windows/Setup.cs",
+      "bytes": 33233,
+      "sha256": "7d29b1547f01f88810c860e3b3902aaffa0d1530e50e304b1a2ea7a424a7c67c"
+    },
+    {
+      "path": "scripts/installer-windows/Uninstall.cs",
+      "bytes": 12418,
+      "sha256": "6971b9729c4d8d27021e106685007fabc51299187a2b1122d280e18e3b2e31dc"
+    },
+    {
+      "path": "scripts/installer-windows/build.mjs",
+      "bytes": 4441,
+      "sha256": "fe6d1eb060f96c760e9be1e552f686a08668e707d33a76a3da83578ed23ebedb"
+    },
+    {
+      "path": "scripts/installer-windows/README.md",
+      "bytes": 4952,
+      "sha256": "97cc05c5c23488eb9e812242a987ffd289d073c6d8d76dcd1499d85b1c2abde6"
+    },
+    {
+      "path": "obs-vmix/ferramentas/instalar-portatil.mjs",
+      "bytes": 15133,
+      "sha256": "ea0e62985c7a39470ffb3464e4c32fdd98264948e200b3bf5553c8f85e3c055d"
+    },
+    {
+      "path": "obs-vmix/ferramentas/preparar-portatil.mjs",
+      "bytes": 4371,
+      "sha256": "967d9bad9a8e93322809afe8c8ab65bdcbb7cce737b9937d17dbb775d8997573"
+    },
+    {
+      "path": "obs-vmix/ferramentas/iniciar-freemix.mjs",
+      "bytes": 6546,
+      "sha256": "bcaeb9d14cbde8cfaa15d46f1f237a242313cfadca393c32d30e829f6382ffe4"
+    },
+    {
+      "path": "obs-vmix/ferramentas/iniciar-api.mjs",
+      "bytes": 6244,
+      "sha256": "eb31a33bc62caaceaca763cba2bccec7065ff259fdd7ff7ff06d00147baf318a"
+    },
+    {
+      "path": "obs-vmix/ferramentas/recuperacao-importacao.mjs",
+      "bytes": 17202,
+      "sha256": "6de8e7a43ffcd4a9a121a90064be3c78903584dc20673c9068b0fdd9c47d74e0"
+    },
+    {
+      "path": "obs-vmix/ferramentas/recuperacao-inicializacao.mjs",
+      "bytes": 3580,
+      "sha256": "311996c89f871225027f2a2a0795c11d418b1deba48d44b5d3d1cb382535010d"
+    },
+    {
+      "path": "obs-vmix/ferramentas/recuperacao-producao.mjs",
+      "bytes": 23368,
+      "sha256": "c8982f0190bbc7ebe2491dcc60024c61436b20608d0783bfea8c1c7aa6ad864b"
+    },
+    {
+      "path": "obs-vmix/ferramentas/recuperacao-estados.mjs",
+      "bytes": 4483,
+      "sha256": "c794abbe5d00da1f392bfdaedc1aeddb98e420f801809fb652d3f89f2e7b4c92"
+    },
+    {
+      "path": "obs-vmix/ferramentas/diagnostico-producao.mjs",
+      "bytes": 12015,
+      "sha256": "3de39f9c02e09b7181d2c9a76052c389c8c62d5bd6e4330b31da790a90eac482"
+    },
+    {
+      "path": "obs-vmix/painel/remoto/settings-help.js",
+      "bytes": 6084,
+      "sha256": "d6ad5acd0979b85b5004bc5b356b43ff8ef72ba29fed81957e5af1b2046ea3a7"
+    },
+    {
+      "path": "obs-vmix/painel/remoto/settings.html",
+      "bytes": 2446,
+      "sha256": "22a4332c74dd45838bb03cdac24b1fb84dabd6eefda38dc837bf2d6ae17a95f0"
+    },
+    {
+      "path": "obs-vmix/painel/remoto/settings.js",
+      "bytes": 22117,
+      "sha256": "9119cf4e5d01f3156118f825517aa842243031d7ffe204c93cc267fb9418321b"
+    },
+    {
+      "path": "obs-vmix/painel/remoto/recuperacao.html",
+      "bytes": 6290,
+      "sha256": "9d4a50e2bf90df3d9f94bd552777b238e6ba4ac4297211c366dc223f9883b733"
+    },
+    {
+      "path": "obs-vmix/painel/remoto/recuperacao.js",
+      "bytes": 8004,
+      "sha256": "95b59a9ed212bda692059ba61e7f616251d0bc568b420842e93f6cc33c8a9fff"
+    },
+    {
+      "path": "obs-vmix/painel/remoto/diagnosticos.html",
+      "bytes": 2027,
+      "sha256": "9530349bedf900cb40b747e0fcd944620a8190494be1cc32d28044c696c4a720"
+    },
+    {
+      "path": "obs-vmix/painel/remoto/studio-dialog.css",
+      "bytes": 11094,
+      "sha256": "addb0c8279e4f51ebced8517d50cb526eb590ec30c5efdcfd5a08ab84d6c0332"
+    },
+    {
+      "path": "scripts/installer-windows/qa/distribution.mjs",
+      "bytes": 10774,
+      "sha256": "685b15cbad99e4e37629f56da9fbba8b1324b3d4b3dc68f2f1746e074b58c99a"
+    },
+    {
+      "path": "scripts/installer-windows/qa/integration-report.mjs",
+      "bytes": 3945,
+      "sha256": "1375967a09ee9c5b23efeed336acabf3fd7d50b43c71b68e9b2b52a6b851cea2"
+    },
+    {
+      "path": "scripts/installer-windows/qa/migration-guards.mjs",
+      "bytes": 5463,
+      "sha256": "6454f90fae3e560671db0b269af141ae5dec2bccc66e3a8b5f230051a118060f"
+    },
+    {
+      "path": "scripts/installer-windows/qa/ownership.ps1",
+      "bytes": 817,
+      "sha256": "e999f6816e7b95fc4a7336c1fce1366a1e4443ea8ad6b1971c87a3c94ec842b4"
+    },
+    {
+      "path": "scripts/installer-windows/qa/preparation.mjs",
+      "bytes": 2580,
+      "sha256": "41905cdcba09d8bf0d7b4c750d8094448d220088b27fa4ff237744426e186152"
+    },
+    {
+      "path": "scripts/installer-windows/qa/recovery-state.mjs",
+      "bytes": 1846,
+      "sha256": "ad47df562aa875f16a1fa78974124014536fd4960328f44274f36dbfdcb32e5e"
+    },
+    {
+      "path": "scripts/installer-windows/qa/startup-api.mjs",
+      "bytes": 6266,
+      "sha256": "e8dffb5b3973423d33ce647e598059c3e7988a32de185e83ffecc1ff740343f3"
+    },
+    {
+      "path": "scripts/installer-windows/qa/ui-matrix.mjs",
+      "bytes": 6728,
+      "sha256": "69b76117a2e414ed8fda590b761fef53b41bb9988a86e09bc7dabec7f6bb0353"
+    },
+    {
+      "path": "scripts/installer-windows/qa/uninstall-resume.mjs",
+      "bytes": 3376,
+      "sha256": "4b673e9d5ae93cc403ab32776dfc225250816759665b3d2ab1bc6aab8a7a4087"
+    },
+    {
+      "path": "scripts/installer-windows/qa/verify-setup.mjs",
+      "bytes": 1998,
+      "sha256": "5bcbe49ad58a76b3e3e70a78ac0798d1f0f5e06378adcec581542bffa7a29043"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "scripts/installer-windows/build/FreeMix-Setup-Stub.exe",
+      "bytes": 59904,
+      "sha256": "e741d37cdc98c7d3172b85aac7d41a9453aaa408f6d7b997d9d8765d9a10f6ca"
+    },
+    {
+      "path": "scripts/installer-windows/build/FreeMix-Uninstall.exe",
+      "bytes": 15872,
+      "sha256": "705aec54782567b9375e69001e0dbb5b8f5cbc64eab2a876edea1cdc32958ad9"
+    }
+  ],
+  "evidence": [
+    {
+      "path": "scripts/installer-windows/build/qa-distribution.json",
+      "bytes": 1967,
+      "sha256": "5aaa997cc086b18cb650f2357922e76792e36efb3401ba53bb5bf388c93199f7",
+      "status": "PASS",
+      "qaRoot": "C:\\Users\\eddyr\\AppData\\Local\\Temp\\FreeMix-QA-Distribution-sVagMI",
+      "checks": 9
+    },
+    {
+      "path": "scripts/installer-windows/build/qa-migration-guards.json",
+      "bytes": 550,
+      "sha256": "043bd9e2559c9ed7e2dacb4dfb4fc223ef191b1b8aae7ffd7c9d1f3006a10c67",
+      "status": "PASS",
+      "qaRoot": "C:\\Users\\eddyr\\AppData\\Local\\Temp\\FreeMix-QA-MigrationGuards-jzmcEz",
+      "checks": 7
+    },
+    {
+      "path": "scripts/installer-windows/build/qa-preparation.json",
+      "bytes": 412,
+      "sha256": "0200089877f12845a73ecb9ee7761d328ec98bed3d81ccba8ff513d0ab0df6c6",
+      "status": "PASS",
+      "qaRoot": "C:\\Users\\eddyr\\AppData\\Local\\Temp\\FreeMix-QA-Preparation-a6xAvb",
+      "checks": 4
+    },
+    {
+      "path": "scripts/installer-windows/build/qa-recovery-state.json",
+      "bytes": 721,
+      "sha256": "05e3c4a281aa446a63c7d67fa61cef8efeadeb9ac2fdaeaf0c0fdaffb57b2268",
+      "status": "PASS",
+      "qaRoot": "C:\\Users\\eddyr\\AppData\\Local\\Temp\\FreeMix-QA-RecoveryState-jGOlrb",
+      "checks": 3
+    },
+    {
+      "path": "scripts/installer-windows/build/qa-startup-api.json",
+      "bytes": 707,
+      "sha256": "737d9e94aebec01a0881ffabd7590b9a3f62590a4442a23db3c62dbf3e36e2ba",
+      "status": "PASS",
+      "qaRoot": "C:\\Users\\eddyr\\AppData\\Local\\Temp\\FreeMix-QA-StartupAPI-akUdmJ",
+      "checks": 5
+    },
+    {
+      "path": "scripts/installer-windows/build/qa-setup-verify.json",
+      "bytes": 705,
+      "sha256": "8381e9b4f95e9364242b394c7b4ea5c4a105a7281a1655fbba44d5a3494bcf89",
+      "status": "PASS",
+      "qaRoot": "C:\\Users\\eddyr\\AppData\\Local\\Temp\\FreeMix-QA-SetupVerify-1lpE0f",
+      "checks": 0
+    },
+    {
+      "path": "scripts/installer-windows/build/ui-matrix/receipt.json",
+      "bytes": 9816,
+      "sha256": "e0d5113c72f04e6f48bf22fd14f27589c49c7a7cca39d0be3d53f889bd944d96",
+      "status": "PASS",
+      "qaRoot": null,
+      "checks": 36
+    }
+  ],
+  "operatorTouched": false,
+  "finalReleaseGenerated": false,
+  "syntaxChecks": "PASS",
+  "integration": {
+    "centralPatchRequired": false,
+    "responseKey": "recovery",
+    "actions": [
+      "recovery_import_preview",
+      "recovery_import"
+    ],
+    "payload": {
+      "projectPath": "absolute external UUID.fmx directory",
+      "name": "new collection name",
+      "expectedManifestHash": "sha256 from preview; mandatory for apply"
+    },
+    "idleRequired": true,
+    "replayJournal": false,
+    "credentialsCopied": false,
+    "outputsStarted": false,
+    "automationsStarted": false
+  },
+  "limits": [
+    "No Authenticode certificate",
+    "No clean Windows VM",
+    "No physical-device homologation",
+    "Native online import requires principal integration verification; offline import tested with media/output fixtures",
+    "UI matrix uses API mocks",
+    "Previous sealed ZIP/EXE remain unchanged; new source requires packaging after integration",
+    "Conservative uninstall retains its own executable/receipts and user data"
+  ],
+  "registryQa": {
+    "key": "HKCU/Software/Microsoft/Windows/CurrentVersion/Uninstall/FreeMixStudio-72d6c7c1e1409391",
+    "verifiedAbsentAfterUninstall": true
+  }
+}

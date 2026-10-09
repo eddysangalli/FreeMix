@@ -1,0 +1,23 @@
+{
+  "status": "PASS",
+  "root": "C:\\Users\\eddyr\\AppData\\Local\\Temp\\FreeMix-QA-RecoveryState-jGOlrb",
+  "operatorTouched": false,
+  "actions": [
+    {
+      "action": "input_variant",
+      "stateSnapshotId": "8cfadf32-5599-4332-80ba-2707ed42dfca",
+      "macroReplay": false
+    },
+    {
+      "action": "input_link",
+      "stateSnapshotId": "fee5ae4c-5e7a-4e39-b373-757b2540f455",
+      "macroReplay": false
+    },
+    {
+      "action": "input_content_undo",
+      "stateSnapshotId": "a4762eba-e378-4443-89da-9811ce3a8674",
+      "macroReplay": false
+    }
+  ],
+  "assertion": "Variant, link/unlink through input_link, and content undo preserve final project state snapshots rather than replaying undo history."
+}

@@ -1,0 +1,17 @@
+{
+  "status": "PASS",
+  "root": "C:\\Users\\eddyr\\AppData\\Local\\Temp\\FreeMix-QA-StartupAPI-akUdmJ",
+  "apiPort": 60564,
+  "wsPort": 60565,
+  "operatorTouched": false,
+  "nativeAppStarted": false,
+  "apiBackendFixture": true,
+  "checks": [
+    "API --check resolves dependencies without writes/services",
+    "occupied explicit port rejected, unrelated listener preserved",
+    "two simultaneous launches create one delayed API and reuse its owned PID",
+    "startup failures/readiness/reuse recorded for support",
+    "closed owned API reopens after failure/previous stop"
+  ],
+  "limit": "Real launcher/serialization/ports with isolated Node backend fixtures. Does not homologate Native or hardware."
+}

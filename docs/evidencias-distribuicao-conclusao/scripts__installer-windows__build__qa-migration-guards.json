@@ -1,0 +1,16 @@
+{
+  "status": "PASS",
+  "qaRoot": "C:\\Users\\eddyr\\AppData\\Local\\Temp\\FreeMix-QA-MigrationGuards-jzmcEz",
+  "operatorTouched": false,
+  "appStarted": false,
+  "checks": [
+    "occupied installation ports block offline import",
+    "source.key UUID pointer preserved in input composition",
+    "four destinations restored with source UUID and disabled starts",
+    "stream keys and SRT passphrases omitted",
+    "second offline import refused",
+    "project junction refused",
+    "project path traversal refused"
+  ],
+  "sourcePreserved": true
+}

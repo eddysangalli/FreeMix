@@ -1,0 +1,12 @@
+{
+  "status": "PASS",
+  "qaRoot": "C:\\Users\\eddyr\\AppData\\Local\\Temp\\FreeMix-QA-Preparation-a6xAvb",
+  "operatorTouched": false,
+  "appStarted": false,
+  "checks": [
+    "invalid API port refuses before any write",
+    "equal API and engine ports refuse before any write",
+    "first-launch seed gets fresh credential even when root did not move",
+    "next preparation preserves existing credential"
+  ]
+}

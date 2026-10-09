@@ -1,0 +1,61 @@
+{
+  "at": "2026-10-09T20:18:24.416Z",
+  "qaRoot": "C:\\Users\\eddyr\\AppData\\Local\\Temp\\FreeMix-QA-Distribution-sVagMI",
+  "operatorTouched": false,
+  "appStarted": false,
+  "checks": [
+    {
+      "name": "signed full installation into isolated path with spaces",
+      "status": "PASS",
+      "apiPort": 57390,
+      "wsPort": 57391
+    },
+    {
+      "name": "new websocket credential generated",
+      "status": "PASS"
+    },
+    {
+      "name": "project preview diagnoses bundled and missing media plus devices/fonts",
+      "status": "PASS"
+    },
+    {
+      "name": "preview hash prevents stale or unconfirmed import",
+      "status": "PASS"
+    },
+    {
+      "name": "opt-in project import preserves UUID/media and removes credentials/autostart",
+      "status": "PASS",
+      "sourcePreserved": true,
+      "websocketCredentialUnchanged": true
+    },
+    {
+      "name": "concurrent launcher serialized with no duplicate service",
+      "status": "PASS"
+    },
+    {
+      "name": "diagnostic ZIP sanitizes token/cookie/SRT/streamkey/JWT fixtures and includes crash/startup/network/dependency status",
+      "status": "PASS",
+      "zipSha256": "ace903c935683b5314bd48d7bba53867c748f22a748d5f55392114901bac9e4b",
+      "files": 7
+    },
+    {
+      "name": "uninstall dry-run preserves every file",
+      "status": "PASS"
+    },
+    {
+      "name": "conservative uninstall removes matching immutable files and preserves migrated project/config/media/modified files",
+      "status": "PASS",
+      "removed": 9225,
+      "preservedModified": 1,
+      "registryRemoved": true
+    }
+  ],
+  "status": "PASS",
+  "limits": [
+    "No Authenticode certificate",
+    "Windows clean VM and physical hardware not exercised",
+    "Hash-verified local snapshot directory is not a signed public release",
+    "No new final release generated"
+  ],
+  "correctedQaFailure": "Framework JavaScriptSerializer produced ArrayList; consumers now use IEnumerable/ICollection"
+}

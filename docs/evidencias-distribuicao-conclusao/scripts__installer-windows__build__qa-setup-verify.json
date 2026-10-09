@@ -1,0 +1,13 @@
+{
+  "status": "PASS",
+  "qaRoot": "C:\\Users\\eddyr\\AppData\\Local\\Temp\\FreeMix-QA-SetupVerify-1lpE0f",
+  "operatorTouched": false,
+  "installed": false,
+  "appStarted": false,
+  "firewallApplied": false,
+  "finalReleaseGenerated": false,
+  "payloadSha256": "5d4a761e67e640a02d352730b4ae8f220d2a6b0a35fd1b064bbc30686d4504b7",
+  "log": "C:\\Users\\eddyr\\AppData\\Local\\Temp\\FreeMix-QA-SetupVerify-1lpE0f\\verify.log",
+  "executable": "C:\\Users\\eddyr\\AppData\\Local\\Temp\\FreeMix-QA-SetupVerify-1lpE0f\\FreeMix-Setup-test.exe",
+  "limit": "Recompiled stub with the existing sealed ZIP in a TEMP-only test EXE; verifies payload hash/bounds/entries without extracting or running payload binaries."
+}

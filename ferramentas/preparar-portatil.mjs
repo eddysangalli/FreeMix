@@ -7,6 +7,11 @@ async function put(file,text){const previous=await read(file);if(previous===text
 async function files(dir,filter){let entries;try{entries=await readdir(dir,{withFileTypes:true});}catch(e){if(e.code==='ENOENT')return [];throw e;}const result=[];for(const e of entries){if(e.isSymbolicLink())continue;const name=join(dir,e.name);if(e.isDirectory())result.push(...await files(name,filter));else if(filter(e.name))result.push(name);}return result;}
 export async function preparePortable(root){
  root=resolve(root);const cfg=join(root,'config/obs-studio'),mark=join(cfg,'raiz.txt');
+ const wsFile=join(cfg,'plugin_config/obs-websocket/config.json');const encoded=await read(wsFile);if(!encoded)throw Error('Configuração do motor não encontrada.');const ws=JSON.parse(encoded);
+ let local={};try{const match=/window\.MESA_LOCAL\s*=\s*(\{[^;]+\})\s*;?/.exec(await read(join(root,'painel/local.js'))||'');if(match)local=JSON.parse(match[1]);}catch{}
+ const apiPort=Number(process.env.FREEMIX_API_PORT||(local.replayUrl?new URL(local.replayUrl).port:8088)||8088);
+ if(!Number.isInteger(apiPort)||apiPort<1||apiPort>65535)throw Error('Porta da API inválida; informe um inteiro entre 1 e 65535.');
+ if(!Number.isInteger(ws.server_port)||ws.server_port<1||ws.server_port>65535||ws.server_port===apiPort)throw Error('Portas do motor e da API devem ser válidas e diferentes.');
  const theme=await read(join(root,'painel/tema-padrao.ovt'));if(theme)await put(join(cfg,'themes/Yami_MesaDeCorte.ovt'),theme);
  const scenes=await files(join(cfg,'basic/scenes'),name=>/\.(json|bak|salvo)$/.test(name));
  for(const file of scenes){const old=await read(file);await put(file,old.replace(/("hide_after":\s*)[1-9]\d*/g,(_,prefix)=>prefix+'0'));}
@@ -19,10 +24,7 @@ export async function preparePortable(root){
    if(file.endsWith('user.ini'))text=text.replace(/("url"\s*:\s*")file:\/\/\/[^"\n]*\/painel\/(mesa|topbar)\.html"/g,(_,prefix,name)=>prefix+pathToFileURL(join(root,'painel',name+'.html')).href+'"');await put(file,text);
   }
  }
- const wsFile=join(cfg,'plugin_config/obs-websocket/config.json');const encoded=await read(wsFile);if(!encoded)throw Error('Configuração do motor não encontrada.');const ws=JSON.parse(encoded);
- if(moved){ws.server_password=randomBytes(24).toString('base64url');await put(wsFile,JSON.stringify(ws,null,2));}
- let local={};try{const match=/window\.MESA_LOCAL\s*=\s*(\{[^;]+\})\s*;?/.exec(await read(join(root,'painel/local.js'))||'');if(match)local=JSON.parse(match[1]);}catch{}
- const apiPort=Number(process.env.FREEMIX_API_PORT||(local.replayUrl?new URL(local.replayUrl).port:8088)||8088);
+ if(moved||ws.server_password==='FIRST-LAUNCH-GENERATES-NEW-SECRET'){ws.server_password=randomBytes(24).toString('base64url');ws.auth_required=true;await put(wsFile,JSON.stringify(ws,null,2));}
  await put(join(root,'painel/local.js'),'// Configuração local; não incluir em pacotes de atualização.\nwindow.MESA_LOCAL = '+JSON.stringify({...local,url:'ws://127.0.0.1:'+ws.server_port,password:ws.server_password,replayUrl:'http://127.0.0.1:'+apiPort+'/api/replay'})+';\n');
  await mkdir(join(root,'gravacoes/iso'),{recursive:true});await put(mark,root);
  return {apiPort,wsPort:ws.server_port,moved};
