@@ -19,6 +19,18 @@ painel/remoto/vendor/ninjasdk/vdoninja-sdk.js -whitespace
 *.html text eol=lf
 *.css text eol=lf
 *.json text eol=lf
+# Frozen QA artifacts retain the bytes named by their signed/hash receipts.
+qa-finalizacao/cef-nine-native19*/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+qa-finalizacao/cef-nine-native19-allowlist-20261009.json -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+qa-finalizacao/test-cef-nine-native19.mjs -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+qa-finalizacao/verify-cef-nine-native19.mjs -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+docs/RELATORIO-CEF-NOVE-JANELAS-NATIVE19-20261009.md -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+qa-finalizacao/installer-next-prepared/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+qa-finalizacao/installer-next-preparation-allowlist-20261009.json -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+qa-finalizacao/installer-next-candidate-runner.mjs -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+qa-finalizacao/test-installer-next-runner-guards.mjs -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+qa-finalizacao/installer-next-runner-guards.json -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+docs/QA-PROXIMO-INSTALADOR-SEM-SOBRESCREVER-20261009.md -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
 licenses/ndi-runtime/Processing.NDI.Lib.Licenses.txt -whitespace
 painel/gc/fontes-livres/OFL-BebasNeue.txt -text -whitespace
 *.ttf binary

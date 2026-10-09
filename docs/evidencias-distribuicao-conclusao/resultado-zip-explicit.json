@@ -1,0 +1,16 @@
+{
+  "status": "PASS",
+  "at": "2026-10-09T23:04:59.832Z",
+  "root": "C:\\Users\\eddyr\\AppData\\Local\\Temp\\FreeMix-QA-ZipExplicit-VEGL9b",
+  "operatorTouched": false,
+  "releaseGenerated": false,
+  "evidenceKind": "ZIP integrity fixture; not full application installation",
+  "checks": [
+    "Real ZIP CRC, exact inventory and SHA256 pass on a cryptographically signed small fixture",
+    "Existing ZIP/result refused without replacement",
+    "Unlisted extra data refused before ZIP creation",
+    "Signed payload mutation produces no PASS receipt; failed QA ZIP preserved",
+    "Result inside signed payload refused before ZIP creation"
+  ],
+  "toolSha256": "08e7562a5e49bdffaec840a0ecb8f71cf2723bf8e212ff3222074c58765e9985"
+}

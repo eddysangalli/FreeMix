@@ -1,0 +1,209 @@
+{
+  "status": "HASH_VERIFIED_MIRROR",
+  "at": "2026-10-09T23:16:13.208Z",
+  "operatorTouched": false,
+  "nativeChanged": false,
+  "cef": "NINE_CEF_DOM_AND_CLOSURE_PASS_NOT_VISUAL_APPROVAL",
+  "installer": "PREPARATION_ONLY_NO_NEW_CANDIDATE_EXECUTED",
+  "replay": "MEDIA_PASS_CLEANUP_PENDING_NOT_RELEASED",
+  "files": [
+    {
+      "source": "docs/RELATORIO-CEF-NOVE-JANELAS-NATIVE19-20261009.md",
+      "target": "docs/RELATORIO-CEF-NOVE-JANELAS-NATIVE19-20261009.md",
+      "sourceSha256": "96177d8bbe66a6dece40a126c14c1cbf8edb1eea489dd011a9fa125376ffe93d",
+      "outputSha256": "96177d8bbe66a6dece40a126c14c1cbf8edb1eea489dd011a9fa125376ffe93d"
+    },
+    {
+      "source": "qa-finalizacao/test-cef-nine-native19.mjs",
+      "target": "qa-finalizacao/test-cef-nine-native19.mjs",
+      "sourceSha256": "1594c13606f5f5657ed2cfbc500d3408f0578016362d6182c8c3b12af96fd57c",
+      "outputSha256": "180c56e2b7c4deeeea48fcdef3924e12e981add8d51a473e271f6c3b98b99e2a"
+    },
+    {
+      "source": "qa-finalizacao/verify-cef-nine-native19.mjs",
+      "target": "qa-finalizacao/verify-cef-nine-native19.mjs",
+      "sourceSha256": "8d2a3153d48972eaa43cc6f8854a12cd82370fdd719b2cf1bd07ac663842bbc3",
+      "outputSha256": "8d2a3153d48972eaa43cc6f8854a12cd82370fdd719b2cf1bd07ac663842bbc3"
+    },
+    {
+      "source": "qa-finalizacao/cef-nine-native19/resultado.json",
+      "target": "qa-finalizacao/cef-nine-native19/resultado.json",
+      "sourceSha256": "614c9bc739cdfd4cf3d7e968921e5ed9629b1f3d72f25e96ac6ff84e3d10fd86",
+      "outputSha256": "614c9bc739cdfd4cf3d7e968921e5ed9629b1f3d72f25e96ac6ff84e3d10fd86"
+    },
+    {
+      "source": "qa-finalizacao/cef-nine-native19-retry/resultado.json",
+      "target": "qa-finalizacao/cef-nine-native19-retry/resultado.json",
+      "sourceSha256": "a3e62970c13dbea25bfc727ea9deb6821b326527472f098e0159278d13c01b25",
+      "outputSha256": "a3e62970c13dbea25bfc727ea9deb6821b326527472f098e0159278d13c01b25"
+    },
+    {
+      "source": "qa-finalizacao/cef-nine-native19-final/resultado.json",
+      "target": "qa-finalizacao/cef-nine-native19-final/resultado.json",
+      "sourceSha256": "da7df23292acb1f524f5f8bf5e4be9914636b568eb54f8d5ae640c0a014865d3",
+      "outputSha256": "da7df23292acb1f524f5f8bf5e4be9914636b568eb54f8d5ae640c0a014865d3"
+    },
+    {
+      "source": "qa-finalizacao/cef-nine-native19-final/verificacao.json",
+      "target": "qa-finalizacao/cef-nine-native19-final/verificacao.json",
+      "sourceSha256": "f7ff2c0de3e52228ac54afbfcbfc7dd98b269262e051c3d28bac57080021b4b7",
+      "outputSha256": "f7ff2c0de3e52228ac54afbfcbfc7dd98b269262e051c3d28bac57080021b4b7"
+    },
+    {
+      "source": "qa-finalizacao/cef-nine-native19-final/main-window-only.png",
+      "target": "qa-finalizacao/cef-nine-native19-final/main-window-only.png",
+      "sourceSha256": "9c8dbaef61abed688269919f564708476bd6efcd06a7abe83171d140e6c83f7a",
+      "outputSha256": "9c8dbaef61abed688269919f564708476bd6efcd06a7abe83171d140e6c83f7a"
+    },
+    {
+      "source": "qa-finalizacao/cef-nine-native19-final/instrumented-html/atalhos.html",
+      "target": "qa-finalizacao/cef-nine-native19-final/instrumented-html/atalhos.html",
+      "sourceSha256": "1927b104c0bf5facf721c60d654f89d32bec569441d00240330b6d2dc2a3ffb3",
+      "outputSha256": "1927b104c0bf5facf721c60d654f89d32bec569441d00240330b6d2dc2a3ffb3"
+    },
+    {
+      "source": "qa-finalizacao/cef-nine-native19-final/instrumented-html/diagnosticos.html",
+      "target": "qa-finalizacao/cef-nine-native19-final/instrumented-html/diagnosticos.html",
+      "sourceSha256": "7176267ecbb8191337ace3e246214646d8eefd471e311784e8131f0114236ce5",
+      "outputSha256": "7176267ecbb8191337ace3e246214646d8eefd471e311784e8131f0114236ce5"
+    },
+    {
+      "source": "qa-finalizacao/cef-nine-native19-final/instrumented-html/gc.html",
+      "target": "qa-finalizacao/cef-nine-native19-final/instrumented-html/gc.html",
+      "sourceSha256": "f94e56e89720dc5c8a8ef11cf06e3b0165ab5297f97d37b26fd122478bc08f5a",
+      "outputSha256": "f94e56e89720dc5c8a8ef11cf06e3b0165ab5297f97d37b26fd122478bc08f5a"
+    },
+    {
+      "source": "qa-finalizacao/cef-nine-native19-final/instrumented-html/macros.html",
+      "target": "qa-finalizacao/cef-nine-native19-final/instrumented-html/macros.html",
+      "sourceSha256": "4ac0e19fc5cd58c874618e7d9bcea81b341901230819d59b4a73133d2642b1aa",
+      "outputSha256": "4ac0e19fc5cd58c874618e7d9bcea81b341901230819d59b4a73133d2642b1aa"
+    },
+    {
+      "source": "qa-finalizacao/cef-nine-native19-final/instrumented-html/recuperacao.html",
+      "target": "qa-finalizacao/cef-nine-native19-final/instrumented-html/recuperacao.html",
+      "sourceSha256": "d62c93adf3135cd1adcb304310ecf0fe0523f6a4aa13d32aba6875eb03c45c2c",
+      "outputSha256": "d62c93adf3135cd1adcb304310ecf0fe0523f6a4aa13d32aba6875eb03c45c2c"
+    },
+    {
+      "source": "qa-finalizacao/cef-nine-native19-final/instrumented-html/replay.html",
+      "target": "qa-finalizacao/cef-nine-native19-final/instrumented-html/replay.html",
+      "sourceSha256": "2fe7ee09dced38a25aea07870b7764bd58b7f688b7319f369d3fb32bb28a0110",
+      "outputSha256": "2fe7ee09dced38a25aea07870b7764bd58b7f688b7319f369d3fb32bb28a0110"
+    },
+    {
+      "source": "qa-finalizacao/cef-nine-native19-final/instrumented-html/saidas.html",
+      "target": "qa-finalizacao/cef-nine-native19-final/instrumented-html/saidas.html",
+      "sourceSha256": "31e48b630d370479c87ca909070cc1ab68c081ad71af943b34116702c3c67272",
+      "outputSha256": "31e48b630d370479c87ca909070cc1ab68c081ad71af943b34116702c3c67272"
+    },
+    {
+      "source": "qa-finalizacao/cef-nine-native19-final/instrumented-html/settings.html",
+      "target": "qa-finalizacao/cef-nine-native19-final/instrumented-html/settings.html",
+      "sourceSha256": "a0996bfe6f3fa759e8a9a9fe2de48d08316cc8f95946bf4346be9b20ce9eaa50",
+      "outputSha256": "a0996bfe6f3fa759e8a9a9fe2de48d08316cc8f95946bf4346be9b20ce9eaa50"
+    },
+    {
+      "source": "qa-finalizacao/cef-nine-native19-allowlist-20261009.json",
+      "target": "qa-finalizacao/cef-nine-native19-allowlist-20261009.json",
+      "sourceSha256": "2e7b31b283fd56941642a2e72f11f88484eff983662ca4a8a1745077377fd924",
+      "outputSha256": "2e7b31b283fd56941642a2e72f11f88484eff983662ca4a8a1745077377fd924"
+    },
+    {
+      "source": "qa-finalizacao/installer-next-candidate-runner.mjs",
+      "target": "qa-finalizacao/installer-next-candidate-runner.mjs",
+      "sourceSha256": "fbb330fa749a7e2c70347f38f899f481b938b79a69e7f6317052a1365da6ece8",
+      "outputSha256": "4793b7158253fdd840cdf741f1ecb33225f093e152eb81b4a73a0d01fa6974a6"
+    },
+    {
+      "source": "qa-finalizacao/test-installer-next-runner-guards.mjs",
+      "target": "qa-finalizacao/test-installer-next-runner-guards.mjs",
+      "sourceSha256": "58f48a565e10115c66594c680de1ef0d4e309edc04ff6682c1275508355af310",
+      "outputSha256": "58f48a565e10115c66594c680de1ef0d4e309edc04ff6682c1275508355af310"
+    },
+    {
+      "source": "qa-finalizacao/installer-next-runner-guards.json",
+      "target": "qa-finalizacao/installer-next-runner-guards.json",
+      "sourceSha256": "75216c26d36ec2835c914ca040596dc4d2393cbc76911b7387a316249cd01db7",
+      "outputSha256": "75216c26d36ec2835c914ca040596dc4d2393cbc76911b7387a316249cd01db7"
+    },
+    {
+      "source": "docs/QA-PROXIMO-INSTALADOR-SEM-SOBRESCREVER-20261009.md",
+      "target": "docs/QA-PROXIMO-INSTALADOR-SEM-SOBRESCREVER-20261009.md",
+      "sourceSha256": "a41f2cf31999358682f10291e3217cbbdfb08a89fe793af0f7e9e1656f252098",
+      "outputSha256": "a41f2cf31999358682f10291e3217cbbdfb08a89fe793af0f7e9e1656f252098"
+    },
+    {
+      "source": "qa-finalizacao/installer-next-prepared/plan-snapshot.json",
+      "target": "qa-finalizacao/installer-next-prepared/plan-snapshot.json",
+      "sourceSha256": "ba12b2e1644cb60f16286450cde5e4f305fcfb742962b1f1e75e1e85e7a88ffb",
+      "outputSha256": "ba12b2e1644cb60f16286450cde5e4f305fcfb742962b1f1e75e1e85e7a88ffb"
+    },
+    {
+      "source": "qa-finalizacao/installer-next-prepared/context-result.json",
+      "target": "qa-finalizacao/installer-next-prepared/context-result.json",
+      "sourceSha256": "ddba52aac797311d00fee98f6254024a9094224c55e6814d45d6f631c87d1dc5",
+      "outputSha256": "ddba52aac797311d00fee98f6254024a9094224c55e6814d45d6f631c87d1dc5"
+    },
+    {
+      "source": "qa-finalizacao/installer-next-prepared/context-run.json",
+      "target": "qa-finalizacao/installer-next-prepared/context-run.json",
+      "sourceSha256": "a245ebba02c7642bc0a4459f7c7ab257d398a4049e3eb937e606f12ea3a41653",
+      "outputSha256": "a245ebba02c7642bc0a4459f7c7ab257d398a4049e3eb937e606f12ea3a41653"
+    },
+    {
+      "source": "qa-finalizacao/installer-next-prepared/shims/candidate-credentials.mjs",
+      "target": "qa-finalizacao/installer-next-prepared/shims/candidate-credentials.mjs",
+      "sourceSha256": "da36ec3f6926a586bbad8028ad241cb33695f9e4892361051c4375ff9ad2493c",
+      "outputSha256": "da36ec3f6926a586bbad8028ad241cb33695f9e4892361051c4375ff9ad2493c"
+    },
+    {
+      "source": "qa-finalizacao/installer-next-prepared/shims/candidate-report.mjs",
+      "target": "qa-finalizacao/installer-next-prepared/shims/candidate-report.mjs",
+      "sourceSha256": "9d52720a400deed0895c6bbc3810ae269c1cbb828df2a98b0780dc685db90f27",
+      "outputSha256": "9d52720a400deed0895c6bbc3810ae269c1cbb828df2a98b0780dc685db90f27"
+    },
+    {
+      "source": "qa-finalizacao/installer-next-prepared/shims/distribution.mjs",
+      "target": "qa-finalizacao/installer-next-prepared/shims/distribution.mjs",
+      "sourceSha256": "08e184170c68313a48733c2c0c51616e8a6870f11d0f5d8bc617d884e6eea7c4",
+      "outputSha256": "08e184170c68313a48733c2c0c51616e8a6870f11d0f5d8bc617d884e6eea7c4"
+    },
+    {
+      "source": "qa-finalizacao/installer-next-prepared/shims/test-candidate-context.mjs",
+      "target": "qa-finalizacao/installer-next-prepared/shims/test-candidate-context.mjs",
+      "sourceSha256": "6961c5a921800bb3715302aa22767f06d225e59ef7d21fe6848fba96a33481f8",
+      "outputSha256": "6961c5a921800bb3715302aa22767f06d225e59ef7d21fe6848fba96a33481f8"
+    },
+    {
+      "source": "qa-finalizacao/installer-next-prepared/shims/verify-setup.mjs",
+      "target": "qa-finalizacao/installer-next-prepared/shims/verify-setup.mjs",
+      "sourceSha256": "ff0eb80142f477572f71254dd189dfb6222050e85da6b12edbf8206944086a5d",
+      "outputSha256": "ff0eb80142f477572f71254dd189dfb6222050e85da6b12edbf8206944086a5d"
+    },
+    {
+      "source": "qa-finalizacao/installer-next-preparation-allowlist-20261009.json",
+      "target": "qa-finalizacao/installer-next-preparation-allowlist-20261009.json",
+      "sourceSha256": "01895f210f7c4bd5dfa3681ac5963a45ac4d29c9d7fc4b5d67f0200665e90023",
+      "outputSha256": "01895f210f7c4bd5dfa3681ac5963a45ac4d29c9d7fc4b5d67f0200665e90023"
+    },
+    {
+      "source": "obs-vmix/ferramentas/replay-disco.mjs",
+      "target": "ferramentas/replay-disco.mjs",
+      "sourceSha256": "b6d380e0f88c7c08ec01181efda9fd4d8aa343a8a4775bb831b8c7924efc0f49",
+      "outputSha256": "b6d380e0f88c7c08ec01181efda9fd4d8aa343a8a4775bb831b8c7924efc0f49"
+    },
+    {
+      "source": "obs-vmix/ferramentas/replay-sincronia.mjs",
+      "target": "ferramentas/replay-sincronia.mjs",
+      "sourceSha256": "dafbd121ada9fc6ea60cb38daf35378ee14a24cd616ab138b409cda10df60377",
+      "outputSha256": "dafbd121ada9fc6ea60cb38daf35378ee14a24cd616ab138b409cda10df60377"
+    },
+    {
+      "source": "obs-vmix/painel/remoto/replay.js",
+      "target": "painel/remoto/replay.js",
+      "sourceSha256": "1a63609614933bd16e5d6b3d1681f127266f2a871b8ecc714218fea51c0f830f",
+      "outputSha256": "1a63609614933bd16e5d6b3d1681f127266f2a871b8ecc714218fea51c0f830f"
+    }
+  ]
+}

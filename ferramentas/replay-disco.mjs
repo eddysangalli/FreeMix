@@ -58,6 +58,7 @@ export class DiskReplay {
     this.queue = Promise.resolve();
     this.programScene = null;
     this.internalProgramTarget = null;
+    this.alignmentUnsettled = false;
     this.ffmpeg = process.env.FREEMIX_FFMPEG || (existsSync(join(root,"runtime","ffmpeg.exe")) ? join(root,"runtime","ffmpeg.exe") : "ffmpeg");
     this.ffprobe = process.env.FREEMIX_FFPROBE || (existsSync(join(root,"runtime","ffprobe.exe")) ? join(root,"runtime","ffprobe.exe") : "ffprobe");
     this.preview = new ReplayPreview({root,ffmpeg:this.ffmpeg,probe:file=>this.probe(file),session:()=>this.state.session});
@@ -119,6 +120,7 @@ export class DiskReplay {
     this.scope = currentSceneCollectionName;
     this.programScene = null;
     this.internalProgramTarget = null;
+    this.alignmentUnsettled = false;
   }
 
   async save() {
@@ -207,7 +209,7 @@ export class DiskReplay {
       availableCams: list.scenes.map((s) => s.sceneName).filter((n) => !n.startsWith("REPLAY ") && n !== "FreeMix Barramentos") };
   }
 
-  async probe(file) {
+  async probe(file, verifyCadence = false) {
     const result = JSON.parse(await execute(this.ffprobe, ["-v", "error", "-show_entries", "format=duration,start_time:stream=codec_type,codec_name,width,height,duration,start_time,avg_frame_rate,r_frame_rate,nb_frames,time_base", "-of", "json", file], 15000));
     const video = result.streams?.find((s) => s.codec_type === "video");
     const audio = result.streams?.find((s) => s.codec_type === "audio");
@@ -216,7 +218,23 @@ export class DiskReplay {
       throw new Error("O arquivo ainda não contém vídeo reproduzível; aguarde a gravação");
     }
     let rate=null,variableFrameRate=false;try{rate=frameRate(video?.avg_frame_rate);const nominal=frameRate(video?.r_frame_rate);variableFrameRate=Math.abs(rate.fps-nominal.fps)>.001;}catch{}
-    return { duration, streams: result.streams, videoStart: Number(video?.start_time || 0), containerStart: Number(result.format?.start_time || 0), frameRate:rate?`${rate.numerator}/${rate.denominator}`:null, variableFrameRate, hasVideo:result.streams.some(s=>s.codec_type==='video'),audio:result.streams.some(s=>s.codec_type==='audio') };
+    let cadence = null;
+    // Container rates alone can both say 30/1 for irregular frame timestamps.
+    // Only player loads need this bounded decode; live history/proxy probing
+    // retains its inexpensive metadata-only path. Samples cover beginning,
+    // middle and end and never decode the entire recording on each seek.
+    if(verifyCadence&&video&&rate){
+      const samples=[];
+      for(const start of [...new Set([0,Math.max(0,duration/2-2),Math.max(0,duration-4)])]){
+        const decoded=JSON.parse(await execute(this.ffprobe,['-v','error','-threads','1','-select_streams','v:0','-read_intervals',`${start}%+#128`,'-show_entries','frame=best_effort_timestamp_time','-of','json',file],15000));
+        const pts=(decoded.frames||[]).map(f=>Number(f.best_effort_timestamp_time)).filter(Number.isFinite);
+        const intervals=pts.slice(1).map((p,i)=>(p-pts[i])*1000);
+        samples.push({start,frames:pts.length,minMs:intervals.length?Math.min(...intervals):null,maxMs:intervals.length?Math.max(...intervals):null});
+        if(intervals.some(ms=>Math.abs(ms-rate.frameMs)>Math.max(1.5,rate.frameMs*.005)))variableFrameRate=true;
+      }
+      cadence={method:'bounded-decoded-pts',samples,entireFile:false};
+    }
+    return { duration, streams: result.streams, videoStart: Number(video?.start_time || 0), containerStart: Number(result.format?.start_time || 0), frameRate:rate?`${rate.numerator}/${rate.denominator}`:null, variableFrameRate, cadence, hasVideo:result.streams.some(s=>s.codec_type==='video'),audio:result.streams.some(s=>s.codec_type==='audio') };
   }
 
   async hasRecordedVideoPacket(file,expectedCodec) {
@@ -555,11 +573,12 @@ export class DiskReplay {
     if (!event) throw new Error("Selecione um lance gravado antes de carregar o player");
     const clip = camera ? event.clips.find((c) => c.cam === camera) : event.clips[0];
     if (!clip) throw new Error("Este lance não contém a câmera selecionada");
-    const clipInfo=await this.probe(clip.file);
+    const clipInfo=await this.probe(clip.file,true);
     const scene = `REPLAY ${player}`, input = `Replay Player ${player}`;
     if (!list.scenes.some((s) => s.sceneName === scene)) await this.req("CreateScene", { sceneName: scene });
     const settings = { local_file: clip.file, is_local_file: true, looping: false, restart_on_activate: false,
-      close_when_inactive: false, clear_on_media_end: false, speed_percent: this.state.speed };
+      close_when_inactive: false, clear_on_media_end: false, speed_percent: this.state.speed,
+      freemix_replay_unbuffered: true };
     const before = await this.optional("GetInputSettings", { inputName: input });
     let itemId;
     if (!before) {
@@ -600,7 +619,7 @@ export class DiskReplay {
     // Allow that frame to reach the Preview before acknowledging the load.
     await sleep(250);
     this.state.linked = false;
-    this.state.players[player] = { eventId: event.id, cam: clip.cam, file: clip.file, duration: clipInfo.duration, frameRate:clipInfo.frameRate,variableFrameRate:clipInfo.variableFrameRate,audio:clipInfo.audio,hasVideo:clipInfo.hasVideo,metadataProbed:true,offsetFrames:replayCameraOptions(this.state.cameraOptions?.[clip.cam]).offsetFrames };
+    this.state.players[player] = { eventId: event.id, cam: clip.cam, file: clip.file, duration: clipInfo.duration, frameRate:clipInfo.frameRate,variableFrameRate:clipInfo.variableFrameRate,cadence:clipInfo.cadence,cadenceChecked:true,audio:clipInfo.audio,hasVideo:clipInfo.hasVideo,metadataProbed:true,offsetFrames:replayCameraOptions(this.state.cameraOptions?.[clip.cam]).offsetFrames };
     this.state.activePlayer = player;
     await this.save();
   }
@@ -667,32 +686,82 @@ export class DiskReplay {
   }
 
   async align(force) {
-    await this.hydratePlayers();const anchor=this.state.activePlayer||'A',ids=Object.keys(this.state.players),followers=ids.filter(id=>id!==anchor);if(!followers.length)return;
-    const samples=await Promise.all(ids.map(async id=>[id,await this.req('GetMediaInputStatus',{inputName:'Replay Player '+id})])),statuses=Object.fromEntries(samples),a=statuses[anchor];
-    if(!['OBS_MEDIA_STATE_PAUSED','OBS_MEDIA_STATE_PLAYING'].includes(a.mediaState))return;
-    const sampledAt=Date.now(),plan=seekTargets(this.state.players,anchor,a.mediaCursor),paused=a.mediaState==='OBS_MEDIA_STATE_PAUSED',tolerance=plan.mode==='frame'?plan.rate.frameMs:plan.toleranceMs;
-    await Promise.all(followers.map(async id=>{const b=statuses[id];if(a.mediaState!==b.mediaState)await this.req('TriggerMediaInputAction',{inputName:'Replay Player '+id,mediaAction:paused?'OBS_WEBSOCKET_MEDIA_INPUT_ACTION_PAUSE':'OBS_WEBSOCKET_MEDIA_INPUT_ACTION_PLAY'});const target=plan.targets[id].cursor;if(force||Math.abs(target-b.mediaCursor)>tolerance){const elapsed=paused?0:(Date.now()-sampledAt)*(this.state.speed||100)/100;await this.req('SetMediaInputCursor',{inputName:'Replay Player '+id,mediaCursor:Math.min(this.state.players[id].duration*1000-1,Math.floor(target+elapsed))});if(paused)await this.waitFor('GetMediaInputStatus',{inputName:'Replay Player '+id},m=>Math.abs(m.mediaCursor-target)<=plan.toleranceMs);}}));
-    const current=Object.fromEntries(await Promise.all(ids.map(async id=>[id,await this.req('GetMediaInputStatus',{inputName:'Replay Player '+id})]))),confirmed=seekTargets(this.state.players,anchor,current[anchor].mediaCursor),differences=Object.fromEntries(followers.map(id=>[id,Math.abs(confirmed.targets[id].cursor-current[id].mediaCursor)])),differenceMs=Math.max(...Object.values(differences));
-    this.state.sync={anchor,differenceMs,differences,differenceFrames:plan.mode==='frame'?differenceMs/plan.rate.frameMs:null,toleranceMs:tolerance,frameRate:this.state.players[anchor].frameRate,paused,mode:plan.mode,evidence:'native-cursor',calibration:this.state.calibration?'decoded-common-audio':'manual-offsets',hardwareGenlock:false};
+    await this.hydratePlayers();
+    const anchor=this.state.activePlayer||'A',ids=Object.keys(this.state.players),followers=ids.filter(id=>id!==anchor);
+    if(!followers.length)return;
+    const sample=async()=>Object.fromEntries(await Promise.all(ids.map(async id=>[id,await this.req('GetMediaInputStatus',{inputName:'Replay Player '+id})])));
+    let statuses=await sample(),a=statuses[anchor];
+    if(!['OBS_MEDIA_STATE_PAUSED','OBS_MEDIA_STATE_PLAYING'].includes(a.mediaState)){this.state.sync=null;this.alignmentUnsettled=false;return;}
+    let plan=seekTargets(this.state.players,anchor,a.mediaCursor);
+    const paused=a.mediaState==='OBS_MEDIA_STATE_PAUSED',tolerance=plan.mode==='frame'?plan.rate.frameMs:plan.toleranceMs;
+    // Native cursors are integer milliseconds; adjacent 30 fps frames can
+    // differ by 34 ms. Use the same rational frame IDs as frameTargets.
+    const distance=(target,status,p)=>p.mode==='frame'?Math.abs(target.frame-Math.round(status.mediaCursor/p.rate.frameMs)):Math.abs(target.cursor-status.mediaCursor);
+    const limit=plan.mode==='frame'?1:tolerance;
+    const needed=force&&paused||followers.some(id=>statuses[id].mediaState!==a.mediaState||distance(plan.targets[id],statuses[id],plan)>limit);
+    let corrections=0,correctionMs=0,pauseMs=0;
+    if(needed){
+      // Independent playing seeks have independent wall-clock origins. Hold
+      // all private players once, select the same calibrated frame/time, then
+      // resume together. Ordinary polling inside deadband never pauses/seeks.
+      const started=Date.now();
+      await Promise.all(ids.map(id=>this.req('TriggerMediaInputAction',{inputName:'Replay Player '+id,mediaAction:'OBS_WEBSOCKET_MEDIA_INPUT_ACTION_PAUSE'})));
+      await Promise.all(ids.map(id=>this.waitFor('GetMediaInputStatus',{inputName:'Replay Player '+id},m=>m.mediaState==='OBS_MEDIA_STATE_PAUSED')));
+      statuses=await sample();plan=seekTargets(this.state.players,anchor,statuses[anchor].mediaCursor);
+      await Promise.all(ids.map(async id=>{
+        const target=plan.targets[id].cursor;
+        await this.req('SetMediaInputCursor',{inputName:'Replay Player '+id,mediaCursor:target});
+        await this.waitFor('GetMediaInputStatus',{inputName:'Replay Player '+id},m=>m.mediaState==='OBS_MEDIA_STATE_PAUSED'&&Math.abs(m.mediaCursor-target)<=plan.toleranceMs);
+        corrections++;
+      }));
+      if(!paused){
+        await Promise.all(ids.map(id=>this.req('TriggerMediaInputAction',{inputName:'Replay Player '+id,mediaAction:'OBS_WEBSOCKET_MEDIA_INPUT_ACTION_PLAY'})));
+        pauseMs=Date.now()-started;
+        await sleep(Math.min(250,Math.max(75,plan.mode==='frame'?2*plan.rate.frameMs*100/(this.state.speed||100):100)));
+      }
+      statuses=await sample();correctionMs=Date.now()-started;
+    }
+    const expected=seekTargets(this.state.players,anchor,statuses[anchor].mediaCursor);
+    const differences=Object.fromEntries(followers.map(id=>[id,Math.abs(expected.targets[id].cursor-statuses[id].mediaCursor)]));
+    const differenceMs=Math.max(...Object.values(differences));
+    const frameDifferences=plan.mode==='frame'?Object.fromEntries(followers.map(id=>[id,distance(expected.targets[id],statuses[id],expected)])):null;
+    const differenceFrames=frameDifferences?Math.max(...Object.values(frameDifferences)):null;
+    const confirmed=(plan.mode==='frame'?differenceFrames<=1:differenceMs<=tolerance)&&followers.every(id=>statuses[id].mediaState===a.mediaState);
+    this.alignmentUnsettled=!confirmed;
+    this.state.sync={anchor,differenceMs,differences,differenceFrames,frameDifferences,cursorGranularityMs:1,toleranceMs:tolerance,confirmed,corrections,coordinated:needed,correctionMs,pauseMs,correctionPending:!confirmed,frameRate:this.state.players[anchor].frameRate,paused,mode:plan.mode,evidence:'native-cursor',calibration:this.state.calibration?'decoded-common-audio':'manual-offsets',hardwareGenlock:false};
   }
-
   async transport(d) {
     const player=d.player||this.state.activePlayer;if(!REPLAY_PLAYERS.includes(player)||!this.state.players[player])throw new Error("Carregue um player");
     const players=this.state.linked?Object.keys(this.state.players):[player];
     if(d.command==='seek'){
       await this.seekPlayer({player,cursor:Number(d.position)});
-    }else{if(!['PLAY','PAUSE','STOP'].includes(d.command))throw new Error("Transporte inválido");await Promise.all(players.map(p=>this.req('TriggerMediaInputAction',{inputName:`Replay Player ${p}`,mediaAction:'OBS_WEBSOCKET_MEDIA_INPUT_ACTION_'+d.command})));}
+    }else{if(!['PLAY','PAUSE','STOP'].includes(d.command))throw new Error("Transporte inválido");if(d.command==='PLAY')await Promise.all(players.map(p=>this.ensureSeekable(p)));await Promise.all(players.map(p=>this.req('TriggerMediaInputAction',{inputName:`Replay Player ${p}`,mediaAction:'OBS_WEBSOCKET_MEDIA_INPUT_ACTION_'+d.command})));}
     await sleep(120);await this.save();
   }
 
   async seekPlayer(d) {
     await this.hydratePlayers();
     const player=d.player||this.state.activePlayer,cursor=Number(d.cursor);if(!REPLAY_PLAYERS.includes(player)||!this.state.players[player]||!Number.isFinite(cursor)||cursor<0)throw Error('Player ou cursor inválido');
-    const media=await this.req('GetMediaInputStatus',{inputName:`Replay Player ${player}`});if(!media.mediaDuration||cursor>media.mediaDuration)throw Error('Cursor fora do clipe');
+    if(cursor>this.state.players[player].duration*1000)throw Error('Cursor fora do clipe');
+    const media=await this.ensureSeekable(player);if(!media.mediaDuration||cursor>media.mediaDuration)throw Error('Cursor fora do clipe');
     const selected=this.state.linked?this.state.players:{[player]:this.state.players[player]};
     const plan=seekTargets(selected,player,cursor);
-    await Promise.all(Object.entries(plan.targets).map(async([p,target])=>{const before=await this.req('GetMediaInputStatus',{inputName:`Replay Player ${p}`});await this.req('SetMediaInputCursor',{inputName:`Replay Player ${p}`,mediaCursor:target.cursor});if(before.mediaState==='OBS_MEDIA_STATE_PAUSED')await this.waitFor('GetMediaInputStatus',{inputName:`Replay Player ${p}`},m=>Math.abs(m.mediaCursor-target.cursor)<=plan.toleranceMs);}));
+    await Promise.all(Object.entries(plan.targets).map(async([p,target])=>{const before=await this.ensureSeekable(p);await this.req('SetMediaInputCursor',{inputName:`Replay Player ${p}`,mediaCursor:target.cursor});if(before.mediaState==='OBS_MEDIA_STATE_PAUSED')await this.waitFor('GetMediaInputStatus',{inputName:`Replay Player ${p}`},m=>Math.abs(m.mediaCursor-target.cursor)<=plan.toleranceMs);}));
     this.state.activePlayer=player;await this.save();
+  }
+
+  async ensureSeekable(player) {
+    const inputName=`Replay Player ${player}`,before=await this.req('GetMediaInputStatus',{inputName});
+    if(before.mediaDuration>0&&['OBS_MEDIA_STATE_PLAYING','OBS_MEDIA_STATE_PAUSED'].includes(before.mediaState))return before;
+    if(!['OBS_MEDIA_STATE_ENDED','OBS_MEDIA_STATE_STOPPED','OBS_MEDIA_STATE_NONE'].includes(before.mediaState))throw Error('O player não está pronto para buscar');
+    // OBS WebSocket reports null duration/cursor after EOF. Reopen the private
+    // player and hold it paused before selecting the requested frame; do not
+    // confuse a successful seek request with a decoder which is still ended.
+    await this.req('TriggerMediaInputAction',{inputName,mediaAction:'OBS_WEBSOCKET_MEDIA_INPUT_ACTION_RESTART'});
+    await sleep(150);
+    await this.waitFor('GetMediaInputStatus',{inputName},m=>m.mediaDuration>0&&m.mediaState==='OBS_MEDIA_STATE_PLAYING'&&m.mediaCursor<500);
+    await this.req('TriggerMediaInputAction',{inputName,mediaAction:'OBS_WEBSOCKET_MEDIA_INPUT_ACTION_PAUSE'});
+    return this.waitFor('GetMediaInputStatus',{inputName},m=>m.mediaState==='OBS_MEDIA_STATE_PAUSED');
   }
 
   async configureCamera(d) {
@@ -711,7 +780,14 @@ export class DiskReplay {
     const valid=[];for(const [p,player]of Object.entries(this.state.players)){
       if(!player.file){valid.push(p);continue;}
       const actual=await this.optional('GetInputSettings',{inputName:`Replay Player ${p}`});
-      if(actual?.inputKind==='ffmpeg_source'&&actual.inputSettings?.local_file===player.file){valid.push(p);delete player.audioUnavailable;}else player.audioUnavailable='Carregue novamente: fonte ausente ou arquivo alterado';
+      if(actual?.inputKind==='ffmpeg_source'&&actual.inputSettings?.local_file===player.file){valid.push(p);delete player.audioUnavailable;}else {
+        player.audioUnavailable='Carregue novamente: fonte ausente ou arquivo alterado';
+        // A replaced file must not keep the previously enabled camera audible.
+        // Only touch the reserved media player kind; an unrelated replacement
+        // source is not owned by this controller.
+        if(actual?.inputKind==='ffmpeg_source')await this.req('SetInputMute',{inputName:`Replay Player ${p}`,inputMuted:true});
+        player.audioMuted=true;
+      }
     }
     // Mute undesired sources first, so an A/B switch never mixes both camera tracks.
     for(const p of valid){
@@ -734,15 +810,16 @@ export class DiskReplay {
     const player=d.player||this.state.activePlayer,delta=Number(d.delta);
     if(!REPLAY_PLAYERS.includes(player)||!this.state.players[player])throw Error('Carregue um player');
     const media=await this.req('GetMediaInputStatus',{inputName:`Replay Player ${player}`});
-    const selected=this.state.linked?this.state.players:{[player]:this.state.players[player]},plan=frameTargets(selected,player,media.mediaCursor,delta);
-    for(const p of Object.keys(selected)){await this.req('TriggerMediaInputAction',{inputName:`Replay Player ${p}`,mediaAction:'OBS_WEBSOCKET_MEDIA_INPUT_ACTION_PAUSE'});await this.waitFor('GetMediaInputStatus',{inputName:`Replay Player ${p}`},m=>m.mediaState==='OBS_MEDIA_STATE_PAUSED');}
+    const cursor=media.mediaCursor??(media.mediaState==='OBS_MEDIA_STATE_ENDED'?this.state.players[player].duration*1000-1:0);
+    const selected=this.state.linked?this.state.players:{[player]:this.state.players[player]},plan=frameTargets(selected,player,cursor,delta);
+    for(const p of Object.keys(selected)){await this.ensureSeekable(p);await this.req('TriggerMediaInputAction',{inputName:`Replay Player ${p}`,mediaAction:'OBS_WEBSOCKET_MEDIA_INPUT_ACTION_PAUSE'});await this.waitFor('GetMediaInputStatus',{inputName:`Replay Player ${p}`},m=>m.mediaState==='OBS_MEDIA_STATE_PAUSED');}
     for(const [p,target]of Object.entries(plan.targets)){await this.req('SetMediaInputCursor',{inputName:`Replay Player ${p}`,mediaCursor:target.cursor});await this.waitFor('GetMediaInputStatus',{inputName:`Replay Player ${p}`},m=>Math.abs(m.mediaCursor-target.cursor)<=Math.max(2,plan.rate.frameMs/2));}
     this.state.activePlayer=player;this.state.frame={player,globalFrame:plan.globalFrame,targets:plan.targets,frameRate:this.state.players[player].frameRate,evidence:'native-cursor'};
     await sleep(100);await this.save();
   }
 
   async hydratePlayers(){
-    for(const p of Object.values(this.state.players))if(!p.metadataProbed){const media=await this.probe(p.file);Object.assign(p,{metadataProbed:true,hasVideo:media.hasVideo,duration:media.duration,frameRate:media.frameRate,variableFrameRate:media.variableFrameRate,audio:media.audio,offsetFrames:replayCameraOptions(this.state.cameraOptions?.[p.cam]).offsetFrames});}
+    for(const p of Object.values(this.state.players))if(!p.metadataProbed||!p.cadenceChecked){const media=await this.probe(p.file,true);Object.assign(p,{metadataProbed:true,cadenceChecked:true,cadence:media.cadence,hasVideo:media.hasVideo,duration:media.duration,frameRate:media.frameRate,variableFrameRate:media.variableFrameRate,audio:media.audio,offsetFrames:replayCameraOptions(this.state.cameraOptions?.[p.cam]).offsetFrames});}
   }
 
   async speed(value) {

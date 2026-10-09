@@ -32,3 +32,12 @@ As chaves privadas de assinatura, credenciais, dados do operador, node_modules, 
 Verificação desta sincronização: a série foi aplicada em índice isolado sobre a base fixada, e a árvore resultante comparada à árvore do motor local. Isso comprova completude dos patches; não equivale a uma nova compilação num Windows limpo. As provas de execução correspondem aos builds identificados nos relatórios.
 
 A sincronização de uma árvore Native local commitada usa scripts/distribuicao/exportar-fontes-native.mjs com --native=REPO_NATIVE --product=REPO_PRODUTO --head=COMMIT_COMPLETO --version=VERSAO. O exportador preserva patches existentes, verifica a árvore completa em índice TEMP separado e copia somente blobs commitados; fork/source-verification.json identifica os hashes das fontes. Não gera binários nem marca uma release homologada.
+
+O ZIP de uma pasta completa já selada usa destinos explícitos, preservando os recibos das versões anteriores:
+
+```text
+python scripts/distribuicao/zip-pacote-verificado.py --receipt=RECIBO_VERIFICADO.json --output=FreeMix-Completo-VERSAO.zip --result=RECIBO_ZIP_NOVO.json
+node scripts/installer-windows/build.mjs --zip=FreeMix-Completo-VERSAO.zip --output=FreeMix-Studio-Setup-VERSAO.exe
+```
+
+O primeiro comando confere manifesto, inventário exato, CRC e SHA256 e recusa ZIP/recibo/hash existentes. Ele usa a assinatura já verificada no recibo de selagem; não substitui essa verificação criptográfica nem a conferência da instalação. Cinco guards passaram em fixture assinada pequena; a prova de um aplicativo completo é registrada separadamente ao gerar cada release.
