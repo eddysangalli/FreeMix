@@ -5,24 +5,50 @@ import {join,resolve,relative,dirname} from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {execFileSync} from 'node:child_process';
 import {createHash} from 'node:crypto';
+import {runtimeDependencyClosure} from './pacote-dependencias.mjs';
+import {inspectPackageComponents,copyPackageComponents} from './pacote-componentes.mjs';
+import {prepareNdiRuntime,NDI_DLL} from './ndi-runtime.mjs';
 const root=resolve(fileURLToPath(new URL('../',import.meta.url))),workspace=dirname(root);
+if(process.argv.slice(2).some(arg=>arg!=='--check'))throw Error('Opção desconhecida; use --check para conferir sem gerar pacote');
+const checkOnly=process.argv.includes('--check');
 const version=process.env.FREEMIX_PACKAGE_VERSION||'0.1.0-local.'+new Date().toISOString().replace(/\D/g,'').slice(0,14);if(!/^0\.1\.0-local\.\d{14}$/.test(version))throw Error('Versão inválida');
 const dest=join(workspace,'entregas','FreeMix-Completo-'+version);if(existsSync(dest))throw Error('Destino já existe; não substituir entrega');
+const nativeRundir=process.env.FREEMIX_NATIVE_RUNDIR?resolve(process.env.FREEMIX_NATIVE_RUNDIR):null;
+const nativeCommit=process.env.FREEMIX_NATIVE_COMMIT||null;
+if(nativeCommit&&!/^[a-f0-9]{40}$/i.test(nativeCommit))throw Error('Commit nativo inválido');
+if(nativeRundir&&(!nativeCommit||!existsSync(join(nativeRundir,'bin/64bit/FreeMix.exe'))))throw Error('Rundir nativo explícito exige EXE e commit correspondentes');
+const sourceRoot=process.env.FREEMIX_SOURCE_ROOT?resolve(process.env.FREEMIX_SOURCE_ROOT):(existsSync(join(workspace,'FreeMix/fork/manifest.json'))?join(workspace,'FreeMix'):root);
+const nativeSources=JSON.parse(await readFile(join(sourceRoot,'fork/manifest.json'),'utf8'));
+if(nativeCommit&&nativeSources.head!==nativeCommit)throw Error('Fontes e commit do Native são diferentes');
+for(const patch of nativeSources.patches){const file=join(sourceRoot,'fork',patch.path);if(createHash('sha256').update(await readFile(file)).digest('hex')!==patch.sha256)throw Error('Patch nativo divergente: '+patch.path);}
+const runtimeTools=['midia-preview-http.mjs','replay-preview.mjs','recuperacao-importacao.mjs','recuperacao-inicializacao.mjs','recuperacao-saidas.mjs','saidas-hdr.mjs','omt-hdr-producao.mjs','recuperacao-estados.mjs','audio-buses-producao.mjs','efeitos-producao.mjs','sinais-producao.mjs','replay-sincronia.mjs','controller-osc.mjs','multi-rtmp-adapter.mjs','atualizacao-online.mjs','gc-assets.mjs','gerar-biblioteca-gc.mjs','composicao-advanced-masks.mjs','plugins-defaults.mjs',"capacidades-motor.mjs","composicao-presets.mjs","composicao-fundo.mjs","gc-biblioteca-producao.mjs",'composicao-locutor.mjs','composicao-estilos.mjs','automacao-operacional.mjs','recuperacao-inventario.mjs','recuperacao-dependencias.mjs','preferencias-producao.mjs','atalhos-globais.mjs','abrir-configuracoes.ps1','ajudante.ps1','splash.ps1','preparar.ps1','fechar.ps1','importar-gt-dialog.ps1','importar-gt-packs.mjs','gtzip_converter.mjs','gt_utils.mjs','gerar-catalogo-gc.mjs','servidor-api.mjs','iniciar-api.mjs','obsws.mjs','replay-disco.mjs','controle-producao.mjs','entradas-producao.mjs','configuracoes-producao.mjs','calls-producao.mjs','audio-routing-producao.mjs','retornos-calls.mjs','fontes-dados.mjs','clonar-preset.mjs','iniciar-freemix.mjs','preparar-portatil.mjs','macros-producao.mjs','recuperacao-producao.mjs','saidas-producao.mjs','sessao-producao.mjs','controlador-producao.mjs','fila-producao.mjs','bonding-producao.mjs','instalar-portatil.mjs','src/FreeMixNetworkSetup.cs','configurar-rede.ps1','ndi-producao.mjs','omt-producao.mjs','src/FreeMixProcessInfo.cs','verificar-atualizacoes.mjs','verificar-atualizacoes.ps1','atualizar-freemix.mjs','atualizar-freemix.ps1','empacotar.ps1','empacotar-limpo.mjs'];
+const runtimeModules=await runtimeDependencyClosure(join(root,'ferramentas'),runtimeTools,{copiedModuleRoots:[join(root,'painel')]});
+const componentOverlays=await inspectPackageComponents(process.env.FREEMIX_PLUGIN_MANIFEST);
+await prepareNdiRuntime(root,{env:{},writeReceipt:false});
+if(checkOnly){console.log(JSON.stringify({status:'SOURCE_READY',version,nativeCommit,nativePatches:nativeSources.patches.length,runtimeModules:runtimeModules.length,componentOverlays:componentOverlays.length,destinationCreated:false,operatorTouched:false}));process.exit(0);}
 await mkdir(dest,{recursive:true});
-const filter=p=>!p.replaceAll('\\','/').includes('/painel/gc/biblioteca/assets/')&&!p.replaceAll('\\','/').endsWith('/painel/gc/biblioteca/assets')&&!/(?:^|[\\/])(?:originais|gt_titles|ndi-v6)(?:[\\/]|$)/i.test(p)&&!/(?:\.pdb|\.ilk|\.anterior\.exe|\.bak|\.salvo|stdout\.txt|stderr\.txt)$/i.test(p);
+const filter=p=>!p.replaceAll('\\','/').includes('/painel/gc/biblioteca/assets/')&&!p.replaceAll('\\','/').endsWith('/painel/gc/biblioteca/assets')&&!/(?:^|[\\/])(?:originais|gt_titles|ndi-v6|logs|crashes|profiler_data)(?:[\\/]|$)/i.test(p)&&!/(?:\.pdb|\.ilk|\.log|\.dmp|\.anterior\.exe|\.bak|\.salvo|stdout\.txt|stderr\.txt)$/i.test(p);
 for(const folder of ['bin','data','obs-plugins','assets','painel','node_modules'])await cp(join(root,folder),join(dest,folder),{recursive:true,filter});
+// Overlay only the NEW package, never the operator installation.
+if(nativeRundir)for(const folder of ['bin','data','obs-plugins'])if(existsSync(join(nativeRundir,folder)))await cp(join(nativeRundir,folder),join(dest,folder),{recursive:true,filter});
+const rebuiltComponents=await copyPackageComponents(dest,componentOverlays);
+await mkdir(join(dest,'data/obs-plugins/obs-browser'),{recursive:true});
+await cp(join(root,'painel/recursos/erro-browser.html'),join(dest,'data/obs-plugins/obs-browser/error.html'));
 await mkdir(join(dest,'ferramentas'),{recursive:true});
-const runtimeTools=['recuperacao-estados.mjs','audio-buses-producao.mjs','efeitos-producao.mjs','sinais-producao.mjs','replay-sincronia.mjs','controller-osc.mjs','multi-rtmp-adapter.mjs','atualizacao-online.mjs','gc-assets.mjs','gerar-biblioteca-gc.mjs','composicao-advanced-masks.mjs','plugins-defaults.mjs',"capacidades-motor.mjs","composicao-presets.mjs","composicao-fundo.mjs","gc-biblioteca-producao.mjs",'composicao-locutor.mjs','composicao-estilos.mjs','automacao-operacional.mjs','recuperacao-inventario.mjs','recuperacao-dependencias.mjs','preferencias-producao.mjs','atalhos-globais.mjs','abrir-configuracoes.ps1','ajudante.ps1','splash.ps1','preparar.ps1','fechar.ps1','importar-gt-dialog.ps1','importar-gt-packs.mjs','gtzip_converter.mjs','gt_utils.mjs','gerar-catalogo-gc.mjs','servidor-api.mjs','iniciar-api.mjs','obsws.mjs','replay-disco.mjs','controle-producao.mjs','entradas-producao.mjs','configuracoes-producao.mjs','calls-producao.mjs','audio-routing-producao.mjs','retornos-calls.mjs','fontes-dados.mjs','clonar-preset.mjs','iniciar-freemix.mjs','preparar-portatil.mjs','macros-producao.mjs','recuperacao-producao.mjs','saidas-producao.mjs','sessao-producao.mjs','controlador-producao.mjs','fila-producao.mjs','bonding-producao.mjs','instalar-portatil.mjs','src/FreeMixNetworkSetup.cs','configurar-rede.ps1','ndi-producao.mjs','omt-producao.mjs','src/FreeMixProcessInfo.cs','verificar-atualizacoes.mjs','verificar-atualizacoes.ps1','atualizar-freemix.mjs','atualizar-freemix.ps1','empacotar.ps1','empacotar-limpo.mjs'];
-for(const f of runtimeTools){await mkdir(dirname(join(dest,'ferramentas',f)),{recursive:true});await cp(join(root,'ferramentas',f),join(dest,'ferramentas',f));}for(const folder of ['licenses','docs'])if(existsSync(join(root,folder)))await cp(join(root,folder),join(dest,folder),{recursive:true,filter});
+for(const f of runtimeModules){await mkdir(dirname(join(dest,'ferramentas',f)),{recursive:true});await cp(join(root,'ferramentas',f),join(dest,'ferramentas',f));}for(const folder of ['licenses','docs'])if(existsSync(join(root,folder)))await cp(join(root,folder),join(dest,folder),{recursive:true,filter});
+await cp(join(sourceRoot,'fork'),join(dest,'fork'),{recursive:true,filter});
+await mkdir(join(dest,'scripts'),{recursive:true});await cp(join(sourceRoot,'scripts/reconstruir-motor.mjs'),join(dest,'scripts/reconstruir-motor.mjs'));
+await cp(join(sourceRoot,'docs/BUILD-FROM-SOURCE.md'),join(dest,'docs/BUILD-FROM-SOURCE.md'));
+await cp(join(sourceRoot,'docs/native-source'),join(dest,'docs/native-source'),{recursive:true,filter});
 for(const f of ['package.json','package-lock.json','componentes.json','portable_mode.txt','LEIA-ME.md','VALIDACAO.md','FONTES.md','FreeMix Studio.cmd','Iniciar Mesa.cmd','Empacotar.cmd','Verificar Complementos.cmd','Atualizar Complementos.cmd','Atualizar FreeMix.cmd','update-public.pem'])await cp(join(root,f),join(dest,f));
 await cp(join(root,'PESQUISA-VMIX.md'),join(dest,'PESQUISA-VMIX.md'));
 await cp(join(workspace,'INSTALAR-FREEMIX.cmd'),join(dest,'INSTALAR-FREEMIX.cmd'));
 await writeFile(join(dest,'CONFIGURAR-REDE-FREEMIX.cmd'),'@echo off\r\nsetlocal\r\n"%~dp0runtime\\freemix-network-setup.exe" --root "%~dp0" %*\r\npause\r\n');
 for(const f of ['CONTINUAR.md','PENDENCIAS.md','PENDENCIAS-REAIS.md','ENTREGA-ATUAL.md'])await cp(join(workspace,'docs',f),join(dest,'docs',f));
-await cp(join(workspace,'freemix-app/build_2026/rundir/RelWithDebInfo/bin/64bit/FreeMix.exe'),join(dest,'bin/64bit/FreeMix.exe'));
-const native=join(workspace,'freemix-app/build_2026/rundir/RelWithDebInfo/obs-plugins/64bit/obs-ffmpeg.dll');if(existsSync(native))await cp(native,join(dest,'obs-plugins/64bit/obs-ffmpeg.dll'));
 await mkdir(join(dest,'runtime'),{recursive:true});await cp(existsSync(join(root,'runtime/node.exe'))?join(root,'runtime/node.exe'):join(workspace,'node24/node.exe'),join(dest,'runtime/node.exe'));await cp(existsSync(join(root,'runtime/LICENSE-Node.txt'))?join(root,'runtime/LICENSE-Node.txt'):join(workspace,'node24/LICENSE'),join(dest,'runtime/LICENSE-Node.txt'));
 await cp(join(root,'runtime/freemix-process-info.exe'),join(dest,'runtime/freemix-process-info.exe'));await cp(join(root,'runtime/freemix-network-setup.exe'),join(dest,'runtime/freemix-network-setup.exe'));
+await mkdir(join(dest,'runtime/ndi-v6'),{recursive:true});await cp(join(root,'runtime/ndi-v6',NDI_DLL),join(dest,'runtime/ndi-v6',NDI_DLL));
+await prepareNdiRuntime(dest,{env:{},writeReceipt:false});
 for(const name of ['ffmpeg','ffprobe']){
  const path=process.env['FREEMIX_'+name.toUpperCase()]||(existsSync(join(root,'runtime',name+'.exe'))?join(root,'runtime',name+'.exe'):null)||execFileSync('where.exe',[name],{encoding:'utf8'}).trim().split(/\r?\n/)[0];
  if(!path)throw Error(name+' ausente');await cp(path,join(dest,'runtime',name+'.exe'));
@@ -30,9 +56,10 @@ for(const name of ['ffmpeg','ffprobe']){
 await writeFile(join(dest,'runtime/LICENSE-FFmpeg.txt'),execFileSync(join(dest,'runtime/ffmpeg.exe'),['-L'],{encoding:'utf8',windowsHide:true}));
 const componentFile=join(dest,'componentes.json'),metadata=JSON.parse(await readFile(componentFile,'utf8'));
 for(const c of metadata.componentes){c.sha256={};for(const file of c.arquivos)if(existsSync(join(dest,file)))c.sha256[file]=createHash('sha256').update(await readFile(join(dest,file))).digest('hex');}
-const runtimeFiles=['bin/64bit/FreeMix.exe','runtime/node.exe','runtime/ffmpeg.exe','runtime/ffprobe.exe','obs-plugins/64bit/obs-ffmpeg.dll'],runtimeHashes={};
+const runtimeFiles=['bin/64bit/FreeMix.exe','bin/64bit/obs.dll','bin/64bit/obs-frontend-api.dll','runtime/node.exe','runtime/ffmpeg.exe','runtime/ffprobe.exe','runtime/ndi-v6/'+NDI_DLL,'obs-plugins/64bit/obs-ffmpeg.dll'],runtimeHashes={};
 for(const file of runtimeFiles)runtimeHashes[file]=createHash('sha256').update(await readFile(join(dest,file))).digest('hex');
-metadata.runtimeLocal={arquivos:runtimeFiles,sha256:runtimeHashes,node:execFileSync(join(dest,'runtime/node.exe'),['--version'],{encoding:'utf8',windowsHide:true}).trim(),ffmpeg:execFileSync(join(dest,'runtime/ffmpeg.exe'),['-version'],{encoding:'utf8',windowsHide:true}).split(/\r?\n/)[0],npm:{ws:'8.22.0',qrcode:'1.5.4',exceljs:'4.4.0'},nativeCommit:'a76f99a20ecae3ffcce10a20dd889d5bebc3bd51',nativePatch:['shared/media-playback/media-playback/media.c','frontend/widgets/FreeMixMultistream.cpp']};
+metadata.runtimeLocal={arquivos:runtimeFiles,sha256:runtimeHashes,node:execFileSync(join(dest,'runtime/node.exe'),['--version'],{encoding:'utf8',windowsHide:true}).trim(),ffmpeg:execFileSync(join(dest,'runtime/ffmpeg.exe'),['-version'],{encoding:'utf8',windowsHide:true}).split(/\r?\n/)[0],npm:{ws:'8.22.0',qrcode:'1.5.4',exceljs:'4.4.0'},nativeCommit,nativeBuildSource:nativeRundir?'explicit-rundir':'existing-installation',nativePatchSource:'fork/manifest.json',runtimeModules};
+metadata.rebuiltComponents=rebuiltComponents;
 await writeFile(componentFile,JSON.stringify(metadata,null,2));
 let catalog=await readFile(join(dest,'painel/gc/catalogo.js'),'utf8');let models=JSON.parse(catalog.slice(catalog.indexOf('[')).replace(/;\s*$/,''));models=models.filter(x=>x.collection!=='Importados');await writeFile(join(dest,'painel/gc/catalogo.js'),'window.GC_CATALOG = '+JSON.stringify(models,null,2)+';\n');
 const cfg=join(dest,'config/obs-studio');await mkdir(join(cfg,'basic/profiles/Estudio'),{recursive:true});await mkdir(join(cfg,'basic/scenes'),{recursive:true});await mkdir(join(cfg,'plugin_config/obs-websocket'),{recursive:true});

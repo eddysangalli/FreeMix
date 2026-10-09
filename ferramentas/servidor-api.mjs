@@ -84,7 +84,7 @@ async function vmix(fn,p){
   await production.run(action,data);
 }
 const routes={'/':'hub','/hub':'hub','/corte':'corte','/playout':'playout','/gc-html':'gc-html','/gc':'gc','/audio':'audio','/replay':'replay','/iso':'iso','/dados':'dados','/compor':'compor','/settings':'settings','/calls':'calls','/macros':'macros','/recuperacao':'recuperacao','/saidas':'saidas','/rede':'rede','/atalhos':'atalhos','/efeitos':'efeitos','/sinais':'sinais','/atualizacao':'atualizacao','/diagnosticos':'diagnosticos'};
-const mime={'.html':'text/html; charset=utf-8','.js':'text/javascript; charset=utf-8','.css':'text/css; charset=utf-8','.svg':'image/svg+xml','.png':'image/png','.jpg':'image/jpeg','.webp':'image/webp','.bmp':'image/bmp','.woff2':'font/woff2','.ttf':'font/ttf','.otf':'font/otf','.json':'application/json'};
+const mime={'.html':'text/html; charset=utf-8','.js':'text/javascript; charset=utf-8','.css':'text/css; charset=utf-8','.svg':'image/svg+xml','.png':'image/png','.gif':'image/gif','.jpg':'image/jpeg','.webp':'image/webp','.bmp':'image/bmp','.woff2':'font/woff2','.woff':'font/woff','.ttf':'font/ttf','.otf':'font/otf','.json':'application/json'};
 const server=createServer(async(req,res)=>{
   try{
     const u=new URL(req.url,'http://localhost'),path=u.pathname;
@@ -169,7 +169,7 @@ const server=createServer(async(req,res)=>{
       const decoded=decodeURIComponent(path);if(decoded.includes('\\')||decoded.includes('\0'))throw new Error('Caminho inválido');
       const rel=decoded.replace(/^\/+/,''),target=resolve(PANEL,rel);if(relative(PANEL,target).startsWith('..')||relative(PANEL,target)==='')throw new Error('Caminho inválido');
       if(/(^|\/)(local\.js|.*\.ini|.*\.salvo|.*\.bak)$/i.test(rel)&&!local(req))return json(res,403,{success:false,error:'Arquivo privado'});
-      file=[resolve(PANEL,'remoto',rel),target].find(f=>!relative(PANEL,f).startsWith('..')&&['.html','.js','.css','.png','.jpg','.webp','.bmp','.svg','.woff2','.ttf','.otf'].includes(extname(f))&&existsSync(f));
+      file=[resolve(PANEL,'remoto',rel),target].find(f=>!relative(PANEL,f).startsWith('..')&&['.html','.js','.css','.png','.gif','.jpg','.webp','.bmp','.svg','.woff2','.woff','.ttf','.otf'].includes(extname(f))&&existsSync(f));
     }
     if(!file){res.writeHead(404).end('Não encontrado');return;}
     try{const data=await readFile(file);res.writeHead(200,{'Content-Type':mime[extname(file)]||'application/octet-stream'});res.end(data);}catch(e){if(e.code==='ENOENT'){res.writeHead(404).end('Não encontrado');}else throw e;}

@@ -1,6 +1,6 @@
 {
   "status": "PASS",
-  "finished": "2026-10-09T20:40:36.392Z",
+  "finished": "2026-10-09T21:10:55.835Z",
   "operatorTouched": false,
   "nativeRequests": 0,
   "scope": "HDR refusal before Native mutation and truthful capability reporting; no physical HDR validation",
@@ -13,8 +13,9 @@
     },
     "OMT": {
       "hdrSupported": false,
-      "status": "integrated_renderer_sdr_manual_hdr_not_implemented",
-      "reason": "Esta saída OMT produz BT.709 SDR, inclusive PA16. HDR exige render PQ/HLG e configuração compatível no receptor; o protocolo atual não anuncia a transferência automaticamente.",
+      "status": "sdr_path_use_separate_manual_hdr_output",
+      "separateHdrAction": "outputs_omt_hdr",
+      "reason": "Estes controles OMT produzem BT.709 SDR, inclusive PA16. Para vídeo HDR opaco, abra OMT HDR abaixo: fonte HDR real e PQ/HLG correspondente configurado manualmente no receptor.",
       "reference": "https://github.com/openmediatransport/omtplugin/blob/master/README.md"
     },
     "SDI": {
@@ -66,11 +67,13 @@
     }
   ],
   "hashes": {
-    "obs-vmix/ferramentas/saidas-hdr.mjs": "40180d91ee844a779fde875623ad5f059a7d7749de8a9de6213aff62732617f0",
+    "obs-vmix/ferramentas/saidas-hdr.mjs": "aab4ac1f025de32b70d1d25836319ca9a37b4999a4e70cff7397bedd840885de",
     "obs-vmix/ferramentas/saidas-srt.mjs": "3f3f6118c1a4f0d0f99f9bdf317c850c9f29709bd16ef8048a76d77c5e5e358f",
-    "obs-vmix/ferramentas/saidas-producao.mjs": "d04ab7e45403e50861ee03c1a3ace70af250cfb59e3085a10edb4132f9603d2e",
+    "obs-vmix/ferramentas/saidas-producao.mjs": "e759fafbf663f0c9ef7c6fd1d7e95f34e961399d9a8eaea3d6c76a5f858a7063",
     "obs-vmix/ferramentas/ndi-producao.mjs": "9a4e132c468a0c8da4eaf5c97f4d6b919ec82a74f120d8b2f3068bf3026ed085",
     "obs-vmix/ferramentas/omt-producao.mjs": "15a632b6d1c80c9926710066e345931a76a7fe5cebd45b33221175b52aa98c5c",
-    "obs-vmix/painel/remoto/saidas-external-ui.js": "c554d5b3091e9095dfb999a742016fa074c6922d31d59279deafb66d6e96a6bd"
+    "obs-vmix/ferramentas/omt-hdr-producao.mjs": "7b77bfc66e6db3d6dc143a337b74b517c0e1679bd50103f22fec652c4f60e8e5",
+    "obs-vmix/painel/remoto/saidas-external-ui.js": "c554d5b3091e9095dfb999a742016fa074c6922d31d59279deafb66d6e96a6bd",
+    "obs-vmix/painel/remoto/saidas-omt-hdr-ui.js": "be3961c73d9d12dcdcf69b19366d579953d9ec8f1bf36eca186f05227dc628d0"
   }
 }

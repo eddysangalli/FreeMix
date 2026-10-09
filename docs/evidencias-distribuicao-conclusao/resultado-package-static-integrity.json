@@ -1,0 +1,15 @@
+{
+  "status": "PASS",
+  "at": "2026-10-09T21:39:30.208Z",
+  "root": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\entregas\\FreeMix-Completo-0.1.0-local.20261009213415",
+  "version": "0.1.0-local.20261009213415",
+  "files": 9483,
+  "runtimeModules": 97,
+  "nativeCommit": "99e5944cf61aacc4c07167ef867d4ce52a752ae6",
+  "nativePatches": 14,
+  "componentOverlays": 6,
+  "operatorTouched": false,
+  "payloadCodeExecuted": false,
+  "sealed": false,
+  "excludedLogSourcePreserved": true
+}

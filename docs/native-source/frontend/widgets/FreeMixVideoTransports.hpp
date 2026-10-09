@@ -12,7 +12,8 @@ inline OBSDataAutoRelease FreeMixVideoTransports()
  obs_data_set_bool(decklink,"pluginLoaded",loaded);
  obs_data_set_string(decklink,"outputId","decklink_output");
  obs_data_set_string(decklink,"configuration","native-tools-decklink");
- obs_data_set_string(decklink,"hdrStatus","requires_device_and_driver_validation");
+ obs_data_set_string(decklink,"hdrStatus","unsupported_in_integrated_sdr_path");
+ obs_data_set_bool(decklink,"hdrSupported",false);
  OBSDataArrayAutoRelease devices=obs_data_array_create();
  // decklink_output_properties explicitly ignores context (original OBS source).
  obs_properties_t *props=loaded?obs_get_output_properties("decklink_output"):nullptr;

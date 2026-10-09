@@ -1,0 +1,30 @@
+{
+  "status": "PASS",
+  "at": "2026-10-09T21:21:00Z",
+  "operatorBinariesChanged": false,
+  "binaryOverlays": 3,
+  "sourceArchivesIncluded": 3,
+  "reports": [
+    {
+      "component": "localvocal",
+      "officialSource": {
+        "url": "https://codeload.github.com/royshil/obs-localvocal/zip/refs/tags/0.6.2",
+        "tag": "0.6.2",
+        "commitShort": "9235c55",
+        "sha256": "9bf8ab8b3fa913718cff29147958d8a4ddc75adb4ef1a7b5811c3119180ad319"
+      },
+      "manifestSha256": "66962b7024346783c6136245180ab6e7b0910ec1f8c85bec2028b75ddf3aa8dd",
+      "allArtifactHashesVerified": true
+    },
+    {
+      "component": "sceneswitcher",
+      "officialSource": {
+        "url": "https://codeload.github.com/WarmUpTill/SceneSwitcher/zip/refs/tags/1.36.1",
+        "tag": "1.36.1",
+        "sha256": "c3cb9d64d9bb9a15b0880a8b6e734ee20368f533fb5fb2aeb40b60aa77b66b2b"
+      },
+      "manifestSha256": "a1b64043fbbbf688c4c27ba2f8fb292254ec8aee493215d346dcc35703326dee",
+      "allArtifactHashesVerified": true
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 # HDR nas saídas — contrato verificado em 09/10/2026
 
-O código integrado desta entrega produz SDR BT.709. OMT PA16 preserva precisão de render e alpha16; isso não muda a transferência para PQ/HLG. Solicitações de HDR feitas à central agora recebem erro explícito antes de configurar ou ligar saídas, em vez de perder silenciosamente a opção no despacho.
+As rotas de alpha e saídas padrão produzem SDR BT.709. OMT PA16 preserva precisão de render e alpha16; isso não muda a transferência para PQ/HLG. Pedidos HDR nessas rotas recebem erro explícito. Foi implementada uma rota OMT HDR separada, P216 opaca, com fonte HDR verdadeira e interpretação manual PQ/HLG no receptor.
 
 ## NDI
 
@@ -10,11 +10,17 @@ Uma implementação futura licenciada deve produzir P216/PA16 com PQ/HLG, faixa 
 
 ## OMT
 
-O plugin oficial suporta workflows HDR quando a saída OBS está em P010/P216 e o receptor escolhe o espaço de cor apropriado. Portanto, é possível transportar valores HDR no OMT atual com interpretação combinada entre as pontas. A rota integrada FreeMix atual não implementa isso: sua composição PA16 é SDR. [Plugin oficial](https://github.com/openmediatransport/omtplugin/blob/master/README.md).
+O plugin oficial suporta workflows HDR quando a saída OBS está em P010/P216 e o receptor escolhe o espaço de cor apropriado. A nova rota `omt_hdr_output` segue esse contrato com uma view nativa P216 PQ/HLG, sem passar por BGRA8 nem expandir artificialmente o PA16 SDR. [Plugin oficial](https://github.com/openmediatransport/omtplugin/blob/master/README.md).
 
 O protocolo1.0 anuncia somente601/709/undefined no campo `ColorSpace`. A recomendação oficial de metadata1.0 define controle/PTZ/ancillary/grouping, sem elemento padronizado de transferência PQ/HLG. Não inventamos enum2020 nem XML privado fingindo reconhecimento automático. [Protocolo oficial](https://raw.githubusercontent.com/openmediatransport/libomtnet/master/PROTOCOL.md), [metadata oficial](https://github.com/openmediatransport/Metadata).
 
-Um caminho viável é saída independente P216 PQ/HLG, declarada como **interpretação manual no receptor**, com escolha correspondente no plugin OMT. Exige um render HDR real e comparação de níveis no receptor16bits; alphaHDR é uma extensão adicional. Para compatibilidade vMix, é necessário verificar o comportamento da versão/receptor instalado, sem deduzir suporte pela existência do codec16bits.
+A rota oferece quatro senders independentes com configuração por perfil, sem início automático. O preflight recusa SDR, alpha/FillKey HDR, dimensão inválida, fonte privada e receptor sem confirmação PQ/HLG correspondente. A tela OMT mostra fontes cujo motor declara HDR; cenas em mesa SDR tone-mapam os filhos e são recusadas para preservar os níveis. Não alteramos o canvas global do operador. Para compatibilidade vMix, ainda é necessário verificar a versão e interpretação do receptor instalado.
+
+`resultado-native-omt-hdr-20261009.json` recebeu vídeo via SDK oficial real: mais de180quadros PQ e HLG por transferência, gradientes com765/766 níveis distintos e erro máximo de64 unidades16bit nas faixas de referência10bit. PQ1000nits permaneceu acima de brancoSDR300nits. Quatro receptores SDK simultâneos receberam mais de220quadros cada, com áudio440Hz contínuo. PTS monotônicos depois de stop/restart; duas partidas Native encerraram exit0 e a segunda carregou quatro configurações sem iniciar nenhuma. Colisões de identidade HDR/HDR, SDRFill→HDR, SDRKey→HDR, HDR→SDRFill e HDR→SDRKey foram recusadas. Build final testada: SHA-256 `ea487f733a7ff7d977d4002aedf6dc986ae1462fe8fd1c4528011ec838b86e7a`.
+
+OMT anunciou `HighBitDepth`, `ColorSpace=Undefined` e nenhum metadataHDR, precisamente o contrato manual. Esse teste local de pixels não substitui monitorHDR físico nem homologação WAN/vMix. O envio mantém somente um buffer de vídeo próprio e uma chamada SDK síncrona nos callbacks de captura; não bloqueia a interface para converter pixels. Filas internas e perdas WAN do SDK não foram medidas neste ensaio.
+
+`resultado-omt-hdr-ui-20261009.json` verifica controles reais em browser com estado de comandos simulado: lista somente UUIDHDR, configurações dos quatro envios, confirmação manual, preflight/salvar sem início automático, bloqueio de alteração durante envio, rascunho não abandonado ao trocar sender e adaptação600px. A prova SDK acima cobre o Native; este teste não finge que os mocks são transmissão.
 
 ## SRT e SDI
 
@@ -28,4 +34,4 @@ Referências locais verificadas: `plugins/obs-nvenc/nvenc.c`, `plugins/obs-ffmpe
 
 `qa-finalizacao/resultado-hdr-output-contracts-20261009.json`: PASS, solicitações HDR/transferPQ/HLG/BT2020 recusadas pela central e por startNDI/OMT antes de qualquer requestNative. SDR normal continua aceito; capability/razão distinguem SDKNDIlicenciado e workflowOMTmanual. O recibo inclui hashes e parseNode dos seis arquivos executáveis. Isso é prova de contrato, não recepção físicaHDR.
 
-Novos arquivos: `obs-vmix/ferramentas/saidas-hdr.mjs`, este documento e teste/recibo acima. Alterados: `saidas-producao.mjs`, `saidas-srt.mjs`, `ndi-producao.mjs`, `omt-producao.mjs`, `painel/remoto/saidas-external-ui.js` e o textoRGBdireto em `painel/remoto/saidas.html`. Nenhuma fonte Native congelada foi alterada nesta etapa.
+Implementação: `freemix-app/frontend/widgets/FreeMixOmtHdrOutput.hpp`, integração em `FreeMixMultistream.cpp`, `obs-vmix/ferramentas/omt-hdr-producao.mjs` e `painel/remoto/saidas-omt-hdr-ui.js`. Contratos SDR: `saidas-hdr.mjs`, `saidas-producao.mjs`, `saidas-srt.mjs`, `ndi-producao.mjs`, `omt-producao.mjs`, `saidas-external-ui.js`, `saidas.html`. QA: `gerar-fixture-hdr.py`, `capture-omt-hdr.py`, `test-native-omt-hdr-20261009.mjs`, `check-omt-hdr-header.ps1` e respectivos recibos.

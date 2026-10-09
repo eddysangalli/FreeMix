@@ -1,0 +1,42 @@
+{
+  "at": "2026-10-09T20:58:52.277Z",
+  "root": "C:\\Users\\eddyr\\AppData\\Local\\Temp\\FreeMix-QA-LocalVocal-cbaaad0e1a524205a8a0906a248d1d42",
+  "pid": 15920,
+  "port": 51895,
+  "operatorTouched": false,
+  "externallySent": false,
+  "audibleOutput": false,
+  "dllSha256": "93d62d37950ad18ca35abcb15ba659235557097e47480be9a9c3b9b38a50c3ab",
+  "portuguese": {
+    "validated": false,
+    "targets": [
+      "boa tarde",
+      "noticias da cidade",
+      "previsao",
+      "chuva",
+      "transito",
+      "escolas",
+      "companhia"
+    ],
+    "matches": [],
+    "snapshots": [
+      {
+        "ms": 2511,
+        "text": " tá, tá, tá, tá, tá"
+      }
+    ]
+  },
+  "threadBoundObserved": true,
+  "blasBoundObserved": true,
+  "shutdownRequest": {
+    "success": true
+  },
+  "shutdownMs": 826,
+  "exit": {
+    "code": 0,
+    "signal": null
+  },
+  "cancelledDuringInference": true,
+  "crashReported": false,
+  "status": "PASS"
+}

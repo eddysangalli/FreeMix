@@ -1,0 +1,34 @@
+{
+  "status": "PASS",
+  "qaRoot": "C:\\Users\\eddyr\\AppData\\Local\\Temp\\FreeMix-QA-GTZIP-CcmY5j",
+  "operatorTouched": false,
+  "nativeExecuted": false,
+  "apiMock": true,
+  "browser": "headless Edge",
+  "checks": [
+    "hierarchical Layer/Composition/Group, radians rotation and crop parsed",
+    "preview reports unsupported named XML paths and explicit libre font inclusion",
+    "preview hash, safe GUID media mapping, no overwrite and source preserved",
+    "traversal/junction/corrupt ZIP/DTD/malformed XML refused",
+    "immutable converted files verified against manifest hash and size/SHA256 before use",
+    "local guarded existing API contract: import/save create no scene; explicit prepare mock; scope persists; on-air changes refused",
+    "libre font opt-in scoped to title; image/font token/hash/junction guards",
+    "actual recovery dependency guard accepts only self-contained converted folder including hashed own gc.js",
+    "browser geometry, nested parenting, static rotation under animated wrappers, Reveal/Expand/ZoomFade/Fly midpoint, fields, out transition and offline media/font rendering"
+  ],
+  "geometry": {
+    "redMatrix": "matrix(0, 1, -1, 0, 0, 0)",
+    "crop": "inset(25% 0% 0%)",
+    "nestedClip": "inset(0px 50% 0px 0px)",
+    "innerMatrix": "matrix(0.5, 0, 0, 1, 0, 0)",
+    "labelOpacity": 0.5,
+    "mediaMatrix": "matrix(1, 0, 0, 1, 400, 0)",
+    "loadedFont": true,
+    "media": "url(\"http://127.0.0.1:58251/gt_titles/synthetic/assets/0cf928b4476187fa53cf3c1f87b0765ca53024452f815fd1e64f33edf4e15030.png\")",
+    "nestedParent": "Outer",
+    "innerParent": "Nested"
+  },
+  "referenceAssetsCopied": false,
+  "errors": [],
+  "networkExternalRequests": 0
+}

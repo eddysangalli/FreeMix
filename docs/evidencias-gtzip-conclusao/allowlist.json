@@ -1,0 +1,172 @@
+{
+  "at": "2026-10-09T21:19:55.575Z",
+  "status": "READY_FOR_INTEGRATION",
+  "owner": "installer_exe GTZIP",
+  "sources": [
+    {
+      "path": "obs-vmix/ferramentas/gtzip_converter.mjs",
+      "bytes": 7546,
+      "sha256": "67a82cae6c5668b7a10871cb84f1b57c83ae76dd928f01fa61bc8926bf07d131"
+    },
+    {
+      "path": "obs-vmix/ferramentas/gtzip-archive.mjs",
+      "bytes": 4501,
+      "sha256": "b2107d921137e48b0a7d8ec6b62e7b2e7509a47c3992bf947da7aad6e85725be"
+    },
+    {
+      "path": "obs-vmix/ferramentas/gtzip-xml.mjs",
+      "bytes": 9864,
+      "sha256": "ad92632fe24c716ee6dd72243e209a3b1e8649721fefee912d8d53f88268d769"
+    },
+    {
+      "path": "obs-vmix/ferramentas/gtzip-render.mjs",
+      "bytes": 11495,
+      "sha256": "841086e2b982d5d3834a24164d802aa1a858af45b8a279bb52b3fb66783ec020"
+    },
+    {
+      "path": "obs-vmix/ferramentas/gtzip-fonts.mjs",
+      "bytes": 2399,
+      "sha256": "8f0636142c0c85309e872fc74c5411a7584282afe9b48da5765299ac693a7464"
+    },
+    {
+      "path": "obs-vmix/ferramentas/gtzip-runtime.mjs",
+      "bytes": 1531,
+      "sha256": "cc22b070038194041c67cd48537bbb7dfe68b061cf0f65d165ef9394d5131c14"
+    },
+    {
+      "path": "obs-vmix/ferramentas/gc-gtzip.mjs",
+      "bytes": 7513,
+      "sha256": "883d85e5b2ec0de4ddf96e26611be49632a0af5644f3a1cb4ce691dff3ff98af"
+    },
+    {
+      "path": "obs-vmix/ferramentas/gc-assets.mjs",
+      "bytes": 3692,
+      "sha256": "3623340909e6abf0bc9cae622f1657e41968862b026455b4f9456eaea99a633c"
+    },
+    {
+      "path": "obs-vmix/ferramentas/gc-biblioteca-producao.mjs",
+      "bytes": 12351,
+      "sha256": "33a6def6bacd5902b24d93549dbc9e88e5e8b4810cd4b82c57505b830bf17de9"
+    },
+    {
+      "path": "obs-vmix/painel/remoto/gc.js",
+      "bytes": 9688,
+      "sha256": "60b337e051fd9b18504f355d7950186802b61bf4bc6d9f54d69cb35940a7b6f1"
+    },
+    {
+      "path": "obs-vmix/painel/remoto/gc.html",
+      "bytes": 4311,
+      "sha256": "58884d4deef51830650a305fd879fb2d9c3da80f248c5757cec5a4382547de74"
+    },
+    {
+      "path": "obs-vmix/painel/remoto/gc-gtzip.js",
+      "bytes": 5538,
+      "sha256": "aab7043fde9dea8c05d67700263649853b5b500dfa1e0b203626804355a3b768"
+    },
+    {
+      "path": "obs-vmix/painel/gc/fontes-livres/BebasNeue-Regular.ttf",
+      "bytes": 61400,
+      "sha256": "08e4623805102d819f58601e46e345648846075e363b2ceb23313c2d1c83ec73"
+    },
+    {
+      "path": "obs-vmix/painel/gc/fontes-livres/OFL-BebasNeue.txt",
+      "bytes": 4337,
+      "sha256": "72082f6cb4d04be2ecf7cc7d9e1e7d73787f0af8a5a278a47cade70c16b78341"
+    },
+    {
+      "path": "obs-vmix/painel/gc/fontes-livres/README.md",
+      "bytes": 630,
+      "sha256": "b012f4e604b2f49f78e1fa95b7853d4abe62bf528d32a6a8f87ee14f0182617f"
+    },
+    {
+      "path": "scripts/gtzip-qa/fixtures.mjs",
+      "bytes": 3784,
+      "sha256": "6896d9434df7e9ad4923cb90ca1ad6cb12932eebc704c3b1959db127967581c5"
+    },
+    {
+      "path": "scripts/gtzip-qa/integration-report.mjs",
+      "bytes": 3388,
+      "sha256": "547c3cddd139d56f955121b3e3e19880fa7f4318b91d9944a6a9ff08f24d8858"
+    },
+    {
+      "path": "scripts/gtzip-qa/inventory.mjs",
+      "bytes": 3058,
+      "sha256": "f2214e8b8b8f07b596423e3a15cf6f1dbb8e06ad07b9d516c003351d74290e2e"
+    },
+    {
+      "path": "scripts/gtzip-qa/README.md",
+      "bytes": 6565,
+      "sha256": "76a19cc5ee669a9ddfa5b90cc301d444a381113e512d4ff2dbc0bd6206e62b26"
+    },
+    {
+      "path": "scripts/gtzip-qa/test-converter.mjs",
+      "bytes": 11608,
+      "sha256": "8f676ebf1dbcc1b16f73167f08cd67101dfdad672a9680a8edc9febd1016df02"
+    },
+    {
+      "path": "scripts/gtzip-qa/test-ui.mjs",
+      "bytes": 6227,
+      "sha256": "b461bd1d43d47b56bbd2bb5b87b49a5394e325b77dfd7ef14ceed4e92d8ee918"
+    }
+  ],
+  "evidence": [
+    {
+      "path": "scripts/gtzip-qa/build/reference-inventory.json",
+      "bytes": 189401,
+      "sha256": "a155cf831c7f7a735809dd0c84ae873f04cb6fcca19f7cb7a106f644beb81c7d",
+      "status": "PASS",
+      "checks": 6
+    },
+    {
+      "path": "scripts/gtzip-qa/build/test-converter.json",
+      "bytes": 1698,
+      "sha256": "e16df5f2b6195921641abd99bbd793fe551a3f4b48d7cbf52919b21c20591fa8",
+      "status": "PASS",
+      "checks": 9,
+      "qaRoot": "C:\\Users\\eddyr\\AppData\\Local\\Temp\\FreeMix-QA-GTZIP-CcmY5j"
+    },
+    {
+      "path": "scripts/gtzip-qa/build/ui/receipt.json",
+      "bytes": 3883,
+      "sha256": "9784cfc24268d73836a0e15d9deeac287f5473a706786b6ab449f0ab32c4925a",
+      "status": "PASS",
+      "checks": 12
+    }
+  ],
+  "syntaxChecks": "PASS",
+  "operatorTouched": false,
+  "nativeExecuted": false,
+  "referenceAssetsCopied": false,
+  "licensedTemplatesRedistributed": false,
+  "freeFont": {
+    "family": "Bebas Neue",
+    "license": "SIL OFL 1.1",
+    "source": "https://github.com/google/fonts/tree/main/ofl/bebasneue",
+    "automaticDownload": false,
+    "titleOnlyOptIn": true
+  },
+  "integration": {
+    "centralActionsAdded": false,
+    "existingLocalAction": "gc_library_import",
+    "payloadKind": "freemix-gtzip-import",
+    "operations": [
+      "preview",
+      "import",
+      "save",
+      "prepare"
+    ],
+    "immutableManifestFiles": true,
+    "immutableManifestHash": true,
+    "recoveryHelpersOwner": "root",
+    "httpGifWoffOwner": "root"
+  },
+  "fixture": "C:/Users/eddyr/AppData/Local/Temp/FreeMix-QA-GTZIP-1wsFsh/synthetic.gtzip",
+  "limits": [
+    "2D partial conversion; warnings are not visual approval",
+    "Two reference ImageSequenceLoop contracts unresolved and explicitly diagnosed",
+    "Complex ticker-template groups/media diagnosed rather than fabricated",
+    "Native and full .fmx recovery integration delegated to principal",
+    "No universal proprietary effects/3D/animation compatibility claim",
+    "No packages, sealed releases, Git mirror or operator assets modified"
+  ]
+}

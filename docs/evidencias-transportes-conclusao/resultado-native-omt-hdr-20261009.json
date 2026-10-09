@@ -1,0 +1,572 @@
+{
+  "status": "PASS",
+  "started": "2026-10-09T21:09:52.990Z",
+  "pid": 211172,
+  "root": "C:/Users/eddyr/AppData/Local/Temp/FreeMix-QA-TransportConclusion-20261009",
+  "operatorTouched": false,
+  "buildSha256": "ea487f733a7ff7d977d4002aedf6dc986ae1462fe8fd1c4528011ec838b86e7a",
+  "physicalHdrMonitorVerified": false,
+  "automaticHdrMetadata": false,
+  "cases": [
+    {
+      "transfer": "pq",
+      "source": {
+        "format": "yuv420p10le",
+        "colorTransfer": "smpte2084",
+        "primaries": "bt2020"
+      },
+      "preflight": {
+        "active": false,
+        "autoStart": false,
+        "available": true,
+        "capturedFrames": 0,
+        "config": {
+          "alpha": false,
+          "audioSourceUuid": "",
+          "audioTrack": 0,
+          "fillKey": false,
+          "manualReceiverConfirmed": true,
+          "name": "FreeMix-QA-HDR-Four-0",
+          "receiverTransfer": "hlg",
+          "sourceUuid": "e35ac677-c0ad-45ab-a397-f2b4f4c69c34",
+          "transfer": "hlg"
+        },
+        "hdrAlphaSupported": false,
+        "hdrSources": [
+          {
+            "height": 240,
+            "name": "QA OMT HDR 1791580198527 pq",
+            "uuid": "cce1cc45-0ba4-463f-bbfc-28b37da55956",
+            "width": 1024
+          }
+        ],
+        "hdrSupported": true,
+        "hdrTransferSignaled": false,
+        "pixelFormat": "P216 limited-range16-bit native view",
+        "receiverContract": "manual-matching-pq-or-hlg",
+        "senderId": 0,
+        "success": true
+      },
+      "restartedFromPersistedConfig": true,
+      "capture": {
+        "passed": true,
+        "transfer": "pq",
+        "checks": [
+          {
+            "label": "Official SDK decodes genuineP216",
+            "passed": true
+          },
+          {
+            "label": "VideoPTSmonotonic",
+            "passed": true
+          },
+          {
+            "label": "Morethan8bitintermediatelevels",
+            "passed": true
+          },
+          {
+            "label": "HDRreferencebandsmaintained",
+            "passed": true
+          },
+          {
+            "label": "1000nitsnotclippedtoSDR300white",
+            "passed": true
+          },
+          {
+            "label": "P216HighBitDepthandnoalpha",
+            "passed": true
+          },
+          {
+            "label": "Sustained440HzPCM",
+            "passed": true
+          },
+          {
+            "label": "AudioPTSmonotonic",
+            "passed": true
+          }
+        ],
+        "videoFrames": 186,
+        "firstPTS": 5853087244119,
+        "lastPTS": 5853161577452,
+        "lastFrame": {
+          "bands16": [
+            4096,
+            32512,
+            36608,
+            38912,
+            41984,
+            46208
+          ],
+          "gradientUnique": 765,
+          "flags": 16,
+          "colorSpace": 0,
+          "metadataBytes": 0
+        },
+        "expectedBands16": [
+          4096,
+          32576,
+          36672,
+          38976,
+          42048,
+          46272
+        ],
+        "maxBandError16": 64,
+        "audioSamples": 296960,
+        "audioRms": 0.06248443201184273,
+        "audioHz": 439.9784482758621,
+        "manualReceiverInterpretation": true,
+        "automaticHdrMetadata": false
+      }
+    },
+    {
+      "transfer": "hlg",
+      "source": {
+        "format": "yuv420p10le",
+        "colorTransfer": "arib-std-b67",
+        "primaries": "bt2020"
+      },
+      "preflight": {
+        "active": false,
+        "autoStart": false,
+        "available": true,
+        "capturedFrames": 0,
+        "config": {
+          "alpha": false,
+          "audioSourceUuid": "",
+          "audioTrack": 0,
+          "fillKey": false,
+          "manualReceiverConfirmed": true,
+          "name": "FreeMix-QA-HDR-PQ",
+          "receiverTransfer": "pq",
+          "sourceUuid": "cce1cc45-0ba4-463f-bbfc-28b37da55956",
+          "transfer": "pq"
+        },
+        "hdrAlphaSupported": false,
+        "hdrSources": [
+          {
+            "height": 240,
+            "name": "QA OMT HDR 1791580198527 pq",
+            "uuid": "cce1cc45-0ba4-463f-bbfc-28b37da55956",
+            "width": 1024
+          },
+          {
+            "height": 240,
+            "name": "QA OMT HDR 1791580198527 hlg",
+            "uuid": "0f5c6d59-c855-489d-97fd-62f9c475c18c",
+            "width": 1024
+          }
+        ],
+        "hdrSupported": true,
+        "hdrTransferSignaled": false,
+        "pixelFormat": "P216 limited-range16-bit native view",
+        "receiverContract": "manual-matching-pq-or-hlg",
+        "senderId": 0,
+        "success": true
+      },
+      "restartedFromPersistedConfig": true,
+      "capture": {
+        "passed": true,
+        "transfer": "hlg",
+        "checks": [
+          {
+            "label": "Official SDK decodes genuineP216",
+            "passed": true
+          },
+          {
+            "label": "VideoPTSmonotonic",
+            "passed": true
+          },
+          {
+            "label": "Morethan8bitintermediatelevels",
+            "passed": true
+          },
+          {
+            "label": "HDRreferencebandsmaintained",
+            "passed": true
+          },
+          {
+            "label": "P216HighBitDepthandnoalpha",
+            "passed": true
+          },
+          {
+            "label": "Sustained440HzPCM",
+            "passed": true
+          },
+          {
+            "label": "AudioPTSmonotonic",
+            "passed": true
+          }
+        ],
+        "videoFrames": 185,
+        "firstPTS": 5853170577452,
+        "lastPTS": 5853244577451,
+        "lastFrame": {
+          "bands16": [
+            4096,
+            18048,
+            32064,
+            46080,
+            54464,
+            60096
+          ],
+          "gradientUnique": 766,
+          "flags": 16,
+          "colorSpace": 0,
+          "metadataBytes": 0
+        },
+        "expectedBands16": [
+          4096,
+          18112,
+          32128,
+          46144,
+          54528,
+          60160
+        ],
+        "maxBandError16": 64,
+        "audioSamples": 296960,
+        "audioRms": 0.06248457729816437,
+        "audioHz": 439.9784482758621,
+        "manualReceiverInterpretation": true,
+        "automaticHdrMetadata": false
+      }
+    }
+  ],
+  "sdrRefused": true,
+  "duplicateActiveIdentityRefused": true,
+  "crossSdrFillKeyHdrIdentityRefused": true,
+  "fourSenders": {
+    "passed": true,
+    "simultaneous": [
+      {
+        "senderId": 0,
+        "name": "FreeMix-QA-HDR-Four-0",
+        "sourceUuid": "0f5c6d59-c855-489d-97fd-62f9c475c18c"
+      },
+      {
+        "senderId": 1,
+        "name": "FreeMix-QA-HDR-Four-1",
+        "sourceUuid": "0f5c6d59-c855-489d-97fd-62f9c475c18c"
+      },
+      {
+        "senderId": 2,
+        "name": "FreeMix-QA-HDR-Four-2",
+        "sourceUuid": "0f5c6d59-c855-489d-97fd-62f9c475c18c"
+      },
+      {
+        "senderId": 3,
+        "name": "FreeMix-QA-HDR-Four-3",
+        "sourceUuid": "0f5c6d59-c855-489d-97fd-62f9c475c18c"
+      }
+    ],
+    "sdkReceivers": [
+      {
+        "senderId": 0,
+        "passed": true,
+        "transfer": "hlg",
+        "checks": [
+          {
+            "label": "Official SDK decodes genuineP216",
+            "passed": true
+          },
+          {
+            "label": "VideoPTSmonotonic",
+            "passed": true
+          },
+          {
+            "label": "Morethan8bitintermediatelevels",
+            "passed": true
+          },
+          {
+            "label": "HDRreferencebandsmaintained",
+            "passed": true
+          },
+          {
+            "label": "P216HighBitDepthandnoalpha",
+            "passed": true
+          },
+          {
+            "label": "Sustained440HzPCM",
+            "passed": true
+          },
+          {
+            "label": "AudioPTSmonotonic",
+            "passed": true
+          }
+        ],
+        "videoFrames": 226,
+        "firstPTS": 5853253577451,
+        "lastPTS": 5853328577450,
+        "lastFrame": {
+          "bands16": [
+            4096,
+            18048,
+            32064,
+            46080,
+            54464,
+            60096
+          ],
+          "gradientUnique": 766,
+          "flags": 16,
+          "colorSpace": 0,
+          "metadataBytes": 0
+        },
+        "expectedBands16": [
+          4096,
+          18112,
+          32128,
+          46144,
+          54528,
+          60160
+        ],
+        "maxBandError16": 64,
+        "audioSamples": 360448,
+        "audioRms": 0.0624852254986763,
+        "audioHz": 439.9857954545455,
+        "manualReceiverInterpretation": true,
+        "automaticHdrMetadata": false
+      },
+      {
+        "senderId": 1,
+        "passed": true,
+        "transfer": "hlg",
+        "checks": [
+          {
+            "label": "Official SDK decodes genuineP216",
+            "passed": true
+          },
+          {
+            "label": "VideoPTSmonotonic",
+            "passed": true
+          },
+          {
+            "label": "Morethan8bitintermediatelevels",
+            "passed": true
+          },
+          {
+            "label": "HDRreferencebandsmaintained",
+            "passed": true
+          },
+          {
+            "label": "P216HighBitDepthandnoalpha",
+            "passed": true
+          },
+          {
+            "label": "Sustained440HzPCM",
+            "passed": true
+          },
+          {
+            "label": "AudioPTSmonotonic",
+            "passed": true
+          }
+        ],
+        "videoFrames": 226,
+        "firstPTS": 5853253577451,
+        "lastPTS": 5853328577450,
+        "lastFrame": {
+          "bands16": [
+            4096,
+            18048,
+            32064,
+            46080,
+            54464,
+            60096
+          ],
+          "gradientUnique": 766,
+          "flags": 16,
+          "colorSpace": 0,
+          "metadataBytes": 0
+        },
+        "expectedBands16": [
+          4096,
+          18112,
+          32128,
+          46144,
+          54528,
+          60160
+        ],
+        "maxBandError16": 64,
+        "audioSamples": 359424,
+        "audioRms": 0.062486112117767334,
+        "audioHz": 440.03739316239313,
+        "manualReceiverInterpretation": true,
+        "automaticHdrMetadata": false
+      },
+      {
+        "senderId": 2,
+        "passed": true,
+        "transfer": "hlg",
+        "checks": [
+          {
+            "label": "Official SDK decodes genuineP216",
+            "passed": true
+          },
+          {
+            "label": "VideoPTSmonotonic",
+            "passed": true
+          },
+          {
+            "label": "Morethan8bitintermediatelevels",
+            "passed": true
+          },
+          {
+            "label": "HDRreferencebandsmaintained",
+            "passed": true
+          },
+          {
+            "label": "P216HighBitDepthandnoalpha",
+            "passed": true
+          },
+          {
+            "label": "Sustained440HzPCM",
+            "passed": true
+          },
+          {
+            "label": "AudioPTSmonotonic",
+            "passed": true
+          }
+        ],
+        "videoFrames": 226,
+        "firstPTS": 5853253577451,
+        "lastPTS": 5853328577450,
+        "lastFrame": {
+          "bands16": [
+            4096,
+            18048,
+            32064,
+            46080,
+            54464,
+            60096
+          ],
+          "gradientUnique": 766,
+          "flags": 16,
+          "colorSpace": 0,
+          "metadataBytes": 0
+        },
+        "expectedBands16": [
+          4096,
+          18112,
+          32128,
+          46144,
+          54528,
+          60160
+        ],
+        "maxBandError16": 64,
+        "audioSamples": 359424,
+        "audioRms": 0.062486112117767334,
+        "audioHz": 440.03739316239313,
+        "manualReceiverInterpretation": true,
+        "automaticHdrMetadata": false
+      },
+      {
+        "senderId": 3,
+        "passed": true,
+        "transfer": "hlg",
+        "checks": [
+          {
+            "label": "Official SDK decodes genuineP216",
+            "passed": true
+          },
+          {
+            "label": "VideoPTSmonotonic",
+            "passed": true
+          },
+          {
+            "label": "Morethan8bitintermediatelevels",
+            "passed": true
+          },
+          {
+            "label": "HDRreferencebandsmaintained",
+            "passed": true
+          },
+          {
+            "label": "P216HighBitDepthandnoalpha",
+            "passed": true
+          },
+          {
+            "label": "Sustained440HzPCM",
+            "passed": true
+          },
+          {
+            "label": "AudioPTSmonotonic",
+            "passed": true
+          }
+        ],
+        "videoFrames": 225,
+        "firstPTS": 5853253910784,
+        "lastPTS": 5853328577450,
+        "lastFrame": {
+          "bands16": [
+            4096,
+            18048,
+            32064,
+            46080,
+            54464,
+            60096
+          ],
+          "gradientUnique": 766,
+          "flags": 16,
+          "colorSpace": 0,
+          "metadataBytes": 0
+        },
+        "expectedBands16": [
+          4096,
+          18112,
+          32128,
+          46144,
+          54528,
+          60160
+        ],
+        "maxBandError16": 64,
+        "audioSamples": 361472,
+        "audioRms": 0.06248464062809944,
+        "audioHz": 439.93449008498584,
+        "manualReceiverInterpretation": true,
+        "automaticHdrMetadata": false
+      }
+    ],
+    "configurationPersisted": true,
+    "autoStart": false
+  },
+  "nativeExit": {
+    "code": 0,
+    "signal": null
+  },
+  "persistedAcrossNativeRestart": {
+    "pid": 213604,
+    "states": [
+      {
+        "senderId": 0,
+        "name": "FreeMix-QA-HDR-Four-0",
+        "sourceUuid": "0f5c6d59-c855-489d-97fd-62f9c475c18c",
+        "active": false,
+        "autoStart": false
+      },
+      {
+        "senderId": 1,
+        "name": "FreeMix-QA-HDR-Four-1",
+        "sourceUuid": "0f5c6d59-c855-489d-97fd-62f9c475c18c",
+        "active": false,
+        "autoStart": false
+      },
+      {
+        "senderId": 2,
+        "name": "FreeMix-QA-HDR-Four-2",
+        "sourceUuid": "0f5c6d59-c855-489d-97fd-62f9c475c18c",
+        "active": false,
+        "autoStart": false
+      },
+      {
+        "senderId": 3,
+        "name": "FreeMix-QA-HDR-Four-3",
+        "sourceUuid": "0f5c6d59-c855-489d-97fd-62f9c475c18c",
+        "active": false,
+        "autoStart": false
+      }
+    ],
+    "exit": {
+      "code": 0,
+      "signal": null
+    }
+  },
+  "finished": "2026-10-09T21:10:31.924Z"
+}

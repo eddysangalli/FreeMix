@@ -1,0 +1,105 @@
+{
+  "at": "2026-10-09T21:08:35.814Z",
+  "root": "C:\\Users\\eddyr\\AppData\\Local\\Temp\\FreeMix-QA-LocalVocal-cbaaad0e1a524205a8a0906a248d1d42",
+  "pid": 22736,
+  "port": 60224,
+  "operatorTouched": false,
+  "externallySent": false,
+  "audibleOutput": false,
+  "dllSha256": "93d62d37950ad18ca35abcb15ba659235557097e47480be9a9c3b9b38a50c3ab",
+  "automationControlsPassed": true,
+  "portuguese": {
+    "validated": true,
+    "targets": [
+      "boa tarde",
+      "noticias da cidade",
+      "previsao",
+      "chuva",
+      "transito",
+      "escolas",
+      "companhia"
+    ],
+    "matches": [
+      "noticias da cidade",
+      "previsao",
+      "chuva",
+      "transito",
+      "escolas",
+      "companhia"
+    ],
+    "snapshots": [
+      {
+        "ms": 2509,
+        "text": " tá, tá, tá, tá, tá"
+      },
+      {
+        "ms": 4265,
+        "text": " Estamos ao vídeo"
+      },
+      {
+        "ms": 5520,
+        "text": " Estamos ao vivo com as notícias"
+      },
+      {
+        "ms": 6774,
+        "text": " Estamos ao vivo com as notícias da cidade"
+      },
+      {
+        "ms": 9032,
+        "text": " A previsão é..."
+      },
+      {
+        "ms": 10287,
+        "text": " A previsão é de chuva amanhã"
+      },
+      {
+        "ms": 11543,
+        "text": " A previsão é de chuva amanhã pela manhã"
+      },
+      {
+        "ms": 13048,
+        "text": " A previsão é de chuva amanhã pela manhã O trânsito"
+      },
+      {
+        "ms": 14552,
+        "text": " A previsão é de chuva amanhã pela manhã O trânsito está tranquilo"
+      },
+      {
+        "ms": 15805,
+        "text": " A previsão é de chuva amanhã pela manhã O trânsito está tranquilo e as escolas"
+      },
+      {
+        "ms": 17312,
+        "text": " A previsão é de chuva amanhã pela manhã O trânsito está tranquilo e as escolas funcionam normal"
+      },
+      {
+        "ms": 18565,
+        "text": " A previsão é de chuva amanhã pela manhã O trânsito está tranquilo e as escolas funcionam normalmente"
+      },
+      {
+        "ms": 19570,
+        "text": " Obrigado pela..."
+      },
+      {
+        "ms": 20573,
+        "text": " Obrigado pela sua companhia"
+      }
+    ]
+  },
+  "threadBoundObserved": true,
+  "blasBoundObserved": true,
+  "shutdownRequest": {
+    "success": true
+  },
+  "shutdownMs": 802,
+  "exit": {
+    "code": 0,
+    "signal": null
+  },
+  "cancelledDuringInference": true,
+  "crashReported": false,
+  "status": "PASS",
+  "automationStoppedBeforeFrontend": true,
+  "loadedSubplugins": 22,
+  "failedSubplugins": 0
+}

@@ -1,0 +1,19 @@
+{
+  "status": "PASS",
+  "sourceDir": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\localvocal-shutdown\\portable-recipe-source-3",
+  "buildDir": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\localvocal-shutdown\\portable-recipe-build-3",
+  "officialSourceSha256": "9bf8ab8b3fa913718cff29147958d8a4ddc75adb4ef1a7b5811c3119180ad319",
+  "corrosionSha256": "ad854fcc34c78dad5dbb53829b62685d7465ca915f56e09c2e84d7d8d4de005b",
+  "recipeSha256": "becf20d5d33dbed464549742cb689427466561351b519fd9742721e24916abea",
+  "patchSha256": "f26c2e46f44f9de10f189ccb0d3e6cc985ab37665dafa8bca07b28bfd3af2652",
+  "builtDllSha256": "3f851dd2f256ccddde8719f34dd13153053cc2d8d07738579e17ba5e0ad0562e",
+  "webVttEnabled": true,
+  "newSourceAndBuild": true,
+  "sourceHashAndPatchApplied": true,
+  "buildExitCode": 0,
+  "runtimeVerifiedForThisRecipeBinary": false,
+  "frozenCandidateUnchanged": true,
+  "operatorTouched": false,
+  "log": "portable-recipe-3.log",
+  "failedEarlierConfigurationAttempts": 2
+}

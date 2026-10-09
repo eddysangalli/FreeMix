@@ -8,6 +8,7 @@ import {createHash,randomUUID} from 'node:crypto';
 import net from 'node:net';
 import {RecoveryEngine,disableRecoveredAutomations} from './recuperacao-producao.mjs';
 import {safeRecoveredMetadata,restoreGcAssets} from './recuperacao-estados.mjs';
+import {restoreGtTitles} from './recuperacao-gtzip.mjs';
 import {restoreRemoteSources} from './recuperacao-remota.mjs';
 import {installationPreflight} from './recuperacao-instalabilidade.mjs';
 
@@ -88,7 +89,7 @@ export async function importRecoveryOffline(root,project,options={}){
  // Native uses this per-profile file. Preserve target/source settings with credentials and all output starts disabled.
  if(loaded.files.has('metadata/native-output-config.json')){const outputs=disableImportedOutputs(JSON.parse(loaded.files.get('metadata/native-output-config.json')));if(!Array.isArray(outputs.destinations)||outputs.destinations.length!==4)throw Error('Configuração nativa de destinos inválida');for(const d of outputs.destinations)Object.assign(d,{enabled:false,autoStart:false,active:false,manuallyStarted:false});await writeFile(join(profile,'freemix-destinos.json'),JSON.stringify({destinations:outputs.destinations},null,2));}
  for(const[path,content]of loaded.files){if(!path.startsWith('metadata/freemix-'))continue;const ns=basename(path,'.json'),state=safeRecoveredMetadata(ns,JSON.parse(content));remapState(state,map);if(ns==='freemix-macros')for(const t of state.triggers||[])t.enabled=false;if(['freemix-replay','freemix-iso'].includes(ns))Object.assign(state,{rec:false,markIn:null,linked:false,back:null,audioEnabled:false});const target=join(root,'config/obs-studio/plugin_config',ns,scopeKey(name)+'.json');await noRecoveryLinks(target);await mkdir(dirname(target),{recursive:true});await writeFile(target,JSON.stringify(state,null,2),{flag:'wx'});}
- await restoreGcAssets(root,loaded.manifest,loaded.files);await writeFile(scene,JSON.stringify(collection,null,2),{flag:'wx'});
+ await restoreGcAssets(root,loaded.manifest,loaded.files);await restoreGtTitles(root,loaded.manifest,loaded.files);await writeFile(scene,JSON.stringify(collection,null,2),{flag:'wx'});
  const userIni=join(root,'config/obs-studio/user.ini');await noRecoveryLinks(userIni);const original=await readFile(userIni,'utf8');await writeFile(userIni+'.pre-import',original,{flag:'wx'});await writeFile(userIni,updateIni(original,'Basic',{SceneCollection:name,SceneCollectionFile:token,Profile:profileName,ProfileDir:token}));
  const report={format:1,status:'imported',id:staged.id,name,profile:profileName,manifestHash:staged.preview.manifestHash,sourcePreserved:true,credentialsCopied:false,appStarted:false,outputsStarted:false,automationsStarted:false,dependencies:staged.preview.dependencies,plugins:staged.preview.plugins,devices:staged.preview.devices,fonts:staged.preview.fonts,remoteDiagnostics,outputConfigurationStatus:loaded.files.has('metadata/native-output-config.json')?'restored-disabled-in-new-profile':'profile-snapshot-only',createdAt:new Date().toISOString()};await writeFile(join(root,'project-import.json'),JSON.stringify(report,null,2),{flag:'wx'});return report;
 }

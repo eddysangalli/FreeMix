@@ -60,7 +60,7 @@ Em Externo/SRT, fonte transparente desejada, x264/H.264, 4:2:0, cor+máscara lad
 
 - Recepção OBS/vMix em outra máquina e sessão com chroma/vídeo real.
 - SDI físico, keyer/driver/múltiplas placas e HDR fim a fim não homologados. O caminho integrado atual permanece SDR.
-- HDR NDI/OMT não implementado: PA16 sozinho não fornece PQ/HLG/metadados. Não habilitar controles falsos.
+- OMT HDR opaco foi implementado em rota P216 independente e recebeu PQ/HLG com níveis reais10bit, áudio e reconexão no SDK oficial. A transferência é manual no receptor; alpha HDR e metadados automáticos não são suportados. NDI HDR ainda exige Advanced SDK licenciado e implementação; SRT/SDI HDR seguem pendentes. Veja [contratos, provas e limites](HDR-CONTRATOS-TRANSPORTES-20261009.md).
 - Bonding WAN depende de receptor acessível e duas operadoras reais. HTTPS/TURN dependem de domínio/DNS/servidor/portas. Nenhum destino foi fornecido para publicação nesta rodada.
 - Ponte nativa separada precisa aceite do operador em vMix antes de ser chamada estável; a antiga ponte WebBrowser continua abortada.
 
@@ -74,6 +74,7 @@ freemix-app/frontend/widgets/FreeMixFillKey.hpp
 freemix-app/frontend/widgets/FreeMixNdiOutput.hpp
 freemix-app/frontend/widgets/FreeMixOmtOutput.hpp
 freemix-app/frontend/widgets/FreeMixVideoTransports.hpp
+freemix-app/frontend/widgets/FreeMixOmtHdrOutput.hpp
 ```
 
 Ferramenta separada/kit:
@@ -85,6 +86,16 @@ scripts/build/build-alpha-bridge.ps1
 servidor/instalar-servidor.sh
 obs-vmix/docs/servidor/instalar-servidor.sh
 docs/RELATORIO-TRANSPORTES-CONCLUSAO-20261009.md
+docs/HDR-CONTRATOS-TRANSPORTES-20261009.md
+obs-vmix/ferramentas/saidas-hdr.mjs
+obs-vmix/ferramentas/saidas-producao.mjs
+obs-vmix/ferramentas/saidas-srt.mjs
+obs-vmix/ferramentas/ndi-producao.mjs
+obs-vmix/ferramentas/omt-producao.mjs
+obs-vmix/ferramentas/omt-hdr-producao.mjs
+obs-vmix/painel/remoto/saidas-external-ui.js
+obs-vmix/painel/remoto/saidas-omt-hdr-ui.js
+obs-vmix/painel/remoto/saidas.html
 ```
 
-QA: `test-native-alpha-bridge.py`, `capture-ndi-fillkey*.py`, `capture-omt-fillkey-straight.py`, `test-native-ndi*.mjs`, `test-native-omt-fillkey-conclusion.mjs`, `test-srt-key-silent-conclusion.mjs`, `preparar-qa-transport-conclusion.mjs`, `test-output-contracts-20261009.mjs`, `test-bonding-adaptativo-conclusao-20261009.mjs`, `test-server-kit-syntax.mjs` e respectivos recibos em `qa-finalizacao/`. Nenhum arquivo central da API, configuração do operador, release selada ou Git mirror foi alterado por esta frente.
+QA: `test-native-alpha-bridge.py`, `capture-ndi-fillkey*.py`, `capture-omt-fillkey-straight.py`, `test-native-ndi*.mjs`, `test-native-omt-fillkey-conclusion.mjs`, `test-srt-key-silent-conclusion.mjs`, `preparar-qa-transport-conclusion.mjs`, `test-output-contracts-20261009.mjs`, `test-bonding-adaptativo-conclusao-20261009.mjs`, `test-server-kit-syntax.mjs`, `test-hdr-output-contracts-20261009.mjs`, `gerar-fixture-hdr.py`, `capture-omt-hdr.py`, `test-native-omt-hdr-20261009.mjs`, `check-omt-hdr-header.ps1`, `test-omt-hdr-ui-20261009.mjs` e respectivos recibos em `qa-finalizacao/`. Nenhum arquivo central da API, configuração do operador, release selada ou Git mirror foi alterado por esta frente.

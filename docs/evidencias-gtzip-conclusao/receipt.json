@@ -1,0 +1,177 @@
+{
+  "status": "PASS",
+  "operatorTouched": false,
+  "nativeExecuted": false,
+  "apiMock": true,
+  "checks": [
+    {
+      "width": 900,
+      "height": 650,
+      "dpi": 1,
+      "cssViewport": {
+        "width": 900,
+        "height": 650
+      },
+      "horizontalOverflow": false,
+      "previewInvalidation": true,
+      "importAndFieldSave": true,
+      "explicitPrepare": true,
+      "libreFontOptIn": true
+    },
+    {
+      "width": 900,
+      "height": 650,
+      "dpi": 1.25,
+      "cssViewport": {
+        "width": 720,
+        "height": 520
+      },
+      "horizontalOverflow": false,
+      "previewInvalidation": true,
+      "importAndFieldSave": true,
+      "explicitPrepare": true,
+      "libreFontOptIn": true
+    },
+    {
+      "width": 900,
+      "height": 650,
+      "dpi": 1.5,
+      "cssViewport": {
+        "width": 600,
+        "height": 433
+      },
+      "horizontalOverflow": false,
+      "previewInvalidation": true,
+      "importAndFieldSave": true,
+      "explicitPrepare": true,
+      "libreFontOptIn": true
+    },
+    {
+      "width": 900,
+      "height": 650,
+      "dpi": 2,
+      "cssViewport": {
+        "width": 450,
+        "height": 325
+      },
+      "horizontalOverflow": false,
+      "previewInvalidation": true,
+      "importAndFieldSave": true,
+      "explicitPrepare": true,
+      "libreFontOptIn": true
+    },
+    {
+      "width": 1280,
+      "height": 720,
+      "dpi": 1,
+      "cssViewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "horizontalOverflow": false,
+      "previewInvalidation": true,
+      "importAndFieldSave": true,
+      "explicitPrepare": true,
+      "libreFontOptIn": true
+    },
+    {
+      "width": 1280,
+      "height": 720,
+      "dpi": 1.25,
+      "cssViewport": {
+        "width": 1024,
+        "height": 576
+      },
+      "horizontalOverflow": false,
+      "previewInvalidation": true,
+      "importAndFieldSave": true,
+      "explicitPrepare": true,
+      "libreFontOptIn": true
+    },
+    {
+      "width": 1280,
+      "height": 720,
+      "dpi": 1.5,
+      "cssViewport": {
+        "width": 853,
+        "height": 480
+      },
+      "horizontalOverflow": false,
+      "previewInvalidation": true,
+      "importAndFieldSave": true,
+      "explicitPrepare": true,
+      "libreFontOptIn": true
+    },
+    {
+      "width": 1280,
+      "height": 720,
+      "dpi": 2,
+      "cssViewport": {
+        "width": 640,
+        "height": 360
+      },
+      "horizontalOverflow": false,
+      "previewInvalidation": true,
+      "importAndFieldSave": true,
+      "explicitPrepare": true,
+      "libreFontOptIn": true
+    },
+    {
+      "width": 1920,
+      "height": 1080,
+      "dpi": 1,
+      "cssViewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "horizontalOverflow": false,
+      "previewInvalidation": true,
+      "importAndFieldSave": true,
+      "explicitPrepare": true,
+      "libreFontOptIn": true
+    },
+    {
+      "width": 1920,
+      "height": 1080,
+      "dpi": 1.25,
+      "cssViewport": {
+        "width": 1536,
+        "height": 864
+      },
+      "horizontalOverflow": false,
+      "previewInvalidation": true,
+      "importAndFieldSave": true,
+      "explicitPrepare": true,
+      "libreFontOptIn": true
+    },
+    {
+      "width": 1920,
+      "height": 1080,
+      "dpi": 1.5,
+      "cssViewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "horizontalOverflow": false,
+      "previewInvalidation": true,
+      "importAndFieldSave": true,
+      "explicitPrepare": true,
+      "libreFontOptIn": true
+    },
+    {
+      "width": 1920,
+      "height": 1080,
+      "dpi": 2,
+      "cssViewport": {
+        "width": 960,
+        "height": 540
+      },
+      "horizontalOverflow": false,
+      "previewInvalidation": true,
+      "importAndFieldSave": true,
+      "explicitPrepare": true,
+      "libreFontOptIn": true
+    }
+  ],
+  "errors": []
+}

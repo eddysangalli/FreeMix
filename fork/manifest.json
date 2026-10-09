@@ -1,8 +1,8 @@
 {
   "upstream": "https://github.com/obsproject/obs-studio.git",
   "base": "ba2f32bdf791005443988a4955e963663e16b1ed",
-  "head": "b4a9f569d13727c245b673f517962e53ac21e037",
-  "version": "0.1.0-local.20261009153453",
+  "head": "99e5944cf61aacc4c07167ef867d4ce52a752ae6",
+  "version": "0.1.0-local.20261009213415",
   "patches": [
     {
       "path": "0001-feat-branding-replace-OBS-identity-with-FreeMix-Stud.patch",
@@ -55,7 +55,11 @@
     {
       "path": "0013-Add-explicit-multichannel-ASIO-playback-host-with-bo.patch",
       "sha256": "fc313d71fcb87361d9fcb7d05e765e0815cbcf1ec6f5c5ceedcab599a91b05f2"
+    },
+    {
+      "path": "0014-Add-manual-PQ-and-HLG-OMT-HDR-outputs-with-unique-se.patch",
+      "sha256": "30488e1dcb098052b8f3ae130252c29168ade7887c30eaa2041a33e9d7a23ee7"
     }
   ],
-  "sourceUpdatedAt": "2026-10-09T20:42:27.797Z"
+  "sourceUpdatedAt": "2026-10-09T21:34:21.978Z"
 }

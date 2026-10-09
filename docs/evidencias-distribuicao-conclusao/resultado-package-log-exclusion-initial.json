@@ -1,0 +1,10 @@
+{
+  "status": "FAIL_PRESERVED",
+  "at": "2026-10-09T21:38:51.3278765Z",
+  "issue": "Log de depuracao copiado da raiz de binarios",
+  "excluded": "bin/64bit/debug.log",
+  "sha256": "986B6FFE1BACFD1011C4B420A5BD2593D9AB0CC77BFE1256799693E7B72DF4D2",
+  "sourceUnchanged": true,
+  "sealed": false,
+  "operatorTouched": false
+}

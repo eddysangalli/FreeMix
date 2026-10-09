@@ -1,0 +1,84 @@
+{
+  "officialSource": {
+    "url": "https://codeload.github.com/WarmUpTill/SceneSwitcher/zip/refs/tags/1.36.1",
+    "tag": "1.36.1",
+    "sha256": "c3cb9d64d9bb9a15b0880a8b6e734ee20368f533fb5fb2aeb40b60aa77b66b2b"
+  },
+  "patchFiles": [
+    "CMakeLists.txt",
+    "cmake/windows/buildspec.cmake",
+    "lib/advanced-scene-switcher.cpp"
+  ],
+  "artifacts": [
+    {
+      "file": "advanced-scene-switcher-lib.dll",
+      "bytes": 5471232,
+      "sha256": "5b0e93759d1d544d39371ce7bbe3f7e962a39fead1fe1f6b0cb2d3774d91b24f"
+    },
+    {
+      "file": "advanced-scene-switcher-lib.pdb",
+      "bytes": 58290176,
+      "sha256": "6ff6aa8f2be88272f0a7f2af3a3375fc12ef808615688e8faef968d60e42489e"
+    },
+    {
+      "file": "advanced-scene-switcher.dll",
+      "bytes": 12288,
+      "sha256": "699b1f15067fd27dd0aca42a5108b4b1be6d1e863085aabec71cbdfaab294cc0"
+    },
+    {
+      "file": "advanced-scene-switcher.pdb",
+      "bytes": 544768,
+      "sha256": "757d11fdec263b351e141481491912bdd64d0f00d8f10d4df51fbdea6ecb83ed"
+    },
+    {
+      "file": "build-sceneswitcher.ps1",
+      "bytes": 3491,
+      "sha256": "6b2a6fc3c038fef62a69ffb937955b2f595363e07a095e97f9bf75c3c882c840"
+    },
+    {
+      "file": "freemix-sceneswitcher-shutdown.patch",
+      "bytes": 1782,
+      "sha256": "d690e198d3c4fed165b0100cd939a4a70249837025e403b47d91d12dbdc3dc44"
+    },
+    {
+      "file": "LICENSE",
+      "bytes": 18046,
+      "sha256": "db296f2f7f35bca3a174efb0eb392b3b17bd94b341851429a3dff411b1c2fc73"
+    },
+    {
+      "file": "README-REBUILD.md",
+      "bytes": 1175,
+      "sha256": "7fbb1403459b2ab2ced32ddc5b1c2ccadc45007e6210f64e15d38c5f007da692"
+    },
+    {
+      "file": "RELATORIO.md",
+      "bytes": 4084,
+      "sha256": "dc2775ca3067cb86ee8cd45022e6472b3c312c0e46796af16442f4cf44f66f9d"
+    },
+    {
+      "file": "resultado-full-suite-cancel-2.json",
+      "bytes": 1091,
+      "sha256": "761cca5c40f715f141e1b51092b2d3db2b127ace69d3a0a9eff924783a92e53c"
+    },
+    {
+      "file": "resultado-full-suite-cancel-3.json",
+      "bytes": 1181,
+      "sha256": "00a05dfc47a6ee8a69757b6942e741d1874c7d658841eb2fe8f1657455d50027"
+    },
+    {
+      "file": "resultado-portable-recipe.json",
+      "bytes": 1010,
+      "sha256": "a7b00a69902bccb7df384248b6dc709645499e3d1f7e0eddc4e27ad029b91763"
+    },
+    {
+      "file": "resultado-suite-final.json",
+      "bytes": 2572,
+      "sha256": "17f774e54ecd036b7657b71446bb5d1ffe6d9cebfb4eb7d9c075afa3a9e9687f"
+    },
+    {
+      "file": "SceneSwitcher-1.36.1-official-source.zip",
+      "bytes": 53032899,
+      "sha256": "c3cb9d64d9bb9a15b0880a8b6e734ee20368f533fb5fb2aeb40b60aa77b66b2b"
+    }
+  ]
+}

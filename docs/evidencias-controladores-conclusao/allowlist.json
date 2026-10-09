@@ -1,0 +1,106 @@
+{
+  "at": "2026-10-09T21:32:43.217Z",
+  "status": "READY_FOR_INTEGRATION",
+  "runtimeFiles": 7,
+  "sources": [
+    {
+      "path": "obs-vmix/ferramentas/controller-osc.mjs",
+      "bytes": 8967,
+      "sha256": "8c169a300afae0aea805298d5d02c5020593382433b61f4955d134a09713bcfa"
+    },
+    {
+      "path": "obs-vmix/ferramentas/controlador-producao.mjs",
+      "bytes": 12471,
+      "sha256": "46ca77aad10a1fb227ff9acd9678941463fc634fbc3d08b9e9b23afa7649bbad"
+    },
+    {
+      "path": "obs-vmix/ferramentas/macros-producao.mjs",
+      "bytes": 20118,
+      "sha256": "2c9a0b57e2c639a9ce89271219579b3a1fa76d27dcd566eb36faf6de53f9b048"
+    },
+    {
+      "path": "obs-vmix/painel/remoto/atalhos-engine.js",
+      "bytes": 6455,
+      "sha256": "1ae55efc4b0d25032199092cbf7fd8d4cc051d7a1798e7b52ea8d9d4536d23e9"
+    },
+    {
+      "path": "obs-vmix/painel/remoto/midi-feedback.js",
+      "bytes": 1923,
+      "sha256": "1e0339ff763a90660878a06d2ea1760b0ed28b049465dfdfd2aac8e34f2d9816"
+    },
+    {
+      "path": "obs-vmix/painel/remoto/atalhos.html",
+      "bytes": 6546,
+      "sha256": "9ff6a43ec2d71aabf116a6ca75a63507a6057c8832e65ca4bdee15c38a659c63"
+    },
+    {
+      "path": "obs-vmix/painel/remoto/macros.html",
+      "bytes": 6722,
+      "sha256": "6cfb25b93f9691d53707cc8d79c7cdbc19a49e4093f00d744c497de7ae613350"
+    },
+    {
+      "path": "scripts/controllers-qa/audit-baseline.mjs",
+      "bytes": 2430,
+      "sha256": "17cbaf44dd6f5d6a5e7aaf811574834fe9e75b2e3763628b7effb1905404bfa5"
+    },
+    {
+      "path": "scripts/controllers-qa/integration-report.mjs",
+      "bytes": 2583,
+      "sha256": "ba065a780aeb8b78f3b3ded05977fc0e1efdcda5d2cb5a31d86a72512ae773ff"
+    },
+    {
+      "path": "scripts/controllers-qa/README.md",
+      "bytes": 5249,
+      "sha256": "c7f09616368fa02db06e102cfeb31a7eeebce7bdb50494bd8ab8af7856f86d66"
+    },
+    {
+      "path": "scripts/controllers-qa/test-browser.mjs",
+      "bytes": 9649,
+      "sha256": "79477ac0ebc57dc85cd4357a7977f54e23d5ac0e4ad0fdc925a16de2534ab11e"
+    },
+    {
+      "path": "scripts/controllers-qa/test-software.mjs",
+      "bytes": 15181,
+      "sha256": "d8bb998513acf7ca1d034e02fd3e3067be3507f3eb241c727a1cbc6bce3bb518"
+    }
+  ],
+  "auditedUnchanged": [
+    {
+      "path": "obs-vmix/ferramentas/automacao-operacional.mjs",
+      "bytes": 8714,
+      "sha256": "200104690e4a7c21f78d51911ebfa0f03a98de55f2b6dbc2921e2da618f3a51c"
+    }
+  ],
+  "evidence": [
+    {
+      "path": "scripts/controllers-qa/build/software.json",
+      "bytes": 3116,
+      "sha256": "9c1dd9e2ae4215461e77309250aae02d4e5f6b1b6a2dcb31d3064efd0bcdaabc",
+      "status": "PASS",
+      "checks": 12,
+      "qaRoot": "C:\\Users\\eddyr\\AppData\\Local\\Temp\\FreeMix-QA-Controllers-D2Dzir"
+    },
+    {
+      "path": "scripts/controllers-qa/build/ui/receipt.json",
+      "bytes": 7984,
+      "sha256": "e73f44b5b4275f46cf73d02bcd567fc22be0eb652e70b9d47d8d75eacaeb9df5",
+      "status": "PASS",
+      "checks": 26
+    }
+  ],
+  "syntaxChecks": "PASS",
+  "operatorTouched": false,
+  "nativeExecuted": false,
+  "hardwareRequested": false,
+  "oscRealUdp": true,
+  "midiHardwareVerified": false,
+  "cefRuntimeVerified": false,
+  "centralChangesRequired": false,
+  "limitations": [
+    "UDP has no event ID or exactly-once delivery guarantee; late resends may dispatch again",
+    "MIDI/LED/fader/StreamDeck/Companion devices unavailable; software doubles only",
+    "CEF WebMIDI/permissions runtime not exercised; API absence/insecure context/permission-denied diagnosed",
+    "ASIO Direct Out/OMT HDR remain explicit configured routes outside macro allowlist",
+    "No operator, Native, central files, Git mirror, or release package modified"
+  ]
+}

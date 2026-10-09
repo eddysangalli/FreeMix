@@ -1,0 +1,117 @@
+{
+  "officialSource": {
+    "url": "https://codeload.github.com/royshil/obs-localvocal/zip/refs/tags/0.6.2",
+    "tag": "0.6.2",
+    "commitShort": "9235c55",
+    "sha256": "9bf8ab8b3fa913718cff29147958d8a4ddc75adb4ef1a7b5811c3119180ad319"
+  },
+  "patchFiles": [
+    "CMakeLists.txt",
+    "cmake/FetchOnnxruntime.cmake",
+    "cmake/windows/buildspec.cmake",
+    "src/transcription-filter-callbacks.cpp",
+    "src/transcription-filter-data.h",
+    "src/transcription-filter.cpp",
+    "src/whisper-utils/vad-processing.cpp",
+    "src/whisper-utils/whisper-model-utils.cpp",
+    "src/whisper-utils/whisper-processing.cpp",
+    "src/whisper-utils/whisper-utils.cpp"
+  ],
+  "artifacts": [
+    {
+      "file": "build-localvocal.ps1",
+      "bytes": 4556,
+      "sha256": "becf20d5d33dbed464549742cb689427466561351b519fd9742721e24916abea"
+    },
+    {
+      "file": "cleanup-old-qa.json",
+      "bytes": 589,
+      "sha256": "a4e280a800be6092ebd00c44a871626e000856d7241121d20311219da4047427"
+    },
+    {
+      "file": "corrosion-v0.5.zip",
+      "bytes": 168733,
+      "sha256": "ad854fcc34c78dad5dbb53829b62685d7465ca915f56e09c2e84d7d8d4de005b"
+    },
+    {
+      "file": "freemix-localvocal-shutdown.patch",
+      "bytes": 11065,
+      "sha256": "f26c2e46f44f9de10f189ccb0d3e6cc985ab37665dafa8bca07b28bfd3af2652"
+    },
+    {
+      "file": "LICENSE",
+      "bytes": 18045,
+      "sha256": "90b664a6fbc82b38595cbb39606268bef0b2eb9b76b0e9e03826befe204190bb"
+    },
+    {
+      "file": "obs-localvocal-0.6.2-official-source.zip",
+      "bytes": 73394912,
+      "sha256": "9bf8ab8b3fa913718cff29147958d8a4ddc75adb4ef1a7b5811c3119180ad319"
+    },
+    {
+      "file": "obs-localvocal.dll",
+      "bytes": 1518080,
+      "sha256": "93d62d37950ad18ca35abcb15ba659235557097e47480be9a9c3b9b38a50c3ab"
+    },
+    {
+      "file": "obs-localvocal.pdb",
+      "bytes": 17371136,
+      "sha256": "7523830ac2ea1bf8c44e441597e807f14db3852605e14ff5804e314c9c2ad8a6"
+    },
+    {
+      "file": "README-REBUILD.md",
+      "bytes": 1452,
+      "sha256": "fa549bdd822ebfb1f8349049356e48c32febdd46101deabd7a7a0e7fd080ae05"
+    },
+    {
+      "file": "RELATORIO.md",
+      "bytes": 6508,
+      "sha256": "b02b11f865a4ffaf6ac969dee4558ff51da10096206296dd70b0e8f32e761d08"
+    },
+    {
+      "file": "resultado-cancel-2.json",
+      "bytes": 932,
+      "sha256": "849ccc5362732cf54346e154e0ff39bc346a78e34e8401dbe91a7d9845651734"
+    },
+    {
+      "file": "resultado-cancel-3.json",
+      "bytes": 1003,
+      "sha256": "1979251d3e89857b0a60897a46b0a6c51bd344d7847bf6fcb76504023654145f"
+    },
+    {
+      "file": "resultado-full-suite-cancel-2.json",
+      "bytes": 1091,
+      "sha256": "761cca5c40f715f141e1b51092b2d3db2b127ace69d3a0a9eff924783a92e53c"
+    },
+    {
+      "file": "resultado-full-suite-cancel-3.json",
+      "bytes": 1181,
+      "sha256": "00a05dfc47a6ee8a69757b6942e741d1874c7d658841eb2fe8f1657455d50027"
+    },
+    {
+      "file": "resultado-native-final.json",
+      "bytes": 2238,
+      "sha256": "1cff9e5a8829a13237cccef67117615c52e6d4761eceec1d199afd1eb6f790ab"
+    },
+    {
+      "file": "resultado-portable-recipe.json",
+      "bytes": 1021,
+      "sha256": "4834ab5e6637319a074f774a51f0c8ee25cce424c416cfeeb0c89481e0f0b4ab"
+    },
+    {
+      "file": "dependency-licenses/icu_build-src__LICENSE",
+      "bytes": 27029,
+      "sha256": "33332330429a0ad581f050fb89cf4da5581387594efed32293e1327877e90236"
+    },
+    {
+      "file": "dependency-licenses/onnxruntime-src__LICENSE",
+      "bytes": 1094,
+      "sha256": "c250d6278f0b47a6439fb7592b08b58a55eb9f535aa49a1db63211c3f982b674"
+    }
+  ],
+  "qa": [
+    "resultado-native-final.json",
+    "resultado-cancel-2.json",
+    "resultado-cancel-3.json"
+  ]
+}

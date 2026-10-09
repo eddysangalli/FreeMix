@@ -1,0 +1,19 @@
+{
+  "status": "PASS",
+  "at": "2026-10-09T21:25:54.785Z",
+  "root": "C:\\Users\\eddyr\\AppData\\Local\\Temp\\FreeMix-QA-Integration-1fcb1837-f71e-4b9c-a076-2529ecf025ac",
+  "nativePid": 59768,
+  "nativeSha256": "1c045e5d43bae20eca9b15df50d73d297b9d433e381027eb861f0ff21f014744",
+  "operatorTouched": false,
+  "externalDataSent": false,
+  "licensedReferenceAssetsCopied": false,
+  "checks": [
+    "Prévia/importação/salvar GTZIP próprios com fonte livre não criam cenas nem saídas no motor real",
+    "Backup de GTZIP não preparado inclui HTML/imagens/fonte; importação .fmx recompõe pasta canônica e campos sem originais",
+    "Prepare explícito cria browser da coleção recuperada com dimensões corretas e zero autostart"
+  ],
+  "exit": {
+    "code": 0,
+    "signal": null
+  }
+}

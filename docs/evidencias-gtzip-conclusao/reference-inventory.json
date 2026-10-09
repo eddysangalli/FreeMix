@@ -1,0 +1,6158 @@
+{
+  "at": "2026-10-09T21:19:18.910Z",
+  "status": "PASS",
+  "readOnly": true,
+  "referenceAssetsCopied": false,
+  "references": 743,
+  "families": {
+    "GT ScoreBoard": 18,
+    "GT Social": 63,
+    "GT Stingers": 66,
+    "GT Text": 18,
+    "GT Ticker": 14,
+    "GT Timer": 17,
+    "GT Title": 400,
+    "GT Vertical": 147
+  },
+  "resolutions": {
+    "1920x1080": 576,
+    "3840x2160": 20,
+    "3412x1920": 147
+  },
+  "nodes": {
+    "Composition": 2234,
+    "Layer": 1491,
+    "Layer.Composition": 1491,
+    "Rectangle": 2378,
+    "Rectangle.Fill": 2378,
+    "Brush": 8654,
+    "Rectangle.Stroke": 2378,
+    "Brush.Stops": 940,
+    "GradientStop": 2174,
+    "TextBlock": 1279,
+    "TextBlock.Fill": 1279,
+    "TextBlock.Stroke": 1279,
+    "Image": 387,
+    "Image.Bitmap": 387,
+    "Bitmap": 509,
+    "Storyboard": 1721,
+    "Storyboard.Animations": 1721,
+    "Fly": 2547,
+    "None": 1040,
+    "ZoomFade": 67,
+    "Triangle": 89,
+    "Triangle.Crop": 3,
+    "Crop": 216,
+    "Triangle.Fill": 89,
+    "Triangle.Stroke": 89,
+    "Rectangle.Effects": 529,
+    "Effect": 761,
+    "Rectangle.Crop": 171,
+    "Fade": 2317,
+    "Expand": 568,
+    "Reveal": 612,
+    "Hidden": 39,
+    "TextBlock.TextDecorations": 2,
+    "TextDecoration": 2,
+    "Rectangle.Transform": 59,
+    "Transform": 291,
+    "Ellipse": 415,
+    "Ellipse.Fill": 415,
+    "Ellipse.Stroke": 415,
+    "Rotate": 108,
+    "RightTriangle": 147,
+    "RightTriangle.Transform": 113,
+    "RightTriangle.Fill": 147,
+    "RightTriangle.Stroke": 147,
+    "Brush.Bitmap": 122,
+    "FillOffset": 72,
+    "Image.Effects": 56,
+    "Zoom": 110,
+    "Ellipse.Effects": 74,
+    "TextBlock.Effects": 70,
+    "Ticker": 19,
+    "Ticker.Fill": 19,
+    "Ticker.Stroke": 19,
+    "Ticker.Template": 12,
+    "Image.Transform": 13,
+    "TextBlock.Crop": 3,
+    "Rectangle.Bounding": 19,
+    "Bounding": 64,
+    "Image.Geometry": 5,
+    "Geometry": 11,
+    "RotateContinuous": 16,
+    "ImageSequenceLoop": 2,
+    "Rectangle.Mask": 32,
+    "Mask": 45,
+    "Bounce": 10,
+    "TextBlock.Mask": 12,
+    "QRCode": 4,
+    "StrokeOffset": 37,
+    "Rectangle.Geometry": 6,
+    "TextBlock.Transform": 23,
+    "Triangle.Transform": 59,
+    "Ellipse.Crop": 34,
+    "Ellipse.Transform": 23,
+    "RightTriangle.Effects": 5,
+    "RightTriangle.Crop": 5,
+    "TextBlock.Bounding": 40,
+    "Triangle.Effects": 8,
+    "Scroll": 4,
+    "Ellipse.Bounding": 4,
+    "Image.Mask": 1,
+    "Image.Bounding": 1,
+    "Ticker.Transform": 1
+  },
+  "convertedNodes": {
+    "Layer": 1490,
+    "Rectangle": 2378,
+    "TextBlock": 1266,
+    "Image": 386,
+    "Triangle": 89,
+    "Ellipse": 415,
+    "RightTriangle": 147,
+    "Ticker": 19
+  },
+  "templateNodes": {
+    "Ticker.Template": 12,
+    "Layer": 1,
+    "Layer.Composition": 1,
+    "Composition": 1,
+    "TextBlock": 13,
+    "TextBlock.Fill": 13,
+    "Brush": 26,
+    "TextBlock.Stroke": 13,
+    "Image": 1,
+    "Image.Bitmap": 1,
+    "Bitmap": 1
+  },
+  "fonts": {
+    "Bebas Neue": 731,
+    "Century Gothic": 168,
+    "Bebas": 7,
+    "Segoe UI Emoji": 208,
+    "Arial Rounded MT": 10,
+    "Segoe UI": 12,
+    "Segoe Print": 5,
+    "Tahoma": 10,
+    "Gill Sans MT": 34,
+    "Times New Roman": 1,
+    "Comic Sans MS": 1,
+    "Bodoni MT": 1
+  },
+  "diagnosedUnsupported": {
+    "Efeito não convertido: Shadow": 306,
+    "Efeito não convertido: Skew": 451,
+    "Alvo de animação ausente": 47,
+    "Elemento/animação não convertido: TextDecoration": 2,
+    "Dimensão/posição Z ignorada; renderização somente 2D": 27,
+    "Elemento/animação não convertido: FillOffset": 72,
+    "Ticker.Template complexo não convertido; somente texto com rolagem aproximada": 1,
+    "Elemento/animação não convertido: Bounding": 64,
+    "Elemento/animação não convertido: Geometry": 11,
+    "Elemento/animação não convertido: RotateContinuous": 16,
+    "Elemento/animação não convertido: ImageSequenceLoop": 2,
+    "Elemento/animação não convertido: Mask": 45,
+    "Elemento/animação não convertido: Bounce": 10,
+    "Efeito não convertido: FlipX": 4,
+    "Rotação 3D X/Y não convertida": 6,
+    "Elemento/animação não convertido: QRCode": 4,
+    "Elemento/animação não convertido: StrokeOffset": 37,
+    "Brush não convertido: RadialGradient": 3,
+    "Elemento/animação não convertido: Scroll": 4
+  },
+  "geometryCounts": [
+    {
+      "type": "Layer",
+      "reference": 1491,
+      "templateOnly": 1,
+      "converted": 1490,
+      "match": true
+    },
+    {
+      "type": "Rectangle",
+      "reference": 2378,
+      "templateOnly": 0,
+      "converted": 2378,
+      "match": true
+    },
+    {
+      "type": "Image",
+      "reference": 387,
+      "templateOnly": 1,
+      "converted": 386,
+      "match": true
+    },
+    {
+      "type": "Ellipse",
+      "reference": 415,
+      "templateOnly": 0,
+      "converted": 415,
+      "match": true
+    },
+    {
+      "type": "Triangle",
+      "reference": 89,
+      "templateOnly": 0,
+      "converted": 89,
+      "match": true
+    },
+    {
+      "type": "RightTriangle",
+      "reference": 147,
+      "templateOnly": 0,
+      "converted": 147,
+      "match": true
+    }
+  ],
+  "withoutDetectedWarnings": 361,
+  "withExplicitDiagnostics": 382,
+  "errors": [],
+  "referenceInventory": [
+    {
+      "file": "GT ScoreBoard/Scoreboard 1- VBA.gtzip",
+      "sha256": "76a5ef53b0963576d22cf5781b739ae94ce98e165872e6a18e1b2e136c23092c",
+      "layers": 3,
+      "fields": 9,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT ScoreBoard/Scoreboard 10- Top Left.gtzip",
+      "sha256": "608cdda1ac6358ca45c070e86a23d65c62f7b9de79da464da90b898085047a79",
+      "layers": 3,
+      "fields": 6,
+      "warnings": 3,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT ScoreBoard/Scoreboard 11- Improved Scorebored.gtzip",
+      "sha256": "947f481aa2b917f4bbff764ada9391c6fda1b393c088786d9822afd47915fe45",
+      "layers": 1,
+      "fields": 5,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT ScoreBoard/Scoreboard 11- Scorebored.gtzip",
+      "sha256": "24028fcbbcb528951358f1c7ec2a2a529439b49e03f427c91dbb59dcd1930811",
+      "layers": 1,
+      "fields": 5,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT ScoreBoard/Scoreboard 12- Morebored.gtzip",
+      "sha256": "b6b030bcfde5215e64a8f74dfca38051e2b5c6db3031990899730ffc14c0d82a",
+      "layers": 3,
+      "fields": 5,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT ScoreBoard/Scoreboard 13- The Extreme.gtzip",
+      "sha256": "737af7c781d9dee0d11792138092561dfb7fcb5ba3bf8e74880eff289ba5a547",
+      "layers": 2,
+      "fields": 9,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT ScoreBoard/Scoreboard 14- VBall.gtzip",
+      "sha256": "cd5ff75042275633d462f81072945137b2e98744f4b42fe447bf619602dbe822",
+      "layers": 8,
+      "fields": 8,
+      "warnings": 19,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT ScoreBoard/Scoreboard 15- Tennis 3 Set.gtzip",
+      "sha256": "32799f15e9dc121f890a97b8a09702ff0c58c2f64db91da0cde524f871795d0b",
+      "layers": 1,
+      "fields": 14,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT ScoreBoard/Scoreboard 16- Tennis 5 Set.gtzip",
+      "sha256": "bcc6524be66c949daadef85c0c5c3e895760981725ea31e1d23ab2d42cdc6f08",
+      "layers": 1,
+      "fields": 18,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT ScoreBoard/Scoreboard 2- Lineup.gtzip",
+      "sha256": "164927af09bb65709a9ef36fc46e9c4eb076baed0647d12537ae4f7b97f23a14",
+      "layers": 2,
+      "fields": 13,
+      "warnings": 2,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT ScoreBoard/Scoreboard 3- Lineup 11.gtzip",
+      "sha256": "6dbe64f34e5d28c7a7a47e88a7ead92d7c25bc952e8a8e573c39125dbf1fcc99",
+      "layers": 4,
+      "fields": 25,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT ScoreBoard/Scoreboard 3- Lineup 12.gtzip",
+      "sha256": "0f2d97ec661c7d45ac9a3312a0e6caa0b2caefdcf6d0b143c6251ddbaa2bad99",
+      "layers": 4,
+      "fields": 27,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT ScoreBoard/Scoreboard 4- Lineup 5.gtzip",
+      "sha256": "1a950b9417d4de9d755d21b14bef5489ba0de3e5a5f0777ebaeece42c2cb978c",
+      "layers": 4,
+      "fields": 13,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT ScoreBoard/Scoreboard 5- Get Low.gtzip",
+      "sha256": "9f3c24a9fa7c29b74ec59c3fd843bfc67ae450693390bba05437b924855389df",
+      "layers": 3,
+      "fields": 8,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT ScoreBoard/Scoreboard 6- BYO.gtzip",
+      "sha256": "18b4e68a2119a75c5fe46d7c7305f4cdefed03df93100d5c665d3461cc6186ea",
+      "layers": 1,
+      "fields": 8,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT ScoreBoard/Scoreboard 7- Toppy.gtzip",
+      "sha256": "6d86c847a63a957ca921fa0bcfa2cb2d31dacb8818abe22981720a1a6747d229",
+      "layers": 1,
+      "fields": 5,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT ScoreBoard/Scoreboard 8- This n that.gtzip",
+      "sha256": "30c5b1d25886104b466b04afe63f13069df39dbaaf157f1ec78993e55f8c739e",
+      "layers": 3,
+      "fields": 5,
+      "warnings": 3,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT ScoreBoard/Scoreboard 9- Keepin score.gtzip",
+      "sha256": "a0484044962dcaeaae472596e14bdae03d70ad631ba522a720a0268c65c3b248",
+      "layers": 3,
+      "fields": 5,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Social/Social 1- Kimono.gtzip",
+      "sha256": "5104c55e9c68fb3ab1758c5e8c622650b740f4f312bb6adc5a5a484d5d996439",
+      "layers": 5,
+      "fields": 6,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Social/Social 10- Bricks Blue.gtzip",
+      "sha256": "0ffe47f05cd6653c4e420c12d3a768a07bf995a73340df426f850a8d32410654",
+      "layers": 5,
+      "fields": 6,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Social/Social 10- Bricks Green.gtzip",
+      "sha256": "d14b169a88cb030d05a9a38a495e91e9bf60f10632b47e5e18f7ddc210a6b3e2",
+      "layers": 5,
+      "fields": 6,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Social/Social 10- Bricks Red.gtzip",
+      "sha256": "4de194b3c8b6b26d106397dfa99b4e7ffc0ac1c8fd429dda8c8dd88e8f2c94cb",
+      "layers": 5,
+      "fields": 6,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Social/Social 11- Streets Ahead Blue.gtzip",
+      "sha256": "b4d781c093a370a38c180486b81c328aff46b63a65facad7a5803a635fac7e3c",
+      "layers": 5,
+      "fields": 5,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Social/Social 11- Streets Ahead Green.gtzip",
+      "sha256": "42fc851075cc5f30062b699548e770de474e06f63ea3baf330b755d783649afd",
+      "layers": 5,
+      "fields": 5,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Social/Social 11- Streets Ahead Purple.gtzip",
+      "sha256": "354aa691ea4727e7dd3de1cbd02ace509686884ddd2fa5a1934b7331330446d0",
+      "layers": 6,
+      "fields": 5,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Social/Social 11- Streets Ahead Red.gtzip",
+      "sha256": "81b0874f1317c174e07bd1d09a3748d006f8998cabe9533cbde8b4d64086a655",
+      "layers": 5,
+      "fields": 5,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Social/Social 12- Bookend Blue.gtzip",
+      "sha256": "50b02cfb12c1fadbe7c7a372cd7bb09387b1019cef42593fd105e88971798d0e",
+      "layers": 5,
+      "fields": 5,
+      "warnings": 4,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Social/Social 12- Bookend Green.gtzip",
+      "sha256": "71021258cc74239076b41a8caacf5fab01acc5670c4e3cd2780e45a83caebbf9",
+      "layers": 5,
+      "fields": 5,
+      "warnings": 4,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Social/Social 12- Bookend Grey.gtzip",
+      "sha256": "0a09443eef9770fd38570a026759cde29e1f3884acbbe8d8aa9edfa4f663f5ec",
+      "layers": 5,
+      "fields": 5,
+      "warnings": 4,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Social/Social 12- Bookend Purple.gtzip",
+      "sha256": "0ddaec77f283fd9b51f9b0c8d2cb50249c701e206c20110b37317632c8f76ad3",
+      "layers": 5,
+      "fields": 5,
+      "warnings": 4,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Social/Social 12- Bookend Red.gtzip",
+      "sha256": "17893f6f7dc2d0d09bb2c7cddf9792865c40c0c0a84a7190f3229981d01c39be",
+      "layers": 5,
+      "fields": 5,
+      "warnings": 4,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Social/Social 13- Breakfast Table Blues.gtzip",
+      "sha256": "d1d9c3fcdddbbce828167c44ecbfc181f2b340e2fd8d42ad0f42037bbe934ebc",
+      "layers": 3,
+      "fields": 4,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Social/Social 13- Breakfast Table Grey.gtzip",
+      "sha256": "d93d17419b8fa3ee849fb20a14c4ae558c604ab76ddf4ec5ca28ed8b80d865ca",
+      "layers": 3,
+      "fields": 4,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Social/Social 13- Breakfast Table Oranges.gtzip",
+      "sha256": "f91407a145c6b1ab536dfa053afa628df3c7a830a7dd6ab262de34d7cf348313",
+      "layers": 3,
+      "fields": 4,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Social/Social 13- Breakfast Table Purple.gtzip",
+      "sha256": "07ed35ad1e42eed43f89b6ef0056b9eca13fbc3893258e70da7d0d8e9b43df52",
+      "layers": 3,
+      "fields": 4,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Social/Social 13- Breakfast Table WM.gtzip",
+      "sha256": "dfb23514072c8279bda65e9790b2e123108dded38b431ebbda3f9c1330d4e922",
+      "layers": 3,
+      "fields": 4,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Social/Social 14- Bonus Track Blue.gtzip",
+      "sha256": "9b95666af50f6fff21d0731ebd6671d0cbe3df450288f79b53417c67e19cea79",
+      "layers": 4,
+      "fields": 4,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Social/Social 14- Bonus Track Green.gtzip",
+      "sha256": "a93a4e682d2c00522cf5a2deba531cc9778da5f4881d03dca393960f629ecdd8",
+      "layers": 4,
+      "fields": 4,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Social/Social 14- Bonus Track Grey.gtzip",
+      "sha256": "f83ebda20229945317e49fc447468763571de7e1a62678ad013575666157fc4c",
+      "layers": 4,
+      "fields": 4,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Social/Social 14- Bonus Track Purple.gtzip",
+      "sha256": "2746e6020996018b1468b01ade7daa5f87f743c6dd5a8e21dabe195d4bab616e",
+      "layers": 4,
+      "fields": 4,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Social/Social 14- Bonus Track WM.gtzip",
+      "sha256": "83dc32fee2c8d9d06327193f68ac6fb9ebbaedfd88c1d5fe4f8759fba242663d",
+      "layers": 4,
+      "fields": 4,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Social/Social 14- Bonus Track Yellow.gtzip",
+      "sha256": "b45f645d2e89e243c6118489240a6c8beca707a65afa34dd6728d190823d6ed2",
+      "layers": 4,
+      "fields": 4,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Social/Social 15- Two Fitty Mill Blue.gtzip",
+      "sha256": "6afd612608c3a91cdf50c38bf18cf7a5fc6e987f5187a1b657c047c128d37eb9",
+      "layers": 7,
+      "fields": 4,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Social/Social 15- Two Fitty Mill Green.gtzip",
+      "sha256": "3fa1b4847bdacf3509a617dabaa42ca71e7731b110fc389ce02b5691da122879",
+      "layers": 7,
+      "fields": 4,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Social/Social 15- Two Fitty Mill Grey.gtzip",
+      "sha256": "3bc6a7cf57acfd74ecd1a910fff396864e74d461a9230ab8005df8ef2e93bc6b",
+      "layers": 7,
+      "fields": 4,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Social/Social 15- Two Fitty Mill Purple.gtzip",
+      "sha256": "ccf2bac305b5c3785eba50125105bf240f09d8b048ddc5411d0023c498f3af5c",
+      "layers": 7,
+      "fields": 4,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Social/Social 15- Two Fitty Mill WM.gtzip",
+      "sha256": "c7d96e2d7a7b1b9aae55e3e65d96225e306cf76e80f8178e89f16c0807bb4104",
+      "layers": 7,
+      "fields": 4,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Social/Social 16- One More Time Purple.gtzip",
+      "sha256": "6aaf15daac102826d70057c8c90856c7f096ebd57e9934a7e65d4000dec468e7",
+      "layers": 5,
+      "fields": 5,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Social/Social 17- One More Time Blue.gtzip",
+      "sha256": "0fd408dcdb46c197515f3ccdbcb765eaa97544b123d8d9537eca62e41d5af672",
+      "layers": 5,
+      "fields": 5,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Social/Social 17- One More Time Green.gtzip",
+      "sha256": "0be977d068db98c3a5847759a61819ae74e2eaa63a1073abe470bc8b655f2202",
+      "layers": 5,
+      "fields": 5,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Social/Social 17- One More Time Grey.gtzip",
+      "sha256": "9dc3f2e4a43bec155444f08fd71c975cdfe16126135939ea0b8edafc537d4377",
+      "layers": 5,
+      "fields": 5,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Social/Social 17- One More Time Puce.gtzip",
+      "sha256": "ba1e07436bff48cb65e8ef8ef1252a905323fa6142af02c31cc8d239d85c1c15",
+      "layers": 5,
+      "fields": 5,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Social/Social 17- One More Time WM.gtzip",
+      "sha256": "6fa027a3c376c59b0dc384a4d2c76fdb1356ac2e0b54c917ef5578c48e9d3859",
+      "layers": 5,
+      "fields": 5,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Social/Social 18- Honeybeads Blue.gtzip",
+      "sha256": "3271912071662d51272c9f87bbc6147529602e46ac044055372173c8f2a47c74",
+      "layers": 5,
+      "fields": 5,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Social/Social 18- Honeybeads Green.gtzip",
+      "sha256": "19bf8e3173b15223ac74be7dbfae918293ee577c901fe62b87a1dd3761f0c063",
+      "layers": 5,
+      "fields": 5,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Social/Social 18- Honeybeads Grey.gtzip",
+      "sha256": "0871d9d12a8e64f3b62f2a7515b79296e7b2342e4d913403f95a68b77f38d254",
+      "layers": 5,
+      "fields": 5,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Social/Social 18- Honeybeads Wm.gtzip",
+      "sha256": "b06516220ab68905a56d4ceebeb083e968f9d89980bbebfd5882b6a89dc88abe",
+      "layers": 5,
+      "fields": 5,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Social/Social 2- Deets Blue.gtzip",
+      "sha256": "ca9b892146dc434332ab5e009b4da27a1c14fb08cbee0c0a0c7a1fef69255664",
+      "layers": 3,
+      "fields": 7,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Social/Social 2- Deets Green.gtzip",
+      "sha256": "737001e03085ab8830859a800577ea77ece17835fea3fa285350e2abf4865874",
+      "layers": 3,
+      "fields": 7,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Social/Social 2- Deets Purple.gtzip",
+      "sha256": "a7fb821335cf4ffe548255164447ba3e69e97c7a215bd2afb387b21a3631025d",
+      "layers": 3,
+      "fields": 7,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Social/Social 2- Deets Red.gtzip",
+      "sha256": "dba2c5265025877b6f108b241f1afeeebf8d380b47294260480c6f8ba36b4409",
+      "layers": 3,
+      "fields": 7,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Social/Social 3- Goss Blue.gtzip",
+      "sha256": "1ec0edf716b676ef9b3ab77a694fef341e5ec734418c2982a77a99547c0fcbc7",
+      "layers": 6,
+      "fields": 7,
+      "warnings": 2,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Social/Social 3- Goss Green.gtzip",
+      "sha256": "7319a43b1d4019de52250923872f84dabe84942dec9ca716dbfca989fe0047e6",
+      "layers": 6,
+      "fields": 7,
+      "warnings": 2,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Social/Social 3- Goss Orange.gtzip",
+      "sha256": "deab664b7a8a93c23f67ce572edea978ff2cbe90d62cc15d30367ed08e43dc2d",
+      "layers": 6,
+      "fields": 7,
+      "warnings": 2,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Social/Social 3- Goss Sunset.gtzip",
+      "sha256": "e81ab925f2684a986616a0aa7ed1f2ed7cca9539ba9fed7331df59f6a9a7e84f",
+      "layers": 6,
+      "fields": 7,
+      "warnings": 2,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Social/Social 4- Gordon Street Blue.gtzip",
+      "sha256": "11696db4b19fb4934897523f10171afca8372de4a331398fee6df91fb136fce4",
+      "layers": 4,
+      "fields": 7,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Social/Social 4- Gordon Street Brown.gtzip",
+      "sha256": "331a640ab98bc174420afc53fc1dedb6100dd4b24ada8a44a8fcf7cc0b3c0665",
+      "layers": 4,
+      "fields": 7,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Social/Social 4- Gordon Street Green.gtzip",
+      "sha256": "5cbf3623b2949d615f56528ca70bd21d3efb180d1ee6a0ca23ff80542ee631a1",
+      "layers": 4,
+      "fields": 7,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Social/Social 4- Gordon Street Red.gtzip",
+      "sha256": "dcc2503b89ce2c9cc25802b0e8b87f064c7e1c5ebdc0954df15a5189a4f72a43",
+      "layers": 4,
+      "fields": 7,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Social/Social 5- 4K Pop Pop Blue.gtzip",
+      "sha256": "f0f60ca253183ee090a2bb7b950fc6ccd4c0e90a15d970bea453b985782ee0ac",
+      "layers": 4,
+      "fields": 7,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Social/Social 5- 4K Pop Pop Orange.gtzip",
+      "sha256": "507547ae57b078d873e9e7900369f7a722e44d2c8cb55f69f1d2803b8c10e907",
+      "layers": 4,
+      "fields": 7,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Social/Social 5- 4K Pop Pop Purple.gtzip",
+      "sha256": "486a762cfae9b82abf1ef18a7f3e8e133de92de31aa00b291ac8e765551adf09",
+      "layers": 4,
+      "fields": 7,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Social/Social 6- 4K Speak Now Blue.gtzip",
+      "sha256": "69efba3be23bfb4b8dcc40157a520e92cd4f2cfd0c4f1c95132001a82bfb352c",
+      "layers": 3,
+      "fields": 7,
+      "warnings": 4,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Social/Social 6- 4K Speak Now Red.gtzip",
+      "sha256": "aaf65ba8b485ffe8eb87e16239f63b2be3a8d2f3045768538faa6bf8106554d0",
+      "layers": 3,
+      "fields": 7,
+      "warnings": 4,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Social/Social 6- 4K Speak Now VW.gtzip",
+      "sha256": "209e6a846caa6162516f06b1aeaf48be4412211c2c3d40a29bce0cffa9691907",
+      "layers": 3,
+      "fields": 7,
+      "warnings": 4,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Social/Social 7- 4K Wedgie Blue.gtzip",
+      "sha256": "a03493dcf9d72fdac49577f1591760608fff86d9cfbcc50a7a760015a40aecf4",
+      "layers": 3,
+      "fields": 7,
+      "warnings": 3,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Social/Social 7- 4K Wedgie Green.gtzip",
+      "sha256": "8cffe799d4d74068bb96194987d1dc79e20d9cb5ecd239671f7e855123bd5e7b",
+      "layers": 3,
+      "fields": 7,
+      "warnings": 3,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Social/Social 7- 4K Wedgie Purple.gtzip",
+      "sha256": "f65cd86982d40aed04cb83c75cd39c58049799e27429a81e094f2fb1a8a462a7",
+      "layers": 3,
+      "fields": 7,
+      "warnings": 3,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Social/Social 8- Fax Me.gtzip",
+      "sha256": "d879e6f535748d68d0eaadb01e49b4cd86d5c101f5856a9b160e3fac4e9b6466",
+      "layers": 5,
+      "fields": 6,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Social/Social 9- Festive.gtzip",
+      "sha256": "94c920ddf8883513897fcbadc4178482943d45ee9394623d61a9538a86f21aa3",
+      "layers": 6,
+      "fields": 6,
+      "warnings": 26,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Social/Social Ticker 1 - Blue.gtzip",
+      "sha256": "3ac3f4c11c933803accc250e79ef4aad0aa3164cdd03d57038f682be8915b5b2",
+      "layers": 1,
+      "fields": 3,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Stingers/Stinger 1- Liney Blue- No Logo.gtzip",
+      "sha256": "3d16d8dd591f11ae6ff8a7671853a061fb471b1cf4927a8457acd6c980829674",
+      "layers": 1,
+      "fields": 0,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Stingers/Stinger 1- Liney Blue.gtzip",
+      "sha256": "590c2740c8acf04a0d79b7cf95d51f79ac7082340cbc6387d792004757d92d2b",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Stingers/Stinger 1- Liney Green- No Logo.gtzip",
+      "sha256": "1b558ea89fb1e591c6711f4eeb304b87d2bda80949174ef63b361d83bf1224cb",
+      "layers": 1,
+      "fields": 0,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Stingers/Stinger 1- Liney Green.gtzip",
+      "sha256": "c68ed6aa5482a5a6478bd1299b1a03c2091e07728bf600dac759478ea3897a5c",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Stingers/Stinger 1- Liney Grey- No Logo.gtzip",
+      "sha256": "f1912800e313fe080b4bae6a5c90c872ce6a911f4d08cf95a626efd56177f84f",
+      "layers": 1,
+      "fields": 0,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Stingers/Stinger 1- Liney Grey.gtzip",
+      "sha256": "94d241572a78d700bb89b310dfaa32d5b12255f71ba4e6d93cf7d80f7c821283",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Stingers/Stinger 1- Liney Purple- No Logo.gtzip",
+      "sha256": "1f8beab09652735f16fe67fff0bbec1a4daecab22338e746c3c15bc74894564a",
+      "layers": 1,
+      "fields": 0,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Stingers/Stinger 1- Liney Purple.gtzip",
+      "sha256": "a5b62df4d64abe1fb4bdc68ce5bcd65a53ca31c666d6a3b4ef2b3a070e34f9a5",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Stingers/Stinger 10- Peeky Black and White.gtzip",
+      "sha256": "57041f67266644e2c137ca75db53174997f5aa4ab934e260583dc85b41a949b3",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 8,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Stingers/Stinger 10- Peeky Blue.gtzip",
+      "sha256": "1bf193782ba61683b411012f1f65df461d2ab1b8604aea5a66e8576df9bbc58c",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 8,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Stingers/Stinger 10- Peeky Grey.gtzip",
+      "sha256": "ba061b6183df7f4b94d02e9f714494955687c87c8493f192eeb62d433196f018",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 8,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Stingers/Stinger 10- Peeky Red.gtzip",
+      "sha256": "4aea54b82b6b254725a06b11806324ce6dbfc6d1ea4fea6c661c8ff8cb1e682b",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 8,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Stingers/Stinger 11- Flying V Black.gtzip",
+      "sha256": "1d3530550d64fa9edee9c9b3f7ddbb4d02b524fec566585d27f6650b4d18a659",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Stingers/Stinger 11- Flying V Blue.gtzip",
+      "sha256": "a0b9ff3acc5178be8728a32b9edea9e20c20dcc29153423c67791048768dcd37",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Stingers/Stinger 11- Flying V Gradient.gtzip",
+      "sha256": "5f5723fcc5862331441f0facb9d350d1426f0df13a353bb6d807275aebc2598b",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Stingers/Stinger 11- Flying V Green.gtzip",
+      "sha256": "2aca74faeb8d92d7b2fdf117fa6bc91087d61171a5c279bbe99042b63e1263c1",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Stingers/Stinger 11- Flying V Grey.gtzip",
+      "sha256": "64e180421f31dd91d663bb037a3f52307191833b6d046508566b75d3418019d3",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Stingers/Stinger 11- Flying V Red.gtzip",
+      "sha256": "25ad7a5bd7eb412ea5eea124dfc30c00137805e63da3522d12ba1dffcaa1d5ef",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Stingers/Stinger 12- Four stars out of Five Blue.gtzip",
+      "sha256": "90bb976d672a43b101c738d18640f0b8b58e14758f99a5dbcdb655a4cafc268a",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Stingers/Stinger 12- Four stars out of five Green.gtzip",
+      "sha256": "941ad3b2434ba73ee0c363e06346cd996caa00c1aac0d29fcdcc60e43b8d61c7",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Stingers/Stinger 12- Four stars out of Five Red.gtzip",
+      "sha256": "de5ebbb6140833eb55770d723216b1fd85ed40aec991006a109b2da39d2c956c",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Stingers/Stinger 13- In a Big Spot Bue.gtzip",
+      "sha256": "da42d65106c9a71b3dd96c1fa0fe3bea5efd299bcda2f94c0258733f0084e9f3",
+      "layers": 2,
+      "fields": 1,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Stingers/Stinger 13- In a Big Spot Green.gtzip",
+      "sha256": "ca6dfa11f3b2db943ff9f9b0828a6f1cf32ebe1c52a3f6a63b07b94a6ecb3c8c",
+      "layers": 2,
+      "fields": 1,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Stingers/Stinger 13- In a Big Spot Purple.gtzip",
+      "sha256": "53f1b4c12474d23169a91fa2beabfe89819cd8c45f0db1db29f5f42209f40ae2",
+      "layers": 2,
+      "fields": 1,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Stingers/Stinger 13- In a Big Spot Red.gtzip",
+      "sha256": "f032508840571837dd2e3e8f4f3b93e63f326ca1c786ca0a1738fb72768e28f4",
+      "layers": 2,
+      "fields": 1,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Stingers/Stinger 13- In a Big Spot White.gtzip",
+      "sha256": "d4b8a85081aaab81f2e414d29c06b8a5b7ae484902945f50b855c0543d03d30f",
+      "layers": 2,
+      "fields": 1,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Stingers/Stinger 14- Gravity Blues.gtzip",
+      "sha256": "47574fdd89e3754027c08ba98bb34a0281ff0f5f79fbe1416b6315913a1d2f15",
+      "layers": 1,
+      "fields": 0,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Stingers/Stinger 14- Gravity Orange.gtzip",
+      "sha256": "ed14f6b99b21da1cf17d2108132cc061ea49c7bb403e12e084b1522601a0d78c",
+      "layers": 1,
+      "fields": 0,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Stingers/Stinger 16- Dreamy Time .gtzip",
+      "sha256": "d7594b60a24783c72e66bafb79606ce75bae293a1ef469ff0810eb58e7d162c9",
+      "layers": 1,
+      "fields": 6,
+      "warnings": 6,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Stingers/Stinger 17- Pop Pop.gtzip",
+      "sha256": "6d037b6c35cb1b3c03321b7011ae1c5b51472609f8cb826799937b12be3a4256",
+      "layers": 1,
+      "fields": 0,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Stingers/Stinger 2- Havin a blinder Blue Hue.gtzip",
+      "sha256": "dfba5c4779228a0e1f8e9a4c71bc2db7fc8136a0b643c252aa777fcecfc81350",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Stingers/Stinger 2- Havin a blinder Blue.gtzip",
+      "sha256": "80c4f3f8928d9ffa3e63094ae9a3a441407d04551c6aea195ae6894731983dbb",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Stingers/Stinger 2- Havin a blinder Gradient.gtzip",
+      "sha256": "57e37fcdb21006286b0ed2bb298687c51e9ffdeae0ba5e06532bd0d45d7334e0",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Stingers/Stinger 2- Havin a blinder Green.gtzip",
+      "sha256": "f03a7fa5ff29c10cf0dd25262521031458e7870861b835e84fa41ed1309d1e18",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Stingers/Stinger 2- Havin a blinder Red.gtzip",
+      "sha256": "132c23255bf9af66db75743d812c035dfe3131b17b4688a0205783bfe9336ac9",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Stingers/Stinger 3-  Slatz Blue- No Logo.gtzip",
+      "sha256": "a650a72be7ca0e62bd632bc03fac0581f574b15e8e460cc958e7867df008e0ab",
+      "layers": 1,
+      "fields": 0,
+      "warnings": 7,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Stingers/Stinger 3-  Slatz Grey- No Logo.gtzip",
+      "sha256": "60ee8639967b0f39763db58c4a1be180cd8f9946119ed26c28dda5ad3157bb1c",
+      "layers": 1,
+      "fields": 0,
+      "warnings": 7,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Stingers/Stinger 3-  Slatz Red- No Logo.gtzip",
+      "sha256": "a91b8f3d445bc67102e4b592f37a40a9aaa117208a6b90456db75de684d3d48d",
+      "layers": 1,
+      "fields": 0,
+      "warnings": 7,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Stingers/Stinger 3- Slatz Blue.gtzip",
+      "sha256": "274bc1a3f4d992f7ecfa14b5a2f23839db1784c3116ff61b1fb9e99359ebc7b9",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 8,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Stingers/Stinger 3- Slatz Grey.gtzip",
+      "sha256": "dfcfed631b4f05537bfa964c47352b2ef6c91018eb1f595dee12803389d7f2ef",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 8,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Stingers/Stinger 3- Slatz Orange- No Logo.gtzip",
+      "sha256": "6a457490e56456eb3792b88d3b2710b62655b12354f64e965fef51618784bd9a",
+      "layers": 1,
+      "fields": 0,
+      "warnings": 7,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Stingers/Stinger 3- Slatz Orange.gtzip",
+      "sha256": "95c8b0f26e8f790c50210a67655599ec77a58beaed1b7fceca030312a6364019",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 8,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Stingers/Stinger 3- Slatz Red.gtzip",
+      "sha256": "64be497b458cb11ab955d6b28043f6314f8861f6db03115b8fa9c5a1bd47a71a",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 8,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Stingers/Stinger 4- Middle Road Blue.gtzip",
+      "sha256": "2b4cbddca6866396088db2fd6ae0c67498be7bf39a8aa6cc7cb16717ad166b43",
+      "layers": 2,
+      "fields": 1,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Stingers/Stinger 4- Middle Road Green.gtzip",
+      "sha256": "ace3f40a5b08eb97b9b531a1d14980cf695fb9c048918eb92e7c62adee10d70d",
+      "layers": 2,
+      "fields": 1,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Stingers/Stinger 4- Middle Road Grey.gtzip",
+      "sha256": "af043630f743afa696c7e7ab9ad254916e6566b30986ff5d9e4d934629ec62e5",
+      "layers": 2,
+      "fields": 1,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Stingers/Stinger 4- Middle Road Orange.gtzip",
+      "sha256": "210c1023093c10ae30442e43b7830b115ddb8cb7ca224264a8afe0ad3d4368f9",
+      "layers": 2,
+      "fields": 1,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Stingers/Stinger 5- Blue White and Red.gtzip",
+      "sha256": "939c71736008087a9c5b77ed9fd301bfeedf91893e1f7c88ebd5b147f16cd2c3",
+      "layers": 1,
+      "fields": 6,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Stingers/Stinger 5- Brown White and Yellow.gtzip",
+      "sha256": "8a6ba033748450fe594049e602640cb36248d822330b725d3af9b5a4d82e958e",
+      "layers": 1,
+      "fields": 6,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Stingers/Stinger 6- Whoosher Blue.gtzip",
+      "sha256": "c2c5a69b8e3c8ddee1d4b20ffd47002f67045d1bd3c6779254751785375acee0",
+      "layers": 1,
+      "fields": 0,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Stingers/Stinger 6- Whoosher Green.gtzip",
+      "sha256": "f681da3a1a6f7331eb6cde4b01c64f4effae4d5ce6a7ed3543e888f3d0300569",
+      "layers": 1,
+      "fields": 0,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Stingers/Stinger 6- Whoosher Grey.gtzip",
+      "sha256": "469cf9c70994d137a331f183dc33385c166f850740e50ab3e87bb94717993760",
+      "layers": 1,
+      "fields": 0,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Stingers/Stinger 6- Whoosher Purple.gtzip",
+      "sha256": "ca1a8f167130e28c46da4b51a1958fb41933fbd9079bcac4220e7faf4d9362d1",
+      "layers": 1,
+      "fields": 0,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Stingers/Stinger 6- Whoosher Something.gtzip",
+      "sha256": "9a2debc31b75a4906bee17a5d220e481d9e210aadbc760162718766d9a3d1853",
+      "layers": 1,
+      "fields": 0,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Stingers/Stinger 7 -Right Round Gradient.gtzip",
+      "sha256": "87e4019faeb3ddb0659082e1a8211111fa122b3330c5f66acc146dd855516f96",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Stingers/Stinger 7- Wipers Orange.gtzip",
+      "sha256": "6ea8f262aaabdd2d5079bdbb162a8f5aa471a83f67d8c7199ae93d2a7b41487d",
+      "layers": 1,
+      "fields": 0,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Stingers/Stinger 7- Wipers Purple.gtzip",
+      "sha256": "e5547fc4a4adfc034d5e8b248527f232d152756f5e9d583be5b63aa2e25e3ac2",
+      "layers": 1,
+      "fields": 0,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Stingers/Stinger 8- TriHard Blue.gtzip",
+      "sha256": "63e2afdf5b0e48f0ca5b952f6e5b0d7aad5a64577f5c48e5df41dabbd0cab622",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Stingers/Stinger 8- TriHard Green.gtzip",
+      "sha256": "97f7d5ef58e7a644b1bec3ebe6d898512efe0b143426dd0f3a667e8c4d69a0eb",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Stingers/Stinger 8- TriHard Grey.gtzip",
+      "sha256": "5ffc67b97cef7d28b2efe8d8e439c1f8077ea6be29b95fb319f4316ae06af075",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Stingers/Stinger 8- TriHard Red.gtzip",
+      "sha256": "09480684e055241fbc2e89f8e776d4a2f974c0627dc44b22c069472e4b822e7e",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Stingers/Stinger 9- Right Round Black.gtzip",
+      "sha256": "7e6f101725b7792e77631659e71568c66327f91dfc7ce9788cf2bd68931c83b3",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Stingers/Stinger 9- Right Round Blue.gtzip",
+      "sha256": "4dbd479d2f28e808eb607c964f34cdf050ae18938e953a29a4907dc45a231fc9",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Stingers/Stinger 9- Right Round Purple.gtzip",
+      "sha256": "f402dbfb51a165ce353299c4a401466df1fcde1d5e9f3391b94c421f848b3010",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Stingers/Stinger 9- Right Round Red.gtzip",
+      "sha256": "246a80273d004a0abb5208894865ec429b6cf06fc2bd14b35654bc23afb37d0a",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Stingers/Stinger 9- Right Round White.gtzip",
+      "sha256": "c19975b392728e1ff8c7f31778c26c75f1b460fc307ffae3e455fa1efa1fc9d9",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Text/Text Middle Centre Left Right Sharp.gtzip",
+      "sha256": "58cc5d1b47c6e450bf00ff5dfd9f7c93629ee7fbe7b11d1af363457e41973ab1",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Text/Text Middle Centre Left Shadow.gtzip",
+      "sha256": "050646e6a4aeb86efd94a7ef1538b6314f607380bfc0247cd19d536c29a71ee1",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Text/Text Middle Centre Left Sharp.gtzip",
+      "sha256": "6bb826295c483b7c4c55cca0a69aa8d4a4df0280b8b9c6d11cd73dbd12fc252d",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Text/Text Middle Centre Outline.gtzip",
+      "sha256": "8c440b0e876d5f4b42103161c38934cb5918a3571d9ef36b62738350de365370",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Text/Text Middle Centre Right Shadow.gtzip",
+      "sha256": "ca7d0f19c8ea9654518cda113d9908133facfa81a3e39db90430e78a73db45b7",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Text/Text Middle Centre Shadow.gtzip",
+      "sha256": "1e0963f510cc8073b490c501027de41a8b18151ffb5c27e785d5611508580045",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Text/Text Middle Centre.gtzip",
+      "sha256": "cfec9d64fb26bfdf2b02df1d824230b032b3d4ecf1b77fad5d474e7233515ae0",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Text/Text Top Left Glow.gtzip",
+      "sha256": "eabe1c0f4d19038d248313398f03e1f469908b10bf4a4ea5202fb09bdbcd8c96",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Text/Text Top Left Left Shadow.gtzip",
+      "sha256": "49a580e650fa7b412f0165d97ed53e3f0773b7bf34e27493531cad5d377e07aa",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Text/Text Top Left Outline.gtzip",
+      "sha256": "aad2701812c2852c4f7ae6cc269f60f63e67550351bc8bdaf535a19deac9302a",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Text/Text Top Left Right Sharp.gtzip",
+      "sha256": "571fe823c9b60138ce52995a733acebb35262218a40154a6e73fd5138ca40b05",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Text/Text Top Left.gtzip",
+      "sha256": "595c8cf670cba2c431fa25a48723d7c406eca5df36efcc637a7c30d0a8c9de38",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Text/Texting Bound Blue.gtzip",
+      "sha256": "9052c7539dfc91833c269698700c21231f90c57f8c27dc9fccac778d5e14cc03",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Text/Texting Bound Green.gtzip",
+      "sha256": "ea1fe6a1781c360472f8f66ae496745d69ee5cf6fbd4db69548a3eede989ccd7",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Text/Texting Bound Rainbow Outline.gtzip",
+      "sha256": "10be05f9ea1993791eef84e8cef08a63b21a2d719b76c9bd398d189397953e39",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Text/Texting Bound Rainbow.gtzip",
+      "sha256": "8f973f66305c3868c7238f686e4de4f19636cebe9db27bf164d3dcaba5a58e1f",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Text/Texting Bound Red.gtzip",
+      "sha256": "7eb266ad8c396a1b7f5efc34d64cc8d2700e2549d74304278cf8e9ed46c7e84a",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Text/TextingBound Black.gtzip",
+      "sha256": "4d0a89acf210704dcdc9db727113e44c2619893e5d547845b1131990d3ccef83",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Ticker/Ticker 1- Basic Blue.gtzip",
+      "sha256": "4abf1499cca940cc8fb7aa8f77c5317cfc316e2fc6ef3a6a3fbfa8284eda26db",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Ticker/Ticker 1- Basic Red.gtzip",
+      "sha256": "d7334f7e4b5ef44180ac789625007a36966cb78f4b28909a8fd0360492f862e5",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Ticker/Ticker 10- Scrollin' with Title.gtzip",
+      "sha256": "04947f5444d8143c433136dea9a7a5ef138c8c47fbd25e4b1d4b89200762dff7",
+      "layers": 3,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Ticker/Ticker 10- Scrollin'.gtzip",
+      "sha256": "d14bd3299e1bdbb5d0820b40dc696a879213d541a7209028c48eba35ff42f41b",
+      "layers": 2,
+      "fields": 1,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Ticker/Ticker 2- Blue Alpha.gtzip",
+      "sha256": "a827a64d726192e883c916e0847b9d999039ee741d7346d0b0cbea8482053ef3",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Ticker/Ticker 2- Red Alpha.gtzip",
+      "sha256": "f397bd8068655508cc35ea2a1262eb22d88b753d16533260c762a40eea98504e",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Ticker/Ticker 3- Clear.gtzip",
+      "sha256": "17842a6cbacf676d7101c86889bd5a7a1923e1f9a5474f2fbf98b34c1ac9b761",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Ticker/Ticker 4- Pizazz Blue.gtzip",
+      "sha256": "ce4fde9e1aba4a3362903e32c0282a4af75d57c2d29780bd7c68ba796ba86a03",
+      "layers": 1,
+      "fields": 2,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Ticker/Ticker 4- Pizazz Red.gtzip",
+      "sha256": "04fd3efb53cb4521c87da896d2c36d5b35f94a200a2fa29093130435403c920f",
+      "layers": 1,
+      "fields": 2,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Ticker/Ticker 5- Wafer Grey.gtzip",
+      "sha256": "5786585ef99e51a4153ce9351edc10641e6f5c261a816861cc31ca4331f70303",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Ticker/Ticker 6- Super News.gtzip",
+      "sha256": "a89c7c71c1971fd889a433dd2b14f727aebe285e2b7a3718284abb1bd46992a4",
+      "layers": 3,
+      "fields": 6,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Ticker/Ticker 7- The Arvo News.gtzip",
+      "sha256": "0bf77b2a76a424595ef16b4ad9d345cf683ad1f7af6efa506db6beb0c9f788fb",
+      "layers": 1,
+      "fields": 3,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Ticker/Ticker 8- Good News.gtzip",
+      "sha256": "d2611fb1b4c99f67a97077ef01fc5252fb52cb6cc406456ee03f143f1e1d0e8b",
+      "layers": 3,
+      "fields": 4,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Ticker/Ticker 9- Super Mega News.gtzip",
+      "sha256": "0d65c029f14348b6f36dbe58c3ff83ab337341435c71112c935255b173ccebfb",
+      "layers": 2,
+      "fields": 5,
+      "warnings": 6,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Timer/Timer Centre.gtzip",
+      "sha256": "c68ff5a0ea7eda36e5389dda5a45ae41d2a2fef1d4fe76c555c0034e44c38e6c",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Timer/Timer Right Red.gtzip",
+      "sha256": "8961ec99d87253ff3fc36a6cd2081895b72d09ca5b3cc5848640328d259ffa17",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Timer/Timer Skewed Blue.gtzip",
+      "sha256": "7c879e164f7ef7c7824f9e1513e3be3a403972b06b4579a30f6863f81b4d4659",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 3,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Timer/Timer Skewed Brown.gtzip",
+      "sha256": "3fa5619b404b4b116ebad4115de5726ac967a9a9472edc090bc47d736cc14f02",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 3,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Timer/Timer Skewed Green.gtzip",
+      "sha256": "45f84896733b72ccf1f8393a35ad8b08da88ae7cdae0adcaaabf7e7877299aa1",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 3,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Timer/Timer Skewed Red.gtzip",
+      "sha256": "84441a8285b2c33105ff80251d9ac41dd6dde0234d596743515a9b10666cf38a",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 3,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Timer/Timer The Middle-B.gtzip",
+      "sha256": "7d8253286b28f43e7de42988f28efe8affb89fd89a12605bf744f10e8f6e1535",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Timer/Timer The Middle-R.gtzip",
+      "sha256": "fe3aa28abb80dd44c2318f5b2974618d774adeb1929c1c2e14740792e3076462",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Timer/Timer The Middle-W.gtzip",
+      "sha256": "f0656c6bf4d81ad2f14b46a91f8f169f1daaa85f8dfc6441d367e2892f504329",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Timer/Timer The Middle-Y.gtzip",
+      "sha256": "7c16a399faf8d36ff0f1340cebbb17eeb3f4669d1eb13e94f9bc6097c1dbc590",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Timer/Timer The Middle.gtzip",
+      "sha256": "fdf0de96c34af6b2a555474c7d22c848f323cb8bcf4103e251e1c631b8206a7a",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Timer/Timer TikTok Blue.gtzip",
+      "sha256": "58bce8d3066073f75fbb3816a04f71d77869788d4d1ea391ed553b873145d4b7",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Timer/Timer TikTok Green.gtzip",
+      "sha256": "c66f808f26e6d5626f1fefa5a446264be2b246459f5786291ba266a11a8df549",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Timer/Timer TikTok Red.gtzip",
+      "sha256": "0ab6297ef4edeb4f685baa42c9844b30d7dec598fe896e19a250ca956ec905f2",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Timer/Timer Top Right Blue.gtzip",
+      "sha256": "52aa2ed14231e5a8658c15b0fdd255ddd2214ed0c7e175859825d7879f0a0525",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Timer/Timer Top Right Green.gtzip",
+      "sha256": "72e96e6a0fac5cab336fafc199d5df7bc1594cf2b069b104e1698208af4a87ce",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Timer/Timer Top Right Red.gtzip",
+      "sha256": "52fa2ee601992fd2767d7915ecd24dad5258dfa1c01d00b5c632f72aca572179",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Spinner 160.gtzip",
+      "sha256": "e35cffc7582848ecd5ce4005c82a0684fcfa14acc2d9798f6456f02ce2475d56",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 3,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Spinner 180.gtzip",
+      "sha256": "aa71513d7d193161c3da5c2237cd25de9cd65a5d6db162322b05cd5ef70551fa",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 3,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 0- The Classic Blue.gtzip",
+      "sha256": "6353b0ec59c3d53b336afe5ef15d02307321c1df1a81d0cc348aec93d827ec69",
+      "layers": 3,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 0- The Classic Green.gtzip",
+      "sha256": "c8e3b00731021f0541efa0f17f5ceafe9c26b9af2c408f4040d81d74c2cfbf4b",
+      "layers": 3,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 1- Element Blue.gtzip",
+      "sha256": "feeb5753b74de33c8a640aaf39ea7bc01665aabfa07bc88d201097bbbe5245a3",
+      "layers": 2,
+      "fields": 3,
+      "warnings": 7,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 1- Element Green.gtzip",
+      "sha256": "521688ec60fb7064d6bd530e88d64095c4665f237e0b66038bc9acd92b0e0b39",
+      "layers": 2,
+      "fields": 3,
+      "warnings": 7,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 1- Element Red.gtzip",
+      "sha256": "212b5526cc7f9801dc8678f19b62f04765b220599acd0b6cd50a35b41f006e10",
+      "layers": 2,
+      "fields": 3,
+      "warnings": 7,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 10- Dyno.gtzip",
+      "sha256": "257f2ee34cc6de7ea01ec5ff87fe7e42d618e41c0d038032a137f19188b28a81",
+      "layers": 1,
+      "fields": 3,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 10- DynoLong.gtzip",
+      "sha256": "e522df8586ec40361f83dffdd1fda6d2e0facf319a2b218a077b455c94cdad31",
+      "layers": 3,
+      "fields": 3,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 100- Century Blue.gtzip",
+      "sha256": "e6978a32ba3ef96241780a71c8b501ddb769086a25c1d79e5c75d470c651d5f7",
+      "layers": 2,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 100- Century Green.gtzip",
+      "sha256": "8886b034b51277ad4963939a79e7a6c4e6b8293b64cba2e7a7389454ccbd80ac",
+      "layers": 2,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 100- Century Purple.gtzip",
+      "sha256": "abe54ddc0e477532b3ec4ba79c23fce225e240b06d013e1986299f5c43f35590",
+      "layers": 2,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 100- Century Red.gtzip",
+      "sha256": "1215b804cc5eb5c0eab4d88f5d9718953fb08175497e4270fa2e47af4f6a681f",
+      "layers": 2,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 100- Century Sea.gtzip",
+      "sha256": "2554957b51af9ce5c1082a5e492d129c186b705b64dc378fcbb3c6fcc6184c53",
+      "layers": 2,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 101- Fetch Blue.gtzip",
+      "sha256": "a7046cf7000f4d8666225df624ea64296eceed6c68cb89cad0627221313b0210",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 101- Fetch Dusk.gtzip",
+      "sha256": "b5dd7cc4fa89e1895c1190f6602042e5622a75c532a499d1fd7317ea116e5961",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 101- Fetch Green.gtzip",
+      "sha256": "723323b45f9dd574441134faf17453d3c987638c36b4904fcf8ca163e671ff99",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 101- Fetch Grey.gtzip",
+      "sha256": "8b4def769962895c27c07ac99da7085f4a3c1ceacacf6d0f80b097616833f36c",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 101- Fetch Orange.gtzip",
+      "sha256": "8116b90e8749c35827f0c1bcb7a7def428baa1c8971847d8123ba832eef423f5",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 101- Fetch Purple.gtzip",
+      "sha256": "7a14ac49dfb01d972821bd385975b2ef26d36acdbaa398c44dfbf146254f9c98",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 101- Fetch Sunset.gtzip",
+      "sha256": "5e1d28614eac109054f878c1956ce57ff6644194778164c2bd542b1391ceccdd",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 102- Naming Rights Blue.gtzip",
+      "sha256": "1a140bea40cede93eef470d2c34d20484a8d7c2fe575a5dcbe43435c95682cde",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 102- Naming Rights Green.gtzip",
+      "sha256": "0d3f0b60bb4a89ad3ae09358d54d032f222adcc10cd2d2454808b7ffdf43aede",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 102- Naming Rights Grey.gtzip",
+      "sha256": "bdd520ea60a15d9cce1ed46166ac2cf6ba574197244fdbc450967e30499969f1",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 102- Naming Rights Purple.gtzip",
+      "sha256": "3b4c5aadb2f60346849bc55e5b1fcfb8be80b332836ffa944f9e34916284c014",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 103- New Guy Blue.gtzip",
+      "sha256": "5a8039b9ebf33531a80c94855cafc43ac6a13824db6022dc07d2a5ed312a67a2",
+      "layers": 2,
+      "fields": 2,
+      "warnings": 2,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 103- New Guy Green.gtzip",
+      "sha256": "1b97ce14be198d21f9153bdefc235998437cee4cd27e86efd53b3434d33da455",
+      "layers": 2,
+      "fields": 2,
+      "warnings": 2,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 103- New Guy Purple.gtzip",
+      "sha256": "b3cc7b735ebca435ee6bfc46506ce60714f5bd4a978774649f291707ecf7cd06",
+      "layers": 2,
+      "fields": 2,
+      "warnings": 2,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 103- New Guy Red.gtzip",
+      "sha256": "7af3aaefd81bbf8bc1efeca63499a01f46924e15bdb2e50babb4300ea4e7cfb2",
+      "layers": 2,
+      "fields": 2,
+      "warnings": 2,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 103- New Guy Summer.gtzip",
+      "sha256": "122458e7a87535a303d24e6d80678650f6a77a27350081d50e0c647851c34c99",
+      "layers": 2,
+      "fields": 2,
+      "warnings": 2,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 104- Plastic Bricks Blue.gtzip",
+      "sha256": "19fc1224f12332c3215bae291924cb47d7a5b8ad46ab5a157baba1497414d3f0",
+      "layers": 1,
+      "fields": 3,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 104- Plastic Bricks Green.gtzip",
+      "sha256": "880c037a27286fe7411fd841e034f7f6de5ad266eb9c7943052be17fc954c69c",
+      "layers": 1,
+      "fields": 3,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 104- Plastic Bricks Orange.gtzip",
+      "sha256": "30a1c150f367d3a9160a52c5e009f89c2cbc14430e70b42626690d10201899b6",
+      "layers": 1,
+      "fields": 3,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 104- Plastic Bricks Purple.gtzip",
+      "sha256": "9773052ef74136d66a233a8728a9206849cde7b4d39071df00074aa3e44498c7",
+      "layers": 1,
+      "fields": 3,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 104- Plastic Bricks Red.gtzip",
+      "sha256": "068981574e91222e1e1d3a3a6cc8c53d69dba2a8734285e16cd5a2e907c57015",
+      "layers": 1,
+      "fields": 3,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 104- Plastic Bricks Shiny.gtzip",
+      "sha256": "41f36122bba8fc923e31f2d0075754648012cded152b17a5844f0e35c9075b05",
+      "layers": 1,
+      "fields": 3,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 104- Plastic Bricks Sunset.gtzip",
+      "sha256": "e74adaebbdb29a868437decd412f37034412efd86ddb77ccd148bf9a555a0ed7",
+      "layers": 1,
+      "fields": 3,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 105- Mr Gorp's Wild Adventures Blue .gtzip",
+      "sha256": "31bc163813acc6976401cafc3a9fe6f17487fc7880d5c77ead487197e92fba65",
+      "layers": 2,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 105- Mr Gorp's Wild Adventures Green .gtzip",
+      "sha256": "a38f9fc9dcaccb611cc6176826906f808387851ec9c2ad7eef36d3720dbc297a",
+      "layers": 2,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 105- Mr Gorp's Wild Adventures Grey .gtzip",
+      "sha256": "3830d37f7fd1ce04321ca055bd6b10d2ba5a44deff20cc28399b6abf3e5085f1",
+      "layers": 2,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 105- Mr Gorp's Wild Adventures Pink .gtzip",
+      "sha256": "3e520c56981bd9958d733faf8f5be6c5ca139bc82781cfb08bf0d02c4e5e03e8",
+      "layers": 2,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 105- Mr Gorp's Wild Adventures Purple .gtzip",
+      "sha256": "6ee2e2c1087886194f70e8af4449403d03f527566bfe85f2fad6bb71d1549e56",
+      "layers": 2,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 105- Mr Gorp's Wild Adventures Red .gtzip",
+      "sha256": "0780c9513c3b5b3f70630e74656fb83670fd2974e21fb86ab4c803332943985a",
+      "layers": 2,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 106- Now That's What I Call Title .gtzip",
+      "sha256": "a753238c92c8d0cd8bfdb1850ec6b628ecb6a3ccb58527bbb0a25758d972f878",
+      "layers": 3,
+      "fields": 3,
+      "warnings": 2,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 107- Curvature of the Earth Blue .gtzip",
+      "sha256": "6f87fc7894cfe92c9cc63bf97d096aa10d3849aac94eebcbe28e01dfb27c114b",
+      "layers": 4,
+      "fields": 1,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 107- Curvature of the Earth Green .gtzip",
+      "sha256": "539a1c277a8cd65cfb75ca3bf2f8ad02f271519e05304a77a4aa02e1af2e5a85",
+      "layers": 4,
+      "fields": 1,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 107- Curvature of the Earth Orange .gtzip",
+      "sha256": "1d54b407dc3d3c410ffd0e5c2779349f909a51cdd9fd1c2857c1dab645700a40",
+      "layers": 4,
+      "fields": 1,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 107- Curvature of the Earth Purple .gtzip",
+      "sha256": "6959af8f6631316d0ef3739ba9501f43ac6a36bbc5ffe9ccbd4b3a39f5174c27",
+      "layers": 4,
+      "fields": 1,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 107- Curvature of the Earth WM .gtzip",
+      "sha256": "967ec378b90cf81eeb6b08d6810b909ba340983d19dd844e36173330ea079c13",
+      "layers": 4,
+      "fields": 1,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 107- Curvature of the Earth Yello .gtzip",
+      "sha256": "64cf8727c704fc3be93e253082527b6a7fb02bc5ac6792858824165009b8af1e",
+      "layers": 4,
+      "fields": 1,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 107- Dramatization Blue.gtzip",
+      "sha256": "aa5d506d7aca812d2a1c60a1a7047667c535ab89faead172c91224c2c8192fb2",
+      "layers": 2,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 107- Dramatization Green.gtzip",
+      "sha256": "aa4b59fa828f04815791e9593ea0ca3661d7560862a933782d128249028ae92d",
+      "layers": 2,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 107- Dramatization Grey.gtzip",
+      "sha256": "03a4927f1f381afc6fb8531679835251a09bf9ae95ea6a16f3fb4e021cd599e2",
+      "layers": 2,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 107- Dramatization Purple.gtzip",
+      "sha256": "a1fe7f6c7ada6ad7e10385b51cc5bc7f3914ed36bce2945f8fde822d365cac36",
+      "layers": 2,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 107- Dramatization WM.gtzip",
+      "sha256": "17b30e6ae338de9c20973ef1b6726894f9c5c3b863e116c8ff4ed49fdae3fe3f",
+      "layers": 2,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 108- Passthrough Black.gtzip",
+      "sha256": "a21061ce5099d0b33bb3101e1936c7ac57b75d1cf3dac394b286e4c16b49d60b",
+      "layers": 3,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 108- Passthrough Purple.gtzip",
+      "sha256": "a1451203d0c6e7e4fe9971f7f11722ae04c36036ba1a228fc9d9f508e5d5d2fa",
+      "layers": 3,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 108- Passthrough Rainbow.gtzip",
+      "sha256": "b081db6751bea7506958f0094b2fd706286451e3450b96f31ee7dc43727cd2cf",
+      "layers": 3,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 109- Soft Sci-Fi Blue.gtzip",
+      "sha256": "2ddb1e6c39f557a6ec89c6a13f932f037fbccb284631efcd0f93058e612e5307",
+      "layers": 4,
+      "fields": 3,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 109- Soft Sci-Fi Green.gtzip",
+      "sha256": "45fbf743e41a9ec310b723807049f84203fd77f4b3018641c2f589f570d358bc",
+      "layers": 4,
+      "fields": 3,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 109- Soft Sci-Fi Grey.gtzip",
+      "sha256": "e34eb4218b6f8fa68aae91423be508d05c726295b8bd7b586c7e0530a81789d6",
+      "layers": 4,
+      "fields": 3,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 109- Soft Sci-Fi Purple.gtzip",
+      "sha256": "f59084c74be9b748099a269cf59aafa0380ef9549fec7f6bd3dfe3bfb93503f4",
+      "layers": 4,
+      "fields": 3,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 109- Soft Sci-Fi WM.gtzip",
+      "sha256": "f463be78285b1320cd16bc67b3ef3c4817959e3b733f23526b1b3f4e29cf84f5",
+      "layers": 4,
+      "fields": 3,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 11- Double Down.gtzip",
+      "sha256": "4191ad6f443c016518343da3ebb9c129fcfc03ba78985361d14e1f4aaddbaa12",
+      "layers": 1,
+      "fields": 2,
+      "warnings": 3,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 110-  Cheeseburger Soup Blue.gtzip",
+      "sha256": "0e4d36c0b3d120efc7c2bdb8ee40d20622362a0254fa488ebf18c373670d6742",
+      "layers": 2,
+      "fields": 1,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 110-  Cheeseburger Soup Green.gtzip",
+      "sha256": "a423db8a8686767e725adc7b53a61de303fcac8990a335da5a7f56dafe1a889b",
+      "layers": 2,
+      "fields": 1,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 110-  Cheeseburger Soup Grey.gtzip",
+      "sha256": "db5fe7e7665b329a885f260604f97e93881293729da661e433488a4095d5c25e",
+      "layers": 2,
+      "fields": 1,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 110-  Cheeseburger Soup Purple.gtzip",
+      "sha256": "a5e31f09c33cb5e3a9a4d603a48b1e522cf777e90f74fec03ee479868f051e4a",
+      "layers": 2,
+      "fields": 1,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 110-  Cheeseburger Soup Red.gtzip",
+      "sha256": "983e2dda7c4754404cef8c4e7ff7a8c1478b8c9b5a7b82973c970fb6377764e2",
+      "layers": 2,
+      "fields": 1,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 111- Oboe Solo BW.gtzip",
+      "sha256": "dc1763bb54c3a45aa74b27d639dea921e3c4a4457aeeb9898a7b04800b2df9c1",
+      "layers": 2,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 111- Oboe Solo Green.gtzip",
+      "sha256": "374d6d46ed4d1850ea3437ab2b76a34eb1050a67a64c99e07924351e92d6f1ac",
+      "layers": 2,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 111- Oboe Solo Purple.gtzip",
+      "sha256": "7484076fb213544b05a9e80358210df3db3121a8910461d69cdbd7ddf3b3cb89",
+      "layers": 2,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 111- Oboe Solo WM.gtzip",
+      "sha256": "d780b6d5ff271991583c26a07db3ab42eabe9862993f04e38ec9cd02256cb983",
+      "layers": 2,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 112- ALL CAPS Blue.gtzip",
+      "sha256": "74c577f02eccec3ae2ef930cd1d39c427b7adbc27b9a77ca0653915eafb5bfa0",
+      "layers": 1,
+      "fields": 3,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 112- ALL CAPS BW.gtzip",
+      "sha256": "62d0e3859ff29dab3879e12d941ea33876612a8edf84569e7ff5dd0c3fb0f281",
+      "layers": 1,
+      "fields": 3,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 112- ALL CAPS Green.gtzip",
+      "sha256": "a6a1f70ac0310328d3a94f6466b72777a645619f1b657c5be693cf8765e95eb8",
+      "layers": 1,
+      "fields": 3,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 112- ALL CAPS Purple.gtzip",
+      "sha256": "b54ed30fae4b1909f414558f57ec499c81b56f78163ce0b1aa3fabb94fd615a1",
+      "layers": 1,
+      "fields": 3,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 112- ALL CAPS Red.gtzip",
+      "sha256": "02bb91a925667392fb467620601b4bfa4212ecd284dbbd4362302ba987ca56c7",
+      "layers": 1,
+      "fields": 3,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 113- Internet Combustion Blue.gtzip",
+      "sha256": "4154872db4c3e7306596c0ab02762cc1b0e3c316651571774e24084d42c56e24",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 113- Internet Combustion Green.gtzip",
+      "sha256": "96300b1010aec66d7333dbd33bc230956d94f31ab9bff59418b3f2e76d50a75f",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 113- Internet Combustion Grey.gtzip",
+      "sha256": "18d1a5ca0bc559a58b29f9716e43529383db5ef317e27f834b61db3006bb77d4",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 113- Internet Combustion Purple.gtzip",
+      "sha256": "581408c58a000b5e132df381269389e8bf68069f2fed1bf169b4647b64b90d44",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 113- Internet Combustion Red.gtzip",
+      "sha256": "9ae78f255e3496917171f24c34a7114a16d6cd7ce5ae0625a68738dc4576f5fe",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 113- Internet Combustion Yellow.gtzip",
+      "sha256": "94a1d70e7994f3f89f05f026449b1e105913e66aa957af8f37b195ce11a5683c",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 114- Late Nineties Black.gtzip",
+      "sha256": "f4de74b3019aaaef564e71e754baa74f868938382e56212726cbf93f6f18873c",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 114- Late Nineties Blue.gtzip",
+      "sha256": "73d8008e3e7ddc9d71540ab0b5666ce0b49674408e73e8d8ecd211a23fb816d3",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 114- Late Nineties Green.gtzip",
+      "sha256": "f0fc4b78c02ec486c3b30e812102fcdfd532c7415768c71562812805bb52b672",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 114- Late Nineties Red.gtzip",
+      "sha256": "d098977cd42575dac2bc8f0b3fcffe274c4c918ac24ed2c9c515f463d75431a3",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 115- Andies Room 24h.gtzip",
+      "sha256": "5d20505d0358e9de89997dc38a1d71cb177f57062716886f9018cd581e96ed52",
+      "layers": 4,
+      "fields": 4,
+      "warnings": 12,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 115- Andies Room Day.gtzip",
+      "sha256": "5b638ddca2e5663e5beed67a2f84898d4ff0a4ee8192f46946a2508be7cfd92f",
+      "layers": 3,
+      "fields": 3,
+      "warnings": 12,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 115- Andies Room Night.gtzip",
+      "sha256": "d841cea66a0037a3e610ad1f4360ebd053453b7e18e7aac501b54f3c0e75dd22",
+      "layers": 5,
+      "fields": 4,
+      "warnings": 12,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 12- Double Rainbow.gtzip",
+      "sha256": "2ab13b2429b7661e1256711c926b74097ffbf850f2f761a11e8be3cc43ef0237",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 13- Wipe Out Blue.gtzip",
+      "sha256": "61d938e277db7e252e262c9622e39b3d87e96345cdca51dc2298f701b209496c",
+      "layers": 1,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 13- Wipe Out Green.gtzip",
+      "sha256": "f1d4d4809cd40ee4d8c86d33c8dee80d38b24c8f2c8fb283211a4b0ebf75b84f",
+      "layers": 1,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 13- Wipe Out Red.gtzip",
+      "sha256": "55d30d7e2a3d46b8e916bb692d219790e581eb286b29c8eb569d635e6e83a7f5",
+      "layers": 1,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 14- NewsHD3.gtzip",
+      "sha256": "1a402f8dfd78ab8cacd90e83da8a34fc2147b5e13ec396d746d9cb7349f2e5de",
+      "layers": 2,
+      "fields": 2,
+      "warnings": 6,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 15- Swish Swish Blue.gtzip",
+      "sha256": "ec8f3a5942cba54b8ba4da9ff2e0643cd0b924b770326d1a2ef437479799bbe1",
+      "layers": 1,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 15- Swish Swish Green.gtzip",
+      "sha256": "c82a42f9e6870a84f5592857a8582a0a9947577c831562d059f3ca215186eea6",
+      "layers": 1,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 16- Slide Whistle.gtzip",
+      "sha256": "bcbe3353a39ff1b3a7a77f0541c331e2b276548b6041752aecba6fc13e8685af",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 17- Drive Slow Blue.gtzip",
+      "sha256": "61f3b111598c1b58ebdbedf8673adf34d001c7d159674c2c6b2b0c38c5fcf231",
+      "layers": 1,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 17- Drive Slow Green.gtzip",
+      "sha256": "d690b378569f443c4ac4a0b18bfd492ab4e647d27a14ccbc8eb0610170d1abee",
+      "layers": 1,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 17- Drive Slow Red.gtzip",
+      "sha256": "13370292fd50ab8be48c00e6ae2149e9bdd7c98e05c8957804d993a03b3a5411",
+      "layers": 1,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 18- Slippery Dip Blue.gtzip",
+      "sha256": "8150b5c3fd504284947bdcfa6711a9ea25c9295ac5f3e29400480f4d24471c0a",
+      "layers": 2,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 18- Slippery Dip Green.gtzip",
+      "sha256": "8ee490659141e08c78c25740456b800381792fac69051958d1fce5f0cfc22db1",
+      "layers": 2,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 19- Flagon.gtzip",
+      "sha256": "372a9a4170fe313a4b23317a0c0b4af0f3cd543bd10f34e5bfbbbe051ef3faed",
+      "layers": 2,
+      "fields": 2,
+      "warnings": 3,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 2- Action Blue.gtzip",
+      "sha256": "2395ffe1ea3600f8f4294a26380b48b5d1858368e3f8e630eebf0539b155757f",
+      "layers": 3,
+      "fields": 2,
+      "warnings": 7,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 2- Action Green.gtzip",
+      "sha256": "01ee63691365889146df047305a3cff8e67c7e76f75aa0b1b3b911d3fbeb66f7",
+      "layers": 3,
+      "fields": 2,
+      "warnings": 7,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 2- Action Red.gtzip",
+      "sha256": "f5b5b39946bb442ac2c2fca234816e6c8be6df799f80a9e45438f0e10c3241d7",
+      "layers": 3,
+      "fields": 2,
+      "warnings": 7,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 20- Stripey.gtzip",
+      "sha256": "3eaff46ee1c5c19f39cce1fc76a5f77a4b4eea2fb332a0e67eeaaff0d8930547",
+      "layers": 3,
+      "fields": 2,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 21- Kriss Kross.gtzip",
+      "sha256": "a0611fecaf289624d3352349071aa5f86e4a1fd50670d1c15bc2f2b37ea37a46",
+      "layers": 1,
+      "fields": 2,
+      "warnings": 3,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 22- Neon.gtzip",
+      "sha256": "717fe84354f9fa92c53e243654dff8e8b9616fdbd87e25eadb8405f918a66834",
+      "layers": 2,
+      "fields": 3,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 23- D3d3d.gtzip",
+      "sha256": "6df8e1bc56f9ada5919ef2dd865d7aacf015bb8f3c3e78920080867382ee7b8d",
+      "layers": 1,
+      "fields": 3,
+      "warnings": 3,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 24- Princes.gtzip",
+      "sha256": "62924a80e91c9fb330233b062fd30c87e0fbbdf74837026aafaf624cf86f2f28",
+      "layers": 2,
+      "fields": 2,
+      "warnings": 8,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 25- 4K Crane Blue.gtzip",
+      "sha256": "dd6365efcb5d567f49a004285733366840781e2a383a44541306f5ef939c31df",
+      "layers": 3,
+      "fields": 2,
+      "warnings": 3,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 25- 4K Crane Green.gtzip",
+      "sha256": "e309f9eb28cce3310eebda97c085891f9982a11c2e653449da74ba68d184a4fa",
+      "layers": 3,
+      "fields": 2,
+      "warnings": 3,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 25- 4K Crane Red.gtzip",
+      "sha256": "aa42d8db68ceb7f7c6bb7d548e9e20ad0bb6ce8d9b3771b0ac275372369c32dc",
+      "layers": 3,
+      "fields": 2,
+      "warnings": 3,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 26- 4K The Classic Blue.gtzip",
+      "sha256": "e5d82c6b14f783d57c1151f0b272c2cf8f3acac3d5ca025d459f6181a7319847",
+      "layers": 3,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 26- 4K The Classic Green.gtzip",
+      "sha256": "fdcf6c97d5fd353dda82c605d3f238002da3135b204751dd63330cf2d10c14ef",
+      "layers": 3,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 27- 4K Wowzers Green.gtzip",
+      "sha256": "68047258ffed96c82b273d6798495ee81957d7040d77c802d747575f67fb68ab",
+      "layers": 2,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 27- 4K Wowzers Purple.gtzip",
+      "sha256": "cb43e8231dddecd8bb3d1df24c02e839a2b0f8c77de815a3b04c6b4f82ebeaba",
+      "layers": 2,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 27- 4K Wowzers Red.gtzip",
+      "sha256": "230c3bfa6a09420f2d6d6f2063b374909c06b5cbe8a9c809e8d4444399c1fe4a",
+      "layers": 2,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 28- Scripture and Verse Blue.gtzip",
+      "sha256": "d0aa50c89bb4539b521b1fd436c86f95a59c809cc740247656ffef67d78bba90",
+      "layers": 2,
+      "fields": 3,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 28- Scripture and Verse Grey.gtzip",
+      "sha256": "3f938720ba32d384e61d35240c825eec90c39b3f664e7672ccda30be73f5db1d",
+      "layers": 2,
+      "fields": 3,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 29- Scripture and Verse Tall.gtzip",
+      "sha256": "f1f4c30151f8296d0abcbcd3401c1b5beb606bed7826c490527efadcad11d97e",
+      "layers": 2,
+      "fields": 3,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 3- Feelin Groovy Blue.gtzip",
+      "sha256": "bcdbb52b5c9ddf87be0a4a991fe8795c85fa43532379b99af929a4b170bdea44",
+      "layers": 3,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 3- Feelin Groovy Green.gtzip",
+      "sha256": "008b9b9e920e921bb1c68b83da884dc4dfbf807bddca2445b8f5d1b5f82ab96f",
+      "layers": 3,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 3- Feelin Groovy Red.gtzip",
+      "sha256": "b6dcc448de2a09af5603db9a9e5fecd1ca9fb15e32e13e2c0e54aed620c53d5f",
+      "layers": 3,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 30- Ahoy.gtzip",
+      "sha256": "9312a7e896e37ece7464359babff717544c003d9c9fc8c670cea9ab738230eb5",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 31- Move Along 4K- Blue.gtzip",
+      "sha256": "38368364ee89cfa0101f647ca82e5f230961cb3cb1abf1658d493ebd77f61fa5",
+      "layers": 1,
+      "fields": 2,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 31- Move Along 4K- Green.gtzip",
+      "sha256": "83057d7f1e78f50bb49edb1d702470868a9e60e4c01bcbc04fb11009f59878c1",
+      "layers": 1,
+      "fields": 2,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 31- Move Along 4K- Purple.gtzip",
+      "sha256": "6123cc9c2bb3be9eaa4774d335e55fa2098e406c7271d0ce7e9c507a6fde8ca8",
+      "layers": 1,
+      "fields": 2,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 32- Mule with a spinning wheel Blue.gtzip",
+      "sha256": "50a07922dadfcaab9ce6e7b6f468902bf5b8051cf37b24f1d4dcb1055f816152",
+      "layers": 3,
+      "fields": 1,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 32- Mule with a spinning wheel Orange.gtzip",
+      "sha256": "818ae6f7ac4f94b661ff88088e2a91fc5ddde8bbea6c0ffabccc9f51ef140d5d",
+      "layers": 3,
+      "fields": 1,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 32- Mule with a spinning wheel Purple.gtzip",
+      "sha256": "997dc7c877234ef7debc98fe1a6fe9cb009bfc097c2ab220bb768fd9233341a0",
+      "layers": 3,
+      "fields": 1,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 33- On the shelf- Blue.gtzip",
+      "sha256": "2cdca4b7e41ed7b5a575bddf8cad71f908c274d70d16e060c02c8fd880cec77e",
+      "layers": 2,
+      "fields": 2,
+      "warnings": 2,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 33- On the shelf- Peach.gtzip",
+      "sha256": "09ef9af452f3724b1b95486090ac8bcccdda5a22cb9033870caee8d7cb77335d",
+      "layers": 2,
+      "fields": 2,
+      "warnings": 2,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 33- On the shelf- Sunset.gtzip",
+      "sha256": "2fb4adc8b269b48a5196cb3adef6c85a3a182ede64a64e4dc8e219b0e47277f5",
+      "layers": 2,
+      "fields": 2,
+      "warnings": 2,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 34- Potpourri.gtzip",
+      "sha256": "5ca8ae827e8f0f7dd0f6ead6975f06060d3fa457d6d7cd393a38fc064b5ec9d6",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 2,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 35- QOH.gtzip",
+      "sha256": "be383929331d8c363e2cf0910205d8573a3f651e1af35e056a88709d2bac54bb",
+      "layers": 4,
+      "fields": 5,
+      "warnings": 2,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 36- Revealing Blue.gtzip",
+      "sha256": "74d637423ee6b2f944d41d7a3afcbd7bc9a694f0d46a1077a24d5b322748d322",
+      "layers": 4,
+      "fields": 2,
+      "warnings": 3,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 36- Revealing Green.gtzip",
+      "sha256": "d182bdf7c01df44e9c21e0a534f343c67556c334f60a6656e77d76cfa8268d55",
+      "layers": 4,
+      "fields": 2,
+      "warnings": 3,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 36- Revealing Purple.gtzip",
+      "sha256": "c21067545682fd7b1e69c6c82f28c6c0bf89fa45f99f24eb9c0528e468380ce2",
+      "layers": 4,
+      "fields": 2,
+      "warnings": 3,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 37- Roll On.gtzip",
+      "sha256": "97460a4ec5729830b7877944a33f57f05bb5e0709cea5b9e1ae1c603c9ef2779",
+      "layers": 1,
+      "fields": 2,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 38- Swings and roundabouts.gtzip",
+      "sha256": "ad7c84d114ee7c5675c0cad1b71ea6790e9c5f178521526c030d82a57782eb69",
+      "layers": 2,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 39- QR Code Slide Blue.gtzip",
+      "sha256": "e25be37a11179d528e51af7fde01410cc88e2d28d5087c1e2d44e29fb4f06162",
+      "layers": 2,
+      "fields": 1,
+      "warnings": 5,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 39- QR Code Slide Green.gtzip",
+      "sha256": "b02fb1dc5af71d813325746b7ee5fc4f7a77174e225e7c5328624c8f4737279b",
+      "layers": 2,
+      "fields": 1,
+      "warnings": 5,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 39- QR Code Slide Red.gtzip",
+      "sha256": "cccf9d392b3e92a16b2db754366d4c093db9c32f79b58683ad49ed4c6608ce53",
+      "layers": 2,
+      "fields": 1,
+      "warnings": 5,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 39- QR Code.gtzip",
+      "sha256": "3df7e1c13633c08a9e9628cc5335b13ea1942636af897d35d505999b1a4a33a2",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 2,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 4- Bright.gtzip",
+      "sha256": "46fed7b1694ea1d5d1eff3faac0e487f23814f1b6d47a40d2308667247aced4f",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 40- Songs Black- Taller.gtzip",
+      "sha256": "a8fb0653d641d89b16ca168d259b62d15277dc1bcb259cc6a5b0e3735cc0b5ae",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 40- Songs Black.gtzip",
+      "sha256": "8a4465722b41f219ea2a1ca66e59bf947c64d06787e95a5962e8c38ea607bd92",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 40- Songs Blue- Taller.gtzip",
+      "sha256": "340147ea506cdee4ebe188ba8080abe5be4b3fe6a4ad11683790d76ce948f6af",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 40- Songs Blue.gtzip",
+      "sha256": "a3a37d75c1881324eaa92bd81e8e358a05a9646109c3a8f03083dd15aede7ec1",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 40- Songs Grey- Taller.gtzip",
+      "sha256": "a5bf49d2b64c8deb0b22f114d417f54936337aa1742fbf7a38b6734b5d87e217",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 40- Songs Grey.gtzip",
+      "sha256": "43c0b3de3437b6f13831a126bab7ad4b4e05c5c61a4ab3849873cb4ddfea3f48",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 41- interlinked.gtzip",
+      "sha256": "88f96eaa98e8972f7bf19aa41c040aaf131cfc2979707938c814c4310f64ea8d",
+      "layers": 3,
+      "fields": 2,
+      "warnings": 2,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 42- Euphoria 2.gtzip",
+      "sha256": "8d9e956a9b57370763848df830d9766b7a544f394913fa773607c1e0d6b0debf",
+      "layers": 2,
+      "fields": 1,
+      "warnings": 2,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 42- Euphoria 3.gtzip",
+      "sha256": "27ff8549a6d694e46ad1986672ac05f6bfd74affaeaa995f089dcaa2687d4603",
+      "layers": 2,
+      "fields": 1,
+      "warnings": 2,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 42- Euphoria.gtzip",
+      "sha256": "19723afb4900a82fee71009c3a1786d2c47e00f0527a9889e31aa61907d0fdf4",
+      "layers": 2,
+      "fields": 1,
+      "warnings": 2,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 43- Circling Blue.gtzip",
+      "sha256": "d6338fed34630272178beaea75957473df446d5a7d61cad6ea4202c4cd0242d5",
+      "layers": 3,
+      "fields": 2,
+      "warnings": 3,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 43- Circling Green.gtzip",
+      "sha256": "ca4e52f02afb913f1a70c3c9d4b837117cc1c8504096b60e0d480a1104a6442f",
+      "layers": 3,
+      "fields": 2,
+      "warnings": 3,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 43- Circling Purple.gtzip",
+      "sha256": "3036b579160e6f7117401bf00f23b578802c238f35a00a1dc79c868bb91720c6",
+      "layers": 3,
+      "fields": 2,
+      "warnings": 3,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 43- Circling Red.gtzip",
+      "sha256": "ebef991237cc63333281e127ac1cf552673d5f37f7b30f4189aa256a7ab942bd",
+      "layers": 3,
+      "fields": 2,
+      "warnings": 3,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 44- Goodnight Blue.gtzip",
+      "sha256": "cb4943dce3b4deaafbaea08078fe6b53a3c7b3e5d6d07e1da89e013b0f794b44",
+      "layers": 1,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 44- Goodnight Grey.gtzip",
+      "sha256": "37ee187797249561c4bb7935b44c2e2917f6f3e98fedce805d5c43fd5e922683",
+      "layers": 1,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 44- Goodnight Orange.gtzip",
+      "sha256": "2ba8afed6abf3c0c651cb09000dac9fe332b20a944b08d7323b7850335025b92",
+      "layers": 1,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 44- Goodnight Red.gtzip",
+      "sha256": "06446a631100f1fe755801ab3674305e8fea26549fe2f25ed1c4852b9ab98cbd",
+      "layers": 1,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 45- Haird Blue.gtzip",
+      "sha256": "09dfa17f643ee65f469d1ef78de1d96148af6a780a234a0ad45ed6e6980919aa",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 4,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 45- Haird Brown.gtzip",
+      "sha256": "3253a27d8a8554ceeec1a199d201da00a91d8f3740088c1c2542e725658ae353",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 4,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 45- Haird Green.gtzip",
+      "sha256": "8fd9b0f0bb1c613740badf4e07d0d6e531b2b4a48045871aced9b118254c5cf5",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 4,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 45- Haird Red.gtzip",
+      "sha256": "9aeb0b69db13bbfd14348c1b1c648ae514229bc497e37df7a9efce90095762b8",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 4,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 45- Haird Watermelon.gtzip",
+      "sha256": "49d8cf8c8c7fa1a3ee401c3874de83093f2f549866a9ba7b7942d8444bfd700a",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 4,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 46- Suddenly Blue.gtzip",
+      "sha256": "51edfaa7dd1d98e5678663da62a7f2419671d93fbf28904bfd36a149cfb6b9c0",
+      "layers": 3,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 46- Suddenly Dusk.gtzip",
+      "sha256": "ad325b12addb1989c242b432797c4329d463755a0de7b6000a5099684f8f686a",
+      "layers": 3,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 46- Suddenly Orange.gtzip",
+      "sha256": "8a72b6aa6dd7cf056288770afbcdd104da4516c5ce001a1d4ad66ec3854fe08c",
+      "layers": 3,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 46- Suddenly Purple.gtzip",
+      "sha256": "8d64e5c07c0f2ff07b7c737cbe2f73a1af31ba9cd80d4d351cb260b686971d50",
+      "layers": 3,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 47- Cloud 12.gtzip",
+      "sha256": "8bb1e7bade260b4fbbc344f0245ea8f96e33c0175139695a1c9a472057498b82",
+      "layers": 2,
+      "fields": 2,
+      "warnings": 4,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 47- Cloud 14.gtzip",
+      "sha256": "79fe5052f90c7ce9a68154a16ba198940db93eda9ca0e44ff48adeb54746c8e0",
+      "layers": 2,
+      "fields": 2,
+      "warnings": 4,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 47- Cloud 8.gtzip",
+      "sha256": "288f119b8c87080ea9be361eea4995cb0b65c7524c7a7e3f12a847d8ab0282b7",
+      "layers": 2,
+      "fields": 2,
+      "warnings": 4,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 48- My Name Is Blue.gtzip",
+      "sha256": "ff9fc792304e12d52a2e6bf7cb7583a20d23fb902e130bf8a4528e060be97f53",
+      "layers": 2,
+      "fields": 2,
+      "warnings": 2,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 48- My Name Is Green.gtzip",
+      "sha256": "241aa6c62233cbb7c77f7bb1ea8581b67858c0fc663ccbbf7caddfa04278dcdc",
+      "layers": 2,
+      "fields": 2,
+      "warnings": 2,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 48- My Name Is Orange.gtzip",
+      "sha256": "65d1a3209ccd71ccfcfd49c73e1751914467080eb9f93544850679116d5f62ae",
+      "layers": 2,
+      "fields": 2,
+      "warnings": 2,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 48- My Name Is Red.gtzip",
+      "sha256": "a5b9ba64e639e873172b5a4cd802b81f15e0c8964ff454000cd8c4f552648ade",
+      "layers": 2,
+      "fields": 2,
+      "warnings": 2,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 49- Corners Ft. MC Titler Blue.gtzip",
+      "sha256": "6874439d5fa02b25bd2b224e4c3a28db4e0ae809d5ada565a2da5cdb32aa7182",
+      "layers": 2,
+      "fields": 1,
+      "warnings": 2,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 49- Corners Ft. MC Titler Green.gtzip",
+      "sha256": "94dc8deb7fba2570dd509053c1ae7346645f5a813bd924f4121a96144245f88b",
+      "layers": 2,
+      "fields": 1,
+      "warnings": 3,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 49- Corners Ft. MC Titler Orange.gtzip",
+      "sha256": "c1fe95548406c149721529c6ea3b87f51a763441d28d8ba9d005b643f6644472",
+      "layers": 2,
+      "fields": 1,
+      "warnings": 2,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 49- Corners Ft. MC Titler Purple.gtzip",
+      "sha256": "5353e0a26b493550d36fb990654ed8453f32d526329f77178c1431da772f3172",
+      "layers": 2,
+      "fields": 1,
+      "warnings": 3,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 49- Corners Ft. MC Titler Red.gtzip",
+      "sha256": "3b85108a9e733b951825fd399a2806ed68af4687ad3ca232699ea76b1aa9877b",
+      "layers": 2,
+      "fields": 1,
+      "warnings": 2,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 49- Corners Ft. MC Titler WM.gtzip",
+      "sha256": "b468e569cae86c83ac707530fcab24004cd543188096eae3e07f59abb449cf89",
+      "layers": 2,
+      "fields": 1,
+      "warnings": 2,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 5- Sunshine Rectangle.gtzip",
+      "sha256": "960f1cf1015d47f2db908456fab603abf98dc1421715d60d3c40b9f6eb1b85ab",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 3,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 5- Sunshine Skew.gtzip",
+      "sha256": "000bf2f6c897126663a1c4a4d422344bde339aaf0068a1162e5ba504069c47ad",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 3,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 50- Backup Plan Blue.gtzip",
+      "sha256": "faf74202c8fe0687d77960dd68f7a7ab0634263914d50f12da5694fbc9981aeb",
+      "layers": 3,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 50- Backup Plan Green.gtzip",
+      "sha256": "b9798442525cde5865987c773fe4c0d7541b3c76dd989e49c2d86d41f4a18274",
+      "layers": 3,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 50- Backup Plan Purple.gtzip",
+      "sha256": "5e7b4a6807520e39ccf04184044bbc664d9b267fd9dd9ee66b05ec087f50dbe7",
+      "layers": 3,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 50- Backup Plan Red.gtzip",
+      "sha256": "c452273f3d038013f2b2e401c34c0d74976a580459db873ce8359989c9d636f8",
+      "layers": 3,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 51- Sliders Blue.gtzip",
+      "sha256": "7b84fe78efb3db28c298fee55e84d36578f4be876742f718b5bbc62bbbfc0b34",
+      "layers": 3,
+      "fields": 1,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 51- Sliders Green.gtzip",
+      "sha256": "c69d946142d9878fa585cc184c859cea4e1af9f2c4cf6536e33795ef4bce5da4",
+      "layers": 3,
+      "fields": 1,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 51- Sliders Grey.gtzip",
+      "sha256": "2c707fbff6d12cd62f76e69ae3aeda1f3ca17e5d78e7e8bdfa1700e4a7bb19aa",
+      "layers": 3,
+      "fields": 1,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 51- Sliders Orange.gtzip",
+      "sha256": "4061885f66e70c32e9636348a31ddf205422f8180251fbf36d4cb5d5043fe1e1",
+      "layers": 3,
+      "fields": 1,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 52- Quack Green.gtzip",
+      "sha256": "90b5a2e91d755c9932280f48ef80cf160b7dff86715967e6389c6d0c43dc1ab0",
+      "layers": 3,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 52- Quack Orange.gtzip",
+      "sha256": "0e640b883320857bcd7a8400ac27941c89c27da53b923071f60e562f4488f698",
+      "layers": 3,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 52- Quack WM.gtzip",
+      "sha256": "e15c77f7f8cf5347e099993ce3c1155d01e27ca2ab1a3a70fca1dcf0de852391",
+      "layers": 3,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 53- OMB Blue.gtzip",
+      "sha256": "cf006e7ef536002d437f8d7660ef7185b5aaeabaacb4071a7f1596371e31bb05",
+      "layers": 3,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 53- OMB Green.gtzip",
+      "sha256": "dc5b0bc180aaf9f248bbbd8d9d1fed0e8de690de666a8f3d56360b1a0eac6add",
+      "layers": 3,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 53- OMB Purple.gtzip",
+      "sha256": "49663445ff2ee5bfe541e843ae6be7b99d882d8837ff7c91b9c07ebfdd17641c",
+      "layers": 3,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 53- OMB Yelloe.gtzip",
+      "sha256": "a62f625984551f37079b768ac148a3eb8a21627bda02235ca7128049dee32676",
+      "layers": 3,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 54- Say You'll Stay- Blue.gtzip",
+      "sha256": "cb667c2e8bfe7a0ea369b8f4915f8b177c98b14bba63daad5e67fc2c06bb2680",
+      "layers": 1,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 54- Say You'll Stay- Green.gtzip",
+      "sha256": "2c0b53138694ca7b2ba029f6f56fc9abb0e08280a7d47524d7f5722e95d4961d",
+      "layers": 1,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 54- Say You'll Stay- Purple.gtzip",
+      "sha256": "9756552e1cccbd55ba98071523ed26888921659eb3b7d9008af3fe25829c83b1",
+      "layers": 1,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 54- Say You'll Stay- Red.gtzip",
+      "sha256": "6220a98b7c96fb53fcc70bd8a6cf3c218575eab311aaa148518a36c4dcb8efdb",
+      "layers": 1,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 55- Soon Enough Blue.gtzip",
+      "sha256": "6b4169b6c86b1ea16a2176ed309a7936b8c051d00d76b8c929b7095fd27e48c6",
+      "layers": 3,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 55- Soon Enough Green.gtzip",
+      "sha256": "4ce9d21c4c0bb0582d19591d01a1753895b63ef8b1d6d14e5369d47f8d7c65b6",
+      "layers": 3,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 55- Soon Enough Grey.gtzip",
+      "sha256": "b50956ded7ce85bc69632360097fa907289d87e8455855fbe2af9402459a4f5a",
+      "layers": 3,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 56- Runaway, Runaway Blue.gtzip",
+      "sha256": "ea7c4f4ef65ec38994bd6d17d2c133e4b0a1fe31cb7761327de7a6efe657bd83",
+      "layers": 3,
+      "fields": 1,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 56- Runaway, Runaway Green.gtzip",
+      "sha256": "833004a1f45914b4a6dd17a24f14a09c1914de39ebc56b632936cff5fce4249f",
+      "layers": 3,
+      "fields": 1,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 56- Runaway, Runaway Orange.gtzip",
+      "sha256": "bf250499a84ec6d1b226ff8601232b8517dfdb291b27e90e4c0ea5c653e226e2",
+      "layers": 3,
+      "fields": 1,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 56- Runaway, Runaway Purple.gtzip",
+      "sha256": "f94ae730e9dbc5c86a5bff7bc4d6835fdfdc041a67d016ed53d43c1d4c75569b",
+      "layers": 3,
+      "fields": 1,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 57- Ring Ring Bottom Left.gtzip",
+      "sha256": "57b6010966d56f02e39f227e8dae82fa0931c2b7f245fbedc96c50b4598416c9",
+      "layers": 2,
+      "fields": 1,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 57- Ring Ring Bottom Right.gtzip",
+      "sha256": "88ebfa1502a65a2ebb0ea1d51ecdf927eea0d9d003bff999920a7a950305786e",
+      "layers": 2,
+      "fields": 1,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 57- Ring Ring Top Left.gtzip",
+      "sha256": "87a9cbe622e901f39aa427374cc834420a6b6d1046c12f1c88a25f9e7493611f",
+      "layers": 2,
+      "fields": 1,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 57- Ring Ring Top Right.gtzip",
+      "sha256": "4c729c78d4f7f10f9538eaf1206effb03d72481da5ff5fad53126ff97e4cb851",
+      "layers": 2,
+      "fields": 1,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 58- Dove City Green.gtzip",
+      "sha256": "1ea895b764050a3ee8c9c41ecfe05607e51900022e918e3d9b6b5cdb2cfa2966",
+      "layers": 2,
+      "fields": 1,
+      "warnings": 2,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 58- Dove City Grey.gtzip",
+      "sha256": "75882ec2c304dfda906099058daffae28b7af871e1067fcd5bdac3ada6443863",
+      "layers": 2,
+      "fields": 1,
+      "warnings": 2,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 58- Dove City Orange.gtzip",
+      "sha256": "26dfbb3813afe40a442b56d12663ce7feffb41dee4d022b29c82ac03427e366d",
+      "layers": 2,
+      "fields": 1,
+      "warnings": 2,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 58- Dove City Purple.gtzip",
+      "sha256": "9c31d528de0c5b4483644bf22cd4065cc4c6b589e46fc4488b12286479789160",
+      "layers": 2,
+      "fields": 1,
+      "warnings": 2,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 58- Dove City WM.gtzip",
+      "sha256": "1cccd5486f79391bcfbf99e0362c9f5e98303762c517b95eb2fd85b804ea5afa",
+      "layers": 2,
+      "fields": 1,
+      "warnings": 2,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 59- All The Lights.gtzip",
+      "sha256": "43cf96eec1f196a045d741fba8293e8265b2fd637b2f5c4a0f40601d5a6b0f82",
+      "layers": 2,
+      "fields": 2,
+      "warnings": 2,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 6- Top Deck.gtzip",
+      "sha256": "608a83c03b17d8fec137a0eef5868e8f9846547b04cc80573ceb645f94cd3b29",
+      "layers": 2,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 60- Assembly BW.gtzip",
+      "sha256": "756948efaf79037d509221f02fbbc1cedd9191ebdbd6edc4b1b1e657045ded50",
+      "layers": 1,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 60- Assembly Purple.gtzip",
+      "sha256": "c65b74fe1967d54f6003c2a736c2ff3ff33654c0525b768e1c290912b3581231",
+      "layers": 1,
+      "fields": 2,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 60- Assembly Red.gtzip",
+      "sha256": "311975a6883057755e7ea9edbdc10352b9f78e5e763c55ef4f6e59c995a3d394",
+      "layers": 1,
+      "fields": 2,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 61- Squared Black.gtzip",
+      "sha256": "61b49b3fc47a5363813a419b687481e9b001e160addc5c810fac604c77f65850",
+      "layers": 1,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 61- Squared Blue.gtzip",
+      "sha256": "5ed4880f4e803e9e3ff8557eba97c9f2369a5b38976fd725caf942bc5735a9cc",
+      "layers": 1,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 61- Squared Green.gtzip",
+      "sha256": "f0a8b29596326936531bc92520bad3c8c0cd16333bac296fb2dfc1345da2a48e",
+      "layers": 1,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 61- Squared Purple.gtzip",
+      "sha256": "85012919d5257852f66f2b142953b1d74ee41c60e74b344c18660577f8b3bbc4",
+      "layers": 1,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 61- Squared WM.gtzip",
+      "sha256": "68c3f688acf06398ace12a893850b725a768fa18ecb2a22693e2d38dae635d4b",
+      "layers": 1,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 62- Shield Blue.gtzip",
+      "sha256": "af1be7027cde86c8c5aac92640e7f9d8ef0ce9b422ec596d4498e9afa67b4b61",
+      "layers": 2,
+      "fields": 2,
+      "warnings": 9,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 62- Shield Greeen.gtzip",
+      "sha256": "c08eaf8d9a8a273674b863c742db4a3fc2046e3d840676bf75f68d7a344aea44",
+      "layers": 2,
+      "fields": 2,
+      "warnings": 9,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 62- Shield Purple.gtzip",
+      "sha256": "7680bec2e456b319720aa2005fce2da2651dcd9db7609d1685a6645db862ae22",
+      "layers": 2,
+      "fields": 2,
+      "warnings": 9,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 62- Shield Red.gtzip",
+      "sha256": "87e100587e92ebf52ee2fc12447bce59f4c25c8e58d73d9a80c21a9996106f35",
+      "layers": 2,
+      "fields": 2,
+      "warnings": 9,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 63- Flide Orange.gtzip",
+      "sha256": "2bd3dffb17ee57ae7a077b54a1315e1a995c7e1f08973834b6582ec1b463fb7f",
+      "layers": 2,
+      "fields": 2,
+      "warnings": 2,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 63- Flide Purple.gtzip",
+      "sha256": "9ebeb327378ea5b539e0fd6019b3a523ff0b98620343dddb1e79e51916641eca",
+      "layers": 2,
+      "fields": 2,
+      "warnings": 2,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 63- Flide WM.gtzip",
+      "sha256": "0e074b21910df336e2d8dab9f79e1308aa8f5bcc93775d52774853bfbadf0caf",
+      "layers": 2,
+      "fields": 2,
+      "warnings": 2,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 64- Surprise Album Blue.gtzip",
+      "sha256": "1c0b841921f0bd655eeb15c0d87a3455521b4c6150021428b74ba31361f35ad3",
+      "layers": 2,
+      "fields": 2,
+      "warnings": 2,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 64- Surprise Album Green.gtzip",
+      "sha256": "a4baa1d04edde76d12d5fca8b91c7181cc34dce84d876c91d7fdeb8ead0b887d",
+      "layers": 2,
+      "fields": 2,
+      "warnings": 2,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 64- Surprise Album Grey.gtzip",
+      "sha256": "4917fdbc454c4385c5cd0e4fd19663a630a156009aaea3f00f16d2911d799613",
+      "layers": 2,
+      "fields": 2,
+      "warnings": 2,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 64- Surprise Album Orange.gtzip",
+      "sha256": "c3c432e63420c555ca3c0074b78f2e6ccc7f6d95cbaa8921b8dfe5cd94f47e23",
+      "layers": 2,
+      "fields": 2,
+      "warnings": 2,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 64- Surprise Album WM.gtzip",
+      "sha256": "8704176075f0953ec6f39527bf37f8c693f3324a391df5eb8f1cfe23e300c8b2",
+      "layers": 2,
+      "fields": 2,
+      "warnings": 2,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 65- Folk Law Blue.gtzip",
+      "sha256": "eca418662f95a71287bbd4575ed4da6178209f7f262f34c397353c5033ba63b2",
+      "layers": 1,
+      "fields": 2,
+      "warnings": 2,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 65- Folk Law Grey.gtzip",
+      "sha256": "4cff589ed88a28de5b9f3f92c2da27b1ed05af2e274f845af725c77b176cfbd0",
+      "layers": 1,
+      "fields": 2,
+      "warnings": 2,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 65- Folk Law Orange.gtzip",
+      "sha256": "21c1e0cad663ac3c77fd326e37ba31b16dce2f5ce4d3a9c07336ae8036d36932",
+      "layers": 1,
+      "fields": 2,
+      "warnings": 2,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 65- Folk Law Purple.gtzip",
+      "sha256": "4d4daf9a4b18c48c40ecb18a6569fd7ef11394d1270f52c6f1dd297d6bea3ade",
+      "layers": 1,
+      "fields": 2,
+      "warnings": 2,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 66- Gettin Vert 1.gtzip",
+      "sha256": "f3f0dbaa3fdb653372d09fc26f92aa06ae6c8225a8f6f6d011337ec74711ea50",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 66- Gettin Vert 2.gtzip",
+      "sha256": "4ee6c4b08b44a1b9f6b09ed0ef9e5a751dbe3d936a6c6de766d4ffddaec766eb",
+      "layers": 2,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 66- Gettin Vert 3.gtzip",
+      "sha256": "677ac1c9ffa76feac989de04d26c0d4fb1eb2fe4306273ca8e3d021a136239cd",
+      "layers": 1,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 67- Warm Coffee Blue.gtzip",
+      "sha256": "dc5bd86722dc92f84058e35b313dd9f7fe2ea5482e3dddbad8534a5f9413e4b5",
+      "layers": 2,
+      "fields": 2,
+      "warnings": 4,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 67- Warm Coffee Grey.gtzip",
+      "sha256": "a742a9a4d9bf86ab4daaf3a082792e7cec05af63ad5816e0802d799c8eef865e",
+      "layers": 2,
+      "fields": 2,
+      "warnings": 4,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 67- Warm Coffee Purple.gtzip",
+      "sha256": "3377e0f2cc18861b58db6a5698fa99fa67f41223a626774958967c5c7205dacf",
+      "layers": 2,
+      "fields": 2,
+      "warnings": 4,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 67- Warm Coffee WM.gtzip",
+      "sha256": "25871c35e074bd019e8f915552ea49867cbb26423fe0ab770a9b01c7cf7ddfdc",
+      "layers": 2,
+      "fields": 2,
+      "warnings": 4,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 68- Left in the dust Black.gtzip",
+      "sha256": "8bc2fd06d8ece27ce50262f7463992b7acf3c708fcf919477c23d43d825be392",
+      "layers": 2,
+      "fields": 3,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 68- Left in the dust Blue.gtzip",
+      "sha256": "47525b07c3ef8e2dccc3d7ec0950e33578e73779392bbf6bac492266c9a491e3",
+      "layers": 2,
+      "fields": 3,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 68- Left in the dust Green.gtzip",
+      "sha256": "55856ad9b7539f6454d0431be7772d8b6cc675092077352305aee519dfd4dd72",
+      "layers": 2,
+      "fields": 3,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 68- Left in the dust Red.gtzip",
+      "sha256": "56a69165005ce3b9a3aa9d9665e7076da912485043700520d625e220d125f45b",
+      "layers": 2,
+      "fields": 3,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 69- Trouble In Paradise Blue.gtzip",
+      "sha256": "642f270d7fc408e6de25c822a9a6a7b4c60d254a599eb19d9ca9e5bc929f6651",
+      "layers": 2,
+      "fields": 4,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 69- Trouble In Paradise Green.gtzip",
+      "sha256": "ed99daa8456c25d172e84fea2b477358075ce154c3001e224a39f50c29af7de3",
+      "layers": 2,
+      "fields": 4,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 69- Trouble In Paradise Purple.gtzip",
+      "sha256": "d96c4c150f90fef78461d1d94cf1cf91d45b191dcbd0f0713d722d468d524368",
+      "layers": 2,
+      "fields": 4,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 69- Trouble In Paradise Red.gtzip",
+      "sha256": "fbf24f7b9e89c5b52fc7e4bf193f9c55ac12686c68042393e947edf26016d91a",
+      "layers": 2,
+      "fields": 4,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 7- Horizontal Blue.gtzip",
+      "sha256": "baa91b04d41b98241f90ced5056c61eddb9196c2c13ba708da8311ff4542c9db",
+      "layers": 2,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 7- Horizontal Green.gtzip",
+      "sha256": "06b92a5b5b18a427d67cc32759210a51e2800694876c939529f5b926770680ac",
+      "layers": 2,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 7- Horizontal Red.gtzip",
+      "sha256": "6861ee43a60f5341697ee04a66080b1424194f021564a25b85af8bd53a21bc75",
+      "layers": 2,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 70- Spray On Blue.gtzip",
+      "sha256": "a7dfa17d1cd55a5989287eb9b3424fc2bea79c5a33366b4b0b7ba4ec01959625",
+      "layers": 2,
+      "fields": 4,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 70- Spray On Brown.gtzip",
+      "sha256": "cc61297d6c858930dc240bf32ec6d5fb5a203863296d1d149445a664fecd8529",
+      "layers": 2,
+      "fields": 4,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 70- Spray On Green.gtzip",
+      "sha256": "a47d4f5110838bf47f62cc54f681d0a598d0a1dc55cc005f55a23fcd40fe006d",
+      "layers": 2,
+      "fields": 4,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 70- Spray On Purple.gtzip",
+      "sha256": "4b6d6419f18c6f4ad81f0fb62e2d2e750c7eb9bd9eb3a677a26f2ebe35965bac",
+      "layers": 2,
+      "fields": 4,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 70- Spray On Red.gtzip",
+      "sha256": "42ea27f033a7227322906658b24d433d1c421bd37527bca11d4b9b8e87a65ab4",
+      "layers": 2,
+      "fields": 4,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 71- Spray Blue.gtzip",
+      "sha256": "20cbb94858e94d8a2f8a039092e999b7eac32627e67f58ce0eb8fd4a661427db",
+      "layers": 1,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 71- Spray Grey.gtzip",
+      "sha256": "4b1bf9b1f17b57e917e6eb626337a3709094c55864a7a2ec135348f1736fa516",
+      "layers": 1,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 72- I heard Green.gtzip",
+      "sha256": "f55f9a92e1fda995a76b54a0678c11ac4a7334099b186090e1ced75e858a1d07",
+      "layers": 3,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 72- I heard Grey.gtzip",
+      "sha256": "07591768ac27beb7d2ef071ce351db38dd27b5e972706e2ca7e827a9838d24b8",
+      "layers": 3,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 72- I heard Purple.gtzip",
+      "sha256": "d457299330cf6d8b3ae4e9ce1fd4c5eb01b5a10bf2d6a7e115a89d57cbae92ea",
+      "layers": 3,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 72- I heard Red.gtzip",
+      "sha256": "b48aa914bfea64a7da240f707ebe54460d0f178e09923e70ba950398e130a99e",
+      "layers": 3,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 73- Slowdance Blue.gtzip",
+      "sha256": "1e675f1aca338662c8ce6dd1563641e1604a166f368ccf4a49fff60999a72305",
+      "layers": 3,
+      "fields": 1,
+      "warnings": 5,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 73- Slowdance Orange.gtzip",
+      "sha256": "8c052df4fd1d2e65fc28ee473b1ca219ad0965e5b9401339c768dbba78b5f724",
+      "layers": 3,
+      "fields": 1,
+      "warnings": 5,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 73- Slowdance WM.gtzip",
+      "sha256": "d8322a916e30642a0fecbb09c6489bdb41b70217eb03e28f31493b016ad00260",
+      "layers": 3,
+      "fields": 1,
+      "warnings": 5,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 74-Billion Reasons Black.gtzip",
+      "sha256": "784a4826c2b2356522680f6b7da244362b94a98964e8873e04508e1087d8c13a",
+      "layers": 3,
+      "fields": 3,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 74-Billion Reasons Blue.gtzip",
+      "sha256": "310a7bbfc848ca743e3530449a85021052a02463627d4049f90d73d84552158d",
+      "layers": 3,
+      "fields": 3,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 74-Billion Reasons Grey.gtzip",
+      "sha256": "825057a8bc69d0095706f6ee4f3c2719380c5891a1565acd92278421b8cb3e0c",
+      "layers": 3,
+      "fields": 3,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 74-Billion Reasons Purple.gtzip",
+      "sha256": "c65ed075891bdd9c68a92410596b2d8888467f4a809d52a4165fb8952cbcf6f0",
+      "layers": 3,
+      "fields": 3,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 74-Billion Reasons Red.gtzip",
+      "sha256": "e9437d59c452326539ddece2f2f8205651076767aa17cf5438b3da54cd346a32",
+      "layers": 3,
+      "fields": 3,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 74-Billion Reasons WM.gtzip",
+      "sha256": "f39a3efed7793746c81617aa8ddfceed9c8e1ea1bd94465e041c6a7804b53f83",
+      "layers": 3,
+      "fields": 3,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 75- Morning Walk Black.gtzip",
+      "sha256": "af6ed397478a69a62ee404305059bfa5ae0150f5a510e98003ad25db485107f0",
+      "layers": 3,
+      "fields": 1,
+      "warnings": 4,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 75- Morning Walk Blue.gtzip",
+      "sha256": "fd05cc23a5662efe4c98170ac8cc894880ce86356e99f3f61f51ef2f624328d3",
+      "layers": 3,
+      "fields": 1,
+      "warnings": 4,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 75- Morning Walk Green.gtzip",
+      "sha256": "99ced57f5d72b93c544465e3b11fdd3818123a90fa309c9bc9a662cac1b4c5f2",
+      "layers": 3,
+      "fields": 1,
+      "warnings": 4,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 75- Morning Walk Purple.gtzip",
+      "sha256": "8c9fcb28bdca5a32ff34ffdba463e7dd3cd761de368e48f559ab09365bd85edf",
+      "layers": 3,
+      "fields": 1,
+      "warnings": 4,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 75- Morning Walk Spring.gtzip",
+      "sha256": "f6813bc8c06643dfce6a845c4e1f0105a6a7186c707c2a7cc791a811afe8a84b",
+      "layers": 3,
+      "fields": 1,
+      "warnings": 4,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 76- Ride Thru Blue.gtzip",
+      "sha256": "b2b1e5431e9251bfa52796d49c4a74e442aa3710112abb7f046117ed5467fc13",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 6,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 76- Ride Thru Grey.gtzip",
+      "sha256": "929e6669b5f90290aa92f621a943fa6ef7a3998841699ff1224172ee073e70e2",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 6,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 76- Ride Thru Purple.gtzip",
+      "sha256": "2c24e8bf16f18d5c6c95b41fe6d3c45ec21d74a1fc4c38148c5437c8732e06c8",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 6,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 76- Ride Thru Red.gtzip",
+      "sha256": "55a53a814b3da5b33884bfd9aa4600e8336290eb3411b0f4149f0adc12d6fc81",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 6,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 77- Pointy End Blue.gtzip",
+      "sha256": "7dcc48c4aeefdec6803651641813137b313b8d91a5ce727d7dee992362f974fe",
+      "layers": 6,
+      "fields": 1,
+      "warnings": 4,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 77- Pointy End Green.gtzip",
+      "sha256": "bd8afde3e8d366bd7d30a91212a5a99c377e16cac099ff3c633ab547b00a38f2",
+      "layers": 6,
+      "fields": 1,
+      "warnings": 4,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 77- Pointy End Orange.gtzip",
+      "sha256": "03b7b0b1bd775686840facc3f2284094d4ef7ff91027bfaf080559712e13a539",
+      "layers": 6,
+      "fields": 1,
+      "warnings": 4,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 77- Pointy End Red.gtzip",
+      "sha256": "544553e812ee2140be444593df524680f832950c3e535b71e6d7887b4014d249",
+      "layers": 6,
+      "fields": 1,
+      "warnings": 4,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 78- The Archer Black.gtzip",
+      "sha256": "e75c7ec2074db06c30152b36d933cfee37e5602f862702988bd664941999a556",
+      "layers": 3,
+      "fields": 1,
+      "warnings": 4,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 78- The Archer Blue.gtzip",
+      "sha256": "bd45ad903b6b4a9c234757e068e907620951b2329f5ea8999dc257e6f0c7211c",
+      "layers": 3,
+      "fields": 1,
+      "warnings": 4,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 78- The Archer Green.gtzip",
+      "sha256": "0ceebb4e3bbbfa94c389f773a7624713100ec7cc9140a658ea98dacea905fe75",
+      "layers": 3,
+      "fields": 1,
+      "warnings": 4,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 78- The Archer Multi.gtzip",
+      "sha256": "89c008f24f57c665d2bc903c0f20dec3dae072450f6bd778b6803b30e66cd71c",
+      "layers": 3,
+      "fields": 1,
+      "warnings": 4,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 78- The Archer Red.gtzip",
+      "sha256": "83102bfdddba2e877380742d438e944c676d84f7ea45dba4a97bfc40cd36781a",
+      "layers": 3,
+      "fields": 1,
+      "warnings": 4,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 79- Down the back Black.gtzip",
+      "sha256": "e767d8aaa53c4704ed2df85af82a3c2f0d8814b0bd64d3ec5b1ec0a260315c49",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 79- Down the back Blue.gtzip",
+      "sha256": "72e3d98a600f85ecd41e086de72c8401a445d4ae6830d7666a361f08e12a17af",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 79- Down the back Green.gtzip",
+      "sha256": "5b03883281cbfd73c3629f4ed9872b667a4826b8da929869530a035d6413a58b",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 79- Down the back Red.gtzip",
+      "sha256": "cdfb032e45457546d178708dd86ffb672ce98b159743523ce561d0ac6207ba6d",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 8- Cricket.gtzip",
+      "sha256": "28d8184a4b5d4380229e7f70495206a0b071eeff31862bf38c9c295c70e998de",
+      "layers": 2,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 80- Your Propeller Green.gtzip",
+      "sha256": "7341a32c2d3008556d95eae9e237052771ceedf1738d92cc87031db70bf6e265",
+      "layers": 3,
+      "fields": 3,
+      "warnings": 3,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 80- Your Propeller grey.gtzip",
+      "sha256": "8bc8cbf6433f5bfa82bb534594165bfd33b5a0d91388eace520961fba9753fbf",
+      "layers": 3,
+      "fields": 3,
+      "warnings": 3,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 80- Your Propeller Orange.gtzip",
+      "sha256": "d75754170abf3fca592fe42625d006fbd782564d469a4ebe98ddfd9fe7ffaaf7",
+      "layers": 3,
+      "fields": 3,
+      "warnings": 3,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 80- Your Propeller WM.gtzip",
+      "sha256": "be6228d03a15f691f07c7dec0793a9fca19f233caeffdbff5c42e3e0c8f7a6ca",
+      "layers": 3,
+      "fields": 3,
+      "warnings": 3,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 81- The Other Evermore Black.gtzip",
+      "sha256": "47648b4f417d8bc62f67de73b9c79a79fc606431c74295687daf4cb605556780",
+      "layers": 1,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 81- The Other Evermore Blue.gtzip",
+      "sha256": "186d1b997569ea519dfbc309de8ab5df8448bac34e7bcc19ee00ca843a3cd15a",
+      "layers": 1,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 81- The Other Evermore Orange.gtzip",
+      "sha256": "3af459900a0e142ecdcd3e42afc5167edb5d306d88b5a0212f5338813499fa83",
+      "layers": 1,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 81- The Other Evermore Purple.gtzip",
+      "sha256": "6c81ad8ccb42aa8213a0204aa72543133d53fa130755b77224f697a0524f06f3",
+      "layers": 1,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 82- Box of bueno Dusk.gtzip",
+      "sha256": "9e30e28edb59f94d4fd4d75f5b23a50ceddbed849b30a459dcb7e7051bde5039",
+      "layers": 2,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 82- Box of bueno Purple.gtzip",
+      "sha256": "8baae064e329350d63678fd5ce28208ef24e4245c75f7aa5e044125a928980db",
+      "layers": 2,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 82- Box of bueno WM.gtzip",
+      "sha256": "e50d9c1a449a8e4738900476f76857dfc6bf728f47df03d96d1b549a6c21eaf8",
+      "layers": 2,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 83- Pretty Similar Blue.gtzip",
+      "sha256": "96ab56e8e749de9a49ac2ae3bcc3a6934add8c939276514ee007ff2dc714b7ae",
+      "layers": 5,
+      "fields": 1,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 83- Pretty Similar Dusk.gtzip",
+      "sha256": "dada05bc5c1a231eafb5d4a704e48007ec380d6edfd0cd3a7358dbde6f87765c",
+      "layers": 5,
+      "fields": 1,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 83- Pretty Similar Green.gtzip",
+      "sha256": "899e0568cdb81480cf946172838d658ca57750e95a99cec875c0532dcdff2d04",
+      "layers": 5,
+      "fields": 1,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 83- Pretty Similar Orange.gtzip",
+      "sha256": "bff3ce37bbece80510b6216d67df3ef7123cb14dfc288c97e1575824a7e47161",
+      "layers": 5,
+      "fields": 1,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 84- Moon Lizard Blues.gtzip",
+      "sha256": "d72d5a9a0bcd5dd2103a48cbf436d1224761201e08c82c7b6f1aada030f00bc8",
+      "layers": 1,
+      "fields": 2,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 84- Moon Lizard Dusk.gtzip",
+      "sha256": "7cc84273e5f1dd0155c3c6037586db671925c52ec03e7a95490e9966dce95e7b",
+      "layers": 1,
+      "fields": 2,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 84- Moon Lizard Moon.gtzip",
+      "sha256": "957f0346d959af63135711a7c24a1b5dcad715c7dd3d4ee33f3f77569ddb8c16",
+      "layers": 1,
+      "fields": 2,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 85- Formerly Known As Blue.gtzip",
+      "sha256": "67a1de9ab10e5834d4dc118b921fe648859a0963c5ceab165e4fa16f71f70c91",
+      "layers": 4,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 85- Formerly Known As Green.gtzip",
+      "sha256": "5c068ec9ad9ae64d5081b21ba5a8321ec2f01cdddcadda1a7dee7c80d0874994",
+      "layers": 4,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 85- Formerly Known As Purple.gtzip",
+      "sha256": "60c9dad3d2eadb37dde79db57aa76c8b5d3c587ae0afa5ac985c68e443a1ef38",
+      "layers": 4,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 85- Formerly Known As WM.gtzip",
+      "sha256": "f6c5b664a28c1b309ac710a08d2f1687794fec66e70c7ae189b5624c0eb3f256",
+      "layers": 4,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 86- Ice Cream Panini Chill.gtzip",
+      "sha256": "cc45fb70c2233ce22aa526f9595f9f7eb7206d07f314c7b09794a38541168d99",
+      "layers": 2,
+      "fields": 1,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 86- Ice Cream Panini Choc.gtzip",
+      "sha256": "ad65fae4ba95ae5f77b672594c77bb7d2aac6b6c85ce144ca0f1a2d97bdc0678",
+      "layers": 2,
+      "fields": 1,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 86- Ice Cream Panini Cone.gtzip",
+      "sha256": "bd8b9e2a8713107d111fe33bcef19180f75557c59f9f8ffbf75f066335ebd087",
+      "layers": 2,
+      "fields": 1,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 86- Ice Cream Panini Summer.gtzip",
+      "sha256": "9614a77b467cafd5b301999dc1afe1e3bc43ab70fb1cbea0ed12985e4942ace7",
+      "layers": 2,
+      "fields": 1,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 87- Clinical Efficiency Blue.gtzip",
+      "sha256": "11d3315f2d679999c7f9c21b1ea5a787c092cdf1b741a7b98078fd505858f7d3",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 87- Clinical Efficiency Green.gtzip",
+      "sha256": "1f576fc837bebd53760225da2fe9b2c401fc5f370946d3d4febeb622fc7c1135",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 87- Clinical Efficiency Grey.gtzip",
+      "sha256": "f81d81bd2c977c005e75b53016fdc0da7e0c6e00b89c6ea43cc967013e5e041f",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 87- Clinical Efficiency WM.gtzip",
+      "sha256": "e9aa108a3c5bf83f6862c04b7bc2e5bb8e499bdf21efebc27adb07203b37254c",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 88- Slick Blue.gtzip",
+      "sha256": "4e90ac4e4c1c887dbfb0e7e369fc611e92d6ca7bae03d51d0a1c946f4672f44a",
+      "layers": 2,
+      "fields": 2,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 88- Slick Green.gtzip",
+      "sha256": "b367d73df6260e19dc90764a6201839b5e432d56aaebee0e4bd839e170abf772",
+      "layers": 2,
+      "fields": 2,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 88- Slick Red.gtzip",
+      "sha256": "04a0126c37c41e99a993d94ad97dc3c260d359cd43b2575796edd90f5c69eb4a",
+      "layers": 2,
+      "fields": 2,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 88- Slick Sunset.gtzip",
+      "sha256": "1ba06e94e4b77fbb79f57c515b3c840bf154f02c9bc233452036a663e79fd2ea",
+      "layers": 2,
+      "fields": 2,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 89- Instant Delivery Black.gtzip",
+      "sha256": "248faa4a3195ad19d33d23ef8c2c34dcc2cd527a98d8e86ce4c555ebcfb544eb",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 89- Instant Delivery Blue.gtzip",
+      "sha256": "6e614d8d8526ff961e28f5bab34dd9e390f36abcf53eadd40ef254cbc4c53dd7",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 89- Instant Delivery Green.gtzip",
+      "sha256": "e804f661c9f060bd7590e2b29cc2e546cb89b30b67c5d0fd3710bd55305eea24",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 89- Instant Delivery Purple.gtzip",
+      "sha256": "1ebdc216a0996c18dceeba579f9ee90b4f2eabdcdc732a123028aa968f54cd28",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 9- Spout Clean.gtzip",
+      "sha256": "db97edc89b3c1d846d0cf49ce81f5d35e1ccc3e7495fa336c3c2b50be8ba1a27",
+      "layers": 3,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 9- Spout Grey.gtzip",
+      "sha256": "0a6a876733d0dc385e9d4c8e91c16aa7149ce4012f4e49fb8642a615dff5c45d",
+      "layers": 3,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 90- Better Times Blue.gtzip",
+      "sha256": "31c796d3eecc4331732dae27a7f79b7ba2bcaa422d0564f2a5cdb7e99f96807e",
+      "layers": 2,
+      "fields": 1,
+      "warnings": 2,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 90- Better Times Grey.gtzip",
+      "sha256": "c07e0f5b44547621d43200f94040c136260442b756745218028557b121d7e5bb",
+      "layers": 2,
+      "fields": 1,
+      "warnings": 2,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 90- Better Times Pink.gtzip",
+      "sha256": "8b0990605e0ed6e0d7fb0b62e2b8f278220ed8ae853b3720a34087d9b70c5d44",
+      "layers": 2,
+      "fields": 1,
+      "warnings": 2,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 90- Better Times WM.gtzip",
+      "sha256": "29768397440929fdefe5c5e297f24c13fd71cff5e5a88e9adfb1393d10cfbe6f",
+      "layers": 2,
+      "fields": 1,
+      "warnings": 2,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 91- River Court Blue.gtzip",
+      "sha256": "b8611adf2e26252ea70160994d96b9854dfc552537d6ab2423c84e49a2b71b2e",
+      "layers": 2,
+      "fields": 2,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 91- River Court Grey.gtzip",
+      "sha256": "583da7d634da67a97fc758bcced624efc2f117e40c121b23c9abeb6c87f17e93",
+      "layers": 2,
+      "fields": 2,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 91- River Court Purple.gtzip",
+      "sha256": "7080ec74106e3fb1efae4daf7ae0f5e334c2dfecb36b3554a9e84d9884b2c95e",
+      "layers": 2,
+      "fields": 2,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 91- River Court WM.gtzip",
+      "sha256": "10a6d53088fe142bba74f86c3ecfd53719f7c8179f2963131e70a2b8fb052fe9",
+      "layers": 2,
+      "fields": 2,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 92- Curve Your Enthusiasm Blue.gtzip",
+      "sha256": "882085db834cea1ec9cddca896b4814d0ad6811f69c19c1cba0391d4163bd89f",
+      "layers": 1,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 92- Curve Your Enthusiasm Green.gtzip",
+      "sha256": "2b2881e7a45ca231c04f9b06c019847a2bece1a414c3a8bfd903bdfdb40c1263",
+      "layers": 1,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 92- Curve Your Enthusiasm Purple.gtzip",
+      "sha256": "a39244de306b00dbbd8bbf21d73ddd93317a32d69fcd6bb85d1674c56913558a",
+      "layers": 1,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 92- Curve Your Enthusiasm WM.gtzip",
+      "sha256": "c965c197ce359603e40a30ff2cadb801322a6317dde33745b47d00b505ebc8dc",
+      "layers": 1,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 93- Sure Is Blue.gtzip",
+      "sha256": "28ab3aa8fbb0b2fc6214340f9e529b8ec5302331fb80d1731fda65e89420b406",
+      "layers": 2,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 93- Sure Is Grey.gtzip",
+      "sha256": "db802cc0d391af6ab38373ccdd1237c728743c3e0b0b44b56e1f4427793f5ac1",
+      "layers": 2,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 93- Sure Is Purple.gtzip",
+      "sha256": "a3eb68205e62621ea48a773450c5a0ea2765fc91264fe15e38860399d8795c03",
+      "layers": 2,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 93- Sure is WM.gtzip",
+      "sha256": "5cf2c171bff2c7f88c17d9a07ea7629f2b8494b05bcc285dc762d6c90c292f32",
+      "layers": 2,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 94- 2003 Blue.gtzip",
+      "sha256": "37f1d9cb33a5952ffad635df55f8cb67709cf4f1a89842c70c3b0af41f00d672",
+      "layers": 1,
+      "fields": 2,
+      "warnings": 2,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 94- 2003 Orange.gtzip",
+      "sha256": "0cadbffcbdffb060fa48ac2becf9333d08b9c4b42561a23563950408970eb574",
+      "layers": 1,
+      "fields": 2,
+      "warnings": 2,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 94- 2003 Pink.gtzip",
+      "sha256": "55349817aa259a1f206c49d4c5b4e7f40e14281924c1989920094d1d4d89bb1b",
+      "layers": 1,
+      "fields": 2,
+      "warnings": 2,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 94- 2003 WM.gtzip",
+      "sha256": "04a90aa23ac41f914e081e63d86d792d0be221d538aa9231f1721a8e177f9f06",
+      "layers": 1,
+      "fields": 2,
+      "warnings": 2,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 95- Floater Green.gtzip",
+      "sha256": "c97ff77cd685bbcb830b175e8ec831543231d2af83a3c0cadcbc70a8cf120bff",
+      "layers": 1,
+      "fields": 2,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 95- Floater Pink.gtzip",
+      "sha256": "5afe3095256636fc1cdb43a884688c5ff26e16538d47910546588e862c845a93",
+      "layers": 1,
+      "fields": 2,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 95- Floater Purple.gtzip",
+      "sha256": "91d77059a1a5677571781ad2456c307c7efb8b12254b84852b98b00c47b5a4e0",
+      "layers": 1,
+      "fields": 2,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 95- Floater Red.gtzip",
+      "sha256": "254b695e1d28cc39a6f6a46cbf2550980afe636405dd462f05af0349db5b1755",
+      "layers": 1,
+      "fields": 2,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 95- Floater Yellow.gtzip",
+      "sha256": "2379a6b0c73ffcf5d6282b331971c6345298170511ef08daade468eeae113f3e",
+      "layers": 1,
+      "fields": 2,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 96- Corner Warmer Blue.gtzip",
+      "sha256": "451b2d00b8c05bc05b8fb532f417b968143b7d44f04b8552d0b3902b0a99b26e",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 96- Corner Warmer Green.gtzip",
+      "sha256": "9777491c99357d66dbbc3ea65ab7a7514728c65820015a1b3728295ce384ebf0",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 96- Corner Warmer Grey.gtzip",
+      "sha256": "38ee683a580a9ff733500d2ea13cce4f1db3ab0537072969bb2af3d872bf8015",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 96- Corner Warmer Purple.gtzip",
+      "sha256": "f42ba7b1254e7333f250528d5830934a579d1456f581696a6a58dd0af7045033",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 96- Corner Warmer WM.gtzip",
+      "sha256": "6ac078d387a79ab16bc5055a37c87ad0e9e58829a2a37a9cb9a0aded2261c101",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Title/Title 97- Shiny Friends Blue.gtzip",
+      "sha256": "3555f69d8a9b619a32e10e519d8e8a98ca940ff8c06b78b34e412ca9362685b6",
+      "layers": 1,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 97- Shiny Friends Green.gtzip",
+      "sha256": "6e28d9fafb562a1cd9a46faef45cdbfe844fa195904ff19aaa4fff56caf96686",
+      "layers": 1,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 97- Shiny Friends Grey.gtzip",
+      "sha256": "4092d920308efa970881de7ba64de9e4640b2ab74fb0872e0eec3c76fd3553d8",
+      "layers": 1,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 97- Shiny Friends Purple.gtzip",
+      "sha256": "1cf033c542cab45e77f22a726be84716af8e2a057d2243a96e5702d56184a336",
+      "layers": 1,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 97- Shiny Friends Red.gtzip",
+      "sha256": "4f4dc732996728b38667ffa4404bbd3a47510dccb97d7af34ca46c5bccc89bae",
+      "layers": 1,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 98- So Inviting Blue.gtzip",
+      "sha256": "b42353741b43a32db32691437c745de210bdf5cd875f70ea11f57ad3467aef74",
+      "layers": 2,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 98- So Inviting Green.gtzip",
+      "sha256": "2e5527b53c4a38bf46a7d557c539fe865764b9e7d61c35e5409fcbb81a04d3e4",
+      "layers": 2,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 98- So Inviting Grey.gtzip",
+      "sha256": "8c43e77d5f5713b2f9f459a5af82a56ee1914af45bcf9b4f4d9f02056fcfd3d2",
+      "layers": 2,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 98- So Inviting Purple.gtzip",
+      "sha256": "3315806506ea9ba40609124ba8b410ba80b8100792390d298ed29ac1e16e3c5b",
+      "layers": 2,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 98- So Inviting Red.gtzip",
+      "sha256": "acff85f292f7f2dfe9cacd64d48e04c8587409be36d4f1f12b6346aa19603de6",
+      "layers": 2,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 99- Evening Tea Blue.gtzip",
+      "sha256": "79124afc8369c3653d0773311f39b7318783091c8a4162c83997000ad12dd50c",
+      "layers": 2,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 99- Evening Tea Green.gtzip",
+      "sha256": "e9ab30d68e2c73ccf52aeb0b90004d7fcb2658bd48c5b44398b3af838d7a1194",
+      "layers": 2,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 99- Evening Tea Grey.gtzip",
+      "sha256": "29b3e72c39ac314d53a49383020f816a529635bd781add1974407da666c19028",
+      "layers": 2,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 99- Evening Tea Orange.gtzip",
+      "sha256": "6c3efee73f9e240c51b10d6a2be18f69945ca64d9bf6b418e42b1d6b2b681098",
+      "layers": 2,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 99- Evening Tea PO.gtzip",
+      "sha256": "814360dbf897740fe1cd94d3ce3c737f085b1997dfbc99e3206b4f5e898565bd",
+      "layers": 2,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 99- Evening Tea Purple.gtzip",
+      "sha256": "d0bfc29ba63ace71dfaaf748b81a820db04ac00cdf4fbd7eab19a9c32c7baf8c",
+      "layers": 2,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Title/Title 99- Evening Tea WM.gtzip",
+      "sha256": "a42bec2359dd86280b0d2e13720667b4a7f5e46f90495817dc69ee8f89ce19af",
+      "layers": 2,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Vertical/Vert 0- The Classic Blue.gtzip",
+      "sha256": "e78f17818fe8205e5e99ad2d1dd0c0727cbde4086cf837ca67d9ee18239b9a8a",
+      "layers": 3,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Vertical/Vert 0- The Classic Green.gtzip",
+      "sha256": "df657c35a0f6c0fe9afa2f90b9df9cc4b7c8201f059fbbfc98a3b006e5df2ac6",
+      "layers": 3,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Vertical/Vert 1- Stadium Black.gtzip",
+      "sha256": "bdba3c4314d6978ed3e95abcdfbdf4d784b8343abdc54f5ccc501dd15828c778",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Vertical/Vert 1- Stadium Blue.gtzip",
+      "sha256": "77636866c3dfea0d6a4d1a4320ac93890ea3b15676d18d686480f7d04bed1db5",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Vertical/Vert 1- Stadium Green.gtzip",
+      "sha256": "33df512429f7eb44e256ea8565a2f1e6c9c2811a7d8c4fab232b4871e2706a6e",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Vertical/Vert 1- Stadium Multi.gtzip",
+      "sha256": "fdf19bbf50c1417d72bfcd53a1d600b7361f42ab056ad51e5e90e849ef8a5691",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Vertical/Vert 1- Stadium Purple.gtzip",
+      "sha256": "039386e2ebea71d605a1b435a44ab7adb9957d6b40e419d3eb9824c25fd5d9bc",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Vertical/Vert 10- Stars and Squares.gtzip",
+      "sha256": "efd43050ac8e284b258ef5d2f22b3f930a580e9eef5e95d464fd0c857734925a",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Vertical/Vert 11- And Then Some Blue.gtzip",
+      "sha256": "d30ae1aa216b26b2f5b511f1ade8e1dced30ba8811051c8460d97e50f64eacdf",
+      "layers": 1,
+      "fields": 2,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Vertical/Vert 11- And Then Some Purple.gtzip",
+      "sha256": "f9be9a9c42fb7db28fdf4788bc8d90fbec9c60c31bb95cd957f126d361fe7e05",
+      "layers": 1,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Vertical/Vert 11- And Then Some Red.gtzip",
+      "sha256": "b448a87ed862a95e32b51c43a353d77838cb1a1696101e86f0c230125061e5d2",
+      "layers": 1,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Vertical/Vert 12- Bog Standard Blue.gtzip",
+      "sha256": "dc58461ef3f8e0c92af8bd10d7b5c4034889c74e5cdaa5aec0ee214eb43c021e",
+      "layers": 1,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Vertical/Vert 12- Bog Standard Grey.gtzip",
+      "sha256": "89f2d8d6f0cdf1b132f286e579bfce29a89dbadea4e7fc6ef5486821788f7b09",
+      "layers": 1,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Vertical/Vert 12- Bog Standard Purple.gtzip",
+      "sha256": "6fbb073be374387d2de26193ffca343f285c53b2deefd1507b06157e0273e81b",
+      "layers": 1,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Vertical/Vert 13- Multi Vitamin Blue.gtzip",
+      "sha256": "7700547bef68df559a8700b41d611972b42d37b7aee15b1500f7b13fa7a5ece7",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Vertical/Vert 13- Multi Vitamin Grey.gtzip",
+      "sha256": "b816dc954e7b567e0e05b33f225e3edfdd337679294407c8ca5e658e70bacb04",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Vertical/Vert 13- Multi Vitamin Red.gtzip",
+      "sha256": "5416f2b56e78b2821e3900c7e3eb8791d4862a8bb637968e467c455e918462b0",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Vertical/Vert 14- Our Flag Black.gtzip",
+      "sha256": "8a64670a57b9903126de3aaade22dd9c8d97fb5080800e9aed02e4cf1beb8b5c",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 2,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Vertical/Vert 14- Our Flag Blue.gtzip",
+      "sha256": "2c9689226afc036cc830e5f9f9b9d59390c04931c943ff0d1ee2d05a8dd77eab",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 2,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Vertical/Vert 14- Our Flag Green.gtzip",
+      "sha256": "a12dbe88352eafcfd5f4597628b8b933ac08b886d732b4728f1d257137762a37",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 2,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Vertical/Vert 14- Our Flag Purple.gtzip",
+      "sha256": "f703cfea7853af68176c10fadec8ec8589105a322963d2da81f17e98076c8efc",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 2,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Vertical/Vert 14- Our Flag Red.gtzip",
+      "sha256": "4bde017ab469b17eb576f3800a06d9465082c28ba4dd18fb0b07e094edc5a1fd",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 2,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Vertical/Vert 15- Polarity More Clearer.gtzip",
+      "sha256": "3ea6286755486ec5533719e70dddf7818727651b54b492a6bfb689d8232527d2",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 5,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Vertical/Vert 15- Polarity No Transition.gtzip",
+      "sha256": "27baae5ccfbaa29c4296091233a2e94d769dd1a76a6bc1d7a77a201bdc0ad9af",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 5,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Vertical/Vert 15- Polarity Old Timey.gtzip",
+      "sha256": "ad89165d9950544729d8d3e67b46c8e9fec7a5bc33505353433d57a887acbb0c",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 6,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Vertical/Vert 15- Polarity Unicorn.gtzip",
+      "sha256": "189335f306aa930812494511751178c5f4a33c7cf68c402e89e18e2077001e90",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 6,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Vertical/Vert 15- Polarity.gtzip",
+      "sha256": "6ac5afb848557b7ed8461b0555f6ddc399616a66a894a5b8c0cca8f816ef0adc",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 6,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Vertical/Vert 16- Change Of Pace Blue.gtzip",
+      "sha256": "8a68918f5bca399b4e3b7f00d2f04af00c022ed7618a2dfa26860bcd5bf1fe99",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Vertical/Vert 16- Change Of Pace Grey.gtzip",
+      "sha256": "7bfdbdf32a61bf9dfff731248603f6d3cef64a6296255fd48d4b6a6f859588f6",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Vertical/Vert 16- Change Of Pace Red.gtzip",
+      "sha256": "aface8c5d0d31394f6a1cd34baafa10c79d6c1e0a481212cd5ad36b001475a46",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Vertical/Vert 17- Glass Bottles Blue.gtzip",
+      "sha256": "19a13e0b3a8135a843ac9b20d9bb46b75fde79cca0e1daa97a51cd8710548ed1",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Vertical/Vert 17- Glass Bottles Green.gtzip",
+      "sha256": "cea1520287c6cd6316c731966649047b778c86c0a1b01c8ccc392051d35b8d07",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Vertical/Vert 17- Glass Bottles Grey.gtzip",
+      "sha256": "c32efda6632a6a204d14a14c22b41bb15409bffc493dd62dd1baf2dfbc1c6f04",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Vertical/Vert 17- Glass Bottles Purple.gtzip",
+      "sha256": "df92909a8cfa0043f92d9d36f23dbf3b5d56921a48dbb14662de7d1b1d3660bf",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Vertical/Vert 18- Why Would It.gtzip",
+      "sha256": "be4a14d85949d9e857e355ed0f3f371ea560124b0634a4dcfbe57e4824a6943e",
+      "layers": 2,
+      "fields": 2,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Vertical/Vert 19- Snip Snap.gtzip",
+      "sha256": "82897d3cd65c70bfce22db0cb44c1c420817c31e7bff0794d7dd2781499bcb1c",
+      "layers": 2,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Vertical/Vert 2- Bubble Massage Black.gtzip",
+      "sha256": "4419931c635ad5605564b9cbea2541cdb5b68b675b3e069426e4229142b280af",
+      "layers": 2,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Vertical/Vert 2- Bubble Massage Blue.gtzip",
+      "sha256": "49df4b0327fcd4b114b59a94c1be09a6ea0e8bae77af9d79039bfd166a43fa1e",
+      "layers": 2,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Vertical/Vert 2- Bubble Massage Green.gtzip",
+      "sha256": "48f200bf0ce7a56b88fa5cc172c455b154127497c0a9984b4d7c0f8169a32af8",
+      "layers": 2,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Vertical/Vert 2- Bubble Massage Purple.gtzip",
+      "sha256": "8dd45ebf110c3092deed434f9f944de8194e3a2e698147216e5721e5891ccd32",
+      "layers": 2,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Vertical/Vert 20- Border Town Multi.gtzip",
+      "sha256": "ebbc8ca1284f75c77cad3258b3eb75367267a9d34fc86aa28f5c1f8d3e568341",
+      "layers": 1,
+      "fields": 0,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Vertical/Vert 21- Bowt Blue.gtzip",
+      "sha256": "0ea868d9482072a9bcf37dabbc5b22cac647032773ce10e710429c95f2b6b6d8",
+      "layers": 2,
+      "fields": 1,
+      "warnings": 4,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Vertical/Vert 21- Bowt Green.gtzip",
+      "sha256": "adc70ccece8a035b9cd5069270248ef0b32c6e4f4053b659d86c5c3354dce913",
+      "layers": 2,
+      "fields": 1,
+      "warnings": 4,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Vertical/Vert 21- Bowt Purple.gtzip",
+      "sha256": "9d40060dffc021a871eb7aeab1bb21867f1cdd6229733fc95f2f7138e31a1609",
+      "layers": 2,
+      "fields": 1,
+      "warnings": 4,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Vertical/Vert 21- Bowt Red.gtzip",
+      "sha256": "03a47db0a9828facbcfde6d1f2311cb829c8f3e6573ecef509ebac109806bd1a",
+      "layers": 2,
+      "fields": 1,
+      "warnings": 4,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Vertical/Vert 22- Wiper Blade Blue.gtzip",
+      "sha256": "a17ce7a2e1903fd19457bc863d89bdcc386aa1eda1a64103bc66c56bde9e1a2e",
+      "layers": 1,
+      "fields": 2,
+      "warnings": 2,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Vertical/Vert 22- Wiper Blade Green.gtzip",
+      "sha256": "e0559b9fb3a46aa8d0997ba468f4982bcc650d40a49a64c5707d138c7ed58f53",
+      "layers": 1,
+      "fields": 2,
+      "warnings": 2,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Vertical/Vert 22- Wiper Blade Purple.gtzip",
+      "sha256": "bcc5257f9f7e748540d8567786837daed06bb16c12780512b1b3ba77bed7bf6a",
+      "layers": 1,
+      "fields": 2,
+      "warnings": 2,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Vertical/Vert 22- Wiper Blade Red.gtzip",
+      "sha256": "1680d6f9b5c945cc56fe75d65593b8160da7c703c95c22668789c0e949a1abb6",
+      "layers": 1,
+      "fields": 2,
+      "warnings": 2,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Vertical/Vert 23- T and B Blue.gtzip",
+      "sha256": "7c38fb1d47dc75393c564f4a0bed9f8810e8d4eb667b85bce907eb787e104d98",
+      "layers": 2,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Vertical/Vert 23- T and B Grey.gtzip",
+      "sha256": "09235aa3adb1d3371eff63a508441df6d8555257acf1280d9888a4750bdaa5d6",
+      "layers": 2,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Vertical/Vert 23- T and B Purple.gtzip",
+      "sha256": "2291f1a123b37b7f0b3b49f295d2a5d3d8c2dd7dbb508e401c182992a3444ade",
+      "layers": 2,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Vertical/Vert 24- Triangulation Minty.gtzip",
+      "sha256": "14667ea1d318e0d45c8ff147582e8129eb85900ab34ff3564af95569bde31a0e",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 4,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Vertical/Vert 24- Triangulation Multi.gtzip",
+      "sha256": "de08c95e72d3b2f91e7fdc39be8e8ead12bbb2d76df738afe96b95a37d07d975",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 4,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Vertical/Vert 24- Triangulation Night.gtzip",
+      "sha256": "902a629a8d3f5588e13a4937a9bf7895203a7abe83ca8e0b172dcd062558d9b8",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 4,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Vertical/Vert 24- Triangulation Red.gtzip",
+      "sha256": "87328bda8637ec63c7ce76d097290da275e2503e176528ccb33a1f18187c5fd6",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 4,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Vertical/Vert 25- Holiday Special.gtzip",
+      "sha256": "e9b0ab20b6d5cfb54028a8035e3dddd533b25133a56f71aa1836278a3c9eb6d2",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 3,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Vertical/Vert 26- Not A Rhombus Blue.gtzip",
+      "sha256": "4f063f1a52c81a5928e7df842178d185f283da50b0bc03f66b7d1004e82d7b52",
+      "layers": 2,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Vertical/Vert 26- Not A Rhombus Green.gtzip",
+      "sha256": "4602132d582f431673b3e1b735f675001fede7641d37febc6ec357278bd0ad2c",
+      "layers": 2,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Vertical/Vert 26- Not A Rhombus Pink.gtzip",
+      "sha256": "0774d6ea029f991430e87a19a1e62410c1562e8cfd63b7a256e57309b1041d10",
+      "layers": 2,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Vertical/Vert 27- Sweet Life.gtzip",
+      "sha256": "a1c1b921dee909c4e66549d1fd7f357303699b7fe1e039cdc87028f5b5ef6397",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Vertical/Vert 28- Sweet Life II.gtzip",
+      "sha256": "cd685b5c43f34bca6a9dc90efb387f8bed5963b8f61498b334116935f3101c02",
+      "layers": 1,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Vertical/Vert 29- Highway Traffic Blue.gtzip",
+      "sha256": "d5aa0f0a6cb57db8e8e8d7dd3976e1f250d61bff87cc500e3b2fb26083d2373c",
+      "layers": 1,
+      "fields": 3,
+      "warnings": 6,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Vertical/Vert 29- Highway Traffic Green.gtzip",
+      "sha256": "0c96f6aba4d6ac3022780e68dbde032f1e2097605ed21fe1835742f5a719e4d0",
+      "layers": 1,
+      "fields": 3,
+      "warnings": 6,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Vertical/Vert 29- Highway Traffic Red.gtzip",
+      "sha256": "55de280c29e44b19bd32c0ad82260cf7edfdbe12107df0e2412020cbac653ee5",
+      "layers": 1,
+      "fields": 3,
+      "warnings": 6,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Vertical/Vert 29- Highway Traffic.gtzip",
+      "sha256": "6de83736a59df0817c019b5e6dabdab548aa1afdf2f97ee2c20cf5a6e884d9f2",
+      "layers": 1,
+      "fields": 3,
+      "warnings": 6,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Vertical/Vert 3- Birthday Lunch Black.gtzip",
+      "sha256": "eaab7a14fd23e2115c3304b2850e21ea26e78ee1b4a2cf850b960a671a7034a6",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Vertical/Vert 3- Birthday Lunch Blue.gtzip",
+      "sha256": "14ec4b591ef84634a879eb0130a83b21d683bbb4010022a31f3d059c9f63df2f",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Vertical/Vert 3- Birthday Lunch Green.gtzip",
+      "sha256": "6cdfd5044994ee1c705c39910e8cb88b230574aa4e74a32141745d695cba9904",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Vertical/Vert 3- Birthday Lunch Multi.gtzip",
+      "sha256": "e7363519102de92ed2540b2ff0a10ba326614dcabe2e49b878380e42e61f91a7",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Vertical/Vert 3- Birthday Lunch Purple.gtzip",
+      "sha256": "3b7f80580261ba87c28e0304e941e9fe0a54d11aab6bb301dd106a3619e52f7e",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Vertical/Vert 3- Birthday Lunch Red.gtzip",
+      "sha256": "cd82729a54b31f177e9b19f366f7eadac29d93e6ae91b6821b82424a8169c2f4",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Vertical/Vert 30- Jonah and Morris.gtzip",
+      "sha256": "49e5ccc871b5a935b075b66af9a1e68a7e4aa28ae86f98b1a67d50b95b18998f",
+      "layers": 4,
+      "fields": 2,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Vertical/Vert 31- Elevator Jazz Blue.gtzip",
+      "sha256": "8c3f579522789af9c832be76f468d05fffd3c60f879ac4dd78fc40aa03a44bec",
+      "layers": 2,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Vertical/Vert 31- Elevator Jazz Ding Ding.gtzip",
+      "sha256": "1f2fe3f844f10d8a0c0e2c258d23d6ae0f062500b26ed645e7b4e81d87a820b1",
+      "layers": 2,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Vertical/Vert 31- Elevator Jazz Gold.gtzip",
+      "sha256": "59934dba70dd1bbd169ddcbbdcef9b06dd76573feb11580e4eb3f3b749585e1a",
+      "layers": 2,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Vertical/Vert 31- Elevator Jazz Red.gtzip",
+      "sha256": "0bca7636639971cf222d06a5722dd7acd38a9106cc431ca2290281c42eb23a73",
+      "layers": 2,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Vertical/Vert 32- Here is Jimmy.gtzip",
+      "sha256": "48654a8e7272b45759b63d2a74dd88addaa71af2329233008575611515f23f27",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 4,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Vertical/Vert 33- Weekend at Mervins.gtzip",
+      "sha256": "b4f78f90296de6220fda607bc6d0679c2edf142d94af3c3eafcfca8bb6db12bf",
+      "layers": 1,
+      "fields": 0,
+      "warnings": 4,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Vertical/Vert 34- Screen Share Blue.gtzip",
+      "sha256": "f513a861df7d227f7f39cd183fd6a66fc4974f65f01413d895c8a5be60943d3b",
+      "layers": 1,
+      "fields": 0,
+      "warnings": 14,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Vertical/Vert 34- Screen Share Clear.gtzip",
+      "sha256": "654bfc01112557d6322df38c1298d25e606312a22a1dc7f34a69e58653c093b3",
+      "layers": 1,
+      "fields": 0,
+      "warnings": 14,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Vertical/Vert 34- Screen Share Gold.gtzip",
+      "sha256": "0b9af22acdb2d5a8fda7b2ce8a5bed14cdd9091da724d09ac268f6c826753464",
+      "layers": 1,
+      "fields": 0,
+      "warnings": 14,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Vertical/Vert 34- Screen Share No Transition.gtzip",
+      "sha256": "2d863caff04c6db7710592fccf8329d3c2de7f44bfb0062894cb0de23b45aded",
+      "layers": 1,
+      "fields": 0,
+      "warnings": 7,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Vertical/Vert 34- Screen Share Static.gtzip",
+      "sha256": "fb9b342728b923a00feba2bb2ddfb61e86b7daa37d1bbf11369545e3f5f7c41e",
+      "layers": 1,
+      "fields": 0,
+      "warnings": 14,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Vertical/Vert 35- And Another One.gtzip",
+      "sha256": "154a6a25fcdca0499bda61bb828d9422e79f1758f25ca8223b3f9357de3b9f5c",
+      "layers": 1,
+      "fields": 3,
+      "warnings": 2,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Vertical/Vert 36- Reminds Me Of Home.gtzip",
+      "sha256": "5fe5b953548948c78f58cd204fb73e9269d495394e23593ec0190316ddd00718",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 4,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Vertical/Vert 37- Trips Screen XY Banana.gtzip",
+      "sha256": "ee275a60b8d527efca1a00c04f597328ef6162dddfda15e122c4aa98e63e22b0",
+      "layers": 3,
+      "fields": 3,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Vertical/Vert 38- Statement Piece 1.gtzip",
+      "sha256": "3e33a782f95276f527ed767638b230aa217a2785f0604a5ab8e6f9a2cf6719f1",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Vertical/Vert 38- Statement Piece 2.gtzip",
+      "sha256": "abdc31fd97b18ce6cf0e1024c7d2512ee7f708f4b5fa587d151e1bc2b10f56e0",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Vertical/Vert 38- Statement Piece 3.gtzip",
+      "sha256": "e4549ca30150a7a90ced2185fc60bc42157183435eb274026237dbd2a9afd71d",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Vertical/Vert 39- Basic Basics.gtzip",
+      "sha256": "80fbf6ccc21d290255bf5776b2426bf7b978e6fa0c53523053cf04b168bf97b3",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Vertical/Vert 4- Modern Age Blue.gtzip",
+      "sha256": "676b8319daaeb9def453b75a0d07c8fc8d3750928ad324adc1f369b1cb58314a",
+      "layers": 2,
+      "fields": 3,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Vertical/Vert 4- Modern Age Green.gtzip",
+      "sha256": "b8084165d1b1ca836743d5806219014ed6f0fdfcd5edb69eeb2045e3b890d332",
+      "layers": 2,
+      "fields": 3,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Vertical/Vert 4- Modern Age Midnight Blue.gtzip",
+      "sha256": "f1b65bdb1dda969dd72f575a5b4b71596051407052dd7ca88e97c2d6a6559726",
+      "layers": 2,
+      "fields": 3,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Vertical/Vert 4- Modern Age Midnight Green.gtzip",
+      "sha256": "b22e2adbb5c637cab61da80b3b8cc65ffd1b5823b490391b1816cc5206299f4d",
+      "layers": 2,
+      "fields": 3,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Vertical/Vert 4- Modern Age Midnight.gtzip",
+      "sha256": "cea7361b2d6a78df0a479ba627c20eafc6beffcdb8e28d9e631aaf8a1f2d6b7a",
+      "layers": 2,
+      "fields": 3,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Vertical/Vert 4- Modern Age Red.gtzip",
+      "sha256": "1315694fe3a97ea1ff427bc34aa1f9c80dfb0d93e101fd35048e110c22975eb8",
+      "layers": 2,
+      "fields": 3,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Vertical/Vert 40- Carried Away.gtzip",
+      "sha256": "e32fef9839f12d333cc8cd38d0c132c8cfd0bf48e15721cfefb651a2fb39ced1",
+      "layers": 1,
+      "fields": 2,
+      "warnings": 4,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Vertical/Vert 41- Totally Intentional.gtzip",
+      "sha256": "922b133cc8612c730e6b6e763502123b8ca4e11f37a5810a177378c162f8234c",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 3,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Vertical/Vert 42- Pin Point.gtzip",
+      "sha256": "7610d0853b43154c8bd35ab07f68c3dc4191f984125c591800d157f3fbb8c071",
+      "layers": 3,
+      "fields": 1,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Vertical/Vert 43- Soft Centre.gtzip",
+      "sha256": "4121917a54ff8f300de043eb88553d79acc9c0256e70b5f2f3632ac68b47c37c",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Vertical/Vert 44- The Healing Power Of Donuts.gtzip",
+      "sha256": "35642cb2031e6f150d1262193055af5dec0520175ca10d3f7264cd8b334a6451",
+      "layers": 3,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Vertical/Vert 45- Look At This Photograph.gtzip",
+      "sha256": "323b4373002ce57584fec34aa669c57ea33c070fc4b8341976425613f34970a5",
+      "layers": 1,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Vertical/Vert 46- Stale Meme BW.gtzip",
+      "sha256": "1a74d17a9d34b895006d0f6806993c93fe8affd74fb6bedd88194e8e0d6f9db6",
+      "layers": 1,
+      "fields": 2,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Vertical/Vert 46- Stale Meme.gtzip",
+      "sha256": "06deaf990b0a33005314d66a6001332b991293222e79c6396a6e30614333786f",
+      "layers": 1,
+      "fields": 2,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Vertical/Vert 47- Cannot Make a Cake.gtzip",
+      "sha256": "20eb9cdd04b34c96d38a9149008be3a4d323a0cfeefe3c2f01d471511de02c91",
+      "layers": 2,
+      "fields": 1,
+      "warnings": 9,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Vertical/Vert 48- Italic Branding Dark.gtzip",
+      "sha256": "de420f1806f9803afaba3073bc359fc4954beb6e0f9456871645c698cfdd5b2a",
+      "layers": 1,
+      "fields": 3,
+      "warnings": 3,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Vertical/Vert 48- Italic Branding Light.gtzip",
+      "sha256": "0c996fd24b7901d425a0906b0bb8dcb1f480d713a4e54f0304f3cd75ea3379a0",
+      "layers": 1,
+      "fields": 3,
+      "warnings": 3,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Vertical/Vert 48- Italic Branding Smoke.gtzip",
+      "sha256": "fcb9482c07af97faa0a7469177d7baa6e9ce173b0beb8594837433eb92a9b0e2",
+      "layers": 1,
+      "fields": 3,
+      "warnings": 3,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Vertical/Vert 48- Italic Branding Steam.gtzip",
+      "sha256": "11855b6cd36964cd65f583c971d2467215be2eaf9d319c0dc5d024e2f32cba53",
+      "layers": 1,
+      "fields": 3,
+      "warnings": 3,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Vertical/Vert 49- Mountaineering.gtzip",
+      "sha256": "a298a00d0f7c3a4d25da5d6cd32c4049384aaf4310d51183d2e1debf36bda542",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Vertical/Vert 5- Backwards Walk Black.gtzip",
+      "sha256": "a2c8637c861809f34ea259cf7109149aa5449599f874b40d9f23aab7ec3750a1",
+      "layers": 2,
+      "fields": 1,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Vertical/Vert 5- Backwards Walk Blue.gtzip",
+      "sha256": "b2575d4d097ad9848733b66f9812aed492435dfc430d518be1b6c72f7d5182e6",
+      "layers": 2,
+      "fields": 1,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Vertical/Vert 5- Backwards Walk Green.gtzip",
+      "sha256": "0fa721479d258f3ce02c04bd05e62ddf06d62e775d3362a7e2999e4201d4eac9",
+      "layers": 2,
+      "fields": 1,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Vertical/Vert 5- Backwards Walk Red.gtzip",
+      "sha256": "f7427ec58b35946d76eee4056a75a085d7a1dc4d48ae103fc140aadc50b2f9ae",
+      "layers": 2,
+      "fields": 1,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Vertical/Vert 50- Rollin Logos.gtzip",
+      "sha256": "c56910ea582051106b1520a51ff2e55f72fac335b99843e83e7753c8c2b1a1fc",
+      "layers": 1,
+      "fields": 2,
+      "warnings": 15,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Vertical/Vert 6- Just Thinking Apricot.gtzip",
+      "sha256": "26380575a31c84b282fb8c01ec5b85334bc4b99695bfe0beb2c6a0701e40e9e7",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 5,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Vertical/Vert 6- Just Thinking Blue.gtzip",
+      "sha256": "a7a8f23837919bfa0351c860ec37d1febcd6e5ec7610fb57c23d9cac917b2707",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 5,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Vertical/Vert 6- Just Thinking Purple.gtzip",
+      "sha256": "b2266afb3df40e8a69dea316e547c5469cfd6c98f8c2343b2253eac493f717a1",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 5,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Vertical/Vert 6- Just Thinking Static.gtzip",
+      "sha256": "5978623e6becc1c057296655fe83474b5fa630b0c93049a1b6d87306b36b49bf",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Vertical/Vert 6- Just Thinking.gtzip",
+      "sha256": "7c92dc69af23101afac208d972d2aa3828de3b62b3cda4780a71544ec3bc6009",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 5,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Vertical/Vert 7- Top Spin Black.gtzip",
+      "sha256": "a8fdb936c4d64e7ff21f053eb9ade2bae78b44726e9692d4e7fcaa907ba947c3",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Vertical/Vert 7- Top Spin Blue.gtzip",
+      "sha256": "5fd729770c2e75ee37c23406a5c267156ab1ce33b161d52ffbccb063f41ea2fd",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Vertical/Vert 7- Top Spin Green.gtzip",
+      "sha256": "1dbecf122412b9eef84f0c50e1d82c2113d46d9ca46d4a7066d1f9fd05778880",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Vertical/Vert 7- Top Spin Red.gtzip",
+      "sha256": "615b1cdbc6de5987372677851eb814e9c88a5f679b22052c7f9866f3c443789f",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Vertical/Vert 8- Flip Flops Black.gtzip",
+      "sha256": "a215e13ee63d2a7dbe2fa4301b999dfa45253f3f9575747d83ad08a087ca8347",
+      "layers": 1,
+      "fields": 2,
+      "warnings": 4,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Vertical/Vert 8- Flip Flops Blue.gtzip",
+      "sha256": "43b5fc86a2788b8ea5bcfce904e6ca501366e3b98312dbeafa12301783db71b2",
+      "layers": 1,
+      "fields": 2,
+      "warnings": 4,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Vertical/Vert 8- Flip Flops Green.gtzip",
+      "sha256": "4c7d9d3a986b889f1c02e63297765d0763d63aac55229be6c6c45c58f6867868",
+      "layers": 1,
+      "fields": 2,
+      "warnings": 4,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Vertical/Vert 8- Flip Flops Red.gtzip",
+      "sha256": "74edd287bb21a7b97c3b363cf76b7c4c64db5f2d42e9182aecc01d3eae6a3180",
+      "layers": 1,
+      "fields": 2,
+      "warnings": 4,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Vertical/Vert 9- Cubic Spinz.gtzip",
+      "sha256": "3684950d75481a8b4c69fbbf2e908161b28139433261a85db0908b8d77bfbe3a",
+      "layers": 1,
+      "fields": 1,
+      "warnings": 3,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Vertical/Vert Social 1- Runaway Blue.gtzip",
+      "sha256": "127e64f9d28dcf8105a9d9150dc956d4205463e6612e55b60dc7efb717415112",
+      "layers": 3,
+      "fields": 6,
+      "warnings": 6,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Vertical/Vert Social 1- Runaway Green.gtzip",
+      "sha256": "3ccae8535ad72cf9f02fb12c40f8325bb64211ebf6132304a90f68decee53971",
+      "layers": 3,
+      "fields": 6,
+      "warnings": 6,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Vertical/Vert Social 1- Runaway Grey.gtzip",
+      "sha256": "78812802846ad6c6aec838095bfc7a0e4a335cc2a4793526f56b4f638566b69b",
+      "layers": 3,
+      "fields": 6,
+      "warnings": 6,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Vertical/Vert Social 1- Runaway Red.gtzip",
+      "sha256": "577692b2cbe1c7eca6e9618dabd379ec729a0711caadc52653920b78fbf51f55",
+      "layers": 3,
+      "fields": 6,
+      "warnings": 6,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Vertical/Vert Social 2- One One Blue.gtzip",
+      "sha256": "fb3e4913a81acf1e053319edd0f7fb91c1d0b57f903f08665de530b500ec7403",
+      "layers": 2,
+      "fields": 5,
+      "warnings": 5,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Vertical/Vert Social 2- One One Grey.gtzip",
+      "sha256": "9ce017f92e4cd1da7f3a14f53ec742caa2096b832cb03bec1e8d051b52da1b71",
+      "layers": 2,
+      "fields": 5,
+      "warnings": 5,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Vertical/Vert Social 2- One One Red.gtzip",
+      "sha256": "15852bd6db9bf795bd0e473b7ddd03230c5548f59da776954fbfa768c689924b",
+      "layers": 2,
+      "fields": 5,
+      "warnings": 5,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Vertical/Vert Social 3- None Shall Pass Blue.gtzip",
+      "sha256": "9144b7ef3d912dac0b010a871c5c948487c8dfa3652999edba944bc0896b6ae0",
+      "layers": 2,
+      "fields": 5,
+      "warnings": 4,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Vertical/Vert Social 3- None Shall Pass Green.gtzip",
+      "sha256": "d1529dfd7d201e66bc15092a64cef4fefbf6feb70c621e30d94dcabacef7d559",
+      "layers": 2,
+      "fields": 5,
+      "warnings": 4,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Vertical/Vert Social 3- None Shall Pass Grey.gtzip",
+      "sha256": "0ec4a83e478fa5d7cdcf59d63b85c620bca4821142326af38993d29c2bcea726",
+      "layers": 2,
+      "fields": 5,
+      "warnings": 4,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Vertical/Vert Social 3- None Shall Pass Pink.gtzip",
+      "sha256": "fd7d511d16774cb7d7aba939bc2f0ad08924159f005aebe7473584cb78f70779",
+      "layers": 2,
+      "fields": 5,
+      "warnings": 4,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Vertical/Vert Social 4- Top Down Green.gtzip",
+      "sha256": "3926f488882cb32ca1f3671d525522601248f819c9fd5cd098f87db1378037be",
+      "layers": 3,
+      "fields": 5,
+      "warnings": 3,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Vertical/Vert Social 4- Top Down Grey.gtzip",
+      "sha256": "81713ffe44c0ecd65a997d2eb1a95c351df7c9f3de8dfded6ef5d2b921fb2122",
+      "layers": 3,
+      "fields": 5,
+      "warnings": 3,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Vertical/Vert Social 4- Top Down Pink.gtzip",
+      "sha256": "e70c02dcb5ec1fd7f6304b41cf296707cb8e57b711549c6e87f8e7f7b0dac90a",
+      "layers": 3,
+      "fields": 5,
+      "warnings": 3,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Vertical/Vert Ticker 1- Arvo News.gtzip",
+      "sha256": "6a423d914935a7cd42ada893704214a0bc9fe5797d34fd20bb2d7341dfc48e31",
+      "layers": 1,
+      "fields": 3,
+      "warnings": 1,
+      "diagnosedPartial": true
+    },
+    {
+      "file": "GT Vertical/Vert Ticker 2- Regular News.gtzip",
+      "sha256": "8f817ae87391bdd50d5641e8be7c0f18cf36de3145641f39d09ac1acb67b34f3",
+      "layers": 1,
+      "fields": 3,
+      "warnings": 0,
+      "diagnosedPartial": false
+    },
+    {
+      "file": "GT Vertical/Vert Ticker 3- Irregular News.gtzip",
+      "sha256": "a6350ad062b0c877e59adc06324d9f720660f1cacee131fce37b5837e3899738",
+      "layers": 1,
+      "fields": 2,
+      "warnings": 0,
+      "diagnosedPartial": false
+    }
+  ],
+  "limits": "Structural comparison only. Local reference ZIPs/assets are never extracted or redistributed. Complex ticker-template sublayers/images are excluded with explicit diagnostics. No universal animation/effect/font/visual equivalence claim."
+}

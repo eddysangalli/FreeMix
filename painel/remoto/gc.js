@@ -28,3 +28,6 @@ setInterval(()=>{const next=FreeMixRemote.getState();state=next;const sig=JSON.s
 select();
 
 const restartClock=document.createElement('button');restartClock.textContent='Reiniciar relógio H/V';restartClock.type='button';restartClock.onclick=async()=>{try{if(!id||dirty)throw Error('Salve e selecione um título primeiro');await command('gc_library_clock_restart',{id});el('status').textContent='Relógio reiniciado nas versões vinculadas.';}catch(e){el('status').textContent=e.message;}};el('save').parentElement.append(restartClock);
+import {installGtzipUi} from './gc-gtzip.js';
+installGtzipUi({command,getState:()=>state});
+const freeFont=document.createElement('button');freeFont.type='button';freeFont.textContent='Usar Bebas Neue livre neste título';freeFont.onclick=async()=>{try{const r=await command('gc_library_asset',{kind:'font',freeFont:'bebas-neue'});el('f-fontAsset').value=r.token;el('f-fontFamily').value=r.family||'Bebas Neue';dirty=true;preview();buttons();el('status').textContent='Bebas Neue livre (SIL OFL 1.1) selecionada somente para este título. Salve para aplicar.';}catch(e){el('status').textContent=e.message;}};el('style').parentElement.append(freeFont);

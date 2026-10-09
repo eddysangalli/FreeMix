@@ -8,7 +8,7 @@ Experimento [vídeo com alpha em uma entrada Web Browser](docs/VIDEO-ALPHA-UMA-E
 
 ## Código incluído
 
-- `fork/`: série completa de onze patches sobre um commit upstream fixado, incluindo todas as alterações nativas da entrega.
+- `fork/`: série completa de catorze patches sobre um commit upstream fixado, incluindo todas as alterações nativas da entrega.
 - `ferramentas/`: API local, controle, áudio, saídas, Calls, bonding, recuperação, instalador, atualização e ZIP de diagnóstico.
 - `painel/`: mesa, configuração, 156 presets de composição e biblioteca de títulos.
 - `servidor/`: kit Linux para feed HTTPS, TURN e receptor, preparado para implantação explícita.
@@ -26,13 +26,13 @@ Na máquina de desenvolvimento original, abra a instalação por `ABRIR-FREEMIX.
 
 `src/` e `plugins/obs-freemix/` são protótipos anteriores preservados como referência; o motor desta entrega é a série OBS em `fork/`. Documentos antigos de arquitetura/roadmap descrevem também intenções históricas e devem ser lidos junto do estado atual.
 
-Transmitir abre MultiStream; Externo reúne SRT, NDI, OMT e SDI. O SRT tem conexão por modo/IP/porta/latência e ajustes avançados recolhidos. H.264 4:4:4 e alpha empacotado foram comprovados em loopback; o receptor OBS precisa do shader fornecido e Crop/Pad. Internet e Full HD continuam com validação pendente.
+Transmitir abre MultiStream; Externo reúne SRT, NDI, OMT e SDI. O SRT tem conexão por modo/IP/porta/latência e ajustes avançados recolhidos. H.264 4:4:4 e alpha empacotado foram comprovados em loopback; o receptor OBS precisa do shader fornecido e Crop/Pad. Internet continua com validação pendente; cada recibo informa a resolução realmente ensaiada.
 
 ## Estado e pendências
 
 Há provas locais para saídas/codecs, áudio, composições, recuperação, controles, NDI/OMT, replay e estabilidade no escopo descrito pelos relatórios. Isso não equivale a homologação de internet, placas, interfaces de áudio, todos os drivers ou todos os serviços de transmissão.
 
-HDR completo, modelos GTZIP ainda não suportados e acabamento das telas têm trabalho restante. Calls externos, bonding WAN, vídeo/áudio/controladores físicos, destinos reais e Windows limpo precisam de uma rodada de validação dirigida. Critérios: [docs/PENDENCIAS-REAIS.md](docs/PENDENCIAS-REAIS.md).
+OMT HDR manual PQ/HLG tem prova local em P216 e quatro emissores. Modelos GTZIP não reconhecidos, aceitação visual e homologação dos equipamentos têm critérios explícitos. Calls externos, bonding WAN, vídeo/áudio/controladores físicos, destinos reais e Windows limpo precisam de uma rodada de validação dirigida. Critérios: [docs/PENDENCIAS-REAIS.md](docs/PENDENCIAS-REAIS.md).
 
 O botão e `COLETAR-LOGS.cmd` geram diagnóstico local sanitizado, encaminhado manualmente por e-mail/WhatsApp. Nenhum envio automático de logs, serviço público ou transmissão externa é iniciado por este repositório.
 

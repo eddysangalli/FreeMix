@@ -1,0 +1,10 @@
+{
+  "status": "PASS",
+  "at": "2026-10-09T21:04:44.929Z",
+  "operatorTouched": false,
+  "checks": [
+    "Componente verificado copiado só na nova raiz, origem preservada e recibo sem caminhos privados",
+    "Hash incorreto, caminhos de configuração, traversal e duplicatas rejeitados",
+    "Arquivo alterado entre prévia e cópia impede selar pacote"
+  ]
+}

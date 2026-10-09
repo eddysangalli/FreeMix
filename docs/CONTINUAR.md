@@ -1,8 +1,16 @@
+## Estado prioritário — 09/10/2026, 18h05
+
+O trabalho até 13/10 permanece ativo. Leia PLANO-CONCLUSAO-20261013.md para os donos dos arquivos, entregas e evidências. O Git do produto está em `feat/native-menus-config-screens`, commit `3e6a1dc`.
+
+Replay, ASIO, distribuição, recuperação e Fill/Key foram integrados nas fontes. O pacote 153453 é anterior a essas integrações e permanece imutável. GTZIP, HDR manual por OMT e correções de fechamento LocalVocal/SceneSwitcher foram integrados nas fontes com provas locais. Recuperação .fmx dos títulos passou no Native final 1c045e5d. Controladores foram congelados e espelhados com 12 provas de software e 26 casos de navegador. Ainda faltam ensaios prolongados e o novo instalador. Relatórios antigos não comprovam a entrega atual.
+
+Os ensaios físicos e de WAN, o envio HDR por NDI Advanced SDK e a publicação em domínio próprio dependem dos recursos correspondentes. Não publicar automaticamente nem alterar a mesa do operador.
+
 # FreeMix — entrega SRT 4:4:4 e alpha
 
 ## Instalação e organização — 09/10
 
-Instalador Windows offline em `entregas/FreeMix-Studio-Setup-0.1.0-local.20261009153453.exe`; abra pela raiz `INSTALAR-FREEMIX.cmd`. Fontes em `scripts/installer-windows`. Instalação nova com assinatura/hash, portas livres e atalhos; não migra automaticamente a mesa. Não inclui desinstalador nem Authenticode. Conferência em raiz temporária separada, documentada em INSTALACAO.md.
+Instalador Windows offline em `entregas/FreeMix-Studio-Setup-0.1.0-local.20261009153453.exe`; abra pela raiz `INSTALAR-FREEMIX.cmd`. Fontes em `scripts/installer-windows`. Instalação nova com assinatura/hash, portas livres e atalhos; não migra automaticamente a mesa. Essa entrega anterior não inclui desinstalador nem Authenticode. As fontes novas incluem desinstalação conservadora; o novo EXE ainda está em preparação. Conferência em raiz temporária separada, documentada em INSTALACAO.md.
 
 Documentos atuais foram reunidos em `docs`, scripts auxiliares em `scripts` e versões anteriores/experimentos encerrados em `archived/limpeza-demo-20261009`. `obs-vmix` permanece a instalação de uso; `freemix-app` é o código nativo; `FreeMix` é o repositório Git do produto. Seu runtime gerado duplicado foi arquivado. Root CONTINUAR é somente apontador para este documento.
 

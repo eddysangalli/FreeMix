@@ -1,0 +1,60 @@
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -1,6 +1,6 @@
+ cmake_minimum_required(VERSION 3.21...3.26)
+ 
+-project(advanced-scene-switcher VERSION 1.0.0)
++project(advanced-scene-switcher VERSION 1.36.1)
+ 
+ message(STATUS "CMAKE_PROJECT_NAME is ${CMAKE_PROJECT_NAME}")
+ if(${CMAKE_PROJECT_NAME} STREQUAL "obs-studio")
+--- a/cmake/windows/buildspec.cmake
++++ b/cmake/windows/buildspec.cmake
+@@ -25,4 +25,6 @@
+   _check_dependencies()
+ endfunction()
+ 
+-_check_dependencies_windows()
++if(NOT FREEMIX_REUSE_OBS_IMPORTS)
++  _check_dependencies_windows()
++endif()
+--- a/lib/advanced-scene-switcher.cpp
++++ b/lib/advanced-scene-switcher.cpp
+@@ -431,6 +431,8 @@
+ 
+ void SwitcherData::Start()
+ {
++	// Never restart automations after frontend shutdown has started.
++	if (obsIsShuttingDown) return;
+ 	if (!(th && th->isRunning())) {
+ 		RunIntervalResetSteps();
+ 		ResetMacros();
+@@ -587,12 +589,15 @@
+ 
+ static void handleShutdown()
+ {
+-	if (!switcher) {
++	if (!switcher || switcher->obsIsShuttingDown) {
+ 		return;
+ 	}
+ 	switcher->obsIsShuttingDown = true;
++	// Stop even when there are no explicit "OBS shutdown" macros.
++	// The worker otherwise keeps querying scenes while their API is destroyed.
++	switcher->Stop();
++	blog(LOG_INFO, "FreeMix: automation worker stopped before frontend destruction");
+ 	if (ShutdownCheckIsNecessary()) {
+-		switcher->Stop();
+ 		CheckMacros();
+ 		RunMacros();
+ 
+@@ -659,6 +664,10 @@
+ 		// OBS_FRONTEND_EVENT_EXIT here as at that point all scene
+ 		// collection data will already have been cleared and thus all
+ 		// macros will have already been cleared
++		handleShutdown();
++		break;
++	case OBS_FRONTEND_EVENT_EXIT:
++		// Safety fallback for hosts that do not send SCRIPTING_SHUTDOWN.
+ 		handleShutdown();
+ 		break;
+ 	case OBS_FRONTEND_EVENT_SCENE_CHANGED:

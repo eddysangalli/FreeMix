@@ -1,0 +1,13 @@
+{
+  "at": "2026-10-09T21:07:25.0438216Z",
+  "pid": 138940,
+  "path": "C:\\Users\\eddyr\\AppData\\Local\\Temp\\FreeMix-QA-Installer-91fd2da603b44a5587e79bfb9ad1de17\\FreeMix-QA-Installed-Studio\\bin\\64bit\\FreeMix.exe",
+  "receipt": "qa-finalizacao/replay-completo/resultado-native-recording.json",
+  "stack": "qa-finalizacao/shutdown-native-stacks.txt",
+  "stackSha256": "A8CA96A8A66161100B468B4764839CBF8C3B62472786DE83FF534ABB4AF7FA3E",
+  "authorizedByRoot": true,
+  "operatorTouched": false,
+  "forcedCleanupOfHungQa": true,
+  "aliveBefore": true,
+  "aliveAfter": false
+}

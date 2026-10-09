@@ -1,0 +1,300 @@
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -39,6 +39,9 @@
+ include(helpers)
+ 
+ add_library(${CMAKE_PROJECT_NAME} MODULE)
++if(WIN32)
++  target_compile_definitions(${CMAKE_PROJECT_NAME} PRIVATE NOMINMAX)
++endif()
+ 
+ find_package(libobs REQUIRED)
+ target_link_libraries(${CMAKE_PROJECT_NAME} PRIVATE OBS::libobs)
+--- a/cmake/FetchOnnxruntime.cmake
++++ b/cmake/FetchOnnxruntime.cmake
+@@ -30,7 +30,7 @@
+     set(Onnxruntime_HASH SHA256=da4349e01a7e997f5034563183c7183d069caadc1d95f499b560961787813efd)
+   elseif(MSVC)
+     set(Onnxruntime_URL "${Onnxruntime_BASEURL}/onnxruntime-win-x64-${Onnxruntime_VERSION}.zip")
+-    set(OOnnxruntime_HASH SHA256=78d447051e48bd2e1e778bba378bec4ece11191c9e538cf7b2c4a4565e8f5581)
++    set(Onnxruntime_HASH SHA256=78d447051e48bd2e1e778bba378bec4ece11191c9e538cf7b2c4a4565e8f5581)
+   else()
+     if(CMAKE_SYSTEM_PROCESSOR STREQUAL "aarch64")
+       set(Onnxruntime_URL "${Onnxruntime_BASEURL}/onnxruntime-linux-aarch64-${Onnxruntime_VERSION}.tgz")
+--- a/cmake/windows/buildspec.cmake
++++ b/cmake/windows/buildspec.cmake
+@@ -21,4 +21,7 @@
+   _check_dependencies()
+ endfunction()
+ 
+-_check_dependencies_windows()
++# QA/reproducible builds may explicitly reuse compatible, already built OBS imports.
++if(NOT FREEMIX_REUSE_OBS_IMPORTS)
++  _check_dependencies_windows()
++endif()
+--- a/src/transcription-filter-callbacks.cpp
++++ b/src/transcription-filter-callbacks.cpp
+@@ -1,5 +1,7 @@
+ #ifdef _WIN32
++#ifndef NOMINMAX
+ #define NOMINMAX
++#endif
+ #endif
+ 
+ #include <obs.h>
+--- a/src/transcription-filter-data.h
++++ b/src/transcription-filter-data.h
+@@ -194,6 +194,7 @@
+ 
+ 	// Use std for thread and mutex
+ 	std::thread whisper_thread;
++	std::atomic<bool> whisper_stop_requested{true};
+ 
+ 	std::mutex whisper_buf_mutex;
+ 	std::mutex whisper_ctx_mutex;
+--- a/src/transcription-filter.cpp
++++ b/src/transcription-filter.cpp
+@@ -11,7 +11,9 @@
+ #include <bitset>
+ #include <regex>
+ #ifdef _WIN32
++#ifndef NOMINMAX
+ #define NOMINMAX
++#endif
+ #include <Windows.h>
+ #endif
+ 
+@@ -562,9 +564,13 @@
+ 
+ 		apply_whisper_params_from_settings(gf->whisper_params, s);
+ 
+-		// if (gf->whisper_params.abort_callback == nullptr) {
+-		// 	gf->whisper_params.abort_callback = whisper_abort_callback;
+-		// }
++		gf->whisper_params.abort_callback = [](void *data) {
++			return static_cast<transcription_filter_data *>(data)
++				->whisper_stop_requested.load(std::memory_order_acquire);
++		};
++		gf->whisper_params.abort_callback_user_data = gf;
++		// Keep CPU work bounded even when saved settings request all logical CPUs.
++		gf->whisper_params.n_threads = std::clamp(gf->whisper_params.n_threads, 1, 4);
+ 
+ 		if (!new_translate || gf->translation_model_index != "whisper-based-translation") {
+ 			const char *whisper_language_select =
+--- a/src/whisper-utils/vad-processing.cpp
++++ b/src/whisper-utils/vad-processing.cpp
+@@ -6,7 +6,9 @@
+ #include "vad-processing.h"
+ 
+ #ifdef _WIN32
++#ifndef NOMINMAX
+ #define NOMINMAX
++#endif
+ #include <Windows.h>
+ #endif
+ 
+--- a/src/whisper-utils/whisper-model-utils.cpp
++++ b/src/whisper-utils/whisper-model-utils.cpp
+@@ -1,5 +1,7 @@
+ #ifdef _WIN32
++#ifndef NOMINMAX
+ #define NOMINMAX
++#endif
+ #endif
+ 
+ #include <obs-module.h>
+--- a/src/whisper-utils/whisper-processing.cpp
++++ b/src/whisper-utils/whisper-processing.cpp
+@@ -12,7 +12,9 @@
+ 
+ #ifdef _WIN32
+ #include <fstream>
++#ifndef NOMINMAX
+ #define NOMINMAX
++#endif
+ #include <Windows.h>
+ #endif
+ 
+@@ -46,15 +48,14 @@
+ 	whisper_log_set(
+ 		[](enum ggml_log_level level, const char *text, void *user_data) {
+ 			UNUSED_PARAMETER(level);
+-			struct transcription_filter_data *ctx =
+-				static_cast<struct transcription_filter_data *>(user_data);
++			UNUSED_PARAMETER(user_data);
+ 			// remove trailing newline
+ 			char *text_copy = bstrdup(text);
+ 			text_copy[strcspn(text_copy, "\n")] = 0;
+-			obs_log(ctx->log_level, "Whisper: %s", text_copy);
++			obs_log(LOG_DEBUG, "Whisper: %s", text_copy);
+ 			bfree(text_copy);
+ 		},
+-		gf);
++		nullptr);
+ 
+ 	struct whisper_context_params cparams = whisper_context_default_params();
+ 
+@@ -133,6 +134,22 @@
+ 		return nullptr;
+ 	}
+ 
++#ifdef _WIN32
++	// Backends are loaded by whisper initialization, so set the bounded BLAS pool afterwards.
++	// This library-wide setting stays inside this process; no machine environment changes.
++	static std::once_flag blas_limit;
++	if (HMODULE blas = GetModuleHandleW(L"libopenblas.dll")) {
++		std::call_once(blas_limit, [blas] {
++			using SetThreads = void (*)(int);
++			auto set_threads = reinterpret_cast<SetThreads>(GetProcAddress(blas, "openblas_set_num_threads"));
++			if (set_threads) {
++				set_threads(1);
++				obs_log(LOG_INFO, "FreeMix: OpenBLAS worker limit set to 1");
++			}
++		});
++	}
++#endif
++
+ 	obs_log(LOG_INFO, "Whisper model loaded: %s", whisper_print_system_info());
+ 	return ctx;
+ }
+@@ -147,6 +164,8 @@
+ 		obs_log(LOG_ERROR, "run_whisper_inference: gf is null");
+ 		return {DETECTION_RESULT_UNKNOWN, "", t0, t1, {}, ""};
+ 	}
++	if (gf->whisper_stop_requested.load(std::memory_order_acquire))
++		return {DETECTION_RESULT_UNKNOWN, "", t0, t1, {}, ""};
+ 
+ 	if (pcm32f_data_ == nullptr || pcm32f_num_samples == 0) {
+ 		obs_log(LOG_ERROR, "run_whisper_inference: pcm32f_data is null or size is 0");
+@@ -196,20 +215,26 @@
+ 	const uint64_t whisper_duration_ms = (uint64_t)(pcm32f_size * 1000 / WHISPER_SAMPLE_RATE);
+ 
+ 	std::lock_guard<std::mutex> lock(gf->whisper_ctx_mutex);
+-	if (gf->whisper_context == nullptr) {
++	if (gf->whisper_context == nullptr || gf->whisper_stop_requested.load(std::memory_order_acquire)) {
+ 		obs_log(LOG_WARNING, "whisper context is null");
+-		return {DETECTION_RESULT_UNKNOWN, "", t0, t1, {}, ""};
+-	}
+-
++		if (should_free_buffer) bfree(pcm32f_data);
++		return {DETECTION_RESULT_UNKNOWN, "", t0, t1, {}, ""};
++	}
++
++	std::string initial_prompt;
+ 	if (gf->n_context_sentences > 0 && !gf->last_transcription_sentence.empty()) {
+ 		// set the initial prompt to the last transcription sentences (concatenated)
+-		std::string initial_prompt = gf->last_transcription_sentence[0];
++		initial_prompt = gf->last_transcription_sentence[0];
+ 		for (size_t i = 1; i < gf->last_transcription_sentence.size(); ++i) {
+ 			initial_prompt += " " + gf->last_transcription_sentence[i];
+ 		}
+ 		gf->whisper_params.initial_prompt = initial_prompt.c_str();
+ 		obs_log(gf->log_level, "Initial prompt: %s", gf->whisper_params.initial_prompt);
+ 	}
++	// Keep the prompt alive for the entire call, never retain a dangling string pointer.
++	auto inference_params = gf->whisper_params;
++	if (!initial_prompt.empty()) inference_params.initial_prompt = initial_prompt.c_str();
++	gf->whisper_params.initial_prompt = nullptr;
+ 
+ 	obs_log(gf->log_level, "Running whisper inference. single segment? %s",
+ 		gf->whisper_params.single_segment ? "yes" : "no");
+@@ -217,6 +242,7 @@
+ 	// run the inference
+ 	int whisper_full_result = -1;
+ 	gf->whisper_params.duration_ms = (int)(whisper_duration_ms);
++	inference_params.duration_ms = (int)(whisper_duration_ms);
+ 	try {
+ 		// whisper_full_params whisper_params_tmp = whisper_full_default_params(whisper_sampling_strategy::WHISPER_SAMPLING_BEAM_SEARCH);
+ 		// whisper_params_tmp.language = gf->whisper_params.language;
+@@ -228,7 +254,7 @@
+ 		// whisper_params_tmp.suppress_blank = false;
+ 		// whisper_params_pretty_print(gf->whisper_params);
+ 		// whisper_params_pretty_print(whisper_params_tmp);
+-		whisper_full_result = whisper_full(gf->whisper_context, gf->whisper_params,
++		whisper_full_result = whisper_full(gf->whisper_context, inference_params,
+ 						   pcm32f_data, (int)pcm32f_size);
+ 	} catch (const std::exception &e) {
+ 		obs_log(LOG_ERROR, "Whisper exception: %s. Filter restart is required", e.what());
+@@ -243,7 +269,13 @@
+ 		bfree(pcm32f_data);
+ 	}
+ 
+-	std::string language = gf->whisper_params.language;
++	if (gf->whisper_stop_requested.load(std::memory_order_acquire)) {
++		obs_log(LOG_INFO, "FreeMix: whisper inference cancelled before context release (result %d)", whisper_full_result);
++		return {DETECTION_RESULT_UNKNOWN, "", t0, t1, {}, ""};
++	}
++	if (whisper_full_result != 0)
++		return {DETECTION_RESULT_UNKNOWN, "", t0, t1, {}, ""};
++	std::string language = gf->whisper_params.language ? gf->whisper_params.language : "";
+ 	if (gf->whisper_params.language == nullptr || strlen(gf->whisper_params.language) == 0 ||
+ 	    strcmp(gf->whisper_params.language, "auto") == 0) {
+ 		int lang_id = whisper_lang_auto_detect(gf->whisper_context, 0, 1, nullptr);
+@@ -339,6 +371,7 @@
+ void run_inference_and_callbacks(transcription_filter_data *gf, uint64_t start_offset_ms,
+ 				 uint64_t end_offset_ms, int vad_state)
+ {
++	if (gf->whisper_stop_requested.load(std::memory_order_acquire)) return;
+ 	// get the data from the entire whisper buffer
+ 	// add 50ms of silence to the beginning and end of the buffer
+ 	const size_t pcm32f_size = gf->whisper_buffer.size / sizeof(float);
+@@ -359,6 +392,10 @@
+ 	struct DetectionResultWithText inference_result =
+ 		run_whisper_inference(gf, pcm32f_data, pcm32f_size_with_silence, start_offset_ms,
+ 				      end_offset_ms, vad_state);
++	if (gf->whisper_stop_requested.load(std::memory_order_acquire)) {
++		bfree(pcm32f_data);
++		return;
++	}
+ 	// output inference result to a text source
+ 	set_text_callback(inference_start_ts, gf, inference_result);
+ 
+@@ -389,7 +426,7 @@
+ 	profile_register_root(whisper_loop_name, 50 * 1000 * 1000);
+ 
+ 	// Thread main loop
+-	while (true) {
++	while (!gf->whisper_stop_requested.load(std::memory_order_acquire)) {
+ 		ProfileScope(whisper_loop_name);
+ 		{
+ 			ProfileScope("lock whisper ctx");
+@@ -416,6 +453,7 @@
+ 			current_vad_state = vad_disabled_segmentation(gf, current_vad_state);
+ 		}
+ 
++		if (gf->whisper_stop_requested.load(std::memory_order_acquire)) break;
+ 		if (!gf->cleared_last_sub) {
+ 			// check if we should clear the current sub depending on the minimum subtitle duration
+ 			uint64_t now = now_ms();
+--- a/src/whisper-utils/whisper-utils.cpp
++++ b/src/whisper-utils/whisper-utils.cpp
+@@ -9,15 +9,18 @@
+ void shutdown_whisper_thread(struct transcription_filter_data *gf, bool clear_model_path)
+ {
+ 	obs_log(gf->log_level, "shutdown_whisper_thread");
++	// Signal without taking the inference mutex: whisper_full owns it while running.
++	gf->whisper_stop_requested.store(true, std::memory_order_release);
++	gf->wshiper_thread_cv.notify_all();
++	if (gf->whisper_thread.joinable()) {
++		gf->whisper_thread.join();
++	}
+ 	if (gf->whisper_context != nullptr) {
+ 		// acquire the mutex before freeing the context
+ 		std::lock_guard<std::mutex> lock(gf->whisper_ctx_mutex);
+ 		whisper_free(gf->whisper_context);
+ 		gf->whisper_context = nullptr;
+ 		gf->wshiper_thread_cv.notify_all();
+-	}
+-	if (gf->whisper_thread.joinable()) {
+-		gf->whisper_thread.join();
+ 	}
+ 	if (clear_model_path && !gf->whisper_model_path.empty()) {
+ 		gf->whisper_model_path = "";
+@@ -46,6 +49,7 @@
+ 		return;
+ 	}
+ 	gf->whisper_model_file_currently_loaded = whisper_model_path;
++	gf->whisper_stop_requested.store(false, std::memory_order_release);
+ 	std::thread new_whisper_thread(whisper_loop, gf);
+ 	gf->whisper_thread.swap(new_whisper_thread);
+ }

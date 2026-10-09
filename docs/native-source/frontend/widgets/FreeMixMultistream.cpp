@@ -28,6 +28,7 @@
 
 #include "FreeMixMultistream.hpp"
 #include "FreeMixOmtOutput.hpp"
+#include "FreeMixOmtHdrOutput.hpp"
 #include "FreeMixNdiOutput.hpp"
 #include "FreeMixSdiOutput.hpp"
 #include "FreeMixSrtAlpha.hpp"
@@ -118,11 +119,13 @@ std::map<std::string, OBSOutputAutoRelease> networkOutputs;
 std::map<std::string,std::unique_ptr<NetworkMedia>> networkMedia;
 void StopNetworkOutputs()
 {
+ freemix_omt_hdr::StopAll();
  // Force stop/join the raw plugin callbacks before destroying their video view.
  for(auto &entry:networkOutputs)if(entry.second&&obs_output_active(entry.second))obs_output_force_stop(entry.second);
  networkOutputs.clear();networkMedia.clear();freemix_sdi::Stop();
 }
 void RequestSdiOutput(obs_data_t *request,obs_data_t *response,void *){QMetaObject::invokeMethod(OBSBasic::Get(),[=](){if(frontendClosing){obs_data_set_bool(response,"success",false);return;}freemix_sdi::Request(request,response,IsPrivateSource);},Qt::BlockingQueuedConnection);}
+void RequestOmtHdrOutput(obs_data_t *request,obs_data_t *response,void *){QMetaObject::invokeMethod(OBSBasic::Get(),[=](){if(frontendClosing){obs_data_set_bool(response,"success",false);return;}freemix_omt_hdr::Request(request,response,IsPrivateSource);},Qt::BlockingQueuedConnection);}
 void RequestNetworkOutput(obs_data_t *request, obs_data_t *response, void *)
 {
  const std::string protocol=obs_data_get_string(request,"protocol"),action=obs_data_get_string(request,"action");
@@ -164,6 +167,7 @@ void RequestNetworkOutput(obs_data_t *request, obs_data_t *response, void *)
     const std::string networkName=requestedName.empty()?(protocol=="NDI"?(senderId==0?"FreeMix Programa":"FreeMix NDI "+std::to_string(senderId+1)):"FreeMix OMT "+std::to_string(senderId+1)):requestedName;
     const std::string keyName=requestedFillKey?(requestedKeyName.empty()?networkName+" Key":requestedKeyName):"";
     if(requestedFillKey&&(keyName.empty()||keyName.size()>120||keyName==networkName))error="Fill and Key require different names up to 120 characters";
+    if(protocol=="OMT"&&(freemix_omt_hdr::IdentityInUse(networkName,output)||(requestedFillKey&&freemix_omt_hdr::IdentityInUse(keyName,output))))error="choose a unique OMT SDR/Key/HDR network name for each active sender";
     if(protocol=="OMT"&&std::string(type)=="freemix_omt_output"){obs_data_set_string(settings,"name",networkName.c_str());obs_data_set_bool(settings,"alpha",requestedAlpha||requestedFillKey);obs_data_set_bool(settings,"fill_key",requestedFillKey);obs_data_set_string(settings,"key_name",keyName.c_str());obs_data_set_int(settings,"precision_bits",precision);obs_data_set_string(settings,"source_uuid",requestedUuid.c_str());}
     for(const auto &entry:networkMedia){if(entry.first!=senderKey&&entry.first.rfind(protocol+":",0)==0&&entry.second->name==networkName){const auto existing=networkOutputs.find(entry.first);if(existing!=networkOutputs.end()&&existing->second&&obs_output_active(existing->second))error="choose a unique network name for each active sender";}}
     for(const auto &entry:networkMedia)if(entry.first!=senderKey&&entry.first.rfind(protocol+":",0)==0){const auto existing=networkOutputs.find(entry.first);if(existing!=networkOutputs.end()&&existing->second&&obs_output_active(existing->second)){const auto &other=*entry.second;if((!other.keyName.empty()&&other.keyName==networkName)||(requestedFillKey&&(other.name==keyName||other.keyName==keyName)))error="Fill/Key names must be unique across active senders";}}
@@ -308,6 +312,17 @@ bool ReadDestinationAudio(void *param,uint64_t start,uint64_t,uint64_t *newTimes
 		for(uint32_t ch=0;ch<mix.bus.channels;ch++)if(data[n].data[ch])for(size_t f=0;f<AUDIO_OUTPUT_FRAMES;f++)data[n].data[ch][f]=std::clamp(data[n].data[ch][f],-1.0f,1.0f);
 	}
 	return true;
+}
+
+// Key is a matte, not a second audible programme. Keep a silent AAC track for
+// MPEG-TS compatibility while preventing doubled audio in Fill/Key receivers.
+bool ReadSilentKeyAudio(void *,uint64_t start,uint64_t,uint64_t *newTimestamp,uint32_t activeMixers,audio_output_data *data)
+{
+ *newTimestamp=start;
+ for(size_t n=0;n<MAX_AUDIO_MIXES;n++)if(activeMixers&(1u<<n))
+  for(size_t ch=0;ch<MAX_AV_PLANES;ch++)if(data[n].data[ch])
+   std::fill_n(data[n].data[ch],AUDIO_OUTPUT_FRAMES,0.0f);
+ return true;
 }
 
 struct Destination {
@@ -704,7 +719,7 @@ void Describe(obs_data_t *out)
 	const bool srt444=OutputLoaded("ffmpeg_mpegts_muxer")&&obs_get_encoder_type("obs_x264")==OBS_ENCODER_VIDEO&&KnownVideoCodec(obs_get_encoder_codec("obs_x264"));
 	obs_data_set_bool(out,"srtChroma444Supported",srt444);obs_data_set_bool(out,"srtPackedAlphaSupported",srt444);obs_data_set_int(out,"srtPackedAlphaMaxWidth",1920);obs_data_set_string(out,"srt444Encoder","obs_x264");obs_data_set_string(out,"srtAlphaLayout","fill-left-key-right");
 	obs_data_set_bool(out,"srtPackedAlpha420Supported",srt444);
-	obs_data_set_bool(out,"srtSeparateAlphaSupported",srt444);obs_data_set_bool(out,"srtSeparateFillKeySupported",srt444);obs_data_set_string(out,"srtSeparateFillKeyEncoder","obs_x264");obs_data_set_string(out,"srtSeparateFillKeyChroma","420");obs_data_set_bool(out,"srtSeparateFillKeyFrameLocked",false);
+	obs_data_set_bool(out,"srtSeparateAlphaSupported",srt444);obs_data_set_bool(out,"srtSeparateFillKeySupported",srt444);obs_data_set_string(out,"srtSeparateFillKeyEncoder","obs_x264");obs_data_set_string(out,"srtSeparateFillKeyChroma","420");obs_data_set_bool(out,"srtSeparateFillKeyFrameLocked",false);obs_data_set_bool(out,"srtSeparateKeyAudioSilent",true);
 	OBSDataAutoRelease videoTransports=FreeMixVideoTransports();obs_data_set_obj(out,"videoTransports",videoTransports);
 	OBSDataArrayAutoRelease audioSources=obs_data_array_create();
 	obs_enum_sources([](void *param,obs_source_t *source){if(FreeMixAudioBusAllowed(source)){OBSDataAutoRelease row=obs_data_create();obs_data_set_string(row,"uuid",obs_source_get_uuid(source));obs_data_set_string(row,"name",obs_source_get_name(source));obs_data_array_push_back(static_cast<obs_data_array_t *>(param),row);}return true;},audioSources.Get());
@@ -1085,7 +1100,13 @@ void StartOne(Destination &d, size_t index)
 		if(d.chroma=="444")obs_encoder_set_preferred_video_format(d.videoEncoder,VIDEO_FORMAT_I444);
 		if(d.alphaMode!="none"&&d.chroma=="420")obs_encoder_set_preferred_video_format(d.videoEncoder,VIDEO_FORMAT_NV12);
 		if (!obs_encoder_set_frame_rate_divisor(d.videoEncoder, d.fpsDivisor)) { Fail(d, "could not set output FPS divisor"); return; }
-		if(d.mode=="mix"&&d.stingerAudio){
+		if(d.alphaMode=="key"){
+			obs_audio_info audioInfo;if(!obs_get_audio_info(&audioInfo)){Fail(d,"audio is unavailable");return;}
+			audio_output_info outputInfo={};outputInfo.name=id.c_str();outputInfo.samples_per_sec=audioInfo.samples_per_sec;outputInfo.speakers=audioInfo.speakers;outputInfo.format=AUDIO_FORMAT_FLOAT_PLANAR;outputInfo.input_callback=ReadSilentKeyAudio;
+			if(d.sourceAudio)outputInfo.speakers=SPEAKERS_STEREO;
+			if(audio_output_open(&d.independentAudio,&outputInfo)!=AUDIO_OUTPUT_SUCCESS){Fail(d,"could not create silent Key audio");return;}
+			obs_encoder_set_audio(d.audioEncoder,d.independentAudio);
+		}else if(d.mode=="mix"&&d.stingerAudio){
 			obs_audio_info audioInfo;if(!obs_get_audio_info(&audioInfo)){Fail(d,"audio is unavailable");return;}
 			d.audioMix=std::make_unique<DestinationAudioMix>();d.audioMix->name=id;d.audioMix->track=d.sourceAudio?0:d.audioTrack;d.audioMix->bus.rate=audioInfo.samples_per_sec;d.audioMix->bus.channels=d.sourceAudio?2:get_audio_channels(audioInfo.speakers);d.audioMix->stinger=independentMixes[d.mixId-2].stingerTape;
 			audio_output_info outputInfo={};outputInfo.name=d.audioMix->name.c_str();outputInfo.samples_per_sec=audioInfo.samples_per_sec;outputInfo.speakers=audioInfo.speakers;outputInfo.format=AUDIO_FORMAT_FLOAT_PLANAR;outputInfo.input_callback=ReadDestinationAudio;outputInfo.input_param=d.audioMix.get();
@@ -1618,6 +1639,7 @@ void RegisterVendor()
 	obs_websocket_vendor_register_request(vendor, "set_destinations", RequestSet, nullptr);
 	obs_websocket_vendor_register_request(vendor, "control_destination", RequestControlDestination, nullptr);
  obs_websocket_vendor_register_request(vendor, "network_output", RequestNetworkOutput, nullptr);
+ obs_websocket_vendor_register_request(vendor, "omt_hdr_output", RequestOmtHdrOutput, nullptr);
  obs_websocket_vendor_register_request(vendor,"sdi_output",RequestSdiOutput,nullptr);
  obs_websocket_vendor_register_request(vendor, "control_mix", RequestMix, nullptr);
  obs_websocket_vendor_register_request(vendor, "get_mixes", RequestMix, nullptr);
@@ -1770,5 +1792,6 @@ void FreeMixMultistreamInit()
 	RegisterHlsService();
  FreeMixAudioRoutingRegister();
  freemix_omt::Register();freemix_ndi::Register();
+ freemix_omt_hdr::Register();
 	obs_frontend_add_event_callback(OnFrontendEvent, nullptr);
 }

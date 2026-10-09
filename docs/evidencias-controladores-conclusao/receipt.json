@@ -1,0 +1,299 @@
+{
+  "at": "2026-10-09T21:31:44.484Z",
+  "status": "PASS",
+  "operatorTouched": false,
+  "nativeExecuted": false,
+  "hardwareRequested": false,
+  "browser": "headless Edge",
+  "checks": [
+    {
+      "screen": "atalhos",
+      "width": 900,
+      "height": 650,
+      "dpi": 1,
+      "horizontalOverflow": false,
+      "runtime": {
+        "secureContext": true,
+        "webMidiExposed": true,
+        "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36 Edg/155.0.0.0",
+        "hardwareRequested": false
+      },
+      "apiMock": true
+    },
+    {
+      "screen": "macros",
+      "width": 900,
+      "height": 650,
+      "dpi": 1,
+      "horizontalOverflow": false,
+      "runtime": null,
+      "apiMock": true
+    },
+    {
+      "screen": "atalhos",
+      "width": 900,
+      "height": 650,
+      "dpi": 1.25,
+      "horizontalOverflow": false,
+      "runtime": {
+        "secureContext": true,
+        "webMidiExposed": true,
+        "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36 Edg/155.0.0.0",
+        "hardwareRequested": false
+      },
+      "apiMock": true
+    },
+    {
+      "screen": "macros",
+      "width": 900,
+      "height": 650,
+      "dpi": 1.25,
+      "horizontalOverflow": false,
+      "runtime": null,
+      "apiMock": true
+    },
+    {
+      "screen": "atalhos",
+      "width": 900,
+      "height": 650,
+      "dpi": 1.5,
+      "horizontalOverflow": false,
+      "runtime": {
+        "secureContext": true,
+        "webMidiExposed": true,
+        "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36 Edg/155.0.0.0",
+        "hardwareRequested": false
+      },
+      "apiMock": true
+    },
+    {
+      "screen": "macros",
+      "width": 900,
+      "height": 650,
+      "dpi": 1.5,
+      "horizontalOverflow": false,
+      "runtime": null,
+      "apiMock": true
+    },
+    {
+      "screen": "atalhos",
+      "width": 900,
+      "height": 650,
+      "dpi": 2,
+      "horizontalOverflow": false,
+      "runtime": {
+        "secureContext": true,
+        "webMidiExposed": true,
+        "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36 Edg/155.0.0.0",
+        "hardwareRequested": false
+      },
+      "apiMock": true
+    },
+    {
+      "screen": "macros",
+      "width": 900,
+      "height": 650,
+      "dpi": 2,
+      "horizontalOverflow": false,
+      "runtime": null,
+      "apiMock": true
+    },
+    {
+      "screen": "atalhos",
+      "width": 1280,
+      "height": 720,
+      "dpi": 1,
+      "horizontalOverflow": false,
+      "runtime": {
+        "secureContext": true,
+        "webMidiExposed": true,
+        "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36 Edg/155.0.0.0",
+        "hardwareRequested": false
+      },
+      "apiMock": true
+    },
+    {
+      "screen": "macros",
+      "width": 1280,
+      "height": 720,
+      "dpi": 1,
+      "horizontalOverflow": false,
+      "runtime": null,
+      "apiMock": true
+    },
+    {
+      "screen": "atalhos",
+      "width": 1280,
+      "height": 720,
+      "dpi": 1.25,
+      "horizontalOverflow": false,
+      "runtime": {
+        "secureContext": true,
+        "webMidiExposed": true,
+        "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36 Edg/155.0.0.0",
+        "hardwareRequested": false
+      },
+      "apiMock": true
+    },
+    {
+      "screen": "macros",
+      "width": 1280,
+      "height": 720,
+      "dpi": 1.25,
+      "horizontalOverflow": false,
+      "runtime": null,
+      "apiMock": true
+    },
+    {
+      "screen": "atalhos",
+      "width": 1280,
+      "height": 720,
+      "dpi": 1.5,
+      "horizontalOverflow": false,
+      "runtime": {
+        "secureContext": true,
+        "webMidiExposed": true,
+        "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36 Edg/155.0.0.0",
+        "hardwareRequested": false
+      },
+      "apiMock": true
+    },
+    {
+      "screen": "macros",
+      "width": 1280,
+      "height": 720,
+      "dpi": 1.5,
+      "horizontalOverflow": false,
+      "runtime": null,
+      "apiMock": true
+    },
+    {
+      "screen": "atalhos",
+      "width": 1280,
+      "height": 720,
+      "dpi": 2,
+      "horizontalOverflow": false,
+      "runtime": {
+        "secureContext": true,
+        "webMidiExposed": true,
+        "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36 Edg/155.0.0.0",
+        "hardwareRequested": false
+      },
+      "apiMock": true
+    },
+    {
+      "screen": "macros",
+      "width": 1280,
+      "height": 720,
+      "dpi": 2,
+      "horizontalOverflow": false,
+      "runtime": null,
+      "apiMock": true
+    },
+    {
+      "screen": "atalhos",
+      "width": 1920,
+      "height": 1080,
+      "dpi": 1,
+      "horizontalOverflow": false,
+      "runtime": {
+        "secureContext": true,
+        "webMidiExposed": true,
+        "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36 Edg/155.0.0.0",
+        "hardwareRequested": false
+      },
+      "apiMock": true
+    },
+    {
+      "screen": "macros",
+      "width": 1920,
+      "height": 1080,
+      "dpi": 1,
+      "horizontalOverflow": false,
+      "runtime": null,
+      "apiMock": true
+    },
+    {
+      "screen": "atalhos",
+      "width": 1920,
+      "height": 1080,
+      "dpi": 1.25,
+      "horizontalOverflow": false,
+      "runtime": {
+        "secureContext": true,
+        "webMidiExposed": true,
+        "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36 Edg/155.0.0.0",
+        "hardwareRequested": false
+      },
+      "apiMock": true
+    },
+    {
+      "screen": "macros",
+      "width": 1920,
+      "height": 1080,
+      "dpi": 1.25,
+      "horizontalOverflow": false,
+      "runtime": null,
+      "apiMock": true
+    },
+    {
+      "screen": "atalhos",
+      "width": 1920,
+      "height": 1080,
+      "dpi": 1.5,
+      "horizontalOverflow": false,
+      "runtime": {
+        "secureContext": true,
+        "webMidiExposed": true,
+        "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36 Edg/155.0.0.0",
+        "hardwareRequested": false
+      },
+      "apiMock": true
+    },
+    {
+      "screen": "macros",
+      "width": 1920,
+      "height": 1080,
+      "dpi": 1.5,
+      "horizontalOverflow": false,
+      "runtime": null,
+      "apiMock": true
+    },
+    {
+      "screen": "atalhos",
+      "width": 1920,
+      "height": 1080,
+      "dpi": 2,
+      "horizontalOverflow": false,
+      "runtime": {
+        "secureContext": true,
+        "webMidiExposed": true,
+        "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36 Edg/155.0.0.0",
+        "hardwareRequested": false
+      },
+      "apiMock": true
+    },
+    {
+      "screen": "macros",
+      "width": 1920,
+      "height": 1080,
+      "dpi": 2,
+      "horizontalOverflow": false,
+      "runtime": null,
+      "apiMock": true
+    },
+    {
+      "screen": "WebMIDI insecure context guard",
+      "requestSent": false
+    },
+    {
+      "screen": "WebMIDI missing API guard",
+      "requestSent": false
+    }
+  ],
+  "errors": [],
+  "limits": [
+    "WebMIDI dispatch/output devices are fixtures only",
+    "CEF integrated API and permission availability remain runtime-dependent; no CEF or hardware claim"
+  ]
+}

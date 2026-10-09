@@ -45,3 +45,24 @@ Atualizar este documento com entregas e evidências ao integrar cada frente. Reg
 - Composições H/V: contrato de conteúdo existente identificado, corrigida propagação indevida de Fit/Fill, adicionado desfazer de conteúdo por sessão e indicação de vínculo. Seis regressões + sete verificações no motor real isolado, detalhes em COMPOSICOES-HV-20261009.md. Isso resolve conteúdo/fontes/fundo e preserva geometria; não propaga toda edição de layout.
 - Build Native `obs-studio` terminou exit 0, EXE SHA-256 `09ae2e0f2c72df7e4245df2cb616ba3ede281fe28eb9dc2a6cde0e9b91df105e`. Alterações de transportes ainda em QA dirigida pelo agente. Não copiado para operador nem selado em entrega.
 - ASIO de saída: SDK oficial 2.3.4 obtido por `https://www.steinberg.net/asiosdk`, redirecionamento `https://download.steinberg.net/sdk_downloads/ASIO-SDK_2.3.4_2025-10-15.zip`, SHA-256 `d5ebf0c20dd2c5f43771fd0c1418f4b361bf52434ee670097cfa6b3a335e2eca`. Fontes locais em downloads/asio-sdk-official/source/ASIOSDK; licença oferece GPLv3. Playback multicanal ainda por implementar; obter SDK não conclui áudio.
+
+## Integrações posteriores — 09/10, 18h05
+
+- **Replay contínuo:** SourceRecord real com duas câmeras, histórico de 6,32 para 9,82 segundos, prévia preparada em 356 ms, IN/OUT dos dois ângulos sem parar REC ou mudar Programa. Fontes, HTTP, interface e QA no Git `9f94659`.
+- **Transportes:** cor Fill sem premultiplicação duplicada, Key silenciosa, reconexão NDI/OMT com áudio de 440 Hz e fontes da ponte nativa SRT→NDI no Git `205af12`. A rejeição explícita de HDR não suportado está em `41508d8`. HDR OMT P216 PQ/HLG passou no receptor real do SDK: 190/187 quadros, gradiente com 765/766 níveis, PCM e PTS monotônicos. Enumeração das fontes HDR e quatro emissores ainda em integração. Envio HDR por NDI depende do Advanced SDK licenciado.
+- **ASIO playback:** mock IASIO com 16 formatos, oito rotas e 16 canais; dez mil callbacks sem alocação em tempo real. Build nativa exit 0. Vendor real enumerou quatro drivers sem abrir dispositivos; integração no Git `12cf444`. Playback em hardware físico ainda não homologado.
+- **Distribuição e recuperação:** trinta fontes e sete recibos integrados no Git `3e6a1dc`. Importação online passou no motor real: título, UUID, 4:4:4 e alpha packed preservados em perfil/coleção novos, com saídas desligadas. Instalador final ainda não foi gerado.
+- **Adicionar títulos:** dezesseis combinações de resolução/DPI passaram, com rodapé na base e formulário ocupando a altura disponível. Screenshot inspecionado. A matriz de distribuição tem outras 36 combinações em três telas.
+- **Legendas em português:** sete expressões reconhecidas na fala sintética Windows Maria; primeiro texto em 501 ms. LocalVocal foi recompilado em QA; cancelar a inferência liberou a thread em 19 ms. A suíte completa revelou outro bloqueio no advanced-scene-switcher. Não declarar todo o fechamento corrigido até concluir esse cenário.
+- **Donos atuais:** auditoria_pendencias_reais trata o fechamento das extensões; installer_exe amplia GTZIP, grupos, transformações, animações e fontes; transportes_rede_conclusao integra HDR OMT nativo/SDK/interface. Root integra fontes, pacote, builds e QA.
+- Mesa e gravações do operador preservadas. Novos binários não foram ativados na instalação de uso. Goal e heartbeat continuam ativos; a conclusão de todos os requisitos ainda não foi declarada.
+
+## Integração em 2026-10-09T21:30:58.826Z
+
+Native final: commit 99e5944cf61aacc4c07167ef867d4ce52a752ae6; EXE 1c045e5d43bae20eca9b15df50d73d297b9d433e381027eb861f0ff21f014744. Catorze patches foram aplicados em índice separado e produziram a mesma árvore do HEAD. Não publicado no upstream OBS.
+
+GTZIP congelado: 21 fontes e três recibos hash-verificados espelhados; recuperação .fmx com HTML/imagem/fonte livre/campos passou no Native final sem originais, zero saídas e saída 0. Fonte gtzip-runtime é autocontida em cada título; o FAIL anterior de dependência fora da pasta foi preservado.
+
+LocalVocal e dois DLLs SceneSwitcher têm patches, fontes oficiais, licenças e receitas reproduzidas. Suíte completa com NDI fechou normalmente em 876/892 ms. Entrarão apenas no pacote novo, sem sobrescrever operador. Packager agora calcula fechamento de 97 módulos, inclui NDI pinado e aceita overlays explícitos de plugins por SHA-256.
+
+Donos atuais: auditoria_pendencias_reais executa Replay/CEF20min; transportes_rede_conclusao executa ponte Native alpha20min; installer_exe corrige reconexão/feedback/releases de controladores e verifica24 casosUI. Root prepara selagem, instalador e integração final. Ensaios interrompidos por falhas de isolamento/instrumentação são preservados como FAIL, não resultados de mídia homologados.

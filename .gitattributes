@@ -17,3 +17,5 @@ painel/remoto/vendor/ninjasdk/vdoninja-sdk.js -whitespace
 *.css text eol=lf
 *.json text eol=lf
 licenses/ndi-runtime/Processing.NDI.Lib.Licenses.txt -whitespace
+painel/gc/fontes-livres/OFL-BebasNeue.txt -text -whitespace
+*.ttf binary

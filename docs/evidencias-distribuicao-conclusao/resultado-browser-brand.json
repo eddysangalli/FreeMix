@@ -1,0 +1,17 @@
+{
+  "status": "PASS",
+  "at": "2026-10-09T21:28:25.443Z",
+  "cases": [
+    {
+      "width": 440,
+      "height": 360
+    },
+    {
+      "width": 1280,
+      "height": 720
+    }
+  ],
+  "retryUrlRetained": true,
+  "operatorTouched": false,
+  "scope": "Edge rendering of owned browser error page with native localization tokens substituted"
+}

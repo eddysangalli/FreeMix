@@ -1,0 +1,313 @@
+{
+  "at": "2026-10-09T20:52:26.993Z",
+  "operatorTouched": false,
+  "nativeTransportMocked": true,
+  "checks": [
+    {
+      "physicalResolution": [
+        1920,
+        1080
+      ],
+      "dpi": 1,
+      "metrics": {
+        "width": 1920,
+        "height": 1080,
+        "dialogHeight": 1080,
+        "contentHeight": 1007,
+        "footerBottom": 1080,
+        "footerTop": 1037,
+        "bodyScroll": false,
+        "formHorizontalScroll": false,
+        "galleryColumns": 9,
+        "fieldCount": 8
+      }
+    },
+    {
+      "physicalResolution": [
+        1366,
+        768
+      ],
+      "dpi": 1,
+      "metrics": {
+        "width": 1366,
+        "height": 768,
+        "dialogHeight": 768,
+        "contentHeight": 695,
+        "footerBottom": 768,
+        "footerTop": 725,
+        "bodyScroll": false,
+        "formHorizontalScroll": false,
+        "galleryColumns": 6,
+        "fieldCount": 8
+      }
+    },
+    {
+      "physicalResolution": [
+        800,
+        600
+      ],
+      "dpi": 1,
+      "metrics": {
+        "width": 800,
+        "height": 600,
+        "dialogHeight": 600,
+        "contentHeight": 527,
+        "footerBottom": 600,
+        "footerTop": 557,
+        "bodyScroll": false,
+        "formHorizontalScroll": false,
+        "galleryColumns": 3,
+        "fieldCount": 8
+      }
+    },
+    {
+      "physicalResolution": [
+        480,
+        800
+      ],
+      "dpi": 1,
+      "metrics": {
+        "width": 480,
+        "height": 800,
+        "dialogHeight": 800,
+        "contentHeight": 745,
+        "footerBottom": 800,
+        "footerTop": 775,
+        "bodyScroll": false,
+        "formHorizontalScroll": false,
+        "galleryColumns": 3,
+        "fieldCount": 8
+      }
+    },
+    {
+      "physicalResolution": [
+        1920,
+        1080
+      ],
+      "dpi": 1.25,
+      "metrics": {
+        "width": 1536,
+        "height": 864,
+        "dialogHeight": 864,
+        "contentHeight": 791,
+        "footerBottom": 864,
+        "footerTop": 821,
+        "bodyScroll": false,
+        "formHorizontalScroll": false,
+        "galleryColumns": 7,
+        "fieldCount": 8
+      }
+    },
+    {
+      "physicalResolution": [
+        1366,
+        768
+      ],
+      "dpi": 1.25,
+      "metrics": {
+        "width": 1092,
+        "height": 614,
+        "dialogHeight": 614,
+        "contentHeight": 541,
+        "footerBottom": 614,
+        "footerTop": 571,
+        "bodyScroll": false,
+        "formHorizontalScroll": false,
+        "galleryColumns": 4,
+        "fieldCount": 8
+      }
+    },
+    {
+      "physicalResolution": [
+        800,
+        600
+      ],
+      "dpi": 1.25,
+      "metrics": {
+        "width": 640,
+        "height": 480,
+        "dialogHeight": 480,
+        "contentHeight": 407,
+        "footerBottom": 480,
+        "footerTop": 437,
+        "bodyScroll": false,
+        "formHorizontalScroll": false,
+        "galleryColumns": 3,
+        "fieldCount": 8
+      }
+    },
+    {
+      "physicalResolution": [
+        480,
+        800
+      ],
+      "dpi": 1.25,
+      "metrics": {
+        "width": 384,
+        "height": 640,
+        "dialogHeight": 640,
+        "contentHeight": 567,
+        "footerBottom": 640,
+        "footerTop": 597,
+        "bodyScroll": false,
+        "formHorizontalScroll": false,
+        "galleryColumns": 2,
+        "fieldCount": 8
+      }
+    },
+    {
+      "physicalResolution": [
+        1920,
+        1080
+      ],
+      "dpi": 1.5,
+      "metrics": {
+        "width": 1280,
+        "height": 720,
+        "dialogHeight": 720,
+        "contentHeight": 647,
+        "footerBottom": 720,
+        "footerTop": 677,
+        "bodyScroll": false,
+        "formHorizontalScroll": false,
+        "galleryColumns": 5,
+        "fieldCount": 8
+      }
+    },
+    {
+      "physicalResolution": [
+        1366,
+        768
+      ],
+      "dpi": 1.5,
+      "metrics": {
+        "width": 910,
+        "height": 512,
+        "dialogHeight": 512,
+        "contentHeight": 439,
+        "footerBottom": 512,
+        "footerTop": 469,
+        "bodyScroll": false,
+        "formHorizontalScroll": false,
+        "galleryColumns": 3,
+        "fieldCount": 8
+      }
+    },
+    {
+      "physicalResolution": [
+        800,
+        600
+      ],
+      "dpi": 1.5,
+      "metrics": {
+        "width": 533,
+        "height": 400,
+        "dialogHeight": 400,
+        "contentHeight": 327,
+        "footerBottom": 400,
+        "footerTop": 357,
+        "bodyScroll": false,
+        "formHorizontalScroll": false,
+        "galleryColumns": 2,
+        "fieldCount": 8
+      }
+    },
+    {
+      "physicalResolution": [
+        480,
+        800
+      ],
+      "dpi": 1.5,
+      "metrics": {
+        "width": 320,
+        "height": 533,
+        "dialogHeight": 533,
+        "contentHeight": 460,
+        "footerBottom": 533,
+        "footerTop": 490,
+        "bodyScroll": false,
+        "formHorizontalScroll": false,
+        "galleryColumns": 2,
+        "fieldCount": 8
+      }
+    },
+    {
+      "physicalResolution": [
+        1920,
+        1080
+      ],
+      "dpi": 2,
+      "metrics": {
+        "width": 960,
+        "height": 540,
+        "dialogHeight": 540,
+        "contentHeight": 467,
+        "footerBottom": 540,
+        "footerTop": 497,
+        "bodyScroll": false,
+        "formHorizontalScroll": false,
+        "galleryColumns": 3,
+        "fieldCount": 8
+      }
+    },
+    {
+      "physicalResolution": [
+        1366,
+        768
+      ],
+      "dpi": 2,
+      "metrics": {
+        "width": 683,
+        "height": 384,
+        "dialogHeight": 384,
+        "contentHeight": 311,
+        "footerBottom": 384,
+        "footerTop": 341,
+        "bodyScroll": false,
+        "formHorizontalScroll": false,
+        "galleryColumns": 3,
+        "fieldCount": 8
+      }
+    },
+    {
+      "physicalResolution": [
+        800,
+        600
+      ],
+      "dpi": 2,
+      "metrics": {
+        "width": 400,
+        "height": 300,
+        "dialogHeight": 300,
+        "contentHeight": 227,
+        "footerBottom": 300,
+        "footerTop": 257,
+        "bodyScroll": false,
+        "formHorizontalScroll": false,
+        "galleryColumns": 2,
+        "fieldCount": 8
+      }
+    },
+    {
+      "physicalResolution": [
+        480,
+        800
+      ],
+      "dpi": 2,
+      "metrics": {
+        "width": 240,
+        "height": 400,
+        "dialogHeight": 400,
+        "contentHeight": 327,
+        "footerBottom": 400,
+        "footerTop": 357,
+        "bodyScroll": false,
+        "formHorizontalScroll": false,
+        "galleryColumns": 1,
+        "fieldCount": 8
+      }
+    }
+  ],
+  "errors": [],
+  "status": "PASS"
+}

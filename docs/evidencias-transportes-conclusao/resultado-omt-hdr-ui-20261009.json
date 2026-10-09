@@ -1,0 +1,125 @@
+{
+  "status": "PASS",
+  "scope": "Real HDR controls with isolated mocked command state; Native SDK is tested separately",
+  "noOperatorTouched": true,
+  "checks": [
+    "Only HDR UUID offered",
+    "Manual receiver required",
+    "No automatic start",
+    "Active controls disabled",
+    "Dirty config blocks start",
+    "600px controls fit",
+    "No browser errors"
+  ],
+  "actions": [
+    {
+      "action": "outputs_omt_hdr",
+      "command": "preflight",
+      "senderId": 0,
+      "name": "FreeMix OMT HDR 1",
+      "sourceUuid": "fixture-hdr-uuid",
+      "transfer": "pq",
+      "receiverTransfer": "pq",
+      "manualReceiverConfirmed": false,
+      "audioTrack": 0,
+      "audioSourceUuid": ""
+    },
+    {
+      "action": "outputs_omt_hdr",
+      "command": "preflight",
+      "senderId": 0,
+      "name": "FreeMix OMT HDR 1",
+      "sourceUuid": "fixture-hdr-uuid",
+      "transfer": "pq",
+      "receiverTransfer": "pq",
+      "manualReceiverConfirmed": true,
+      "audioTrack": 0,
+      "audioSourceUuid": ""
+    },
+    {
+      "action": "outputs_omt_hdr",
+      "command": "configure",
+      "senderId": 0,
+      "name": "FreeMix OMT HDR 1",
+      "sourceUuid": "fixture-hdr-uuid",
+      "transfer": "pq",
+      "receiverTransfer": "pq",
+      "manualReceiverConfirmed": true,
+      "audioTrack": 0,
+      "audioSourceUuid": ""
+    },
+    {
+      "action": "outputs_omt_hdr",
+      "command": "start",
+      "senderId": 0,
+      "name": "FreeMix OMT HDR 1",
+      "sourceUuid": "fixture-hdr-uuid",
+      "transfer": "pq",
+      "receiverTransfer": "pq",
+      "manualReceiverConfirmed": true,
+      "audioTrack": 0,
+      "audioSourceUuid": ""
+    },
+    {
+      "action": "outputs_omt_hdr",
+      "command": "stop",
+      "senderId": 0,
+      "name": "FreeMix OMT HDR 1",
+      "sourceUuid": "fixture-hdr-uuid",
+      "transfer": "pq",
+      "receiverTransfer": "pq",
+      "manualReceiverConfirmed": true,
+      "audioTrack": 0,
+      "audioSourceUuid": ""
+    },
+    {
+      "action": "outputs_omt_hdr",
+      "command": "configure",
+      "senderId": 0,
+      "name": "Changed",
+      "sourceUuid": "fixture-hdr-uuid",
+      "transfer": "pq",
+      "receiverTransfer": "pq",
+      "manualReceiverConfirmed": true,
+      "audioTrack": 0,
+      "audioSourceUuid": ""
+    },
+    {
+      "action": "outputs_omt_hdr",
+      "command": "configure",
+      "senderId": 1,
+      "name": "FreeMix OMT HDR 2",
+      "sourceUuid": "fixture-hdr-uuid",
+      "transfer": "pq",
+      "receiverTransfer": "pq",
+      "manualReceiverConfirmed": true,
+      "audioTrack": 0,
+      "audioSourceUuid": ""
+    },
+    {
+      "action": "outputs_omt_hdr",
+      "command": "start",
+      "senderId": 1,
+      "name": "FreeMix OMT HDR 2",
+      "sourceUuid": "fixture-hdr-uuid",
+      "transfer": "pq",
+      "receiverTransfer": "pq",
+      "manualReceiverConfirmed": true,
+      "audioTrack": 0,
+      "audioSourceUuid": ""
+    },
+    {
+      "action": "outputs_omt_hdr",
+      "command": "stop",
+      "senderId": 1,
+      "name": "FreeMix OMT HDR 2",
+      "sourceUuid": "fixture-hdr-uuid",
+      "transfer": "pq",
+      "receiverTransfer": "pq",
+      "manualReceiverConfirmed": true,
+      "audioTrack": 0,
+      "audioSourceUuid": ""
+    }
+  ],
+  "errors": []
+}

@@ -1,0 +1,19 @@
+{
+  "status": "PASS",
+  "sourceDir": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\sceneswitcher-shutdown\\portable-source",
+  "buildDir": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\sceneswitcher-shutdown\\portable-build",
+  "officialSourceSha256": "c3cb9d64d9bb9a15b0880a8b6e734ee20368f533fb5fb2aeb40b60aa77b66b2b",
+  "recipeSha256": "6b2a6fc3c038fef62a69ffb937955b2f595363e07a095e97f9bf75c3c882c840",
+  "patchSha256": "d690e198d3c4fed165b0100cd939a4a70249837025e403b47d91d12dbdc3dc44",
+  "builtDllSha256": "33a03ac7509699e47086ee4ddb67e27382f5e68c1c63b08a25fac25fde2b6ab3",
+  "builtCoreSha256": "ccf6551cd44189afbe8407404780e2eff7452198f401514365f2fb499d36511e",
+  "newSourceAndBuild": true,
+  "sourceHashAndPatchApplied": true,
+  "coreOnlyBuild": true,
+  "deployedOriginalSubpluginsPreserved": true,
+  "buildExitCode": 0,
+  "runtimeVerifiedForThisRecipeBinary": false,
+  "frozenCandidateUnchanged": true,
+  "operatorTouched": false,
+  "log": "portable-build.log"
+}

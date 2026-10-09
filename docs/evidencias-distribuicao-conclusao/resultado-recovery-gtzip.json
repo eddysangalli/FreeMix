@@ -1,0 +1,12 @@
+{
+  "status": "PASS",
+  "at": "2026-10-09T21:26:11.922Z",
+  "operatorTouched": false,
+  "externalDataSent": false,
+  "checks": [
+    "Backup descobre pasta inteira de título não preparado e imagem library por token",
+    "Arquivos retornam à pasta canônica em instalação nova; segunda recuperação reutiliza bytes idênticos",
+    "Conteúdo existente diferente é preservado e impede sobrescrita",
+    "Título sem mídia, traversal e hash divergente são recusados antes de restaurar"
+  ]
+}
