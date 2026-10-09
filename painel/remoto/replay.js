@@ -1,4 +1,8 @@
 let replay = null, deck = 'A', busy = false, retentionDirty = false, eventsSignature = '';
+    if(new URLSearchParams(location.search).get('view')==='settings') {
+      document.title='FreeMix · Configurações do Replay';
+      document.getElementById('replay-camera-audio').open=true;
+    }
     const anglesByEvent = new Map();
     const el = (id) => document.getElementById(id);
     async function request(action, data = {}) {

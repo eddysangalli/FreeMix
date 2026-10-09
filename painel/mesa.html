@@ -1817,6 +1817,7 @@ body.popup-mode #pop[data-panel="add"] .add .types { display:flex; flex-directio
     const curPage = st.rpPage || 1;
 
     box.innerHTML = `<div class="rp-dock-ctrl">
+      <div class="row" style="margin:0;justify-content:flex-end"><button class="b" data-a="pop" data-v="replaysettings" title="Escolher câmeras, áudio, retenção e sincronismo">⚙ Configurações do Replay</button></div>
       <!-- 1. Páginas de Eventos 1..20 (Estilo vMix Replay) -->
       <div class="rp-pages-bar">
         ${Array.from({ length: 20 }, (_, i) => i + 1).map((n) => `<button class="rp-page-btn${curPage === n ? " on" : ""}" data-a="rppage" data-v="${n}">${n}</button>`).join("")}
@@ -2206,10 +2207,10 @@ body.popup-mode #pop[data-panel="add"] .add .types { display:flex; flex-directio
         + `<p>Evento: antes do início conta em amarelo; durante, em verde; depois do fim, em vermelho.</p><div class="row end"><button class="b on" data-a="clockssave">OK</button><button class="b" data-a="close">Cancelar</button></div>`; }
     else if (st.pop === "gear") p.innerHTML = `<h3>Painel</h3><p>${st.on ? "Conectado a " + esc(LOCAL.url || "") : esc(st.why)}</p><div class="row"><button class="b${st.studio ? " on" : ""}" data-a="studio">Modo estúdio (Preview + Programa)</button></div><p style="margin-top:8px">Cenas, fontes, mixer nativo e controles do OBS continuam no menu Painéis.</p><div class="row"><button class="b" data-a="close">Fechar</button></div>`;
   }
-  const panelPages={audio:'/audio',datasources:'/dados',compositions:'/compor',calls:'/calls',macros:'/macros',recuperacao:'/recuperacao',diagnosticos:'/diagnosticos',saidas:'/saidas',settings:'/settings',config:'/settings',ext:'/saidas?context=external',iso:'/iso',recset:'/settings?category=recording&context=recording',streamset:'/saidas?context=streaming'};
-  const independentEditors=new Set(['datasources','compositions','calls','macros','recuperacao','diagnosticos','saidas','settings','add','layers','audioset','clocks','ext','iso','replay','playlist','shortcuts','busman','recset','streamset','config','gcedit','presets','saveas','replayretention']);
+  const panelPages={audio:'/audio',datasources:'/dados',compositions:'/compor',calls:'/calls',macros:'/macros',recuperacao:'/recuperacao',diagnosticos:'/diagnosticos',saidas:'/saidas',settings:'/settings',config:'/settings',ext:'/saidas?context=external',iso:'/iso',replay:'/replay',replaysettings:'/replay?view=settings#replay-config',recset:'/settings?category=recording&context=recording',streamset:'/saidas?context=streaming'};
+  const independentEditors=new Set(['datasources','compositions','calls','macros','recuperacao','diagnosticos','saidas','settings','add','layers','audioset','clocks','ext','iso','replay','replaysettings','playlist','shortcuts','busman','recset','streamset','config','gcedit','presets','saveas','replayretention']);
   async function launchPanel(id,arg){
-    const title=({datasources:'Fontes de dados',compositions:'Composições',calls:'Calls',settings:'Configurações',replay:'Replay',list:'List',mixer:'Mixer de áudio',audio:'Áudio · AFV e filtros'})[id]||'FreeMix · '+id;
+    const title=({datasources:'Fontes de dados',compositions:'Composições',calls:'Calls',settings:'Configurações',replay:'Replay',replaysettings:'Configurações do Replay',list:'List',mixer:'Mixer de áudio',audio:'Áudio · AFV e filtros'})[id]||'FreeMix · '+id;
     const url=panelPages[id]?replayUrl.replace(/\/api\/replay$/,panelPages[id])+(['compositions','audio'].includes(id)?'?input='+encodeURIComponent(arg||''):''):new URL('mesa.html?pop='+encodeURIComponent(id)+(arg?'&arg='+encodeURIComponent(arg):''),location.href).href;
     if(panelPages[id]){
       let health;
@@ -2510,7 +2511,11 @@ body.popup-mode #pop[data-panel="add"] .add .types { display:flex; flex-directio
   const qParams = new URLSearchParams(location.search);
   const qPop = qParams.get("pop");
   const qArg = qParams.get("arg");
-  if (qPop) {
+  if (qPop === 'replay') {
+    // Native menu entries still use mesa.html?pop=replay. Open the full console,
+    // whose camera, audio and retention controls are absent from the compact dock.
+    location.replace(replayUrl.replace(/\/api\/replay$/, '/replay'));
+  } else if (qPop) {
     document.body.classList.add("popup-mode");
     if(['replay','list','mixer'].includes(qPop))document.body.classList.add('side-popup');
     if (qPop === "replay") {
