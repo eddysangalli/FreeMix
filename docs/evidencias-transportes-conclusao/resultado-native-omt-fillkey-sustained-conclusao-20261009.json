@@ -1,0 +1,106 @@
+{
+  "status": "PASS",
+  "pid": 51824,
+  "operatorTouched": false,
+  "artifacts": {
+    "bin/64bit/FreeMix.exe": "09ae2e0f2c72df7e4245df2cb616ba3ede281fe28eb9dc2a6cde0e9b91df105e",
+    "obs-plugins/64bit/obs-ffmpeg.dll": "7d2d4fd4bcf628d606b73bf6f48ee1f5103ce3559e0abb1c1cae1b037a6509e8"
+  },
+  "reconnected": true,
+  "capture": {
+    "at": 1791577802.9867165,
+    "checks": [
+      {
+        "label": "Both SDK receivers decode frames",
+        "passed": true
+      },
+      {
+        "label": "Fill and Key share actual media timestamps",
+        "passed": true
+      },
+      {
+        "label": "Key derives opaque grayscale from alpha 0/128/255",
+        "passed": true
+      },
+      {
+        "label": "Fill preserves straight blue at partial and full alpha",
+        "passed": true
+      },
+      {
+        "label": "Key sender carries no audio",
+        "passed": true
+      },
+      {
+        "label": "Fill has real 440Hz PCM audio",
+        "passed": true
+      },
+      {
+        "label": "Audio timestamps remain monotonic across reconnect",
+        "passed": true
+      },
+      {
+        "label": "Sustained audio captured alongside video",
+        "passed": true
+      }
+    ],
+    "videoFrames": [
+      187,
+      187
+    ],
+    "audioFrames": [
+      291,
+      0
+    ],
+    "audioRms": 0.06248580664396286,
+    "audioPeakHz": 440.07731958762884,
+    "audioSamples": 297984,
+    "commonTimestamps": 187,
+    "lastSamples": [
+      [
+        [
+          0,
+          0,
+          0,
+          255
+        ],
+        [
+          255,
+          0,
+          1,
+          255
+        ],
+        [
+          255,
+          0,
+          1,
+          255
+        ]
+      ],
+      [
+        [
+          0,
+          0,
+          0,
+          255
+        ],
+        [
+          128,
+          128,
+          128,
+          255
+        ],
+        [
+          255,
+          255,
+          255,
+          255
+        ]
+      ]
+    ],
+    "passed": true
+  },
+  "exit": {
+    "code": 0,
+    "signal": null
+  }
+}

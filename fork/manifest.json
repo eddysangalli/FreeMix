@@ -1,7 +1,7 @@
 {
   "upstream": "https://github.com/obsproject/obs-studio.git",
   "base": "ba2f32bdf791005443988a4955e963663e16b1ed",
-  "head": "7d4650d3e078e81671f53fbf0578a761031812bc",
+  "head": "a0d77efd432976371262f2585dd7112b82c9bfe4",
   "version": "0.1.0-local.20261009153453",
   "patches": [
     {
@@ -47,6 +47,11 @@
     {
       "path": "0011-Add-compatible-SRT-packed-and-separate-Fill-Key-420-.patch",
       "sha256": "ffe038a847acb5d7adbd0ebaaf001206c67dfd7fb6b48665e51526f9fcf50084"
+    },
+    {
+      "path": "0012-Fix-Fill-Key-straight-colour-and-silent-SRT-Key-audi.patch",
+      "sha256": "eeca9ae9d14d11e876f4428ce31d42bff10bf639fa5d69a667b195305a724331"
     }
-  ]
+  ],
+  "sourceUpdatedAt": "2026-10-09T20:37:54.593Z"
 }

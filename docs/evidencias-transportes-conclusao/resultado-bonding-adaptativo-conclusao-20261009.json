@@ -1,0 +1,166 @@
+{
+  "at": "2026-10-09T20:13:35.981Z",
+  "pass": true,
+  "scope": "fixture-policy-and-loopback-UDP-only",
+  "wanVerified": false,
+  "capacityMeasured": false,
+  "mediaLossMeasured": false,
+  "checks": [
+    {
+      "name": "Padrão manual/duplicação e validação do timeout",
+      "pass": true
+    },
+    {
+      "name": "Retirada/reentrada com duas respostas e pesos RTT limitados sem Mbps inventados",
+      "pass": true
+    },
+    {
+      "name": "Duas rotas UDP locais com RTT autenticado real",
+      "pass": true
+    },
+    {
+      "name": "AES/FEC preservados: 24 TS idênticos, seis perdas recuperadas por XOR",
+      "pass": true
+    },
+    {
+      "name": "Probe adulterado/replay rejeitados e reply tem domínio HKDF separado",
+      "pass": true
+    },
+    {
+      "name": "Blackhole real retira rota por timeout e 16 TS seguem pela rota saudável",
+      "pass": true
+    },
+    {
+      "name": "Reentrada real após respostas autenticadas e retorno da distribuição",
+      "pass": true
+    },
+    {
+      "name": "Todos offline bloqueiam mídia, preservam probes/cache limitado sem fallback fictício",
+      "pass": true
+    }
+  ],
+  "sender": {
+    "active": true,
+    "packets": 49,
+    "bytes": 9212,
+    "invalid": 0,
+    "dropped": 0,
+    "nackReceived": 0,
+    "retransmitted": 0,
+    "nackRejected": 0,
+    "paths": [
+      {
+        "host": "127.0.0.1",
+        "port": 58487,
+        "localAddress": "127.0.0.1",
+        "weight": 4,
+        "sent": 42,
+        "dataSent": 34,
+        "paritySent": 8,
+        "retrySent": 0,
+        "bytes": 10040,
+        "errors": 0,
+        "healthRejected": 0,
+        "lastError": null,
+        "healthStatus": "offline",
+        "effectiveWeight": 0,
+        "healthStarted": 113.0842,
+        "lastAck": 2515.7925,
+        "rttMs": 1.29558520507808,
+        "goodReplies": 0,
+        "healthSent": 10,
+        "healthReplies": 7,
+        "healthTimeouts": 1,
+        "mediaLossMeasured": false,
+        "capacityMbps": null,
+        "measurementReady": false,
+        "mediaLossPercent": null,
+        "recentMediaLossPercent": null,
+        "mediaExpected": 0,
+        "mediaReceived": 0,
+        "capacityMeasuredAt": null,
+        "measurementRejected": 0
+      },
+      {
+        "host": "127.0.0.1",
+        "port": 58488,
+        "localAddress": "127.0.0.1",
+        "weight": 4,
+        "sent": 18,
+        "dataSent": 14,
+        "paritySent": 4,
+        "retrySent": 0,
+        "bytes": 4312,
+        "errors": 0,
+        "healthRejected": 0,
+        "lastError": null,
+        "healthStatus": "offline",
+        "effectiveWeight": 0,
+        "healthStarted": 113.3436,
+        "lastAck": 2515.8532,
+        "rttMs": 2.087442187499953,
+        "goodReplies": 0,
+        "healthSent": 10,
+        "healthReplies": 4,
+        "healthTimeouts": 2,
+        "mediaLossMeasured": false,
+        "capacityMbps": null,
+        "measurementReady": false,
+        "mediaLossPercent": null,
+        "recentMediaLossPercent": null,
+        "mediaExpected": 0,
+        "mediaReceived": 0,
+        "capacityMeasuredAt": null,
+        "measurementRejected": 0
+      }
+    ],
+    "mode": "aggregate",
+    "bandwidthAggregated": true,
+    "fecGroup": 4,
+    "fecSent": 12,
+    "adaptive": true,
+    "healthBlockedWire": 1,
+    "healthMeasurement": "authenticated RTT/timeout only",
+    "encryption": "AES-256-GCM",
+    "measureMedia": false,
+    "measuredAllocation": false,
+    "measurementRunning": false,
+    "cachedPackets": 0
+  },
+  "receiver": {
+    "active": true,
+    "received": 54,
+    "unique": 48,
+    "delivered": 48,
+    "duplicatesOrLate": 1,
+    "missing": 0,
+    "invalid": 0,
+    "unauthorized": 0,
+    "overflow": 0,
+    "outputErrors": 0,
+    "buffered": 0,
+    "nackSent": 0,
+    "fecReceived": 12,
+    "fecRecovered": 7,
+    "fecExpired": 0,
+    "healthRequests": 11,
+    "healthRejected": 2,
+    "paths": {
+      "127.0.0.1:58487": 39,
+      "127.0.0.1:58488": 15
+    },
+    "encryption": "AES-256-GCM",
+    "measurements": {
+      "wrapped": 0,
+      "rejected": 0,
+      "feedback": 0,
+      "probeBytes": 0,
+      "probePackets": 0,
+      "mediaStreams": 0,
+      "controlSessions": 0,
+      "probeSessions": 0
+    },
+    "cachedPayloads": 48,
+    "pendingFecGroups": 0
+  }
+}

@@ -1,0 +1,114 @@
+{
+  "status": "PASS",
+  "nativeSha256": "aeccbb1be74a3c291b21302b0eaec5f9f9c67deb4ecc93437905365f36ed762b",
+  "operatorTouched": false,
+  "browser": false,
+  "externalHomologation": false,
+  "cases": [
+    {
+      "resolution": [
+        640,
+        360
+      ],
+      "framesReceived": 215,
+      "fpsNominal": 30,
+      "ptsMonotonic": true,
+      "ptsStepMedianMs": 33.333,
+      "alphaMaxError": 0,
+      "motionPositions": 131,
+      "audioRms": 0.06226849928498268,
+      "audioPeakHz": 440.0,
+      "audioSamples": 344064,
+      "audioVideoFirstPtsDeltaMs": 21.333,
+      "reconnectionScenario": false,
+      "native": {
+        "state": "stopped",
+        "videoFrames": 215,
+        "audioFrames": 336,
+        "audioSamplesPerChannel": 344064,
+        "droppedLateFrames": 0,
+        "reconnects": 2,
+        "maxVideoProcessMs": 2.368,
+        "width": 640,
+        "height": 360,
+        "firstVideoPtsUs": 1421333,
+        "lastVideoPtsUs": 8554667,
+        "firstAudioPtsUs": 1400000,
+        "lastAudioPtsUs": 8546667,
+        "browser": false,
+        "externalHomologation": false
+      },
+      "localOnly": true
+    },
+    {
+      "resolution": [
+        1920,
+        1080
+      ],
+      "framesReceived": 875,
+      "fpsNominal": 30,
+      "ptsMonotonic": true,
+      "ptsStepMedianMs": 33.333,
+      "alphaMaxError": 0,
+      "motionPositions": 564,
+      "audioRms": 0.06241185590624809,
+      "audioPeakHz": 440.0,
+      "audioSamples": 1400832,
+      "audioVideoFirstPtsDeltaMs": 21.333,
+      "reconnectionScenario": false,
+      "native": {
+        "state": "stopped",
+        "videoFrames": 875,
+        "audioFrames": 1368,
+        "audioSamplesPerChannel": 1400832,
+        "droppedLateFrames": 0,
+        "reconnects": 2,
+        "maxVideoProcessMs": 11.864,
+        "width": 1920,
+        "height": 1080,
+        "firstVideoPtsUs": 1421333,
+        "lastVideoPtsUs": 30554667,
+        "firstAudioPtsUs": 1400000,
+        "lastAudioPtsUs": 30562667,
+        "browser": false,
+        "externalHomologation": false
+      },
+      "localOnly": true
+    },
+    {
+      "resolution": [
+        640,
+        360
+      ],
+      "framesReceived": 254,
+      "fpsNominal": 30,
+      "ptsMonotonic": true,
+      "ptsStepMedianMs": 33.333,
+      "alphaMaxError": 0,
+      "motionPositions": 79,
+      "audioRms": 0.0622045174241066,
+      "audioPeakHz": 440.0,
+      "audioSamples": 393216,
+      "audioVideoFirstPtsDeltaMs": 21.333,
+      "reconnectionScenario": true,
+      "native": {
+        "state": "stopped",
+        "videoFrames": 254,
+        "audioFrames": 384,
+        "audioSamplesPerChannel": 393216,
+        "droppedLateFrames": 0,
+        "reconnects": 3,
+        "maxVideoProcessMs": 2.467,
+        "width": 640,
+        "height": 360,
+        "firstVideoPtsUs": 1421333,
+        "lastVideoPtsUs": 11184618,
+        "firstAudioPtsUs": 1400000,
+        "lastAudioPtsUs": 11037952,
+        "browser": false,
+        "externalHomologation": false
+      },
+      "localOnly": true
+    }
+  ]
+}

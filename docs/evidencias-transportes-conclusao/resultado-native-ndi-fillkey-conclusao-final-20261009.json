@@ -1,0 +1,62 @@
+{
+  "status": "PASS",
+  "pid": 126152,
+  "operatorTouched": false,
+  "artifacts": {
+    "bin/64bit/FreeMix.exe": "09ae2e0f2c72df7e4245df2cb616ba3ede281fe28eb9dc2a6cde0e9b91df105e",
+    "obs-plugins/64bit/obs-ffmpeg.dll": "7d2d4fd4bcf628d606b73bf6f48ee1f5103ce3559e0abb1c1cae1b037a6509e8"
+  },
+  "capture": {
+    "status": "PASS",
+    "counts": {
+      "FreeMix-QA-ConclusionFill": 116,
+      "FreeMix-QA-ConclusionKey": 124
+    },
+    "samples": {
+      "FreeMix-QA-ConclusionFill": [
+        [
+          1,
+          0,
+          1
+        ],
+        [
+          255,
+          0,
+          1
+        ],
+        [
+          255,
+          0,
+          1
+        ]
+      ],
+      "FreeMix-QA-ConclusionKey": [
+        [
+          1,
+          0,
+          1
+        ],
+        [
+          128,
+          128,
+          129
+        ],
+        [
+          255,
+          255,
+          255
+        ]
+      ]
+    },
+    "sharedTimestamps": 116,
+    "audioCounts": {
+      "FreeMix-QA-ConclusionFill": 128,
+      "FreeMix-QA-ConclusionKey": 0
+    },
+    "localOnly": true
+  },
+  "exit": {
+    "code": 0,
+    "signal": null
+  }
+}

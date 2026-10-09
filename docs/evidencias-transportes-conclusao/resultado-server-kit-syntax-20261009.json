@@ -1,0 +1,21 @@
+{
+  "status": "PASS",
+  "checks": [
+    {
+      "file": "servidor/instalar-servidor.sh",
+      "syntax": "PASS",
+      "sha256": "da5673ce9b985e462c12b2a29699787cb362aa09ad990dd1e42703e965d06511",
+      "lines": 62
+    },
+    {
+      "file": "obs-vmix/docs/servidor/instalar-servidor.sh",
+      "syntax": "PASS",
+      "sha256": "da5673ce9b985e462c12b2a29699787cb362aa09ad990dd1e42703e965d06511",
+      "lines": 62
+    }
+  ],
+  "scope": "bash-parse-only",
+  "deployed": false,
+  "servicesStarted": false,
+  "operatorTouched": false
+}

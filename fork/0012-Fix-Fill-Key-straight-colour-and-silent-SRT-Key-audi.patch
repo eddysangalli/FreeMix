@@ -1,0 +1,121 @@
+From a0d77efd432976371262f2585dd7112b82c9bfe4 Mon Sep 17 00:00:00 2001
+From: Eddy Sangalli <eddyrodrigues@outlook.com>
+Date: Fri, 9 Oct 2026 17:35:28 -0300
+Subject: [PATCH] Fix Fill Key straight colour and silent SRT Key audio
+
+---
+ frontend/widgets/FreeMixFillKey.hpp         |  8 ++++++++
+ frontend/widgets/FreeMixMultistream.cpp     | 21 +++++++++++++++++++--
+ frontend/widgets/FreeMixNdiOutput.hpp       |  2 +-
+ frontend/widgets/FreeMixOmtOutput.hpp       |  2 +-
+ frontend/widgets/FreeMixVideoTransports.hpp |  3 ++-
+ 5 files changed, 31 insertions(+), 5 deletions(-)
+
+diff --git a/frontend/widgets/FreeMixFillKey.hpp b/frontend/widgets/FreeMixFillKey.hpp
+index 5031a1e..79dd1d2 100644
+--- a/frontend/widgets/FreeMixFillKey.hpp
++++ b/frontend/widgets/FreeMixFillKey.hpp
+@@ -6,6 +6,14 @@
+ #include <vector>
+ 
+ namespace freemix_fill_key {
++// Official NDI BGRA/BGRX requires straight RGB. OBS is premultiplied.
++// Keep alpha unchanged for the matching matte.
++inline void StraightRgb(uint8_t *pixels, size_t count)
++{
++ for(size_t i=0;i<count;++i){uint8_t *p=pixels+i*4;const unsigned a=p[3];
++  for(size_t c=0;c<3;++c){const unsigned value=a?(unsigned(p[c])*255+a/2)/a:0;p[c]=uint8_t(value>255?255:value);}
++ }
++}
+ inline void MakeKey(const uint8_t *bgra, size_t stride, uint32_t width,
+                     uint32_t height, std::vector<uint8_t> &key)
+ {
+diff --git a/frontend/widgets/FreeMixMultistream.cpp b/frontend/widgets/FreeMixMultistream.cpp
+index c1a0243..2691b6b 100644
+--- a/frontend/widgets/FreeMixMultistream.cpp
++++ b/frontend/widgets/FreeMixMultistream.cpp
+@@ -310,6 +310,17 @@ bool ReadDestinationAudio(void *param,uint64_t start,uint64_t,uint64_t *newTimes
+ 	return true;
+ }
+ 
++// Key is a matte, not a second audible programme. Keep a silent AAC track for
++// MPEG-TS compatibility while preventing doubled audio in Fill/Key receivers.
++bool ReadSilentKeyAudio(void *,uint64_t start,uint64_t,uint64_t *newTimestamp,uint32_t activeMixers,audio_output_data *data)
++{
++ *newTimestamp=start;
++ for(size_t n=0;n<MAX_AUDIO_MIXES;n++)if(activeMixers&(1u<<n))
++  for(size_t ch=0;ch<MAX_AV_PLANES;ch++)if(data[n].data[ch])
++   std::fill_n(data[n].data[ch],AUDIO_OUTPUT_FRAMES,0.0f);
++ return true;
++}
++
+ struct Destination {
+ 	/* Saved with the profile. */
+ 	std::string name;
+@@ -704,7 +715,7 @@ void Describe(obs_data_t *out)
+ 	const bool srt444=OutputLoaded("ffmpeg_mpegts_muxer")&&obs_get_encoder_type("obs_x264")==OBS_ENCODER_VIDEO&&KnownVideoCodec(obs_get_encoder_codec("obs_x264"));
+ 	obs_data_set_bool(out,"srtChroma444Supported",srt444);obs_data_set_bool(out,"srtPackedAlphaSupported",srt444);obs_data_set_int(out,"srtPackedAlphaMaxWidth",1920);obs_data_set_string(out,"srt444Encoder","obs_x264");obs_data_set_string(out,"srtAlphaLayout","fill-left-key-right");
+ 	obs_data_set_bool(out,"srtPackedAlpha420Supported",srt444);
+-	obs_data_set_bool(out,"srtSeparateAlphaSupported",srt444);obs_data_set_bool(out,"srtSeparateFillKeySupported",srt444);obs_data_set_string(out,"srtSeparateFillKeyEncoder","obs_x264");obs_data_set_string(out,"srtSeparateFillKeyChroma","420");obs_data_set_bool(out,"srtSeparateFillKeyFrameLocked",false);
++	obs_data_set_bool(out,"srtSeparateAlphaSupported",srt444);obs_data_set_bool(out,"srtSeparateFillKeySupported",srt444);obs_data_set_string(out,"srtSeparateFillKeyEncoder","obs_x264");obs_data_set_string(out,"srtSeparateFillKeyChroma","420");obs_data_set_bool(out,"srtSeparateFillKeyFrameLocked",false);obs_data_set_bool(out,"srtSeparateKeyAudioSilent",true);
+ 	OBSDataAutoRelease videoTransports=FreeMixVideoTransports();obs_data_set_obj(out,"videoTransports",videoTransports);
+ 	OBSDataArrayAutoRelease audioSources=obs_data_array_create();
+ 	obs_enum_sources([](void *param,obs_source_t *source){if(FreeMixAudioBusAllowed(source)){OBSDataAutoRelease row=obs_data_create();obs_data_set_string(row,"uuid",obs_source_get_uuid(source));obs_data_set_string(row,"name",obs_source_get_name(source));obs_data_array_push_back(static_cast<obs_data_array_t *>(param),row);}return true;},audioSources.Get());
+@@ -1085,7 +1096,13 @@ void StartOne(Destination &d, size_t index)
+ 		if(d.chroma=="444")obs_encoder_set_preferred_video_format(d.videoEncoder,VIDEO_FORMAT_I444);
+ 		if(d.alphaMode!="none"&&d.chroma=="420")obs_encoder_set_preferred_video_format(d.videoEncoder,VIDEO_FORMAT_NV12);
+ 		if (!obs_encoder_set_frame_rate_divisor(d.videoEncoder, d.fpsDivisor)) { Fail(d, "could not set output FPS divisor"); return; }
+-		if(d.mode=="mix"&&d.stingerAudio){
++		if(d.alphaMode=="key"){
++			obs_audio_info audioInfo;if(!obs_get_audio_info(&audioInfo)){Fail(d,"audio is unavailable");return;}
++			audio_output_info outputInfo={};outputInfo.name=id.c_str();outputInfo.samples_per_sec=audioInfo.samples_per_sec;outputInfo.speakers=audioInfo.speakers;outputInfo.format=AUDIO_FORMAT_FLOAT_PLANAR;outputInfo.input_callback=ReadSilentKeyAudio;
++			if(d.sourceAudio)outputInfo.speakers=SPEAKERS_STEREO;
++			if(audio_output_open(&d.independentAudio,&outputInfo)!=AUDIO_OUTPUT_SUCCESS){Fail(d,"could not create silent Key audio");return;}
++			obs_encoder_set_audio(d.audioEncoder,d.independentAudio);
++		}else if(d.mode=="mix"&&d.stingerAudio){
+ 			obs_audio_info audioInfo;if(!obs_get_audio_info(&audioInfo)){Fail(d,"audio is unavailable");return;}
+ 			d.audioMix=std::make_unique<DestinationAudioMix>();d.audioMix->name=id;d.audioMix->track=d.sourceAudio?0:d.audioTrack;d.audioMix->bus.rate=audioInfo.samples_per_sec;d.audioMix->bus.channels=d.sourceAudio?2:get_audio_channels(audioInfo.speakers);d.audioMix->stinger=independentMixes[d.mixId-2].stingerTape;
+ 			audio_output_info outputInfo={};outputInfo.name=d.audioMix->name.c_str();outputInfo.samples_per_sec=audioInfo.samples_per_sec;outputInfo.speakers=audioInfo.speakers;outputInfo.format=AUDIO_FORMAT_FLOAT_PLANAR;outputInfo.input_callback=ReadDestinationAudio;outputInfo.input_param=d.audioMix.get();
+diff --git a/frontend/widgets/FreeMixNdiOutput.hpp b/frontend/widgets/FreeMixNdiOutput.hpp
+index 9c83b13..a3170b5 100644
+--- a/frontend/widgets/FreeMixNdiOutput.hpp
++++ b/frontend/widgets/FreeMixNdiOutput.hpp
+@@ -41,7 +41,7 @@ struct Sender {
+   if(!obs_output_begin_data_capture(output,0)){std::lock_guard<std::mutex> lock(mutex);DestroySenders();obs_output_set_last_error(output,"Could not attach NDI capture");return false;}return true;
+  }
+  void Video(video_data *data){std::lock_guard<std::mutex> lock(mutex);if(!sender||!data||!data->data[0])return;const size_t stride=size_t(width)*4;pixels.resize(stride*height);for(uint32_t y=0;y<height;y++)std::memcpy(pixels.data()+stride*y,data->data[0]+size_t(data->linesize[0])*y,stride);
+- NDIlib_video_frame_v2_t f={};f.xres=int(width);f.yres=int(height);f.FourCC=NDIlib_FourCC_type_BGRX;f.frame_rate_N=fpsN;f.frame_rate_D=fpsD;f.picture_aspect_ratio=float(width)/float(height);f.frame_format_type=NDIlib_frame_format_type_progressive;f.timecode=int64_t(data->timestamp/100);f.p_data=pixels.data();f.line_stride_in_bytes=int(stride);Api().sendVideo(sender,&f);bytes+=pixels.size();if(keySender){freemix_fill_key::MakeKey(pixels.data(),stride,width,height,keyPixels);f.p_data=keyPixels.data();Api().sendVideo(keySender,&f);bytes+=keyPixels.size();}}
++ freemix_fill_key::StraightRgb(pixels.data(),size_t(width)*height); NDIlib_video_frame_v2_t f={};f.xres=int(width);f.yres=int(height);f.FourCC=NDIlib_FourCC_type_BGRX;f.frame_rate_N=fpsN;f.frame_rate_D=fpsD;f.picture_aspect_ratio=float(width)/float(height);f.frame_format_type=NDIlib_frame_format_type_progressive;f.timecode=int64_t(data->timestamp/100);f.p_data=pixels.data();f.line_stride_in_bytes=int(stride);Api().sendVideo(sender,&f);bytes+=pixels.size();if(keySender){freemix_fill_key::MakeKey(pixels.data(),stride,width,height,keyPixels);f.p_data=keyPixels.data();Api().sendVideo(keySender,&f);bytes+=keyPixels.size();}}
+  void Audio(audio_data *data){std::lock_guard<std::mutex> lock(mutex);if(!sender||!data||!data->frames)return;samples.resize(size_t(data->frames)*2);for(size_t ch=0;ch<2;ch++){float *dest=samples.data()+ch*data->frames;if(data->data[ch])std::memcpy(dest,data->data[ch],size_t(data->frames)*sizeof(float));else std::memset(dest,0,size_t(data->frames)*sizeof(float));}NDIlib_audio_frame_v2_t f={};f.sample_rate=48000;f.no_channels=2;f.no_samples=int(data->frames);f.timecode=int64_t(data->timestamp/100);f.p_data=samples.data();f.channel_stride_in_bytes=int(data->frames*sizeof(float));Api().sendAudio(sender,&f);bytes+=samples.size()*sizeof(float);}
+  uint64_t Bytes(){std::lock_guard<std::mutex> lock(mutex);return bytes;}
+  int Connections(){std::lock_guard<std::mutex> lock(mutex);return sender?Api().connections(sender,0):0;}
+diff --git a/frontend/widgets/FreeMixOmtOutput.hpp b/frontend/widgets/FreeMixOmtOutput.hpp
+index f5c4d50..12f024e 100644
+--- a/frontend/widgets/FreeMixOmtOutput.hpp
++++ b/frontend/widgets/FreeMixOmtOutput.hpp
+@@ -46,7 +46,7 @@ struct Sender {
+   if(precisionBits==16){precise=std::make_unique<FreeMixPrecisionVideo>();if(!precise->Start(sourceUuid.c_str(),width,height)){precise.reset();std::lock_guard<std::mutex> lock(mutex);DestroySenders();obs_output_set_last_error(output,"RGBA16F render/staging unavailable");return false;}}
+   if(!obs_output_begin_data_capture(output,0)){precise.reset();std::lock_guard<std::mutex> lock(mutex);DestroySenders();obs_output_set_last_error(output,"Could not attach OMT capture");return false;}return true;
+  }
+- void Video(video_data *data){std::lock_guard<std::mutex> lock(mutex);if(!sender||!data||!data->data[0])return;const size_t stride=size_t(width)*(precisionBits==16?2:4);uint64_t pts=data->timestamp;if(precise){if(!precise->Copy(pixels,pts)||pts==lastPreciseTime)return;lastPreciseTime=pts;}else{pixels.resize(stride*height);for(uint32_t y=0;y<height;y++)std::memcpy(pixels.data()+stride*y,data->data[0]+size_t(data->linesize[0])*y,stride);}OMTMediaFrame f={};f.Type=OMTFrameType_Video;f.Timestamp=int64_t(pts/100);f.Codec=precisionBits==16?OMTCodec_PA16:OMTCodec_BGRA;f.Width=int(width);f.Height=int(height);f.Stride=int(stride);f.FrameRateN=fpsN;f.FrameRateD=fpsD;f.AspectRatio=float(width)/float(height);f.ColorSpace=OMTColorSpace_BT709;f.Flags=(alpha||precisionBits==16)&&!fillKey?OMTVideoFlags(OMTVideoFlags_Alpha|OMTVideoFlags_PreMultiplied):OMTVideoFlags_None;f.Data=pixels.data();f.DataLength=int(pixels.size());Api().send(sender,&f);if(keySender){freemix_fill_key::MakeKey(pixels.data(),stride,width,height,keyPixels);f.Flags=OMTVideoFlags_None;f.Data=keyPixels.data();f.DataLength=int(keyPixels.size());Api().send(keySender,&f);}}
++ void Video(video_data *data){std::lock_guard<std::mutex> lock(mutex);if(!sender||!data||!data->data[0])return;const size_t stride=size_t(width)*(precisionBits==16?2:4);uint64_t pts=data->timestamp;if(precise){if(!precise->Copy(pixels,pts)||pts==lastPreciseTime)return;lastPreciseTime=pts;}else{pixels.resize(stride*height);for(uint32_t y=0;y<height;y++)std::memcpy(pixels.data()+stride*y,data->data[0]+size_t(data->linesize[0])*y,stride);}if(fillKey&&precisionBits==8)freemix_fill_key::StraightRgb(pixels.data(),size_t(width)*height); OMTMediaFrame f={};f.Type=OMTFrameType_Video;f.Timestamp=int64_t(pts/100);f.Codec=precisionBits==16?OMTCodec_PA16:OMTCodec_BGRA;f.Width=int(width);f.Height=int(height);f.Stride=int(stride);f.FrameRateN=fpsN;f.FrameRateD=fpsD;f.AspectRatio=float(width)/float(height);f.ColorSpace=OMTColorSpace_BT709;f.Flags=(alpha||precisionBits==16)&&!fillKey?OMTVideoFlags(OMTVideoFlags_Alpha|OMTVideoFlags_PreMultiplied):OMTVideoFlags_None;f.Data=pixels.data();f.DataLength=int(pixels.size());Api().send(sender,&f);if(keySender){freemix_fill_key::MakeKey(pixels.data(),stride,width,height,keyPixels);f.Flags=OMTVideoFlags_None;f.Data=keyPixels.data();f.DataLength=int(keyPixels.size());Api().send(keySender,&f);}}
+  void Audio(audio_data *data){std::lock_guard<std::mutex> lock(mutex);if(!sender||!data||!data->frames)return;samples.resize(size_t(data->frames)*2);for(size_t ch=0;ch<2;ch++){float *dest=samples.data()+ch*data->frames;if(data->data[ch])std::memcpy(dest,data->data[ch],size_t(data->frames)*sizeof(float));else std::memset(dest,0,size_t(data->frames)*sizeof(float));}OMTMediaFrame f={};f.Type=OMTFrameType_Audio;f.Timestamp=int64_t(data->timestamp/100);f.Codec=OMTCodec_FPA1;f.SampleRate=48000;f.Channels=2;f.SamplesPerChannel=int(data->frames);f.Data=samples.data();f.DataLength=int(samples.size()*sizeof(float));Api().send(sender,&f);}
+  uint64_t Bytes(){std::lock_guard<std::mutex> lock(mutex);if(!sender)return 0;OMTStatistics v={},a={},k={};Api().videoStats(sender,&v);Api().audioStats(sender,&a);if(keySender)Api().videoStats(keySender,&k);return uint64_t(std::max<int64_t>(0,v.BytesSent+a.BytesSent+k.BytesSent));}
+  int Connections(){std::lock_guard<std::mutex> lock(mutex);return sender?Api().connections(sender):0;}
+diff --git a/frontend/widgets/FreeMixVideoTransports.hpp b/frontend/widgets/FreeMixVideoTransports.hpp
+index 3d56387..37990b6 100644
+--- a/frontend/widgets/FreeMixVideoTransports.hpp
++++ b/frontend/widgets/FreeMixVideoTransports.hpp
+@@ -12,7 +12,8 @@ inline OBSDataAutoRelease FreeMixVideoTransports()
+  obs_data_set_bool(decklink,"pluginLoaded",loaded);
+  obs_data_set_string(decklink,"outputId","decklink_output");
+  obs_data_set_string(decklink,"configuration","native-tools-decklink");
+- obs_data_set_string(decklink,"hdrStatus","requires_device_and_driver_validation");
++ obs_data_set_string(decklink,"hdrStatus","unsupported_in_integrated_sdr_path");
++ obs_data_set_bool(decklink,"hdrSupported",false);
+  OBSDataArrayAutoRelease devices=obs_data_array_create();
+  // decklink_output_properties explicitly ignores context (original OBS source).
+  obs_properties_t *props=loaded?obs_get_output_properties("decklink_output"):nullptr;
+-- 
+2.56.0.windows.1
+

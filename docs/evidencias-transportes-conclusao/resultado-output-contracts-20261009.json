@@ -1,0 +1,7 @@
+{
+  "status": "PASS",
+  "checks": 14,
+  "scope": "argument-and-SRT-format-contracts",
+  "nativeExecuted": false,
+  "operatorTouched": false
+}
