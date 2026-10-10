@@ -1,0 +1,44 @@
+{
+  "status": "ARCHIVED_HASHES_PRESERVED",
+  "at": "2026-10-10T00:32:57.0044156Z",
+  "selectedVersion": "0.1.0-local.20261010000500",
+  "operatorTouched": false,
+  "signedPayloadChanged": false,
+  "moves": [
+    {
+      "source": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\entregas\\FreeMix-Completo-0.1.0-local.20261009233334",
+      "target": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\archived\\candidato-superado-20261009233334\\FreeMix-Completo-0.1.0-local.20261009233334",
+      "directory": true,
+      "proofRelative": "manifest.json",
+      "sha256": "cdb90e40121606afaebec88dad4e5e1fade8153cf47c3b782a4711a7ea743f78"
+    },
+    {
+      "source": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\entregas\\FreeMix-Completo-0.1.0-local.20261009233334.zip",
+      "target": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\archived\\candidato-superado-20261009233334\\FreeMix-Completo-0.1.0-local.20261009233334.zip",
+      "directory": false,
+      "proofRelative": "",
+      "sha256": "426208a7a6473e707c37efc24ad97a9b4a58ca215275a251fbd5609bb8c461b1"
+    },
+    {
+      "source": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\entregas\\FreeMix-Completo-0.1.0-local.20261009233334.zip.sha256",
+      "target": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\archived\\candidato-superado-20261009233334\\FreeMix-Completo-0.1.0-local.20261009233334.zip.sha256",
+      "directory": false,
+      "proofRelative": "",
+      "sha256": "f8840d6c62fa2dfaa23d40fab0b1ceb9b6558731ae25ea6d6adebaf92f80d6ca"
+    },
+    {
+      "source": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\entregas\\FreeMix-Studio-Setup-0.1.0-local.20261009233334.exe",
+      "target": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\archived\\candidato-superado-20261009233334\\FreeMix-Studio-Setup-0.1.0-local.20261009233334.exe",
+      "directory": false,
+      "proofRelative": "",
+      "sha256": "c48298a9ef2dee8b39be5df0c29c57ae829c170b37e128dc43864c5badc0a1c2"
+    },
+    {
+      "source": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\entregas\\FreeMix-Studio-Setup-0.1.0-local.20261009233334.exe.build.json",
+      "target": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\archived\\candidato-superado-20261009233334\\FreeMix-Studio-Setup-0.1.0-local.20261009233334.exe.build.json",
+      "directory": false,
+      "proofRelative": "",
+      "sha256": "03425ddcdc9b86545238ea3292987f474492cfe42735b8eae90cb953742e7739"
+    }
+  ]
+}

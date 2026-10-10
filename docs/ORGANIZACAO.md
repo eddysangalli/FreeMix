@@ -11,3 +11,5 @@ As pastas `qa-*` têm scripts e evidências do que passou e falhou. Runtimes/SDK
 Consulte `archived/limpeza-demo-20261009/movimentos.json` e os recibos complementares para recuperar os caminhos antigos. Os movimentos não encerram processos nem alteram gravações/configurações do operador.
 
 O instalador completo anterior 153453, seu ZIP/pasta e respectivos hashes/recibo foram movidos para archived/rollback-installer-20261009153453 (seis artefatos), preservados para rollback. O protótipo de empacotamento da ponte 220409 foi arquivado em archived/betas-nao-entregues; a beta atual é 220522. Nenhuma release assinada foi modificada.
+
+O candidato não selecionado233334 foi arquivado em archived/candidato-superado-20261009233334 (cinco artefatos,manifesto/ZIP/EXE conferidos antes/depois). O registro movimentos.json preserva os caminhos;000500 atual e213415 fallback continuam disponíveis.

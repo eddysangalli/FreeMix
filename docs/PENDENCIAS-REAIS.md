@@ -42,3 +42,9 @@ Fontes do payload correspondem ao Git **3737e790945962df9feff07287e4dda3e07c054d
 | Windows limpo | Máquina/VM sem ambiente de desenvolvimento,monitores/drivers/rede. |2–4h mais sessão operacional combinada. |
 
 Os prazos acima são estimativas de trabalho ou ensaio, sem garantia de correção de falha ainda desconhecida. Provas datadas/FAILs ficam preservados. Auditoria anterior à QA do Master e à seleção000500 não substitui este estado atualizado. Nenhum login externo,upload de logs ou homologação física/WAN foi realizado.
+
+## QR GTZIP implementado depois da entrega000500
+
+Seis fontes congelados: QR direto/grupos/aninhado, texto UTF-8 editável até512bytes, quadrado16–2048px, ECC M/quiet-zone4. Encoder offline qrcode1.5.4/dijkstrajs1.0.3 MIT, sem CDN/rede/node_modules em execução do título. Save/prepare recusam valores inválidos antes de persistir ou solicitar mudança Native.46 checks de navegador/decoder independente e28 de backend PASS; regressão Polygon/Path33PASS.4/4 QR presentes no inventário foram reconhecidos;743 hashes preservados e nenhum asset/texto proprietário copiado. CEF ainda aguarda ensaio instalado; não afirmar compatibilidade universal de atributos/transformações QR.
+
+Candidato0.1.0-local.20261010004000 será empacotado com mesma build Native21;000500 permanece o instalador selecionado até terminar assinatura/ZIP/Setup e QA própria. QR não está no payload000500 imutável. Provas: qa-finalizacao/gtzip-qr/ALLOWLIST.json e gtzip-direct-shapes-qr-regression/ALLOWLIST.json.

@@ -30,3 +30,9 @@ NDI HDR ainda precisa de Advanced SDK/licença e implementação correspondente.
 ## Referências
 
 ENTREGA-ATUAL.md, INSTALACAO.md, PENDENCIAS-REAIS.md, PLANO-CONCLUSAO-20261013.md; RELATORIO-INSTALADOR-REAL-000500-NATIVE21-20261010.md; qa-finalizacao/package-native-startup-000500-native21.json; replay-master-four/ALLOWLIST.json; fork/source-verification.json. Recibos e auditorias datados registram o estado daquele momento; não sobrescrever para fingir aceite posterior.
+
+## QR GTZIP implementado depois da entrega000500
+
+Seis fontes congelados: QR direto/grupos/aninhado, texto UTF-8 editável até512bytes, quadrado16–2048px, ECC M/quiet-zone4. Encoder offline qrcode1.5.4/dijkstrajs1.0.3 MIT, sem CDN/rede/node_modules em execução do título. Save/prepare recusam valores inválidos antes de persistir ou solicitar mudança Native.46 checks de navegador/decoder independente e28 de backend PASS; regressão Polygon/Path33PASS.4/4 QR presentes no inventário foram reconhecidos;743 hashes preservados e nenhum asset/texto proprietário copiado. CEF ainda aguarda ensaio instalado; não afirmar compatibilidade universal de atributos/transformações QR.
+
+Candidato0.1.0-local.20261010004000 será empacotado com mesma build Native21;000500 permanece o instalador selecionado até terminar assinatura/ZIP/Setup e QA própria. QR não está no payload000500 imutável. Provas: qa-finalizacao/gtzip-qr/ALLOWLIST.json e gtzip-direct-shapes-qr-regression/ALLOWLIST.json.

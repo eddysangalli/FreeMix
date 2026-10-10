@@ -13,3 +13,9 @@ Replay/MultiGravação, Master digital dos quatro players, janelas CEF, SRT SDR/
 Trabalho implementável ativo: QR Code offline/editável em GTZIP com validação, testes e novo pacote após freeze. Contratos GTZIP de sequências/tickers/3D ainda têm limites explícitos; inventário de743 modelos não é homologação de todos. NDI HDR exige SDK/licença e código próprio. SRT independente HDR10/P010 é expansão não implementada; o alpha SDR transportado e recomposto já tem provas.
 
 Restam ensaios físicos ASIO/Direct Out, SDI/Fill+Key/HDR, controladores/PTZ, vídeo/legendas representativos, Calls/WAN, duas conexões/VPS para bonding e Windows limpo. Nenhuma configuração da máquina substitui esses recursos. Consulte PENDENCIAS-REAIS.md para requisitos concretos e estimativas. WebBrowser alpha permanece abortado.
+
+## QR GTZIP implementado depois da entrega000500
+
+Seis fontes congelados: QR direto/grupos/aninhado, texto UTF-8 editável até512bytes, quadrado16–2048px, ECC M/quiet-zone4. Encoder offline qrcode1.5.4/dijkstrajs1.0.3 MIT, sem CDN/rede/node_modules em execução do título. Save/prepare recusam valores inválidos antes de persistir ou solicitar mudança Native.46 checks de navegador/decoder independente e28 de backend PASS; regressão Polygon/Path33PASS.4/4 QR presentes no inventário foram reconhecidos;743 hashes preservados e nenhum asset/texto proprietário copiado. CEF ainda aguarda ensaio instalado; não afirmar compatibilidade universal de atributos/transformações QR.
+
+Candidato0.1.0-local.20261010004000 será empacotado com mesma build Native21;000500 permanece o instalador selecionado até terminar assinatura/ZIP/Setup e QA própria. QR não está no payload000500 imutável. Provas: qa-finalizacao/gtzip-qr/ALLOWLIST.json e gtzip-direct-shapes-qr-regression/ALLOWLIST.json.

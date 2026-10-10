@@ -76,3 +76,9 @@ qa-finalizacao/candidate-*-000500.json -text whitespace=blank-at-eol,blank-at-eo
 qa-finalizacao/full-*-verificado-000500.json -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
 qa-finalizacao/installer-pointer-before-000500.json -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
 entregas/INSTALADOR-ATUAL.json -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+
+qa-finalizacao/gtzip-qr/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+licenses/freemix-gtzip-qr/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+docs/evidencias-distribuicao-conclusao/arquivamento-candidato233334.json -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+
+qa-finalizacao/gtzip-direct-shapes-qr-regression/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
