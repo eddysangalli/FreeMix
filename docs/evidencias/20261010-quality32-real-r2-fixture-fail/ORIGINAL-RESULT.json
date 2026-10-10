@@ -1,0 +1,324 @@
+{
+  "status": "FAIL",
+  "NativeGeneration": 32,
+  "head": "877b214d197fd013a83f0f6c625bfa4767eed936",
+  "criteria": {
+    "width": 640,
+    "height": 360,
+    "colorDeltaMin": 12,
+    "restoredMeanMax": 2,
+    "sharpnessRatioMin": 1.05,
+    "chromaGreenAlphaMax": 10,
+    "chromaForegroundAlphaMin": 245,
+    "audioSegmentMs": 2400,
+    "audioSettlingMs": 800,
+    "audioNoiseReductionDbMin": 3,
+    "audioRestoredRatioMin": 0.9,
+    "audioRestoredRatioMax": 1.1,
+    "limiterPeakMax": 0.76,
+    "speechRmsMin": 0.005,
+    "captionDeadlineMs": 45000,
+    "captionMinExpectedTokens": 3,
+    "captionMinMatchedTokens": 3,
+    "captionPollLimit": 45
+  },
+  "NativeExecuted": true,
+  "operatorTouched": false,
+  "microphone": false,
+  "hardwareOutput": false,
+  "networkCalls": false,
+  "rawLogCopied": false,
+  "recognizedTextIncluded": false,
+  "images": [
+    {
+      "label": "color-before",
+      "sha256": "15613a805507c37792fcd93112b3cf816843c61183c75caa9b7d976f76762f81",
+      "file": "qa-quality-evidence\\color-before.png",
+      "alphaEncoded": true
+    },
+    {
+      "label": "color-after",
+      "sha256": "41460b961e610f77d74e2378c29a7375732adff3792a2cb578db27c2bd95e13f",
+      "file": "qa-quality-evidence\\color-after.png",
+      "alphaEncoded": true
+    },
+    {
+      "label": "color-off",
+      "sha256": "15613a805507c37792fcd93112b3cf816843c61183c75caa9b7d976f76762f81",
+      "file": "qa-quality-evidence\\color-off.png",
+      "alphaEncoded": true
+    },
+    {
+      "label": "sharpness-before",
+      "sha256": "2794d2e00969a3357ed8cff8c5d9c5f931bd1aa7fa03140119a9ef2ee61e03d3",
+      "file": "qa-quality-evidence\\sharpness-before.png",
+      "alphaEncoded": true
+    },
+    {
+      "label": "sharpness-after",
+      "sha256": "2794d2e00969a3357ed8cff8c5d9c5f931bd1aa7fa03140119a9ef2ee61e03d3",
+      "file": "qa-quality-evidence\\sharpness-after.png",
+      "alphaEncoded": true
+    }
+  ],
+  "audio": [],
+  "cases": [
+    {
+      "action": "effects_source",
+      "type": "nvBackground",
+      "stage": "rejected",
+      "mutationDispatches": 0
+    },
+    {
+      "action": "effects_source",
+      "type": "nvBlur",
+      "stage": "rejected",
+      "mutationDispatches": 0
+    },
+    {
+      "action": "effects_source",
+      "type": "nvDenoise",
+      "stage": "rejected",
+      "mutationDispatches": 0
+    },
+    {
+      "action": "effects_captions",
+      "type": "english",
+      "stage": "rejected",
+      "mutationDispatches": 0
+    },
+    {
+      "action": "effects_source",
+      "type": "color",
+      "stage": "rejected",
+      "mutationDispatches": 0
+    },
+    {
+      "action": "effects_source",
+      "key": "11af2c8e-2d77-4ebb-9847-7e61c10e2c11",
+      "type": "color",
+      "stage": "confirmed",
+      "mutationDispatches": 2
+    },
+    {
+      "action": "effects_source",
+      "key": "11af2c8e-2d77-4ebb-9847-7e61c10e2c11",
+      "type": "color",
+      "stage": "confirmed",
+      "mutationDispatches": 2
+    },
+    {
+      "action": "effects_source",
+      "key": "9c2f69b1-cba2-4d68-9e02-38205d3a2c22",
+      "type": "sharpness",
+      "stage": "confirmed",
+      "mutationDispatches": 2
+    }
+  ],
+  "startedAt": "2026-10-10T14:02:34.613Z",
+  "pid": 62156,
+  "stage": "sharpness-native-render",
+  "readiness": {
+    "deadlineMs": 120000,
+    "snapshots": [
+      {
+        "elapsedMs": 6,
+        "code": "ECONNREFUSED"
+      },
+      {
+        "elapsedMs": 259,
+        "code": "ECONNREFUSED"
+      },
+      {
+        "elapsedMs": 512,
+        "code": "ECONNREFUSED"
+      },
+      {
+        "elapsedMs": 763,
+        "code": "ECONNREFUSED"
+      },
+      {
+        "elapsedMs": 1015,
+        "code": "ECONNREFUSED"
+      },
+      {
+        "elapsedMs": 1266,
+        "code": "ECONNREFUSED"
+      },
+      {
+        "elapsedMs": 1518,
+        "code": "ECONNREFUSED"
+      },
+      {
+        "elapsedMs": 1770,
+        "code": "ECONNREFUSED"
+      },
+      {
+        "elapsedMs": 2022,
+        "code": "ECONNREFUSED"
+      },
+      {
+        "elapsedMs": 2275,
+        "code": "ECONNREFUSED"
+      },
+      {
+        "elapsedMs": 2526,
+        "code": "ECONNREFUSED"
+      },
+      {
+        "elapsedMs": 2778,
+        "code": "ECONNREFUSED"
+      },
+      {
+        "elapsedMs": 3029,
+        "code": "ECONNREFUSED"
+      },
+      {
+        "elapsedMs": 3281,
+        "code": "ECONNREFUSED"
+      },
+      {
+        "elapsedMs": 3532,
+        "code": "ECONNREFUSED"
+      },
+      {
+        "elapsedMs": 3783,
+        "code": "ECONNREFUSED"
+      },
+      {
+        "elapsedMs": 4034,
+        "code": "ECONNREFUSED"
+      },
+      {
+        "elapsedMs": 4285,
+        "code": "ECONNREFUSED"
+      },
+      {
+        "elapsedMs": 4537,
+        "code": "ECONNREFUSED"
+      },
+      {
+        "elapsedMs": 4788,
+        "code": "ECONNREFUSED"
+      },
+      {
+        "elapsedMs": 5040,
+        "code": "ECONNREFUSED"
+      },
+      {
+        "elapsedMs": 5292,
+        "code": "ECONNREFUSED"
+      },
+      {
+        "elapsedMs": 5543,
+        "code": "ECONNREFUSED"
+      },
+      {
+        "elapsedMs": 5794,
+        "code": "ECONNREFUSED"
+      }
+    ],
+    "truncated": 15
+  },
+  "ready": true,
+  "availability": {
+    "requiredRegistered": true,
+    "nativeNvidiaKindsAbsent": true,
+    "sdkVfxApproved": false,
+    "sdkAfxApproved": false,
+    "english": false,
+    "genericTranslation": false,
+    "cloud": false,
+    "tinyMatch": true
+  },
+  "color": {
+    "meanRedIncrease": 70,
+    "restoredMeanDifference": 0
+  },
+  "failure": {
+    "stage": "sharpness-native-render",
+    "code": "ERR_ASSERTION",
+    "recognizedTextIncluded": false
+  },
+  "failedAt": "2026-10-10T14:02:46.308Z",
+  "cleanup": {
+    "success": true,
+    "forced": false,
+    "shutdownRequested": true,
+    "shutdownAccepted": true,
+    "identityConfirmed": true,
+    "connectionClosed": true,
+    "preservedProcess": null,
+    "outputs": [
+      {
+        "outputActive": false,
+        "outputFlags": {
+          "OBS_OUTPUT_AUDIO": true,
+          "OBS_OUTPUT_ENCODED": true,
+          "OBS_OUTPUT_MULTI_TRACK": true,
+          "OBS_OUTPUT_SERVICE": false,
+          "OBS_OUTPUT_VIDEO": true
+        },
+        "outputHeight": 0,
+        "outputKind": "mp4_output",
+        "outputName": "simple_file_output",
+        "outputWidth": 0
+      },
+      {
+        "outputActive": false,
+        "outputFlags": {
+          "OBS_OUTPUT_AUDIO": false,
+          "OBS_OUTPUT_ENCODED": false,
+          "OBS_OUTPUT_MULTI_TRACK": false,
+          "OBS_OUTPUT_SERVICE": false,
+          "OBS_OUTPUT_VIDEO": true
+        },
+        "outputHeight": 360,
+        "outputKind": "virtualcam_output",
+        "outputName": "virtualcam_output",
+        "outputWidth": 640
+      }
+    ],
+    "shutdown": {
+      "success": true
+    },
+    "exit": {
+      "code": 0,
+      "signal": null
+    },
+    "connectionPending": false
+  },
+  "extraDestinationPins": {
+    "count": 8,
+    "probe": true,
+    "marker": true,
+    "media": true,
+    "match": true
+  },
+  "logSummary": {
+    "sha256": "1215fa83cde9da1cc86bba4358936fb099e5447a3e149b561ebfe542e8e20d61",
+    "counts": [
+      0
+    ],
+    "crashMarkers": 0,
+    "crashFiles": 0,
+    "rawLogCopied": false
+  },
+  "afterPins": {
+    "NativeSource": 2085,
+    "NativeDestination": 2085,
+    "QA": 35,
+    "canonicalAndExternalPins": 46,
+    "tiny": true,
+    "match": true
+  },
+  "finishedAt": "2026-10-10T14:02:51.697Z",
+  "limits": [
+    "Own image/WAV/SAPI fixtures; no camera/microphone/device activation",
+    "Actual controller+NativeWS and digital Master; no HTTP API/UI visual acceptance claim",
+    "NVIDIA and English translation remain unavailable; no SDK/model downloads",
+    "RNNoise suppression/finite PCM and preset limiter test do not certify intelligibility or human speech quality",
+    "Tiny own-speech token evidence is finite, not general ASR accuracy",
+    "On unknown close identity/idle/shutdown preserve PID and root; no force/retry"
+  ]
+}

@@ -1,0 +1,615 @@
+{
+  "status": "FAIL",
+  "NativeGeneration": 32,
+  "head": "877b214d197fd013a83f0f6c625bfa4767eed936",
+  "criteria": {
+    "width": 640,
+    "height": 360,
+    "colorDeltaMin": 12,
+    "restoredMeanMax": 2,
+    "sharpnessRatioMin": 1.05,
+    "chromaGreenAlphaMax": 10,
+    "chromaForegroundAlphaMin": 245,
+    "audioSegmentMs": 2400,
+    "audioSettlingMs": 800,
+    "audioNoiseReductionDbMin": 3,
+    "audioRestoredRatioMin": 0.9,
+    "audioRestoredRatioMax": 1.1,
+    "limiterPeakMax": 0.76,
+    "speechRmsMin": 0.005,
+    "captionDeadlineMs": 45000,
+    "captionMinExpectedTokens": 3,
+    "captionMinMatchedTokens": 3,
+    "captionPollLimit": 45
+  },
+  "NativeExecuted": true,
+  "operatorTouched": false,
+  "microphone": false,
+  "hardwareOutput": false,
+  "networkCalls": false,
+  "rawLogCopied": false,
+  "recognizedTextIncluded": false,
+  "images": [
+    {
+      "label": "color-before",
+      "sha256": "15613a805507c37792fcd93112b3cf816843c61183c75caa9b7d976f76762f81",
+      "file": "qa-quality-evidence\\color-before.png",
+      "alphaEncoded": true
+    },
+    {
+      "label": "color-after",
+      "sha256": "41460b961e610f77d74e2378c29a7375732adff3792a2cb578db27c2bd95e13f",
+      "file": "qa-quality-evidence\\color-after.png",
+      "alphaEncoded": true
+    },
+    {
+      "label": "color-off",
+      "sha256": "15613a805507c37792fcd93112b3cf816843c61183c75caa9b7d976f76762f81",
+      "file": "qa-quality-evidence\\color-off.png",
+      "alphaEncoded": true
+    },
+    {
+      "label": "sharpness-before",
+      "sha256": "0f1408f14b6927f49417de09a08ac5205c69f3acd424cb06d30a09a10cc2bec1",
+      "file": "qa-quality-evidence\\sharpness-before.png",
+      "alphaEncoded": true
+    },
+    {
+      "label": "sharpness-after",
+      "sha256": "5c8547a58775ebfb745d1299f823c71aed98dcdd9d7d982ed4c9a1e160ac3d18",
+      "file": "qa-quality-evidence\\sharpness-after.png",
+      "alphaEncoded": true
+    },
+    {
+      "label": "sharpness-off",
+      "sha256": "0f1408f14b6927f49417de09a08ac5205c69f3acd424cb06d30a09a10cc2bec1",
+      "file": "qa-quality-evidence\\sharpness-off.png",
+      "alphaEncoded": true
+    },
+    {
+      "label": "chroma-before",
+      "sha256": "4dea95dcb0806949060901dd5d557492b9cd46567dcac300e23dbde23e4891b7",
+      "file": "qa-quality-evidence\\chroma-before.png",
+      "alphaEncoded": true
+    },
+    {
+      "label": "chroma-after",
+      "sha256": "cf6831f15c2d003e2c4cc7c27582947383aef8d787bd3c4621b82a293cf3f7ca",
+      "file": "qa-quality-evidence\\chroma-after.png",
+      "alphaEncoded": true
+    },
+    {
+      "label": "chroma-off",
+      "sha256": "4dea95dcb0806949060901dd5d557492b9cd46567dcac300e23dbde23e4891b7",
+      "file": "qa-quality-evidence\\chroma-off.png",
+      "alphaEncoded": true
+    }
+  ],
+  "audio": [
+    {
+      "label": "noise-before",
+      "startNs": 646901051772900,
+      "endNs": 646903452611800,
+      "metrics": {
+        "finite": true,
+        "samplesPerChannel": 114688,
+        "seconds": 2.3893333333333335,
+        "rms": 0,
+        "peak": 0
+      }
+    },
+    {
+      "label": "noise-rnnoise",
+      "startNs": 646904611563000,
+      "endNs": 646907012290300,
+      "metrics": {
+        "finite": true,
+        "samplesPerChannel": 114688,
+        "seconds": 2.3893333333333335,
+        "rms": 0,
+        "peak": 0
+      }
+    },
+    {
+      "label": "noise-off",
+      "startNs": 646908044063600,
+      "endNs": 646910445473800,
+      "metrics": {
+        "finite": true,
+        "samplesPerChannel": 114688,
+        "seconds": 2.3893333333333335,
+        "rms": 0,
+        "peak": 0
+      }
+    },
+    {
+      "label": "tone-before",
+      "startNs": 646911249415300,
+      "endNs": 646913650045300,
+      "metrics": {
+        "finite": true,
+        "samplesPerChannel": 114688,
+        "seconds": 2.3893333333333335,
+        "rms": 0,
+        "peak": 0
+      }
+    },
+    {
+      "label": "tone-preset",
+      "startNs": 646914844457100,
+      "endNs": 646917244713900,
+      "metrics": {
+        "finite": true,
+        "samplesPerChannel": 115712,
+        "seconds": 2.4106666666666667,
+        "rms": 0,
+        "peak": 0
+      }
+    },
+    {
+      "label": "tone-off",
+      "startNs": 646918277203100,
+      "endNs": 646920678168900,
+      "metrics": {
+        "finite": true,
+        "samplesPerChannel": 115712,
+        "seconds": 2.4106666666666667,
+        "rms": 0,
+        "peak": 0
+      }
+    }
+  ],
+  "cases": [
+    {
+      "action": "effects_source",
+      "type": "nvBackground",
+      "stage": "rejected",
+      "mutationDispatches": 0
+    },
+    {
+      "action": "effects_source",
+      "type": "nvBlur",
+      "stage": "rejected",
+      "mutationDispatches": 0
+    },
+    {
+      "action": "effects_source",
+      "type": "nvDenoise",
+      "stage": "rejected",
+      "mutationDispatches": 0
+    },
+    {
+      "action": "effects_captions",
+      "type": "english",
+      "stage": "rejected",
+      "mutationDispatches": 0
+    },
+    {
+      "action": "effects_source",
+      "type": "color",
+      "stage": "rejected",
+      "mutationDispatches": 0
+    },
+    {
+      "action": "effects_source",
+      "key": "bc50ffb5-4f43-475f-8b10-bf89dac55cd9",
+      "type": "color",
+      "stage": "confirmed",
+      "mutationDispatches": 2
+    },
+    {
+      "action": "effects_source",
+      "key": "bc50ffb5-4f43-475f-8b10-bf89dac55cd9",
+      "type": "color",
+      "stage": "confirmed",
+      "mutationDispatches": 2
+    },
+    {
+      "action": "effects_source",
+      "key": "3da15892-2107-43e1-b818-e4b61ace0db7",
+      "type": "sharpness",
+      "stage": "confirmed",
+      "mutationDispatches": 2
+    },
+    {
+      "action": "effects_source",
+      "key": "3da15892-2107-43e1-b818-e4b61ace0db7",
+      "type": "sharpness",
+      "stage": "confirmed",
+      "mutationDispatches": 2
+    },
+    {
+      "action": "effects_source",
+      "key": "b8ecccbf-41cd-4186-92b9-61f79cf10f63",
+      "type": "chroma",
+      "stage": "confirmed",
+      "mutationDispatches": 2
+    },
+    {
+      "action": "effects_source",
+      "key": "b8ecccbf-41cd-4186-92b9-61f79cf10f63",
+      "type": "chroma",
+      "stage": "confirmed",
+      "mutationDispatches": 2
+    },
+    {
+      "action": "effects_source",
+      "key": "841f9c29-55ba-4ea9-8445-cf8eb80bb396",
+      "type": "rnnoise",
+      "stage": "confirmed",
+      "mutationDispatches": 2
+    },
+    {
+      "action": "effects_source",
+      "key": "841f9c29-55ba-4ea9-8445-cf8eb80bb396",
+      "type": "rnnoise",
+      "stage": "confirmed",
+      "mutationDispatches": 2
+    },
+    {
+      "action": "effects_source",
+      "key": "5c5de0b2-c414-4b35-8890-0b7f29a73fde",
+      "type": "speech",
+      "stage": "confirmed",
+      "mutationDispatches": 6
+    },
+    {
+      "action": "effects_source",
+      "key": "5c5de0b2-c414-4b35-8890-0b7f29a73fde",
+      "type": "speech",
+      "stage": "confirmed",
+      "mutationDispatches": 6
+    },
+    {
+      "action": "effects_captions",
+      "key": "6869e338-26fb-4ba5-bddd-be98bfa1f954",
+      "type": "transcribe",
+      "stage": "confirmed",
+      "mutationDispatches": 2
+    },
+    {
+      "action": "effects_captions",
+      "key": "6869e338-26fb-4ba5-bddd-be98bfa1f954",
+      "type": "transcribe",
+      "stage": "confirmed",
+      "mutationDispatches": 2
+    }
+  ],
+  "checks": [
+    {
+      "name": "color-native-render",
+      "status": "PASS",
+      "elapsedMs": 758
+    },
+    {
+      "name": "sharpness-native-render",
+      "status": "PASS",
+      "elapsedMs": 776
+    },
+    {
+      "name": "chroma-native-render",
+      "status": "PASS",
+      "elapsedMs": 771
+    },
+    {
+      "name": "rnnoise-digital-oracle",
+      "status": "FAIL",
+      "elapsedMs": 7,
+      "stage": "digital-master-oracles",
+      "code": "ERR_ASSERTION",
+      "uncertainMutation": false
+    },
+    {
+      "name": "speech-preset-digital-oracle",
+      "status": "FAIL",
+      "elapsedMs": 2,
+      "stage": "digital-master-oracles",
+      "code": "ERR_ASSERTION",
+      "uncertainMutation": false
+    },
+    {
+      "name": "digital-master-capture",
+      "status": "PASS",
+      "elapsedMs": 20536
+    },
+    {
+      "name": "portuguese-own-speech-asr",
+      "status": "PASS",
+      "elapsedMs": 5470
+    }
+  ],
+  "uncertainMutation": false,
+  "startedAt": "2026-10-10T14:16:20.175Z",
+  "pid": 113228,
+  "stage": "portuguese-own-speech-asr",
+  "readiness": {
+    "deadlineMs": 120000,
+    "snapshots": [
+      {
+        "elapsedMs": 6,
+        "code": "ECONNREFUSED"
+      },
+      {
+        "elapsedMs": 259,
+        "code": "ECONNREFUSED"
+      },
+      {
+        "elapsedMs": 510,
+        "code": "ECONNREFUSED"
+      },
+      {
+        "elapsedMs": 762,
+        "code": "ECONNREFUSED"
+      },
+      {
+        "elapsedMs": 1014,
+        "code": "ECONNREFUSED"
+      },
+      {
+        "elapsedMs": 1265,
+        "code": "ECONNREFUSED"
+      },
+      {
+        "elapsedMs": 1518,
+        "code": "ECONNREFUSED"
+      },
+      {
+        "elapsedMs": 1769,
+        "code": "ECONNREFUSED"
+      },
+      {
+        "elapsedMs": 2021,
+        "code": "ECONNREFUSED"
+      },
+      {
+        "elapsedMs": 2272,
+        "code": "ECONNREFUSED"
+      },
+      {
+        "elapsedMs": 2525,
+        "code": "ECONNREFUSED"
+      },
+      {
+        "elapsedMs": 2776,
+        "code": "ECONNREFUSED"
+      },
+      {
+        "elapsedMs": 3027,
+        "code": "ECONNREFUSED"
+      },
+      {
+        "elapsedMs": 3277,
+        "code": "ECONNREFUSED"
+      },
+      {
+        "elapsedMs": 3529,
+        "code": "ECONNREFUSED"
+      },
+      {
+        "elapsedMs": 3780,
+        "code": "ECONNREFUSED"
+      },
+      {
+        "elapsedMs": 4032,
+        "code": "ECONNREFUSED"
+      },
+      {
+        "elapsedMs": 4284,
+        "code": "ECONNREFUSED"
+      },
+      {
+        "elapsedMs": 4535,
+        "code": "ECONNREFUSED"
+      },
+      {
+        "elapsedMs": 4787,
+        "code": "ECONNREFUSED"
+      },
+      {
+        "elapsedMs": 5040,
+        "code": "ECONNREFUSED"
+      },
+      {
+        "elapsedMs": 5291,
+        "code": "ECONNREFUSED"
+      },
+      {
+        "elapsedMs": 5543,
+        "code": "ECONNREFUSED"
+      },
+      {
+        "elapsedMs": 5795,
+        "code": "ECONNREFUSED"
+      }
+    ],
+    "truncated": 8
+  },
+  "ready": true,
+  "availability": {
+    "requiredRegistered": true,
+    "nativeNvidiaKindsAbsent": true,
+    "sdkVfxApproved": false,
+    "sdkAfxApproved": false,
+    "english": false,
+    "genericTranslation": false,
+    "cloud": false,
+    "tinyMatch": true
+  },
+  "color": {
+    "meanRedIncrease": 70,
+    "restoredMeanDifference": 0
+  },
+  "sharpness": {
+    "edgeEnergyRatio": 2.230769230769231,
+    "restoredMeanDifference": 0,
+    "pixelObjective": {
+      "x": 86,
+      "y": 68,
+      "before": [
+        97,
+        97,
+        97,
+        255
+      ],
+      "after": [
+        92,
+        92,
+        92,
+        255
+      ],
+      "off": [
+        97,
+        97,
+        97,
+        255
+      ]
+    },
+    "meanDifference": 2.6084635416666666
+  },
+  "chroma": {
+    "greenAlpha": 0,
+    "foregroundAlpha": 255,
+    "foregroundRed": 220,
+    "restoredMeanDifference": 0
+  },
+  "failure": {
+    "stage": "digital-master-oracles",
+    "code": "ERR_ASSERTION"
+  },
+  "audioAssertions": {
+    "noiseReductionDb": null,
+    "noiseRestoredRatio": null,
+    "physicalOutput": false,
+    "perceptualSpeechQualityProven": false
+  },
+  "captions": {
+    "success": true,
+    "elapsedMs": 4004,
+    "polls": 4,
+    "snapshots": [
+      {
+        "elapsedMs": 1002,
+        "characters": 0,
+        "words": 0,
+        "matchedTokens": 0,
+        "expectedTokens": 5,
+        "cumulativeMatchedTokens": 0,
+        "textSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "elapsedMs": 2002,
+        "characters": 22,
+        "words": 3,
+        "matchedTokens": 1,
+        "expectedTokens": 5,
+        "cumulativeMatchedTokens": 1,
+        "textSha256": "00b33f2e926ab386b0619c3f604fbea1e7d339ba973a4634568c55c2552bd5f6"
+      },
+      {
+        "elapsedMs": 3003,
+        "characters": 22,
+        "words": 3,
+        "matchedTokens": 1,
+        "expectedTokens": 5,
+        "cumulativeMatchedTokens": 1,
+        "textSha256": "00b33f2e926ab386b0619c3f604fbea1e7d339ba973a4634568c55c2552bd5f6"
+      },
+      {
+        "elapsedMs": 4004,
+        "characters": 36,
+        "words": 6,
+        "matchedTokens": 3,
+        "expectedTokens": 5,
+        "cumulativeMatchedTokens": 3,
+        "textSha256": "08cd176a7a9ae99b2a0011e8a475813e42eb66c618d5f4f6a938428186a18572"
+      }
+    ],
+    "maxEvidence": {
+      "characters": 36,
+      "words": 6,
+      "matchedTokens": 3,
+      "expectedTokens": 5
+    },
+    "cumulativeMatchedTokens": 3,
+    "expectedTokenCount": 5,
+    "transcriptIncluded": false,
+    "syntheticFixtureOnly": true,
+    "universalAccuracyProven": false
+  },
+  "cleanup": {
+    "success": true,
+    "forced": false,
+    "shutdownRequested": true,
+    "shutdownAccepted": true,
+    "identityConfirmed": true,
+    "connectionClosed": true,
+    "preservedProcess": null,
+    "outputs": [
+      {
+        "outputActive": false,
+        "outputFlags": {
+          "OBS_OUTPUT_AUDIO": true,
+          "OBS_OUTPUT_ENCODED": true,
+          "OBS_OUTPUT_MULTI_TRACK": true,
+          "OBS_OUTPUT_SERVICE": false,
+          "OBS_OUTPUT_VIDEO": true
+        },
+        "outputHeight": 0,
+        "outputKind": "mp4_output",
+        "outputName": "simple_file_output",
+        "outputWidth": 0
+      },
+      {
+        "outputActive": false,
+        "outputFlags": {
+          "OBS_OUTPUT_AUDIO": false,
+          "OBS_OUTPUT_ENCODED": false,
+          "OBS_OUTPUT_MULTI_TRACK": false,
+          "OBS_OUTPUT_SERVICE": false,
+          "OBS_OUTPUT_VIDEO": true
+        },
+        "outputHeight": 360,
+        "outputKind": "virtualcam_output",
+        "outputName": "virtualcam_output",
+        "outputWidth": 640
+      }
+    ],
+    "shutdown": {
+      "success": true
+    },
+    "exit": {
+      "code": 0,
+      "signal": null
+    },
+    "connectionPending": false
+  },
+  "extraDestinationPins": {
+    "count": 8,
+    "probe": true,
+    "marker": true,
+    "media": true,
+    "match": true
+  },
+  "logSummary": {
+    "sha256": "f16230514d6efa2b72082d227613462aa89b3372cbd023fffced24920bbb6281",
+    "counts": [
+      35
+    ],
+    "crashMarkers": 0,
+    "crashFiles": 0,
+    "rawLogCopied": false
+  },
+  "afterPins": {
+    "match": false,
+    "code": "ERR_ASSERTION"
+  },
+  "finishedAt": "2026-10-10T14:17:03.638Z",
+  "limits": [
+    "Own image/WAV/SAPI fixtures; no camera/microphone/device activation",
+    "Actual controller+NativeWS and digital Master; no HTTP API/UI visual acceptance claim",
+    "NVIDIA and English translation remain unavailable; no SDK/model downloads",
+    "RNNoise suppression/finite PCM and preset limiter test do not certify intelligibility or human speech quality",
+    "Tiny own-speech token evidence is finite, not general ASR accuracy",
+    "On unknown close identity/idle/shutdown preserve PID and root; no force/retry"
+  ]
+}

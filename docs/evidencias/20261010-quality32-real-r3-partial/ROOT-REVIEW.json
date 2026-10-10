@@ -1,0 +1,71 @@
+{
+  "at": "2026-10-10T14:22:35.249Z",
+  "status": "PARTIAL_REAL_PASS_AUDIO_AND_CLOSE_ALLOCATIONS_FAIL",
+  "originalResultSha256": "a99cb412cd9ce12065d10e95a8cfd1cfa3494cd4e57759a942b3dc1ef68595a1",
+  "pid": 113228,
+  "pidAbsent": true,
+  "cooperativeExit0": true,
+  "forced": false,
+  "operatorTouched": false,
+  "pinsMatch": true,
+  "pins": {
+    "NativeSource": 2085,
+    "NativeDestination": 2085,
+    "QA": 26,
+    "canonicalExternal": 46,
+    "additionalExternal": 4
+  },
+  "color": {
+    "meanRedIncrease": 70,
+    "restoredMeanDifference": 0
+  },
+  "sharpness": {
+    "edgeEnergyRatio": 2.230769230769231,
+    "restoredMeanDifference": 0,
+    "pixelObjective": {
+      "x": 86,
+      "y": 68,
+      "before": [
+        97,
+        97,
+        97,
+        255
+      ],
+      "after": [
+        92,
+        92,
+        92,
+        255
+      ],
+      "off": [
+        97,
+        97,
+        97,
+        255
+      ]
+    },
+    "meanDifference": 2.6084635416666666
+  },
+  "chroma": {
+    "greenAlpha": 0,
+    "foregroundAlpha": 255,
+    "foregroundRed": 220,
+    "restoredMeanDifference": 0
+  },
+  "captions": {
+    "matched": 3,
+    "expected": 5,
+    "elapsedMs": 4004,
+    "syntheticOnly": true
+  },
+  "audio": {
+    "segments": 6,
+    "allDigitalMasterSilent": true,
+    "filterQualityProven": false,
+    "causeUnconfirmed": true
+  },
+  "allocations": 35,
+  "crash": 0,
+  "originalAfterPinsFalseReason": "Original runner couples post hashes and allocation assertion; Root independently rehashed all sources/destinations above. Original FAIL unchanged.",
+  "qualifiedRelease": false
+}
