@@ -1,8 +1,8 @@
 {
   "upstream": "https://github.com/obsproject/obs-studio.git",
   "base": "ba2f32bdf791005443988a4955e963663e16b1ed",
-  "head": "500ced5ea0928453f9f27dc7d5649531e2671e28",
-  "version": "0.1.0-local.20261010031500",
+  "head": "709f101d1aaeb25ccc6f6eab77a3e23e9364f3b0",
+  "version": "0.1.0-local.20261010035000",
   "patches": [
     {
       "path": "0001-feat-branding-replace-OBS-identity-with-FreeMix-Stud.patch",
@@ -91,11 +91,15 @@
     {
       "path": "0022-Include-browser-activation-fix-verified-through-Nati.patch",
       "sha256": "52c225b07b7caf7079bc4c69aa738cb2ad27b899ef6357f58f27b60a600cf371"
+    },
+    {
+      "path": "0023-Fix-input-panel-handoff-and-raise-source-dialogs.patch",
+      "sha256": "cd769d23ceb7012850859f3a91f5d867e23ad164a95961f53c367f0a710d6297"
     }
   ],
-  "sourceUpdatedAt": "2026-10-10T02:52:38.553Z",
+  "sourceUpdatedAt": "2026-10-10T03:45:15.029Z",
   "sourceSchema": 2,
-  "tree": "5e0da1554f23fe64c2cd3a2b30e0a7b4e41ac00b",
+  "tree": "7fb77437f56f19ec9266e9f8f002923eb26ade9f",
   "submodules": [
     {
       "path": "deps/libdshowcapture/src",

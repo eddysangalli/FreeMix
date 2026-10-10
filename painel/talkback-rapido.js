@@ -27,7 +27,7 @@
   for(const event of ['pointerup','pointercancel','lostpointercapture'])button.addEventListener(event,stop);
   button.addEventListener('keydown',e=>{if([' ','Enter'].includes(e.key)){e.preventDefault();if(!e.repeat)start();}});
   button.addEventListener('keyup',e=>{if([' ','Enter'].includes(e.key)){e.preventDefault();stop();}});
-  document.addEventListener('keydown',e=>{if(e.ctrlKey&&e.code==='Space'&&!e.repeat&&!/INPUT|SELECT|TEXTAREA/.test(e.target.tagName)){e.preventDefault();start();}});
+  document.addEventListener('keydown',e=>{if(e.ctrlKey&&e.code==='Space'&&!e.repeat&&!/INPUT|SELECT|TEXTAREA|BUTTON/.test(e.target.tagName)){e.preventDefault();start();}});
   document.addEventListener('keyup',e=>{if(e.code==='Space')stop();});
   for(const event of ['blur','pagehide'])window.addEventListener(event,stop);
   document.addEventListener('visibilitychange',()=>{if(document.hidden)stop();});
@@ -36,10 +36,11 @@
     try {
       const response=await fetch(base+'json',{signal:AbortSignal.timeout(4000)});if(!response.ok)throw Error('Sem conexão com Calls');const state=await response.json();calls=state.calls;
       const individual=calls?.capability==='individual-PCM-WebRTC',keys=targets();
-      const ready=individual?keys.length>0&&keys.every(key=>calls.returns?.some(r=>r.key===key&&r.publisher==='publishing')):calls?.returnAudio;
-      button.disabled=!calls?.director||!calls.nativeWatchdog||!ready;
+      const ready=individual&&keys.length>0&&keys.every(key=>calls.guests?.some(g=>g.key===key)&&calls.returns?.some(r=>r.key===key&&r.publisher==='publishing'));
+      const elsewhere=calls?.talking&&!lease&&!starting;
+      button.disabled=!calls?.director||!calls.nativeWatchdog||!ready||elsewhere;
       if(button.disabled&&held)stop();
-      if(!held)hint(!calls?.director?'Configure o mic nos três pontos.':!ready?'Prepare os retornos e selecione convidados nos três pontos.':'Convidados: '+keys.map(key=>calls.guests.find(g=>g.key===key)?.name||key).join(',')+'.');
+      if(!held)hint(!calls?.director?'Configure o microfone em Calls.':!calls.nativeWatchdog?'Atualize o motor para usar talkback seguro.':!ready?'Abra Calls, prepare os retornos e escolha quem recebe.':elsewhere?'O diretor está falando em outro controle. Aguarde soltar.':'Convidados: '+keys.map(key=>calls.guests.find(g=>g.key===key)?.person?.name||calls.guests.find(g=>g.key===key)?.name||key).join(', ')+'.');
     }catch(e){button.disabled=true;stop();hint('Controle local desconectado. Abra pelo atalho FreeMix Studio.');}finally{polling=false;}
   }
   poll();setInterval(poll,1000);

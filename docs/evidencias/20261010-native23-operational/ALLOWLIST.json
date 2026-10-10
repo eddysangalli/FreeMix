@@ -1,0 +1,91 @@
+{
+  "status": "TEXT_ONLY_OPERATIONAL_ALLOWLIST_FROZEN",
+  "files": [
+    {
+      "sourceAbsolute": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\native23-operational-next.mjs",
+      "sourceRelative": "qa-finalizacao/native23-operational-next.mjs",
+      "targetRelative": "docs/evidencias/20261010-native23-operational/qa-finalizacao/native23-operational-next.mjs",
+      "sha256": "68046019d87a4fed1b5f96a3336a7a82d72f586bdae19736ef531165638014fd",
+      "bytes": 20125
+    },
+    {
+      "sourceAbsolute": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\native23-operational-next-PLAN.md",
+      "sourceRelative": "qa-finalizacao/native23-operational-next-PLAN.md",
+      "targetRelative": "docs/evidencias/20261010-native23-operational/qa-finalizacao/native23-operational-next-PLAN.md",
+      "sha256": "21d75518ec2a62133598eeb1b93e4279001bf3797f0462c96ceaa269a405a0c7",
+      "bytes": 2583
+    },
+    {
+      "sourceAbsolute": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\freeze-native23-operational-next.mjs",
+      "sourceRelative": "qa-finalizacao/freeze-native23-operational-next.mjs",
+      "targetRelative": "docs/evidencias/20261010-native23-operational/qa-finalizacao/freeze-native23-operational-next.mjs",
+      "sha256": "85af70d957e684f490c28119a668d9dfea0789c24950ed4f1868f670c4482ebc",
+      "bytes": 5534
+    },
+    {
+      "sourceAbsolute": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\native23-operational-post-iab.mjs",
+      "sourceRelative": "qa-finalizacao/native23-operational-post-iab.mjs",
+      "targetRelative": "docs/evidencias/20261010-native23-operational/qa-finalizacao/native23-operational-post-iab.mjs",
+      "sha256": "204426e7be64328807aa78764ba2a333d96ae7f3ac74a4fd820fcbba06219635",
+      "bytes": 2848
+    },
+    {
+      "sourceAbsolute": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\native23-operational-next\\post-root-iab.json",
+      "sourceRelative": "qa-finalizacao/native23-operational-next/post-root-iab.json",
+      "targetRelative": "docs/evidencias/20261010-native23-operational/qa-finalizacao/native23-operational-next/post-root-iab.json",
+      "sha256": "152ce81e2f960086133f4346da74d0bced41edbe5d3419f4bef7c9bd1d7e2fe6",
+      "bytes": 1867
+    },
+    {
+      "sourceAbsolute": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\native23-operational-next\\preparation.json",
+      "sourceRelative": "qa-finalizacao/native23-operational-next/preparation.json",
+      "targetRelative": "docs/evidencias/20261010-native23-operational/qa-finalizacao/native23-operational-next/preparation.json",
+      "sha256": "3ba87850634ded16b7927a65d3fa0824270a56fc8cf3782ff0a1ee24805fffeb",
+      "bytes": 392260
+    },
+    {
+      "sourceAbsolute": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\native23-operational-next\\runtime-ready.json",
+      "sourceRelative": "qa-finalizacao/native23-operational-next/runtime-ready.json",
+      "targetRelative": "docs/evidencias/20261010-native23-operational/qa-finalizacao/native23-operational-next/runtime-ready.json",
+      "sha256": "657f9cd23f927a0b45cb1c1ccb928b7712b4f9d0c2e9b4ab6edfeefba8043765",
+      "bytes": 408543
+    },
+    {
+      "sourceAbsolute": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\native23-operational-next\\receipt.json",
+      "sourceRelative": "qa-finalizacao/native23-operational-next/receipt.json",
+      "targetRelative": "docs/evidencias/20261010-native23-operational/qa-finalizacao/native23-operational-next/receipt.json",
+      "sha256": "9b209a09493ebf4cb740b12d8565d5bcf7d535367eec5ec4cc58e5a4bacadc91",
+      "bytes": 409818
+    },
+    {
+      "sourceAbsolute": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\native23-operational-next\\report.json",
+      "sourceRelative": "qa-finalizacao/native23-operational-next/report.json",
+      "targetRelative": "docs/evidencias/20261010-native23-operational/qa-finalizacao/native23-operational-next/report.json",
+      "sha256": "05e49c9343ca633349df4a480e01b77b80c64fc55019490e992076540474bc11",
+      "bytes": 5565
+    },
+    {
+      "sourceAbsolute": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\native23-operational-next\\browser-context.json",
+      "sourceRelative": "qa-finalizacao/native23-operational-next/browser-context.json",
+      "targetRelative": "docs/evidencias/20261010-native23-operational/qa-finalizacao/native23-operational-next/browser-context.json",
+      "sha256": "a51bee13a599223f0b156a6c77c7a8259d7147b8564a43a23296f973d3849e0d",
+      "bytes": 475
+    }
+  ],
+  "images": [
+    {
+      "path": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\mesa-operations-merged-20261010\\14-mesa-native23-real-cut.jpg",
+      "sha256": "2448048d0ef4e071a202f2a73795ccbbf95c2b3efd45a878459c396da51833c1",
+      "bytes": 73871,
+      "mime": "image/jpeg",
+      "surface": "Parent IAB with own actual Native23 backend",
+      "cefVisualProof": false,
+      "rootReviewed": true
+    }
+  ],
+  "rawLogsExported": false,
+  "configurationExported": false,
+  "actualCredentialScanPass": true,
+  "operatorTouched": false,
+  "signedReleaseCreated": false
+}

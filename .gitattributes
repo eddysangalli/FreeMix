@@ -111,3 +111,28 @@ qa-finalizacao/native-submodule-applied-031500/** -text -whitespace
 fork/submodules/** -text -whitespace
 scripts/distribuicao/exportar-fontes-native.mjs -text
 scripts/reconstruir-motor.mjs -text
+
+qa-finalizacao/ux-calls-simplificado/** -text -whitespace
+qa-finalizacao/ux-inputs-unicos/** -text -whitespace
+qa-finalizacao/ux-operacao-20261010/** -text -whitespace
+qa-finalizacao/native-build-frozen-709f101-configured.json -text -whitespace
+qa-finalizacao/installer-selected-031500.json -text -whitespace
+
+qa-finalizacao/ux-operacao-v2-20261010/** -text -whitespace
+
+qa-finalizacao/mesa-ws-render-integracao-20261010/** -text -whitespace
+
+docs/evidencias/20261010-031500-native23/** -text -whitespace
+
+qa-finalizacao/operacao-responsiva-20261010/** -text -whitespace
+
+qa-finalizacao/mesa-operations-merged-20261010/** -text -whitespace
+
+qa-finalizacao/verify-merged-operations-20261010.mjs -text -whitespace
+
+qa-finalizacao/test-canonical-payload-overlay-20261010.mjs -text -whitespace
+
+qa-finalizacao/canonical-payload-overlay-contract.json -text -whitespace
+
+docs/evidencias/20261010-native23-operational/** -text -whitespace
+qa-finalizacao/talkback-format-only-20261010.json -text -whitespace

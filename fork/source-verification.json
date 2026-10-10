@@ -1,8 +1,8 @@
 {
   "status": "PASS",
   "base": "ba2f32bdf791005443988a4955e963663e16b1ed",
-  "head": "500ced5ea0928453f9f27dc7d5649531e2671e28",
-  "resultTree": "5e0da1554f23fe64c2cd3a2b30e0a7b4e41ac00b",
+  "head": "709f101d1aaeb25ccc6f6eab77a3e23e9364f3b0",
+  "resultTree": "7fb77437f56f19ec9266e9f8f002923eb26ade9f",
   "submodules": [
     {
       "path": "deps/libdshowcapture/src",
@@ -217,8 +217,8 @@
     },
     {
       "path": "frontend/widgets/FreeMixMultistream.cpp",
-      "bytes": 111887,
-      "sha256": "131d6e382700763272df867eb52951b128dec3610cddf1973858a74cc455740d"
+      "bytes": 114613,
+      "sha256": "5f81838311985ccb50dc9eb406986414fe206ce6a2243acabcb81627f03a0316"
     },
     {
       "path": "frontend/widgets/FreeMixMultistream.hpp",
@@ -304,6 +304,11 @@
       "path": "frontend/widgets/OBSBasic_Icons.cpp",
       "bytes": 5977,
       "sha256": "4fd141833220c85e916fe7f6b04a1bb6c128f4402267ce7bad2b4069a19bf449"
+    },
+    {
+      "path": "frontend/widgets/OBSBasic_MainControls.cpp",
+      "bytes": 18289,
+      "sha256": "20d54c8ff57ed09050d6d5b2080f5d7413a565d9145c212cd5994b7123c1bb9d"
     },
     {
       "path": "frontend/widgets/OBSBasic_Preview.cpp",

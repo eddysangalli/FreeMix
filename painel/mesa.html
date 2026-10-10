@@ -518,6 +518,7 @@ body.popup-mode #pop[data-panel="add"] .add .types { display:flex; flex-directio
   <div class="bot" id="bot"></div>
   <div class="stat" id="stat"></div>
   <div class="pop" id="pop"></div>
+  <div id="operation-status" hidden style="position:fixed;top:4px;left:50%;transform:translateX(-50%);width:max-content;max-width:calc(100vw - 24px);box-sizing:border-box;z-index:2000;background:#27313c;color:white;padding:6px;border:1px solid #8aa1b7">Comando aguardando confirmação · <button data-a="operationcheck">Conferir motor</button></div>
   <div class="toast" id="toast"></div>
 
 <script src="local.js"></script>
@@ -662,17 +663,33 @@ body.popup-mode #pop[data-panel="add"] .add .types { display:flex; flex-directio
   const SUBS = 1 | 2 | 4 | 8 | 16 | 64 | 128 | 512 | 1024 | 65536; // geral, cenas, entradas, transições, saídas, itens de cena, interface, medidores
   let ws = null, seq = 0;
   const pending = new Map();
+  // Correlated timeout: expiration does not prove that a mutation was cancelled.
+  const WS_REQUEST_TIMEOUT_MS = 15000;
+  let mesaDisposed = false;
+  const uncertainRequest = (message, type) => Object.assign(new Error(message), {code:'FREEMIX_WS_UNCERTAIN', uncertain:true, requestType:type});
+  const rejectMesaRequests = message => { for (const entry of pending.values()) entry.rej(uncertainRequest(message, entry.type)); };
   const req = (type, data) => new Promise((res, rej) => {
-    if (!st.on) return rej(new Error("Sem conexão com o OBS"));
+    if (mesaDisposed || !st.on) return rej(new Error('FreeMix sem conexão com o motor'));
     const id = String(++seq);
-    pending.set(id, { res, rej, type });
-    ws.send(JSON.stringify({ op: 6, d: { requestType: type, requestId: id, requestData: data } }));
+    let timer = null;
+    const finish = (error, value) => {
+      if (pending.get(id) !== entry) return;
+      pending.delete(id); if (timer !== null) clearTimeout(timer);
+      error ? rej(error) : res(value);
+    };
+    const entry = {type, res:value=>finish(null,value), rej:error=>finish(error)};
+    pending.set(id, entry);
+    timer = setTimeout(() => entry.rej(uncertainRequest('O motor não respondeu a tempo. Resultado incerto: confira o estado antes de repetir o comando.', type)), WS_REQUEST_TIMEOUT_MS);
+    try { ws.send(JSON.stringify({op:6,d:{requestType:type,requestId:id,requestData:data}})); }
+    catch { entry.rej(uncertainRequest('Não foi possível confirmar o envio ao motor. Confira o estado antes de repetir.', type)); }
   });
   const tryReq = (type, data) => req(type, data).catch(() => null);
   const vendor = (type, data = {}) => req("CallVendorRequest", { vendorName: "downstream-keyer", requestType: type, requestData: data }).then((r) => r.responseData);
   function connect() {
+    if (mesaDisposed) return;
     const mine = ws = new WebSocket(LOCAL.url || "ws://127.0.0.1:4455");
     mine.onmessage = async (ev) => {
+      if (mesaDisposed || ws !== mine) return;
       const m = JSON.parse(ev.data);
       if (m.op === 0) {
         const d = { rpcVersion: 1, eventSubscriptions: SUBS }, a = m.d.authentication;
@@ -682,24 +699,48 @@ body.popup-mode #pop[data-panel="add"] .add .types { display:flex; flex-directio
       else if (m.op === 5) m.d.eventType === "InputVolumeMeters" ? onMeters(m.d.eventData.inputs) : onEvent(m.d.eventType, m.d.eventData || {});
       else if (m.op === 7) {
         const p = pending.get(m.d.requestId); if (!p) return;
-        pending.delete(m.d.requestId);
         m.d.requestStatus.result ? p.res(m.d.responseData || {}) : p.rej(new Error(m.d.requestStatus.comment || `${p.type} falhou (${m.d.requestStatus.code})`));
       }
     };
     mine.onclose = (ev) => {
       if (ws !== mine) return;
-      for (const p of pending.values()) p.rej(new Error("Conexão encerrada")); pending.clear();
+      rejectMesaRequests("Conexão encerrada. Resultado incerto: confira o estado antes de repetir comandos.");
+      clearMesaPaints();
       st.on = false; st.why = ev.code === 4009 ? "senha recusada (confira painel/local.js)" : "sem conexão, tentando de novo…";
-      renderAll(); setTimeout(connect, 2500);
+      if (!mesaDisposed) { renderAll(); setTimeout(connect, 2500); }
     };
   }
 
   const replayUrl = LOCAL.replayUrl || "http://" + new URL(LOCAL.url || "ws://127.0.0.1:4466").hostname + ":8088/api/replay";
-  async function productionAction(action, data = {}) {
-    const r = await fetch(replayUrl.replace(/replay$/, "control"), {method:"POST", headers:{"Content-Type":"application/json"}, body:JSON.stringify({action,...data}), signal:AbortSignal.timeout(120000)});
-    const result = await r.json();
-    if (!r.ok || result.ok === false) throw new Error(result.error || "O motor não confirmou o comando");
-    return result;
+
+
+  let previewIntent=null,previewIntentSequence=0;
+  function previewTakeInput(){const intent=previewIntent;if(intent&&intent.scope===st.preset&&st.scenes.includes(intent.name)&&(!st.sceneKeys[intent.name]||st.sceneKeys[intent.name]===intent.key))return intent.key;previewIntent=null;return st.sceneKeys[st.preview]||st.preview;}
+  async function choosePreview(name){
+    if(operationalPending)throw Error('Aguarde confirmar o corte antes de trocar o Preview.');
+    if(!st.studio)return productionAction('active',{input:st.sceneKeys[name]||name});
+    const previous=previewIntent,intent={sequence:++previewIntentSequence,name,key:st.sceneKeys[name]||name,scope:st.preset};previewIntent=intent;
+    try{return await req('SetCurrentPreviewScene',{sceneName:name});}
+    catch(error){if(previewIntent?.sequence===intent.sequence&&!error.uncertain)previewIntent=previous;throw error;}
+  }
+
+  let operationalPending=null,operationalSequence=0;
+  const operationTypes=new Set(['active','cut','fade','transition','input_remove']);
+  function showOperationalPending(){const el=$('operation-status');if(el)el.hidden=!operationalPending;}
+  function reconcileOperation(state){const p=operationalPending,op=p&&[state?.operation,...(state?.operationReceipts||[])].find(r=>r?.id===p.id&&r.scope===p.scope);if(op&&['confirmed','rejected'].includes(op.stage)){if(op.stage==='confirmed'&&['active','cut','fade','transition'].includes(op.action))previewIntent=null;operationalPending=null;showOperationalPending();toast(op.stage==='confirmed'?'Comando confirmado no motor.':op.error||'Comando recusado antes de executar.',op.stage!=='confirmed');}}
+  async function checkOperationalPending(){const r=await fetch(new URL('/api/json',replayUrl).href,{signal:AbortSignal.timeout(4000)});if(!r.ok)throw Error('Não foi possível consultar o motor');reconcileOperation(await r.json());if(operationalPending)toast('Ainda sem confirmação segura. Confira o Programa; o comando não será repetido.',true);}
+  setInterval(()=>reconcileOperation(window.FreeMixProductionState),500);
+
+  async function productionAction(action,data={}){
+    const gated=operationTypes.has(action);let operation;
+    if(gated){if(operationalPending)throw Error('Há um comando em confirmação. Aguarde e confira o Programa; não repita o corte.');const scope=String(data.expectedScope||st.preset||window.FreeMixProductionState?.preset||'');if(!scope)throw Error('Aguarde identificar o projeto do motor.');const nonce=Array.from(crypto.getRandomValues(new Uint32Array(2)),n=>n.toString(36)).join('_');operation={id:'mesa_'+Date.now()+'_'+nonce+'_'+(++operationalSequence),scope,clickedAt:Date.now()};operationalPending=operation;showOperationalPending();data={...data,operationId:operation.id,expectedScope:scope};toast('Comando enviado; aguardando confirmação do motor…');}
+    try{
+      const r=await fetch(replayUrl.replace(/replay$/,'control'),{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action,...data}),signal:AbortSignal.timeout(120000)}),result=await r.json();
+      if(operation)reconcileOperation(result.state||{operation:result.operation,operationReceipts:result.operationReceipts});
+      if(!r.ok||result.success!==true)throw Error(result.error||'O motor não confirmou o comando');
+      if(operation){const ack=result.state?.operation;if(ack?.id!==operation.id||ack.scope!==operation.scope||ack.stage!=='confirmed')throw Error('O motor não confirmou o alvo deste comando. Confira o Programa.');}
+      return result;
+    }catch(error){if(operation&&operationalPending)toast('Confirmação pendente. Use Conferir motor; o comando não será repetido.',true);throw error;}
   }
   let replayBusy = false, replayPolling = false;
   function applyReplay(data) {
@@ -817,22 +858,22 @@ body.popup-mode #pop[data-panel="add"] .add .types { display:flex; flex-directio
   function onEvent(type, d) {
     if (type === "CustomEvent") { const f = d.freemix; if(f&&new URLSearchParams(location.search).has('pop')&&(f.open||f.do))return; if (f && f.open === "config") A.nativecfg(); else if (f && f.open) { st.pop = null; st.popAt = { x: innerWidth, y: 0 }; openPop(f.open, f.arg || undefined); } else if (f && f.do && A["top_" + f.do]) A["top_" + f.do](); return; } // pedido vindo da barra de cima
     if (type === "CurrentSceneCollectionChanged") { if (st.preset && st.preset !== d.sceneCollectionName) store.set("mesa.lastPreset", st.preset); st.preset = d.sceneCollectionName; setTimeout(() => syncAll().catch(() => {}), 900); }
-    if (type === "CurrentProgramSceneChanged") { st.program = d.sceneName; renderTiles(); renderBot(); if (st.pop === "replay") renderPop(); }
-    else if (type === "CurrentPreviewSceneChanged") { st.preview = d.sceneName; renderTiles(); }
-    else if (type === "SceneListChanged") { setScenes(d.scenes); renderTiles(); laterItems(); }
+    if (type === "CurrentProgramSceneChanged") { st.program = d.sceneName; scheduleMesaPaint('tally'); scheduleMesaPaint('bot'); if (st.pop === "replay") renderPop(); }
+    else if (type === "CurrentPreviewSceneChanged") { st.preview = d.sceneName; scheduleMesaPaint('tally'); }
+    else if (type === "SceneListChanged") { setScenes(d.scenes); scheduleMesaPaint('tiles'); laterItems(); }
     else if (type === "SceneItemCreated" || type === "SceneItemRemoved") laterItems();
     else if (type === "InputSettingsChanged") { if (st.loop.has(d.inputName)) laterItems(); } // only media sources matter here (Loop state)
     else if (type === "SceneNameChanged" || type === "SceneCreated" || type === "SceneRemoved" || type === "CurrentSceneCollectionChanged") syncScenes().catch(() => {});
     else if (type === "StudioModeStateChanged") { st.studio = d.studioModeEnabled; syncScenes().catch(() => {}); }
     else if (type === "CurrentSceneTransitionChanged") st.cur = d.transitionName;
-    else if (type === "RecordStateChanged") { st.rec = d.outputActive; renderBot(); }
-    else if (type === "StreamStateChanged") { st.stream = d.outputActive; renderBot(); }
-    else if (type === "VirtualcamStateChanged") { st.vcam = d.outputActive; renderBot(); }
-    else if (type === "InputAudioTracksChanged") { const a = st.audio.get(d.inputName); if (a) { a.tracks = d.inputAudioTracks; renderMixer(); if (st.pop === "busman") renderPop(); } }
-    else if (type === "InputAudioMonitorTypeChanged") { const a = st.audio.get(d.inputName); if (a) { a.mon = d.monitorType; renderMixer(); } }
+    else if (type === "RecordStateChanged") { st.rec = d.outputActive; scheduleMesaPaint('bot'); }
+    else if (type === "StreamStateChanged") { st.stream = d.outputActive; scheduleMesaPaint('bot'); }
+    else if (type === "VirtualcamStateChanged") { st.vcam = d.outputActive; scheduleMesaPaint('bot'); }
+    else if (type === "InputAudioTracksChanged") { const a = st.audio.get(d.inputName); if (a) { a.tracks = d.inputAudioTracks; scheduleMesaPaint('mixer'); if (st.pop === "busman") renderPop(); } }
+    else if (type === "InputAudioMonitorTypeChanged") { const a = st.audio.get(d.inputName); if (a) { a.mon = d.monitorType; scheduleMesaPaint('mixer'); } }
     else if (type === "InputAudioBalanceChanged") { const a = st.audio.get(d.inputName); if (a) { a.bal = d.inputAudioBalance; const el = document.querySelector(`[data-pan="${CSS.escape(d.inputName)}"]`); if (el && document.activeElement !== el) el.value = a.bal; } }
-    else if (type === "VendorEvent" && d.vendorName === "freemix" && d.eventType === "destinations_changed") { st.dest = d.eventData.destinations || []; if (st.pop === "streamset" && !/^(INPUT|SELECT)$/.test(document.activeElement?.tagName || "")) renderPop(); renderBot(); }
-    else if (type === "InputMuteStateChanged") { const a = st.audio.get(d.inputName); if (a) { a.muted = d.inputMuted; renderMixer(); renderTiles(); } }
+    else if (type === "VendorEvent" && d.vendorName === "freemix" && d.eventType === "destinations_changed") { st.dest = d.eventData.destinations || []; if (st.pop === "streamset" && !/^(INPUT|SELECT)$/.test(document.activeElement?.tagName || "")) renderPop(); scheduleMesaPaint('bot'); }
+    else if (type === "InputMuteStateChanged") { const a = st.audio.get(d.inputName); if (a) { a.muted = d.inputMuted; scheduleMesaPaint('mixer'); scheduleMesaPaint('tally'); } }
     else if (type === "InputVolumeChanged") { const a = st.audio.get(d.inputName); if (a && dragging !== d.inputName) { a.mul = d.inputVolumeMul; a.db = d.inputVolumeDb; paintFader(d.inputName); } }
     else if (type === "InputCreated" || type === "InputRemoved" || type === "InputNameChanged") syncAudio().catch(() => {});
   }
@@ -918,16 +959,16 @@ body.popup-mode #pop[data-panel="add"] .add .types { display:flex; flex-directio
     try {
       switch (sc.fn) {
         case "Cut": {
-          if (st.studio) await productionAction("cut");
+          if (st.studio) await productionAction("cut",{input:previewTakeInput()});
           else if (st.preview) await productionAction("active", {input:st.preview});
           break;
         }
         case "Fade": {
-          if (st.studio) await productionAction("fade", {duration:sc.val && +sc.val > 0 ? +sc.val : 500});
+          if (st.studio) await productionAction("fade", {input:previewTakeInput(),duration:sc.val && +sc.val > 0 ? +sc.val : 500});
           break;
         }
         case "Transition": {
-          if (st.studio) await req("TriggerStudioModeTransition");
+          if (st.studio) await productionAction("transition",{input:previewTakeInput()});
           break;
         }
         case "FTB": {
@@ -939,14 +980,14 @@ body.popup-mode #pop[data-panel="add"] .add .types { display:flex; flex-directio
           break;
         }
         case "PreviewInput": {
-          if(sc.targetKey){await productionAction("preview",{input:sc.targetKey});break;}
+          if(sc.targetKey){const name=Object.keys(st.sceneKeys).find(name=>st.sceneKeys[name]===sc.targetKey);if(!name)throw Error("Entrada de Preview removida; atualize o atalho.");await choosePreview(name);break;}
           let sceneName = sc.target;
           if (/^\d+$/.test(sceneName)) {
             const idx = +sceneName - 1;
             if (st.scenes[idx]) sceneName = st.scenes[idx];
           }
           if (sceneName && st.scenes.includes(sceneName)) {
-            await req("SetCurrentPreviewScene", { sceneName });
+            await choosePreview(sceneName);
           }
           break;
         }
@@ -958,7 +999,7 @@ body.popup-mode #pop[data-panel="add"] .add .types { display:flex; flex-directio
             if (st.scenes[idx]) sceneName = st.scenes[idx];
           }
           if (sceneName && st.scenes.includes(sceneName)) {
-            await req("SetCurrentProgramScene", { sceneName });
+            await productionAction("active", {input:st.sceneKeys[sceneName]||sceneName});
           }
           break;
         }
@@ -1012,7 +1053,25 @@ body.popup-mode #pop[data-panel="add"] .add .types { display:flex; flex-directio
   /* ---- actions ---- */
   const run = (p) => p?.catch?.((e) => toast(e.message, true));
   const kindName = (kind) => st.transitions.find((t) => t.kind === kind)?.name;
+  let creatingInput = false;
+  function markInputCreating(active) {
+    for (const el of $('pop').querySelectorAll('input,select,button')) {
+      if (active) { if (el.dataset.inputWasDisabled === undefined) el.dataset.inputWasDisabled = el.disabled ? '1' : '0'; el.disabled = true; }
+      else if (el.dataset.inputWasDisabled !== undefined) { el.disabled = el.dataset.inputWasDisabled === '1'; delete el.dataset.inputWasDisabled; }
+    }
+    $('pop').setAttribute('aria-busy', String(active));
+  }
+  async function finishInputPanel(editor = '', inputName = '') {
+    if (location.protocol === 'file:' && new URLSearchParams(location.search).has('pop')) {
+      const r = await req('CallVendorRequest', {vendorName:'freemix', requestType:'finish_input_panel', requestData:{url:location.href, editor, inputName}});
+      if (!r.responseData?.success) throw Error(r.responseData?.error || 'A entrada foi criada. Feche esta janela e abra sua engrenagem para configurar o dispositivo.');
+      return;
+    }
+    if (editor) await req(editor === 'filters' ? 'OpenInputFiltersDialog' : 'OpenInputPropertiesDialog', {inputName});
+    if (new URLSearchParams(location.search).has('pop')) window.close(); else closePop();
+  }
   const A = {
+    operationcheck:()=>run(checkOperationalPending()),
     sc_capture: () => { st.capturingShortcut = true; renderPop(); },
     sc_cancel_capture: () => { st.capturingShortcut = false; renderPop(); },
     sc_add: () => {
@@ -1046,9 +1105,9 @@ body.popup-mode #pop[data-panel="add"] .add .types { display:flex; flex-directio
       renderPop();
       toast("Atalhos restaurados para o padrão");
     },
-    preview: (d) => run(st.studio ? req("SetCurrentPreviewScene", { sceneName: d.v }) : req("SetCurrentProgramScene", { sceneName: d.v })),
-    quick: (d) => run((async () => { if (!st.studio) return req("SetCurrentProgramScene", { sceneName: d.v }); await req("SetCurrentPreviewScene", { sceneName: d.v }); await req("TriggerStudioModeTransition"); })()),
-    cut: (d) => run(productionAction(st.studio ? "cut" : "active", {input:d.v})),
+    preview: (d) => run(choosePreview(d.v)),
+    quick: (d) => run(productionAction(st.studio ? "transition" : "active", {input:st.sceneKeys[d.v]||d.v})),
+    cut: (d) => run(productionAction(st.studio ? "cut" : "active", {input:st.sceneKeys[d.v]||d.v})),
     ov: (d) => run((async () => {
       const k = st.keyers?.[+d.k]; if (!k) return toast("Canal de overlay não configurado no Downstream Keyer", true);
       if (k.scene === d.v) { await gcLeave(d.v); await vendor("dsk_select_scene", { dsk_name: k.name, scene: "" }); }
@@ -1058,8 +1117,8 @@ body.popup-mode #pop[data-panel="add"] .add .types { display:flex; flex-directio
     ovoff: (d) => run((async () => { await gcLeave(st.keyers[+d.k].scene); await vendor("dsk_select_scene", { dsk_name: st.keyers[+d.k].name, scene: "" }); await sleep(120); await syncKeyers(); })()),
     loop: (d) => run((async () => { for (const i of (st.items.get(d.v) || []).filter((i) => isMedia(i.kind))) await req("SetInputSettings", { inputName: i.name, inputSettings: { [loopKey(i.kind)]: !st.loop.get(i.name) } }); await syncItems(); })()),
     audio: (d) => run(productionAction("audio_mute",{input:d.v})),
-    closeask: (d) => (st.locked ? A.lockmsg() : openPop("close", d.v)),
-    closego: () => { const name = st.popArg; closePop(); run(req("RemoveScene", { sceneName: name })); },
+    closeask: (d) => {if(st.locked)return A.lockmsg();st.closeTarget={key:st.sceneKeys[d.v],name:d.v,scope:st.preset};openPop("close",d.v);},
+    closego: () => {const target=st.closeTarget;if(!target?.key)return toast("Entrada não identificada. Abra a confirmação novamente.",true);closePop();run(productionAction("input_remove",{input:target.key,expectedScope:target.scope}));},
     isotoggle: (d) => { const sel = new Set(st.isoSel); sel.has(d.v) ? sel.delete(d.v) : sel.add(d.v); st.isoSel = [...sel]; store.set("mesa.iso", st.isoSel); renderPop(); },
     multicorder: () => { if ([...st.iso.values()].some(Boolean)) return A.isostop(); if (!st.isoSel.some((n) => st.scenes.includes(n))) return openPop("iso"); A.isostart(); },
     isostart: () => run((async () => {
@@ -1419,7 +1478,7 @@ body.popup-mode #pop[data-panel="add"] .add .types { display:flex; flex-directio
         renderTabs(); renderSideDock(); openPop("playlist");
       } else { openPop(d.v, d.arg); }
     },
-    close: () => {if(new URLSearchParams(location.search).has('pop'))window.close();else closePop();},
+    close: () => { if (creatingInput) return; if (new URLSearchParams(location.search).has('pop')) run(finishInputPanel()); else closePop(); },
     gccat: (d) => { st.gcCat = d.v; renderPop(); },
     gcsel: (d) => { st.gcTpl = d.v; st.addName = $("add-name")?.dataset.edited ? $("add-name").value : ""; renderPop(); },
     gtreload: () => run((async () => {
@@ -1472,7 +1531,7 @@ body.popup-mode #pop[data-panel="add"] .add .types { display:flex; flex-directio
     })()),
     gtimportinfo: () => openPop("gtimportinfo"),
     addtype: (d) => { st.addName = $("add-name")?.dataset.edited ? $("add-name").value : ""; st.addType = d.v; renderPop(); },
-    add: () => run((async () => {
+    add: () => { if (creatingInput) return; return run((async () => {
       const t = TYPES.find((x) => x.id === st.addType) || TYPES[0];
       if (t.special === "replay") return openPop("replay");
       if (t.special === "composition") return openPop("compositions");
@@ -1480,22 +1539,29 @@ body.popup-mode #pop[data-panel="add"] .add .types { display:flex; flex-directio
       const f = {}; for (const [key] of t.fields || []) f[key] = $("add-f-" + key).value;
       if (t.id === "call") f.callid = callIdOf(f.callid, 0);
       const kind = t.kind ? resolveKind(t.kind) : ""; if (t.kind && !kind) return toast("Este tipo de fonte não está instalado neste OBS", true);
+      creatingInput = true; markInputCreating(true); const created = []; let pendingScene = ''; let complete = false;
+      try {
       const w = st.video?.baseWidth || 1920, h = st.video?.baseHeight || 1080; let last = "";
       for (let k = 0; k < n; k++) {
         const name = n > 1 ? `${base} ${k + 1}` : base;
-        await req("CreateScene", { sceneName: name });
-        if (!kind) continue;
+        await req("CreateScene", { sceneName: name }); pendingScene = name;
+        if (!kind) { created.push(name); pendingScene = ''; continue; }
         last = `${name} (fonte)`;
         const { sceneItemId } = await req("CreateInput", { sceneName: name, inputName: last, inputKind: kind, inputSettings: t.settings ? t.settings(f, w, h, n > 1 ? k + 1 : 0, last) : {} });
+        created.push(name); pendingScene = '';
         await tryReq("SetSceneItemTransform", { sceneName: name, sceneItemId, sceneItemTransform: { positionX: 0, positionY: 0, boundsType: "OBS_BOUNDS_SCALE_INNER", boundsWidth: w, boundsHeight: h, boundsAlignment: 0 } });
       }
-      closePop(); st.addName = "";
-      if (!kind) return toast("Entrada vazia criada. Monte em Painéis › Fontes.");
-      if (t.id === "call") { st.callId = ""; return openPop("call", callIdOf(f.callid, n > 1 ? 1 : 0)); }
-      if (t.fields) return;
-      if (n === 1) await tryReq("OpenInputPropertiesDialog", { inputName: last });
-      else toast(`${n} entradas criadas. Use a engrenagem de cada uma para escolher o dispositivo.`);
-    })()),
+      complete = true; st.addName = '';
+      if (t.id === 'call') { st.callId = ''; await launchPanel('calls'); await finishInputPanel(); return; }
+      if (!kind) { toast('Entrada vazia criada. Monte as camadas pela engrenagem.'); await finishInputPanel(); return; }
+      if (!t.fields && n === 1) await finishInputPanel('properties', last);
+      else { if (n > 1 && !t.fields) toast(n + ' entradas criadas. Use a engrenagem de cada uma para escolher o dispositivo.'); await finishInputPanel(); }
+      } catch (error) {
+        const kept = [...created, ...(pendingScene ? [pendingScene + ' (cena sem fonte confirmada)'] : [])];
+        const note = kept.length ? ' Preservado na mesa: ' + kept.join(', ') + '. Confira antes de tentar novamente.' : '';
+        throw Error((complete ? 'Entrada criada; a próxima janela não foi confirmada. ' : '') + error.message + note);
+      } finally { creatingInput = false; markInputCreating(false); }
+    })()); },
     menu: (d) => openPop("menu", d.v),
     calllink: (d) => run((async () => {
       const id = callIdFromUrl((await req("GetInputSettings", { inputName: d.v })).inputSettings?.url);
@@ -1560,7 +1626,7 @@ body.popup-mode #pop[data-panel="add"] .add .types { display:flex; flex-directio
 
       const closeB = isOut ? `<button class="na" title="Está no ar: tire do programa antes de fechar">Close</button>` : `<button data-a="closeask" data-v="${v}" title="Remove esta entrada">Close</button>`;
       const loopB = media.length ? `<button class="${media.every((i) => st.loop.get(i.name)) ? "on" : ""}" data-a="loop" data-v="${v}" title="Repetir a mídia desta entrada">Loop</button>` : `<button class="na" title="Só para entradas com arquivo de vídeo ou áudio">Loop</button>`;
-      const audioB = aud.length ? `<button class="w2${aud.some((n) => !st.audio.get(n).muted) ? " on" : ""}" data-a="audio" data-v="${v}" title="Liga/desliga o áudio desta entrada">Audio</button>` : `<button class="w2 na" title="Entrada sem fonte de áudio">Audio</button>`;
+      const audioB = aud.length ? `<button data-role="input-audio" class="w2${aud.some((n) => !st.audio.get(n).muted) ? " on" : ""}" data-a="audio" data-v="${v}" title="Liga/desliga o áudio desta entrada">Audio</button>` : `<button data-role="input-audio" class="w2 na" title="Entrada sem fonte de áudio">Audio</button>`;
       const hasSpeed = !!(media.length && st.showSpeed?.[name]);
       const speedVal = st.inputSpeed?.[name] ?? 100;
 
@@ -2266,8 +2332,8 @@ body.popup-mode #pop[data-panel="add"] .add .types { display:flex; flex-directio
     if (t.dataset.a === "studio") setTimeout(() => { if (st.pop === "gear") renderPop(); renderStat(); }, 300);
   });
   document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") return closePop();
-    if (e.key === "Enter" && st.pop === "add") return A.add();
+    if (e.key === "Escape") { if (creatingInput) { e.preventDefault(); return; } return A.close(); }
+    if (e.key === "Enter" && st.pop === "add") { e.preventDefault(); return A.add(); }
     if (e.key === "Enter" && st.pop === "rename") return A.renamego();
     if (e.key === "Enter" && st.pop === "saveas") return A.saveasgo();
 
@@ -2288,6 +2354,7 @@ body.popup-mode #pop[data-panel="add"] .add .types { display:flex; flex-directio
       return;
     }
 
+    if(e.repeat)return;
     const code = e.code || e.key;
     const sc = st.shortcuts?.find((s) => s.key === code || s.key === e.key);
     if (sc) {
@@ -2504,7 +2571,66 @@ body.popup-mode #pop[data-panel="add"] .add .types { display:flex; flex-directio
       await sleep(200);
     }
   }
-  async function productionMetadataLoop(){while(true){if(st.on)try{const response=await fetch(new URL('/api/json',replayUrl).href,{signal:AbortSignal.timeout(2000)});if(response.ok){const data=await response.json();window.FreeMixProductionState=data;if(data.connected){const tags=Object.fromEntries((data.inputs||[]).map(i=>[i.name,i.tags||[]]));const changed=JSON.stringify([tags,data.tally])!==JSON.stringify([st.inputTags,st.recursiveTally]);st.inputTags=tags;st.recursiveTally=data.tally;if(changed){renderTabs();renderTiles();}}}}catch{}await sleep(1500);}}
+  async function productionMetadataLoop(){while(true){if(st.on)try{const response=await fetch(new URL('/api/json',replayUrl).href,{signal:AbortSignal.timeout(2000)});if(response.ok){const data=await response.json();window.FreeMixProductionState=data;if(data.connected){const tags=Object.fromEntries((data.inputs||[]).map(i=>[i.name,i.tags||[]]));const tagsChanged=JSON.stringify(tags)!==JSON.stringify(st.inputTags),tallyChanged=JSON.stringify(data.tally)!==JSON.stringify(st.recursiveTally);st.inputTags=tags;st.recursiveTally=data.tally;if(tagsChanged){renderTabs();scheduleMesaPaint('tiles');}else if(tallyChanged)scheduleMesaPaint('tally');}}}catch{}await sleep(1500);}}
+  // BEGIN isolated visual integration: no command/request/state queue.
+  const mesaPaintQueue = new Set();
+  const mesaPaintFns = {tiles:renderTiles, tally:paintTileState, mixer:renderMixer, bot:renderBot};
+  let mesaPaintFrame = null;
+  function paintTileState() {
+    const tiles = [...$('tiles').querySelectorAll('.tile[data-s]')], names = shown();
+    const present = new Set(tiles.map(tile => tile.dataset.s));
+    // Structural mismatch needs the normal renderer; never attach state to a stale card.
+    if (!st.on || tiles.length !== names.length || names.some(name => !present.has(name))) return renderTiles();
+    for (const tile of tiles) {
+      const name = tile.dataset.s;
+      const isOut = name === st.program || !!st.recursiveTally?.program?.includes(name);
+      const isPv = !isOut && st.studio && (name === st.preview || !!st.recursiveTally?.preview?.includes(name));
+      tile.classList.toggle('is-out', isOut); tile.classList.toggle('is-pv', !!isPv);
+      const title = tile.querySelector('.tt');
+      if (title) {
+        title.classList.toggle('out', isOut); title.classList.toggle('pv', !!isPv);
+        const close = title.querySelector('button[data-a="closeask"]');
+        if (isOut) close?.remove();
+        else if (!tile.classList.contains('min') && !close) {
+          const button = document.createElement('button'); button.className = 'x';
+          button.setAttribute('data-a', 'closeask'); button.setAttribute('data-v', name); button.title = 'Fechar esta entrada'; button.textContent = '×'; title.append(button);
+        }
+      }
+      const audio = tile.querySelector('[data-role="input-audio"]');
+      if (audio) {
+        const aud = sceneAudio(name); audio.classList.toggle('on', aud.some(input => !st.audio.get(input)?.muted));
+      }
+    }
+  }
+  function clearMesaPaints() {
+    mesaPaintQueue.clear();
+    if (mesaPaintFrame !== null) cancelAnimationFrame(mesaPaintFrame);
+    mesaPaintFrame = null;
+  }
+  function flushMesaPaints() {
+    if (mesaDisposed) { clearMesaPaints(); return; }
+    if (mesaPaintFrame !== null) cancelAnimationFrame(mesaPaintFrame);
+    mesaPaintFrame = null;
+    let names = [...mesaPaintQueue]; mesaPaintQueue.clear();
+    if (names.includes('tiles')) names = names.filter(name => name !== 'tally');
+    for (const name of names) try { mesaPaintFns[name](); } catch { console.warn('FreeMix: não foi possível atualizar um controle visual.'); }
+  }
+  function scheduleMesaPaint(name) {
+    if (mesaDisposed) return;
+    mesaPaintQueue.add(name);
+    // Hidden windows retain only renderer names and repaint once when visible.
+    if (!document.hidden && mesaPaintFrame === null) mesaPaintFrame = requestAnimationFrame(() => { mesaPaintFrame = null; flushMesaPaints(); });
+  }
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) { if (mesaPaintFrame !== null) cancelAnimationFrame(mesaPaintFrame); mesaPaintFrame = null; }
+    else if (mesaPaintQueue.size) scheduleMesaPaint([...mesaPaintQueue][0]);
+  });
+  window.addEventListener('pagehide', () => {
+    mesaDisposed = true; clearMesaPaints();
+    rejectMesaRequests('Painel encerrado. Resultado incerto: confira o estado antes de repetir comandos.');
+    try { ws?.close(1000); } catch {}
+  });
+  // END isolated visual integration
   renderAll(); connect(); thumbLoop(); slowLoop(); mediaLoop(); productionMetadataLoop(); initMidi(); initSplitter();
 
   // Suporte a janela destacada independente (pop-up para segundo monitor)

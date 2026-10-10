@@ -1,0 +1,797 @@
+{
+  "status": "TEXT_ONLY_EXPORT_ALLOWLIST_FINAL_FROZEN",
+  "at": "2026-10-10T04:09:06.915Z",
+  "copiedToGit": false,
+  "operatorTouched": false,
+  "selectionChanged": false,
+  "files": [
+    {
+      "sourceAbsolute": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\entregas\\FreeMix-Studio-Setup-0.1.0-local.20261010031500.exe.build.json",
+      "sourceRelative": "entregas/FreeMix-Studio-Setup-0.1.0-local.20261010031500.exe.build.json",
+      "targetRelative": "docs/evidencias/20261010-031500-native23/entregas/FreeMix-Studio-Setup-0.1.0-local.20261010031500.exe.build.json",
+      "sha256": "223df356996cf9eda5d23e5c10a5d5035329574ad0f9cbe63e394d1c78ceaf8c",
+      "bytes": 636,
+      "group": "provenance-and-runtime"
+    },
+    {
+      "sourceAbsolute": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\candidate-release-031500.json",
+      "sourceRelative": "qa-finalizacao/candidate-release-031500.json",
+      "targetRelative": "docs/evidencias/20261010-031500-native23/qa-finalizacao/candidate-release-031500.json",
+      "sha256": "f0457a3f5afed47b62eb8e1ef943b0b15b32441d0c51cf1d2f14b3048cc06bba",
+      "bytes": 922,
+      "group": "provenance-and-runtime"
+    },
+    {
+      "sourceAbsolute": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\derive-native23-input-handoff-retry1.mjs",
+      "sourceRelative": "qa-finalizacao/derive-native23-input-handoff-retry1.mjs",
+      "targetRelative": "docs/evidencias/20261010-031500-native23/qa-finalizacao/derive-native23-input-handoff-retry1.mjs",
+      "sha256": "bb99d11c5bbd5c224b37a1c8c2cb4d810ef00b522ce09da81d46273fed59f9bd",
+      "bytes": 1955,
+      "group": "native23-handoff"
+    },
+    {
+      "sourceAbsolute": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\derive-proof-export-031500-native23-retry1.mjs",
+      "sourceRelative": "qa-finalizacao/derive-proof-export-031500-native23-retry1.mjs",
+      "targetRelative": "docs/evidencias/20261010-031500-native23/qa-finalizacao/derive-proof-export-031500-native23-retry1.mjs",
+      "sha256": "a84f1ea6b02a1498538afb83da65f0ff8d9eaa7c77ae8aad620f768d459b4509",
+      "bytes": 2057,
+      "group": "export-format-guard-provenance"
+    },
+    {
+      "sourceAbsolute": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\distribution-031500\\ALLOWLIST.json",
+      "sourceRelative": "qa-finalizacao/distribution-031500/ALLOWLIST.json",
+      "targetRelative": "docs/evidencias/20261010-031500-native23/qa-finalizacao/distribution-031500/ALLOWLIST.json",
+      "sha256": "74e09d8ad8c2bf8cd1921433277798c861b8abdf91537626827370337f1f16a4",
+      "bytes": 8264,
+      "group": "distribution"
+    },
+    {
+      "sourceAbsolute": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\distribution-031500\\freeze.mjs",
+      "sourceRelative": "qa-finalizacao/distribution-031500/freeze.mjs",
+      "targetRelative": "docs/evidencias/20261010-031500-native23/qa-finalizacao/distribution-031500/freeze.mjs",
+      "sha256": "9ace053596738c9a63551daff64b999bf604f8a5a002e09db4912363c953c72c",
+      "bytes": 5045,
+      "group": "distribution"
+    },
+    {
+      "sourceAbsolute": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\distribution-031500\\harnesses\\candidate-credentials.mjs",
+      "sourceRelative": "qa-finalizacao/distribution-031500/harnesses/candidate-credentials.mjs",
+      "targetRelative": "docs/evidencias/20261010-031500-native23/qa-finalizacao/distribution-031500/harnesses/candidate-credentials.mjs",
+      "sha256": "ce52dfc49b353bb97b7c19b703d8acefb0c7e8a899dc9b91b9d4f520254f90f1",
+      "bytes": 1836,
+      "group": "distribution"
+    },
+    {
+      "sourceAbsolute": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\distribution-031500\\harnesses\\candidate-report.mjs",
+      "sourceRelative": "qa-finalizacao/distribution-031500/harnesses/candidate-report.mjs",
+      "targetRelative": "docs/evidencias/20261010-031500-native23/qa-finalizacao/distribution-031500/harnesses/candidate-report.mjs",
+      "sha256": "7870e3fa765d0fba7b9f039da4e542129413bac9019fa4c61f0c71e5fe978955",
+      "bytes": 2510,
+      "group": "distribution"
+    },
+    {
+      "sourceAbsolute": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\distribution-031500\\harnesses\\distribution.mjs",
+      "sourceRelative": "qa-finalizacao/distribution-031500/harnesses/distribution.mjs",
+      "targetRelative": "docs/evidencias/20261010-031500-native23/qa-finalizacao/distribution-031500/harnesses/distribution.mjs",
+      "sha256": "84adf95d09a52ee8e13012744f2e1ae0f1e124169d5dcf98f3e155445114b9b0",
+      "bytes": 18028,
+      "group": "distribution"
+    },
+    {
+      "sourceAbsolute": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\distribution-031500\\harnesses\\test-candidate-context.mjs",
+      "sourceRelative": "qa-finalizacao/distribution-031500/harnesses/test-candidate-context.mjs",
+      "targetRelative": "docs/evidencias/20261010-031500-native23/qa-finalizacao/distribution-031500/harnesses/test-candidate-context.mjs",
+      "sha256": "d0dbc721f80ed5b8972d89fa360dea100d2c1c8a756fc1453122401d6e5c88e5",
+      "bytes": 2451,
+      "group": "distribution"
+    },
+    {
+      "sourceAbsolute": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\distribution-031500\\harnesses\\verify-setup.mjs",
+      "sourceRelative": "qa-finalizacao/distribution-031500/harnesses/verify-setup.mjs",
+      "targetRelative": "docs/evidencias/20261010-031500-native23/qa-finalizacao/distribution-031500/harnesses/verify-setup.mjs",
+      "sha256": "06b9fcf5500bfeea2354b8e120968206d0e61c85953c4c959d91b57a07ed8968",
+      "bytes": 1469,
+      "group": "distribution"
+    },
+    {
+      "sourceAbsolute": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\distribution-031500\\installer\\build.mjs",
+      "sourceRelative": "qa-finalizacao/distribution-031500/installer/build.mjs",
+      "targetRelative": "docs/evidencias/20261010-031500-native23/qa-finalizacao/distribution-031500/installer/build.mjs",
+      "sha256": "ea64ea8ed2f5fb28c0b3ea57b4f2bebca0cc58fe748d3807a4c69b3f8f43a836",
+      "bytes": 4413,
+      "group": "distribution"
+    },
+    {
+      "sourceAbsolute": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\distribution-031500\\installer\\build\\PayloadInfo.cs",
+      "sourceRelative": "qa-finalizacao/distribution-031500/installer/build/PayloadInfo.cs",
+      "targetRelative": "docs/evidencias/20261010-031500-native23/qa-finalizacao/distribution-031500/installer/build/PayloadInfo.cs",
+      "sha256": "5da54d8144a0da45c7409b303e7700e6f93dff9e34648c5b7fec90fd7278863f",
+      "bytes": 336,
+      "group": "distribution"
+    },
+    {
+      "sourceAbsolute": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\distribution-031500\\installer\\Setup.cs",
+      "sourceRelative": "qa-finalizacao/distribution-031500/installer/Setup.cs",
+      "targetRelative": "docs/evidencias/20261010-031500-native23/qa-finalizacao/distribution-031500/installer/Setup.cs",
+      "sha256": "7d29b1547f01f88810c860e3b3902aaffa0d1530e50e304b1a2ea7a424a7c67c",
+      "bytes": 33233,
+      "group": "distribution"
+    },
+    {
+      "sourceAbsolute": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\distribution-031500\\installer\\Uninstall.cs",
+      "sourceRelative": "qa-finalizacao/distribution-031500/installer/Uninstall.cs",
+      "targetRelative": "docs/evidencias/20261010-031500-native23/qa-finalizacao/distribution-031500/installer/Uninstall.cs",
+      "sha256": "6971b9729c4d8d27021e106685007fabc51299187a2b1122d280e18e3b2e31dc",
+      "bytes": 12418,
+      "group": "distribution"
+    },
+    {
+      "sourceAbsolute": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\distribution-031500\\plan.json",
+      "sourceRelative": "qa-finalizacao/distribution-031500/plan.json",
+      "targetRelative": "docs/evidencias/20261010-031500-native23/qa-finalizacao/distribution-031500/plan.json",
+      "sha256": "a0cd1954e084e19a089c78b1a12d8227e02ae07072c998b224f020ead13c34f8",
+      "bytes": 14481,
+      "group": "distribution"
+    },
+    {
+      "sourceAbsolute": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\distribution-031500\\preparation.json",
+      "sourceRelative": "qa-finalizacao/distribution-031500/preparation.json",
+      "targetRelative": "docs/evidencias/20261010-031500-native23/qa-finalizacao/distribution-031500/preparation.json",
+      "sha256": "7f1dce84f37a07713e285e149df0863314d741fbc2cdc9f44ca21597a4e2cbd3",
+      "bytes": 3566,
+      "group": "distribution"
+    },
+    {
+      "sourceAbsolute": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\distribution-031500\\prepare-qa.mjs",
+      "sourceRelative": "qa-finalizacao/distribution-031500/prepare-qa.mjs",
+      "targetRelative": "docs/evidencias/20261010-031500-native23/qa-finalizacao/distribution-031500/prepare-qa.mjs",
+      "sha256": "44b3c966675139f9425b8f7ddb36cdc7c4f037cdedf601a139f99f2c322429a7",
+      "bytes": 1763,
+      "group": "distribution"
+    },
+    {
+      "sourceAbsolute": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\distribution-031500\\qa-derivation.json",
+      "sourceRelative": "qa-finalizacao/distribution-031500/qa-derivation.json",
+      "targetRelative": "docs/evidencias/20261010-031500-native23/qa-finalizacao/distribution-031500/qa-derivation.json",
+      "sha256": "5e9ed7916eae4ae3464e709f11e0845a1d7967bd18415c81356e792175d928c6",
+      "bytes": 1490,
+      "group": "distribution"
+    },
+    {
+      "sourceAbsolute": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\distribution-031500\\README.md",
+      "sourceRelative": "qa-finalizacao/distribution-031500/README.md",
+      "targetRelative": "docs/evidencias/20261010-031500-native23/qa-finalizacao/distribution-031500/README.md",
+      "sha256": "b8ab537560d5e3cf60eb11637a0fa4564f93222b6cea8469e33d495090a8d06f",
+      "bytes": 2999,
+      "group": "distribution"
+    },
+    {
+      "sourceAbsolute": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\distribution-031500\\receipts\\qa-candidate-context.json",
+      "sourceRelative": "qa-finalizacao/distribution-031500/receipts/qa-candidate-context.json",
+      "targetRelative": "docs/evidencias/20261010-031500-native23/qa-finalizacao/distribution-031500/receipts/qa-candidate-context.json",
+      "sha256": "c7f42f93df3b6c0f3ef83e23e51a06db8e30754b3d94efa157e5e28749856de9",
+      "bytes": 527,
+      "group": "distribution"
+    },
+    {
+      "sourceAbsolute": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\distribution-031500\\receipts\\qa-candidate-credentials.json",
+      "sourceRelative": "qa-finalizacao/distribution-031500/receipts/qa-candidate-credentials.json",
+      "targetRelative": "docs/evidencias/20261010-031500-native23/qa-finalizacao/distribution-031500/receipts/qa-candidate-credentials.json",
+      "sha256": "70b01c7273c730b0881cb6cbc628e5a3f112c87abda08ba731c1e872e7c7daff",
+      "bytes": 683,
+      "group": "distribution"
+    },
+    {
+      "sourceAbsolute": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\distribution-031500\\receipts\\qa-candidate-distribution.json",
+      "sourceRelative": "qa-finalizacao/distribution-031500/receipts/qa-candidate-distribution.json",
+      "targetRelative": "docs/evidencias/20261010-031500-native23/qa-finalizacao/distribution-031500/receipts/qa-candidate-distribution.json",
+      "sha256": "41f560375ac82033960e0ad0a07edf15bdd4f15cc4e8ee7caad7d05e5c8eb3e0",
+      "bytes": 5861,
+      "group": "distribution"
+    },
+    {
+      "sourceAbsolute": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\distribution-031500\\receipts\\qa-candidate-report.json",
+      "sourceRelative": "qa-finalizacao/distribution-031500/receipts/qa-candidate-report.json",
+      "targetRelative": "docs/evidencias/20261010-031500-native23/qa-finalizacao/distribution-031500/receipts/qa-candidate-report.json",
+      "sha256": "10c03f33a46111a4dbb624a839e720462abd0b886ad5b94a01388aef790e1fb2",
+      "bytes": 5141,
+      "group": "distribution"
+    },
+    {
+      "sourceAbsolute": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\distribution-031500\\receipts\\qa-candidate-setup-verify.json",
+      "sourceRelative": "qa-finalizacao/distribution-031500/receipts/qa-candidate-setup-verify.json",
+      "targetRelative": "docs/evidencias/20261010-031500-native23/qa-finalizacao/distribution-031500/receipts/qa-candidate-setup-verify.json",
+      "sha256": "33049086fcf67f128db60af469d6e14068485cdef0f3243cdceedc94ba7eb114",
+      "bytes": 717,
+      "group": "distribution"
+    },
+    {
+      "sourceAbsolute": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\distribution-031500\\receipts\\run-context.json",
+      "sourceRelative": "qa-finalizacao/distribution-031500/receipts/run-context.json",
+      "targetRelative": "docs/evidencias/20261010-031500-native23/qa-finalizacao/distribution-031500/receipts/run-context.json",
+      "sha256": "7fb2444413ccb62ef0795148463a5bfaf302e1dd3a9ffc5c2fdc96aa44458a38",
+      "bytes": 439,
+      "group": "distribution"
+    },
+    {
+      "sourceAbsolute": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\distribution-031500\\receipts\\run-credentials.json",
+      "sourceRelative": "qa-finalizacao/distribution-031500/receipts/run-credentials.json",
+      "targetRelative": "docs/evidencias/20261010-031500-native23/qa-finalizacao/distribution-031500/receipts/run-credentials.json",
+      "sha256": "e814fa8242318e03cee02f5b7665e5ac708ffc225059383d1921aa49b6131796",
+      "bytes": 447,
+      "group": "distribution"
+    },
+    {
+      "sourceAbsolute": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\distribution-031500\\receipts\\run-distribution.json",
+      "sourceRelative": "qa-finalizacao/distribution-031500/receipts/run-distribution.json",
+      "targetRelative": "docs/evidencias/20261010-031500-native23/qa-finalizacao/distribution-031500/receipts/run-distribution.json",
+      "sha256": "961b039edff10b69a426577fdd6480475b90937a29889355e97cb6a275f82b30",
+      "bytes": 449,
+      "group": "distribution"
+    },
+    {
+      "sourceAbsolute": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\distribution-031500\\receipts\\run-report.json",
+      "sourceRelative": "qa-finalizacao/distribution-031500/receipts/run-report.json",
+      "targetRelative": "docs/evidencias/20261010-031500-native23/qa-finalizacao/distribution-031500/receipts/run-report.json",
+      "sha256": "fece8edb30f27dccf1f7a946bd1248f641822b4aa43ef8a8f04ef1491d2dd332",
+      "bytes": 437,
+      "group": "distribution"
+    },
+    {
+      "sourceAbsolute": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\distribution-031500\\receipts\\run-verify.json",
+      "sourceRelative": "qa-finalizacao/distribution-031500/receipts/run-verify.json",
+      "targetRelative": "docs/evidencias/20261010-031500-native23/qa-finalizacao/distribution-031500/receipts/run-verify.json",
+      "sha256": "2258da93418ab1ea7db5e7c3554df28f42781546aaa63aae7ad61d3bd9f9d63b",
+      "bytes": 443,
+      "group": "distribution"
+    },
+    {
+      "sourceAbsolute": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\distribution-031500\\report.json",
+      "sourceRelative": "qa-finalizacao/distribution-031500/report.json",
+      "targetRelative": "docs/evidencias/20261010-031500-native23/qa-finalizacao/distribution-031500/report.json",
+      "sha256": "9cc00b3aae9122afc933afeb5c7d33aa75683c1db6736318e0955035c8eac288",
+      "bytes": 4076,
+      "group": "distribution"
+    },
+    {
+      "sourceAbsolute": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\distribution-031500\\run-candidate.mjs",
+      "sourceRelative": "qa-finalizacao/distribution-031500/run-candidate.mjs",
+      "targetRelative": "docs/evidencias/20261010-031500-native23/qa-finalizacao/distribution-031500/run-candidate.mjs",
+      "sha256": "515ea43d098de6fc36c6d22ff624c351a79fa09d92b1167e086893bb4ac49de5",
+      "bytes": 10832,
+      "group": "distribution"
+    },
+    {
+      "sourceAbsolute": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\finalize-proof-export-031500-native23.mjs",
+      "sourceRelative": "qa-finalizacao/finalize-proof-export-031500-native23.mjs",
+      "targetRelative": "docs/evidencias/20261010-031500-native23/qa-finalizacao/finalize-proof-export-031500-native23.mjs",
+      "sha256": "8e7d388f2d01b01b3c35eb3c535445ebfe5b4c8678a4e44a35040d4b3b077af1",
+      "bytes": 1809,
+      "group": "export-format-guard-provenance"
+    },
+    {
+      "sourceAbsolute": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\freeze-native23-input-handoff.mjs",
+      "sourceRelative": "qa-finalizacao/freeze-native23-input-handoff.mjs",
+      "targetRelative": "docs/evidencias/20261010-031500-native23/qa-finalizacao/freeze-native23-input-handoff.mjs",
+      "sha256": "ef2465fa9e23417a2db8a6d48e1574403cce30eca209637770d6d45cde940c3a",
+      "bytes": 5079,
+      "group": "native23-handoff"
+    },
+    {
+      "sourceAbsolute": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\full-payload-verificado-031500.json",
+      "sourceRelative": "qa-finalizacao/full-payload-verificado-031500.json",
+      "targetRelative": "docs/evidencias/20261010-031500-native23/qa-finalizacao/full-payload-verificado-031500.json",
+      "sha256": "655222345201ef86255e2e58a21e96f1606a690774611b577997215fe016106b",
+      "bytes": 2213,
+      "group": "provenance-and-runtime"
+    },
+    {
+      "sourceAbsolute": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\full-zip-verificado-031500.json",
+      "sourceRelative": "qa-finalizacao/full-zip-verificado-031500.json",
+      "targetRelative": "docs/evidencias/20261010-031500-native23/qa-finalizacao/full-zip-verificado-031500.json",
+      "sha256": "52a830b78df522ba069dac9289fd543bf7cfe98a0086e146a606e0f7358eb72d",
+      "bytes": 2665,
+      "group": "provenance-and-runtime"
+    },
+    {
+      "sourceAbsolute": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\native-build-frozen-500ced5-configured.json",
+      "sourceRelative": "qa-finalizacao/native-build-frozen-500ced5-configured.json",
+      "targetRelative": "docs/evidencias/20261010-031500-native23/qa-finalizacao/native-build-frozen-500ced5-configured.json",
+      "sha256": "d875614e1475a68ff2a65d8db394b63cb45c2d1b62fd6989d2c25374a6050d60",
+      "bytes": 373428,
+      "group": "provenance-and-runtime"
+    },
+    {
+      "sourceAbsolute": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\native-build-frozen-709f101-configured.json",
+      "sourceRelative": "qa-finalizacao/native-build-frozen-709f101-configured.json",
+      "targetRelative": "docs/evidencias/20261010-031500-native23/qa-finalizacao/native-build-frozen-709f101-configured.json",
+      "sha256": "3cb8f18d3fe021d931fc3f980f8f573b9008b3fce519bef6c897be42a65f7528",
+      "bytes": 373428,
+      "group": "provenance-and-runtime"
+    },
+    {
+      "sourceAbsolute": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\native22-031500-recovery-continuation\\PROVENANCE.json",
+      "sourceRelative": "qa-finalizacao/native22-031500-recovery-continuation/PROVENANCE.json",
+      "targetRelative": "docs/evidencias/20261010-031500-native23/qa-finalizacao/native22-031500-recovery-continuation/PROVENANCE.json",
+      "sha256": "c5c12220a6776abaed38f36c838487d17300924182eda505c1aa2461da2d7af4",
+      "bytes": 759,
+      "group": "composite"
+    },
+    {
+      "sourceAbsolute": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\native22-031500-recovery-continuation\\run.mjs",
+      "sourceRelative": "qa-finalizacao/native22-031500-recovery-continuation/run.mjs",
+      "targetRelative": "docs/evidencias/20261010-031500-native23/qa-finalizacao/native22-031500-recovery-continuation/run.mjs",
+      "sha256": "e3f92e9bf28f9162b53f76cbc99d22f361e52d333f026260041070f1bf38d35f",
+      "bytes": 15572,
+      "group": "composite"
+    },
+    {
+      "sourceAbsolute": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\native22-031500-recovery-final-probe\\finalize.mjs",
+      "sourceRelative": "qa-finalizacao/native22-031500-recovery-final-probe/finalize.mjs",
+      "targetRelative": "docs/evidencias/20261010-031500-native23/qa-finalizacao/native22-031500-recovery-final-probe/finalize.mjs",
+      "sha256": "4be0eccf2b0e3a59f51c9d0fe7624ba1a3db643da2074dfcf1f92fde83648bce",
+      "bytes": 10669,
+      "group": "composite"
+    },
+    {
+      "sourceAbsolute": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\native22-installed-qr-ticker-recovery-retry1\\inspect-frame.py",
+      "sourceRelative": "qa-finalizacao/native22-installed-qr-ticker-recovery-retry1/inspect-frame.py",
+      "targetRelative": "docs/evidencias/20261010-031500-native23/qa-finalizacao/native22-installed-qr-ticker-recovery-retry1/inspect-frame.py",
+      "sha256": "2ef1fe11c5b30dc53e9382e856f3fbbae79839def65136971397527f43b92f74",
+      "bytes": 762,
+      "group": "composite"
+    },
+    {
+      "sourceAbsolute": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\native22-installed-qr-ticker-recovery-retry1\\installed-titles.mjs",
+      "sourceRelative": "qa-finalizacao/native22-installed-qr-ticker-recovery-retry1/installed-titles.mjs",
+      "targetRelative": "docs/evidencias/20261010-031500-native23/qa-finalizacao/native22-installed-qr-ticker-recovery-retry1/installed-titles.mjs",
+      "sha256": "5460a59a707605fa65cac779654ff1df340d3e05fca1ab3755439f90ffe70cf2",
+      "bytes": 12444,
+      "group": "composite"
+    },
+    {
+      "sourceAbsolute": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\native22-installed-qr-ticker-recovery-retry1\\PROVENANCE.json",
+      "sourceRelative": "qa-finalizacao/native22-installed-qr-ticker-recovery-retry1/PROVENANCE.json",
+      "targetRelative": "docs/evidencias/20261010-031500-native23/qa-finalizacao/native22-installed-qr-ticker-recovery-retry1/PROVENANCE.json",
+      "sha256": "6706d5d3177c5e997c12556d9be87203a350652dc4237f46617da16833a5aa93",
+      "bytes": 1652,
+      "group": "composite"
+    },
+    {
+      "sourceAbsolute": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\native22-installed-qr-ticker-recovery-retry1\\run-installed.mjs",
+      "sourceRelative": "qa-finalizacao/native22-installed-qr-ticker-recovery-retry1/run-installed.mjs",
+      "targetRelative": "docs/evidencias/20261010-031500-native23/qa-finalizacao/native22-installed-qr-ticker-recovery-retry1/run-installed.mjs",
+      "sha256": "b84d8a9adac7a708dfb59cb531384182e4a2e1ad73990e29200a66b6afc0878f",
+      "bytes": 13246,
+      "group": "composite"
+    },
+    {
+      "sourceAbsolute": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\native22-installed-qr-ticker-recovery-retry2\\inspect-frame.py",
+      "sourceRelative": "qa-finalizacao/native22-installed-qr-ticker-recovery-retry2/inspect-frame.py",
+      "targetRelative": "docs/evidencias/20261010-031500-native23/qa-finalizacao/native22-installed-qr-ticker-recovery-retry2/inspect-frame.py",
+      "sha256": "2ef1fe11c5b30dc53e9382e856f3fbbae79839def65136971397527f43b92f74",
+      "bytes": 762,
+      "group": "composite"
+    },
+    {
+      "sourceAbsolute": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\native22-installed-qr-ticker-recovery-retry2\\inspect-recovered-media.mjs",
+      "sourceRelative": "qa-finalizacao/native22-installed-qr-ticker-recovery-retry2/inspect-recovered-media.mjs",
+      "targetRelative": "docs/evidencias/20261010-031500-native23/qa-finalizacao/native22-installed-qr-ticker-recovery-retry2/inspect-recovered-media.mjs",
+      "sha256": "a4c1cba5fd1f1388c6df696451970479099ee8522ec5b61c6d671ad66e068e37",
+      "bytes": 3142,
+      "group": "composite"
+    },
+    {
+      "sourceAbsolute": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\native22-installed-qr-ticker-recovery-retry2\\installed-titles.mjs",
+      "sourceRelative": "qa-finalizacao/native22-installed-qr-ticker-recovery-retry2/installed-titles.mjs",
+      "targetRelative": "docs/evidencias/20261010-031500-native23/qa-finalizacao/native22-installed-qr-ticker-recovery-retry2/installed-titles.mjs",
+      "sha256": "4e5dfb6d59ee3d002fe13cdec92e67376615c37481ab2317bdf8795427ca1d5d",
+      "bytes": 12964,
+      "group": "composite"
+    },
+    {
+      "sourceAbsolute": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\native22-installed-qr-ticker-recovery-retry2\\probe-body-natural.mjs",
+      "sourceRelative": "qa-finalizacao/native22-installed-qr-ticker-recovery-retry2/probe-body-natural.mjs",
+      "targetRelative": "docs/evidencias/20261010-031500-native23/qa-finalizacao/native22-installed-qr-ticker-recovery-retry2/probe-body-natural.mjs",
+      "sha256": "11018a7af312d67a5e9d236632b7a3be736ed8e49ac58697c676b0d7f7f9554c",
+      "bytes": 7969,
+      "group": "composite"
+    },
+    {
+      "sourceAbsolute": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\native22-installed-qr-ticker-recovery-retry2\\PROVENANCE.json",
+      "sourceRelative": "qa-finalizacao/native22-installed-qr-ticker-recovery-retry2/PROVENANCE.json",
+      "targetRelative": "docs/evidencias/20261010-031500-native23/qa-finalizacao/native22-installed-qr-ticker-recovery-retry2/PROVENANCE.json",
+      "sha256": "4afb766cf9a6bb74a3fec71d44d0cd972fcac1ad3fe40ab397672aba2cbf000b",
+      "bytes": 1883,
+      "group": "composite"
+    },
+    {
+      "sourceAbsolute": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\native22-installed-qr-ticker-recovery-retry2\\run-installed.mjs",
+      "sourceRelative": "qa-finalizacao/native22-installed-qr-ticker-recovery-retry2/run-installed.mjs",
+      "targetRelative": "docs/evidencias/20261010-031500-native23/qa-finalizacao/native22-installed-qr-ticker-recovery-retry2/run-installed.mjs",
+      "sha256": "b84d8a9adac7a708dfb59cb531384182e4a2e1ad73990e29200a66b6afc0878f",
+      "bytes": 13246,
+      "group": "composite"
+    },
+    {
+      "sourceAbsolute": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\native22-installed-qr-ticker-recovery-retry2\\transition-diagnosis.json",
+      "sourceRelative": "qa-finalizacao/native22-installed-qr-ticker-recovery-retry2/transition-diagnosis.json",
+      "targetRelative": "docs/evidencias/20261010-031500-native23/qa-finalizacao/native22-installed-qr-ticker-recovery-retry2/transition-diagnosis.json",
+      "sha256": "b141eec9ddd9971432cf2cf496c598002ab9e17d2e206764f26e72f57375127a",
+      "bytes": 2667,
+      "group": "composite"
+    },
+    {
+      "sourceAbsolute": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\native22-installed-qr-ticker-recovery\\derivation.json",
+      "sourceRelative": "qa-finalizacao/native22-installed-qr-ticker-recovery/derivation.json",
+      "targetRelative": "docs/evidencias/20261010-031500-native23/qa-finalizacao/native22-installed-qr-ticker-recovery/derivation.json",
+      "sha256": "ec475ca25177f579cb6b11c1057aff1c0b80ff2b579cc1285d07ffff70e493cc",
+      "bytes": 2247,
+      "group": "composite"
+    },
+    {
+      "sourceAbsolute": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\native22-installed-qr-ticker-recovery\\future-recipe-provenance.json",
+      "sourceRelative": "qa-finalizacao/native22-installed-qr-ticker-recovery/future-recipe-provenance.json",
+      "targetRelative": "docs/evidencias/20261010-031500-native23/qa-finalizacao/native22-installed-qr-ticker-recovery/future-recipe-provenance.json",
+      "sha256": "4357c29cbfe64dfff4bf998ef9d7b7a6c22f4663d626c8393bf8d53b97b27ba3",
+      "bytes": 564,
+      "group": "composite"
+    },
+    {
+      "sourceAbsolute": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\native22-installed-qr-ticker-recovery\\inspect-frame.py",
+      "sourceRelative": "qa-finalizacao/native22-installed-qr-ticker-recovery/inspect-frame.py",
+      "targetRelative": "docs/evidencias/20261010-031500-native23/qa-finalizacao/native22-installed-qr-ticker-recovery/inspect-frame.py",
+      "sha256": "2ef1fe11c5b30dc53e9382e856f3fbbae79839def65136971397527f43b92f74",
+      "bytes": 762,
+      "group": "composite"
+    },
+    {
+      "sourceAbsolute": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\native22-installed-qr-ticker-recovery\\installed-titles.mjs",
+      "sourceRelative": "qa-finalizacao/native22-installed-qr-ticker-recovery/installed-titles.mjs",
+      "targetRelative": "docs/evidencias/20261010-031500-native23/qa-finalizacao/native22-installed-qr-ticker-recovery/installed-titles.mjs",
+      "sha256": "efd990847a578fcee663e0662ac362f26961c347e70d21432397de0b862650eb",
+      "bytes": 12423,
+      "group": "composite"
+    },
+    {
+      "sourceAbsolute": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\native22-installed-qr-ticker-recovery\\PREPARATION.json",
+      "sourceRelative": "qa-finalizacao/native22-installed-qr-ticker-recovery/PREPARATION.json",
+      "targetRelative": "docs/evidencias/20261010-031500-native23/qa-finalizacao/native22-installed-qr-ticker-recovery/PREPARATION.json",
+      "sha256": "898c10e69e1112b205541150c99809012cfb126499dcbdbb0f4e7c52b0b78bdd",
+      "bytes": 2354,
+      "group": "composite"
+    },
+    {
+      "sourceAbsolute": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\native22-installed-qr-ticker-recovery\\prepare-plugin-future.ps1",
+      "sourceRelative": "qa-finalizacao/native22-installed-qr-ticker-recovery/prepare-plugin-future.ps1",
+      "targetRelative": "docs/evidencias/20261010-031500-native23/qa-finalizacao/native22-installed-qr-ticker-recovery/prepare-plugin-future.ps1",
+      "sha256": "6c2157a884781f9850855782e95cbf6eb166887711dd8fa1cfff6affee5634f3",
+      "bytes": 3073,
+      "group": "composite"
+    },
+    {
+      "sourceAbsolute": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\native22-installed-qr-ticker-recovery\\README.md",
+      "sourceRelative": "qa-finalizacao/native22-installed-qr-ticker-recovery/README.md",
+      "targetRelative": "docs/evidencias/20261010-031500-native23/qa-finalizacao/native22-installed-qr-ticker-recovery/README.md",
+      "sha256": "2a99f5aa84e4210236e8274f2d5bcd89d29ec47438129b29e9c40148457863de",
+      "bytes": 3966,
+      "group": "composite"
+    },
+    {
+      "sourceAbsolute": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\native22-installed-qr-ticker-recovery\\run-installed.mjs",
+      "sourceRelative": "qa-finalizacao/native22-installed-qr-ticker-recovery/run-installed.mjs",
+      "targetRelative": "docs/evidencias/20261010-031500-native23/qa-finalizacao/native22-installed-qr-ticker-recovery/run-installed.mjs",
+      "sha256": "5c3f45f8a3076a6add729aa3eb8c465550895cf56380d00656ba2f7436462361",
+      "bytes": 13156,
+      "group": "composite"
+    },
+    {
+      "sourceAbsolute": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\native23-input-handoff-retry1-provenance.json",
+      "sourceRelative": "qa-finalizacao/native23-input-handoff-retry1-provenance.json",
+      "targetRelative": "docs/evidencias/20261010-031500-native23/qa-finalizacao/native23-input-handoff-retry1-provenance.json",
+      "sha256": "1b56d70be975d2fe7e3c76180a55977ada00a124ebbd3518946e1c2c612c65b8",
+      "bytes": 1429,
+      "group": "native23-handoff"
+    },
+    {
+      "sourceAbsolute": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\native23-input-handoff-retry1.mjs",
+      "sourceRelative": "qa-finalizacao/native23-input-handoff-retry1.mjs",
+      "targetRelative": "docs/evidencias/20261010-031500-native23/qa-finalizacao/native23-input-handoff-retry1.mjs",
+      "sha256": "c9ace3e9c7af220ff262e33698933aaae933b88bf7cf8b8341298c65d958cadd",
+      "bytes": 16194,
+      "group": "native23-handoff"
+    },
+    {
+      "sourceAbsolute": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\native23-input-handoff-retry1\\ALLOWLIST.json",
+      "sourceRelative": "qa-finalizacao/native23-input-handoff-retry1/ALLOWLIST.json",
+      "targetRelative": "docs/evidencias/20261010-031500-native23/qa-finalizacao/native23-input-handoff-retry1/ALLOWLIST.json",
+      "sha256": "2decf39ca2147821c02aede4101c3081a66fa3f6ec209d1d6660cb02db0505f4",
+      "bytes": 2487,
+      "group": "native23-handoff"
+    },
+    {
+      "sourceAbsolute": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\native23-input-handoff-retry1\\preparation.json",
+      "sourceRelative": "qa-finalizacao/native23-input-handoff-retry1/preparation.json",
+      "targetRelative": "docs/evidencias/20261010-031500-native23/qa-finalizacao/native23-input-handoff-retry1/preparation.json",
+      "sha256": "b4133483ae241b3d36d5ec2a3466faa82a43881a60dcd8e1eda4ec40c3866446",
+      "bytes": 357953,
+      "group": "native23-handoff"
+    },
+    {
+      "sourceAbsolute": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\native23-input-handoff-retry1\\receipt.json",
+      "sourceRelative": "qa-finalizacao/native23-input-handoff-retry1/receipt.json",
+      "targetRelative": "docs/evidencias/20261010-031500-native23/qa-finalizacao/native23-input-handoff-retry1/receipt.json",
+      "sha256": "11c5ccdb6f2e808fe840575bc633fb7fd1a8506af04d5c32d5bb79fad9969020",
+      "bytes": 365445,
+      "group": "native23-handoff"
+    },
+    {
+      "sourceAbsolute": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\native23-input-handoff-retry1\\report.json",
+      "sourceRelative": "qa-finalizacao/native23-input-handoff-retry1/report.json",
+      "targetRelative": "docs/evidencias/20261010-031500-native23/qa-finalizacao/native23-input-handoff-retry1/report.json",
+      "sha256": "65dec5a0de414f91134a3c3da3611b82ac9ca20a7663c2c4349326f218055760",
+      "bytes": 5685,
+      "group": "native23-handoff"
+    },
+    {
+      "sourceAbsolute": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\native23-input-handoff.mjs",
+      "sourceRelative": "qa-finalizacao/native23-input-handoff.mjs",
+      "targetRelative": "docs/evidencias/20261010-031500-native23/qa-finalizacao/native23-input-handoff.mjs",
+      "sha256": "92522276be5d6d462f75c7d8a5990b1d5bc9cbf78c0346fb7978eca7e30470f4",
+      "bytes": 15761,
+      "group": "native23-handoff"
+    },
+    {
+      "sourceAbsolute": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\native23-input-handoff\\preparation.json",
+      "sourceRelative": "qa-finalizacao/native23-input-handoff/preparation.json",
+      "targetRelative": "docs/evidencias/20261010-031500-native23/qa-finalizacao/native23-input-handoff/preparation.json",
+      "sha256": "4694f102b70e0b2c3ca5dea04237559ba09e51ba52c60370bf1abfbb2d109468",
+      "bytes": 357953,
+      "group": "native23-handoff"
+    },
+    {
+      "sourceAbsolute": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\native23-input-handoff\\receipt.json",
+      "sourceRelative": "qa-finalizacao/native23-input-handoff/receipt.json",
+      "targetRelative": "docs/evidencias/20261010-031500-native23/qa-finalizacao/native23-input-handoff/receipt.json",
+      "sha256": "5dd5f9be174d481c9a71e2cab356a63d652dfedabd89de5267ededd1cdc425dd",
+      "bytes": 360226,
+      "group": "native23-handoff"
+    },
+    {
+      "sourceAbsolute": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\native23-outputs-served.mjs",
+      "sourceRelative": "qa-finalizacao/native23-outputs-served.mjs",
+      "targetRelative": "docs/evidencias/20261010-031500-native23/qa-finalizacao/native23-outputs-served.mjs",
+      "sha256": "fb7f75fdd7c9121aab4a7dcb626128edd02f3c0a76769f78bb5c09dac1e3e643",
+      "bytes": 9011,
+      "group": "provenance-and-runtime"
+    },
+    {
+      "sourceAbsolute": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\native23-outputs-served\\preparation.json",
+      "sourceRelative": "qa-finalizacao/native23-outputs-served/preparation.json",
+      "targetRelative": "docs/evidencias/20261010-031500-native23/qa-finalizacao/native23-outputs-served/preparation.json",
+      "sha256": "722a08051f3dace4299ae74d34b56933393e9a9641fa9909ab16dc5e08d7706a",
+      "bytes": 1393,
+      "group": "provenance-and-runtime"
+    },
+    {
+      "sourceAbsolute": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\native23-outputs-served\\receipt.json",
+      "sourceRelative": "qa-finalizacao/native23-outputs-served/receipt.json",
+      "targetRelative": "docs/evidencias/20261010-031500-native23/qa-finalizacao/native23-outputs-served/receipt.json",
+      "sha256": "3771809eabea92f171c3a918196fcb98e9691c4791de514a8cf1e54d11efd764",
+      "bytes": 6498,
+      "group": "provenance-and-runtime"
+    },
+    {
+      "sourceAbsolute": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\native23-outputs-served\\runtime-ready.json",
+      "sourceRelative": "qa-finalizacao/native23-outputs-served/runtime-ready.json",
+      "targetRelative": "docs/evidencias/20261010-031500-native23/qa-finalizacao/native23-outputs-served/runtime-ready.json",
+      "sha256": "bb46baefe48c2a529f77a8884741ec651253e3f8b86dd036d4f22d07215fb1f4",
+      "bytes": 5079,
+      "group": "provenance-and-runtime"
+    },
+    {
+      "sourceAbsolute": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\package-native-startup-031500-composite-allowlist.json",
+      "sourceRelative": "qa-finalizacao/package-native-startup-031500-composite-allowlist.json",
+      "targetRelative": "docs/evidencias/20261010-031500-native23/qa-finalizacao/package-native-startup-031500-composite-allowlist.json",
+      "sha256": "be29a6256a3e1a3ceb0355354558bf213830b3112ec49928ef8313f89bd6b556",
+      "bytes": 7422,
+      "group": "composite"
+    },
+    {
+      "sourceAbsolute": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\package-native-startup-031500-composite.json",
+      "sourceRelative": "qa-finalizacao/package-native-startup-031500-composite.json",
+      "targetRelative": "docs/evidencias/20261010-031500-native23/qa-finalizacao/package-native-startup-031500-composite.json",
+      "sha256": "6d5e00479660e437b589547cdd936bbbffd4f2dc410c1e066ebea084de2d9f09",
+      "bytes": 10692,
+      "group": "composite"
+    },
+    {
+      "sourceAbsolute": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\package-native-startup-031500-qr-ticker-recovery-retry1.json",
+      "sourceRelative": "qa-finalizacao/package-native-startup-031500-qr-ticker-recovery-retry1.json",
+      "targetRelative": "docs/evidencias/20261010-031500-native23/qa-finalizacao/package-native-startup-031500-qr-ticker-recovery-retry1.json",
+      "sha256": "a7a1a1540950a6ba87377e73938146ccfc9fc36e204bfae2bfc0315afa46e9e0",
+      "bytes": 2294,
+      "group": "composite"
+    },
+    {
+      "sourceAbsolute": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\package-native-startup-031500-qr-ticker-recovery-retry2.json",
+      "sourceRelative": "qa-finalizacao/package-native-startup-031500-qr-ticker-recovery-retry2.json",
+      "targetRelative": "docs/evidencias/20261010-031500-native23/qa-finalizacao/package-native-startup-031500-qr-ticker-recovery-retry2.json",
+      "sha256": "c1b4a42857fe4f76e14b65bf9d1e785fc61b86390847103578df7a82b74f8a73",
+      "bytes": 2320,
+      "group": "composite"
+    },
+    {
+      "sourceAbsolute": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\package-native-startup-031500-qr-ticker-recovery.json",
+      "sourceRelative": "qa-finalizacao/package-native-startup-031500-qr-ticker-recovery.json",
+      "targetRelative": "docs/evidencias/20261010-031500-native23/qa-finalizacao/package-native-startup-031500-qr-ticker-recovery.json",
+      "sha256": "d1ecad1dc52fe3f27a825e846782aa4a597d9fee0826797f37dc917a5c1ccc42",
+      "bytes": 2258,
+      "group": "composite"
+    },
+    {
+      "sourceAbsolute": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\package-native-startup-031500-recovery-continuation.json",
+      "sourceRelative": "qa-finalizacao/package-native-startup-031500-recovery-continuation.json",
+      "targetRelative": "docs/evidencias/20261010-031500-native23/qa-finalizacao/package-native-startup-031500-recovery-continuation.json",
+      "sha256": "92ce82593e7fc9b3d962a602fc946a454e7a738d933a5fce221adfbd1407edbc",
+      "bytes": 47930,
+      "group": "composite"
+    },
+    {
+      "sourceAbsolute": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\package-native-startup-031500-recovery-final-probe.json",
+      "sourceRelative": "qa-finalizacao/package-native-startup-031500-recovery-final-probe.json",
+      "targetRelative": "docs/evidencias/20261010-031500-native23/qa-finalizacao/package-native-startup-031500-recovery-final-probe.json",
+      "sha256": "d88477abf6e75477113f2e9ca22d29a81410e02b5a6aec348109b5526d832147",
+      "bytes": 6297,
+      "group": "composite"
+    },
+    {
+      "sourceAbsolute": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\prepare-distribution-031500.mjs",
+      "sourceRelative": "qa-finalizacao/prepare-distribution-031500.mjs",
+      "targetRelative": "docs/evidencias/20261010-031500-native23/qa-finalizacao/prepare-distribution-031500.mjs",
+      "sha256": "c5b1aeb9278b6a3286f26a2fa03e82a94d931804ce9317cef0d56d41e9d1e969",
+      "bytes": 2197,
+      "group": "provenance-and-runtime"
+    },
+    {
+      "sourceAbsolute": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\prepare-proof-export-031500-native23-retry1.mjs",
+      "sourceRelative": "qa-finalizacao/prepare-proof-export-031500-native23-retry1.mjs",
+      "targetRelative": "docs/evidencias/20261010-031500-native23/qa-finalizacao/prepare-proof-export-031500-native23-retry1.mjs",
+      "sha256": "1f338250c4371d0c78085fc0d8ba8acb1388038b787b66e862c6f9c0cbec3e95",
+      "bytes": 6847,
+      "group": "export-format-guard-provenance"
+    },
+    {
+      "sourceAbsolute": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\prepare-proof-export-031500-native23.mjs",
+      "sourceRelative": "qa-finalizacao/prepare-proof-export-031500-native23.mjs",
+      "targetRelative": "docs/evidencias/20261010-031500-native23/qa-finalizacao/prepare-proof-export-031500-native23.mjs",
+      "sha256": "7b08ff76fb15349159f31688d3d3ed40e7c493becb0a2fbcdd5ded161d9f05b0",
+      "bytes": 6443,
+      "group": "provenance-and-runtime"
+    },
+    {
+      "sourceAbsolute": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\proof-export-031500-native23-retry1-provenance.json",
+      "sourceRelative": "qa-finalizacao/proof-export-031500-native23-retry1-provenance.json",
+      "targetRelative": "docs/evidencias/20261010-031500-native23/qa-finalizacao/proof-export-031500-native23-retry1-provenance.json",
+      "sha256": "1ad2fcd904c5136219896840ebe37ecfad3614677f42525e859e2a2a458fdf92",
+      "bytes": 510,
+      "group": "export-format-guard-provenance"
+    },
+    {
+      "sourceAbsolute": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\proof-export-031500-native23-retry1\\IAB-CAPTURES-AND-CLOSURE.json",
+      "sourceRelative": "qa-finalizacao/proof-export-031500-native23-retry1/IAB-CAPTURES-AND-CLOSURE.json",
+      "targetRelative": "docs/evidencias/20261010-031500-native23/qa-finalizacao/proof-export-031500-native23-retry1/IAB-CAPTURES-AND-CLOSURE.json",
+      "sha256": "5fddbb5fdd1cd6657841862f777ec0d34a1f60f25f5ad2da85ad9f229ddf7c27",
+      "bytes": 1899,
+      "group": "runtime-review"
+    },
+    {
+      "sourceAbsolute": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\proof-export-031500-native23\\FAIL.json",
+      "sourceRelative": "qa-finalizacao/proof-export-031500-native23/FAIL.json",
+      "targetRelative": "docs/evidencias/20261010-031500-native23/qa-finalizacao/proof-export-031500-native23/FAIL.json",
+      "sha256": "5ce8edb4794fa3c83b7cb5d0181c6171a927952df32c49f7a2009f8703f466b2",
+      "bytes": 280,
+      "group": "export-format-guard-provenance"
+    }
+  ],
+  "excluded": [
+    {
+      "path": "qa-finalizacao/native22-installed-qr-ticker-recovery/ticker-fixture.xml",
+      "reason": "Non-text export (raw logs and binaries excluded)"
+    },
+    {
+      "path": "qa-finalizacao/native22-installed-qr-ticker-recovery-retry1/ticker-fixture.xml",
+      "reason": "Non-text export (raw logs and binaries excluded)"
+    },
+    {
+      "path": "qa-finalizacao/native22-installed-qr-ticker-recovery-retry2/ticker-fixture.xml",
+      "reason": "Non-text export (raw logs and binaries excluded)"
+    },
+    {
+      "path": "qa-finalizacao/distribution-031500/receipts/run-context.log",
+      "reason": "Non-text export (raw logs and binaries excluded)"
+    },
+    {
+      "path": "qa-finalizacao/distribution-031500/receipts/run-credentials.log",
+      "reason": "Non-text export (raw logs and binaries excluded)"
+    },
+    {
+      "path": "qa-finalizacao/distribution-031500/receipts/run-distribution.log",
+      "reason": "Non-text export (raw logs and binaries excluded)"
+    },
+    {
+      "path": "qa-finalizacao/distribution-031500/receipts/run-report.log",
+      "reason": "Non-text export (raw logs and binaries excluded)"
+    },
+    {
+      "path": "qa-finalizacao/distribution-031500/receipts/run-verify.log",
+      "reason": "Non-text export (raw logs and binaries excluded)"
+    }
+  ],
+  "binaryReferences": [
+    {
+      "path": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\native22-031500-recovery-final-probe\\own-restored-body-natural.png",
+      "sha256": "edc486e7c041f73f36fcd31f6686208bc721ad46a08f031c9d6c93ffb308e488",
+      "visuallyReviewed": true,
+      "visibleText": [
+        "Título próprio — São Paulo",
+        "Corpo próprio — imagem e texto recuperados."
+      ],
+      "pngVisible": true,
+      "qrDecoded": true,
+      "framePixelEqualityClaimed": false
+    },
+    {
+      "path": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\entregas\\FreeMix-Studio-Setup-0.1.0-local.20261010031500.exe",
+      "sha256": "616a475d8baa9d317eaf68d7f7acade93bc3d308aa1c8830dd3bc09cc10f520f",
+      "bytes": 1375640362,
+      "authenticodeSigned": false
+    },
+    {
+      "path": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\entregas\\FreeMix-Completo-0.1.0-local.20261010031500.zip",
+      "sha256": "2179ea72ef21bf0eab76423c578761e4b34a7c76311dac15840c6fbd7730a511",
+      "bytes": 1375580374,
+      "crcAndHashesVerified": true
+    },
+    {
+      "path": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\ux-operacao-20261010\\capturas\\12-srt-native23-real-parado.png",
+      "sha256": "b12505e946f86c120143e65c53542659cd51d19b3a29c4b54b2ff16ff7f500ab",
+      "bytes": 81057,
+      "width": 1580,
+      "height": 889,
+      "actualFormat": "JPEG/JFIF",
+      "extensionMatchesFormat": false,
+      "surface": "IAB browser with actual isolated Native23/API backend",
+      "cefVisualProof": false,
+      "rootReportedNoSaveOrStart": true
+    },
+    {
+      "path": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\ux-operacao-20261010\\capturas\\13-multistream-native23-real-parado.png",
+      "sha256": "264a408643db3e1302ce758615d240fb5ec4cbe02a54a700dd0902a0bc8010cc",
+      "bytes": 79809,
+      "width": 1580,
+      "height": 889,
+      "actualFormat": "JPEG/JFIF",
+      "extensionMatchesFormat": false,
+      "surface": "IAB browser with actual isolated Native23/API backend",
+      "cefVisualProof": false,
+      "rootReportedNoSaveOrStart": true
+    }
+  ],
+  "checks": {
+    "originalFrozenHashesVerified": true,
+    "preservedFailReceipts": true,
+    "rawLogsExported": false,
+    "installationConfigsExported": false,
+    "actualOwnCredentialScanPerformed": true
+  },
+  "limits": [
+    "Text paths under TEMP are evidence references only; no TEMP files/configuration included",
+    "Original SHA preserved; parent performs canonical Git copy/commit",
+    "Credential test receipts contain assertions only, no credential values",
+    "Native23 is an isolated QA composition, not a signed new release"
+  ],
+  "parentAllowlistSha256": "4d49acb5f7e5fde566cd996ccd7944eeee23ffba9af7e0317e717b58618496c9",
+  "capturedFormat": "image/jpeg with preserved legacy .png extension",
+  "formatGuardFailPreserved": true
+}

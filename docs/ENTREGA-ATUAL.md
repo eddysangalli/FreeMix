@@ -1,9 +1,9 @@
-# Entrega local — 0.1.0-local.20261010000500
+# Entrega local — 0.1.0-local.20261010031500
 
-Instalador verificado: FreeMix-Studio-Setup-0.1.0-local.20261010000500.exe. Use INSTALAR-FREEMIX.cmd; o launcher confere o hash antes de abrir. Native4793d1a40f56ea9b6e887eb49189d937758e3b7f,21 patches/187 snapshots reconstruídos e verificados,9563arquivos assinados. Código publicado na branch feat/native-menus-config-screens.
+Use **INSTALAR-FREEMIX.cmd**. O inicializador lê entregas/INSTALADOR-ATUAL.json e confere o hash do EXE aprovado031500. Instale em pasta nova/vazia e abra pelo atalho FreeMix Studio. A instalação do operador não foi substituída.
 
-Inclui correções Replay/EOF/sincronismo, SDI HDR guardado, fechamento das duas alocações identificadas, quatro prévias de títulos, marca pública FreeMix, GTZIP Polygon/Path diretos e proteção OAuth dos logs. Duas instalações/importações/diagnósticos/desinstalações e startup PASS com contador0,crashes0,fechamento773ms. Créditos/licenças OBS permanecem.
+Setup SHA256616a475d8baa9d317eaf68d7f7acade93bc3d308aa1c8830dd3bc09cc10f520f. ZIP2179ea72ef21bf0eab76423c578761e4b34a7c76311dac15840c6fbd7730a511.9565 arquivos de payload assinados; Native22/500ced5. Duas instalações reais, migração opt-in, credenciais novas, diagnóstico sem OAuth e desinstalação preservando dados passaram. Preset com QR/ticker/Body/mídia foi recuperado em coleção nova em ensaio composto; FAILs anteriores permanecem registrados. Assinatura interna Ed25519, sem certificado Authenticode.
 
-Transmitir abre MultiStream; Externo reúne SRT/NDI/OMT/SDI; configurações de Gravação/MultiGravação/Replay ficam nas engrenagens próprias. Timeline permite assistir/buscar/marcar IN/OUT durante REC e carregar A/B com autoplay no ar. Detalhes e limites em PENDENCIAS-REAIS.md.
+**Este instalador ainda não contém as novas telas simplificadas, a revisão de latência dos botões ou o Native23/input handoff.** Estão sendo integrados/testados nas fontes e serão empacotados em versão nova, preservando031500 imutável. Veja ATUALIZACAO-20261010.md.
 
-Ponte SRT→NDI alpha beta separada: FreeMix-Ponte-Alpha-Beta-20261009220522.zip. WebBrowser alpha permanece abortado. Nenhuma ativação da mesa, publicação externa ou upload de diagnósticos ocorreu. Equipamentos/WAN/Windows limpo/NDIHDRAdvanced e contratos GTZIP desconhecidos permanecem pendências explícitas.
+Ponte SRT→NDI alpha é beta separada; receptor WebBrowser alpha permanece abortado. Logs em ZIP local para envio manual. Hardware/WAN/licenças e Windows limpo continuam gates explícitos em PENDENCIAS-REAIS.md.

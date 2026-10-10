@@ -1,0 +1,123 @@
+From 709f101d1aaeb25ccc6f6eab77a3e23e9364f3b0 Mon Sep 17 00:00:00 2001
+From: Eddy Sangalli <eddyrodrigues@outlook.com>
+Date: Sat, 10 Oct 2026 00:39:37 -0300
+Subject: [PATCH] Fix input panel handoff and raise source dialogs
+
+---
+ frontend/widgets/FreeMixMultistream.cpp    | 37 ++++++++++++++++++++++
+ frontend/widgets/OBSBasic_MainControls.cpp | 17 ++++++++++
+ 2 files changed, 54 insertions(+)
+
+diff --git a/frontend/widgets/FreeMixMultistream.cpp b/frontend/widgets/FreeMixMultistream.cpp
+index ce5c14b..5b2c80a 100644
+--- a/frontend/widgets/FreeMixMultistream.cpp
++++ b/frontend/widgets/FreeMixMultistream.cpp
+@@ -1426,6 +1426,42 @@ void RequestReorderInputs(obs_data_t *request, obs_data_t *response, void *)
+   obs_data_set_bool(response, "success", OBSBasic::Get()->ReorderFreeMixInputs(keys));
+  }, Qt::BlockingQueuedConnection);
+ }
++// UI handoff: validate first; closing a CEF page must not require a second request from that page.
++void RequestFinishInputPanel(obs_data_t *request, obs_data_t *response, void *)
++{
++ const std::string key = obs_data_get_string(request, "url");
++ const std::string editor = obs_data_get_string(request, "editor");
++ const std::string name = obs_data_get_string(request, "inputName");
++ QMetaObject::invokeMethod(OBSBasic::Get(), [key, editor, name, response]() {
++  auto *main = OBSBasic::Get();
++  if (!main || main->isClosing() || frontendClosing || panelDeletionDepth) { obs_data_set_bool(response,"success",false); obs_data_set_string(response,"error","O FreeMix está encerrando ou fechando outra janela. Tente novamente."); return; }
++  if (!editor.empty() && editor != "properties" && editor != "filters") { obs_data_set_bool(response,"success",false); obs_data_set_string(response,"error","Editor de entrada inválido."); return; }
++  const auto found = panelWindows.find(key);
++  const QPointer<QDialog> panel = found == panelWindows.end() ? nullptr : found->second;
++  OBSSourceAutoRelease retained = editor.empty() ? nullptr : obs_get_source_by_name(name.c_str());
++  OBSSource source(retained);
++  if (!panel || (!editor.empty() && (!source || obs_source_removed(source)))) { obs_data_set_bool(response,"success",false); obs_data_set_string(response,"error","Janela ou entrada não encontrada. A mesa foi preservada."); return; }
++  const QPointer<OBSBasic> owner = main;
++  QTimer::singleShot(0, main, [owner, panel, editor, source]() {
++   if (!owner || owner->isClosing() || frontendClosing || !panel) return;
++   if (!panel->close()) { blog(LOG_WARNING,"FreeMix input handoff: panel refused close; input preserved"); return; }
++   if (editor.empty()) return;
++   // Wait for the existing cooperative CEF destructor, including its nested Qt event loops.
++   auto *timer = new QTimer(owner);
++   timer->setInterval(25);
++   QObject::connect(timer, &QTimer::timeout, owner, [owner, panel, editor, source, timer, tries=0]() mutable {
++    if (!owner || owner->isClosing() || frontendClosing || ++tries > 160 || obs_source_removed(source)) { blog(LOG_WARNING,"FreeMix input handoff cancelled or timed out; input preserved"); timer->stop(); timer->deleteLater(); return; }
++    if (panel || panelDeletionDepth) return;
++    timer->stop(); timer->deleteLater();
++    if (editor == "properties") owner->CreatePropertiesWindow(source);
++    else owner->CreateFiltersWindow(source);
++   });
++   timer->start();
++  });
++  obs_data_set_bool(response,"success",true); obs_data_set_bool(response,"queued",true);
++ }, Qt::BlockingQueuedConnection);
++}
++
+ void RequestClosePanel(obs_data_t *request, obs_data_t *response, void *)
+ {
+  const std::string key = obs_data_get_string(request, "url");
+@@ -1653,6 +1689,7 @@ void RegisterVendor()
+  obs_websocket_vendor_register_request(vendor, "open_settings", RequestOpenSettings, nullptr);
+  obs_websocket_vendor_register_request(vendor, "open_panel", RequestOpenPanel, nullptr);
+ 	obs_websocket_vendor_register_request(vendor, "close_panel", RequestClosePanel, nullptr);
++ obs_websocket_vendor_register_request(vendor, "finish_input_panel", RequestFinishInputPanel, nullptr);
+  obs_websocket_vendor_register_request(vendor, "reorder_inputs", RequestReorderInputs, nullptr);
+  obs_websocket_vendor_register_request(vendor, "talkback", RequestTalkback, nullptr);
+  obs_websocket_vendor_register_request(vendor, "call_audio", FreeMixCallAudioRequest, nullptr);
+diff --git a/frontend/widgets/OBSBasic_MainControls.cpp b/frontend/widgets/OBSBasic_MainControls.cpp
+index 40b3aef..6f738ff 100644
+--- a/frontend/widgets/OBSBasic_MainControls.cpp
++++ b/frontend/widgets/OBSBasic_MainControls.cpp
+@@ -49,6 +49,9 @@
+ 
+ #include <nlohmann/json.hpp>
+ #include <QDesktopServices>
++#include <QApplication>
++#include <QPointer>
++#include <QWindow>
+ 
+ #ifdef _WIN32
+ #include <sstream>
+@@ -85,8 +88,19 @@ void OBSBasic::CreateInteractionWindow(obs_source_t *source)
+ 	interaction->setAttribute(Qt::WA_DeleteOnClose, true);
+ }
+ 
++// Keep OBSBasic as QObject owner; only the transient native window follows the requesting panel.
++static void FreeMixRaiseInputDialog(QWidget *dialog, QWidget *main, const QPointer<QWidget> &requester)
++{
++    if (requester && requester != dialog && requester->isWindow() &&
++        (requester == main || main->isAncestorOf(requester)) && dialog->windowHandle() && requester->windowHandle())
++        dialog->windowHandle()->setTransientParent(requester->windowHandle());
++    dialog->raise();
++    dialog->activateWindow();
++}
++
+ void OBSBasic::CreatePropertiesWindow(obs_source_t *source)
+ {
++	const QPointer<QWidget> requester = QApplication::activeWindow();
+ 	bool closed = true;
+ 	if (properties) {
+ 		closed = properties->close();
+@@ -99,10 +113,12 @@ void OBSBasic::CreatePropertiesWindow(obs_source_t *source)
+ 	properties = new OBSBasicProperties(this, source);
+ 	properties->Init();
+ 	properties->setAttribute(Qt::WA_DeleteOnClose, true);
++	FreeMixRaiseInputDialog(properties, this, requester);
+ }
+ 
+ void OBSBasic::CreateFiltersWindow(obs_source_t *source)
+ {
++	const QPointer<QWidget> requester = QApplication::activeWindow();
+ 	bool closed = true;
+ 	if (filters) {
+ 		closed = filters->close();
+@@ -115,6 +131,7 @@ void OBSBasic::CreateFiltersWindow(obs_source_t *source)
+ 	filters = new OBSBasicFilters(this, source);
+ 	filters->Init();
+ 	filters->setAttribute(Qt::WA_DeleteOnClose, true);
++	FreeMixRaiseInputDialog(filters, this, requester);
+ }
+ 
+ void OBSBasic::updateCheckFinished()
+-- 
+2.56.0.windows.1
+

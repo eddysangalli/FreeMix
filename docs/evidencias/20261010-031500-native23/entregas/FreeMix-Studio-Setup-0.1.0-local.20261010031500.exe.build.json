@@ -1,0 +1,15 @@
+{
+  "format": 1,
+  "output": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\entregas\\FreeMix-Studio-Setup-0.1.0-local.20261010031500.exe",
+  "bytes": 1375640362,
+  "sha256": "616a475d8baa9d317eaf68d7f7acade93bc3d308aa1c8830dd3bc09cc10f520f",
+  "payload": {
+    "zip": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\entregas\\FreeMix-Completo-0.1.0-local.20261010031500.zip",
+    "bytes": 1375580374,
+    "sha256": "2179ea72ef21bf0eab76423c578761e4b34a7c76311dac15840c6fbd7730a511",
+    "root": "FreeMix-Completo-0.1.0-local.20261010031500"
+  },
+  "authenticodeSigned": false,
+  "uninstallerIncluded": true,
+  "builtAt": "2026-10-10T03:35:57.582Z"
+}
