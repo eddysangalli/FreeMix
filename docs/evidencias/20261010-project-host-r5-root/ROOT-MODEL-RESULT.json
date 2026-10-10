@@ -1,0 +1,20 @@
+{
+  "status": "PASS_PURE_ACTUAL_FUNCTIONS",
+  "checks": [
+    "Qualification JSON actual import is false/false; no env fallback",
+    "Actual dispatcher project apply bypasses publicRun and acquires exclusive once",
+    "HTTP old admitted job drains; locked dynamic route 409; health/static stay readable",
+    "Project dispatcher retains local/auth/origin and rejects query/method/body",
+    "Body counts actual UTF8 bytes and preserves split Unicode chunks",
+    "Extracted ACTUAL onEvent ignores transient events and preserves ExitStarted",
+    "Extracted ACTUAL Production installation binds getObs wrapper; default flags remain OFF",
+    "Actual connection paths have no raw fallback and all SDK identity uses connected wrapper",
+    "Extracted ACTUAL startConnection uses wrapper for get_interface/identity, only synthetic functions",
+    "Official closure traverses all new helpers including JSON policy and shared .js files"
+  ],
+  "nativeStarted": false,
+  "apiStarted": false,
+  "browserStarted": false,
+  "canonicalEdited": false,
+  "centralCoverageQualified": false
+}

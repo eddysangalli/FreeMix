@@ -1,0 +1,9 @@
+{
+  "status": "ROOT_CHECK_HARNESS_FAIL_AFTER_SOURCE_COPY",
+  "error": "Closure check omitted existing copiedModuleRoots panel argument; gc-biblioteca-producao imports ../painel/gc/biblioteca/modelos.mjs",
+  "nativeStarted": false,
+  "apiStarted": false,
+  "sourceCopies": 29,
+  "frozenFilesUnchanged": true,
+  "resolution": "R2 verifies all copied hashes and original backups; uses same panel root permitted by production payload applier. No extra path allowed."
+}

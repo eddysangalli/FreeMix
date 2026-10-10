@@ -1,3 +1,7 @@
+import {createCoreProjectBinding} from './projetos/core-host-binding.mjs';
+import {installIsolationHooks} from './projetos/isolation-hooks.mjs';
+import {readProjectOwnerActivity} from './projetos/owner-activity.mjs';
+import {projectQualificationPolicy} from './projetos/qualification-policy.mjs';
 import {dispatchFinalProgramGate,readFinalProgramGate,matchesFinalProgramGate} from './final-program-gate-producao.mjs';
 import {dispatchGtTickerUpdate} from './gc-gtzip.mjs';
 // Shared production operations. Success means the engine accepted and confirmed the operation.
@@ -34,6 +38,14 @@ export function number(value, min, max, label='Valor') {
 }
 
 export class Production {
+  installProjectHost({replay,iso,onlineUpdate,diagnostics}) {
+    if(this.projectBinding)throw Error('PROJECT_HOST_ALREADY_INSTALLED');
+    const owners={production:this,replay,iso,onlineUpdate,diagnostics};
+    const binding=createCoreProjectBinding({root:this.root,InputEngine,getConnection:()=>this.getObs(),readState:()=>this.state,readActivity:()=>readProjectOwnerActivity(owners),...projectQualificationPolicy,nativeRequestNames:{policy:'project_creation_policy',inventory:'project_device_inventory'}});
+    this.projectBinding=binding;
+    this.projectIsolationHooks=installIsolationHooks(binding.gate,owners);
+    return binding;
+  }
   constructor({root,panel,getObs,publish=()=>{},finalProgramGateQualified=false}) {
     this.finalProgramGateQualified=finalProgramGateQualified===true; this.root=root; this.panel=panel; this.getObs=getObs; this.publish=publish; this.tail=Promise.resolve(); this.levels=new Map(); this.generation=0;
     this.state={connected:false,scenes:[],inputs:[],audioInputs:[],media:[],overlays:[],gc:{},revision:0}; this.scope=null; this.dataSources=new DataSources(root);this.inputEngine=new InputEngine(this);this.settingsEngine=new SettingsEngine(this);this.callEngine=new CallEngine(this);

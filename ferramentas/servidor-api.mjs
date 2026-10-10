@@ -1,3 +1,4 @@
+import {createProjectHttpDispatcher,readProjectBody,admitProjectNativeEvent,admitProjectSocketMessage} from './projetos/runtime-admission.mjs';
 import {readOutputsSnapshot} from './read-outputs-snapshot.mjs';
 import {TickerAckBroker,readTickerAckRequest} from './gtzip-ticker-ack.mjs';
 // FreeMix control bridge. Commands use confirmed production operations.
@@ -39,6 +40,7 @@ const onlineUpdate=new OnlineUpdateEngine(ROOT);
 const diagnostics=new DiagnosticCollector(ROOT);
 const replay=new DiskReplay({root:ROOT,getObs:()=>obs,onChange:data=>broadcast({type:'replay_state',data})});
 const iso=new DiskReplay({root:ROOT,getObs:()=>obs,filter:'Gravação ISO',namespace:'freemix-iso',recordingFolder:'iso',onChange:data=>broadcast({type:'iso_state',data})});
+const projectBinding=production.installProjectHost({replay,iso,onlineUpdate,diagnostics});
 production.recoveryEngine.guard=()=>!!(replay.state.rec||iso.state.rec||production.callEngine.returns.timer);
 
 function publicOperation(receipt){
@@ -61,11 +63,11 @@ function authorized(req){
 const json=(res,code,data)=>{res.writeHead(code,{'Content-Type':'application/json; charset=utf-8'});res.end(JSON.stringify(data));};
 async function body(req){let s='';for await(const b of req){s+=b;if(s.length>7*1024*1024)throw new Error('Pedido muito grande');}return JSON.parse(s||'{}');}
 async function startConnection(){
-  if(stopping||obs||connecting)return;connecting=true;const generation=++connectionGeneration;let candidate=null;
+  if(stopping||obs||connecting||projectBinding.gate.shouldSkipBackground())return;connecting=true;const generation=++connectionGeneration;let candidate=null;
   try{
-    const connected=await connect({root:ROOT,events:1|2|4|8|16|64|128|256|512|65536,
-      onEvent:(type,data)=>{if(generation!==connectionGeneration)return;if(type==='ExitStarted'){production.sessionRecovery.finish('normal').catch(()=>{});return;}if(type==='VendorEvent'&&data.vendorName==='freemix-hotkeys'){if(data.eventType==='hotkey')production.globalHotkeys.event(data.eventData);if(data.eventType==='bindings_reset')production.globalHotkeys.disconnected();return;}production.sessionRecovery.onNativeEvent(type,data);if(type==='CurrentProgramSceneChanged'&&obs)replay.onProgramChanged(data.sceneName)?.catch(e=>connectionError('replay-autoplay',e));if(type==='InputVolumeMeters'){production.onMeters(data.inputs);broadcast({type:'meters',inputs:data.inputs});}},
-      onClose:()=>{if(generation!==connectionGeneration)return;connectionGeneration++;obs=null;connectionReady=false;production.disconnected();scheduleConnection();}});
+    const connected=projectBinding.wrapConnection(await connect({root:ROOT,events:1|2|4|8|16|64|128|256|512|65536,
+      onEvent:(type,data)=>{if(generation!==connectionGeneration)return;if(!projectBinding.gate.acceptNativeEvent(type))return;if(type==='ExitStarted'){production.sessionRecovery.finish('normal').catch(()=>{});return;}if(type==='VendorEvent'&&data.vendorName==='freemix-hotkeys'){if(data.eventType==='hotkey')production.globalHotkeys.event(data.eventData);if(data.eventType==='bindings_reset')production.globalHotkeys.disconnected();return;}production.sessionRecovery.onNativeEvent(type,data);if(type==='CurrentProgramSceneChanged'&&obs)replay.onProgramChanged(data.sceneName)?.catch(e=>connectionError('replay-autoplay',e));if(type==='InputVolumeMeters'){production.onMeters(data.inputs);broadcast({type:'meters',inputs:data.inputs});}},
+      onClose:()=>{if(generation!==connectionGeneration)return;connectionGeneration++;obs=null;connectionReady=false;production.disconnected();scheduleConnection();}}));
     candidate=connected;if(stopping||generation!==connectionGeneration){connected.close();return;}obs=connected;
     const motor=(await connected.req('CallVendorRequest',{vendorName:'freemix',requestType:'get_interface',requestData:{}})).responseData;
     await production.sessionRecovery.start({motorIdentity:motor.pid?motor.pid+':'+motor.executable:null});await production.tick();
@@ -94,7 +96,7 @@ async function vmix(fn,p){
   }else throw new Error('Comando não implementado: '+fn);
   await production.run(action,data);
 }
-const routes={'/':'hub','/hub':'hub','/corte':'corte','/playout':'playout','/gc-html':'gc-html','/gc':'gc','/audio':'audio','/replay':'replay','/iso':'iso','/dados':'dados','/compor':'compor','/settings':'settings','/calls':'calls','/macros':'macros','/recuperacao':'recuperacao','/saidas':'saidas','/srt-hdr':'srt-hdr','/rede':'rede','/atalhos':'atalhos','/efeitos':'efeitos','/sinais':'sinais','/atualizacao':'atualizacao','/diagnosticos':'diagnosticos'};
+const routes={'/novo-projeto/':'novo-projeto/index','/':'hub','/hub':'hub','/corte':'corte','/playout':'playout','/gc-html':'gc-html','/gc':'gc','/audio':'audio','/replay':'replay','/iso':'iso','/dados':'dados','/compor':'compor','/settings':'settings','/calls':'calls','/macros':'macros','/recuperacao':'recuperacao','/saidas':'saidas','/srt-hdr':'srt-hdr','/rede':'rede','/atalhos':'atalhos','/efeitos':'efeitos','/sinais':'sinais','/atualizacao':'atualizacao','/diagnosticos':'diagnosticos'};
 const mime={'.html':'text/html; charset=utf-8','.js':'text/javascript; charset=utf-8','.css':'text/css; charset=utf-8','.svg':'image/svg+xml','.png':'image/png','.gif':'image/gif','.jpg':'image/jpeg','.webp':'image/webp','.bmp':'image/bmp','.woff2':'font/woff2','.woff':'font/woff','.ttf':'font/ttf','.otf':'font/otf','.json':'application/json'};
 
 function controlReceipt(request){
@@ -104,17 +106,18 @@ function controlReceipt(request){
   return publicOperation(receipt);
 }
 
-const server=createServer(async(req,res)=>{
+async function handleHttp(req,res){
   let controlOperation;
   try{
     const u=new URL(req.url,'http://localhost'),path=u.pathname;
+    if(path==='/novo-projeto'||path.startsWith('/novo-projeto/')||path.startsWith('/remoto/novo-projeto/')){if(!local(req)||!originAllowed(req))return json(res,403,{success:false,error:'Novo projeto disponível somente neste computador'});if(path==='/novo-projeto'){res.writeHead(303,{Location:'/novo-projeto/'});res.end();return;}}
     res.setHeader('Cache-Control','no-store');res.setHeader('X-Content-Type-Options','nosniff');
     // Health is read by the local file-based CEF desk too. Apply the same
     // restricted origin policy before returning from this early route.
     if(originAllowed(req)&&req.headers.origin){res.setHeader('Access-Control-Allow-Origin',req.headers.origin);res.setHeader('Vary','Origin');res.setHeader('Access-Control-Allow-Headers','Content-Type, Authorization');res.setHeader('Access-Control-Allow-Methods','GET, POST, OPTIONS');}
     if(path==='/api/health'){
       if(!local(req)||!originAllowed(req))return json(res,403,{success:false});
-      return json(res,200,{success:true,app:'FreeMix',protocol:1,installationId,pid:process.pid,connected:!!obs&&connectionReady&&production.state.connected===true,transportConnected:!!obs,connectionErrors,port:PORT});
+      return json(res,200,{success:true,app:'FreeMix',protocol:1,installationId,pid:process.pid,connected:!!obs&&connectionReady&&production.state.connected===true,projectTransaction:projectBinding.gate.status(),transportConnected:!!obs,connectionErrors,port:PORT});
     }
     if(req.method==='OPTIONS'){res.writeHead(originAllowed(req)?204:403).end();return;}
     if(path==='/api/pair'&&req.method==='POST'){
@@ -208,17 +211,18 @@ const server=createServer(async(req,res)=>{
     if(!file){res.writeHead(404).end('Não encontrado');return;}
     try{const data=await readFile(file);res.writeHead(200,{'Content-Type':mime[extname(file)]||'application/octet-stream'});res.end(data);}catch(e){if(e.code==='ENOENT'){res.writeHead(404).end('Não encontrado');}else throw e;}
   }catch(e){const operation=controlReceipt(controlOperation);json(res,400,{success:false,error:e.message,...(operation?{operation}: {})});}
-});
+}
+const server=createServer(createProjectHttpDispatcher({binding:projectBinding,handler:handleHttp,local,authorized,originAllowed,readBody:readProjectBody,json}));
 const wss=new WebSocketServer({noServer:true,maxPayload:32768});
 const callWss=new WebSocketServer({noServer:true,maxPayload:4096});
-server.on('upgrade',(req,socket,head)=>{const u=new URL(req.url,'http://localhost');if(u.pathname==='/api/calls/audio'){
+server.on('upgrade',(req,socket,head)=>{if(projectBinding.gate.shouldSkipBackground()){socket.write('HTTP/1.1 409 Conflict\r\n\r\n');socket.destroy();return;}const u=new URL(req.url,'http://localhost');if(u.pathname==='/api/calls/audio'){
  if(!local(req)||!originAllowed(req)||!equal(u.searchParams.get('token'),production.callEngine.returns.token)){socket.write('HTTP/1.1 401 Unauthorized\r\n\r\n');socket.destroy();return;}
  callWss.handleUpgrade(req,socket,head,ws=>production.callEngine.returns.accept(ws,u.searchParams.get('key')));return;
 }if(u.pathname!=='/ws'||!authorized(req)){socket.write('HTTP/1.1 401 Unauthorized\r\n\r\n');socket.destroy();return;}wss.handleUpgrade(req,socket,head,ws=>wss.emit('connection',ws,req));});
 wss.on('connection',(ws,request)=>{clients.add(ws);ws.send(JSON.stringify({type:'init',data:clean()}));ws.on('close',()=>clients.delete(ws));
-  ws.on('message',async raw=>{let m;try{m=JSON.parse(String(raw));if((String(m.action).startsWith('gc_html_')||m.action==='data_file'||['gc_library_save','gc_library_duplicate','gc_library_remove','gc_library_import','gc_library_export','gc_library_asset','gc_library_variant','gc_library_unlink','gc_library_clock_restart'].includes(m.action)||String(m.action).startsWith('settings_')||String(m.action).startsWith('call_')||String(m.action).startsWith('recovery_')||(String(m.action).startsWith('macro_')&&!['macro_run','macro_cancel'].includes(m.action))||String(m.action).startsWith('outputs_')||String(m.action).startsWith('network_')||String(m.action).startsWith('audio_routing_')||String(m.action).startsWith('effects_')||m.action==='signal_configure'||['controller_save','controller_remove','controller_enable','controller_osc_configure','controller_osc_start','controller_osc_stop'].includes(m.action))&&!local(request))throw new Error('Configuração local só no computador do FreeMix');const data=m.action==='replay'?await replay.command(m.cmd,m):await production.run(m.action,m);ws.send(JSON.stringify({type:'ack',id:m.id,success:true,data}));}catch(e){ws.send(JSON.stringify({type:'ack',id:m?.id,success:false,error:e.message}));}});
+  ws.on('message',async raw=>{let m;try{await admitProjectSocketMessage(projectBinding,async()=>{m=JSON.parse(String(raw));if((String(m.action).startsWith('gc_html_')||m.action==='data_file'||['gc_library_save','gc_library_duplicate','gc_library_remove','gc_library_import','gc_library_export','gc_library_asset','gc_library_variant','gc_library_unlink','gc_library_clock_restart'].includes(m.action)||String(m.action).startsWith('settings_')||String(m.action).startsWith('call_')||String(m.action).startsWith('recovery_')||(String(m.action).startsWith('macro_')&&!['macro_run','macro_cancel'].includes(m.action))||String(m.action).startsWith('outputs_')||String(m.action).startsWith('network_')||String(m.action).startsWith('audio_routing_')||String(m.action).startsWith('effects_')||m.action==='signal_configure'||['controller_save','controller_remove','controller_enable','controller_osc_configure','controller_osc_start','controller_osc_stop'].includes(m.action))&&!local(request))throw new Error('Configuração local só no computador do FreeMix');const data=m.action==='replay'?await replay.command(m.cmd,m):await production.run(m.action,m);ws.send(JSON.stringify({type:'ack',id:m.id,success:true,data}));});}catch(e){ws.send(JSON.stringify({type:'ack',id:m?.id,success:false,error:e.message}));}});
 });
-const ticker=setInterval(async()=>{if(!obs||connecting||pollingGeneration!==null)return;const current=obs,generation=connectionGeneration;pollingGeneration=generation;
+const ticker=setInterval(async()=>{if(!obs||connecting||pollingGeneration!==null||projectBinding.gate.shouldSkipBackground())return;const current=obs,generation=connectionGeneration;pollingGeneration=generation;
  try{await production.tick();if(obs!==current||generation!==connectionGeneration)return;connectionReady=production.state.connected===true;delete connectionErrors.production;production.sessionRecovery.tick();
   for(const [name,component] of [['iso',iso],['replay',replay]]){if(obs!==current||generation!==connectionGeneration)return;try{await component.command('status');delete connectionErrors[name];}catch(e){if(obs===current&&generation===connectionGeneration)connectionError(name,e);}}
  }catch(e){if(obs===current&&generation===connectionGeneration){connectionReady=false;production.disconnected();connectionError('production',e);}}

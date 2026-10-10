@@ -1,0 +1,17 @@
+{
+  "schema": 1,
+  "status": "SOURCE_PREVIEW_RECONNECT_FIX_INTEGRATED",
+  "beforeSha256": "7617bf1de79d5527cd39bc67665252f7d4398e23c085bb3f1690fd7d2d0cf7a5",
+  "sha256": "d47a0c5500769921b3e2e01abe990fab1d3ab81071574752b9c3db1e829be502",
+  "allowlistSha256": "7e3986e247aec7b3ad39c5a6ffdb0a3482e71b5648865de4c54f4f28844ba3b5",
+  "frozenFiles": 10,
+  "rootModels": 3,
+  "sameConnectionAfterTimeoutRefused": true,
+  "newConnectionAllowed": true,
+  "lateOldResultDiscarded": true,
+  "wireCancelled": false,
+  "globalGateReset": false,
+  "projectExecutionQualified": false,
+  "operatorTouched": false,
+  "nativeStarted": false
+}

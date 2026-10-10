@@ -1,0 +1,3 @@
+# Assistente de projetos — integração Root
+
+29 arquivos integrados,10 modelos reais extraídos,28 sintaxes e closure104 PASS. Menu Configurar e Hub dão acesso às três etapas. Criar/scan físicos continuam false/false até qualificação Native/cobertura própria; exportação não é projeto pronto. Delta de reconexão:3 modelos Root PASS, sem cancelamento de wire ou reset do gate. O primeiro check de closure Root incompleto permanece registrado em FIRST-HARNESS-FAIL.json. Navegação, latência, restauração de contexto e persistência reais ainda requerem App32. Nenhuma mesa/configuração do operador ou entrega selecionada foi alterada.

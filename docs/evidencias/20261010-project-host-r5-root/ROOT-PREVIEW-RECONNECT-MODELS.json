@@ -1,0 +1,12 @@
+{
+  "status": "PASS_PURE_TIMEOUT_MODELS",
+  "checks": [
+    "Same connection rejected after timeout; NEW connection succeeds; late wire result ignored",
+    "Connection changes BEFORE old timer fires; old timer cannot poison new identity",
+    "Old result arrives after replacement BEFORE timeout; current context wins without publishing old snapshot"
+  ],
+  "nativeStarted": false,
+  "apiStarted": false,
+  "wireCancelled": false,
+  "globalGateReset": false
+}

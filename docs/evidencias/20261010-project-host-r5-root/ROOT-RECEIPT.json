@@ -1,0 +1,273 @@
+{
+  "schema": 1,
+  "status": "SOURCE_HOST_R5_INTEGRATED_DEFAULT_OFF",
+  "frozenAllowlistSha256": "a12be009abd82984c31a97b1aeccc11affbb3658bbbf42f6a9f3e51bd6d528e6",
+  "frozenFiles": 44,
+  "actualFunctionModels": 10,
+  "syntaxFiles": 24,
+  "products": [
+    {
+      "path": "FreeMix/ferramentas/controle-producao.mjs",
+      "sha256": "304a49022d5447b1d1edf4bb9972c4e127b432efdf44cf79e4443d9b1eb38c1d",
+      "beforeSha256": "be4682074442b6cbb8f06c2aa6638223009abe071b8d769d5a2aac870bd42908"
+    },
+    {
+      "path": "FreeMix/ferramentas/projetos/composition-port.mjs",
+      "sha256": "7a50f99fd149a9ba0e2cfa8e535ae2199235b158823e6cf47bcdc50dfba2cf7b",
+      "beforeSha256": null
+    },
+    {
+      "path": "FreeMix/ferramentas/projetos/composition-presets.js",
+      "sha256": "1a4fb9130506b7b5354ebbaeee54e563f08554be127051bffe619739a79fe8ef",
+      "beforeSha256": null
+    },
+    {
+      "path": "FreeMix/ferramentas/projetos/core-host-binding.mjs",
+      "sha256": "56844aa98269b1f678f750fed60ec49c8eccec60dd2772a15edfc40da758cf3c",
+      "beforeSha256": null
+    },
+    {
+      "path": "FreeMix/ferramentas/projetos/creation-policy.json",
+      "sha256": "f78b2fcee6a73b4bea9859285909709b28fff54dbe4fca3205f8c83a8158b254",
+      "beforeSha256": null
+    },
+    {
+      "path": "FreeMix/ferramentas/projetos/device-discovery.mjs",
+      "sha256": "ee5463f67bc74e4990789ae4312a8db60b9f181f9be3472088faaf4e09c9ea9d",
+      "beforeSha256": null
+    },
+    {
+      "path": "FreeMix/ferramentas/projetos/geometry.js",
+      "sha256": "87b8d67e6f8494310cf518f9aecfa65803eb8e4eea94af9425fcb2f9f98bb5c6",
+      "beforeSha256": null
+    },
+    {
+      "path": "FreeMix/ferramentas/projetos/isolation-hooks.mjs",
+      "sha256": "2fea530cd422bba3926c48a7f2466044ce17e6d498164c22e2f95c7555106e17",
+      "beforeSha256": null
+    },
+    {
+      "path": "FreeMix/ferramentas/projetos/owner-activity.mjs",
+      "sha256": "c681534cb701270b94ab95e767bf68476bbb2a22f6efa674a47cfdf97bb0bf01",
+      "beforeSha256": null
+    },
+    {
+      "path": "FreeMix/ferramentas/projetos/preview-adapter.mjs",
+      "sha256": "7617bf1de79d5527cd39bc67665252f7d4398e23c085bb3f1690fd7d2d0cf7a5",
+      "beforeSha256": null
+    },
+    {
+      "path": "FreeMix/ferramentas/projetos/project-api-adapter.mjs",
+      "sha256": "560cb3838fa6b3520feb9cff6f04199b6531fd9117fa1ab5288cac24306de93a",
+      "beforeSha256": null
+    },
+    {
+      "path": "FreeMix/ferramentas/projetos/project-files.mjs",
+      "sha256": "684c26d41dfbd096d5230ad03b2a67fc081f96a47bef296e1b9df4e7d4e7a82d",
+      "beforeSha256": null
+    },
+    {
+      "path": "FreeMix/ferramentas/projetos/project-isolation-gate.mjs",
+      "sha256": "19ac64e89150a75bd5dd0a8b66bd9bbc08881e16b5154c4a7886d80d7c9f5fa6",
+      "beforeSha256": null
+    },
+    {
+      "path": "FreeMix/ferramentas/projetos/project-provisioner.mjs",
+      "sha256": "cd0755438b4887434e078802b0528e35691585db4980f7b2e277686b3b9ef77a",
+      "beforeSha256": null
+    },
+    {
+      "path": "FreeMix/ferramentas/projetos/qualification-policy.mjs",
+      "sha256": "3da83b3a483b376f8591a0249e980fa281e4509cd088ffd803867a74026a6e82",
+      "beforeSha256": null
+    },
+    {
+      "path": "FreeMix/ferramentas/projetos/runtime-admission.mjs",
+      "sha256": "02d3b1529b0439d995f160ef8189e6ed09eeb151540e7c5067c51de9d3ec89de",
+      "beforeSha256": null
+    },
+    {
+      "path": "FreeMix/ferramentas/projetos/wizard-host.mjs",
+      "sha256": "78863373cbf5a38b2fcbf40bd663e0c78ca4f47bc77d946106b80a282dd3719b",
+      "beforeSha256": null
+    },
+    {
+      "path": "FreeMix/ferramentas/projetos/wizard-model.js",
+      "sha256": "d971b6e41ea918624f64de1adc21bd88fd6a5f031b9851bb4450d34973808e68",
+      "beforeSha256": null
+    },
+    {
+      "path": "FreeMix/ferramentas/servidor-api.mjs",
+      "sha256": "96bd532fd709006d7ddb6b45ee3666235901735f6b407d33acb3f93c75699f85",
+      "beforeSha256": "89d110add5d7af81b651531d77d8d0ed7ea68e2b3a1117858e3feb5e64869017"
+    },
+    {
+      "path": "FreeMix/painel/remoto/novo-projeto/composition-presets.js",
+      "sha256": "1a4fb9130506b7b5354ebbaeee54e563f08554be127051bffe619739a79fe8ef",
+      "beforeSha256": null
+    },
+    {
+      "path": "FreeMix/painel/remoto/novo-projeto/geometry.js",
+      "sha256": "87b8d67e6f8494310cf518f9aecfa65803eb8e4eea94af9425fcb2f9f98bb5c6",
+      "beforeSha256": null
+    },
+    {
+      "path": "FreeMix/painel/remoto/novo-projeto/index.html",
+      "sha256": "6be8843d4a130c753c7299a90159688734a78fb977fc022e159ec1cdd4d15062",
+      "beforeSha256": null
+    },
+    {
+      "path": "FreeMix/painel/remoto/novo-projeto/operacao.css",
+      "sha256": "21269beb83c39c32665a48b2e7cd96ed83b3ea99bce7f04a1d4989ce132a3f34",
+      "beforeSha256": null
+    },
+    {
+      "path": "FreeMix/painel/remoto/novo-projeto/operation-plan.js",
+      "sha256": "d8d8d92209851f08cd05b9b5f7c14ab6df2f782a6f85f79aa282fbfd11193f8e",
+      "beforeSha256": null
+    },
+    {
+      "path": "FreeMix/painel/remoto/novo-projeto/studio-dialog.css",
+      "sha256": "addb0c8279e4f51ebced8517d50cb526eb590ec30c5efdcfd5a08ab84d6c0332",
+      "beforeSha256": null
+    },
+    {
+      "path": "FreeMix/painel/remoto/novo-projeto/wizard-client.js",
+      "sha256": "8659eb527dfcb7fb24ff6982f286f41a15baa8d64716e32e289665b0237a6eb3",
+      "beforeSha256": null
+    },
+    {
+      "path": "FreeMix/painel/remoto/novo-projeto/wizard-model.js",
+      "sha256": "d971b6e41ea918624f64de1adc21bd88fd6a5f031b9851bb4450d34973808e68",
+      "beforeSha256": null
+    },
+    {
+      "path": "FreeMix/painel/remoto/novo-projeto/wizard-ui.js",
+      "sha256": "d158693efb57a19009b267285f08179e46dfe303c6a536d19a4f63980153f303",
+      "beforeSha256": null
+    },
+    {
+      "path": "FreeMix/painel/remoto/novo-projeto/wizard.css",
+      "sha256": "22bdbe824e1b50c54a12800895a2319630d4a9f9821f9f1abd7ff6cf66c6e7dd",
+      "beforeSha256": null
+    }
+  ],
+  "runtimeDependencyClosure": [
+    "../painel/gc/biblioteca/modelos.mjs",
+    "atalhos-globais.mjs",
+    "atualizacao-online.mjs",
+    "atualizar-freemix.mjs",
+    "audio-buses-producao.mjs",
+    "audio-routing-producao.mjs",
+    "automacao-operacional.mjs",
+    "bonding-medicoes.mjs",
+    "bonding-producao.mjs",
+    "bonding-receptor-portatil.mjs",
+    "call-video-codec.mjs",
+    "call-video-native.mjs",
+    "calls-ice.mjs",
+    "calls-producao.mjs",
+    "capacidades-motor.mjs",
+    "composicao-advanced-masks.mjs",
+    "composicao-estilos.mjs",
+    "composicao-fundo.mjs",
+    "composicao-locutor.mjs",
+    "composicao-presets.mjs",
+    "configuracoes-producao.mjs",
+    "controlador-producao.mjs",
+    "controle-producao.mjs",
+    "controller-osc.mjs",
+    "diagnostico-producao.mjs",
+    "diagnostico-zip.mjs",
+    "efeitos-operacoes.mjs",
+    "efeitos-producao.mjs",
+    "efeitos-ptz.mjs",
+    "entradas-producao.mjs",
+    "fila-producao.mjs",
+    "final-program-gate-producao.mjs",
+    "fontes-dados.mjs",
+    "gc-assets.mjs",
+    "gc-biblioteca-producao.mjs",
+    "gc-gtzip.mjs",
+    "gc-html-producao.mjs",
+    "gt_utils.mjs",
+    "gtzip-archive.mjs",
+    "gtzip-fonts.mjs",
+    "gtzip-qr-bundle.mjs",
+    "gtzip-qr.mjs",
+    "gtzip-render.mjs",
+    "gtzip-runtime.mjs",
+    "gtzip-ticker-ack.mjs",
+    "gtzip-ticker.mjs",
+    "gtzip-xml.mjs",
+    "gtzip_converter.mjs",
+    "instalar-portatil.mjs",
+    "macros-producao.mjs",
+    "midia-preview-http.mjs",
+    "multi-rtmp-adapter.mjs",
+    "ndi-producao.mjs",
+    "ndi-runtime.mjs",
+    "obsws.mjs",
+    "omt-hdr-producao.mjs",
+    "omt-producao.mjs",
+    "plugins-defaults.mjs",
+    "preferencias-producao.mjs",
+    "preparar-portatil.mjs",
+    "projetos/composition-port.mjs",
+    "projetos/composition-presets.js",
+    "projetos/core-host-binding.mjs",
+    "projetos/creation-policy.json",
+    "projetos/device-discovery.mjs",
+    "projetos/geometry.js",
+    "projetos/isolation-hooks.mjs",
+    "projetos/owner-activity.mjs",
+    "projetos/preview-adapter.mjs",
+    "projetos/project-api-adapter.mjs",
+    "projetos/project-files.mjs",
+    "projetos/project-isolation-gate.mjs",
+    "projetos/project-provisioner.mjs",
+    "projetos/qualification-policy.mjs",
+    "projetos/runtime-admission.mjs",
+    "projetos/wizard-host.mjs",
+    "projetos/wizard-model.js",
+    "qualidade-model-cache.mjs",
+    "qualidade-producao.mjs",
+    "qualidade-sdk.mjs",
+    "read-outputs-snapshot.mjs",
+    "recuperacao-dependencias.mjs",
+    "recuperacao-estados.mjs",
+    "recuperacao-eventos.mjs",
+    "recuperacao-gtzip.mjs",
+    "recuperacao-importacao.mjs",
+    "recuperacao-instalabilidade.mjs",
+    "recuperacao-inventario.mjs",
+    "recuperacao-producao.mjs",
+    "recuperacao-remota.mjs",
+    "recuperacao-saidas.mjs",
+    "replay-cadence.mjs",
+    "replay-disco.mjs",
+    "replay-preview.mjs",
+    "replay-sincronia.mjs",
+    "retornos-calls.mjs",
+    "saidas-hdr.mjs",
+    "saidas-producao.mjs",
+    "saidas-sdi.mjs",
+    "saidas-srt.mjs",
+    "servidor-api.mjs",
+    "sessao-producao.mjs",
+    "sinais-producao.mjs",
+    "srt-hdr-producao.mjs"
+  ],
+  "coverageQualified": false,
+  "nativeQueriesQualified": false,
+  "nativeStarted": false,
+  "apiStarted": false,
+  "operatorTouched": false,
+  "firstHarnessFailurePreserved": true,
+  "limits": [
+    "Real Native32 queries, rendered UI and ordinary production actions still require own runtime QA",
+    "Gate covers cooperative Node owners, not Native UI or other clients",
+    "Timed-out preview adapter currently requires service restart; reconnection fix is a separate reviewed delta",
+    "No installed release or project creation qualification"
+  ]
+}

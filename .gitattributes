@@ -212,3 +212,6 @@ docs/evidencias/20261010-replay30-real-r3-pass/** -text -whitespace
 docs/evidencias/20261010-native32-build/** -text -whitespace
 
 docs/historico/20261010-1335-before-replay-quality-native32/** -text -whitespace
+
+docs/evidencias/20261010-project-host-r5-root/** -text -whitespace
+docs/historico/20261010-1405-before-project-host-r5/** -text -whitespace

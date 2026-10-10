@@ -1,0 +1,23 @@
+{
+  "schema": 1,
+  "status": "SOURCE_PROJECT_MENU_LINK_ADDED",
+  "files": [
+    {
+      "path": "painel/mesa.html",
+      "beforeSha256": "c8fddf150a9aae30242da1e5c9d38159ba881b9d0503a3093652e5c477edf798",
+      "sha256": "249d46a91da15f59fb693334e8687b8a619949f221d8e86b81d27069b04431e7"
+    },
+    {
+      "path": "painel/remoto/hub.html",
+      "beforeSha256": "7add6a2866fb3baf0300639b79df3a75674313f133490d717a43fea099272de9",
+      "sha256": "7ad6ae843bf00bdc65be5cd659cd2cc488d03b058b995e604b09a4c5511f35e5"
+    }
+  ],
+  "inlineScriptsSyntax": 1,
+  "existingHealthAndWindowLaunchRetained": true,
+  "projectCreationQualified": false,
+  "operatorTouched": false,
+  "limits": [
+    "Rendered popup navigation and pointer timing require own App32 QA"
+  ]
+}

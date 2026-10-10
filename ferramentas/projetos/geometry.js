@@ -1,0 +1,1 @@
+export function orientationViewport(video,orientation){const aspect=video.baseWidth/video.baseHeight;if(orientation==='portrait'&&aspect>9/16){const width=(9/16)/aspect;return [(1-width)/2,0,width,1];}if(orientation==='landscape'&&aspect<16/9){const height=aspect/(16/9);return [0,(1-height)/2,1,height];}return [0,0,1,1];}
