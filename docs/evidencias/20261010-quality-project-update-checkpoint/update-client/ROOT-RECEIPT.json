@@ -1,0 +1,26 @@
+{
+  "status": "PASS_CLIENT_SOURCE_INTEGRATED",
+  "at": "2026-10-10T12:47:08.373Z",
+  "changes": [
+    {
+      "path": "FreeMix/ferramentas/verificar-atualizacoes.mjs",
+      "baselineSha256": "a4b7372e37b022200138a09495bb0e67df715c5227a6e38655c23c5e33d51715",
+      "draftSha256": "d0bb8a654b19384dcc0ab44a1c49ac11209a1d042d2e5380f0737cc72495d3c0",
+      "bytes": 2418
+    }
+  ],
+  "checks": [
+    "Hash rebasing refused before filesystem/network operations",
+    "Changed component stays unapproved; upstream version is advisory only",
+    "Actual installed CLI --fixar exits1 and preserves component manifest"
+  ],
+  "networkRequests": 0,
+  "nativeSDKChanged": false,
+  "stockPluginUpdatesNotYetBlocked": true,
+  "operatorTouched": false,
+  "selectedInstallerChanged": false,
+  "limits": [
+    "Only client component verification source integrated; Native updater guards and DistroAV fork remain uncompiled drafts.",
+    "VM upstream response is synthetic; actual CLI refusal executed without network."
+  ]
+}

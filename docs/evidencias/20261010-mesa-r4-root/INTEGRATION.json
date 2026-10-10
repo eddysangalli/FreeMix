@@ -1,0 +1,46 @@
+{
+  "status": "OFFSIDE_R4_NOT_APPLIED",
+  "target": "FreeMix/painel/mesa.html",
+  "baselineSha256": "29d158e2b1f0268e45c1697aa160227f9e49a143096862e6566bad0c7159c79f",
+  "draftSha256": "c8fddf150a9aae30242da1e5c9d38159ba881b9d0503a3093652e5c477edf798",
+  "readOnlyReferencePins": [
+    {
+      "path": "FreeMix/painel/mesa.html",
+      "sha256": "29d158e2b1f0268e45c1697aa160227f9e49a143096862e6566bad0c7159c79f"
+    },
+    {
+      "path": "FreeMix/ferramentas/controle-producao.mjs",
+      "sha256": "be4682074442b6cbb8f06c2aa6638223009abe071b8d769d5a2aac870bd42908"
+    },
+    {
+      "path": "FreeMix/ferramentas/servidor-api.mjs",
+      "sha256": "89d110add5d7af81b651531d77d8d0ed7ea68e2b3a1117858e3feb5e64869017"
+    },
+    {
+      "path": "freemix-app/frontend/widgets/FreeMixMultistream.cpp",
+      "sha256": "c56f7ecd8bd0c0838a71eacda3fb0cc4e5b77bace6bf54ad1d627176a2eb8af1"
+    },
+    {
+      "path": "freemix-app/frontend/widgets/OBSBasic_MainControls.cpp",
+      "sha256": "6d9c8e03f0e56500b88580f2301599e5889c5f24cd7fb589ec68588ba5b2f582"
+    },
+    {
+      "path": "freemix-app/plugins/obs-websocket/src/requesthandler/RequestHandler_Scenes.cpp",
+      "sha256": "f23e0ca32c0bc2e847dd0222ac0c6a2c6cb5877a4f3a21f66980ef18975c2ce8"
+    },
+    {
+      "path": "freemix-app/plugins/obs-websocket/src/requesthandler/RequestHandler_Filters.cpp",
+      "sha256": "0335ed70e9fec601b9c9d4c8cf937a80b459f1b665606abd0e43c3ca9a376d2b"
+    },
+    {
+      "path": "freemix-app/plugins/obs-websocket/src/utils/Obs_ArrayHelper.cpp",
+      "sha256": "48f6b49f13c17165b98ac9e0165075d88f9250b0eb44c13eae9dfd97db0852ea"
+    }
+  ],
+  "canonicalModified": false,
+  "nativeExecuted": false,
+  "priorR2AllowlistSha256": "cb6d8f3a95c5ec9dd6fe0841caf7b4d0bb16875b422af8227bbdaf6a428b8654",
+  "priorR2DraftSha256": "d12971556feaa2e474025311adfedf9e86cf58c4308fb1ceee7d7718264db224",
+  "priorR3AllowlistSha256": "cfaad5185d714deb3dc24aef6d43d6cfff807ed694785d7642649b68e9bd519b",
+  "priorR3DraftSha256": "64f2ad0e5f35348ee3fb91622291bcf8ec35fefe5f8b45360d418eda544eedd3"
+}

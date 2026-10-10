@@ -719,9 +719,11 @@ body.popup-mode #pop[data-panel="add"] .add .types { display:flex; flex-directio
   function previewTakeInput(){const intent=previewIntent;if(intent&&intent.scope===st.preset&&st.scenes.includes(intent.name)&&(!st.sceneKeys[intent.name]||st.sceneKeys[intent.name]===intent.key))return intent.key;previewIntent=null;return st.sceneKeys[st.preview]||st.preview;}
   async function choosePreview(name){
     if(operationalPending)throw Error('Aguarde confirmar o corte antes de trocar o Preview.');
-    if(!st.studio)return productionAction('active',{input:st.sceneKeys[name]||name});
-    const previous=previewIntent,intent={sequence:++previewIntentSequence,name,key:st.sceneKeys[name]||name,scope:st.preset};previewIntent=intent;
-    try{return await req('SetCurrentPreviewScene',{sceneName:name});}
+    const key=st.sceneKeys[name];
+    if(!st.scenes.includes(name)||typeof key!=='string'||!key)throw Error('Entrada não identificada. Atualize a mesa antes de escolher o Preview.');
+    if(!st.studio)return productionAction('active',{input:key});
+    const previous=previewIntent,intent={sequence:++previewIntentSequence,name,key,scope:st.preset};previewIntent=intent;
+    try{return await req('SetCurrentPreviewScene',{sceneUuid:key});}
     catch(error){if(previewIntent?.sequence===intent.sequence&&!error.uncertain)previewIntent=previous;throw error;}
   }
 
@@ -834,23 +836,56 @@ body.popup-mode #pop[data-panel="add"] .add .types { display:flex; flex-directio
     } catch { if (st.keyers !== null) { st.keyers = null; renderTiles(); } }
   }
   // What each entry (scene) holds: media sources for Loop, audio sources for Audio, the recording filter for MultiCorder.
-  async function syncItems() {
+  let itemsReadTask = null, itemsReadAgain = false, itemsReadVersion = 0;
+  function syncItems() {
+    ++itemsReadVersion;
+    if (itemsReadTask) { itemsReadAgain = true; return itemsReadTask; }
+    const connection = ws;
+    itemsReadTask = (async () => {
+      do { itemsReadAgain = false; await readItemsSnapshot(itemsReadVersion, connection); }
+      while (itemsReadAgain && ws===connection && st.on && !mesaDisposed);
+    })().finally(() => { itemsReadTask = null; });
+    return itemsReadTask;
+  }
+  async function readItemsSnapshot(version, connection) {
+    const scope=st.preset, names=st.scenes.slice(), keys=names.map(name=>st.sceneKeys[name]), hasBus=st.busOn===true, hasIso=st.hasIso===true;
+    const current=()=>version===itemsReadVersion && ws===connection && scope===st.preset && st.on && !mesaDisposed &&
+      JSON.stringify(names)===JSON.stringify(st.scenes) && names.every((name,i)=>keys[i]===st.sceneKeys[name]) && (st.busOn===true)===hasBus && (st.hasIso===true)===hasIso;
+    const read = async (type, data, required=true) => {
+      if (!current()) throw Object.assign(Error('Leitura da mesa substituída por outro contexto.'), {readSnapshotObsolete:true});
+      const response=await tryReq(type,data);
+      if (!current()) throw Object.assign(Error('Leitura da mesa substituída por outro contexto.'), {readSnapshotObsolete:true});
+      if (required && (!response || (type==='GetSceneItemList' && !Array.isArray(response.sceneItems)) ||
+          (type==='GetInputSettings' && (!response.inputSettings || typeof response.inputSettings!=='object' || Array.isArray(response.inputSettings))) ||
+          (type==='GetSourceFilterList' && (!Array.isArray(response.filters) || response.filters.some(f=>!f || typeof f.filterName!=='string' ||
+            typeof f.filterEnabled!=='boolean' || !f.filterSettings || typeof f.filterSettings!=='object' || Array.isArray(f.filterSettings))))))
+        throw Error('Não foi possível confirmar as entradas da mesa. O último estado foi preservado.');
+      return response;
+    };
+    try {
     const items = new Map(), loop = new Map(), iso = new Map(), rp = []; let pl = null;
-    for (const name of st.scenes) {
-      const r = await tryReq("GetSceneItemList", { sceneName: name });
+    for (const name of names) {
+      const r = await read("GetSceneItemList", { sceneName: name });
       const list = (r?.sceneItems || []).filter((i) => i.inputKind).map((i) => ({ name: i.sourceName, kind: i.inputKind }));
       items.set(name, list);
       for (const i of list) {
-        if (isMedia(i.kind) && !loop.has(i.name)) loop.set(i.name, !!(await tryReq("GetInputSettings", { inputName: i.name }))?.inputSettings?.[loopKey(i.kind)]);
+        if (isMedia(i.kind) && !loop.has(i.name)) loop.set(i.name, !!(await read("GetInputSettings", { inputName: i.name }))?.inputSettings?.[loopKey(i.kind)]);
         if (i.kind === "replay_source") rp.push({ name: i.name, scene: name });
         if (isPlaylist(i.kind) && !pl) pl = { name: i.name, kind: i.kind, scene: name, state: st.pl?.state, time: st.pl?.time };
       }
-      const f = st.hasIso ? await tryReq("GetSourceFilter", { sourceName: name, filterName: ISO }) : null;
+      const filters = hasIso ? (await read("GetSourceFilterList", { sourceName: name })).filters : [];
+      const f = filters.find(filter=>filter.filterName===ISO);
       iso.set(name, !!f && f.filterEnabled && f.filterSettings?.record_mode === 1);
     }
-    const fx = await tryReq("GetSceneItemList", { sceneName: BUS_SCENE }); st.fixed = new Set((fx?.sceneItems || []).map((i) => i.sourceName).filter((n) => !BUSES.some((b) => b.name === n)));
-    st.items = items; await syncGcNames().catch(() => {}); st.loop = loop; st.iso = iso; st.pl = pl; st.rp = rp;
+    // The private bus scene can legitimately be absent when buses are disabled.
+    const fx = await read("GetSceneItemList", { sceneName: BUS_SCENE }, hasBus);
+    const fixed = new Set((fx?.sceneItems || []).map((i) => i.sourceName).filter((n) => !BUSES.some((b) => b.name === n)));
+    const gcNames = await syncGcNames(items, read);
+    // All required reads succeeded in the captured connection/context; publish atomically.
+    if (!current()) return;
+    st.items = items; st.gcNames = gcNames; st.fixed = fixed; st.loop = loop; st.iso = iso; st.pl = pl; st.rp = rp;
     renderTiles(); if (!dragging) renderMixer(); renderBot(); if (st.pop === "iso" || st.pop === "playlist" || st.pop === "replay") renderPop();
+    } catch (error) { if (!error.readSnapshotObsolete) throw error; }
   }
   let itemsTimer = 0;
   const laterItems = () => { if (!itemsTimer) itemsTimer = setTimeout(() => { itemsTimer = 0; syncItems().catch(() => {}); }, 300); };
@@ -1824,10 +1859,10 @@ body.popup-mode #pop[data-panel="add"] .add .types { display:flex; flex-directio
     const air = gcOnAir(); gcEmit("freemix-gc-air", { names: air });
     for (const [name, url] of gcDefer) if (!air.includes(name)) { gcDefer.delete(name); tryReq("SetInputSettings", { inputName: name, inputSettings: { url } }); }
   }, 2000);
-  async function syncGcNames() {
+  async function syncGcNames(items = st.items, read = tryReq) {
     const names = new Set();
-    for (const n of new Set([...st.items.values()].flat().filter((i) => i.kind === "browser_source").map((i) => i.name))) if (gcParse((await tryReq("GetInputSettings", { inputName: n }))?.inputSettings?.url)) names.add(n);
-    st.gcNames = names;
+    for (const n of new Set([...items.values()].flat().filter((i) => i.kind === "browser_source").map((i) => i.name))) if (gcParse((await read("GetInputSettings", { inputName: n }))?.inputSettings?.url)) names.add(n);
+    return names;
   }
   // Lets the exit animation of the titles of an overlay be seen before the overlay itself is cut.
   const gcLeave = async (scene) => { const names = (st.items.get(scene) || []).filter((i) => st.gcNames.has(i.name)).map((i) => i.name); if (!names.length) return; for (const n of names) await gcEmit("freemix-gc", { name: n, show: false }); await sleep(550); };

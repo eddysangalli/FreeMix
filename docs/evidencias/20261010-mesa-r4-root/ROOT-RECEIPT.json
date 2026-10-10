@@ -1,0 +1,18 @@
+{
+  "status": "SOURCE_INTEGRATED_ROOT_CHECKS_PASS",
+  "checks": 54,
+  "canonical": "FreeMix/painel/mesa.html",
+  "beforeSha256": "29d158e2b1f0268e45c1697aa160227f9e49a143096862e6566bad0c7159c79f",
+  "afterSha256": "c8fddf150a9aae30242da1e5c9d38159ba881b9d0503a3093652e5c477edf798",
+  "inlineSyntax": "PASS",
+  "all12FrozenPinsUnchanged": true,
+  "other7ReferencePinsUnchanged": true,
+  "NativeStarted": false,
+  "operatorTouched": false,
+  "installedRuntimeChanged": false,
+  "limits": [
+    "VM race/state proofs are not pointer timing or general freeze qualification",
+    "Last confirmed snapshot does not prove current recording",
+    "Real installed UI and z-order verification pending"
+  ]
+}

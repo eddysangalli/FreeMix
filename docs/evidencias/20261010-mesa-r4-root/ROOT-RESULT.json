@@ -1,0 +1,231 @@
+{
+  "status": "PASS",
+  "checks": 54,
+  "results": [
+    {
+      "name": "Baseline bug reproduced: concurrent old reads commit stale loop after newer snapshot",
+      "status": "PASS"
+    },
+    {
+      "name": "Draft coalesces reads and discards superseded snapshot before render",
+      "status": "PASS"
+    },
+    {
+      "name": "Twenty refresh requests collapse to one additional read",
+      "status": "PASS"
+    },
+    {
+      "name": "Scope switch rejects previous project data before commit",
+      "status": "PASS"
+    },
+    {
+      "name": "Same name recreated with new scene UUID rejects old snapshot",
+      "status": "PASS"
+    },
+    {
+      "name": "Removal/reordering during await rejects old topology",
+      "status": "PASS"
+    },
+    {
+      "name": "Disconnect blocks commit and rerun",
+      "status": "PASS"
+    },
+    {
+      "name": "Page teardown blocks commit and coalesced new work",
+      "status": "PASS"
+    },
+    {
+      "name": "Read error releases shared task for later explicit refresh",
+      "status": "PASS"
+    },
+    {
+      "name": "GC discovery works on own snapshot and commits together",
+      "status": "PASS"
+    },
+    {
+      "name": "Delayed GC cannot partially mutate items before completion",
+      "status": "PASS"
+    },
+    {
+      "name": "All refresh requests remain GET-only, never touch take/outputs/audio",
+      "status": "PASS"
+    },
+    {
+      "name": "Baseline Preview uses name despite capturing UUID",
+      "status": "PASS"
+    },
+    {
+      "name": "Draft Preview sends UUID and excludes name fallback",
+      "status": "PASS"
+    },
+    {
+      "name": "Unknown UUID or removed scene refuses Preview without dispatch",
+      "status": "PASS"
+    },
+    {
+      "name": "Pending Cut blocks Preview without changing intent",
+      "status": "PASS"
+    },
+    {
+      "name": "Non-studio active route receives UUID and preserves production guard",
+      "status": "PASS"
+    },
+    {
+      "name": "Old rejection after new Preview cannot restore old intent",
+      "status": "PASS"
+    },
+    {
+      "name": "Uncertain Preview outcome retains target without retry",
+      "status": "PASS"
+    },
+    {
+      "name": "Cut/operation reconciliation/WS deadline and render helpers byte-identical",
+      "status": "PASS"
+    },
+    {
+      "name": "Every canonical reference pin and draft SHA unchanged",
+      "status": "PASS"
+    },
+    {
+      "name": "R2 reconnection bug reproduced: swallowed failed old GET commits false Loop on new same-ID socket",
+      "status": "PASS"
+    },
+    {
+      "name": "R3 rejects delayed old socket response after disconnect/reconnect with identical scope and UUID",
+      "status": "PASS"
+    },
+    {
+      "name": "Connection identity checked before each subsequent scene GET; new socket receives no obsolete follow-up",
+      "status": "PASS"
+    },
+    {
+      "name": "Connection change during final GC settings blocks both commit and trailing GC reads",
+      "status": "PASS"
+    },
+    {
+      "name": "Failed required GET retains complete prior snapshot: null scene list",
+      "status": "PASS"
+    },
+    {
+      "name": "Failed required GET retains complete prior snapshot: missing scene list",
+      "status": "PASS"
+    },
+    {
+      "name": "Failed required GET retains complete prior snapshot: non-array scene list",
+      "status": "PASS"
+    },
+    {
+      "name": "Failed required GET retains complete prior snapshot: null input settings",
+      "status": "PASS"
+    },
+    {
+      "name": "Failed required GET retains complete prior snapshot: missing input settings",
+      "status": "PASS"
+    },
+    {
+      "name": "Failed required GET retains complete prior snapshot: null settings object",
+      "status": "PASS"
+    },
+    {
+      "name": "Failed required GET retains complete prior snapshot: array settings object",
+      "status": "PASS"
+    },
+    {
+      "name": "Failed required GET retains complete prior snapshot: primitive settings object",
+      "status": "PASS"
+    },
+    {
+      "name": "Later required scene failure cannot publish earlier scene partial data",
+      "status": "PASS"
+    },
+    {
+      "name": "Missing required title settings retains prior GC discovery and items",
+      "status": "PASS"
+    },
+    {
+      "name": "Disabled private bus may be absent; enabled bus failed GET preserves snapshot",
+      "status": "PASS"
+    },
+    {
+      "name": "Bus mode switch while awaiting settings invalidates snapshot without dispatching follow-up",
+      "status": "PASS"
+    },
+    {
+      "name": "Disposed or disconnected explicit read dispatches no GET and never mutates",
+      "status": "PASS"
+    },
+    {
+      "name": "R2 freeze and all original helpers remain exact; R3 adds only snapshot reader guards",
+      "status": "PASS"
+    },
+    {
+      "name": "R3 timeout hole reproduced: unknown ISO filter read paints previously recording scene stopped",
+      "status": "PASS"
+    },
+    {
+      "name": "Unknown required filter list retains recording and complete snapshot: timeout null",
+      "status": "PASS"
+    },
+    {
+      "name": "Unknown required filter list retains recording and complete snapshot: missing filters",
+      "status": "PASS"
+    },
+    {
+      "name": "Unknown required filter list retains recording and complete snapshot: non-array filters",
+      "status": "PASS"
+    },
+    {
+      "name": "Unknown required filter list retains recording and complete snapshot: malformed entry",
+      "status": "PASS"
+    },
+    {
+      "name": "Unknown required filter list retains recording and complete snapshot: missing ISO settings",
+      "status": "PASS"
+    },
+    {
+      "name": "Unknown required filter list retains recording and complete snapshot: non-boolean enabled",
+      "status": "PASS"
+    },
+    {
+      "name": "Unknown required filter list retains recording and complete snapshot: array ISO settings",
+      "status": "PASS"
+    },
+    {
+      "name": "Known empty filter list confirms ISO absent without additional GET",
+      "status": "PASS"
+    },
+    {
+      "name": "Valid ISO record_mode 1 enabled true retains existing recording semantics",
+      "status": "PASS"
+    },
+    {
+      "name": "Valid ISO record_mode 0 enabled true retains existing recording semantics",
+      "status": "PASS"
+    },
+    {
+      "name": "Valid ISO record_mode 2 enabled true retains existing recording semantics",
+      "status": "PASS"
+    },
+    {
+      "name": "Valid ISO record_mode 1 enabled false retains existing recording semantics",
+      "status": "PASS"
+    },
+    {
+      "name": "ISO capability change during delayed filter GET invalidates snapshot and follow-up",
+      "status": "PASS"
+    },
+    {
+      "name": "R3 complete freeze retained; R4 changes only ISO snapshot read/capability validation",
+      "status": "PASS"
+    }
+  ],
+  "proof": "ACTUAL_JS_FUNCTIONS_IN_OWN_VM_WITH_SYNTHETIC_STATE",
+  "nativeExecuted": false,
+  "apiExecuted": false,
+  "canonicalModified": false,
+  "limits": [
+    "No real browser/pointer timing or Native responsiveness measurement",
+    "Read-only coalescing continues existing awaited WS reads; it does not cancel Native work",
+    "Sources/reconnect/project events still require authoritative state; this is not proof that reported freezes were caused by this race"
+  ]
+}
