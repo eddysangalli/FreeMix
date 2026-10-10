@@ -1,0 +1,139 @@
+{
+  "status": "OFFSIDE_MODELS_PASS_REAL_APP_PENDING",
+  "productFiles": [
+    "painel/remoto/atalhos-engine.js"
+  ],
+  "baselineSha256": "1ae55efc4b0d25032199092cbf7fd8d4cc051d7a1798e7b52ea8d9d4536d23e9",
+  "proposedSha256": "8f53d48e6c298a9ad05f183c6298a89bf7e2990ea0d3f33cdf2fb88a235d43f9",
+  "anchors": 6,
+  "models": {
+    "status": "PASS",
+    "checks": [
+      {
+        "name": "Exact frozen baseline idle blur/pagehide sends two releases",
+        "status": "PASS"
+      },
+      {
+        "name": "Idle blur/hide/pagehide/manual release sends zero",
+        "status": "PASS"
+      },
+      {
+        "name": "Held key blur sends release and ACK removes idle ownership",
+        "status": "PASS"
+      },
+      {
+        "name": "Held key pagehide sends beacon without prior blur",
+        "status": "PASS"
+      },
+      {
+        "name": "Blur before down ACK retains ownership and releases again after late ACK",
+        "status": "PASS"
+      },
+      {
+        "name": "Pending release on pagehide retains beacon safety",
+        "status": "PASS"
+      },
+      {
+        "name": "Keyup before down ACK cannot clear pending acquisition",
+        "status": "PASS"
+      },
+      {
+        "name": "Normal down then confirmed up leaves idle navigation silent",
+        "status": "PASS"
+      },
+      {
+        "name": "Failed down callback performs explicit release without assuming cancellation",
+        "status": "PASS"
+      },
+      {
+        "name": "Failed up callback retains release safety",
+        "status": "PASS"
+      },
+      {
+        "name": "Failed release retains ownership for pagehide beacon, no automatic infinite retry",
+        "status": "PASS"
+      },
+      {
+        "name": "A new held key invalidates older release ACK",
+        "status": "PASS"
+      },
+      {
+        "name": "Manual/pointer held button remains owned on pagehide",
+        "status": "PASS"
+      },
+      {
+        "name": "Manual/pointer confirmed keyup leaves idle browse silent",
+        "status": "PASS"
+      },
+      {
+        "name": "Manual/pointer failed keyup preserves release protection",
+        "status": "PASS"
+      },
+      {
+        "name": "BFCache pageshow restores cleanup for later held keys without idle writes",
+        "status": "PASS"
+      },
+      {
+        "name": "Actual MIDI handler with mock port retains talkback hold on pagehide",
+        "status": "PASS"
+      },
+      {
+        "name": "Actual MIDI handler confirmed note-off leaves idle browse silent",
+        "status": "PASS"
+      }
+    ],
+    "testsActualIife": true,
+    "networkStarted": false,
+    "osStarted": false
+  },
+  "syntaxChecks": 4,
+  "oldReceipt": {
+    "path": "qa-finalizacao/native32-real-app-r2-preparation-20261010/receipt.json",
+    "sha256": "8260c4bf5ac8f2971e937559cb8d3211c8671e5b65398525bbc9c63c29076976",
+    "status": "FAIL",
+    "afterHttpCounts": {
+      "run": 0,
+      "execute": 1,
+      "journal": 2,
+      "refresh": 5,
+      "mutatingReq": 35
+    },
+    "afterIabCounts": {
+      "run": 2,
+      "execute": 3,
+      "journal": 8,
+      "refresh": 273,
+      "mutatingReq": 1944
+    },
+    "unknownRunTimes": [
+      {
+        "sequence": 145,
+        "action": "OTHER_UNRECORDED_ACTION",
+        "beganAt": 142622.1569,
+        "stage": "fulfilled"
+      },
+      {
+        "sequence": 147,
+        "action": "OTHER_UNRECORDED_ACTION",
+        "beganAt": 142624.3529,
+        "stage": "fulfilled"
+      }
+    ],
+    "shutdownAccepted": true,
+    "nativeClosed": true,
+    "postNativePins": true,
+    "postRuntimePins": true
+  },
+  "attribution": "Original idle navigation reproduces POST release plus beacon in pure model. Exact real request names not preserved by old ledger; correspondence remains static plus temporal.",
+  "canonicalChanged": false,
+  "nativeStarted": false,
+  "apiStarted": false,
+  "browserStarted": false,
+  "hardwareTested": false,
+  "beaconDeliveryProven": false,
+  "limits": [
+    "Client timeout does not cancel wire",
+    "Native watchdog still required when page disappears before pending acquisition settles",
+    "No real transport/CEF/hardware qualification in VM models"
+  ]
+}

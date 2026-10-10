@@ -1,0 +1,44 @@
+import fs from 'node:fs/promises';
+import path from 'node:path';
+import assert from 'node:assert/strict';
+import { createHash } from 'node:crypto';
+import { execFileSync } from 'node:child_process';
+
+const root=process.cwd(),dir=path.join(root,'qa-finalizacao/controller-release-idle-offside-20261010');
+const sha=b=>createHash('sha256').update(b).digest('hex');
+const allow=await fs.readFile(path.join(dir,'ALLOWLIST.json'));
+assert.equal(sha(allow),'852e3030024004df92c4f6a432f3dac70f3ef00d810b51545209fa8702f74ac8');
+const contract=JSON.parse(allow);
+for(const row of contract.files){const bytes=await fs.readFile(path.join(dir,row.file));assert.equal(bytes.length,row.bytes,row.file);assert.equal(sha(bytes),row.sha256,row.file);}
+const dest=path.join(root,'FreeMix/painel/remoto/atalhos-engine.js');
+const before=await fs.readFile(dest);
+assert.equal(sha(before),contract.canonicalBaselineSha256);
+const originalFail=path.join(root,'qa-finalizacao/native32-real-app-r2-preparation-20261010/receipt.json');
+assert.equal(sha(await fs.readFile(originalFail)),'8260c4bf5ac8f2971e937559cb8d3211c8671e5b65398525bbc9c63c29076976');
+const next=await fs.readFile(path.join(dir,contract.productAllowlist[0]));
+execFileSync(process.execPath,['--check',path.join(dir,contract.productAllowlist[0])],{windowsHide:true,stdio:'pipe'});
+let models=await fs.readFile(path.join(dir,'models.mjs'),'utf8');
+const anchor="console.log(JSON.stringify({status:'PASS',checks,testsActualIife:true,networkStarted:false,osStarted:false}));";
+assert.equal(models.split(anchor).length,2);
+models=models.replace("manual:(phase)=>window.FreeMixControllers.command('controller_fire',{id:'own-pointer',phase})","manual:(phase,action='controller_fire')=>window.FreeMixControllers.command(action,{id:'own-pointer',phase})");
+assert(models.includes("manual:(phase,action='controller_fire')"));
+models=models.replace(anchor,`
+await test('Repeated blur and hidden while release waits emit one request',async()=>{const a=app(source,{pendingRelease:true});a.down();await flush();a.blur();a.hide();a.blur();await flush();assert.equal(count(a),1);a.resolve('Release');await flush();a.pagehide();assert.equal(a.beacons.length,0);});
+await test('External adapter press retains navigation release and confirmed adapter up clears it',async()=>{const held=app(source);await held.manual('down','controller_adapter_fire');held.pagehide();assert.equal(held.beacons.length,1);const idle=app(source);await idle.manual('down','controller_adapter_fire');await idle.manual('up','controller_adapter_fire');idle.blur();idle.pagehide();await flush();assert.equal(count(idle),0);assert.equal(idle.beacons.length,0);});
+await test('An unrelated action never creates hold ownership',async()=>{const a=app(source);await a.manual(undefined,'controller_adapter_read');a.blur();a.pagehide();await flush();assert.equal(count(a),0);assert.equal(a.beacons.length,0);});
+${anchor}`);
+const modelPath=path.join(dir,'ROOT-INDEPENDENT-MODELS.mjs');
+await fs.writeFile(modelPath,models,{flag:'wx'});
+const result=JSON.parse(execFileSync(process.execPath,[modelPath],{windowsHide:true,encoding:'utf8',stdio:'pipe'}));
+assert.equal(result.status,'PASS');assert.equal(result.checks.length,21);
+await fs.writeFile(path.join(dir,'ROOT-INDEPENDENT-MODELS.json'),JSON.stringify(result,null,2)+'\n',{flag:'wx'});
+const backup=path.join(root,'historico/20261010-controller-release-before-root/painel/remoto/atalhos-engine.js');
+await fs.mkdir(path.dirname(backup),{recursive:true});await fs.writeFile(backup,before,{flag:'wx'});
+assert.equal(sha(await fs.readFile(dest)),contract.canonicalBaselineSha256);
+await fs.writeFile(dest,next);
+execFileSync(process.execPath,['--check',dest],{windowsHide:true,stdio:'pipe'});
+assert.equal(sha(await fs.readFile(dest)),'8f53d48e6c298a9ad05f183c6298a89bf7e2990ea0d3f33cdf2fb88a235d43f9');
+assert.equal(sha(await fs.readFile(originalFail)),'8260c4bf5ac8f2971e937559cb8d3211c8671e5b65398525bbc9c63c29076976');
+const receipt={status:'ROOT_SOURCE_INTEGRATED_REAL_APP_PENDING',at:new Date().toISOString(),allowlistSha256:sha(allow),offsideFiles:contract.files.length,rootModels:result.checks.length,productFiles:['painel/remoto/atalhos-engine.js'],beforeSha256:sha(before),afterSha256:sha(next),originalAppFailPreserved:true,operatorTouched:false,nativeStarted:false,apiStarted:false,beaconDeliveryProven:false,realNavigationZeroActionsProven:false,limits:['VM tests use actual IIFE with synthetic events and delayed/failed acknowledgements.','The old real ledger did not retain release request names; static and temporal correspondence is not direct attribution.','Native hold watchdog still required after a page disappears; browser beacon delivery is not guaranteed.']};
+await fs.writeFile(path.join(root,'qa-finalizacao/root-controller-release-integration-20261010.json'),JSON.stringify(receipt,null,2)+'\n',{flag:'wx'});
+console.log(JSON.stringify(receipt));

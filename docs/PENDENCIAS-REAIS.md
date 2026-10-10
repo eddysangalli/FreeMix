@@ -1,3 +1,42 @@
+# Pendências reais — visão atual em 10/10/2026
+
+**Entrega aprovada:0.1.0-local.20261010060000 / Native24, imutável. Fonte atual Native32 e DLL LocalVocal cumulativa são QA/fonte, sem novo instalador aprovado.** Os PASS abaixo têm escopo finito; o histórico posterior não substitui esta visão vigente.
+
+## Software que ainda exige trabalho ou prova
+
+| Prioridade / frente | Estado comprovado | Trabalho concreto e critério | Quem pode provar / condição |
+|---|---|---|---|
+| P0 — abrir menus sem executar comandos | GETsettings já integrado e contratos readonly PASS. App32R2 mantém FAIL:run0→2/execute1→3/journal2→8, configs/áudio iguais. | Identificar as duas ações com ledger finito suficiente e remover POSTrun/autoload mutativo indevido. Repetir cinco telas/polling comrun0 e snapshots iguais, sem omitir contadores. Depois executar Preview/Cut/ACK/latência. | Root integra API/mesa e conduz QA Native/IAB própria; agente prepara patch causal em fonte isolada. Não atribuir identidade de ações a ledgerOTHER/saturado. |
+| P0 — Calls A/V | Vídeo/RGB/CEF e áudio sintético recebido têm provas separadas; drift9,778863ms/sFAIL. | Coletar metadata recebida/pinos/cleanup e correlacionar flash→callback/RTP com codec observado. Só então implementar correção causal e repetir mesmos bounds. Depois integrar/qualificar PCM Native/N-1/talkback e VDO real. | Root aprova uma execução exclusiva; agente analisa clock/draft. Campos ausentes ficam desconhecidos; submittedPTS/packetloss0 não aprovam A/V. ContínuoOFF. |
+| P1 — RNNoise | Filtro criado/readback confirmado; Master real/preset/limitador/restauraçãoPASS. Redução1,0358dB<3:FAIL. | Isolar PCM antes/depois, bordas da captura e parâmetros reais mantendo fixture/3dB. Corrigir apenas causa reproduzida e repetir restauração/zero corrupção. Não substituir estímulo/meta para passar. | Root executa captura digital própria; agente diagnostica fonte/oracle. Não exige microfone/hardware para esta lacuna digital. |
+| P1 — LocalVocal vivo | Português próprio3/5PASS no critério finito; close ordinário após remover/desabilitar filtros passou0. DLL cumulativa somente QA. | Ensaio separado com filtro ainda vivo/inferência em curso, cancelamento real/cooperativo, fonte/contexts liberados, exit0/alloc0/crash0 e pins.17casos negativos/inglês ainda não qualificados. | Root integra/build e executa QA exclusiva; agente prepara cenários/patch após evidência. Não atribuir todas35alocações antigas a um único leak nem inferir cancelamento pelo log pós-whisper. |
+| P1 — FTB NTSC | R3observação terminou:1RESTART,legacyResetPassfalse/fullFTBPassfalse; PCM tons/interiorPASS e close0. Histórico2702→33→0FAIL. | Interpretar epoch/reset/submittedPTS/texture readbacks da R3, distinguir fallback de quadro apresentado e preparar correção se causalmente comprovada. Repetir critérios originais, sem excluir sample adverso. | Root revisa recibo e coordena único QA; agente pode analisar fonte/medidas offside. Cursor/PTS não são displayACK, e esta prova não ativou FTB/SRT. |
+| P2 — precisão/recursos de IA | Cor/nitidez/chroma finitosPASS; Tiny3/5tokens próprio não é precisão geral. NVIDIA policy/registro insuficiente. Inglês/generic/cloud indisponíveis. | Mais fixtures e critérios declarados de legenda, qualificação modelo/plugin e inglês real; NVIDIA exige versão aprovada/capability real e prova visual/latência. Cloud só com backend/conta/chave/custo consentidos. | Root + QA própria com recurso autorizado. SDK local existe; não baixar/ativar silenciosamente nem inventar tradução genérica. |
+| P2 — assistente de projetos | Preview/export/host implementados, criação/scanfalse. | Qualificar fluxo novo/inativo, perfil/coleção/rollback/ownership e cobertura; depois wiring habilitável. Hardware discovery é gate separado. | Root integra/QA; agente prepara modelos. JSON exportado não significa projeto pronto no ar. |
+| P2 — nova entrega/uso prolongado | Setup600 instalado e selecionado; Native32build/freeze e testes delimitados. | Integrar somente correções aprovadas, selar pacote novo e validar instalado/aberturas/fechamento/persistência. EnduranceSSD/GPU/carga é validação adicional. | Root/installer em instalação própria. Não declarar fonte atual instalada nem performance universal. |
+| P2 — plugins/atualizações | Verificador/assinaturas/HTTPSlocal/guards têm provas próprias. | Qualificar forkDistroAV e cadeia plugins/SDK restantes, comportamento negativo das versões/loader e canal real quando destino existir. | Root revisão/QA; licença/destino não supridos não viramPASS. |
+
+## Recursos externos ou contrato ausente
+
+| Frente | Condição concreta pendente | Limite atual |
+|---|---|---|
+| SDI/HDR/ASIO/OMT/PTZ/controladores | Equipamento/receptor/driver/câmera/controlador e ensaio físico autorizado. | Contratos e QA software não certificam audição/metadados/sincronismo físicos. |
+| NDI HDR Advanced | SDK/licença apropriados e receptor compatível. | Não contornar licença nem relabel SDR comoHDR. |
+| WAN/bonding/Calls convidados | Duas redes reais, VPS/domínio/TURN e pares externos. | Loopback/FEC/NACK não aprovam estabilidadeWAN. |
+| Distribuição pública/Windowslimpo | DestinoHTTPS, certificadoAuthenticode e máquina limpa. | Cliente/localHTTPS já delimitados; publicação/autenticidade externa ainda não provadas. |
+| Editores Windows atrás dos menus | Observação desktop de z-order/foco com controle permitido. | Qtvisible/focus não garante janela acima da mesa; não usar hacksAlwaysOnTop. |
+| GTZIP fora do subconjunto | Exemplos/frames/tempo/XML/contrato finito das famílias ausentes. | QR/ticker/templates/shape subset não é conversor universal3D/feed/TypeAdd. |
+
+**Já PASS em software, sem recolocar como código faltante:** Replay30R3(18capturas A/Bdelta0,14segmentos Master exclusivo/silêncio), imagem cor/nitidez/chroma e restauração, Master digital/preset voz/restauração, contratos GETsettings protegidos, fechamento ordinário próprioR4 e provas anteriores de transporte delimitadas. Cada versão instalada/endurance/hardware conserva seu gate pertinente.
+
+Estimativa condicionada: não há ETA confiável para App/Calls/RNNoise antes localizar causa. Ensaios finitos têm duração/captura declaradas, mas preparação, review, build e eventual correção podem exigir várias sessões. Recursos externos dependem de disponibilidade/licença/acesso. O prazo até13/10 não muda um FAIL nem dispensa critérios.
+
+**Histórico anterior abaixo:** conservar bytes/recibos e marcar explicitamente versões superadas; não repetir totais antigos como status atual. Referências públicas vigentes: qualidadeR4/App32R2 e Replay30R3 em `evidencias/`; [FTB R3 foi integrado pelo Root](evidencias/20261010-ftb32-r3-reset-observation/ROOT-README.md); Calls metadata segue preparado sem nova execução real.
+
+Revisão Root deste topo: GitHub98d4bad. Duas ações de abertura têm caminho estático plausível em `atalhos-engine.js`: blur/pagehide enviam controller_release mesmo sem tecla/MIDI ativo. Patch está em revisão; o ledger anterior não prova os nomes. [FTB32 R3 e limites](evidencias/20261010-ftb32-r3-reset-observation/ROOT-README.md).
+
+---
+
 # Pendências reais do FreeMix
 
 Entrega selecionada: **0.1.0-local.20261010060000, Native24/a047860**, imutável. Fonte atual Native32/877b214 compilada viaALL_BUILD e congelada:2085arquivos,32patches/3submódulos/231snapshots reconstruídos. Ainda não há novo instalador aprovado. Native30/93d73e2 e candidato093000/FAIL permanecem históricos.
@@ -75,3 +114,10 @@ Calls continua drift9,78ms/s FAIL; FTB antigo2702→33→0 FAIL. Próximas frent
 ### FTB32 R3 — diagnóstico adicional
 
 Observação própria concluída com cena Programa distinta e UUID original ativo. UmRESTART:1601→1634→33(fallback inválido,epoch2,resetReadyfalse)→0(PTS submetido válido,mesmaepoch,resetReadytrue). Critério original continua FAIL; fullFTBPass=false. Quatro capturas fonte/barcodes e áudio digital Master440/880Hz/interior do arquivo PASS. PID84792ausente, exit0/alloc0/crash0/fullpinsPASS. Sem reconhecimento físico nem PTS de áudio da fonte. [Recibo e limites](evidencias/20261010-ftb32-r3-reset-observation/ROOT-README.md).
+
+
+## Correção de abertura ociosa — fonte integrada, prova real pendente
+
+Root integrou atalhos-engine.js: blur/pagehide deixam de enviar controller_release quando não existe controle pressionado ou pedido pendente; teclado/MIDI/manual/adaptador preservam liberação defensiva e ACKs antigos não apagam posse nova.21 modelos do IIFE real, pins e sintaxe PASS; closure132 intacta. Correspondência com os dois comandos AppR2 é estática/temporal: o ledger antigo não guardou seus nomes. AppR2 FAIL e primeiro modelo falho preservados. AppR3 real e Preview/Cut/latência/persistência continuam pendentes; nenhuma mesa/API/Native do operador tocada. Setup600 permanece selecionado e imutável.
+
+[Correção e limites](evidencias/20261010-controller-release-idle-root/ROOT-README.md).

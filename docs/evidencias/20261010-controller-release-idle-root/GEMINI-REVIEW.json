@@ -1,0 +1,20 @@
+{
+  "status": "REVIEWED",
+  "conversationId": "f33431d4-6ed0-4343-a3c7-5eaa2876e455",
+  "durationSeconds": 110.6756846,
+  "publicInlineOnly": true,
+  "toolsRequested": false,
+  "cliExit": 0,
+  "accepted": [
+    "local ownership",
+    "pending down/up",
+    "pagehide fallback",
+    "epoch invalidates old ACK"
+  ],
+  "rejected": [
+    "fictitious command up/state down",
+    "epoch-dependent decrement skips outstanding operations",
+    "beacon clears uncertainty without delivery proof",
+    "focus resets pending release state"
+  ]
+}

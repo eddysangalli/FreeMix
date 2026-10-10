@@ -1,0 +1,92 @@
+{
+  "status": "PASS",
+  "checks": [
+    {
+      "name": "Exact frozen baseline idle blur/pagehide sends two releases",
+      "status": "PASS"
+    },
+    {
+      "name": "Idle blur/hide/pagehide/manual release sends zero",
+      "status": "PASS"
+    },
+    {
+      "name": "Held key blur sends release and ACK removes idle ownership",
+      "status": "PASS"
+    },
+    {
+      "name": "Held key pagehide sends beacon without prior blur",
+      "status": "PASS"
+    },
+    {
+      "name": "Blur before down ACK retains ownership and releases again after late ACK",
+      "status": "PASS"
+    },
+    {
+      "name": "Pending release on pagehide retains beacon safety",
+      "status": "PASS"
+    },
+    {
+      "name": "Keyup before down ACK cannot clear pending acquisition",
+      "status": "PASS"
+    },
+    {
+      "name": "Normal down then confirmed up leaves idle navigation silent",
+      "status": "PASS"
+    },
+    {
+      "name": "Failed down callback performs explicit release without assuming cancellation",
+      "status": "PASS"
+    },
+    {
+      "name": "Failed up callback retains release safety",
+      "status": "PASS"
+    },
+    {
+      "name": "Failed release retains ownership for pagehide beacon, no automatic infinite retry",
+      "status": "PASS"
+    },
+    {
+      "name": "A new held key invalidates older release ACK",
+      "status": "PASS"
+    },
+    {
+      "name": "Manual/pointer held button remains owned on pagehide",
+      "status": "PASS"
+    },
+    {
+      "name": "Manual/pointer confirmed keyup leaves idle browse silent",
+      "status": "PASS"
+    },
+    {
+      "name": "Manual/pointer failed keyup preserves release protection",
+      "status": "PASS"
+    },
+    {
+      "name": "BFCache pageshow restores cleanup for later held keys without idle writes",
+      "status": "PASS"
+    },
+    {
+      "name": "Actual MIDI handler with mock port retains talkback hold on pagehide",
+      "status": "PASS"
+    },
+    {
+      "name": "Actual MIDI handler confirmed note-off leaves idle browse silent",
+      "status": "PASS"
+    },
+    {
+      "name": "Repeated blur and hidden while release waits emit one request",
+      "status": "PASS"
+    },
+    {
+      "name": "External adapter press retains navigation release and confirmed adapter up clears it",
+      "status": "PASS"
+    },
+    {
+      "name": "An unrelated action never creates hold ownership",
+      "status": "PASS"
+    }
+  ],
+  "testsActualIife": true,
+  "networkStarted": false,
+  "osStarted": false
+}

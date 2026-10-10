@@ -1,3 +1,30 @@
+# Estado operacional em 10/10/2026
+
+**Instalador aprovado continua 0.1.0-local.20261010060000 / Native24, imutável.** As correções atuais de fonte e os testes Native32 não estão nesse instalador. Ainda não há pacote posterior aprovado. A mesa, mídia, Calls, REC e configurações do operador permanecem fora destes ensaios.
+
+**Prioridade atual: eliminar comandos disparados só ao abrir os menus, qualificar RNNoise e fechamento com filtro vivo, e localizar a falha de sincronismo Calls/FTB.** Nenhuma dessas pendências será resolvida ampliando critérios ou atribuindo o FAIL a hardware sem prova.
+
+- **Software implementado:** nove arquivos de fonte de consulta GETsettings/saídas/closure foram integrados;12modelos UI e24de leitura passaram. No App32R2, contratos GET/auth/origem/método não alteraram os contadores, e os snapshots de configuração/áudio permaneceram iguais após as cinco telas Root IAB. Porém a abertura/polling ainda levou `Production.run`0→2, execute1→3 e journal2→8: **FAIL**. A identidade dessas duas ações não foi registrada suficientemente; Preview/Cut/persistência após ação/latência não foram executados.
+- **Qualidade32R4: provas finitas PASS** para cor/nitidez/chroma com restauração, captura Master digital, preset/limitador de voz e restauração. Tiny português atingiu **3/5tokens** da fala sintética própria; passou somente no critério desse ensaio. Não comprova precisão geral, fala real, tradução inglesa ou outros idiomas.
+- **Qualidade ainda parcial:** RNNoise mediu **1,0358dB**, abaixo dos **3dB** exigidos: **FAIL**. DLL LocalVocal cumulativa foi testada somente em QA. Os filtros foram removidos/desabilitados antes do fechamento ordinário exit0/alloc0/crash0: **não há prova de cancelamento em voo ou fechamento com filtro vivo**. Históricos com35alocações e fixtures anteriores ficam preservados;17casos negativos/inglês não estão qualificados.
+- **Replay:** Native30R3 passou18capturas A/B com delta zero e14segmentos Master de áudio exclusivo/silêncio. Esse PASS específico não deve voltar à lista como código inexistente; pacote atual, endurance e recursos físicos têm gates próprios.
+- **Calls:** vídeo contínuo/RGB/CEF têm provas locais delimitadas, mas A/V sintético permanece **FAIL9,778863ms/s**. Contínuo experimentalOFF; PCM Native/N-1/VDO/convidados/WAN não aprovados por essa prova. Instrumentação metadata e correlação offline estão preparadas; nenhuma nova execução ou correção causal de clock foi aprovada por essa revisão.
+- **FTB/NTSC:** FAIL histórico2702→33→0 preservado. Nova R3 terminou `OBSERVATION_COMPLETE`, um RESTART, `legacyResetPass=false` e `fullFTBPass=false`; PCM passou no critério original de tons/interior e o fechamento foi cooperativo0. **Root interpretou o recibo:33ms veio de fallback inválido e0ms de PTS submetido válido na mesma epoch; não é FTB PASS.** PTS submetido/cursor não equivalem a confirmação de exibição física.
+
+NVIDIA possui SDK/fingerprints locais, mas aprovação/registro observado são insuficientes para habilitar os efeitos: não chamar isso de “SDK ausente”. Assistente de projeto tem prévia/exportação/host; criação e scan continuam false/false até prova e integração pertinentes. Inspeção visual Root não equivale à aprovação de design do usuário.
+
+**Próximos trabalhos de software:** identificar as duas ações da abertura e migrar as leituras restantes sem side effects; repetir abertura com mutações0 e só então Preview/Cut; diagnosticar RNNoise com mesma fixture/meta; testar LocalVocal vivo/cancelamento separado; interpretar reset NTSC e obter metadata Calls para localizar o drift antes de uma intervenção causal.
+
+**Gates externos separados:** hardware/receptor/driver para SDI/HDR/ASIO/OMT/PTZ, licença NDI Advanced, redes reais/VPS/TURN para WAN, destino público/certificação para distribuiçãoHTTPS/Authenticode/Windowslimpo, e contratos/exemplos ausentes para famílias GTZIP. Provas loopback/CPU não substituem esses recursos. HTTPSlocal/assinaturas já têm evidência delimitada; não chamar o mecanismo de atualização inteiro de inexistente.
+
+Sem ETA de conclusão enquanto causas App/RNNoise/Calls não forem localizadas. Root integra/revisa e executa QA exclusiva em raízes próprias; agentes podem preparar correções e oracles offside. Nova entrega depende dos gates pertinentes, não somente de build ou quantidade de checks.
+
+**Histórico anterior abaixo:** mantém versões e FAILs como registros históricos; este topo é a visão vigente. Evidências: `evidencias/20261010-quality32-r4-and-app32-r2/ROOT-README.md`, `evidencias/20261010-replay30-real-r3-pass/ROOT-README.md` e os recibos próprios R3FTB/Calls listados no relatório de integração.
+
+Revisão Root deste topo: GitHub98d4bad. Duas ações de abertura têm caminho estático plausível em `atalhos-engine.js`: blur/pagehide enviam controller_release mesmo sem tecla/MIDI ativo. Patch está em revisão; o ledger anterior não prova os nomes. [FTB32 R3 e limites](evidencias/20261010-ftb32-r3-reset-observation/ROOT-README.md).
+
+---
+
 # Situação atual do FreeMix —10/10
 
 Entrega selecionada: **0.1.0-local.20261010060000, Native24/a047860**, imutável. Fonte atual Native32/877b214 compilada viaALL_BUILD e congelada:2085arquivos,32patches/3submódulos/231snapshots reconstruídos. Ainda não há novo instalador aprovado. Native30/93d73e2 e candidato093000/FAIL permanecem históricos.
@@ -69,3 +96,10 @@ Calls continua drift9,78ms/s FAIL; FTB antigo2702→33→0 FAIL. Próximas frent
 ### FTB32 R3 — diagnóstico adicional
 
 Observação própria concluída com cena Programa distinta e UUID original ativo. UmRESTART:1601→1634→33(fallback inválido,epoch2,resetReadyfalse)→0(PTS submetido válido,mesmaepoch,resetReadytrue). Critério original continua FAIL; fullFTBPass=false. Quatro capturas fonte/barcodes e áudio digital Master440/880Hz/interior do arquivo PASS. PID84792ausente, exit0/alloc0/crash0/fullpinsPASS. Sem reconhecimento físico nem PTS de áudio da fonte. [Recibo e limites](evidencias/20261010-ftb32-r3-reset-observation/ROOT-README.md).
+
+
+## Correção de abertura ociosa — fonte integrada, prova real pendente
+
+Root integrou atalhos-engine.js: blur/pagehide deixam de enviar controller_release quando não existe controle pressionado ou pedido pendente; teclado/MIDI/manual/adaptador preservam liberação defensiva e ACKs antigos não apagam posse nova.21 modelos do IIFE real, pins e sintaxe PASS; closure132 intacta. Correspondência com os dois comandos AppR2 é estática/temporal: o ledger antigo não guardou seus nomes. AppR2 FAIL e primeiro modelo falho preservados. AppR3 real e Preview/Cut/latência/persistência continuam pendentes; nenhuma mesa/API/Native do operador tocada. Setup600 permanece selecionado e imutável.
+
+[Correção e limites](evidencias/20261010-controller-release-idle-root/ROOT-README.md).

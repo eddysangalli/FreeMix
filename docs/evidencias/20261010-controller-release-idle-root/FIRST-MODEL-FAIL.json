@@ -1,0 +1,11 @@
+{
+  "status": "FAIL_PRESERVED",
+  "stage": "offside-model-before-freeze",
+  "case": "Blur before down ACK retains ownership and releases again after late ACK",
+  "actualReleasesBeforeDownAck": 3,
+  "expectedReleasesBeforeDownAck": 1,
+  "cause": "Offside release callback rescheduled while acquisition remained pending without epoch change",
+  "repair": "Reschedule only on changed ownership epoch; acquisition completion triggers late cleanup",
+  "canonicalChanged": false,
+  "runtimeStarted": false
+}

@@ -1,0 +1,44 @@
+import fs from 'node:fs/promises';import vm from 'node:vm';import assert from 'node:assert/strict';
+const flush=async()=>{for(let i=0;i<16;i++)await Promise.resolve();},checks=[];
+const source=await fs.readFile(new URL('./source/painel/remoto/atalhos-engine.js',import.meta.url),'utf8'),baseline=await fs.readFile(new URL('./baseline.js',import.meta.url),'utf8');
+function app(text,{pendingDown=false,pendingUp=false,pendingRelease=false,failedDown=false,failedUp=false,failedRelease=false}={}){
+ const events={window:new Map(),document:new Map()},commands=[],beacons=[],waiting={};
+ const add=(type,name,fn)=>{const a=events[type].get(name)||[];a.push(fn);events[type].set(name,a);};
+ const document={hidden:false,hasFocus:()=>!document.hidden,addEventListener:(name,fn)=>add('document',name,fn)};
+ const window={addEventListener:(name,fn)=>add('window',name,fn),dispatchEvent:()=>{}};
+ const midiPort={id:'own-model-midi',state:'connected'},midiAccess={inputs:new Map([['own-model-midi',midiPort]]),outputs:new Map()};
+ const navigator={requestMIDIAccess:async()=>midiAccess,sendBeacon:(url,blob)=>{beacons.push({url:String(url),blob});return true;}};
+ const context=vm.createContext({window,document,navigator,crypto:{randomUUID:()=> 'own-model-client'},location:{protocol:'http:',href:'http://127.0.0.1:60000/mesa.html'},URL,Blob,CustomEvent:class {},setInterval:()=>1,clearInterval:()=>{},fetch:()=>{throw Error('Model refuses network');},AbortSignal});
+ vm.runInContext(text,context);
+ const binding={id:'own-key',enabled:true,trigger:{type:'keyboard',code:'KeyT',ctrl:false,alt:false,shift:false,meta:false},target:{action:'talkback'}};
+ const midiBinding={id:'own-midi',enabled:true,trigger:{type:'midi',deviceId:'own-model-midi',channel:1,number:12,message:'note'},target:{action:'talkback'}};
+ window.FreeMixControllers.bindAdapter({getState:()=>({connected:true,controllers:{items:[binding,midiBinding]}}),command(action,data){commands.push({action,phase:data.phase});const kind=action==='controller_release'?'Release':data.phase==='down'||action==='controller_event'&&data.value?'Down':'Up';if((kind==='Down'&&failedDown)||(kind==='Up'&&failedUp)||(kind==='Release'&&failedRelease))return Promise.reject(Error('Own uncertain callback'));if((kind==='Down'&&pendingDown)||(kind==='Up'&&pendingUp)||(kind==='Release'&&pendingRelease))return new Promise((resolve,reject)=>{(waiting[kind]||=[]).push({resolve,reject});});return Promise.resolve({success:true});}});
+ const fire=(type,name,event={})=>{for(const fn of events[type].get(name)||[])fn(event);};
+ const key=()=>({code:'KeyT',ctrlKey:false,altKey:false,shiftKey:false,metaKey:false,target:{tagName:'DIV'},repeat:false,defaultPrevented:false,preventDefault(){},stopImmediatePropagation(){}});
+ return{commands,beacons,waiting,connectMidi:()=>window.FreeMixControllers.connectMidi(),midi(value){midiPort.onmidimessage({data:[0x90,12,value]});},manual:(phase,action='controller_fire')=>window.FreeMixControllers.command(action,{id:'own-pointer',phase}),down(){fire('document','keydown',key());},up(){fire('document','keyup',key());},blur(){fire('window','blur');},hide(){document.hidden=true;fire('document','visibilitychange');},pagehide(){fire('window','pagehide');},pageshow(){document.hidden=false;fire('window','pageshow');},release:()=>window.FreeMixControllers.release(),resolve(kind){assert(waiting[kind]?.length);waiting[kind].shift().resolve({success:true});}};
+}
+const count=a=>a.commands.filter(c=>c.action==='controller_release').length;
+async function test(name,run){await run();checks.push({name,status:'PASS'});}
+await test('Exact frozen baseline idle blur/pagehide sends two releases',async()=>{const a=app(baseline);a.blur();a.pagehide();await flush();assert.equal(count(a),1);assert.equal(a.beacons.length,1);});
+await test('Idle blur/hide/pagehide/manual release sends zero',async()=>{const a=app(source);a.blur();a.hide();a.pagehide();await a.release();await flush();assert.equal(count(a),0);assert.equal(a.beacons.length,0);});
+await test('Held key blur sends release and ACK removes idle ownership',async()=>{const a=app(source);a.down();await flush();a.blur();await flush();assert.equal(count(a),1);a.pagehide();assert.equal(a.beacons.length,0);});
+await test('Held key pagehide sends beacon without prior blur',async()=>{const a=app(source);a.down();await flush();a.pagehide();assert.equal(a.beacons.length,1);});
+await test('Blur before down ACK retains ownership and releases again after late ACK',async()=>{const a=app(source,{pendingDown:true});a.down();a.blur();await flush();assert.equal(count(a),1);a.resolve('Down');await flush();assert.equal(count(a),2);a.pagehide();assert.equal(a.beacons.length,0);});
+await test('Pending release on pagehide retains beacon safety',async()=>{const a=app(source,{pendingRelease:true});a.down();await flush();a.blur();await flush();assert.equal(count(a),1);a.pagehide();assert.equal(a.beacons.length,1);a.resolve('Release');await flush();});
+await test('Keyup before down ACK cannot clear pending acquisition',async()=>{const a=app(source,{pendingDown:true});a.down();a.up();await flush();a.pagehide();assert.equal(a.beacons.length,1);a.resolve('Down');await flush();assert(count(a)>=1);});
+await test('Normal down then confirmed up leaves idle navigation silent',async()=>{const a=app(source);a.down();await flush();a.up();await flush();a.blur();a.pagehide();await flush();assert.equal(count(a),0);assert.equal(a.beacons.length,0);});
+await test('Failed down callback performs explicit release without assuming cancellation',async()=>{const a=app(source,{failedDown:true});a.down();await flush();assert(count(a)>=1);assert(a.commands.some(c=>c.phase==='down'));});
+await test('Failed up callback retains release safety',async()=>{const a=app(source,{failedUp:true});a.down();await flush();a.up();await flush();assert.equal(count(a),1);});
+await test('Failed release retains ownership for pagehide beacon, no automatic infinite retry',async()=>{const a=app(source,{failedRelease:true});a.down();await flush();a.blur();await flush();assert.equal(count(a),1);a.pagehide();assert.equal(a.beacons.length,1);});
+await test('A new held key invalidates older release ACK',async()=>{const a=app(source,{pendingRelease:true});a.down();await flush();a.blur();await flush();a.down();await flush();a.resolve('Release');await flush();a.pagehide();assert.equal(a.beacons.length,1);});
+await test('Manual/pointer held button remains owned on pagehide',async()=>{const a=app(source);await a.manual('down');a.pagehide();assert.equal(a.beacons.length,1);});
+await test('Manual/pointer confirmed keyup leaves idle browse silent',async()=>{const a=app(source);await a.manual('down');await a.manual('up');a.blur();a.pagehide();await flush();assert.equal(count(a),0);assert.equal(a.beacons.length,0);});
+await test('Manual/pointer failed keyup preserves release protection',async()=>{const a=app(source,{failedUp:true});await a.manual('down');await a.manual('up').catch(()=>{});await flush();assert.equal(count(a),1);});
+await test('BFCache pageshow restores cleanup for later held keys without idle writes',async()=>{const a=app(source);a.pagehide();a.pageshow();a.down();await flush();a.blur();await flush();assert.equal(count(a),1);assert.equal(a.beacons.length,0);});
+await test('Actual MIDI handler with mock port retains talkback hold on pagehide',async()=>{const a=app(source);await a.connectMidi();a.midi(127);await flush();a.pagehide();assert.equal(a.beacons.length,1);});
+await test('Actual MIDI handler confirmed note-off leaves idle browse silent',async()=>{const a=app(source);await a.connectMidi();a.midi(127);await flush();a.midi(0);await flush();a.blur();a.pagehide();await flush();assert.equal(count(a),0);assert.equal(a.beacons.length,0);});
+
+await test('Repeated blur and hidden while release waits emit one request',async()=>{const a=app(source,{pendingRelease:true});a.down();await flush();a.blur();a.hide();a.blur();await flush();assert.equal(count(a),1);a.resolve('Release');await flush();a.pagehide();assert.equal(a.beacons.length,0);});
+await test('External adapter press retains navigation release and confirmed adapter up clears it',async()=>{const held=app(source);await held.manual('down','controller_adapter_fire');held.pagehide();assert.equal(held.beacons.length,1);const idle=app(source);await idle.manual('down','controller_adapter_fire');await idle.manual('up','controller_adapter_fire');idle.blur();idle.pagehide();await flush();assert.equal(count(idle),0);assert.equal(idle.beacons.length,0);});
+await test('An unrelated action never creates hold ownership',async()=>{const a=app(source);await a.manual(undefined,'controller_adapter_read');a.blur();a.pagehide();await flush();assert.equal(count(a),0);assert.equal(a.beacons.length,0);});
+console.log(JSON.stringify({status:'PASS',checks,testsActualIife:true,networkStarted:false,osStarted:false}));

@@ -1,0 +1,59 @@
+{
+  "status": "FROZEN_OFFSIDE_ROOT_REVIEW_REQUIRED",
+  "files": [
+    {
+      "file": "baseline.js",
+      "bytes": 6455,
+      "sha256": "1ae55efc4b0d25032199092cbf7fd8d4cc051d7a1798e7b52ea8d9d4536d23e9"
+    },
+    {
+      "file": "source/painel/remoto/atalhos-engine.js",
+      "bytes": 8506,
+      "sha256": "8f53d48e6c298a9ad05f183c6298a89bf7e2990ea0d3f33cdf2fb88a235d43f9"
+    },
+    {
+      "file": "derive.mjs",
+      "bytes": 4150,
+      "sha256": "a4b649d88dd14e83e2e15d20de095b2c37bf6beb080114381da3a2b555b20449"
+    },
+    {
+      "file": "models.mjs",
+      "bytes": 7865,
+      "sha256": "2a72b55b37e17e19ac7ed70c401e1b248e4f53dc6a181ff4253fcfec0bdc0783"
+    },
+    {
+      "file": "freeze.mjs",
+      "bytes": 4139,
+      "sha256": "0e8badc4dfdabcf01a21d070f29feffcbf27c4db2e099a2b5d72071d415a3191"
+    },
+    {
+      "file": "README.md",
+      "bytes": 2772,
+      "sha256": "d4e48232a935d1a0f3ea6256e307521a02ee571b2cef5e74df46265b99cb9eb8"
+    },
+    {
+      "file": "FIRST-MODEL-FAIL.json",
+      "bytes": 502,
+      "sha256": "ae98dfedda409901c6b64490d6a17176a97cff8c21eaeeb6e5c25833db7aaedd"
+    },
+    {
+      "file": "GEMINI-PUBLIC-RESPONSE.md",
+      "bytes": 7135,
+      "sha256": "bbd85011f0234f6124db92954d99530c7a48d445815bab342662b2bc773ca676"
+    },
+    {
+      "file": "GEMINI-REVIEW.json",
+      "bytes": 536,
+      "sha256": "cd5da96ecfa0cb6f97a67338a307f04dc6e970188ed5db4d4cb17fd8918d994c"
+    },
+    {
+      "file": "REPORT.json",
+      "bytes": 4149,
+      "sha256": "3c5a2d27d7f8c0d12f3e5bc7c5bf1d9f201d3091db66d022d86cf61b65923ad3"
+    }
+  ],
+  "productAllowlist": [
+    "source/painel/remoto/atalhos-engine.js"
+  ],
+  "canonicalBaselineSha256": "1ae55efc4b0d25032199092cbf7fd8d4cc051d7a1798e7b52ea8d9d4536d23e9"
+}

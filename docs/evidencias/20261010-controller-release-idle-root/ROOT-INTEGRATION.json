@@ -1,0 +1,23 @@
+{
+  "status": "ROOT_SOURCE_INTEGRATED_REAL_APP_PENDING",
+  "at": "2026-10-10T16:01:26.284Z",
+  "allowlistSha256": "852e3030024004df92c4f6a432f3dac70f3ef00d810b51545209fa8702f74ac8",
+  "offsideFiles": 10,
+  "rootModels": 21,
+  "productFiles": [
+    "painel/remoto/atalhos-engine.js"
+  ],
+  "beforeSha256": "1ae55efc4b0d25032199092cbf7fd8d4cc051d7a1798e7b52ea8d9d4536d23e9",
+  "afterSha256": "8f53d48e6c298a9ad05f183c6298a89bf7e2990ea0d3f33cdf2fb88a235d43f9",
+  "originalAppFailPreserved": true,
+  "operatorTouched": false,
+  "nativeStarted": false,
+  "apiStarted": false,
+  "beaconDeliveryProven": false,
+  "realNavigationZeroActionsProven": false,
+  "limits": [
+    "VM tests use actual IIFE with synthetic events and delayed/failed acknowledgements.",
+    "The old real ledger did not retain release request names; static and temporal correspondence is not direct attribution.",
+    "Native hold watchdog still required after a page disappears; browser beacon delivery is not guaranteed."
+  ]
+}

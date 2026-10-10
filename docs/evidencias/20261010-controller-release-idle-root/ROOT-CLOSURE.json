@@ -1,0 +1,7 @@
+{
+  "status": "PASS_SOURCE_CLOSURE",
+  "modules": 132,
+  "sourceSha256": "8f53d48e6c298a9ad05f183c6298a89bf7e2990ea0d3f33cdf2fb88a235d43f9",
+  "realAppPass": false,
+  "operatorTouched": false
+}

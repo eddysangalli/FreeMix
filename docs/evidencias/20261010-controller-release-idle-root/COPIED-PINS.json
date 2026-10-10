@@ -1,0 +1,52 @@
+[
+  {
+    "path": "ROOT-INTEGRATION.json",
+    "bytes": 996,
+    "sha256": "41a3d1e861cff5593035fdaf4e8572ab3c9c2d8ffa18039ea528a3fc6079682a"
+  },
+  {
+    "path": "ROOT-REVIEW-RUNNER.mjs",
+    "bytes": 4920,
+    "sha256": "4f63702be172e00ba945144e2ebfd14efb52d8a14fa20fe5733fdc6cd1c650ba"
+  },
+  {
+    "path": "ORIGINAL-ALLOWLIST.json",
+    "bytes": 1753,
+    "sha256": "852e3030024004df92c4f6a432f3dac70f3ef00d810b51545209fa8702f74ac8"
+  },
+  {
+    "path": "baseline.js",
+    "bytes": 6455,
+    "sha256": "1ae55efc4b0d25032199092cbf7fd8d4cc051d7a1798e7b52ea8d9d4536d23e9"
+  },
+  {
+    "path": "source/painel/remoto/atalhos-engine.js",
+    "bytes": 8506,
+    "sha256": "8f53d48e6c298a9ad05f183c6298a89bf7e2990ea0d3f33cdf2fb88a235d43f9"
+  },
+  {
+    "path": "ROOT-INDEPENDENT-MODELS.mjs",
+    "bytes": 8893,
+    "sha256": "ccea1158be7154315147dc5cfb5b195f9fa382eb4f05505ebc224513159b7d14"
+  },
+  {
+    "path": "ROOT-INDEPENDENT-MODELS.json",
+    "bytes": 2504,
+    "sha256": "9b1cc0b5fc885be2a566df16e91312c5b0f0af62d1e80afad700903e96474b79"
+  },
+  {
+    "path": "ORIGINAL-REPORT.json",
+    "bytes": 4149,
+    "sha256": "3c5a2d27d7f8c0d12f3e5bc7c5bf1d9f201d3091db66d022d86cf61b65923ad3"
+  },
+  {
+    "path": "FIRST-MODEL-FAIL.json",
+    "bytes": 502,
+    "sha256": "ae98dfedda409901c6b64490d6a17176a97cff8c21eaeeb6e5c25833db7aaedd"
+  },
+  {
+    "path": "GEMINI-REVIEW.json",
+    "bytes": 536,
+    "sha256": "cd5da96ecfa0cb6f97a67338a307f04dc6e970188ed5db4d4cb17fd8918d994c"
+  }
+]
