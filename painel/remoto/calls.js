@@ -17,9 +17,10 @@
  }
  function videoLimit(c){
   const reported=typeof c.videoReturnLimit==='string'&&c.videoReturnLimit.trim()?c.videoReturnLimit.trim():'Limite de vídeo não informado pelo motor.';
-  const mode=c.experimentalContinuousVideo===true?'Captura contínua experimental':c.experimentalContinuousVideo===false?'Modo padrão':'Modo de captura não informado pelo motor';
+  const mode=c.experimentalContinuousVideo===true?'Modo experimental':c.experimentalContinuousVideo===false?'Modo padrão':'Modo de captura não informado pelo motor';
   const capability=c.capability==='individual-PCM-WebRTC'?'Retornos individuais':c.capability==='shared-return-B'?'Retorno compartilhado':c.capability?'Capacidade de retorno não reconhecida':'Capacidade de retorno não informada';
-  return mode+' · '+reported+' · '+capability+(c.videoReturnAvSyncProven===true?'':' · Sincronismo A/V não homologado.');
+  const warning=c.videoReturnAvSyncProven===true||/sincronismo\s+a\/v[^.]*n[aã]o\s+homologado/i.test(reported)?'':' · Sincronismo A/V não homologado.';
+  return mode+' · '+reported+' · '+capability+warning;
  }
  async function checkMotor(){
   if(checkingMotor||disposed)return;

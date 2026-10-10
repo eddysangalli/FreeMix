@@ -1,0 +1,58 @@
+{
+  "status": "PASS_EXTRACTED_FUNCTION_CONTRACTS_ONLY",
+  "checks": 12,
+  "cases": [
+    {
+      "name": "original capture duplication reproduced in actual function",
+      "pass": true
+    },
+    {
+      "name": "draft keeps exact reported limits and one warning",
+      "pass": true
+    },
+    {
+      "name": "unknown mode/limit/capability remain explicit",
+      "pass": true
+    },
+    {
+      "name": "positive claim in reported text never suppresses missing AV proof warning",
+      "pass": true
+    },
+    {
+      "name": "ordinary standard/missing report remains exact original",
+      "pass": true
+    },
+    {
+      "name": "original invalid port focus points to host",
+      "pass": true
+    },
+    {
+      "name": "draft invalid port focuses actual port",
+      "pass": true
+    },
+    {
+      "name": "latency opens advanced details before focusing",
+      "pass": true
+    },
+    {
+      "name": "missing encoder opens quality before focus while Programme source field hidden",
+      "pass": true
+    },
+    {
+      "name": "bad server URL and removed input target actual fields",
+      "pass": true
+    },
+    {
+      "name": "host/name default remains relevant",
+      "pass": true
+    },
+    {
+      "name": "handlers/validation/request/drafts preserved bytewise except focus argument",
+      "pass": true
+    }
+  ],
+  "nativeStarted": false,
+  "browserStarted": false,
+  "canonicalModified": false,
+  "visualAfterPatchNotCaptured": true
+}

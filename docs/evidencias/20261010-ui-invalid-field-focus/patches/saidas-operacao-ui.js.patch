@@ -1,0 +1,31 @@
+--- a/FreeMix/painel/remoto/saidas-operacao-ui.js
++++ b/FreeMix/painel/remoto/saidas-operacao-ui.js
+@@ -33,7 +33,7 @@
+   const back = document.createElement('button'); back.type = 'button'; back.textContent = 'Voltar';
+   const next = document.createElement('button'); next.type = 'button'; next.className = 'operation-primary';
+   back.onclick = () => showStep(step - 1, true);
+-  next.onclick = () => { const error = validate(step); if (error) { status.textContent = error; status.classList.add('operation-error'); focusInvalid(); return; } showStep(step + 1, true); };
++  next.onclick = () => { const error = validate(step); if (error) { status.textContent = error; status.classList.add('operation-error'); focusInvalid(error); return; } showStep(step + 1, true); };
+   const actionRow = byId('save').closest('.row');
+   const quality = document.createElement('details');
+   quality.className = 'operation-advanced'; quality.innerHTML = '<summary>Qualidade e formato avançados</summary>';
+@@ -155,7 +155,18 @@
+     if (at >= 1 && !get('encoder')) return 'Não há codificador disponível para o codec selecionado.';
+     return '';
+   }
+-  function focusInvalid() { const id = !get('name').trim() ? 'name' : step === 0 ? srt() ? 'srt-connection-host' : 'server' : 'input'; byId(id)?.focus(); }
++  function focusInvalid(error = '') {
++    const matches = [
++      ['Dê um nome', 'name'], ['porta entre', 'srt-connection-port'],
++      ['A latência deve', 'srt-connection-latency'], ['Não há codificador', 'encoder'],
++      ['A entrada escolhida', 'input'], ['URL avançada', 'server'],
++      ['URL SRT ou RIST', 'server'], ['servidor RTMP/RTMPS', 'server']
++    ];
++    const id = matches.find(([message]) => error.includes(message))?.[1] || (!get('name').trim() ? 'name' : step === 0 ? srt() ? 'srt-connection-host' : 'server' : 'input');
++    const field = byId(id); if (!field) return;
++    for (let parent = field.parentElement; parent; parent = parent.parentElement) if (parent.tagName === 'DETAILS') parent.open = true;
++    field.focus();
++  }
+   function showStep(value, focus = false) {
+     step = Math.max(0, Math.min(2, value)); paint();
+     if (focus) { const heading = sections[step].querySelector('h2'); heading.tabIndex = -1; heading.focus(); }

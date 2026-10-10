@@ -83,3 +83,13 @@ Calls: anexar a mesma track remota ao player silenciado fez aparecer19 tons/1973
 ## Checkpoint de10/10,11:56UTC
 
 Native30/93d73e2 compilado e congelado:2085 arquivos, 214 snapshots,30 patches/3 submódulos; reconstrução local--checkPASS. [Build e correção dos medidores](evidencias/20261010-native30-build/ROOT-README.md). Novos testes reais de Meter, Replay e saídas estão preparados em raízes/portas próprias; não executamos o operador. Instalador600 segue selecionado; pacote novo depende desses checks.
+
+## Checkpoint de10/10,12:05UTC
+
+Meter30 realPASS: duas conexões,39/39eventos em2s, pausa/retomada/unsubscribe/resubscribe/coleção/novosUUIDs; nenhum rawinvalid/rejeitado, níveis0..0,25. Fechamento com duas inscrições, avisos0/alocações0/crash0, full2085postsPASS. [Prova e limites](evidencias/20261010-meter30-real-pass/ROOT-README.md). FAIL29 intacto; crashes antigos exigem reprodução própria. Gate6Native30 com reset observado está em execução exclusiva; Replay30 aguarda revisão do harness cooperativo semforce e ABI da capturaMaster.
+
+## Escopo adicional autorizado em10/10
+
+Após as correções prioritárias, usar agentes disponíveis para assistente de projetos horizontal/vertical com quatro câmeras e áudio, presets de imagem/ruído/nitidez/cor e recursos de IA. Disponibilidade deve ser detectada por hardware/SDK/modelo/API; controles indisponíveis ficam desabilitados com motivo concreto. Nenhum dispositivo deve abrir nem projeto do operador mudar ao apenas navegar. Legendas/tradução exigem motor e modelo reais; não apresentar modelos ausentes ou credenciais não fornecidas como recurso funcionando.
+
+Governança de atualizações: cliente recebe releases aprovadas do FreeMix. Mudanças do OBS, dependências e plugins devem ser incorporadas ao fork, testadas e distribuídas por nosso canal; revisar bloqueio de auto-update/auto(re)install upstream e assinatura/rollback. Drafts offside de capacidades/presets/updates estão com os agentes; ainda não integrados. As falhas reais de Calls/FTB e os checks de Replay/menus/pacote mantêm prioridade.

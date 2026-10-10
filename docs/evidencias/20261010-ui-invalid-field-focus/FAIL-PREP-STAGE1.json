@@ -1,0 +1,9 @@
+{
+  "status": "FAIL_OWN_DRAFT_PREPARATION_PRESERVED",
+  "reason": "Own Python preparation forced CRLF onto the LF output UI file; the unchanged-validation byte assertion rejected it.",
+  "productDefect": false,
+  "canonicalModified": false,
+  "repair": "Preserve each target's original newline style; repeat only extracted-function tests on own draft.",
+  "nativeStarted": false,
+  "browserStarted": false
+}

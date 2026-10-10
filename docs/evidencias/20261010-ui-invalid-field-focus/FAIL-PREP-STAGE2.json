@@ -1,0 +1,9 @@
+{
+  "status": "FAIL_OWN_DRAFT_PREPARATION_PRESERVED",
+  "reason": "Output UI canonical has mixed CRLF/LF, so whole-file style detection also rewrote unrelated LF lines. Byte assertion refused it.",
+  "productDefect": false,
+  "canonicalModified": false,
+  "repair": "Do no global newline normalization; preserve unrelated bytes and use only the changed line's actual ending for added lines.",
+  "nativeStarted": false,
+  "browserStarted": false
+}

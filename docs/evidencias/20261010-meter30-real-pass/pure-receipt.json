@@ -1,0 +1,8 @@
+{
+  "status": "PASS_PURE_COLLECTOR_AND_READONLY_CONTEXT_MODELS_ONLY",
+  "tests": 12,
+  "oracleRelaxed": false,
+  "realNativeExecuted": false,
+  "realObsRequestsExecuted": false,
+  "modelsOnly": true
+}

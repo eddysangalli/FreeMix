@@ -1,0 +1,10 @@
+{
+  "status": "ROOT_PREFLIGHT_FAILED_BEFORE_NATIVE_SPAWN",
+  "at": "2026-10-10T11:57:07.213Z",
+  "reason": "Prior Gate5 teardown fields are nested per case, not top level",
+  "sourceSha256": "7c494a1f83281ab21af99b0adf0f521247ab9fae992668d7a9bea7b70952d1a2",
+  "nativeStarted": false,
+  "reviewWritten": false,
+  "originalFailurePreserved": true,
+  "onlyHarnessChange": "Read same mandatory shutdown/nativeExit/receiverExit evidence at actual cases path"
+}

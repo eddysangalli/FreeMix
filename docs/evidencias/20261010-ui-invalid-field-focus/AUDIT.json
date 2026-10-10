@@ -1,0 +1,180 @@
+{
+  "status": "LIMITED_STATIC_AND_SUPPLIED_CAPTURE_REVIEW_TWO_CONFIRMED_FINDINGS",
+  "skill": "product-design:audit",
+  "savedContext": "preflight reports no saved context",
+  "newCaptureForbiddenByRootScope": true,
+  "operatorTouched": false,
+  "nativeStarted": false,
+  "browserStarted": false,
+  "serverStarted": false,
+  "steps": [
+    {
+      "number": 1,
+      "flow": "SRT destino",
+      "health": "Existing supplied capture shows IP/port and explicit caller; three steps clear, advanced closed"
+    },
+    {
+      "number": 2,
+      "flow": "SRT conteúdo/áudio",
+      "health": "Programme and Master explained, quality/overlays/alpha collapsed"
+    },
+    {
+      "number": 3,
+      "flow": "SRT conferir/iniciar",
+      "health": "Destination/video/audio/format explicit; save versus start and receiver proof limits visible"
+    },
+    {
+      "number": 4,
+      "flow": "MultiStream destino",
+      "health": "Server/key and principal-versus-additional pool distinct; no duplicate active form seen"
+    },
+    {
+      "number": 5,
+      "flow": "MultiStream conteúdo/áudio",
+      "health": "Programme/Master/resolution defaults visible; no automatic action established by screenshot"
+    },
+    {
+      "number": 6,
+      "flow": "MultiStream conferir/iniciar",
+      "health": "Summary redacts key and separates save/start"
+    },
+    {
+      "number": 7,
+      "flow": "Calls empty",
+      "health": "Add a Call in the desk; talkback/returns hidden"
+    },
+    {
+      "number": 8,
+      "flow": "Calls guests and recipients",
+      "health": "Named recipients, per-guest see/hear summary and private microphone outside Master visible"
+    },
+    {
+      "number": 9,
+      "flow": "Calls capability/custom",
+      "health": "Custom includes other guests; unknown capability explicit; experimental paragraph duplicates AV warning"
+    }
+  ],
+  "findings": [
+    {
+      "id": "UX1",
+      "severity": "P3",
+      "source": "FreeMix/painel/remoto/calls.js:18",
+      "evidence": "20261010-calls-limit-check-motor/fixtures/experimental-custom-600.png",
+      "problem": "UI repeats experimental capture phrase and AV-not-homologated warning already contained in backend-reported limit, increasing technical text before guest task",
+      "repro": "Current videoLimit with experimental=true and backend limit containing AV warning yields the AV warning twice",
+      "draft": "Use shorter mode label and append unchanged AV warning only when not already present as an explicit negative warning; preserve reported limit verbatim/unknowns/capability",
+      "nativeMediaImpact": false
+    },
+    {
+      "id": "UX2",
+      "severity": "P2",
+      "source": "FreeMix/painel/remoto/saidas-operacao-ui.js:36,158",
+      "evidence": "Static validate/focus functions and extracted-function reproduction; no keyboard/browser test",
+      "problem": "Invalid SRT port/latency focuses host; missing encoder focuses input even when Programme hides input, while actual invalid control may be in collapsed advanced details",
+      "repro": "At destination with name valid, invalid port error followed by original focusInvalid selects srt-connection-host",
+      "draft": "Pass existing error to focus helper, map known messages to actual existing fields, open ancestor details and focus; validation/actions/config/drafts unchanged",
+      "nativeMediaImpact": false
+    }
+  ],
+  "accessibility": {
+    "confirmedStaticRisk": "Wrong invalid-field focus and collapsed target obstruct keyboard error recovery",
+    "notAssessed": [
+      "Actual focus/z-order/CEF",
+      "Contrast ratios/WCAG compliance",
+      "Mobile SRT after latest polling patch",
+      "Screen readers/timing/pointer behavior"
+    ]
+  },
+  "limits": [
+    "Historical browser screenshots use synthetic fixtures, not Native30/backend/receiver proof",
+    "Captures precede latest output-read helpers; latest visual approval still pending app real QA",
+    "No third defect invented; broad theme changes are not justified by this scoped proof",
+    "No changes applied; Root review and fresh actual captures needed"
+  ],
+  "evidence": [
+    {
+      "path": "FreeMix/docs/evidencias/20261010-menus-operacao/srt-destino.jpg",
+      "sha256": "3fe9ed2ae486f8ab0db3a0d690d8cdd3beaa5cea324c26bfa4bc1e8b9c81a9cb",
+      "bytes": 92931,
+      "inspectedThisReview": true,
+      "source": "Explicitly requested historical browser captures, synthetic states; no new capture"
+    },
+    {
+      "path": "FreeMix/docs/evidencias/20261010-menus-operacao/srt-conteudo.jpg",
+      "sha256": "2544b1ec8692438e47fafd6f4267e542eac30824c1fe151660a007091afe9d87",
+      "bytes": 88855,
+      "inspectedThisReview": true,
+      "source": "Explicitly requested historical browser captures, synthetic states; no new capture"
+    },
+    {
+      "path": "FreeMix/docs/evidencias/20261010-menus-operacao/srt-conferir.jpg",
+      "sha256": "1b04ff3b31dc5f943ca8e969734da5423daee5412105493274a2859ec058024d",
+      "bytes": 79025,
+      "inspectedThisReview": true,
+      "source": "Explicitly requested historical browser captures, synthetic states; no new capture"
+    },
+    {
+      "path": "FreeMix/docs/evidencias/20261010-menus-operacao/multistream-destino.jpg",
+      "sha256": "279d16961dab4ecd45b373c2485565ceb52a77db78f96b395039722af8769b64",
+      "bytes": 79870,
+      "inspectedThisReview": true,
+      "source": "Explicitly requested historical browser captures, synthetic states; no new capture"
+    },
+    {
+      "path": "FreeMix/docs/evidencias/20261010-menus-operacao/multistream-conteudo.jpg",
+      "sha256": "2f5f67f027198fa62aa572b83a56eb140068cb321b6c4c9bb110c84a523c6d80",
+      "bytes": 92361,
+      "inspectedThisReview": true,
+      "source": "Explicitly requested historical browser captures, synthetic states; no new capture"
+    },
+    {
+      "path": "FreeMix/docs/evidencias/20261010-menus-operacao/multistream-conferir.jpg",
+      "sha256": "eefccf8309c6b24a838e7f359da522c7f4669b4265118570e2f2db793c7cfaa0",
+      "bytes": 79656,
+      "inspectedThisReview": true,
+      "source": "Explicitly requested historical browser captures, synthetic states; no new capture"
+    },
+    {
+      "path": "FreeMix/docs/evidencias/20261010-menus-operacao/calls-desktop.png",
+      "sha256": "3ed2f03e2b88a09f73dcf87900fa7f3b1656100fcb4c7b4486ca4fa906588f6d",
+      "bytes": 119224,
+      "inspectedThisReview": true,
+      "source": "Explicitly requested historical browser captures, synthetic states; no new capture"
+    },
+    {
+      "path": "FreeMix/docs/evidencias/20261010-menus-operacao/calls-empty.png",
+      "sha256": "2ee71bc8ff2f694208c9814f6b9f87a443f104eb56b0977b2742710a00d72627",
+      "bytes": 20215,
+      "inspectedThisReview": true,
+      "source": "Explicitly requested historical browser captures, synthetic states; no new capture"
+    },
+    {
+      "path": "FreeMix/docs/evidencias/20261010-menus-operacao/calls-mobile.png",
+      "sha256": "3be710acf7d32ea8b6dc37c3aaf453b11d56e84ef6d5bc3c5fba4078e12df335",
+      "bytes": 109849,
+      "inspectedThisReview": true,
+      "source": "Explicitly requested historical browser captures, synthetic states; no new capture"
+    },
+    {
+      "path": "FreeMix/docs/evidencias/20261010-calls-limit-check-motor/fixtures/standard-custom-1280.png",
+      "sha256": "3c937546deee9c97bdfc28746fe0ca0899dc657b0ce296c9b35123be06ff7ed7",
+      "bytes": 54491,
+      "inspectedThisReview": true,
+      "source": "Explicitly requested historical browser captures, synthetic states; no new capture"
+    },
+    {
+      "path": "FreeMix/docs/evidencias/20261010-calls-limit-check-motor/fixtures/unknown-custom-1280.png",
+      "sha256": "4d302b95c7785d443e4d7e0b3c6a379dbaae605ea8a832e738989e13f302aa93",
+      "bytes": 54677,
+      "inspectedThisReview": true,
+      "source": "Explicitly requested historical browser captures, synthetic states; no new capture"
+    },
+    {
+      "path": "FreeMix/docs/evidencias/20261010-calls-limit-check-motor/fixtures/experimental-custom-600.png",
+      "sha256": "e8a8a9aaebad8b29db516e59588633260783c9c0214d6a4093e8a9a4c5a111e5",
+      "bytes": 47848,
+      "inspectedThisReview": true,
+      "source": "Explicitly requested historical browser captures, synthetic states; no new capture"
+    }
+  ]
+}

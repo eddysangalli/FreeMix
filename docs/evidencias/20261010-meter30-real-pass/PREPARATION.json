@@ -1,0 +1,116 @@
+{
+  "status": "FROZEN_NATIVE30_METER_LIFECYCLE_ROOT_REVIEW_REQUIRED",
+  "head": "93d73e25b90bea7920e58dcd2af197aeb3e2bc1d",
+  "nativeFreezePath": "D:/DRIVE/IA/antigravity/vmixtwste/qa-finalizacao/native-build-frozen-93d73e2-configured.json",
+  "nativeFreezeSha256": "21b83824b38012dbecac97c83e8501959b251a4248e60912ed97765210523d49",
+  "vendorVersion": "32.2.2-30-g93d73e2",
+  "sdkSnapshotStatus": "AWAITING_ROOT_NATIVE30_BUILD_BIND_READONLY_CURRENT_SDK",
+  "nodePath": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\entregas\\FreeMix-Completo-0.1.0-local.20261010060000\\runtime\\node.exe",
+  "nodeSha256": "ba4e6d110e8c1592a1ecd390f6b05f3da124b13871a5be62b341a07a853c6c32",
+  "runnerSha256": "8f5a63900c5ff966a048deb1177b065934e02f81594b752f3e1c2b7655cfb8f3",
+  "modules": [
+    {
+      "path": "scenarios.mjs",
+      "sha256": "dcf138c6aed6487b12fc372174f593b9928c498fa1abaef61cbf2f041ee36287"
+    },
+    {
+      "path": "meter-contract.mjs",
+      "sha256": "c529af4bdbbbd33432ae8003297ded8f6acab50b5099a97a1b36817e44e31916"
+    },
+    {
+      "path": "diagnostic-observation.mjs",
+      "sha256": "10fe62a06830d391ee629e7e4151813aa5395cb406327e4a64ad0ae64f852efe"
+    },
+    {
+      "path": "meter-failure-context.mjs",
+      "sha256": "ded1dc1078fbfd26071c54f23306c3dba06a107d9ee25a4d9a576c57204214bc"
+    },
+    {
+      "path": "candidate-context.mjs",
+      "sha256": "d911bf44d3f8bbf2f31783e6803391ad872c0f03a5ab56614e678547124e2130"
+    },
+    {
+      "path": "test-pure.mjs",
+      "sha256": "421f40d47a28898b80cb43339ca824e8b2f0f29249df61a765dd3e3f4b606239"
+    },
+    {
+      "path": "sdk/EventSubscription.h",
+      "sha256": "0084f82ebda2ff9ddf559d0652a6a2b6df318a285263ab239515c7c80279ff2f"
+    },
+    {
+      "path": "sdk/Obs_VolumeMeter.cpp",
+      "sha256": "7c3bf7985c726f15ce256ee6e8e0d47d41c01537817e51b05df5217bb9d632ea"
+    },
+    {
+      "path": "sdk/Obs_VolumeMeter.h",
+      "sha256": "973ff4c51db2bbca9c780d589a92d1777e51f97e77f5b4a2b4b4e2d61937d7f8"
+    }
+  ],
+  "tools": [
+    {
+      "path": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\entregas\\FreeMix-Completo-0.1.0-local.20261010060000\\runtime\\node.exe",
+      "sha256": "ba4e6d110e8c1592a1ecd390f6b05f3da124b13871a5be62b341a07a853c6c32"
+    },
+    {
+      "path": "C:/Windows/System32/WindowsPowerShell/v1.0/powershell.exe",
+      "sha256": "8bb6fa8c283b4d92120b1ef249a9b311b0f804d4cabbe9981159976c8be76a5e"
+    }
+  ],
+  "base": {
+    "candidate": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\candidate-release-060000.json",
+    "candidateSha256": "456696515dd7aabf87958e11a91bd324bab3f405fef68549c2cc16bf1e59647d",
+    "manifestSha256": "7107aa50b55dd2584be4fc30760af6ef1c85855c6995cd10758e65decc0a93b4",
+    "version": "0.1.0-local.20261010060000"
+  },
+  "expected": {
+    "nativeVersion": 30,
+    "fullNative": 2085,
+    "meterClients": 2,
+    "subscription": 65536,
+    "mediaSources": 3,
+    "mainFps": "30/1",
+    "meterWarnings": 0,
+    "allocations": 0,
+    "remaining": 0,
+    "double": 0,
+    "crash": 0,
+    "noApi": true,
+    "noHardware": true,
+    "noOutputs": true
+  },
+  "preserved": {
+    "originalAL13Sha256": "303854b6968018f6e290be7efb5c4fb9e28bf6cd21070531e8c52c60fa4f6e58",
+    "originalReceiptSha256": "1c201ac1388f2cd195a6d300ed4e91672d4a03c8d707d9dabebbd61a31efc19a"
+  },
+  "boundaries": {
+    "oracleRelaxed": false,
+    "noExecuteWithoutRootPinsAndNewFullReview": true,
+    "noAutomaticRetry": true,
+    "noForce": true,
+    "callbackInFlightDeterministic": false,
+    "readbackContextPosterior": true
+  },
+  "pureReceipt": {
+    "path": "pure-receipt.json",
+    "sha256": "32fa017fdc86b72370397b2d3145a8a898ab8c7f178ea51f716f2148952067f2"
+  },
+  "sdk": [
+    {
+      "sourcePath": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\freemix-app\\plugins\\obs-websocket\\src\\eventhandler\\types\\EventSubscription.h",
+      "copiedPath": "sdk/EventSubscription.h",
+      "sha256": "0084f82ebda2ff9ddf559d0652a6a2b6df318a285263ab239515c7c80279ff2f"
+    },
+    {
+      "sourcePath": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\freemix-app\\plugins\\obs-websocket\\src\\utils\\Obs_VolumeMeter.cpp",
+      "copiedPath": "sdk/Obs_VolumeMeter.cpp",
+      "sha256": "7c3bf7985c726f15ce256ee6e8e0d47d41c01537817e51b05df5217bb9d632ea"
+    },
+    {
+      "sourcePath": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\freemix-app\\plugins\\obs-websocket\\src\\utils\\Obs_VolumeMeter.h",
+      "copiedPath": "sdk/Obs_VolumeMeter.h",
+      "sha256": "973ff4c51db2bbca9c780d589a92d1777e51f97e77f5b4a2b4b4e2d61937d7f8"
+    }
+  ],
+  "sourcePreparationSha256": "820eee5483127c622b021354a9372e7e279fce8d7fb688423b3ebfbd874e323a",
+  "sourceALSha256": "e5a48aba3cba653b582c004945e7d9c862922a3f3bbdb6d47ee28bd940b8f05f"
+}

@@ -1,0 +1,93 @@
+{
+  "status": "PREPARATION_ONLY_NATIVE30_PINS_AWAITING_ROOT",
+  "sourceAL13Sha256": "303854b6968018f6e290be7efb5c4fb9e28bf6cd21070531e8c52c60fa4f6e58",
+  "sourceReceiptSha256": "1c201ac1388f2cd195a6d300ed4e91672d4a03c8d707d9dabebbd61a31efc19a",
+  "strictContractSha256": "c529af4bdbbbd33432ae8003297ded8f6acab50b5099a97a1b36817e44e31916",
+  "changes": [
+    {
+      "label": "Head explicit, never reuse29",
+      "count": 1
+    },
+    {
+      "label": "Bound preparation visible to log guard",
+      "count": 1
+    },
+    {
+      "label": "Assign bound preparation",
+      "count": 1
+    },
+    {
+      "label": "Require explicit vendor30 pin",
+      "count": 1
+    },
+    {
+      "label": "Head/freeze/vendor explicit bound",
+      "count": 1
+    },
+    {
+      "label": "Compiled version source pin",
+      "count": 1
+    },
+    {
+      "label": "Native30 markers/statuses",
+      "count": 3
+    },
+    {
+      "label": "Native30 names/limits",
+      "count": 3
+    },
+    {
+      "label": "OwnD30 child temp",
+      "count": 2
+    },
+    {
+      "label": "Error callsite includes strict collector",
+      "count": 1
+    },
+    {
+      "label": "Local byte-exact strict contract closure",
+      "count": 1
+    },
+    {
+      "label": "Keep first rejected event frame before assert",
+      "count": 1
+    },
+    {
+      "label": "Preserve value reason function",
+      "count": 1
+    },
+    {
+      "label": "Exact finite/null value or tagged nonfinite type before assert",
+      "count": 1
+    },
+    {
+      "label": "Bounded event row/channel captured before strict",
+      "count": 1
+    },
+    {
+      "label": "First rejected frame retained even on duplicate/UUID/shape assertion",
+      "count": 1
+    },
+    {
+      "label": "Safe bounded exact value representation",
+      "count": 1
+    },
+    {
+      "label": "Scenario closure local strict",
+      "count": 1
+    },
+    {
+      "label": "Actual GetVersion confirms new readonly volume request",
+      "count": 1
+    }
+  ],
+  "runnerSha256": "8f5a63900c5ff966a048deb1177b065934e02f81594b752f3e1c2b7655cfb8f3",
+  "scenariosSha256": "dcf138c6aed6487b12fc372174f593b9928c498fa1abaef61cbf2f041ee36287",
+  "adapterSha256": "10fe62a06830d391ee629e7e4151813aa5395cb406327e4a64ad0ae64f852efe",
+  "nativeStarted": false,
+  "sdkChanged": false,
+  "oracleRelaxed": false,
+  "native30Head": null,
+  "native30Freeze": null,
+  "requiresNewRootReviewAfterPins": true
+}

@@ -1,0 +1,66 @@
+{
+  "schema": 1,
+  "status": "FROZEN_OFFSIDE_ROOT_REVIEW_PENDING",
+  "files": [
+    {
+      "path": "AUDIT.json",
+      "bytes": 8262,
+      "sha256": "a98e767eecbcb93d0e5b16722e58b0721831f1ad089ad89f094c8486303bd707"
+    },
+    {
+      "path": "draft/calls.js",
+      "bytes": 23611,
+      "sha256": "9120c94414f4f5ffc27be606cb5073133efd1d57e053c532ec7d65a9180dc74c"
+    },
+    {
+      "path": "draft/saidas-operacao-ui.js",
+      "bytes": 25550,
+      "sha256": "66c556599877f2f51c44eda266575c6d7039fe34038fd638aaa79c2f65c61e09"
+    },
+    {
+      "path": "FAIL-PREP-STAGE1.json",
+      "bytes": 408,
+      "sha256": "aa7dbd2eb26d401b1f3f0fcbb21ea30dca237ca2dc9526abfca4ea6798b70f2d"
+    },
+    {
+      "path": "FAIL-PREP-STAGE2.json",
+      "bytes": 447,
+      "sha256": "eee138341fbc02b42adf523626ebd476cd7590893e997a62e3a8cbd22bf33789"
+    },
+    {
+      "path": "freeze.mjs",
+      "bytes": 5295,
+      "sha256": "5d914e2037438973b1c564e01784d6956fa9a744aace9c87c5556e2ec7b3167f"
+    },
+    {
+      "path": "INTEGRATION.json",
+      "bytes": 770,
+      "sha256": "2dbcdc96e4f35ca823d48df1c3498d6c573d4f01dd6d3bbbbd848316c9a90d5f"
+    },
+    {
+      "path": "patches/calls.js.patch",
+      "bytes": 1276,
+      "sha256": "4f11c5c1603f8e94afbb28f9176bbcec6b4dd2affbc8fcebd5bba82a62ea7afd"
+    },
+    {
+      "path": "patches/saidas-operacao-ui.js.patch",
+      "bytes": 2271,
+      "sha256": "27e3546fb0028d40b8441251672c2b8b16fe8e789173a7bd1e87c0664be92977"
+    },
+    {
+      "path": "prepare.py",
+      "bytes": 3310,
+      "sha256": "f4558474710ec5b42ca907adb1214a7ab30db55e51c641d08887e6bdf4a4abc3"
+    },
+    {
+      "path": "TEST-RESULT.json",
+      "bytes": 1458,
+      "sha256": "240d3e08c61c073aa951747b1d41c22e5b0be41d84db080e214eedc93d1757eb"
+    },
+    {
+      "path": "test.mjs",
+      "bytes": 5584,
+      "sha256": "2338463297e0547a8fcbd7e3338caa49e914d1d6d982257ec2a1f08724053b0d"
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "status": "ROOT_TWO_UI_FUNCTION_FIXES_INTEGRATED",
+  "at": "2026-10-10T12:08:55.482Z",
+  "targets": [
+    {
+      "target": "FreeMix/painel/remoto/calls.js",
+      "baseSHA256": "9a34acd82873289b772a1368507045110a36ee862497cbd504ed9f855f9512bc",
+      "draft": "draft/calls.js",
+      "sha256": "9120c94414f4f5ffc27be606cb5073133efd1d57e053c532ec7d65a9180dc74c",
+      "patch": "patches/calls.js.patch"
+    },
+    {
+      "target": "FreeMix/painel/remoto/saidas-operacao-ui.js",
+      "baseSHA256": "34fabbe6ae9dc9eca45416822fdc57c6ba6e44baef6ae6799e4fddf9c90cf0d4",
+      "draft": "draft/saidas-operacao-ui.js",
+      "sha256": "66c556599877f2f51c44eda266575c6d7039fe34038fd638aaa79c2f65c61e09",
+      "patch": "patches/saidas-operacao-ui.js.patch"
+    }
+  ],
+  "fullPatchAndExtractedTestsRead": true,
+  "testChecks": 12,
+  "actualUiPending": true,
+  "operatorTouched": false,
+  "nativeSdkChanged": false
+}

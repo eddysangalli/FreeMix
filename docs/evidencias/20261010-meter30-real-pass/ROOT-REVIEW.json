@@ -1,0 +1,27 @@
+{
+  "status": "ROOT_FULL_REVIEW_ONE_NATIVE30_METER_EXECUTION_APPROVED",
+  "at": "2026-10-10T11:57:17.247Z",
+  "alSha256": "b4d25974398949f7053120d4352c8b4d48477c5b8e52b02daaba9ff7835aee28",
+  "commandSha256": "1bee3ef98ea814c21a53cba9137afeb7ae4e0b4de758eb396995a95a61bb8062",
+  "sourceAL": "e5a48aba3cba653b582c004945e7d9c862922a3f3bbdb6d47ee28bd940b8f05f",
+  "runner": "8f5a63900c5ff966a048deb1177b065934e02f81594b752f3e1c2b7655cfb8f3",
+  "fullSourceRead": [
+    "runner.mjs",
+    "scenarios.mjs",
+    "meter-contract.mjs",
+    "diagnostic-observation.mjs",
+    "meter-failure-context.mjs",
+    "candidate-context.mjs",
+    "bind-native30.mjs"
+  ],
+  "strictOriginalUnchanged": true,
+  "rawRejectedFrameBeforeAssert": true,
+  "oldFailuresPreserved": true,
+  "noForce": true,
+  "operatorTouched": false,
+  "limits": [
+    "Own isolated synthetic sources only",
+    "No deterministic callback-in-flight claim",
+    "No API/Calls/FTB/WAN/hardware test"
+  ]
+}

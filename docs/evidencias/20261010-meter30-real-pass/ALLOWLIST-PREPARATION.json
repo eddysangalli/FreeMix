@@ -1,0 +1,81 @@
+{
+  "status": "BOUND_NATIVE30_PREPARATION_NO_EXECUTION_ROOT_REVIEW_REQUIRED",
+  "textOnly": true,
+  "files": [
+    {
+      "path": "runner.mjs",
+      "sha256": "8f5a63900c5ff966a048deb1177b065934e02f81594b752f3e1c2b7655cfb8f3",
+      "bytes": 17518
+    },
+    {
+      "path": "scenarios.mjs",
+      "sha256": "dcf138c6aed6487b12fc372174f593b9928c498fa1abaef61cbf2f041ee36287",
+      "bytes": 10490
+    },
+    {
+      "path": "meter-contract.mjs",
+      "sha256": "c529af4bdbbbd33432ae8003297ded8f6acab50b5099a97a1b36817e44e31916",
+      "bytes": 2413
+    },
+    {
+      "path": "diagnostic-observation.mjs",
+      "sha256": "10fe62a06830d391ee629e7e4151813aa5395cb406327e4a64ad0ae64f852efe",
+      "bytes": 4697
+    },
+    {
+      "path": "meter-failure-context.mjs",
+      "sha256": "ded1dc1078fbfd26071c54f23306c3dba06a107d9ee25a4d9a576c57204214bc",
+      "bytes": 1646
+    },
+    {
+      "path": "candidate-context.mjs",
+      "sha256": "d911bf44d3f8bbf2f31783e6803391ad872c0f03a5ab56614e678547124e2130",
+      "bytes": 2729
+    },
+    {
+      "path": "test-pure.mjs",
+      "sha256": "421f40d47a28898b80cb43339ca824e8b2f0f29249df61a765dd3e3f4b606239",
+      "bytes": 5426
+    },
+    {
+      "path": "pure-receipt.json",
+      "sha256": "32fa017fdc86b72370397b2d3145a8a898ab8c7f178ea51f716f2148952067f2",
+      "bytes": 201
+    },
+    {
+      "path": "README.md",
+      "sha256": "e46bdec8d1906a02b12dafb52b1c286d378461d80abac5165a06f3ade47b13da",
+      "bytes": 2747
+    },
+    {
+      "path": "DERIVATION.json",
+      "sha256": "6966e37d0649d19d2062025a061321f24c120f087f9cafd3f85a98d9da456595",
+      "bytes": 2416
+    },
+    {
+      "path": "PREPARATION.json",
+      "sha256": "d8d285bf1f31d8cfcae76e88ebca1d98de55969346be389159dca4b19a73432c",
+      "bytes": 4693
+    },
+    {
+      "path": "root-command.json",
+      "sha256": "1bee3ef98ea814c21a53cba9137afeb7ae4e0b4de758eb396995a95a61bb8062",
+      "bytes": 1657
+    },
+    {
+      "path": "sdk/EventSubscription.h",
+      "sha256": "0084f82ebda2ff9ddf559d0652a6a2b6df318a285263ab239515c7c80279ff2f",
+      "bytes": 5897
+    },
+    {
+      "path": "sdk/Obs_VolumeMeter.cpp",
+      "sha256": "7c3bf7985c726f15ce256ee6e8e0d47d41c01537817e51b05df5217bb9d632ea",
+      "bytes": 13362
+    },
+    {
+      "path": "sdk/Obs_VolumeMeter.h",
+      "sha256": "973ff4c51db2bbca9c780d589a92d1777e51f97e77f5b4a2b4b4e2d61937d7f8",
+      "bytes": 3332
+    }
+  ]
+}

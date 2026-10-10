@@ -1,0 +1,25 @@
+{
+  "status": "BOUND_PREPARATION_REQUIRES_NEW_ROOT_FULL_REVIEW_BEFORE_EXECUTION",
+  "executable": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\entregas\\FreeMix-Completo-0.1.0-local.20261010060000\\runtime\\node.exe",
+  "runner": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\native30-meter-lifecycle-frozen-93d73e2-20261010\\runner.mjs",
+  "args": [
+    "--candidate=D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\candidate-release-060000.json",
+    "--candidate-sha=456696515dd7aabf87958e11a91bd324bab3f405fef68549c2cc16bf1e59647d",
+    "--manifest-sha=7107aa50b55dd2584be4fc30760af6ef1c85855c6995cd10758e65decc0a93b4",
+    "--native-freeze=D:/DRIVE/IA/antigravity/vmixtwste/qa-finalizacao/native-build-frozen-93d73e2-configured.json",
+    "--native-freeze-sha=21b83824b38012dbecac97c83e8501959b251a4248e60912ed97765210523d49",
+    "--native-head=93d73e25b90bea7920e58dcd2af197aeb3e2bc1d",
+    "--preparation=D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\native30-meter-lifecycle-frozen-93d73e2-20261010\\PREPARATION.json",
+    "--preparation-sha=d8d285bf1f31d8cfcae76e88ebca1d98de55969346be389159dca4b19a73432c",
+    "--receipt=D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\native30-meter-lifecycle-frozen-93d73e2-20261010\\receipt.json",
+    "--root-reviewed=EXECUTE-OWN-REAL-NATIVE30-METER-LIFECYCLE",
+    "--main-fps=30/1"
+  ],
+  "environment": {
+    "TEMP": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\own-temp-native30-meters",
+    "TMP": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\own-temp-native30-meters"
+  },
+  "environmentChildOnly": true,
+  "noForce": true,
+  "noAutomaticRetry": true
+}
