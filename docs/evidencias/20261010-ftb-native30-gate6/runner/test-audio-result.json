@@ -1,0 +1,130 @@
+{
+  "status": "PASS_PREPARATION_ONLY_NO_MEDIA_EXECUTION",
+  "checks": 30,
+  "cases": [
+    {
+      "name": "long fixture240s uses same tone recipe",
+      "pass": true
+    },
+    {
+      "name": "nonloop explicit restart before real output starts",
+      "pass": true
+    },
+    {
+      "name": "strict interior accepts own capture24s",
+      "pass": true
+    },
+    {
+      "name": "refuse priming",
+      "pass": true
+    },
+    {
+      "name": "refuse terminal padding",
+      "pass": true
+    },
+    {
+      "name": "refuse missing cursor",
+      "pass": true
+    },
+    {
+      "name": "refuse short media",
+      "pass": true
+    },
+    {
+      "name": "refuse not playing",
+      "pass": true
+    },
+    {
+      "name": "refuse wrap/restart during capture",
+      "pass": true
+    },
+    {
+      "name": "refuse media duration changed",
+      "pass": true
+    },
+    {
+      "name": "refuse cursor vs wall discrepancy",
+      "pass": true
+    },
+    {
+      "name": "continuous correct stereo and constant phase offset accepted",
+      "pass": true
+    },
+    {
+      "name": "refuse synthetic mute",
+      "pass": true
+    },
+    {
+      "name": "refuse synthetic swap",
+      "pass": true
+    },
+    {
+      "name": "refuse synthetic mix",
+      "pass": true
+    },
+    {
+      "name": "refuse synthetic dropout",
+      "pass": true
+    },
+    {
+      "name": "refuse synthetic wrong frequency",
+      "pass": true
+    },
+    {
+      "name": "refuse synthetic unexpected gain",
+      "pass": true
+    },
+    {
+      "name": "refuse synthetic loop phase change",
+      "pass": true
+    },
+    {
+      "name": "unchanged global and segment .6 preserved",
+      "pass": true
+    },
+    {
+      "name": "both original FPS and pending reconnect/context reset retained",
+      "pass": true
+    },
+    {
+      "name": "new review rejects absent long fixture contract",
+      "pass": true
+    },
+    {
+      "name": "v2 guard refuses contractVersion",
+      "pass": true
+    },
+    {
+      "name": "v2 guard refuses gainDomain",
+      "pass": true
+    },
+    {
+      "name": "v2 guard refuses renderTargetContract",
+      "pass": true
+    },
+    {
+      "name": "v2 guard refuses renderTargetSupported",
+      "pass": true
+    },
+    {
+      "name": "v2 guard refuses resetRequired",
+      "pass": true
+    },
+    {
+      "name": "v2 guard refuses clockFault",
+      "pass": true
+    },
+    {
+      "name": "v2 guard refuses captureMismatch",
+      "pass": true
+    },
+    {
+      "name": "v2 guard refuses audioPolicy",
+      "pass": true
+    }
+  ],
+  "nativeRuns": 0,
+  "receivers": 0,
+  "fixtureGeneration": 0,
+  "originalGate4FailPreserved": true
+}

@@ -1,0 +1,410 @@
+{
+  "status": "PARTIAL_30FPS_PASS_NTSC_RESET_FAIL",
+  "nativeHead": "93d73e25b90bea7920e58dcd2af197aeb3e2bc1d",
+  "rawReceiptSha256": "f7b918630d3deee27109faa0da92a152c258ce1d17e09621a58e92c9d38ed60a",
+  "operatorTouched": false,
+  "cases": [
+    {
+      "fps": {
+        "num": 30,
+        "den": 1
+      },
+      "status": "PASS_REAL_NATIVE26_BETA_PIXELS_LIMITED",
+      "checks": [
+        {
+          "name": "Complete frozen Native29 hash verified",
+          "status": "PASS"
+        },
+        {
+          "name": "Own seed contains only scenes/color; no capture devices",
+          "status": "PASS"
+        },
+        {
+          "name": "Initial default OFF / zero REC / main-stream / destinations",
+          "status": "PASS"
+        },
+        {
+          "name": "SDK-loaded OWN keyers exactly1..8 at basechannel7",
+          "status": "PASS"
+        },
+        {
+          "name": "Main final-render screenshot contains eight real DSKs",
+          "status": "PASS"
+        },
+        {
+          "name": "Explicit ON/black/OFF preserves PGM A and Preview C with all DSKs",
+          "status": "PASS"
+        },
+        {
+          "name": "Programme decoded pixels / rational PTS / single gain; Source excluded and moving; stereo audio unchanged",
+          "status": "PASS"
+        },
+        {
+          "name": "Explicit destination stop/start reconnect decodes",
+          "status": "PASS"
+        },
+        {
+          "name": "Own collection reset clears beta and rejects stale epoch without mutation",
+          "status": "PASS"
+        }
+      ],
+      "mediaResetBarrier": {
+        "contract": "observable-reset-then-progress-v1",
+        "sourceUuid": "1e172ee4-0323-4e47-9fd1-9b1d92f4239f",
+        "triggerClockMs": 212573.9198,
+        "before": {
+          "clockMs": 212573.8027,
+          "mediaCursor": 2700,
+          "mediaDuration": 240000,
+          "mediaState": "OBS_MEDIA_STATE_PLAYING"
+        },
+        "low": {
+          "clockMs": 212625.921,
+          "sourceUuid": "1e172ee4-0323-4e47-9fd1-9b1d92f4239f",
+          "mediaCursor": 0,
+          "mediaDuration": 240000,
+          "mediaState": "OBS_MEDIA_STATE_PLAYING"
+        },
+        "advances": 20,
+        "ready": true,
+        "samples": [
+          {
+            "clockMs": 212574.8108,
+            "sourceUuid": "1e172ee4-0323-4e47-9fd1-9b1d92f4239f",
+            "mediaCursor": 2700,
+            "mediaDuration": 240000,
+            "mediaState": "OBS_MEDIA_STATE_PLAYING"
+          },
+          {
+            "clockMs": 212625.921,
+            "sourceUuid": "1e172ee4-0323-4e47-9fd1-9b1d92f4239f",
+            "mediaCursor": 0,
+            "mediaDuration": 240000,
+            "mediaState": "OBS_MEDIA_STATE_PLAYING"
+          },
+          {
+            "clockMs": 212676.7059,
+            "sourceUuid": "1e172ee4-0323-4e47-9fd1-9b1d92f4239f",
+            "mediaCursor": 33,
+            "mediaDuration": 240000,
+            "mediaState": "OBS_MEDIA_STATE_PLAYING"
+          },
+          {
+            "clockMs": 212727.5998,
+            "sourceUuid": "1e172ee4-0323-4e47-9fd1-9b1d92f4239f",
+            "mediaCursor": 100,
+            "mediaDuration": 240000,
+            "mediaState": "OBS_MEDIA_STATE_PLAYING"
+          },
+          {
+            "clockMs": 212778.1747,
+            "sourceUuid": "1e172ee4-0323-4e47-9fd1-9b1d92f4239f",
+            "mediaCursor": 133,
+            "mediaDuration": 240000,
+            "mediaState": "OBS_MEDIA_STATE_PLAYING"
+          },
+          {
+            "clockMs": 212828.6188,
+            "sourceUuid": "1e172ee4-0323-4e47-9fd1-9b1d92f4239f",
+            "mediaCursor": 200,
+            "mediaDuration": 240000,
+            "mediaState": "OBS_MEDIA_STATE_PLAYING"
+          },
+          {
+            "clockMs": 212879.1774,
+            "sourceUuid": "1e172ee4-0323-4e47-9fd1-9b1d92f4239f",
+            "mediaCursor": 233,
+            "mediaDuration": 240000,
+            "mediaState": "OBS_MEDIA_STATE_PLAYING"
+          },
+          {
+            "clockMs": 212930.0486,
+            "sourceUuid": "1e172ee4-0323-4e47-9fd1-9b1d92f4239f",
+            "mediaCursor": 300,
+            "mediaDuration": 240000,
+            "mediaState": "OBS_MEDIA_STATE_PLAYING"
+          },
+          {
+            "clockMs": 212980.7876,
+            "sourceUuid": "1e172ee4-0323-4e47-9fd1-9b1d92f4239f",
+            "mediaCursor": 333,
+            "mediaDuration": 240000,
+            "mediaState": "OBS_MEDIA_STATE_PLAYING"
+          },
+          {
+            "clockMs": 213031.5271,
+            "sourceUuid": "1e172ee4-0323-4e47-9fd1-9b1d92f4239f",
+            "mediaCursor": 400,
+            "mediaDuration": 240000,
+            "mediaState": "OBS_MEDIA_STATE_PLAYING"
+          },
+          {
+            "clockMs": 213082.3333,
+            "sourceUuid": "1e172ee4-0323-4e47-9fd1-9b1d92f4239f",
+            "mediaCursor": 433,
+            "mediaDuration": 240000,
+            "mediaState": "OBS_MEDIA_STATE_PLAYING"
+          },
+          {
+            "clockMs": 213133.0331,
+            "sourceUuid": "1e172ee4-0323-4e47-9fd1-9b1d92f4239f",
+            "mediaCursor": 500,
+            "mediaDuration": 240000,
+            "mediaState": "OBS_MEDIA_STATE_PLAYING"
+          },
+          {
+            "clockMs": 213183.6103,
+            "sourceUuid": "1e172ee4-0323-4e47-9fd1-9b1d92f4239f",
+            "mediaCursor": 533,
+            "mediaDuration": 240000,
+            "mediaState": "OBS_MEDIA_STATE_PLAYING"
+          },
+          {
+            "clockMs": 213234.943,
+            "sourceUuid": "1e172ee4-0323-4e47-9fd1-9b1d92f4239f",
+            "mediaCursor": 600,
+            "mediaDuration": 240000,
+            "mediaState": "OBS_MEDIA_STATE_PLAYING"
+          },
+          {
+            "clockMs": 213285.9415,
+            "sourceUuid": "1e172ee4-0323-4e47-9fd1-9b1d92f4239f",
+            "mediaCursor": 633,
+            "mediaDuration": 240000,
+            "mediaState": "OBS_MEDIA_STATE_PLAYING"
+          },
+          {
+            "clockMs": 213336.6784,
+            "sourceUuid": "1e172ee4-0323-4e47-9fd1-9b1d92f4239f",
+            "mediaCursor": 700,
+            "mediaDuration": 240000,
+            "mediaState": "OBS_MEDIA_STATE_PLAYING"
+          },
+          {
+            "clockMs": 213387.6109,
+            "sourceUuid": "1e172ee4-0323-4e47-9fd1-9b1d92f4239f",
+            "mediaCursor": 733,
+            "mediaDuration": 240000,
+            "mediaState": "OBS_MEDIA_STATE_PLAYING"
+          },
+          {
+            "clockMs": 213439.8808,
+            "sourceUuid": "1e172ee4-0323-4e47-9fd1-9b1d92f4239f",
+            "mediaCursor": 800,
+            "mediaDuration": 240000,
+            "mediaState": "OBS_MEDIA_STATE_PLAYING"
+          },
+          {
+            "clockMs": 213490.8007,
+            "sourceUuid": "1e172ee4-0323-4e47-9fd1-9b1d92f4239f",
+            "mediaCursor": 866,
+            "mediaDuration": 240000,
+            "mediaState": "OBS_MEDIA_STATE_PLAYING"
+          },
+          {
+            "clockMs": 213541.344,
+            "sourceUuid": "1e172ee4-0323-4e47-9fd1-9b1d92f4239f",
+            "mediaCursor": 900,
+            "mediaDuration": 240000,
+            "mediaState": "OBS_MEDIA_STATE_PLAYING"
+          },
+          {
+            "clockMs": 213591.9864,
+            "sourceUuid": "1e172ee4-0323-4e47-9fd1-9b1d92f4239f",
+            "mediaCursor": 966,
+            "mediaDuration": 240000,
+            "mediaState": "OBS_MEDIA_STATE_PLAYING"
+          },
+          {
+            "clockMs": 213642.7229,
+            "sourceUuid": "1e172ee4-0323-4e47-9fd1-9b1d92f4239f",
+            "mediaCursor": 1000,
+            "mediaDuration": 240000,
+            "mediaState": "OBS_MEDIA_STATE_PLAYING"
+          }
+        ]
+      },
+      "nativeClosed": true,
+      "nativeExit": {
+        "code": 0,
+        "signal": null
+      },
+      "logs": [
+        {
+          "sha256": "b5c50286e31b17cd3c38c71a737577f5929a6a547a667bc10f2a86e74a751c91",
+          "allocations": [
+            0
+          ],
+          "meterWarnings": 0,
+          "doubleDestroy": 0,
+          "remainingObjects": 0,
+          "nativeVersionConfirmed": true
+        }
+      ],
+      "crashes": 0,
+      "receiverExits": [
+        {
+          "label": "program",
+          "pid": 115644,
+          "code": 0,
+          "signal": null,
+          "forceAttempted": false
+        },
+        {
+          "label": "source",
+          "pid": 147048,
+          "code": 0,
+          "signal": null,
+          "forceAttempted": false
+        },
+        {
+          "label": "program-restart",
+          "pid": 112624,
+          "code": 0,
+          "signal": null,
+          "forceAttempted": false
+        }
+      ],
+      "postCleanupPins": {
+        "nativeFiles": 2085,
+        "candidateSignedFiles": 9582,
+        "candidate": true,
+        "frozen": true,
+        "manifest": true,
+        "signature": true,
+        "reviewPlan": true,
+        "runnerFiles": 7,
+        "independentFiles": true
+      }
+    },
+    {
+      "fps": {
+        "num": 30000,
+        "den": 1001
+      },
+      "status": "FAIL",
+      "checks": [
+        {
+          "name": "Complete frozen Native29 hash verified",
+          "status": "PASS"
+        },
+        {
+          "name": "Own seed contains only scenes/color; no capture devices",
+          "status": "PASS"
+        },
+        {
+          "name": "Initial default OFF / zero REC / main-stream / destinations",
+          "status": "PASS"
+        },
+        {
+          "name": "SDK-loaded OWN keyers exactly1..8 at basechannel7",
+          "status": "PASS"
+        },
+        {
+          "name": "Main final-render screenshot contains eight real DSKs",
+          "status": "PASS"
+        }
+      ],
+      "error": "No second reset/backward cursor after observed low",
+      "mediaResetBarrier": {
+        "contract": "observable-reset-then-progress-v1",
+        "sourceUuid": "079d6c04-23da-49aa-b881-04a6f5abe6d9",
+        "triggerClockMs": 474185.4994,
+        "before": {
+          "clockMs": 474185.3623,
+          "mediaCursor": 2702,
+          "mediaDuration": 240006,
+          "mediaState": "OBS_MEDIA_STATE_PLAYING"
+        },
+        "low": {
+          "clockMs": 474236.7488,
+          "sourceUuid": "079d6c04-23da-49aa-b881-04a6f5abe6d9",
+          "mediaCursor": 33,
+          "mediaDuration": 240006,
+          "mediaState": "OBS_MEDIA_STATE_PLAYING"
+        },
+        "advances": 0,
+        "ready": false,
+        "samples": [
+          {
+            "clockMs": 474186.4851,
+            "sourceUuid": "079d6c04-23da-49aa-b881-04a6f5abe6d9",
+            "mediaCursor": 2702,
+            "mediaDuration": 240006,
+            "mediaState": "OBS_MEDIA_STATE_PLAYING"
+          },
+          {
+            "clockMs": 474236.7488,
+            "sourceUuid": "079d6c04-23da-49aa-b881-04a6f5abe6d9",
+            "mediaCursor": 33,
+            "mediaDuration": 240006,
+            "mediaState": "OBS_MEDIA_STATE_PLAYING"
+          },
+          {
+            "clockMs": 474287.4757,
+            "sourceUuid": "079d6c04-23da-49aa-b881-04a6f5abe6d9",
+            "mediaCursor": 0,
+            "mediaDuration": 240006,
+            "mediaState": "OBS_MEDIA_STATE_PLAYING"
+          }
+        ]
+      },
+      "nativeClosed": true,
+      "nativeExit": {
+        "code": 0,
+        "signal": null
+      },
+      "logs": [
+        {
+          "sha256": "29e640912fb4bfe92ad291d2e23701caa6f61ac2425a32931f28049a978bea4e",
+          "allocations": [
+            0
+          ],
+          "meterWarnings": 0,
+          "doubleDestroy": 0,
+          "remainingObjects": 0,
+          "nativeVersionConfirmed": true
+        }
+      ],
+      "crashes": 0,
+      "receiverExits": [
+        {
+          "label": "program",
+          "pid": 162076,
+          "pending": true,
+          "preservedForRoot": true,
+          "forceAttempted": false
+        },
+        {
+          "label": "source",
+          "pid": 187240,
+          "pending": true,
+          "preservedForRoot": true,
+          "forceAttempted": false
+        }
+      ],
+      "postCleanupPins": {
+        "nativeFiles": 2085,
+        "candidateSignedFiles": 9582,
+        "candidate": true,
+        "frozen": true,
+        "manifest": true,
+        "signature": true,
+        "reviewPlan": true,
+        "runnerFiles": 7,
+        "independentFiles": true
+      }
+    }
+  ],
+  "postRunnerReceiverObservation": {
+    "at": "2026-10-10T12:18:56Z",
+    "pids": [
+      162076,
+      187240
+    ],
+    "cimRemaining": 0,
+    "forceAttempted": false,
+    "exitCodesUnknown": true
+  },
+  "qualified": false
+}

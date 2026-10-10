@@ -1,0 +1,61 @@
+{
+  "status": "ROOT_REVIEW_PENDING_DO_NOT_EXECUTE",
+  "nativeHead": "93d73e25b90bea7920e58dcd2af197aeb3e2bc1d",
+  "freezeSha256": "21b83824b38012dbecac97c83e8501959b251a4248e60912ed97765210523d49",
+  "candidateSha256": "456696515dd7aabf87958e11a91bd324bab3f405fef68549c2cc16bf1e59647d",
+  "runnerSha256": "482eeab8a75b68e35ea869b02a36e05191c1604d6d7c5ef7215c5d581d9376cb",
+  "runnerFiles": [
+    {
+      "path": "audio-contract.mjs",
+      "sha256": "cae085195a3962f3ecf31a8a11a7a829fcef0048380eb987c44e23b9ab7d0884"
+    },
+    {
+      "path": "candidate-context.mjs",
+      "sha256": "d911bf44d3f8bbf2f31783e6803391ad872c0f03a5ab56614e678547124e2130"
+    },
+    {
+      "path": "guards.mjs",
+      "sha256": "578c0aeec3c391a034fc47f27156cfb3f7d6ec6812464e37fe81753a4905c9a0"
+    },
+    {
+      "path": "media-reset-contract.mjs",
+      "sha256": "dba7b0ab66dddc6f2d96b14f8c7abdc9eca3e0cfbbd5ef1659412209f0688259"
+    },
+    {
+      "path": "png.mjs",
+      "sha256": "9a53a3a8b29339874c1e48b72752a25083c92636d5c348b41b2a74bc6a19e5eb"
+    },
+    {
+      "path": "run.mjs",
+      "sha256": "482eeab8a75b68e35ea869b02a36e05191c1604d6d7c5ef7215c5d581d9376cb"
+    },
+    {
+      "path": "scenario.mjs",
+      "sha256": "d4cbfd87e5929526681844b05f7ae68c6452228aba50d2489a3f258f8523af67"
+    }
+  ],
+  "contractVersion": 2,
+  "gainDomain": "linear-sRGB",
+  "renderTargetContract": "sRGB-SDR8",
+  "qualification": false,
+  "fixtureContract": "long-nonloop-restart-interior-v1",
+  "fixtureSeconds": 240,
+  "captureMarginMs": 1000,
+  "fps": [
+    {
+      "num": 30,
+      "den": 1
+    },
+    {
+      "num": 30000,
+      "den": 1001
+    }
+  ],
+  "operatorTouched": false,
+  "startupNotAuthorized": true,
+  "newOwnLauncherRequired": true,
+  "ownedTempOnly": "Future invocation D parent marker/TEMP/TMP, no global variables changed",
+  "sdkSourcePinsSHA": "a8dd9ea0c715c5e62004b79a2b413cd3d499b1e43d0bbc79b5c9e17d0fceb969",
+  "restartBarrierContract": "observable-reset-then-progress-v1",
+  "originalGate5ReceiptSHA": "8b130df3729af75a48f0d2fc37d12852403c0e18ccc921442d9225db17c61335"
+}

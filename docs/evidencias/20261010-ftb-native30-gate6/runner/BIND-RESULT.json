@@ -1,0 +1,14 @@
+{
+  "status": "PASS_BIND_PREPARATION_ONLY",
+  "head": "93d73e25b90bea7920e58dcd2af197aeb3e2bc1d",
+  "freezeSha256": "21b83824b38012dbecac97c83e8501959b251a4248e60912ed97765210523d49",
+  "verifiedRuntimeFiles": 2085,
+  "baseALFilesPreserved": 34,
+  "sdkCopies": 11,
+  "sdkChanged": 0,
+  "baseGate5FailurePreserved": true,
+  "executed": false,
+  "portsOpened": false,
+  "qualification": false,
+  "rootReviewPending": true
+}

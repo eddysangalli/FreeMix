@@ -1,0 +1,152 @@
+{
+  "status": "PASS_DRAFT_MODELS_AND_GUARDS_ONLY",
+  "checks": 35,
+  "cases": [
+    {
+      "name": "Exact reviewed plan accepted",
+      "status": "PASS"
+    },
+    {
+      "name": "Plan rejects changed status",
+      "status": "PASS"
+    },
+    {
+      "name": "Plan rejects changed runnerSha256",
+      "status": "PASS"
+    },
+    {
+      "name": "Plan rejects changed freezeSha256",
+      "status": "PASS"
+    },
+    {
+      "name": "Plan rejects changed nativeHead",
+      "status": "PASS"
+    },
+    {
+      "name": "Plan rejects changed candidateSha256",
+      "status": "PASS"
+    },
+    {
+      "name": "Plan rejects changed operatorTouched",
+      "status": "PASS"
+    },
+    {
+      "name": "Plan refuses alternate FPS/dependency list",
+      "status": "PASS"
+    },
+    {
+      "name": "Only ChildD TEMP prefix and contained paths",
+      "status": "PASS"
+    },
+    {
+      "name": "Offline own INI rational FPS edit preserves other keys/sections",
+      "status": "PASS"
+    },
+    {
+      "name": "Fixture finite motion/barcode/stereo own file recipe",
+      "status": "PASS"
+    },
+    {
+      "name": "Full-frame black distinguishes hidden nonblack pixel",
+      "status": "PASS"
+    },
+    {
+      "name": "Barcode full/compact spatial sample carries correct16bits",
+      "status": "PASS"
+    },
+    {
+      "name": "Gray/DSK ROI sampler uses intended real pixel positions",
+      "status": "PASS"
+    },
+    {
+      "name": "Linear single-gain model detects .5 vs applied twice .25",
+      "status": "PASS"
+    },
+    {
+      "name": "Actual rational decoder ticks30 andNTSC",
+      "status": "PASS"
+    },
+    {
+      "name": "Real PCM model stereo unchanged vs silence",
+      "status": "PASS"
+    },
+    {
+      "name": "Destinations explicit loopback caller/Program8DSK vsSource exclusion",
+      "status": "PASS"
+    },
+    {
+      "name": "Runner contains purpose-built Main capture, noSourceScreenshot substitute",
+      "status": "PASS"
+    },
+    {
+      "name": "Actual localSDK request contract uses sourceName notunsupported sceneitemUUID",
+      "status": "PASS"
+    },
+    {
+      "name": "Runner bootstrap pins2085fullfiles; no mutable sharedrundir/Nativebuild",
+      "status": "PASS"
+    },
+    {
+      "name": "Receivers precede explicit starts; no commandresend loop",
+      "status": "PASS"
+    },
+    {
+      "name": "Own cleanup no-force Native/API; exitcode0 and every leak/remaining counter required",
+      "status": "PASS"
+    },
+    {
+      "name": "FullNative and candidate/runner pins checked after cleanup",
+      "status": "PASS"
+    },
+    {
+      "name": "Native directspawn / authenticated purpose readiness / no API",
+      "status": "PASS"
+    },
+    {
+      "name": "Helper unknown PID lookup uses CIM absence/path guards without force",
+      "status": "PASS"
+    },
+    {
+      "name": "All actual child invocations have ownTEMP/TMP/OMT env",
+      "status": "PASS"
+    },
+    {
+      "name": "Complete PNG RGB decode CRC/IEND/rows positive",
+      "status": "PASS"
+    },
+    {
+      "name": "Partial PNG and wrong CRC rejected before capture accepted",
+      "status": "PASS"
+    },
+    {
+      "name": "Partial write waited read-only until valid PNG; no hotkey retrigger",
+      "status": "PASS"
+    },
+    {
+      "name": "PNG never completes exact5s deadline rejects",
+      "status": "PASS"
+    },
+    {
+      "name": "Screenshot Nativehotkey triggersonce then completePNG parser, no150ms guess",
+      "status": "PASS"
+    },
+    {
+      "name": "Actual own TEMP marker/noLinks/independent-file positive and outside refusal",
+      "status": "PASS"
+    },
+    {
+      "name": "Actual own hardlink detected before any runtime mutation",
+      "status": "PASS"
+    },
+    {
+      "name": "Runner without Rootreview CLI refuses before sockets/processes/install",
+      "status": "PASS"
+    }
+  ],
+  "syntaxChecks": 6,
+  "nativeExecuted": false,
+  "ffmpegExecuted": false,
+  "installed": false,
+  "operatorTouched": false,
+  "runnerSha256": "482eeab8a75b68e35ea869b02a36e05191c1604d6d7c5ef7215c5d581d9376cb"
+}

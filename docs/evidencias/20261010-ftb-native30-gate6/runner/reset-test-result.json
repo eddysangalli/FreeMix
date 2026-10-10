@@ -1,0 +1,69 @@
+{
+  "status": "PASS_PURE_RESET_BARRIER_MODELS_ONLY",
+  "checks": 15,
+  "cases": [
+    {
+      "name": "Gate5 old stale2733 immediately after ACK no longer counts ready",
+      "pass": true
+    },
+    {
+      "name": "original Gate5 wall/cursor failure criterion unchanged",
+      "pass": true
+    },
+    {
+      "name": "old advancing cursor without observable low cannot pass",
+      "pass": true
+    },
+    {
+      "name": "real reset low then two advancing samples ≥1s passes",
+      "pass": true
+    },
+    {
+      "name": "reset ACK marker without observation cannot pass",
+      "pass": true
+    },
+    {
+      "name": "one progression sample alone insufficient",
+      "pass": true
+    },
+    {
+      "name": "opening status null cursor is not treated as zero",
+      "pass": true
+    },
+    {
+      "name": "pre-restart source must be playing and progressed",
+      "pass": true
+    },
+    {
+      "name": "source UUID change refused",
+      "pass": true
+    },
+    {
+      "name": "clock before trigger or backward refused",
+      "pass": true
+    },
+    {
+      "name": "duration or second reset refused",
+      "pass": true
+    },
+    {
+      "name": "readiness cursor jump/gross speed change refused without widening capture tolerance",
+      "pass": true
+    },
+    {
+      "name": "finite sample bound prevents unbounded receipts",
+      "pass": true
+    },
+    {
+      "name": "exact one RESTART; reset barrier before destination starts; SDK reads own UUID only",
+      "pass": true
+    },
+    {
+      "name": "new contract seven dependencies; pending plan still refuses run",
+      "pass": true
+    }
+  ],
+  "nativeExecuted": false,
+  "apiStarted": false,
+  "originalCaptureToleranceChanged": false
+}

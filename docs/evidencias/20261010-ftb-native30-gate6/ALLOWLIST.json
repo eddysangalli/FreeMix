@@ -1,0 +1,177 @@
+{
+  "schema": 1,
+  "status": "FROZEN_NATIVE30_PREPARATION_ONLY",
+  "modelCases": 92,
+  "files": [
+    {
+      "path": "audio-contract.mjs",
+      "bytes": 1719,
+      "sha256": "cae085195a3962f3ecf31a8a11a7a829fcef0048380eb987c44e23b9ab7d0884"
+    },
+    {
+      "path": "BIND-RESULT.json",
+      "bytes": 422,
+      "sha256": "721338bbceaebc057177ad2b239c28109684577dfe143ff7836991f540c5ab55"
+    },
+    {
+      "path": "BINDING.json",
+      "bytes": 1936,
+      "sha256": "ce7659c72ff92363f9294c7eb464a97a7b614e19d59dc1c5acabe4254cdd3090"
+    },
+    {
+      "path": "candidate-context.mjs",
+      "bytes": 2729,
+      "sha256": "d911bf44d3f8bbf2f31783e6803391ad872c0f03a5ab56614e678547124e2130"
+    },
+    {
+      "path": "CONTRACT-PINS.json",
+      "bytes": 1539,
+      "sha256": "4631470fdbaa753b163050a52d7ac9e67da701735d4401af2f6f5bc4f65ff17d"
+    },
+    {
+      "path": "guards.mjs",
+      "bytes": 6009,
+      "sha256": "578c0aeec3c391a034fc47f27156cfb3f7d6ec6812464e37fe81753a4905c9a0"
+    },
+    {
+      "path": "keyer-test-result.json",
+      "bytes": 3371,
+      "sha256": "5d2f27e8cd570e73e6742952fc9fb977a27ce2ba28e4d84c37d317dd3f2ba15c"
+    },
+    {
+      "path": "media-reset-contract.mjs",
+      "bytes": 2408,
+      "sha256": "dba7b0ab66dddc6f2d96b14f8c7abdc9eca3e0cfbbd5ef1659412209f0688259"
+    },
+    {
+      "path": "png.mjs",
+      "bytes": 2499,
+      "sha256": "9a53a3a8b29339874c1e48b72752a25083c92636d5c348b41b2a74bc6a19e5eb"
+    },
+    {
+      "path": "README-HISTORICAL-NATIVE29.md",
+      "bytes": 3382,
+      "sha256": "fd736084be2655503ddc36878d08c2ebfc099cc86e057b497a99b18b799569a4"
+    },
+    {
+      "path": "README.md",
+      "bytes": 1793,
+      "sha256": "2a826d67694fd0e47c3f64adc66ae190ec8bde1be947d21b9bc7a08180303f54"
+    },
+    {
+      "path": "reset-test-result.json",
+      "bytes": 1719,
+      "sha256": "2c31aea39a7751ad19585730316124d12c0cbbf453b36a96164ac594958a77e9"
+    },
+    {
+      "path": "ROOT-REVIEW-PROPOSAL.json",
+      "bytes": 2074,
+      "sha256": "cb2b047c54c75f839bf6487966bceeda9c31c8f2ff04cd612135411f3aa47702"
+    },
+    {
+      "path": "run.mjs",
+      "bytes": 34611,
+      "sha256": "482eeab8a75b68e35ea869b02a36e05191c1604d6d7c5ef7215c5d581d9376cb"
+    },
+    {
+      "path": "scenario.mjs",
+      "bytes": 4558,
+      "sha256": "d4cbfd87e5929526681844b05f7ae68c6452228aba50d2489a3f258f8523af67"
+    },
+    {
+      "path": "SDK-DELTA.json",
+      "bytes": 162,
+      "sha256": "2d7a2c86a4062fb582b5c4c3f047f247673f7a78ab619e6fe138b585564ef2c0"
+    },
+    {
+      "path": "sdk/0-downstream-keyer-dock.cpp",
+      "bytes": 39105,
+      "sha256": "1cacd05440367a63ac8a8266d522d8dcb34a7531208a10c7eff5a5b4e98ee0be"
+    },
+    {
+      "path": "sdk/1-downstream-keyer.cpp",
+      "bytes": 34200,
+      "sha256": "dc5d9ceed8c7fdf73b2574ca9c52ebea404f5fb889b09629f947e4fb8949ce88"
+    },
+    {
+      "path": "sdk/10-RequestHandler_MediaInputs.cpp",
+      "bytes": 7141,
+      "sha256": "fc8981d15deec3f392f1532c9120915eaebd8c6db430a98a1183320e144e61d5"
+    },
+    {
+      "path": "sdk/2-EventSubscription.h",
+      "bytes": 5897,
+      "sha256": "0084f82ebda2ff9ddf559d0652a6a2b6df318a285263ab239515c7c80279ff2f"
+    },
+    {
+      "path": "sdk/3-obs-websocket.cpp",
+      "bytes": 10064,
+      "sha256": "d3839e64b825ac89c5d4428cbf3cfd41cb1e1de33301fdc0c40a13641bb8a5bc"
+    },
+    {
+      "path": "sdk/4-obsws.mjs",
+      "bytes": 3188,
+      "sha256": "735a395d1fdd4774b0e44ba8c65926b3601aa5035bf17a8dcb53ca9b907c9cdc"
+    },
+    {
+      "path": "sdk/5-FreeMixFinalProgramGate.hpp",
+      "bytes": 9214,
+      "sha256": "8205c2664dec15b821d7d57d40c4e8f1374c4deb056b02a101571796063eea13"
+    },
+    {
+      "path": "sdk/6-obs-final-gate.h",
+      "bytes": 1198,
+      "sha256": "eec4d4963f7eaccbb627efca7471400aedbb2d7da0efa3abf1ab70ba67b8b439"
+    },
+    {
+      "path": "sdk/7-obs-final-gate-internal.h",
+      "bytes": 1095,
+      "sha256": "45b739584de6d210bffa1e95af25ed2a4bca17906fa4a9ce21ae6ae414e714f6"
+    },
+    {
+      "path": "sdk/8-obs-final-gate-render.h",
+      "bytes": 1972,
+      "sha256": "e0a04934974968789f23de2173bf5b779ecd7f71b662d1832765726cf3bda4ef"
+    },
+    {
+      "path": "sdk/9-obs-master-final-gate.c",
+      "bytes": 8943,
+      "sha256": "319d8822e0e0850ab08607a2db25e43c74cd2dec9f8b746faa5bbd4276f88d2b"
+    },
+    {
+      "path": "SOURCE-PINS.json",
+      "bytes": 3085,
+      "sha256": "a8dd9ea0c715c5e62004b79a2b413cd3d499b1e43d0bbc79b5c9e17d0fceb969"
+    },
+    {
+      "path": "test-audio-result.json",
+      "bytes": 2654,
+      "sha256": "adfa88b112dd15c840286abb2a7d10ba05f5c74b313189fb705d8cbf543f77cb"
+    },
+    {
+      "path": "test-audio.mjs",
+      "bytes": 5075,
+      "sha256": "51bd13ec3fc8f88bed01fce98d27d2cb6d3b677c87e1e2210e759126152a78ee"
+    },
+    {
+      "path": "test-keyers.mjs",
+      "bytes": 7026,
+      "sha256": "b211db118d27230c3466212079516bfa291d57cb7e91336cbeb663218b7caf86"
+    },
+    {
+      "path": "test-reset.mjs",
+      "bytes": 4692,
+      "sha256": "ddd4cd5f49323e34a01997b2a83ba3388da53f2936d51d71d42cef42f5fd0c73"
+    },
+    {
+      "path": "test-result.json",
+      "bytes": 4071,
+      "sha256": "38b65947762e67869d402277093ddd293937f6ebeb956ef3df683de05b161039"
+    },
+    {
+      "path": "test.mjs",
+      "bytes": 11924,
+      "sha256": "00a01a9846d45f584ac793f17bdf51e5f0f1218209e4e8f11dbe0ee7f4c4cfe8"
+    }
+  ]
+}
