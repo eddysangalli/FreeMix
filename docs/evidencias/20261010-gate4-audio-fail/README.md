@@ -1,0 +1,3 @@
+# Gate4: provas parciais e FAIL preservado
+
+Native28 executado uma vez: ganho linear único, oito DSKs, preto e restauração passaram. A validação AAC global parou o teste: Program/Source têm PCM idêntico e tons presentes, com saltos de fase que correspondem quantitativamente a512 amostras de padding no loop. Correspondência não prova o componente causal; não é áudio ausente. Thresholds/FAIL mantidos. NTSC/reconexão/reset não executados. Filhos fecharam0, contador0/Meter0/crash0; pós-pins passaram. Novo contrato com fixture não-loop será separado. FTB geral/defaultOFF, sem qualificação de mídia completa.

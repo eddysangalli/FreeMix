@@ -1,0 +1,71 @@
+diff --git a/painel/remoto/calls.js b/painel/remoto/calls.js
+index 00061e7..9e5a7e9 100644
+--- a/painel/remoto/calls.js
++++ b/painel/remoto/calls.js
+@@ -3,6 +3,7 @@
+  const E=id=>document.getElementById(id),esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  let state={},scope='',selection=null,saving=false,selectionMessage='',selectionError=false,echo=null,guestFingerprint='',targetFingerprint='',selectionEpoch=0;
+  let held=false,starting=false,lease=null,timer=null,pinging=false,holdEpoch=0;
++ let checkingMotor=false,checkedState=null,disposed=false;
+  const guestDrafts=new Map(),pendingRoutes=new Map();let draftRevision=0;
+  const routeValues=v=>({video:v.video||'program',audio:v.audio||'program',gain:Number(v.gain??1),audioSources:v.audio==='custom'?[...new Set(v.audioSources||[])].sort():[]});
+  const routeSignature=v=>JSON.stringify(routeValues(v));
+@@ -14,6 +15,33 @@
+   const response=await fetch('/api/control',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action,...data}),keepalive:action==='call_talk_stop',signal:AbortSignal.timeout(5000)});
+   const result=await response.json();if(!response.ok||!result.success)throw Error(result.error||'Falha no controle de Calls');return result;
+  }
++ function videoLimit(c){
++  const reported=typeof c.videoReturnLimit==='string'&&c.videoReturnLimit.trim()?c.videoReturnLimit.trim():'Limite de vídeo não informado pelo motor.';
++  const mode=c.experimentalContinuousVideo===true?'Captura contínua experimental':c.experimentalContinuousVideo===false?'Modo padrão':'Modo de captura não informado pelo motor';
++  const capability=c.capability==='individual-PCM-WebRTC'?'Retornos individuais':c.capability==='shared-return-B'?'Retorno compartilhado':c.capability?'Capacidade de retorno não reconhecida':'Capacidade de retorno não informada';
++  return mode+' · '+reported+' · '+capability+(c.videoReturnAvSyncProven===true?'':' · Sincronismo A/V não homologado.');
++ }
++ async function checkMotor(){
++  if(checkingMotor||disposed)return;
++  const ownScope=scope;checkingMotor=true;E('check-motor').disabled=true;E('check-motor-status').textContent='Consultando o estado atual…';
++  let deadline;
++  try{
++   const controller=new AbortController();
++   const read=(async()=>{const response=await fetch('/api/json',{method:'GET',cache:'no-store',credentials:'same-origin',signal:controller.signal});const result=await response.json();if(!response.ok||result.success===false)throw Error(result.error||'Consulta do motor recusada.');return result;})();
++   const timeout=new Promise((_,reject)=>{deadline=setTimeout(()=>{controller.abort();reject(Error('O motor não respondeu em 5s. Confira a conexão e tente Conferir motor.'));},5000);});
++   const result=await Promise.race([read,timeout]);
++   const latest=window.FreeMixRemote?.getState()||{};
++   if(disposed||scope!==ownScope||latest.preset!==ownScope||result.preset!==ownScope){if(!disposed)E('check-motor-status').textContent='O projeto mudou. Confira o motor no projeto atual.';return;}
++   if(!result.connected||!latest.connected||!Number.isFinite(result.updatedAt)||Date.now()-result.updatedAt>2500||result.updatedAt>Date.now()+1000||(latest.updatedAt||0)>result.updatedAt||!Array.isArray(result.calls?.guests)||!Array.isArray(result.calls?.returns))throw Error('Estado do motor indisponível ou antigo. A confirmação continua pendente; não envie novamente.');
++   const pending=[...guestDrafts].filter(([,d])=>['awaitEcho','echoTimeout'].includes(d.phase));
++   const matched=pending.filter(([key,d])=>result.calls.guests.some(g=>g.key===key)&&result.calls.returns.some(r=>r.key===key&&routeSignature(r)===routeSignature(d))).length;
++   checkedState=result;refresh();
++   E('check-motor-status').textContent=pending.length?(matched===pending.length?'Configuração confirmada pelo estado atual do motor; não pelo ACK original.':'O estado atual ainda não coincide com o retorno salvo. A confirmação continua pendente; não envie novamente.'):'Estado atual consultado. Isso não comprova recepção pelo convidado.';
++  }catch(e){if(!disposed&&scope===ownScope)E('check-motor-status').textContent=e.message;}
++  finally{clearTimeout(deadline);checkingMotor=false;if(!disposed)E('check-motor').disabled=false;}
++ }
++ E('check-motor').onclick=checkMotor;
++ window.addEventListener('pagehide',()=>{disposed=true;checkedState=null;});
+  function message(text,error=false){E('message').textContent=text;E('message').className=error?'error':'ok';}
+  function stop(){
+   held=false;holdEpoch++;clearInterval(timer);timer=null;E('talk').classList.remove('active','pending');E('talk').setAttribute('aria-pressed','false');E('talk').textContent='Segure para falar';
+@@ -121,7 +149,7 @@
+   const open=new Set([...E('guests').querySelectorAll('details[open]')].map(d=>d.dataset.key));
+   E('guests').innerHTML=guests().map(g=>{
+    const r=c.returns?.find(r=>r.key===g.key),d=r?.diagnostics,videoName=!r?.video||r.video==='program'?'Programa':state.inputs?.find(i=>i.key===r.video)?.name||'Entrada removida';
+-   const values=guestDrafts.get(g.key)||r,video=values?.video||'program',audioMode=values?.audio||'program',savedAudioMode=r?.audio||'program',audioName=savedAudioMode==='silent'?'Somente o diretor enquanto você fala':savedAudioMode==='custom'?'Fontes escolhidas, sem a própria voz':'Programa sem a própria voz'+(c.conference!==false?' + outros convidados':'');
++   const values=guestDrafts.get(g.key)||r,video=values?.video||'program',audioMode=values?.audio||'program',savedAudioMode=r?.audio||'program',audioName=savedAudioMode==='silent'?'Somente o diretor enquanto você fala':savedAudioMode==='custom'?'Fontes escolhidas, sem a própria voz'+(c.conference!==false?' + outros convidados':''):'Programa sem a própria voz'+(c.conference!==false?' + outros convidados':'');
+    const options=(state.inputs||[]).map(i=>'<option value="'+esc(i.key)+'"'+(video===i.key?' selected':'')+'>'+esc(i.name)+'</option>').join('')+(video!=='program'&&!(state.inputs||[]).some(i=>i.key===video)?'<option value="'+esc(video)+'" selected disabled>Entrada indisponível · escolha outra</option>':'');
+    const choices=allowedAudio(g.key),audio=choices.map(a=>'<label><input type="checkbox" data-sources value="'+esc(a.key)+'"'+(values?.audioSources?.includes(a.key)?' checked':'')+'>'+esc(a.name)+'</label>').join('')+(audioMode==='custom'?(values?.audioSources||[]).filter(key=>!choices.some(a=>a.key===key)).map(key=>'<label><input type="checkbox" data-sources checked disabled value="'+esc(key)+'">Fonte indisponível ou privada <button type="button" data-remove-audio="'+esc(key)+'">Remover da seleção</button></label>').join(''):'');
+    const draft=guestDrafts.get(g.key),draftNote=draft?.phase==='awaitEcho'?'Salvo no motor · aguardando atualização do estado…':draft?.phase==='echoTimeout'?'O estado ainda não refletiu o retorno confirmado. Confira o motor; não envie novamente.':draft?'Alterações não salvas.':'';
+@@ -134,13 +162,14 @@
+   for(const id of ['calls-returns','calls-talkback','calls-network'])E(id).hidden=!present;
+  }
+  function refresh(){
+-  state=window.FreeMixRemote?.getState()||{};const c=calls(),nextScope=state.preset||'';
++  const remote=window.FreeMixRemote?.getState()||{};if(checkedState&&(remote.preset!==checkedState.preset||!remote.connected||(remote.updatedAt||0)>checkedState.updatedAt||Date.now()-checkedState.updatedAt>2500))checkedState=null;state=checkedState||remote;const c=calls(),nextScope=state.preset||'';
+   if(scope!==nextScope){stop();scope=nextScope;guestDrafts.clear();pendingRoutes.clear();selection=c.rapidTargets??null;saving=false;selectionEpoch++;echo=null;selectionMessage='';selectionError=false;guestFingerprint='';targetFingerprint='';}
+   if(!saving){const value=c.rapidTargets??null,sig=signature(value);if(echo&&sig===echo.expected)echo=null;if(!echo||sig!==echo.previous||Date.now()>echo.until){if(signature(selection)!==sig){stop();selection=value===null?null:[...value];selectionMessage='';selectionError=false;}echo=null;}}
+   const liveGuestKeys=new Set(guests().map(g=>g.key));for(const key of guestDrafts.keys())if(!liveGuestKeys.has(key)){guestDrafts.delete(key);pendingRoutes.delete(key);}
+   for(const key of pendingRoutes.keys())if(!liveGuestKeys.has(key))pendingRoutes.delete(key);
+   renderTargets();renderGuests();renderAvailability();
+   E('conference').checked=c.conference!==false;
++  E('return-video-limit').textContent=videoLimit(c);
+   E('return-status').textContent=c.capability==='individual-PCM-WebRTC'?'Retorno individual por convidado.':'Clique Preparar retornos para configurar o retorno de cada convidado.';
+   E('return-compatibility').textContent=c.capability==='individual-PCM-WebRTC'?'Cada pessoa recebe o próprio retorno, sem ouvir a própria voz.':'O retorno B antigo é compartilhado e não garante seleção por convidado.';
+   E('ice-status').textContent=c.ice?.configured?'TURN configurado · '+c.ice.servers+'servidor(es) · '+c.ice.transportPolicy+' · credenciais ocultas.':'Rede automática.';

@@ -1,0 +1,66 @@
+{
+  "schema": 1,
+  "files": [
+    {
+      "path": "FreeMix/painel/mesa.html",
+      "bytes": 255501,
+      "sha256": "29d158e2b1f0268e45c1697aa160227f9e49a143096862e6566bad0c7159c79f"
+    },
+    {
+      "path": "FreeMix/painel/remoto/calls.html",
+      "bytes": 6965,
+      "sha256": "c4ef654c39e98bbaa63dcef3f9ea1846f1d590f259065b8da282663bbdeae83c"
+    },
+    {
+      "path": "FreeMix/painel/remoto/calls.js",
+      "bytes": 20035,
+      "sha256": "424718087d09f0470ad0f8ee84bf1747cbf0d96af2b4b69bed8f271a869ae06d"
+    },
+    {
+      "path": "FreeMix/ferramentas/calls-producao.mjs",
+      "bytes": 18958,
+      "sha256": "1e4ce912c8f33c563aa424ef5a832e010db395f45cbf6eb25a041831d40dfffa"
+    },
+    {
+      "path": "FreeMix/ferramentas/retornos-calls.mjs",
+      "bytes": 9548,
+      "sha256": "47c6d8573d7ccad60a75efb8abdadeb633b200b11d167e3ac6b5dfaf0d566ad3"
+    },
+    {
+      "path": "FreeMix/painel/remoto/saidas.html",
+      "bytes": 20415,
+      "sha256": "74138d8d69ff08a8d62c5060e3e0be642c39f82c24f1596f7296cb22246c3a5c"
+    },
+    {
+      "path": "FreeMix/painel/remoto/saidas-contexto-ui.js",
+      "bytes": 5051,
+      "sha256": "3750982834862f137b64dd454ed408aa38b1079c48575f391ae756f8956a1569"
+    },
+    {
+      "path": "FreeMix/painel/remoto/saidas-external-ui.js",
+      "bytes": 14277,
+      "sha256": "c554d5b3091e9095dfb999a742016fa074c6922d31d59279deafb66d6e96a6bd"
+    },
+    {
+      "path": "FreeMix/painel/remoto/saidas-operacao-ui.js",
+      "bytes": 24951,
+      "sha256": "34fabbe6ae9dc9eca45416822fdc57c6ba6e44baef6ae6799e4fddf9c90cf0d4"
+    },
+    {
+      "path": "FreeMix/painel/remoto/saidas-srt-hdr-access-ui.js",
+      "bytes": 859,
+      "sha256": "191403e2699f6911efd27a86f52d1360c8591432aae1f6f229d9b6ef6c61ac66"
+    },
+    {
+      "path": "FreeMix/painel/remoto/controle.js",
+      "bytes": 12382,
+      "sha256": "cd3db9458a3e3294feb6ce00b11c998a21c51ae9ad644c14b6b1222f8761bbe0"
+    },
+    {
+      "path": "FreeMix/ferramentas/servidor-api.mjs",
+      "bytes": 30201,
+      "sha256": "503338175f0d63e2d2d806e65a78eaaa2e2ef18d2bcde88e185a076af9a53ec2"
+    }
+  ],
+  "scope": "offside UI draft only; /api/json GET contract inspected, no API execution"
+}

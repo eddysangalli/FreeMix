@@ -1,0 +1,151 @@
+diff --git a/baseline/eventhandler/EventHandler.cpp b/draft/eventhandler/EventHandler.cpp
+index dd789a8..d02f1a3 100644
+--- a/baseline/eventhandler/EventHandler.cpp
++++ b/draft/eventhandler/EventHandler.cpp
+@@ -23,6 +23,10 @@ EventHandler::EventHandler()
+ {
+ 	blog_debug("[EventHandler::EventHandler] Setting up...");
+ 
++	// Create dormant before exposing frontend/core callbacks. No Meter/source lease
++	// exists with zero subscribers, and subscription callbacks never join this thread.
++	_inputVolumeMetersHandler = std::make_shared<Utils::Obs::VolumeMeter::Handler>(
++		std::bind(&EventHandler::HandleInputVolumeMeters, this, std::placeholders::_1), 50, false);
+ 	obs_frontend_add_event_callback(OnFrontendEvent, this);
+ 
+ 	signal_handler_t *coreSignalHandler = obs_get_signal_handler();
+@@ -48,6 +52,17 @@ EventHandler::~EventHandler()
+ {
+ 	blog_debug("[EventHandler::~EventHandler] Shutting down...");
+ 
++	ShutdownInputVolumeMeters();
++	std::shared_ptr<Utils::Obs::VolumeMeter::Handler> meters;
++	{
++		std::lock_guard<std::mutex> l(_inputVolumeMetersMutex);
++		meters = std::move(_inputVolumeMetersHandler);
++	}
++	if (meters) {
++		meters->Stop();
++		meters->WaitForStop(); // Outside all lifecycle/signal locks, before callback teardown.
++		meters.reset();
++	}
+ 	obs_frontend_remove_event_callback(OnFrontendEvent, this);
+ 
+ 	coreSignals.clear();
+@@ -70,19 +85,64 @@ EventHandler::~EventHandler()
+ }
+ 
+ // Function to increment or decrement refcounts for high volume event subscriptions
++void EventHandler::SetInputVolumeMeterState(bool ready, bool shuttingDown)
++{
++	{
++		std::lock_guard<std::mutex> l(_inputVolumeMetersMutex);
++		_inputVolumeMetersShuttingDown |= shuttingDown;
++		_inputVolumeMetersSuspended = !ready || _inputVolumeMetersShuttingDown;
++	}
++	UpdateInputVolumeMeterCapture();
++}
++
++void EventHandler::ShutdownInputVolumeMeters()
++{
++	SetInputVolumeMeterState(false, true);
++	std::shared_ptr<Utils::Obs::VolumeMeter::Handler> meters;
++	{
++		std::lock_guard<std::mutex> l(_inputVolumeMetersMutex);
++		meters = _inputVolumeMetersHandler;
++	}
++	if (meters)
++		meters->WaitForStop(); // No held locks; callbacks/API are still alive.
++}
++
++void EventHandler::UpdateInputVolumeMeterCapture()
++{
++	std::shared_ptr<Utils::Obs::VolumeMeter::Handler> meters;
++	bool enabled, stopping;
++	uint64_t generation;
++	{
++		std::lock_guard<std::mutex> l(_inputVolumeMetersMutex);
++		meters = _inputVolumeMetersHandler;
++		stopping = _inputVolumeMetersShuttingDown;
++		enabled = !stopping && !_inputVolumeMetersSuspended && _inputVolumeMetersRef > 0;
++		generation = ++_inputVolumeMetersGeneration;
++	}
++	// No lifecycle lock while detaching per-source signal/audio callbacks.
++	if (meters) {
++		if (stopping)
++			meters->Stop();
++		else
++			meters->SetCaptureEnabled(enabled, generation);
++	}
++}
++
+ void EventHandler::ProcessSubscriptionChange(bool type, uint64_t eventSubscriptions)
+ {
+-	if (type) {
+-		if ((eventSubscriptions & EventSubscription::InputVolumeMeters) != 0) {
+-			if (_inputVolumeMetersRef.fetch_add(1) == 0) {
+-				if (_inputVolumeMetersHandler)
+-					blog(LOG_WARNING,
+-					     "[EventHandler::ProcessSubscription] Input volume meter handler already exists!");
+-				else
+-					_inputVolumeMetersHandler = std::make_unique<Utils::Obs::VolumeMeter::Handler>(
+-						std::bind(&EventHandler::HandleInputVolumeMeters, this, std::placeholders::_1));
+-			}
++	if ((eventSubscriptions & EventSubscription::InputVolumeMeters) != 0) {
++		{
++			std::lock_guard<std::mutex> l(_inputVolumeMetersMutex);
++			if (type)
++				_inputVolumeMetersRef++;
++			else if (_inputVolumeMetersRef > 0)
++				_inputVolumeMetersRef--;
++			else
++				blog(LOG_WARNING, "[EventHandler::ProcessSubscription] Unmatched input meter unsubscribe!");
+ 		}
++		UpdateInputVolumeMeterCapture();
++	}
++	if (type) {
+ 		if ((eventSubscriptions & EventSubscription::InputActiveStateChanged) != 0)
+ 			_inputActiveStateChangedRef++;
+ 		if ((eventSubscriptions & EventSubscription::InputShowStateChanged) != 0)
+@@ -90,10 +150,6 @@ void EventHandler::ProcessSubscriptionChange(bool type, uint64_t eventSubscripti
+ 		if ((eventSubscriptions & EventSubscription::SceneItemTransformChanged) != 0)
+ 			_sceneItemTransformChangedRef++;
+ 	} else {
+-		if ((eventSubscriptions & EventSubscription::InputVolumeMeters) != 0) {
+-			if (_inputVolumeMetersRef.fetch_sub(1) == 1)
+-				_inputVolumeMetersHandler.reset();
+-		}
+ 		if ((eventSubscriptions & EventSubscription::InputActiveStateChanged) != 0)
+ 			_inputActiveStateChangedRef--;
+ 		if ((eventSubscriptions & EventSubscription::InputShowStateChanged) != 0)
+@@ -277,6 +333,7 @@ void EventHandler::OnFrontendEvent(enum obs_frontend_event event, void *private_
+ 		obs_frontend_source_list_free(&transitions);
+ 	}
+ 		// Before ready update to allow event to broadcast
++		eventHandler->SetInputVolumeMeterState(false);
+ 		eventHandler->HandleCurrentSceneCollectionChanging();
+ 		eventHandler->_obsReady = false;
+ 		if (eventHandler->_obsReadyCallback)
+@@ -294,6 +351,7 @@ void EventHandler::OnFrontendEvent(enum obs_frontend_event event, void *private_
+ 		eventHandler->_obsReady = true;
+ 		if (eventHandler->_obsReadyCallback)
+ 			eventHandler->_obsReadyCallback(true);
++		eventHandler->SetInputVolumeMeterState(true);
+ 		eventHandler->HandleCurrentSceneCollectionChanged();
+ 		break;
+ 	case OBS_FRONTEND_EVENT_SCENE_COLLECTION_LIST_CHANGED:
+@@ -453,6 +511,7 @@ void EventHandler::FrontendFinishedLoadingMultiHandler()
+ 	_obsReady = true;
+ 	if (_obsReadyCallback)
+ 		_obsReadyCallback(true);
++	SetInputVolumeMeterState(true);
+ 
+ 	blog_debug("[EventHandler::FrontendFinishedLoadingMultiHandler] Finished.");
+ }
+@@ -461,6 +520,7 @@ void EventHandler::FrontendExitMultiHandler()
+ {
+ 	blog_debug("[EventHandler::FrontendExitMultiHandler] OBS is unloading. Disabling events...");
+ 
++	SetInputVolumeMeterState(false, true);
+ 	HandleExitStarted();
+ 
+ 	// Disconnect source signals and disable events when OBS starts unloading (to reduce extra logging).

@@ -1,0 +1,56 @@
+{
+  "status": "FROZEN_DRAFT_CONTRACT_ONLY",
+  "files": [
+    {
+      "path": "utils/Obs_VolumeMeter.h",
+      "before": "42671c7717036ee922d75f23fe6958a70daf339059cd0e0bc8ba48f78fd3b0f2",
+      "after": "2a122610e826f8921c0810d8bfd0647804a0eebbd211649d1420c6e5870ae97f",
+      "ownPatchCheck": true
+    },
+    {
+      "path": "utils/Obs_VolumeMeter.cpp",
+      "before": "30be0a279b86f13dba1dec4b94d7beccd71a8e11a0f9d477368f60740314e5dc",
+      "after": "b7789fcc8be7be674282975243d124bfa05c2849c812ec33915c410ae1a8459a",
+      "ownPatchCheck": true
+    },
+    {
+      "path": "eventhandler/EventHandler.h",
+      "before": "3cfcad64ff5bb43179241d5d5cbccae782479b2d11f6ae311c82140c345b1c08",
+      "after": "04274e5d77678bc368e28ea219607e130af02ebb58f3c6aa754f5a495a65daf4",
+      "ownPatchCheck": true
+    },
+    {
+      "path": "eventhandler/EventHandler.cpp",
+      "before": "3b9fc2491745d9fd260a8bd5915d4096adaa9fcdab710920921090087182305c",
+      "after": "17b053e6f63d0f248abafa473de43070ffb6e982e5e6992916c839d64b025da4",
+      "ownPatchCheck": true
+    },
+    {
+      "path": "obs-websocket.cpp",
+      "before": "ec6a0293af56e9cd59163bb1d88926010626dca7861b9d64219859e9326a25f7",
+      "after": "d3839e64b825ac89c5d4428cbf3cfd41cb1e1de33301fdc0c40a13641bb8a5bc",
+      "ownPatchCheck": true
+    }
+  ],
+  "syntax": [
+    {
+      "name": "prepare.mjs",
+      "syntax": true
+    },
+    {
+      "name": "test.mjs",
+      "syntax": true
+    },
+    {
+      "name": "freeze.mjs",
+      "syntax": true
+    }
+  ],
+  "patchChecks": 5,
+  "modelChecks": 64,
+  "canonicalUnchanged": true,
+  "nativeExecuted": false,
+  "cppCompiled": false,
+  "qualification": false,
+  "pending": "Root review/apply/build and real Native audio-source lifecycle QA"
+}

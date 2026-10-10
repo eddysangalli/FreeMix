@@ -1,0 +1,29 @@
+diff --git a/baseline/utils/Obs_VolumeMeter.h b/draft/utils/Obs_VolumeMeter.h
+index de971e2..48a0a2f 100644
+--- a/baseline/utils/Obs_VolumeMeter.h
++++ b/draft/utils/Obs_VolumeMeter.h
+@@ -76,9 +76,13 @@ namespace Utils {
+ 				typedef std::unique_ptr<Meter> MeterPtr;
+ 
+ 			public:
+-				Handler(UpdateCallback cb, uint64_t updatePeriod = 50);
++				Handler(UpdateCallback cb, uint64_t updatePeriod = 50, bool captureEnabled = true);
+ 				~Handler();
+ 
++				void SetCaptureEnabled(bool enabled, uint64_t generation);
++				void Stop();
++				void WaitForStop();
++
+ 			private:
+ 				UpdateCallback _updateCallback;
+ 
+@@ -89,6 +93,9 @@ namespace Utils {
+ 				std::mutex _mutex;
+ 				std::condition_variable _cond;
+ 				std::atomic<bool> _running;
++				std::atomic<bool> _capturing;
++				uint64_t _captureGeneration = 0; // Protected by _meterMutex
++				std::atomic<uint64_t> _captureEpoch = 0; // Published phase token
+ 				std::thread _updateThread;
+ 
+ 				void UpdateThread();

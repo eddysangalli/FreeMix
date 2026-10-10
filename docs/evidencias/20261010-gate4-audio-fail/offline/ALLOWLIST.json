@@ -1,0 +1,44 @@
+{
+  "schema": 1,
+  "status": "FROZEN_OFFLINE_DIAGNOSTIC_NOT_REQUALIFIED",
+  "files": [
+    {
+      "path": "analyze.mjs",
+      "bytes": 6425,
+      "sha256": "8c20541cb68bff47f253aac6f18f41c2e0eacafa0bf53c60802d6311a054b32b"
+    },
+    {
+      "path": "summarize.mjs",
+      "bytes": 2766,
+      "sha256": "686fb35f64f6513f3cb50c0e55b51507259a9f33b10564ed9a223dcb8f669c36"
+    },
+    {
+      "path": "README.md",
+      "bytes": 2668,
+      "sha256": "06b23763d6215780b62c8998f159479a91ac5cc4ee70a11b01be41753417b893"
+    },
+    {
+      "path": "RESULT.json",
+      "bytes": 43154,
+      "sha256": "fbc672ec0c76c545c6891323e38d6fb8790bdf3ccbfb1b16b2badfbd14384eed"
+    },
+    {
+      "path": "SUMMARY.json",
+      "bytes": 2265,
+      "sha256": "03d89731ba543f628d2d89e819de250f3fa8c1a27d811bbd474481340c48a855"
+    }
+  ],
+  "models": 6,
+  "inputs": 3,
+  "criteriaChanged": false,
+  "nativeRuns": 0,
+  "receiverRuns": 0,
+  "originalFAILPreserved": true,
+  "privateExcluded": [
+    "Decoded PCM",
+    "Native/runtime binaries",
+    "MediaTS/MP4",
+    "Raw logs"
+  ],
+  "qualification": false
+}

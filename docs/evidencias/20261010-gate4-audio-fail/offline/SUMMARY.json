@@ -1,0 +1,63 @@
+{
+  "status": "DIAGNOSTIC_MATCH_ONLY_ORIGINAL_FAIL_PRESERVED",
+  "resultSha": "fbc672ec0c76c545c6891323e38d6fb8790bdf3ccbfb1b16b2badfbd14384eed",
+  "sameProgramSourcePcm": true,
+  "byteExactPcmSha": "b2fcdca61b382fef8e1a7c05c79772d835c94cb6a9753cb86ce13b8b71d9ef2c",
+  "decodedSeconds": 24,
+  "fixtureDeclaredSeconds": 12,
+  "fixtureDecodedSeconds": 12.010666666666667,
+  "paddingFrames": 512,
+  "phaseComparison": [
+    {
+      "channel": 0,
+      "frequency": 440,
+      "observedFirstJump": 1.9263707932866423,
+      "observedSecondJump": 1.9263381386499128,
+      "predictedNegativePaddingPhase": 1.9268434942017385
+    },
+    {
+      "channel": 1,
+      "frequency": 880,
+      "observedFirstJump": -2.430029505272684,
+      "observedSecondJump": -2.4300164526579477,
+      "predictedNegativePaddingPhase": -2.4294983187761097
+    }
+  ],
+  "phaseComparisonToleranceRadians": 0.01,
+  "nonBoundaryOneSecondMinimumRatio": 0.9995960117159253,
+  "boundaryOneSecondRatios": [
+    {
+      "second": 9,
+      "ratios": [
+        0.4780494864381363,
+        0.3231231520256894
+      ],
+      "rms": [
+        0.10555411972588799,
+        0.10542808605443092
+      ]
+    },
+    {
+      "second": 21,
+      "ratios": [
+        0.46464012798077436,
+        0.3054482211894514
+      ],
+      "rms": [
+        0.10559918341451047,
+        0.1054588425334251
+      ]
+    }
+  ],
+  "claim": "Observed phase discontinuities quantitatively match decoded AAC padding. Causality not proven; encoded Program/excluded-Source audio byte-identical in this 30/1 capture. Not absent/muted/swapped audio, not seamless-input/audio-safety proof.",
+  "originalGlobalThreshold": 0.6,
+  "originalStatus": "FAIL",
+  "gateQualification": false,
+  "nextContractProposal": "Keep original criteria and FAIL. A future separate receiver test can use a long non-looping known fixture restarted explicitly before capture, with full capture safely inside media duration, or specify expected loop/padding boundaries before execution. Keep channel/mute/mix/dropout/phase diagnostics and require PCM equivalence to excluded control where possible; do not remove whole-capture checks retrospectively.",
+  "pending": [
+    "NTSC",
+    "reconnect",
+    "context reset",
+    "full runtime qualification"
+  ]
+}

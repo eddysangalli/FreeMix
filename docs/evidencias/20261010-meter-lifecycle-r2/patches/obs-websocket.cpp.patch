@@ -1,0 +1,14 @@
+diff --git a/baseline/obs-websocket.cpp b/draft/obs-websocket.cpp
+index 7c9071e..5fd6d12 100644
+--- a/baseline/obs-websocket.cpp
++++ b/draft/obs-websocket.cpp
+@@ -127,6 +127,9 @@ void obs_module_unload(void)
+ {
+ 	blog(LOG_INFO, "[obs_module_unload] Shutting down...");
+ 
++	// Drain the publisher before stopping/resetting ANY inline OnEvent target.
++	_eventHandler->ShutdownInputVolumeMeters();
++
+ 	// Shutdown the WebSocket server if it is running
+ 	if (_webSocketServer->IsListening()) {
+ 		blog_debug("[obs_module_unload] WebSocket server is running. Stopping...");

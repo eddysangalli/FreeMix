@@ -1,0 +1,37 @@
+{
+  "status": "CAPTURED_SYNTHETIC_FILE_ONLY",
+  "fixtures": [
+    {
+      "name": "standard-custom-1280",
+      "width": 1280,
+      "height": 900,
+      "bytes": 54491,
+      "sha256": "3c937546deee9c97bdfc28746fe0ca0899dc657b0ce296c9b35123be06ff7ed7",
+      "exitCode": 0,
+      "elapsedMs": 824
+    },
+    {
+      "name": "experimental-custom-600",
+      "width": 600,
+      "height": 900,
+      "bytes": 47848,
+      "sha256": "e8a8a9aaebad8b29db516e59588633260783c9c0214d6a4093e8a9a4c5a111e5",
+      "exitCode": 0,
+      "elapsedMs": 800
+    },
+    {
+      "name": "unknown-custom-1280",
+      "width": 1280,
+      "height": 900,
+      "bytes": 54677,
+      "sha256": "4d302b95c7785d443e4d7e0b3c6a379dbaae605ea8a832e738989e13f302aa93",
+      "exitCode": 0,
+      "elapsedMs": 788
+    }
+  ],
+  "instrumentation": "Calls draft JS byte exact embedded; controle.js replaced with explicit synthetic state + GET-only fixture; no real API/server/Native",
+  "limits": [
+    "Fixture render only; not real motor/WAN/media proof",
+    "1280x900 and 600x900; no complete visual QA matrix"
+  ]
+}

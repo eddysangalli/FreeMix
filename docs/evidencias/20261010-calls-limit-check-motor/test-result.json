@@ -1,0 +1,104 @@
+{
+  "status": "PASS_OFFSIDE_VM_ONLY",
+  "checks": 23,
+  "cases": [
+    {
+      "name": "opening and existing 500ms render write nothing",
+      "pass": true
+    },
+    {
+      "name": "standard reported limit and AV limit displayed",
+      "pass": true
+    },
+    {
+      "name": "experimental capability uses motor limit, no opt-in",
+      "pass": true
+    },
+    {
+      "name": "unknown limit and capture mode explicit",
+      "pass": true
+    },
+    {
+      "name": "unknown capability is never labeled individual",
+      "pass": true
+    },
+    {
+      "name": "custom conference summary includes other guests",
+      "pass": true
+    },
+    {
+      "name": "custom without conference excludes summary addition",
+      "pass": true
+    },
+    {
+      "name": "silent mode does not imply conference audio",
+      "pass": true
+    },
+    {
+      "name": "check exactly GET real endpoint with no Function/body",
+      "pass": true
+    },
+    {
+      "name": "matching scope+UUID+values reconciles state, not original ACK",
+      "pass": true
+    },
+    {
+      "name": "different values remain pending; no mutation retry",
+      "pass": true
+    },
+    {
+      "name": "same guest name but new UUID does not reconcile",
+      "pass": true
+    },
+    {
+      "name": "dirty new edits preserved during delayed check",
+      "pass": true
+    },
+    {
+      "name": "scope changed during check does not reconcile",
+      "pass": true
+    },
+    {
+      "name": "scope changed before 500ms render rejects late read",
+      "pass": true
+    },
+    {
+      "name": "newer WS snapshot wins over older GET result",
+      "pass": true
+    },
+    {
+      "name": "stale state keeps uncertain route",
+      "pass": true
+    },
+    {
+      "name": "missing updatedAt refuses confirmation",
+      "pass": true
+    },
+    {
+      "name": "disconnected refuses confirmation",
+      "pass": true
+    },
+    {
+      "name": "double check clicks serial",
+      "pass": true
+    },
+    {
+      "name": "deadline covers json body and releases busy without resend",
+      "pass": true
+    },
+    {
+      "name": "HTTP error preserves real message",
+      "pass": true
+    },
+    {
+      "name": "pagehide rejects late read and has no mutation",
+      "pass": true
+    }
+  ],
+  "instrumentation": "VM-only exposure of guestDrafts/refresh, draft bytes unchanged on disk",
+  "limits": [
+    "No Native/API/operator execution",
+    "No real motor read; fixture implements documented GET /api/json snapshot shape",
+    "No browser visual approval in this VM test"
+  ]
+}

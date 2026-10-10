@@ -1,0 +1,6 @@
+tree 91fda554cba6536921f6658da67c4f0960a4f3cd
+parent 1ef34bf48110c2a18184e50e41cd0b1a855e2147
+author Eddy Sangalli <eddyrodrigues@outlook.com> 1791629755 -0300
+committer Eddy Sangalli <eddyrodrigues@outlook.com> 1791629755 -0300
+
+Drain audio meter publisher before callback teardown and pause across collections

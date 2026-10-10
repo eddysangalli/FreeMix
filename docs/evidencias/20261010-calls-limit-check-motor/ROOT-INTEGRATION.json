@@ -1,0 +1,27 @@
+{
+  "status": "ROOT_INTEGRATED_CALLS_UI_NOT_INSTALLED",
+  "at": "2026-10-10T11:05:55.437Z",
+  "allowlistSha256": "27db70cb7f4805857cb89147b2752b40bf3a51dd482791d286b4214acc99b9b5",
+  "files": 23,
+  "sourcePins": 12,
+  "vmChecks": 23,
+  "changes": [
+    {
+      "path": "painel/remoto/calls.js",
+      "before": "424718087d09f0470ad0f8ee84bf1747cbf0d96af2b4b69bed8f271a869ae06d",
+      "after": "9a34acd82873289b772a1368507045110a36ee862497cbd504ed9f855f9512bc"
+    },
+    {
+      "path": "painel/remoto/calls.html",
+      "before": "c4ef654c39e98bbaa63dcef3f9ea1846f1d590f259065b8da282663bbdeae83c",
+      "after": "0da408c6ba980997993986f3168f65c25d7dc57ea185eabd7149210b931776c8"
+    }
+  ],
+  "visual": "Root viewed standard-custom1280 fixture; file-only without backend, no owner approval",
+  "noApiOrNativeExecution": true,
+  "operatorUntouched": true,
+  "limits": [
+    "Actual UI/backend in next isolated candidate pending",
+    "No claim of guest audio reception/WAN/AV sync"
+  ]
+}

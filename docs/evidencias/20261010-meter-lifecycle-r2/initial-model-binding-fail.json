@@ -1,0 +1,7 @@
+{
+  "status": "FAIL_TEST_MODEL_BINDING",
+  "case": "stale ready cannot undo newer pause",
+  "reason": "The finite C++ decision translation executed in with(this); model.generation shadowed the function parameter generation.",
+  "repair": "Rename the model's request counter requestGeneration; no Native draft/source or criterion changed.",
+  "nativeExecuted": false
+}

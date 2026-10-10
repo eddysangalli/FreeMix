@@ -1,0 +1,125 @@
+{
+  "scope": "Offside draft only; no logs/configs/credentials/media/binaries",
+  "files": [
+    {
+      "path": "baseline/eventhandler/EventHandler.cpp",
+      "sha256": "3b9fc2491745d9fd260a8bd5915d4096adaa9fcdab710920921090087182305c",
+      "bytes": 26700
+    },
+    {
+      "path": "baseline/eventhandler/EventHandler.h",
+      "sha256": "3cfcad64ff5bb43179241d5d5cbccae782479b2d11f6ae311c82140c345b1c08",
+      "bytes": 8731
+    },
+    {
+      "path": "baseline/obs-websocket.cpp",
+      "sha256": "ec6a0293af56e9cd59163bb1d88926010626dca7861b9d64219859e9326a25f7",
+      "bytes": 9938
+    },
+    {
+      "path": "baseline/utils/Obs_VolumeMeter.cpp",
+      "sha256": "30be0a279b86f13dba1dec4b94d7beccd71a8e11a0f9d477368f60740314e5dc",
+      "bytes": 10695
+    },
+    {
+      "path": "baseline/utils/Obs_VolumeMeter.h",
+      "sha256": "42671c7717036ee922d75f23fe6958a70daf339059cd0e0bc8ba48f78fd3b0f2",
+      "bytes": 3000
+    },
+    {
+      "path": "draft/eventhandler/EventHandler.cpp",
+      "sha256": "17b053e6f63d0f248abafa473de43070ffb6e982e5e6992916c839d64b025da4",
+      "bytes": 28647
+    },
+    {
+      "path": "draft/eventhandler/EventHandler.h",
+      "sha256": "04274e5d77678bc368e28ea219607e130af02ebb58f3c6aa754f5a495a65daf4",
+      "bytes": 9218
+    },
+    {
+      "path": "draft/obs-websocket.cpp",
+      "sha256": "d3839e64b825ac89c5d4428cbf3cfd41cb1e1de33301fdc0c40a13641bb8a5bc",
+      "bytes": 10064
+    },
+    {
+      "path": "draft/utils/Obs_VolumeMeter.cpp",
+      "sha256": "b7789fcc8be7be674282975243d124bfa05c2849c812ec33915c410ae1a8459a",
+      "bytes": 13178
+    },
+    {
+      "path": "draft/utils/Obs_VolumeMeter.h",
+      "sha256": "2a122610e826f8921c0810d8bfd0647804a0eebbd211649d1420c6e5870ae97f",
+      "bytes": 3309
+    },
+    {
+      "path": "FREEZE.json",
+      "sha256": "1ff0b968c4446f5e28c8584d144e3f2a742fa92f1e7fb53b95fcbf6f1585e013",
+      "bytes": 1746
+    },
+    {
+      "path": "freeze.mjs",
+      "sha256": "24516b1090bcc63b32e97165759d6a3bd5e5f443c413ffe3a5867736fcaaba57",
+      "bytes": 2558
+    },
+    {
+      "path": "history-metadata.json",
+      "sha256": "455596d00ca8c004daf62d24ae422225a227eb68ed071b7a268e96cfb1e6a12c",
+      "bytes": 444
+    },
+    {
+      "path": "initial-model-binding-fail.json",
+      "sha256": "dcd12f48e06d84de10304d1fe29195c25801f9257e56dd4e8016844a6c97d470",
+      "bytes": 368
+    },
+    {
+      "path": "patches/eventhandler__EventHandler.cpp.patch",
+      "sha256": "9ec030859e69591533ef738f2fa571144ac46c36980e6c1cb61a04a26882ba8f",
+      "bytes": 5960
+    },
+    {
+      "path": "patches/eventhandler__EventHandler.h.patch",
+      "sha256": "1376b9800146a021350c340829eb70a0b7360d84ef95409528d79ae82568fb6e",
+      "bytes": 1506
+    },
+    {
+      "path": "patches/obs-websocket.cpp.patch",
+      "sha256": "ba8110a01649c72ff9b92a6f05af734363d81e2d06ce9fc04be40403f16a3895",
+      "bytes": 569
+    },
+    {
+      "path": "patches/utils__Obs_VolumeMeter.cpp.patch",
+      "sha256": "669ebabc3a1b46c0e49233bb270853ba85f56383e7d9609d4d012d8cd997acbe",
+      "bytes": 6810
+    },
+    {
+      "path": "patches/utils__Obs_VolumeMeter.h.patch",
+      "sha256": "6e13ba484893eed0f31ba99e8f8196a321bc2fab2e2790f77f7f1aeee27faa14",
+      "bytes": 971
+    },
+    {
+      "path": "PREP.json",
+      "sha256": "04d37ae84798ed2b1cf47aa39650740428464f926944d3a07f06b1313619d229",
+      "bytes": 1380
+    },
+    {
+      "path": "prepare.mjs",
+      "sha256": "bab4313c94bf79618c38ac4539a3745abf9af6400abcdb35af257a0a59470c8b",
+      "bytes": 13518
+    },
+    {
+      "path": "README.md",
+      "sha256": "ecbbbdbd43093a1c1bb14ca7054a95b6c3431702329a44a952e4cbd747a459e7",
+      "bytes": 6785
+    },
+    {
+      "path": "result.json",
+      "sha256": "14aa195a5ba1cb25550696cc315a733911e0befd71d8f4cb8e9b8254a9aca1b4",
+      "bytes": 7652
+    },
+    {
+      "path": "test.mjs",
+      "sha256": "bac1f8553b2849d6d4864003558960112721370f35f25f0d72871f888413e708",
+      "bytes": 13928
+    }
+  ]
+}

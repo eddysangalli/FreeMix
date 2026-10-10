@@ -1,9 +1,7 @@
 # Fontes do FreeMix
 
-A entrega selecionada é600/Native24. O candidato093000/Native27 passou instalação, dois fechamentos, migração e diagnóstico, mas falhou na verificação da desinstalação em caminhos longos; não foi promovido. Consulte [entrega atual](docs/ENTREGA-ATUAL.md).
+Entrega selecionada600/Native24 preservada.093000/Native27 mantém FAIL de desinstalação; correção integrada, wrapper específico em QA. [Entrega](docs/ENTREGA-ATUAL.md).
 
-Este checkout corresponde ao Native28 **a09423dae10dbeed6d7f18b30a6cc22b78c49731**, árvore **3e2898994e62ad53624fd70e09fc40f8a9123d57**,28 patches/3 submódulos sobre a base OBS32.2.2 pinada. A compilação completa passou e 2085 arquivos foram congelados. Versão de fontes 0.1.0-local.20261010103000 é desenvolvimento; nenhum instalador novo foi selecionado. [Prova de compilação](docs/evidencias/20261010-native28-build/README.md).
+Fontes Native29 **759929948fc84ca29d4ad0b65bfdddf98dfbb06f**, árvore **def0bf18bac27c9f35571bc30fa9187bd129892a**:29 patches/3 submódulos/214 snapshots e2085 arquivos Native conferidos. [Build](docs/evidencias/20261010-native29-build/README.md). Versão 0.1.0-local.20261010110000 é desenvolvimento, não novo instalador selecionado. [Manifesto](fork/manifest.json), [verificação](fork/source-verification.json), [reconstrução](docs/BUILD-FROM-SOURCE.md).
 
-Native27 provou cores RGBA e vídeo local limitado em IAB/CEF. Native28 acrescenta contrato linear-sRGBSDR8 para o gate final e proteção de epoch/cópiaPCM. Provas GPU/áudio/AV/VDO/WAN e lifecycleMeter continuam pendentes; gate/contínuo permanecemOFF. [Pendências reais](docs/PENDENCIAS-REAIS.md).
-
-[Manifesto](fork/manifest.json), [verificação](fork/source-verification.json) e snapshotsdocs/native-source permitem reconstrução local. [Build](docs/BUILD-FROM-SOURCE.md). Créditos e licenças upstream permanecem; chave privada Ed25519 está fora do Git/pacote. [Histórico](docs/historico/20261010-preNative25/FONTES.md).
+LifecycleMeter, caminhos longos do instalador e CallsUI integrados. [Gate4](docs/evidencias/20261010-gate4-audio-fail/README.md) tem provas parciais e FAIL preservado; AV continua inconclusivo/defaultOFF. [Pendências](docs/PENDENCIAS-REAIS.md). Créditos/licenças upstream mantidos; chave privada fora do Git/pacote.

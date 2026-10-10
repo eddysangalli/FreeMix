@@ -1,0 +1,12 @@
+import fs from 'node:fs';import path from 'node:path';import crypto from 'node:crypto';import {spawnSync} from 'node:child_process';
+const own=import.meta.dirname,root=path.resolve(own,'../..'),sha=b=>crypto.createHash('sha256').update(b).digest('hex');
+const prep=JSON.parse(fs.readFileSync(path.join(own,'PREP.json'))),checks=[];
+for(const name of ['prepare.mjs','test.mjs','freeze.mjs']){const r=spawnSync(process.execPath,['--check',path.join(own,name)]);if(r.status!==0)throw Error(r.stderr.toString());checks.push({name,syntax:true});}
+for(const f of prep.files){if(sha(fs.readFileSync(path.join(root,'freemix-app/plugins/obs-websocket/src',f.path)))!==f.before)throw Error('Canonical changed');const patch=path.join(own,'patches',f.path.replaceAll('/','__')+'.patch');const c=spawnSync('git',['apply','--check','--unsafe-paths','-p2',patch],{cwd:path.join(own,'baseline')});if(c.status!==0)throw Error(c.stderr.toString());}
+const hist='qa-finalizacao/native27-package-093000-preparation-20261010/meter-readonly.json';
+const history=JSON.parse(fs.readFileSync(path.join(root,hist)));
+fs.writeFileSync(path.join(own,'history-metadata.json'),JSON.stringify({path:hist,sha256:sha(fs.readFileSync(path.join(root,hist))),warningCount:3,warningAssociation:'No source UUID/name in warning; Master/BusA/BusB only hypothesis',allocationCounter:0,crashes:0,remaining:0,double:0,rawLogCopied:false,source:'Read-only historical receipt; not rerun'},null,2)+'\n');
+fs.writeFileSync(path.join(own,'FREEZE.json'),JSON.stringify({status:'FROZEN_DRAFT_CONTRACT_ONLY',files:prep.files,syntax:checks,patchChecks:prep.files.length,modelChecks:JSON.parse(fs.readFileSync(path.join(own,'result.json'))).checks,canonicalUnchanged:true,nativeExecuted:false,cppCompiled:false,qualification:false,pending:'Root review/apply/build and real Native audio-source lifecycle QA'},null,2)+'\n');
+const list=[];function walk(dir){for(const d of fs.readdirSync(dir,{withFileTypes:true})){const p=path.join(dir,d.name);if(d.isDirectory())walk(p);else if(d.name!=='ALLOWLIST.json')list.push({path:path.relative(own,p).replaceAll('\\','/'),sha256:sha(fs.readFileSync(p)),bytes:fs.statSync(p).size});}}walk(own);
+fs.writeFileSync(path.join(own,'ALLOWLIST.json'),JSON.stringify({scope:'Offside draft only; no logs/configs/credentials/media/binaries',files:list.sort((a,b)=>a.path.localeCompare(b.path))},null,2)+'\n');
+console.log(JSON.stringify({files:list.length,allowlist:sha(fs.readFileSync(path.join(own,'ALLOWLIST.json'))),freeze:sha(fs.readFileSync(path.join(own,'FREEZE.json')))}));

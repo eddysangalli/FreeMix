@@ -1,0 +1,12 @@
+{
+  "path": "qa-finalizacao/native27-package-093000-preparation-20261010/meter-readonly.json",
+  "sha256": "4bba2aab3535e4d40a6d74920a4e42215e02f06207fe2edc3b6d3b99517c17ba",
+  "warningCount": 3,
+  "warningAssociation": "No source UUID/name in warning; Master/BusA/BusB only hypothesis",
+  "allocationCounter": 0,
+  "crashes": 0,
+  "remaining": 0,
+  "double": 0,
+  "rawLogCopied": false,
+  "source": "Read-only historical receipt; not rerun"
+}

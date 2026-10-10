@@ -1,0 +1,35 @@
+{
+  "schema": 1,
+  "status": "FROZEN_OFFSIDE_UI_DRAFT_REVIEW_REQUIRED",
+  "vmCases": 23,
+  "syntax": "PASS",
+  "patchCheckOwnCopy": "PASS",
+  "canonicalPinsVerified": 12,
+  "capturesVisuallyReviewed": 3,
+  "captureLimits": "Synthetic file-only fixtures, no real backend; mobile vertical scroll needed",
+  "operatorWrites": 0,
+  "apiCommands": 0,
+  "nativeRuns": 0,
+  "realGetExecutions": 0,
+  "apiContract": "GET /api/json no Function returns clean(), authenticated existing route; no refresh triggered",
+  "integrationTargets": [
+    "painel/remoto/calls.html",
+    "painel/remoto/calls.js"
+  ],
+  "checks": [
+    "Deadline covers response.json",
+    "Read-only GET no POST/reSave",
+    "Scope/UUID/revision match",
+    "Newer WS state prevails",
+    "Unknown capabilities explicit",
+    "Custom conference shown"
+  ],
+  "exclusions": [
+    "Browser profiles",
+    "verify own duplicate tree",
+    "Canonical files",
+    "Raw logs",
+    "Credentials",
+    "Native or Gate artifacts"
+  ]
+}

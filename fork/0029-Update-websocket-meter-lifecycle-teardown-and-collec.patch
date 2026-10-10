@@ -1,0 +1,20 @@
+From 759929948fc84ca29d4ad0b65bfdddf98dfbb06f Mon Sep 17 00:00:00 2001
+From: Eddy Sangalli <eddyrodrigues@outlook.com>
+Date: Sat, 10 Oct 2026 07:55:56 -0300
+Subject: [PATCH] Update websocket meter lifecycle teardown and collection
+ capture guards
+
+---
+ plugins/obs-websocket | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/plugins/obs-websocket b/plugins/obs-websocket
+index 1ef34bf..0fd6953 160000
+--- a/plugins/obs-websocket
++++ b/plugins/obs-websocket
+@@ -1 +1 @@
+-Subproject commit 1ef34bf48110c2a18184e50e41cd0b1a855e2147
++Subproject commit 0fd6953df6ac1272ab905546a5f524b461ea079e
+-- 
+2.56.0.windows.1
+

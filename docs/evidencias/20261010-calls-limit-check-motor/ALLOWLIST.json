@@ -1,0 +1,126 @@
+{
+  "schema": 1,
+  "status": "FROZEN_DRAFT_NO_PRODUCT_APPLY",
+  "files": [
+    {
+      "path": "prepare.mjs",
+      "bytes": 6948,
+      "sha256": "2462a75e34010316f4e86caf46122a2b736076f3a59f3479eec8a7741e389b4d"
+    },
+    {
+      "path": "test.mjs",
+      "bytes": 9910,
+      "sha256": "d5e6e4a543d215084257d0ea634942a744beed5e040aa070c301b249f7ca6448"
+    },
+    {
+      "path": "capture-fixtures.mjs",
+      "bytes": 3783,
+      "sha256": "338fc9a1ae7e63bd051f18cbb0958ca5a5228a25cf83f12899266cdc1ea61d60"
+    },
+    {
+      "path": "README.md",
+      "bytes": 2779,
+      "sha256": "18befc9aea52b2d02fce9ac6781240b64c3125a0f68daaf17291b837032c8c71"
+    },
+    {
+      "path": "Docs/OPERAR-CALLS-E-SAIDAS.md",
+      "bytes": 2779,
+      "sha256": "57ef256d921f0eb46b4c638c8d7c0e6b495d8753391c37fec8f6e4de4a641577"
+    },
+    {
+      "path": "SOURCE-PINS.json",
+      "bytes": 2193,
+      "sha256": "aeabd0986254e26a5a0323c719621813e297bf773f1c1d68e69667ccd060366a"
+    },
+    {
+      "path": "REVIEW.json",
+      "bytes": 1025,
+      "sha256": "40884f86c11729d8cdce39ee976fa289a18d5604594b107ca470a460e60b9c79"
+    },
+    {
+      "path": "baseline/calls.html",
+      "bytes": 6965,
+      "sha256": "c4ef654c39e98bbaa63dcef3f9ea1846f1d590f259065b8da282663bbdeae83c"
+    },
+    {
+      "path": "baseline/calls.js",
+      "bytes": 20035,
+      "sha256": "424718087d09f0470ad0f8ee84bf1747cbf0d96af2b4b69bed8f271a869ae06d"
+    },
+    {
+      "path": "draft/calls.html",
+      "bytes": 7095,
+      "sha256": "0da408c6ba980997993986f3168f65c25d7dc57ea185eabd7149210b931776c8"
+    },
+    {
+      "path": "draft/calls.js",
+      "bytes": 23538,
+      "sha256": "9a34acd82873289b772a1368507045110a36ee862497cbd504ed9f855f9512bc"
+    },
+    {
+      "path": "patches/calls.html.patch",
+      "bytes": 3240,
+      "sha256": "6c14e076feb7b00123826612184fd5c2bde3b0090abd3961737d52e29955de62"
+    },
+    {
+      "path": "patches/calls.js.patch",
+      "bytes": 9140,
+      "sha256": "55d6a7af2f09b00f717af45abb1c1fd480fb40a220c43ffdb9cbaab236f7b32a"
+    },
+    {
+      "path": "test-result.json",
+      "bytes": 2545,
+      "sha256": "04d7fa0f6cf9ba649a8f63835d2962183cad528ee650335734b2ca9746b6e18a"
+    },
+    {
+      "path": "capture-result.json",
+      "bytes": 1089,
+      "sha256": "58ee8a8ee9fe35393515bd5c5632bb739d979072c293ef4a189fe3f01c9ad1d2"
+    },
+    {
+      "path": "fixtures/controle.css",
+      "bytes": 2243,
+      "sha256": "6a3cd495995a5af4118c38f328e0d6732c451d2c29815c99639092407f967f37"
+    },
+    {
+      "path": "fixtures/studio-dialog.css",
+      "bytes": 11094,
+      "sha256": "addb0c8279e4f51ebced8517d50cb526eb590ec30c5efdcfd5a08ab84d6c0332"
+    },
+    {
+      "path": "fixtures/standard-custom-1280.html",
+      "bytes": 31717,
+      "sha256": "b37fb93f6785fec84ed579b05f38858c235a4cd9cb368324c7f796c83954b26f"
+    },
+    {
+      "path": "fixtures/standard-custom-1280.png",
+      "bytes": 54491,
+      "sha256": "3c937546deee9c97bdfc28746fe0ca0899dc657b0ce296c9b35123be06ff7ed7"
+    },
+    {
+      "path": "fixtures/experimental-custom-600.html",
+      "bytes": 31779,
+      "sha256": "da68a11aedbe8af6d31518ee773690e382b893425af81f1e1b88029cc824d7e8"
+    },
+    {
+      "path": "fixtures/experimental-custom-600.png",
+      "bytes": 47848,
+      "sha256": "e8a8a9aaebad8b29db516e59588633260783c9c0214d6a4093e8a9a4c5a111e5"
+    },
+    {
+      "path": "fixtures/unknown-custom-1280.html",
+      "bytes": 31543,
+      "sha256": "d54380fae1821dd3b960edbe8327c640147c95b59d32418b7a0ba01ba8e8a36f"
+    },
+    {
+      "path": "fixtures/unknown-custom-1280.png",
+      "bytes": 54677,
+      "sha256": "4d302b95c7785d443e4d7e0b3c6a379dbaae605ea8a832e738989e13f302aa93"
+    }
+  ],
+  "limits": "Synthetic file-only fixtures, no real backend; mobile vertical scroll needed",
+  "canonicalTargets": [
+    "painel/remoto/calls.html",
+    "painel/remoto/calls.js"
+  ]
+}

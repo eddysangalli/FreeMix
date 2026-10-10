@@ -1,0 +1,36 @@
+diff --git a/baseline/eventhandler/EventHandler.h b/draft/eventhandler/EventHandler.h
+index 7d32cf1..3ad5245 100644
+--- a/baseline/eventhandler/EventHandler.h
++++ b/draft/eventhandler/EventHandler.h
+@@ -20,6 +20,7 @@ with this program. If not, see <https://www.gnu.org/licenses/>
+ #pragma once
+ 
+ #include <atomic>
++#include <mutex>
+ #include <obs.hpp>
+ #include <obs-frontend-api.h>
+ 
+@@ -35,6 +36,7 @@ public:
+ 	~EventHandler();
+ 
+ 	void ProcessSubscriptionChange(bool type, uint64_t eventSubscriptions);
++	void ShutdownInputVolumeMeters(); // Final unload only: drain before resetting callbacks/API.
+ 
+ 	// Callback when an event fires
+ 	typedef std::function<void(uint64_t, std::string, json, uint8_t)>
+@@ -54,7 +56,14 @@ private:
+ 	std::vector<OBSSignal> coreSignals;
+ 	OBSSignal recordFileChangedSignal;
+ 
+-	std::unique_ptr<Utils::Obs::VolumeMeter::Handler> _inputVolumeMetersHandler;
++	// Stable dormant publisher; local shared leases cover concurrent subscription calls.
++	std::shared_ptr<Utils::Obs::VolumeMeter::Handler> _inputVolumeMetersHandler;
++	std::mutex _inputVolumeMetersMutex;
++	bool _inputVolumeMetersSuspended = true;
++	bool _inputVolumeMetersShuttingDown = false;
++	uint64_t _inputVolumeMetersGeneration = 0;
++	void SetInputVolumeMeterState(bool ready, bool shuttingDown = false);
++	void UpdateInputVolumeMeterCapture();
+ 	std::atomic<uint64_t> _inputVolumeMetersRef = 0;
+ 	std::atomic<uint64_t> _inputActiveStateChangedRef = 0;
+ 	std::atomic<uint64_t> _inputShowStateChangedRef = 0;

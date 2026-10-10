@@ -1,0 +1,194 @@
+diff --git a/baseline/utils/Obs_VolumeMeter.cpp b/draft/utils/Obs_VolumeMeter.cpp
+index 1afa2c9..df614e0 100644
+--- a/baseline/utils/Obs_VolumeMeter.cpp
++++ b/draft/utils/Obs_VolumeMeter.cpp
+@@ -237,57 +237,98 @@ void Utils::Obs::VolumeMeter::Meter::InputVolumeCallback(void *priv_data, callda
+ 	c->_volume = (float)calldata_float(cd, "volume");
+ }
+ 
+-Utils::Obs::VolumeMeter::Handler::Handler(UpdateCallback cb, uint64_t updatePeriod)
+-	: _updateCallback(cb),
+-	  _updatePeriod(updatePeriod),
+-	  _running(false)
++Utils::Obs::VolumeMeter::Handler::Handler(UpdateCallback cb, uint64_t updatePeriod, bool captureEnabled)
++	: _updateCallback(cb), _updatePeriod(updatePeriod), _running(false), _capturing(false)
+ {
+ 	signal_handler_t *sh = obs_get_signal_handler();
+ 	if (!sh)
+ 		return;
+ 
+-	auto enumProc = [](void *priv_data, obs_source_t *input) {
+-		auto c = static_cast<Handler *>(priv_data);
+-
+-		if (!obs_source_active(input))
+-			return true;
+-
+-		uint32_t flags = obs_source_get_output_flags(input);
+-		if ((flags & OBS_SOURCE_AUDIO) == 0)
+-			return true;
+-
+-		c->_meters.emplace_back(std::move(new Meter(input)));
+-
+-		return true;
+-	};
+-	obs_enum_sources(enumProc, this);
+-
++	// Connections remain until destruction. Pause must not wait on a global signal
++	// while holding EventHandler's lifecycle lock (a client callback can re-enter).
+ 	signal_handler_connect(sh, "source_activate", Handler::InputActivateCallback, this);
+ 	signal_handler_connect(sh, "source_deactivate", Handler::InputDeactivateCallback, this);
+-
+ 	_running = true;
++	SetCaptureEnabled(captureEnabled, 0);
+ 	_updateThread = std::thread(&Handler::UpdateThread, this);
+-
+ 	blog_debug("[Utils::Obs::VolumeMeter::Handler::Handler] Handler created.");
+ }
+ 
+-Utils::Obs::VolumeMeter::Handler::~Handler()
++void Utils::Obs::VolumeMeter::Handler::SetCaptureEnabled(bool enabled, uint64_t generation)
+ {
+-	signal_handler_t *sh = obs_get_signal_handler();
+-	if (!sh)
++	std::vector<MeterPtr> retired;
++	bool populate = false;
++	uint64_t epoch = 0;
++	{
++		std::unique_lock<std::mutex> l(_meterMutex);
++		if (generation < _captureGeneration)
++			return;
++		_captureGeneration = generation;
++		const bool capture = enabled && _running;
++		if (_capturing == capture)
++			return;
++		_capturing = capture;
++		epoch = ++_captureEpoch;
++		if (!capture)
++			retired.swap(_meters);
++		else
++			populate = true;
++	}
++	// Retire outside _meterMutex: detach acquires source signal/audio locks.
++	retired.clear();
++	if (!populate)
+ 		return;
+-
+-	signal_handler_disconnect(sh, "source_activate", Handler::InputActivateCallback, this);
+-	signal_handler_disconnect(sh, "source_deactivate", Handler::InputDeactivateCallback, this);
+-
+-	if (_running) {
+-		_running = false;
+-		_cond.notify_all();
++	std::vector<OBSSourceAutoRelease> inputs;
++	auto enumProc = [](void *priv_data, obs_source_t *input) {
++		auto inputs = static_cast<std::vector<OBSSourceAutoRelease> *>(priv_data);
++		if (!obs_source_active(input) || (obs_source_get_output_flags(input) & OBS_SOURCE_AUDIO) == 0)
++			return true;
++		inputs->emplace_back(obs_source_get_ref(input));
++		return true;
++	};
++	// Do not nest the libobs sources mutex under _meterMutex either.
++	obs_enum_sources(enumProc, &inputs);
++	for (auto &input : inputs) {
++		MeterPtr candidate(new Meter(input));
++		std::unique_lock<std::mutex> l(_meterMutex);
++		if (_captureEpoch != epoch || !_capturing || !_running || !obs_source_active(input))
++			continue;
++		bool duplicate = false;
++		for (auto &meter : _meters)
++			if (obs_weak_source_references_source(meter->GetWeakInput(), input)) {
++				duplicate = true;
++				break;
++			}
++		if (!duplicate)
++			_meters.emplace_back(std::move(candidate));
++		// l unlocks before a rejected candidate dies; its source ref is still live.
+ 	}
++}
++
++void Utils::Obs::VolumeMeter::Handler::Stop()
++{
++	_running = false;
++	_cond.notify_all();
++	SetCaptureEnabled(false, UINT64_MAX);
++}
+ 
++void Utils::Obs::VolumeMeter::Handler::WaitForStop()
++{
++	// Only final plugin teardown, never subscription/collection pause, and never
++	// under EventHandler lifecycle, meter, source signal or audio callback locks.
+ 	if (_updateThread.joinable())
+ 		_updateThread.join();
++}
+ 
++Utils::Obs::VolumeMeter::Handler::~Handler()
++{
++	Stop();
++	signal_handler_t *sh = obs_get_signal_handler();
++	if (sh) {
++		signal_handler_disconnect(sh, "source_activate", Handler::InputActivateCallback, this);
++		signal_handler_disconnect(sh, "source_deactivate", Handler::InputDeactivateCallback, this);
++	}
++	WaitForStop(); // Required even after the libobs global signal handler vanished.
+ 	blog_debug("[Utils::Obs::VolumeMeter::Handler::~Handler] Handler destroyed.");
+ }
+ 
+@@ -303,13 +344,16 @@ void Utils::Obs::VolumeMeter::Handler::UpdateThread()
+ 
+ 		std::vector<json> inputs;
+ 		std::unique_lock<std::mutex> l(_meterMutex);
++		if (!_capturing)
++			continue;
++		const uint64_t epoch = _captureEpoch;
+ 		for (auto &meter : _meters) {
+ 			if (meter->InputValid())
+ 				inputs.push_back(meter->GetMeterData());
+ 		}
+ 		l.unlock();
+ 
+-		if (_updateCallback)
++		if (_running && _capturing && _captureEpoch == epoch && _updateCallback)
+ 			_updateCallback(inputs);
+ 	}
+ 	blog_debug("[Utils::Obs::VolumeMeter::Handler::UpdateThread] Thread stopped.");
+@@ -330,8 +374,21 @@ void Utils::Obs::VolumeMeter::Handler::InputActivateCallback(void *priv_data, ca
+ 	if ((flags & OBS_SOURCE_AUDIO) == 0)
+ 		return;
+ 
++	uint64_t epoch;
++	{
++		std::unique_lock<std::mutex> l(c->_meterMutex);
++		if (!c->_capturing)
++			return;
++		epoch = c->_captureEpoch;
++	}
++	MeterPtr candidate(new Meter(input));
+ 	std::unique_lock<std::mutex> l(c->_meterMutex);
+-	c->_meters.emplace_back(std::move(new Meter(input)));
++	if (!c->_capturing || c->_captureEpoch != epoch || !obs_source_active(input))
++		return;
++	for (auto &meter : c->_meters)
++		if (obs_weak_source_references_source(meter->GetWeakInput(), input))
++			return;
++	c->_meters.emplace_back(std::move(candidate));
+ }
+ 
+ void Utils::Obs::VolumeMeter::Handler::InputDeactivateCallback(void *priv_data, calldata_t *cd)
+@@ -345,12 +402,15 @@ void Utils::Obs::VolumeMeter::Handler::InputDeactivateCallback(void *priv_data,
+ 	if (obs_source_get_type(input) != OBS_SOURCE_TYPE_INPUT)
+ 		return;
+ 
+-	// Don't ask me why, but using std::remove_if segfaults trying this.
++	std::vector<MeterPtr> retired;
++	// Move under lock, detach source callbacks after l unlocks.
+ 	std::unique_lock<std::mutex> l(c->_meterMutex);
+ 	std::vector<MeterPtr>::iterator iter;
+ 	for (iter = c->_meters.begin(); iter != c->_meters.end();) {
+-		if (obs_weak_source_references_source(iter->get()->GetWeakInput(), input))
++		if (obs_weak_source_references_source(iter->get()->GetWeakInput(), input)) {
++			retired.emplace_back(std::move(*iter));
+ 			iter = c->_meters.erase(iter);
++		}
+ 		else
+ 			++iter;
+ 	}

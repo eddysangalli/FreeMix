@@ -1,0 +1,302 @@
+{
+  "status": "PASS_CONTRACT_ONLY",
+  "checks": 64,
+  "cases": [
+    {
+      "name": "canonical unchanged utils/Obs_VolumeMeter.h",
+      "pass": true
+    },
+    {
+      "name": "canonical unchanged utils/Obs_VolumeMeter.cpp",
+      "pass": true
+    },
+    {
+      "name": "canonical unchanged eventhandler/EventHandler.h",
+      "pass": true
+    },
+    {
+      "name": "canonical unchanged eventhandler/EventHandler.cpp",
+      "pass": true
+    },
+    {
+      "name": "canonical unchanged obs-websocket.cpp",
+      "pass": true
+    },
+    {
+      "name": "Meter warning/destructor unchanged",
+      "pass": true
+    },
+    {
+      "name": "GetMeterData warning unchanged",
+      "pass": true
+    },
+    {
+      "name": "baseline dtor null-signal early return reproduced",
+      "pass": true
+    },
+    {
+      "name": "new dtor joins even with null global signal",
+      "pass": true
+    },
+    {
+      "name": "Stop never joins",
+      "pass": true
+    },
+    {
+      "name": "pause never disconnects global signal",
+      "pass": true
+    },
+    {
+      "name": "capture decision based on current running state",
+      "pass": true
+    },
+    {
+      "name": "retired meters cleared outside decision lock",
+      "pass": true
+    },
+    {
+      "name": "enumeration and candidates outside list lock",
+      "pass": true
+    },
+    {
+      "name": "activate candidate outside list lock and epoch checked",
+      "pass": true
+    },
+    {
+      "name": "deactivate retires before lock and destroys after lock",
+      "pass": true
+    },
+    {
+      "name": "source enumeration retains temporary refs",
+      "pass": true
+    },
+    {
+      "name": "no new permanent source ref member",
+      "pass": true
+    },
+    {
+      "name": "publisher guards pause, stop and phase before callback",
+      "pass": true
+    },
+    {
+      "name": "collection changing pauses before changing broadcast",
+      "pass": true
+    },
+    {
+      "name": "exit pauses before ExitStarted broadcast",
+      "pass": true
+    },
+    {
+      "name": "unsubscribe keeps stable handler and never joins",
+      "pass": true
+    },
+    {
+      "name": "dormant created before callbacks exposed",
+      "pass": true
+    },
+    {
+      "name": "teardown drains thread before other callbacks/members",
+      "pass": true
+    },
+    {
+      "name": "capture lease shared across calls outside lifecycle lock",
+      "pass": true
+    },
+    {
+      "name": "module unload drains before server Stop/reset, API and event callback reset",
+      "pass": true
+    },
+    {
+      "name": "public shutdown waits outside lifecycle scope",
+      "pass": true
+    },
+    {
+      "name": "capture phase token atomic for publication",
+      "pass": true
+    },
+    {
+      "name": "old cleanup expires 1 meters and warns",
+      "pass": true
+    },
+    {
+      "name": "early shutdown clears 1 meters while live",
+      "pass": true
+    },
+    {
+      "name": "old cleanup expires 3 meters and warns",
+      "pass": true
+    },
+    {
+      "name": "early shutdown clears 3 meters while live",
+      "pass": true
+    },
+    {
+      "name": "unexpected expiry still warns",
+      "pass": true
+    },
+    {
+      "name": "no subscribers has no meters/publication",
+      "pass": true
+    },
+    {
+      "name": "two subscribers last unsubscribe pauses without join",
+      "pass": true
+    },
+    {
+      "name": "extra unsubscribe does not wrap unsigned counter",
+      "pass": true
+    },
+    {
+      "name": "late subscription cannot restart shutdown",
+      "pass": true
+    },
+    {
+      "name": "pause/resume uses same publisher and no GUI join",
+      "pass": true
+    },
+    {
+      "name": "source UUID recreated with same name not inherited",
+      "pass": true
+    },
+    {
+      "name": "stale ready cannot undo newer pause",
+      "pass": true
+    },
+    {
+      "name": "duplicate enabled updates generation without changing capture epoch",
+      "pass": true
+    },
+    {
+      "name": "pause during enumeration rejects old candidate",
+      "pass": true
+    },
+    {
+      "name": "pause+resume during enumeration rejects old phase only",
+      "pass": true
+    },
+    {
+      "name": "Stop racing population cannot reopen",
+      "pass": true
+    },
+    {
+      "name": "thread tick after pause has zero broadcasts",
+      "pass": true
+    },
+    {
+      "name": "null signal shutdown still joins before members",
+      "pass": true
+    },
+    {
+      "name": "no hidden strong source lease after capture",
+      "pass": true
+    },
+    {
+      "name": "inline unsubscribe performs no self join",
+      "pass": true
+    },
+    {
+      "name": "subscription/collection sequence 1",
+      "pass": true
+    },
+    {
+      "name": "subscription/collection sequence 2",
+      "pass": true
+    },
+    {
+      "name": "subscription/collection sequence 3",
+      "pass": true
+    },
+    {
+      "name": "subscription/collection sequence 4",
+      "pass": true
+    },
+    {
+      "name": "subscription/collection sequence 5",
+      "pass": true
+    },
+    {
+      "name": "subscription/collection sequence 6",
+      "pass": true
+    },
+    {
+      "name": "subscription/collection sequence 7",
+      "pass": true
+    },
+    {
+      "name": "subscription/collection sequence 8",
+      "pass": true
+    },
+    {
+      "name": "subscription/collection sequence 9",
+      "pass": true
+    },
+    {
+      "name": "subscription/collection sequence 10",
+      "pass": true
+    },
+    {
+      "name": "subscription/collection sequence 11",
+      "pass": true
+    },
+    {
+      "name": "subscription/collection sequence 12",
+      "pass": true
+    },
+    {
+      "name": "barrier pending leaves both OnEvent targets live",
+      "pass": true
+    },
+    {
+      "name": "OnEvent completion precedes Wait/Stop/target resets",
+      "pass": true
+    },
+    {
+      "name": "old server-reset-before-barrier reproduced as unsafe",
+      "pass": true
+    },
+    {
+      "name": "server Stop onClose unsubscribe cannot self-join publisher",
+      "pass": true
+    }
+  ],
+  "sourceDecisionExecuted": true,
+  "nativeExecuted": false,
+  "cppCompiled": false,
+  "limits": [
+    "No Native plugin build or IAB shutdown qualification",
+    "Inline external callback already in flight can finish after pause; no GUI join waits for it",
+    "Synchronous plugin unload from its own publisher thread is outside the supported unload context"
+  ],
+  "pins": [
+    {
+      "path": "utils/Obs_VolumeMeter.h",
+      "before": "42671c7717036ee922d75f23fe6958a70daf339059cd0e0bc8ba48f78fd3b0f2",
+      "after": "2a122610e826f8921c0810d8bfd0647804a0eebbd211649d1420c6e5870ae97f",
+      "ownPatchCheck": true
+    },
+    {
+      "path": "utils/Obs_VolumeMeter.cpp",
+      "before": "30be0a279b86f13dba1dec4b94d7beccd71a8e11a0f9d477368f60740314e5dc",
+      "after": "b7789fcc8be7be674282975243d124bfa05c2849c812ec33915c410ae1a8459a",
+      "ownPatchCheck": true
+    },
+    {
+      "path": "eventhandler/EventHandler.h",
+      "before": "3cfcad64ff5bb43179241d5d5cbccae782479b2d11f6ae311c82140c345b1c08",
+      "after": "04274e5d77678bc368e28ea219607e130af02ebb58f3c6aa754f5a495a65daf4",
+      "ownPatchCheck": true
+    },
+    {
+      "path": "eventhandler/EventHandler.cpp",
+      "before": "3b9fc2491745d9fd260a8bd5915d4096adaa9fcdab710920921090087182305c",
+      "after": "17b053e6f63d0f248abafa473de43070ffb6e982e5e6992916c839d64b025da4",
+      "ownPatchCheck": true
+    },
+    {
+      "path": "obs-websocket.cpp",
+      "before": "ec6a0293af56e9cd59163bb1d88926010626dca7861b9d64219859e9326a25f7",
+      "after": "d3839e64b825ac89c5d4428cbf3cfd41cb1e1de33301fdc0c40a13641bb8a5bc",
+      "ownPatchCheck": true
+    }
+  ]
+}
