@@ -111,3 +111,9 @@ Candidato0.1.0-local.20261010004000 será empacotado com mesma build Native21;00
 ## Candidato QR corrigido
 
 040000 foi rejeitado: preparação documental falhou e a assinatura avançou indevidamente. Payload imutável arquivado, sem instalação/ZIP/EXE/mesa. Novo candidato0.1.0-local.20261010004500 exige recibo presealPASS anterior à assinatura.000500 continua selecionado. Auditoria prepara ticker2D em rascunho isolado, sem alterar os seis fontes QR congelados desta versão.
+
+## Ticker2D integrado nas fontes posteriores ao QR45
+
+Três fontes aplicados por cópia byteidêntica ao draft verificado: template finito com dois textos e uma imagem, campos editáveis,geometria2D preservada e Shrink limitado a10passos.30checks Edge/parser/conversão/edição PASS,46regressões QR e33formas PASS; sem cópia de modelo proprietário. TypeAdd/fila e unidadeSpeed exata continuam avisos explícitos; movimento local aproximado de um item. Sequências examinadas não possuem alvo/frames/tempo utilizáveis e não foram inventadas.
+
+Root prepara candidato0.1.0-local.20261010010000 com mesmoNative21; ticker ainda não recebeu QAAPI/CEF/recuperação instalada.000500 segue selecionado enquanto QR45 terminaQA. Provas em qa-finalizacao/gtzip-ticker-template/ALLOWLIST-APPLIED.json; não transferir PASS do draft para CEF.

@@ -82,3 +82,7 @@ licenses/freemix-gtzip-qr/** -text whitespace=blank-at-eol,blank-at-eof,space-be
 docs/evidencias-distribuicao-conclusao/arquivamento-candidato233334.json -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
 
 qa-finalizacao/gtzip-direct-shapes-qr-regression/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+
+qa-finalizacao/gtzip-ticker-template/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+qa-finalizacao/gtzip-ticker-template/draft/gt_utils.mjs -text whitespace=blank-at-eol,-blank-at-eof,space-before-tab,cr-at-eol
+qa-finalizacao/gtzip-ticker-template/gt_utils.mjs.baseline -text whitespace=blank-at-eol,-blank-at-eof,space-before-tab,cr-at-eol

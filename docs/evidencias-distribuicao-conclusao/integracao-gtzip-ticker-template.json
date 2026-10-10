@@ -1,0 +1,297 @@
+{
+  "status": "APPLIED_FROZEN_TICKER2D_MIRRORED",
+  "at": "2026-10-10T00:52:59.841Z",
+  "sourceFiles": 3,
+  "checksTemplate": 30,
+  "checksQrRegression": 46,
+  "checksShapeRegression": 33,
+  "nativeCefValidated": false,
+  "operatorTouched": false,
+  "files": [
+    {
+      "path": "qa-finalizacao/gtzip-ticker-template/baseline-pins.json",
+      "sourceSha256": "fdf305979f68f8c882071abc3838b9cdf26607be035e21976102e9f122fddf60",
+      "outputSha256": "fdf305979f68f8c882071abc3838b9cdf26607be035e21976102e9f122fddf60"
+    },
+    {
+      "path": "qa-finalizacao/gtzip-ticker-template/draft/gt_utils.mjs",
+      "sourceSha256": "cb8546fde160d00eeafaefae9909ea923152bf1a63e0fd3a5b0f7ed4aed5ee24",
+      "outputSha256": "cb8546fde160d00eeafaefae9909ea923152bf1a63e0fd3a5b0f7ed4aed5ee24"
+    },
+    {
+      "path": "qa-finalizacao/gtzip-ticker-template/draft/gtzip-archive.mjs",
+      "sourceSha256": "b2107d921137e48b0a7d8ec6b62e7b2e7509a47c3992bf947da7aad6e85725be",
+      "outputSha256": "b2107d921137e48b0a7d8ec6b62e7b2e7509a47c3992bf947da7aad6e85725be"
+    },
+    {
+      "path": "qa-finalizacao/gtzip-ticker-template/draft/gtzip-fonts.mjs",
+      "sourceSha256": "8f0636142c0c85309e872fc74c5411a7584282afe9b48da5765299ac693a7464",
+      "outputSha256": "8f0636142c0c85309e872fc74c5411a7584282afe9b48da5765299ac693a7464"
+    },
+    {
+      "path": "qa-finalizacao/gtzip-ticker-template/draft/gtzip-qr-bundle.mjs",
+      "sourceSha256": "ec6531b00b22db7c70024fa19e83739469290e8c28aff2cedecca0b49976ceb7",
+      "outputSha256": "422f54b25660a373f9aca81da3f5021f1bb1b002f392cce412619756c0d208cc"
+    },
+    {
+      "path": "qa-finalizacao/gtzip-ticker-template/draft/gtzip-qr.mjs",
+      "sourceSha256": "0088ca623686d6cfc9df13de3859bb2b42cd8af2b07057f8ee5c4013b2a0834b",
+      "outputSha256": "0088ca623686d6cfc9df13de3859bb2b42cd8af2b07057f8ee5c4013b2a0834b"
+    },
+    {
+      "path": "qa-finalizacao/gtzip-ticker-template/draft/gtzip-render.mjs",
+      "sourceSha256": "cf000ab8087bc4192a66feab5cf358dfeb119b280d92f148752084f3a431723c",
+      "outputSha256": "bbb342a0ed3d25af4d22009f59c5487207e1274e176ce62b41133f023a62a769"
+    },
+    {
+      "path": "qa-finalizacao/gtzip-ticker-template/draft/gtzip-runtime.mjs",
+      "sourceSha256": "cc22b070038194041c67cd48537bbb7dfe68b061cf0f65d165ef9394d5131c14",
+      "outputSha256": "cc22b070038194041c67cd48537bbb7dfe68b061cf0f65d165ef9394d5131c14"
+    },
+    {
+      "path": "qa-finalizacao/gtzip-ticker-template/draft/gtzip-xml.mjs",
+      "sourceSha256": "5b31fbf7cc135b5989457c11ed4cf42206c15d4d4e3570534feb8c32cfba818b",
+      "outputSha256": "5b31fbf7cc135b5989457c11ed4cf42206c15d4d4e3570534feb8c32cfba818b"
+    },
+    {
+      "path": "qa-finalizacao/gtzip-ticker-template/draft/gtzip_converter.mjs",
+      "sourceSha256": "46f17d225502b0e29ea6f3e01b7a499673f954aaaf67f31f659bca2d7ddc13ab",
+      "outputSha256": "46f17d225502b0e29ea6f3e01b7a499673f954aaaf67f31f659bca2d7ddc13ab"
+    },
+    {
+      "path": "qa-finalizacao/gtzip-ticker-template/edit.py",
+      "sourceSha256": "237bbb82dc1f42423e69aaa5f661e41e078b9b0858ee1013664773c318eab1e0",
+      "outputSha256": "237bbb82dc1f42423e69aaa5f661e41e078b9b0858ee1013664773c318eab1e0"
+    },
+    {
+      "path": "qa-finalizacao/gtzip-ticker-template/fix-gate.py",
+      "sourceSha256": "37b44756f0c104f04f9de78090dc278c37678ae71e1a28bc9659b2cafa1995dd",
+      "outputSha256": "37b44756f0c104f04f9de78090dc278c37678ae71e1a28bc9659b2cafa1995dd"
+    },
+    {
+      "path": "qa-finalizacao/gtzip-ticker-template/fixture.xml",
+      "sourceSha256": "58f62bd5e7ea23200d7dbaa2655e9de7adc134ae56f20e15265807d0e2c6b436",
+      "outputSha256": "58f62bd5e7ea23200d7dbaa2655e9de7adc134ae56f20e15265807d0e2c6b436"
+    },
+    {
+      "path": "qa-finalizacao/gtzip-ticker-template/freeze.py",
+      "sourceSha256": "6ca09daab16f7652f8cbce01fb74c781c9ea0a9111f6083edd20ead5657fd6b0",
+      "outputSha256": "6ca09daab16f7652f8cbce01fb74c781c9ea0a9111f6083edd20ead5657fd6b0"
+    },
+    {
+      "path": "qa-finalizacao/gtzip-ticker-template/gt_utils.mjs.baseline",
+      "sourceSha256": "cb8546fde160d00eeafaefae9909ea923152bf1a63e0fd3a5b0f7ed4aed5ee24",
+      "outputSha256": "cb8546fde160d00eeafaefae9909ea923152bf1a63e0fd3a5b0f7ed4aed5ee24"
+    },
+    {
+      "path": "qa-finalizacao/gtzip-ticker-template/gtzip-archive.mjs.baseline",
+      "sourceSha256": "b2107d921137e48b0a7d8ec6b62e7b2e7509a47c3992bf947da7aad6e85725be",
+      "outputSha256": "b2107d921137e48b0a7d8ec6b62e7b2e7509a47c3992bf947da7aad6e85725be"
+    },
+    {
+      "path": "qa-finalizacao/gtzip-ticker-template/gtzip-fonts.mjs.baseline",
+      "sourceSha256": "8f0636142c0c85309e872fc74c5411a7584282afe9b48da5765299ac693a7464",
+      "outputSha256": "8f0636142c0c85309e872fc74c5411a7584282afe9b48da5765299ac693a7464"
+    },
+    {
+      "path": "qa-finalizacao/gtzip-ticker-template/gtzip-qr-bundle.mjs.baseline",
+      "sourceSha256": "ec6531b00b22db7c70024fa19e83739469290e8c28aff2cedecca0b49976ceb7",
+      "outputSha256": "ec6531b00b22db7c70024fa19e83739469290e8c28aff2cedecca0b49976ceb7"
+    },
+    {
+      "path": "qa-finalizacao/gtzip-ticker-template/gtzip-qr.mjs.baseline",
+      "sourceSha256": "0088ca623686d6cfc9df13de3859bb2b42cd8af2b07057f8ee5c4013b2a0834b",
+      "outputSha256": "0088ca623686d6cfc9df13de3859bb2b42cd8af2b07057f8ee5c4013b2a0834b"
+    },
+    {
+      "path": "qa-finalizacao/gtzip-ticker-template/gtzip-render.mjs.baseline",
+      "sourceSha256": "8f18cf081f9653cf551e1ffa1c43efa4fd243f94065fb7285fd1e57519aeb88a",
+      "outputSha256": "8f18cf081f9653cf551e1ffa1c43efa4fd243f94065fb7285fd1e57519aeb88a"
+    },
+    {
+      "path": "qa-finalizacao/gtzip-ticker-template/gtzip-runtime.mjs.baseline",
+      "sourceSha256": "cc22b070038194041c67cd48537bbb7dfe68b061cf0f65d165ef9394d5131c14",
+      "outputSha256": "cc22b070038194041c67cd48537bbb7dfe68b061cf0f65d165ef9394d5131c14"
+    },
+    {
+      "path": "qa-finalizacao/gtzip-ticker-template/gtzip-xml.mjs.baseline",
+      "sourceSha256": "4f412d0a3c9a8c191801b7e26adcb7c0241a72e6007e3582e20fe6270ec5fea2",
+      "outputSha256": "4f412d0a3c9a8c191801b7e26adcb7c0241a72e6007e3582e20fe6270ec5fea2"
+    },
+    {
+      "path": "qa-finalizacao/gtzip-ticker-template/gtzip_converter.mjs.baseline",
+      "sourceSha256": "4e5b16e5f19fad68bf8c6e3e8fcac24088a5cf183adef938c1592d5b2d45ef15",
+      "outputSha256": "4e5b16e5f19fad68bf8c6e3e8fcac24088a5cf183adef938c1592d5b2d45ef15"
+    },
+    {
+      "path": "qa-finalizacao/gtzip-ticker-template/LICENSE-FIXTURE.txt",
+      "sourceSha256": "d115b113bb9b13bbc92fb3cf81c56487ea4cd622c4bf4b39c8356de10bf00560",
+      "outputSha256": "d115b113bb9b13bbc92fb3cf81c56487ea4cd622c4bf4b39c8356de10bf00560"
+    },
+    {
+      "path": "qa-finalizacao/gtzip-ticker-template/polygon-regression/converted.json",
+      "sourceSha256": "a807bdc2f92790440640d5738872a81529ea2c2b0e9eac9c367d69230daacd03",
+      "outputSha256": "a807bdc2f92790440640d5738872a81529ea2c2b0e9eac9c367d69230daacd03"
+    },
+    {
+      "path": "qa-finalizacao/gtzip-ticker-template/polygon-regression/direct.xml",
+      "sourceSha256": "edc5c9b062b76aed208b01f5a000c6386c44776e82a96ffbe64ec56b24126e57",
+      "outputSha256": "edc5c9b062b76aed208b01f5a000c6386c44776e82a96ffbe64ec56b24126e57"
+    },
+    {
+      "path": "qa-finalizacao/gtzip-ticker-template/polygon-regression/grouped.xml",
+      "sourceSha256": "a756800101d53ac4d54f3717f95344a1545cb2b5500886f9c9212b89ca2267c8",
+      "outputSha256": "a756800101d53ac4d54f3717f95344a1545cb2b5500886f9c9212b89ca2267c8"
+    },
+    {
+      "path": "qa-finalizacao/gtzip-ticker-template/polygon-regression/nested.xml",
+      "sourceSha256": "c014adc35ad7d37172467c9236c29eb8747e70c366482d609afe47c24ce3affe",
+      "outputSha256": "c014adc35ad7d37172467c9236c29eb8747e70c366482d609afe47c24ce3affe"
+    },
+    {
+      "path": "qa-finalizacao/gtzip-ticker-template/polygon-regression/resultado.json",
+      "sourceSha256": "5d8dfa2b8ed932b8115493cabf41bff9333c0b644442353c9166a872f60c24a5",
+      "outputSha256": "5d8dfa2b8ed932b8115493cabf41bff9333c0b644442353c9166a872f60c24a5"
+    },
+    {
+      "path": "qa-finalizacao/gtzip-ticker-template/polygon-regression/test.mjs",
+      "sourceSha256": "2ca892ec169802ad706637d262073655753131b93278a29caf90a4415405678e",
+      "outputSha256": "2ca892ec169802ad706637d262073655753131b93278a29caf90a4415405678e"
+    },
+    {
+      "path": "qa-finalizacao/gtzip-ticker-template/polygon-regression/unsupported.xml",
+      "sourceSha256": "115e24a31452be377fa2c32854b39ee051326932a7c87cb7846ac04ee73a1892",
+      "outputSha256": "115e24a31452be377fa2c32854b39ee051326932a7c87cb7846ac04ee73a1892"
+    },
+    {
+      "path": "qa-finalizacao/gtzip-ticker-template/prepare-regression.mjs",
+      "sourceSha256": "f17f65a0c4dbac80004ec2e32a5b323ae8ff4b283fa00a39cc0cad930abc9c89",
+      "outputSha256": "b6b77d23b55f14d80b848e0aaf60a0014ceba5a76d203ce9eda21fcc04ee58f9"
+    },
+    {
+      "path": "qa-finalizacao/gtzip-ticker-template/prepare.py",
+      "sourceSha256": "a2499a27fd4b911e64a34a00324e5ebebe394d1df3ce6e625e38035cbd38aa3a",
+      "outputSha256": "a2499a27fd4b911e64a34a00324e5ebebe394d1df3ce6e625e38035cbd38aa3a"
+    },
+    {
+      "path": "qa-finalizacao/gtzip-ticker-template/qr-regression/decode.py",
+      "sourceSha256": "e2684483ed985923efe78738dca1e8f7d4442dbac1155d5b39905c7ad161a5b1",
+      "outputSha256": "e2684483ed985923efe78738dca1e8f7d4442dbac1155d5b39905c7ad161a5b1"
+    },
+    {
+      "path": "qa-finalizacao/gtzip-ticker-template/qr-regression/fixture.xml",
+      "sourceSha256": "da3030a9b7a5b639a3994969bfaf16663f804d6b28789441e3dd0ca1fa2bf939",
+      "outputSha256": "da3030a9b7a5b639a3994969bfaf16663f804d6b28789441e3dd0ca1fa2bf939"
+    },
+    {
+      "path": "qa-finalizacao/gtzip-ticker-template/qr-regression/grouped.xml",
+      "sourceSha256": "43670c283c79b9930fffd7ab40bda71876eed89c550678d87b0e3fac2d0ef865",
+      "outputSha256": "43670c283c79b9930fffd7ab40bda71876eed89c550678d87b0e3fac2d0ef865"
+    },
+    {
+      "path": "qa-finalizacao/gtzip-ticker-template/qr-regression/resultado.json",
+      "sourceSha256": "51397c36f20cd29824ef595a673d9eb96918573779b7549c9f459c404ac6e422",
+      "outputSha256": "51397c36f20cd29824ef595a673d9eb96918573779b7549c9f459c404ac6e422"
+    },
+    {
+      "path": "qa-finalizacao/gtzip-ticker-template/qr-regression/test.mjs",
+      "sourceSha256": "de673cf6375d523290c327f76349d0eb83955186721b2d826687e98a0e9f072d",
+      "outputSha256": "de673cf6375d523290c327f76349d0eb83955186721b2d826687e98a0e9f072d"
+    },
+    {
+      "path": "qa-finalizacao/gtzip-ticker-template/README.md",
+      "sourceSha256": "e1b135e8067cb95e1e1831c24ebe74ae28643d7c5ee14193d7610fcd87177cb8",
+      "outputSha256": "e1b135e8067cb95e1e1831c24ebe74ae28643d7c5ee14193d7610fcd87177cb8"
+    },
+    {
+      "path": "qa-finalizacao/gtzip-ticker-template/refine.py",
+      "sourceSha256": "761052b7c5f6892fc8239afb6d9151a9a60750ad4a6135e8be61fece3ace2117",
+      "outputSha256": "761052b7c5f6892fc8239afb6d9151a9a60750ad4a6135e8be61fece3ace2117"
+    },
+    {
+      "path": "qa-finalizacao/gtzip-ticker-template/refine2.py",
+      "sourceSha256": "3236dd2c2cfeba86ffd4d58a24dae28e928a55fe873d819baa3c2865c4547d59",
+      "outputSha256": "3236dd2c2cfeba86ffd4d58a24dae28e928a55fe873d819baa3c2865c4547d59"
+    },
+    {
+      "path": "qa-finalizacao/gtzip-ticker-template/regression-pins.json",
+      "sourceSha256": "11692afde9831a89e215b21d4459a870bddbf1ddf79a5f0ae73aefe6fb26919e",
+      "outputSha256": "11692afde9831a89e215b21d4459a870bddbf1ddf79a5f0ae73aefe6fb26919e"
+    },
+    {
+      "path": "qa-finalizacao/gtzip-ticker-template/resultado-draft-gate-fail.json",
+      "sourceSha256": "8fe5c11765d1c94133cfb43d1700a1faaa4b93eec0b9ff2fa9f8aed024d781cf",
+      "outputSha256": "8fe5c11765d1c94133cfb43d1700a1faaa4b93eec0b9ff2fa9f8aed024d781cf"
+    },
+    {
+      "path": "qa-finalizacao/gtzip-ticker-template/resultado.json",
+      "sourceSha256": "61fd4f8db46d55de0d793abc4ec8cc89b984b8195bd107c9d3cc3bbb5d5b1351",
+      "outputSha256": "61fd4f8db46d55de0d793abc4ec8cc89b984b8195bd107c9d3cc3bbb5d5b1351"
+    },
+    {
+      "path": "qa-finalizacao/gtzip-ticker-template/test.mjs",
+      "sourceSha256": "040e4d21b73f9e0b76e7074c6635f09b26fdf2d6ae3a2584fb54c9216bd8b484",
+      "outputSha256": "040e4d21b73f9e0b76e7074c6635f09b26fdf2d6ae3a2584fb54c9216bd8b484"
+    },
+    {
+      "path": "qa-finalizacao/gtzip-ticker-template/ticker-template.patch",
+      "sourceSha256": "971c56d9fed71b88ef7bc8af7898a370a30a21091366a7e858a116f14c281438",
+      "outputSha256": "971c56d9fed71b88ef7bc8af7898a370a30a21091366a7e858a116f14c281438"
+    },
+    {
+      "path": "qa-finalizacao/gtzip-ticker-template/ALLOWLIST.json",
+      "sourceSha256": "cb84aaf7ca971f760e11cd5a004471c6f2e6a39d28e2de11d9faf67b7f92a2c9",
+      "outputSha256": "cb84aaf7ca971f760e11cd5a004471c6f2e6a39d28e2de11d9faf67b7f92a2c9"
+    },
+    {
+      "path": "ferramentas/gtzip-xml.mjs",
+      "sourceSha256": "5b31fbf7cc135b5989457c11ed4cf42206c15d4d4e3570534feb8c32cfba818b",
+      "outputSha256": "5b31fbf7cc135b5989457c11ed4cf42206c15d4d4e3570534feb8c32cfba818b"
+    },
+    {
+      "path": "ferramentas/gtzip-render.mjs",
+      "sourceSha256": "cf000ab8087bc4192a66feab5cf358dfeb119b280d92f148752084f3a431723c",
+      "outputSha256": "bbb342a0ed3d25af4d22009f59c5487207e1274e176ce62b41133f023a62a769"
+    },
+    {
+      "path": "ferramentas/gtzip_converter.mjs",
+      "sourceSha256": "46f17d225502b0e29ea6f3e01b7a499673f954aaaf67f31f659bca2d7ddc13ab",
+      "outputSha256": "46f17d225502b0e29ea6f3e01b7a499673f954aaaf67f31f659bca2d7ddc13ab"
+    },
+    {
+      "path": "qa-finalizacao/gtzip-ticker-template/application/gtzip-render.mjs.before",
+      "sourceSha256": "8f18cf081f9653cf551e1ffa1c43efa4fd243f94065fb7285fd1e57519aeb88a",
+      "outputSha256": "8f18cf081f9653cf551e1ffa1c43efa4fd243f94065fb7285fd1e57519aeb88a"
+    },
+    {
+      "path": "qa-finalizacao/gtzip-ticker-template/application/gtzip-xml.mjs.before",
+      "sourceSha256": "4f412d0a3c9a8c191801b7e26adcb7c0241a72e6007e3582e20fe6270ec5fea2",
+      "outputSha256": "4f412d0a3c9a8c191801b7e26adcb7c0241a72e6007e3582e20fe6270ec5fea2"
+    },
+    {
+      "path": "qa-finalizacao/gtzip-ticker-template/application/gtzip_converter.mjs.before",
+      "sourceSha256": "4e5b16e5f19fad68bf8c6e3e8fcac24088a5cf183adef938c1592d5b2d45ef15",
+      "outputSha256": "4e5b16e5f19fad68bf8c6e3e8fcac24088a5cf183adef938c1592d5b2d45ef15"
+    },
+    {
+      "path": "qa-finalizacao/gtzip-ticker-template/apply.mjs",
+      "sourceSha256": "19038362b45be677a01b6e6448522e6ab8e750adc3e39cf438e7b2e4ac3845ec",
+      "outputSha256": "19038362b45be677a01b6e6448522e6ab8e750adc3e39cf438e7b2e4ac3845ec"
+    },
+    {
+      "path": "qa-finalizacao/gtzip-ticker-template/application-receipt.json",
+      "sourceSha256": "6c458916bdc92195941260abcee8f3e7560206b1680750db17a561cb1338e56e",
+      "outputSha256": "6c458916bdc92195941260abcee8f3e7560206b1680750db17a561cb1338e56e"
+    },
+    {
+      "path": "qa-finalizacao/gtzip-ticker-template/APPLIED.md",
+      "sourceSha256": "28f047c32f6fa6bd045a2cb06e305ddcc2efaf3c667411606e42fe2e95cb7c6f",
+      "outputSha256": "28f047c32f6fa6bd045a2cb06e305ddcc2efaf3c667411606e42fe2e95cb7c6f"
+    },
+    {
+      "path": "qa-finalizacao/gtzip-ticker-template/ALLOWLIST-APPLIED.json",
+      "sourceSha256": "56f7fff62e0f49dc580418e1308f0e540c39dd551de9640b628976d77f897853",
+      "outputSha256": "56f7fff62e0f49dc580418e1308f0e540c39dd551de9640b628976d77f897853"
+    }
+  ]
+}
