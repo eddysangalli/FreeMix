@@ -1,0 +1,220 @@
+{
+  "root": "qa-finalizacao/media-reset-ready-barrier-offside",
+  "status": "FROZEN_REVIEW_ONLY",
+  "files": [
+    {
+      "path": "audio-contract.mjs",
+      "sha256": "cae085195a3962f3ecf31a8a11a7a829fcef0048380eb987c44e23b9ab7d0884",
+      "bytes": 1719
+    },
+    {
+      "path": "baseline/freemix-app/plugins/obs-ffmpeg/obs-ffmpeg-source.c",
+      "sha256": "4bd7b9a69ae02cc76f5be930a0a49f38d6f26bc0584304a44191529e07e5a467",
+      "bytes": 29252
+    },
+    {
+      "path": "baseline/freemix-app/plugins/obs-websocket/src/requesthandler/RequestHandler_MediaInputs.cpp",
+      "sha256": "680d80b080e9cc0b3570a2e7def8215618b1a86607072f1cd9f1850d774c9546",
+      "bytes": 7988
+    },
+    {
+      "path": "baseline/freemix-app/shared/media-playback/media-playback/cache.c",
+      "sha256": "1c34484aae7bc476f96a0dee4e6f3c5db7a6fad6cc4347a8eaf71b5bf912d0da",
+      "bytes": 16145
+    },
+    {
+      "path": "baseline/freemix-app/shared/media-playback/media-playback/decode.c",
+      "sha256": "75ceacc7865abd726592476f3935ed4a30a68e7efa4cece9910b01072eb33805",
+      "bytes": 10342
+    },
+    {
+      "path": "baseline/freemix-app/shared/media-playback/media-playback/media-playback.c",
+      "sha256": "6dc23eab35270f470347b2857020a730c972d89fd5fe71f3e5e2ff2a85925013",
+      "bytes": 3896
+    },
+    {
+      "path": "baseline/freemix-app/shared/media-playback/media-playback/media-playback.h",
+      "sha256": "2e8132d4ddc49607cb173860ce7c5ee49caf63b7f73b5b604d33cedd2d7083cd",
+      "bytes": 3006
+    },
+    {
+      "path": "baseline/freemix-app/shared/media-playback/media-playback/media.c",
+      "sha256": "057123e52eae4ed276df685799a81fdf8a161dba1e303bb41d2211e8aac93fc7",
+      "bytes": 30635
+    },
+    {
+      "path": "baseline/freemix-app/shared/media-playback/media-playback/media.h",
+      "sha256": "1f220f1ab7e07634d5779d51fe7f8212328482df32ad993a3459e558aefc0b87",
+      "bytes": 3427
+    },
+    {
+      "path": "complementary-offline-analysis.json",
+      "sha256": "53ad6a176d482bcb29d5a89c753222e3af6f1211ea5ea24dc317492ea0ee9808",
+      "bytes": 206968
+    },
+    {
+      "path": "draft/freemix-app/shared/media-playback/media-playback/media.c",
+      "sha256": "4ed70c72281a19ab9f24419e736aa1ac1bce8dd2aba5e3072c3dd882a4c830b7",
+      "bytes": 31051
+    },
+    {
+      "path": "draft/freemix-app/shared/media-playback/media-playback/media.h",
+      "sha256": "0ce0966446a525d082f31a5838116cf7b0cf59cacf4d4c3dbd9bd06b280eb4b8",
+      "bytes": 3541
+    },
+    {
+      "path": "first-model-failure.json",
+      "sha256": "5e75032141b51b74e440d0924c33305733e88e0fadfb7792d6f87cc3887d39f2",
+      "bytes": 437
+    },
+    {
+      "path": "freeze.py",
+      "sha256": "0df11a8ad25991f076a22f44d3cd430a0c803fe3e275846031ef45b8609ca7fa",
+      "bytes": 4112
+    },
+    {
+      "path": "GEMINI-REVIEW.json",
+      "sha256": "6eb08a89a868647137fe26ef0bd65a3c42e05d620479f9f27952f5aced4ff58c",
+      "bytes": 2317
+    },
+    {
+      "path": "legacy-media-reset-contract.mjs",
+      "sha256": "dba7b0ab66dddc6f2d96b14f8c7abdc9eca3e0cfbbd5ef1659412209f0688259",
+      "bytes": 2408
+    },
+    {
+      "path": "model-results.json",
+      "sha256": "6aa52a10fafeebc2fec2d310129dfce23381d18877c5eb439b0f2e70a49b8f8f",
+      "bytes": 3390
+    },
+    {
+      "path": "observation-samples.json",
+      "sha256": "ea45220b19e0265c1997ef65db8081d94515d5e013380ac8e4fe16bc83a6ae4d",
+      "bytes": 193033
+    },
+    {
+      "path": "patches/media.c.patch",
+      "sha256": "1d0ed74edfcf908ac6df7a6e4a4b5979279656b781f3f508e05d75c882139e50",
+      "bytes": 1444
+    },
+    {
+      "path": "patches/media.h.patch",
+      "sha256": "cf07629df87c1fc430b3a5757bb5ce7c33b001e6547db2634dfd26e134044776",
+      "bytes": 516
+    },
+    {
+      "path": "PINS.json",
+      "sha256": "39aaa5f113eb52db2c0dbbc22202269e67725932bfdd7924862f3cb5e51bd8dd",
+      "bytes": 1912
+    },
+    {
+      "path": "prepare-retained-r2.py",
+      "sha256": "a6711753392fc5b114f0337d9c47708c45a7fb587eded1d57341f13334842b31",
+      "bytes": 3179
+    },
+    {
+      "path": "prepare-retained-variant.py",
+      "sha256": "279b8938efc51a6d3f1b420426400d5de6a2eb87a423a6088946fbd78ab9b01e",
+      "bytes": 2528
+    },
+    {
+      "path": "prepare.py",
+      "sha256": "5349fc2581bd50a69f8c96ca6680d0b060c84a0e864a729a0a494ad049571067",
+      "bytes": 4655
+    },
+    {
+      "path": "README.md",
+      "sha256": "184574cf0bebbddbcf6e53fe6619a157a8a156121ebe6fe5f91886dcb0fd22da",
+      "bytes": 6587
+    },
+    {
+      "path": "RECEIPT.json",
+      "sha256": "75beefce8c8478f044b301d537b8720fc093c6f1055d18b8c29d54ba1bffcb34",
+      "bytes": 3821
+    },
+    {
+      "path": "reset-ready-clock-contract.mjs",
+      "sha256": "168c2e7a6389d7b827795c1a08a78c9d4c9a8b8b9c8b796f4a171d2f8bce5a01",
+      "bytes": 5604
+    },
+    {
+      "path": "retained-r2/draft/freemix-app/plugins/obs-ffmpeg/obs-ffmpeg-source.c",
+      "sha256": "2887d2b7cb51458c3c0446dbddb0e9eb546f4cfdaca247ce40b635036b3ec82e",
+      "bytes": 29369
+    },
+    {
+      "path": "retained-r2/draft/freemix-app/shared/media-playback/media-playback/media.c",
+      "sha256": "7817a4d2315582ea1301155855e070baeb32afba265b579d1ba7eeca466ffe2c",
+      "bytes": 30913
+    },
+    {
+      "path": "retained-r2/draft/freemix-app/shared/media-playback/media-playback/media.h",
+      "sha256": "3558694b7059a591f02c0970eeecbc03912200d2be6a33e27658c58c4ed6d7c2",
+      "bytes": 3541
+    },
+    {
+      "path": "retained-r2/patches/media.c.patch",
+      "sha256": "7245da6ea34675280088bc708b7107b6d36cd79548e3b4c01df8a58185730426",
+      "bytes": 1272
+    },
+    {
+      "path": "retained-r2/patches/media.h.patch",
+      "sha256": "a0b082f692e5760e21e8092cde26941b8110ceee36f2c4ef0cba23eff9d189b0",
+      "bytes": 516
+    },
+    {
+      "path": "retained-r2/patches/obs-ffmpeg-source.c.patch",
+      "sha256": "a6c2e7818f1286369d26eae94babaa754eacae0b06c3e2cc734554e1063cc45c",
+      "bytes": 886
+    },
+    {
+      "path": "retained-r2/TARGETS.json",
+      "sha256": "5a9ca48dd714b45f61c391a4cd3571f95a0cdca041fafb3d6c27d578bab848b8",
+      "bytes": 1619
+    },
+    {
+      "path": "retained-variant/draft/freemix-app/plugins/obs-ffmpeg/obs-ffmpeg-source.c",
+      "sha256": "f9fdf4427854516e329603b865bb8502e31167f473efdb1a92a68c3b32de3606",
+      "bytes": 29370
+    },
+    {
+      "path": "retained-variant/draft/freemix-app/shared/media-playback/media-playback/media.c",
+      "sha256": "52bd02a4ac28e895eb286eaf44f5180a9f2ed5d2458f0393919c8301e6066793",
+      "bytes": 30769
+    },
+    {
+      "path": "retained-variant/patches/media.c.patch",
+      "sha256": "eede26f61d096eb580ba2f813ca06b98d6140af6dca78efb4c5a3db16c9689c5",
+      "bytes": 949
+    },
+    {
+      "path": "retained-variant/patches/obs-ffmpeg-source.c.patch",
+      "sha256": "d12232062e0116f64ce257bb839785354acf79016c0e58e7fd7fb1ca51d28ef6",
+      "bytes": 887
+    },
+    {
+      "path": "retained-variant/TARGETS.json",
+      "sha256": "70c64137d97f9ba1484512f5bab34ec41e011a7de5a6e5682aa7f1d5d5b5fa2f",
+      "bytes": 1142
+    },
+    {
+      "path": "scenario.mjs",
+      "sha256": "d4cbfd87e5929526681844b05f7ae68c6452228aba50d2489a3f258f8523af67",
+      "bytes": 4558
+    },
+    {
+      "path": "second-model-failure.json",
+      "sha256": "23257593dd0cb5f613175bcf54ae9beda2b3c54f6cb913e93f2d4796c2fa3a25",
+      "bytes": 390
+    },
+    {
+      "path": "test.mjs",
+      "sha256": "e0f643aca05a8492571fdccfc36830ab409d8a19d9806431f3afbd05c1293d3e",
+      "bytes": 11010
+    }
+  ],
+  "containsRawLogs": false,
+  "containsMedia": false,
+  "NativeCompiled": false,
+  "NativeExecuted": false
+}

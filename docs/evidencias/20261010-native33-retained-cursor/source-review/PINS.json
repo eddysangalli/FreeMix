@@ -1,0 +1,50 @@
+{
+  "sources": [
+    {
+      "path": "freemix-app/shared/media-playback/media-playback/media.c",
+      "sha256": "057123e52eae4ed276df685799a81fdf8a161dba1e303bb41d2211e8aac93fc7",
+      "bytes": 30635
+    },
+    {
+      "path": "freemix-app/shared/media-playback/media-playback/media.h",
+      "sha256": "1f220f1ab7e07634d5779d51fe7f8212328482df32ad993a3459e558aefc0b87",
+      "bytes": 3427
+    },
+    {
+      "path": "freemix-app/shared/media-playback/media-playback/decode.c",
+      "sha256": "75ceacc7865abd726592476f3935ed4a30a68e7efa4cece9910b01072eb33805",
+      "bytes": 10342
+    },
+    {
+      "path": "freemix-app/shared/media-playback/media-playback/cache.c",
+      "sha256": "1c34484aae7bc476f96a0dee4e6f3c5db7a6fad6cc4347a8eaf71b5bf912d0da",
+      "bytes": 16145
+    },
+    {
+      "path": "freemix-app/shared/media-playback/media-playback/media-playback.c",
+      "sha256": "6dc23eab35270f470347b2857020a730c972d89fd5fe71f3e5e2ff2a85925013",
+      "bytes": 3896
+    },
+    {
+      "path": "freemix-app/shared/media-playback/media-playback/media-playback.h",
+      "sha256": "2e8132d4ddc49607cb173860ce7c5ee49caf63b7f73b5b604d33cedd2d7083cd",
+      "bytes": 3006
+    },
+    {
+      "path": "freemix-app/plugins/obs-ffmpeg/obs-ffmpeg-source.c",
+      "sha256": "4bd7b9a69ae02cc76f5be930a0a49f38d6f26bc0584304a44191529e07e5a467",
+      "bytes": 29252
+    },
+    {
+      "path": "freemix-app/plugins/obs-websocket/src/requesthandler/RequestHandler_MediaInputs.cpp",
+      "sha256": "680d80b080e9cc0b3570a2e7def8215618b1a86607072f1cd9f1850d774c9546",
+      "bytes": 7988
+    }
+  ],
+  "report": {
+    "path": "qa-finalizacao/ftb-native32-mediaclock-observation-preparation-r3/root-ftb32-clock-real-result.json",
+    "sha256": "8db34942c9c52809a18c0b93eaaae71234785f6b62e54883b976cd4c2b3ee505",
+    "bytes": 296360
+  },
+  "candidateNotExecuted": true
+}

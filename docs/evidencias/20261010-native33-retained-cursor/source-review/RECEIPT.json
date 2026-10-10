@@ -1,0 +1,93 @@
+{
+  "status": "FROZEN_OFFSIDE_REVIEW_REQUIRED",
+  "NativeCompiled": false,
+  "NativeExecuted": false,
+  "operatorTouched": false,
+  "recommendation": "retained-r2 only; three Native source patches; no fallback/race attribution to trace",
+  "originalLegacyFAILUnchanged": true,
+  "originalReport": {
+    "path": "qa-finalizacao/ftb-native32-mediaclock-observation-preparation-r3/root-ftb32-clock-real-result.json",
+    "sha256": "8db34942c9c52809a18c0b93eaaae71234785f6b62e54883b976cd4c2b3ee505",
+    "bytes": 296360
+  },
+  "samplesPreserved": 195,
+  "models": 19,
+  "patchRoundtrips": [
+    {
+      "patch": "patches/media.c.patch",
+      "before": "057123e52eae4ed276df685799a81fdf8a161dba1e303bb41d2211e8aac93fc7",
+      "after": "4ed70c72281a19ab9f24419e736aa1ac1bce8dd2aba5e3072c3dd882a4c830b7",
+      "roundtrip": true
+    },
+    {
+      "patch": "patches/media.h.patch",
+      "before": "1f220f1ab7e07634d5779d51fe7f8212328482df32ad993a3459e558aefc0b87",
+      "after": "0ce0966446a525d082f31a5838116cf7b0cf59cacf4d4c3dbd9bd06b280eb4b8",
+      "roundtrip": true
+    },
+    {
+      "patch": "retained-variant/patches/media.c.patch",
+      "before": "057123e52eae4ed276df685799a81fdf8a161dba1e303bb41d2211e8aac93fc7",
+      "after": "52bd02a4ac28e895eb286eaf44f5180a9f2ed5d2458f0393919c8301e6066793",
+      "roundtrip": true
+    },
+    {
+      "patch": "retained-variant/patches/obs-ffmpeg-source.c.patch",
+      "before": "4bd7b9a69ae02cc76f5be930a0a49f38d6f26bc0584304a44191529e07e5a467",
+      "after": "f9fdf4427854516e329603b865bb8502e31167f473efdb1a92a68c3b32de3606",
+      "roundtrip": true
+    },
+    {
+      "patch": "retained-r2/patches/media.c.patch",
+      "before": "057123e52eae4ed276df685799a81fdf8a161dba1e303bb41d2211e8aac93fc7",
+      "after": "7817a4d2315582ea1301155855e070baeb32afba265b579d1ba7eeca466ffe2c",
+      "roundtrip": true
+    },
+    {
+      "patch": "retained-r2/patches/media.h.patch",
+      "before": "1f220f1ab7e07634d5779d51fe7f8212328482df32ad993a3459e558aefc0b87",
+      "after": "3558694b7059a591f02c0970eeecbc03912200d2be6a33e27658c58c4ed6d7c2",
+      "roundtrip": true
+    },
+    {
+      "patch": "retained-r2/patches/obs-ffmpeg-source.c.patch",
+      "before": "4bd7b9a69ae02cc76f5be930a0a49f38d6f26bc0584304a44191529e07e5a467",
+      "after": "2887d2b7cb51458c3c0446dbddb0e9eb546f4cfdaca247ce40b635036b3ec82e",
+      "roundtrip": true
+    }
+  ],
+  "legacyOracleExactBytePins": [
+    {
+      "path": "qa-finalizacao/ftb-native32-mediaclock-observation-preparation-r3/media-reset-contract.mjs",
+      "sha256": "dba7b0ab66dddc6f2d96b14f8c7abdc9eca3e0cfbbd5ef1659412209f0688259",
+      "bytes": 2408
+    },
+    {
+      "path": "qa-finalizacao/ftb-native32-mediaclock-observation-preparation-r3/audio-contract.mjs",
+      "sha256": "cae085195a3962f3ecf31a8a11a7a829fcef0048380eb987c44e23b9ab7d0884",
+      "bytes": 1719
+    },
+    {
+      "path": "qa-finalizacao/ftb-native32-mediaclock-observation-preparation-r3/scenario.mjs",
+      "sha256": "d4cbfd87e5929526681844b05f7ae68c6452228aba50d2489a3f258f8523af67",
+      "bytes": 4558
+    }
+  ],
+  "priorFreezesUnchanged": [
+    {
+      "path": "qa-finalizacao/localvocal-pt-shutdown-one-gate/ALLOWLIST.json",
+      "sha256": "bfbb965655faae0ce04cdaab03a3131dc22a09aec318f2f39dc30a58c5dbffc3",
+      "unchanged": true
+    },
+    {
+      "path": "qa-finalizacao/localvocal-cumulative-native32-preparation-r3-lifecycle/ALLOWLIST.json",
+      "sha256": "9c8364c66b5a39933a2834432d8668eebfd73304fe654b63e792dc154d9ebdb0",
+      "unchanged": true
+    }
+  ],
+  "pythonAst": 4,
+  "nodeSyntax": 5,
+  "node600Sha256": "ba4e6d110e8c1592a1ecd390f6b05f3da124b13871a5be62b341a07a853c6c32",
+  "physicalDisplayProven": false,
+  "FTBQualified": false
+}

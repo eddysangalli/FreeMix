@@ -1,0 +1,21 @@
+--- a/shared/media-playback/media-playback/media.c
++++ b/shared/media-playback/media-playback/media.c
+@@ -1111,12 +1111,13 @@
+ 	 * Audio-only sources use their submitted packet start. Callback PTS uses
+ 	 * the speed-scaled timeline, hence the same conversion. */
+ 	pthread_mutex_lock(&m->mutex);
+-	bool presented = m->presented_valid;
+-	int64_t pts = m->presented_pts;
++	/* During reset retain the last submitted source PTS (zero before the
++	 * first submission). Decoder next_pts is future data owned by the decode
++	 * thread, not a submitted position. Validity/readiness remains separate. */
++	const int64_t pts = m->presented_pts;
++	const int speed = m->speed;
+ 	pthread_mutex_unlock(&m->mutex);
+-	if (presented)
+-		return pts * (int64_t)m->speed / 100000000LL;
+-	return mp_media_get_base_pts(m) * (int64_t)m->speed / 100000000LL;
++	return pts * (int64_t)speed / 100000000LL;
+ }
+ 
+ int64_t mp_media_get_frames(mp_media_t *m)

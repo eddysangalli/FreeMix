@@ -1,6 +1,6 @@
 # Pendências reais — visão atual em 10/10/2026
 
-**Entrega aprovada:0.1.0-local.20261010060000 / Native24, imutável. Fonte atual Native32 e DLL LocalVocal cumulativa são QA/fonte, sem novo instalador aprovado.** Os PASS abaixo têm escopo finito; o histórico posterior não substitui esta visão vigente.
+**Entrega aprovada:0.1.0-local.20261010060000 / Native24, imutável. Fonte atual Native33 e DLL LocalVocal cumulativa são QA/fonte, sem novo instalador aprovado.** Os PASS abaixo têm escopo finito; o histórico posterior não substitui esta visão vigente.
 
 ## Software que ainda exige trabalho ou prova
 
@@ -39,7 +39,7 @@ Revisão Root deste topo: GitHub98d4bad. Duas ações de abertura têm caminho e
 
 # Pendências reais do FreeMix
 
-Entrega selecionada: **0.1.0-local.20261010060000, Native24/a047860**, imutável. Fonte atual Native32/877b214 compilada viaALL_BUILD e congelada:2085arquivos,32patches/3submódulos/231snapshots reconstruídos. Ainda não há novo instalador aprovado. Native30/93d73e2 e candidato093000/FAIL permanecem históricos.
+Entrega selecionada: **0.1.0-local.20261010060000, Native24/a047860**, imutável. Fonte atual Native33/c990c4a compilada viaALL_BUILD e congelada:2085arquivos,33patches/3submódulos/231snapshots reconstruídos. Cursor retido integrado; reset real33 pendente. Ainda não há novo instalador aprovado. Native30/93d73e2 e candidato093000/FAIL permanecem históricos.
 
 | Frente | Prova atual | Falta concreta |
 |---|---|---|
@@ -121,3 +121,12 @@ Observação própria concluída com cena Programa distinta e UUID original ativ
 Root integrou atalhos-engine.js: blur/pagehide deixam de enviar controller_release quando não existe controle pressionado ou pedido pendente; teclado/MIDI/manual/adaptador preservam liberação defensiva e ACKs antigos não apagam posse nova.21 modelos do IIFE real, pins e sintaxe PASS; closure132 intacta. Correspondência com os dois comandos AppR2 é estática/temporal: o ledger antigo não guardou seus nomes. AppR2 FAIL e primeiro modelo falho preservados. AppR3 real e Preview/Cut/latência/persistência continuam pendentes; nenhuma mesa/API/Native do operador tocada. Setup600 permanece selecionado e imutável.
 
 [Correção e limites](evidencias/20261010-controller-release-idle-root/ROOT-README.md).
+
+
+## Native33 — compilado, cursor retido; reset real pendente
+
+Root integrou três fontes retained-r2: último PTS válido retido sob mutex em vez do next_pts futuro do decoder durante reset.19 modelos Root e oracle legado sobre195 amostras históricas passaram como previsão de modelo; o FAIL real anterior fica preservado. Native33 c990c4a39c445542d363f6950fb8f7f70811034a foi configurado/compilado ALL_BUILD e congelado2085 arquivos, rehash independente PASS; exportação33patches/3submódulos/231snapshots e reconstrução--checkPASS. Timestamp inválido/política de cursor mudaram explicitamente; novo observador exige contrato novo, sem alterar limiares. Nenhum Native executado nesta rodada e FTB continua não qualificado.
+
+A guarda de atalhos também está integrada (21 modelos), mas App real com zero mutações/Preview/Cut/latência/persistência segue pendente. Polls Native talkback/network_output com manutenção não são leituras puras e não serão escondidos para obter PASS. CallsAV e RNNoise continuam FAIL; LocalVocal vivo/cancelamento pendente. Setup600/Native24 permanece selecionado e imutável; versão0.1.0-local.20261010161000 é somente desenvolvimento.
+
+[Native33 e limites](evidencias/20261010-native33-retained-cursor/ROOT-README.md) · [Navegação ociosa](evidencias/20261010-controller-release-idle-root/ROOT-README.md).

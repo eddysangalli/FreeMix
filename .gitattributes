@@ -233,3 +233,6 @@ docs/historico/20261010-1307-before-current-status-headers/** -text -whitespace
 
 docs/evidencias/20261010-controller-release-idle-root/** -text -whitespace
 docs/historico/20261010-1307-before-controller-release/** -text -whitespace
+
+docs/evidencias/20261010-native33-retained-cursor/** -text -whitespace
+docs/historico/20261010-1610-before-native33/** -text -whitespace

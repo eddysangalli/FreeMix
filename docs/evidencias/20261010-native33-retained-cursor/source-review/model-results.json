@@ -1,0 +1,88 @@
+{
+  "status": "PASS_OFFSIDE_SOURCE_MODELS_ONLY",
+  "checks": [
+    {
+      "name": "ALL195 real samples retained; legacy unchanged exact FAIL and original file hash",
+      "status": "PASS_PURE_SOURCE_MODEL_ONLY"
+    },
+    {
+      "name": "Complementary offline analysis classifies old epoch/fallback pending; preserves195 and no display ACK",
+      "status": "PASS_PURE_SOURCE_MODEL_ONLY"
+    },
+    {
+      "name": "Predicted retained getter trace, exact LEGACY oracle unchanged: model only, not Native proof",
+      "status": "PASS_PURE_SOURCE_MODEL_ONLY"
+    },
+    {
+      "name": "Legacy failure reproduced for legitimate decoder-future33 then actual submitted0, regardless counters",
+      "status": "PASS_PURE_SOURCE_MODEL_ONLY"
+    },
+    {
+      "name": "ACK/old epoch/submitted stale never arms; repeated cached snapshot cannot count as progress",
+      "status": "PASS_PURE_SOURCE_MODEL_ONLY"
+    },
+    {
+      "name": "SourceUUID/clockUUID/generation/connection exact, no reconnect adoption",
+      "status": "PASS_PURE_SOURCE_MODEL_ONLY"
+    },
+    {
+      "name": "Additional pending/complete reset or EOF epoch rejected, never >= target",
+      "status": "PASS_PURE_SOURCE_MODEL_ONLY"
+    },
+    {
+      "name": "Counters malformed/regressed and contradictory ready fail closed",
+      "status": "PASS_PURE_SOURCE_MODEL_ONLY"
+    },
+    {
+      "name": "Negative/unknown domain, absent snapshot, duration or paused state refuse readiness",
+      "status": "PASS_PURE_SOURCE_MODEL_ONLY"
+    },
+    {
+      "name": "Same epoch second backward AFTER valid reset remains error, no sample omission",
+      "status": "PASS_PURE_SOURCE_MODEL_ONLY"
+    },
+    {
+      "name": "Loss of valid/ready after arming preserves terminal error instead of returning pending",
+      "status": "PASS_PURE_SOURCE_MODEL_ONLY"
+    },
+    {
+      "name": "Progress must advance revision; exact original250ms tolerance maintained",
+      "status": "PASS_PURE_SOURCE_MODEL_ONLY"
+    },
+    {
+      "name": "Finite10s/201 samples and nonqualified speed refuse, no implicit retries",
+      "status": "PASS_PURE_SOURCE_MODEL_ONLY"
+    },
+    {
+      "name": "Uninitialized and invalid negative PTS retain zero; B1 getter-only counterexample preserved",
+      "status": "PASS_PURE_SOURCE_MODEL_ONLY"
+    },
+    {
+      "name": "Reset/seek/paused retain last valid; first submitted0 alone changes cursor, not future next_pts",
+      "status": "PASS_PURE_SOURCE_MODEL_ONLY"
+    },
+    {
+      "name": "Audio-only uses existing submit hook; missing callback stays0; does not infer playback progress",
+      "status": "PASS_PURE_SOURCE_MODEL_ONLY"
+    },
+    {
+      "name": "Speed conversion unchanged at1/50/100/200; VFR/NTSC nonzero start not normalized or forced to0",
+      "status": "PASS_PURE_SOURCE_MODEL_ONLY"
+    },
+    {
+      "name": "EOF/restart may retain until preload or first callback; generation recreation starts0, not continuity",
+      "status": "PASS_PURE_SOURCE_MODEL_ONLY"
+    },
+    {
+      "name": "Exact3 proposed source files: getter no decoder read; mutex field writer before callback; no reset/seek edits",
+      "status": "PASS_PURE_SOURCE_MODEL_ONLY"
+    }
+  ],
+  "checksCount": 19,
+  "originalLegacyFAILUnchanged": true,
+  "complementaryReadyOffline": true,
+  "originalSamples": 195,
+  "NativeCompiled": false,
+  "NativeExecuted": false,
+  "physicalDisplayProven": false
+}

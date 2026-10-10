@@ -1,0 +1,237 @@
+[
+  {
+    "path": "FULL-NATIVE33-BUILD-FREEZE.json",
+    "bytes": 373561,
+    "sha256": "dd055eb4e327861ce2efd53f702045240dc8240c775459fdaab6242588447807"
+  },
+  {
+    "path": "ROOT-SOURCE-INTEGRATION.json",
+    "bytes": 2399,
+    "sha256": "8ab2c862a68ad47f452eeca7d8f7fe89dc8e2d496c802166f471b8ac90bf7449"
+  },
+  {
+    "path": "ROOT-REVIEW-INTEGRATION.mjs",
+    "bytes": 4643,
+    "sha256": "52815ff330fde3780da4edcf4fccb2c51b6fa102c3e33b62bfa066694688eedf"
+  },
+  {
+    "path": "source-review/audio-contract.mjs",
+    "bytes": 1719,
+    "sha256": "cae085195a3962f3ecf31a8a11a7a829fcef0048380eb987c44e23b9ab7d0884"
+  },
+  {
+    "path": "source-review/baseline/freemix-app/plugins/obs-ffmpeg/obs-ffmpeg-source.c",
+    "bytes": 29252,
+    "sha256": "4bd7b9a69ae02cc76f5be930a0a49f38d6f26bc0584304a44191529e07e5a467"
+  },
+  {
+    "path": "source-review/baseline/freemix-app/plugins/obs-websocket/src/requesthandler/RequestHandler_MediaInputs.cpp",
+    "bytes": 7988,
+    "sha256": "680d80b080e9cc0b3570a2e7def8215618b1a86607072f1cd9f1850d774c9546"
+  },
+  {
+    "path": "source-review/baseline/freemix-app/shared/media-playback/media-playback/cache.c",
+    "bytes": 16145,
+    "sha256": "1c34484aae7bc476f96a0dee4e6f3c5db7a6fad6cc4347a8eaf71b5bf912d0da"
+  },
+  {
+    "path": "source-review/baseline/freemix-app/shared/media-playback/media-playback/decode.c",
+    "bytes": 10342,
+    "sha256": "75ceacc7865abd726592476f3935ed4a30a68e7efa4cece9910b01072eb33805"
+  },
+  {
+    "path": "source-review/baseline/freemix-app/shared/media-playback/media-playback/media-playback.c",
+    "bytes": 3896,
+    "sha256": "6dc23eab35270f470347b2857020a730c972d89fd5fe71f3e5e2ff2a85925013"
+  },
+  {
+    "path": "source-review/baseline/freemix-app/shared/media-playback/media-playback/media-playback.h",
+    "bytes": 3006,
+    "sha256": "2e8132d4ddc49607cb173860ce7c5ee49caf63b7f73b5b604d33cedd2d7083cd"
+  },
+  {
+    "path": "source-review/baseline/freemix-app/shared/media-playback/media-playback/media.c",
+    "bytes": 30635,
+    "sha256": "057123e52eae4ed276df685799a81fdf8a161dba1e303bb41d2211e8aac93fc7"
+  },
+  {
+    "path": "source-review/baseline/freemix-app/shared/media-playback/media-playback/media.h",
+    "bytes": 3427,
+    "sha256": "1f220f1ab7e07634d5779d51fe7f8212328482df32ad993a3459e558aefc0b87"
+  },
+  {
+    "path": "source-review/complementary-offline-analysis.json",
+    "bytes": 206968,
+    "sha256": "53ad6a176d482bcb29d5a89c753222e3af6f1211ea5ea24dc317492ea0ee9808"
+  },
+  {
+    "path": "source-review/draft/freemix-app/shared/media-playback/media-playback/media.c",
+    "bytes": 31051,
+    "sha256": "4ed70c72281a19ab9f24419e736aa1ac1bce8dd2aba5e3072c3dd882a4c830b7"
+  },
+  {
+    "path": "source-review/draft/freemix-app/shared/media-playback/media-playback/media.h",
+    "bytes": 3541,
+    "sha256": "0ce0966446a525d082f31a5838116cf7b0cf59cacf4d4c3dbd9bd06b280eb4b8"
+  },
+  {
+    "path": "source-review/first-model-failure.json",
+    "bytes": 437,
+    "sha256": "5e75032141b51b74e440d0924c33305733e88e0fadfb7792d6f87cc3887d39f2"
+  },
+  {
+    "path": "source-review/freeze.py",
+    "bytes": 4112,
+    "sha256": "0df11a8ad25991f076a22f44d3cd430a0c803fe3e275846031ef45b8609ca7fa"
+  },
+  {
+    "path": "source-review/GEMINI-REVIEW.json",
+    "bytes": 2317,
+    "sha256": "6eb08a89a868647137fe26ef0bd65a3c42e05d620479f9f27952f5aced4ff58c"
+  },
+  {
+    "path": "source-review/legacy-media-reset-contract.mjs",
+    "bytes": 2408,
+    "sha256": "dba7b0ab66dddc6f2d96b14f8c7abdc9eca3e0cfbbd5ef1659412209f0688259"
+  },
+  {
+    "path": "source-review/model-results.json",
+    "bytes": 3390,
+    "sha256": "6aa52a10fafeebc2fec2d310129dfce23381d18877c5eb439b0f2e70a49b8f8f"
+  },
+  {
+    "path": "source-review/observation-samples.json",
+    "bytes": 193033,
+    "sha256": "ea45220b19e0265c1997ef65db8081d94515d5e013380ac8e4fe16bc83a6ae4d"
+  },
+  {
+    "path": "source-review/patches/media.c.patch",
+    "bytes": 1444,
+    "sha256": "1d0ed74edfcf908ac6df7a6e4a4b5979279656b781f3f508e05d75c882139e50"
+  },
+  {
+    "path": "source-review/patches/media.h.patch",
+    "bytes": 516,
+    "sha256": "cf07629df87c1fc430b3a5757bb5ce7c33b001e6547db2634dfd26e134044776"
+  },
+  {
+    "path": "source-review/PINS.json",
+    "bytes": 1912,
+    "sha256": "39aaa5f113eb52db2c0dbbc22202269e67725932bfdd7924862f3cb5e51bd8dd"
+  },
+  {
+    "path": "source-review/prepare-retained-r2.py",
+    "bytes": 3179,
+    "sha256": "a6711753392fc5b114f0337d9c47708c45a7fb587eded1d57341f13334842b31"
+  },
+  {
+    "path": "source-review/prepare-retained-variant.py",
+    "bytes": 2528,
+    "sha256": "279b8938efc51a6d3f1b420426400d5de6a2eb87a423a6088946fbd78ab9b01e"
+  },
+  {
+    "path": "source-review/prepare.py",
+    "bytes": 4655,
+    "sha256": "5349fc2581bd50a69f8c96ca6680d0b060c84a0e864a729a0a494ad049571067"
+  },
+  {
+    "path": "source-review/README.md",
+    "bytes": 6587,
+    "sha256": "184574cf0bebbddbcf6e53fe6619a157a8a156121ebe6fe5f91886dcb0fd22da"
+  },
+  {
+    "path": "source-review/RECEIPT.json",
+    "bytes": 3821,
+    "sha256": "75beefce8c8478f044b301d537b8720fc093c6f1055d18b8c29d54ba1bffcb34"
+  },
+  {
+    "path": "source-review/reset-ready-clock-contract.mjs",
+    "bytes": 5604,
+    "sha256": "168c2e7a6389d7b827795c1a08a78c9d4c9a8b8b9c8b796f4a171d2f8bce5a01"
+  },
+  {
+    "path": "source-review/retained-r2/draft/freemix-app/plugins/obs-ffmpeg/obs-ffmpeg-source.c",
+    "bytes": 29369,
+    "sha256": "2887d2b7cb51458c3c0446dbddb0e9eb546f4cfdaca247ce40b635036b3ec82e"
+  },
+  {
+    "path": "source-review/retained-r2/draft/freemix-app/shared/media-playback/media-playback/media.c",
+    "bytes": 30913,
+    "sha256": "7817a4d2315582ea1301155855e070baeb32afba265b579d1ba7eeca466ffe2c"
+  },
+  {
+    "path": "source-review/retained-r2/draft/freemix-app/shared/media-playback/media-playback/media.h",
+    "bytes": 3541,
+    "sha256": "3558694b7059a591f02c0970eeecbc03912200d2be6a33e27658c58c4ed6d7c2"
+  },
+  {
+    "path": "source-review/retained-r2/patches/media.c.patch",
+    "bytes": 1272,
+    "sha256": "7245da6ea34675280088bc708b7107b6d36cd79548e3b4c01df8a58185730426"
+  },
+  {
+    "path": "source-review/retained-r2/patches/media.h.patch",
+    "bytes": 516,
+    "sha256": "a0b082f692e5760e21e8092cde26941b8110ceee36f2c4ef0cba23eff9d189b0"
+  },
+  {
+    "path": "source-review/retained-r2/patches/obs-ffmpeg-source.c.patch",
+    "bytes": 886,
+    "sha256": "a6c2e7818f1286369d26eae94babaa754eacae0b06c3e2cc734554e1063cc45c"
+  },
+  {
+    "path": "source-review/retained-r2/TARGETS.json",
+    "bytes": 1619,
+    "sha256": "5a9ca48dd714b45f61c391a4cd3571f95a0cdca041fafb3d6c27d578bab848b8"
+  },
+  {
+    "path": "source-review/retained-variant/draft/freemix-app/plugins/obs-ffmpeg/obs-ffmpeg-source.c",
+    "bytes": 29370,
+    "sha256": "f9fdf4427854516e329603b865bb8502e31167f473efdb1a92a68c3b32de3606"
+  },
+  {
+    "path": "source-review/retained-variant/draft/freemix-app/shared/media-playback/media-playback/media.c",
+    "bytes": 30769,
+    "sha256": "52bd02a4ac28e895eb286eaf44f5180a9f2ed5d2458f0393919c8301e6066793"
+  },
+  {
+    "path": "source-review/retained-variant/patches/media.c.patch",
+    "bytes": 949,
+    "sha256": "eede26f61d096eb580ba2f813ca06b98d6140af6dca78efb4c5a3db16c9689c5"
+  },
+  {
+    "path": "source-review/retained-variant/patches/obs-ffmpeg-source.c.patch",
+    "bytes": 887,
+    "sha256": "d12232062e0116f64ce257bb839785354acf79016c0e58e7fd7fb1ca51d28ef6"
+  },
+  {
+    "path": "source-review/retained-variant/TARGETS.json",
+    "bytes": 1142,
+    "sha256": "70c64137d97f9ba1484512f5bab34ec41e011a7de5a6e5682aa7f1d5d5b5fa2f"
+  },
+  {
+    "path": "source-review/scenario.mjs",
+    "bytes": 4558,
+    "sha256": "d4cbfd87e5929526681844b05f7ae68c6452228aba50d2489a3f258f8523af67"
+  },
+  {
+    "path": "source-review/second-model-failure.json",
+    "bytes": 390,
+    "sha256": "23257593dd0cb5f613175bcf54ae9beda2b3c54f6cb913e93f2d4796c2fa3a25"
+  },
+  {
+    "path": "source-review/test.mjs",
+    "bytes": 11010,
+    "sha256": "e0f643aca05a8492571fdccfc36830ab409d8a19d9806431f3afbd05c1293d3e"
+  },
+  {
+    "path": "source-review/ALLOWLIST.json",
+    "bytes": 7808,
+    "sha256": "1e1fd8bdb6250954981541def6e577fbfc266c7926c6a2b038b5fcf063ce9f43"
+  },
+  {
+    "path": "ROOT-INDEPENDENT-MODELS.json",
+    "bytes": 240,
+    "sha256": "890670214e6d1de135f8f1d1f3fa7b3a12ac66397bab11ac4be8bc355ac7685c"
+  }
+]

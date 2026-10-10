@@ -1,0 +1,22 @@
+{
+  "recommended": true,
+  "NativeCompiled": false,
+  "NativeExecuted": false,
+  "targets": [
+    {
+      "path": "freemix-app/shared/media-playback/media-playback/media.c",
+      "before": "057123e52eae4ed276df685799a81fdf8a161dba1e303bb41d2211e8aac93fc7",
+      "after": "52bd02a4ac28e895eb286eaf44f5180a9f2ed5d2458f0393919c8301e6066793",
+      "patch": "retained-variant/patches/media.c.patch",
+      "patchSha256": "eede26f61d096eb580ba2f813ca06b98d6140af6dca78efb4c5a3db16c9689c5"
+    },
+    {
+      "path": "freemix-app/plugins/obs-ffmpeg/obs-ffmpeg-source.c",
+      "before": "4bd7b9a69ae02cc76f5be930a0a49f38d6f26bc0584304a44191529e07e5a467",
+      "after": "f9fdf4427854516e329603b865bb8502e31167f473efdb1a92a68c3b32de3606",
+      "patch": "retained-variant/patches/obs-ffmpeg-source.c.patch",
+      "patchSha256": "d12232062e0116f64ce257bb839785354acf79016c0e58e7fd7fb1ca51d28ef6"
+    }
+  ],
+  "compatibility": "mediaClock contract1 valid timestamps unchanged; invalid timestampSource explicitly changed; strict diagnostic enum consumers must review this additive cursor policy, not relax legacy thresholds"
+}

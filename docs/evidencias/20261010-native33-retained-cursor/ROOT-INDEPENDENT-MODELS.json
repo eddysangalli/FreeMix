@@ -1,0 +1,6 @@
+{
+  "status": "PASS_OFFSIDE_SOURCE_MODELS_ONLY",
+  "checks": 19,
+  "scope": "Actual unchanged legacy oracle and all195 saved samples, plus pure proposed-source semantics; not rebuilt Native execution.",
+  "at": "2026-10-10T16:05:33.587Z"
+}

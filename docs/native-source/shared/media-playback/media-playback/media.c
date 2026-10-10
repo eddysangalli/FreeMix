@@ -370,6 +370,8 @@ static void remember_presented_pts(mp_media_t *m, int64_t pts)
 	pthread_mutex_lock(&m->mutex);
 	m->presented_pts = pts;
 	m->presented_valid = pts >= 0;
+	if (m->presented_valid)
+		m->last_valid_submitted_pts = pts;
 	pthread_mutex_unlock(&m->mutex);
 	publish_clock(m);
 }
@@ -1111,12 +1113,14 @@ int64_t mp_media_get_current_time(mp_media_t *m)
 	 * Audio-only sources use their submitted packet start. Callback PTS uses
 	 * the speed-scaled timeline, hence the same conversion. */
 	pthread_mutex_lock(&m->mutex);
-	bool presented = m->presented_valid;
-	int64_t pts = m->presented_pts;
+	/* Reset and invalid PTS retain the last valid submitted source PTS
+	 * (zero before the first valid submission). Decoder next_pts is future
+	 * data owned by the decode thread, not a submitted position. This does
+	 * not acknowledge callback execution or display; readiness is separate. */
+	const int64_t pts = m->last_valid_submitted_pts;
+	const int speed = m->speed;
 	pthread_mutex_unlock(&m->mutex);
-	if (presented)
-		return pts * (int64_t)m->speed / 100000000LL;
-	return mp_media_get_base_pts(m) * (int64_t)m->speed / 100000000LL;
+	return pts * (int64_t)speed / 100000000LL;
 }
 
 int64_t mp_media_get_frames(mp_media_t *m)

@@ -1,0 +1,41 @@
+--- a/shared/media-playback/media-playback/media.c
++++ b/shared/media-playback/media-playback/media.c
+@@ -261,6 +261,8 @@
+ 	return true;
+ }
+ 
++static inline int64_t mp_media_get_base_pts(mp_media_t *m);
++
+ bool mp_media_prepare_frames(mp_media_t *m)
+ {
+ 	bool actively_seeking = m->seek_next_ts && m->pause;
+@@ -304,6 +306,13 @@
+ 		}
+ 	}
+ 
++	/* Decode fields belong to the decode owner (including full-decode cache).
++	 * Publish only a completed prepare boundary for concurrent cursor readers.
++	 * This remains decoder fallback PTS, never presentation acknowledgement. */
++	const int64_t fallback_pts = mp_media_get_base_pts(m);
++	pthread_mutex_lock(&m->mutex);
++	m->cursor_fallback_pts = fallback_pts;
++	pthread_mutex_unlock(&m->mutex);
+ 	return true;
+ }
+ 
+@@ -1111,12 +1120,10 @@
+ 	 * Audio-only sources use their submitted packet start. Callback PTS uses
+ 	 * the speed-scaled timeline, hence the same conversion. */
+ 	pthread_mutex_lock(&m->mutex);
+-	bool presented = m->presented_valid;
+-	int64_t pts = m->presented_pts;
++	const int64_t pts = m->presented_valid ? m->presented_pts : m->cursor_fallback_pts;
++	const int speed = m->speed;
+ 	pthread_mutex_unlock(&m->mutex);
+-	if (presented)
+-		return pts * (int64_t)m->speed / 100000000LL;
+-	return mp_media_get_base_pts(m) * (int64_t)m->speed / 100000000LL;
++	return pts * (int64_t)speed / 100000000LL;
+ }
+ 
+ int64_t mp_media_get_frames(mp_media_t *m)

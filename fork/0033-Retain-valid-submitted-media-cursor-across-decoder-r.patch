@@ -1,0 +1,74 @@
+From c990c4a39c445542d363f6950fb8f7f70811034a Mon Sep 17 00:00:00 2001
+From: Eddy Sangalli <eddyrodrigues@outlook.com>
+Date: Sat, 10 Oct 2026 13:05:47 -0300
+Subject: [PATCH] Retain valid submitted media cursor across decoder resets
+
+---
+ plugins/obs-ffmpeg/obs-ffmpeg-source.c       |  3 ++-
+ shared/media-playback/media-playback/media.c | 14 +++++++++-----
+ shared/media-playback/media-playback/media.h |  2 ++
+ 3 files changed, 13 insertions(+), 6 deletions(-)
+
+diff --git a/plugins/obs-ffmpeg/obs-ffmpeg-source.c b/plugins/obs-ffmpeg/obs-ffmpeg-source.c
+index bc1372f..fc40f98 100644
+--- a/plugins/obs-ffmpeg/obs-ffmpeg-source.c
++++ b/plugins/obs-ffmpeg/obs-ffmpeg-source.c
+@@ -105,7 +105,8 @@ static void source_clock_proc(void *opaque, calldata_t *cd)
+     obs_data_set_int(data, "completedResets", snapshot.completed_resets);
+     obs_data_set_bool(data, "presentedValid", snapshot.presented_valid);
+     obs_data_set_string(data, "timestampSource", !snapshot.supported ? "unavailable" :
+-                        snapshot.presented_valid ? "submitted-source-pts" : "decoder-base-fallback");
++                        snapshot.presented_valid ? "submitted-source-pts" : "invalid-submitted-source-pts");
++    obs_data_set_string(data, "legacyCursorPolicy", "retain-last-valid-submitted-or-zero-while-invalid-v1");
+     obs_data_set_bool(data, "resetInProgress", snapshot.reset_in_progress);
+     obs_data_set_bool(data, "resetPending", snapshot.reset_pending);
+     obs_data_set_bool(data, "resetReady", snapshot.ready);
+diff --git a/shared/media-playback/media-playback/media.c b/shared/media-playback/media-playback/media.c
+index 784958e..758dbe2 100644
+--- a/shared/media-playback/media-playback/media.c
++++ b/shared/media-playback/media-playback/media.c
+@@ -370,6 +370,8 @@ static void remember_presented_pts(mp_media_t *m, int64_t pts)
+ 	pthread_mutex_lock(&m->mutex);
+ 	m->presented_pts = pts;
+ 	m->presented_valid = pts >= 0;
++	if (m->presented_valid)
++		m->last_valid_submitted_pts = pts;
+ 	pthread_mutex_unlock(&m->mutex);
+ 	publish_clock(m);
+ }
+@@ -1111,12 +1113,14 @@ int64_t mp_media_get_current_time(mp_media_t *m)
+ 	 * Audio-only sources use their submitted packet start. Callback PTS uses
+ 	 * the speed-scaled timeline, hence the same conversion. */
+ 	pthread_mutex_lock(&m->mutex);
+-	bool presented = m->presented_valid;
+-	int64_t pts = m->presented_pts;
++	/* Reset and invalid PTS retain the last valid submitted source PTS
++	 * (zero before the first valid submission). Decoder next_pts is future
++	 * data owned by the decode thread, not a submitted position. This does
++	 * not acknowledge callback execution or display; readiness is separate. */
++	const int64_t pts = m->last_valid_submitted_pts;
++	const int speed = m->speed;
+ 	pthread_mutex_unlock(&m->mutex);
+-	if (presented)
+-		return pts * (int64_t)m->speed / 100000000LL;
+-	return mp_media_get_base_pts(m) * (int64_t)m->speed / 100000000LL;
++	return pts * (int64_t)speed / 100000000LL;
+ }
+ 
+ int64_t mp_media_get_frames(mp_media_t *m)
+diff --git a/shared/media-playback/media-playback/media.h b/shared/media-playback/media-playback/media.h
+index 2a5391c..a69b5d3 100644
+--- a/shared/media-playback/media-playback/media.h
++++ b/shared/media-playback/media-playback/media.h
+@@ -106,6 +106,8 @@ struct mp_media {
+ 	/* Source PTS of the video actually submitted, before wall-clock conversion. */
+ 	int64_t presented_pts;
+ 	bool presented_valid;
++	/* Mutex-protected source PTS, retained across reset/invalid submission. */
++	int64_t last_valid_submitted_pts;
+ 	mp_clock_cb clock_cb;
+ 	uint64_t clock_generation, clock_revision, clock_epoch;
+ 	uint64_t clock_requested_resets, clock_completed_resets;
+-- 
+2.56.0.windows.1
+

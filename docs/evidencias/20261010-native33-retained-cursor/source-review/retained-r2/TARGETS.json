@@ -1,0 +1,30 @@
+{
+  "recommended": true,
+  "NativeCompiled": false,
+  "NativeExecuted": false,
+  "targets": [
+    {
+      "path": "freemix-app/shared/media-playback/media-playback/media.c",
+      "before": "057123e52eae4ed276df685799a81fdf8a161dba1e303bb41d2211e8aac93fc7",
+      "after": "7817a4d2315582ea1301155855e070baeb32afba265b579d1ba7eeca466ffe2c",
+      "patch": "retained-r2/patches/media.c.patch",
+      "patchSha256": "7245da6ea34675280088bc708b7107b6d36cd79548e3b4c01df8a58185730426"
+    },
+    {
+      "path": "freemix-app/shared/media-playback/media-playback/media.h",
+      "before": "1f220f1ab7e07634d5779d51fe7f8212328482df32ad993a3459e558aefc0b87",
+      "after": "3558694b7059a591f02c0970eeecbc03912200d2be6a33e27658c58c4ed6d7c2",
+      "patch": "retained-r2/patches/media.h.patch",
+      "patchSha256": "a0b082f692e5760e21e8092cde26941b8110ceee36f2c4ef0cba23eff9d189b0"
+    },
+    {
+      "path": "freemix-app/plugins/obs-ffmpeg/obs-ffmpeg-source.c",
+      "before": "4bd7b9a69ae02cc76f5be930a0a49f38d6f26bc0584304a44191529e07e5a467",
+      "after": "2887d2b7cb51458c3c0446dbddb0e9eb546f4cfdaca247ce40b635036b3ec82e",
+      "patch": "retained-r2/patches/obs-ffmpeg-source.c.patch",
+      "patchSha256": "a6c2e7818f1286369d26eae94babaa754eacae0b06c3e2cc734554e1063cc45c"
+    }
+  ],
+  "compatibility": "mediaClock contract1 valid timestamps unchanged; invalid timestampSource explicitly changed; strict diagnostic enum consumers need review, never threshold relaxation",
+  "semantics": "Last valid source PTS before video/audio callback invocation; not acknowledged callback/display"
+}

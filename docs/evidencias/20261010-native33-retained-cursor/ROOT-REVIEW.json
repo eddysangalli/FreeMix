@@ -1,0 +1,30 @@
+{
+  "status": "ROOT_NATIVE33_BUILD_AND_ARCHIVE_VERIFIED_REAL_RESET_PENDING",
+  "at": "2026-10-10T16:10:12.990Z",
+  "head": "c990c4a39c445542d363f6950fb8f7f70811034a",
+  "tree": "0e75a5cebabd8587940a8f48829b2e24d60e362c",
+  "version": "0.1.0-local.20261010161000",
+  "fullFrozenFilesVerified": 2085,
+  "sourceSnapshots": 231,
+  "parentPatches": 33,
+  "submodules": 3,
+  "reconstruction": {
+    "status": "PASS",
+    "checkOnly": true,
+    "networkStarted": false,
+    "parentPatches": 33,
+    "submodules": 3
+  },
+  "rootModels": 19,
+  "original195SamplesAndLegacyFailPreserved": true,
+  "NativeStarted": false,
+  "operatorTouched": false,
+  "selectedSetupChanged": false,
+  "FTBQualified": false,
+  "physicalDisplayProven": false,
+  "limits": [
+    "Getter retains last valid submitted source PTS during invalid/reset; zero at initialization is not readiness.",
+    "All195 old samples remain, and unchanged legacy oracle prediction is MODEL ONLY.",
+    "New invalid diagnostic enum needs its own frozen observer before real Native33 reset testing."
+  ]
+}

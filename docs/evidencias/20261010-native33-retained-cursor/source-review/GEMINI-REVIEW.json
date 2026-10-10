@@ -1,0 +1,32 @@
+{
+  "provider": "Antigravity/Gemini",
+  "model": "gemini-3.8-flash-high",
+  "mode": "plan",
+  "cwd": "qa-finalizacao/media-reset-ready-barrier-offside/agy-inline-review",
+  "input": "inline sanitized public-source facts only; no credentials/log/media/SDK binaries",
+  "sessions": [
+    {"conversationId":"b099394d-e0f7-48bc-8b7b-b2eebc5a3af1","status":"SUCCESS","durationSeconds":46.1426989,"turns":1},
+    {"conversationId":"fc705f72-fec2-40b4-ade4-8c3bdee18938","status":"SUCCESS","durationSeconds":80.6571957,"turns":1}
+  ],
+  "independentReviewAccepted": [
+    "Decoder next_pts is a different domain from the submitted frame start.",
+    "GET fallback reads worker-mutated decoder fields without a shared lock.",
+    "Legacy mediaCursor and mediaClock are not an atomic pair.",
+    "Retaining a mutex-protected last valid submitted timestamp removes this getter's decoder read.",
+    "Initial zero and negative-PTS handling must be explicit.",
+    "Neither the old nor new getter acknowledges callback completion or physical display."
+  ],
+  "independentReviewRejectedOrQualified": [
+    "First review called remember_presented_pts effective presentation/ACK; source calls it BEFORE callbacks, so no ACK is proven.",
+    "The deterministic explanation fits source and samples; it does not prove all historical failures had this cause or exclude races elsewhere.",
+    "Allowing epoch/request >= target would accept additional resets. Proposal requires exactly one targeted epoch/request and fails closed on extras.",
+    "Do not discard old/fallback samples. Every sample is kept and classified; original legacy FAIL remains.",
+    "Paused readiness is not qualified by this playing-capture contract.",
+    "Second review asserted generic inflight old decode callback after reset. Here reset/decode/remember run on one decode owner; this particular concurrency scenario is unsupported by the inspected source.",
+    "Seek does not unconditionally invalidate presented_valid in current source; the proposal does not change seek paths.",
+    "A missing callback is checked in current source before remember; no synthetic callback/display claim.",
+    "Full-decode cache has its own getter; no claim that its playback semantics were executed or changed."
+  ],
+  "NativeCompiled": false,
+  "NativeExecuted": false
+}

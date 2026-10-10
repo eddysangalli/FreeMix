@@ -105,7 +105,8 @@ static void source_clock_proc(void *opaque, calldata_t *cd)
     obs_data_set_int(data, "completedResets", snapshot.completed_resets);
     obs_data_set_bool(data, "presentedValid", snapshot.presented_valid);
     obs_data_set_string(data, "timestampSource", !snapshot.supported ? "unavailable" :
-                        snapshot.presented_valid ? "submitted-source-pts" : "decoder-base-fallback");
+                        snapshot.presented_valid ? "submitted-source-pts" : "invalid-submitted-source-pts");
+    obs_data_set_string(data, "legacyCursorPolicy", "retain-last-valid-submitted-or-zero-while-invalid-v1");
     obs_data_set_bool(data, "resetInProgress", snapshot.reset_in_progress);
     obs_data_set_bool(data, "resetPending", snapshot.reset_pending);
     obs_data_set_bool(data, "resetReady", snapshot.ready);
