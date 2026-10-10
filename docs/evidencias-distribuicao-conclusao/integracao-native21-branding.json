@@ -1,0 +1,71 @@
+{
+  "status": "NATIVE21_COMMITTED_BUILD_PENDING",
+  "head": "4793d1a40f56ea9b6e887eb49189d937758e3b7f",
+  "operatorTouched": false,
+  "nativePaths": [
+    "frontend/widgets/OBSBasic.hpp",
+    "frontend/widgets/OBSBasic_Recording.cpp",
+    "frontend/widgets/OBSBasic_Icons.cpp",
+    "frontend/forms/OBSAbout.ui",
+    "frontend/dialogs/OBSAbout.cpp",
+    "frontend/data/locale/pt-BR.ini",
+    "frontend/data/locale/en-US.ini",
+    "frontend/oauth/AuthListener.cpp",
+    "frontend/oauth/YoutubeAuth.cpp",
+    "frontend/wizards/AutoConfigStreamPage.cpp",
+    "frontend/dialogs/OBSYoutubeActions.cpp",
+    "frontend/importers/studio.cpp"
+  ],
+  "files": [
+    {
+      "path": "qa-finalizacao/native-branding-qa/freemix-native-branding.patch",
+      "sha256": "891810cdd63f0842c56d60c67c6017b33b9a7c7c2f243ac8382541be9a07dd07",
+      "bytes": 37144
+    },
+    {
+      "path": "qa-finalizacao/native-branding-qa/report.json",
+      "sha256": "2652422cdd87e5ea46c60f7ade2c2b8eff5386fe04a89473a0e722badc427e5f",
+      "bytes": 9184
+    },
+    {
+      "path": "qa-finalizacao/native-branding-qa/after/frontend/widgets/OBSBasic.hpp",
+      "sha256": "db060e4a5794967d0316e19323fe31e8c3f88acd8d76e5039747b771a7fc617f",
+      "bytes": 50172
+    },
+    {
+      "path": "qa-finalizacao/native-branding-qa/after/frontend/widgets/OBSBasic_Recording.cpp",
+      "sha256": "4d4106dc1b8f21d1fd88eb22260d22c91f4552bfd8380c201c63b3f454d0bb6a",
+      "bytes": 11319
+    },
+    {
+      "path": "qa-finalizacao/native-branding-qa/after/frontend/widgets/OBSBasic_Icons.cpp",
+      "sha256": "4fd141833220c85e916fe7f6b04a1bb6c128f4402267ce7bad2b4069a19bf449",
+      "bytes": 5977
+    },
+    {
+      "path": "qa-finalizacao/native-branding-qa/after/frontend/forms/OBSAbout.ui",
+      "sha256": "3fd93c1a4912b2ace9663f5a2edf235a9cdb797c5f6b6647de4646f29bc86a55",
+      "bytes": 6559
+    },
+    {
+      "path": "qa-finalizacao/native-branding-qa/after/frontend/dialogs/OBSAbout.cpp",
+      "sha256": "5d416f3b69fbdbf1be54a5a9c645e8dedb50f0df7915ee7b94eac3853350c016",
+      "bytes": 4628
+    },
+    {
+      "path": "qa-finalizacao/native-branding-qa/after/frontend/data/locale/pt-BR.ini",
+      "sha256": "37bc286930d9f0e7aa7be998faa66c20eef42e16ce3ae6ae985a221ac6da8d82",
+      "bytes": 97827
+    },
+    {
+      "path": "qa-finalizacao/native-branding-qa/after/frontend/data/locale/en-US.ini",
+      "sha256": "ff44043724df31861805dc8cb97c5353c2a0341e20b8efa00c29db0104eedec9",
+      "bytes": 95761
+    },
+    {
+      "path": "qa-finalizacao/native-branding-qa/delivery-allowlist.json",
+      "sha256": "e52961b03fb6b2e5f307c8c0ed3be3ed516edbb3e751ac326c49494adc6fd459",
+      "bytes": 4331
+    }
+  ]
+}

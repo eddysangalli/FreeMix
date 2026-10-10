@@ -1,8 +1,8 @@
 {
   "upstream": "https://github.com/obsproject/obs-studio.git",
   "base": "ba2f32bdf791005443988a4955e963663e16b1ed",
-  "head": "6cbf07641c501cb6b319c6bf7000b805fdce625c",
-  "version": "0.1.0-local.20261009233334",
+  "head": "4793d1a40f56ea9b6e887eb49189d937758e3b7f",
+  "version": "0.1.0-local.20261010000500",
   "patches": [
     {
       "path": "0001-feat-branding-replace-OBS-identity-with-FreeMix-Stud.patch",
@@ -83,7 +83,11 @@
     {
       "path": "0020-Release-missing-file-list-and-updater-ETags-on-all-s.patch",
       "sha256": "97df637594cddee1d374812b0def49dcd8f89e6df701926fda6d0392b431b90a"
+    },
+    {
+      "path": "0021-Complete-FreeMix-operator-branding-and-redact-OAuth-.patch",
+      "sha256": "e789057efa41dbfd6eb0c82578e1b32cb968091a05ae62aaaa095c84d3068ef7"
     }
   ],
-  "sourceUpdatedAt": "2026-10-09T23:27:58.070Z"
+  "sourceUpdatedAt": "2026-10-10T00:05:05.819Z"
 }

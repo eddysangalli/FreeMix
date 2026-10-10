@@ -1,0 +1,230 @@
+{
+  "status": "HASH_VERIFIED_MIRROR_NATIVE_BUILD_PENDING",
+  "operatorTouched": false,
+  "candidate233334Selected": false,
+  "qaCases": 149,
+  "nativeOAuthRuntimeExercised": false,
+  "files": [
+    {
+      "path": "qa-finalizacao/oauth-branding-diagnostics/AuthListener.cpp.after",
+      "sourceSha256": "c26639f3880feb6072e44d9ce95758ad3061b9245e975b708808464333c5fe83",
+      "outputSha256": "c26639f3880feb6072e44d9ce95758ad3061b9245e975b708808464333c5fe83"
+    },
+    {
+      "path": "qa-finalizacao/oauth-branding-diagnostics/AuthListener.cpp.before",
+      "sourceSha256": "3d50c0bc93afcfdf9da602ffc35314b9422dc1ffd486541f119a54dff1ea8587",
+      "outputSha256": "3d50c0bc93afcfdf9da602ffc35314b9422dc1ffd486541f119a54dff1ea8587"
+    },
+    {
+      "path": "qa-finalizacao/oauth-branding-diagnostics/AutoConfigStreamPage.cpp.after",
+      "sourceSha256": "8122cbe074159bc0287ecf818d66ddedebff076dc919480f15684810e42a72eb",
+      "outputSha256": "8122cbe074159bc0287ecf818d66ddedebff076dc919480f15684810e42a72eb"
+    },
+    {
+      "path": "qa-finalizacao/oauth-branding-diagnostics/AutoConfigStreamPage.cpp.before",
+      "sourceSha256": "1e39ff8b826fa5629d6249492da393af08fa8ced50f358368dda50c3ccba751e",
+      "outputSha256": "1e39ff8b826fa5629d6249492da393af08fa8ced50f358368dda50c3ccba751e"
+    },
+    {
+      "path": "qa-finalizacao/oauth-branding-diagnostics/FONTE-FREEZE.json",
+      "sourceSha256": "1f9c7acc7ddaac94cf645b251843a88b1780811f181ede2ac26de42233eac604",
+      "outputSha256": "1f9c7acc7ddaac94cf645b251843a88b1780811f181ede2ac26de42233eac604"
+    },
+    {
+      "path": "qa-finalizacao/oauth-branding-diagnostics/OBSYoutubeActions.cpp.after",
+      "sourceSha256": "798c7edc5408b18cfbfe963da417ea588dae517657a8d0cdd7c16f61a7749c21",
+      "outputSha256": "798c7edc5408b18cfbfe963da417ea588dae517657a8d0cdd7c16f61a7749c21"
+    },
+    {
+      "path": "qa-finalizacao/oauth-branding-diagnostics/OBSYoutubeActions.cpp.before",
+      "sourceSha256": "58b360b7a7e80d0980a8f18dc783cc767aa5b49f201114d8d5d04818abbd54a9",
+      "outputSha256": "58b360b7a7e80d0980a8f18dc783cc767aa5b49f201114d8d5d04818abbd54a9"
+    },
+    {
+      "path": "qa-finalizacao/oauth-branding-diagnostics/README.md",
+      "sourceSha256": "21a8c0728fc20eaa33dc815326e454bb10b154147942bd40cc2fb280b548f6a4",
+      "outputSha256": "21a8c0728fc20eaa33dc815326e454bb10b154147942bd40cc2fb280b548f6a4"
+    },
+    {
+      "path": "qa-finalizacao/oauth-branding-diagnostics/YoutubeAuth.cpp.after",
+      "sourceSha256": "6680418c2fb358b9ac7dc2aa489e3dcbd6416725004ec140b0809436adbf4043",
+      "outputSha256": "6680418c2fb358b9ac7dc2aa489e3dcbd6416725004ec140b0809436adbf4043"
+    },
+    {
+      "path": "qa-finalizacao/oauth-branding-diagnostics/YoutubeAuth.cpp.before",
+      "sourceSha256": "e25fe4cccb9b451f1700eb6c9c3e556c5d99d763b9498cab892246a3a227f692",
+      "outputSha256": "e25fe4cccb9b451f1700eb6c9c3e556c5d99d763b9498cab892246a3a227f692"
+    },
+    {
+      "path": "qa-finalizacao/oauth-branding-diagnostics/allowlist.mjs",
+      "sourceSha256": "c7f59bfa26fafdb788ae6017704db747ac7798d41ae1b84d02cd68e134436b88",
+      "outputSha256": "c7f59bfa26fafdb788ae6017704db747ac7798d41ae1b84d02cd68e134436b88"
+    },
+    {
+      "path": "qa-finalizacao/oauth-branding-diagnostics/diagnostic-redaction.patch",
+      "sourceSha256": "63a7420977c6499fb2cc06f3716d3827dad187c764380a67f80a51cd6924418b",
+      "outputSha256": "63a7420977c6499fb2cc06f3716d3827dad187c764380a67f80a51cd6924418b"
+    },
+    {
+      "path": "qa-finalizacao/oauth-branding-diagnostics/diagnostico-producao.mjs.after",
+      "sourceSha256": "545f59e83595cb6dfb7277e06994bde6b691acd768cfc1fd48c21bb87cba7a59",
+      "outputSha256": "545f59e83595cb6dfb7277e06994bde6b691acd768cfc1fd48c21bb87cba7a59"
+    },
+    {
+      "path": "qa-finalizacao/oauth-branding-diagnostics/diagnostico-producao.mjs.before",
+      "sourceSha256": "3de39f9c02e09b7181d2c9a76052c389c8c62d5bd6e4330b31da790a90eac482",
+      "outputSha256": "3de39f9c02e09b7181d2c9a76052c389c8c62d5bd6e4330b31da790a90eac482"
+    },
+    {
+      "path": "qa-finalizacao/oauth-branding-diagnostics/freeze.mjs",
+      "sourceSha256": "3d58f1d2da8d3024fdae1e27abcf584cead10caddf5fa4f43cd3c66e46f5f4ee",
+      "outputSha256": "3d58f1d2da8d3024fdae1e27abcf584cead10caddf5fa4f43cd3c66e46f5f4ee"
+    },
+    {
+      "path": "qa-finalizacao/oauth-branding-diagnostics/native-oauth-branding.patch",
+      "sourceSha256": "dddd67b2054d0d10c25beca661628189b7551fbd535b5ccbe115b2026e2ad4b3",
+      "outputSha256": "dddd67b2054d0d10c25beca661628189b7551fbd535b5ccbe115b2026e2ad4b3"
+    },
+    {
+      "path": "qa-finalizacao/oauth-branding-diagnostics/oauth-template-extracted.html",
+      "sourceSha256": "4e866620c7d5dc1d6e366ddb8129cf24c11639f038045916fb7125b9437c29b9",
+      "outputSha256": "4e866620c7d5dc1d6e366ddb8129cf24c11639f038045916fb7125b9437c29b9"
+    },
+    {
+      "path": "qa-finalizacao/oauth-branding-diagnostics/patches.py",
+      "sourceSha256": "6da1975b0c3315c66c80d904c6cb907e2a23be14121fdbf505d9dbd54df03a48",
+      "outputSha256": "6da1975b0c3315c66c80d904c6cb907e2a23be14121fdbf505d9dbd54df03a48"
+    },
+    {
+      "path": "qa-finalizacao/oauth-branding-diagnostics/resultado-fail.json",
+      "sourceSha256": "09f251b1d9d87e264dc057705785b871ba92f0f5c501f2a2e82520a1d13e5ccb",
+      "outputSha256": "09f251b1d9d87e264dc057705785b871ba92f0f5c501f2a2e82520a1d13e5ccb"
+    },
+    {
+      "path": "qa-finalizacao/oauth-branding-diagnostics/resultado.json",
+      "sourceSha256": "1a7f3a40b6c5d77377a36aee283894e68315c9c134083c7aafefbd92b09ef2c0",
+      "outputSha256": "1a7f3a40b6c5d77377a36aee283894e68315c9c134083c7aafefbd92b09ef2c0"
+    },
+    {
+      "path": "qa-finalizacao/oauth-branding-diagnostics/sanitized-diagnostic.json",
+      "sourceSha256": "942b469e658cc37d1ffe920f19553b29c7bfc36a2e458c590109fdacae2ba740",
+      "outputSha256": "942b469e658cc37d1ffe920f19553b29c7bfc36a2e458c590109fdacae2ba740"
+    },
+    {
+      "path": "qa-finalizacao/oauth-branding-diagnostics/sanitized-log.txt",
+      "sourceSha256": "779f70612438cc436b4107dc84d8892680de78b6cad26952dbeef30b780f0ca9",
+      "outputSha256": "779f70612438cc436b4107dc84d8892680de78b6cad26952dbeef30b780f0ca9"
+    },
+    {
+      "path": "qa-finalizacao/oauth-branding-diagnostics/studio.cpp.after",
+      "sourceSha256": "2b5402ad81a02cf295b3188d7702ef9de5567ce4323707451c58783e3ece7edf",
+      "outputSha256": "2b5402ad81a02cf295b3188d7702ef9de5567ce4323707451c58783e3ece7edf"
+    },
+    {
+      "path": "qa-finalizacao/oauth-branding-diagnostics/studio.cpp.before",
+      "sourceSha256": "5c0f9b74f91f95988dc7a43ac73529a6d1b32a3a91048d8fe6cb77abbef9e8df",
+      "outputSha256": "5c0f9b74f91f95988dc7a43ac73529a6d1b32a3a91048d8fe6cb77abbef9e8df"
+    },
+    {
+      "path": "qa-finalizacao/oauth-branding-diagnostics/test.mjs",
+      "sourceSha256": "ac0f119c1ad597b3a3953bc3ff55f935187cdc886af211a36ae5bc91af283714",
+      "outputSha256": "6e67afb813aadf6cd0aeaae2cecabe81f98057b78018e5b9bd86f84dbfc2c1af"
+    },
+    {
+      "path": "qa-finalizacao/oauth-branding-diagnostics/ALLOWLIST.json",
+      "sourceSha256": "553f69e4d2070c783513673b6b36361a38cc86a525cb004818f50a2eb2f8f900",
+      "outputSha256": "553f69e4d2070c783513673b6b36361a38cc86a525cb004818f50a2eb2f8f900"
+    },
+    {
+      "path": "qa-finalizacao/export-installer-next-receipts.mjs",
+      "sourceSha256": "d556755cb305e3423620e221cbe20702f23e31fa624919874f54748c0c746bdf",
+      "outputSha256": "6bfeb2e386ce3931839ebc42b85222acd6113dbd34702d170246f23d804ff384"
+    },
+    {
+      "path": "docs/RELATORIO-INSTALADOR-REAL-233334-20261009.md",
+      "sourceSha256": "1ac3c2ee0a241818699390a92bea1e54b6e4cd1c5cd3fd3c7eb6fa5ca08355ce",
+      "outputSha256": "1ac3c2ee0a241818699390a92bea1e54b6e4cd1c5cd3fd3c7eb6fa5ca08355ce"
+    },
+    {
+      "path": "qa-finalizacao/installer-real-233334-final/evidence-copy.json",
+      "sourceSha256": "2dfc25955cdd6198ae555fd1fe53d47e4597401832fe49b794f919b42211d2c0",
+      "outputSha256": "2dfc25955cdd6198ae555fd1fe53d47e4597401832fe49b794f919b42211d2c0"
+    },
+    {
+      "path": "qa-finalizacao/installer-real-233334-final/qa-candidate-context.json",
+      "sourceSha256": "212d14a9ae428e79767f938c53aab442ab1b1ebe865b5e796db8ff07ae711076",
+      "outputSha256": "212d14a9ae428e79767f938c53aab442ab1b1ebe865b5e796db8ff07ae711076"
+    },
+    {
+      "path": "qa-finalizacao/installer-real-233334-final/qa-candidate-credentials.json",
+      "sourceSha256": "177d0e113cdf9e7eef285039a709c4bea8fa6d6555c4984cd51178e1e933a462",
+      "outputSha256": "177d0e113cdf9e7eef285039a709c4bea8fa6d6555c4984cd51178e1e933a462"
+    },
+    {
+      "path": "qa-finalizacao/installer-real-233334-final/qa-candidate-distribution.json",
+      "sourceSha256": "235e45966efe719686f4623e158ee80fc594b869647cfe17b84f49e40a33a569",
+      "outputSha256": "235e45966efe719686f4623e158ee80fc594b869647cfe17b84f49e40a33a569"
+    },
+    {
+      "path": "qa-finalizacao/installer-real-233334-final/qa-candidate-report.json",
+      "sourceSha256": "dbed6f7e4d876cc4380ea56f7167a7c802998e6cafba4dc7402cdd5ec99747d5",
+      "outputSha256": "dbed6f7e4d876cc4380ea56f7167a7c802998e6cafba4dc7402cdd5ec99747d5"
+    },
+    {
+      "path": "qa-finalizacao/installer-real-233334-final/qa-candidate-setup-verify.json",
+      "sourceSha256": "0e61911a14b63690bb2d7411119fb5f78607416371c2cb49ebfd2acfed84da73",
+      "outputSha256": "0e61911a14b63690bb2d7411119fb5f78607416371c2cb49ebfd2acfed84da73"
+    },
+    {
+      "path": "qa-finalizacao/installer-real-233334-final/run-context.json",
+      "sourceSha256": "a245ebba02c7642bc0a4459f7c7ab257d398a4049e3eb937e606f12ea3a41653",
+      "outputSha256": "a245ebba02c7642bc0a4459f7c7ab257d398a4049e3eb937e606f12ea3a41653"
+    },
+    {
+      "path": "qa-finalizacao/installer-real-233334-final/run-credentials.json",
+      "sourceSha256": "f5b04fc11ab5f7de6c7e71b3b4b4d314c1c87b06a24b2f14b790f0b2a2ca072e",
+      "outputSha256": "f5b04fc11ab5f7de6c7e71b3b4b4d314c1c87b06a24b2f14b790f0b2a2ca072e"
+    },
+    {
+      "path": "qa-finalizacao/installer-real-233334-final/run-distribution.json",
+      "sourceSha256": "e693f767e43ebc4478b67883be193d2ab6e591119c39780d61b24b83018f7b78",
+      "outputSha256": "e693f767e43ebc4478b67883be193d2ab6e591119c39780d61b24b83018f7b78"
+    },
+    {
+      "path": "qa-finalizacao/installer-real-233334-final/run-report.json",
+      "sourceSha256": "a5f5577697693ef4420b8c58c558ead815c11fcc048bb2b2d38c9abcd1e70541",
+      "outputSha256": "a5f5577697693ef4420b8c58c558ead815c11fcc048bb2b2d38c9abcd1e70541"
+    },
+    {
+      "path": "qa-finalizacao/installer-real-233334-final/run-verify.json",
+      "sourceSha256": "614d881a9eca4f280f083e227b52497e63d9a8f2f3413647aba4bee18cb592d2",
+      "outputSha256": "614d881a9eca4f280f083e227b52497e63d9a8f2f3413647aba4bee18cb592d2"
+    },
+    {
+      "path": "qa-finalizacao/installer-real-233334-allowlist-20261009.json",
+      "sourceSha256": "8eb5d5f49e74cc9a935cb0839d52e40919e51acd6e8ea95b0926dee2e1661c1d",
+      "outputSha256": "8eb5d5f49e74cc9a935cb0839d52e40919e51acd6e8ea95b0926dee2e1661c1d"
+    },
+    {
+      "path": "qa-finalizacao/package-native-startup-next.mjs",
+      "sourceSha256": "e4a06b93da406176cf0a0b9bd8ba97a2eff2014123b0697290d9c31f0748c6f5",
+      "outputSha256": "b24f9ef01618aba155765ad002dfb707983710658f3e4b193071db9fc6f73d5c"
+    },
+    {
+      "path": "qa-finalizacao/package-native-startup-233334.json",
+      "sourceSha256": "fd5251a9b343e102da6ec005f50e1e3bbf8e98eb88bce25f6d92b32ed671e083",
+      "outputSha256": "fd5251a9b343e102da6ec005f50e1e3bbf8e98eb88bce25f6d92b32ed671e083"
+    },
+    {
+      "path": "qa-finalizacao/package-native-startup-233334-allowlist.json",
+      "sourceSha256": "65fb2345fc8c5f1d34dcf958e65b91fe9f069ec8c108369b6645156a77d349f1",
+      "outputSha256": "65fb2345fc8c5f1d34dcf958e65b91fe9f069ec8c108369b6645156a77d349f1"
+    },
+    {
+      "path": "ferramentas/diagnostico-producao.mjs",
+      "sourceSha256": "545f59e83595cb6dfb7277e06994bde6b691acd768cfc1fd48c21bb87cba7a59",
+      "outputSha256": "545f59e83595cb6dfb7277e06994bde6b691acd768cfc1fd48c21bb87cba7a59"
+    }
+  ],
+  "at": "2026-10-09T23:57:16.000Z"
+}

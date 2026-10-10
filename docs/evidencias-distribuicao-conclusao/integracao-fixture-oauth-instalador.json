@@ -1,0 +1,41 @@
+{
+  "status": "PREPARATION_MIRROR_NEW_INSTALLER_PENDING",
+  "operatorTouched": false,
+  "files": [
+    {
+      "path": "scripts/installer-windows/qa/distribution.mjs",
+      "sourceSha256": "0de72ef3a38d3029e45472b16c672348639b602b2c23a1b591c68c92ee89ede3",
+      "outputSha256": "c5a0183f5e127aec2a988fb7395f076038b75a9c914d7811dfadfcc0ebb6ef44"
+    },
+    {
+      "path": "docs/QA-INSTALADOR-OAUTH-PROXIMO-20261009.md",
+      "sourceSha256": "c3ce05c6cbc3f96b7457d0359ae20a18a68df5eb07ad219f2d7cbec5c6154bd3",
+      "outputSha256": "c3ce05c6cbc3f96b7457d0359ae20a18a68df5eb07ad219f2d7cbec5c6154bd3"
+    },
+    {
+      "path": "qa-finalizacao/installer-oauth-next-prepared/change.json",
+      "sourceSha256": "88852bfb098d71dd44d11b065178d33d52277a7022b4bbb3ef0ecad9056c2148",
+      "outputSha256": "88852bfb098d71dd44d11b065178d33d52277a7022b4bbb3ef0ecad9056c2148"
+    },
+    {
+      "path": "qa-finalizacao/installer-oauth-next-prepared/context.json",
+      "sourceSha256": "5716578db9f17e0c6f2a45fb65649f4cb88777303ee995728085899a31c7e316",
+      "outputSha256": "5716578db9f17e0c6f2a45fb65649f4cb88777303ee995728085899a31c7e316"
+    },
+    {
+      "path": "qa-finalizacao/installer-oauth-next-prepared/distribution-oauth.diff",
+      "sourceSha256": "57a2a7be2878e71a6cdcbf771b707e7eb2d05f20c5b12383fd4df929119939f4",
+      "outputSha256": "57a2a7be2878e71a6cdcbf771b707e7eb2d05f20c5b12383fd4df929119939f4"
+    },
+    {
+      "path": "qa-finalizacao/installer-oauth-next-prepared/run-context.json",
+      "sourceSha256": "a50d915cca058fddd0e61240d670f1358cb3cac7afa23687d118b3ac87f01667",
+      "outputSha256": "a50d915cca058fddd0e61240d670f1358cb3cac7afa23687d118b3ac87f01667"
+    },
+    {
+      "path": "qa-finalizacao/installer-oauth-next-allowlist-20261009.json",
+      "sourceSha256": "2fe5d96521a641cf549d1cb077c3d447c9f9cb05535e8789984439904d0c5190",
+      "outputSha256": "2fe5d96521a641cf549d1cb077c3d447c9f9cb05535e8789984439904d0c5190"
+    }
+  ]
+}

@@ -1,12 +1,12 @@
 {
   "status": "PASS",
-  "at": "2026-10-09T23:27:58.070Z",
+  "at": "2026-10-10T00:05:05.819Z",
   "base": "ba2f32bdf791005443988a4955e963663e16b1ed",
-  "head": "6cbf07641c501cb6b319c6bf7000b805fdce625c",
-  "version": "0.1.0-local.20261009233334",
-  "patches": 20,
-  "resultTree": "ec1b13a92f404f49527cdd88e91ccdf4275e050a",
-  "expectedTree": "ec1b13a92f404f49527cdd88e91ccdf4275e050a",
+  "head": "4793d1a40f56ea9b6e887eb49189d937758e3b7f",
+  "version": "0.1.0-local.20261010000500",
+  "patches": 21,
+  "resultTree": "7604633e921339aa65f40015dcc3175e26accfc7",
+  "expectedTree": "7604633e921339aa65f40015dcc3175e26accfc7",
   "sourceFiles": [
     {
       "path": "deps/asio-sdk/FREEMIX-PROVENANCE.md",
@@ -70,13 +70,28 @@
     },
     {
       "path": "frontend/data/locale/en-US.ini",
-      "bytes": 95469,
-      "sha256": "9023e6c5dfcddf62c416374f7002fbb5dc434f1491b560dbfd43143d780a01ab"
+      "bytes": 95761,
+      "sha256": "ff44043724df31861805dc8cb97c5353c2a0341e20b8efa00c29db0104eedec9"
     },
     {
       "path": "frontend/data/locale/pt-BR.ini",
-      "bytes": 97509,
-      "sha256": "db29c4ca68dd0e8696651bfb46abf26c029a8c68e3ccfe7af2e37b663a2baf3b"
+      "bytes": 97827,
+      "sha256": "37bc286930d9f0e7aa7be998faa66c20eef42e16ce3ae6ae985a221ac6da8d82"
+    },
+    {
+      "path": "frontend/dialogs/OBSAbout.cpp",
+      "bytes": 4628,
+      "sha256": "5d416f3b69fbdbf1be54a5a9c645e8dedb50f0df7915ee7b94eac3853350c016"
+    },
+    {
+      "path": "frontend/dialogs/OBSYoutubeActions.cpp",
+      "bytes": 26395,
+      "sha256": "16c5283a635c415e905c96f1dea98a2cd15e3132dbb23f585185180a451fcddd"
+    },
+    {
+      "path": "frontend/forms/OBSAbout.ui",
+      "bytes": 6559,
+      "sha256": "3fd93c1a4912b2ace9663f5a2edf235a9cdb797c5f6b6647de4646f29bc86a55"
     },
     {
       "path": "frontend/forms/OBSBasic.ui",
@@ -92,6 +107,21 @@
       "path": "frontend/forms/obs.qrc",
       "bytes": 3851,
       "sha256": "000959ec69ca6b6ef90333775d1de06a962a1b693373b44fab2ee263c5b8c70d"
+    },
+    {
+      "path": "frontend/importers/studio.cpp",
+      "bytes": 7958,
+      "sha256": "6ac0fb171667572d371f81162a099faf6734545cded2bc8982697bec3b591ed8"
+    },
+    {
+      "path": "frontend/oauth/AuthListener.cpp",
+      "bytes": 2811,
+      "sha256": "fc437a59512b3bb21c867fc4ad7b3b93c1a01dc3bc09b7764d87700ad65d3e5c"
+    },
+    {
+      "path": "frontend/oauth/YoutubeAuth.cpp",
+      "bytes": 8483,
+      "sha256": "64e542b596423d80382f5dd1b30b2f12a90535dd3490fadb28b3da902aee7a8f"
     },
     {
       "path": "frontend/obs-main.cpp",
@@ -235,8 +265,8 @@
     },
     {
       "path": "frontend/widgets/OBSBasic.hpp",
-      "bytes": 50208,
-      "sha256": "ec321a3695a71b25d6adb269f4e60dac5e4f178efb4ef605b911c84ab589ec12"
+      "bytes": 50172,
+      "sha256": "db060e4a5794967d0316e19323fe31e8c3f88acd8d76e5039747b771a7fc617f"
     },
     {
       "path": "frontend/widgets/OBSBasicStats.cpp",
@@ -244,9 +274,19 @@
       "sha256": "df42a55b566d01e915b3edfc68e1c07b7fdcc0ba0584d4a51b9123b2a0af6504"
     },
     {
+      "path": "frontend/widgets/OBSBasic_Icons.cpp",
+      "bytes": 5977,
+      "sha256": "4fd141833220c85e916fe7f6b04a1bb6c128f4402267ce7bad2b4069a19bf449"
+    },
+    {
       "path": "frontend/widgets/OBSBasic_Preview.cpp",
       "bytes": 19962,
       "sha256": "ea230026a56fe85d00c0ce7af0d278961973148a24a168ac8d0f930708df8fb6"
+    },
+    {
+      "path": "frontend/widgets/OBSBasic_Recording.cpp",
+      "bytes": 11319,
+      "sha256": "4d4106dc1b8f21d1fd88eb22260d22c91f4552bfd8380c201c63b3f454d0bb6a"
     },
     {
       "path": "frontend/widgets/OBSBasic_SceneCollections.cpp",
@@ -372,6 +412,11 @@
       "path": "frontend/widgets/vendor/freemix-omt/libomt.h",
       "bytes": 21271,
       "sha256": "54df29a49d95c9517f88a82c32bb6762802cabb10763bf27559de48eff264a07"
+    },
+    {
+      "path": "frontend/wizards/AutoConfigStreamPage.cpp",
+      "bytes": 22058,
+      "sha256": "4a9c481d3db340ea06f21eb3d81037a80687ab3ef6586204bd5ef60b555fb813"
     },
     {
       "path": "libobs/obs-internal.h",

@@ -1,6 +1,6 @@
 # Continuidade do FreeMix
 
-Atualizado em 2026-10-09T23:31:54.566Z. Trabalho autorizado até terça-feira, 13/10/2026, ativo. Preservar mesa, vMix, Calls, gravações e saídas do operador. Testes somente em TEMP e portas próprias.
+Atualizado em 2026-10-10T00:06:08.158Z. Trabalho autorizado até terça-feira, 13/10/2026, ativo. Preservar mesa, vMix, Calls, gravações e saídas do operador. Testes somente em TEMP e portas próprias.
 
 ## Entrega e fontes
 
@@ -8,9 +8,10 @@ O instalador aprovado continua **0.1.0-local.20261009213415**, escolhido por ent
 
 ABRIR-FREEMIX.cmd permanece associado ao operador e ao atualizador incremental anterior. Não aplicar um pacote completo pelo atualizador incremental nem modificar DLLs do operador aberto. A ponte nativa SRT→NDI alpha está entregue como beta separado. O receptor alpha WebBrowser foi abortado.
 
-Produto FreeMix, branch feat/native-menus-config-screens. Push anterior confirmado: 56dbfc7. Native atual: **6cbf07641c501cb6b319c6bf7000b805fdce625c**, 20 patches e 178 snapshots, árvore **ec1b13a92f404f49527cdd88e91ccdf4275e050a** verificada. Não há push para o upstream OBS.
+Produto FreeMix, branch feat/native-menus-config-screens. Push anterior confirmado: 59058d6. Native atual: **4793d1a40f56ea9b6e887eb49189d937758e3b7f**, 21 patches e 187 snapshots, árvore **7604633e921339aa65f40015dcc3175e26accfc7** reconstruída por aplicação dos patches e verificada. Não há push para o upstream OBS.
 
-Próximo candidato: **0.1.0-local.20261009233334**, ainda sem instalador aprovado. A reserva de fontes 223334 foi substituída; nunca teve EXE aprovado. Usar exclusivamente **qa-finalizacao/native-build-frozen-6cbf076-configured**, recibo SHA **290f0417f4cfe361c682b899ea59665947dec819190222801c91aba6871a1b57**. Build completa, configure explícito e identificação -g6cbf076 passaram. A primeira freeze20 sem configure conservava a identificação19 e foi invalidada para candidato; não usar.
+Próximo candidato: **0.1.0-local.20261010000500**, Native21 compilado e congelado para QA e ainda sem instalador aprovado. Native20/233334 passou por assinatura/hashes, duas instalações reais, importação, diagnóstico, desinstalação e startup (fechamento766ms, contador0). Não foi escolhido porque a revisão final identificou logs OAuth e superfícies de marca adicionais. Essas correções estão congeladas no Native21 e no coletor (149 verificações PASS). Não modificar nem reutilizar os recibos/ZIP/EXE233334; o novo instalador repetirá somente as verificações afetadas.
+
 
 ## Estado confirmado
 
@@ -21,12 +22,12 @@ Próximo candidato: **0.1.0-local.20261009233334**, ainda sem instalador aprovad
 | Janelas | Nove CEF com API real, DOM/erros e fechamento passaram em1200×850. | Aprovação visual em outras telas/DPI não está implícita. |
 | Títulos | Quatro prévias ausentes renderizadas dos próprios HTML;27/27 carregam, fallback0. Edge real em600×600/1920×1080, campos e footer acessíveis, sem overflow/erroJS. PNGs integrados; HTML/catálogo intactos. | Teste foi navegador isolado; não afirmar CEF nessas duas dimensões. |
 | Alocações | Ledger/PDB identificaram lista de arquivos ausentes24bytes e ETag RTMP16bytes. Patch2fontes: QA [2,2,2]→[0,0,0], ledger/bytes/erros/unknown0. Updater real: headers repetidos/cache/normal/badJSON/HTTP500/single_file em loopback passou. | Produção Native20 trackerOFF em três raízes/modos passou: contador[0,0,0], crashes0, saídas0, fechamentos611/757/716ms. Advertências de weakref[0,3,3] preservadas. Não chamar sessões curtas de endurance. |
-| Distribuição | Preflight20/178fontes/99módulos/6overlays passou; versão de fontes deve corresponder ao pacote. ZIP CLI exige recibo/input/output novos e confere CRC/SHA. Runner instalado usa recibos próprios preservando213415. | Criar/selar/ZIP/EXE233334 e repetir duas instalações/importação/diagnóstico/desinstalação/startup antes de atualizar INSTALADOR-ATUAL. |
+| Distribuição | Preflight20/178fontes/99módulos/6overlays passou; versão de fontes deve corresponder ao pacote. ZIP CLI exige recibo/input/output novos e confere CRC/SHA. Runner instalado usa recibos próprios preservando213415. | Criar/selar/ZIP/EXE0.1.0-local.20261010000500 e executar o plano CandidateNext-TjY7cm com os novos fixtures OAuth em ZIP instalado; startup próprio Native21 deve confirmar marca/versão/fechamento. Só então atualizar INSTALADOR-ATUAL. |
 
 ## Donos
 
-- auditoria_pendencias_reais: prova adicional SourceRecord em composição com replay e filtro UI C/D concluída, allowlist congelada e espelhada.
-- installer_exe: três modos produção20 trackerOFF concluídos em TEMP própria; allowlist espelhada sem tracker/PDB/log bruto.
+- auditoria_pendencias_reais: correções OAuth/diagnóstico congeladas; revisão das pendências concretas em curso.
+- installer_exe: marca Native21 congelada; harness novo de startup preparado, aguardando pacote/pins.
 - transportes_rede_conclusao: runner do próximo instalador pronto; aguardando pacote/EXE/pins para execução real.
 - Root: espelhos, Git, docs/fontes/licenças e candidato novo. Não sobrescrever entregas/recibos antigos nem selar antes das provas aplicáveis.
 
@@ -44,3 +45,7 @@ Ver PENDENCIAS-REAIS.md e PLANO-CONCLUSAO-20261013.md para critérios e estimati
 - qa-finalizacao/shutdown-allocation-remediation-qa/report.json: origens e correções.
 - FONTES.md / BUILD-FROM-SOURCE.md: reconstrução/exportação verificada.
 - historico/CONTINUAR-20261009-224131.md: cronologia antiga, não estado atual.
+
+## Correções seguintes verificadas
+
+Native21 build completa passou em2026-10-10T00:08:50Z, recibo2c7cb041b4a82f75c7900abefa3a6902adbcb011199b0653166c67b5276674e1. EXE53d10913ee0e14aa8c5d58a9bd35cf0af72a9072a3214f92444e688cda983e27. DLLs ffmpeg/decklink/rtmp/frontendAPI idênticas ao Native20. GTZIP Polygon/Path diretos corrigidos,33 casos PASS e perda silenciosa original reproduzida; sem alteração do renderer existente. Código e prova espelhados. Próxima validação local: política de áudio A/B/C/D no Master digital, separada da prova PCM pré-Master já existente.
