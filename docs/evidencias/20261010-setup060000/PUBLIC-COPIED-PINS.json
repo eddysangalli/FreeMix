@@ -1,0 +1,206 @@
+{
+  "status": "ROOT_REVIEWED_SELECTED_060000_EXPLICIT_ALLOWLIST_COPIED",
+  "at": "2026-10-10T06:21:18.919Z",
+  "files": [
+    {
+      "path": "docs/evidencias/20261010-setup060000/qa-finalizacao/freeze-setup-035000-qa-retry2-final.mjs",
+      "bytes": 7781,
+      "sha256": "0feb205c9380b460c65b12be1ddb0fdee8e786a586b3a154bc408b89f9146dbf"
+    },
+    {
+      "path": "docs/evidencias/20261010-setup060000/qa-finalizacao/setup-035000-qa-retry2/ALLOWLIST.json",
+      "bytes": 14065,
+      "sha256": "292e063349b62598ac65ac58d0ea3012cd5aad67d68d54a22b1f73e1ab395e35"
+    },
+    {
+      "path": "docs/evidencias/20261010-setup060000/qa-finalizacao/setup-035000-qa-retry2/report.json",
+      "bytes": 8943,
+      "sha256": "57136643b7016d027581c9658f45217cff54238a249cc95229008120c73e85a8"
+    },
+    {
+      "path": "docs/evidencias/20261010-setup060000/qa-finalizacao/setup-035000-qa-retry2/receipt.json",
+      "bytes": 341600,
+      "sha256": "7fd4843abb369acdce73cac19809051852d23634d6ccb0055f17bbf9bf2c968a"
+    },
+    {
+      "path": "docs/evidencias/20261010-setup060000/qa-finalizacao/setup-050500-qa/receipt.json",
+      "bytes": 4630,
+      "sha256": "ec46ce714516df18f329102a1013555b1ee38cbe15b2347c8bed0a0b6364d612"
+    },
+    {
+      "path": "docs/evidencias/20261010-setup060000/qa-finalizacao/setup-050500-continuation/receipt.json",
+      "bytes": 2745,
+      "sha256": "73334e61460919ae68979c57974fe65bc058056257c0ba370a173100460cbb51"
+    },
+    {
+      "path": "docs/evidencias/20261010-setup060000/qa-finalizacao/setup-050500-continuation/report.json",
+      "bytes": 7791,
+      "sha256": "993d83c8427c801757aa5705fcc117defb7df5bffed767d1fcd6dcb419ea365f"
+    },
+    {
+      "path": "docs/evidencias/20261010-setup060000/qa-finalizacao/setup-050500-continuation/ALLOWLIST.json",
+      "bytes": 11322,
+      "sha256": "6bb83edbdb2d1c8a55a9df0f4fff9087a83310735cc92563e654f24d6214b895"
+    },
+    {
+      "path": "docs/evidencias/20261010-setup060000/qa-finalizacao/prepare-setup-060000-qa.mjs",
+      "bytes": 9381,
+      "sha256": "dd6d9aaa1b6f03e7e81949d782ebb57c39c4b1e095f67f8607a81b817c6f46e3"
+    },
+    {
+      "path": "docs/evidencias/20261010-setup060000/qa-finalizacao/setup-060000-qa.mjs",
+      "bytes": 27542,
+      "sha256": "fbdc60add6ed983e695f58a9feeb969d8b31ecf8471ae444b0080fa11182a518"
+    },
+    {
+      "path": "docs/evidencias/20261010-setup060000/qa-finalizacao/setup-035000-qa/candidate-context.mjs",
+      "bytes": 2729,
+      "sha256": "d911bf44d3f8bbf2f31783e6803391ad872c0f03a5ab56614e678547124e2130"
+    },
+    {
+      "path": "docs/evidencias/20261010-setup060000/qa-finalizacao/setup-060000-qa/PREPARATION.json",
+      "bytes": 12996,
+      "sha256": "1a2ebdfff24fec8728f16353ac3063fa4665c6d75ba0d73d20df0654ac5aae1b"
+    },
+    {
+      "path": "docs/evidencias/20261010-setup060000/qa-finalizacao/setup-060000-qa/ALLOWLIST-PREPARATION.json",
+      "bytes": 1219,
+      "sha256": "be110ce71a3221659903f2a506674d4e77dbf0aab9af2b421d88d5ba09922393"
+    },
+    {
+      "path": "docs/evidencias/20261010-setup060000/qa-finalizacao/setup-060000-qa/README.md",
+      "bytes": 1746,
+      "sha256": "154338e03e7d2399b9bd5185863d0ebeada4f356c5114c29b5ecad0bfd5600b6"
+    },
+    {
+      "path": "docs/evidencias/20261010-setup060000/qa-finalizacao/setup-060000-qa/receipt.json",
+      "bytes": 346703,
+      "sha256": "c4b721a0abff674a62b0b8283cbf62a62d6520dc7d047406acdbf19b4e4db581"
+    },
+    {
+      "path": "docs/evidencias/20261010-setup060000/qa-finalizacao/setup-060000-qa/report.json",
+      "bytes": 18318,
+      "sha256": "77d835df3da98d84c5e4458450cbbd0ecc2917e767dc43061d9551d7e53ded0c"
+    },
+    {
+      "path": "docs/evidencias/20261010-setup060000/qa-finalizacao/setup-060000-qa/browser-context.json",
+      "bytes": 999,
+      "sha256": "a6747b3c0da025c07ebb93e191c538a39c000b11c260b83c09b07fe72683883d"
+    },
+    {
+      "path": "docs/evidencias/20261010-setup060000/qa-finalizacao/setup-060000-qa/checkpoint-native-cycle0.json",
+      "bytes": 340377,
+      "sha256": "10f96ac1c62ab349e8955b42654e2bac8885f58b49c25d58a2a2cbe05de84417"
+    },
+    {
+      "path": "docs/evidencias/20261010-setup060000/qa-finalizacao/setup-060000-qa/checkpoint-native-cycle1.json",
+      "bytes": 344206,
+      "sha256": "dcabed2b3dd9e4b9acc1081c01df217a716fdbdd59a16370de144f7b1fe6fcca"
+    },
+    {
+      "path": "docs/evidencias/20261010-setup060000/qa-finalizacao/setup-060000-qa/checkpoint-api-closed.json",
+      "bytes": 344451,
+      "sha256": "2af32c77f97fcd24c35c9eed6aeb4b2908fbe4e33a8965f40a633392d9d0c0c1"
+    },
+    {
+      "path": "docs/evidencias/20261010-setup060000/qa-finalizacao/setup-060000-qa/root-iab-proof.json",
+      "bytes": 1990,
+      "sha256": "7c5b0acb987cd81f4a8179bc84a5592efffc91dfc089a9a5fee96f67306253d3"
+    },
+    {
+      "path": "docs/evidencias/20261010-setup060000/qa-finalizacao/derive-freeze-setup-060000-qa.mjs",
+      "bytes": 5235,
+      "sha256": "b7ffc7039b82f4ea606fe5f78a51d3918e8a599e7e32284a0f6c1f26dc9718eb"
+    },
+    {
+      "path": "docs/evidencias/20261010-setup060000/qa-finalizacao/freeze-setup-060000-qa.mjs",
+      "bytes": 10000,
+      "sha256": "9f781b5647fb406881041a04512dd718ba0546200fecdcc1425b201bab856f4d"
+    },
+    {
+      "path": "docs/evidencias/20261010-setup060000/qa-finalizacao/setup-060000-qa/freeze-provenance.json",
+      "bytes": 5631,
+      "sha256": "f3cb8454a70891b1c9fa5304b4178183d2567c36e23b7c60c58cc87dc778202b"
+    },
+    {
+      "path": "docs/evidencias/20261010-setup060000/qa-finalizacao/setup-060000-qa/write-root-iab-proof.mjs",
+      "bytes": 2007,
+      "sha256": "a997d4f968727684ffb2d036b2f799014abc8b1b0b5264e0f27e2b18facdf08c"
+    },
+    {
+      "path": "docs/evidencias/20261010-setup060000/qa-finalizacao/derive-freeze-setup-060000-qa-final.mjs",
+      "bytes": 2145,
+      "sha256": "1abf31fbba041edbdfe508746e56632cf50cdc70e8c50a94c2419197e9969b49"
+    },
+    {
+      "path": "docs/evidencias/20261010-setup060000/qa-finalizacao/freeze-setup-060000-qa-final.mjs",
+      "bytes": 10426,
+      "sha256": "d2d0b5918af9f752f7058ebd40697ef1326abb3694b3a82fa8b720a52b810467"
+    },
+    {
+      "path": "docs/evidencias/20261010-setup060000/qa-finalizacao/setup-060000-qa/freeze-final-provenance.json",
+      "bytes": 1506,
+      "sha256": "7d94ffb50f6529d987d177991e67bf6da5190f04908a52ad495d08607c5fa6d0"
+    },
+    {
+      "path": "docs/evidencias/20261010-setup060000/images/root-installed-mesa.jpg",
+      "bytes": 59127,
+      "sha256": "2525a64c40482ca0108f40db1281456add99620ce192aa6b90641f3f4532995a"
+    },
+    {
+      "path": "docs/evidencias/20261010-setup060000/images/root-installed-srt.jpg",
+      "bytes": 91000,
+      "sha256": "c037e6bc37b0b9eae0c89cb1c42373a3616087e207cd6f5ef7912aec725677bf"
+    },
+    {
+      "path": "docs/evidencias/20261010-setup060000/images/root-installed-calls.jpg",
+      "bytes": 85685,
+      "sha256": "eba64e70fd25c81f0d7520f09a110f0112f6ba4f43bb6f845a269fbb5b4831b8"
+    },
+    {
+      "path": "docs/evidencias/20261010-setup060000/images/root-installed-replay-settings.jpg",
+      "bytes": 82111,
+      "sha256": "900e38f0fdc4d5b9bcfac1606ee95cbe6d8bbe9fd37dc28f43b0cca8aa28c04c"
+    },
+    {
+      "path": "docs/evidencias/20261010-setup060000/images/root-installed-hdr.jpg",
+      "bytes": 99048,
+      "sha256": "5821e54b8cd7ff35226a937d1012f4c69f14a1397d03d790cfaf361c0f7d3349"
+    },
+    {
+      "path": "docs/evidencias/20261010-setup060000/ALLOWLIST.json",
+      "bytes": 15028,
+      "sha256": "703df68812198b839e1a697f8303805d0f4b9fc2c012108db3646398f998d25a"
+    }
+  ],
+  "operatorTouched": false,
+  "credentialsExported": false,
+  "rawLogsExported": false,
+  "diagnosticZipExported": false,
+  "selection": {
+    "status": "VERIFIED",
+    "version": "0.1.0-local.20261010060000",
+    "file": "FreeMix-Studio-Setup-0.1.0-local.20261010060000.exe",
+    "sha256": "3a53cc01ea2998d785e4914c219084e6868ad4bf7b33fff31f074685878993bd",
+    "packageManifestHash": "7107aa50b55dd2584be4fc30760af6ef1c85855c6995cd10758e65decc0a93b4",
+    "nativeCommit": "a04786090fcbe7ede495f18e5ad38ccaa9793478",
+    "githubCommit": "6adcd19315c01a4f01baaab2fd5d9e560872619b",
+    "verifiedAt": "2026-10-10T06:20:24.037Z",
+    "operatorActivated": false,
+    "distributionProof": "qa-finalizacao/setup-060000-qa/report.json",
+    "startupMethod": "Actual Setup install; two cooperative Native24 cycles; installed read-only menus/HDR; diagnostic and conservative uninstall",
+    "previousSelection": {
+      "version": "0.1.0-local.20261010035000",
+      "sha256": "155aa53e12ae4431f66d85fee7785ee158b343ffcda8ae41550025bab7a22c10"
+    },
+    "limits": [
+      "Own QA is not universal physical/WAN/clean Windows/performance acceptance",
+      "No Authenticode; signed inner Ed25519 payload",
+      "Calls custom video JPEG640x360 up to5fps; per-source continuous video not implemented",
+      "Native Properties/Filters queued; desktop editor visibility/focus/z-order unconfirmed",
+      "HDR installed read-only; prior local media proof separate",
+      "Meter [0,0] preserved; counter0/crash0 scope is the own run"
+    ]
+  },
+  "limits": "Own real installed QA and IAB only; FTB/recovery/continuous Calls remain later software work."
+}
