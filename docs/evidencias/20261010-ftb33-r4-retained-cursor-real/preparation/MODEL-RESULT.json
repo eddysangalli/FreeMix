@@ -1,0 +1,70 @@
+{
+  "status": "PASS_R4_PREPARATION_MODELS_ONLY",
+  "checks": [
+    {
+      "name": "Exact original oracle dba7 and7 nonobserver lifecycle/pixel/audio/setup helpers preserved",
+      "status": "PASS_PREPARATION_PURE_ONLY"
+    },
+    {
+      "name": "HistoricalR3 ALL195 samples remain FAIL using byte-exact original oracle, no modernlabel adaptation",
+      "status": "PASS_PREPARATION_PURE_ONLY"
+    },
+    {
+      "name": "Retained invalid cursor then frame0 plus monotonic progress passes original oracle WITHOUT sample filter",
+      "status": "PASS_PREPARATION_PURE_ONLY"
+    },
+    {
+      "name": "Second backward still FAIL with newvalidlabel/policy, no relaxation",
+      "status": "PASS_PREPARATION_PURE_ONLY"
+    },
+    {
+      "name": "OldNative enum is refused even ifpolicy forged; absent/wrongpolicy also refused onvalidtimestamp",
+      "status": "PASS_PREPARATION_PURE_ONLY"
+    },
+    {
+      "name": "Startup unavailable or invalid0 is descriptive only, neverready or callbackACK",
+      "status": "PASS_PREPARATION_PURE_ONLY"
+    },
+    {
+      "name": "PTSraw may remain invalid/negative while getter holds priorvalid; all invalidsamples retained",
+      "status": "PASS_PREPARATION_PURE_ONLY"
+    },
+    {
+      "name": "DifferentUUID/generation/revisionregression/counterunknown refuse rather than switching motor",
+      "status": "PASS_PREPARATION_PURE_ONLY"
+    },
+    {
+      "name": "Ready contradiction/domains/boolean malformed refused",
+      "status": "PASS_PREPARATION_PURE_ONLY"
+    },
+    {
+      "name": "201sample/10s finitebudget unchanged and no restartACK readiness",
+      "status": "PASS_PREPARATION_PURE_ONLY"
+    },
+    {
+      "name": "Only observer strictenum+policy differences; every othercollect/legacy/pixel/PCM expression unchanged",
+      "status": "PASS_PREPARATION_PURE_ONLY"
+    },
+    {
+      "name": "Runner binding changed5identities only; oneRESTART, fullpost, noforce/FTBON/SRT/API",
+      "status": "PASS_PREPARATION_PURE_ONLY"
+    },
+    {
+      "name": "NewNative33manifest2085/build0/fingerprint distinct; historical32 neverused as newengine",
+      "status": "PASS_PREPARATION_PURE_ONLY"
+    },
+    {
+      "name": "ForeignNative ownership rejects shutdown; ownidentity absent preservesprocess notforce",
+      "status": "PASS_PREPARATION_PURE_ONLY"
+    },
+    {
+      "name": "Bindings proposal is not authorized/no root/PID/port provisioned",
+      "status": "PASS_PREPARATION_PURE_ONLY"
+    }
+  ],
+  "NativeExecuted": false,
+  "APIStarted": false,
+  "BrowserStarted": false,
+  "fullFTBPass": false,
+  "historicalFAILPreserved": true
+}

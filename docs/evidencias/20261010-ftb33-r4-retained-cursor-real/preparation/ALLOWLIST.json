@@ -1,0 +1,119 @@
+{
+  "status": "FROZEN_PREPARATION_NOT_AUTHORIZED",
+  "files": [
+    {
+      "path": "audio-contract.mjs",
+      "sha256": "cae085195a3962f3ecf31a8a11a7a829fcef0048380eb987c44e23b9ab7d0884",
+      "bytes": 1719
+    },
+    {
+      "path": "BASELINES.json",
+      "sha256": "37238cd6c384ecf4e540c5692d44adbadb2c02a2a79268dbaf737192343becc4",
+      "bytes": 11963
+    },
+    {
+      "path": "collection-budget.mjs",
+      "sha256": "0ed456ddfa37985a32463b143eb4144d34b6253433c9107a0ca8e4d03e587360",
+      "bytes": 308
+    },
+    {
+      "path": "DERIVATION.json",
+      "sha256": "f18fe53502a3618922879ad7d9eb13a240a40fddb21b85383e0c35c6dea9d0b4",
+      "bytes": 3117
+    },
+    {
+      "path": "FIRST-MODEL-FAIL.json",
+      "sha256": "e5179d71b62d69e0713165d8717a16bd09c01fe57c399e69d644af8317b4644f",
+      "bytes": 482
+    },
+    {
+      "path": "freeze.py",
+      "sha256": "01d7538db6c99e75c8907cd105fce43bdb10f38332354838627e610f85497361",
+      "bytes": 3627
+    },
+    {
+      "path": "GEMINI-DISPOSITION.json",
+      "sha256": "9fa1c931a98974e884cdc02eb8ced9446f5c9ef54f177e59812fd84e97dd5662",
+      "bytes": 1526
+    },
+    {
+      "path": "media-reset-contract.mjs",
+      "sha256": "dba7b0ab66dddc6f2d96b14f8c7abdc9eca3e0cfbbd5ef1659412209f0688259",
+      "bytes": 2408
+    },
+    {
+      "path": "MODEL-RESULT.json",
+      "sha256": "58166592dfd47b74bfba35cf14c0d7da1dd413860c49fc4d0fd49a54cdd21d78",
+      "bytes": 2602
+    },
+    {
+      "path": "observation.mjs",
+      "sha256": "15bb27f6d7a595666eb4d4e13f33f2a8483b3e77b736250fe745c4358a8d4d21",
+      "bytes": 5957
+    },
+    {
+      "path": "own-native-lifecycle.mjs",
+      "sha256": "f294c2e74503d776d3cb5eb05fbaf6cde0f9b2e3ddf7dd0a5bec08d5379be2ae",
+      "bytes": 5672
+    },
+    {
+      "path": "own-program-setup.mjs",
+      "sha256": "c6c5a0c4e94be30135668c06d3541f11c63f7072248f7d65ba03496928d9287d",
+      "bytes": 5094
+    },
+    {
+      "path": "png.mjs",
+      "sha256": "9a53a3a8b29339874c1e48b72752a25083c92636d5c348b41b2a74bc6a19e5eb",
+      "bytes": 2499
+    },
+    {
+      "path": "PREPARATION-RECEIPT.json",
+      "sha256": "11627a645edc0fa197f80dbfa3c0190ad44ff9febddad074074140a924d1e8b3",
+      "bytes": 833
+    },
+    {
+      "path": "prepare.py",
+      "sha256": "63336572c8e97b87c5793c8d44f02dd1a4b3a2baac9d085ffb4b638d4bf6f3c3",
+      "bytes": 6132
+    },
+    {
+      "path": "R4-OBSERVATION-CONTRACT.patch",
+      "sha256": "f6dff74124fec4973802ddde9d6d1389c63a766d18c387901bdfe0de0cf35bd2",
+      "bytes": 4101
+    },
+    {
+      "path": "R4-RUNNER-BINDING.patch",
+      "sha256": "7c9dec3496022c8ecc00a9a0b0cc48d6d76df90008d41ce2d75dd87fd28d1170",
+      "bytes": 8099
+    },
+    {
+      "path": "README.md",
+      "sha256": "44b20819a06a40f9df62d3ef8f8df0104fc6a3c9c1c7a86059884f0b9a6ca2c8",
+      "bytes": 4182
+    },
+    {
+      "path": "ROOT-BINDINGS-PROPOSAL.json",
+      "sha256": "1ae71d9b72eaef1fc8c99cd22e79ed51d20114a70bb01f08293d4e805b343cc4",
+      "bytes": 701
+    },
+    {
+      "path": "runner.mjs",
+      "sha256": "da4346f4b7b42dc1fa2137b3a2a1f28887354b012497324b13637f307fb66f5d",
+      "bytes": 17090
+    },
+    {
+      "path": "scenario.mjs",
+      "sha256": "d4cbfd87e5929526681844b05f7ae68c6452228aba50d2489a3f258f8523af67",
+      "bytes": 4558
+    },
+    {
+      "path": "test.mjs",
+      "sha256": "8b3b580ae211f7d1cac92c0a8e55dccf89aac4665edbdbf79c5c19724c585396",
+      "bytes": 11208
+    }
+  ],
+  "externalPinsFile": "BASELINES.json",
+  "requiredNativeFiles": 2085,
+  "NativeExecuted": false,
+  "fullFTBPass": false
+}

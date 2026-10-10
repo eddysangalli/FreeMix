@@ -1,0 +1,152 @@
+[
+  {
+    "path": "ORIGINAL-OBSERVATION.json",
+    "bytes": 517924,
+    "sha256": "d79fba1de17d5a41290946e4aa61a1ad68d850b3f01c1565fb2e2b89187641b4"
+  },
+  {
+    "path": "baseline.png",
+    "bytes": 34413,
+    "sha256": "1658495be9adb365a6449fbe821faf0f395f32f80c393725cc089d18dc06e600"
+  },
+  {
+    "path": "after-500.png",
+    "bytes": 33479,
+    "sha256": "45f96db6410420d673b13bb2b2c97bcf85e405abd17f9f33ab7819f91e33c251"
+  },
+  {
+    "path": "after-1500.png",
+    "bytes": 35177,
+    "sha256": "ce4e975a87c35eebc2264e235254974ad5b9fe867196c27a0befdadfa47b15bb"
+  },
+  {
+    "path": "after-4000.png",
+    "bytes": 35923,
+    "sha256": "f35b1a46298c421731abeb157f802333b8e0b9cded2b4d40a17eb98417e9f268"
+  },
+  {
+    "path": "preparation/audio-contract.mjs",
+    "bytes": 1719,
+    "sha256": "cae085195a3962f3ecf31a8a11a7a829fcef0048380eb987c44e23b9ab7d0884"
+  },
+  {
+    "path": "preparation/BASELINES.json",
+    "bytes": 11963,
+    "sha256": "37238cd6c384ecf4e540c5692d44adbadb2c02a2a79268dbaf737192343becc4"
+  },
+  {
+    "path": "preparation/collection-budget.mjs",
+    "bytes": 308,
+    "sha256": "0ed456ddfa37985a32463b143eb4144d34b6253433c9107a0ca8e4d03e587360"
+  },
+  {
+    "path": "preparation/DERIVATION.json",
+    "bytes": 3117,
+    "sha256": "f18fe53502a3618922879ad7d9eb13a240a40fddb21b85383e0c35c6dea9d0b4"
+  },
+  {
+    "path": "preparation/FIRST-MODEL-FAIL.json",
+    "bytes": 482,
+    "sha256": "e5179d71b62d69e0713165d8717a16bd09c01fe57c399e69d644af8317b4644f"
+  },
+  {
+    "path": "preparation/freeze.py",
+    "bytes": 3627,
+    "sha256": "01d7538db6c99e75c8907cd105fce43bdb10f38332354838627e610f85497361"
+  },
+  {
+    "path": "preparation/GEMINI-DISPOSITION.json",
+    "bytes": 1526,
+    "sha256": "9fa1c931a98974e884cdc02eb8ced9446f5c9ef54f177e59812fd84e97dd5662"
+  },
+  {
+    "path": "preparation/media-reset-contract.mjs",
+    "bytes": 2408,
+    "sha256": "dba7b0ab66dddc6f2d96b14f8c7abdc9eca3e0cfbbd5ef1659412209f0688259"
+  },
+  {
+    "path": "preparation/MODEL-RESULT.json",
+    "bytes": 2602,
+    "sha256": "58166592dfd47b74bfba35cf14c0d7da1dd413860c49fc4d0fd49a54cdd21d78"
+  },
+  {
+    "path": "preparation/observation.mjs",
+    "bytes": 5957,
+    "sha256": "15bb27f6d7a595666eb4d4e13f33f2a8483b3e77b736250fe745c4358a8d4d21"
+  },
+  {
+    "path": "preparation/own-native-lifecycle.mjs",
+    "bytes": 5672,
+    "sha256": "f294c2e74503d776d3cb5eb05fbaf6cde0f9b2e3ddf7dd0a5bec08d5379be2ae"
+  },
+  {
+    "path": "preparation/own-program-setup.mjs",
+    "bytes": 5094,
+    "sha256": "c6c5a0c4e94be30135668c06d3541f11c63f7072248f7d65ba03496928d9287d"
+  },
+  {
+    "path": "preparation/png.mjs",
+    "bytes": 2499,
+    "sha256": "9a53a3a8b29339874c1e48b72752a25083c92636d5c348b41b2a74bc6a19e5eb"
+  },
+  {
+    "path": "preparation/PREPARATION-RECEIPT.json",
+    "bytes": 833,
+    "sha256": "11627a645edc0fa197f80dbfa3c0190ad44ff9febddad074074140a924d1e8b3"
+  },
+  {
+    "path": "preparation/prepare.py",
+    "bytes": 6132,
+    "sha256": "63336572c8e97b87c5793c8d44f02dd1a4b3a2baac9d085ffb4b638d4bf6f3c3"
+  },
+  {
+    "path": "preparation/R4-OBSERVATION-CONTRACT.patch",
+    "bytes": 4101,
+    "sha256": "f6dff74124fec4973802ddde9d6d1389c63a766d18c387901bdfe0de0cf35bd2"
+  },
+  {
+    "path": "preparation/R4-RUNNER-BINDING.patch",
+    "bytes": 8099,
+    "sha256": "7c9dec3496022c8ecc00a9a0b0cc48d6d76df90008d41ce2d75dd87fd28d1170"
+  },
+  {
+    "path": "preparation/README.md",
+    "bytes": 4182,
+    "sha256": "44b20819a06a40f9df62d3ef8f8df0104fc6a3c9c1c7a86059884f0b9a6ca2c8"
+  },
+  {
+    "path": "preparation/ROOT-BINDINGS-PROPOSAL.json",
+    "bytes": 701,
+    "sha256": "1ae71d9b72eaef1fc8c99cd22e79ed51d20114a70bb01f08293d4e805b343cc4"
+  },
+  {
+    "path": "preparation/runner.mjs",
+    "bytes": 17090,
+    "sha256": "da4346f4b7b42dc1fa2137b3a2a1f28887354b012497324b13637f307fb66f5d"
+  },
+  {
+    "path": "preparation/scenario.mjs",
+    "bytes": 4558,
+    "sha256": "d4cbfd87e5929526681844b05f7ae68c6452228aba50d2489a3f258f8523af67"
+  },
+  {
+    "path": "preparation/test.mjs",
+    "bytes": 11208,
+    "sha256": "8b3b580ae211f7d1cac92c0a8e55dccf89aac4665edbdbf79c5c19724c585396"
+  },
+  {
+    "path": "preparation/ALLOWLIST.json",
+    "bytes": 3660,
+    "sha256": "b31cfe525b5c6610ed8416e578f97a2e25f41f0307bb8ec90a5be9ea7f7ea752"
+  },
+  {
+    "path": "ROOT-RUNNER-REVIEW.json",
+    "bytes": 469,
+    "sha256": "453b0d7d9790859812f6121c3af7029487d04c735150a125a2f47ae3cb83b33a"
+  },
+  {
+    "path": "ROOT-LAUNCHER.mjs",
+    "bytes": 6434,
+    "sha256": "e7ae375508fb50088c2418f28a2425b593f375aec2491601843904b4114e5bb1"
+  }
+]

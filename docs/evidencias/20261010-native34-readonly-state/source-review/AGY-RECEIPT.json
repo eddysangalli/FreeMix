@@ -1,0 +1,65 @@
+{
+  "status": "AGY_IMPLEMENTATION_UNAVAILABLE_OPERATIONAL_NOT_QUOTA",
+  "model": "gemini-3.8-flash-high",
+  "ownCwd": "D:/FreeMix-QA-Gemini-NetworkState-20261010",
+  "publicSourcesOnly": true,
+  "attempts": [
+    {
+      "label": "file-tools",
+      "conversationId": "d7201dce-2666-439d-a516-ff90c8928b69",
+      "cliExitCode": 0,
+      "responseBytes": 0,
+      "resultBytes": 321,
+      "resultSha256": "df5060d91c33d9dea558ca6b293f669e43f85cba3da9e86c808020776e5c017d",
+      "exitSha256": "2dd04d50bb327151f92cdd8b1fc7222eb032aaf86697cbd0615d7c499d36763d",
+      "deniedCommandPermission": true,
+      "printTimeout": false,
+      "quotaError": false,
+      "neverImplementationPass": true
+    },
+    {
+      "label": "inline",
+      "conversationId": "b409b24a-8fd0-4221-b7c3-2b655f47ef24",
+      "cliExitCode": 0,
+      "responseBytes": 0,
+      "resultBytes": 231,
+      "resultSha256": "d7b4470a9e273334dce4c3385f7696eb7efb2913bf3491d37365c66a7bdba60b",
+      "exitSha256": "92f4a7310712bbb62d08541e2a4ac928910fc09f9e8bebe882845ba857e18e5f",
+      "deniedCommandPermission": false,
+      "printTimeout": true,
+      "quotaError": false,
+      "neverImplementationPass": true
+    },
+    {
+      "label": "continuation",
+      "conversationId": "b409b24a-8fd0-4221-b7c3-2b655f47ef24",
+      "cliExitCode": 0,
+      "responseBytes": 0,
+      "resultBytes": 257,
+      "resultSha256": "6892071f47456ec493ab6f19525777685f4f1920efc5b6ec150c58b0c4ecc4a4",
+      "exitSha256": "342ee0dced1b6a87ad9a8b0a2380dfe9ad20810b83895461c5395b2f6eec4b5e",
+      "deniedCommandPermission": false,
+      "printTimeout": true,
+      "quotaError": false,
+      "neverImplementationPass": true
+    },
+    {
+      "label": "short-inline",
+      "conversationId": "5621b9ce-0bd1-4c41-af58-023b6613281d",
+      "cliExitCode": 0,
+      "responseBytes": 0,
+      "resultBytes": 231,
+      "resultSha256": "2d02c47569ce45cf621a4505389a658d49797dafa7d73c0e72801acf53c53a6f",
+      "exitSha256": "01f87efe3bcd51d7822452e132d5eb89344240281a441f9477dabeecde0df94a",
+      "deniedCommandPermission": false,
+      "printTimeout": true,
+      "quotaError": false,
+      "neverImplementationPass": true
+    }
+  ],
+  "fallback": "Codex implementation after one permission denial and three finite empty-output timeouts",
+  "permissionBypass": false,
+  "humanProcessesTouched": false,
+  "nativeApiBuildStarted": false,
+  "rawProviderLogsExported": false
+}

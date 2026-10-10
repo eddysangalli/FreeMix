@@ -1,0 +1,16 @@
+import fs from 'node:fs/promises';import path from 'node:path';import assert from 'node:assert/strict';import {createHash} from 'node:crypto';
+const here=import.meta.dirname,prev=path.resolve(here,'../network-state-readonly-offside-r2-20261010'),sha=b=>createHash('sha256').update(b).digest('hex');
+assert.equal(sha(await fs.readFile(process.execPath)),'ba4e6d110e8c1592a1ecd390f6b05f3da124b13871a5be62b341a07a853c6c32');
+const prior=await fs.readFile(path.join(prev,'draft/FreeMixMultistream.cpp'));assert.equal(sha(prior),'64299b6edbc5d9d3ca9449230c5c6e694b6c77566fa29d508ed4609653020ef4');
+const baseline=await fs.readFile(path.join(prev,'before/FreeMixMultistream.cpp'));
+const edits=JSON.parse(await fs.readFile(path.join(prev,'EDITS.json'),'utf8'));
+const old='if(m!=networkMedia.end()){const auto &state=*m->second;',next='if(m!=networkMedia.end()||n==senderId){const auto &state=m!=networkMedia.end()?*m->second:missingMedia;';
+let source=prior.toString('utf8').replaceAll('\r\n','\n');assert.equal(source.split(old).length-1,1);source=source.replace(old,next);
+await fs.mkdir(path.join(here,'before'));await fs.mkdir(path.join(here,'draft'));
+const draft=Buffer.from(prior.includes(Buffer.from('\r\n'))?source.replaceAll('\n','\r\n'):source);
+await fs.writeFile(path.join(here,'before/FreeMixMultistream.cpp'),baseline);await fs.writeFile(path.join(here,'draft/FreeMixMultistream.cpp'),draft);
+for(const file of ['AGY-RECEIPT.json','FIRST-REVIEW-FAIL.json'])await fs.copyFile(path.join(prev,file),path.join(here,file));
+edits.edits.push({old,new:next,label:'Preserve selected absent sender default fields without map insertion'});edits.previousR2DraftSha256=sha(prior);edits.draftSha256=sha(draft);edits.revision='R3: pure state including selected sender response defaults';
+await fs.writeFile(path.join(here,'EDITS.json'),JSON.stringify(edits,null,2)+'\n');
+await fs.writeFile(path.join(here,'DERIVATION.json'),JSON.stringify({status:'OFFSIDE_ONLY',previousDirectory:prev,previousDraftSha256:sha(prior),changesFromR2:1,reason:'The former state insertion populated default fields in the requested sender row. Preserve those response fields using the empty stack default while leaving both maps unchanged.',baselineHead:edits.head,canonicalTouched:false,nativeApiBuildStarted:false},null,2)+'\n');
+console.log(JSON.stringify({status:'OFFSIDE_R3_DERIVED',edits:edits.edits.length,draftSha256:sha(draft)}));

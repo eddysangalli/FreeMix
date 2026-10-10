@@ -1,0 +1,187 @@
+{
+  "status": "PASS_CPU_SOURCE_MODELS_ONLY",
+  "checks": 40,
+  "results": [
+    {
+      "name": "Pinned baseline, draft and exact eight reversible edits",
+      "status": "PASS"
+    },
+    {
+      "name": "Line endings preserved; independent iterator types",
+      "status": "PASS"
+    },
+    {
+      "name": "Validation precedes any owned map access and existing start/stop body is byte-identical",
+      "status": "PASS"
+    },
+    {
+      "name": "Absent state owns no resources; existing NetworkMedia defaults/destructor unchanged",
+      "status": "PASS"
+    },
+    {
+      "name": "SDK queries occur only on explicit start or before publishing state handler",
+      "status": "PASS"
+    },
+    {
+      "name": "All response serialization unchanged except requested absent sender default selection",
+      "status": "PASS"
+    },
+    {
+      "name": "Retirement sequence and terminal predicate preserved, state branch excludes it",
+      "status": "PASS"
+    },
+    {
+      "name": "Privacy stop, timer watchdog and shutdown/context lifecycle unchanged",
+      "status": "PASS"
+    },
+    {
+      "name": "Talkback only one predicate changed; lease acquisition/ping/stop remain exact",
+      "status": "PASS"
+    },
+    {
+      "name": "Terminal retirement false/false/false/false",
+      "status": "PASS"
+    },
+    {
+      "name": "Terminal retirement false/false/false/true",
+      "status": "PASS"
+    },
+    {
+      "name": "Terminal retirement false/false/true/false",
+      "status": "PASS"
+    },
+    {
+      "name": "Terminal retirement false/false/true/true",
+      "status": "PASS"
+    },
+    {
+      "name": "Terminal retirement false/true/false/false",
+      "status": "PASS"
+    },
+    {
+      "name": "Terminal retirement false/true/false/true",
+      "status": "PASS"
+    },
+    {
+      "name": "Terminal retirement false/true/true/false",
+      "status": "PASS"
+    },
+    {
+      "name": "Terminal retirement false/true/true/true",
+      "status": "PASS"
+    },
+    {
+      "name": "Terminal retirement true/false/false/false",
+      "status": "PASS"
+    },
+    {
+      "name": "Terminal retirement true/false/false/true",
+      "status": "PASS"
+    },
+    {
+      "name": "Terminal retirement true/false/true/false",
+      "status": "PASS"
+    },
+    {
+      "name": "Terminal retirement true/false/true/true",
+      "status": "PASS"
+    },
+    {
+      "name": "Terminal retirement true/true/false/false",
+      "status": "PASS"
+    },
+    {
+      "name": "Terminal retirement true/true/false/true",
+      "status": "PASS"
+    },
+    {
+      "name": "Terminal retirement true/true/true/false",
+      "status": "PASS"
+    },
+    {
+      "name": "Terminal retirement true/true/true/true",
+      "status": "PASS"
+    },
+    {
+      "name": "NDI slot 0: repeated idle state leaves maps empty and preserves selected response defaults",
+      "status": "PASS"
+    },
+    {
+      "name": "NDI slot 1: repeated idle state leaves maps empty and preserves selected response defaults",
+      "status": "PASS"
+    },
+    {
+      "name": "NDI slot 2: repeated idle state leaves maps empty and preserves selected response defaults",
+      "status": "PASS"
+    },
+    {
+      "name": "NDI slot 3: repeated idle state leaves maps empty and preserves selected response defaults",
+      "status": "PASS"
+    },
+    {
+      "name": "OMT slot 0: repeated idle state leaves maps empty and preserves selected response defaults",
+      "status": "PASS"
+    },
+    {
+      "name": "OMT slot 1: repeated idle state leaves maps empty and preserves selected response defaults",
+      "status": "PASS"
+    },
+    {
+      "name": "OMT slot 2: repeated idle state leaves maps empty and preserves selected response defaults",
+      "status": "PASS"
+    },
+    {
+      "name": "OMT slot 3: repeated idle state leaves maps empty and preserves selected response defaults",
+      "status": "PASS"
+    },
+    {
+      "name": "Active and asynchronously stopped media retain identity on state; terminal timer releases only completed resources",
+      "status": "PASS"
+    },
+    {
+      "name": "Talkback pure state at 0 with lease false",
+      "status": "PASS"
+    },
+    {
+      "name": "Talkback pure state at 1499 with lease true",
+      "status": "PASS"
+    },
+    {
+      "name": "Talkback pure state at 1500 with lease true",
+      "status": "PASS"
+    },
+    {
+      "name": "Talkback pure state at 2000 with lease true",
+      "status": "PASS"
+    },
+    {
+      "name": "FreeMixNdiOutput.hpp: Available lazy-load and Connections lookup telemetry identified",
+      "status": "PASS"
+    },
+    {
+      "name": "FreeMixOmtOutput.hpp: Available lazy-load and Connections lookup telemetry identified",
+      "status": "PASS"
+    }
+  ],
+  "evidence": [
+    {
+      "path": "frontend/widgets/FreeMixNdiOutput.hpp",
+      "sha256": "1845a651dbac64987ff1e902285faf50703fec347e22333bab0b83ff21866bd6",
+      "gitBlobSha256": "e82ac177c25d2f03f94e0fccfd5a4e97409fba5c68cf706dc0f09d753debb467",
+      "changed": false
+    },
+    {
+      "path": "frontend/widgets/FreeMixOmtOutput.hpp",
+      "sha256": "2ae0bac37c9367ac9178a582de47d86d2c0c868c05cfee523eb9b17ee75cf6f5",
+      "gitBlobSha256": "f47811b172da270a11d6c8a9815ef92277013c30e10f42425ae1f4e2ba4abe86",
+      "changed": false
+    }
+  ],
+  "compiledNative": false,
+  "loadedSdk": false,
+  "startedNativeApiBrowser": false,
+  "limitations": [
+    "Models and source equality do not prove Qt scheduling, SDK behavior, shutdown timing or hardware/network delivery.",
+    "Connections remains an SDK telemetry query for existing senders; getter purity means no FreeMix output/media state mutation or SDK loader invocation."
+  ]
+}

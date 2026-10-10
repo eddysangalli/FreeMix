@@ -1,0 +1,39 @@
+{
+  "status": "NONEMPTY_GEMINI_CRITIQUE_REVIEWED_RUNTIME_PENDING",
+  "implementationPatchChanged": false,
+  "frozenR3Changed": false,
+  "repeatCall": false,
+  "acceptedSourceReasoning": [
+    "Requested absent sender default fields are preserved without inserting maps; other absent slots retain their previous partial fields.",
+    "Stack defaults remain within the synchronous serialized response scope; inspected code does not retain their addresses.",
+    "Capability cache can be stale after runtime environment changes; explicit start or restart refreshes the observed capability.",
+    "Talkback state no longer forces immediate expiry cleanup; existing watchdog owns it."
+  ],
+  "qualifiedOrRejectedOverstatements": [
+    {
+      "claim": "No conditions of race",
+      "review": "Too broad. GUI serialization is a source-level assumption for these paths, not runtime/TSAN or external SDK callback proof. The unchanged predicate and stop/join ownership must be qualified on actual Native."
+    },
+    {
+      "claim": "Deterministic latency up to 100ms",
+      "review": "Rejected. 100ms is the configured Qt timer interval; GUI stalls, scheduler load or suspended timer can delay a tick. No hard maximum was proved."
+    },
+    {
+      "claim": "Media retirement exclusively by timer",
+      "review": "Incomplete. The patch retains terminal cleanup on explicit non-state start/stop paths; asynchronous completion without a request is observed by timer."
+    },
+    {
+      "claim": "Telemetry and response allocations are purely local",
+      "review": "Response allocations are local. Connections for existing senders calls SDK telemetry under locks; external SDK internal work is not claimed pure or side-effect-free."
+    },
+    {
+      "claim": "No functional break",
+      "review": "Not qualified. SDK eager probe timing, async retirement and watchdog timing still require Root integration/build and real Native regression evidence."
+    }
+  ],
+  "currentProof": "40 CPU/source checks only; Gemini critique is advisory and does not qualify product/Native/hardware.",
+  "receiptSha256": "7bc16736b3c4a01373313d6de6f153616fea9d2227489c999b149d1dc9f5e6a8",
+  "frozenAllowlistSha256": "8c4a1cf8ebfef4e499a2389327d54b022229b6c6562801ef2e842ecd53068b05",
+  "nativeApiBuildStarted": false,
+  "canonicalOperatorHumanProcessesTouched": false
+}

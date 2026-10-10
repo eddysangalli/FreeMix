@@ -1,0 +1,300 @@
+{
+  "status": "R4_PREPARATION_ONLY_NO_RUNTIME",
+  "root": "D:\\DRIVE\\IA\\antigravity\\vmixtwste",
+  "nativeHead": "c990c4a39c445542d363f6950fb8f7f70811034a",
+  "nativeReceipt": "qa-finalizacao/native-build-frozen-c990c4a-configured.json",
+  "nativeFiles": 2085,
+  "files": [
+    {
+      "path": "qa-finalizacao/ftb-native30-reset-barrier-runner-draft6/execution/run-VYAf68/receipt.json",
+      "bytes": 1388887,
+      "sha256": "f7b918630d3deee27109faa0da92a152c258ce1d17e09621a58e92c9d38ed60a"
+    },
+    {
+      "path": "qa-finalizacao/gate6-cursor-offline-analysis.json",
+      "bytes": 3069,
+      "sha256": "bae2086cd4803853d10550c2360bb07fda3a455dbdcff530f7ef0cfb3170b64c"
+    },
+    {
+      "path": "qa-finalizacao/ftb-native30-reset-barrier-runner-draft6/media-reset-contract.mjs",
+      "bytes": 2408,
+      "sha256": "dba7b0ab66dddc6f2d96b14f8c7abdc9eca3e0cfbbd5ef1659412209f0688259"
+    },
+    {
+      "path": "qa-finalizacao/ftb-native30-reset-barrier-runner-draft6/audio-contract.mjs",
+      "bytes": 1719,
+      "sha256": "cae085195a3962f3ecf31a8a11a7a829fcef0048380eb987c44e23b9ab7d0884"
+    },
+    {
+      "path": "qa-finalizacao/ftb-native30-reset-barrier-runner-draft6/scenario.mjs",
+      "bytes": 4558,
+      "sha256": "d4cbfd87e5929526681844b05f7ae68c6452228aba50d2489a3f258f8523af67"
+    },
+    {
+      "path": "qa-finalizacao/ftb-native30-reset-barrier-runner-draft6/png.mjs",
+      "bytes": 2499,
+      "sha256": "9a53a3a8b29339874c1e48b72752a25083c92636d5c348b41b2a74bc6a19e5eb"
+    },
+    {
+      "path": "qa-finalizacao/ftb-native30-reset-barrier-runner-draft6/guards.mjs",
+      "bytes": 6009,
+      "sha256": "578c0aeec3c391a034fc47f27156cfb3f7d6ec6812464e37fe81753a4905c9a0"
+    },
+    {
+      "path": "qa-finalizacao/quality-native32-preparation-r2/own-native-lifecycle.mjs",
+      "bytes": 5536,
+      "sha256": "8f4e65ecca50feeeae07d9c2a502f0748a53e6a589e76a01dea424231198660b"
+    },
+    {
+      "path": "freemix-app/shared/media-playback/media-playback/media-playback.h",
+      "bytes": 3006,
+      "sha256": "2e8132d4ddc49607cb173860ce7c5ee49caf63b7f73b5b604d33cedd2d7083cd"
+    },
+    {
+      "path": "freemix-app/shared/media-playback/media-playback/media.h",
+      "bytes": 3541,
+      "sha256": "3558694b7059a591f02c0970eeecbc03912200d2be6a33e27658c58c4ed6d7c2"
+    },
+    {
+      "path": "freemix-app/shared/media-playback/media-playback/media.c",
+      "bytes": 30913,
+      "sha256": "7817a4d2315582ea1301155855e070baeb32afba265b579d1ba7eeca466ffe2c"
+    },
+    {
+      "path": "freemix-app/plugins/obs-ffmpeg/obs-ffmpeg-source.c",
+      "bytes": 29369,
+      "sha256": "2887d2b7cb51458c3c0446dbddb0e9eb546f4cfdaca247ce40b635036b3ec82e"
+    },
+    {
+      "path": "freemix-app/plugins/obs-websocket/src/requesthandler/RequestHandler_MediaInputs.cpp",
+      "bytes": 7988,
+      "sha256": "680d80b080e9cc0b3570a2e7def8215618b1a86607072f1cd9f1850d774c9546"
+    },
+    {
+      "path": "qa-finalizacao/native-build-frozen-877b214-configured.json",
+      "bytes": 373561,
+      "sha256": "2b28e9a69d84dc5028d3c1b3c38717a0d03175fc06afaa78bfcc0b284e389bf9"
+    },
+    {
+      "path": "FreeMix/ferramentas/obsws.mjs",
+      "bytes": 3188,
+      "sha256": "735a395d1fdd4774b0e44ba8c65926b3601aa5035bf17a8dcb53ca9b907c9cdc"
+    },
+    {
+      "path": "qa-finalizacao/replay-master-four/qa-master-probe.cpp",
+      "bytes": 4299,
+      "sha256": "252fbbc5d65140907c3239be3e7ca1dc2962a64d68081faa161ed1ae7b4d745d"
+    },
+    {
+      "path": "qa-finalizacao/replay-master-four/qa-master-four.dll",
+      "bytes": 23040,
+      "sha256": "0c0ed92fd165ea7a30c45fed5361677f9e0c7037b22944005e4fe9d15c59e2c5"
+    },
+    {
+      "path": "qa-finalizacao/replay-master-four/build-probe.cmd",
+      "bytes": 566,
+      "sha256": "b7ea5be97cef62def30ad2ca507690f6e256ac3de1822fe81f1edf21bc55d454"
+    },
+    {
+      "path": "qa-finalizacao/quality-native32-preparation-r2/PROBE-STATIC-ABI-NATIVE32.json",
+      "bytes": 12397,
+      "sha256": "e3293927a1d490b13638cafeeae020a1bf81e4833c3ce307f311e3a068a1b440"
+    },
+    {
+      "path": "FreeMix/package.json",
+      "bytes": 185,
+      "sha256": "e8dc0228cd1f313fdf9b900a6b7431ed70e4d2cdfe85bfe84e1c7b4492d71a83"
+    },
+    {
+      "path": "FreeMix/node_modules/ws/browser.js",
+      "bytes": 176,
+      "sha256": "010da44addea1d88b2b732540c3f1fd0cbcb28926b96623d4c64222e0ead2d0e"
+    },
+    {
+      "path": "FreeMix/node_modules/ws/index.js",
+      "bytes": 796,
+      "sha256": "924564d5be26d59b9682c4263f68320e48dde7240bd2d1ad17ec305537429dd2"
+    },
+    {
+      "path": "FreeMix/node_modules/ws/lib/buffer-util.js",
+      "bytes": 3056,
+      "sha256": "8b0a45739132f82e25ea13163780abf547ccfe989267f3eb7abb475beec92da3"
+    },
+    {
+      "path": "FreeMix/node_modules/ws/lib/constants.js",
+      "bytes": 503,
+      "sha256": "391e823142b8b370e55a2fd32b022deaf03b8415c56000009674ebc86a0b4f86"
+    },
+    {
+      "path": "FreeMix/node_modules/ws/lib/event-target.js",
+      "bytes": 7321,
+      "sha256": "c45d3c6e12d170c860c0c3f1a050aa0f864d9806632b609a1e607d675aba128c"
+    },
+    {
+      "path": "FreeMix/node_modules/ws/lib/extension.js",
+      "bytes": 6183,
+      "sha256": "852564f0f6b460287043803eae732666fb5610f676874354fc89f06aa4e986ed"
+    },
+    {
+      "path": "FreeMix/node_modules/ws/lib/limiter.js",
+      "bytes": 1034,
+      "sha256": "e0469d4b83f6ba764b15f80e1766b75c136fbff68f048f4c050f0b1c7f065f69"
+    },
+    {
+      "path": "FreeMix/node_modules/ws/lib/permessage-deflate.js",
+      "bytes": 14669,
+      "sha256": "16a91536988a53c23047ee5882392068728a839a244178c3b09b8c54982f58b0"
+    },
+    {
+      "path": "FreeMix/node_modules/ws/lib/receiver.js",
+      "bytes": 17439,
+      "sha256": "a6ada33c9a2d54eaf595824b821ea89ca2c6395f89aa06755c52142148274884"
+    },
+    {
+      "path": "FreeMix/node_modules/ws/lib/sender.js",
+      "bytes": 16886,
+      "sha256": "d0791d30c3defd44dcabbddb879a901c757993fea2c00a7ffea01d53b23b4b77"
+    },
+    {
+      "path": "FreeMix/node_modules/ws/lib/stream.js",
+      "bytes": 4204,
+      "sha256": "a56fcb6e2b152097ee820b6f5410b1f71e59819b45d08d9f8bda588fe39070ec"
+    },
+    {
+      "path": "FreeMix/node_modules/ws/lib/subprotocol.js",
+      "bytes": 1498,
+      "sha256": "be3f6323d6f549568577dcba9004c1479d95c65a7abb0fe0c582875b9fac0b7c"
+    },
+    {
+      "path": "FreeMix/node_modules/ws/lib/validation.js",
+      "bytes": 3903,
+      "sha256": "41ce8e83d0d434132e1704895fedb91f6703a701b42d91c80954ab29b2845593"
+    },
+    {
+      "path": "FreeMix/node_modules/ws/lib/websocket-server.js",
+      "bytes": 17022,
+      "sha256": "6d8dd89a841748c80445fd5fcdb5ba8005369b53cc3525135e11304c8b9c55e5"
+    },
+    {
+      "path": "FreeMix/node_modules/ws/lib/websocket.js",
+      "bytes": 37848,
+      "sha256": "7ccf305925f0cdb74e06b75b4c84de134b1bd771a220ef409b24520def08128f"
+    },
+    {
+      "path": "FreeMix/node_modules/ws/LICENSE",
+      "bytes": 1183,
+      "sha256": "2b29dcfe0d6471f7e8c92c5fb38c9f93edee10330937055440192f1832b1ecef"
+    },
+    {
+      "path": "FreeMix/node_modules/ws/package.json",
+      "bytes": 1829,
+      "sha256": "c1ef91ca04eb4754c011c5f0e7638b5078ff71104fada400c44ac761cf93e0b1"
+    },
+    {
+      "path": "FreeMix/node_modules/ws/README.md",
+      "bytes": 15306,
+      "sha256": "bb979132f3cbff08ce47f36d041e18071f8f534d01f591c0b129ba7abf1e480e"
+    },
+    {
+      "path": "FreeMix/node_modules/ws/wrapper.mjs",
+      "bytes": 554,
+      "sha256": "fe154662301fd558f935f9c217fccbe7a7dac02ff39e648a000589403ff27c7f"
+    },
+    {
+      "path": "qa-finalizacao/ftb-native32-mediaclock-observation-preparation/ALLOWLIST.json",
+      "bytes": 6950,
+      "sha256": "bf5c94f276da5d068aa2514d187472b0a023c62e0433682d718d76cbd291e291"
+    },
+    {
+      "path": "qa-finalizacao/ftb-native32-mediaclock-observation-preparation/root-ftb32-clock-real-result.json",
+      "bytes": 4859,
+      "sha256": "5685d7ff0885b5245d6b26d10f8edbe6f23e25b8079d9b7373be97f6e9d46cf1"
+    },
+    {
+      "path": "qa-finalizacao/ftb-native32-mediaclock-observation-preparation-r2/ALLOWLIST.json",
+      "bytes": 7137,
+      "sha256": "5c51da7effc80687dd453da46d396da5f465cd9e8c1d3c8cc2abf944162c3759"
+    },
+    {
+      "path": "qa-finalizacao/ftb-native32-mediaclock-observation-preparation-r2/root-ftb32-clock-real-result.json",
+      "bytes": 6182,
+      "sha256": "da21010042d0f05d3bd15bff9f78da2f299adef70b9ff5acdf04440334b866ad"
+    },
+    {
+      "path": "qa-finalizacao/ftb-native32-mediaclock-observation-preparation-r2/runner.mjs",
+      "bytes": 17066,
+      "sha256": "b4f076c5baba38487dd562afcb15c69d44ee797e9db48594bdc501c42fe39977"
+    },
+    {
+      "path": "freemix-app/frontend/OBSStudioAPI.cpp",
+      "bytes": 20669,
+      "sha256": "89005e91510232f34be3b59ae974600914a539eb9e79b8a4a148721efcc2ee39"
+    },
+    {
+      "path": "freemix-app/frontend/widgets/OBSBasic_Transitions.cpp",
+      "bytes": 53869,
+      "sha256": "2968ad9de965ea5882a92704e0406d63e1b17437b73d32de854aa8f0954f336d"
+    },
+    {
+      "path": "freemix-app/plugins/obs-websocket/src/requesthandler/RequestHandler_Scenes.cpp",
+      "bytes": 17627,
+      "sha256": "f23e0ca32c0bc2e847dd0222ac0c6a2c6cb5877a4f3a21f66980ef18975c2ce8"
+    },
+    {
+      "path": "freemix-app/plugins/obs-websocket/src/requesthandler/RequestHandler_Sources.cpp",
+      "bytes": 14943,
+      "sha256": "6ff95a7e915b21620160cb4152d6a57024f6f25b320d7826ba7459a1d383a2e1"
+    },
+    {
+      "path": "freemix-app/plugins/obs-websocket/src/requesthandler/RequestHandler_SceneItems.cpp",
+      "bytes": 32725,
+      "sha256": "92ca8028d3b04e5874e465e94dbf649b93effef0af55322c22a44cf0a1ae7dfb"
+    },
+    {
+      "path": "qa-finalizacao/native-build-frozen-c990c4a-configured.json",
+      "sha256": "dd055eb4e327861ce2efd53f702045240dc8240c775459fdaab6242588447807",
+      "bytes": 373561
+    },
+    {
+      "path": "qa-finalizacao/ftb-native32-mediaclock-observation-preparation-r3/ALLOWLIST.json",
+      "sha256": "d3d5529c55872b0bd08ccaf876ec2271e1d81196400bf5d31a06f012f457ee36",
+      "bytes": 4387
+    },
+    {
+      "path": "qa-finalizacao/ftb-native32-mediaclock-observation-preparation-r3/root-ftb32-clock-real-result.json",
+      "sha256": "8db34942c9c52809a18c0b93eaaae71234785f6b62e54883b976cd4c2b3ee505",
+      "bytes": 296360
+    },
+    {
+      "path": "qa-finalizacao/ftb-native32-mediaclock-observation-preparation-r3/observation.mjs",
+      "sha256": "64d704f244d17a015620b80c8e00a87429e51de7cfd93f536b140ffa93f22de5",
+      "bytes": 5803
+    },
+    {
+      "path": "qa-finalizacao/ftb-native32-mediaclock-observation-preparation-r3/runner.mjs",
+      "sha256": "9d61996caacaee442b82c272ffbfafeb9ef8bac653c415e7ce29b344bf224655",
+      "bytes": 17087
+    }
+  ],
+  "fixture": {
+    "sourceFile": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\gate30-draft6-owned-runtime\\FreeMix-QA-FinalMasterParent-OcuBom\\FreeMix-QA-FinalMasterChildD-eATUTi\\FreeMix-QA-Native29 ChildD Studio\\own-motion-stereo-barcode.mp4",
+    "bytes": 19042250,
+    "sha256": "df015e7fadbbaf863b054b7bc8f379617886cc01fd6aecc275f0faff885c7ac9",
+    "fps": {
+      "num": 30000,
+      "den": 1001
+    },
+    "durationFromPreservedReceiptMs": 240006,
+    "recipeSha256": "578c0aeec3c391a034fc47f27156cfb3f7d6ec6812464e37fe81753a4905c9a0",
+    "currentFFprobeNotExecuted": true,
+    "network": false,
+    "microphone": false
+  },
+  "node": {
+    "path": "entregas/FreeMix-Completo-0.1.0-local.20261010060000/runtime/node.exe",
+    "sha256": "ba4e6d110e8c1592a1ecd390f6b05f3da124b13871a5be62b341a07a853c6c32"
+  },
+  "priorExternalPins": 49,
+  "noNativeExecuted": true,
+  "nativeReceiptSha256": "dd055eb4e327861ce2efd53f702045240dc8240c775459fdaab6242588447807"
+}

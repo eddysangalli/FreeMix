@@ -1,0 +1,42 @@
+{
+  "status": "OFFSIDE_REVIEW_READY_RUNTIME_PENDING",
+  "baselineHead": "c990c4a39c445542d363f6950fb8f7f70811034a",
+  "sourcePath": "frontend/widgets/FreeMixMultistream.cpp",
+  "baselineSha256": "efbf13bcfc35387f1ae53558a81d489a705ae7b67394a47dc3a9e4a05fe661ce",
+  "draftSha256": "61df658a8ff6f4cf5252e7689899891564de8284aaf6fa383d9786d37afd8576",
+  "changedProductionSources": 1,
+  "exactEdits": 8,
+  "cpuSourceChecks": 40,
+  "authorship": "Codex fallback after operational agy unavailability",
+  "agyStatus": "AGY_IMPLEMENTATION_UNAVAILABLE_OPERATIONAL_NOT_QUOTA",
+  "preservedFailures": [
+    "FIRST-REVIEW-FAIL.json",
+    "FIRST-MODEL-FAIL.json"
+  ],
+  "networkState": {
+    "mapInsertion": false,
+    "viewOutputAudioCreation": false,
+    "sdkLoaderCalled": false,
+    "retirement": false,
+    "selectedSenderDefaultsPreserved": true,
+    "existingSenderTelemetryRead": true
+  },
+  "sdkProbeTiming": "FinishedLoading before handler publication; explicit start refreshes cached availability",
+  "retirement": "Same terminal predicate/sequence in explicit write request and existing 100ms GUI timer",
+  "talkback": "State calculates only; existing timer owns lease expiry/mute",
+  "nativeBuildApiBrowserStarted": false,
+  "canonicalOperatorGitChanged": false,
+  "humanAgyProcessesTouched": false,
+  "app33ClassifierChanged": false,
+  "qualificationPending": [
+    "Native compile and GUI/thread behavior",
+    "SDK availability/load timing and real start/stop regression",
+    "Timer terminal retirement and talkback watchdog observation",
+    "Cooperative shutdown allocations/crashes"
+  ],
+  "proofLimits": [
+    "No hardware/WAN/audio or pure external SDK internals claim",
+    "No equivalence to App32/R2 real opening PASS",
+    "No automatic integration/classification or current product PASS"
+  ]
+}

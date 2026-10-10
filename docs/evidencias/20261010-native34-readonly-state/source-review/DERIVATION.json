@@ -1,0 +1,10 @@
+{
+  "status": "OFFSIDE_ONLY",
+  "previousDirectory": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\network-state-readonly-offside-r2-20261010",
+  "previousDraftSha256": "64299b6edbc5d9d3ca9449230c5c6e694b6c77566fa29d508ed4609653020ef4",
+  "changesFromR2": 1,
+  "reason": "The former state insertion populated default fields in the requested sender row. Preserve those response fields using the empty stack default while leaving both maps unchanged.",
+  "baselineHead": "c990c4a39c445542d363f6950fb8f7f70811034a",
+  "canonicalTouched": false,
+  "nativeApiBuildStarted": false
+}

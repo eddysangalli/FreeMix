@@ -1,0 +1,10 @@
+{
+  "status": "FAIL_PRESERVED_STATIC_REVIEW",
+  "previousDirectory": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\network-state-readonly-offside-r1-20261010",
+  "previousDraftSha256": "76ae875eaa0991fd796e1866d9b2a0215e7a4ec6600361078b5856664df3ac03",
+  "issue": "One auto declaration attempted to deduce iterators of two different map types.",
+  "location": "RequestNetworkOutput state find/defaults declarations",
+  "detectedWithoutCompilation": true,
+  "canonicalTouched": false,
+  "correction": "Two independent const auto declarations in R2 only."
+}

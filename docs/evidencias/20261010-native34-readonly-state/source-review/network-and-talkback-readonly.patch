@@ -1,0 +1,113 @@
+--- a/frontend/widgets/FreeMixMultistream.cpp
++++ b/frontend/widgets/FreeMixMultistream.cpp
+@@ -122,8 +122,18 @@
+  ~NetworkMedia(){ClearView();}
+ };
+ std::map<std::string, OBSOutputAutoRelease> networkOutputs;
+ std::map<std::string,std::unique_ptr<NetworkMedia>> networkMedia;
++// GUI thread: startup/explicit start probes SDKs; state only reads these flags.
++bool networkOmtSdkAvailable=false,networkNdiSdkAvailable=false;
++void RetireStoppedNetworkMedia(obs_output_t *output,NetworkMedia &media)
++{
++ // Same terminal predicate/sequence as the former request cleanup.
++ if(!(output&&obs_output_active(output))&&(media.view||media.sourceAudio)){
++  if(output)obs_output_set_media(output,obs_get_video(),obs_get_audio());
++  media.ClearView();
++ }
++}
+ void StopNetworkOutputs()
+ {
+  FreeMixCallVideoStop();
+  freemix_omt_hdr::StopAll();
+@@ -181,19 +191,33 @@
+  const int precision=obs_data_has_user_value(request,"precisionBits")?int(obs_data_get_int(request,"precisionBits")):8;const bool hdr=obs_data_get_bool(request,"hdr");
+  const bool requestedFillKey=obs_data_get_bool(request,"fillKey");const std::string requestedKeyName=obs_data_get_string(request,"keyName");
+  QMetaObject::invokeMethod(OBSBasic::Get(),[=](){
+   if(frontendClosing){obs_data_set_bool(response,"success",false);obs_data_set_string(response,"error","frontend is closing");return;}
+-  const bool omtSdk=protocol=="OMT"&&freemix_omt::Available();const bool ndiSdk=protocol=="NDI"&&freemix_ndi::Available();
++  if(action=="start"){
++   if(protocol=="OMT")networkOmtSdkAvailable=freemix_omt::Available();
++   else if(protocol=="NDI")networkNdiSdkAvailable=freemix_ndi::Available();
++  }
++  const bool omtSdk=protocol=="OMT"&&networkOmtSdkAvailable;const bool ndiSdk=protocol=="NDI"&&networkNdiSdkAvailable;
+   const char *type=protocol=="NDI"?(requestedFillKey?"freemix_ndi_output":"ndi_output"):protocol=="OMT"?(senderId>0||!requestedName.empty()||requestedFillKey||precision==16?"freemix_omt_output":"omtoutput"):nullptr;
+   const std::string outputName="FreeMix "+protocol+(senderId==0?" Main Output":" Sender "+std::to_string(senderId+1));std::string error;
+   const std::string senderKey=protocol+":"+std::to_string(senderId);
+   const bool available=type&&OutputLoaded(type)&&(std::string(type)!="freemix_omt_output"||omtSdk);
+   obs_data_set_bool(response,"available",available);obs_data_set_string(response,"outputName",outputName.c_str());
+   obs_data_set_bool(response,"fillKeySupported",omtSdk||ndiSdk);obs_data_set_int(response,"precisionBits",8);obs_data_set_bool(response,"pa16Supported",omtSdk);obs_data_set_bool(response,"hdrSupported",false);
+   obs_data_set_bool(response,"sourceIndependent",true);obs_data_set_bool(response,"audioSourceSelectable",true);obs_data_set_bool(response,"audioTrackSelectable",true);obs_data_set_int(response,"maxAudioTrack",2);obs_data_set_int(response,"sendersPerProtocol",protocol=="NDI"||omtSdk?4:1);obs_data_set_bool(response,"alphaSupported",true);obs_data_set_bool(response,"networkNameEditable",protocol=="NDI"||omtSdk);
+   if(!type||senderId<0||senderId>3||(senderId>0&&protocol=="OMT"&&!omtSdk)||!(action=="state"||action=="start"||action=="stop")){obs_data_set_bool(response,"active",false);obs_data_set_bool(response,"success",false);obs_data_set_string(response,"error","invalid network output request");return;}
+-  OBSOutputAutoRelease &output=networkOutputs[senderKey];
+-  auto &holder=networkMedia[senderKey];if(!holder)holder=std::make_unique<NetworkMedia>();auto &media=*holder;
++  // Empty stack defaults own no view/audio/output and do not alter either map.
++  OBSOutputAutoRelease missingOutput;NetworkMedia missingMedia;
++  const auto outputFound=networkOutputs.find(senderKey);
++  const auto mediaFound=networkMedia.find(senderKey);
++  OBSOutputAutoRelease &output=action=="state"?(outputFound!=networkOutputs.end()?outputFound->second:missingOutput):networkOutputs[senderKey];
++  NetworkMedia *selectedMedia=nullptr;
++  if(action=="state"){
++   if(mediaFound!=networkMedia.end()&&mediaFound->second)selectedMedia=mediaFound->second.get();
++  }else{
++   auto &holder=networkMedia[senderKey];if(!holder)holder=std::make_unique<NetworkMedia>();selectedMedia=holder.get();
++  }
++  auto &media=selectedMedia?*selectedMedia:missingMedia;
+   if(action=="start"&&(hdr||!(precision==8||precision==16)||precision==16&&(!omtSdk||requestedMode!="source"||requestedFillKey)))error="PA16 requires OMT SDR independent source, without Fill+Key; HDR metadata unsupported by SDK";
+   else if(action=="start"&&requestedFillKey&&(!(omtSdk||ndiSdk)||requestedMode!="source"))error="Fill+Key requires official NDI/OMT SDK and independent source";
+   else if(action=="start"&&requestedAlpha&&requestedMode!="source")error="alpha requires an independent source or composition";
+   else if(action=="start"&&!available)error="network backend or runtime not loaded";
+@@ -259,9 +283,9 @@
+    }
+   }else if(error.empty()&&action=="stop"&&output&&obs_output_active(output))obs_output_stop(output);
+   const bool active=output&&obs_output_active(output);
+   // A stopped raw plugin has ended data capture; its view can now be released.
+-  if(!active&&(media.view||media.sourceAudio)){if(output)obs_output_set_media(output,obs_get_video(),obs_get_audio());media.ClearView();}
++  if(action!="state")RetireStoppedNetworkMedia(output,media);
+   obs_data_set_bool(response,"active",active);obs_data_set_string(response,"mode",media.mode.c_str());obs_data_set_string(response,"sourceUuid",media.sourceUuid.c_str());obs_data_set_int(response,"audioTrack",media.audioTrack);obs_data_set_int(response,"width",media.width);obs_data_set_int(response,"height",media.height);
+   obs_data_set_string(response,"audioSourceUuid",media.audioSourceUuid.c_str());
+   obs_data_set_int(response,"precisionBits",media.precisionBits);obs_data_set_bool(response,"fillKey",media.fillKey);obs_data_set_string(response,"keyName",media.keyName.c_str());
+   obs_data_set_int(response,"senderId",senderId);obs_data_set_bool(response,"alpha",media.alpha);obs_data_set_int(response,"capturedFrames",output?int64_t(obs_output_get_total_frames(output)):0);
+@@ -274,9 +298,9 @@
+    else if(auto *module=obs_get_module("omtplugin")){char *path=obs_module_get_config_path(module,"omtplugin.json");if(path){settings=obs_data_create_from_json_file(path);bfree(path);}}
+    const char *name=settings?obs_data_get_string(settings,"nameProperty"):nullptr;obs_data_set_string(response,"networkName",name&&*name?name:"OBS Output");
+   }
+   else obs_data_set_string(response,"networkName","FreeMix Programa");
+-  OBSDataArrayAutoRelease senders=obs_data_array_create();for(int n=0;n<(protocol=="NDI"||omtSdk?4:1);n++){const std::string key=protocol+":"+std::to_string(n);const auto o=networkOutputs.find(key);const auto m=networkMedia.find(key);OBSDataAutoRelease item=obs_data_create();obs_data_set_int(item,"senderId",n);const bool on=o!=networkOutputs.end()&&o->second&&obs_output_active(o->second);obs_data_set_bool(item,"active",on);obs_data_set_bool(item,"outputCreated",o!=networkOutputs.end()&&o->second);obs_data_set_string(item,"backend",o!=networkOutputs.end()&&o->second?obs_output_get_id(o->second):type);if(m!=networkMedia.end()){const auto &state=*m->second;obs_data_set_string(item,"mode",state.mode.c_str());obs_data_set_string(item,"sourceUuid",state.sourceUuid.c_str());obs_data_set_string(item,"networkName",state.name.c_str());obs_data_set_int(item,"audioTrack",state.audioTrack);obs_data_set_string(item,"audioSourceUuid",state.audioSourceUuid.c_str());obs_data_set_bool(item,"alpha",state.alpha);obs_data_set_int(item,"precisionBits",state.precisionBits);obs_data_set_string(item,"groups",state.groups.c_str());obs_data_set_bool(item,"fillKey",state.fillKey);obs_data_set_string(item,"keyName",state.keyName.c_str());obs_data_set_int(item,"width",state.width);obs_data_set_int(item,"height",state.height);}const int connected=o!=networkOutputs.end()?(protocol=="NDI"?freemix_ndi::Connections(o->second):freemix_omt::Connections(o->second)):-1;obs_data_set_int(item,"connections",connected);obs_data_set_string(item,"receiverStatus",connected<0?"unknown":connected>0?"connected":"disconnected");obs_data_set_int(item,"capturedFrames",o!=networkOutputs.end()&&o->second?int64_t(obs_output_get_total_frames(o->second)):0);obs_data_array_push_back(senders,item);}obs_data_set_array(response,"senders",senders);
++  OBSDataArrayAutoRelease senders=obs_data_array_create();for(int n=0;n<(protocol=="NDI"||omtSdk?4:1);n++){const std::string key=protocol+":"+std::to_string(n);const auto o=networkOutputs.find(key);const auto m=networkMedia.find(key);OBSDataAutoRelease item=obs_data_create();obs_data_set_int(item,"senderId",n);const bool on=o!=networkOutputs.end()&&o->second&&obs_output_active(o->second);obs_data_set_bool(item,"active",on);obs_data_set_bool(item,"outputCreated",o!=networkOutputs.end()&&o->second);obs_data_set_string(item,"backend",o!=networkOutputs.end()&&o->second?obs_output_get_id(o->second):type);if(m!=networkMedia.end()||n==senderId){const auto &state=m!=networkMedia.end()?*m->second:missingMedia;obs_data_set_string(item,"mode",state.mode.c_str());obs_data_set_string(item,"sourceUuid",state.sourceUuid.c_str());obs_data_set_string(item,"networkName",state.name.c_str());obs_data_set_int(item,"audioTrack",state.audioTrack);obs_data_set_string(item,"audioSourceUuid",state.audioSourceUuid.c_str());obs_data_set_bool(item,"alpha",state.alpha);obs_data_set_int(item,"precisionBits",state.precisionBits);obs_data_set_string(item,"groups",state.groups.c_str());obs_data_set_bool(item,"fillKey",state.fillKey);obs_data_set_string(item,"keyName",state.keyName.c_str());obs_data_set_int(item,"width",state.width);obs_data_set_int(item,"height",state.height);}const int connected=o!=networkOutputs.end()?(protocol=="NDI"?freemix_ndi::Connections(o->second):freemix_omt::Connections(o->second)):-1;obs_data_set_int(item,"connections",connected);obs_data_set_string(item,"receiverStatus",connected<0?"unknown":connected>0?"connected":"disconnected");obs_data_set_int(item,"capturedFrames",o!=networkOutputs.end()&&o->second?int64_t(obs_output_get_total_frames(o->second)):0);obs_data_array_push_back(senders,item);}obs_data_set_array(response,"senders",senders);
+   obs_data_set_bool(response,"success",error.empty());if(!error.empty())obs_data_set_string(response,"error",error.c_str());
+  },Qt::BlockingQueuedConnection);
+ }
+ 
+@@ -1752,9 +1776,9 @@
+    else talkUntil = now + std::chrono::milliseconds(1500);
+   } else if (action == "stop") { talkLease.clear(); ApplyTalkback(false); }
+   else if (action != "state") success = false;
+   const bool on = !talkLease.empty() && now < talkUntil;
+-  if (!on) { talkLease.clear(); ApplyTalkback(false); }
++  if (action != "state" && !on) { talkLease.clear(); ApplyTalkback(false); }
+   obs_data_set_bool(response, "talking", on);
+   obs_data_set_bool(response, "watchdog", true);
+   obs_data_set_bool(response, "isolated", isolatedTalk);
+   obs_data_set_string(response, "director_uuid", directorUuid.c_str());
+@@ -1778,8 +1802,10 @@
+ 	obs_websocket_vendor_register_request(vendor, "final_program_gate", RequestFinalProgramGate, nullptr);
+ 	obs_websocket_vendor_register_request(vendor, "get_destinations", RequestGet, nullptr);
+ 	obs_websocket_vendor_register_request(vendor, "set_destinations", RequestSet, nullptr);
+ 	obs_websocket_vendor_register_request(vendor, "control_destination", RequestControlDestination, nullptr);
++ // Probe before publishing network_output: reading its state never loads SDKs.
++ networkOmtSdkAvailable=freemix_omt::Available();networkNdiSdkAvailable=freemix_ndi::Available();
+  obs_websocket_vendor_register_request(vendor, "network_output", RequestNetworkOutput, nullptr);
+  obs_websocket_vendor_register_request(vendor, "omt_hdr_output", RequestOmtHdrOutput, nullptr);
+  obs_websocket_vendor_register_request(vendor,"srt_hdr_output",RequestSrtHdrOutput,nullptr);
+  obs_websocket_vendor_register_request(vendor,"sdi_output",RequestSdiOutput,nullptr);
+@@ -1812,8 +1838,10 @@
+   if(frontendClosing)return;
+   FreeMixCallAudioTick();
+   for(auto &d:destinations)if(d.sourceAudio&&!d.sourceAudio->Valid())Fail(d,"independent audio bus became private, removed or globally routed");
+   for(auto &entry:networkMedia)if(entry.second->sourceAudio&&!entry.second->sourceAudio->Valid()){auto found=networkOutputs.find(entry.first);if(found!=networkOutputs.end()&&found->second&&obs_output_active(found->second))obs_output_stop(found->second);}
++  // Retire completed asynchronous stops even when no browser polls state.
++  for(auto &entry:networkMedia)if(entry.second){const auto found=networkOutputs.find(entry.first);RetireStoppedNetworkMedia(found!=networkOutputs.end()?found->second.Get():nullptr,*entry.second);}
+   for(auto &d : destinations) if(d.view) for(uint32_t channel=1;channel<=8;channel++) {
+    OBSSourceAutoRelease overlay=(d.overlaysMask & (1u<<(channel-1)))&&d.overlayChannels[channel-1]?obs_get_output_source(d.overlayChannels[channel-1]):nullptr;
+    if(overlay && IsPrivateSource(overlay)) { Fail(d,"overlay contains private director source"); break; }
+    if(!UpdateOutputOverlay(d,channel,overlay)){Fail(d,"could not frame output overlay");break;}

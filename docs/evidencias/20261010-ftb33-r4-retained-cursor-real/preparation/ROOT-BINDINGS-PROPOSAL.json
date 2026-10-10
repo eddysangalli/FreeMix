@@ -1,0 +1,15 @@
+{
+  "status": "PENDING_ROOT_REVIEW_NOT_AUTHORIZED",
+  "rootReviewed": false,
+  "requiredStatusAfterReview": "ROOT_REVIEWED_OWN_FTB33_R4_RETAINED_CURSOR",
+  "ownRoot": null,
+  "marker": null,
+  "port": null,
+  "nodeExecutable": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\entregas\\FreeMix-Completo-0.1.0-local.20261010060000\\runtime\\node.exe",
+  "nodeSha256": "ba4e6d110e8c1592a1ecd390f6b05f3da124b13871a5be62b341a07a853c6c32",
+  "resultName": "root-ftb33-clock-real-result.json",
+  "requiredParent": "own-runtime",
+  "requiredRootPattern": "FreeMix-QA-FTBClock33-[a-zA-Z0-9-]+",
+  "requiredMarkerOwner": "ftb-native33-retained-cursor-observation",
+  "noOwnProvisioningPerformed": true
+}

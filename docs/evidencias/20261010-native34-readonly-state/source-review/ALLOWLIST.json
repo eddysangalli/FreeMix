@@ -1,0 +1,100 @@
+{
+  "status": "FROZEN_OFFSIDE_ROOT_REVIEW_ONLY",
+  "baselineHead": "c990c4a39c445542d363f6950fb8f7f70811034a",
+  "sourcePath": "frontend/widgets/FreeMixMultistream.cpp",
+  "productionBeforeSha256": "efbf13bcfc35387f1ae53558a81d489a705ae7b67394a47dc3a9e4a05fe661ce",
+  "productionAfterSha256": "61df658a8ff6f4cf5252e7689899891564de8284aaf6fa383d9786d37afd8576",
+  "files": [
+    {
+      "path": "derive.mjs",
+      "bytes": 2414,
+      "sha256": "40319cbb0db2d8d1843ee8c6b14702f7b179ad72b5a40d0ddbfcd3db8cd3cd7a"
+    },
+    {
+      "path": "test.mjs",
+      "bytes": 11784,
+      "sha256": "e3364717c62eaf08578a2cead1dd14847bacccb6f22294cb72dfdc45e7678b5e"
+    },
+    {
+      "path": "make-patch.py",
+      "bytes": 688,
+      "sha256": "e030e779f0ff679a3edb0186c0c2ff69b56b07b8eb44051378f8102592596b4e"
+    },
+    {
+      "path": "freeze.mjs",
+      "bytes": 3534,
+      "sha256": "6027dcaaeef88177959ebe0a939b65fad654722648ee33df32b16750d7c725c1"
+    },
+    {
+      "path": "README.md",
+      "bytes": 3615,
+      "sha256": "ee92af6c737a3627a8f1f209b18461381b963fbf50cb8dee8ecb8ec9d94148d1"
+    },
+    {
+      "path": "REPORT.json",
+      "bytes": 1808,
+      "sha256": "2589bcd8269611d53f1473d11d7356a2a9d8a907c7e456d8c1a0a28dcea9a0f7"
+    },
+    {
+      "path": "EDITS.json",
+      "bytes": 5354,
+      "sha256": "c8b2a791d7d5ea11c0facfc1a50a74a08e3315dbdddbf2314e8d71564fce98a2"
+    },
+    {
+      "path": "DERIVATION.json",
+      "bytes": 587,
+      "sha256": "eb2128d9e8a8504fb939cd6b4b9067ad6fa06ada26317050383d6206da9379a3"
+    },
+    {
+      "path": "AGY-RECEIPT.json",
+      "bytes": 2424,
+      "sha256": "4ce1f2adb25a2b9128696a1260f53cdf1aa003890972c150d3908a4d8eabea46"
+    },
+    {
+      "path": "FIRST-REVIEW-FAIL.json",
+      "bytes": 566,
+      "sha256": "63d6e8e2b7f41be7e2e882b3a1107dbd58a55e99b487d6f75dc0bd8bec9674f1"
+    },
+    {
+      "path": "FIRST-MODEL-FAIL.json",
+      "bytes": 308,
+      "sha256": "a1df0bc48141782b532905e12823ffc26d289e15f150765d41ad3cccd1ce9f87"
+    },
+    {
+      "path": "FIRST-MODEL-FAIL-test.mjs",
+      "bytes": 11623,
+      "sha256": "7ef67377e52bc4634be8e9f919d3f7bfa0ebc700796bcec77cf7523170fdfa5b"
+    },
+    {
+      "path": "TEST-RESULT.json",
+      "bytes": 5669,
+      "sha256": "2ace0214aad5020af9e16e148b84fcb2948bff018eb26b6c148f975b947e0760"
+    },
+    {
+      "path": "before/FreeMixMultistream.cpp",
+      "bytes": 122928,
+      "sha256": "efbf13bcfc35387f1ae53558a81d489a705ae7b67394a47dc3a9e4a05fe661ce"
+    },
+    {
+      "path": "draft/FreeMixMultistream.cpp",
+      "bytes": 124583,
+      "sha256": "61df658a8ff6f4cf5252e7689899891564de8284aaf6fa383d9786d37afd8576"
+    },
+    {
+      "path": "network-and-talkback-readonly.patch",
+      "bytes": 13240,
+      "sha256": "84315c89f5d02c2c59da437b74ae8805ee83d358f4a8428fc42434d939427a74"
+    },
+    {
+      "path": "public-source-evidence/FreeMixNdiOutput.hpp",
+      "bytes": 8107,
+      "sha256": "1845a651dbac64987ff1e902285faf50703fec347e22333bab0b83ff21866bd6"
+    },
+    {
+      "path": "public-source-evidence/FreeMixOmtOutput.hpp",
+      "bytes": 9056,
+      "sha256": "2ae0bac37c9367ac9178a582de47d86d2c0c868c05cfee523eb9b17ee75cf6f5"
+    }
+  ],
+  "exportPolicy": "Text/public source only; no provider rawlogs, private configs, media, tokens, runtime or binaries."
+}

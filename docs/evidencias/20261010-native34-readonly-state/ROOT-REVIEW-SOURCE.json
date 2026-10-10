@@ -1,0 +1,17 @@
+{
+  "status": "ROOT_SOURCE_REVIEW_40_MODELS_PASS_RUNTIME_PENDING",
+  "allowlistSha256": "8c4a1cf8ebfef4e499a2389327d54b022229b6c6562801ef2e842ecd53068b05",
+  "source": "frontend/widgets/FreeMixMultistream.cpp",
+  "beforeSha256": "efbf13bcfc35387f1ae53558a81d489a705ae7b67394a47dc3a9e4a05fe661ce",
+  "afterSha256": "61df658a8ff6f4cf5252e7689899891564de8284aaf6fa383d9786d37afd8576",
+  "sourceChanges": 1,
+  "edits": 8,
+  "RootFullPatchRead": true,
+  "RootRequestAndSdkAndTimerRead": true,
+  "models": 40,
+  "NativeStarted": false,
+  "canonicalChanged": false,
+  "SDKLoadingTimingChanged": true,
+  "SDKTelemetryInternalPurityProven": false,
+  "QtTimerHardDeadlineProven": false
+}

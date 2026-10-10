@@ -1,0 +1,18 @@
+### Revisão de Riscos (Excertos C++)
+
+#### 1) Regressão/Race em Timer/Stop e Cache de SDK
+* **Condições de Corrida:** Inexistentes. O timer de 100ms, `StopNetworkOutputs` e as requisições (`BlockingQueuedConnection`) são estritamente serializados na GUI-thread do Qt sob a mesma posse de contexto.
+* **Aposentadoria de Mídia:** Retirar `RetireStoppedNetworkMedia` de `action=="state"` transfere a liberação de views/áudio inativos exclusivamente para o timer periódrico, adicionando uma latência determinística de até 100ms para desalocação de views órfãs, sem quebra funcional.
+* **Premissa a Qualificar:** Assume-se que a disponibilidade das bibliotecas dinâmicas do SDK é imutável. Como a verificação ocorre apenas no `RegisterVendor` e em `action=="start"`, alterações externas no ambiente em tempo de execução (ex.: DLL removida ou registrada a quente) deixarão o `state` com capabilities defasadas até o próximo `start` ou reinício da aplicação.
+
+#### 2) Preservação de Campos/Destinos sem Mutação de Mapas
+* **Sem Efeitos Colaterais:** Em `action=="state"`, o uso estrito de `find()` impede a criação inadvertida de entradas via `operator[]` em `networkOutputs` e `networkMedia`.
+* **Mapeamento de Campos:** A paridade é preservada. Para o slot requisitado ausente (`n == senderId`), o preenchimento de campos padrão utiliza a referência temporária `missingMedia` em stack, reproduzindo exatamente o payload default que antes era gerado pela inserção implícita. Slots ausentes não consultados (`n != senderId`) mantêm a omissão/linhas parciais originais.
+* **Isolamento de Estado:** Telemetria externa (Connections lidas sob mutex do registry) e alocações de buffers/stack da resposta JSON são puramente locais e desacopladas do estado interno do engine.
+
+#### 3) Tempo de Vida, Parada Assíncrona e Talkback vs Watchdog
+* **Tempo de Vida de Defaults:** `missingOutput` e `missingMedia` são instâncias automáticas na stack do handler síncrono. Como a serialização ocorre no mesmo frame/escopo de chamada, não há escape de ponteiro ou risco de *dangling reference*.
+* **Divergência de Comportamento no Talkback:**
+  * *Comportamento original:* Qualquer requisição (inclusive leituras de `state`) executada com `!on` forçava a limpeza imediata do lease (`lease.clear(); ApplyTalkback(false);`).
+  * *Novo comportamento:* O branch `action!="state"&&!on` desativa esse efeito colateral em leituras.
+  * *Impacto:* Se uma lease expirar enquanto `state` é chamado, a desativação de hardware/áudio do talkback não ocorre imediatamente no request e fica postergada em até 100ms até o próximo disparo do watchdog timer. Não há data race, mas há uma alteração observável no tempo de resposta da desativação.

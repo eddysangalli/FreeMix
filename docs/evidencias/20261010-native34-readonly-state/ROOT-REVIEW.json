@@ -1,0 +1,33 @@
+{
+  "status": "ROOT_NATIVE34_BUILD_RECONSTRUCTION_PASS_READONLY_REAL_PENDING",
+  "head": "a73b97cefd8904191d73dae8693f425fac02e897",
+  "version": "0.1.0-local.20261010171617",
+  "fullFrozenFilesVerified": 2085,
+  "parentPatches": 34,
+  "submodules": 3,
+  "sourceSnapshots": 231,
+  "reconstruction": {
+    "status": "PASS",
+    "checkOnly": true,
+    "networkStarted": false,
+    "parentPatches": 34,
+    "submodules": 3
+  },
+  "RootModels": 40,
+  "changes": [
+    "network_output state uses find/stack defaults instead of creating map entries",
+    "SDK probe on startup and explicit start; state reads cached capability",
+    "terminal retirement kept on writes and added to existing GUI timer",
+    "talkback state calculates without applying mute; watchdog remains"
+  ],
+  "Native34Started": false,
+  "sourceInterfaceApp34Qualified": false,
+  "SDKStartStopQualified": false,
+  "timerHardDeadlineProven": false,
+  "operatorTouched": false,
+  "newInstallerApproved": false,
+  "selectedSetupChanged": false,
+  "antigravityImplementationFallback": "Tool denied or incomplete bounded headless output; not quota claim",
+  "antigravityCompactReview": "Nonempty54.5s reviewed with scheduler/race limits",
+  "at": "2026-10-10T17:19:22.927Z"
+}

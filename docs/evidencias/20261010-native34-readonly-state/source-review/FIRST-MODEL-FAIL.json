@@ -1,0 +1,11 @@
+{
+  "baselineCRLF": 0,
+  "baselineLF": 1968,
+  "status": "FAIL_PRESERVED_MODEL_ORACLE",
+  "sourceChanged": false,
+  "callsite": "test.mjs:11",
+  "draftCRLF": 0,
+  "exitCode": 1,
+  "issue": "Model assumed CRLF while pinned Native33 source uses LF; draft correctly preserves LF.",
+  "draftLF": 1996
+}

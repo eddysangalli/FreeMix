@@ -1,8 +1,8 @@
 {
   "status": "PASS",
   "base": "ba2f32bdf791005443988a4955e963663e16b1ed",
-  "head": "c990c4a39c445542d363f6950fb8f7f70811034a",
-  "resultTree": "0e75a5cebabd8587940a8f48829b2e24d60e362c",
+  "head": "a73b97cefd8904191d73dae8693f425fac02e897",
+  "resultTree": "2c675aa471e8b72c4e1a026f8831a7c4a1b99caa",
   "submodules": [
     {
       "path": "deps/libdshowcapture/src",
@@ -302,8 +302,8 @@
     },
     {
       "path": "frontend/widgets/FreeMixMultistream.cpp",
-      "bytes": 122928,
-      "sha256": "efbf13bcfc35387f1ae53558a81d489a705ae7b67394a47dc3a9e4a05fe661ce"
+      "bytes": 124583,
+      "sha256": "61df658a8ff6f4cf5252e7689899891564de8284aaf6fa383d9786d37afd8576"
     },
     {
       "path": "frontend/widgets/FreeMixMultistream.hpp",

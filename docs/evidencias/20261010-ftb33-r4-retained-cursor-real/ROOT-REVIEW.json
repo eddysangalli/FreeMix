@@ -1,0 +1,90 @@
+{
+  "status": "ROOT_NATIVE33_REAL_RESET_CURSOR_PASS_UNCHANGED_CRITERION",
+  "at": "2026-10-10T17:16:21.331Z",
+  "head": "c990c4a39c445542d363f6950fb8f7f70811034a",
+  "originalReceiptSha256": "d79fba1de17d5a41290946e4aa61a1ad68d850b3f01c1565fb2e2b89187641b4",
+  "legacyResetPass": true,
+  "fullFTBPass": false,
+  "all196SamplesPreserved": true,
+  "old195SamplesFailPreserved": true,
+  "rootActualFourPicturesRead": true,
+  "barcodes": [
+    44,
+    11,
+    41,
+    116
+  ],
+  "PCM": "PASS_ORIGINAL_TONE_INTERIOR_CRITERIA",
+  "closedPid": 27684,
+  "cimAbsent": true,
+  "cleanup": {
+    "success": true,
+    "forced": false,
+    "shutdownRequested": true,
+    "shutdownAccepted": true,
+    "identityConfirmed": true,
+    "connectionClosed": true,
+    "preservedProcess": null,
+    "outputs": [
+      {
+        "outputActive": false,
+        "outputFlags": {
+          "OBS_OUTPUT_AUDIO": true,
+          "OBS_OUTPUT_ENCODED": true,
+          "OBS_OUTPUT_MULTI_TRACK": true,
+          "OBS_OUTPUT_SERVICE": false,
+          "OBS_OUTPUT_VIDEO": true
+        },
+        "outputHeight": 0,
+        "outputKind": "mp4_output",
+        "outputName": "simple_file_output",
+        "outputWidth": 0
+      },
+      {
+        "outputActive": false,
+        "outputFlags": {
+          "OBS_OUTPUT_AUDIO": false,
+          "OBS_OUTPUT_ENCODED": false,
+          "OBS_OUTPUT_MULTI_TRACK": false,
+          "OBS_OUTPUT_SERVICE": false,
+          "OBS_OUTPUT_VIDEO": true
+        },
+        "outputHeight": 720,
+        "outputKind": "virtualcam_output",
+        "outputName": "virtualcam_output",
+        "outputWidth": 1280
+      }
+    ],
+    "shutdown": {
+      "success": true
+    },
+    "exit": {
+      "code": 0,
+      "signal": null
+    },
+    "connectionPending": false
+  },
+  "afterPins": {
+    "NativeSource": 2085,
+    "NativeDestination": 2085,
+    "texts": 22,
+    "external": 54,
+    "extraDestination": 3,
+    "fixtureSource": true,
+    "match": true
+  },
+  "logSummary": {
+    "sha256": "f4b12e3d02e298809a6b06f1224d3cf1d8d58272e51984d5f72b4c0d9de7be30",
+    "counts": [
+      0
+    ],
+    "crashMarkers": 0,
+    "crashFiles": 0,
+    "rawCopied": false
+  },
+  "operatorTouched": false,
+  "newInstallerApproved": false,
+  "physicalDisplayProven": false,
+  "sourceAudioPTSProven": false,
+  "privacyOwnWsSecretAbsent": true
+}

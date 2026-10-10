@@ -1,8 +1,8 @@
 {
   "upstream": "https://github.com/obsproject/obs-studio.git",
   "base": "ba2f32bdf791005443988a4955e963663e16b1ed",
-  "head": "c990c4a39c445542d363f6950fb8f7f70811034a",
-  "version": "0.1.0-local.20261010161000",
+  "head": "a73b97cefd8904191d73dae8693f425fac02e897",
+  "version": "0.1.0-local.20261010171617",
   "patches": [
     {
       "path": "0001-feat-branding-replace-OBS-identity-with-FreeMix-Stud.patch",
@@ -135,11 +135,15 @@
     {
       "path": "0033-Retain-valid-submitted-media-cursor-across-decoder-r.patch",
       "sha256": "f9464e02fa06265880a81dd2b15bd152d7fbcfb5f86b723d132be0a53f5eded8"
+    },
+    {
+      "path": "0034-Keep-network-and-talkback-state-queries-free-of-outp.patch",
+      "sha256": "dfb0da7ca389434e34695e2a3319461277884fe2bfd728ce3aac5fa35a6c4157"
     }
   ],
-  "sourceUpdatedAt": "2026-10-10T16:06:52.249Z",
+  "sourceUpdatedAt": "2026-10-10T17:17:26.904Z",
   "sourceSchema": 2,
-  "tree": "0e75a5cebabd8587940a8f48829b2e24d60e362c",
+  "tree": "2c675aa471e8b72c4e1a026f8831a7c4a1b99caa",
   "submodules": [
     {
       "path": "deps/libdshowcapture/src",

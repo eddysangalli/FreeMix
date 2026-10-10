@@ -1,0 +1,54 @@
+{
+  "head": "c990c4a39c445542d363f6950fb8f7f70811034a",
+  "sourcePath": "frontend/widgets/FreeMixMultistream.cpp",
+  "baselineRawSha256": "efbf13bcfc35387f1ae53558a81d489a705ae7b67394a47dc3a9e4a05fe661ce",
+  "gitBlobSha256": "efbf13bcfc35387f1ae53558a81d489a705ae7b67394a47dc3a9e4a05fe661ce",
+  "draftSha256": "61df658a8ff6f4cf5252e7689899891564de8284aaf6fa383d9786d37afd8576",
+  "lineEndingsPreserved": true,
+  "author": "Codex fallback after operational agy unavailability",
+  "edits": [
+    {
+      "old": "std::map<std::string, OBSOutputAutoRelease> networkOutputs;\nstd::map<std::string,std::unique_ptr<NetworkMedia>> networkMedia;",
+      "new": "std::map<std::string, OBSOutputAutoRelease> networkOutputs;\nstd::map<std::string,std::unique_ptr<NetworkMedia>> networkMedia;\n// GUI thread: startup/explicit start probes SDKs; state only reads these flags.\nbool networkOmtSdkAvailable=false,networkNdiSdkAvailable=false;\nvoid RetireStoppedNetworkMedia(obs_output_t *output,NetworkMedia &media)\n{\n // Same terminal predicate/sequence as the former request cleanup.\n if(!(output&&obs_output_active(output))&&(media.view||media.sourceAudio)){\n  if(output)obs_output_set_media(output,obs_get_video(),obs_get_audio());\n  media.ClearView();\n }\n}",
+      "label": "SDK cache and existing retirement factored"
+    },
+    {
+      "old": "  const bool omtSdk=protocol==\"OMT\"&&freemix_omt::Available();const bool ndiSdk=protocol==\"NDI\"&&freemix_ndi::Available();",
+      "new": "  if(action==\"start\"){\n   if(protocol==\"OMT\")networkOmtSdkAvailable=freemix_omt::Available();\n   else if(protocol==\"NDI\")networkNdiSdkAvailable=freemix_ndi::Available();\n  }\n  const bool omtSdk=protocol==\"OMT\"&&networkOmtSdkAvailable;const bool ndiSdk=protocol==\"NDI\"&&networkNdiSdkAvailable;",
+      "label": "SDK probes outside state"
+    },
+    {
+      "old": "  OBSOutputAutoRelease &output=networkOutputs[senderKey];\n  auto &holder=networkMedia[senderKey];if(!holder)holder=std::make_unique<NetworkMedia>();auto &media=*holder;",
+      "new": "  // Empty stack defaults own no view/audio/output and do not alter either map.\n  OBSOutputAutoRelease missingOutput;NetworkMedia missingMedia;\n  const auto outputFound=networkOutputs.find(senderKey);\n  const auto mediaFound=networkMedia.find(senderKey);\n  OBSOutputAutoRelease &output=action==\"state\"?(outputFound!=networkOutputs.end()?outputFound->second:missingOutput):networkOutputs[senderKey];\n  NetworkMedia *selectedMedia=nullptr;\n  if(action==\"state\"){\n   if(mediaFound!=networkMedia.end()&&mediaFound->second)selectedMedia=mediaFound->second.get();\n  }else{\n   auto &holder=networkMedia[senderKey];if(!holder)holder=std::make_unique<NetworkMedia>();selectedMedia=holder.get();\n  }\n  auto &media=selectedMedia?*selectedMedia:missingMedia;",
+      "label": "State find/defaults; mutations keep map ownership"
+    },
+    {
+      "old": "  if(!active&&(media.view||media.sourceAudio)){if(output)obs_output_set_media(output,obs_get_video(),obs_get_audio());media.ClearView();}",
+      "new": "  if(action!=\"state\")RetireStoppedNetworkMedia(output,media);",
+      "label": "No retirement on state"
+    },
+    {
+      "old": " obs_websocket_vendor_register_request(vendor, \"network_output\", RequestNetworkOutput, nullptr);",
+      "new": " // Probe before publishing network_output: reading its state never loads SDKs.\n networkOmtSdkAvailable=freemix_omt::Available();networkNdiSdkAvailable=freemix_ndi::Available();\n obs_websocket_vendor_register_request(vendor, \"network_output\", RequestNetworkOutput, nullptr);",
+      "label": "Startup capability probes"
+    },
+    {
+      "old": "  for(auto &entry:networkMedia)if(entry.second->sourceAudio&&!entry.second->sourceAudio->Valid()){auto found=networkOutputs.find(entry.first);if(found!=networkOutputs.end()&&found->second&&obs_output_active(found->second))obs_output_stop(found->second);}",
+      "new": "  for(auto &entry:networkMedia)if(entry.second->sourceAudio&&!entry.second->sourceAudio->Valid()){auto found=networkOutputs.find(entry.first);if(found!=networkOutputs.end()&&found->second&&obs_output_active(found->second))obs_output_stop(found->second);}\n  // Retire completed asynchronous stops even when no browser polls state.\n  for(auto &entry:networkMedia)if(entry.second){const auto found=networkOutputs.find(entry.first);RetireStoppedNetworkMedia(found!=networkOutputs.end()?found->second.Get():nullptr,*entry.second);}",
+      "label": "Timer retirement without polls, privacy stop unchanged"
+    },
+    {
+      "old": "  if (!on) { talkLease.clear(); ApplyTalkback(false); }",
+      "new": "  if (action != \"state\" && !on) { talkLease.clear(); ApplyTalkback(false); }",
+      "label": "Talkback state getter preserves existing100ms watchdog"
+    },
+    {
+      "old": "if(m!=networkMedia.end()){const auto &state=*m->second;",
+      "new": "if(m!=networkMedia.end()||n==senderId){const auto &state=m!=networkMedia.end()?*m->second:missingMedia;",
+      "label": "Preserve selected absent sender default fields without map insertion"
+    }
+  ],
+  "previousDraftSha256": "76ae875eaa0991fd796e1866d9b2a0215e7a4ec6600361078b5856664df3ac03",
+  "revision": "R3: pure state including selected sender response defaults",
+  "previousR2DraftSha256": "64299b6edbc5d9d3ca9449230c5c6e694b6c77566fa29d508ed4609653020ef4"
+}

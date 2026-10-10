@@ -1,0 +1,137 @@
+[
+  {
+    "path": "FULL-NATIVE34-BUILD-FREEZE.json",
+    "bytes": 373561,
+    "sha256": "b2f8be65f5452b156846fc4cee1307f2b1f493918c608313c236609449ce84d2"
+  },
+  {
+    "path": "ROOT-INTEGRATION.json",
+    "bytes": 883,
+    "sha256": "f51dff41ce57abdd5aaeda424932037fe93293996db09d997b33e72c2513ae06"
+  },
+  {
+    "path": "ROOT-REVIEW-SOURCE.json",
+    "bytes": 678,
+    "sha256": "d82d15ffc7f6ff24fae03c1f1a752c2d764c9caac54ae511419cc14c4c34e6cd"
+  },
+  {
+    "path": "ROOT-REVIEW-INTEGRATE.mjs",
+    "bytes": 4101,
+    "sha256": "102fd518441bcec4255f0b4ff4fa5656055b77da4027bdd8172e312d0d3da80e"
+  },
+  {
+    "path": "ROOT-40-MODELS.json",
+    "bytes": 5669,
+    "sha256": "2ace0214aad5020af9e16e148b84fcb2948bff018eb26b6c148f975b947e0760"
+  },
+  {
+    "path": "source-review/derive.mjs",
+    "bytes": 2414,
+    "sha256": "40319cbb0db2d8d1843ee8c6b14702f7b179ad72b5a40d0ddbfcd3db8cd3cd7a"
+  },
+  {
+    "path": "source-review/test.mjs",
+    "bytes": 11784,
+    "sha256": "e3364717c62eaf08578a2cead1dd14847bacccb6f22294cb72dfdc45e7678b5e"
+  },
+  {
+    "path": "source-review/make-patch.py",
+    "bytes": 688,
+    "sha256": "e030e779f0ff679a3edb0186c0c2ff69b56b07b8eb44051378f8102592596b4e"
+  },
+  {
+    "path": "source-review/freeze.mjs",
+    "bytes": 3534,
+    "sha256": "6027dcaaeef88177959ebe0a939b65fad654722648ee33df32b16750d7c725c1"
+  },
+  {
+    "path": "source-review/README.md",
+    "bytes": 3615,
+    "sha256": "ee92af6c737a3627a8f1f209b18461381b963fbf50cb8dee8ecb8ec9d94148d1"
+  },
+  {
+    "path": "source-review/REPORT.json",
+    "bytes": 1808,
+    "sha256": "2589bcd8269611d53f1473d11d7356a2a9d8a907c7e456d8c1a0a28dcea9a0f7"
+  },
+  {
+    "path": "source-review/EDITS.json",
+    "bytes": 5354,
+    "sha256": "c8b2a791d7d5ea11c0facfc1a50a74a08e3315dbdddbf2314e8d71564fce98a2"
+  },
+  {
+    "path": "source-review/DERIVATION.json",
+    "bytes": 587,
+    "sha256": "eb2128d9e8a8504fb939cd6b4b9067ad6fa06ada26317050383d6206da9379a3"
+  },
+  {
+    "path": "source-review/AGY-RECEIPT.json",
+    "bytes": 2424,
+    "sha256": "4ce1f2adb25a2b9128696a1260f53cdf1aa003890972c150d3908a4d8eabea46"
+  },
+  {
+    "path": "source-review/FIRST-REVIEW-FAIL.json",
+    "bytes": 566,
+    "sha256": "63d6e8e2b7f41be7e2e882b3a1107dbd58a55e99b487d6f75dc0bd8bec9674f1"
+  },
+  {
+    "path": "source-review/FIRST-MODEL-FAIL.json",
+    "bytes": 308,
+    "sha256": "a1df0bc48141782b532905e12823ffc26d289e15f150765d41ad3cccd1ce9f87"
+  },
+  {
+    "path": "source-review/FIRST-MODEL-FAIL-test.mjs",
+    "bytes": 11623,
+    "sha256": "7ef67377e52bc4634be8e9f919d3f7bfa0ebc700796bcec77cf7523170fdfa5b"
+  },
+  {
+    "path": "source-review/TEST-RESULT.json",
+    "bytes": 5669,
+    "sha256": "2ace0214aad5020af9e16e148b84fcb2948bff018eb26b6c148f975b947e0760"
+  },
+  {
+    "path": "source-review/before/FreeMixMultistream.cpp",
+    "bytes": 122928,
+    "sha256": "efbf13bcfc35387f1ae53558a81d489a705ae7b67394a47dc3a9e4a05fe661ce"
+  },
+  {
+    "path": "source-review/draft/FreeMixMultistream.cpp",
+    "bytes": 124583,
+    "sha256": "61df658a8ff6f4cf5252e7689899891564de8284aaf6fa383d9786d37afd8576"
+  },
+  {
+    "path": "source-review/network-and-talkback-readonly.patch",
+    "bytes": 13240,
+    "sha256": "84315c89f5d02c2c59da437b74ae8805ee83d358f4a8428fc42434d939427a74"
+  },
+  {
+    "path": "source-review/public-source-evidence/FreeMixNdiOutput.hpp",
+    "bytes": 8107,
+    "sha256": "1845a651dbac64987ff1e902285faf50703fec347e22333bab0b83ff21866bd6"
+  },
+  {
+    "path": "source-review/public-source-evidence/FreeMixOmtOutput.hpp",
+    "bytes": 9056,
+    "sha256": "2ae0bac37c9367ac9178a582de47d86d2c0c868c05cfee523eb9b17ee75cf6f5"
+  },
+  {
+    "path": "source-review/ALLOWLIST.json",
+    "bytes": 3296,
+    "sha256": "8c4a1cf8ebfef4e499a2389327d54b022229b6c6562801ef2e842ecd53068b05"
+  },
+  {
+    "path": "gemini-review/RECEIPT.json",
+    "bytes": 1016,
+    "sha256": "7bc16736b3c4a01373313d6de6f153616fea9d2227489c999b149d1dc9f5e6a8"
+  },
+  {
+    "path": "gemini-review/CRITIQUE.txt",
+    "bytes": 2786,
+    "sha256": "fb7644318d0a502d1a47574cf0649fc53ed7a6b575ef9682f99448dac3b7aa2f"
+  },
+  {
+    "path": "gemini-review/INDEPENDENT-REVIEW.json",
+    "bytes": 2351,
+    "sha256": "4ffe107a383fd8c48512ae8040a471610c9ddf86f92ed61584e68996e820622e"
+  }
+]

@@ -1,0 +1,21 @@
+{
+  "status":"COMPLETED_INLINE_PUBLIC_REVIEW_TRIAGED",
+  "conversationId":"73be722d-62ce-40b5-9c8a-ae0f2b49108c",
+  "model":"gemini-3.8-flash-high",
+  "durationSeconds":61.6495624,
+  "turns":1,
+  "ownCwd":"qa-finalizacao/ftb-native33-retained-cursor-observation-preparation-r4/agy-inline-review",
+  "input":"sanitized public contract facts inline; no logs/credentials/media/SDK binaries",
+  "accepted":["Keep legacy oracle byte-exact and diagnostic separate.","Require new policy and enum, reject oldNative readback.","Bind complete Native33 snapshot and preserve pre/post ownership checks.","No new readiness tolerances, sample filter or physical/submission equivalence."],
+  "rejectedOrQualified":[
+    "False claim callback is invoked under mutex: existing remember unlocks and publishes before callback, unchanged.",
+    "Invented C++ enum/cast issue: metadata is JSON string validated explicitly.",
+    "Revision regression is counter identity, not evidence of a deadlock; no causal conclusion from unknown counters.",
+    "vMix/DirectShow/proprietary upstream are not part of this own localfile observation.",
+    "New R4 need not collect exactly195 samples; original195 stay preserved, new finite loop remains201max/10s.",
+    "Oracle consumed all samples until first FAIL then observer retained remaining samples; do not pretend the original oracle continued accepting after terminal failure.",
+    "No claim that all data races/AV/hardware are fixed."
+  ],
+  "NativeExecuted":false,
+  "NativeCompiledByAgent":false
+}

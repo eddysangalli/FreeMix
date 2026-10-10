@@ -1,0 +1,16 @@
+{
+  "at": "2026-10-10T17:12:53.775Z",
+  "status": "ROOT_FULL_RUNNER_OBSERVATION_LIFECYCLE_AUDIO_READ_MODELS_PASS",
+  "models": 15,
+  "syntax": 10,
+  "fullRunnerRead": true,
+  "fullObservationRead": true,
+  "fullLifecycleRead": true,
+  "fullAudioContractRead": true,
+  "originalBarrierUnchanged": true,
+  "legacyFailPreserved": true,
+  "fullFTBPass": false,
+  "priorOwnAppClosed": true,
+  "NativeStart": "ONE_EXCLUSIVE_OWN_NTSC_DIAGNOSTIC",
+  "operatorTouched": false
+}
