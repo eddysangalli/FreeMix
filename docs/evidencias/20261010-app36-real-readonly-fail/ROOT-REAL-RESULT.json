@@ -1,0 +1,113 @@
+{
+  "status": "FAIL_READONLY_GATE_PRESERVED",
+  "receiptSha256": "3ab40b1be95c0f646e6d62bf594ab7c248dd8a3d91fbc3211f05dc4ef93c39b2",
+  "nativeHead": "e81afe793708bd17821c9dc866b066783251e5fc",
+  "started": "2026-10-10T18:31:47.135Z",
+  "finished": "2026-10-10T18:37:16.616Z",
+  "operatorTouched": false,
+  "sourceRecordPremixReady": {
+    "known": true,
+    "premixSupported": true,
+    "afterOwnNativeReady": true,
+    "beforeOpeningBaseline": true,
+    "discoveryRequested": false,
+    "actualObserved": {
+      "success": true,
+      "source_record_bus_capture_known": true,
+      "source_record_bus_capture": true
+    }
+  },
+  "counts": {
+    "before": {
+      "run": 0,
+      "execute": 1,
+      "journal": 2,
+      "refresh": 5,
+      "mutatingReq": 19
+    },
+    "afterHttp": {
+      "run": 0,
+      "execute": 1,
+      "journal": 2,
+      "refresh": 5,
+      "mutatingReq": 19
+    },
+    "afterIab": {
+      "run": 0,
+      "execute": 1,
+      "journal": 3,
+      "refresh": 90,
+      "mutatingReq": 20
+    }
+  },
+  "persistentAudioDestinationsUnchanged": true,
+  "defaultsTraffic": {
+    "afterHttp": {
+      "GetInputDefaultSettings": 0,
+      "GetSourceFilterDefaultSettings": 0
+    },
+    "afterIab": {
+      "GetInputDefaultSettings": 0,
+      "GetSourceFilterDefaultSettings": 0
+    }
+  },
+  "error": "journal changed while opening/polling menus",
+  "errorDetails": {
+    "name": "AssertionError",
+    "code": "ERR_ASSERTION",
+    "operator": "strictEqual",
+    "actualPrimitive": 3,
+    "expectedPrimitive": 2,
+    "callsite": [
+      {
+        "module": "app-contract.mjs",
+        "line": 7,
+        "column": 120
+      },
+      {
+        "module": "scenarios.mjs",
+        "line": 25,
+        "column": 482
+      },
+      {
+        "module": "runner.mjs",
+        "line": 33,
+        "column": 243
+      }
+    ]
+  },
+  "previewCutDedupePersistenceExecuted": false,
+  "windowsEditorZOrderQualified": false,
+  "directOutDraftInteractionsQualified": false,
+  "closed": {
+    "nativePidAbsent": true,
+    "nativeClosed": true,
+    "shutdownAccepted": true,
+    "apiCooperative": true,
+    "apiExit": {
+      "code": 0,
+      "signal": null
+    },
+    "logs": [
+      {
+        "sha256": "631b559ad20e2baf2a27dd99b9fcb884440d6f128366b1885780dbfd0797a772",
+        "vendorConfirmed": true,
+        "allocations": [
+          0
+        ],
+        "meterWarnings": 0,
+        "remainingObjects": 0,
+        "doubleDestroyWarnings": 0
+      }
+    ],
+    "crashArtifacts": 0,
+    "fullNative2085Pins": true,
+    "fullRuntime453Pins": true
+  },
+  "limits": [
+    "Five empty/synthetic QA screens only; no operator data or real Call.",
+    "The timer autosave path is established in source and own journal; masked request identity is not uniquely observed.",
+    "No browser-navigation causality established.",
+    "No full App PASS; selected Setup600 unchanged."
+  ]
+}

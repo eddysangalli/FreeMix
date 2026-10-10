@@ -1,0 +1,17 @@
+Passed checks: [
+  'initialmissingcheckpoint_even_revision0',
+  'aftersuccessclean60s_zero_backup_or_journal',
+  'manualforceclean_still_triggers_backup',
+  'beginmutation_partialfailure_beforejournal_staysdirty',
+  'jsmetadata_actions_inputtags_settingsimport_settingsdefaults_markdirty',
+  'events_while_capturing_depth_retained_telemetry_ignored',
+  'mutation_after_backup_begin_survives_ack',
+  'failed_backup_journal_retains_dirty_allows_retry',
+  'scope_session_change_cannot_reuse_old_watermark',
+  'pending_capture_awaitthenforce_no_tail_deadlock',
+  'disabled_then_event_then_enabled_retains_dirty',
+  'journal_hashchain_and_prune_semantics_preserved',
+  'failed_prune_retains_dirty',
+  'concurrency_order1_tick_then_prun_serialized',
+  'concurrency_order2_prun_then_tick_serialized'
+]

@@ -1,0 +1,72 @@
+{
+  "pins": {
+    "model": {
+      "path": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\autosave-dirty-offside-20261010\\contracts-tail\\models-gemini.mjs",
+      "sha256": "b0438199fe86eae6c189257c6587ba9591acb3544c33c54abc4ebbe33bb20233"
+    },
+    "caller": {
+      "path": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\autosave-dirty-offside-20261010\\CALLER-PRODUCTION-RUN.mjs",
+      "sha256": "3c3c34145f8e0163b1abdc70c37fe9255968db2ed3caa64893c991fa9b360233"
+    },
+    "draft": {
+      "path": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\autosave-dirty-offside-20261010\\revision2\\draft\\sessao-producao.mjs",
+      "sha256": "a245e64353566e1e52b2cdba95b67c0d0b11f842841eaf9f8c96f29097785e6a"
+    },
+    "baselineModel": {
+      "path": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\autosave-dirty-offside-20261010\\contracts-r3\\models-gemini.mjs",
+      "sha256": "11c7c533a4ea90bf99cf6146f2729d0acb720a84b94a91c5e12f2bccb05bc5d2"
+    }
+  },
+  "entries": [
+    {
+      "path": "AGY-RECEIPT.json",
+      "bytes": 494,
+      "sha256": "5ac52e92f03cbfbbfcdd4943d3b11d09c880bd7b34a47f965f6d23e1db56ef5f"
+    },
+    {
+      "path": "AGY-RESULT.json",
+      "bytes": 5084,
+      "sha256": "8841cbeab5c9ca2640e841900d71f764470e144496936fed8becd19a807951dc"
+    },
+    {
+      "path": "AGY-STARTED.json",
+      "bytes": 236,
+      "sha256": "895667d93f5e4c65fa14baf1fa4986e2e8a47b9e8ba208aa71c3bc9cac1b56df"
+    },
+    {
+      "path": "AGY-STDERR.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "GEMINI-REVIEW.txt",
+      "bytes": 4774,
+      "sha256": "b9c7e289f4585c86689f93ee1921066034f89c64093b1a78231b06caa22746b7"
+    },
+    {
+      "path": "INPUTS.json",
+      "bytes": 950,
+      "sha256": "2fea8ab4433c6aeab76ee59f69d582e7367ca8819c630b1f739b234653785cef"
+    },
+    {
+      "path": "PUBLIC-PROMPT.txt",
+      "bytes": 24545,
+      "sha256": "c5ef49a77ec740bee5a70acd0c48d8f0b5616bb36335e7a11eaaccf1c6303872"
+    },
+    {
+      "path": "REVIEW-RESULT.json",
+      "bytes": 2270,
+      "sha256": "fee343909fecc5398a1d0a7a4846e039d5a84b2fcd0746fc549b1d78d3c4bf37"
+    },
+    {
+      "path": "freeze.mjs",
+      "bytes": 1824,
+      "sha256": "553c32f8705021a8d069f066291d3b171f8db13dad06b7874da0d9f9acefdbf3"
+    },
+    {
+      "path": "review-gemini.mjs",
+      "bytes": 4140,
+      "sha256": "7ba2722206a093483391e64cc42b29609f692ef9f7750be5c530b42d26da764c"
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+[
+  {
+    "path": "ROOT-REAL-RESULT.json",
+    "bytes": 2876,
+    "sha256": "8fbb7add256c198626dfe5310ce8c96c39028cee963eb725f8d3c9595c0ba980"
+  },
+  {
+    "path": "CAUSE-REPORT.json",
+    "bytes": 3819,
+    "sha256": "295631603ec4df99115af09916caa3190c217d4f4c4e8631412bdb18b4670076"
+  },
+  {
+    "path": "CAUSE-AGY-RECEIPT.json",
+    "bytes": 550,
+    "sha256": "ccafdfc2928de394fe2957ac0f5f26f9c021adb0f64f1c66f66efb529f70876f"
+  },
+  {
+    "path": "CAUSE-GEMINI-CAUSE.txt",
+    "bytes": 2105,
+    "sha256": "f63a7abee461e184479bd2e51ed21a35e0194ce083e866f343b10eca1fbc33f5"
+  },
+  {
+    "path": "root-installed-mesa.jpg",
+    "bytes": 63758,
+    "sha256": "ec4cbe6748ef9e2bdc9112d3ceed73c75d0fef30ed72c3995691776ddbb96b01"
+  },
+  {
+    "path": "root-installed-srt.jpg",
+    "bytes": 72828,
+    "sha256": "3e9b54443702d28cdae8a2c9478b84081ab6a3962b953717e0df9edbcbaff453"
+  },
+  {
+    "path": "root-installed-multistream.jpg",
+    "bytes": 69148,
+    "sha256": "bbd7c88f5e777b60d2b68dd54db3d5d3373b0fd5e814e6c86f6c8e70eed107ce"
+  },
+  {
+    "path": "root-installed-calls.jpg",
+    "bytes": 20215,
+    "sha256": "2ee71bc8ff2f694208c9814f6b9f87a443f104eb56b0977b2742710a00d72627"
+  },
+  {
+    "path": "root-installed-replay-settings.jpg",
+    "bytes": 83437,
+    "sha256": "4f9fb75ccbc42e5ad17c19614321ed99903bda8f56f3e9ed7367bcc4c28b6781"
+  },
+  {
+    "path": "ROOT-README.md",
+    "bytes": 1416,
+    "sha256": "ae09ffa5261eb75f43f988a2a65d26548fc9e243c971e3346ad05c72cc0ed4dd"
+  }
+]

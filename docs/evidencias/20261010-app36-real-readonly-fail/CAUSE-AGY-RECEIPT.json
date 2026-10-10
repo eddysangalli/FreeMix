@@ -1,0 +1,16 @@
+{
+  "status": "RETURNED_REVIEW_REQUIRED",
+  "startedAt": "2026-10-10T18:39:11.095Z",
+  "finishedAt": "2026-10-10T18:39:39.795Z",
+  "model": "gemini-3.8-flash-high",
+  "cliExitCode": 0,
+  "responseBytes": 2105,
+  "responseSha256": "f63a7abee461e184479bd2e51ed21a35e0194ce083e866f343b10eca1fbc33f5",
+  "publicInlineOnly": true,
+  "runtimeReceiptSent": false,
+  "privateRootsConfigCredentialMediaSent": false,
+  "attempts": 1,
+  "ownCwd": "D:/FreeMix-QA-Gemini-App36-Cause-20261010",
+  "toolsRequested": false,
+  "nativeApiBrowserBuildStarted": false
+}

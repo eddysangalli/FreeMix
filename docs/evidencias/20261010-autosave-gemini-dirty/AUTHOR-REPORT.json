@@ -1,0 +1,328 @@
+{
+  "status": "GEMINI_SOURCE_CPU_APPROVED_RUNTIME_PENDING",
+  "authorship": {
+    "implementation": "Antigravity Gemini",
+    "analysisReview": "Antigravity Gemini independent",
+    "contracts": "Antigravity Gemini",
+    "codex": "CLI orchestration, exact byte materialization, CPU execution, artifact organization only; no implementation/analysis/review fallback"
+  },
+  "artifacts": {
+    "canonicalBefore": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\FreeMix\\ferramentas\\sessao-producao.mjs",
+    "baseline": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\autosave-dirty-offside-20261010\\BASELINE.mjs",
+    "draft": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\autosave-dirty-offside-20261010\\revision2\\draft\\sessao-producao.mjs",
+    "patch": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\autosave-dirty-offside-20261010\\revision2\\ROOT-PRODUCT.patch",
+    "models": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\autosave-dirty-offside-20261010\\contracts-tail\\models-gemini.mjs",
+    "caller": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\autosave-dirty-offside-20261010\\contracts-tail\\CALLER-PRODUCTION-RUN.mjs",
+    "node": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\entregas\\FreeMix-Completo-0.1.0-local.20261010060000\\runtime\\node.exe"
+  },
+  "pins": {
+    "before": "a57f19cbb5ff68f76c1acbf4f5c04ebd2a12f59ba667552754243a5c3d472486",
+    "after": "a245e64353566e1e52b2cdba95b67c0d0b11f842841eaf9f8c96f29097785e6a",
+    "patch": "2702824b4367ce33fc581ba5e18b76e7d72dffbff125f33a95df22c65d0f35ea",
+    "models": "b0438199fe86eae6c189257c6587ba9591acb3544c33c54abc4ebbe33bb20233",
+    "caller": "3c3c34145f8e0163b1abdc70c37fe9255968db2ed3caa64893c991fa9b360233",
+    "node": "ba4e6d110e8c1592a1ecd390f6b05f3da124b13871a5be62b341a07a853c6c32"
+  },
+  "scope": [
+    "FreeMix/ferramentas/sessao-producao.mjs only; Root integration not executed"
+  ],
+  "observedCpu": {
+    "exitCode": 0,
+    "checks": [
+      "initialmissingcheckpoint_even_revision0",
+      "aftersuccessclean60s_zero_backup_or_journal",
+      "manualforceclean_still_triggers_backup",
+      "beginmutation_partialfailure_beforejournal_staysdirty",
+      "jsmetadata_actions_inputtags_settingsimport_settingsdefaults_markdirty",
+      "events_while_capturing_depth_retained_telemetry_ignored",
+      "mutation_after_backup_begin_survives_ack",
+      "failed_backup_journal_retains_dirty_allows_retry",
+      "scope_session_change_cannot_reuse_old_watermark",
+      "pending_capture_awaitthenforce_no_tail_deadlock",
+      "disabled_then_event_then_enabled_retains_dirty",
+      "journal_hashchain_and_prune_semantics_preserved",
+      "failed_prune_retains_dirty",
+      "concurrency_order1_tick_then_prun_serialized",
+      "concurrency_order2_prun_then_tick_serialized"
+    ],
+    "outputPath": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\autosave-dirty-offside-20261010\\contracts-tail\\MODELS-OUTPUT.txt",
+    "outputSha256": "b5ef71b5f195760a12950c85e2c7e34f246d0f5a5c2cc31a63b22f61c975eb55",
+    "modelsSha256": "b0438199fe86eae6c189257c6587ba9591acb3544c33c54abc4ebbe33bb20233"
+  },
+  "geminiIndependentReview": {
+    "literalVerdict": "APROVADO PARA INTEGRAÇÃO NO ROOT",
+    "references": [
+      {
+        "path": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\autosave-dirty-independent-revision2-review-20261010\\ALLOWLIST.json",
+        "sha256": "e339b29214750b0639db5b788ead67557ffca163ee2074650120312b0f4b2ce3"
+      },
+      {
+        "path": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\autosave-dirty-independent-concurrency-review-20261010\\ALLOWLIST.json",
+        "sha256": "2592da1deccaadd553f222bc082e909b7188c68ba0e86a10b83efe393735c810"
+      },
+      {
+        "path": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\autosave-dirty-independent-tail-contract-review-20261010\\ALLOWLIST.json",
+        "sha256": "90587ab8ef4edf05e2a0506dd79b42f9b6640d8689913c06dabb0f858159b557"
+      },
+      {
+        "path": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\autosave-dirty-independent-tail-contract-review-20261010\\GEMINI-REVIEW.txt",
+        "sha256": "b9c7e289f4585c86689f93ee1921066034f89c64093b1a78231b06caa22746b7"
+      }
+    ],
+    "sourceOnly": true,
+    "nativeRuntimeApproval": false
+  },
+  "rootRecipe": {
+    "rootSteps": [
+      "Trava de Pré-Condição: Aguardar aprovação formal mandatória da revisão de modelos (finalmodelreview REQUIRE approved + AL pins) antes de iniciar qualquer operação de integração mecânica.",
+      "Auditoria e Congelamento de Hashes SHA-256 em D:/DRIVE/IA/antigravity/vmixtwste: conferir canonical antes D:/DRIVE/IA/antigravity/vmixtwste/FreeMix/ferramentas/sessao-producao.mjs (a57f19cbb5ff68f76c1acbf4f5c04ebd2a12f59ba667552754243a5c3d472486), draft de origem D:/DRIVE/IA/antigravity/vmixtwste/qa-finalizacao/autosave-dirty-offside-20261010/revision2/draft/sessao-producao.mjs (a245e64353566e1e52b2cdba95b67c0d0b11f842841eaf9f8c96f29097785e6a), patch D:/DRIVE/IA/antigravity/vmixtwste/qa-finalizacao/autosave-dirty-offside-20261010/revision2/ROOT-PRODUCT.patch (2702824b4367ce33fc581ba5e18b76e7d72dffbff125f33a95df22c65d0f35ea), models D:/DRIVE/IA/antigravity/vmixtwste/qa-finalizacao/autosave-dirty-offside-20261010/contracts-tail/models-gemini.mjs (b0438199fe86eae6c189257c6587ba9591acb3544c33c54abc4ebbe33bb20233), callers D:/DRIVE/IA/antigravity/vmixtwste/qa-finalizacao/autosave-dirty-offside-20261010/contracts-tail/CALLER-PRODUCTION-RUN.mjs (3c3c34145f8e0163b1abdc70c37fe9255968db2ed3caa64893c991fa9b360233) e Node 600 runtime (ba4e6d110e8c1592a1ecd390f6b05f3da124b13871a5be62b341a07a853c6c32).",
+      "Backup Prévio Isolado pelo Root: Criar cópia de segurança física e imutável do arquivo canônico D:/DRIVE/IA/antigravity/vmixtwste/FreeMix/ferramentas/sessao-producao.mjs antes de qualquer sobrescrita.",
+      "Aplicação Mecânica Exata de Bytes: Copiar o arquivo draft para o destino canônico D:/DRIVE/IA/antigravity/vmixtwste/FreeMix/ferramentas/sessao-producao.mjs sem alteração de conteúdo ou sintaxe.",
+      "Verificação Pós-Cópia: Validar sintaxe via checagem do compilador/interpretador e aferir se o hash final do arquivo canônico corresponde com precisão a a245e64353566e1e52b2cdba95b67c0d0b11f842841eaf9f8c96f29097785e6a.",
+      "Execução da Suíte CPU15: Rodar testes em CPU garantindo aprovação total dos 15 cenários (13 core + 2 ordens de p.tail sob maxActiveBackup1 inFlight === 1).",
+      "Encerramento Cooperativo e Registro de Post-Pins: Finalizar com código de encerramento cooperativo 0, preservando logs, pinos e registros prévios sem processos pendentes."
+    ],
+    "acceptance": [
+      "Hash SHA-256 pós-integração de D:/DRIVE/IA/antigravity/vmixtwste/FreeMix/ferramentas/sessao-producao.mjs confere exatamente com a245e64353566e1e52b2cdba95b67c0d0b11f842841eaf9f8c96f29097785e6a.",
+      "Suíte CPU15 executada com sucesso pleno (PASS), evidenciando ausência de sobreposição concorrente (maxActiveBackup1 inFlight === 1) para ambas as ordens de chamada (tick -> recovery_checkpoint e recovery_checkpoint -> tick).",
+      "Ausência total de deadlocks nas Promise chains p.tail e journalTail sob execução assíncrona.",
+      "Histórico de falhas anteriores (prior FAILs) e configurações seladas 600 integralmente preservados.",
+      "Critérios para futuro NativeQA assegurados: checkpoint inicial verificado antes da baseline, 60 segundos limpos sem registros indevidos de journal/save_preset, suporte retido a mudanças manuais/reais, falhas de backup e modificações concorrentes.",
+      "Nenhum portão (gate) de segurança foi enfraquecido e save_preset não foi reclassificado como readonly."
+    ],
+    "limits": [
+      "Procedimento condicional: execução bloqueada até a entrega da aprovação final da revisão de modelos com AL pins.",
+      "Escopo restrito a código-fonte e verificação em CPU; nenhuma API nativa ou runtime de produção externo executado nesta etapa.",
+      "Inexistência de modelos formais executáveis TLA+/Promela; nenhuma garantia formal de runtime reivindicada além dos contratos empíricos e estáticos inspecionados.",
+      "Zero introdução de código novo ou refatorações oportunistas (replacements estritamente vazio).",
+      "Chamadas que violem o contrato do motor executando capture fora do despachante p.run permanecem não suportadas.",
+      "Nenhum arquivo de configuração de operador ou ambiente selado 600 é modificado pelo Root."
+    ]
+  },
+  "geminiConcurrencyConclusion": {
+    "replacements": [],
+    "reasoning": [
+      "A alegação da revisão independente sobre sobreposição concorrente entre flushNative() e capture(force = true) é refutada pela análise formal da cadeia de chamadores (callers) reais do sistema.",
+      "O chamador de capture(force = true) é a ação 'recovery_checkpoint' tratada em execute(action, d). Por contrato de arquitetura do motor, execute() só é invocado a partir de p.run(action, data), que encapsula toda a execução assíncrona dentro da promise chain this.tail (isto é, p.tail).",
+      "Simultaneamente, o método tick() enfileira flushNative() exatamente na mesma fila de promessas através de const task = this.p.tail.then(() => this.flushNative()); this.p.tail = task.catch(()=>{});",
+      "Na semântica de microtarefas e encadeamento de promessas do JavaScript, tarefas registradas em p.tail são estritamente sequenciais (FIFO). Se flushNative() estiver em execução, p.tail aguardará a resolução de sua promessa (incluindo o await this.journal('native_state') e o backup do motor) antes de iniciar a próxima tarefa da fila.",
+      "Consequentemente, quando p.run('recovery_checkpoint') for disparado, sua execução aguardará flushNative() concluir integralmente. Se o inverso ocorrer (checkpoint em andamento e tick() disparar), flushNative() aguardará o encerramento do checkpoint.",
+      "O receio de que o bloco finally de capture() desarme prematuramente this.nativeCapturing = false durante flushNative() é igualmente improcedente, pois ambos os fluxos nunca executam concorrentemente.",
+      "Qualquer tentativa de 'corrigir' a suposta sobreposição introduzindo um await this.p.tail dentro de capture() ou activeCapture geraria um auto-deadlock fatal (self-deadlock), já que capture(true) é executado justamente de dentro de um callback de p.tail, fazendo o processo aguardar a si mesmo indefinidamente.",
+      "O mecanismo de controle tick() já protege os disparos periódicos via this.pending = true, garantindo que autosaves desacoplados de p.tail não concorram com o agendamento de flushNative().",
+      "Cenário de Teste Comprobatório: Para evidência empírica, implementa-se teste instanciando o motor com recoveryEngine.backup mockado contendo rastreador de concorrência (variável inFlight, assert inFlight === 1). Dispara-se simultaneamente a chegada de um nativeBatch maduro (ativando tick()) e p.run('recovery_checkpoint'). Verifica-se que inFlight nunca ultrapassa 1, os dois backups são gerados sequencialmente, os snapshots são registrados no diário sem corrupção e nativeCapturing permanece íntegro."
+    ],
+    "requiredContracts": [
+      "Invariante de Serialização via p.tail: Toda operação manual de recuperação ('recovery_checkpoint') e todo esvaziamento nativo agendado ('flushNative') devem ser despachados estritamente através da fila p.tail.",
+      "Exclusividade Mútua de Backup I/O: Nenhuma invocação a p.recoveryEngine.backup() deve ocorrer de forma sobreposta ou concorrente durante o ciclo de vida de uma mesma sessão.",
+      "Preservação da Flag nativeCapturing: A flag this.nativeCapturing deve manter seu ciclo de vida atômico estritamente delimitado ao escopo de execução síncrona/assíncrona de sua respectiva rotina.",
+      "Não Ocorrência de Auto-Deadlock: Nenhum método chamado no contexto de execução de p.tail pode aguardar ativamente por p.tail.",
+      "Preservação de Eventos Nativos em Trânsito: Eventos acumulados em this.nativeBatch durante o processamento de I/O devem ser retidos e processados no tick subsequente, sem descarte ou supressão."
+    ],
+    "limits": [
+      "Zero alterações de código necessárias (replacements vazio), preservando a estabilidade e evitando a introdução de regressões ou complexidade acidental.",
+      "Não há suporte a chamadas diretas externas que violem o contrato do motor invocando session.capture() diretamente fora do despachante p.run().",
+      "A independência de journalTail é preservada para operações de escrita de log sem introduzir acoplamento circular com a fila operacional p.tail.",
+      "Nenhum mecanismo de cancelamento, timeout destrutivo ou supressão de eventos nativos legítimos foi introduzido."
+    ]
+  },
+  "cliHistory": [
+    {
+      "path": "AGY-CONCURRENCY-RECEIPT.json",
+      "sha256": "4176e49116b4eaac0f6d85835baeaa490c3f9fe0d40ef434bb8d44a7b22fd05b",
+      "status": "EMPTY_NO_CONCURRENCY_RESULT",
+      "cliExitCode": 0,
+      "responseBytes": 0,
+      "quotaError": false,
+      "permissionDenied": false
+    },
+    {
+      "path": "AGY-CONCURRENCY-SMALL-RECEIPT.json",
+      "sha256": "0395b1854f6764125ca2ee7bdd4cd724cfcf39dd889f660e693885ae47e3f0f2",
+      "status": "RETURNED_CONCURRENCY_REQUIRES_CONTRACTS_REVIEW",
+      "cliExitCode": 0,
+      "responseBytes": 4224,
+      "quotaError": false,
+      "permissionDenied": false
+    },
+    {
+      "path": "AGY-CONTEXT-RECEIPT.json",
+      "sha256": "52bc8d9af4472d58152518da76cc0c52a643b2584c5c7dd302e5da9b3f4e3a0b",
+      "status": "EMPTY_NO_HOOKS",
+      "cliExitCode": 0,
+      "responseBytes": 0,
+      "quotaError": false,
+      "permissionDenied": false
+    },
+    {
+      "path": "AGY-CONTRACTS-RECEIPT.json",
+      "sha256": "bc45e73355e723ca1e7808ad1fbdd736c894d61a2cfbe1e6b7983c4d57de7e62",
+      "status": "RETURNED_CONTRACTS_REVIEW_REQUIRED",
+      "cliExitCode": 0,
+      "responseBytes": 33196,
+      "quotaError": false,
+      "permissionDenied": false
+    },
+    {
+      "path": "AGY-CONTRACTS-REPAIR-RECEIPT.json",
+      "sha256": "2b9286901536d4ea1daf67374027266fe6219ea9eb2ab813db0ffb88b374bc32",
+      "status": "RETURNED_MODEL_REPAIR_REQUIRES_EXECUTION",
+      "cliExitCode": 0,
+      "responseBytes": 20420,
+      "quotaError": false,
+      "permissionDenied": false
+    },
+    {
+      "path": "AGY-CORRECTION-RECEIPT.json",
+      "sha256": "901363f772139bc55d66ff47bcbd6e14b04b2d03932f0f861c416e6e495c36bc",
+      "status": "RETURNED_CORRECTION_REQUIRES_REVIEW",
+      "cliExitCode": 0,
+      "responseBytes": 13096,
+      "quotaError": false,
+      "permissionDenied": false
+    },
+    {
+      "path": "AGY-FINAL-RECIPE-RECEIPT.json",
+      "sha256": "3a544364af6b9f794de855b438c44757b2a41c553ea16c8d9bede75b024e31a0",
+      "status": "RETURNED_FINAL_CONDITIONAL_RECIPE",
+      "cliExitCode": 0,
+      "responseBytes": 4175,
+      "quotaError": false,
+      "permissionDenied": false
+    },
+    {
+      "path": "AGY-RECEIPT.json",
+      "sha256": "339776da111de03d8e64a5e27edb0d2d46e86500ec35f9dca7a57f4d9e6418a4",
+      "status": "EMPTY_NO_IMPLEMENTATION",
+      "cliExitCode": 0,
+      "responseBytes": 0,
+      "quotaError": false
+    },
+    {
+      "path": "AGY-RETENTION-MODEL-RECEIPT.json",
+      "sha256": "29ed64d3640f9c70719f76fd89867049a2d5bb942951cb01ae1c52021034ef90",
+      "status": "RETURNED_MODEL_DELTA_REQUIRES_EXECUTION",
+      "cliExitCode": 0,
+      "responseBytes": 2657,
+      "quotaError": false,
+      "permissionDenied": false
+    },
+    {
+      "path": "AGY-ROOT-RECIPE-RECEIPT.json",
+      "sha256": "b708ed600d6d8ba9b5e8d967c40e0c35e333b85acff3e478607d4ba76c40ab73",
+      "status": "RETURNED_CONDITIONAL_ROOT_RECIPE",
+      "cliExitCode": 0,
+      "responseBytes": 5459,
+      "quotaError": false,
+      "permissionDenied": false
+    },
+    {
+      "path": "AGY-SMALL-EVENTS-RECEIPT.json",
+      "sha256": "7fcd2959c49d2e8ededdb2364039f110aedcf8e4b1a7f40c6b3997edba8eaf56",
+      "status": "RETURNED_SMALL_HOOK_REVIEW_REQUIRED",
+      "cliExitCode": 0,
+      "responseBytes": 3231,
+      "quotaError": false,
+      "permissionDenied": false
+    },
+    {
+      "path": "AGY-SMALL-JOURNAL-ACK-R2-RECEIPT.json",
+      "sha256": "61a01b79ecceaaad49d6c54074ea374afb514867a93731454105fa913853e471",
+      "status": "RETURNED_SMALL_HOOK_REVIEW_REQUIRED",
+      "cliExitCode": 0,
+      "responseBytes": 2269,
+      "quotaError": false,
+      "permissionDenied": false
+    },
+    {
+      "path": "AGY-SMALL-JOURNAL-ACK-RECEIPT.json",
+      "sha256": "a8ac8743ad7d231e7d2ea88aeb7d3b3e18a02056be68ce7b58024c79739e9977",
+      "status": "EMPTY_NO_IMPLEMENTATION",
+      "cliExitCode": 0,
+      "responseBytes": 0,
+      "quotaError": false,
+      "permissionDenied": false
+    },
+    {
+      "path": "AGY-SMALL-JOURNAL-MARK-RECEIPT.json",
+      "sha256": "3fd60761cd6948d32046791aff79d8fb1c93b8a34abb5b8278585356b44fa1d2",
+      "status": "RETURNED_SMALL_HOOK_REVIEW_REQUIRED",
+      "cliExitCode": 0,
+      "responseBytes": 1600,
+      "quotaError": false,
+      "permissionDenied": false
+    },
+    {
+      "path": "AGY-SMALL-JOURNAL-RECEIPT.json",
+      "sha256": "82fb0367f41c318ac01e94c57c98970e4322c6a8f5eb5a3d0761fba72732d223",
+      "status": "EMPTY_NO_IMPLEMENTATION",
+      "cliExitCode": 0,
+      "responseBytes": 0,
+      "quotaError": false,
+      "permissionDenied": false
+    },
+    {
+      "path": "AGY-SMALL-START-RECEIPT.json",
+      "sha256": "d1ccc57824c0fb8998be01ecce69716b4e9a92ca1fc0bf692d1745300eb29a6e",
+      "status": "RETURNED_SMALL_HOOK_REVIEW_REQUIRED",
+      "cliExitCode": 0,
+      "responseBytes": 5238,
+      "quotaError": false,
+      "permissionDenied": false
+    },
+    {
+      "path": "AGY-STAGE1-RECEIPT.json",
+      "sha256": "9138c50ff78f58093602c1ccfcf8946cbb80044461e45912de2a3d9f7e9060c2",
+      "status": "RETURNED_STAGE1_REVIEW_REQUIRED",
+      "cliExitCode": 0,
+      "responseBytes": 7240,
+      "quotaError": false,
+      "permissionDenied": false
+    },
+    {
+      "path": "AGY-STAGE2-RECEIPT.json",
+      "sha256": "c888c02a0c3fa1af01700a031b474ba9873f692aa3f43d7d0b0b238903d17f97",
+      "status": "EMPTY_NO_IMPLEMENTATION",
+      "cliExitCode": 0,
+      "responseBytes": 0,
+      "quotaError": false,
+      "permissionDenied": false
+    },
+    {
+      "path": "AGY-TAIL-CONTRACTS-RECEIPT.json",
+      "sha256": "69a827cd4af11aedabda0a4302b41d7b88890a8c565b1d80b4a06a0c30625b95",
+      "status": "RETURNED_CONCURRENCY_CONTRACTS_REQUIRES_EXECUTION",
+      "cliExitCode": 0,
+      "responseBytes": 8294,
+      "quotaError": false,
+      "permissionDenied": false
+    },
+    {
+      "path": "AGY-TAIL-JSON-REPAIR-RECEIPT.json",
+      "sha256": "e2c143413df38308031f9572ba6cde5a2dfad1e7b7e4364b2c39cbc4f7e91cf6",
+      "status": "RETURNED_MODEL_JSON_REQUIRES_PARSE",
+      "cliExitCode": 0,
+      "responseBytes": 7341,
+      "quotaError": false,
+      "permissionDenied": false
+    }
+  ],
+  "preservedFailures": [
+    "draft/sessao-producao.mjs c50f rejected original",
+    "MODELS-C50F-OUTPUT.txt first CPU FAIL",
+    "revision2/MODELS-OUTPUT.txt retention fixture FAIL",
+    "TAIL-JSON-FIRST-FAIL.json truncated author JSON",
+    "AGY-CONCURRENCY-RECEIPT.json empty operational result",
+    "Original real App36 strict gate FAIL remains immutable"
+  ],
+  "limits": [
+    "CPU uses VM/in-memory FS/control promises; no Native/API/browser/build/runtime executed by this agent",
+    "No executable TLA+/Promela artifacts exist; such wording in Gemini review is not evidence",
+    "Fifteen CPU checks do not qualify operator/hardware/WAN or real Native autosave event behavior",
+    "Root must rehash before copying exact draft, preserve original failures and authorize fresh isolated Native menu/autosave QA separately",
+    "Raw AGY stdout/stderr remain outside this delivery in own D:/FreeMix-QA-Gemini-*; no runtime credentials/config/media included"
+  ],
+  "canonicalChanged": false,
+  "operatorTouched": false,
+  "nativeApiBrowserBuildStarted": false
+}

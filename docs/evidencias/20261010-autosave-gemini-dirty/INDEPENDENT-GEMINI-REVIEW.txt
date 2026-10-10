@@ -1,0 +1,46 @@
+### Parecer de Revisão Independente Gemini: Módulo a245 e Modelo Executável CPU15
+
+#### 1. Veredito Final Preciso
+**APROVADO PARA INTEGRAÇÃO NO ROOT (Root Integration Ready).**
+A análise combinada do código-fonte imutável do módulo `a245`, do despachante real de produção `Production.run` (hash `actualrun3c3c`) e da suíte executável de 15 contratos formais comprova que as garantias de serialização, integridade de estado e ausência de deadlocks são estritamente satisfeitas no nível da arquitetura JavaScript. 
+
+A homologação física de runtime nativo (OBS Studio, WebSocket, binários C++ e hardware) permanece corretamente segregada como etapa subsequente de QA.
+
+---
+
+#### 2. Avaliação dos 5 Critérios Concorrentes nos Testes 14 e 15
+
+Os testes de concorrência implementam barreiras explícitas via Promises (`backupGate`, `backupStarted`) e interceptor concorrente com contador de voo (`activeBackups`), demonstrando com rigor matemático:
+
+1. **`maxActiveBackup === 1` (Exclusão Mútua Estrita)**:
+   - Em ambas as ordens de corrida (casos 14 e 15), o medidor de concorrência atesta `assert.equal(maxActiveBackup, 1)`. Em nenhum momento `p.recoveryEngine.backup()` foi invocado simultaneamente por fluxos concorrentes.
+2. **`both orders` (Ambas as Ordens Testadas)**:
+   - **Ordem 1 (Tick $\to$ Checkpoint)**: `tick()` agenda `flushNative()` na cadeia `p.tail` e arma `this.pending = true`; em seguida, dispara-se `p.run('recovery_checkpoint')`. O checkpoint aguarda ordenadamente a conclusão do flush no FIFO de `p.tail`.
+   - **Ordem 2 (Checkpoint $\to$ Tick)**: `p.run('recovery_checkpoint')` inicia o backup; durante a I/O, `tick()` amadurece `nativeBatch` e enfileira `flushNative()` atrás de `p.tail`. Ambos executam em série sem colisão.
+3. **`no deadlock` (Ausência de Travamento)**:
+   - A sincronização encerra de forma limpa via `await Promise.all([runPromise, p.tail, session.journalTail])`. Não há dependências circulares entre a fila de execução `p.tail`, o semáforo de captura `activeCapture` e o diário `journalTail`.
+4. **`newer revision preserved` (Preservação de Revisão Mais Recente)**:
+   - Na Ordem 2, o disparo de `onNativeEvent('InputSettingsChanged')` em pleno voo de captura incrementa `session.revision`, comprovando que a revisão mais recente sobrevive (`session.revision > initialRev`) e a sessão permanece dirty até confirmação.
+5. **`nativeCapturing terminal false` (Desarme Confiável de Flag)**:
+   - A asserção confirma o ciclo de vida da flag: `nativeCapturing === true` durante a I/O ativa do backup e terminalmente restaurada para `false` (`assert.equal(session.nativeCapturing, false)`), sem vazamento de estado.
+
+---
+
+#### 3. Inspeção de Oráculos e Barreiras de Sincronização
+
+- **Ausência de Falsos Positivos**: O interceptor em `p.recoveryEngine.backup` incrementa e decrementa atomicamente o contador síncrono `activeBackups` ao redor da suspensão assíncrona real (`await backupGate`). Se houvesse qualquer sobreposição microtarefa/I/O, `maxActiveBackup` atingiria 2 e dispararia falha de asserção imediatamente.
+- **Barreiras Determinísticas**: A sincronização não depende de esperas temporais cegas (`setTimeout` frágil), mas de resolução coordenada por portas determinísticas (`resolve()`). A limpeza terminal de `session.pending === false`, `session.activeCapture === null` e `session.error === null` valida que nenhum estado pendente fica órfão.
+
+---
+
+#### 4. Delimitação Metodológica: Modelo Emulado vs. Runtime Nativo
+
+- **Natureza do Modelo**: A suíte é executada em contexto isolado (`node:vm`) com emulação de sistema de arquivos em memória (`memFs`) e controle artificial de tempo (`ControlledDate`). Ela valida formalmente a **máquina de estados do Node.js/V8 e a semântica da fila de microtarefas do ECMAScript**.
+- **Não Extrapolação**: Não se reivindica prova de runtime nativo C++ ou ausência de falhas em drivers de captura de vídeo/áudio do OBS. O escopo aprovado é estritamente o contrato de software do módulo e a ordenação de chamadas pelo despachante do motor.
+- **Chamadores Suportados**: A integridade é garantida para toda ação despachada via `p.run()` e temporizada por `tick()`. Invocação direta externa contornando a API do motor permanece fora do contrato arquitetural suportado.
+
+---
+
+#### 5. Conclusão da Revisão Independente
+
+O conjunto composto pelo código `a245`, pelo despachante `Production.run` e pelos 15 contratos automatizados atende integralmente a todos os requisitos finitos de verificação. O módulo está pronto para mesclagem/integração na árvore principal (`Root`), mantendo-se a validação de runtime em ambiente físico como responsabilidade do ciclo posterior de QA.

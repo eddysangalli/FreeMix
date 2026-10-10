@@ -1,0 +1,52 @@
+{
+  "status": "GEMINI_PROVIDER_ROOT_INTEGRATION_READY_MODEL_REVIEW_ONLY",
+  "providerVerdictLiteral": "APROVADO PARA INTEGRAÇÃO NO ROOT (Root Integration Ready)",
+  "receipt": {
+    "status": "GEMINI_TAIL_CONTRACT_REVIEW_RETURNED",
+    "responseBytes": 4774,
+    "responseSha256": "b9c7e289f4585c86689f93ee1921066034f89c64093b1a78231b06caa22746b7",
+    "conversationId": "de5ce5e4-4bac-48fe-a38b-3a8b7e72c2d3",
+    "exitCode": 0,
+    "outerTimeout": false,
+    "printTimeout": false,
+    "quotaEvidence": false,
+    "inputPostPins": true,
+    "toolsRequested": false,
+    "codexAnalysis": false,
+    "canonicalChanges": false,
+    "nativeApiBuild": false,
+    "modelsReexecutedByReviewer": false
+  },
+  "pins": {
+    "model": {
+      "path": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\autosave-dirty-offside-20261010\\contracts-tail\\models-gemini.mjs",
+      "sha256": "b0438199fe86eae6c189257c6587ba9591acb3544c33c54abc4ebbe33bb20233"
+    },
+    "caller": {
+      "path": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\autosave-dirty-offside-20261010\\CALLER-PRODUCTION-RUN.mjs",
+      "sha256": "3c3c34145f8e0163b1abdc70c37fe9255968db2ed3caa64893c991fa9b360233"
+    },
+    "draft": {
+      "path": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\autosave-dirty-offside-20261010\\revision2\\draft\\sessao-producao.mjs",
+      "sha256": "a245e64353566e1e52b2cdba95b67c0d0b11f842841eaf9f8c96f29097785e6a"
+    },
+    "baselineModel": {
+      "path": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\autosave-dirty-offside-20261010\\contracts-r3\\models-gemini.mjs",
+      "sha256": "11c7c533a4ea90bf99cf6146f2729d0acb720a84b94a91c5e12f2bccb05bc5d2"
+    }
+  },
+  "scope": {
+    "fullModelAndActualCallerInline": true,
+    "fullCorrectedModuleInPreviousConversation": true,
+    "authorReportedCpuPassCount": 15,
+    "reviewerCpuReexecuted": false,
+    "codexAnalysis": false,
+    "canonicalChanged": false,
+    "nativeApiBuild": false
+  },
+  "limits": [
+    "Provider conclusions are literal source/CPU model review, not exhaustive formal verification or Native runtime approval.",
+    "Root retains integration decision and own runtime QA.",
+    "Prior caveat, original reviews, model FAILs and product a245 remain unchanged."
+  ]
+}

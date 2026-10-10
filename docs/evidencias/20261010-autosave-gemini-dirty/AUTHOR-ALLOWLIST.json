@@ -1,0 +1,466 @@
+{
+  "status": "FROZEN_GEMINI_SOURCE_CPU_DELIVERY",
+  "root": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\autosave-dirty-offside-20261010",
+  "canonicalChanged": false,
+  "nativeRuntimePending": true,
+  "files": [
+    {
+      "path": "AGY-CONCURRENCY-RECEIPT.json",
+      "bytes": 699,
+      "sha256": "4176e49116b4eaac0f6d85835baeaa490c3f9fe0d40ef434bb8d44a7b22fd05b"
+    },
+    {
+      "path": "AGY-CONCURRENCY-SMALL-RECEIPT.json",
+      "bytes": 641,
+      "sha256": "0395b1854f6764125ca2ee7bdd4cd724cfcf39dd889f660e693885ae47e3f0f2"
+    },
+    {
+      "path": "AGY-CONTEXT-RECEIPT.json",
+      "bytes": 499,
+      "sha256": "52bc8d9af4472d58152518da76cc0c52a643b2584c5c7dd302e5da9b3f4e3a0b"
+    },
+    {
+      "path": "AGY-CONTRACTS-RECEIPT.json",
+      "bytes": 503,
+      "sha256": "bc45e73355e723ca1e7808ad1fbdd736c894d61a2cfbe1e6b7983c4d57de7e62"
+    },
+    {
+      "path": "AGY-CONTRACTS-REPAIR-RECEIPT.json",
+      "bytes": 725,
+      "sha256": "2b9286901536d4ea1daf67374027266fe6219ea9eb2ab813db0ffb88b374bc32"
+    },
+    {
+      "path": "AGY-CORRECTION-RECEIPT.json",
+      "bytes": 710,
+      "sha256": "901363f772139bc55d66ff47bcbd6e14b04b2d03932f0f861c416e6e495c36bc"
+    },
+    {
+      "path": "AGY-FINAL-RECIPE-RECEIPT.json",
+      "bytes": 533,
+      "sha256": "3a544364af6b9f794de855b438c44757b2a41c553ea16c8d9bede75b024e31a0"
+    },
+    {
+      "path": "AGY-RECEIPT.json",
+      "bytes": 515,
+      "sha256": "339776da111de03d8e64a5e27edb0d2d46e86500ec35f9dca7a57f4d9e6418a4"
+    },
+    {
+      "path": "AGY-RETENTION-MODEL-RECEIPT.json",
+      "bytes": 723,
+      "sha256": "29ed64d3640f9c70719f76fd89867049a2d5bb942951cb01ae1c52021034ef90"
+    },
+    {
+      "path": "AGY-ROOT-RECIPE-RECEIPT.json",
+      "bytes": 531,
+      "sha256": "b708ed600d6d8ba9b5e8d967c40e0c35e333b85acff3e478607d4ba76c40ab73"
+    },
+    {
+      "path": "AGY-SMALL-EVENTS-RECEIPT.json",
+      "bytes": 526,
+      "sha256": "7fcd2959c49d2e8ededdb2364039f110aedcf8e4b1a7f40c6b3997edba8eaf56"
+    },
+    {
+      "path": "AGY-SMALL-JOURNAL-ACK-R2-RECEIPT.json",
+      "bytes": 539,
+      "sha256": "61a01b79ecceaaad49d6c54074ea374afb514867a93731454105fa913853e471"
+    },
+    {
+      "path": "AGY-SMALL-JOURNAL-ACK-RECEIPT.json",
+      "bytes": 521,
+      "sha256": "a8ac8743ad7d231e7d2ea88aeb7d3b3e18a02056be68ce7b58024c79739e9977"
+    },
+    {
+      "path": "AGY-SMALL-JOURNAL-MARK-RECEIPT.json",
+      "bytes": 538,
+      "sha256": "3fd60761cd6948d32046791aff79d8fb1c93b8a34abb5b8278585356b44fa1d2"
+    },
+    {
+      "path": "AGY-SMALL-JOURNAL-RECEIPT.json",
+      "bytes": 513,
+      "sha256": "82fb0367f41c318ac01e94c57c98970e4322c6a8f5eb5a3d0761fba72732d223"
+    },
+    {
+      "path": "AGY-SMALL-START-RECEIPT.json",
+      "bytes": 524,
+      "sha256": "d1ccc57824c0fb8998be01ecce69716b4e9a92ca1fc0bf692d1745300eb29a6e"
+    },
+    {
+      "path": "AGY-STAGE1-RECEIPT.json",
+      "bytes": 496,
+      "sha256": "9138c50ff78f58093602c1ccfcf8946cbb80044461e45912de2a3d9f7e9060c2"
+    },
+    {
+      "path": "AGY-STAGE2-RECEIPT.json",
+      "bytes": 485,
+      "sha256": "c888c02a0c3fa1af01700a031b474ba9873f692aa3f43d7d0b0b238903d17f97"
+    },
+    {
+      "path": "AGY-TAIL-CONTRACTS-RECEIPT.json",
+      "bytes": 830,
+      "sha256": "69a827cd4af11aedabda0a4302b41d7b88890a8c565b1d80b4a06a0c30625b95"
+    },
+    {
+      "path": "AGY-TAIL-JSON-REPAIR-RECEIPT.json",
+      "bytes": 531,
+      "sha256": "e2c143413df38308031f9572ba6cde5a2dfad1e7b7e4364b2c39cbc4f7e91cf6"
+    },
+    {
+      "path": "BASELINE.mjs",
+      "bytes": 18026,
+      "sha256": "a57f19cbb5ff68f76c1acbf4f5c04ebd2a12f59ba667552754243a5c3d472486"
+    },
+    {
+      "path": "CALLER-PRODUCTION-RUN.mjs",
+      "bytes": 833,
+      "sha256": "3c3c34145f8e0163b1abdc70c37fe9255968db2ed3caa64893c991fa9b360233"
+    },
+    {
+      "path": "contracts-r3/draft/sessao-producao.mjs",
+      "bytes": 20924,
+      "sha256": "a245e64353566e1e52b2cdba95b67c0d0b11f842841eaf9f8c96f29097785e6a"
+    },
+    {
+      "path": "contracts-r3/GEMINI-RETENTION-MODEL.txt",
+      "bytes": 2657,
+      "sha256": "98baecb33e63c60101ceb11ea52e56df364e05a960e0c66dfe48252bc84f334f"
+    },
+    {
+      "path": "contracts-r3/MATERIALIZATION.json",
+      "bytes": 2378,
+      "sha256": "5f8de784d91f1d9ae1cd4ae327d4a9cb102d9696a8faf78840768aab93a5d630"
+    },
+    {
+      "path": "contracts-r3/models-gemini.mjs",
+      "bytes": 16939,
+      "sha256": "11c7c533a4ea90bf99cf6146f2729d0acb720a84b94a91c5e12f2bccb05bc5d2"
+    },
+    {
+      "path": "contracts-r3/MODELS-OUTPUT.txt",
+      "bytes": 710,
+      "sha256": "fa67dfabbf547a1bf74bb82973179286303e56b1c647d24949b84bc25c6e3e93"
+    },
+    {
+      "path": "contracts-r3/MODELS-RECEIPT.json",
+      "bytes": 164,
+      "sha256": "97eabcd437b423710511a2bb5c90128f069ccb2137ef8a3b90b25aea998b18ec"
+    },
+    {
+      "path": "contracts-tail/CALLER-PRODUCTION-RUN.mjs",
+      "bytes": 833,
+      "sha256": "3c3c34145f8e0163b1abdc70c37fe9255968db2ed3caa64893c991fa9b360233"
+    },
+    {
+      "path": "contracts-tail/draft/sessao-producao.mjs",
+      "bytes": 20924,
+      "sha256": "a245e64353566e1e52b2cdba95b67c0d0b11f842841eaf9f8c96f29097785e6a"
+    },
+    {
+      "path": "contracts-tail/GEMINI-TAIL-JSON-REPAIR.txt",
+      "bytes": 7341,
+      "sha256": "852e6d049ae6e8304d715a8a6a1909bdf6a8ccba905d8961e788353ddf145f0c"
+    },
+    {
+      "path": "contracts-tail/MATERIALIZATION.json",
+      "bytes": 252,
+      "sha256": "370cf3abb9d7fe2be79450a1e73f6b00f3cad500060846dbcd674cbf29e35a1c"
+    },
+    {
+      "path": "contracts-tail/models-gemini.mjs",
+      "bytes": 22626,
+      "sha256": "b0438199fe86eae6c189257c6587ba9591acb3544c33c54abc4ebbe33bb20233"
+    },
+    {
+      "path": "contracts-tail/MODELS-OUTPUT.txt",
+      "bytes": 812,
+      "sha256": "b5ef71b5f195760a12950c85e2c7e34f246d0f5a5c2cc31a63b22f61c975eb55"
+    },
+    {
+      "path": "contracts-tail/MODELS-RECEIPT.json",
+      "bytes": 164,
+      "sha256": "97eabcd437b423710511a2bb5c90128f069ccb2137ef8a3b90b25aea998b18ec"
+    },
+    {
+      "path": "draft/sessao-producao.mjs",
+      "bytes": 21354,
+      "sha256": "c50f771c25f97528e0f75f4ca9d7742950669831e9bd5933e202b30d7be713c8"
+    },
+    {
+      "path": "format-root-patch.mjs",
+      "bytes": 1689,
+      "sha256": "3a117cd3b31100116e774dddb8d9870ebb0460b4c6a0d25ecdecc18b8aafd7ac"
+    },
+    {
+      "path": "freeze-delivery.mjs",
+      "bytes": 6312,
+      "sha256": "208ef64eb0e8e8a8dda848b5f76e0333301aefc7ccf2a89f498b231ea4de4ef3"
+    },
+    {
+      "path": "gemini-concurrency-review.mjs",
+      "bytes": 3394,
+      "sha256": "75ac121d699762e03a705f260423d2edd5c11abdccfaab2387574db23c1044cb"
+    },
+    {
+      "path": "gemini-concurrency-small.mjs",
+      "bytes": 3852,
+      "sha256": "3e5c001f133951f41a02bd909f55ed3b80c101c85efd4afef0c976f678d54c3d"
+    },
+    {
+      "path": "GEMINI-CONCURRENCY-SMALL.txt",
+      "bytes": 4224,
+      "sha256": "7e3b62d6f12ac120499b4c2a76631e544e758b0c13fea4b92a7136e24dfb7d4c"
+    },
+    {
+      "path": "GEMINI-CONTRACTS-REPAIR.txt",
+      "bytes": 20420,
+      "sha256": "3b5032d7507c634f40c3b4e04891bf8a0a7a48362106967d632775d4f3b00463"
+    },
+    {
+      "path": "gemini-contracts.mjs",
+      "bytes": 4029,
+      "sha256": "2c63114228903546066de6f547622c0d02995cb9264e592afcb8466395c6abd4"
+    },
+    {
+      "path": "GEMINI-CONTRACTS.txt",
+      "bytes": 33196,
+      "sha256": "1a58b42041d16bfd542275fa78684fa4128277a539eae3998a653ef019bf7943"
+    },
+    {
+      "path": "gemini-correct-review.mjs",
+      "bytes": 3563,
+      "sha256": "8f9f9c5f4522b06ff9c5065e891b88d7934cc633e84e0c02333985090c5c6ed0"
+    },
+    {
+      "path": "GEMINI-CORRECTION.txt",
+      "bytes": 13096,
+      "sha256": "76eb3b264112d965fce903d429017cdaca8dd1601e7d91b4d265c8c650aacb12"
+    },
+    {
+      "path": "gemini-final-recipe.mjs",
+      "bytes": 3837,
+      "sha256": "43c8d344215d633e229cf56498f5b35409673c7b5301a07f048b5eff7c0dff0f"
+    },
+    {
+      "path": "GEMINI-FINAL-ROOT-RECIPE.txt",
+      "bytes": 4175,
+      "sha256": "2ea413a6c163eede75155d0f599a5557200aebe337c3a88b1e85b86702232d95"
+    },
+    {
+      "path": "gemini-hooks.mjs",
+      "bytes": 4577,
+      "sha256": "51318b03e7e95054621afee68208154353bad09c79e191f759338a76726d02be"
+    },
+    {
+      "path": "gemini-implement.mjs",
+      "bytes": 5211,
+      "sha256": "2761986c688e3ad80c08690b9490a09e889e8a7f11438eb28c41ee10c12d7375"
+    },
+    {
+      "path": "gemini-journal-ack-r2.mjs",
+      "bytes": 4633,
+      "sha256": "c26db2de1ee133b86fdfb24f75179f56fbc85123fe0acaead73bf18648f29a85"
+    },
+    {
+      "path": "gemini-journal-parts.mjs",
+      "bytes": 4497,
+      "sha256": "b5bfee244211ffefedf20252763d9645ec1031fa0a0946a2c0dfa6024b67f545"
+    },
+    {
+      "path": "gemini-repair-contracts.mjs",
+      "bytes": 3503,
+      "sha256": "b26f061564c836158f00faa17a125b8e59950f14526dd41299e60a815b0200e4"
+    },
+    {
+      "path": "gemini-repair-retention-model.mjs",
+      "bytes": 3171,
+      "sha256": "dca4ff449e64670ee478964fab07f9ebae4728665d2b865d419bcc6bef6c00df"
+    },
+    {
+      "path": "GEMINI-RETENTION-MODEL.txt",
+      "bytes": 2657,
+      "sha256": "98baecb33e63c60101ceb11ea52e56df364e05a960e0c66dfe48252bc84f334f"
+    },
+    {
+      "path": "gemini-root-recipe.mjs",
+      "bytes": 3448,
+      "sha256": "5e34fa732c6e47f73a935bc5696a50fd8678d21d77ef975eefb94cb1ca153cb3"
+    },
+    {
+      "path": "GEMINI-ROOT-RECIPE.txt",
+      "bytes": 5459,
+      "sha256": "432a72ec26d3261671add7a5f4e8df6d78bba96d7db9f53ee6d28df58f1c9704"
+    },
+    {
+      "path": "GEMINI-SMALL-EVENTS.txt",
+      "bytes": 3231,
+      "sha256": "87b78744505e4c3bb7025ae4b642edcf71e5160c02c104bd868b62b98c7c218c"
+    },
+    {
+      "path": "gemini-small-hook.mjs",
+      "bytes": 4567,
+      "sha256": "e96bb653eb8cfe6c4882e5dd1c40d0e8f712601d9d2e150b11cad1663970e782"
+    },
+    {
+      "path": "GEMINI-SMALL-JOURNAL-ACK-R2.txt",
+      "bytes": 2269,
+      "sha256": "aa0e390f26d789629cae7062342e8f161434d2523bd0d7ec110104e519fec3bd"
+    },
+    {
+      "path": "GEMINI-SMALL-JOURNAL-MARK.txt",
+      "bytes": 1600,
+      "sha256": "23b1062d00982db46595adda3f2211ce860cdd626e3f1641b7f53663e70e1c08"
+    },
+    {
+      "path": "GEMINI-SMALL-START.txt",
+      "bytes": 5238,
+      "sha256": "705be26731ed2e7127deb6b611e52356ba09a9cd796feaae46da716a0f995e76"
+    },
+    {
+      "path": "gemini-stage1.mjs",
+      "bytes": 3884,
+      "sha256": "0c7ee452ac0b59c9361c9033ca60567a0be279a8385a854e99085c16b4947047"
+    },
+    {
+      "path": "GEMINI-STAGE1.txt",
+      "bytes": 7240,
+      "sha256": "06a854529f3a1fbab4c00cca8296a0e0d77f1bb1a32173320cec1a5c689e91d3"
+    },
+    {
+      "path": "gemini-stage2.mjs",
+      "bytes": 4095,
+      "sha256": "71597a3e4a6d75b05cdd20df51983e0291e7edef5a8d941366847eaf74faee76"
+    },
+    {
+      "path": "gemini-tail-contracts.mjs",
+      "bytes": 4005,
+      "sha256": "e4f0dc60655e683ce7948dba78875b094f405a35a84f7711856370f7b1d39261"
+    },
+    {
+      "path": "GEMINI-TAIL-CONTRACTS.txt",
+      "bytes": 8294,
+      "sha256": "5276c0cb414031bc44aad7cdb823b000f3ac536e077c067fe1f909c5a95cf2d6"
+    },
+    {
+      "path": "gemini-tail-json-repair.mjs",
+      "bytes": 2984,
+      "sha256": "f95948fb094937ca0b95da852072498a4e92d0c1d4fbedc780e1ab9f6b0c5857"
+    },
+    {
+      "path": "GEMINI-TAIL-JSON-REPAIR.txt",
+      "bytes": 7341,
+      "sha256": "852e6d049ae6e8304d715a8a6a1909bdf6a8ccba905d8961e788353ddf145f0c"
+    },
+    {
+      "path": "MATERIALIZATION.json",
+      "bytes": 8463,
+      "sha256": "3957712a885d433245ee9583febf4062056e5bbf3071e46a3b0bc72426dccde8"
+    },
+    {
+      "path": "materialize-correction.mjs",
+      "bytes": 2018,
+      "sha256": "83227fb42e394ae633e5d6559402282c983f6d1f1c0d2d006ef4494a94dc53fc"
+    },
+    {
+      "path": "materialize-parts.mjs",
+      "bytes": 2686,
+      "sha256": "87b03f3ea87b16e47f3a531a7648dd98e112278a8995ad8b451aaa66eadcc449"
+    },
+    {
+      "path": "materialize.mjs",
+      "bytes": 1991,
+      "sha256": "47903366070e7cb3a4504ec32fffb2e147d791da008eaa29119ff90520537ab2"
+    },
+    {
+      "path": "MODELS-C50F-OUTPUT.txt",
+      "bytes": 422,
+      "sha256": "834eda974869809668455a446c44776c5f7c27ee51521e9e8347286a96ee5bc0"
+    },
+    {
+      "path": "MODELS-C50F-RECEIPT.json",
+      "bytes": 169,
+      "sha256": "d340b975053fcf01428d3f91fa34c94f8c8bf6fc9d2cc38723ed8d5087d54b84"
+    },
+    {
+      "path": "models-gemini-c50f.mjs",
+      "bytes": 31096,
+      "sha256": "39731d052d2b329e9752f2da04b981b413665d51e01579307eb31b6c7c4f208a"
+    },
+    {
+      "path": "REPORT-FINAL.json",
+      "bytes": 20067,
+      "sha256": "4959cc4e5dd7b54c930b71cdb077f05bae963b8b4357f66a15c7d80997883117"
+    },
+    {
+      "path": "revision2/draft/sessao-producao.mjs",
+      "bytes": 20924,
+      "sha256": "a245e64353566e1e52b2cdba95b67c0d0b11f842841eaf9f8c96f29097785e6a"
+    },
+    {
+      "path": "revision2/GEMINI-CONTRACTS-REPAIR.txt",
+      "bytes": 20420,
+      "sha256": "3b5032d7507c634f40c3b4e04891bf8a0a7a48362106967d632775d4f3b00463"
+    },
+    {
+      "path": "revision2/GEMINI-CORRECTION.txt",
+      "bytes": 13096,
+      "sha256": "76eb3b264112d965fce903d429017cdaca8dd1601e7d91b4d265c8c650aacb12"
+    },
+    {
+      "path": "revision2/MATERIALIZATION.json",
+      "bytes": 8610,
+      "sha256": "2e57dbecd5356c734b95a61fdaddbf350e30a9bcb0a2e0984759bcf1b91111b1"
+    },
+    {
+      "path": "revision2/models-gemini.mjs",
+      "bytes": 16913,
+      "sha256": "df6badbbd3c38b26f96663b7f67883be0aaceb08b23ac597ae821934add1e7a6"
+    },
+    {
+      "path": "revision2/MODELS-OUTPUT.txt",
+      "bytes": 410,
+      "sha256": "8d3a768b780f13cc986332c55f107ffa2416860a00f87f04653f6a9ccc84be72"
+    },
+    {
+      "path": "revision2/MODELS-RECEIPT.json",
+      "bytes": 164,
+      "sha256": "ae66a697287681b8e0ccded1d1c621522ff7736037404f1edf59062e5e1c6bcc"
+    },
+    {
+      "path": "revision2/PATCH-PINS.json",
+      "bytes": 428,
+      "sha256": "e78ee916868ebcc391e23f1f973c96dd35b12a3833d5681cd869dbc2a895e7a2"
+    },
+    {
+      "path": "revision2/ROOT-PRODUCT.patch",
+      "bytes": 25839,
+      "sha256": "2702824b4367ce33fc581ba5e18b76e7d72dffbff125f33a95df22c65d0f35ea"
+    },
+    {
+      "path": "revision2/sessao-producao.patch",
+      "bytes": 25997,
+      "sha256": "6dcaa8e5882a9dae1c039d4c9e34e30d67bb59067a3c879d515ce8e2f7ba5f80"
+    },
+    {
+      "path": "TAIL-JSON-FIRST-FAIL.json",
+      "bytes": 380,
+      "sha256": "0135b00eaf71793f10443ec81452965986d8b76419eb82c769162809f0844103"
+    }
+  ],
+  "externalReferences": [
+    {
+      "path": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\autosave-dirty-independent-revision2-review-20261010\\ALLOWLIST.json",
+      "sha256": "e339b29214750b0639db5b788ead67557ffca163ee2074650120312b0f4b2ce3"
+    },
+    {
+      "path": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\autosave-dirty-independent-concurrency-review-20261010\\ALLOWLIST.json",
+      "sha256": "2592da1deccaadd553f222bc082e909b7188c68ba0e86a10b83efe393735c810"
+    },
+    {
+      "path": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\autosave-dirty-independent-tail-contract-review-20261010\\ALLOWLIST.json",
+      "sha256": "90587ab8ef4edf05e2a0506dd79b42f9b6640d8689913c06dabb0f858159b557"
+    },
+    {
+      "path": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\autosave-dirty-independent-tail-contract-review-20261010\\GEMINI-REVIEW.txt",
+      "sha256": "b9c7e289f4585c86689f93ee1921066034f89c64093b1a78231b06caa22746b7"
+    }
+  ]
+}

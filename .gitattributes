@@ -254,3 +254,6 @@ docs/historico/20261010-1806-before-direct-out/** -text -whitespace
 
 docs/evidencias/20261010-native36-source-record-cache/** -text -whitespace
 docs/historico/20261010-1815-before-native36/** -text -whitespace
+
+docs/evidencias/20261010-app36-real-readonly-fail/** -text -whitespace
+docs/evidencias/20261010-autosave-gemini-dirty/** -text -whitespace

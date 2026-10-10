@@ -1,0 +1,34 @@
+[
+  {
+    "to": "draft\\sessao-producao.mjs",
+    "hash": "a245e64353566e1e52b2cdba95b67c0d0b11f842841eaf9f8c96f29097785e6a"
+  },
+  {
+    "to": "models-gemini.mjs",
+    "hash": "b0438199fe86eae6c189257c6587ba9591acb3544c33c54abc4ebbe33bb20233"
+  },
+  {
+    "to": "CALLER-PRODUCTION-RUN.mjs",
+    "hash": "3c3c34145f8e0163b1abdc70c37fe9255968db2ed3caa64893c991fa9b360233"
+  },
+  {
+    "to": "AUTHOR-REPORT.json",
+    "hash": "4959cc4e5dd7b54c930b71cdb077f05bae963b8b4357f66a15c7d80997883117"
+  },
+  {
+    "to": "AUTHOR-ALLOWLIST.json",
+    "hash": "ca39e7cda577e2208624da1c1646d3be4ed817cf8a9d9dbd1e646fc4d1924209"
+  },
+  {
+    "to": "INDEPENDENT-GEMINI-REVIEW.txt",
+    "hash": "b9c7e289f4585c86689f93ee1921066034f89c64093b1a78231b06caa22746b7"
+  },
+  {
+    "to": "INDEPENDENT-REVIEW-RESULT.json",
+    "hash": "fee343909fecc5398a1d0a7a4846e039d5a84b2fcd0746fc549b1d78d3c4bf37"
+  },
+  {
+    "to": "INDEPENDENT-ALLOWLIST.json",
+    "hash": "90587ab8ef4edf05e2a0506dd79b42f9b6640d8689913c06dabb0f858159b557"
+  }
+]

@@ -1,0 +1,105 @@
+{
+  "status": "REAL_FAIL_PRESERVED_TIMER_WRITE_CAUSAL_PATH_IDENTIFIED_MASKED_REQUEST_NOT_UNIQUELY_IDENTIFIED",
+  "models": {
+    "status": "PASS_ACTUAL_TIMER_CAPTURE_CPU_ONLY",
+    "checks": 5,
+    "navigationCalled": false,
+    "nativeApiFilesystemWritesByModel": false,
+    "doesNotIdentifyMaskedRuntimeRequest": true,
+    "zeroGateUnchanged": true
+  },
+  "receiptSha256": "3ab40b1be95c0f646e6d62bf594ab7c248dd8a3d91fbc3211f05dc4ef93c39b2",
+  "autoSaveAfterPriorSnapshotMs": 60645,
+  "sourceChain": [
+    {
+      "path": "FreeMix/ferramentas/sessao-producao.mjs",
+      "line": 28,
+      "behavior": "enabled=true intervalSeconds60 default"
+    },
+    {
+      "path": "FreeMix/ferramentas/servidor-api.mjs",
+      "line": 228,
+      "behavior": "periodic ticker invokes SessionRecovery.tick"
+    },
+    {
+      "path": "FreeMix/ferramentas/sessao-producao.mjs",
+      "line": 46,
+      "behavior": "60s threshold calls capture(false) independent of navigation"
+    },
+    {
+      "path": "FreeMix/ferramentas/sessao-producao.mjs",
+      "line": 47,
+      "behavior": "automatic backup then journal autosave"
+    },
+    {
+      "path": "FreeMix/ferramentas/recuperacao-producao.mjs",
+      "line": 30,
+      "behavior": "automatic backup still calls vendor save_preset"
+    },
+    {
+      "path": "freemix-app/frontend/widgets/FreeMixMultistream.cpp",
+      "line": 1387,
+      "behavior": "save_preset BlockingQueuedConnection invokes SavePresetAsDocument"
+    }
+  ],
+  "observedDeltas": {
+    "http": {
+      "run": 0,
+      "execute": 0,
+      "journal": 0,
+      "mutatingReq": 0
+    },
+    "iabHold": {
+      "run": 0,
+      "execute": 0,
+      "journal": 1,
+      "mutatingReq": 1
+    }
+  },
+  "nativeClosed": true,
+  "shutdownAccepted": true,
+  "allocations": [
+    0
+  ],
+  "crashArtifacts": 0,
+  "gemini": {
+    "responseBytes": 2105,
+    "publicInlineOnly": true,
+    "reviewed": true
+  },
+  "decision": "No product patch applied or complete navigation PASS claimed. Keep timer writes as violations. Root must decide recovery semantics; dirty check alone cannot cover non-Native metadata dirty state.",
+  "futureObserverProposal": "Add only save_preset known dispatch name to bounded metadata set, keep classifier mutating. Record finite journal action and timer cause separately, never exclude autosave from counters.",
+  "limits": [
+    "The masked runtime vendor is not directly identified; source/timing/journal show concrete autosave path with matching one-write delta.",
+    "No proof browser navigation itself caused periodic autosave.",
+    "No Native/API/browser/build/runtime rerun or operator mutation.",
+    "Disabling autosave or stretching interval only to pass would change qualification and is not proposed.",
+    "Original FAIL and AL487 frozen bytes unchanged."
+  ],
+  "pins": [
+    {
+      "path": "FreeMix/ferramentas/sessao-producao.mjs",
+      "sha256": "a57f19cbb5ff68f76c1acbf4f5c04ebd2a12f59ba667552754243a5c3d472486"
+    },
+    {
+      "path": "FreeMix/ferramentas/recuperacao-producao.mjs",
+      "sha256": "6abb2a3f23ccb376e3b6ed9fbc92beed1be51d36b14a6a884503454940291ac0"
+    },
+    {
+      "path": "FreeMix/ferramentas/servidor-api.mjs",
+      "sha256": "665aeedf26ec3dfa4e9ebaea40b7658e3d08ef23c2293d7f35bdbe21e8425161"
+    },
+    {
+      "path": "freemix-app/frontend/widgets/FreeMixMultistream.cpp",
+      "sha256": "802439c9f65d62a5881c8e61588740992f6ef526bbd9dc6b95822e06ddb737eb"
+    },
+    {
+      "path": "qa-finalizacao/native36-real-app-r3-preparation-20261010/ALLOWLIST-PREPARATION.json",
+      "sha256": "4d42af8ea34d188083b2c52fa6655f386b39f4a30fd0e84e95d5f0c0f0ed0a77"
+    },
+    {
+      "path": "qa-finalizacao/native36-real-app-r3-preparation-20261010/receipt.json",
+      "sha256": "3ab40b1be95c0f646e6d62bf594ab7c248dd8a3d91fbc3211f05dc4ef93c39b2"
+    }
+  ]
+}
