@@ -1,12 +1,12 @@
 # Pendências reais — visão atual em 10/10/2026
 
-**Entrega aprovada:0.1.0-local.20261010060000 / Native24, imutável. Fonte atual Native35 e DLL LocalVocal cumulativa são QA/fonte, sem novo instalador aprovado.** Os PASS abaixo têm escopo finito; o histórico posterior não substitui esta visão vigente.
+**Entrega aprovada:0.1.0-local.20261010060000 / Native24, imutável. Fonte atual Native36 e DLL LocalVocal cumulativa são QA/fonte, sem novo instalador aprovado.** Os PASS abaixo têm escopo finito; o histórico posterior não substitui esta visão vigente.
 
 ## Software que ainda exige trabalho ou prova
 
 | Prioridade / frente | Estado comprovado | Trabalho concreto e critério | Quem pode provar / condição |
 |---|---|---|---|
-| P0 — abrir menus sem executar comandos | Network/talkback cacheados34; áudio/SDI cacheados35,38modelos Root/build/reconstruçãoPASS. App32R2FAIL e App34BLOCKED preservados. | Finalizar dirty-form DirectOut e derivar App35; repetir cinco telas/polling comrun0 e snapshots iguais. Só depois Preview/Cut/ACK/latência/persistência/watchdog. | Root executa QA própria; inventários não certificam drivers nem autorização de scan. Native35 real ainda pendente. |
+| P0 — abrir menus sem executar comandos | Network/talkback34, inventários35 e defaultsSourceRecord36 cacheados; builds/reconstruçãoPASS. DirectOutfinal19+9modelos integrado. FAIL32/BLOCKED34/35 preservados. | Derivar App36 de fontes finais; validar pósREADY SourceRecordbool/known e cinco telas/polling com zero comandos/mutações/snapshots iguais. Só depois Preview/Cut/ACK/latência/persistência/watchdog. | Root QA própria; SourceRecordstartupcallback é manutenção declarada, não leitura pura genérica nem prova de hardware. |
 | P0 — Calls A/V | Vídeo/RGB/CEF e áudio sintético recebido têm provas separadas; drift9,778863ms/sFAIL. | Coletar metadata recebida/pinos/cleanup e correlacionar flash→callback/RTP com codec observado. Só então implementar correção causal e repetir mesmos bounds. Depois integrar/qualificar PCM Native/N-1/talkback e VDO real. | Root aprova uma execução exclusiva; agente analisa clock/draft. Campos ausentes ficam desconhecidos; submittedPTS/packetloss0 não aprovam A/V. ContínuoOFF. |
 | P1 — RNNoise | Filtro criado/readback confirmado; Master real/preset/limitador/restauraçãoPASS. Redução1,0358dB<3:FAIL. | Isolar PCM antes/depois, bordas da captura e parâmetros reais mantendo fixture/3dB. Corrigir apenas causa reproduzida e repetir restauração/zero corrupção. Não substituir estímulo/meta para passar. | Root executa captura digital própria; agente diagnostica fonte/oracle. Não exige microfone/hardware para esta lacuna digital. |
 | P1 — LocalVocal vivo | Português próprio3/5PASS no critério finito; close ordinário após remover/desabilitar filtros passou0. DLL cumulativa somente QA. | Ensaio separado com filtro ainda vivo/inferência em curso, cancelamento real/cooperativo, fonte/contexts liberados, exit0/alloc0/crash0 e pins.17casos negativos/inglês ainda não qualificados. | Root integra/build e executa QA exclusiva; agente prepara cenários/patch após evidência. Não atribuir todas35alocações antigas a um único leak nem inferir cancelamento pelo log pós-whisper. |
@@ -39,7 +39,7 @@ Revisão Root deste topo: GitHub98d4bad. Duas ações de abertura têm caminho e
 
 # Pendências reais do FreeMix
 
-Entrega selecionada: **0.1.0-local.20261010060000, Native24/a047860**, imutável. Fonte atual Native35/5b680a1 compilada viaALL_BUILD e congelada:2085arquivos,35patches/3submódulos/231snapshots reconstruídos. Cursor retido integrado; reinício NTSC real33 PASS no cursor, fullFTB ainda pendente. Ainda não há novo instalador aprovado. Native30/93d73e2 e candidato093000/FAIL permanecem históricos.
+Entrega selecionada: **0.1.0-local.20261010060000, Native24/a047860**, imutável. Fonte atual Native36/e81afe7 compilada viaALL_BUILD e congelada:2085arquivos,36patches/3submódulos/231snapshots reconstruídos. Cursor retido integrado; reinício NTSC real33 PASS no cursor, fullFTB ainda pendente. Ainda não há novo instalador aprovado. Native30/93d73e2 e candidato093000/FAIL permanecem históricos.
 
 | Frente | Prova atual | Falta concreta |
 |---|---|---|
@@ -158,3 +158,19 @@ Root integrou onze arquivos de produto (seis Native/cinco painel) após repetir2
 Native35 5b680a17a1db65c66ce6a696f1da8ca69d29f49e ALL_BUILD/2085arquivos rehash/35patches/3submódulos/231snapshots/reconstrução--checkPASS. Fonte 0.1.0-local.20261010175421 somenteDEV. Nenhum Native35 iniciado. App34 bloqueado original preservado; App35 precisa snapshot/classificação atual e QA real com zero comandos/mutações ao abrir menus. Dirty-form DirectOut está em revisão separada: polling ainda pode sobrescrever uma escolha pendente até essa correção. Não há prova física de ASIO/SDI/HDR, hotplug ou latência/watchdog. Flags de inventário não certificam hardware.
 
 Gemini foi priorizado: áudio recebeu resposta vazia/exit0 e SDI timeout vazio; fallback operacional documentado, sem alegar cota. Revisão compacta de áudio retornou2334bytes/31,9s e recebeu crítica independente. Setup600 permanece selecionado e imutável. [Fontes, pinos e limites](evidencias/20261010-native35-device-inventory/ROOT-README.md).
+
+
+## Direct Out — escolhas pendentes preservadas, teste real ainda pendente
+
+Root integrou um arquivo frontend final após19checks VM/DOM/UTF8 e9independentes. Polling conserva dispositivo, volume, atraso e ligar/desligar; Aplicar/Descartar ficam bloqueados durante ACK e refresh. ACK tardio não limpa uma edição nova nem uma nova fonte. Fonte/coleção/queda observada descartam somente o draft local. Não há escrita automática ou retry. Repro anterior de botões habilitados durante ACK e versão com texto corrompido foram recusados/preservados antes da integração.
+
+Reconexão invisível entre polls com mesmos IDs continua sem geração no contrato; falha GET/DOM não prova geração Native. O HTTP legado não comprova cancelamento nem tem deadline de operação nesta mudança. Nenhum Native/API/navegador/dispositivo iniciado por este ensaio. [Fonte, revisão e limites](evidencias/20261010-direct-out-draft-preservation/ROOT-README.md).
+
+Revisão transitive adicional encontrou um bloqueador em Native35: audio_capabilities chama defaults de SourceRecord, que alcançam callbacks do encoder escolhido no perfil. Não será classificado como leitura pura genérica. Nova correção mínima está em revisão: observar a capability uma vez no startup e em atualização explícita, guardar resultado/known e ler cache no getter, preservando os busesISO do replay após startup. Native35 build/2085pins/reconstrução permanecem válidos; App35 não foi iniciado. Nova fonte/build e App próprio ainda precisam de qualificação. Setup600 continua selecionado e imutável.
+
+
+## Native36 — capability SourceRecord cacheada após inicialização
+
+Gemini implementou a correção mínima em uma fonte e fez revisão independente com respostas reais de3486/3123bytes. Root repetiu14modelos de statements extraídos e3do consumidor Replay, verificou19pinsautor+9revisão/8inputs e integrou. Capability SourceRecord inicia false/unknown; FINISHED_LOADING observa uma vez depois dos módulos, Atualizar dispositivos reobserva, getter serializa somente bool/known. Nenhum novo scanASIO/WASAPI no startup. Callback de defaults do encoder continua manutenção declarada na inicialização/refresh, não uma leitura pura genérica. Isso conserva o contrato dos busesISO após startup sem alterar Replay.
+
+Native36 e81afe793708bd17821c9dc866b066783251e5fc ALL_BUILD/2085arquivos rehash/36patches/3submódulos/231snapshots/reconstrução--checkPASS. Fonte 0.1.0-local.20261010181335 somenteDEV. Nenhum Native36 iniciado. App34BLOCKED e blockerSourceRecord35 preservados; App36 deve observar bool/known pósREADY e repetir as cinco telas com zero incrementosrun/execute/journal/mutatingReq e snapshots iguais. Depois Preview/Cut/ACK/latência/persistência. Startup com encoder externo pode ter latência; não é homologação física nem cancelamento/watchdog. DirectOutfinalff4a integrado19+9modelos, com limites de reconexão invisível/HTTP herdado. Setup600 permanece selecionado e imutável. [Fonte, pinos e limites](evidencias/20261010-native36-source-record-cache/ROOT-README.md).

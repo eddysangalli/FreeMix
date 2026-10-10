@@ -1,0 +1,17 @@
+{
+  "status": "ROOT_SINGLE_NATIVE_SOURCE_RECORD_STARTUP_CACHE_INTEGRATED_BUILD_REAL_QA_PENDING",
+  "at": "2026-10-10T18:12:08.731Z",
+  "target": {
+    "path": "freemix-app/frontend/widgets/FreeMixAudioRouting.cpp",
+    "expectedBeforeSha256": "d2e75489e50fc1483bbf6c0e76f6ce7cc1a37554fdad25833a7dcd7baa63f96a",
+    "expectedAfterSha256": "a1aa6ebf37efce652347b95ce8fb2263d2f896538560a8737cb67afb61cd2fa9"
+  },
+  "RootModels": 17,
+  "independentAllowlistSha256": "50022328503e3d385e8f93facf0cffa970a7dc3a7310cf76e8b344ee108a3476",
+  "startupCallbackMaintenance": true,
+  "arbitraryDefaultsNotGenericPure": true,
+  "NativeBuilt": false,
+  "NativeStarted": false,
+  "operatorTouched": false,
+  "newPackageApproved": false
+}

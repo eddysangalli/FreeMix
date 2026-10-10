@@ -1,0 +1,7 @@
+{
+  "status": "FAIL_PRESERVED_MODEL_ONLY",
+  "cause": "vm context persisted lexical cache binding between helper invocations",
+  "error": "SyntaxError Identifier cache already declared",
+  "canonicalEdits": false,
+  "nativeStarted": false
+}

@@ -1,8 +1,8 @@
 {
   "upstream": "https://github.com/obsproject/obs-studio.git",
   "base": "ba2f32bdf791005443988a4955e963663e16b1ed",
-  "head": "5b680a17a1db65c66ce6a696f1da8ca69d29f49e",
-  "version": "0.1.0-local.20261010175421",
+  "head": "e81afe793708bd17821c9dc866b066783251e5fc",
+  "version": "0.1.0-local.20261010181335",
   "patches": [
     {
       "path": "0001-feat-branding-replace-OBS-identity-with-FreeMix-Stud.patch",
@@ -143,11 +143,15 @@
     {
       "path": "0035-Cache-device-inventories-and-keep-menu-state-reads-p.patch",
       "sha256": "b70cc5c6025de00343bb4e2a7f7a46f72160f89d1fe1557d12d868ea23311dab"
+    },
+    {
+      "path": "0036-Cache-SourceRecord-capability-after-frontend-startup.patch",
+      "sha256": "807f37f5b6aaa37331dcb1a8af79a9433d231869513bf9a61f8b293f8832b715"
     }
   ],
-  "sourceUpdatedAt": "2026-10-10T17:55:45.821Z",
+  "sourceUpdatedAt": "2026-10-10T18:15:16.064Z",
   "sourceSchema": 2,
-  "tree": "2239ec5600ac59b8579bf34cd6dae2b5ffc05d41",
+  "tree": "fc107e309063b0fb13ca33315bd7e179d60ab822",
   "submodules": [
     {
       "path": "deps/libdshowcapture/src",

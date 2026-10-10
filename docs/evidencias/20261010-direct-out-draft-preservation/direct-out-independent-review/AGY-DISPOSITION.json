@@ -1,0 +1,17 @@
+{
+  "timeoutSeconds": 120,
+  "responseNonempty": false,
+  "stderrPrintTimeout": true,
+  "rawResultSha": "e186fd392b309ce6892d5864269f6bbbffa614fc2587f9732b455c03f8e69c14",
+  "shellExitCode": 0,
+  "rawStderrSha": "fe172e6515faae7e07ac85a7a1a00e33cf5a006cca976a646972aa6110a5b3ce",
+  "quotaFailureEstablished": false,
+  "reviewedInitialDraftSha": "65b8cb4c2931a3d7bca250ba576bf4875e1707051515a63b790589d3896bc311",
+  "fallback": "Independent Codex source/VM review after operational failure",
+  "ownPublicSourceCopiesOnly": true,
+  "inlineNoToolsRequested": true,
+  "mode": "plan",
+  "conversationId": "971af10d-4849-4971-a7ba-19c099fa81a0",
+  "status": "OPERATIONAL_EMPTY_RESPONSE_TIMEOUT",
+  "model": "gemini-3.8-flash-high"
+}

@@ -1,0 +1,26 @@
+{
+  "status": "ROOT_DIRECT_OUT_SINGLE_FRONTEND_SOURCE_INTEGRATED_REAL_QA_PENDING",
+  "at": "2026-10-10T18:05:57.342Z",
+  "pin": {
+    "path": "FreeMix/painel/remoto/audio-buses.js",
+    "baseline": "d5173ff3418b85b675e297c1b1b13db9837dec95fcac712b949792422548e706",
+    "draft": "ff4a77c8c7c2ebd461f9bc2e554cdd638666e9c93ba6ef56ed289b2264a6a5e4",
+    "eol": "LF",
+    "nativeRuntime": false,
+    "canonicalChanged": false,
+    "draftPath": "qa-finalizacao/direct-out-dirty-frontonly-utf8-r2-20261010/DRAFT.js",
+    "patchPath": "qa-finalizacao/direct-out-dirty-frontonly-utf8-r2-20261010/direct-out-dirty.patch"
+  },
+  "authorAllowlistSha256": "32952cc6b889d08939f1cd0fd58ed90fd028379e363a345cb8f9c9361ddd8ec5",
+  "independentAllowlistSha256": "a6d959802c6fbf39a69d0d82b574a333df49f4d72b2948244c19f70d2ef6957f",
+  "RootActualVMTests": 19,
+  "independentActualVMTests": 9,
+  "syntaxChecks": 1,
+  "NativeChanged": false,
+  "NativeStarted": false,
+  "operatorTouched": false,
+  "connectionGenerationAvailable": false,
+  "unobservedReconnectQualified": false,
+  "inheritedHttpCancellationProven": false,
+  "newPackageApproved": false
+}

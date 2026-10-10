@@ -1,0 +1,38 @@
+{
+  "edits": [
+    {
+      "anchor": "bool outputsKnown=false,inputsKnown=false,renderKnown=false;std::string outputError,inputError,renderError;",
+      "replacement": "bool outputsKnown=false,inputsKnown=false,renderKnown=false,sourceRecordBusCapture=false,sourceRecordBusCaptureKnown=false;std::string outputError,inputError,renderError;"
+    },
+    {
+      "anchor": "void DiscoverAsio(){",
+      "replacement": "void ObserveSourceRecordCapability(){\n\tauto &cache=Inventory();\n\tOBSDataAutoRelease recordDefaults=obs_get_source_defaults(\"source_record_filter\");\n\tcache.sourceRecordBusCapture=recordDefaults&&obs_data_get_bool(recordDefaults,\"freemix_premix_bus_capture\");\n\tcache.sourceRecordBusCaptureKnown=true;\n}\n\nvoid DiscoverAsio(){"
+    },
+    {
+      "anchor": "std::vector<FreeMixAsioDriver> render;cache.renderKnown=RenderInventory(render);cache.renderError=cache.renderKnown?\"\":\"Inventário de reprodução incompleto; atualize dispositivos\";if(cache.renderKnown)cache.render=std::move(render);",
+      "replacement": "std::vector<FreeMixAsioDriver> render;cache.renderKnown=RenderInventory(render);cache.renderError=cache.renderKnown?\"\":\"Inventário de reprodução incompleto; atualize dispositivos\";if(cache.renderKnown)cache.render=std::move(render);\n\tObserveSourceRecordCapability();"
+    },
+    {
+      "anchor": "info.icon_type=OBS_ICON_TYPE_AUDIO_OUTPUT;obs_register_source(&info);}",
+      "replacement": "info.icon_type=OBS_ICON_TYPE_AUDIO_OUTPUT;obs_register_source(&info);\n\tobs_frontend_add_event_callback([](enum obs_frontend_event event, void *) {\n\t\tif (event == OBS_FRONTEND_EVENT_FINISHED_LOADING && !Inventory().sourceRecordBusCaptureKnown) {\n\t\t\tObserveSourceRecordCapability();\n\t\t}\n\t}, nullptr);\n}"
+    },
+    {
+      "anchor": "  OBSDataAutoRelease recordDefaults=obs_get_source_defaults(\"source_record_filter\");\n  obs_data_set_bool(response,\"source_record_bus_capture\",recordDefaults&&obs_data_get_bool(recordDefaults,\"freemix_premix_bus_capture\"));",
+      "replacement": "  obs_data_set_bool(response,\"source_record_bus_capture\",Inventory().sourceRecordBusCapture);\n  obs_data_set_bool(response,\"source_record_bus_capture_known\",Inventory().sourceRecordBusCaptureKnown);"
+    }
+  ],
+  "tests": [
+    "source_only_event_before_getter: Valida que OBS_FRONTEND_EVENT_FINISHED_LOADING popula o cache sem chamada prévia ao getter.",
+    "finished_duplicates: Eventos FINISHED_LOADING redundantes não reexecutam sondagem devido à guarda !sourceRecordBusCaptureKnown.",
+    "explicit_refresh_reobserve: DiscoverAsio reobserva a capacidade mesmo quando o cache já estiver marcado como conhecido.",
+    "no_defaults_in_getter: Getter lê estritamente do cache Inventory() sem invocar obs_get_source_defaults.",
+    "no_asio_probing_at_startup: O evento de startup não inicializa drivers ASIO nem sessões de áudio.",
+    "inverse_unchanged_rest: Campos preexistentes de outputs, inputs e render mantêm comportamento idêntico."
+  ],
+  "limits": [
+    "Mudanças dinâmicas de perfil ou hotplug de plugins após FINISHED_LOADING exigem refresh explícito via DiscoverAsio.",
+    "O acesso ao cache Inventory() assume execução sincronizada na thread de UI/frontend do OBS.",
+    "Antes do evento FINISHED_LOADING, o getter reporta source_record_bus_capture=false e source_record_bus_capture_known=false.",
+    "Não há watchdog, QTimer ou polling contínuo para monitoramento em segundo plano."
+  ]
+}

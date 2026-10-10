@@ -1,0 +1,14 @@
+{
+  "status": "CONFIRMED_PREVIOUS_DRAFT_DEFECT_PRESERVED",
+  "draftSha256": "7884a9a1fde538b9153164a1500e2e524d17d3cdecf77792e7379b65ad9a81bf",
+  "probeSha256": "6e7d6598f3f5bfcd37952f22357210ce5d5ce3394818209ff9aeb6582bab5696",
+  "observed": {
+    "busy": true,
+    "saveDisabled": false,
+    "discardDisabled": false,
+    "calls": 1
+  },
+  "method": "Whole source functions in limited VM DOM, actual held fetch directApply, no manual button repaint",
+  "runtimeNative": false,
+  "correctedFinalSha256": "ff4a77c8c7c2ebd461f9bc2e554cdd638666e9c93ba6ef56ed289b2264a6a5e4"
+}

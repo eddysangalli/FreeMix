@@ -1,0 +1,93 @@
+{
+  "status": "FROZEN_INDEPENDENT_SOURCE_REVIEW_NO_PROVEN_BLOCKER_BUILD_REAL_QA_REQUIRED",
+  "entryCount": 9,
+  "entries": [
+    {
+      "path": "qa-finalizacao/native35-source-record-cache-review/AGY-RECEIPT.json",
+      "sha256": "d8290150cd2e3c5e4ef45070d903b975ba773995f1d3c47cf1c81e82de78de5c",
+      "bytes": 417
+    },
+    {
+      "path": "qa-finalizacao/native35-source-record-cache-review/AGY-RESULT.json",
+      "sha256": "dd6411fd12a41d1f6593f7c6937f2d8874fca1b6a87c1b2f3904917ce9b77424",
+      "bytes": 3418
+    },
+    {
+      "path": "qa-finalizacao/native35-source-record-cache-review/AGY-STARTED.json",
+      "sha256": "d8d3a4df59716c009fc27c08178212309b27787fd2a0e8511d8d529d8c7a69fd",
+      "bytes": 281
+    },
+    {
+      "path": "qa-finalizacao/native35-source-record-cache-review/AGY-STDERR.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "qa-finalizacao/native35-source-record-cache-review/gemini-review.mjs",
+      "sha256": "1ae876af7e60ed1bd6d69211dada7e3f336e9f11921a4d413e3419a5751ad04c",
+      "bytes": 4098
+    },
+    {
+      "path": "qa-finalizacao/native35-source-record-cache-review/GEMINI-REVIEW.txt",
+      "sha256": "71d74b598d08eff143df51fb4fedc11e7c2c83d3e587d1c438bbb4946853b4e8",
+      "bytes": 3123
+    },
+    {
+      "path": "qa-finalizacao/native35-source-record-cache-review/PUBLIC-PROMPT.txt",
+      "sha256": "20bc81bf003aca1137577bf88d9156b427dbba0250212ef1b14eef445139ad34",
+      "bytes": 2215
+    },
+    {
+      "path": "qa-finalizacao/native35-source-record-cache-review/REVIEW.json",
+      "sha256": "5831d390a11b5e1372b57e0c8fa2fa30a2d79217cdd4360f4a1badbee320e9be",
+      "bytes": 2636
+    },
+    {
+      "path": "qa-finalizacao/native35-source-record-cache-review/SOURCE-CHECKS.json",
+      "sha256": "2929f9b8456f1974c3247db8d932a3b14827c88427a2983c0d09ea671acca5a9",
+      "bytes": 240
+    }
+  ],
+  "reviewedInputs": [
+    {
+      "path": "qa-finalizacao/audio-defaults-cache-startup-r2-20261010/ALLOWLIST.json",
+      "sha256": "fefe17e75a484442b4aaa93b847e0e1c31b0c83517ff4590089da000f058774f"
+    },
+    {
+      "path": "qa-finalizacao/audio-defaults-cache-startup-r2-20261010/draft/FreeMixAudioRouting.cpp",
+      "sha256": "a1aa6ebf37efce652347b95ce8fb2263d2f896538560a8737cb67afb61cd2fa9"
+    },
+    {
+      "path": "qa-finalizacao/audio-defaults-cache-startup-r2-20261010/readonly-source-record-cache.patch",
+      "sha256": "b8fcdb3f0aace9ccf59deb88de9c62501d1e75285bde6ac27c6e5fd8dd48de5b"
+    },
+    {
+      "path": "freemix-app/frontend/widgets/OBSBasic.cpp",
+      "sha256": "dff1ef69865bc133e01138c2ecf1c6eaec805e025eff1f3e5fe68df3f7367832"
+    },
+    {
+      "path": "freemix-app/frontend/widgets/FreeMixMultistream.cpp",
+      "sha256": "802439c9f65d62a5881c8e61588740992f6ef526bbd9dc6b95822e06ddb737eb"
+    },
+    {
+      "path": "freemix-app/libobs/obs-encoder.c",
+      "sha256": "67d8ddb183823be85b06b202737e135b65336bc1157ef67abff183b14206eb11"
+    },
+    {
+      "path": "FreeMix/licenses/freemix-source-record/source-record.c",
+      "sha256": "3be6495676487da307b77c3cb5dc23c103203c10b167493e3407d3d244e1697a"
+    },
+    {
+      "path": "FreeMix/ferramentas/replay-disco.mjs",
+      "sha256": "9c0b476aa321cf628f35064542b3c0bf879cca9111e5904791988bc197bef1c7"
+    }
+  ],
+  "authorPinsVerified": 19,
+  "rootModelRerunReportedSeparately": 17,
+  "ownRuntime": false,
+  "ownCanonicalEdits": false,
+  "nativeApiBrowserBuild": false,
+  "geminiCompletedActualResponse": true,
+  "noQuotaClaim": true,
+  "verdict": "Approve Root integration of single finite SourceRecord cache patch; source-only approval, startup arbitrary defaults not pure, Native36 build and actual App postREADY gate required."
+}

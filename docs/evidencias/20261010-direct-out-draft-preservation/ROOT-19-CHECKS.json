@@ -1,0 +1,31 @@
+{
+  "status": "PASS_FRONTONLY_VM_DOM",
+  "passed": 19,
+  "checks": [
+    "initial render/read/discard has zero fetch and saved fields",
+    "twenty callback polls preserve all four edits and pending stop",
+    "discard resets all values without sending a write",
+    "source change discards with warning and does not retain other source device",
+    "same-source scope change discards despite identical routing JSON",
+    "source removal discards safely with zero writes",
+    "observed disconnect discards and disables save",
+    "same-scope reconnect after observed loss does not restore old intent",
+    "unknown inventory preserves missing draft option and permits stop-existing",
+    "known removed pending device stays selected and cannot enable",
+    "explicit apply sends immutable exact four-values once",
+    "failed save keeps pending fields; polling never retries it",
+    "late success cannot clear newer edit of same owner",
+    "late success cannot apply or erase new source draft",
+    "busy explicit save does not dispatch twice",
+    "real pending ACK disables both buttons and prevents discard",
+    "real pending refresh retains gate after ACK and busy=false",
+    "empty capture list does not claim no installed drivers",
+    "UTF-8 public messages decoded correctly, no mojibake"
+  ],
+  "actualFunctions": true,
+  "native": false,
+  "apiServer": false,
+  "browser": false,
+  "connectionGenerationAvailable": false,
+  "unobservedReconnectQualified": false
+}

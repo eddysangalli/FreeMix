@@ -1,0 +1,79 @@
+{
+  "schema": 1,
+  "status": "FROZEN_INDEPENDENT_SOURCE_REVIEW_ONLY",
+  "files": [
+    {
+      "path": "README.md",
+      "sha256": "4319599974ac5ce1b8dde37f072740409144df68a3a1b96640cdf1a4dc96f767",
+      "bytes": 1359
+    },
+    {
+      "path": "REVIEW.json",
+      "sha256": "09d1f3298706ea756bc4226e50e13749212812dcb06fc4eefb84af9b0ca19aea",
+      "bytes": 2623
+    },
+    {
+      "path": "AGY-DISPOSITION.json",
+      "sha256": "30cb42a0d588c9f088a6871bda5498ac34898bba7670d6b1be187be323acacf6",
+      "bytes": 744
+    },
+    {
+      "path": "INDEPENDENT-CHECKS.json",
+      "sha256": "a3a69ce2fd903fe7a32cc7d46283b90075f3ce836f81c6aa55bdd093cb8347ee",
+      "bytes": 862
+    },
+    {
+      "path": "INITIAL-REPRO.json",
+      "sha256": "bc6e297f5a97294dd6e9a87ff215a7282332dec62658558a8b0d65c64278de41",
+      "bytes": 574
+    },
+    {
+      "path": "ENCODING-REPRO.json",
+      "sha256": "a62bb3fdbd1aa47ec2fbd96525eb35d8b9f5a979422e00ca9b7d235626690ad9",
+      "bytes": 358
+    },
+    {
+      "path": "FINAL-DRAFT.js",
+      "sha256": "ff4a77c8c7c2ebd461f9bc2e554cdd638666e9c93ba6ef56ed289b2264a6a5e4",
+      "bytes": 15653
+    },
+    {
+      "path": "FINAL-AUDITOR-TEST.mjs",
+      "sha256": "e49d45050997df25c16bd3bda596c1413c14a814e7d9293e43443af3632988cf",
+      "bytes": 11255
+    },
+    {
+      "path": "build-review.mjs",
+      "sha256": "cc96712d2d6fbc8172333c2923157da3d2e038639ede466f0e3ff44788260f7f",
+      "bytes": 4921
+    },
+    {
+      "path": "test-review.mjs",
+      "sha256": "6fae079b552e37d677261dd2086296b10eff8d4a39c806a8c5fa4526a70550c6",
+      "bytes": 7186
+    },
+    {
+      "path": "freeze-review.mjs",
+      "sha256": "b1841b332066816f891907622a74c9470dc5b864ed7468976df0bbc4a852e29b",
+      "bytes": 6130
+    },
+    {
+      "path": "LATEST-DRAFT.js",
+      "sha256": "7884a9a1fde538b9153164a1500e2e524d17d3cdecf77792e7379b65ad9a81bf",
+      "bytes": 15461
+    },
+    {
+      "path": "R2-9376-DRAFT.js",
+      "sha256": "9376d5049eeb32d6491dd04ae5a4347aad62dec8a06d52879d3fb952ba3c0456",
+      "bytes": 15673
+    },
+    {
+      "path": "pending-probe.mjs",
+      "sha256": "6e7d6598f3f5bfcd37952f22357210ce5d5ce3394818209ff9aeb6582bab5696",
+      "bytes": 3335
+    }
+  ],
+  "rawLogsOrCredentialsIncluded": false,
+  "canonicalTargetCount": 1,
+  "reviewedFinalSha256": "ff4a77c8c7c2ebd461f9bc2e554cdd638666e9c93ba6ef56ed289b2264a6a5e4"
+}

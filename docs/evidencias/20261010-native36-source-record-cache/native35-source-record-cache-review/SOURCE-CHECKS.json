@@ -1,0 +1,9 @@
+{
+  "peerPinsVerified": 19,
+  "getterDefaultCallbacksRemoved": true,
+  "startupGuardedOnce": true,
+  "startupHasNoAsioOrRenderScan": true,
+  "canonicalDirectOutVerified": true,
+  "cpuOnly": true,
+  "nativeApiBrowserBuild": false
+}

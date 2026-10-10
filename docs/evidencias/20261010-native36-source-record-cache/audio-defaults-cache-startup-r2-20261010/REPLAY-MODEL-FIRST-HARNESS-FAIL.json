@@ -1,0 +1,6 @@
+{
+  "status": "FAIL_PRESERVED_CPU_MODEL_ONLY",
+  "error": "deepStrictEqual on VM realm requestData empty object",
+  "cause": "Different object prototypes across VM context",
+  "nativeStarted": false
+}

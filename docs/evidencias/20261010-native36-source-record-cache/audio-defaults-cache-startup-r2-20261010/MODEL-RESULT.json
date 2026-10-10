@@ -1,0 +1,37 @@
+{
+  "models": {
+    "status": "PASS_EXTRACTED_STARTUP_CACHE_STATEMENTS_CPU_ONLY",
+    "checks": 14,
+    "tests": [
+      "Cold actual getter reports false/unknown with no callback",
+      "Unrelated frontend events do not probe",
+      "FINISHED_LOADING observes actual marker once before getter",
+      "Repeated finish events do not repeat callback",
+      "1000 state polls never invoke callback",
+      "Explicit refresh helper reobserves missing plugin and known absence",
+      "Missing marker cannot be inferred from plugin registration",
+      "Explicit false marker remains false",
+      "Profile/default changes are not probed by getter",
+      "Startup observes support only; ASIO/render scans stay explicit",
+      "No defaults callback in actual getter and one callback source site",
+      "Single registration remains guarded and callback registered before vendor",
+      "Replay isolated buses preserved after startup support observation",
+      "Inverse exact bytes protects all existing routing/session/timer logic"
+    ],
+    "nativeCompiled": false,
+    "nativeApiBrowserStarted": false,
+    "translation": "Actual C++ extracted helper/callback/getter. auto refs become JS const; auto-release becomes let; bool assignment gets Boolean cast. No actual plugin callbacks or hardware executed.",
+    "limits": [
+      "Startup defaults callback deliberately remains maintenance, not proven pure.",
+      "Fresh Native build/real startup/read-gate and Replay bus compatibility still require Root qualification."
+    ]
+  },
+  "replay": {
+    "status": "PASS_ACTUAL_EXTRACTED_REPLAY_CONSUMER_CPU_ONLY",
+    "checks": 3,
+    "sourceSha256": "9c0b476aa321cf628f35064542b3c0bf879cca9111e5904791988bc197bef1c7",
+    "source": "FreeMix/ferramentas/replay-disco.mjs",
+    "dynamicCallbacksOrNativeExecuted": false,
+    "meaning": "Cold false excludes isolated bus; startup observed true preserves choice; explicit missing resets omission. No Replay product edits."
+  }
+}

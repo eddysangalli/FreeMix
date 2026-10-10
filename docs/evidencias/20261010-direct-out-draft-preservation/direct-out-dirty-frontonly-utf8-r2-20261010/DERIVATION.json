@@ -1,0 +1,8 @@
+{
+  "from": "qa-finalizacao/direct-out-dirty-frontonly-20261010",
+  "preservedAllowlistSha256": "71e1986eb746332924391eee95db9caeb69a79a7566c0db81ea590c80092482b",
+  "preservedDraftSha256": "9376d5049eeb32d6491dd04ae5a4347aad62dec8a06d52879d3fb952ba3c0456",
+  "cause": "Python Path.read_text default Windows locale cp1252; explicit UTF-8 missing in own materializer/test edits",
+  "scope": "same one product target; UTF-8 text repair only; no behavior/tolerance change",
+  "oldFreezeModified": false
+}

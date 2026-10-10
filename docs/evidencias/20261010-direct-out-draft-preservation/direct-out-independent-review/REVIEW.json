@@ -1,0 +1,58 @@
+{
+  "status": "APPROVED_FRONTEND_DRAFT_NOT_RUNTIME",
+  "reviewedTarget": "FreeMix/painel/remoto/audio-buses.js",
+  "baselineSha256": "d5173ff3418b85b675e297c1b1b13db9837dec95fcac712b949792422548e706",
+  "finalDraft": "qa-finalizacao/direct-out-dirty-frontonly-utf8-r2-20261010/DRAFT.js",
+  "finalDraftSha256": "ff4a77c8c7c2ebd461f9bc2e554cdd638666e9c93ba6ef56ed289b2264a6a5e4",
+  "independentChecks": 9,
+  "wholeSourceRead": true,
+  "backendDirectStopContractRead": true,
+  "pins": [
+    {
+      "path": "FreeMix/painel/remoto/audio-buses.js",
+      "sha256": "d5173ff3418b85b675e297c1b1b13db9837dec95fcac712b949792422548e706",
+      "bytes": 12395
+    },
+    {
+      "path": "FreeMix/painel/remoto/audio.js",
+      "sha256": "d84978e92747d7d9b520e4093b20b5ca4857db7e4a76e7d076419250e58e1f6f",
+      "bytes": 5079
+    },
+    {
+      "path": "FreeMix/ferramentas/audio-buses-producao.mjs",
+      "sha256": "f53fff2aee94e51c36751350aea90151da86dfa7d821212ee4b2b14c302cb91c",
+      "bytes": 15765
+    },
+    {
+      "path": "FreeMix/ferramentas/audio-routing-producao.mjs",
+      "sha256": "4cff9f1d960738035f54ee90ef9a167ca7f4b43430ca17814124845c55c1bb4b",
+      "bytes": 10174
+    },
+    {
+      "path": "entregas/FreeMix-Completo-0.1.0-local.20261010060000/runtime/node.exe",
+      "sha256": "ba4e6d110e8c1592a1ecd390f6b05f3da124b13871a5be62b341a07a853c6c32",
+      "bytes": 93580104
+    }
+  ],
+  "correctedFindings": [
+    "Actual in-flight save/discard DOM and queued handler remained enabled: now directApplying gates dispatch through post-ACK read",
+    "UTF-8 user messages were corrupted: final derivative restores strings and tests Unicode"
+  ],
+  "ackInterpretation": "Positive backend confirmation clears only matching owner/revision; enabled=false backend intentionally preserves prior saved device/volume/delay",
+  "limits": [
+    "Observed connection means failed audio GET/presented DOM state, not Native generation",
+    "Same-scope/UUID reconnect unobserved between polls remains unqualified",
+    "A network error does not prove cancellation; inherited command transport has no operation receipt/deadline; no automatic mutation retry added",
+    "VM limited DOM is not browser visual or physical audio evidence",
+    "Already dispatched command can complete for prior source; current draft is protected from that ACK"
+  ],
+  "geminiDisposition": {
+    "sha256": "30cb42a0d588c9f088a6871bda5498ac34898bba7670d6b1be187be323acacf6",
+    "bytes": 744
+  },
+  "nativeExecuted": false,
+  "apiServerExecuted": false,
+  "browserExecuted": false,
+  "canonicalChanged": false,
+  "reviewerChangedAuditorDraft": false
+}

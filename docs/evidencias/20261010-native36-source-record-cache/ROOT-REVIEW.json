@@ -1,0 +1,30 @@
+{
+  "status": "ROOT_NATIVE36_BUILD_RECONSTRUCTION_PASS_REAL_APP_PENDING",
+  "at": "2026-10-10T18:15:16.437Z",
+  "head": "e81afe793708bd17821c9dc866b066783251e5fc",
+  "version": "0.1.0-local.20261010181335",
+  "freezeSha256": "f1703fbaf473ae4039c19a36101eea62daa70e946e461dd3a4789cd5186792c8",
+  "fullFrozenFilesVerified": 2085,
+  "parentPatches": 36,
+  "submodules": 3,
+  "sourceSnapshots": 231,
+  "reconstruction": {
+    "status": "PASS",
+    "checkOnly": true,
+    "networkStarted": false,
+    "parentPatches": 36,
+    "submodules": 3
+  },
+  "RootStatementModels": 14,
+  "RootReplayConsumerModels": 3,
+  "DirectOutIntegratedSha256": "ff4a77c8c7c2ebd461f9bc2e554cdd638666e9c93ba6ef56ed289b2264a6a5e4",
+  "Native36Started": false,
+  "App36Qualified": false,
+  "SourceRecordPostReadyQualified": false,
+  "startupCallbackMaintenance": true,
+  "arbitraryDefaultsNotGenericPure": true,
+  "hardwareVerified": false,
+  "operatorTouched": false,
+  "newInstallerApproved": false,
+  "selectedSetupChanged": false
+}

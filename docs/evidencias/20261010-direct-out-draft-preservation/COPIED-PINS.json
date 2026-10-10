@@ -1,0 +1,162 @@
+[
+  {
+    "path": "direct-out-dirty-frontonly-utf8-r2-20261010/ALLOWLIST.json",
+    "bytes": 4858,
+    "sha256": "32952cc6b889d08939f1cd0fd58ed90fd028379e363a345cb8f9c9361ddd8ec5"
+  },
+  {
+    "path": "direct-out-dirty-frontonly-utf8-r2-20261010/AGY-PROMPT.txt",
+    "bytes": 6993,
+    "sha256": "6284fbbea06aa56a35eb717cfbebc9cbf649192a9b09f93f1917d343de3fcff5"
+  },
+  {
+    "path": "direct-out-dirty-frontonly-utf8-r2-20261010/AGY-RESULT.json",
+    "bytes": 231,
+    "sha256": "e3f81c7014cb81f396856c3767cc883e7f08204375b6ef3f61cfc34b8f748bdc"
+  },
+  {
+    "path": "direct-out-dirty-frontonly-utf8-r2-20261010/AGY-STDERR.txt",
+    "bytes": 80,
+    "sha256": "fe172e6515faae7e07ac85a7a1a00e33cf5a006cca976a646972aa6110a5b3ce"
+  },
+  {
+    "path": "direct-out-dirty-frontonly-utf8-r2-20261010/BASELINE.js",
+    "bytes": 12395,
+    "sha256": "d5173ff3418b85b675e297c1b1b13db9837dec95fcac712b949792422548e706"
+  },
+  {
+    "path": "direct-out-dirty-frontonly-utf8-r2-20261010/CHECKS.json",
+    "bytes": 1479,
+    "sha256": "3bc6ee2fc892175cd0f5a8c549de6399790f615ed5964fc78c672f50aa29b6de"
+  },
+  {
+    "path": "direct-out-dirty-frontonly-utf8-r2-20261010/DERIVATION.json",
+    "bytes": 502,
+    "sha256": "e14ff22ccfd8e836091777cd027b8316a84ff7bdf07aaf6497226afb51199447"
+  },
+  {
+    "path": "direct-out-dirty-frontonly-utf8-r2-20261010/direct-out-dirty.patch",
+    "bytes": 19650,
+    "sha256": "d98f5d9a82dc685e22c67c52b2e4341a810d9ea192829e54b69f9689af0e3d7f"
+  },
+  {
+    "path": "direct-out-dirty-frontonly-utf8-r2-20261010/DRAFT.js",
+    "bytes": 15653,
+    "sha256": "ff4a77c8c7c2ebd461f9bc2e554cdd638666e9c93ba6ef56ed289b2264a6a5e4"
+  },
+  {
+    "path": "direct-out-dirty-frontonly-utf8-r2-20261010/ENCODING-CHECK.json",
+    "bytes": 109,
+    "sha256": "ee67be28e8e2c17fc13203ea4ea04f24487619dce8738e15f944d85f0b18e4a8"
+  },
+  {
+    "path": "direct-out-dirty-frontonly-utf8-r2-20261010/materialize.py",
+    "bytes": 7061,
+    "sha256": "6ff8694f820bc6023c283bb3da60c2d80b84ec6f1f8a364ff90809a738d1822b"
+  },
+  {
+    "path": "direct-out-dirty-frontonly-utf8-r2-20261010/PRODUCT-PIN.json",
+    "bytes": 292,
+    "sha256": "af0fec32c6b079e932e5a3230970b1ae93e2b580bb73b34c750630db7ea3da79"
+  },
+  {
+    "path": "direct-out-dirty-frontonly-utf8-r2-20261010/README.md",
+    "bytes": 4874,
+    "sha256": "93f72ee4b514fdaa80d316d236b9e179d78fcc1d71e13af72676beeea4675cc6"
+  },
+  {
+    "path": "direct-out-dirty-frontonly-utf8-r2-20261010/test.mjs",
+    "bytes": 11255,
+    "sha256": "e49d45050997df25c16bd3bda596c1413c14a814e7d9293e43443af3632988cf"
+  },
+  {
+    "path": "direct-out-independent-review/ALLOWLIST.json",
+    "bytes": 2373,
+    "sha256": "a6d959802c6fbf39a69d0d82b574a333df49f4d72b2948244c19f70d2ef6957f"
+  },
+  {
+    "path": "direct-out-independent-review/README.md",
+    "bytes": 1359,
+    "sha256": "4319599974ac5ce1b8dde37f072740409144df68a3a1b96640cdf1a4dc96f767"
+  },
+  {
+    "path": "direct-out-independent-review/REVIEW.json",
+    "bytes": 2623,
+    "sha256": "09d1f3298706ea756bc4226e50e13749212812dcb06fc4eefb84af9b0ca19aea"
+  },
+  {
+    "path": "direct-out-independent-review/AGY-DISPOSITION.json",
+    "bytes": 744,
+    "sha256": "30cb42a0d588c9f088a6871bda5498ac34898bba7670d6b1be187be323acacf6"
+  },
+  {
+    "path": "direct-out-independent-review/INDEPENDENT-CHECKS.json",
+    "bytes": 862,
+    "sha256": "a3a69ce2fd903fe7a32cc7d46283b90075f3ce836f81c6aa55bdd093cb8347ee"
+  },
+  {
+    "path": "direct-out-independent-review/INITIAL-REPRO.json",
+    "bytes": 574,
+    "sha256": "bc6e297f5a97294dd6e9a87ff215a7282332dec62658558a8b0d65c64278de41"
+  },
+  {
+    "path": "direct-out-independent-review/ENCODING-REPRO.json",
+    "bytes": 358,
+    "sha256": "a62bb3fdbd1aa47ec2fbd96525eb35d8b9f5a979422e00ca9b7d235626690ad9"
+  },
+  {
+    "path": "direct-out-independent-review/FINAL-DRAFT.js",
+    "bytes": 15653,
+    "sha256": "ff4a77c8c7c2ebd461f9bc2e554cdd638666e9c93ba6ef56ed289b2264a6a5e4"
+  },
+  {
+    "path": "direct-out-independent-review/FINAL-AUDITOR-TEST.mjs",
+    "bytes": 11255,
+    "sha256": "e49d45050997df25c16bd3bda596c1413c14a814e7d9293e43443af3632988cf"
+  },
+  {
+    "path": "direct-out-independent-review/build-review.mjs",
+    "bytes": 4921,
+    "sha256": "cc96712d2d6fbc8172333c2923157da3d2e038639ede466f0e3ff44788260f7f"
+  },
+  {
+    "path": "direct-out-independent-review/test-review.mjs",
+    "bytes": 7186,
+    "sha256": "6fae079b552e37d677261dd2086296b10eff8d4a39c806a8c5fa4526a70550c6"
+  },
+  {
+    "path": "direct-out-independent-review/freeze-review.mjs",
+    "bytes": 6130,
+    "sha256": "b1841b332066816f891907622a74c9470dc5b864ed7468976df0bbc4a852e29b"
+  },
+  {
+    "path": "direct-out-independent-review/LATEST-DRAFT.js",
+    "bytes": 15461,
+    "sha256": "7884a9a1fde538b9153164a1500e2e524d17d3cdecf77792e7379b65ad9a81bf"
+  },
+  {
+    "path": "direct-out-independent-review/R2-9376-DRAFT.js",
+    "bytes": 15673,
+    "sha256": "9376d5049eeb32d6491dd04ae5a4347aad62dec8a06d52879d3fb952ba3c0456"
+  },
+  {
+    "path": "direct-out-independent-review/pending-probe.mjs",
+    "bytes": 3335,
+    "sha256": "6e7d6598f3f5bfcd37952f22357210ce5d5ce3394818209ff9aeb6582bab5696"
+  },
+  {
+    "path": "ROOT-INTEGRATION.json",
+    "bytes": 1132,
+    "sha256": "2a6f56e3377d5a863c80cf71bcb7d93aca715400491cde0f7b0e0d2e1c109c61"
+  },
+  {
+    "path": "ROOT-19-CHECKS.json",
+    "bytes": 1479,
+    "sha256": "3bc6ee2fc892175cd0f5a8c549de6399790f615ed5964fc78c672f50aa29b6de"
+  },
+  {
+    "path": "ROOT-REVIEW-INTEGRATE.mjs",
+    "bytes": 3289,
+    "sha256": "e60cebd567cf5299b3b8316a3e959d424c1ab71bda35dcb05673ff5dec16c673"
+  }
+]

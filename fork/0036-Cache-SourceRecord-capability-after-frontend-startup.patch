@@ -1,0 +1,73 @@
+From e81afe793708bd17821c9dc866b066783251e5fc Mon Sep 17 00:00:00 2001
+From: Eddy Sangalli <eddyrodrigues@outlook.com>
+Date: Sat, 10 Oct 2026 15:12:08 -0300
+Subject: [PATCH] Cache SourceRecord capability after frontend startup
+
+---
+ frontend/widgets/FreeMixAudioRouting.cpp | 22 ++++++++++++++++++----
+ 1 file changed, 18 insertions(+), 4 deletions(-)
+
+diff --git a/frontend/widgets/FreeMixAudioRouting.cpp b/frontend/widgets/FreeMixAudioRouting.cpp
+index af4c8c8..cdef0b5 100644
+--- a/frontend/widgets/FreeMixAudioRouting.cpp
++++ b/frontend/widgets/FreeMixAudioRouting.cpp
+@@ -157,7 +157,7 @@ bool AsioPublicSource(obs_source_t *s){
+ // Separate process-local inventories: output CLSIDs are not capture-plugin IDs.
+ struct AsioInventory {
+  std::vector<FreeMixAsioDriver> outputs,inputs,render;
+- bool outputsKnown=false,inputsKnown=false,renderKnown=false;std::string outputError,inputError,renderError;
++ bool outputsKnown=false,inputsKnown=false,renderKnown=false,sourceRecordBusCapture=false,sourceRecordBusCaptureKnown=false;std::string outputError,inputError,renderError;
+ };
+ AsioInventory &Inventory(){static AsioInventory value;return value;}
+ bool RenderInventory(std::vector<FreeMixAsioDriver> &rows){
+@@ -181,6 +181,13 @@ bool RenderInventory(std::vector<FreeMixAsioDriver> &rows){
+  }}
+  if(collection)collection->Release();if(enumerator)enumerator->Release();if(uninit)CoUninitialize();return okay;
+ }
++void ObserveSourceRecordCapability(){
++	auto &cache=Inventory();
++	OBSDataAutoRelease recordDefaults=obs_get_source_defaults("source_record_filter");
++	cache.sourceRecordBusCapture=recordDefaults&&obs_data_get_bool(recordDefaults,"freemix_premix_bus_capture");
++	cache.sourceRecordBusCaptureKnown=true;
++}
++
+ void DiscoverAsio(){
+  auto &cache=Inventory();bool complete=false;auto outputs=FreeMixAsioOutput::Drivers(&complete);
+  cache.outputsKnown=complete;cache.outputError=complete?"":"Inventário ASIO de saída incompleto; atualize dispositivos";
+@@ -189,6 +196,7 @@ void DiscoverAsio(){
+  cache.inputsKnown=inputComplete;cache.inputError=inputComplete?"":"Inventário ASIO de entrada indisponível; atualize dispositivos";
+  if(inputComplete){std::vector<FreeMixAsioDriver> next;OBSDataArrayAutoRelease rows=obs_data_get_array(result,"drivers");for(size_t i=0;i<obs_data_array_count(rows);i++){OBSDataAutoRelease row=obs_data_array_item(rows,i);next.push_back({obs_data_get_string(row,"id"),obs_data_get_string(row,"name")});}cache.inputs=std::move(next);}
+  std::vector<FreeMixAsioDriver> render;cache.renderKnown=RenderInventory(render);cache.renderError=cache.renderKnown?"":"Inventário de reprodução incompleto; atualize dispositivos";if(cache.renderKnown)cache.render=std::move(render);
++	ObserveSourceRecordCapability();
+ }
+ struct AsioSession {
+  struct Tap { AsioSession *owner; size_t route; obs_source_t *source; bool lease=false; };
+@@ -230,7 +238,13 @@ struct AsioSession {
+ AsioSession *&AsioPointer(){static AsioSession *session=nullptr;return session;}
+ AsioSession &Asio(){auto *&session=AsioPointer();if(!session){session=new AsioSession;session->InitLifecycle();}return *session;} // explicit actions only; lifecycle owns stop, no getter allocation
+ }
+-void FreeMixAudioRoutingRegister(){static bool registered=false;if(registered)return;registered=true;obs_source_info info{};info.id="freemix_audio_bus";info.type=OBS_SOURCE_TYPE_INPUT;info.output_flags=OBS_SOURCE_AUDIO|OBS_SOURCE_DO_NOT_DUPLICATE;info.get_name=[](void *){return "FreeMix Independent Audio Bus";};info.create=Create;info.destroy=Destroy;info.update=Update;info.icon_type=OBS_ICON_TYPE_AUDIO_OUTPUT;obs_register_source(&info);}
++void FreeMixAudioRoutingRegister(){static bool registered=false;if(registered)return;registered=true;obs_source_info info{};info.id="freemix_audio_bus";info.type=OBS_SOURCE_TYPE_INPUT;info.output_flags=OBS_SOURCE_AUDIO|OBS_SOURCE_DO_NOT_DUPLICATE;info.get_name=[](void *){return "FreeMix Independent Audio Bus";};info.create=Create;info.destroy=Destroy;info.update=Update;info.icon_type=OBS_ICON_TYPE_AUDIO_OUTPUT;obs_register_source(&info);
++	obs_frontend_add_event_callback([](enum obs_frontend_event event, void *) {
++		if (event == OBS_FRONTEND_EVENT_FINISHED_LOADING && !Inventory().sourceRecordBusCaptureKnown) {
++			ObserveSourceRecordCapability();
++		}
++	}, nullptr);
++}
+ void FreeMixAudioCapabilitiesRequest(obs_data_t *request,obs_data_t *response,void *){
+  QMetaObject::invokeMethod(qApp,[request,response](){
+   const std::string asioAction=obs_data_get_string(request,"asioAction");bool asioOkay=true;std::string actionError;
+@@ -250,8 +264,8 @@ void FreeMixAudioCapabilitiesRequest(obs_data_t *request,obs_data_t *response,vo
+   const auto &renderInventory=Inventory();OBSDataArrayAutoRelease devices=obs_data_array_create();
+   for(const auto &device:renderInventory.render){OBSDataAutoRelease row=obs_data_create();obs_data_set_string(row,"id",device.id.c_str());obs_data_set_string(row,"name",device.name.c_str());obs_data_array_push_back(devices,row);}obs_data_set_array(response,"renderDevices",devices);
+   obs_data_set_bool(response,"renderInventoryKnown",renderInventory.renderKnown);obs_data_set_string(response,"renderInventoryError",renderInventory.renderError.c_str());
+-  OBSDataAutoRelease recordDefaults=obs_get_source_defaults("source_record_filter");
+-  obs_data_set_bool(response,"source_record_bus_capture",recordDefaults&&obs_data_get_bool(recordDefaults,"freemix_premix_bus_capture"));
++  obs_data_set_bool(response,"source_record_bus_capture",Inventory().sourceRecordBusCapture);
++  obs_data_set_bool(response,"source_record_bus_capture_known",Inventory().sourceRecordBusCaptureKnown);
+   const auto &inventory=Inventory();OBSDataArrayAutoRelease captured=obs_data_array_create();
+   for(const auto &driver:inventory.inputs){OBSDataAutoRelease row=obs_data_create();obs_data_set_string(row,"id",driver.id.c_str());obs_data_set_string(row,"name",driver.name.c_str());obs_data_array_push_back(captured,row);}obs_data_set_array(response,"asioDrivers",captured);
+   obs_data_set_bool(response,"asioInventoryKnown",inventory.inputsKnown);obs_data_set_string(response,"asioInventoryError",inventory.inputError.c_str());
+-- 
+2.56.0.windows.1
+

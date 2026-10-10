@@ -1,0 +1,39 @@
+{
+  "status": "NO_PROVEN_SOURCE_BLOCKER_APPROVE_ROOT_INTEGRATION_BUILD_QA_REQUIRED",
+  "peerAllowlistSha256": "fefe17e75a484442b4aaa93b847e0e1c31b0c83517ff4590089da000f058774f",
+  "peerPinsVerified": 19,
+  "baselineSha256": "d2e75489e50fc1483bbf6c0e76f6ce7cc1a37554fdad25833a7dcd7baa63f96a",
+  "draftSha256": "a1aa6ebf37efce652347b95ce8fb2263d2f896538560a8737cb67afb61cd2fa9",
+  "patchSha256": "b8fcdb3f0aace9ccf59deb88de9c62501d1e75285bde6ac27c6e5fd8dd48de5b",
+  "reviewed": [
+    "Full source/diff cold defaults and knownflag; GUI getter no callback invocation",
+    "Register called from OBSBasic startup after module load and before OnFirstLoad FINISHED_LOADING; static guard prevents duplicate registration",
+    "Observation helper only startup once while unknown, or explicit discovery refresh; never called by GET",
+    "No new AsioSession/timer/COM/capture discovery in startup helper; dynamic encoder callback remains declared maintenance",
+    "Cached booleans hold no OBS object refs; existing ASIO lifecycle/watchdog and bus audio paths unchanged",
+    "Replay capability consumer unchanged; coldfalse excludes bus and postREADY true preserves isolated public bus compatibility"
+  ],
+  "gemini": {
+    "conversationId": "536355f6-5308-422f-b89f-b0fb047ed93b",
+    "responseSha256": "71d74b598d08eff143df51fb4fedc11e7c2c83d3e587d1c438bbb4946853b4e8",
+    "responseBytes": 3123,
+    "toolsRequested": false,
+    "completed": true,
+    "quotaClaim": false,
+    "accepted": "Timing/lifetime/cache limitations",
+    "corrected": [
+      "Gemini conditional Inventory temporary objection does not apply: real AsioInventory &Inventory() returns static lvalue; brief simplified declaration caused ambiguity",
+      "No universal purity claim for startup dynamic encoder callbacks; startup maintenance is expressly allowed, not a pure GET",
+      "TSan proposal is optional future tooling, not a new requirement imposed by this review"
+    ]
+  },
+  "limits": [
+    "No compile/Native/API/browser/device/driver runtime executed",
+    "Knownflag means observed marker capability, not encoder/driver purity or physical homologation",
+    "Cold early explicit refresh can observe missing plugin; GUI startup source loads modules before normal public ready; dynamic changes require explicit refresh",
+    "Startup arbitrary defaults can have synchronous latency; measure readiness and ensure getter has no repeat callback after READY",
+    "Root must rebuild/freeze Native36 and qualify actual menu five-screen zero-run/zero-mutation snapshots and Replay postREADY support"
+  ],
+  "canonicalEdited": false,
+  "preservedFailures": true
+}

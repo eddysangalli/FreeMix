@@ -1,0 +1,177 @@
+[
+  {
+    "path": "FULL-NATIVE36-BUILD-FREEZE.json",
+    "bytes": 373561,
+    "sha256": "f1703fbaf473ae4039c19a36101eea62daa70e946e461dd3a4789cd5186792c8"
+  },
+  {
+    "path": "audio-defaults-cache-startup-r2-20261010/ALLOWLIST.json",
+    "bytes": 3567,
+    "sha256": "fefe17e75a484442b4aaa93b847e0e1c31b0c83517ff4590089da000f058774f"
+  },
+  {
+    "path": "audio-defaults-cache-startup-r2-20261010/AGY-RECEIPT.json",
+    "bytes": 702,
+    "sha256": "2b44e51df57e4e6b2145175d1ba5116134f588ff18a614fb185b49f8a7cc20d9"
+  },
+  {
+    "path": "audio-defaults-cache-startup-r2-20261010/AGY-STARTED.json",
+    "bytes": 247,
+    "sha256": "0feee88be252e53bc146a7035e115c431aa885283a5f178d961e84913646b2b5"
+  },
+  {
+    "path": "audio-defaults-cache-startup-r2-20261010/baseline\\FreeMixAudioRouting.cpp",
+    "bytes": 29379,
+    "sha256": "d2e75489e50fc1483bbf6c0e76f6ce7cc1a37554fdad25833a7dcd7baa63f96a"
+  },
+  {
+    "path": "audio-defaults-cache-startup-r2-20261010/DERIVATION.json",
+    "bytes": 2982,
+    "sha256": "71448168f1cc9a86b5e6f89869fae8f72990959c08bb52557ea8044fe357339d"
+  },
+  {
+    "path": "audio-defaults-cache-startup-r2-20261010/draft\\FreeMixAudioRouting.cpp",
+    "bytes": 29984,
+    "sha256": "a1aa6ebf37efce652347b95ce8fb2263d2f896538560a8737cb67afb61cd2fa9"
+  },
+  {
+    "path": "audio-defaults-cache-startup-r2-20261010/FIRST-MODEL-HARNESS-FAIL.json",
+    "bytes": 241,
+    "sha256": "4e8cf3f622263135a0cc970735e501905247b3e41a39553f05f7808fc6793f35"
+  },
+  {
+    "path": "audio-defaults-cache-startup-r2-20261010/freeze.mjs",
+    "bytes": 4727,
+    "sha256": "6f83855c66819a00ddc8256dbb08f575a2ddcd7860dc6d6e51c8ddf94ef0b970"
+  },
+  {
+    "path": "audio-defaults-cache-startup-r2-20261010/gemini-call.mjs",
+    "bytes": 5095,
+    "sha256": "df347326eec9a513c0256a35a93eb8a37cf3151a207519ff0817d395cfab37c9"
+  },
+  {
+    "path": "audio-defaults-cache-startup-r2-20261010/GEMINI-IMPLEMENTATION.txt",
+    "bytes": 3486,
+    "sha256": "373fe6b81fc50d84a0ada91313cec8be1ab58c96818a88a667673ea86daf0ebc"
+  },
+  {
+    "path": "audio-defaults-cache-startup-r2-20261010/make-gemini-r2.mjs",
+    "bytes": 3539,
+    "sha256": "673102f039ee5fd67651488d886e63e8d88c54d613463c81718f8c32ba63f57c"
+  },
+  {
+    "path": "audio-defaults-cache-startup-r2-20261010/MODEL-RESULT.json",
+    "bytes": 1977,
+    "sha256": "c760ef3352032eb31d40567fe1dfb1de1c1800ca10cac7830f22cc2f0a3da81b"
+  },
+  {
+    "path": "audio-defaults-cache-startup-r2-20261010/models-r2.mjs",
+    "bytes": 5758,
+    "sha256": "c5e6b613b83e626ab892ff03e14a06f8481e81446f433717a70fb5a732448fd2"
+  },
+  {
+    "path": "audio-defaults-cache-startup-r2-20261010/models.mjs",
+    "bytes": 5736,
+    "sha256": "f2661e6f2e1ad1985759dbeb4db5843420511ca7c0706fc50114f0f809fd8cad"
+  },
+  {
+    "path": "audio-defaults-cache-startup-r2-20261010/prepare.mjs",
+    "bytes": 1841,
+    "sha256": "db65ad10fef536f332f840241ebbd7a21b87c979a1a1cb2d353001d90502dcf0"
+  },
+  {
+    "path": "audio-defaults-cache-startup-r2-20261010/readonly-source-record-cache.patch",
+    "bytes": 5490,
+    "sha256": "b8fcdb3f0aace9ccf59deb88de9c62501d1e75285bde6ac27c6e5fd8dd48de5b"
+  },
+  {
+    "path": "audio-defaults-cache-startup-r2-20261010/replay-consumer-model-r2.mjs",
+    "bytes": 2002,
+    "sha256": "51cf6d019fa268a3830949f7682acf98268dec0475d201de1a54ac45fafab1d0"
+  },
+  {
+    "path": "audio-defaults-cache-startup-r2-20261010/replay-consumer-model.mjs",
+    "bytes": 1987,
+    "sha256": "0764b54219509c699fb03258fef2c8c7fe5a0b2566a99bf0ec17a9116eb7aad6"
+  },
+  {
+    "path": "audio-defaults-cache-startup-r2-20261010/REPLAY-MODEL-FIRST-HARNESS-FAIL.json",
+    "bytes": 201,
+    "sha256": "ea99c341c25feb3629a23a582ac8875ff225b8ea704cda120d77503c33d1c725"
+  },
+  {
+    "path": "audio-defaults-cache-startup-r2-20261010/REPORT.json",
+    "bytes": 2786,
+    "sha256": "58cda6faaa93dff5b18842fd3b111c334f46c1b7d205f942c303ebd8650a408a"
+  },
+  {
+    "path": "native35-source-record-cache-review/ALLOWLIST.json",
+    "bytes": 3756,
+    "sha256": "50022328503e3d385e8f93facf0cffa970a7dc3a7310cf76e8b344ee108a3476"
+  },
+  {
+    "path": "native35-source-record-cache-review/AGY-RECEIPT.json",
+    "bytes": 417,
+    "sha256": "d8290150cd2e3c5e4ef45070d903b975ba773995f1d3c47cf1c81e82de78de5c"
+  },
+  {
+    "path": "native35-source-record-cache-review/AGY-RESULT.json",
+    "bytes": 3418,
+    "sha256": "dd6411fd12a41d1f6593f7c6937f2d8874fca1b6a87c1b2f3904917ce9b77424"
+  },
+  {
+    "path": "native35-source-record-cache-review/AGY-STARTED.json",
+    "bytes": 281,
+    "sha256": "d8d3a4df59716c009fc27c08178212309b27787fd2a0e8511d8d529d8c7a69fd"
+  },
+  {
+    "path": "native35-source-record-cache-review/AGY-STDERR.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "native35-source-record-cache-review/gemini-review.mjs",
+    "bytes": 4098,
+    "sha256": "1ae876af7e60ed1bd6d69211dada7e3f336e9f11921a4d413e3419a5751ad04c"
+  },
+  {
+    "path": "native35-source-record-cache-review/GEMINI-REVIEW.txt",
+    "bytes": 3123,
+    "sha256": "71d74b598d08eff143df51fb4fedc11e7c2c83d3e587d1c438bbb4946853b4e8"
+  },
+  {
+    "path": "native35-source-record-cache-review/PUBLIC-PROMPT.txt",
+    "bytes": 2215,
+    "sha256": "20bc81bf003aca1137577bf88d9156b427dbba0250212ef1b14eef445139ad34"
+  },
+  {
+    "path": "native35-source-record-cache-review/REVIEW.json",
+    "bytes": 2636,
+    "sha256": "5831d390a11b5e1372b57e0c8fa2fa30a2d79217cdd4360f4a1badbee320e9be"
+  },
+  {
+    "path": "native35-source-record-cache-review/SOURCE-CHECKS.json",
+    "bytes": 240,
+    "sha256": "2929f9b8456f1974c3247db8d932a3b14827c88427a2983c0d09ea671acca5a9"
+  },
+  {
+    "path": "ROOT-17-MODELS.json",
+    "bytes": 2693,
+    "sha256": "bb4d6eb2f790cc34620fa9b4c693af5f4a4b467bcd8c27a7026a1fadc4d31a1f"
+  },
+  {
+    "path": "ROOT-INTEGRATION.json",
+    "bytes": 721,
+    "sha256": "e3f2bdde6ca2778eedb16ff59c5671fd0e8cc0eea210280232812164c0dd8cdf"
+  },
+  {
+    "path": "ROOT-REVIEW.mjs",
+    "bytes": 2128,
+    "sha256": "c7da52f42bbb02f7e468b495685a5cdfe55be7d39e562293fc9ab758a7a1f522"
+  },
+  {
+    "path": "ROOT-INTEGRATE.mjs",
+    "bytes": 2302,
+    "sha256": "343b831ba4b1eb8faa7ae56064bc7031c69045386e2ea657763b0d268b829b04"
+  }
+]

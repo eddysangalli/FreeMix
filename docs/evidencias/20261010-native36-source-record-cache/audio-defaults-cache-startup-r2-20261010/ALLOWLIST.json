@@ -1,0 +1,110 @@
+{
+  "status": "FROZEN_OFFSIDE_SOURCE_AND_CPU_ONLY",
+  "files": [
+    {
+      "path": "AGY-RECEIPT.json",
+      "bytes": 702,
+      "sha256": "2b44e51df57e4e6b2145175d1ba5116134f588ff18a614fb185b49f8a7cc20d9"
+    },
+    {
+      "path": "AGY-STARTED.json",
+      "bytes": 247,
+      "sha256": "0feee88be252e53bc146a7035e115c431aa885283a5f178d961e84913646b2b5"
+    },
+    {
+      "path": "baseline/FreeMixAudioRouting.cpp",
+      "bytes": 29379,
+      "sha256": "d2e75489e50fc1483bbf6c0e76f6ce7cc1a37554fdad25833a7dcd7baa63f96a"
+    },
+    {
+      "path": "DERIVATION.json",
+      "bytes": 2982,
+      "sha256": "71448168f1cc9a86b5e6f89869fae8f72990959c08bb52557ea8044fe357339d"
+    },
+    {
+      "path": "draft/FreeMixAudioRouting.cpp",
+      "bytes": 29984,
+      "sha256": "a1aa6ebf37efce652347b95ce8fb2263d2f896538560a8737cb67afb61cd2fa9"
+    },
+    {
+      "path": "FIRST-MODEL-HARNESS-FAIL.json",
+      "bytes": 241,
+      "sha256": "4e8cf3f622263135a0cc970735e501905247b3e41a39553f05f7808fc6793f35"
+    },
+    {
+      "path": "freeze.mjs",
+      "bytes": 4727,
+      "sha256": "6f83855c66819a00ddc8256dbb08f575a2ddcd7860dc6d6e51c8ddf94ef0b970"
+    },
+    {
+      "path": "gemini-call.mjs",
+      "bytes": 5095,
+      "sha256": "df347326eec9a513c0256a35a93eb8a37cf3151a207519ff0817d395cfab37c9"
+    },
+    {
+      "path": "GEMINI-IMPLEMENTATION.txt",
+      "bytes": 3486,
+      "sha256": "373fe6b81fc50d84a0ada91313cec8be1ab58c96818a88a667673ea86daf0ebc"
+    },
+    {
+      "path": "make-gemini-r2.mjs",
+      "bytes": 3539,
+      "sha256": "673102f039ee5fd67651488d886e63e8d88c54d613463c81718f8c32ba63f57c"
+    },
+    {
+      "path": "MODEL-RESULT.json",
+      "bytes": 1977,
+      "sha256": "c760ef3352032eb31d40567fe1dfb1de1c1800ca10cac7830f22cc2f0a3da81b"
+    },
+    {
+      "path": "models-r2.mjs",
+      "bytes": 5758,
+      "sha256": "c5e6b613b83e626ab892ff03e14a06f8481e81446f433717a70fb5a732448fd2"
+    },
+    {
+      "path": "models.mjs",
+      "bytes": 5736,
+      "sha256": "f2661e6f2e1ad1985759dbeb4db5843420511ca7c0706fc50114f0f809fd8cad"
+    },
+    {
+      "path": "prepare.mjs",
+      "bytes": 1841,
+      "sha256": "db65ad10fef536f332f840241ebbd7a21b87c979a1a1cb2d353001d90502dcf0"
+    },
+    {
+      "path": "readonly-source-record-cache.patch",
+      "bytes": 5490,
+      "sha256": "b8fcdb3f0aace9ccf59deb88de9c62501d1e75285bde6ac27c6e5fd8dd48de5b"
+    },
+    {
+      "path": "replay-consumer-model-r2.mjs",
+      "bytes": 2002,
+      "sha256": "51cf6d019fa268a3830949f7682acf98268dec0475d201de1a54ac45fafab1d0"
+    },
+    {
+      "path": "replay-consumer-model.mjs",
+      "bytes": 1987,
+      "sha256": "0764b54219509c699fb03258fef2c8c7fe5a0b2566a99bf0ec17a9116eb7aad6"
+    },
+    {
+      "path": "REPLAY-MODEL-FIRST-HARNESS-FAIL.json",
+      "bytes": 201,
+      "sha256": "ea99c341c25feb3629a23a582ac8875ff225b8ea704cda120d77503c33d1c725"
+    },
+    {
+      "path": "REPORT.json",
+      "bytes": 2786,
+      "sha256": "58cda6faaa93dff5b18842fd3b111c334f46c1b7d205f942c303ebd8650a408a"
+    }
+  ],
+  "productionTarget": {
+    "path": "freemix-app/frontend/widgets/FreeMixAudioRouting.cpp",
+    "expectedBeforeSha256": "d2e75489e50fc1483bbf6c0e76f6ce7cc1a37554fdad25833a7dcd7baa63f96a",
+    "expectedAfterSha256": "a1aa6ebf37efce652347b95ce8fb2263d2f896538560a8737cb67afb61cd2fa9"
+  },
+  "tool": {
+    "path": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\entregas\\FreeMix-Completo-0.1.0-local.20261010060000\\runtime\\node.exe",
+    "sha256": "ba4e6d110e8c1592a1ecd390f6b05f3da124b13871a5be62b341a07a853c6c32"
+  },
+  "rawCliOutputExcluded": true
+}

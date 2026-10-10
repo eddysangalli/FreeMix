@@ -1,0 +1,125 @@
+{
+  "status": "FROZEN_FRONTONLY_VM_DOM_PASS_NOT_APPLIED",
+  "productTargets": [
+    {
+      "path": "FreeMix/painel/remoto/audio-buses.js",
+      "baseline": "d5173ff3418b85b675e297c1b1b13db9837dec95fcac712b949792422548e706",
+      "draft": "ff4a77c8c7c2ebd461f9bc2e554cdd638666e9c93ba6ef56ed289b2264a6a5e4",
+      "eol": "LF",
+      "nativeRuntime": false,
+      "canonicalChanged": false,
+      "draftPath": "qa-finalizacao/direct-out-dirty-frontonly-utf8-r2-20261010/DRAFT.js",
+      "patchPath": "qa-finalizacao/direct-out-dirty-frontonly-utf8-r2-20261010/direct-out-dirty.patch"
+    }
+  ],
+  "entries": [
+    {
+      "path": "qa-finalizacao/direct-out-dirty-frontonly-utf8-r2-20261010/AGY-PROMPT.txt",
+      "sha256": "6284fbbea06aa56a35eb717cfbebc9cbf649192a9b09f93f1917d343de3fcff5",
+      "bytes": 6993
+    },
+    {
+      "path": "qa-finalizacao/direct-out-dirty-frontonly-utf8-r2-20261010/AGY-RESULT.json",
+      "sha256": "e3f81c7014cb81f396856c3767cc883e7f08204375b6ef3f61cfc34b8f748bdc",
+      "bytes": 231
+    },
+    {
+      "path": "qa-finalizacao/direct-out-dirty-frontonly-utf8-r2-20261010/AGY-STDERR.txt",
+      "sha256": "fe172e6515faae7e07ac85a7a1a00e33cf5a006cca976a646972aa6110a5b3ce",
+      "bytes": 80
+    },
+    {
+      "path": "qa-finalizacao/direct-out-dirty-frontonly-utf8-r2-20261010/BASELINE.js",
+      "sha256": "d5173ff3418b85b675e297c1b1b13db9837dec95fcac712b949792422548e706",
+      "bytes": 12395
+    },
+    {
+      "path": "qa-finalizacao/direct-out-dirty-frontonly-utf8-r2-20261010/CHECKS.json",
+      "sha256": "3bc6ee2fc892175cd0f5a8c549de6399790f615ed5964fc78c672f50aa29b6de",
+      "bytes": 1479
+    },
+    {
+      "path": "qa-finalizacao/direct-out-dirty-frontonly-utf8-r2-20261010/DERIVATION.json",
+      "sha256": "e14ff22ccfd8e836091777cd027b8316a84ff7bdf07aaf6497226afb51199447",
+      "bytes": 502
+    },
+    {
+      "path": "qa-finalizacao/direct-out-dirty-frontonly-utf8-r2-20261010/direct-out-dirty.patch",
+      "sha256": "d98f5d9a82dc685e22c67c52b2e4341a810d9ea192829e54b69f9689af0e3d7f",
+      "bytes": 19650
+    },
+    {
+      "path": "qa-finalizacao/direct-out-dirty-frontonly-utf8-r2-20261010/DRAFT.js",
+      "sha256": "ff4a77c8c7c2ebd461f9bc2e554cdd638666e9c93ba6ef56ed289b2264a6a5e4",
+      "bytes": 15653
+    },
+    {
+      "path": "qa-finalizacao/direct-out-dirty-frontonly-utf8-r2-20261010/ENCODING-CHECK.json",
+      "sha256": "ee67be28e8e2c17fc13203ea4ea04f24487619dce8738e15f944d85f0b18e4a8",
+      "bytes": 109
+    },
+    {
+      "path": "qa-finalizacao/direct-out-dirty-frontonly-utf8-r2-20261010/materialize.py",
+      "sha256": "6ff8694f820bc6023c283bb3da60c2d80b84ec6f1f8a364ff90809a738d1822b",
+      "bytes": 7061
+    },
+    {
+      "path": "qa-finalizacao/direct-out-dirty-frontonly-utf8-r2-20261010/PRODUCT-PIN.json",
+      "sha256": "af0fec32c6b079e932e5a3230970b1ae93e2b580bb73b34c750630db7ea3da79",
+      "bytes": 292
+    },
+    {
+      "path": "qa-finalizacao/direct-out-dirty-frontonly-utf8-r2-20261010/README.md",
+      "sha256": "93f72ee4b514fdaa80d316d236b9e179d78fcc1d71e13af72676beeea4675cc6",
+      "bytes": 4874
+    },
+    {
+      "path": "qa-finalizacao/direct-out-dirty-frontonly-utf8-r2-20261010/test.mjs",
+      "sha256": "e49d45050997df25c16bd3bda596c1413c14a814e7d9293e43443af3632988cf",
+      "bytes": 11255
+    }
+  ],
+  "entryCount": 13,
+  "checks": {
+    "passed": 19,
+    "functional": 18,
+    "utf8": 1,
+    "actualFullSourceVmDom": true,
+    "syntax": true
+  },
+  "canonicalModified": false,
+  "native": false,
+  "apiServer": false,
+  "browser": false,
+  "deviceOpened": false,
+  "limits": [
+    "unobserved_same_scope_reconnection_without_generation_not_detectable",
+    "legacy_HTTP_error_does_not_confirm_backend_cancellation",
+    "physical_audio_and_visual_UI_not_tested"
+  ],
+  "independentReview": {
+    "agent": "transportes_rede_conclusao",
+    "finalDraftSha256": "ff4a77c8c7c2ebd461f9bc2e554cdd638666e9c93ba6ef56ed289b2264a6a5e4",
+    "status": "NO_PROVEN_BLOCKER_WITHIN_FRONTEND_DRAFT_SCOPE",
+    "ownVmChecksPassed": 9,
+    "receiptPublishedSeparately": true
+  },
+  "node": {
+    "path": "C:/Program Files/nodejs/node.exe",
+    "sha256": "fda2b2a8857735f7958ba9771a2b24734ff36434e85ae606bcf7744d41d7adc0"
+  },
+  "previousRejectedFreeze": {
+    "allowlistPath": "qa-finalizacao/direct-out-dirty-frontonly-20261010/ALLOWLIST.json",
+    "sha256": "71e1986eb746332924391eee95db9caeb69a79a7566c0db81ea590c80092482b",
+    "draftSha256": "9376d5049eeb32d6491dd04ae5a4347aad62dec8a06d52879d3fb952ba3c0456",
+    "reason": "mojibake actual UTF-8 content; originals preserved"
+  },
+  "agy": {
+    "model": "gemini-3.8-flash-high",
+    "conversationId": "5952c4da-cb76-4902-a3f3-0f0e08875987",
+    "result": "EMPTY_RESPONSE_AND_PRINT_TIMEOUT_120S",
+    "implementationAccepted": false,
+    "quotaClaim": false,
+    "fallbackAfterOperationalFailure": true
+  }
+}

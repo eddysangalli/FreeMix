@@ -1,0 +1,37 @@
+{
+  "status": "OFFSIDE_GEMINI_IMPLEMENTED_INDEPENDENTLY_REVIEWED",
+  "sourcePath": "freemix-app/frontend/widgets/FreeMixAudioRouting.cpp",
+  "nativePatchPath": "frontend/widgets/FreeMixAudioRouting.cpp",
+  "nativeBaselineHead": "5b680a17a1db65c66ce6a696f1da8ca69d29f49e",
+  "baselineSha256": "d2e75489e50fc1483bbf6c0e76f6ce7cc1a37554fdad25833a7dcd7baa63f96a",
+  "draftSha256": "a1aa6ebf37efce652347b95ce8fb2263d2f896538560a8737cb67afb61cd2fa9",
+  "baselineEol": "LF",
+  "draftEol": "LF",
+  "edits": [
+    {
+      "anchor": "bool outputsKnown=false,inputsKnown=false,renderKnown=false;std::string outputError,inputError,renderError;",
+      "replacement": "bool outputsKnown=false,inputsKnown=false,renderKnown=false,sourceRecordBusCapture=false,sourceRecordBusCaptureKnown=false;std::string outputError,inputError,renderError;"
+    },
+    {
+      "anchor": "void DiscoverAsio(){",
+      "replacement": "void ObserveSourceRecordCapability(){\n\tauto &cache=Inventory();\n\tOBSDataAutoRelease recordDefaults=obs_get_source_defaults(\"source_record_filter\");\n\tcache.sourceRecordBusCapture=recordDefaults&&obs_data_get_bool(recordDefaults,\"freemix_premix_bus_capture\");\n\tcache.sourceRecordBusCaptureKnown=true;\n}\n\nvoid DiscoverAsio(){"
+    },
+    {
+      "anchor": "std::vector<FreeMixAsioDriver> render;cache.renderKnown=RenderInventory(render);cache.renderError=cache.renderKnown?\"\":\"Inventário de reprodução incompleto; atualize dispositivos\";if(cache.renderKnown)cache.render=std::move(render);",
+      "replacement": "std::vector<FreeMixAsioDriver> render;cache.renderKnown=RenderInventory(render);cache.renderError=cache.renderKnown?\"\":\"Inventário de reprodução incompleto; atualize dispositivos\";if(cache.renderKnown)cache.render=std::move(render);\n\tObserveSourceRecordCapability();"
+    },
+    {
+      "anchor": "info.icon_type=OBS_ICON_TYPE_AUDIO_OUTPUT;obs_register_source(&info);}",
+      "replacement": "info.icon_type=OBS_ICON_TYPE_AUDIO_OUTPUT;obs_register_source(&info);\n\tobs_frontend_add_event_callback([](enum obs_frontend_event event, void *) {\n\t\tif (event == OBS_FRONTEND_EVENT_FINISHED_LOADING && !Inventory().sourceRecordBusCaptureKnown) {\n\t\t\tObserveSourceRecordCapability();\n\t\t}\n\t}, nullptr);\n}"
+    },
+    {
+      "anchor": "  OBSDataAutoRelease recordDefaults=obs_get_source_defaults(\"source_record_filter\");\n  obs_data_set_bool(response,\"source_record_bus_capture\",recordDefaults&&obs_data_get_bool(recordDefaults,\"freemix_premix_bus_capture\"));",
+      "replacement": "  obs_data_set_bool(response,\"source_record_bus_capture\",Inventory().sourceRecordBusCapture);\n  obs_data_set_bool(response,\"source_record_bus_capture_known\",Inventory().sourceRecordBusCaptureKnown);"
+    }
+  ],
+  "geminiResponseSha256": "373fe6b81fc50d84a0ada91313cec8be1ab58c96818a88a667673ea86daf0ebc",
+  "canonicalWritten": false,
+  "nativeCompiled": false,
+  "runtimeStarted": false,
+  "previousExplicitOnlyProposalPreserved": true
+}

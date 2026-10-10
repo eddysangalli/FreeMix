@@ -1,0 +1,20 @@
+{
+  "status": "PASS_SOURCE_VM_DOM_ONLY",
+  "passed": 9,
+  "checks": [
+    "actual held dispatch and queued discard cannot clear intent or resend",
+    "ACK completed but delayed read remains locked without retry",
+    "editing while old ACK and read are pending retains new revision",
+    "same name replacement UUID cannot inherit pending route",
+    "same IDs different scope invalidate even unchanged routing",
+    "unknown inventory preserves pending stop but never enables missing device",
+    "HTTP refusal keeps draft and failed operation never retries on polls",
+    "observed failed read clears draft; same-ID reconnect does not restore it",
+    "new UTF8 user messages retain accented characters"
+  ],
+  "native": false,
+  "apiServer": false,
+  "browser": false,
+  "scopeConnectionGenerationAvailable": false,
+  "unobservedReconnectQualified": false
+}

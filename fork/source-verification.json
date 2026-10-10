@@ -1,8 +1,8 @@
 {
   "status": "PASS",
   "base": "ba2f32bdf791005443988a4955e963663e16b1ed",
-  "head": "5b680a17a1db65c66ce6a696f1da8ca69d29f49e",
-  "resultTree": "2239ec5600ac59b8579bf34cd6dae2b5ffc05d41",
+  "head": "e81afe793708bd17821c9dc866b066783251e5fc",
+  "resultTree": "fc107e309063b0fb13ca33315bd7e179d60ab822",
   "submodules": [
     {
       "path": "deps/libdshowcapture/src",
@@ -207,8 +207,8 @@
     },
     {
       "path": "frontend/widgets/FreeMixAudioRouting.cpp",
-      "bytes": 29379,
-      "sha256": "d2e75489e50fc1483bbf6c0e76f6ce7cc1a37554fdad25833a7dcd7baa63f96a"
+      "bytes": 29984,
+      "sha256": "a1aa6ebf37efce652347b95ce8fb2263d2f896538560a8737cb67afb61cd2fa9"
     },
     {
       "path": "frontend/widgets/FreeMixAudioRouting.hpp",

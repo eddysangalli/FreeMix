@@ -1,0 +1,7 @@
+{
+  "model": "gemini-3.8-flash-high",
+  "cwd": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\native35-source-record-cache-review",
+  "promptSha256": "20bc81bf003aca1137577bf88d9156b427dbba0250212ef1b14eef445139ad34",
+  "toolsRequested": false,
+  "deadlineSeconds": 120
+}

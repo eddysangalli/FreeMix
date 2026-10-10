@@ -1,3 +1,3 @@
 # Motor nativo do FreeMix
 
-35patches/3submódulos, HEAD 5b680a17a1db65c66ce6a696f1da8ca69d29f49e. [Manifesto](manifest.json) · [verificação](source-verification.json) · [build e limites](../docs/evidencias/20261010-native35-device-inventory/ROOT-README.md). ALL_BUILD/reconstruçãoPASS; QA real35 pendente, Setup600 preservado.
+36patches/3submódulos, HEAD e81afe793708bd17821c9dc866b066783251e5fc. [Manifesto](manifest.json) · [verificação](source-verification.json) · [build e limites](../docs/evidencias/20261010-native36-source-record-cache/ROOT-README.md). ALL_BUILD/reconstruçãoPASS; App36 real pendente. Setup600 preservado.

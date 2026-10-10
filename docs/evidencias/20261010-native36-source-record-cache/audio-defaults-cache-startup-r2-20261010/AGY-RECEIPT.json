@@ -1,0 +1,18 @@
+{
+  "status": "GEMINI_RETURNED_REVIEW_REQUIRED",
+  "startedAt": "2026-10-10T18:03:13.658Z",
+  "finishedAt": "2026-10-10T18:04:15.527Z",
+  "ownCwd": "D:/FreeMix-QA-Gemini-Audio-Defaults-Startup-R2-20261010",
+  "model": "gemini-3.8-flash-high",
+  "attempts": 1,
+  "cliExitCode": 0,
+  "outerBoundTerminatedOwnChild": false,
+  "responseBytes": 3486,
+  "responseSha256": "373fe6b81fc50d84a0ada91313cec8be1ab58c96818a88a667673ea86daf0ebc",
+  "conversationId": "d2dd6030-dba9-4ca0-a8de-fa795495cae9",
+  "rawResultSha256": "e1c3843d1bff490b1fa62c83f751069092f1c8a15aca56073cfdf9a1939908b0",
+  "toolsRequested": false,
+  "canonicalEdits": false,
+  "nativeApiBrowserBuildStarted": false,
+  "quotaError": false
+}
