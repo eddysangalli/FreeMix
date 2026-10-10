@@ -1,0 +1,37 @@
+[
+  {
+    "path": "FreeMix/painel/mesa.html",
+    "sha256": "258818c83cfe3c53a3ca29ddaf3ab5230d18f423f470b157a7f144a7da4e5a2c",
+    "bytes": 258749
+  },
+  {
+    "path": "FreeMix/painel/remoto/input-menu-ui.js",
+    "sha256": "31fea09b02593be5eee2954bba8a85725386912ff93e6a9545ef0714d4fdd1e0",
+    "bytes": 3854
+  },
+  {
+    "path": "freemix-app/frontend/widgets/OBSBasic_MainControls.cpp",
+    "sha256": "98eb6e55676b548fe95455cda117b2ab4fbb99c621e197805e485b01565d015f",
+    "bytes": 19348
+  },
+  {
+    "path": "freemix-app/frontend/widgets/FreeMixMultistream.cpp",
+    "sha256": "efbf13bcfc35387f1ae53558a81d489a705ae7b67394a47dc3a9e4a05fe661ce",
+    "bytes": 122928
+  },
+  {
+    "path": "freemix-app/plugins/obs-websocket/src/requesthandler/RequestHandler_Ui.cpp",
+    "sha256": "94c54d1e59d0a6f61f6e749dadf3cf34dcaa3a4bb955e8598542aeebe00ecb5e",
+    "bytes": 11025
+  },
+  {
+    "path": "freemix-app/plugins/obs-websocket/src/utils/Obs_ArrayHelper.cpp",
+    "sha256": "48f6b49f13c17165b98ac9e0165075d88f9250b0eb44c13eae9dfd97db0852ea",
+    "bytes": 11336
+  },
+  {
+    "path": "FreeMix/ferramentas/controle-producao.mjs",
+    "sha256": "304a49022d5447b1d1edf4bb9972c4e127b432efdf44cf79e4443d9b1eb38c1d",
+    "bytes": 52966
+  }
+]

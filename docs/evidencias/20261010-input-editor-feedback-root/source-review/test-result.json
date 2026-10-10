@@ -1,0 +1,149 @@
+{
+  "status": "PASS_OFFSIDE_CPU_CONTRACTS",
+  "checks": 34,
+  "results": [
+    {
+      "name": "properties one UUID-only write, matching Qt observation and no z-order claim",
+      "pass": true
+    },
+    {
+      "name": "filters uses same source UUID, not source name",
+      "pass": true
+    },
+    {
+      "name": "ACK does not substitute Qt wrong UUID",
+      "pass": true
+    },
+    {
+      "name": "ACK does not substitute Qt unknown identity",
+      "pass": true
+    },
+    {
+      "name": "ACK does not substitute Qt wrong editor kind",
+      "pass": true
+    },
+    {
+      "name": "ACK does not substitute Qt hidden",
+      "pass": true
+    },
+    {
+      "name": "ACK does not substitute Qt minimized",
+      "pass": true
+    },
+    {
+      "name": "visible inactive Qt window is reported separately from focus",
+      "pass": true
+    },
+    {
+      "name": "unsupported roster retains pending until explicit local release",
+      "pass": true
+    },
+    {
+      "name": "Native busy/closing observations never claim visible or dispatch another open",
+      "pass": true
+    },
+    {
+      "name": "UUID-based readback uses renamed source label safely",
+      "pass": true
+    },
+    {
+      "name": "missing or malformed source UUID does zero requests",
+      "pass": true
+    },
+    {
+      "name": "unknown editor kind rejected with zero requests",
+      "pass": true
+    },
+    {
+      "name": "owner UUID changed before click rejected, no replacement targeting",
+      "pass": true
+    },
+    {
+      "name": "scope mismatch before click rejected",
+      "pass": true
+    },
+    {
+      "name": "source removed from real preflight rejects with zero writes",
+      "pass": true
+    },
+    {
+      "name": "Native collection mismatch rejects with zero writes",
+      "pass": true
+    },
+    {
+      "name": "connection changes between preflight awaits cannot dispatch to foreign context",
+      "pass": true
+    },
+    {
+      "name": "scope changes between preflight awaits cannot dispatch to foreign context",
+      "pass": true
+    },
+    {
+      "name": "source changes between preflight awaits cannot dispatch to foreign context",
+      "pass": true
+    },
+    {
+      "name": "preflight deadline before mutation is rejected, not uncertain",
+      "pass": true
+    },
+    {
+      "name": "double click during delayed ACK cannot open twice or release busy",
+      "pass": true
+    },
+    {
+      "name": "mutation deadline remains uncertain, readback only can reconcile late ACK",
+      "pass": true
+    },
+    {
+      "name": "first mutation throws: conservative uncertainty, never an automatic retry",
+      "pass": true
+    },
+    {
+      "name": "connection changes after mutation cannot query a foreign engine",
+      "pass": true
+    },
+    {
+      "name": "same-source repeated scene items dedup, different UUIDs remain distinct",
+      "pass": true
+    },
+    {
+      "name": "actual collapse handler has no Native requests and meaningful local feedback",
+      "pass": true
+    },
+    {
+      "name": "actual collapse rejects stale UUID and scope without local persistence",
+      "pass": true
+    },
+    {
+      "name": "actual delete confirmation captures only matching scene UUID and scope",
+      "pass": true
+    },
+    {
+      "name": "actual delete lock remains enforced",
+      "pass": true
+    },
+    {
+      "name": "delete submission keeps existing UUID/scope receipt path unchanged",
+      "pass": true
+    },
+    {
+      "name": "actual menu renders one source section per UUID, preserves target attributes and nodes",
+      "pass": true
+    },
+    {
+      "name": "menu config vs filters links remain distinct, collapse/delete labels communicate their scopes",
+      "pass": true
+    },
+    {
+      "name": "all mesa inline scripts compile, helper scripts compile without executing startup",
+      "pass": true
+    }
+  ],
+  "desktopVerified": false,
+  "nativeExecuted": false,
+  "visualApproval": false,
+  "limits": [
+    "Actual draft handlers/helpers in VM and finite DOM; no Qt/desktop/runtime execution.",
+    "Open RPC ACK is acceptance; same-UUID Qt roster only confirms visibility/focus attributes, not desktop z-order."
+  ]
+}

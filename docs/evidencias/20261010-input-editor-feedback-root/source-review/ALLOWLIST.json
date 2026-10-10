@@ -1,0 +1,125 @@
+{
+  "status": "FROZEN_OFFSIDE_CPU_PASS",
+  "checks": 34,
+  "productApplied": false,
+  "nativeExecuted": false,
+  "desktopVerified": false,
+  "canonicalPinsVerified": 7,
+  "files": [
+    {
+      "path": "BASELINE.json",
+      "sha256": "73012519bdd250057c149c460b5b5571a311d4511f58ee8129fecf8d440a86a0",
+      "bytes": 1268
+    },
+    {
+      "path": "baseline/freemix-app/frontend/widgets/FreeMixMultistream.cpp",
+      "sha256": "efbf13bcfc35387f1ae53558a81d489a705ae7b67394a47dc3a9e4a05fe661ce",
+      "bytes": 122928
+    },
+    {
+      "path": "baseline/freemix-app/frontend/widgets/OBSBasic_MainControls.cpp",
+      "sha256": "98eb6e55676b548fe95455cda117b2ab4fbb99c621e197805e485b01565d015f",
+      "bytes": 19348
+    },
+    {
+      "path": "baseline/freemix-app/plugins/obs-websocket/src/requesthandler/RequestHandler_Ui.cpp",
+      "sha256": "94c54d1e59d0a6f61f6e749dadf3cf34dcaa3a4bb955e8598542aeebe00ecb5e",
+      "bytes": 11025
+    },
+    {
+      "path": "baseline/freemix-app/plugins/obs-websocket/src/utils/Obs_ArrayHelper.cpp",
+      "sha256": "48f6b49f13c17165b98ac9e0165075d88f9250b0eb44c13eae9dfd97db0852ea",
+      "bytes": 11336
+    },
+    {
+      "path": "baseline/FreeMix/ferramentas/controle-producao.mjs",
+      "sha256": "304a49022d5447b1d1edf4bb9972c4e127b432efdf44cf79e4443d9b1eb38c1d",
+      "bytes": 52966
+    },
+    {
+      "path": "baseline/FreeMix/painel/mesa.html",
+      "sha256": "258818c83cfe3c53a3ca29ddaf3ab5230d18f423f470b157a7f144a7da4e5a2c",
+      "bytes": 258749
+    },
+    {
+      "path": "baseline/FreeMix/painel/remoto/input-menu-ui.js",
+      "sha256": "31fea09b02593be5eee2954bba8a85725386912ff93e6a9545ef0714d4fdd1e0",
+      "bytes": 3854
+    },
+    {
+      "path": "derive.py",
+      "sha256": "4c5c6aaed74569b0596f9fad9951cb00b68dc2d8f5ffca1c50e70ad23b6b6ec2",
+      "bytes": 8181
+    },
+    {
+      "path": "dom.mjs",
+      "sha256": "65c1a9abeb2d68f0cc7e30203fcf56f9f1f28f37d415e53a0d69f6da8184fc2c",
+      "bytes": 7398
+    },
+    {
+      "path": "draft/FreeMix/painel/mesa.html",
+      "sha256": "7d40d1c70d71a6e7a0ce30dbead59bf4a17c7c27d22f32a618f3c17eeec7d803",
+      "bytes": 261473
+    },
+    {
+      "path": "draft/FreeMix/painel/remoto/input-editor-feedback.js",
+      "sha256": "ecbd75016193e77dacd734746657860f9528583370df19f42365d20d918683ca",
+      "bytes": 5458
+    },
+    {
+      "path": "draft/FreeMix/painel/remoto/input-menu-ui.js",
+      "sha256": "b27ecdf902f7f88f1d7d0bf500937aaf3c2d5034961612f56f05a348a3944a47",
+      "bytes": 4050
+    },
+    {
+      "path": "freeze.mjs",
+      "sha256": "1a624313ad447359ec4e42147a2be8202b60e4f4b46691c88a6c9c07a0f14aca",
+      "bytes": 2616
+    },
+    {
+      "path": "gemini-public/BRIEF.txt",
+      "sha256": "2048813b3ef10c795b4c5c7d676a6ea78cd03d8e8f04193627c0b1579d8a9119",
+      "bytes": 1942
+    },
+    {
+      "path": "gemini-public/result.json",
+      "sha256": "10162a0ffefc700c5cacf94655ed3981010c6c0a181baf45e3e53b7da42110b2",
+      "bytes": 11749
+    },
+    {
+      "path": "input-editor-feedback.js",
+      "sha256": "ecbd75016193e77dacd734746657860f9528583370df19f42365d20d918683ca",
+      "bytes": 5458
+    },
+    {
+      "path": "input-editor-feedback.patch",
+      "sha256": "bb74e8f329e52ee177afa58a8868466f0e54ac9c966794a358a6ff7d8a2ac3ce",
+      "bytes": 21857
+    },
+    {
+      "path": "PRODUCT.json",
+      "sha256": "e3f6882281e03de25b0f0f9092eb08823eda8556d540cbbe546aeefa108ef007",
+      "bytes": 967
+    },
+    {
+      "path": "PROVENANCE.json",
+      "sha256": "b39f2b9e280d279051784e8895a39b1f0c325dbdc6e2cee110538f0478ba409d",
+      "bytes": 503
+    },
+    {
+      "path": "README.md",
+      "sha256": "fd43d532ee3b18c12d63f92a34af6d078f74a8c7ecd8e3e85209373e39c60dbf",
+      "bytes": 6778
+    },
+    {
+      "path": "test-result.json",
+      "sha256": "d776006d0e76f643214baba40262bb5da22127f4d0575b0afa9c37e32c6d0f64",
+      "bytes": 4176
+    },
+    {
+      "path": "test.mjs",
+      "sha256": "11f631d3b668d4abe6dd22745398735eeee762ad4dd9e67692053e96ec9b0264",
+      "bytes": 15604
+    }
+  ]
+}

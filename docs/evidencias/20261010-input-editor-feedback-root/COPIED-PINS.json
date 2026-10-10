@@ -1,0 +1,142 @@
+[
+  {
+    "path": "source-review/BASELINE.json",
+    "bytes": 1268,
+    "sha256": "73012519bdd250057c149c460b5b5571a311d4511f58ee8129fecf8d440a86a0"
+  },
+  {
+    "path": "source-review/baseline/freemix-app/frontend/widgets/FreeMixMultistream.cpp",
+    "bytes": 122928,
+    "sha256": "efbf13bcfc35387f1ae53558a81d489a705ae7b67394a47dc3a9e4a05fe661ce"
+  },
+  {
+    "path": "source-review/baseline/freemix-app/frontend/widgets/OBSBasic_MainControls.cpp",
+    "bytes": 19348,
+    "sha256": "98eb6e55676b548fe95455cda117b2ab4fbb99c621e197805e485b01565d015f"
+  },
+  {
+    "path": "source-review/baseline/freemix-app/plugins/obs-websocket/src/requesthandler/RequestHandler_Ui.cpp",
+    "bytes": 11025,
+    "sha256": "94c54d1e59d0a6f61f6e749dadf3cf34dcaa3a4bb955e8598542aeebe00ecb5e"
+  },
+  {
+    "path": "source-review/baseline/freemix-app/plugins/obs-websocket/src/utils/Obs_ArrayHelper.cpp",
+    "bytes": 11336,
+    "sha256": "48f6b49f13c17165b98ac9e0165075d88f9250b0eb44c13eae9dfd97db0852ea"
+  },
+  {
+    "path": "source-review/baseline/FreeMix/ferramentas/controle-producao.mjs",
+    "bytes": 52966,
+    "sha256": "304a49022d5447b1d1edf4bb9972c4e127b432efdf44cf79e4443d9b1eb38c1d"
+  },
+  {
+    "path": "source-review/baseline/FreeMix/painel/mesa.html",
+    "bytes": 258749,
+    "sha256": "258818c83cfe3c53a3ca29ddaf3ab5230d18f423f470b157a7f144a7da4e5a2c"
+  },
+  {
+    "path": "source-review/baseline/FreeMix/painel/remoto/input-menu-ui.js",
+    "bytes": 3854,
+    "sha256": "31fea09b02593be5eee2954bba8a85725386912ff93e6a9545ef0714d4fdd1e0"
+  },
+  {
+    "path": "source-review/derive.py",
+    "bytes": 8181,
+    "sha256": "4c5c6aaed74569b0596f9fad9951cb00b68dc2d8f5ffca1c50e70ad23b6b6ec2"
+  },
+  {
+    "path": "source-review/dom.mjs",
+    "bytes": 7398,
+    "sha256": "65c1a9abeb2d68f0cc7e30203fcf56f9f1f28f37d415e53a0d69f6da8184fc2c"
+  },
+  {
+    "path": "source-review/draft/FreeMix/painel/mesa.html",
+    "bytes": 261473,
+    "sha256": "7d40d1c70d71a6e7a0ce30dbead59bf4a17c7c27d22f32a618f3c17eeec7d803"
+  },
+  {
+    "path": "source-review/draft/FreeMix/painel/remoto/input-editor-feedback.js",
+    "bytes": 5458,
+    "sha256": "ecbd75016193e77dacd734746657860f9528583370df19f42365d20d918683ca"
+  },
+  {
+    "path": "source-review/draft/FreeMix/painel/remoto/input-menu-ui.js",
+    "bytes": 4050,
+    "sha256": "b27ecdf902f7f88f1d7d0bf500937aaf3c2d5034961612f56f05a348a3944a47"
+  },
+  {
+    "path": "source-review/freeze.mjs",
+    "bytes": 2616,
+    "sha256": "1a624313ad447359ec4e42147a2be8202b60e4f4b46691c88a6c9c07a0f14aca"
+  },
+  {
+    "path": "source-review/gemini-public/BRIEF.txt",
+    "bytes": 1942,
+    "sha256": "2048813b3ef10c795b4c5c7d676a6ea78cd03d8e8f04193627c0b1579d8a9119"
+  },
+  {
+    "path": "source-review/gemini-public/result.json",
+    "bytes": 11749,
+    "sha256": "10162a0ffefc700c5cacf94655ed3981010c6c0a181baf45e3e53b7da42110b2"
+  },
+  {
+    "path": "source-review/input-editor-feedback.js",
+    "bytes": 5458,
+    "sha256": "ecbd75016193e77dacd734746657860f9528583370df19f42365d20d918683ca"
+  },
+  {
+    "path": "source-review/input-editor-feedback.patch",
+    "bytes": 21857,
+    "sha256": "bb74e8f329e52ee177afa58a8868466f0e54ac9c966794a358a6ff7d8a2ac3ce"
+  },
+  {
+    "path": "source-review/PRODUCT.json",
+    "bytes": 967,
+    "sha256": "e3f6882281e03de25b0f0f9092eb08823eda8556d540cbbe546aeefa108ef007"
+  },
+  {
+    "path": "source-review/PROVENANCE.json",
+    "bytes": 503,
+    "sha256": "b39f2b9e280d279051784e8895a39b1f0c325dbdc6e2cee110538f0478ba409d"
+  },
+  {
+    "path": "source-review/README.md",
+    "bytes": 6778,
+    "sha256": "fd43d532ee3b18c12d63f92a34af6d078f74a8c7ecd8e3e85209373e39c60dbf"
+  },
+  {
+    "path": "source-review/test-result.json",
+    "bytes": 4176,
+    "sha256": "d776006d0e76f643214baba40262bb5da22127f4d0575b0afa9c37e32c6d0f64"
+  },
+  {
+    "path": "source-review/test.mjs",
+    "bytes": 15604,
+    "sha256": "11f631d3b668d4abe6dd22745398735eeee762ad4dd9e67692053e96ec9b0264"
+  },
+  {
+    "path": "source-review/ALLOWLIST.json",
+    "bytes": 4035,
+    "sha256": "d6c4c0fbcec014fd508172b0d8e734a49f431a3c6ce6798a274b0d5727958af2"
+  },
+  {
+    "path": "ROOT-INTEGRATION.json",
+    "bytes": 1802,
+    "sha256": "84b572aff0a4808697f845581f104459467306e6cece94d80515a13a3c89aa5e"
+  },
+  {
+    "path": "ROOT-REVIEW-INTEGRATION.mjs",
+    "bytes": 4450,
+    "sha256": "3372fab82a90137f6e47c09b36c46b333b69f778c472d4fcc32f14e99b8ded8d"
+  },
+  {
+    "path": "source-review/ROOT-INDEPENDENT-MODELS.mjs",
+    "bytes": 15616,
+    "sha256": "99002c1a9e4164d94f7261c77ea88563f2171eb61c2912f6eff7c9e11763f332"
+  },
+  {
+    "path": "source-review/ROOT-INDEPENDENT-MODELS.json",
+    "bytes": 4176,
+    "sha256": "d776006d0e76f643214baba40262bb5da22127f4d0575b0afa9c37e32c6d0f64"
+  }
+]

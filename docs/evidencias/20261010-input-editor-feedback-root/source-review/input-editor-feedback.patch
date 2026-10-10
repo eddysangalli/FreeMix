@@ -1,0 +1,177 @@
+--- a/FreeMix/painel/mesa.html
++++ b/FreeMix/painel/mesa.html
+@@ -520,6 +520,7 @@
+   <div class="stat" id="stat"></div>
+   <div class="pop" id="pop"></div>
+   <div id="operation-status" hidden style="position:fixed;top:4px;left:50%;transform:translateX(-50%);width:max-content;max-width:calc(100vw - 24px);box-sizing:border-box;z-index:2000;background:#27313c;color:white;padding:6px;border:1px solid #8aa1b7">Comando aguardando confirmação · <button data-a="operationcheck">Conferir motor</button> <button id="operation-release" data-a="operationrelease" hidden>Liberar controles sem repetir</button></div>
++  <div id="input-editor-status" role="status" hidden style="position:fixed;bottom:46px;left:12px;right:12px;z-index:1999;background:#27313c;color:white;padding:8px;border:1px solid #8aa1b7"><span id="input-editor-message"></span> <button data-a="editorcheck">Conferir janela</button> <button data-a="editorrelease">Liberar controle sem repetir</button> <button data-a="editordismiss">Ocultar aviso</button></div>
+   <div class="toast" id="toast"></div>
+ 
+ <script src="local.js"></script>
+@@ -867,7 +868,7 @@
+     const items = new Map(), loop = new Map(), iso = new Map(), rp = []; let pl = null;
+     for (const name of names) {
+       const r = await read("GetSceneItemList", { sceneName: name });
+-      const list = (r?.sceneItems || []).filter((i) => i.inputKind).map((i) => ({ name: i.sourceName, kind: i.inputKind }));
++      const list = (r?.sceneItems || []).filter((i) => i.inputKind).map((i) => ({ name: i.sourceName, kind: i.inputKind, key: i.sourceUuid }));
+       items.set(name, list);
+       for (const i of list) {
+         if (isMedia(i.kind) && !loop.has(i.name)) loop.set(i.name, !!(await read("GetInputSettings", { inputName: i.name }))?.inputSettings?.[loopKey(i.kind)]);
+@@ -1125,6 +1126,24 @@
+ 
+   /* ---- actions ---- */
+   const run = (p) => p?.catch?.((e) => toast(e.message, true));
++  let inputEditorController;
++  const editorContext=()=>({on:st.on&&!mesaDisposed,scope:st.preset,connection:ws,sceneKeys:st.sceneKeys,items:st.items});
++  const sceneButtonIdentity=d=>window.FreeMixInputEditors?.sceneMatches(editorContext(),{owner:d.v,ownerKey:d.ownerKey,scope:d.scope});
++  const sceneButtonAttrs=n=>`data-owner-key="${esc(st.sceneKeys[n]||'')}" data-scope="${esc(st.preset||'')}"`;
++  function editorController(){
++    if(inputEditorController)return inputEditorController;
++    inputEditorController=window.FreeMixInputEditors.create({context:editorContext,request:(type,data)=>req(type,data),publish:s=>{
++      const region=$('input-editor-status');region.hidden=false;$('input-editor-message').textContent=(s.sourceName?s.sourceName+': ':'')+s.message;
++      for(const a of ['editorcheck','editorrelease'])region.querySelector(`[data-a="${a}"]`).hidden=!s.pending;
++      region.querySelector('[data-a="editordismiss"]').hidden=s.pending;
++    }});return inputEditorController;
++  }
++  function openInputEditor(d,kind){
++    const target={kind,key:d.sourceKey,name:d.v,owner:d.owner,ownerKey:d.ownerKey,scope:d.scope};
++    closePop();run(editorController().open(target));
++  }
++
++
+   const kindName = (kind) => st.transitions.find((t) => t.kind === kind)?.name;
+   let creatingInput = false;
+   function markInputCreating(active) {
+@@ -1191,7 +1210,7 @@
+     ovoff: (d) => run((async () => { await gcLeave(st.keyers[+d.k].scene); await vendor("dsk_select_scene", { dsk_name: st.keyers[+d.k].name, scene: "" }); await sleep(120); await syncKeyers(); })()),
+     loop: (d) => run((async () => { for (const i of (st.items.get(d.v) || []).filter((i) => isMedia(i.kind))) await req("SetInputSettings", { inputName: i.name, inputSettings: { [loopKey(i.kind)]: !st.loop.get(i.name) } }); await syncItems(); })()),
+     audio: (d) => run(productionAction("audio_mute",{input:d.v})),
+-    closeask: (d) => {if(st.locked)return A.lockmsg();st.closeTarget={key:st.sceneKeys[d.v],name:d.v,scope:st.preset};openPop("close",d.v);},
++    closeask: (d) => {if(st.locked)return A.lockmsg();if(!sceneButtonIdentity(d))return toast("Esta entrada mudou. Abra a confirmação novamente.",true);st.closeTarget={key:d.ownerKey,name:d.v,scope:d.scope};openPop("close",d.v);},
+     closego: () => {const target=st.closeTarget;if(!target?.key)return toast("Entrada não identificada. Abra a confirmação novamente.",true);closePop();run(productionAction("input_remove",{input:target.key,expectedScope:target.scope}));},
+     isotoggle: (d) => { const sel = new Set(st.isoSel); sel.has(d.v) ? sel.delete(d.v) : sel.add(d.v); st.isoSel = [...sel]; store.set("mesa.iso", st.isoSel); renderPop(); },
+     multicorder: () => { if ([...st.iso.values()].some(Boolean)) return A.isostop(); if (!st.isoSel.some((n) => st.scenes.includes(n))) return openPop("iso"); A.isostart(); },
+@@ -1529,9 +1548,11 @@
+     })()),
+     dock_undock: () => A.undock_side(),
+     minimizetoggle: (d) => {
++      if(!sceneButtonIdentity(d))return toast("Esta entrada mudou. Atualize o cartão antes de recolher.",true);
+       st.minimized = st.minimized || {}; st.minimized[d.v] = !st.minimized[d.v];
+       store.set("mesa.minimized", st.minimized); renderTiles();
+       if (st.pop === "menu") renderPop();
++      toast(st.minimized[d.v]?"Cartão recolhido. A entrada continua no motor.":"Cartão expandido.");
+     },
+     togglespeed: (d) => {
+       st.showSpeed = st.showSpeed || {}; st.showSpeed[d.v] = !st.showSpeed[d.v];
+@@ -1651,8 +1672,11 @@
+       else document.execCommand("copy") ? done() : fail();
+     },
+     playpause: (d) => run((async () => { for (const i of (st.items.get(d.v) || []).filter((i) => isMedia(i.kind))) { const playing = (await tryReq("GetMediaInputStatus", { inputName: i.name }))?.mediaState === "OBS_MEDIA_STATE_PLAYING"; await req("TriggerMediaInputAction", { inputName: i.name, mediaAction: "OBS_WEBSOCKET_MEDIA_INPUT_ACTION_" + (playing ? "PAUSE" : "PLAY") }); } })()),
+-    props: (d) => { closePop(); run(req("OpenInputPropertiesDialog", { inputName: d.v })); },
+-    filters: (d) => { closePop(); run(req("OpenInputFiltersDialog", { inputName: d.v })); },
++    props: (d) => openInputEditor(d,"properties"),
++    filters: (d) => openInputEditor(d,"filters"),
++    editorcheck:()=>run(editorController().observe()),
++    editorrelease:()=>editorController().abandon(),
++    editordismiss:()=>{if(!inputEditorController?.pending())$("input-editor-status").hidden=true;},
+     projector: (d) => { closePop(); run(req("OpenSourceProjector", { sourceName: d.v, monitorIndex: -1 })); },
+     renameask: (d) => openPop("rename", d.v),
+     renamego: () => run((async () => {
+@@ -1693,13 +1717,13 @@
+       const media = (st.items.get(name) || []).filter((i) => isMedia(i.kind)), aud = sceneAudio(name);
+ 
+       if (isMin) {
+-        return `<div class="tile min${tileCls}" data-s="${v}" data-a="minimizetoggle" data-v="${v}" title="Clique para restaurar entrada ${v}">
++        return `<div class="tile min${tileCls}" data-s="${v}" data-a="minimizetoggle" data-v="${v}" ${sceneButtonAttrs(name)} title="Clique para expandir o cartão ${v}">
+           <div class="tt min ${cls}"><span class="n">${st.scenes.indexOf(name) + 1}</span></div>
+           <div class="min-bar" style="background:${tag === undefined ? "#1a222d" : COLORS[tag]}"><span class="min-name">${v}</span></div>
+         </div>`;
+       }
+ 
+-      const closeB = isOut ? `<button class="na" title="Está no ar: tire do programa antes de fechar">Close</button>` : `<button data-a="closeask" data-v="${v}" title="Remove esta entrada">Close</button>`;
++      const closeB = isOut ? `<button class="na" title="Está no ar: tire do programa antes de excluir">Excluir</button>` : `<button data-a="closeask" data-v="${v}" ${sceneButtonAttrs(name)} title="Excluir entrada do projeto">Excluir</button>`;
+       const loopB = media.length ? `<button class="${media.every((i) => st.loop.get(i.name)) ? "on" : ""}" data-a="loop" data-v="${v}" title="Repetir a mídia desta entrada">Loop</button>` : `<button class="na" title="Só para entradas com arquivo de vídeo ou áudio">Loop</button>`;
+       const audioB = aud.length ? `<button data-role="input-audio" class="w2${aud.some((n) => !st.audio.get(n).muted) ? " on" : ""}" data-a="audio" data-v="${v}" title="Liga/desliga o áudio desta entrada">Audio</button>` : `<button data-role="input-audio" class="w2 na" title="Entrada sem fonte de áudio">Audio</button>`;
+       const hasSpeed = !!(media.length && st.showSpeed?.[name]);
+@@ -1717,8 +1741,8 @@
+           <span class="nm" title="${v}">${v}</span>
+           ${st.iso.get(name) ? `<b class="iso" title="Gravação isolada em andamento">ISO</b>` : ""}
+           <i class="tag${tag === undefined ? " none" : ""}" style="background:${tag === undefined ? "transparent" : COLORS[tag]}" data-a="tag" data-v="${v}" title="Cor da entrada"></i>
+-          <button class="min-btn" data-a="minimizetoggle" data-v="${v}" title="Minimizar entrada">−</button>
+-          ${isOut ? "" : `<button class="x" data-a="closeask" data-v="${v}" title="Fechar esta entrada">×</button>`}
++          <button class="min-btn" data-a="minimizetoggle" data-v="${v}" ${sceneButtonAttrs(name)} title="Recolher cartão; mantém a entrada no motor">−</button>
++          ${isOut ? "" : `<button class="x" data-a="closeask" data-v="${v}" ${sceneButtonAttrs(name)} title="Excluir entrada do projeto">×</button>`}
+         </div>
+         <button class="th" draggable="true" data-a="preview" data-v="${v}" title="Clique: envia para o Preview. Arraste até uma aba de categoria para pôr a entrada nela."><img data-t="${v}" src="${thumbs.get(name) || blank}" alt=""></button>
+         <div class="r">${ov(name, 0)}<button class="w2" data-a="quick" data-v="${v}" title="GO: leva ao ar com a transição atual">GO</button><button class="w2" data-a="cut" data-v="${v}" title="Corte seco para o programa">Cut</button>${media.length ? loopB : ""}</div>
+@@ -2156,7 +2180,7 @@
+     else if (st.pop === "stream") p.innerHTML = `<h3>Iniciar transmissão?</h3><p>Usa o serviço configurado em Configurações › Transmissão.</p><div class="row"><button class="b live" data-a="streamgo">Iniciar</button><button class="b" data-a="close">Cancelar</button></div>`;
+     else if (st.pop === "overlay") p.innerHTML = `<h3>Canais de overlay</h3>` + (st.keyers?.length ? `<table>${st.keyers.slice(0, 8).map((k, i) => `<tr><td><b>${i + 1}</b></td><td>${k.scene ? esc(k.scene) : `<span style="color:var(--mut)">desligado</span>`}</td><td style="text-align:right">${k.scene ? `<button class="b" data-a="ovoff" data-k="${i}">Desligar</button>` : ""}</td></tr>`).join("")}</table><p style="margin-top:8px">Use os botões 1–4 de cada entrada. Transição e tempo de cada canal ficam em Painéis › Downstream Keyer.</p>` : `<p>O plugin Downstream Keyer não respondeu.</p>`) + `<div class="row"><button class="b" data-a="close">Fechar</button></div>`;
+     else if (st.pop === "tag") p.innerHTML = `<h3>Cor de "${esc(st.popArg)}"</h3><div class="row">${COLORS.map((c, i) => `<button class="sw" style="background:${c}" data-a="settag" data-c="${i}"></button>`).join("")}<button class="sw x" data-a="settag" data-c="" title="Sem cor">×</button></div>`;
+-    else if (st.pop === "close") p.innerHTML = `<h3>Fechar "${esc(st.popArg)}"?</h3><p>Remove a entrada e as fontes que só existem nela. Não dá para desfazer pelo painel.</p><div class="row"><button class="b live" data-a="closego">Fechar entrada</button><button class="b" data-a="close">Cancelar</button></div>`;
++    else if (st.pop === "close") p.innerHTML = `<h3>Excluir "${esc(st.popArg)}" do projeto?</h3><p>Remove a entrada e as fontes que só existem nela. Não dá para desfazer pelo painel.</p><div class="row"><button class="b live" data-a="closego">Excluir entrada</button><button class="b" data-a="close">Cancelar</button></div>`;
+     else if (st.pop === "datasources") {p.innerHTML=`<h3>Fontes de dados</h3><iframe title="Fontes de dados" src="${esc(replayUrl.replace(/\/api\/replay$/, "/dados"))}" style="width:100%;height:60vh;border:0"></iframe><button class="b" data-a="close">Fechar</button>`;}
+     else if (st.pop === "compositions") {p.innerHTML=`<h3>Composição por slots</h3><iframe title="Composições" src="${esc(replayUrl.replace(/\/api\/replay$/, "/compor"))}?input=${encodeURIComponent(st.popArg||"")}" style="width:100%;height:65vh;border:0"></iframe><button class="b" data-a="close">Fechar</button>`;p.style.width="min(1200px,95vw)";}
+     else if (st.pop === "replayretention") {const r=st.rpDisk?.retention||{};p.innerHTML=`<h3>Retenção do replay</h3><p>Apaga segmentos fechados mais antigos que o período. Os clipes salvos e um IN ainda aberto são preservados. Altere com REC parado.</p><label><input id="rp-retention-enabled" type="checkbox" ${r.enabled?'checked':''}> Ativar retenção circular</label><label>Minutos <input id="rp-retention-minutes" type="number" min="2" max="1440" value="${r.minutes||30}"></label><button class="b" data-a="rpretentionsave" ${st.rpDisk?.rec?'disabled':''}>Aplicar</button><button class="b" data-a="close">Fechar</button>`;}
+@@ -2219,12 +2243,12 @@
+         + `</fieldset>`
+         + `<div class="row end" style="margin-top:8px"><button class="b" data-a="close">Fechar</button></div>`;
+     }
+-    else if (st.pop === "menu") { const name = st.popArg, v = esc(name), ins = st.items.get(name) || [];
++    else if (st.pop === "menu") { const name = st.popArg, v = esc(name), ins = window.FreeMixInputEditors.uniqueSources(st.items.get(name) || []);
+       const hasMedia = ins.some((i) => isMedia(i.kind));
+-      p.innerHTML = `<h3>${v}</h3><div class="menu">` + ins.map((i) => `<button data-a="props" data-v="${esc(i.name)}">Configurações de ${esc(i.name)}…</button>${st.gcNames.has(i.name) ? `<button data-a="gcedit" data-v="${esc(i.name)}"><b>Editar título…</b></button>` : ""}<button data-a="filters" data-v="${esc(i.name)}">Filtros de ${esc(i.name)}…</button>${i.kind === "browser_source" ? `<button data-a="calllink" data-v="${esc(i.name)}">Link do convidado (FreeMix Call)…</button>` : ""}`).join("")
+-        + `<button data-a="minimizetoggle" data-v="${v}">${st.minimized?.[name] ? "Expandir entrada" : "Minimizar entrada"}</button>`
++      p.innerHTML = `<h3>${v}</h3><div class="menu">` + ins.map((i) => `<button data-a="props" data-v="${esc(i.name)}" data-source-key="${esc(i.key||'')}" data-owner="${v}" ${sceneButtonAttrs(name)}>Configurações de ${esc(i.name)}…</button>${st.gcNames.has(i.name) ? `<button data-a="gcedit" data-v="${esc(i.name)}"><b>Editar título…</b></button>` : ""}<button data-a="filters" data-v="${esc(i.name)}" data-source-key="${esc(i.key||'')}" data-owner="${v}" ${sceneButtonAttrs(name)}>Filtros de ${esc(i.name)}…</button>${i.kind === "browser_source" ? `<button data-a="calllink" data-v="${esc(i.name)}">Link do convidado (FreeMix Call)…</button>` : ""}`).join("")
++        + `<button data-a="minimizetoggle" data-v="${v}" ${sceneButtonAttrs(name)}>${st.minimized?.[name] ? "Expandir cartão" : "Recolher cartão"}</button>`
+         + (hasMedia ? `<button data-a="togglespeed" data-v="${v}">${st.showSpeed?.[name] ? "Ocultar velocidade de exibição" : "Show/Hide PlayBack Speed"}</button>` : "")
+-        + `<button data-a="layers" data-v="${v}">Camadas: outras entradas por cima…</button><button data-a="audioadd" data-v="${v}">Juntar áudio a esta entrada…</button><button data-a="renameask" data-v="${v}">Renomear…</button><button data-a="tag" data-v="${v}">Cor…</button><button data-a="projector" data-v="${v}">Abrir em janela</button>${name === st.program ? "" : `<button data-a="closeask" data-v="${v}">Fechar entrada</button>`}</div>`; }
++        + `<button data-a="layers" data-v="${v}">Camadas: outras entradas por cima…</button><button data-a="audioadd" data-v="${v}">Juntar áudio a esta entrada…</button><button data-a="renameask" data-v="${v}">Renomear…</button><button data-a="tag" data-v="${v}">Cor…</button><button data-a="projector" data-v="${v}">Abrir em janela</button>${name === st.program ? "" : `<button data-a="closeask" data-v="${v}" ${sceneButtonAttrs(name)}>Excluir entrada</button>`}</div>`; }
+     else if (st.pop === "rename") p.innerHTML = `<h3>Renomear "${esc(st.popArg)}"</h3><label>Novo nome<input id="rn-name" maxlength="40" value="${esc(st.popArg)}"></label><div class="row"><button class="b on" data-a="renamego">OK</button><button class="b" data-a="close">Cancel</button></div>`;
+     else if (st.pop === "gtimportinfo") {
+       p.innerHTML = `<h3>Importar Pacotes GT Title (.gtzip)</h3>`
+@@ -2668,9 +2692,10 @@
+         if (isOut) close?.remove();
+         else if (!tile.classList.contains('min') && !close) {
+           const button = document.createElement('button'); button.className = 'x';
+-          button.setAttribute('data-a', 'closeask'); button.setAttribute('data-v', name); button.title = 'Fechar esta entrada'; button.textContent = '×'; title.append(button);
++          button.setAttribute('data-a', 'closeask'); button.setAttribute('data-v', name); button.title = 'Excluir entrada do projeto'; button.textContent = '×'; title.append(button);
+         }
+       }
++      for(const b of tile.querySelectorAll('[data-a="closeask"],[data-a="minimizetoggle"]')){b.dataset.ownerKey=st.sceneKeys[name]||'';b.dataset.scope=st.preset||'';}
+       const audio = tile.querySelector('[data-role="input-audio"]');
+       if (audio) {
+         const aud = sceneAudio(name); audio.classList.toggle('on', aud.some(input => !st.audio.get(input)?.muted));
+@@ -2751,6 +2776,7 @@
+ </script>
+ <script src="remoto/midi-feedback.js"></script>
+ <script src="remoto/atalhos-engine.js"></script>
++<script src="remoto/input-editor-feedback.js"></script>
+ <script src="remoto/input-menu-ui.js"></script>
+ </body>
+ </html>
+--- a/FreeMix/painel/remoto/input-menu-ui.js
++++ b/FreeMix/painel/remoto/input-menu-ui.js
+@@ -6,17 +6,17 @@
+  function enhance(){
+   const p=document.getElementById('pop');if(!p)return;p.classList.remove('input-menu-tasks');if(st.pop!=='menu')return;
+   const old=p.querySelector('.menu');if(!old)return;p.classList.add('input-menu-tasks');
+-  const buttons=[...old.querySelectorAll('button[data-a]')],sources=st.items.get(st.popArg)||[],body=node('div','','input-menu-body'),used=new Set();
++  const buttons=[...old.querySelectorAll('button[data-a]')],sources=window.FreeMixInputEditors.uniqueSources(st.items.get(st.popArg)||[]),body=node('div','','input-menu-body'),used=new Set();
+   const place=(button,into,label)=>{if(!button)return;if(label)button.textContent=label;into.append(button);used.add(button);};
+-  const find=(a,v)=>buttons.find(b=>b.dataset.a===a&&(v===undefined||b.dataset.v===v));
++  const find=(a,v,key)=>buttons.find(b=>b.dataset.a===a&&(v===undefined||b.dataset.v===v)&&(!key||b.dataset.sourceKey===key));
+   const ownAir=st.program===st.popArg||st.recursiveTally?.program?.includes(st.popArg);body.append(node('p',ownAir?'Entrada no ar. A configuração atua nesta entrada; retire do ar antes de excluir.':'Configuração desta entrada. As ações mantêm seus destinos identificados.','input-menu-hint'));
+   const basic=node('div','','menu input-menu-basic');
+   for(const s of sources)place(find('gcedit',s.name),basic,'Editar título: '+s.name);
+-  if(sources.length===1)place(find('props',sources[0].name),basic,'Configurar: '+sources[0].name);
++  if(sources.length===1)place(find('props',sources[0].name,sources[0].key),basic,'Configurar: '+sources[0].name);
+   place(find('layers'),basic,'Camadas e conteúdo da entrada…');place(find('minimizetoggle'),basic);body.append(basic);
+   if(sources.length){
+-   const details=node('details','','input-menu-details'),summary=node('summary',sources.length>1?'Fontes desta entrada ('+sources.length+')':'Filtros e opções da fonte');details.append(summary,node('p','Cada fonte mantém sua configuração e filtros próprios.','input-menu-hint'));
+-   for(const s of sources){const section=node('section','','input-menu-source');section.append(node('h4',s.name),node('p',kindLabel(s.kind),'input-menu-hint'));const actions=node('div','','menu');if(sources.length>1)place(find('props',s.name),actions,'Configurar esta fonte…');place(find('filters',s.name),actions,'Filtros desta fonte…');place(find('calllink',s.name),actions,'Abrir Calls se esta fonte for uma chamada…');section.append(actions);details.append(section);}body.append(details);
++   const details=node('details','','input-menu-details'),summary=node('summary',sources.length>1?'Fontes desta entrada ('+sources.length+')':'Filtros e opções da fonte');details.append(summary,node('p','Cada fonte mantém sua configuração e filtros próprios. Configurar e Filtros abrem uma janela do motor; a mesa informa quando ela é observada.','input-menu-hint'));
++   for(const s of sources){const section=node('section','','input-menu-source');section.append(node('h4',s.name),node('p',kindLabel(s.kind),'input-menu-hint'));const actions=node('div','','menu');if(sources.length>1)place(find('props',s.name,s.key),actions,'Configurar esta fonte…');place(find('filters',s.name,s.key),actions,'Filtros desta fonte…');place(find('calllink',s.name),actions,'Abrir Calls se esta fonte for uma chamada…');section.append(actions);details.append(section);}body.append(details);
+   }else body.append(node('p','Esta entrada não tem fontes. Abra Camadas e conteúdo para montar sua imagem.','input-menu-hint'));
+   const advanced=node('details','','input-menu-details');advanced.append(node('summary','Mais opções da entrada'));const advancedMenu=node('div','','menu');
+   for(const action of ['audioadd','togglespeed','renameask','tag','projector'])place(find(action),advancedMenu,action==='togglespeed'?(st.showSpeed?.[st.popArg]?'Ocultar controle de velocidade':'Mostrar controle de velocidade'):undefined);

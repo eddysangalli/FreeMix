@@ -1,0 +1,44 @@
+{
+  "status": "ROOT_UI_SOURCE_INTEGRATED_REAL_EDITOR_AND_LATENCY_PENDING",
+  "at": "2026-10-10T16:13:26.938Z",
+  "allowlistSha256": "d6c4c0fbcec014fd508172b0d8e734a49f431a3c6ce6798a274b0d5727958af2",
+  "offsideFiles": 23,
+  "rootModels": 34,
+  "product": [
+    {
+      "path": "FreeMix/painel/mesa.html",
+      "draft": "draft/FreeMix/painel/mesa.html",
+      "sha256": "7d40d1c70d71a6e7a0ce30dbead59bf4a17c7c27d22f32a618f3c17eeec7d803",
+      "bytes": 261473,
+      "baselineSha256": "258818c83cfe3c53a3ca29ddaf3ab5230d18f423f470b157a7f144a7da4e5a2c"
+    },
+    {
+      "path": "FreeMix/painel/remoto/input-menu-ui.js",
+      "draft": "draft/FreeMix/painel/remoto/input-menu-ui.js",
+      "sha256": "b27ecdf902f7f88f1d7d0bf500937aaf3c2d5034961612f56f05a348a3944a47",
+      "bytes": 4050,
+      "baselineSha256": "31fea09b02593be5eee2954bba8a85725386912ff93e6a9545ef0714d4fdd1e0"
+    },
+    {
+      "path": "FreeMix/painel/remoto/input-editor-feedback.js",
+      "draft": "draft/FreeMix/painel/remoto/input-editor-feedback.js",
+      "sha256": "ecbd75016193e77dacd734746657860f9528583370df19f42365d20d918683ca",
+      "bytes": 5458,
+      "baselineSha256": null
+    }
+  ],
+  "closureModules": 132,
+  "newHelperIncludedByPanelCopy": true,
+  "helperLoadsBeforeMenu": true,
+  "NativeStarted": false,
+  "apiStarted": false,
+  "operatorTouched": false,
+  "zOrderVerified": false,
+  "visualApproved": false,
+  "newInstallerApproved": false,
+  "limits": [
+    "Open RPC ACK means acceptance; same-source Qt visibility is a separate observation, not physical z-order.",
+    "Preflight is not an atomic Native transaction against another client changing collection before dispatch.",
+    "No native window focus, latency, active-dialog close refusal, or installed persistence tested in this integration."
+  ]
+}

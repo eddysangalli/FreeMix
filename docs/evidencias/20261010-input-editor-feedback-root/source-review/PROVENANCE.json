@@ -1,0 +1,14 @@
+{
+  "historicalEvidence": [
+    {
+      "path": "qa-finalizacao/native25-http-iab-editor-frozen-safe-review2-20261010/report.json",
+      "sha256": "40ea5fe31014d20edd5fef17227033e5b0e2c3328dc6076fa11455ef47ce5eb0"
+    },
+    {
+      "path": "qa-finalizacao/input-menu-root-integration-20261010/receipt.json",
+      "sha256": "37237562d255a89cea191fe8a259c08d305485636b1c17aee1ee2cff0ac54608"
+    }
+  ],
+  "qtOfficial": "https://doc.qt.io/qt-6/qwidget.html#activateWindow",
+  "desktopVerified": false
+}
