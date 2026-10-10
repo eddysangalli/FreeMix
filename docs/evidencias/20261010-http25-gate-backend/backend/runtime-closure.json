@@ -1,0 +1,342 @@
+{
+  "status": "PASS_LITERAL_RUNTIME_DEPENDENCY_CLOSURE",
+  "tools": 81,
+  "browser": 2,
+  "expectedNewModulesPresent": true,
+  "files": [
+    {
+      "path": "painel/gc/biblioteca/modelos.mjs",
+      "sha256": "68c9e3e29aab56a7a1545542b4fd2fa706e180d500f2afa601c3af39f2cbd205"
+    },
+    {
+      "path": "ferramentas/atalhos-globais.mjs",
+      "sha256": "ad10b63c3ceec63f98b924fb36b45cc6c61be7ea97e0ffe34c179f450d0ca46b"
+    },
+    {
+      "path": "ferramentas/atualizacao-online.mjs",
+      "sha256": "5a99c18ab979bb9825527f17eaf101e8055d4bb1a2acdb9bf72cde5d3fa016da"
+    },
+    {
+      "path": "ferramentas/atualizar-freemix.mjs",
+      "sha256": "8f0855db94750bac67b1a536c950f0fdf7942393dc434a80b9f7f403695c2d98"
+    },
+    {
+      "path": "ferramentas/audio-buses-producao.mjs",
+      "sha256": "1e2897859efa25c9699e1e64cf628d9a9e2c9f9f50a30a7bb17cc7e7bf40cbd5"
+    },
+    {
+      "path": "ferramentas/audio-routing-producao.mjs",
+      "sha256": "4cff9f1d960738035f54ee90ef9a167ca7f4b43430ca17814124845c55c1bb4b"
+    },
+    {
+      "path": "ferramentas/automacao-operacional.mjs",
+      "sha256": "200104690e4a7c21f78d51911ebfa0f03a98de55f2b6dbc2921e2da618f3a51c"
+    },
+    {
+      "path": "ferramentas/bonding-medicoes.mjs",
+      "sha256": "33a6baf2d2f5455cd99a0195124b6d5583ac19b4803308fb1c7f849961bec7d7"
+    },
+    {
+      "path": "ferramentas/bonding-producao.mjs",
+      "sha256": "7211d8821c5372ef245db727e55d9a6e68ae58b604cb4e4d4c08af39853b071e"
+    },
+    {
+      "path": "ferramentas/bonding-receptor-portatil.mjs",
+      "sha256": "13af99ea67eb0a46502cf706376d9f60b27cf7d0ede7f6b880d56aaee4977022"
+    },
+    {
+      "path": "ferramentas/call-video-codec.mjs",
+      "sha256": "0d529d0ad4e985f239ef05951af4683ae822d8d791c0d065088aa8ee873934c5"
+    },
+    {
+      "path": "ferramentas/call-video-native.mjs",
+      "sha256": "e8653086187082496408c4ed6599aa0970049ef3f3a0b7a6d69fb788a223e802"
+    },
+    {
+      "path": "ferramentas/calls-ice.mjs",
+      "sha256": "13ded46fb5ca3689791dcfd3325d3d69ca20e81c3964ff58d613d6097b288800"
+    },
+    {
+      "path": "ferramentas/calls-producao.mjs",
+      "sha256": "1e4ce912c8f33c563aa424ef5a832e010db395f45cbf6eb25a041831d40dfffa"
+    },
+    {
+      "path": "ferramentas/capacidades-motor.mjs",
+      "sha256": "bdf7e7cc47a390c0c79b0a757070dba1f32b620fb640879cafbb6da1e2a35f3d"
+    },
+    {
+      "path": "ferramentas/composicao-advanced-masks.mjs",
+      "sha256": "ee752d8240cb888db2b5f05031536d1090750297565b712154398392376abf7e"
+    },
+    {
+      "path": "ferramentas/composicao-estilos.mjs",
+      "sha256": "69163ebef97ef9ac3fa3dc554dfc274cd4df23a7494f25e9e7b9efd2f8307e85"
+    },
+    {
+      "path": "ferramentas/composicao-fundo.mjs",
+      "sha256": "c05b0f85d1b5273e58774dd6037b536b7be44975b1b21e446f9dcd748ec9eb82"
+    },
+    {
+      "path": "ferramentas/composicao-locutor.mjs",
+      "sha256": "d7de29a40e80f369f252a0705dca94f01a0e151b50da0ca33cbfa212a7aeba06"
+    },
+    {
+      "path": "ferramentas/composicao-presets.mjs",
+      "sha256": "db0fd73285533417c06f278d13773d9582e1df864eda2a785dd0d78dd132cda6"
+    },
+    {
+      "path": "ferramentas/configuracoes-producao.mjs",
+      "sha256": "8912782596393e5b72a1bc5f65ba2c5e7b5bf42b5699e2d34b120b40c9e5b973"
+    },
+    {
+      "path": "ferramentas/controlador-producao.mjs",
+      "sha256": "46ca77aad10a1fb227ff9acd9678941463fc634fbc3d08b9e9b23afa7649bbad"
+    },
+    {
+      "path": "ferramentas/controle-producao.mjs",
+      "sha256": "be4682074442b6cbb8f06c2aa6638223009abe071b8d769d5a2aac870bd42908"
+    },
+    {
+      "path": "ferramentas/controller-osc.mjs",
+      "sha256": "8c169a300afae0aea805298d5d02c5020593382433b61f4955d134a09713bcfa"
+    },
+    {
+      "path": "ferramentas/diagnostico-producao.mjs",
+      "sha256": "545f59e83595cb6dfb7277e06994bde6b691acd768cfc1fd48c21bb87cba7a59"
+    },
+    {
+      "path": "ferramentas/diagnostico-zip.mjs",
+      "sha256": "0f3afc0e511bc48d1641746e4926ad571870ca1587beb4e397e2c93550474ad8"
+    },
+    {
+      "path": "ferramentas/efeitos-producao.mjs",
+      "sha256": "49f97a6f8bcf9a014e25fbb5584dbb8b33852ce415547c2f6f9672c7eed1f930"
+    },
+    {
+      "path": "ferramentas/efeitos-ptz.mjs",
+      "sha256": "7f53ca19e10f854d0b2b278d803cea3a83c672b0557625ea98847df974148244"
+    },
+    {
+      "path": "ferramentas/entradas-producao.mjs",
+      "sha256": "4ba37e9d2deb07d71ddc65a6e4e2974b914669f6a8a7a01788a8d70e7149f615"
+    },
+    {
+      "path": "ferramentas/fila-producao.mjs",
+      "sha256": "4a8a15966d67fd117f6a473fe583ff965e36fd9df68edc09141d04fc5210f04d"
+    },
+    {
+      "path": "ferramentas/final-program-gate-producao.mjs",
+      "sha256": "9342de2d70d0c6bef1eaf4266aeb0994f6f2a436ae9b96d06cdcae37a7b4dbfd"
+    },
+    {
+      "path": "ferramentas/fontes-dados.mjs",
+      "sha256": "e25c386846bc3c58ff8ec7c122112452f722d71ca49d2cca35fa386468d76393"
+    },
+    {
+      "path": "ferramentas/gc-assets.mjs",
+      "sha256": "3623340909e6abf0bc9cae622f1657e41968862b026455b4f9456eaea99a633c"
+    },
+    {
+      "path": "ferramentas/gc-biblioteca-producao.mjs",
+      "sha256": "33a6def6bacd5902b24d93549dbc9e88e5e8b4810cd4b82c57505b830bf17de9"
+    },
+    {
+      "path": "ferramentas/gc-gtzip.mjs",
+      "sha256": "e0efc4580874a3ae40fde5028e17306298c07606f5e7a7fa236ef4a6c63c5afe"
+    },
+    {
+      "path": "ferramentas/gc-html-producao.mjs",
+      "sha256": "90240d37510ad84986be2446f7b5f4f083f0e208a95b722b5c7275badd4358d3"
+    },
+    {
+      "path": "ferramentas/gt_utils.mjs",
+      "sha256": "b3ce86ea78f4808abcedf7d363ff743279d2fcd817c5a1abf36fbdec39437c0e"
+    },
+    {
+      "path": "ferramentas/gtzip-archive.mjs",
+      "sha256": "b2107d921137e48b0a7d8ec6b62e7b2e7509a47c3992bf947da7aad6e85725be"
+    },
+    {
+      "path": "ferramentas/gtzip-fonts.mjs",
+      "sha256": "8f0636142c0c85309e872fc74c5411a7584282afe9b48da5765299ac693a7464"
+    },
+    {
+      "path": "ferramentas/gtzip-qr-bundle.mjs",
+      "sha256": "422f54b25660a373f9aca81da3f5021f1bb1b002f392cce412619756c0d208cc"
+    },
+    {
+      "path": "ferramentas/gtzip-qr.mjs",
+      "sha256": "0088ca623686d6cfc9df13de3859bb2b42cd8af2b07057f8ee5c4013b2a0834b"
+    },
+    {
+      "path": "ferramentas/gtzip-render.mjs",
+      "sha256": "552a6b9d891cfb3bcd1dad5b8e9b4b293ceb1646924664bf80a18bdeb4229e50"
+    },
+    {
+      "path": "ferramentas/gtzip-runtime.mjs",
+      "sha256": "65ad2c8e1cc4d20a0800a79bc85b1048f6824a40b73599a6d7a9b003c4152c3c"
+    },
+    {
+      "path": "ferramentas/gtzip-ticker-ack.mjs",
+      "sha256": "18cb107ca7df7d444c017850ddeb92294ebab299d55aec64a8d2f571a522cc59"
+    },
+    {
+      "path": "ferramentas/gtzip-ticker.mjs",
+      "sha256": "5efee366a7d82b01bae3df12b50b6e0ec1da626ceea6bfbe406cd2e98331b40e"
+    },
+    {
+      "path": "ferramentas/gtzip-xml.mjs",
+      "sha256": "2738f124d729684882c9a58f749310f7683bb70bdd4bdb1d14e54783e76cfa64"
+    },
+    {
+      "path": "ferramentas/gtzip_converter.mjs",
+      "sha256": "4ab80efd023fafffe141c32c701c8ef54edbc7cb72aa3b469131dbad29a7889d"
+    },
+    {
+      "path": "ferramentas/instalar-portatil.mjs",
+      "sha256": "ea0e62985c7a39470ffb3464e4c32fdd98264948e200b3bf5553c8f85e3c055d"
+    },
+    {
+      "path": "ferramentas/macros-producao.mjs",
+      "sha256": "2c9a0b57e2c639a9ce89271219579b3a1fa76d27dcd566eb36faf6de53f9b048"
+    },
+    {
+      "path": "ferramentas/midia-preview-http.mjs",
+      "sha256": "9f37d5806d62eb3c5e1d0775a197858ccc783da57567b079650a786011f2ff0b"
+    },
+    {
+      "path": "ferramentas/multi-rtmp-adapter.mjs",
+      "sha256": "6c5070f7e9e7a484e930e37815b360b018d3e8fdb5ebef19bdef3619ce0a0084"
+    },
+    {
+      "path": "ferramentas/ndi-producao.mjs",
+      "sha256": "9a4e132c468a0c8da4eaf5c97f4d6b919ec82a74f120d8b2f3068bf3026ed085"
+    },
+    {
+      "path": "ferramentas/ndi-runtime.mjs",
+      "sha256": "ecec7a08f6a999d84f71f2ab7cad23f842a5065028ba05facaf0ed41ab1fb44f"
+    },
+    {
+      "path": "ferramentas/obsws.mjs",
+      "sha256": "735a395d1fdd4774b0e44ba8c65926b3601aa5035bf17a8dcb53ca9b907c9cdc"
+    },
+    {
+      "path": "ferramentas/omt-hdr-producao.mjs",
+      "sha256": "7b77bfc66e6db3d6dc143a337b74b517c0e1679bd50103f22fec652c4f60e8e5"
+    },
+    {
+      "path": "ferramentas/omt-producao.mjs",
+      "sha256": "15a632b6d1c80c9926710066e345931a76a7fe5cebd45b33221175b52aa98c5c"
+    },
+    {
+      "path": "ferramentas/plugins-defaults.mjs",
+      "sha256": "48f0d68face1a9a15f2f0eca8d5a645499cc3f13f290f989cfd6a0dbf44a7650"
+    },
+    {
+      "path": "ferramentas/preferencias-producao.mjs",
+      "sha256": "2a584331ffa70af68009ed27657a25c4b52b7dd0258bf4ccd2c7a0f282a42613"
+    },
+    {
+      "path": "ferramentas/preparar-portatil.mjs",
+      "sha256": "967d9bad9a8e93322809afe8c8ab65bdcbb7cce737b9937d17dbb775d8997573"
+    },
+    {
+      "path": "ferramentas/recuperacao-dependencias.mjs",
+      "sha256": "1d40b99de88332e05dd20cba714bd1e158c3013f3bbc91db78a234c1452a42bf"
+    },
+    {
+      "path": "ferramentas/recuperacao-estados.mjs",
+      "sha256": "c794abbe5d00da1f392bfdaedc1aeddb98e420f801809fb652d3f89f2e7b4c92"
+    },
+    {
+      "path": "ferramentas/recuperacao-eventos.mjs",
+      "sha256": "9f0b867a3561ed646122a0c7819cadd2fcdf39ed0f384fdf4fd87d328fba2be8"
+    },
+    {
+      "path": "ferramentas/recuperacao-gtzip.mjs",
+      "sha256": "edde6000a71f42ed1588c1ce2929ede65e536264ae954a7ee4b6355a24ec22c5"
+    },
+    {
+      "path": "ferramentas/recuperacao-importacao.mjs",
+      "sha256": "d92c40c038105176b4f1faf6fe4116f5979dd375c1eec5560cfd2ab7cf5cdfd4"
+    },
+    {
+      "path": "ferramentas/recuperacao-instalabilidade.mjs",
+      "sha256": "a418dbd39f662b823f71a8cfacec8dc95350f3ba770e6a346330f0e2b0217720"
+    },
+    {
+      "path": "ferramentas/recuperacao-inventario.mjs",
+      "sha256": "8db5a5808c8916ca82afb11c19bc2b33fc512d50bab85cfd577c46e1cf184a56"
+    },
+    {
+      "path": "ferramentas/recuperacao-producao.mjs",
+      "sha256": "6abb2a3f23ccb376e3b6ed9fbc92beed1be51d36b14a6a884503454940291ac0"
+    },
+    {
+      "path": "ferramentas/recuperacao-remota.mjs",
+      "sha256": "705231166d8f981ea2085096d3e3e453f9cc3e998671bb55ead9291d45b75153"
+    },
+    {
+      "path": "ferramentas/recuperacao-saidas.mjs",
+      "sha256": "d339a1055021bf13e1335a123ea909630bf5ce5b2b3740291e44c813842b1939"
+    },
+    {
+      "path": "ferramentas/replay-disco.mjs",
+      "sha256": "0abfbd5dcc31836246caee17c0015bacc73f1a75a26f3a6ef14c71a82a2be9bd"
+    },
+    {
+      "path": "ferramentas/replay-preview.mjs",
+      "sha256": "6fadf72f276c46de7b9640331e989a539863275a698df1316559de7da744a4af"
+    },
+    {
+      "path": "ferramentas/replay-sincronia.mjs",
+      "sha256": "dafbd121ada9fc6ea60cb38daf35378ee14a24cd616ab138b409cda10df60377"
+    },
+    {
+      "path": "ferramentas/retornos-calls.mjs",
+      "sha256": "47c6d8573d7ccad60a75efb8abdadeb633b200b11d167e3ac6b5dfaf0d566ad3"
+    },
+    {
+      "path": "ferramentas/saidas-hdr.mjs",
+      "sha256": "d9d24d2ea4de1ad2e1e1cbb6cfa41d9b80b486ee59a91529b4453fc6bd63b8b9"
+    },
+    {
+      "path": "ferramentas/saidas-producao.mjs",
+      "sha256": "4014d7d5fabd30e2851852f0e8cf6d599aaec9c454fc1c73b05d9d0a355452f3"
+    },
+    {
+      "path": "ferramentas/saidas-sdi.mjs",
+      "sha256": "93b550696f2b50e7bd69139868a70173c96e5450b890542a0e8d13e928f6dc70"
+    },
+    {
+      "path": "ferramentas/saidas-srt.mjs",
+      "sha256": "3f3f6118c1a4f0d0f99f9bdf317c850c9f29709bd16ef8048a76d77c5e5e358f"
+    },
+    {
+      "path": "ferramentas/servidor-api.mjs",
+      "sha256": "503338175f0d63e2d2d806e65a78eaaa2e2ef18d2bcde88e185a076af9a53ec2"
+    },
+    {
+      "path": "ferramentas/sessao-producao.mjs",
+      "sha256": "a57f19cbb5ff68f76c1acbf4f5c04ebd2a12f59ba667552754243a5c3d472486"
+    },
+    {
+      "path": "ferramentas/sinais-producao.mjs",
+      "sha256": "69e2443957453bfae6eb380774ba68566e2b04eaf4dfc23be174dcf67218b157"
+    },
+    {
+      "path": "ferramentas/srt-hdr-producao.mjs",
+      "sha256": "f25ecf5fcc17cdcfe7762eb0ea4ed8903160636696ccaf9631d19e48a957869b"
+    },
+    {
+      "path": "painel/remoto/call-publisher.js",
+      "sha256": "580e014e4c5884bc3ad89cf3e785edd050c19d6394ce8837cdd19b8665b7bac2"
+    },
+    {
+      "path": "painel/remoto/call-video-track.js",
+      "sha256": "362ba2ca00fe063d83dea8d2878e659ffc0efcca798dd78e38699275dddc2620"
+    }
+  ],
+  "operatorTouched": false,
+  "nativeStarted": false
+}

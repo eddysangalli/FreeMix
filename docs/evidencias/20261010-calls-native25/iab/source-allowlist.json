@@ -1,0 +1,68 @@
+{
+  "status": "FROZEN_REAL_NATIVE25_NODE_BROWSER_VIDEO_PASS",
+  "nativeHead": "de136e83595be92162ada8c7adc50f52751bd4ef",
+  "preparationAllowlistSha256": "b5ac8b724b3811d8969aa77b2938f64e944cbb355b80120ffe51bb6424aeaa1f",
+  "receiptSha256": "ae11f61a51a3e1cf2a7e8b9f5ad636f08db04770c07bf17a6944d41edeafe23d",
+  "files": [
+    {
+      "path": "check-page.mjs",
+      "sha256": "f9be00b0234b3b93328f15a868b3e800acfc3ba6d335be84afcad683b43bba21"
+    },
+    {
+      "path": "DERIVATION.json",
+      "sha256": "92b6f7eef5876ffb0d1af9850f810bd5f7cc1b90acfb18f30066e6394899a66f"
+    },
+    {
+      "path": "launch-child.mjs",
+      "sha256": "bc142b718dfcb25815e892de10b4d6270f179f1f0a5d4887fe09c4cb83a04462"
+    },
+    {
+      "path": "PREPARATION.json",
+      "sha256": "c481fdbc6a95261eefbc196554fce1ab950f81372f407af6d074fb2007f55178"
+    },
+    {
+      "path": "probe.html",
+      "sha256": "10edb330822ee2532b41e0516a0f1bb8db1c3df7eeb531ae0f4fa60244e6db9d"
+    },
+    {
+      "path": "README.md",
+      "sha256": "58fd6ae5ed794bd27c917c0ff7f88a2c44fb89ac64c5f2269a28de21b8cf08a4"
+    },
+    {
+      "path": "root-command.json",
+      "sha256": "9abafe8ba1fca8e406cfb0f1212ff43cbbc28b7da788d0cfdf980d00d214a0a6"
+    },
+    {
+      "path": "runner.mjs",
+      "sha256": "4f8aba11848ae4983176a0a9a59336b3b8a99664be790e330db0a06945dd89c6"
+    },
+    {
+      "path": "scenarios.mjs",
+      "sha256": "e8f2739e3a72e9c9d413010ab87d717848ee52ed6c16b88046479e3dbd63601a"
+    },
+    {
+      "path": "ALLOWLIST-PREPARATION.json",
+      "sha256": "b5ac8b724b3811d8969aa77b2938f64e944cbb355b80120ffe51bb6424aeaa1f"
+    },
+    {
+      "path": "receipt.json",
+      "sha256": "ae11f61a51a3e1cf2a7e8b9f5ad636f08db04770c07bf17a6944d41edeafe23d"
+    },
+    {
+      "path": "RESULTS.md",
+      "sha256": "a218a3eac8d6e0b78f3f6bf2ecaa5f6e2f84362f5a90434397638097d07d8479"
+    }
+  ],
+  "nativeStarted": true,
+  "nativeClosed": true,
+  "productModified": false,
+  "operatorTouched": false,
+  "audioIncluded": false,
+  "avSyncProven": false,
+  "CEF": false,
+  "externalServersUsed": false,
+  "preservedFirstFailure": {
+    "path": "qa-finalizacao/calls-continuous-native-browser-qa-preparation/receipt.json",
+    "sha256": "d0e38887dd254ef8d55e822a5adf6ed82079cea51568df5e10a690a11782e57e"
+  }
+}

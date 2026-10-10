@@ -1,0 +1,334 @@
+{
+  "status": "FAIL",
+  "started": "2026-10-10T07:43:53.661Z",
+  "operatorTouched": false,
+  "productChanged": false,
+  "qaCompositionOnly": true,
+  "nativeHead": "de136e83595be92162ada8c7adc50f52751bd4ef",
+  "noApiStarted": true,
+  "noNativeUiAutomation": true,
+  "checks": [
+    {
+      "name": "Signed600 base and entire frozen Native25 pinned; own FPS configured before spawn",
+      "status": "PASS"
+    },
+    {
+      "name": "Native FTBv2 ON/OFF, exact rendered return, Preview B to C preserved, dedup/guards and transition pixels",
+      "status": "PASS"
+    },
+    {
+      "name": "Opt-in Qt editor observation only; no desktop z-order claim",
+      "status": "PASS"
+    }
+  ],
+  "cases": [],
+  "requests": [],
+  "processObservations": [
+    {
+      "pid": 92852,
+      "helperUnknown": true,
+      "cimAbsent": true
+    }
+  ],
+  "pins": {
+    "candidate": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\candidate-release-060000.json",
+    "candidate-sha": "456696515dd7aabf87958e11a91bd324bab3f405fef68549c2cc16bf1e59647d",
+    "manifest-sha": "7107aa50b55dd2584be4fc30760af6ef1c85855c6995cd10758e65decc0a93b4",
+    "native-freeze": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\native-build-frozen-de136e8-configured.json",
+    "native-freeze-sha": "8047a42053121edff4b83ea0d0c8ff575c29f826d686bd4dd8527e3eea460dac",
+    "native-head": "de136e83595be92162ada8c7adc50f52751bd4ef",
+    "preparation": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\native25-main-hotkey-review3-filecompletion-20261010\\PREPARATION.json",
+    "preparation-sha": "2b0d496177e11dc8740bc5630a9afd56257035bef465036a5bd6771e40181e5c",
+    "receipt": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\native25-main-hotkey-review3-filecompletion-20261010\\receipt.json",
+    "root-reviewed": "EXECUTE-OWN-REAL-NATIVE25-FTB-CALLS",
+    "main-fps": "30/1"
+  },
+  "root": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\own-temp-native25\\FreeMix-QA-NativeTwentyFive-8iuc8L",
+  "installed": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\own-temp-native25\\FreeMix-QA-NativeTwentyFive-8iuc8L\\FreeMix-QA-Native25 Studio with spaces",
+  "mainFpsRequested": "30/1",
+  "sourceDraftOverlay": false,
+  "apiPortReservedNotStarted": 57883,
+  "wsPort": 57884,
+  "signedBaseFiles": 9582,
+  "fullNativeFilesPinned": 2085,
+  "ownMainScreenshotDestination": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\own-temp-native25\\FreeMix-QA-NativeTwentyFive-8iuc8L\\FreeMix-QA-Native25 Studio with spaces\\qa-main-texture-captures",
+  "ownProfileFpsEditedOnlyBeforeSpawn": true,
+  "nativePid": 92852,
+  "readinessObservations": [
+    {
+      "context": "startup",
+      "pid": 92852,
+      "elapsedMs": 8358,
+      "vendorOwnPidConfirmed": true,
+      "studioAndIdleConfirmed": true
+    },
+    {
+      "context": "cleanup",
+      "pid": 92852,
+      "elapsedMs": 39,
+      "vendorOwnPidConfirmed": true,
+      "studioAndIdleConfirmed": true
+    }
+  ],
+  "video": {
+    "baseWidth": 1920,
+    "baseHeight": 1080,
+    "fpsNumerator": 30,
+    "fpsDenominator": 1
+  },
+  "runtimeContextOwned": true,
+  "ownScenes": [
+    {
+      "name": "QA Native25 A",
+      "key": "7f7c7809-8990-4482-80cd-17131e01f4e6",
+      "inputUuid": "ca721f35-79b4-4ad3-8837-7fd3c315d2d7"
+    },
+    {
+      "name": "QA Native25 B",
+      "key": "a652157b-ef95-4864-af4b-70147cbe6b6a",
+      "inputUuid": "01dc50e4-6c20-430d-87b3-a23791514e15"
+    },
+    {
+      "name": "QA Native25 C",
+      "key": "8dfb7bf4-6677-4d34-b0bc-e96091a62fc3",
+      "inputUuid": "37b4b7da-9bff-45e3-a7eb-5a926e5adcd2"
+    },
+    {
+      "name": "QA Native25 D",
+      "key": "4406345d-3c98-42d3-9004-82d420a65267",
+      "inputUuid": "3a3a5217-abfc-490c-b080-d2f31b4469e7"
+    }
+  ],
+  "ftbScreenshotRoute": {
+    "hotkey": "OBSBasic.Screenshot",
+    "renderBasis": "Screenshot(nullptr) -> obs_render_main_texture()",
+    "scope": "Native Main video after terminal state",
+    "desktopCapture": false
+  },
+  "ftbBaselineObservations": {
+    "elapsedMs": 508,
+    "state": {
+      "available": true,
+      "blackObserved": false,
+      "contextToken": "623536788131300:3",
+      "contractVersion": 2,
+      "manualTransition": false,
+      "normalObserved": true,
+      "outputSourceUuid": "ed1c6b79-7ede-4c4a-ad6c-ff5b6a451a5a",
+      "phase": "normal",
+      "previewUuid": "a652157b-ef95-4864-af4b-70147cbe6b6a",
+      "programUuid": "7f7c7809-8990-4482-80cd-17131e01f4e6",
+      "requestedActive": false,
+      "restoreRemoved": false,
+      "restoreSemantics": "rendered-program-preserve-preview-v2",
+      "restoreSourceUuid": "",
+      "scope": "FreeMix",
+      "studioMode": true,
+      "success": true,
+      "transitionRunning": false
+    },
+    "readOnly": true,
+    "setterNotRepeated": true
+  },
+  "ftb": {
+    "before": {
+      "available": true,
+      "blackObserved": false,
+      "contextToken": "623536788131300:3",
+      "contractVersion": 2,
+      "manualTransition": false,
+      "normalObserved": true,
+      "outputSourceUuid": "ed1c6b79-7ede-4c4a-ad6c-ff5b6a451a5a",
+      "phase": "normal",
+      "previewUuid": "a652157b-ef95-4864-af4b-70147cbe6b6a",
+      "programUuid": "7f7c7809-8990-4482-80cd-17131e01f4e6",
+      "requestedActive": false,
+      "restoreRemoved": false,
+      "restoreSemantics": "rendered-program-preserve-preview-v2",
+      "restoreSourceUuid": "",
+      "scope": "FreeMix",
+      "studioMode": true,
+      "success": true,
+      "transitionRunning": false
+    },
+    "publicProgramUuid": "7f7c7809-8990-4482-80cd-17131e01f4e6",
+    "capturedRenderedCloneUuid": "ed1c6b79-7ede-4c4a-ad6c-ff5b6a451a5a",
+    "cloneDistinctFromPublicProgram": true,
+    "pixels": [
+      {
+        "path": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\own-temp-native25\\FreeMix-QA-NativeTwentyFive-8iuc8L\\FreeMix-QA-Native25 Studio with spaces\\qa-main-texture-captures\\Screenshot 2026-10-10 04-47-16.png",
+        "sha256": "6e9b7d38deb29eed7460cddcf76210fb11e55745dd417fae5199c2923772fadf",
+        "label": "normal-initial",
+        "hotkey": "OBSBasic.Screenshot",
+        "elapsedMs": 191,
+        "width": 1920,
+        "height": 1080,
+        "centralBlackFraction": 0,
+        "centralGreenFraction": 1
+      },
+      {
+        "path": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\own-temp-native25\\FreeMix-QA-NativeTwentyFive-8iuc8L\\FreeMix-QA-Native25 Studio with spaces\\qa-main-texture-captures\\Screenshot 2026-10-10 04-47-17.png",
+        "sha256": "fa20ca01f393807e89e6453bb0dca221dd9f3ba1aca393cb030bd139cba899eb",
+        "label": "black",
+        "hotkey": "OBSBasic.Screenshot",
+        "elapsedMs": 199,
+        "width": 1920,
+        "height": 1080,
+        "centralBlackFraction": 1,
+        "centralGreenFraction": 0
+      },
+      {
+        "path": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\own-temp-native25\\FreeMix-QA-NativeTwentyFive-8iuc8L\\FreeMix-QA-Native25 Studio with spaces\\qa-main-texture-captures\\Screenshot 2026-10-10 04-47-18.png",
+        "sha256": "6e9b7d38deb29eed7460cddcf76210fb11e55745dd417fae5199c2923772fadf",
+        "label": "normal-restored",
+        "hotkey": "OBSBasic.Screenshot",
+        "elapsedMs": 189,
+        "width": 1920,
+        "height": 1080,
+        "centralBlackFraction": 0,
+        "centralGreenFraction": 1
+      }
+    ],
+    "black": {
+      "available": true,
+      "blackObserved": true,
+      "contextToken": "623536788131300:3",
+      "contractVersion": 2,
+      "manualTransition": false,
+      "normalObserved": false,
+      "outputSourceUuid": "",
+      "phase": "black",
+      "previewUuid": "a652157b-ef95-4864-af4b-70147cbe6b6a",
+      "programUuid": "7f7c7809-8990-4482-80cd-17131e01f4e6",
+      "requestedActive": true,
+      "restoreRemoved": false,
+      "restoreSemantics": "rendered-program-preserve-preview-v2",
+      "restoreSourceUuid": "ed1c6b79-7ede-4c4a-ad6c-ff5b6a451a5a",
+      "scope": "FreeMix",
+      "studioMode": true,
+      "success": true,
+      "transitionRunning": false
+    },
+    "normal": {
+      "available": true,
+      "blackObserved": false,
+      "contextToken": "623536788131300:3",
+      "contractVersion": 2,
+      "manualTransition": false,
+      "normalObserved": true,
+      "outputSourceUuid": "ed1c6b79-7ede-4c4a-ad6c-ff5b6a451a5a",
+      "phase": "normal",
+      "previewUuid": "8dfb7bf4-6677-4d34-b0bc-e96091a62fc3",
+      "programUuid": "7f7c7809-8990-4482-80cd-17131e01f4e6",
+      "requestedActive": false,
+      "restoreRemoved": false,
+      "restoreSemantics": "rendered-program-preserve-preview-v2",
+      "restoreSourceUuid": "",
+      "scope": "FreeMix",
+      "studioMode": true,
+      "success": true,
+      "transitionRunning": false
+    },
+    "duplicateNoToggle": true,
+    "conflictingIdRefused": true,
+    "staleGuardRefused": true
+  },
+  "editorObservation": {
+    "sourceEditorsObserved": true,
+    "sourceEditorsZOrderVerified": false,
+    "sourceEditors": [],
+    "sourceEditorsTruncated": false,
+    "dialogsOpenedByQa": false
+  },
+  "calls": {
+    "initial": {
+      "audioIncluded": false,
+      "autoStart": false,
+      "available": true,
+      "completed": [],
+      "contract": "rgba640x360-derived-fps-opaque-pts-v1",
+      "experimental": true,
+      "frameDivisor": 1,
+      "mainFpsCompatible": true,
+      "mainFpsDenominator": 1,
+      "mainFpsNumerator": 30,
+      "maxUniqueSources": 2,
+      "outputFpsDenominator": 1,
+      "outputFpsNumerator": 30,
+      "pending": false,
+      "registered": true,
+      "sessions": [],
+      "success": true
+    },
+    "modes": [
+      {
+        "mode": "normal-two-sources-60s",
+        "sourceUuid": "ca721f35-79b4-4ad3-8837-7fd3c315d2d7",
+        "slot": 0,
+        "generation": 1,
+        "frames": 1802,
+        "colorMatches": 1802,
+        "firstPts": "623547352437167",
+        "lastPts": "623607385769900",
+        "firstSequence": "1",
+        "lastSequence": "1802",
+        "receivedWindowMs": 60031.7598,
+        "decoderPayloadBytes": 921600,
+        "completed": {
+          "captured": 1803,
+          "faultCode": 0,
+          "generation": 1,
+          "sent": 1803,
+          "slot": 0,
+          "stage": "retired"
+        }
+      }
+    ]
+  },
+  "error": "The expression evaluated to a falsy value:",
+  "errorDetails": {
+    "name": "AssertionError",
+    "code": "ERR_ASSERTION",
+    "operator": "==",
+    "actualPrimitive": false,
+    "expectedPrimitive": true,
+    "callsite": [
+      {
+        "module": "scenarios.mjs",
+        "line": 37,
+        "column": 211
+      },
+      {
+        "module": "runner.mjs",
+        "line": 27,
+        "column": 178
+      }
+    ]
+  },
+  "shutdownAccepted": true,
+  "nativeClosed": true,
+  "logs": [
+    {
+      "sha256": "d51aa9ea31d27472d3b3ab621f62c91057ce4099caaf7feb91462da31237d0b5",
+      "vendorConfirmed": true,
+      "allocations": [
+        0
+      ],
+      "meterWarnings": 0,
+      "remainingObjects": 0,
+      "doubleDestroyWarnings": 0
+    }
+  ],
+  "crashArtifacts": 0,
+  "finished": "2026-10-10T07:48:20.534Z",
+  "limits": [
+    "QA composition600+whole frozen Native25, not a new distribution release",
+    "Direct Native API; no HTTP controller implementation or browser Calls publisher exercised",
+    "FTB pixels refer to native Main texture via registered OBSBasic.Screenshot hotkey, never desktop window capture",
+    "One explicit Main FPS run; no unexecuted rational rates inferred",
+    "No retained-output-ref/callback-delay instrumentation, CEF/SDK/WAN/endurance/hardware claim",
+    "No PCM/Master/N-1 or fade audio verification; video fixtures only",
+    "Qt sourceEditors query does not confirm editor open/focus/z-order",
+    "Standard production resource updater may perform read-only HTTP requests; no QA URL guard inserted"
+  ]
+}

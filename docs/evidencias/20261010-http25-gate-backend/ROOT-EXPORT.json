@@ -1,0 +1,66 @@
+{
+  "status": "ROOT_VERIFIED_HTTP_NATIVE_PASS_WITH_VISUAL_LIMITS_AND_DEFAULT_OFF_BACKEND",
+  "at": "2026-10-10T08:24:22.559Z",
+  "files": [
+    {
+      "source": "native25-http-iab-editor-frozen-safe-review2-20261010/report.json",
+      "path": "http/report.json",
+      "sha256": "40ea5fe31014d20edd5fef17227033e5b0e2c3328dc6076fa11455ef47ce5eb0",
+      "bytes": 12011
+    },
+    {
+      "source": "native25-http-iab-editor-frozen-safe-review2-20261010/receipt.json",
+      "path": "http/receipt.json",
+      "sha256": "13fd7248883b9a822be92686dc72cd0442670ad0d5d20fe5404f27ad9bceb42b",
+      "bytes": 25752
+    },
+    {
+      "source": "native25-http-iab-editor-frozen-safe-review2-20261010/ALLOWLIST-RESULT.json",
+      "path": "http/source-allowlist.json",
+      "sha256": "6c6f9c896e5946e3f90b1de816dbc0b0375ab044a860f735412550c4bf693704",
+      "bytes": 21529
+    },
+    {
+      "source": "final-gate-backend-root-integration/receipt.json",
+      "path": "backend/integration.json",
+      "sha256": "e5c788cbd8b3a74a827f52e80f6249066529acf72b7bd7904b72dc86addf116c",
+      "bytes": 970
+    },
+    {
+      "source": "final-gate-backend-canonical-tests/receipt.json",
+      "path": "backend/receipt.json",
+      "sha256": "a2e19a2eab312007f959ff7c38261da96692449adcaa521e83a4e1a18a0dfd8a",
+      "bytes": 463
+    },
+    {
+      "source": "final-gate-backend-canonical-tests/gate-result.json",
+      "path": "backend/gate-tests.json",
+      "sha256": "e5832832385bc1be45a087eeda0f038410500c83c72240e9b2fa6bd7e17394d3",
+      "bytes": 3239
+    },
+    {
+      "source": "final-gate-backend-canonical-tests/route-result.json",
+      "path": "backend/route-tests.json",
+      "sha256": "6c3149595f407b76420e81a7b7e5057b1587d7e88be634d893642da9a7affecb",
+      "bytes": 1199
+    },
+    {
+      "source": "calls-program-safe-post-final-gate-canonical-tests/receipt.json",
+      "path": "backend/calls-regression-seventeen.json",
+      "sha256": "88275551dd41463dcf9c597a1bfecfb8b31266adc6fab3c403cdd6e28c3304ef",
+      "bytes": 2760
+    },
+    {
+      "source": "final-gate-runtime-closure-root-result.json",
+      "path": "backend/runtime-closure.json",
+      "sha256": "35949017f36ca3d0981ddc090c5bb6b0e0e47aa0af6f75c1d344cf831c5ecd85",
+      "bytes": 12307
+    }
+  ],
+  "operatorTouched": false,
+  "installerChanged": false,
+  "credentialsIncluded": false,
+  "rawLogsIncluded": false,
+  "iabVerified": false,
+  "native26MediaVerified": false
+}

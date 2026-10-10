@@ -1,0 +1,1 @@
+{"status":"FAIL_BEFORE_PRODUCT_COPY","reason":"Integration harness treated parent new-file null baseline as child old-file hash; backup attempted nonexistent obs-final-gate-internal.h","productCopyLoopReached":false,"operatorTouched":false,"correction":"Preserve explicit parent null with prior?prior.before:item.sha256; retry uses a new directory"}

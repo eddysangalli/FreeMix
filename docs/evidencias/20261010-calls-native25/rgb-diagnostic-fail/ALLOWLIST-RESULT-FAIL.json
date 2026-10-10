@@ -1,0 +1,79 @@
+{
+  "status": "FROZEN_FAIL_NATIVE25_CALLS_PUBLIC_PNG_VS_DECLARED_RGBA_COLOUR",
+  "textOnlyFiles": [
+    {
+      "path": "runner.mjs",
+      "sha256": "4f757b11bbbaa933c0fd39b6b1482d629d79c4541b6e291237720197df017f6b",
+      "bytes": 14426
+    },
+    {
+      "path": "scenarios.mjs",
+      "sha256": "0fe4248bf9168c806b15f85b80564379c45008069fb564d6e82ea58bf218c89a",
+      "bytes": 7603
+    },
+    {
+      "path": "frame-codec.mjs",
+      "sha256": "3f1d87983bab5abeec5e96a292544df35022773f12c9b1f33b1b6bb43814f536",
+      "bytes": 5920
+    },
+    {
+      "path": "png-colour-readback.mjs",
+      "sha256": "9e42396b810820cfd81ea2c20180a1cb034f8b618a5f52af594a0d6af0d1b1fa",
+      "bytes": 1835
+    },
+    {
+      "path": "README.md",
+      "sha256": "203ab198cd255a4d0539fcb0f286dc1d35901af73299db95070f838775cea743",
+      "bytes": 1671
+    },
+    {
+      "path": "PREPARATION.json",
+      "sha256": "f7acbca2f19a797d03e25b1a93480ae258494287e8519d7d78532d380d1a7c92",
+      "bytes": 4584
+    },
+    {
+      "path": "root-command.json",
+      "sha256": "a7134eac27232f7464faa2875ca9fd1a937446308be4f690861a8034603ff2e2",
+      "bytes": 1576
+    },
+    {
+      "path": "ALLOWLIST-PREPARATION.json",
+      "sha256": "72eb05fa18bfa2808401a970f1b78b77efeb809c848aab1bdd3e7c7cd64e0109",
+      "bytes": 1186
+    },
+    {
+      "path": "receipt.json",
+      "sha256": "b7ab93c6858b9612495f857f6e465c9c038e8336a59f9d42c42e60f4ea53224e",
+      "bytes": 27730
+    },
+    {
+      "path": "report-fail.json",
+      "sha256": "71b73574f9c5c9a7727e33aa53a6a7c0bed33ed7bcace7640fab84fe00c15a62",
+      "bytes": 16469
+    },
+    {
+      "path": "freeze-result-fail.mjs",
+      "sha256": "eac2acb78767190eff89ede49280ae87934865dd59703a3a22c158d10cb77fda",
+      "bytes": 5530
+    },
+    {
+      "path": "../native25-main-hotkey-review3-filecompletion-20261010/receipt.json",
+      "sha256": "0073c98e6cabf7d757f5a73982ac6091d58f77bbe3f3c528dc1ca305f8b2f6bd",
+      "bytes": 11765
+    }
+  ],
+  "ownSyntheticImageReferences": [
+    {
+      "path": "public-B-own-colour.png",
+      "sha256": "4a56463b7ed5e70aa8d249ed6ac4068a83e76c4dae73d87bc2af4d4cc68cb324",
+      "bytes": 697,
+      "width": 320,
+      "height": 180,
+      "centralRedFraction": 1,
+      "visuallyReviewedWithViewImage": true,
+      "capture": "Native GetSourceScreenshot public B input",
+      "desktopCapture": false
+    }
+  ],
+  "noCredentialsRawLogsOrRuntime": true
+}

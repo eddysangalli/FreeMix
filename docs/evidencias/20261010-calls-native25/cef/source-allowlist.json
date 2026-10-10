@@ -1,0 +1,64 @@
+{
+  "status": "FROZEN_REAL_NATIVE25_NODE_CEF_VIDEO_PASS",
+  "nativeHead": "de136e83595be92162ada8c7adc50f52751bd4ef",
+  "preparationAllowlistSha256": "ab397189a695f52692f3e67998d0f6be64df82550dc403d45831825e07c4e270",
+  "receiptSha256": "840e269033714c3ffb02d38b598da2cfa3cd0935f2d674cbaac1de9235b54448",
+  "files": [
+    {
+      "path": "check-page.mjs",
+      "sha256": "f9be00b0234b3b93328f15a868b3e800acfc3ba6d335be84afcad683b43bba21"
+    },
+    {
+      "path": "DERIVATION.json",
+      "sha256": "52f61f3a9751026c8e5f725a96550ef5c74ef84f350427fc2c14d9ba57034eda"
+    },
+    {
+      "path": "launch-child.mjs",
+      "sha256": "e15231b4f88cc3f2642a7c23385f7b5f6387dce5733ad94d3ef722ed63c118a9"
+    },
+    {
+      "path": "PREPARATION.json",
+      "sha256": "7fecec137b62ea47c8c4bb69f36fb5f40490106dea66e4705ff64c5b1ed98599"
+    },
+    {
+      "path": "probe.html",
+      "sha256": "3cebabc99df0d31b2859a8e1af2d8630d08c92e94f2a0dac59fe3894a2678f1d"
+    },
+    {
+      "path": "README.md",
+      "sha256": "4c83f980154a5ffb088dc2a565f9144fe4450171a02574c95243d8a751a4cd24"
+    },
+    {
+      "path": "root-command.json",
+      "sha256": "ed5f5c57daa3b4c71d3372d06adc5fe3ae8129b07d83c13ad61df703002a704e"
+    },
+    {
+      "path": "runner.mjs",
+      "sha256": "602d15745d42edd5098904e69f7bbaf7a895e46fd84f69873e1f041aff3e2487"
+    },
+    {
+      "path": "scenarios.mjs",
+      "sha256": "39f2486f2ffc8678271aa0c09b63f040658f8b70b19aa306121ef3e29daf3bab"
+    },
+    {
+      "path": "ALLOWLIST-PREPARATION.json",
+      "sha256": "ab397189a695f52692f3e67998d0f6be64df82550dc403d45831825e07c4e270"
+    },
+    {
+      "path": "receipt.json",
+      "sha256": "840e269033714c3ffb02d38b598da2cfa3cd0935f2d674cbaac1de9235b54448"
+    },
+    {
+      "path": "RESULTS.md",
+      "sha256": "5cf280332a1274f282126fa9bfa7f68a63e983f92e09ad76607e8f55bcc0d7a5"
+    }
+  ],
+  "nativeStarted": true,
+  "nativeClosed": true,
+  "productModified": false,
+  "operatorTouched": false,
+  "audioIncluded": false,
+  "avSyncProven": false,
+  "CEF": true,
+  "externalServersUsed": false
+}

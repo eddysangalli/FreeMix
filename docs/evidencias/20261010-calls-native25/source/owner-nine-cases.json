@@ -1,0 +1,50 @@
+{
+  "status": "PASS_ACTUAL_CALLS_OWNER_DEFAULT_OFF_PERSISTENCE_NATIVE_FIXTURES",
+  "cases": 9,
+  "tests": [
+    {
+      "name": "Default off; constructing/reading creates no Native video session",
+      "status": "PASS"
+    },
+    {
+      "name": "Explicit boolean required before capability, persistence or stop",
+      "status": "PASS"
+    },
+    {
+      "name": "Old/unavailable Native refuses opt-in without touching return lifecycle",
+      "status": "PASS"
+    },
+    {
+      "name": "Valid capability persists explicit opt-in but does not prepare/start",
+      "status": "PASS"
+    },
+    {
+      "name": "Per-project reload restores boolean without starting transport",
+      "status": "PASS"
+    },
+    {
+      "name": "New project resets experimental state; truthy nonboolean never enables",
+      "status": "PASS"
+    },
+    {
+      "name": "Disable needs no capability and saves false; no automatic start",
+      "status": "PASS"
+    },
+    {
+      "name": "Failed persistence rolls back opt-in, leaves transports stopped",
+      "status": "PASS"
+    },
+    {
+      "name": "Explicit reconnect retries only selected custom UUID; no polling retry",
+      "status": "PASS"
+    }
+  ],
+  "sourceSha256": "e1100fc3f58bb875f6103314a2398e4fcf9f191a6f83ba91fd4697f046bb56b1",
+  "operatorTouched": false,
+  "nativeStarted": false,
+  "realAudio": false,
+  "avSyncProven": false,
+  "limits": [
+    "Actual owner and isolated files, Native/API responses are fixtures. No Calls/VDO/browser/CEF/PCM or WAN exercised."
+  ]
+}

@@ -1,0 +1,121 @@
+{
+  "status": "PASS_DRAFT27_VM_DOM_MOCK_ONLY",
+  "checks": 27,
+  "results": [
+    {
+      "name": "default_unqualified_refuses_before_any_native_read_write",
+      "status": "PASS"
+    },
+    {
+      "name": "read_only_native_capability_stays_unavailable_until_trusted_qualification",
+      "status": "PASS"
+    },
+    {
+      "name": "old_native_v2_refused_without_fallback",
+      "status": "PASS"
+    },
+    {
+      "name": "incomplete_or_wrong_policy_state_refused",
+      "status": "PASS"
+    },
+    {
+      "name": "explicit_only_mix0_no_toggle_and_valid_duration",
+      "status": "PASS"
+    },
+    {
+      "name": "on_once_ignores_preview_target_preserves_program_clone",
+      "status": "PASS"
+    },
+    {
+      "name": "off_preserves_new_preview_and_current_program",
+      "status": "PASS"
+    },
+    {
+      "name": "disable_is_explicit_false_false_not_toggle",
+      "status": "PASS"
+    },
+    {
+      "name": "duplicate_id_and_conflicting_payload_no_second_set",
+      "status": "PASS"
+    },
+    {
+      "name": "native_pending_or_fault_refuses_without_mutation",
+      "status": "PASS"
+    },
+    {
+      "name": "acceptance_without_applied_stage_is_uncertain",
+      "status": "PASS"
+    },
+    {
+      "name": "lost_ack_readonly_current_state_confirmation_no_resend",
+      "status": "PASS"
+    },
+    {
+      "name": "late_ack_after_timeout_does_not_change_receipt",
+      "status": "PASS"
+    },
+    {
+      "name": "read_timeout_releases_tail_and_no_mutation",
+      "status": "PASS"
+    },
+    {
+      "name": "different_context_identity_generation_or_output_not_false_confirmed",
+      "status": "PASS"
+    },
+    {
+      "name": "connection_change_does_not_reconcile_old_command",
+      "status": "PASS"
+    },
+    {
+      "name": "scope_change_before_dispatch_no_write",
+      "status": "PASS"
+    },
+    {
+      "name": "context_changes_after_dispatch_remain_uncertain",
+      "status": "PASS"
+    },
+    {
+      "name": "queue_expired_no_late_native_write",
+      "status": "PASS"
+    },
+    {
+      "name": "bounded128_pending_cache_and_unknown_id_no_dispatch",
+      "status": "PASS"
+    },
+    {
+      "name": "non_ftb_path_keeps_existing_audio_execute_journal",
+      "status": "PASS"
+    },
+    {
+      "name": "beta_mount_no_queries_or_mutations_and_audio_explicit",
+      "status": "PASS"
+    },
+    {
+      "name": "manual_read_unqualified_keeps_all_writes_disabled",
+      "status": "PASS"
+    },
+    {
+      "name": "ui_explicit_on_off_disable_scope_mix0_and_no_autoread",
+      "status": "PASS"
+    },
+    {
+      "name": "ui_uncertain_command_requires_readonly_check_no_retry",
+      "status": "PASS"
+    },
+    {
+      "name": "ui_busy_and_scope_change_do_not_apply_old_state",
+      "status": "PASS"
+    },
+    {
+      "name": "canonical_controller_and_baseline_bytes_preserved",
+      "status": "PASS"
+    }
+  ],
+  "limits": [
+    "Actual helper and extracted actual controller methods; Native fixtures are mocks",
+    "Own fake DOM tests, no physical browser/UI qualification",
+    "No Native/HTTP/media/operator execution",
+    "QA deadline40ms/poll2ms wrapper; product helper defaults5000ms/25ms",
+    "Trusted startup qualification defaultsfalse; no request-body flag can override it"
+  ]
+}

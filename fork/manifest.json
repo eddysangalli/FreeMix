@@ -1,8 +1,8 @@
 {
   "upstream": "https://github.com/obsproject/obs-studio.git",
   "base": "ba2f32bdf791005443988a4955e963663e16b1ed",
-  "head": "de136e83595be92162ada8c7adc50f52751bd4ef",
-  "version": "0.1.0-local.20261010070000",
+  "head": "31a2139d084f8b9d014481d477e109d8827e0bcc",
+  "version": "0.1.0-local.20261010080903",
   "patches": [
     {
       "path": "0001-feat-branding-replace-OBS-identity-with-FreeMix-Stud.patch",
@@ -103,11 +103,15 @@
     {
       "path": "0025-Preserve-rendered-Program-through-FTB-and-add-bounde.patch",
       "sha256": "95e837c9c02705c4469183979e9c3e4b2ffe5207f1e5cb0e9dc06e87324f1367"
+    },
+    {
+      "path": "0026-Add-opt-in-final-composition-gate-and-explicit-Progr.patch",
+      "sha256": "7c4a8a5f3e4899a76a2e421c451df3346865328fbd5d340f81b635e007a7373e"
     }
   ],
-  "sourceUpdatedAt": "2026-10-10T06:55:27.056Z",
+  "sourceUpdatedAt": "2026-10-10T08:09:26.364Z",
   "sourceSchema": 2,
-  "tree": "4ad626ccd13cba0d7f13f3ca0fa670bada8425be",
+  "tree": "a1b39773946828f3d3953f13178e69a9aaa4f0f1",
   "submodules": [
     {
       "path": "deps/libdshowcapture/src",

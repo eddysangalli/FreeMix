@@ -329,7 +329,10 @@ struct obs_task_info {
 	void *param;
 };
 
+// Experimental per-mix final-stage bookkeeping.
+#include "obs-final-gate-internal.h"
 struct obs_core_video_mix {
+	struct obs_final_gate_runtime final_gate;
 	struct obs_view *view;
 
 	gs_stagesurf_t *active_copy_surfaces[NUM_TEXTURES][NUM_CHANNELS];

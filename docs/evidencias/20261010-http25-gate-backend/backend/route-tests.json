@@ -1,0 +1,48 @@
+{
+  "status": "PASS9_ROUTE_VM_ONLY",
+  "checks": 9,
+  "results": [
+    {
+      "name": "route_inside_existing_authorized_boundary",
+      "status": "PASS"
+    },
+    {
+      "name": "local_get_reads_only_no_refresh_journal_or_qualification",
+      "status": "PASS"
+    },
+    {
+      "name": "post_head_put_no_read_no_mutation",
+      "status": "PASS"
+    },
+    {
+      "name": "remote_without_auth_refused_before_read",
+      "status": "PASS"
+    },
+    {
+      "name": "remote_with_valid_auth_still_local_only",
+      "status": "PASS"
+    },
+    {
+      "name": "cross_origin_local_refused",
+      "status": "PASS"
+    },
+    {
+      "name": "local_file_cef_null_origin_and_ipv6_allowed_readonly",
+      "status": "PASS"
+    },
+    {
+      "name": "mix0_explicit_only_and_no_enable_query",
+      "status": "PASS"
+    },
+    {
+      "name": "canonical_api49b89_preserved",
+      "status": "PASS"
+    }
+  ],
+  "readOnly": true,
+  "limits": [
+    "No HTTP server/Native/product execution",
+    "Actual route block and existing origin/authorization/local functions in VM; synthetic credentials only",
+    "Route requires draft3 Production.readFinalProgramGate; no startupqualification enabled"
+  ]
+}

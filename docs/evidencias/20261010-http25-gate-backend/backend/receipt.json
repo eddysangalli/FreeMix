@@ -1,0 +1,13 @@
+{
+  "status": "PASS_CANONICAL_BACKEND36_WITH_OPTIONAL_DRAFT_UI_MOCK",
+  "checks": 36,
+  "canonicalCoreAndHelperAndRoute": true,
+  "uiInstalled": false,
+  "nativeStarted": false,
+  "httpStarted": false,
+  "limits": [
+    "Actual canonical methods in VM with synthetic Native state and synthetic credentials",
+    "Six optional draft UI mock checks are not installed UI or visual acceptance",
+    "No qualification/default-off change or Native26 media proof"
+  ]
+}

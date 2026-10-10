@@ -43,6 +43,7 @@
 #include <QSystemTrayIcon>
 
 #include "FreeMixFtbContract.hpp"
+#include "FreeMixFinalGatePolicy.hpp"
 
 #include <atomic>
 #include <deque>
@@ -1559,6 +1560,12 @@ private:
 
 	OBSSource prevFTBSource = nullptr;
 	freemix_ftb::Policy freeMixFtbPolicy;
+	freemix_final_gate::Policy finalGatePolicy;
+	bool finalGateExperimental=false;
+	uint32_t finalGateBoundIdentity=0,finalGateBoundGeneration=0;
+	std::string finalGateScope;
+	OBSSource finalGateCapture=nullptr;
+	bool FreeMixFinalGateBlocksFtb();
 	freemix_ftb::Snapshot FreeMixFtbSnapshot();
 	bool FreeMixTriggerFadeToBlack(const QuickTransition &quick);
 
@@ -1604,7 +1611,9 @@ private:
 
 public slots:
 	void FreeMixFadeToBlackRequest(obs_data_t *request, obs_data_t *response);
-	void ResetFreeMixFtbContext() { freeMixFtbPolicy.Reset(); }
+	void FreeMixFinalProgramGateRequest(obs_data_t *request, obs_data_t *response);
+	void ResetFreeMixFinalGate();
+	void ResetFreeMixFtbContext() { ResetFreeMixFinalGate(); freeMixFtbPolicy.Reset(); }
 	void SetCurrentScene(OBSSource scene, bool force = false);
 
 	void SetTransition(OBSSource transition);

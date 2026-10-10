@@ -1,8 +1,8 @@
 {
   "status": "PASS",
   "base": "ba2f32bdf791005443988a4955e963663e16b1ed",
-  "head": "de136e83595be92162ada8c7adc50f52751bd4ef",
-  "resultTree": "4ad626ccd13cba0d7f13f3ca0fa670bada8425be",
+  "head": "31a2139d084f8b9d014481d477e109d8827e0bcc",
+  "resultTree": "a1b39773946828f3d3953f13178e69a9aaa4f0f1",
   "submodules": [
     {
       "path": "deps/libdshowcapture/src",
@@ -231,6 +231,16 @@
       "sha256": "82b05b80a51dc9d19bee6532ddcb0a18cd0403b7f0e6a5bb5205ccbc0ecdb204"
     },
     {
+      "path": "frontend/widgets/FreeMixFinalGatePolicy.hpp",
+      "bytes": 1400,
+      "sha256": "e51b936b276119d24c9bdef5d80098ab81cf11955165085b64b0dc97fd9d3cce"
+    },
+    {
+      "path": "frontend/widgets/FreeMixFinalProgramGate.hpp",
+      "bytes": 8630,
+      "sha256": "0d8966a23f9eae86aa959ce751c18f93bdd5d8e53728783c90ab60ea914a0177"
+    },
+    {
       "path": "frontend/widgets/FreeMixFtbContract.hpp",
       "bytes": 4920,
       "sha256": "e05161eeb157e2cd86bcfd861cf6ac84defde368e71a3f370717bd230d0a241e"
@@ -247,8 +257,8 @@
     },
     {
       "path": "frontend/widgets/FreeMixMultistream.cpp",
-      "bytes": 120410,
-      "sha256": "f7f3fdc7ba4856d284b60ecbfaf24c9d083edf749c6f6a489f82e1cf20d7ef8b"
+      "bytes": 121459,
+      "sha256": "c56f7ecd8bd0c0838a71eacda3fb0cc4e5b77bace6bf54ad1d627176a2eb8af1"
     },
     {
       "path": "frontend/widgets/FreeMixMultistream.hpp",
@@ -332,8 +342,8 @@
     },
     {
       "path": "frontend/widgets/OBSBasic.hpp",
-      "bytes": 50491,
-      "sha256": "03284b4787d85d65df51d164a7425a0e2902a6be89cc348e134307358412263b"
+      "bytes": 50910,
+      "sha256": "1afed6ce363c5fc9a6786fb4665bed973fbe8df088750b6c1fcad6c37c27c189"
     },
     {
       "path": "frontend/widgets/OBSBasicStats.cpp",
@@ -387,8 +397,8 @@
     },
     {
       "path": "frontend/widgets/OBSBasic_Transitions.cpp",
-      "bytes": 51743,
-      "sha256": "67ddabe9258b99b26af3fb050521da9c42c3d893f38977d8ea153ff9ccd6cb8e"
+      "bytes": 52151,
+      "sha256": "f6cd2d64b94b1f2b70efb06c7074b1f73862351e87d86d583dc78bacb4ae99f1"
     },
     {
       "path": "frontend/widgets/OBSProjector.cpp",
@@ -496,9 +506,34 @@
       "sha256": "4a9c481d3db340ea06f21eb3d81037a80687ab3ef6586204bd5ef60b555fb813"
     },
     {
+      "path": "libobs/CMakeLists.txt",
+      "bytes": 8408,
+      "sha256": "4415cc99b97985d14b5f81a945987b3e342807d4e3c98319989087d65afadd6e"
+    },
+    {
+      "path": "libobs/obs-final-gate-internal.h",
+      "bytes": 1054,
+      "sha256": "47e9d69194f63649c065232f99c0ea5b0e6440ace4b7bef2bdaf577dd07174c0"
+    },
+    {
+      "path": "libobs/obs-final-gate-render.h",
+      "bytes": 1078,
+      "sha256": "fdfe60af2320a81011e027d6d6d170e5ba91f804ddf0660a117489834fd64dee"
+    },
+    {
+      "path": "libobs/obs-final-gate.h",
+      "bytes": 1073,
+      "sha256": "9680a6079ef727b538aeffa9d1246f0b620f982132d5edb4ec0713ad2ac11eba"
+    },
+    {
       "path": "libobs/obs-internal.h",
-      "bytes": 44095,
-      "sha256": "3c3f4ea2224c34b648d41eb150cb379e508cd039a4275ee5074be375487c3854"
+      "bytes": 44224,
+      "sha256": "7c78d1b1a5d0958ded17e17493bc72ffc02002cd7eafd9e7800f95d8bcecf6aa"
+    },
+    {
+      "path": "libobs/obs-master-final-gate.c",
+      "bytes": 8635,
+      "sha256": "d124f4c8bcd900729901a2d9f6258c700193ce20f084b2994d1ae142dde6c6c7"
     },
     {
       "path": "libobs/obs-output.c",
@@ -506,9 +541,24 @@
       "sha256": "b256f90dc73bac7589d906a6bbce09450e36a99055b95bc17d9cb61e91e70b6c"
     },
     {
+      "path": "libobs/obs-video.c",
+      "bytes": 38296,
+      "sha256": "8ecbb8f53900b5e6da4f2b7d19d7299aacdf24bffe245f3322e366802d405f60"
+    },
+    {
+      "path": "libobs/obs-view.c",
+      "bytes": 5019,
+      "sha256": "2104bb3cfe95374fd153c82f45686e60b08fd07f7deed77f630044407dd6f558"
+    },
+    {
       "path": "libobs/obs.c",
-      "bytes": 99486,
-      "sha256": "3fe426ccafb340aa3b5b883df0efdbeade2358cb4da819c0eabd8c00788423c4"
+      "bytes": 99693,
+      "sha256": "e5a112c9280e6a42add7b91b09af695fdf3e14138d6d702d4f096d764e1e95e3"
+    },
+    {
+      "path": "libobs/obs.h",
+      "bytes": 107659,
+      "sha256": "4005917b3ec4e0a5c8c4cd656d0a5a83e8b8676ae8aa20168309f67b3fef57a4"
     },
     {
       "path": "plugins/CMakeLists.txt",

@@ -1,0 +1,606 @@
+{
+  "status": "FROZEN_PASS_NATIVE25_HTTP_QT_EDITOR_IAB_UNPROVED",
+  "files": [
+    {
+      "path": "runner.mjs",
+      "bytes": 15405,
+      "sha256": "fe830d2e821879a56348b9558231d1a8dc89c1c830d8d6a363c08481f1291ada"
+    },
+    {
+      "path": "scenarios.mjs",
+      "bytes": 10315,
+      "sha256": "1ae7723035ba6e7c13531446eb28b136ea911e465943b844c10fbf1529efcdb3"
+    },
+    {
+      "path": "api-child.mjs",
+      "bytes": 1558,
+      "sha256": "6af4fc440697364dd626bbf1c57b8c0650a61865f7e3f965101938aacf334289"
+    },
+    {
+      "path": "README.md",
+      "bytes": 3176,
+      "sha256": "f78db86aba53775429615f3c595f15b2ab74f2bfdf27660ef09cbf4cbf34cdf7"
+    },
+    {
+      "path": "PREPARATION.json",
+      "bytes": 35789,
+      "sha256": "ee86182dbbc9dd5fb8abb0e760cc276c442f8cbf88c12d1c52be3f33f2365cd4"
+    },
+    {
+      "path": "root-command.json",
+      "bytes": 1574,
+      "sha256": "b6285530deb5d4c0b99564c6e3c1762e7bab9151f4efaf04c9a08c61d53c60dc"
+    },
+    {
+      "path": "ROOT-RUNTIME-CLOSURE.json",
+      "bytes": 12150,
+      "sha256": "109b9f29c1e6fb1ed3cd24ca96eef82b2f4188077136d3fdb773d0891f5a6293"
+    },
+    {
+      "path": "sourceModules/ferramentas/abrir-configuracoes.ps1",
+      "bytes": 2486,
+      "sha256": "b76874cc61f440bcdf233e3622482713242cae74021f9e0625a4798c27f86bf9"
+    },
+    {
+      "path": "sourceModules/ferramentas/ajudante.ps1",
+      "bytes": 5067,
+      "sha256": "846099f0492edf83403631aec201f4b35d3113c2bab23ff9a6516b4eb70ba5b7"
+    },
+    {
+      "path": "sourceModules/ferramentas/api-porta-local.mjs",
+      "bytes": 2663,
+      "sha256": "ec6af8dbdc5732553c63afdc20bbf4690e57a992f244949a96ad1fb0cc2c5abd"
+    },
+    {
+      "path": "sourceModules/ferramentas/atalhos-globais.mjs",
+      "bytes": 2176,
+      "sha256": "ad10b63c3ceec63f98b924fb36b45cc6c61be7ea97e0ffe34c179f450d0ca46b"
+    },
+    {
+      "path": "sourceModules/ferramentas/atualizacao-online.mjs",
+      "bytes": 9242,
+      "sha256": "5a99c18ab979bb9825527f17eaf101e8055d4bb1a2acdb9bf72cde5d3fa016da"
+    },
+    {
+      "path": "sourceModules/ferramentas/atualizar-freemix.mjs",
+      "bytes": 5919,
+      "sha256": "8f0855db94750bac67b1a536c950f0fdf7942393dc434a80b9f7f403695c2d98"
+    },
+    {
+      "path": "sourceModules/ferramentas/atualizar-freemix.ps1",
+      "bytes": 1082,
+      "sha256": "4d16e87758b568ae1de2b1e8bcb62a2c1db21f2bbc0964ca07fd3bf0c454baab"
+    },
+    {
+      "path": "sourceModules/ferramentas/audio-buses-producao.mjs",
+      "bytes": 14388,
+      "sha256": "1e2897859efa25c9699e1e64cf628d9a9e2c9f9f50a30a7bb17cc7e7bf40cbd5"
+    },
+    {
+      "path": "sourceModules/ferramentas/audio-routing-producao.mjs",
+      "bytes": 10174,
+      "sha256": "4cff9f1d960738035f54ee90ef9a167ca7f4b43430ca17814124845c55c1bb4b"
+    },
+    {
+      "path": "sourceModules/ferramentas/automacao-operacional.mjs",
+      "bytes": 8714,
+      "sha256": "200104690e4a7c21f78d51911ebfa0f03a98de55f2b6dbc2921e2da618f3a51c"
+    },
+    {
+      "path": "sourceModules/ferramentas/bonding-medicoes.mjs",
+      "bytes": 15367,
+      "sha256": "33a6baf2d2f5455cd99a0195124b6d5583ac19b4803308fb1c7f849961bec7d7"
+    },
+    {
+      "path": "sourceModules/ferramentas/bonding-producao.mjs",
+      "bytes": 33743,
+      "sha256": "7211d8821c5372ef245db727e55d9a6e68ae58b604cb4e4d4c08af39853b071e"
+    },
+    {
+      "path": "sourceModules/ferramentas/bonding-receptor-portatil.mjs",
+      "bytes": 5036,
+      "sha256": "13af99ea67eb0a46502cf706376d9f60b27cf7d0ede7f6b880d56aaee4977022"
+    },
+    {
+      "path": "sourceModules/ferramentas/calls-ice.mjs",
+      "bytes": 1890,
+      "sha256": "13ded46fb5ca3689791dcfd3325d3d69ca20e81c3964ff58d613d6097b288800"
+    },
+    {
+      "path": "sourceModules/ferramentas/calls-producao.mjs",
+      "bytes": 18958,
+      "sha256": "1e4ce912c8f33c563aa424ef5a832e010db395f45cbf6eb25a041831d40dfffa"
+    },
+    {
+      "path": "sourceModules/ferramentas/capacidades-motor.mjs",
+      "bytes": 3430,
+      "sha256": "bdf7e7cc47a390c0c79b0a757070dba1f32b620fb640879cafbb6da1e2a35f3d"
+    },
+    {
+      "path": "sourceModules/ferramentas/clonar-preset.mjs",
+      "bytes": 1194,
+      "sha256": "fa91836d87efd17fbf15978305b9761282726514cbc93e17fd0d068b5a5437f5"
+    },
+    {
+      "path": "sourceModules/ferramentas/coletar-diagnostico.mjs",
+      "bytes": 912,
+      "sha256": "99bd19491c677989008107b44346734f1e70559e241e3761ffe7401aaced5215"
+    },
+    {
+      "path": "sourceModules/ferramentas/composicao-advanced-masks.mjs",
+      "bytes": 2294,
+      "sha256": "ee752d8240cb888db2b5f05031536d1090750297565b712154398392376abf7e"
+    },
+    {
+      "path": "sourceModules/ferramentas/composicao-estilos.mjs",
+      "bytes": 6121,
+      "sha256": "69163ebef97ef9ac3fa3dc554dfc274cd4df23a7494f25e9e7b9efd2f8307e85"
+    },
+    {
+      "path": "sourceModules/ferramentas/composicao-fundo.mjs",
+      "bytes": 1297,
+      "sha256": "c05b0f85d1b5273e58774dd6037b536b7be44975b1b21e446f9dcd748ec9eb82"
+    },
+    {
+      "path": "sourceModules/ferramentas/composicao-locutor.mjs",
+      "bytes": 2753,
+      "sha256": "d7de29a40e80f369f252a0705dca94f01a0e151b50da0ca33cbfa212a7aeba06"
+    },
+    {
+      "path": "sourceModules/ferramentas/composicao-presets.mjs",
+      "bytes": 2304,
+      "sha256": "db0fd73285533417c06f278d13773d9582e1df864eda2a785dd0d78dd132cda6"
+    },
+    {
+      "path": "sourceModules/ferramentas/configuracoes-producao.mjs",
+      "bytes": 13342,
+      "sha256": "8912782596393e5b72a1bc5f65ba2c5e7b5bf42b5699e2d34b120b40c9e5b973"
+    },
+    {
+      "path": "sourceModules/ferramentas/configurar-rede.ps1",
+      "bytes": 2617,
+      "sha256": "10b8e4f7abc8ee2ac2f9378a713a8cc2fe6ce5f9de86e0f13d4db742f843f855"
+    },
+    {
+      "path": "sourceModules/ferramentas/controlador-producao.mjs",
+      "bytes": 12471,
+      "sha256": "46ca77aad10a1fb227ff9acd9678941463fc634fbc3d08b9e9b23afa7649bbad"
+    },
+    {
+      "path": "sourceModules/ferramentas/controle-producao.mjs",
+      "bytes": 49895,
+      "sha256": "00ca7260dbae567ba5a3f615e94710373dffb9b24ae2a95924224dc65cb348f7"
+    },
+    {
+      "path": "sourceModules/ferramentas/controller-osc.mjs",
+      "bytes": 8967,
+      "sha256": "8c169a300afae0aea805298d5d02c5020593382433b61f4955d134a09713bcfa"
+    },
+    {
+      "path": "sourceModules/ferramentas/diagnostico-producao.mjs",
+      "bytes": 13531,
+      "sha256": "545f59e83595cb6dfb7277e06994bde6b691acd768cfc1fd48c21bb87cba7a59"
+    },
+    {
+      "path": "sourceModules/ferramentas/diagnostico-zip.mjs",
+      "bytes": 4731,
+      "sha256": "0f3afc0e511bc48d1641746e4926ad571870ca1587beb4e397e2c93550474ad8"
+    },
+    {
+      "path": "sourceModules/ferramentas/efeitos-producao.mjs",
+      "bytes": 10534,
+      "sha256": "49f97a6f8bcf9a014e25fbb5584dbb8b33852ce415547c2f6f9672c7eed1f930"
+    },
+    {
+      "path": "sourceModules/ferramentas/efeitos-ptz.mjs",
+      "bytes": 3214,
+      "sha256": "7f53ca19e10f854d0b2b278d803cea3a83c672b0557625ea98847df974148244"
+    },
+    {
+      "path": "sourceModules/ferramentas/empacotar-limpo.mjs",
+      "bytes": 15135,
+      "sha256": "bc7844a1d27f940a3312d02812bb10db0253f0c567409ecf330bd06cf0ea66bb"
+    },
+    {
+      "path": "sourceModules/ferramentas/empacotar.ps1",
+      "bytes": 269,
+      "sha256": "fef95cca4735f81f1a37949a98456070a1f52308ff1b27602a23faeeeeb674b0"
+    },
+    {
+      "path": "sourceModules/ferramentas/entradas-producao.mjs",
+      "bytes": 51397,
+      "sha256": "4ba37e9d2deb07d71ddc65a6e4e2974b914669f6a8a7a01788a8d70e7149f615"
+    },
+    {
+      "path": "sourceModules/ferramentas/fechar.ps1",
+      "bytes": 2406,
+      "sha256": "0224eb1fb70b1259e787b06c64958704e17b554ce722907cc3e35863b9ee42ec"
+    },
+    {
+      "path": "sourceModules/ferramentas/fila-producao.mjs",
+      "bytes": 5031,
+      "sha256": "4a8a15966d67fd117f6a473fe583ff965e36fd9df68edc09141d04fc5210f04d"
+    },
+    {
+      "path": "sourceModules/ferramentas/fontes-dados.mjs",
+      "bytes": 13884,
+      "sha256": "e25c386846bc3c58ff8ec7c122112452f722d71ca49d2cca35fa386468d76393"
+    },
+    {
+      "path": "sourceModules/ferramentas/gc-assets.mjs",
+      "bytes": 3692,
+      "sha256": "3623340909e6abf0bc9cae622f1657e41968862b026455b4f9456eaea99a633c"
+    },
+    {
+      "path": "sourceModules/ferramentas/gc-biblioteca-producao.mjs",
+      "bytes": 12351,
+      "sha256": "33a6def6bacd5902b24d93549dbc9e88e5e8b4810cd4b82c57505b830bf17de9"
+    },
+    {
+      "path": "sourceModules/ferramentas/gc-gtzip.mjs",
+      "bytes": 11239,
+      "sha256": "e0efc4580874a3ae40fde5028e17306298c07606f5e7a7fa236ef4a6c63c5afe"
+    },
+    {
+      "path": "sourceModules/ferramentas/gc-html-producao.mjs",
+      "bytes": 6610,
+      "sha256": "90240d37510ad84986be2446f7b5f4f083f0e208a95b722b5c7275badd4358d3"
+    },
+    {
+      "path": "sourceModules/ferramentas/gerar-biblioteca-gc.mjs",
+      "bytes": 4055,
+      "sha256": "cc45bc6155d2368ed521bffb80452c2b33f1e8752ee6943b5f0ec80e71011a3e"
+    },
+    {
+      "path": "sourceModules/ferramentas/gerar-catalogo-gc.mjs",
+      "bytes": 2843,
+      "sha256": "a2e203ddf2d4dcb5e2cb4d32f863d573df045af8db3596ed5cbbbb3749c770eb"
+    },
+    {
+      "path": "sourceModules/ferramentas/gt_utils.mjs",
+      "bytes": 1853,
+      "sha256": "b3ce86ea78f4808abcedf7d363ff743279d2fcd817c5a1abf36fbdec39437c0e"
+    },
+    {
+      "path": "sourceModules/ferramentas/gtzip_converter.mjs",
+      "bytes": 8553,
+      "sha256": "4ab80efd023fafffe141c32c701c8ef54edbc7cb72aa3b469131dbad29a7889d"
+    },
+    {
+      "path": "sourceModules/ferramentas/gtzip-archive.mjs",
+      "bytes": 4501,
+      "sha256": "b2107d921137e48b0a7d8ec6b62e7b2e7509a47c3992bf947da7aad6e85725be"
+    },
+    {
+      "path": "sourceModules/ferramentas/gtzip-fonts.mjs",
+      "bytes": 2399,
+      "sha256": "8f0636142c0c85309e872fc74c5411a7584282afe9b48da5765299ac693a7464"
+    },
+    {
+      "path": "sourceModules/ferramentas/gtzip-qr-bundle.mjs",
+      "bytes": 73348,
+      "sha256": "422f54b25660a373f9aca81da3f5021f1bb1b002f392cce412619756c0d208cc"
+    },
+    {
+      "path": "sourceModules/ferramentas/gtzip-qr.mjs",
+      "bytes": 3016,
+      "sha256": "0088ca623686d6cfc9df13de3859bb2b42cd8af2b07057f8ee5c4013b2a0834b"
+    },
+    {
+      "path": "sourceModules/ferramentas/gtzip-render.mjs",
+      "bytes": 14728,
+      "sha256": "552a6b9d891cfb3bcd1dad5b8e9b4b293ceb1646924664bf80a18bdeb4229e50"
+    },
+    {
+      "path": "sourceModules/ferramentas/gtzip-runtime.mjs",
+      "bytes": 2369,
+      "sha256": "65ad2c8e1cc4d20a0800a79bc85b1048f6824a40b73599a6d7a9b003c4152c3c"
+    },
+    {
+      "path": "sourceModules/ferramentas/gtzip-ticker-ack.mjs",
+      "bytes": 3132,
+      "sha256": "18cb107ca7df7d444c017850ddeb92294ebab299d55aec64a8d2f571a522cc59"
+    },
+    {
+      "path": "sourceModules/ferramentas/gtzip-ticker.mjs",
+      "bytes": 12779,
+      "sha256": "5efee366a7d82b01bae3df12b50b6e0ec1da626ceea6bfbe406cd2e98331b40e"
+    },
+    {
+      "path": "sourceModules/ferramentas/gtzip-xml.mjs",
+      "bytes": 12640,
+      "sha256": "2738f124d729684882c9a58f749310f7683bb70bdd4bdb1d14e54783e76cfa64"
+    },
+    {
+      "path": "sourceModules/ferramentas/importar-gt-dialog.ps1",
+      "bytes": 874,
+      "sha256": "a9a4d93570b3d349a32e3e1dd867277d1e3fe4c4749eca2063ebc2d64a90f5ba"
+    },
+    {
+      "path": "sourceModules/ferramentas/importar-gt-packs.mjs",
+      "bytes": 2492,
+      "sha256": "3f266942e5358080961c838e47c876ffb33b7e92054d5ef332a4870731f21317"
+    },
+    {
+      "path": "sourceModules/ferramentas/iniciar-api.mjs",
+      "bytes": 6244,
+      "sha256": "eb31a33bc62caaceaca763cba2bccec7065ff259fdd7ff7ff06d00147baf318a"
+    },
+    {
+      "path": "sourceModules/ferramentas/iniciar-freemix.mjs",
+      "bytes": 6546,
+      "sha256": "bcaeb9d14cbde8cfaa15d46f1f237a242313cfadca393c32d30e829f6382ffe4"
+    },
+    {
+      "path": "sourceModules/ferramentas/instalar-portatil.mjs",
+      "bytes": 15133,
+      "sha256": "ea0e62985c7a39470ffb3464e4c32fdd98264948e200b3bf5553c8f85e3c055d"
+    },
+    {
+      "path": "sourceModules/ferramentas/macros-producao.mjs",
+      "bytes": 20118,
+      "sha256": "2c9a0b57e2c639a9ce89271219579b3a1fa76d27dcd566eb36faf6de53f9b048"
+    },
+    {
+      "path": "sourceModules/ferramentas/midia-preview-http.mjs",
+      "bytes": 2487,
+      "sha256": "9f37d5806d62eb3c5e1d0775a197858ccc783da57567b079650a786011f2ff0b"
+    },
+    {
+      "path": "sourceModules/ferramentas/multi-rtmp-adapter.mjs",
+      "bytes": 3108,
+      "sha256": "6c5070f7e9e7a484e930e37815b360b018d3e8fdb5ebef19bdef3619ce0a0084"
+    },
+    {
+      "path": "sourceModules/ferramentas/ndi-producao.mjs",
+      "bytes": 8031,
+      "sha256": "9a4e132c468a0c8da4eaf5c97f4d6b919ec82a74f120d8b2f3068bf3026ed085"
+    },
+    {
+      "path": "sourceModules/ferramentas/ndi-runtime.mjs",
+      "bytes": 4217,
+      "sha256": "ecec7a08f6a999d84f71f2ab7cad23f842a5065028ba05facaf0ed41ab1fb44f"
+    },
+    {
+      "path": "sourceModules/ferramentas/obsws.mjs",
+      "bytes": 3188,
+      "sha256": "735a395d1fdd4774b0e44ba8c65926b3601aa5035bf17a8dcb53ca9b907c9cdc"
+    },
+    {
+      "path": "sourceModules/ferramentas/omt-hdr-producao.mjs",
+      "bytes": 1993,
+      "sha256": "7b77bfc66e6db3d6dc143a337b74b517c0e1679bd50103f22fec652c4f60e8e5"
+    },
+    {
+      "path": "sourceModules/ferramentas/omt-producao.mjs",
+      "bytes": 6130,
+      "sha256": "15a632b6d1c80c9926710066e345931a76a7fe5cebd45b33221175b52aa98c5c"
+    },
+    {
+      "path": "sourceModules/ferramentas/pacote-componentes.mjs",
+      "bytes": 2470,
+      "sha256": "9852b6ca6b514ebfd3862c1d9c2b1cf1129cdbb96e14cd0f80a0fdffd241866c"
+    },
+    {
+      "path": "sourceModules/ferramentas/pacote-dependencias.mjs",
+      "bytes": 1512,
+      "sha256": "6c2e16166cdd8f58b70887605a93bfd050f9eccba00dcae0d428ac5b73b582a4"
+    },
+    {
+      "path": "sourceModules/ferramentas/plugins-defaults.mjs",
+      "bytes": 1045,
+      "sha256": "48f0d68face1a9a15f2f0eca8d5a645499cc3f13f290f989cfd6a0dbf44a7650"
+    },
+    {
+      "path": "sourceModules/ferramentas/preferencias-producao.mjs",
+      "bytes": 3600,
+      "sha256": "2a584331ffa70af68009ed27657a25c4b52b7dd0258bf4ccd2c7a0f282a42613"
+    },
+    {
+      "path": "sourceModules/ferramentas/preparar-portatil.mjs",
+      "bytes": 4371,
+      "sha256": "967d9bad9a8e93322809afe8c8ab65bdcbb7cce737b9937d17dbb775d8997573"
+    },
+    {
+      "path": "sourceModules/ferramentas/preparar.ps1",
+      "bytes": 5170,
+      "sha256": "60136e7331e7f369f4bb3ae98e84ac52746d663cef08770d8b82f310562556ba"
+    },
+    {
+      "path": "sourceModules/ferramentas/recuperacao-dependencias.mjs",
+      "bytes": 8273,
+      "sha256": "1d40b99de88332e05dd20cba714bd1e158c3013f3bbc91db78a234c1452a42bf"
+    },
+    {
+      "path": "sourceModules/ferramentas/recuperacao-estados.mjs",
+      "bytes": 4483,
+      "sha256": "c794abbe5d00da1f392bfdaedc1aeddb98e420f801809fb652d3f89f2e7b4c92"
+    },
+    {
+      "path": "sourceModules/ferramentas/recuperacao-eventos.mjs",
+      "bytes": 991,
+      "sha256": "9f0b867a3561ed646122a0c7819cadd2fcdf39ed0f384fdf4fd87d328fba2be8"
+    },
+    {
+      "path": "sourceModules/ferramentas/recuperacao-gtzip.mjs",
+      "bytes": 3990,
+      "sha256": "edde6000a71f42ed1588c1ce2929ede65e536264ae954a7ee4b6355a24ec22c5"
+    },
+    {
+      "path": "sourceModules/ferramentas/recuperacao-importacao.mjs",
+      "bytes": 17316,
+      "sha256": "d92c40c038105176b4f1faf6fe4116f5979dd375c1eec5560cfd2ab7cf5cdfd4"
+    },
+    {
+      "path": "sourceModules/ferramentas/recuperacao-inicializacao.mjs",
+      "bytes": 3580,
+      "sha256": "311996c89f871225027f2a2a0795c11d418b1deba48d44b5d3d1cb382535010d"
+    },
+    {
+      "path": "sourceModules/ferramentas/recuperacao-instalabilidade.mjs",
+      "bytes": 4279,
+      "sha256": "a418dbd39f662b823f71a8cfacec8dc95350f3ba770e6a346330f0e2b0217720"
+    },
+    {
+      "path": "sourceModules/ferramentas/recuperacao-inventario.mjs",
+      "bytes": 3727,
+      "sha256": "8db5a5808c8916ca82afb11c19bc2b33fc512d50bab85cfd577c46e1cf184a56"
+    },
+    {
+      "path": "sourceModules/ferramentas/recuperacao-producao.mjs",
+      "bytes": 23181,
+      "sha256": "6abb2a3f23ccb376e3b6ed9fbc92beed1be51d36b14a6a884503454940291ac0"
+    },
+    {
+      "path": "sourceModules/ferramentas/recuperacao-remota.mjs",
+      "bytes": 9357,
+      "sha256": "705231166d8f981ea2085096d3e3e453f9cc3e998671bb55ead9291d45b75153"
+    },
+    {
+      "path": "sourceModules/ferramentas/recuperacao-saidas.mjs",
+      "bytes": 1144,
+      "sha256": "d339a1055021bf13e1335a123ea909630bf5ce5b2b3740291e44c813842b1939"
+    },
+    {
+      "path": "sourceModules/ferramentas/replay-disco.mjs",
+      "bytes": 73172,
+      "sha256": "0abfbd5dcc31836246caee17c0015bacc73f1a75a26f3a6ef14c71a82a2be9bd"
+    },
+    {
+      "path": "sourceModules/ferramentas/replay-preview.mjs",
+      "bytes": 6991,
+      "sha256": "6fadf72f276c46de7b9640331e989a539863275a698df1316559de7da744a4af"
+    },
+    {
+      "path": "sourceModules/ferramentas/replay-sincronia.mjs",
+      "bytes": 5645,
+      "sha256": "dafbd121ada9fc6ea60cb38daf35378ee14a24cd616ab138b409cda10df60377"
+    },
+    {
+      "path": "sourceModules/ferramentas/restaurar-layout.ps1",
+      "bytes": 2064,
+      "sha256": "28edc5c0ca3001915a1434b7af1c3c37143773121691fa1bc545bb4e278f026b"
+    },
+    {
+      "path": "sourceModules/ferramentas/retornos-calls.mjs",
+      "bytes": 9548,
+      "sha256": "47c6d8573d7ccad60a75efb8abdadeb633b200b11d167e3ac6b5dfaf0d566ad3"
+    },
+    {
+      "path": "sourceModules/ferramentas/saidas-hdr.mjs",
+      "bytes": 2186,
+      "sha256": "d9d24d2ea4de1ad2e1e1cbb6cfa41d9b80b486ee59a91529b4453fc6bd63b8b9"
+    },
+    {
+      "path": "sourceModules/ferramentas/saidas-producao.mjs",
+      "bytes": 13780,
+      "sha256": "4014d7d5fabd30e2851852f0e8cf6d599aaec9c454fc1c73b05d9d0a355452f3"
+    },
+    {
+      "path": "sourceModules/ferramentas/saidas-sdi.mjs",
+      "bytes": 2052,
+      "sha256": "93b550696f2b50e7bd69139868a70173c96e5450b890542a0e8d13e928f6dc70"
+    },
+    {
+      "path": "sourceModules/ferramentas/saidas-srt.mjs",
+      "bytes": 2239,
+      "sha256": "3f3f6118c1a4f0d0f99f9bdf317c850c9f29709bd16ef8048a76d77c5e5e358f"
+    },
+    {
+      "path": "sourceModules/ferramentas/servidor-api.mjs",
+      "bytes": 29506,
+      "sha256": "49b89d2e875d9a4e277449f59555ba14f9bcfd801d25160977e7d1b9b525176f"
+    },
+    {
+      "path": "sourceModules/ferramentas/sessao-producao.mjs",
+      "bytes": 18026,
+      "sha256": "a57f19cbb5ff68f76c1acbf4f5c04ebd2a12f59ba667552754243a5c3d472486"
+    },
+    {
+      "path": "sourceModules/ferramentas/sinais-producao.mjs",
+      "bytes": 3149,
+      "sha256": "69e2443957453bfae6eb380774ba68566e2b04eaf4dfc23be174dcf67218b157"
+    },
+    {
+      "path": "sourceModules/ferramentas/splash.ps1",
+      "bytes": 4641,
+      "sha256": "b6881f4a3b1eb5877e0a5ae8a268b91e418ff584f2eb6a912946e0087d976975"
+    },
+    {
+      "path": "sourceModules/ferramentas/src/FreeMixNetworkSetup.cs",
+      "bytes": 6780,
+      "sha256": "7eb8c11d07e844a4bf29375528d119b7edac7556d91cdd0fab577b69aea202bd"
+    },
+    {
+      "path": "sourceModules/ferramentas/src/FreeMixProcessInfo.cs",
+      "bytes": 1538,
+      "sha256": "c2c56a7e77b666ef6ab1684755aae9aaceede9b895b03563069b1af2b9dc8ef4"
+    },
+    {
+      "path": "sourceModules/ferramentas/srt-hdr-producao.mjs",
+      "bytes": 4482,
+      "sha256": "f25ecf5fcc17cdcfe7762eb0ea4ed8903160636696ccaf9631d19e48a957869b"
+    },
+    {
+      "path": "sourceModules/ferramentas/verificar-atualizacoes.mjs",
+      "bytes": 2555,
+      "sha256": "a4b7372e37b022200138a09495bb0e67df715c5227a6e38655c23c5e33d51715"
+    },
+    {
+      "path": "sourceModules/ferramentas/verificar-atualizacoes.ps1",
+      "bytes": 538,
+      "sha256": "6c03d97924864861ee4ed93048b40004e6dc98ffc4673bc68d8580d459a3c6d3"
+    },
+    {
+      "path": "sourceModules/painel/mesa.html",
+      "bytes": 255501,
+      "sha256": "29d158e2b1f0268e45c1697aa160227f9e49a143096862e6566bad0c7159c79f"
+    },
+    {
+      "path": "sourceModules/painel/gc/biblioteca/modelos.mjs",
+      "bytes": 6161,
+      "sha256": "68c9e3e29aab56a7a1545542b4fd2fa706e180d500f2afa601c3af39f2cbd205"
+    },
+    {
+      "path": "sourceModules/ferramentas/call-video-codec.mjs",
+      "bytes": 5850,
+      "sha256": "0d529d0ad4e985f239ef05951af4683ae822d8d791c0d065088aa8ee873934c5"
+    },
+    {
+      "path": "sourceModules/ferramentas/call-video-native.mjs",
+      "bytes": 13778,
+      "sha256": "e8653086187082496408c4ed6599aa0970049ef3f3a0b7a6d69fb788a223e802"
+    },
+    {
+      "path": "sourceModules/painel/remoto/call-publisher.js",
+      "bytes": 7213,
+      "sha256": "580e014e4c5884bc3ad89cf3e785edd050c19d6394ce8837cdd19b8665b7bac2"
+    },
+    {
+      "path": "sourceModules/painel/remoto/call-video-track.js",
+      "bytes": 6365,
+      "sha256": "362ba2ca00fe063d83dea8d2878e659ffc0efcca798dd78e38699275dddc2620"
+    },
+    {
+      "path": "ALLOWLIST-PREPARATION.json",
+      "bytes": 21060,
+      "sha256": "0c00fc5b9901009c266c8d3fa587f8adfe00fc9f42d8fdc15009f761e5a4ff7f"
+    },
+    {
+      "path": "receipt.json",
+      "bytes": 25752,
+      "sha256": "13fd7248883b9a822be92686dc72cd0442670ad0d5d20fe5404f27ad9bceb42b"
+    },
+    {
+      "path": "report.json",
+      "bytes": 12011,
+      "sha256": "40ea5fe31014d20edd5fef17227033e5b0e2c3328dc6076fa11455ef47ce5eb0"
+    },
+    {
+      "path": "freeze-result.mjs",
+      "bytes": 4676,
+      "sha256": "2c8da1501b58cb5b0a4b4e74fbd9ca4eb0404d11b4a15d957dc93902f0f90960"
+    }
+  ],
+  "noBrowserContextOrCredentialsOrRawLogsOrTempInstallations": true
+}

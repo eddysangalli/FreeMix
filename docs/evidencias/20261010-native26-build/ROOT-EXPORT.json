@@ -1,0 +1,32 @@
+{
+  "status": "FULL_NATIVE26_BUILD_PASS_REAL_GPU_QA_PENDING",
+  "at": "2026-10-10T08:11:06.655Z",
+  "head": "31a2139d084f8b9d014481d477e109d8827e0bcc",
+  "files": [
+    {
+      "path": "full-build-freeze.json",
+      "sha256": "cb0836fb4aaf454ad15652cd3e72f5f300dd2f4dfd8990604b994c69f3c93b00"
+    },
+    {
+      "path": "source-integration.json",
+      "sha256": "dd0ccb02e44fc40f7edaa8abdeb17fda92ee34776f1f7766bef8e01456539906"
+    },
+    {
+      "path": "preserved-harness-fail.json",
+      "sha256": "9c033c65c8906723460b9241e18bb5c285dd7ce128b07bdff0013668966c01ba"
+    },
+    {
+      "path": "master-draft-receipt.json",
+      "sha256": "b6d9ff9f213e33744dd284fa871ca79438a7e6b04332644b688905ddeae9123b"
+    },
+    {
+      "path": "program-inheritance-draft-receipt.json",
+      "sha256": "6dc4c7f3898290f2e5a93d893e1a23bc730e00ef41262a99dddfe0cabdfafbfc"
+    }
+  ],
+  "experimentalDefaultEnabled": false,
+  "gpuPixelsVerified": false,
+  "audioPolicy": "unchanged",
+  "operatorTouched": false,
+  "installerChanged": false
+}

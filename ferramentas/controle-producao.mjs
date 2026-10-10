@@ -1,3 +1,4 @@
+import {dispatchFinalProgramGate,readFinalProgramGate,matchesFinalProgramGate} from './final-program-gate-producao.mjs';
 import {dispatchGtTickerUpdate} from './gc-gtzip.mjs';
 // Shared production operations. Success means the engine accepted and confirmed the operation.
 import { DataSources } from './fontes-dados.mjs';
@@ -33,8 +34,8 @@ export function number(value, min, max, label='Valor') {
 }
 
 export class Production {
-  constructor({root,panel,getObs,publish=()=>{}}) {
-    this.root=root; this.panel=panel; this.getObs=getObs; this.publish=publish; this.tail=Promise.resolve(); this.levels=new Map(); this.generation=0;
+  constructor({root,panel,getObs,publish=()=>{},finalProgramGateQualified=false}) {
+    this.finalProgramGateQualified=finalProgramGateQualified===true; this.root=root; this.panel=panel; this.getObs=getObs; this.publish=publish; this.tail=Promise.resolve(); this.levels=new Map(); this.generation=0;
     this.state={connected:false,scenes:[],inputs:[],audioInputs:[],media:[],overlays:[],gc:{},revision:0}; this.scope=null; this.dataSources=new DataSources(root);this.inputEngine=new InputEngine(this);this.settingsEngine=new SettingsEngine(this);this.callEngine=new CallEngine(this);
     this.macroEngine=new MacroEngine(this);
     this.recoveryEngine=new RecoveryEngine(this);
@@ -61,8 +62,8 @@ export class Production {
     if(id!==undefined&&(!/^[A-Za-z0-9_-]{1,80}$/.test(String(id))))return Promise.reject(Error('Identificação de comando inválida'));
     const p=this.tail.then(async()=>{
       const startedAt=Date.now();let executionStarted=false,preservePrevious=false;
-      let operation={id:id||null,action,scope:String(data.expectedScope||this.scope||''),targetKey:data.input||null,targetName:null,receivedAt,startedAt,engineConfirmedAt:null,finishedAt:null,stage:'pending'};
-      const signature=JSON.stringify([action,data.input||'$preview',data.duration??null]);
+      let operation={id:id||null,action,scope:String(data.expectedScope||this.scope||''),targetKey:action==='ftb'?null:data.input||null,targetName:null,receivedAt,startedAt,engineConfirmedAt:null,finishedAt:null,stage:'pending'};
+      const signature=JSON.stringify(action==='ftb'?[action,data.mixId,data.enabled,data.active,data.durationMs,data.audioPolicy,data.experimentalOptIn]:[action,data.input||'$preview',data.duration??null]);
       const cacheKey=id?operation.scope+':'+id:null;
       this.operationReceipts??=new Map();this.operationConnections??=new Map();
       this.sessionRecovery.beginMutation();
@@ -72,12 +73,16 @@ export class Production {
         operation.signature=signature;
         if(cacheKey){if(this.operationReceipts.size>=128){const oldest=[...this.operationReceipts].find(([,r])=>r.stage==='confirmed'||r.stage==='rejected');if(oldest){this.operationReceipts.delete(oldest[0]);this.operationConnections.delete(oldest[0]);}else throw Error('Há muitas operações sem confirmação; confira o motor');}this.operationReceipts.set(cacheKey,operation);this.operationConnections.set(cacheKey,connection);}
         if(!connection||this.getObs()!==connection)throw Error('Conexão mudou antes do comando. Confira o Programa antes de tentar novamente.');
+        if(action==='ftb'){
+          const current=await dispatchFinalProgramGate(this,operation,data,connection,()=>{executionStarted=true;});
+          operation.engineConfirmedAt=Date.now();operation.stage='confirmed';operation.finishedAt=Date.now();operation.confirmation='render-stage-state';operation.pixelsVerified=false;
+          this.state={...this.state,finalProgramGate:current,operation:{...operation},operationReceipts:[...this.operationReceipts.values()].map(r=>({...r}))};this.publish(this.state);return this.state;
+        }
         await this.prepareRealtime(action,data);
         if(this.getObs()!==connection)throw Error('Conexão mudou durante a confirmação inicial');
         const target=data.input?this.scene(data.input):this.state.inputs.find(i=>i.name===this.state.preview);
         if(!target)throw Error('Entrada removida ou Preview não identificado');
         Object.assign(operation,{scope:this.scope,targetKey:target.key,targetName:target.name});
-        if(action==='ftb')throw Error('FTB ainda não está disponível pelo controle FreeMix. Use o botão FTB do motor; o atalho não fará uma transição Fade comum.');
         await this.routeLegacyAudio();
         if(this.getObs()!==connection)throw Error('Conexão mudou antes de executar');
         executionStarted=true;await this.execute(action,{...data,input:target.key});operation.engineConfirmedAt=Date.now();
@@ -99,6 +104,13 @@ export class Production {
       const receipt=this.operationReceipts?.get(cacheKey);
       if(!receipt)throw Error('Comando não identificado; nenhuma operação será repetida.');
       if(!connection||this.getObs()!==connection)throw Error('Conexão mudou durante a consulta. Confira novamente o motor.');
+      if(receipt.action==='ftb'){
+        const native=await readFinalProgramGate(this,connection);
+        const sameContext=native.scope===scope&&this.operationConnections?.get(cacheKey)===connection&&native.contextToken===receipt.finalProgramGate?.contextToken&&native.mixIdentity===receipt.finalProgramGate?.mixIdentity&&native.generation===receipt.finalProgramGate?.generation;
+        const desiredMatches=sameContext&&matchesFinalProgramGate(receipt,native);
+        if(receipt.stage==='uncertain'&&desiredMatches){Object.assign(receipt,{stage:'confirmed',confirmation:'current-state',reconciledAt:Date.now(),originalStage:'uncertain',pixelsVerified:false});this.state={...this.state,finalProgramGate:native,operation:this.state.operation?.id===id&&this.state.operation?.scope===scope?{...receipt}:this.state.operation,operationReceipts:[...this.operationReceipts.values()].map(r=>({...r}))};this.publish(this.state);}
+        return {operation:{...receipt},current:{scope:native.scope,program:{key:native.programUuid},preview:{key:native.previewUuid},transitionComplete:!native.transitionRunning&&!native.resetRequired,finalProgramGate:native},sameContext,desiredMatches,checkedAt:Date.now(),releaseAllowed:receipt.stage==='uncertain'&&!native.transitionRunning&&!native.resetRequired};
+      }
       const transitionAction=['cut','fade','transition'].includes(receipt.action);
       const [sc,preset,cursor]=await Promise.all([this.req('GetSceneList'),this.req('GetSceneCollectionList'),transitionAction?this.req('GetCurrentSceneTransitionCursor'):Promise.resolve(null)]);
       if(this.getObs()!==connection)throw Error('Conexão mudou durante a consulta. Confira novamente o motor.');
@@ -118,6 +130,8 @@ export class Production {
       return {operation:{...receipt},current,sameContext,desiredMatches,checkedAt:Date.now(),releaseAllowed:receipt.stage==='uncertain'&&current.transitionComplete};
     });this.tail=queued.catch(()=>{});return queued;
   }
+
+  readFinalProgramGate() { return readFinalProgramGate(this,this.getObs()); }
 
   async prepareRealtime(action,data) {
     const [sc,preset,mode,tr]=await Promise.all([this.req('GetSceneList'),this.req('GetSceneCollectionList'),this.req('GetStudioModeEnabled'),this.req('GetSceneTransitionList')]);
@@ -200,7 +214,7 @@ export class Production {
     if(this.privateSceneFingerprint!==sceneFingerprint){await this.inputEngine.prunePrivateScenes();this.privateSceneFingerprint=sceneFingerprint;}
     await this.queueEngine.setScope(this.scope);
     await this.controllerEngine.setScope(this.scope);
-    await this.callEngine.setScope(this.scope);await this.callEngine.enforce();
+    await this.callEngine.setScope(this.scope);const callProgramNames=this.callEngine.individual?[...await this.visibleTree(sc.currentProgramSceneName)]:null;await this.callEngine.enforce({programNames:callProgramNames,inputSnapshot:ins.inputs});
     const audio=[],media=[];
     for(const inp of ins.inputs){
       const name=inp.inputName, kind=inp.unversionedInputKind||inp.inputKind;

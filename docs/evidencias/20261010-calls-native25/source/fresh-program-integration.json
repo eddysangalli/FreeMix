@@ -1,0 +1,21 @@
+{
+  "status": "ROOT_INTEGRATED_FRESH_ENABLED_PROGRAM_AND_SAFE_PREPARE",
+  "at": "2026-10-10T07:54:45.603Z",
+  "allowlistSha256": "e7ba7ac6d7e20eb90c04db6ceef6e5c260fd5516b7025f820a14180874a82ca4",
+  "tests": 17,
+  "files": [
+    {
+      "path": "FreeMix/ferramentas/calls-producao.mjs",
+      "before": "e1100fc3f58bb875f6103314a2398e4fcf9f191a6f83ba91fd4697f046bb56b1",
+      "after": "1e4ce912c8f33c563aa424ef5a832e010db395f45cbf6eb25a041831d40dfffa"
+    },
+    {
+      "path": "FreeMix/ferramentas/controle-producao.mjs",
+      "before": "4f53e7d4a09687a22b3e56c8b8a52a3c1b63b33c5471a88b26f401744bf20b98",
+      "after": "00ca7260dbae567ba5a3f615e94710373dffb9b24ae2a95924224dc65cb348f7"
+    }
+  ],
+  "operatorTouched": false,
+  "installedPayloadChanged": false,
+  "nativeAudioVerified": false
+}

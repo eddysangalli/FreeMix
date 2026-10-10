@@ -1,0 +1,94 @@
+{
+  "status": "PASS_OFFSIDE_INHERITANCE_OBJECT_MODEL_SOURCE_ONLY",
+  "canonicalEdited": false,
+  "masterFreezeChanged": false,
+  "parentAllowlistSha256": "96c84d2bf3bb1b09fdf6760c81ae07eb9370e720190298feb1e378cc687d9c2a",
+  "nativeCommit": "de136e83595be92162ada8c7adc50f52751bd4ef",
+  "productFiles": [
+    {
+      "path": "libobs/obs.h",
+      "sha256": "1bebfb3c32306289e4f2c8e299770e0c02fcbf982a868748466d57e12b94aad0",
+      "origin": "frozen Master draft1",
+      "draftSha256": "4005917b3ec4e0a5c8c4cd656d0a5a83e8b8676ae8aa20168309f67b3fef57a4",
+      "patchSha256": "9209c581f987ecd4f2fd1f969dfb74e8ec60a68e7544051f89221b9070b3634f"
+    },
+    {
+      "path": "libobs/obs-final-gate-internal.h",
+      "sha256": "d0643def64ebf12dce57bcbf65bed929d4de83faebd12a7411ddf416c6dacd72",
+      "origin": "frozen Master draft1",
+      "draftSha256": "47e9d69194f63649c065232f99c0ea5b0e6440ace4b7bef2bdaf577dd07174c0",
+      "patchSha256": "1f55eb83d30eceaaf96e3deab47d8e5ff8280cc946a93adfc9174360077b001a"
+    },
+    {
+      "path": "libobs/obs-final-gate-render.h",
+      "sha256": "f49b61fe74d9f3bf063e2b903c79900108550c06306fefaddbc4f4e54075f54a",
+      "origin": "frozen Master draft1",
+      "draftSha256": "fdfe60af2320a81011e027d6d6d170e5ba91f804ddf0660a117489834fd64dee",
+      "patchSha256": "cd32c086f71297cde9c406f2b3b9e51fc640bec27c77421d89c675744d19a470"
+    },
+    {
+      "path": "libobs/obs-master-final-gate.c",
+      "sha256": "9d34d7571a7a5ec11476b798cef11cc7235667485639d0b9987d0980b27cb179",
+      "origin": "frozen Master draft1",
+      "draftSha256": "d124f4c8bcd900729901a2d9f6258c700193ce20f084b2994d1ae142dde6c6c7",
+      "patchSha256": "3d3b92faad935be64cb3a7872497346927eecfa798b3f7ac333b36e0ae68757a"
+    },
+    {
+      "path": "libobs/obs-video.c",
+      "sha256": "29be025a041172373121918d6bf8de7ffce58291d67920ae081228ead006ad17",
+      "origin": "frozen Master draft1",
+      "draftSha256": "8ecbb8f53900b5e6da4f2b7d19d7299aacdf24bffe245f3322e366802d405f60",
+      "patchSha256": "7419d8306e7ead665d68038d8e9c3e8c07f4ae8d0599700c94df16dedc733230"
+    },
+    {
+      "path": "libobs/obs-view.c",
+      "sha256": "d178a25cbce603676853736ee9cf9edbf59feb6301f4634a24b023f3aa76379e",
+      "origin": "canonical de136e8 unchanged",
+      "draftSha256": "2104bb3cfe95374fd153c82f45686e60b08fd07f7deed77f630044407dd6f558",
+      "patchSha256": "161163bcae98dac423980f9ed8b48ea59d66ec3efedae602fff223851a414600"
+    },
+    {
+      "path": "frontend/widgets/FreeMixMultistream.cpp",
+      "sha256": "612dc5449570b3f91ff6b7aa320d6b349cf55fe23e7a2b684065beea3a45d538",
+      "origin": "frozen Master draft1",
+      "draftSha256": "c56f7ecd8bd0c0838a71eacda3fb0cc4e5b77bace6bf54ad1d627176a2eb8af1",
+      "patchSha256": "0f1b06b36fc8b5fda601b9b141ba20a6f3b5d2842fb543d60dc5f1f7ba6cbce7"
+    }
+  ],
+  "proof": {
+    "realObjectTus": 4,
+    "childModelChecks": 203,
+    "masterRegressionChecks": 218,
+    "concurrentModelFrames": 10000,
+    "sourceChecks": 12,
+    "rationalFpsModel": [
+      "30/1",
+      "60000/1001"
+    ]
+  },
+  "audioPolicy": "unchanged",
+  "qualificationDefault": false,
+  "role": "immutable explicit opaque modeProgram only",
+  "exclusions": [
+    "Source",
+    "clean",
+    "Preview",
+    "Mix2",
+    "AUX",
+    "manual source HDR",
+    "legacy shared independent",
+    "packed alpha",
+    "Fill/Key"
+  ],
+  "limitations": [
+    "GS mock not GPU/media pixels",
+    "No linked Native, shared build, product process or operator commands",
+    "Master stage receipt alone does not prove children or actual network outputs",
+    "Per-route observability and received pixels/PTS/audio needed before broad UI qualification",
+    "Native Root integration must apply Master1 then this seven-path extension"
+  ],
+  "historicalHarnessFailures": [
+    "PREPARE-FIRST-FAIL.json",
+    "MODEL-FIRST-FAIL.json"
+  ]
+}

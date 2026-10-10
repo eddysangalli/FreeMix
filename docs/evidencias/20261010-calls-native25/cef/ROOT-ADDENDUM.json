@@ -1,0 +1,16 @@
+{
+  "status": "ROOT_VERIFIED_CEF_COMPLETE_FREEZE",
+  "allowlistSha256": "b871468ac99760d9306fb868d6d1aa4ff4a8ec13a513c18de9e55dc0abca0118",
+  "files": [
+    {
+      "path": "source-allowlist.json",
+      "sha256": "b871468ac99760d9306fb868d6d1aa4ff4a8ec13a513c18de9e55dc0abca0118"
+    },
+    {
+      "path": "RESULTS.md",
+      "sha256": "5cf280332a1274f282126fa9bfa7f68a63e983f92e09ad76607e8f55bcc0d7a5"
+    }
+  ],
+  "operatorTouched": false,
+  "avSyncProven": false
+}

@@ -1,0 +1,84 @@
+{
+  "status": "PASS_REAL_METHOD_EXCERPTS_AND_UNCHANGED_PCM_PUMP_SYNTHETIC_FIXTURE",
+  "cases": 17,
+  "tests": [
+    {
+      "name": "Baseline reproduces stale ProgrammeA despite fresh ProgrammeB snapshot",
+      "pass": true
+    },
+    {
+      "name": "FreshB applied synchronously before first microphone read; privatecommon excluded",
+      "pass": true
+    },
+    {
+      "name": "Actual unchanged PCM pump immediately selectsB, excludesA/own/director/private loop",
+      "pass": true
+    },
+    {
+      "name": "Existing lease plus target remains only director path; targetmiss is silentmic",
+      "pass": true
+    },
+    {
+      "name": "Removed/recreated same-name source cannot reuse old capturedUUID",
+      "pass": true
+    },
+    {
+      "name": "Legacy caller without explicit snapshot stays supported; individualoff staysunchanged",
+      "pass": true
+    },
+    {
+      "name": "Microphone enforcement read/serial route semantics preserved",
+      "pass": true
+    },
+    {
+      "name": "Corehunk uses current sc snapshot before enforce, no p.state.program read",
+      "pass": true
+    },
+    {
+      "name": "Actual visibleTree enabled nested/group traversal excludes disabled branches and terminates cycles",
+      "pass": true
+    },
+    {
+      "name": "Actual PCM pump selects visible B/nested and excludes disabled/previous/own/private audio",
+      "pass": true
+    },
+    {
+      "name": "Real prepareReturns configures fresh enabled Program before pump start despite old panel A",
+      "pass": true
+    },
+    {
+      "name": "Preserved prior draft reproduces ownerroute mutation on late scene-read failure",
+      "pass": true
+    },
+    {
+      "name": "Late SceneList/tree read failures keep previous owner routes/active mode and existing pump intact",
+      "pass": true
+    },
+    {
+      "name": "Native configure/start refusal stops returns, resets individual and rolls back owner route reference",
+      "pass": true
+    },
+    {
+      "name": "Postsetup save failure also stops started returns and preserves owner previous routes",
+      "pass": true
+    },
+    {
+      "name": "Successful setup retains new owner routes and exact experimental option/scope",
+      "pass": true
+    },
+    {
+      "name": "Stop failure is explicit unconfirmed cleanup while owner/individual still roll back",
+      "pass": true
+    }
+  ],
+  "nativeStarted": false,
+  "nativeAudioVerified": false,
+  "fullProductionRefreshExecuted": false,
+  "operatorTouched": false,
+  "limits": [
+    "Snapshot read roundtrip not zero latency",
+    "Existing visibleTree traversal; multiple remote reads not atomic",
+    "No physical mic/VDO/CEF/WAN exercised",
+    "Removed/recreated taps require explicit reprepare; old UUID is excluded until then"
+  ]
+}

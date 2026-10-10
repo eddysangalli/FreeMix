@@ -1,0 +1,101 @@
+{
+  "status": "ROOT_VERIFIED_OWN_VIDEO_PASSES_AND_NATIVE_PARTIAL_FAIL",
+  "at": "2026-10-10T08:00:57.880Z",
+  "files": [
+    {
+      "source": "calls-continuous-native-browser-qa-retry1-preparation/receipt.json",
+      "path": "iab/receipt.json",
+      "sha256": "ae11f61a51a3e1cf2a7e8b9f5ad636f08db04770c07bf17a6944d41edeafe23d",
+      "bytes": 7232
+    },
+    {
+      "source": "calls-continuous-native-browser-qa-retry1-preparation/RESULTS.md",
+      "path": "iab/RESULTS.md",
+      "sha256": "a218a3eac8d6e0b78f3f6bf2ecaa5f6e2f84362f5a90434397638097d07d8479",
+      "bytes": 1660
+    },
+    {
+      "source": "calls-continuous-native-browser-qa-retry1-preparation/ALLOWLIST-FINAL.json",
+      "path": "iab/source-allowlist.json",
+      "sha256": "9fd88fbe6218487b231ffc61f8be615d08bd4e16b9936df2240acb5a7b316eb3",
+      "bytes": 2272
+    },
+    {
+      "source": "calls-continuous-native-browser-qa-retry1-preparation/root-iab-result.jpg",
+      "path": "iab/own-result.jpg",
+      "sha256": "0a0c3970913e0ebbcd3b167d440336c65691be846338f86aed809adbad62892d",
+      "bytes": 163913
+    },
+    {
+      "source": "calls-continuous-native-cef-qa-preparation/receipt.json",
+      "path": "cef/receipt.json",
+      "sha256": "840e269033714c3ffb02d38b598da2cfa3cd0935f2d674cbaac1de9235b54448",
+      "bytes": 7499
+    },
+    {
+      "source": "calls-continuous-root-integration/receipt.json",
+      "path": "source/continuous-integration.json",
+      "sha256": "c15d69d77b9808f3248200bdf0501847cee80525f7c351df92a72beb13a405ec",
+      "bytes": 2776
+    },
+    {
+      "source": "calls-continuous-owner-root-result.json",
+      "path": "source/owner-nine-cases.json",
+      "sha256": "774520907d67014337d5f4115fc58c01ddc8eb80065d9972db1c3c509655813f",
+      "bytes": 1522
+    },
+    {
+      "source": "calls-program-safe-root-integration/receipt.json",
+      "path": "source/fresh-program-integration.json",
+      "sha256": "d2d103433847b71cff8458786b64ed785909cfd80d160587646a32277a7fb453",
+      "bytes": 799
+    },
+    {
+      "source": "calls-program-safe-canonical-tests/receipt.json",
+      "path": "source/canonical-seventeen-cases.json",
+      "sha256": "88275551dd41463dcf9c597a1bfecfb8b31266adc6fab3c403cdd6e28c3304ef",
+      "bytes": 2760
+    },
+    {
+      "source": "calls-program-safe-runtime-closure-root-result.json",
+      "path": "source/runtime-dependency-closure.json",
+      "sha256": "109b9f29c1e6fb1ed3cd24ca96eef82b2f4188077136d3fdb773d0891f5a6293",
+      "bytes": 12150
+    },
+    {
+      "source": "native25-main-hotkey-review3-filecompletion-20261010/receipt.json",
+      "path": "native-main/receipt-partial-fail.json",
+      "sha256": "0073c98e6cabf7d757f5a73982ac6091d58f77bbe3f3c528dc1ca305f8b2f6bd",
+      "bytes": 11765
+    },
+    {
+      "source": "native25-main-hotkey-review3-filecompletion-20261010/report-partial-fail.json",
+      "path": "native-main/report-partial-fail.json",
+      "sha256": "7b2717437449beb403d8e77b5068c3d3f240fe19dad6e8ea847d814f1ab92237",
+      "bytes": 5401
+    },
+    {
+      "source": "native25-main-hotkey-review3-filecompletion-20261010/main-pngs/main-normal-initial.png",
+      "path": "native-main/normal-initial.png",
+      "sha256": "6e9b7d38deb29eed7460cddcf76210fb11e55745dd417fae5199c2923772fadf",
+      "bytes": 8599
+    },
+    {
+      "source": "native25-main-hotkey-review3-filecompletion-20261010/main-pngs/main-black.png",
+      "path": "native-main/black.png",
+      "sha256": "fa20ca01f393807e89e6453bb0dca221dd9f3ba1aca393cb030bd139cba899eb",
+      "bytes": 6142
+    },
+    {
+      "source": "native25-main-hotkey-review3-filecompletion-20261010/main-pngs/main-normal-restored.png",
+      "path": "native-main/normal-restored.png",
+      "sha256": "6e9b7d38deb29eed7460cddcf76210fb11e55745dd417fae5199c2923772fadf",
+      "bytes": 8599
+    }
+  ],
+  "operatorTouched": false,
+  "rawLogsIncluded": false,
+  "credentialsIncluded": false,
+  "installerChanged": false,
+  "avSyncProven": false
+}

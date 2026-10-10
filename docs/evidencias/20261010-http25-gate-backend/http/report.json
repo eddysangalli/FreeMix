@@ -1,0 +1,478 @@
+{
+  "status": "FROZEN_PASS_NATIVE25_HTTP_QT_EDITOR_IAB_UNPROVED",
+  "at": "2026-10-10T08:17:43.163Z",
+  "receipt": {
+    "path": "receipt.json",
+    "sha256": "13fd7248883b9a822be92686dc72cd0442670ad0d5d20fe5404f27ad9bceb42b",
+    "actualHarnessStatus": "PASS_OWN_REAL_NATIVE25_HTTP_IAB_EDITOR"
+  },
+  "nativeHead": "de136e83595be92162ada8c7adc50f52751bd4ef",
+  "base": "Signed600+whole frozenNative25+reviewed109-runtime-snapshot; own QA only",
+  "pins": {
+    "fullNativeFiles": 2085,
+    "runtimeFiles": 109,
+    "controller": "00ca7260dbae567ba5a3f615e94710373dffb9b24ae2a95924224dc65cb348f7",
+    "calls": "1e4ce912c8f33c563aa424ef5a832e010db395f45cbf6eb25a041831d40dfffa",
+    "preparationSha256": "ee86182dbbc9dd5fb8abb0e760cc276c442f8cbf88c12d1c52be3f33f2365cd4",
+    "preparationAllowlistSha256": "0c00fc5b9901009c266c8d3fa587f8adfe00fc9f42d8fdc15009f761e5a4ff7f",
+    "prePostRunnerSourceGuards": true
+  },
+  "http": {
+    "operations": [
+      {
+        "action": "cut",
+        "operation": {
+          "id": "qa_http25_cut",
+          "action": "cut",
+          "scope": "FreeMix",
+          "targetKey": "407f4ab3-c31e-4528-bcd6-b0a33a7a3a97",
+          "stage": "confirmed"
+        },
+        "elapsedMs": 100.37889999998151,
+        "twoSlowHttpPendingAtDispatch": true,
+        "finishedBeforeBothSlowResponses": true
+      },
+      {
+        "action": "preview",
+        "operation": {
+          "id": "qa_http25_preview",
+          "action": "preview",
+          "scope": "FreeMix",
+          "targetKey": "4979e5c6-cbd1-461f-9053-023d1b5f8e5e",
+          "stage": "confirmed"
+        },
+        "elapsedMs": 37.40600000001723
+      },
+      {
+        "action": "input_remove",
+        "operation": {
+          "id": "qa_http25_delete_offair",
+          "action": "input_remove",
+          "scope": "FreeMix",
+          "targetKey": "5034aede-5157-430f-9d06-b39e01ddee05",
+          "stage": "confirmed"
+        },
+        "elapsedMs": 93.63229999999749
+      }
+    ],
+    "duplicate": {
+      "replayed": true,
+      "trace": []
+    },
+    "readOnly": {
+      "operation": {
+        "id": "qa_http25_cut",
+        "action": "cut",
+        "scope": "FreeMix",
+        "targetKey": "407f4ab3-c31e-4528-bcd6-b0a33a7a3a97",
+        "stage": "confirmed"
+      },
+      "trace": [
+        {
+          "route": "check",
+          "id": "qa_http25_cut",
+          "type": "GetSceneList",
+          "at": 1791619958151
+        },
+        {
+          "route": "check",
+          "id": "qa_http25_cut",
+          "type": "GetSceneCollectionList",
+          "at": 1791619958151
+        },
+        {
+          "route": "check",
+          "id": "qa_http25_cut",
+          "type": "GetCurrentSceneTransitionCursor",
+          "at": 1791619958151
+        }
+      ],
+      "pgmPreviewUnchanged": true
+    },
+    "refusals": {
+      "idConflict": true,
+      "onairDelete": true
+    },
+    "slowTables": {
+      "loopbackOnly": true,
+      "requestedDelayMs": 4000,
+      "completedSlowResponses": 42,
+      "observedElapsedMs": [
+        4000,
+        4000,
+        3999,
+        4000,
+        3999,
+        4000,
+        3999,
+        4000,
+        4000,
+        4000,
+        4000,
+        4000,
+        4000,
+        4000,
+        4000,
+        4001,
+        4002,
+        4002,
+        4001,
+        4000,
+        4000,
+        3999,
+        4000,
+        4000,
+        4000,
+        4000,
+        4000,
+        4000,
+        4000,
+        4000,
+        3999,
+        3999,
+        4000,
+        3999,
+        4002,
+        4003,
+        4000,
+        4001,
+        4002,
+        4002,
+        4000,
+        4000
+      ],
+      "cutFinishedWhileBothPending": true,
+      "sourceRequests": [
+        {
+          "path": "/table-a",
+          "start": 1791619956000,
+          "delayMs": 0,
+          "end": 1791619956002
+        },
+        {
+          "path": "/table-b",
+          "start": 1791619956085,
+          "delayMs": 0,
+          "end": 1791619956086
+        },
+        {
+          "path": "/table-a",
+          "start": 1791619957869,
+          "delayMs": 4000,
+          "end": 1791619961869
+        },
+        {
+          "path": "/table-b",
+          "start": 1791619957870,
+          "delayMs": 4000,
+          "end": 1791619961870
+        },
+        {
+          "path": "/table-a",
+          "start": 1791619963872,
+          "delayMs": 4000,
+          "end": 1791619967871
+        },
+        {
+          "path": "/table-b",
+          "start": 1791619963872,
+          "delayMs": 4000,
+          "end": 1791619967872
+        },
+        {
+          "path": "/table-a",
+          "start": 1791619969887,
+          "delayMs": 4000,
+          "end": 1791619973886
+        },
+        {
+          "path": "/table-b",
+          "start": 1791619969887,
+          "delayMs": 4000,
+          "end": 1791619973887
+        },
+        {
+          "path": "/table-a",
+          "start": 1791619975876,
+          "delayMs": 4000,
+          "end": 1791619979875
+        },
+        {
+          "path": "/table-b",
+          "start": 1791619975876,
+          "delayMs": 4000,
+          "end": 1791619979876
+        },
+        {
+          "path": "/table-a",
+          "start": 1791619981886,
+          "delayMs": 4000,
+          "end": 1791619985886
+        },
+        {
+          "path": "/table-b",
+          "start": 1791619981886,
+          "delayMs": 4000,
+          "end": 1791619985886
+        },
+        {
+          "path": "/table-a",
+          "start": 1791619987886,
+          "delayMs": 4000,
+          "end": 1791619991886
+        },
+        {
+          "path": "/table-b",
+          "start": 1791619987886,
+          "delayMs": 4000,
+          "end": 1791619991886
+        },
+        {
+          "path": "/table-a",
+          "start": 1791619993872,
+          "delayMs": 4000,
+          "end": 1791619997872
+        },
+        {
+          "path": "/table-b",
+          "start": 1791619993872,
+          "delayMs": 4000,
+          "end": 1791619997872
+        },
+        {
+          "path": "/table-a",
+          "start": 1791619998923,
+          "delayMs": 4000,
+          "end": 1791620002923
+        },
+        {
+          "path": "/table-b",
+          "start": 1791619998923,
+          "delayMs": 4000,
+          "end": 1791620002924
+        },
+        {
+          "path": "/table-a",
+          "start": 1791620004880,
+          "delayMs": 4000,
+          "end": 1791620008882
+        },
+        {
+          "path": "/table-b",
+          "start": 1791620004880,
+          "delayMs": 4000,
+          "end": 1791620008882
+        },
+        {
+          "path": "/table-a",
+          "start": 1791620009901,
+          "delayMs": 4000,
+          "end": 1791620013902
+        },
+        {
+          "path": "/table-b",
+          "start": 1791620009902,
+          "delayMs": 4000,
+          "end": 1791620013902
+        },
+        {
+          "path": "/table-a",
+          "start": 1791620015888,
+          "delayMs": 4000,
+          "end": 1791620019888
+        },
+        {
+          "path": "/table-b",
+          "start": 1791620015889,
+          "delayMs": 4000,
+          "end": 1791620019888
+        },
+        {
+          "path": "/table-a",
+          "start": 1791620021894,
+          "delayMs": 4000,
+          "end": 1791620025894
+        },
+        {
+          "path": "/table-b",
+          "start": 1791620021894,
+          "delayMs": 4000,
+          "end": 1791620025894
+        },
+        {
+          "path": "/table-a",
+          "start": 1791620027898,
+          "delayMs": 4000,
+          "end": 1791620031898
+        },
+        {
+          "path": "/table-b",
+          "start": 1791620027898,
+          "delayMs": 4000,
+          "end": 1791620031898
+        },
+        {
+          "path": "/table-a",
+          "start": 1791620033889,
+          "delayMs": 4000,
+          "end": 1791620037889
+        },
+        {
+          "path": "/table-b",
+          "start": 1791620033889,
+          "delayMs": 4000,
+          "end": 1791620037889
+        },
+        {
+          "path": "/table-a",
+          "start": 1791620038908,
+          "delayMs": 4000,
+          "end": 1791620042908
+        },
+        {
+          "path": "/table-b",
+          "start": 1791620038908,
+          "delayMs": 4000,
+          "end": 1791620042908
+        },
+        {
+          "path": "/table-a",
+          "start": 1791620044902,
+          "delayMs": 4000,
+          "end": 1791620048901
+        },
+        {
+          "path": "/table-b",
+          "start": 1791620044902,
+          "delayMs": 4000,
+          "end": 1791620048901
+        },
+        {
+          "path": "/table-a",
+          "start": 1791620050897,
+          "delayMs": 4000,
+          "end": 1791620054897
+        },
+        {
+          "path": "/table-b",
+          "start": 1791620050898,
+          "delayMs": 4000,
+          "end": 1791620054897
+        },
+        {
+          "path": "/table-a",
+          "start": 1791620055919,
+          "delayMs": 4000,
+          "end": 1791620059921
+        },
+        {
+          "path": "/table-b",
+          "start": 1791620055919,
+          "delayMs": 4000,
+          "end": 1791620059922
+        },
+        {
+          "path": "/table-a",
+          "start": 1791620061901,
+          "delayMs": 4000,
+          "end": 1791620065901
+        },
+        {
+          "path": "/table-b",
+          "start": 1791620061901,
+          "delayMs": 4000,
+          "end": 1791620065902
+        },
+        {
+          "path": "/table-a",
+          "start": 1791620066930,
+          "delayMs": 4000,
+          "end": 1791620070932
+        },
+        {
+          "path": "/table-b",
+          "start": 1791620066930,
+          "delayMs": 4000,
+          "end": 1791620070932
+        },
+        {
+          "path": "/table-a",
+          "start": 1791620072902,
+          "delayMs": 4000,
+          "end": 1791620076902
+        },
+        {
+          "path": "/table-b",
+          "start": 1791620072902,
+          "delayMs": 4000,
+          "end": 1791620076902
+        }
+      ]
+    }
+  },
+  "editor": {
+    "ack": {
+      "queued": true
+    },
+    "observed": {
+      "kind": "properties",
+      "sourceUuid": "e2a2e3e3-6c28-403e-a878-de6e6b4f8b26",
+      "activeWindow": true,
+      "focusWithin": true,
+      "identityKnown": true,
+      "minimized": false,
+      "visible": true,
+      "zOrderVerified": false
+    },
+    "QtRosterPurposeApi": true,
+    "WindowsZOrderVerified": false,
+    "ownDialogLeftOpenForNativeTeardown": true
+  },
+  "iab": {
+    "hold": {
+      "elapsedMs": 120035,
+      "closeRequest": false,
+      "backendReal": true,
+      "cefVisualClaim": false
+    },
+    "rootProofPresent": false,
+    "visualApproval": "PENDING_NOT_OBSERVED",
+    "postHold": {
+      "programUuid": "407f4ab3-c31e-4528-bcd6-b0a33a7a3a97",
+      "previewUuid": "4979e5c6-cbd1-461f-9053-023d1b5f8e5e"
+    }
+  },
+  "closure": {
+    "nativePid": 135432,
+    "apiPid": 146196,
+    "apiExit": {
+      "code": 0,
+      "signal": null
+    },
+    "apiMode": "child-emitted-SIGTERM",
+    "apiClosedCooperatively": true,
+    "nativeAccepted": true,
+    "nativeClosed": true,
+    "crashArtifacts": 0,
+    "logs": [
+      {
+        "sha256": "7b72593520933eb2d1317f89812bfe9e0be23abd307506b8f41f1c369af6bd88",
+        "vendorConfirmed": true,
+        "allocations": [
+          0
+        ],
+        "meterWarnings": 0,
+        "remainingObjects": 0,
+        "doubleDestroyWarnings": 0
+      }
+    ]
+  },
+  "limits": [
+    "One actual HTTP runtime test with own sources and two4s loopback tables; latencies not a load/GPU/WAN benchmark",
+    "IAB hold120s occurred; no Root proof/capture received, so minimize/viewport/UI visual acceptance unproved",
+    "Source editor observed by Qt UUID/kind/visible/focus; no Windows zorder or CEF pixels claim",
+    "No FTB/Calls continuous/PCM/Master/device/output/hardware acceptance inferred",
+    "API child emitted its own SIGTERM via IPC; Native shutdown_idle accepted, no force",
+    "Operator/sealed600/product untouched; prior partial Calls FAIL unchanged"
+  ]
+}

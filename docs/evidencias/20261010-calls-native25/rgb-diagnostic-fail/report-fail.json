@@ -1,0 +1,709 @@
+{
+  "status": "FROZEN_FAIL_NATIVE25_CALLS_PUBLIC_PNG_VS_DECLARED_RGBA_COLOUR",
+  "at": "2026-10-10T08:25:16.001Z",
+  "receipt": {
+    "path": "receipt.json",
+    "sha256": "b7ab93c6858b9612495f857f6e465c9c038e8336a59f9d42c42e60f4ea53224e",
+    "status": "FAIL"
+  },
+  "nativeHead": "de136e83595be92162ada8c7adc50f52751bd4ef",
+  "fullNative2085BeforeAndAfterVerified": true,
+  "sourceDraftOverlay": false,
+  "apiStarted": false,
+  "mainFps": {
+    "baseWidth": 1920,
+    "baseHeight": 1080,
+    "fpsNumerator": 30,
+    "fpsDenominator": 1
+  },
+  "closure": {
+    "pid": 108996,
+    "accepted": true,
+    "closed": true,
+    "crashArtifacts": 0,
+    "logs": [
+      {
+        "sha256": "02d3ffe769c6e0dc3d9e9b8ca6f16c0892dbe8bda8258c315677f05e8495298c",
+        "vendorConfirmed": true,
+        "allocations": [
+          0
+        ],
+        "meterWarnings": 0,
+        "remainingObjects": 0,
+        "doubleDestroyWarnings": 0
+      }
+    ]
+  },
+  "observed": {
+    "inputSettings": [
+      {
+        "name": "QA Calls Diagnostic A",
+        "inputUuid": "3a011d60-ecaf-4f3c-8f6e-9558c02f02eb",
+        "expectedColorSetting": 4280530040,
+        "actualSettings": {
+          "color": 4280530040,
+          "width": 640,
+          "height": 360
+        }
+      },
+      {
+        "name": "QA Calls Diagnostic B",
+        "inputUuid": "a0a4ccd1-0f51-49ab-be33-66b44e4bea7c",
+        "expectedColorSetting": 4280497096,
+        "actualSettings": {
+          "color": 4280497096,
+          "width": 640,
+          "height": 360
+        }
+      }
+    ],
+    "publicB": {
+      "path": "public-B-own-colour.png",
+      "sha256": "4a56463b7ed5e70aa8d249ed6ac4068a83e76c4dae73d87bc2af4d4cc68cb324",
+      "bytes": 697,
+      "width": 320,
+      "height": 180,
+      "centralRedFraction": 1,
+      "visuallyReviewedWithViewImage": true,
+      "capture": "Native GetSourceScreenshot public B input",
+      "desktopCapture": false
+    },
+    "bothStatsBeforeAssertions": [
+      {
+        "inputUuid": "3a011d60-ecaf-4f3c-8f6e-9558c02f02eb",
+        "slot": 0,
+        "generation": 1,
+        "frames": 598,
+        "firstPts": "625708359415960",
+        "lastPts": "625728259415761",
+        "firstSequence": "1",
+        "lastSequence": "598",
+        "receivedWindowMs": 19899.841799999995,
+        "opaqueFraction": 1,
+        "centralGreenFraction": 1,
+        "centralRedFraction": 0,
+        "centralBlueFraction": 0,
+        "centerRgbaMin": [
+          35,
+          180,
+          120,
+          255
+        ],
+        "centerRgbaMax": [
+          35,
+          180,
+          120,
+          255
+        ],
+        "centerRgbaSamples": [
+          {
+            "sequence": "1",
+            "pts": "625708359415960",
+            "rgba": [
+              35,
+              180,
+              120,
+              255
+            ]
+          },
+          {
+            "sequence": "62",
+            "pts": "625710392749273",
+            "rgba": [
+              35,
+              180,
+              120,
+              255
+            ]
+          },
+          {
+            "sequence": "122",
+            "pts": "625712392749253",
+            "rgba": [
+              35,
+              180,
+              120,
+              255
+            ]
+          },
+          {
+            "sequence": "182",
+            "pts": "625714392749233",
+            "rgba": [
+              35,
+              180,
+              120,
+              255
+            ]
+          },
+          {
+            "sequence": "242",
+            "pts": "625716392749213",
+            "rgba": [
+              35,
+              180,
+              120,
+              255
+            ]
+          },
+          {
+            "sequence": "303",
+            "pts": "625718426082526",
+            "rgba": [
+              35,
+              180,
+              120,
+              255
+            ]
+          },
+          {
+            "sequence": "364",
+            "pts": "625720459415839",
+            "rgba": [
+              35,
+              180,
+              120,
+              255
+            ]
+          },
+          {
+            "sequence": "424",
+            "pts": "625722459415819",
+            "rgba": [
+              35,
+              180,
+              120,
+              255
+            ]
+          }
+        ],
+        "decoderPayloadBytes": 921600
+      },
+      {
+        "inputUuid": "a0a4ccd1-0f51-49ab-be33-66b44e4bea7c",
+        "slot": 1,
+        "generation": 1,
+        "frames": 598,
+        "firstPts": "625708359415960",
+        "lastPts": "625728259415761",
+        "firstSequence": "1",
+        "lastSequence": "598",
+        "receivedWindowMs": 19897.569000000018,
+        "opaqueFraction": 1,
+        "centralGreenFraction": 0,
+        "centralRedFraction": 0,
+        "centralBlueFraction": 1,
+        "centerRgbaMin": [
+          35,
+          51,
+          200,
+          255
+        ],
+        "centerRgbaMax": [
+          35,
+          51,
+          200,
+          255
+        ],
+        "centerRgbaSamples": [
+          {
+            "sequence": "1",
+            "pts": "625708359415960",
+            "rgba": [
+              35,
+              51,
+              200,
+              255
+            ]
+          },
+          {
+            "sequence": "62",
+            "pts": "625710392749273",
+            "rgba": [
+              35,
+              51,
+              200,
+              255
+            ]
+          },
+          {
+            "sequence": "122",
+            "pts": "625712392749253",
+            "rgba": [
+              35,
+              51,
+              200,
+              255
+            ]
+          },
+          {
+            "sequence": "183",
+            "pts": "625714426082566",
+            "rgba": [
+              35,
+              51,
+              200,
+              255
+            ]
+          },
+          {
+            "sequence": "244",
+            "pts": "625716459415879",
+            "rgba": [
+              35,
+              51,
+              200,
+              255
+            ]
+          },
+          {
+            "sequence": "305",
+            "pts": "625718492749192",
+            "rgba": [
+              35,
+              51,
+              200,
+              255
+            ]
+          },
+          {
+            "sequence": "366",
+            "pts": "625720526082505",
+            "rgba": [
+              35,
+              51,
+              200,
+              255
+            ]
+          },
+          {
+            "sequence": "427",
+            "pts": "625722559415818",
+            "rgba": [
+              35,
+              51,
+              200,
+              255
+            ]
+          }
+        ],
+        "decoderPayloadBytes": 921600
+      }
+    ],
+    "secondAfterStoppingFirst": {
+      "inputUuid": "a0a4ccd1-0f51-49ab-be33-66b44e4bea7c",
+      "slot": 1,
+      "generation": 1,
+      "frames": 749,
+      "firstPts": "625708359415960",
+      "lastPts": "625733292749044",
+      "firstSequence": "1",
+      "lastSequence": "749",
+      "receivedWindowMs": 24943.067900000024,
+      "opaqueFraction": 1,
+      "centralGreenFraction": 0,
+      "centralRedFraction": 0,
+      "centralBlueFraction": 1,
+      "centerRgbaMin": [
+        35,
+        51,
+        200,
+        255
+      ],
+      "centerRgbaMax": [
+        35,
+        51,
+        200,
+        255
+      ],
+      "centerRgbaSamples": [
+        {
+          "sequence": "1",
+          "pts": "625708359415960",
+          "rgba": [
+            35,
+            51,
+            200,
+            255
+          ]
+        },
+        {
+          "sequence": "62",
+          "pts": "625710392749273",
+          "rgba": [
+            35,
+            51,
+            200,
+            255
+          ]
+        },
+        {
+          "sequence": "122",
+          "pts": "625712392749253",
+          "rgba": [
+            35,
+            51,
+            200,
+            255
+          ]
+        },
+        {
+          "sequence": "183",
+          "pts": "625714426082566",
+          "rgba": [
+            35,
+            51,
+            200,
+            255
+          ]
+        },
+        {
+          "sequence": "244",
+          "pts": "625716459415879",
+          "rgba": [
+            35,
+            51,
+            200,
+            255
+          ]
+        },
+        {
+          "sequence": "305",
+          "pts": "625718492749192",
+          "rgba": [
+            35,
+            51,
+            200,
+            255
+          ]
+        },
+        {
+          "sequence": "366",
+          "pts": "625720526082505",
+          "rgba": [
+            35,
+            51,
+            200,
+            255
+          ]
+        },
+        {
+          "sequence": "427",
+          "pts": "625722559415818",
+          "rgba": [
+            35,
+            51,
+            200,
+            255
+          ]
+        }
+      ],
+      "decoderPayloadBytes": 921600
+    },
+    "finalStats": [
+      {
+        "inputUuid": "3a011d60-ecaf-4f3c-8f6e-9558c02f02eb",
+        "slot": 0,
+        "generation": 1,
+        "frames": 598,
+        "firstPts": "625708359415960",
+        "lastPts": "625728259415761",
+        "firstSequence": "1",
+        "lastSequence": "598",
+        "receivedWindowMs": 19899.841799999995,
+        "opaqueFraction": 1,
+        "centralGreenFraction": 1,
+        "centralRedFraction": 0,
+        "centralBlueFraction": 0,
+        "centerRgbaMin": [
+          35,
+          180,
+          120,
+          255
+        ],
+        "centerRgbaMax": [
+          35,
+          180,
+          120,
+          255
+        ],
+        "centerRgbaSamples": [
+          {
+            "sequence": "1",
+            "pts": "625708359415960",
+            "rgba": [
+              35,
+              180,
+              120,
+              255
+            ]
+          },
+          {
+            "sequence": "62",
+            "pts": "625710392749273",
+            "rgba": [
+              35,
+              180,
+              120,
+              255
+            ]
+          },
+          {
+            "sequence": "122",
+            "pts": "625712392749253",
+            "rgba": [
+              35,
+              180,
+              120,
+              255
+            ]
+          },
+          {
+            "sequence": "182",
+            "pts": "625714392749233",
+            "rgba": [
+              35,
+              180,
+              120,
+              255
+            ]
+          },
+          {
+            "sequence": "242",
+            "pts": "625716392749213",
+            "rgba": [
+              35,
+              180,
+              120,
+              255
+            ]
+          },
+          {
+            "sequence": "303",
+            "pts": "625718426082526",
+            "rgba": [
+              35,
+              180,
+              120,
+              255
+            ]
+          },
+          {
+            "sequence": "364",
+            "pts": "625720459415839",
+            "rgba": [
+              35,
+              180,
+              120,
+              255
+            ]
+          },
+          {
+            "sequence": "424",
+            "pts": "625722459415819",
+            "rgba": [
+              35,
+              180,
+              120,
+              255
+            ]
+          }
+        ],
+        "decoderPayloadBytes": 921600
+      },
+      {
+        "inputUuid": "a0a4ccd1-0f51-49ab-be33-66b44e4bea7c",
+        "slot": 1,
+        "generation": 1,
+        "frames": 750,
+        "firstPts": "625708359415960",
+        "lastPts": "625733326082377",
+        "firstSequence": "1",
+        "lastSequence": "750",
+        "receivedWindowMs": 24973.205800000025,
+        "opaqueFraction": 1,
+        "centralGreenFraction": 0,
+        "centralRedFraction": 0,
+        "centralBlueFraction": 1,
+        "centerRgbaMin": [
+          35,
+          51,
+          200,
+          255
+        ],
+        "centerRgbaMax": [
+          35,
+          51,
+          200,
+          255
+        ],
+        "centerRgbaSamples": [
+          {
+            "sequence": "1",
+            "pts": "625708359415960",
+            "rgba": [
+              35,
+              51,
+              200,
+              255
+            ]
+          },
+          {
+            "sequence": "62",
+            "pts": "625710392749273",
+            "rgba": [
+              35,
+              51,
+              200,
+              255
+            ]
+          },
+          {
+            "sequence": "122",
+            "pts": "625712392749253",
+            "rgba": [
+              35,
+              51,
+              200,
+              255
+            ]
+          },
+          {
+            "sequence": "183",
+            "pts": "625714426082566",
+            "rgba": [
+              35,
+              51,
+              200,
+              255
+            ]
+          },
+          {
+            "sequence": "244",
+            "pts": "625716459415879",
+            "rgba": [
+              35,
+              51,
+              200,
+              255
+            ]
+          },
+          {
+            "sequence": "305",
+            "pts": "625718492749192",
+            "rgba": [
+              35,
+              51,
+              200,
+              255
+            ]
+          },
+          {
+            "sequence": "366",
+            "pts": "625720526082505",
+            "rgba": [
+              35,
+              51,
+              200,
+              255
+            ]
+          },
+          {
+            "sequence": "427",
+            "pts": "625722559415818",
+            "rgba": [
+              35,
+              51,
+              200,
+              255
+            ]
+          }
+        ],
+        "decoderPayloadBytes": 921600
+      }
+    ],
+    "finalNative": {
+      "audioIncluded": false,
+      "autoStart": false,
+      "available": true,
+      "completed": [
+        {
+          "captured": 598,
+          "faultCode": 0,
+          "generation": 1,
+          "sent": 598,
+          "slot": 0,
+          "stage": "retired"
+        },
+        {
+          "captured": 750,
+          "faultCode": 0,
+          "generation": 1,
+          "sent": 750,
+          "slot": 1,
+          "stage": "retired"
+        }
+      ],
+      "contract": "rgba640x360-derived-fps-opaque-pts-v1",
+      "experimental": true,
+      "frameDivisor": 1,
+      "mainFpsCompatible": true,
+      "mainFpsDenominator": 1,
+      "mainFpsNumerator": 30,
+      "maxUniqueSources": 2,
+      "outputFpsDenominator": 1,
+      "outputFpsNumerator": 30,
+      "pending": false,
+      "registered": true,
+      "sessions": [],
+      "success": true
+    }
+  },
+  "failure": {
+    "message": "Source 1 actual RGBA centre colour mismatch",
+    "errorDetails": {
+      "name": "AssertionError",
+      "code": "ERR_ASSERTION",
+      "operator": "==",
+      "actualPrimitive": false,
+      "expectedPrimitive": true,
+      "callsite": [
+        {
+          "module": "scenarios.mjs",
+          "line": 16,
+          "column": 474
+        },
+        {
+          "module": "runner.mjs",
+          "line": 26,
+          "column": 178
+        }
+      ]
+    },
+    "publicBActualRed": true,
+    "declaredRgbaBActualBlue": true,
+    "colourDivergenceObserved": true,
+    "channelOrderCauseNotYetAttributed": true,
+    "parserOrFrameLossNotObserved": true,
+    "firstRetirementDidNotStopSecond": true,
+    "priorCompoundFailureCauseStillNotReclassified": true
+  },
+  "previousFail": {
+    "path": "../native25-main-hotkey-review3-filecompletion-20261010/receipt.json",
+    "sha256": "0073c98e6cabf7d757f5a73982ac6091d58f77bbe3f3c528dc1ca305f8b2f6bd",
+    "status": "FAIL_PRESERVED"
+  },
+  "limits": [
+    "QA composition600+whole frozen Native25, not a new distribution release",
+    "Direct Native API; no HTTP controller implementation or browser Calls publisher exercised",
+    "Public source B PNG only, no FTB/Main/hotkey or desktop capture",
+    "One explicit Main FPS run; no unexecuted rational rates inferred",
+    "No retained-output-ref/callback-delay instrumentation, CEF/SDK/WAN/endurance/hardware claim",
+    "No PCM/Master/N-1 or fade audio verification; video fixtures only",
+    "Qt sourceEditors query does not confirm editor open/focus/z-order",
+    "Standard production resource updater may perform read-only HTTP requests; no QA URL guard inserted",
+    "This run remains FAIL; no rerun or Native/product change was made",
+    "No full60s fault matrix repeated; retirement fault0 in finite two-session run only",
+    "Calls RGBA vs public PNG color difference is concrete; exact native origin requires source review or separately authorized test"
+  ]
+}

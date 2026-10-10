@@ -1,0 +1,174 @@
+{
+  "status": "FROZEN_PARTIAL_FAIL_NATIVE25_FTB_MAIN_PASS_CALLS_SECOND_SOURCE_UNDIAGNOSED",
+  "at": "2026-10-10T07:50:44.005Z",
+  "receipt": {
+    "path": "receipt.json",
+    "sha256": "0073c98e6cabf7d757f5a73982ac6091d58f77bbe3f3c528dc1ca305f8b2f6bd",
+    "status": "FAIL"
+  },
+  "nativeHead": "de136e83595be92162ada8c7adc50f52751bd4ef",
+  "fullNative2085AfterClosureVerified": true,
+  "noSourceOverlay": true,
+  "mainFps": {
+    "baseWidth": 1920,
+    "baseHeight": 1080,
+    "fpsNumerator": 30,
+    "fpsDenominator": 1
+  },
+  "closure": {
+    "pid": 92852,
+    "accepted": true,
+    "closed": true,
+    "crashArtifacts": 0,
+    "logs": [
+      {
+        "sha256": "d51aa9ea31d27472d3b3ab621f62c91057ce4099caaf7feb91462da31237d0b5",
+        "vendorConfirmed": true,
+        "allocations": [
+          0
+        ],
+        "meterWarnings": 0,
+        "remainingObjects": 0,
+        "doubleDestroyWarnings": 0
+      }
+    ]
+  },
+  "ftbPartial": {
+    "actualMainPixels": true,
+    "privateCloneDistinctFromPublic": true,
+    "restoredCapturedClone": true,
+    "previewPreservedDuringReturn": true,
+    "duplicateNoToggle": true,
+    "conflictingIdRefused": true,
+    "staleGuardRefused": true,
+    "publicRemovalBranchNotReached": true
+  },
+  "images": [
+    {
+      "path": "main-pngs/main-normal-initial.png",
+      "sha256": "6e9b7d38deb29eed7460cddcf76210fb11e55745dd417fae5199c2923772fadf",
+      "bytes": 8599,
+      "width": 1920,
+      "height": 1080,
+      "centralGreenFraction": 1,
+      "centralBlackFraction": 0,
+      "capture": "NativeMainTextureRegisteredHotkey",
+      "visuallyReviewedOwn": true,
+      "desktopCapture": false
+    },
+    {
+      "path": "main-pngs/main-black.png",
+      "sha256": "fa20ca01f393807e89e6453bb0dca221dd9f3ba1aca393cb030bd139cba899eb",
+      "bytes": 6142,
+      "width": 1920,
+      "height": 1080,
+      "centralGreenFraction": 0,
+      "centralBlackFraction": 1,
+      "capture": "NativeMainTextureRegisteredHotkey",
+      "visuallyReviewedOwn": true,
+      "desktopCapture": false
+    },
+    {
+      "path": "main-pngs/main-normal-restored.png",
+      "sha256": "6e9b7d38deb29eed7460cddcf76210fb11e55745dd417fae5199c2923772fadf",
+      "bytes": 8599,
+      "width": 1920,
+      "height": 1080,
+      "centralGreenFraction": 1,
+      "centralBlackFraction": 0,
+      "capture": "NativeMainTextureRegisteredHotkey",
+      "visuallyReviewedOwn": true,
+      "desktopCapture": false
+    }
+  ],
+  "callsPartial": {
+    "initialContract": {
+      "audioIncluded": false,
+      "autoStart": false,
+      "available": true,
+      "completed": [],
+      "contract": "rgba640x360-derived-fps-opaque-pts-v1",
+      "experimental": true,
+      "frameDivisor": 1,
+      "mainFpsCompatible": true,
+      "mainFpsDenominator": 1,
+      "mainFpsNumerator": 30,
+      "maxUniqueSources": 2,
+      "outputFpsDenominator": 1,
+      "outputFpsNumerator": 30,
+      "pending": false,
+      "registered": true,
+      "sessions": [],
+      "success": true
+    },
+    "firstSource": {
+      "mode": "normal-two-sources-60s",
+      "sourceUuid": "ca721f35-79b4-4ad3-8837-7fd3c315d2d7",
+      "slot": 0,
+      "generation": 1,
+      "frames": 1802,
+      "colorMatches": 1802,
+      "firstPts": "623547352437167",
+      "lastPts": "623607385769900",
+      "firstSequence": "1",
+      "lastSequence": "1802",
+      "receivedWindowMs": 60031.7598,
+      "decoderPayloadBytes": 921600,
+      "completed": {
+        "captured": 1803,
+        "faultCode": 0,
+        "generation": 1,
+        "sent": 1803,
+        "slot": 0,
+        "stage": "retired"
+      }
+    },
+    "secondSourceStatsMissing": true,
+    "faultScenariosNotReached": true
+  },
+  "failure": {
+    "error": "The expression evaluated to a falsy value:",
+    "errorDetails": {
+      "name": "AssertionError",
+      "code": "ERR_ASSERTION",
+      "operator": "==",
+      "actualPrimitive": false,
+      "expectedPrimitive": true,
+      "callsite": [
+        {
+          "module": "scenarios.mjs",
+          "line": 37,
+          "column": 211
+        },
+        {
+          "module": "runner.mjs",
+          "line": 27,
+          "column": 178
+        }
+      ]
+    },
+    "assertion": "!stats.parseError&&stats.frames>cs.outputFpsNumerator/cs.outputFpsDenominator*50&&stats.colorMatches/stats.frames>.95",
+    "firstSourceSucceededBeforeSecondCompoundAssertion": true,
+    "noProductCauseInferred": true
+  },
+  "previousFails": [
+    {
+      "path": "../native25-own-real-preparation-review3-20261010/receipt.json",
+      "sha256": "55a0ac2d9dd09371463aca7527642890f5e9cf03e887e26d4cd27e3d3235ffd2",
+      "status": "FAIL_PRESERVED"
+    },
+    {
+      "path": "../native25-own-real-preparation-retry1-reviewed-20261010/receipt.json",
+      "sha256": "75c1f283fd4e07a5f75e57284598c1c21b45dd68c7cc6a1096959813eafec603",
+      "status": "FAIL_PRESERVED"
+    }
+  ],
+  "limits": [
+    "FTBMain own software output0 only; no DSK/independent output/PCM/audio fade claim",
+    "Calls60s first source passed; second source lacks preserved stats so parser/frame-count/color cause cannot be distinguished",
+    "No Calls slow-reader/disconnect/lease/SourceRemoved proof in this run",
+    "No HTTP/CEF/browser publisher/SDK/WAN/hardware/endurance/z-order acceptance",
+    "No native/product fix inferred; no retry performed",
+    "All own Native closed cooperatively without force; sealed600/product/operator unchanged"
+  ]
+}

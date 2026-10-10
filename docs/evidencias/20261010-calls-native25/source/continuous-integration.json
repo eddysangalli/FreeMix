@@ -1,0 +1,82 @@
+{
+  "status": "ROOT_SOURCE_INTEGRATED_EXPERIMENTAL_DEFAULT_OFF_AV_CEF_PENDING",
+  "at": "2026-10-10T07:42:45.785Z",
+  "nativeActualReceipt": {
+    "path": "D:/DRIVE/IA/antigravity/vmixtwste/qa-finalizacao/calls-continuous-native-browser-qa-retry1-preparation/receipt.json",
+    "sha256": "ae11f61a51a3e1cf2a7e8b9f5ad636f08db04770c07bf17a6944d41edeafe23d"
+  },
+  "draftAllowlistSha256": "4483a58e64112b35b453221f6ec34d63677a3c306d96d7b6cf29ab5537798b6e",
+  "operatorTouched": false,
+  "installationChanged": false,
+  "sealedPayloadChanged": false,
+  "ownerChanges": [
+    {
+      "anchor": "this.individual=false;this.returnRoutes=[];this.conference=true;",
+      "count": 1
+    },
+    {
+      "anchor": "conference:this.conference,rapidTargets:",
+      "count": 1
+    },
+    {
+      "anchor": "sources,program,conference:this.conference});",
+      "count": 1
+    },
+    {
+      "anchor": "}&token=${this.returns.token}`;",
+      "count": 1
+    },
+    {
+      "anchor": "this.individual=false;this.returnRoutes=[];this.rapidTargets=null;",
+      "count": 1
+    },
+    {
+      "anchor": "this.conference=saved.conference!==false;",
+      "count": 1
+    },
+    {
+      "anchor": "if(action==='call_reconnect'){",
+      "count": 1
+    },
+    {
+      "anchor": "client?.ws.close();await this.prepareReturns();",
+      "count": 1
+    },
+    {
+      "anchor": "videoReturnLimit:'Programa: câmera virtual; entrada/composição: JPEG local 640×360 até 5 fps'",
+      "count": 1
+    }
+  ],
+  "files": [
+    {
+      "path": "FreeMix/ferramentas/call-video-codec.mjs",
+      "beforeSha256": null,
+      "sha256": "0d529d0ad4e985f239ef05951af4683ae822d8d791c0d065088aa8ee873934c5"
+    },
+    {
+      "path": "FreeMix/ferramentas/call-video-native.mjs",
+      "beforeSha256": null,
+      "sha256": "e8653086187082496408c4ed6599aa0970049ef3f3a0b7a6d69fb788a223e802"
+    },
+    {
+      "path": "FreeMix/ferramentas/retornos-calls.mjs",
+      "beforeSha256": "b2368a7b67df0ace491b7cf674e3bcae444f55e836914201cfb3a2a6f8a13a36",
+      "sha256": "47c6d8573d7ccad60a75efb8abdadeb633b200b11d167e3ac6b5dfaf0d566ad3"
+    },
+    {
+      "path": "FreeMix/painel/remoto/call-publisher.js",
+      "beforeSha256": "eb59952d3568bb79c9a611e9f91e2d63c8d8b80b001b81668f05354e0db6de16",
+      "sha256": "580e014e4c5884bc3ad89cf3e785edd050c19d6394ce8837cdd19b8665b7bac2"
+    },
+    {
+      "path": "FreeMix/painel/remoto/call-video-track.js",
+      "beforeSha256": null,
+      "sha256": "362ba2ca00fe063d83dea8d2878e659ffc0efcca798dd78e38699275dddc2620"
+    },
+    {
+      "path": "FreeMix/ferramentas/calls-producao.mjs",
+      "beforeSha256": "a8d3547f962ac88849296de348b6cf5dbefe3aafcdb49d857176a7186a77a164",
+      "sha256": "e1100fc3f58bb875f6103314a2398e4fcf9f191a6f83ba91fd4697f046bb56b1"
+    }
+  ]
+}

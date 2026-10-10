@@ -140,6 +140,16 @@ void RequestFadeToBlack(obs_data_t *request,obs_data_t *response,void *)
  else if(!QMetaObject::invokeMethod(main.data(),work,Qt::BlockingQueuedConnection))fail();
 }
 
+void RequestFinalProgramGate(obs_data_t *request,obs_data_t *response,void *)
+{
+ const QPointer<OBSBasic> main=OBSBasic::Get();
+ const auto fail=[response](){obs_data_set_bool(response,"success",false);obs_data_set_string(response,"error","O FreeMix está encerrando ou mudou de contexto. Nenhum FTB será enviado.");};
+ if(!main||frontendClosing){fail();return;}
+ const auto work=[main,request,response,fail](){if(!main||frontendClosing||main->isClosing()){fail();return;}main->FreeMixFinalProgramGateRequest(request,response);};
+ if(QThread::currentThread()==main->thread())work();
+ else if(!QMetaObject::invokeMethod(main.data(),work,Qt::BlockingQueuedConnection))fail();
+}
+
 void RequestSdiOutput(obs_data_t *request,obs_data_t *response,void *){QMetaObject::invokeMethod(OBSBasic::Get(),[=](){if(frontendClosing){obs_data_set_bool(response,"success",false);return;}freemix_sdi::Request(request,response,IsPrivateSource);},Qt::BlockingQueuedConnection);}
 void RequestSrtHdrOutput(obs_data_t *request,obs_data_t *response,void *){
  auto *main=OBSBasic::Get();if(!main){obs_data_set_bool(response,"success",false);return;}
@@ -1108,7 +1118,9 @@ void StartOne(Destination &d, size_t index)
 		if (!d.view) { Fail(d, "could not create view"); return; }
 		if(d.alphaMode!="none"){d.packedAlphaSource=freemix_srt_alpha::Create(obs_scene_get_source(d.renderScene),d.width,d.height,d.alphaMode);if(!d.packedAlphaSource){Fail(d,"could not create SRT Fill/Key alpha renderer");return;}}
 		obs_view_set_source(d.view, 0, d.packedAlphaSource?d.packedAlphaSource.Get():obs_scene_get_source(d.renderScene));
-		video_t *viewVideo = obs_view_add2(d.view, &info);
+		// Explicit opaque Program composition inherits Master at the final stage.
+		// Packed/Fill/Key masks must not be blackened after packing; their routes remain excluded.
+		video_t *viewVideo = d.mode == "program" && d.alphaMode == "none" ? obs_view_add_program_final_gate(d.view, &info) : obs_view_add2(d.view, &info);
 		if (!viewVideo) { Fail(d, "could not create independent video"); return; }
 		OBSDataAutoRelease videoSettings = obs_data_create();
 		obs_data_set_string(videoSettings, "rate_control", "CBR");
@@ -1734,6 +1746,7 @@ void RegisterVendor()
 		return;
 	}
 	obs_websocket_vendor_register_request(vendor, "fade_to_black", RequestFadeToBlack, nullptr);
+	obs_websocket_vendor_register_request(vendor, "final_program_gate", RequestFinalProgramGate, nullptr);
 	obs_websocket_vendor_register_request(vendor, "get_destinations", RequestGet, nullptr);
 	obs_websocket_vendor_register_request(vendor, "set_destinations", RequestSet, nullptr);
 	obs_websocket_vendor_register_request(vendor, "control_destination", RequestControlDestination, nullptr);

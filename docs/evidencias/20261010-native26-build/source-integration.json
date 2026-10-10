@@ -1,0 +1,113 @@
+{
+  "status": "ROOT_INTEGRATED_NATIVE_FINAL_COMPOSITION_GATE_BUILD_AND_GPU_QA_PENDING",
+  "at": "2026-10-10T07:55:55.117Z",
+  "baseHead": "de136e83595be92162ada8c7adc50f52751bd4ef",
+  "fronts": [
+    {
+      "name": "ftb-final-master-gate-draft",
+      "allowlistSha256": "96c84d2bf3bb1b09fdf6760c81ae07eb9370e720190298feb1e378cc687d9c2a"
+    },
+    {
+      "name": "ftb-final-program-inheritance-draft",
+      "allowlistSha256": "f0dd6689c6633ecae578a842ae9a1500a20b80c3c3a958dde12c9819dc05d7b8"
+    }
+  ],
+  "files": [
+    {
+      "path": "frontend/widgets/FreeMixFinalGatePolicy.hpp",
+      "before": null,
+      "after": "e51b936b276119d24c9bdef5d80098ab81cf11955165085b64b0dc97fd9d3cce",
+      "origin": "ftb-final-master-gate-draft"
+    },
+    {
+      "path": "frontend/widgets/FreeMixFinalProgramGate.hpp",
+      "before": null,
+      "after": "0d8966a23f9eae86aa959ce751c18f93bdd5d8e53728783c90ab60ea914a0177",
+      "origin": "ftb-final-master-gate-draft"
+    },
+    {
+      "path": "frontend/widgets/FreeMixMultistream.cpp",
+      "before": "acb98c717b0852bb48be07c0fea20609829a609218a1d6dc2c14a16ca8ce0e68",
+      "after": "c56f7ecd8bd0c0838a71eacda3fb0cc4e5b77bace6bf54ad1d627176a2eb8af1",
+      "origin": "ftb-final-program-inheritance-draft"
+    },
+    {
+      "path": "frontend/widgets/OBSBasic_Transitions.cpp",
+      "before": "b68b6220aa52aed59761b8bdbd98af6d90b7758483019a82eb94ded8e8ab7f77",
+      "after": "2968ad9de965ea5882a92704e0406d63e1b17437b73d32de854aa8f0954f336d",
+      "origin": "ftb-final-master-gate-draft"
+    },
+    {
+      "path": "frontend/widgets/OBSBasic.hpp",
+      "before": "9b87b7b3d76c8d5b277f85e8c1e5a8e2301cbd59fa998680699cf9466cc9e95a",
+      "after": "0dea38d93b7df0cac94c2e61053a7d4b0244e3b43634762a36124385ff5c7bc3",
+      "origin": "ftb-final-master-gate-draft"
+    },
+    {
+      "path": "libobs/CMakeLists.txt",
+      "before": "b4fd6ee2378eadb588ca45b9194319ac0784ff00b33ceeced1238269dfa1afe5",
+      "after": "2869a7de2869b95baaf160039a9b1e4c5a73a37e42d571759b2a657f187b9dac",
+      "origin": "ftb-final-master-gate-draft"
+    },
+    {
+      "path": "libobs/obs-final-gate-internal.h",
+      "before": null,
+      "after": "47e9d69194f63649c065232f99c0ea5b0e6440ace4b7bef2bdaf577dd07174c0",
+      "origin": "ftb-final-program-inheritance-draft"
+    },
+    {
+      "path": "libobs/obs-final-gate-render.h",
+      "before": null,
+      "after": "fdfe60af2320a81011e027d6d6d170e5ba91f804ddf0660a117489834fd64dee",
+      "origin": "ftb-final-program-inheritance-draft"
+    },
+    {
+      "path": "libobs/obs-final-gate.h",
+      "before": null,
+      "after": "9680a6079ef727b538aeffa9d1246f0b620f982132d5edb4ec0713ad2ac11eba",
+      "origin": "ftb-final-master-gate-draft"
+    },
+    {
+      "path": "libobs/obs-internal.h",
+      "before": "ae7063578b19a8a1ce138aa2b47d6dbeede2cd07c387045ee3108c941fd8b429",
+      "after": "10973e816e1802f38d156439829019c61a38a4e0cbb53be6f3e4e5eda621f0f2",
+      "origin": "ftb-final-master-gate-draft"
+    },
+    {
+      "path": "libobs/obs-master-final-gate.c",
+      "before": null,
+      "after": "d124f4c8bcd900729901a2d9f6258c700193ce20f084b2994d1ae142dde6c6c7",
+      "origin": "ftb-final-program-inheritance-draft"
+    },
+    {
+      "path": "libobs/obs-video.c",
+      "before": "51c4d545b443bdcbee037c234f88532e66365bee792b2633d274deced98ac997",
+      "after": "8ecbb8f53900b5e6da4f2b7d19d7299aacdf24bffe245f3322e366802d405f60",
+      "origin": "ftb-final-program-inheritance-draft"
+    },
+    {
+      "path": "libobs/obs.c",
+      "before": "3649513c13032d66cc12ad35e5a348c32c2c12fccbeecd235c4a3261e7eefcea",
+      "after": "8476ed24c58734f08ad60b674d363e4d32a58f4d76ab9fc54f3a816f35719580",
+      "origin": "ftb-final-master-gate-draft"
+    },
+    {
+      "path": "libobs/obs.h",
+      "before": "f1f22c8cc965536f3cf940c051d1471804be99854fc6de5e08d8b45a34dcbdbe",
+      "after": "4005917b3ec4e0a5c8c4cd656d0a5a83e8b8676ae8aa20168309f67b3fef57a4",
+      "origin": "ftb-final-program-inheritance-draft"
+    },
+    {
+      "path": "libobs/obs-view.c",
+      "before": "d178a25cbce603676853736ee9cf9edbf59feb6301f4634a24b023f3aa76379e",
+      "after": "2104bb3cfe95374fd153c82f45686e60b08fd07f7deed77f630044407dd6f558",
+      "origin": "ftb-final-program-inheritance-draft"
+    }
+  ],
+  "experimentalDefaultEnabled": false,
+  "audioPolicy": "unchanged",
+  "operatorTouched": false,
+  "installedPayloadChanged": false,
+  "linkedNative": false,
+  "gpuPixelsVerified": false
+}

@@ -1,0 +1,32 @@
+{
+  "status": "ROOT_VERIFIED_FAILURE_PUBLIC_PNG_VERSUS_RGBA_CHANNELS",
+  "at": "2026-10-10T08:29:31.483Z",
+  "files": [
+    {
+      "path": "receipt.json",
+      "sha256": "b7ab93c6858b9612495f857f6e465c9c038e8336a59f9d42c42e60f4ea53224e",
+      "bytes": 27730
+    },
+    {
+      "path": "report-fail.json",
+      "sha256": "71b73574f9c5c9a7727e33aa53a6a7c0bed33ed7bcace7640fab84fe00c15a62",
+      "bytes": 16469
+    },
+    {
+      "path": "ALLOWLIST-RESULT-FAIL.json",
+      "sha256": "63932fd53ca4092d70553a72d4c3803ea22e6c59a971ad727ac92cc08eae43ea",
+      "bytes": 2423
+    },
+    {
+      "path": "public-B-own-colour.png",
+      "sha256": "4a56463b7ed5e70aa8d249ed6ac4068a83e76c4dae73d87bc2af4d4cc68cb324",
+      "bytes": 697
+    }
+  ],
+  "previousEvidencePreserved": true,
+  "operatorTouched": false,
+  "installerChanged": false,
+  "rawLogsIncluded": false,
+  "credentialsIncluded": false,
+  "nativeFixVerified": false
+}

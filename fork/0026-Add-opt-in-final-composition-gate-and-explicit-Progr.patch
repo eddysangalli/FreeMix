@@ -1,0 +1,678 @@
+From 31a2139d084f8b9d014481d477e109d8827e0bcc Mon Sep 17 00:00:00 2001
+From: Eddy Sangalli <eddyrodrigues@outlook.com>
+Date: Sat, 10 Oct 2026 04:56:20 -0300
+Subject: [PATCH] Add opt-in final composition gate and explicit Program output
+ inheritance
+
+---
+ frontend/widgets/FreeMixFinalGatePolicy.hpp  |  23 ++++
+ frontend/widgets/FreeMixFinalProgramGate.hpp |  91 +++++++++++++
+ frontend/widgets/FreeMixMultistream.cpp      |  15 ++-
+ frontend/widgets/OBSBasic.hpp                |  11 +-
+ frontend/widgets/OBSBasic_Transitions.cpp    |   9 +-
+ libobs/CMakeLists.txt                        |   4 +
+ libobs/obs-final-gate-internal.h             |  23 ++++
+ libobs/obs-final-gate-render.h               |  20 +++
+ libobs/obs-final-gate.h                      |  27 ++++
+ libobs/obs-internal.h                        |   3 +
+ libobs/obs-master-final-gate.c               | 131 +++++++++++++++++++
+ libobs/obs-video.c                           |  24 +++-
+ libobs/obs-view.c                            |  14 +-
+ libobs/obs.c                                 |   3 +
+ libobs/obs.h                                 |   3 +
+ 15 files changed, 395 insertions(+), 6 deletions(-)
+ create mode 100644 frontend/widgets/FreeMixFinalGatePolicy.hpp
+ create mode 100644 frontend/widgets/FreeMixFinalProgramGate.hpp
+ create mode 100644 libobs/obs-final-gate-internal.h
+ create mode 100644 libobs/obs-final-gate-render.h
+ create mode 100644 libobs/obs-final-gate.h
+ create mode 100644 libobs/obs-master-final-gate.c
+
+diff --git a/frontend/widgets/FreeMixFinalGatePolicy.hpp b/frontend/widgets/FreeMixFinalGatePolicy.hpp
+new file mode 100644
+index 0000000..8a899bb
+--- /dev/null
++++ b/frontend/widgets/FreeMixFinalGatePolicy.hpp
+@@ -0,0 +1,23 @@
++#pragma once
++#include <deque>
++#include <string>
++#include <unordered_map>
++namespace freemix_final_gate {
++struct Receipt {std::string signature,error;unsigned serial=0;bool enabled=false,active=false,terminal=false;};
++class Policy {
++ std::unordered_map<std::string,Receipt> values;std::deque<std::string> order;
++public:
++ void Reset(){values.clear();order.clear();}
++ const Receipt *Find(const std::string &key)const{const auto i=values.find(key);return i==values.end()?nullptr:&i->second;}
++ void Observe(unsigned serial,bool enabled,bool active,bool running,bool available){if(!available||running)return;for(auto &v:values)if(v.second.serial==serial&&v.second.enabled==enabled&&v.second.active==active)v.second.terminal=true;}
++ bool Insert(const std::string &key,const Receipt &r){
++  if(values.count(key))return false;
++  if(values.size()>=128){auto old=order.begin();while(old!=order.end()&&!values.at(*old).terminal)++old;if(old==order.end())return false;values.erase(*old);order.erase(old);}
++  values.emplace(key,r);order.push_back(key);return true;
++ }
++ void Accepted(const std::string &key,unsigned serial){values.at(key).serial=serial;}
++ void Failed(const std::string &key,const std::string &reason){auto &v=values.at(key);v.error=reason;v.terminal=true;}
++ bool Pending()const{for(const auto &v:values)if(!v.second.terminal)return true;return false;}
++ size_t Size()const{return values.size();}
++};
++}
+diff --git a/frontend/widgets/FreeMixFinalProgramGate.hpp b/frontend/widgets/FreeMixFinalProgramGate.hpp
+new file mode 100644
+index 0000000..d4a0c76
+--- /dev/null
++++ b/frontend/widgets/FreeMixFinalProgramGate.hpp
+@@ -0,0 +1,91 @@
++// Experimental Master-only video gate. This is a distinct contract, never FTB-v2 fallback.
++bool OBSBasic::FreeMixFinalGateBlocksFtb()
++{
++ obs_master_final_gate_state state={};
++ return finalGateExperimental||finalGatePolicy.Pending()||(obs_master_final_gate_get(&state)&&state.enabled);
++}
++void OBSBasic::ResetFreeMixFinalGate()
++{
++ obs_master_final_gate_reset();finalGatePolicy.Reset();finalGateCapture=nullptr;finalGateExperimental=false;finalGateScope.clear();finalGateBoundIdentity=finalGateBoundGeneration=0;
++}
++void OBSBasic::FreeMixFinalProgramGateRequest(obs_data_t *request,obs_data_t *response)
++{
++ const auto fail=[response](const char *reason){obs_data_set_bool(response,"success",false);obs_data_set_string(response,"error",reason);};
++ const auto typed=[request](const char *key,enum obs_data_type type){auto *item=obs_data_item_byname(request,key);const bool ok=item&&obs_data_item_gettype(item)==type;obs_data_item_release(&item);return ok;};
++ if(isClosing()){fail("FreeMix encerrando; nenhuma etapa final será enviada.");return;}
++ auto base=FreeMixFtbSnapshot();
++ if(!finalGateScope.empty()&&finalGateScope!=base.scope){ResetFreeMixFinalGate();}
++ finalGateScope=base.scope;
++ obs_master_final_gate_state stage={};const bool read=obs_master_final_gate_get(&stage);
++ const bool coreAvailable=read&&stage.available;
++ if(coreAvailable){
++  if(finalGateBoundIdentity&&(finalGateBoundIdentity!=stage.mix_identity||finalGateBoundGeneration!=stage.generation)){
++   // Core video reset already starts identity. Invalidate old pending receipts, never re-enable it.
++   finalGatePolicy.Reset();finalGateCapture=nullptr;finalGateExperimental=false;
++  }
++  finalGateBoundIdentity=stage.mix_identity;finalGateBoundGeneration=stage.generation;
++ }
++ const bool captureMismatch=finalGateCapture&&base.output!=obs_source_get_uuid(finalGateCapture);
++ finalGatePolicy.Observe(stage.command_serial,stage.enabled,stage.requested_active,stage.running,coreAvailable&&!captureMismatch);
++ if(coreAvailable&&stage.normal_observed&&!stage.requested_active&&!finalGatePolicy.Pending())finalGateCapture=nullptr;
++ const auto writeState=[&](){
++  obs_master_final_gate_state current={};const bool fresh=obs_master_final_gate_get(&current);
++  obs_data_set_int(response,"contractVersion",1);
++  obs_data_set_string(response,"contract","experimental-master-final-video-gate-v1");
++  obs_data_set_string(response,"coverage","main-video-only-after-composition");
++  obs_data_set_string(response,"audioPolicy","unchanged");
++  obs_data_set_bool(response,"experimental",true);obs_data_set_bool(response,"experimentalOptIn",finalGateExperimental);
++  obs_data_set_bool(response,"available",fresh&&current.available&&base.studio&&!base.requested&&!captureMismatch);
++  obs_data_set_bool(response,"enabled",current.enabled);obs_data_set_bool(response,"requestedActive",current.requested_active);
++  obs_data_set_bool(response,"transitionRunning",current.running||base.running||finalGatePolicy.Pending());
++  obs_data_set_bool(response,"blackStageApplied",current.black_observed&&!captureMismatch);
++  obs_data_set_bool(response,"identityStageApplied",current.normal_observed&&!captureMismatch);
++  obs_data_set_bool(response,"pixelsVerified",false);
++  obs_data_set_bool(response,"clockFault",current.clock_fault);obs_data_set_bool(response,"resetRequired",current.clock_fault||captureMismatch);
++  obs_data_set_bool(response,"independentProgramRoutesCovered",false);obs_data_set_bool(response,"callsProgramVerified",false);
++  obs_data_set_int(response,"mixIdentity",current.mix_identity);obs_data_set_int(response,"generation",current.generation);
++  obs_data_set_int(response,"commandSerial",current.command_serial);obs_data_set_int(response,"frameSeq",current.frame_seq);
++  obs_data_set_int(response,"framePtsNs",(long long)current.frame_pts_ns);obs_data_set_int(response,"gainQ24",current.gain_q24);
++  obs_data_set_string(response,"scope",base.scope.c_str());obs_data_set_string(response,"contextToken",base.context.c_str());
++  obs_data_set_string(response,"programUuid",base.program.c_str());obs_data_set_string(response,"previewUuid",base.preview.c_str());
++  obs_data_set_string(response,"outputSourceUuid",base.output.c_str());obs_data_set_bool(response,"captureMismatch",captureMismatch);
++  obs_video_info info={};if(obs_get_video_info(&info)){obs_data_set_int(response,"fpsNumerator",info.fps_num);obs_data_set_int(response,"fpsDenominator",info.fps_den);}
++ };
++ const std::string command=obs_data_get_string(request,"command");writeState();
++ if(command=="state"){obs_data_set_bool(response,"success",true);return;}
++ if(command!="set"){fail("Use state ou set experimental explícito; não há toggle nem autostart.");return;}
++ if(!typed("experimentalOptIn",OBS_DATA_BOOLEAN)||!obs_data_get_bool(request,"experimentalOptIn")||std::string(obs_data_get_string(request,"audioPolicy"))!="unchanged"){
++  fail("Exige experimentalOptIn=true e audioPolicy=unchanged; recurso restrito ao Master vídeo.");return;
++ }
++ if(!typed("enabled",OBS_DATA_BOOLEAN)||!typed("active",OBS_DATA_BOOLEAN)||!typed("durationMs",OBS_DATA_NUMBER)){
++  fail("enabled/active devem ser booleanos e durationMs inteiro explícito.");return;
++ }
++ const auto ms=obs_data_get_int(request,"durationMs");
++ const bool enabled=obs_data_get_bool(request,"enabled"),active=obs_data_get_bool(request,"active");
++ if(ms<50||ms>20000||obs_data_get_double(request,"durationMs")!=double(ms)||active&&!enabled){fail("Duração 50..20000ms e active exige enabled.");return;}
++ const std::string id=obs_data_get_string(request,"operationId"),connection=obs_data_get_string(request,"connectionId");
++ if(!freemix_ftb::Identifier(id)||!freemix_ftb::Identifier(connection)){fail("ID de operação e conexão explícitos obrigatórios.");return;}
++ const std::string scope=obs_data_get_string(request,"expectedScope"),context=obs_data_get_string(request,"expectedContextToken"),program=obs_data_get_string(request,"expectedProgramUuid"),preview=obs_data_get_string(request,"expectedPreviewUuid"),output=obs_data_get_string(request,"expectedOutputSourceUuid");
++ const auto identity=obs_data_get_int(request,"expectedMixIdentity"),generation=obs_data_get_int(request,"expectedGeneration");
++ if(scope!=base.scope||context!=base.context||identity!=stage.mix_identity||generation!=stage.generation){fail("Contexto/generation mudou; consulte sem reenviar.");return;}
++ const std::string key=connection+":"+id,signature=std::to_string(enabled)+"|"+std::to_string(active)+"|"+std::to_string(ms)+"|"+scope+"|"+context+"|"+program+"|"+preview+"|"+output+"|"+std::to_string(identity)+"|"+std::to_string(generation);
++ if(const auto *old=finalGatePolicy.Find(key)){
++  if(old->signature!=signature){fail("ID reutilizado para outra operação.");return;}
++  if(!old->error.empty()){fail(old->error.c_str());return;}
++  obs_data_set_bool(response,"replayed",true);obs_data_set_bool(response,"accepted",true);obs_data_set_int(response,"acceptedSerial",old->serial);obs_data_set_bool(response,"success",true);return;
++ }
++ if(!coreAvailable||!base.studio||base.requested||base.running||base.manual||stage.running||finalGatePolicy.Pending()||captureMismatch||program!=base.program||preview!=base.preview||output!=base.output||!freemix_ftb::Uuid(program)||!freemix_ftb::Uuid(preview)||!freemix_ftb::Uuid(output)){
++  fail("Estado/Programa/Preview/saída não confirmado, ou FTB-v2/transição ativa. Nenhum gate enviado.");return;
++ }
++ OBSSourceAutoRelease outputTransition=obs_get_output_source(0);
++ OBSSourceAutoRelease rendered=outputTransition?obs_transition_get_active_source(outputTransition):nullptr;
++ if(!rendered||obs_source_removed(rendered)||!obs_scene_from_source(rendered)){fail("Programa renderizado ausente/removido.");return;}
++ if(!finalGatePolicy.Insert(key,{signature,{},0,enabled,active,false})){fail("Limite128 de operações pendentes; consulte o motor.");return;}
++ obs_master_final_gate_request input={(uint32_t)identity,(uint32_t)generation,enabled,active,(uint32_t)ms};uint32_t serial=0;
++ if(!obs_master_final_gate_set(&input,&serial)){const char *reason="Não confirmado pelo core; este ID não será reenviado.";finalGatePolicy.Failed(key,reason);fail(reason);return;}
++ finalGatePolicy.Accepted(key,serial);finalGateExperimental=enabled;
++ if(active&&!finalGateCapture)finalGateCapture=rendered.Get();
++ if(!enabled&&!active)finalGateExperimental=false; // Pending policy still blocks FTB until identity draw acknowledged.
++ obs_data_set_string(response,"operationId",id.c_str());obs_data_set_int(response,"acceptedSerial",serial);
++ writeState();obs_data_set_bool(response,"accepted",true);obs_data_set_bool(response,"success",true);
++}
+diff --git a/frontend/widgets/FreeMixMultistream.cpp b/frontend/widgets/FreeMixMultistream.cpp
+index e690a81..3786d22 100644
+--- a/frontend/widgets/FreeMixMultistream.cpp
++++ b/frontend/widgets/FreeMixMultistream.cpp
+@@ -140,6 +140,16 @@ void RequestFadeToBlack(obs_data_t *request,obs_data_t *response,void *)
+  else if(!QMetaObject::invokeMethod(main.data(),work,Qt::BlockingQueuedConnection))fail();
+ }
+ 
++void RequestFinalProgramGate(obs_data_t *request,obs_data_t *response,void *)
++{
++ const QPointer<OBSBasic> main=OBSBasic::Get();
++ const auto fail=[response](){obs_data_set_bool(response,"success",false);obs_data_set_string(response,"error","O FreeMix está encerrando ou mudou de contexto. Nenhum FTB será enviado.");};
++ if(!main||frontendClosing){fail();return;}
++ const auto work=[main,request,response,fail](){if(!main||frontendClosing||main->isClosing()){fail();return;}main->FreeMixFinalProgramGateRequest(request,response);};
++ if(QThread::currentThread()==main->thread())work();
++ else if(!QMetaObject::invokeMethod(main.data(),work,Qt::BlockingQueuedConnection))fail();
++}
++
+ void RequestSdiOutput(obs_data_t *request,obs_data_t *response,void *){QMetaObject::invokeMethod(OBSBasic::Get(),[=](){if(frontendClosing){obs_data_set_bool(response,"success",false);return;}freemix_sdi::Request(request,response,IsPrivateSource);},Qt::BlockingQueuedConnection);}
+ void RequestSrtHdrOutput(obs_data_t *request,obs_data_t *response,void *){
+  auto *main=OBSBasic::Get();if(!main){obs_data_set_bool(response,"success",false);return;}
+@@ -1108,7 +1118,9 @@ void StartOne(Destination &d, size_t index)
+ 		if (!d.view) { Fail(d, "could not create view"); return; }
+ 		if(d.alphaMode!="none"){d.packedAlphaSource=freemix_srt_alpha::Create(obs_scene_get_source(d.renderScene),d.width,d.height,d.alphaMode);if(!d.packedAlphaSource){Fail(d,"could not create SRT Fill/Key alpha renderer");return;}}
+ 		obs_view_set_source(d.view, 0, d.packedAlphaSource?d.packedAlphaSource.Get():obs_scene_get_source(d.renderScene));
+-		video_t *viewVideo = obs_view_add2(d.view, &info);
++		// Explicit opaque Program composition inherits Master at the final stage.
++		// Packed/Fill/Key masks must not be blackened after packing; their routes remain excluded.
++		video_t *viewVideo = d.mode == "program" && d.alphaMode == "none" ? obs_view_add_program_final_gate(d.view, &info) : obs_view_add2(d.view, &info);
+ 		if (!viewVideo) { Fail(d, "could not create independent video"); return; }
+ 		OBSDataAutoRelease videoSettings = obs_data_create();
+ 		obs_data_set_string(videoSettings, "rate_control", "CBR");
+@@ -1734,6 +1746,7 @@ void RegisterVendor()
+ 		return;
+ 	}
+ 	obs_websocket_vendor_register_request(vendor, "fade_to_black", RequestFadeToBlack, nullptr);
++	obs_websocket_vendor_register_request(vendor, "final_program_gate", RequestFinalProgramGate, nullptr);
+ 	obs_websocket_vendor_register_request(vendor, "get_destinations", RequestGet, nullptr);
+ 	obs_websocket_vendor_register_request(vendor, "set_destinations", RequestSet, nullptr);
+ 	obs_websocket_vendor_register_request(vendor, "control_destination", RequestControlDestination, nullptr);
+diff --git a/frontend/widgets/OBSBasic.hpp b/frontend/widgets/OBSBasic.hpp
+index 1d323de..ef9df54 100644
+--- a/frontend/widgets/OBSBasic.hpp
++++ b/frontend/widgets/OBSBasic.hpp
+@@ -43,6 +43,7 @@
+ #include <QSystemTrayIcon>
+ 
+ #include "FreeMixFtbContract.hpp"
++#include "FreeMixFinalGatePolicy.hpp"
+ 
+ #include <atomic>
+ #include <deque>
+@@ -1559,6 +1560,12 @@ private:
+ 
+ 	OBSSource prevFTBSource = nullptr;
+ 	freemix_ftb::Policy freeMixFtbPolicy;
++	freemix_final_gate::Policy finalGatePolicy;
++	bool finalGateExperimental=false;
++	uint32_t finalGateBoundIdentity=0,finalGateBoundGeneration=0;
++	std::string finalGateScope;
++	OBSSource finalGateCapture=nullptr;
++	bool FreeMixFinalGateBlocksFtb();
+ 	freemix_ftb::Snapshot FreeMixFtbSnapshot();
+ 	bool FreeMixTriggerFadeToBlack(const QuickTransition &quick);
+ 
+@@ -1604,7 +1611,9 @@ private:
+ 
+ public slots:
+ 	void FreeMixFadeToBlackRequest(obs_data_t *request, obs_data_t *response);
+-	void ResetFreeMixFtbContext() { freeMixFtbPolicy.Reset(); }
++	void FreeMixFinalProgramGateRequest(obs_data_t *request, obs_data_t *response);
++	void ResetFreeMixFinalGate();
++	void ResetFreeMixFtbContext() { ResetFreeMixFinalGate(); freeMixFtbPolicy.Reset(); }
+ 	void SetCurrentScene(OBSSource scene, bool force = false);
+ 
+ 	void SetTransition(OBSSource transition);
+diff --git a/frontend/widgets/OBSBasic_Transitions.cpp b/frontend/widgets/OBSBasic_Transitions.cpp
+index b383581..e79e10d 100644
+--- a/frontend/widgets/OBSBasic_Transitions.cpp
++++ b/frontend/widgets/OBSBasic_Transitions.cpp
+@@ -125,6 +125,7 @@ void OBSBasic::TriggerQuickTransition(int id)
+ 	}
+ }
+ 
++#include "FreeMixFinalProgramGate.hpp"
+ // FreeMix manual FTB: the native quicktransition flag is authoritative.
+ freemix_ftb::Snapshot OBSBasic::FreeMixFtbSnapshot()
+ {
+@@ -134,7 +135,7 @@ freemix_ftb::Snapshot OBSBasic::FreeMixFtbSnapshot()
+  state.context=freeMixFtbPolicy.Context(state.scope);
+  state.studio=IsPreviewProgramMode();state.closing=isClosing();state.manual=tBarActive;
+  const auto quick=std::find_if(quickTransitions.begin(),quickTransitions.end(),[](const QuickTransition &q){return q.fadeToBlack&&q.source&&!obs_source_removed(q.source)&&strcmp(obs_source_get_id(q.source),"fade_transition")==0&&q.duration>=50&&q.duration<=20000;});
+- state.available=quick!=quickTransitions.end();
++ state.available=quick!=quickTransitions.end()&&!FreeMixFinalGateBlocksFtb();
+  OBSSourceAutoRelease outputTransition=obs_get_output_source(0);
+  OBSSourceAutoRelease output=outputTransition?obs_transition_get_active_source(outputTransition):nullptr;
+  OBSSourceAutoRelease program=obs_frontend_get_current_scene();
+@@ -154,7 +155,7 @@ freemix_ftb::Snapshot OBSBasic::FreeMixFtbSnapshot()
+ 
+ bool OBSBasic::FreeMixTriggerFadeToBlack(const QuickTransition &quick)
+ {
+- if(isClosing()||!IsPreviewProgramMode()||tBarActive||!quick.fadeToBlack||!quick.source||obs_source_removed(quick.source)||strcmp(obs_source_get_id(quick.source),"fade_transition")!=0||quick.duration<50||quick.duration>20000)return false;
++ if(FreeMixFinalGateBlocksFtb()||isClosing()||!IsPreviewProgramMode()||tBarActive||!quick.fadeToBlack||!quick.source||obs_source_removed(quick.source)||strcmp(obs_source_get_id(quick.source),"fade_transition")!=0||quick.duration<50||quick.duration>20000)return false;
+  OBSSourceAutoRelease current=obs_get_output_source(0);
+  if(!current||obs_transition_is_active(current)||obs_transition_is_active(quick.source))return false;
+  OBSSourceAutoRelease rendered=obs_transition_get_active_source(current);
+@@ -433,6 +434,8 @@ void OBSBasic::TransitionFullyStopped()
+ void OBSBasic::TransitionToScene(OBSSource source, bool force, bool quickTransition, int quickDuration, bool black,
+ 				 bool manual)
+ {
++	obs_master_final_gate_state final={};
++	if(finalGatePolicy.Pending()||(obs_master_final_gate_get(&final)&&(final.requested_active||final.running)))return;
+ 	obs_scene_t *scene = obs_scene_from_source(source);
+ 	bool usingPreviewProgram = IsPreviewProgramMode();
+ 	if (!scene) {
+@@ -934,6 +937,8 @@ static bool ValidTBarTransition(OBSSource transition)
+ 
+ void OBSBasic::TBarChanged(int value)
+ {
++	obs_master_final_gate_state final={};
++	if(finalGatePolicy.Pending()||(obs_master_final_gate_get(&final)&&(final.requested_active||final.running)))return;
+ 	OBSSourceAutoRelease transition = obs_get_output_source(0);
+ 
+ 	if (!tBarActive) {
+diff --git a/libobs/CMakeLists.txt b/libobs/CMakeLists.txt
+index b20c2fa..d4b037c 100644
+--- a/libobs/CMakeLists.txt
++++ b/libobs/CMakeLists.txt
+@@ -70,6 +70,10 @@ target_sources(
+     obs-source.c
+     obs-source.h
+     obs-video-gpu-encode.c
++    obs-final-gate.h
++    obs-final-gate-internal.h
++    obs-final-gate-render.h
++    obs-master-final-gate.c
+     obs-video.c
+     obs-view.c
+     obs.c
+diff --git a/libobs/obs-final-gate-internal.h b/libobs/obs-final-gate-internal.h
+new file mode 100644
+index 0000000..3f60d5f
+--- /dev/null
++++ b/libobs/obs-final-gate-internal.h
+@@ -0,0 +1,23 @@
++#pragma once
++#include "obs-final-gate.h"
++/* Render-thread owned, zero initialized on every video-mix allocation. */
++struct obs_final_gate_runtime {
++ uint32_t identity, generation, applied_serial, frame_seq;
++ bool master, follows_master, enabled, requested_active, running, clock_fault;
++ uint32_t parent_identity;
++ double gain, from_gain, to_gain;
++ uint64_t start_pts_ns, last_pts_ns, duration_ns;
++};
++#ifdef __cplusplus
++extern "C" {
++#endif
++uint32_t obs_final_gate_new_identity(void);
++void obs_final_gate_invalidate_identity(uint32_t identity);
++void obs_final_gate_prepare(struct obs_final_gate_runtime *r, bool master, uint64_t pts_ns);
++void obs_final_gate_inherit(struct obs_final_gate_runtime *r, const struct obs_final_gate_runtime *master, uint64_t pts_ns);
++void obs_final_gate_finish_inherited(struct obs_final_gate_runtime *r, bool draw_applied);
++bool obs_final_gate_reuse_blocked(const struct obs_final_gate_runtime *r);
++void obs_final_gate_publish(struct obs_final_gate_runtime *r, uint64_t pts_ns, bool draw_applied);
++#ifdef __cplusplus
++}
++#endif
+diff --git a/libobs/obs-final-gate-render.h b/libobs/obs-final-gate-render.h
+new file mode 100644
+index 0000000..026452d
+--- /dev/null
++++ b/libobs/obs-final-gate-render.h
+@@ -0,0 +1,20 @@
++/* Included only by obs-video.c, after composition and rendered callbacks, before conversion. */
++static inline bool draw_master_final_gate(struct obs_core_video_mix *video)
++{
++ const struct obs_final_gate_runtime *gate=&video->final_gate;
++ if((!gate->master&&!gate->follows_master)||!gate->enabled||gate->gain>=1.0)return true;
++ gs_effect_t *effect=obs->video.solid_effect;
++ if(!effect)return false;
++ gs_eparam_t *color=gs_effect_get_param_by_name(effect,"color");
++ if(!color)return false;
++ struct vec4 black;vec4_set(&black,0.0f,0.0f,0.0f,(float)(1.0-gate->gain));
++ gs_effect_set_vec4(color,&black);
++ gs_set_render_target_with_color_space(video->render_texture,NULL,video->render_space);
++ set_render_size(video->ovi.base_width,video->ovi.base_height);
++ gs_blend_state_push();gs_enable_blending(true);
++ gs_blend_function_separate(GS_BLEND_ONE,GS_BLEND_INVSRCALPHA,GS_BLEND_ONE,GS_BLEND_INVSRCALPHA);
++ bool drawn=false;
++ while(gs_effect_loop(effect,"Solid")){gs_draw_sprite(NULL,0,video->ovi.base_width,video->ovi.base_height);drawn=true;}
++ gs_blend_state_pop();
++ return drawn;
++}
+diff --git a/libobs/obs-final-gate.h b/libobs/obs-final-gate.h
+new file mode 100644
+index 0000000..fd51300
+--- /dev/null
++++ b/libobs/obs-final-gate.h
+@@ -0,0 +1,27 @@
++#pragma once
++#include <stdbool.h>
++#include <stdint.h>
++#include "util/c99defs.h"
++#ifdef __cplusplus
++extern "C" {
++#endif
++/* Experimental main-video final stage. Audio and independent video are unchanged. */
++struct obs_master_final_gate_state {
++ uint32_t contract_version, mix_identity, generation, command_serial;
++ bool available, enabled, requested_active, running, black_observed, normal_observed, clock_fault;
++ uint32_t gain_q24, frame_seq;
++ uint64_t frame_pts_ns;
++};
++struct obs_master_final_gate_request {
++ uint32_t expected_mix_identity, expected_generation;
++ bool enabled, active;
++ uint32_t duration_ms;
++};
++/* Bounded atomic snapshots. false means unavailable/busy; it is never a physical-black proof. */
++EXPORT bool obs_master_final_gate_get(struct obs_master_final_gate_state *state);
++EXPORT bool obs_master_final_gate_set(const struct obs_master_final_gate_request *request, uint32_t *command_serial);
++/* Invalidate pending commands and make the next frame identity. No GUI wait for GPU. */
++EXPORT void obs_master_final_gate_reset(void);
++#ifdef __cplusplus
++}
++#endif
+diff --git a/libobs/obs-internal.h b/libobs/obs-internal.h
+index 491c86e..6e4481b 100644
+--- a/libobs/obs-internal.h
++++ b/libobs/obs-internal.h
+@@ -329,7 +329,10 @@ struct obs_task_info {
+ 	void *param;
+ };
+ 
++// Experimental per-mix final-stage bookkeeping.
++#include "obs-final-gate-internal.h"
+ struct obs_core_video_mix {
++	struct obs_final_gate_runtime final_gate;
+ 	struct obs_view *view;
+ 
+ 	gs_stagesurf_t *active_copy_surfaces[NUM_TEXTURES][NUM_CHANNELS];
+diff --git a/libobs/obs-master-final-gate.c b/libobs/obs-master-final-gate.c
+new file mode 100644
+index 0000000..6950bf5
+--- /dev/null
++++ b/libobs/obs-master-final-gate.c
+@@ -0,0 +1,131 @@
++#include "obs-final-gate-internal.h"
++#ifdef FREEMIX_FINAL_GATE_MODEL
++#include "util/threading-windows.h"
++#else
++#include "util/threading.h"
++#endif
++#include <limits.h>
++#include <string.h>
++
++/* All shared fields use OBS atomics; no mix/GPU mutex, heap, or callback on UI reads/writes. */
++static volatile long identity_counter, generation=1, available;
++static struct {
++ volatile long seq, serial, identity, generation, enabled, active, duration;
++} command;
++static struct {
++ volatile long seq, identity, generation, command_serial, enabled, active, running, fault;
++ volatile long gain, frame_seq, pts_lo, pts_hi;
++} observed;
++static uint32_t load(const volatile long *p){return (uint32_t)os_atomic_load_long(p);}
++static void store(volatile long *p,uint32_t value){os_atomic_store_long(p,(long)value);}
++static bool lock_seq(volatile long *p,uint32_t *seq){*seq=load(p);return !(*seq&1)&&*seq<INT_MAX-2&&os_atomic_compare_swap_long(p,(long)*seq,(long)(*seq+1));}
++static void unlock_seq(volatile long *p,uint32_t seq){store(p,seq+2);}
++static bool read_command(struct obs_master_final_gate_request *r,uint32_t *serial){
++ for(unsigned attempt=0;attempt<4;attempt++){
++  const uint32_t a=load(&command.seq);if(a&1)continue;
++  r->expected_mix_identity=load(&command.identity);r->expected_generation=load(&command.generation);
++  r->enabled=load(&command.enabled)!=0;r->active=load(&command.active)!=0;r->duration_ms=load(&command.duration);
++  const uint32_t ticket=load(&command.serial);
++  if(a==load(&command.seq)){*serial=ticket;return true;}
++ }return false;
++}
++uint32_t obs_final_gate_new_identity(void){
++ long old=os_atomic_load_long(&identity_counter);
++ for(unsigned attempt=0;attempt<8;attempt++){
++  if(old<0||old>=INT_MAX-1)return 0;
++  if(os_atomic_compare_exchange_long(&identity_counter,&old,old+1))return (uint32_t)(old+1);
++ }return 0;
++}
++void obs_final_gate_invalidate_identity(uint32_t identity){if(identity==load(&observed.identity))store(&available,0);}
++void obs_master_final_gate_reset(void){
++ store(&available,0);
++ long old=os_atomic_load_long(&generation);
++ for(unsigned attempt=0;attempt<8;attempt++){
++  if(old<0||old>=INT_MAX-1){store(&generation,0);return;}
++  if(os_atomic_compare_exchange_long(&generation,&old,old+1))return;
++ }store(&generation,0); /* Exhaustion/contention fails closed, never reuse an old epoch. */
++}
++bool obs_master_final_gate_get(struct obs_master_final_gate_state *s){
++ if(!s)return false;memset(s,0,sizeof(*s));s->contract_version=1;
++ for(unsigned attempt=0;attempt<4;attempt++){
++  const uint32_t a=load(&observed.seq);if(a&1)continue;
++  s->mix_identity=load(&observed.identity);s->generation=load(&observed.generation);s->command_serial=load(&observed.command_serial);
++  s->enabled=load(&observed.enabled)!=0;s->requested_active=load(&observed.active)!=0;s->running=load(&observed.running)!=0;s->clock_fault=load(&observed.fault)!=0;
++  s->gain_q24=load(&observed.gain);s->frame_seq=load(&observed.frame_seq);s->frame_pts_ns=((uint64_t)load(&observed.pts_hi)<<32)|load(&observed.pts_lo);
++  if(a!=load(&observed.seq))continue;
++  s->available=load(&available)!=0&&s->mix_identity!=0&&s->generation==load(&generation)&&!s->clock_fault;
++  s->black_observed=s->available&&s->enabled&&s->requested_active&&!s->running&&s->gain_q24==0;
++  s->normal_observed=s->available&&!s->running&&s->gain_q24==16777216u;
++  return true;
++ }return false;
++}
++bool obs_master_final_gate_set(const struct obs_master_final_gate_request *r,uint32_t *serial){
++ if(!r||!serial||r->active&&!r->enabled||r->duration_ms<50||r->duration_ms>20000)return false;
++ struct obs_master_final_gate_state s;if(!obs_master_final_gate_get(&s)||!s.available||s.running||s.mix_identity!=r->expected_mix_identity||s.generation!=r->expected_generation)return false;
++ uint32_t seq;if(!lock_seq(&command.seq,&seq))return false;
++ /* Pending acceptance is not an observed frame. Refuse to overwrite it. */
++ const uint32_t ticket=load(&command.serial);
++ if(ticket>=INT_MAX-1||ticket!=s.command_serial&&load(&command.identity)==s.mix_identity&&load(&command.generation)==s.generation){unlock_seq(&command.seq,seq);return false;}
++ if(load(&generation)!=r->expected_generation||load(&observed.identity)!=r->expected_mix_identity||!load(&available)){unlock_seq(&command.seq,seq);return false;}
++ store(&command.identity,r->expected_mix_identity);store(&command.generation,r->expected_generation);
++ store(&command.enabled,r->enabled);store(&command.active,r->active);store(&command.duration,r->duration_ms);
++ store(&command.serial,ticket+1);unlock_seq(&command.seq,seq);*serial=ticket+1;return true;
++}
++void obs_final_gate_prepare(struct obs_final_gate_runtime *r,bool master,uint64_t pts){
++ r->master=master;if(!master)return;
++ const uint32_t epoch=load(&generation);
++ if(r->generation!=epoch){
++  r->generation=epoch;r->enabled=false;r->requested_active=false;r->running=false;r->clock_fault=false;
++  r->gain=r->from_gain=r->to_gain=1;r->applied_serial=0;r->last_pts_ns=pts;r->duration_ns=0;
++ }
++ if(!r->identity||!epoch){r->enabled=false;r->gain=1;r->clock_fault=true;return;}
++ if(r->last_pts_ns&&pts<r->last_pts_ns){r->clock_fault=true;r->enabled=false;r->requested_active=false;r->running=false;r->gain=1;return;}
++ r->last_pts_ns=pts;
++ struct obs_master_final_gate_request c;uint32_t serial;
++ if(!r->clock_fault&&read_command(&c,&serial)&&serial!=r->applied_serial&&c.expected_mix_identity==r->identity&&c.expected_generation==epoch){
++  r->applied_serial=serial;r->enabled=c.enabled||r->gain<1;r->requested_active=c.active;
++  r->from_gain=r->gain;r->to_gain=c.enabled&&c.active?0:1;r->start_pts_ns=pts;r->duration_ns=(uint64_t)c.duration_ms*1000000u;
++  r->running=r->from_gain!=r->to_gain;
++ }
++ if(r->running){
++  const uint64_t elapsed=pts-r->start_pts_ns;
++  const double t=elapsed>=r->duration_ns?1:(double)elapsed/(double)r->duration_ns;
++  r->gain=r->from_gain+(r->to_gain-r->from_gain)*t;
++  if(t==1){r->running=false;r->gain=r->to_gain;}
++ }
++ /* Disabled commands keep the gate until a full identity frame; then no work remains. */
++ if(!r->running&&r->gain==1&&!r->requested_active){struct obs_master_final_gate_request c;uint32_t serial;if(read_command(&c,&serial)&&serial==r->applied_serial&&!c.enabled)r->enabled=false;}
++}
++/* Render-thread only. No command acceptance, clock advance, or global observation by a follower. */
++void obs_final_gate_inherit(struct obs_final_gate_runtime *r,const struct obs_final_gate_runtime *m,uint64_t pts){
++ r->master=false;
++ if(!r->follows_master)return;
++ if(m&&(r->generation!=m->generation||r->parent_identity!=m->identity)){
++  r->generation=m->generation;r->parent_identity=m->identity;r->clock_fault=false;r->frame_seq=0;
++ }
++ if(!m||!m->master||!m->identity||!m->generation||m->generation!=load(&generation)||m->last_pts_ns!=pts||m->clock_fault||r->clock_fault){
++  r->enabled=false;r->requested_active=false;r->running=false;r->gain=1;r->clock_fault=true;r->last_pts_ns=pts;return;
++ }
++ r->applied_serial=m->applied_serial;r->enabled=m->enabled;r->requested_active=m->requested_active;
++ r->running=m->running;r->gain=m->gain;r->from_gain=m->from_gain;r->to_gain=m->to_gain;
++ r->start_pts_ns=m->start_pts_ns;r->duration_ns=m->duration_ns;r->last_pts_ns=pts;
++}
++void obs_final_gate_finish_inherited(struct obs_final_gate_runtime *r,bool applied){
++ if(!r->follows_master||r->master)return;
++ if(!applied||r->frame_seq==UINT32_MAX){r->clock_fault=true;r->running=false;return;}
++ ++r->frame_seq;
++}
++bool obs_final_gate_reuse_blocked(const struct obs_final_gate_runtime *r){
++ if(r->enabled||r->gain<1||r->clock_fault)return true;
++ struct obs_master_final_gate_request c;uint32_t serial;
++ return (r->master||r->follows_master)&&read_command(&c,&serial)&&c.expected_mix_identity==(r->master?r->identity:r->parent_identity)&&c.expected_generation==load(&generation)&&c.enabled;
++}
++void obs_final_gate_publish(struct obs_final_gate_runtime *r,uint64_t pts,bool draw_applied){
++ if(!r->master)return;
++ if(!draw_applied||r->frame_seq==UINT32_MAX){r->clock_fault=true;r->running=false;}
++ uint32_t seq;if(!lock_seq(&observed.seq,&seq)){store(&available,0);return;}
++ store(&observed.identity,r->identity);store(&observed.generation,r->generation);store(&observed.command_serial,r->applied_serial);
++ store(&observed.enabled,r->enabled);store(&observed.active,r->requested_active);store(&observed.running,r->running);store(&observed.fault,r->clock_fault);
++ store(&observed.gain,(uint32_t)(r->gain*16777216.0));store(&observed.frame_seq,++r->frame_seq);store(&observed.pts_lo,(uint32_t)pts);store(&observed.pts_hi,(uint32_t)(pts>>32));
++ unlock_seq(&observed.seq,seq);store(&available,r->identity&&r->generation==load(&generation)&&!r->clock_fault);
++}
+diff --git a/libobs/obs-video.c b/libobs/obs-video.c
+index eca6f83..882de04 100644
+--- a/libobs/obs-video.c
++++ b/libobs/obs-video.c
+@@ -139,6 +139,9 @@ static inline bool can_reuse_mix_texture(const struct obs_core_video_mix *mix, s
+ 		const struct obs_core_video_mix *other = obs->video.mixes.array[i];
+ 		if (other == mix)
+ 			break;
++		// Post-gate textures must never be reused or gated twice in another mix.
++		if(obs_final_gate_reuse_blocked(&mix->final_gate)||obs_final_gate_reuse_blocked(&other->final_gate))
++			continue;
+ 		if (other->view != mix->view)
+ 			continue;
+ 		if (other->render_space != mix->render_space)
+@@ -168,9 +171,11 @@ static inline void draw_mix_texture(const size_t mix_idx)
+ 	gs_enable_framebuffer_srgb(false);
+ }
+ 
++#include "obs-final-gate-render.h"
+ static const char *render_main_texture_name = "render_main_texture";
+ static inline void render_main_texture(struct obs_core_video_mix *video)
+ {
++	/* Gate state for every mix was latched once in output_frames at the common frame PTS. */
+ 	uint32_t base_width = video->ovi.base_width;
+ 	uint32_t base_height = video->ovi.base_height;
+ 
+@@ -212,6 +217,10 @@ static inline void render_main_texture(struct obs_core_video_mix *video)
+ 
+ 	pthread_mutex_unlock(&obs->data.draw_callbacks_mutex);
+ 
++	// All channels and post-render callbacks are composed before this final stage.
++	const bool final_draw_applied=draw_master_final_gate(video);
++	obs_final_gate_finish_inherited(&video->final_gate,final_draw_applied);
++	obs_final_gate_publish(&video->final_gate,obs->video.video_time,final_draw_applied);
+ 	GS_DEBUG_MARKER_END();
+ 	profile_end(render_main_texture_name);
+ }
+@@ -915,7 +924,20 @@ static inline void output_frame(struct obs_core_video_mix *video)
+ 
+ static inline void output_frames(void)
+ {
+-	pthread_mutex_lock(&obs->video.mixes_mutex);
++ pthread_mutex_lock(&obs->video.mixes_mutex);
++ /* A single render-owned snapshot: order of mixes cannot advance the ramp twice or use a previous PTS. */
++ struct obs_core_video_mix *master = obs->data.main_canvas ? obs->data.main_canvas->mix : NULL;
++ struct obs_final_gate_runtime frame_gate = {0};
++ if (master && master->view) {
++  obs_final_gate_prepare(&master->final_gate, true, obs->video.video_time);
++  frame_gate = master->final_gate;
++ }
++ for (size_t i=0; i<obs->video.mixes.num; ++i) {
++  struct obs_core_video_mix *mix=obs->video.mixes.array[i];
++  if (mix==master) continue;
++  mix->final_gate.master=false;
++  if (mix->final_gate.follows_master) obs_final_gate_inherit(&mix->final_gate, master && master->view ? &frame_gate : NULL, obs->video.video_time);
++ }
+ 	for (size_t i = 0, num = obs->video.mixes.num; i < num; i++) {
+ 		struct obs_core_video_mix *mix = obs->video.mixes.array[i];
+ 		if (mix->view) {
+diff --git a/libobs/obs-view.c b/libobs/obs-view.c
+index 9aa3214..5c65889 100644
+--- a/libobs/obs-view.c
++++ b/libobs/obs-view.c
+@@ -147,7 +147,7 @@ video_t *obs_view_add(obs_view_t *view)
+ 	return obs_view_add2(view, &obs->data.main_canvas->mix->ovi);
+ }
+ 
+-video_t *obs_view_add2(obs_view_t *view, struct obs_video_info *ovi)
++static video_t *obs_view_add_final_gate_internal(obs_view_t *view, struct obs_video_info *ovi, bool follows_master)
+ {
+ 	if (!view || !ovi)
+ 		return NULL;
+@@ -157,6 +157,8 @@ video_t *obs_view_add2(obs_view_t *view, struct obs_video_info *ovi)
+ 		return NULL;
+ 	}
+ 	mix->view = view;
++	/* Immutable routing role is assigned before the mix becomes visible to render. */
++	mix->final_gate.follows_master = follows_master;
+ 
+ 	pthread_mutex_lock(&obs->video.mixes_mutex);
+ 	da_push_back(obs->video.mixes, &mix);
+@@ -165,6 +167,16 @@ video_t *obs_view_add2(obs_view_t *view, struct obs_video_info *ovi)
+ 	return mix->video;
+ }
+ 
++video_t *obs_view_add2(obs_view_t *view, struct obs_video_info *ovi)
++{
++ return obs_view_add_final_gate_internal(view, ovi, false);
++}
++
++video_t *obs_view_add_program_final_gate(obs_view_t *view, struct obs_video_info *ovi)
++{
++ return obs_view_add_final_gate_internal(view, ovi, true);
++}
++
+ void obs_view_remove(obs_view_t *view)
+ {
+ 	if (!view)
+diff --git a/libobs/obs.c b/libobs/obs.c
+index 952ce2b..b569f95 100644
+--- a/libobs/obs.c
++++ b/libobs/obs.c
+@@ -658,6 +658,8 @@ static int obs_init_video_mix(struct obs_video_info *ovi, struct obs_core_video_
+ struct obs_core_video_mix *obs_create_video_mix(struct obs_video_info *ovi)
+ {
+ 	struct obs_core_video_mix *video = bzalloc(sizeof(struct obs_core_video_mix));
++	video->final_gate.identity=obs_final_gate_new_identity();
++	video->final_gate.gain=video->final_gate.from_gain=video->final_gate.to_gain=1.0;
+ 	if (obs_init_video_mix(ovi, video) != OBS_VIDEO_SUCCESS) {
+ 		bfree(video);
+ 		video = NULL;
+@@ -797,6 +799,7 @@ static void obs_free_render_textures(struct obs_core_video_mix *video)
+ 
+ void obs_free_video_mix(struct obs_core_video_mix *video)
+ {
++	obs_final_gate_invalidate_identity(video->final_gate.identity);
+ 	if (video->video) {
+ 		video_output_close(video->video);
+ 		video->video = NULL;
+diff --git a/libobs/obs.h b/libobs/obs.h
+index 4e51eb4..47bd1fe 100644
+--- a/libobs/obs.h
++++ b/libobs/obs.h
+@@ -31,6 +31,7 @@
+ 
+ #include "obs-config.h"
+ #include "obs-defs.h"
++#include "obs-final-gate.h"
+ #include "obs-data.h"
+ #include "obs-properties.h"
+ #include "obs-interaction.h"
+@@ -975,6 +976,8 @@ EXPORT video_t *obs_view_add(obs_view_t *view);
+ 
+ /** Adds a view to the main render loop, with custom video settings */
+ EXPORT video_t *obs_view_add2(obs_view_t *view, struct obs_video_info *ovi);
++/* Explicit experimental Program role; Source/clean/Preview/AUX never opt in implicitly. */
++EXPORT video_t *obs_view_add_program_final_gate(obs_view_t *view, struct obs_video_info *ovi);
+ 
+ /** Removes a view from the main render loop */
+ EXPORT void obs_view_remove(obs_view_t *view);
+-- 
+2.56.0.windows.1
+

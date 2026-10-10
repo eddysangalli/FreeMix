@@ -174,6 +174,12 @@ const server=createServer(async(req,res)=>{
         const checked=await production.checkOperation({id:u.searchParams.get('id'),scope:u.searchParams.get('scope')});
         return json(res,200,{success:true,...checked,operation:publicOperation(checked.operation)});
       }
+      if(path==='/api/final-program-gate'){
+        if(req.method!=='GET'){res.setHeader('Allow','GET');return json(res,405,{success:false,error:'Use GET somente para consultar'});}
+        if(!local(req))return json(res,403,{success:false,error:'Consulta do beta Master disponível somente neste computador'});
+        if([...u.searchParams.keys()].some(k=>k!=='mixId')||u.searchParams.getAll('mixId').length>1||(u.searchParams.get('mixId')??'0')!=='0')return json(res,400,{success:false,error:'Consulta disponível somente para Mix1/Master; nenhuma opção habilita o beta'});
+        return json(res,200,{success:true,finalProgramGate:await production.readFinalProgramGate()});
+      }
       if(path==='/api/srt-hdr'){if(req.method!=='GET')return json(res,405,{success:false});if(!local(req))return json(res,403,{success:false,error:'Consulta HDR disponível somente neste computador'});const id=u.searchParams.get('senderId')??'0';if(!/^[0-3]$/.test(id))throw Error('Envio HDR inválido');return json(res,200,{success:true,outputs:await production.outputEngine.readSrtHdr(Number(id))});}
       if(path==='/api/network'&&req.method==='GET'){if(!local(req))return json(res,403,{success:false,error:'Rede disponível somente neste computador'});return json(res,200,await production.networkEngine.read());}
       if(path==='/api/gc-compatible'&&req.method==='GET'){if(!local(req))return json(res,403,{success:false,error:'Editor HTML apenas local'});return json(res,200,{success:true,gcCompatible:await production.gcCompatible.summary()});}

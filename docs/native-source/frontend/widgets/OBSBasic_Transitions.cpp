@@ -125,6 +125,7 @@ void OBSBasic::TriggerQuickTransition(int id)
 	}
 }
 
+#include "FreeMixFinalProgramGate.hpp"
 // FreeMix manual FTB: the native quicktransition flag is authoritative.
 freemix_ftb::Snapshot OBSBasic::FreeMixFtbSnapshot()
 {
@@ -134,7 +135,7 @@ freemix_ftb::Snapshot OBSBasic::FreeMixFtbSnapshot()
  state.context=freeMixFtbPolicy.Context(state.scope);
  state.studio=IsPreviewProgramMode();state.closing=isClosing();state.manual=tBarActive;
  const auto quick=std::find_if(quickTransitions.begin(),quickTransitions.end(),[](const QuickTransition &q){return q.fadeToBlack&&q.source&&!obs_source_removed(q.source)&&strcmp(obs_source_get_id(q.source),"fade_transition")==0&&q.duration>=50&&q.duration<=20000;});
- state.available=quick!=quickTransitions.end();
+ state.available=quick!=quickTransitions.end()&&!FreeMixFinalGateBlocksFtb();
  OBSSourceAutoRelease outputTransition=obs_get_output_source(0);
  OBSSourceAutoRelease output=outputTransition?obs_transition_get_active_source(outputTransition):nullptr;
  OBSSourceAutoRelease program=obs_frontend_get_current_scene();
@@ -154,7 +155,7 @@ freemix_ftb::Snapshot OBSBasic::FreeMixFtbSnapshot()
 
 bool OBSBasic::FreeMixTriggerFadeToBlack(const QuickTransition &quick)
 {
- if(isClosing()||!IsPreviewProgramMode()||tBarActive||!quick.fadeToBlack||!quick.source||obs_source_removed(quick.source)||strcmp(obs_source_get_id(quick.source),"fade_transition")!=0||quick.duration<50||quick.duration>20000)return false;
+ if(FreeMixFinalGateBlocksFtb()||isClosing()||!IsPreviewProgramMode()||tBarActive||!quick.fadeToBlack||!quick.source||obs_source_removed(quick.source)||strcmp(obs_source_get_id(quick.source),"fade_transition")!=0||quick.duration<50||quick.duration>20000)return false;
  OBSSourceAutoRelease current=obs_get_output_source(0);
  if(!current||obs_transition_is_active(current)||obs_transition_is_active(quick.source))return false;
  OBSSourceAutoRelease rendered=obs_transition_get_active_source(current);
@@ -433,6 +434,8 @@ void OBSBasic::TransitionFullyStopped()
 void OBSBasic::TransitionToScene(OBSSource source, bool force, bool quickTransition, int quickDuration, bool black,
 				 bool manual)
 {
+	obs_master_final_gate_state final={};
+	if(finalGatePolicy.Pending()||(obs_master_final_gate_get(&final)&&(final.requested_active||final.running)))return;
 	obs_scene_t *scene = obs_scene_from_source(source);
 	bool usingPreviewProgram = IsPreviewProgramMode();
 	if (!scene) {
@@ -934,6 +937,8 @@ static bool ValidTBarTransition(OBSSource transition)
 
 void OBSBasic::TBarChanged(int value)
 {
+	obs_master_final_gate_state final={};
+	if(finalGatePolicy.Pending()||(obs_master_final_gate_get(&final)&&(final.requested_active||final.running)))return;
 	OBSSourceAutoRelease transition = obs_get_output_source(0);
 
 	if (!tBarActive) {

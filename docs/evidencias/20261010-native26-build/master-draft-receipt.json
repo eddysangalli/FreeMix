@@ -1,0 +1,142 @@
+{
+  "status": "PASS_OFFSIDE_SOURCE_OBJECT_MODEL_ONLY",
+  "baselineCommit": "de136e83595be92162ada8c7adc50f52751bd4ef",
+  "canonicalEdited": false,
+  "sharedBuild": false,
+  "linkedNative": false,
+  "operatorTouched": false,
+  "experimentalDefaultEnabled": false,
+  "audioPolicy": "unchanged",
+  "coverage": "main-video-only-after-composition",
+  "publicProductFiles": [
+    {
+      "path": "frontend/widgets/FreeMixFinalGatePolicy.hpp",
+      "baseSha256": null,
+      "draftSha256": "e51b936b276119d24c9bdef5d80098ab81cf11955165085b64b0dc97fd9d3cce",
+      "bytes": 1400,
+      "patchSha256": "da49c0f00c38a6a61504710c7460285d783d12cb5b50daa2d72bca7a3482dd67"
+    },
+    {
+      "path": "frontend/widgets/FreeMixFinalProgramGate.hpp",
+      "baseSha256": null,
+      "draftSha256": "0d8966a23f9eae86aa959ce751c18f93bdd5d8e53728783c90ab60ea914a0177",
+      "bytes": 8630,
+      "patchSha256": "8375db8e9fe352014a62b1a3f3a2e6c8b0b8f5538439ef124efd478330d7ad50"
+    },
+    {
+      "path": "frontend/widgets/FreeMixMultistream.cpp",
+      "baseSha256": "acb98c717b0852bb48be07c0fea20609829a609218a1d6dc2c14a16ca8ce0e68",
+      "draftSha256": "612dc5449570b3f91ff6b7aa320d6b349cf55fe23e7a2b684065beea3a45d538",
+      "bytes": 123127,
+      "patchSha256": "36836b3cc326750c2bdb1a5f660649948a09c9be7d1bde2259ae4e86c2d2475d"
+    },
+    {
+      "path": "frontend/widgets/OBSBasic_Transitions.cpp",
+      "baseSha256": "b68b6220aa52aed59761b8bdbd98af6d90b7758483019a82eb94ded8e8ab7f77",
+      "draftSha256": "2968ad9de965ea5882a92704e0406d63e1b17437b73d32de854aa8f0954f336d",
+      "bytes": 53869,
+      "patchSha256": "275f84146a3096653e47e6a9ea27418fa55ccda19df1f9177ce53e8c04b96c7e"
+    },
+    {
+      "path": "frontend/widgets/OBSBasic.hpp",
+      "baseSha256": "9b87b7b3d76c8d5b277f85e8c1e5a8e2301cbd59fa998680699cf9466cc9e95a",
+      "draftSha256": "0dea38d93b7df0cac94c2e61053a7d4b0244e3b43634762a36124385ff5c7bc3",
+      "bytes": 52667,
+      "patchSha256": "cfd5c381efe3e4534f35427364e714f2519dbea8e5bf64644e2756682d9503c8"
+    },
+    {
+      "path": "libobs/CMakeLists.txt",
+      "baseSha256": "b4fd6ee2378eadb588ca45b9194319ac0784ff00b33ceeced1238269dfa1afe5",
+      "draftSha256": "2869a7de2869b95baaf160039a9b1e4c5a73a37e42d571759b2a657f187b9dac",
+      "bytes": 8799,
+      "patchSha256": "74951b5be58cb6e62c27c9f34e30ceab650f7ffd01564aed7784df1c0ab96c28"
+    },
+    {
+      "path": "libobs/obs-final-gate-internal.h",
+      "baseSha256": null,
+      "draftSha256": "d0643def64ebf12dce57bcbf65bed929d4de83faebd12a7411ddf416c6dacd72",
+      "bytes": 795,
+      "patchSha256": "9be1b685e4233fa27602058e203360bdafb1d2537d39243cfe242b84800c9d7a"
+    },
+    {
+      "path": "libobs/obs-final-gate-render.h",
+      "baseSha256": null,
+      "draftSha256": "f49b61fe74d9f3bf063e2b903c79900108550c06306fefaddbc4f4e54075f54a",
+      "bytes": 1053,
+      "patchSha256": "6e99385f1e9b46b05e7116559b4bcbbd23ed6736b8057266f7fee20ab7e00a68"
+    },
+    {
+      "path": "libobs/obs-final-gate.h",
+      "baseSha256": null,
+      "draftSha256": "9680a6079ef727b538aeffa9d1246f0b620f982132d5edb4ec0713ad2ac11eba",
+      "bytes": 1073,
+      "patchSha256": "e6e27d7e41a4d180f2f3ffb29d1ba0ded2b74dd821d2d84a037292b41ec03840"
+    },
+    {
+      "path": "libobs/obs-internal.h",
+      "baseSha256": "ae7063578b19a8a1ce138aa2b47d6dbeede2cd07c387045ee3108c941fd8b429",
+      "draftSha256": "10973e816e1802f38d156439829019c61a38a4e0cbb53be6f3e4e5eda621f0f2",
+      "bytes": 45764,
+      "patchSha256": "6d34eefe2793df8e9845f4e21add1be0d986c8575d2dd439524e51727699aa8a"
+    },
+    {
+      "path": "libobs/obs-master-final-gate.c",
+      "baseSha256": null,
+      "draftSha256": "9d34d7571a7a5ec11476b798cef11cc7235667485639d0b9987d0980b27cb179",
+      "bytes": 7379,
+      "patchSha256": "18babd82fa8b0d02a424bc28bf1da4d1788bf18c110aa4555dab449aff39859a"
+    },
+    {
+      "path": "libobs/obs-video.c",
+      "baseSha256": "51c4d545b443bdcbee037c234f88532e66365bee792b2633d274deced98ac997",
+      "draftSha256": "29be025a041172373121918d6bf8de7ffce58291d67920ae081228ead006ad17",
+      "bytes": 38749,
+      "patchSha256": "e7d41125a69d0f58716796820b76a96787e1b557a539d514eae324117a5b5dbb"
+    },
+    {
+      "path": "libobs/obs.c",
+      "baseSha256": "3649513c13032d66cc12ad35e5a348c32c2c12fccbeecd235c4a3261e7eefcea",
+      "draftSha256": "8476ed24c58734f08ad60b674d363e4d32a58f4d76ab9fc54f3a816f35719580",
+      "bytes": 103224,
+      "patchSha256": "d770ef567b87689d302a19f2c8de55219c947867f1a5aeb29d89757c407aac97"
+    },
+    {
+      "path": "libobs/obs.h",
+      "baseSha256": "f1f22c8cc965536f3cf940c051d1471804be99854fc6de5e08d8b45a34dcbdbe",
+      "draftSha256": "1bebfb3c32306289e4f2c8e299770e0c02fcbf982a868748466d57e12b94aad0",
+      "bytes": 110171,
+      "patchSha256": "6918c8e088f112f15242b20dc9becfe1c4f2fd9a18055909b28152c87ee12882"
+    }
+  ],
+  "proof": {
+    "compile": "PASS_5_REAL_OFFSIDE_TUS_OBJECT_ONLY",
+    "realTranslationUnits": 5,
+    "sourceChecks": 15,
+    "actualCoreAndGraphicsMockChecks": 218,
+    "concurrentModelFrames": 10000,
+    "compilerWarnings": "Qt upstream compressEvent deprecation: two warnings per frontend TU; no compile errors",
+    "modelResultSha256": "afa1a5968ea2e9f4c2a59c92f709671d3fe42c4e097306aa42dfb7ef0e085b81",
+    "compileReceiptSha256": "701f117ad7e66d5f36bb2a1fbceba00ff5493bde410866da45a99503230f8c13",
+    "sourceReceiptSha256": "efda2965a110acd8c5c3073e1ca75608e94dbf77e3e6c89d6a3374357c990fec"
+  },
+  "limits": [
+    "No Native link/MOC/build or process was executed",
+    "GS mock and semantic model are not GPU pixel evidence",
+    "Independent Program/Calls/NDI/OMT/SDI outputs remain uncovered or unverified",
+    "Audio/HDR/FPS/latency/endurance performance not homologated by this model",
+    "Root must integrate into a coherent full build before real Master screenshot/video validation"
+  ],
+  "nextCaptureContract": "Existing OBSBasic.Screenshot hotkey and ScreenshotObj obs_render_main_texture, only own Native QA after Root integration; no Qt/OS capture bypass",
+  "historicalHarnessFailures": [
+    "PREPARE-FIRST-FAIL.json",
+    "COMPILE-FIRST-FAIL.json",
+    "COMPILE-SECOND-FAIL.json"
+  ],
+  "excluded": [
+    "raw logs",
+    "compiler response files",
+    "object/executable/library/PDB files",
+    "compile-tree cache",
+    "operator configs or credentials"
+  ]
+}

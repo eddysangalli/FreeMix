@@ -1,0 +1,29 @@
+{
+  "status": "INTEGRATED_BACKEND_DEFAULT_OFF",
+  "at": "2026-10-10T08:20:35.830Z",
+  "files": [
+    {
+      "path": "ferramentas/controle-producao.mjs",
+      "before": "00ca7260dbae567ba5a3f615e94710373dffb9b24ae2a95924224dc65cb348f7",
+      "after": "be4682074442b6cbb8f06c2aa6638223009abe071b8d769d5a2aac870bd42908"
+    },
+    {
+      "path": "ferramentas/final-program-gate-producao.mjs",
+      "before": null,
+      "after": "9342de2d70d0c6bef1eaf4266aeb0994f6f2a436ae9b96d06cdcae37a7b4dbfd"
+    },
+    {
+      "path": "ferramentas/servidor-api.mjs",
+      "before": "49b89d2e875d9a4e277449f59555ba14f9bcfd801d25160977e7d1b9b525176f",
+      "after": "503338175f0d63e2d2d806e65a78eaaa2e2ef18d2bcde88e185a076af9a53ec2"
+    }
+  ],
+  "uiMounted": false,
+  "qualifiedByRequest": false,
+  "operatorTouched": false,
+  "installerChanged": false,
+  "limits": [
+    "Native26 pixels and output/audio proof pending",
+    "No full FTB qualification or new menu enabled"
+  ]
+}
