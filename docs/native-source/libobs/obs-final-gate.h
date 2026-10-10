@@ -5,10 +5,11 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-/* Experimental main-video final stage. Audio and independent video are unchanged. */
+/* Experimental v2 final stage: linear-light sRGB on GS_CS_SRGB RGBA/BGRA8.
+ * Audio unchanged. Followers require their own supported target; no HDR/16F support. */
 struct obs_master_final_gate_state {
  uint32_t contract_version, mix_identity, generation, command_serial;
- bool available, enabled, requested_active, running, black_observed, normal_observed, clock_fault;
+ bool available, enabled, requested_active, running, black_observed, normal_observed, clock_fault, target_supported;
  uint32_t gain_q24, frame_seq;
  uint64_t frame_pts_ns;
 };

@@ -1,0 +1,68 @@
+{
+  "status": "OBSERVED_SYNTHETIC_AV_CONSUMER_DIAGNOSTIC_NO_PRODUCT_AV_APPROVAL",
+  "nativeStarted": false,
+  "operatorTouched": false,
+  "productModified": false,
+  "experimental": true,
+  "avSyncProven": false,
+  "externalServersUsed": false,
+  "startedAt": "2026-10-10T10:26:18.455Z",
+  "args": {
+    "root-reviewed": "EXECUTE-OWN-SYNTHETIC-BROWSER-AV-CONSUMER-DIAGNOSTIC-20S",
+    "preparation-sha": "6b98b3be038deff5ee09017e4af48169e7bb9e6c23520969945e6c15be8e123e",
+    "allowlist-sha": "f05f3556af9a1bdb54eeb8b330c6fd2df29862d40704c1cedfef8438cb83adfe"
+  },
+  "checks": [],
+  "port": 53944,
+  "url": "http://127.0.0.1:53944/",
+  "browserReportSha256": "5da820690972ef74fc0c1c7fddcb0755ded42fb34111d23c139f09b88726d3a7",
+  "originalAvAcceptance": {
+    "pass": false,
+    "error": "ERR_ASSERTION",
+    "browserStatus": "INCONCLUSIVE_INSUFFICIENT_RECEIVED_PAIRS"
+  },
+  "diagnostic": {
+    "receiverHeartbeatMessages": 103,
+    "lastReceiverHeartbeat": {
+      "type": "audio-diagnostic",
+      "role": "receiver",
+      "processCalls": 7651,
+      "emptyCalls": 0,
+      "inputFrames": 979328,
+      "inputSamples": 1958656,
+      "nonzeroSamples": 0,
+      "aboveToneThreshold": 0,
+      "nonfiniteSamples": 0,
+      "maxInputChannels": 2,
+      "maxInputFrames": 128,
+      "peak": 0,
+      "emitted": 103,
+      "rms": 0,
+      "frame": 979200,
+      "contextTime": 20.4,
+      "sampleRate": 48000
+    },
+    "beforeGeneratorBlocks": 400,
+    "beforeGeneratorPeak": 0.3499999940395355,
+    "constructedAudioDataPeak": 0.3499999940395355,
+    "processorErrors": 0,
+    "rtpSamples": 20,
+    "causeProven": false
+  },
+  "httpClosed": true,
+  "afterPinChecks": {
+    "texts": 28,
+    "externalHelpers": 2,
+    "noLinks": true,
+    "hashesMatch": true,
+    "httpClosed": true
+  },
+  "finishedAt": "2026-10-10T10:27:04.044Z",
+  "limits": [
+    "Synthetic browser AudioData/VideoFrame generated source and local RTC only; no actual NativePCM, CEF, VDO SDK, WAN or microphone",
+    "A zero-gain AudioContext destination participates in browser output clock; no audible tone or physical device calibration claimed",
+    "Received edges use browser expectedDisplayTime and mapped silent audio context output time; frame/quantum/mapping/threshold uncertainty stated",
+    "PASS threshold is finite-run declared measurement resolution; avSyncProven remainsfalse for product",
+    "Native25 CEF prior proof was595decoded vs540callbacks; this audio experiment does not reinterpret those counts"
+  ]
+}

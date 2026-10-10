@@ -1,0 +1,445 @@
+From a09423dae10dbeed6d7f18b30a6cc22b78c49731 Mon Sep 17 00:00:00 2001
+From: Eddy Sangalli <eddyrodrigues@outlook.com>
+Date: Sat, 10 Oct 2026 07:16:59 -0300
+Subject: [PATCH] Fix final SDR gate gain domain and stamp Call PCM capture
+ epochs
+
+---
+ frontend/widgets/FreeMixCallAudio.cpp        | 111 +++++++++++++++----
+ frontend/widgets/FreeMixCallAudio.hpp        |   3 +
+ frontend/widgets/FreeMixCallAudioClock.hpp   |  46 ++++++++
+ frontend/widgets/FreeMixFinalProgramGate.hpp |  14 ++-
+ libobs/obs-final-gate-internal.h             |   2 +-
+ libobs/obs-final-gate-render.h               |  16 ++-
+ libobs/obs-final-gate.h                      |   5 +-
+ libobs/obs-master-final-gate.c               |  10 +-
+ 8 files changed, 173 insertions(+), 34 deletions(-)
+ create mode 100644 frontend/widgets/FreeMixCallAudioClock.hpp
+
+diff --git a/frontend/widgets/FreeMixCallAudio.cpp b/frontend/widgets/FreeMixCallAudio.cpp
+index c8cb8e9..4fff635 100644
+--- a/frontend/widgets/FreeMixCallAudio.cpp
++++ b/frontend/widgets/FreeMixCallAudio.cpp
+@@ -3,6 +3,7 @@
+  * Audio remains local until the controller explicitly starts a return publisher.
+  * GPL-2.0-or-later, same license as the fork. */
+ #include "FreeMixCallAudio.hpp"
++#include "FreeMixCallAudioClock.hpp"
+ #include <obs.hpp>
+ #include <obs-frontend-api.h>
+ #include <QByteArray>
+@@ -24,21 +25,24 @@ struct Packet {
+  uint32_t channels;
+  QByteArray pcm;
+  std::string lease;
++ uint64_t generation = 0, privacyGeneration = 0, clockEpoch = 0, sourceTimestamp = 0, capturedAt = 0;
++ int64_t timestampOffset = 0;
++ uint32_t anchorReason = 0;
+ };
+ struct Tap {
+  obs_source_t *source = nullptr;
+  std::string uuid;
+  size_t channels = 0;
+  uint32_t rate = 0;
+- int64_t timestampOffset = 0;
+- uint64_t lastTimestamp = 0;
+- bool clockStarted = false;
++ freemix_call_audio::Clock clock;
++ uint64_t generation = 0;
+ };
+ std::mutex queueMutex;
+ std::deque<Packet> packets;
+ std::vector<std::unique_ptr<Tap>> taps;
+ size_t queuedBytes = 0;
+-uint64_t dropped = 0;
++uint64_t dropped = 0, clockFaults = 0;
++freemix_call_audio::Epoch captureGeneration, privacyGeneration;
+ std::string privateUuid, privateLease;
+ std::chrono::steady_clock::time_point deadline;
+ 
+@@ -46,6 +50,12 @@ void Capture(void *param, obs_source_t *source, const struct audio_data *audio,
+ {
+  auto *tap = static_cast<Tap *>(param);
+  if (muted || !audio || !audio->frames || audio->frames > 8192) return;
++ freemix_call_audio::CaptureIdentity identity;
++ {
++  std::lock_guard<std::mutex> lock(queueMutex);
++  identity = {captureGeneration.value, privacyGeneration.value};
++  if (!identity.Matches(captureGeneration, privacyGeneration, tap->generation)) return;
++ }
+  const float gain = obs_source_get_volume(source);
+  if (!(gain > 0)) return;
+  Packet p{tap->uuid, audio->timestamp, audio->frames, tap->rate, uint32_t(tap->channels), {}, {}};
+@@ -55,20 +65,19 @@ void Capture(void *param, obs_source_t *source, const struct audio_data *audio,
+   for (size_t ch = 0; ch < tap->channels; ch++)
+    out[frame * tap->channels + ch] = audio->data[ch] ? reinterpret_cast<const float *>(audio->data[ch])[frame] * gain : 0;
+  std::lock_guard<std::mutex> lock(queueMutex);
++ // Discard PCM copied across a stop/configure or Director lease/privacy change.
++ if (!identity.Matches(captureGeneration, privacyGeneration, tap->generation)) return;
+  // Browser and file sources can use epoch and monotonic clocks respectively.
+  // Keep each source's sample spacing, anchored to a common monotonic clock.
+  const uint64_t now = os_gettime_ns();
+- const uint64_t duration = uint64_t(audio->frames) * 1000000000ULL / tap->rate;
+- const int64_t target = int64_t(now > duration ? now - duration : 0);
+- int64_t aligned = int64_t(audio->timestamp) + tap->timestampOffset;
+- if (!tap->clockStarted || audio->timestamp < tap->lastTimestamp ||
+-     aligned > int64_t(now) + 100000000LL || aligned < int64_t(now) - 750000000LL) {
+-  tap->timestampOffset = target - int64_t(audio->timestamp);
+-  tap->clockStarted = true;
+-  aligned = target;
++ if (captureGeneration.exhausted || privacyGeneration.exhausted || tap->generation != captureGeneration.value ||
++     !tap->clock.Align(audio->timestamp, now, audio->frames, tap->rate, p.timestamp, p.anchorReason)) {
++  if (clockFaults != UINT64_MAX) ++clockFaults;
++  return;
+  }
+- tap->lastTimestamp = audio->timestamp;
+- p.timestamp = uint64_t(aligned > 0 ? aligned : 0);
++ p.generation = captureGeneration.value; p.privacyGeneration = privacyGeneration.value;
++ p.clockEpoch = tap->clock.epoch; p.sourceTimestamp = audio->timestamp;
++ p.capturedAt = now; p.timestampOffset = tap->clock.offset;
+  if (p.uuid == privateUuid) {
+   if (privateLease.empty()) return;
+   p.lease = privateLease;
+@@ -88,6 +97,38 @@ void Stop()
+  taps.clear();
+  std::lock_guard<std::mutex> lock(queueMutex);
+  packets.clear(); queuedBytes = 0;
++ captureGeneration.Advance();
++}
++obs_data_t *ClockSnapshot(bool drain) // caller holds queueMutex; packet swap and tap epochs share this instant
++{
++ obs_data_t *clock = obs_data_create();
++ obs_data_set_int(clock, "schema", 1);
++ obs_data_set_string(clock, "domain", "obs-monotonic-callback-anchored");
++ obs_data_set_bool(clock, "sourceTimingCertified", false);
++ obs_data_set_string(clock, "snapshotMonotonicNs", std::to_string(os_gettime_ns()).c_str());
++ obs_data_set_bool(clock, "drainSnapshot", drain);
++ obs_data_set_string(clock, "generation", std::to_string(captureGeneration.value).c_str());
++ obs_data_set_string(clock, "privacyGeneration", std::to_string(privacyGeneration.value).c_str());
++ obs_data_set_bool(clock, "generationExhausted", captureGeneration.exhausted || privacyGeneration.exhausted);
++ obs_data_set_string(clock, "faults", std::to_string(clockFaults).c_str());
++ obs_data_set_string(clock, "dropped", std::to_string(dropped).c_str());
++ OBSDataArrayAutoRelease rows = obs_data_array_create();
++ for (const auto &tap : taps) {
++  OBSDataAutoRelease row = obs_data_create();
++  obs_data_set_string(row, "uuid", tap->uuid.c_str());
++  obs_data_set_string(row, "generation", std::to_string(tap->generation).c_str());
++  obs_data_set_string(row, "epoch", std::to_string(tap->clock.epoch).c_str());
++  obs_data_set_bool(row, "started", tap->clock.started);
++  obs_data_set_bool(row, "exhausted", tap->clock.exhausted);
++  obs_data_set_string(row, "sourceTimestampNs", std::to_string(tap->clock.lastRaw).c_str());
++  obs_data_set_string(row, "alignedTimestampNs", std::to_string(tap->clock.lastAligned).c_str());
++  obs_data_set_string(row, "timestampOffsetNs", std::to_string(tap->clock.offset).c_str());
++  obs_data_set_int(row, "lastAnchorReason", tap->clock.lastAnchorReason);
++  obs_data_set_int(row, "rate", tap->rate); obs_data_set_int(row, "channels", tap->channels);
++  obs_data_array_push_back(rows, row);
++ }
++ obs_data_set_array(clock, "taps", rows);
++ return clock;
+ }
+ }
+ void FreeMixCallAudioStop()
+@@ -105,17 +146,22 @@ void FreeMixCallAudioDirector(const char *uuid, const char *lease)
+  if (nextUuid == privateUuid && nextLease == privateLease) return;
+  packets.clear(); queuedBytes = 0;
+  privateUuid = nextUuid; privateLease = nextLease;
++ privacyGeneration.Advance();
+ }
+ void FreeMixCallAudioRequest(obs_data_t *request, obs_data_t *response, void *)
+ {
+  const std::string action = obs_data_get_string(request, "action");
+- QMetaObject::invokeMethod(qApp, [request, response, action]() {
++ const bool includeClock = obs_data_get_bool(request, "includeClock");
++ QMetaObject::invokeMethod(qApp, [request, response, action, includeClock]() {
+   bool success = true;
++  OBSDataAutoRelease clock;
+   if (action == "configure") {
+    OBSDataArrayAutoRelease sources = obs_data_get_array(request, "sources");
+    struct obs_audio_info info;
+    std::vector<std::unique_ptr<Tap>> next;
+-   if (!sources || obs_data_array_count(sources) > 32 || !obs_get_audio_info(&info)) success = false;
++   if (!sources || obs_data_array_count(sources) > 32 || !obs_get_audio_info(&info) ||
++       info.samples_per_sec < 8000 || info.samples_per_sec > 192000 ||
++       get_audio_channels(info.speakers) < 1 || get_audio_channels(info.speakers) > 8) success = false;
+    else for (size_t i = 0; i < obs_data_array_count(sources); i++) {
+     OBSDataAutoRelease row = obs_data_array_item(sources, i);
+     const std::string uuid = obs_data_get_string(row, "uuid");
+@@ -134,11 +180,21 @@ void FreeMixCallAudioRequest(obs_data_t *request, obs_data_t *response, void *)
+    if (!success) {
+     for (auto &tap : next) obs_source_release(tap->source);
+    } else {
+-    Stop(); taps = std::move(next);
+-    for (auto &tap : taps) {
+-     obs_source_add_audio_capture_callback(tap->source, Capture, tap.get());
++    Stop();
++    bool generationReady;
++    uint64_t generation;
++    { std::lock_guard<std::mutex> lock(queueMutex); generationReady = !captureGeneration.exhausted && !privacyGeneration.exhausted; generation = captureGeneration.value; }
++    if (!generationReady) {
++     for (auto &tap : next) obs_source_release(tap->source);
++     success = false;
++    } else {
++     taps = std::move(next);
++     for (auto &tap : taps) {
++      tap->generation = generation;
++      obs_source_add_audio_capture_callback(tap->source, Capture, tap.get());
++     }
++     deadline = std::chrono::steady_clock::now() + std::chrono::seconds(3);
+     }
+-    deadline = std::chrono::steady_clock::now() + std::chrono::seconds(3);
+    }
+   } else if (action == "stop") Stop();
+   else if (action == "drain") {
+@@ -148,6 +204,7 @@ void FreeMixCallAudioRequest(obs_data_t *request, obs_data_t *response, void *)
+    {
+     std::lock_guard<std::mutex> lock(queueMutex);
+     batch.swap(packets); queuedBytes = 0;
++    if (includeClock) clock = ClockSnapshot(true);
+    }
+    for (auto &p : batch) {
+     OBSDataAutoRelease row = obs_data_create();
+@@ -158,12 +215,26 @@ void FreeMixCallAudioRequest(obs_data_t *request, obs_data_t *response, void *)
+     obs_data_set_int(row, "channels", p.channels);
+     obs_data_set_string(row, "pcm", p.pcm.toBase64().constData());
+     obs_data_set_string(row, "lease", p.lease.c_str());
++    if (includeClock) {
++     obs_data_set_string(row, "generation", std::to_string(p.generation).c_str());
++     obs_data_set_string(row, "privacyGeneration", std::to_string(p.privacyGeneration).c_str());
++     obs_data_set_string(row, "clockEpoch", std::to_string(p.clockEpoch).c_str());
++     obs_data_set_string(row, "sourceTimestampNs", std::to_string(p.sourceTimestamp).c_str());
++     obs_data_set_string(row, "captureMonotonicNs", std::to_string(p.capturedAt).c_str());
++     obs_data_set_string(row, "timestampOffsetNs", std::to_string(p.timestampOffset).c_str());
++     obs_data_set_int(row, "anchorReason", p.anchorReason);
++    }
+     obs_data_array_push_back(list, row);
+    }
+    obs_data_set_array(response, "packets", list);
+   } else if (action == "watchdog") {
+    if (!taps.empty() && std::chrono::steady_clock::now() > deadline) Stop();
+   } else if (action != "state") success = false;
++  if (includeClock) {
++   if (!clock) { std::lock_guard<std::mutex> lock(queueMutex); clock = ClockSnapshot(false); }
++   obs_data_set_string(clock, "serializedMonotonicNs", std::to_string(os_gettime_ns()).c_str());
++   obs_data_set_obj(response, "clock", clock);
++  }
+   obs_data_set_int(response, "sources", taps.size());
+   obs_data_set_int(response, "dropped", dropped);
+   obs_data_set_bool(response, "success", success);
+diff --git a/frontend/widgets/FreeMixCallAudio.hpp b/frontend/widgets/FreeMixCallAudio.hpp
+index 247bfdb..6f5413f 100644
+--- a/frontend/widgets/FreeMixCallAudio.hpp
++++ b/frontend/widgets/FreeMixCallAudio.hpp
+@@ -4,3 +4,6 @@ void FreeMixCallAudioRequest(obs_data_t *request, obs_data_t *response, void *);
+ void FreeMixCallAudioStop();
+ void FreeMixCallAudioTick();
+ void FreeMixCallAudioDirector(const char *uuid, const char *lease);
++
++// includeClock=true: decimal-u64 session/privacy generation, per-tap epochs and drain snapshot.
++// Observability only; no PCM format/payload change, no autostart and no certified audiovisual PTS.
+diff --git a/frontend/widgets/FreeMixCallAudioClock.hpp b/frontend/widgets/FreeMixCallAudioClock.hpp
+new file mode 100644
+index 0000000..cc9d35c
+--- /dev/null
++++ b/frontend/widgets/FreeMixCallAudioClock.hpp
+@@ -0,0 +1,46 @@
++// SPDX-License-Identifier: GPL-2.0-or-later
++#pragma once
++#include <cstdint>
++#include <limits>
++
++namespace freemix_call_audio {
++// Externally serialized as decimal strings: no JSON Number precision loss, no wrap to a previous owner.
++struct Epoch {
++ uint64_t value = 1;
++ bool exhausted = false;
++ bool Advance() {
++  if (exhausted || value == std::numeric_limits<uint64_t>::max()) { exhausted = true; return false; }
++  ++value; return true;
++ }
++};
++struct CaptureIdentity {
++ uint64_t generation, privacy;
++ bool Matches(const Epoch &g, const Epoch &p, uint64_t tapGeneration) const {
++  return !g.exhausted && !p.exhausted && generation == g.value && privacy == p.value && tapGeneration == generation;
++ }
++};
++struct Clock {
++ uint64_t epoch = 0, lastRaw = 0, lastAligned = 0;
++ int64_t offset = 0;
++ uint32_t lastAnchorReason = 0;
++ bool started = false, exhausted = false;
++ // reason: 0 continuous, 1 first anchor, 2 raw backwards, 3 future, 4 past, 5 arithmetic overflow.
++ bool Align(uint64_t raw, uint64_t now, uint32_t frames, uint32_t rate, uint64_t &timestamp, uint32_t &reason) {
++  constexpr uint64_t max = uint64_t(std::numeric_limits<int64_t>::max());
++  if (exhausted || raw > max || now > max || frames == 0 || frames > 8192 || rate < 8000 || rate > 192000) return false;
++  const uint64_t duration = uint64_t(frames) * 1000000000ULL / rate;
++  const int64_t target = int64_t(now > duration ? now - duration : 0);
++  const bool overflow = offset > 0 && raw > max - uint64_t(offset);
++  const int64_t aligned = overflow ? 0 : int64_t(raw) + offset; // negative offset cannot underflow int64 for raw >= 0
++  reason = !started ? 1 : raw < lastRaw ? 2 : overflow ? 5 :
++   aligned < 0 ? 4 : uint64_t(aligned) > now && uint64_t(aligned) - now > 100000000ULL ? 3 :
++   now > uint64_t(aligned) && now - uint64_t(aligned) > 750000000ULL ? 4 : 0;
++  if (reason) {
++   if (epoch == std::numeric_limits<uint64_t>::max()) { exhausted = true; return false; }
++   ++epoch; offset = target - int64_t(raw); started = true; lastAnchorReason = reason;
++   timestamp = uint64_t(target);
++  } else timestamp = uint64_t(aligned > 0 ? aligned : 0);
++  lastRaw = raw; lastAligned = timestamp; return true;
++ }
++};
++}
+diff --git a/frontend/widgets/FreeMixFinalProgramGate.hpp b/frontend/widgets/FreeMixFinalProgramGate.hpp
+index d4a0c76..b9925bb 100644
+--- a/frontend/widgets/FreeMixFinalProgramGate.hpp
++++ b/frontend/widgets/FreeMixFinalProgramGate.hpp
+@@ -17,7 +17,7 @@ void OBSBasic::FreeMixFinalProgramGateRequest(obs_data_t *request,obs_data_t *re
+  if(!finalGateScope.empty()&&finalGateScope!=base.scope){ResetFreeMixFinalGate();}
+  finalGateScope=base.scope;
+  obs_master_final_gate_state stage={};const bool read=obs_master_final_gate_get(&stage);
+- const bool coreAvailable=read&&stage.available;
++ const bool coreAvailable=read&&stage.contract_version==2&&stage.target_supported&&stage.available;
+  if(coreAvailable){
+   if(finalGateBoundIdentity&&(finalGateBoundIdentity!=stage.mix_identity||finalGateBoundGeneration!=stage.generation)){
+    // Core video reset already starts identity. Invalidate old pending receipts, never re-enable it.
+@@ -30,12 +30,15 @@ void OBSBasic::FreeMixFinalProgramGateRequest(obs_data_t *request,obs_data_t *re
+  if(coreAvailable&&stage.normal_observed&&!stage.requested_active&&!finalGatePolicy.Pending())finalGateCapture=nullptr;
+  const auto writeState=[&](){
+   obs_master_final_gate_state current={};const bool fresh=obs_master_final_gate_get(&current);
+-  obs_data_set_int(response,"contractVersion",1);
+-  obs_data_set_string(response,"contract","experimental-master-final-video-gate-v1");
++  obs_data_set_int(response,"contractVersion",2);
++  obs_data_set_string(response,"contract","experimental-master-final-video-gate-v2");
+   obs_data_set_string(response,"coverage","main-video-only-after-composition");
+   obs_data_set_string(response,"audioPolicy","unchanged");
++  obs_data_set_string(response,"gainDomain","linear-sRGB");
++  obs_data_set_string(response,"renderTargetContract","sRGB-SDR8");
++  obs_data_set_bool(response,"renderTargetSupported",fresh&&current.contract_version==2&&current.target_supported);
+   obs_data_set_bool(response,"experimental",true);obs_data_set_bool(response,"experimentalOptIn",finalGateExperimental);
+-  obs_data_set_bool(response,"available",fresh&&current.available&&base.studio&&!base.requested&&!captureMismatch);
++  obs_data_set_bool(response,"available",fresh&&current.contract_version==2&&current.target_supported&&current.available&&base.studio&&!base.requested&&!captureMismatch);
+   obs_data_set_bool(response,"enabled",current.enabled);obs_data_set_bool(response,"requestedActive",current.requested_active);
+   obs_data_set_bool(response,"transitionRunning",current.running||base.running||finalGatePolicy.Pending());
+   obs_data_set_bool(response,"blackStageApplied",current.black_observed&&!captureMismatch);
+@@ -74,7 +77,8 @@ void OBSBasic::FreeMixFinalProgramGateRequest(obs_data_t *request,obs_data_t *re
+   if(!old->error.empty()){fail(old->error.c_str());return;}
+   obs_data_set_bool(response,"replayed",true);obs_data_set_bool(response,"accepted",true);obs_data_set_int(response,"acceptedSerial",old->serial);obs_data_set_bool(response,"success",true);return;
+  }
+- if(!coreAvailable||!base.studio||base.requested||base.running||base.manual||stage.running||finalGatePolicy.Pending()||captureMismatch||program!=base.program||preview!=base.preview||output!=base.output||!freemix_ftb::Uuid(program)||!freemix_ftb::Uuid(preview)||!freemix_ftb::Uuid(output)){
++ if(!coreAvailable){fail("Etapa final v2 indisponível: exige alvo sRGB SDR8 RGBA/BGRA; HDR/16F não suportado. Consulte o estado sem reenviar.");return;}
++ if(!base.studio||base.requested||base.running||base.manual||stage.running||finalGatePolicy.Pending()||captureMismatch||program!=base.program||preview!=base.preview||output!=base.output||!freemix_ftb::Uuid(program)||!freemix_ftb::Uuid(preview)||!freemix_ftb::Uuid(output)){
+   fail("Estado/Programa/Preview/saída não confirmado, ou FTB-v2/transição ativa. Nenhum gate enviado.");return;
+  }
+  OBSSourceAutoRelease outputTransition=obs_get_output_source(0);
+diff --git a/libobs/obs-final-gate-internal.h b/libobs/obs-final-gate-internal.h
+index 3f60d5f..0fb3cbd 100644
+--- a/libobs/obs-final-gate-internal.h
++++ b/libobs/obs-final-gate-internal.h
+@@ -3,7 +3,7 @@
+ /* Render-thread owned, zero initialized on every video-mix allocation. */
+ struct obs_final_gate_runtime {
+  uint32_t identity, generation, applied_serial, frame_seq;
+- bool master, follows_master, enabled, requested_active, running, clock_fault;
++ bool master, follows_master, enabled, requested_active, running, clock_fault, target_supported;
+  uint32_t parent_identity;
+  double gain, from_gain, to_gain;
+  uint64_t start_pts_ns, last_pts_ns, duration_ns;
+diff --git a/libobs/obs-final-gate-render.h b/libobs/obs-final-gate-render.h
+index 026452d..016fd3d 100644
+--- a/libobs/obs-final-gate-render.h
++++ b/libobs/obs-final-gate-render.h
+@@ -1,14 +1,25 @@
+ /* Included only by obs-video.c, after composition and rendered callbacks, before conversion. */
+ static inline bool draw_master_final_gate(struct obs_core_video_mix *video)
+ {
+- const struct obs_final_gate_runtime *gate=&video->final_gate;
+- if((!gate->master&&!gate->follows_master)||!gate->enabled||gate->gain>=1.0)return true;
++ struct obs_final_gate_runtime *gate=&video->final_gate;
++ /* Contract v2: only coded sRGB SDR8 targets. No PQ/HLG/16F reinterpretation. */
++ const enum gs_color_format format=video->render_texture?gs_texture_get_color_format(video->render_texture):GS_UNKNOWN;
++ gate->target_supported=video->render_texture&&video->render_space==GS_CS_SRGB&&(format==GS_RGBA||format==GS_BGRA);
++ if(!gate->master&&!gate->follows_master)return true;
++ /* OFF on unsupported targets does no work; active unsupported targets fault/reset. */
++ if(!gate->target_supported)return !gate->enabled&&gate->gain>=1.0;
++ if(!gate->enabled||gate->gain>=1.0)return true;
+  gs_effect_t *effect=obs->video.solid_effect;
+  if(!effect)return false;
+  gs_eparam_t *color=gs_effect_get_param_by_name(effect,"color");
+  if(!color)return false;
+  struct vec4 black;vec4_set(&black,0.0f,0.0f,0.0f,(float)(1.0-gate->gain));
+  gs_effect_set_vec4(color,&black);
++ /* sRGB RTV decodes destination RGB before blending and encodes it on write.
++  * The gain is linear-light; alpha is linear and black becomes opaque at gain 0.
++  * Always restore ambient framebuffer-sRGB state, including a zero-pass effect. */
++ const bool previous_srgb=gs_framebuffer_srgb_enabled();
++ gs_enable_framebuffer_srgb(true);
+  gs_set_render_target_with_color_space(video->render_texture,NULL,video->render_space);
+  set_render_size(video->ovi.base_width,video->ovi.base_height);
+  gs_blend_state_push();gs_enable_blending(true);
+@@ -16,5 +27,6 @@ static inline bool draw_master_final_gate(struct obs_core_video_mix *video)
+  bool drawn=false;
+  while(gs_effect_loop(effect,"Solid")){gs_draw_sprite(NULL,0,video->ovi.base_width,video->ovi.base_height);drawn=true;}
+  gs_blend_state_pop();
++ gs_enable_framebuffer_srgb(previous_srgb);
+  return drawn;
+ }
+diff --git a/libobs/obs-final-gate.h b/libobs/obs-final-gate.h
+index fd51300..6289da5 100644
+--- a/libobs/obs-final-gate.h
++++ b/libobs/obs-final-gate.h
+@@ -5,10 +5,11 @@
+ #ifdef __cplusplus
+ extern "C" {
+ #endif
+-/* Experimental main-video final stage. Audio and independent video are unchanged. */
++/* Experimental v2 final stage: linear-light sRGB on GS_CS_SRGB RGBA/BGRA8.
++ * Audio unchanged. Followers require their own supported target; no HDR/16F support. */
+ struct obs_master_final_gate_state {
+  uint32_t contract_version, mix_identity, generation, command_serial;
+- bool available, enabled, requested_active, running, black_observed, normal_observed, clock_fault;
++ bool available, enabled, requested_active, running, black_observed, normal_observed, clock_fault, target_supported;
+  uint32_t gain_q24, frame_seq;
+  uint64_t frame_pts_ns;
+ };
+diff --git a/libobs/obs-master-final-gate.c b/libobs/obs-master-final-gate.c
+index 6950bf5..fc4c749 100644
+--- a/libobs/obs-master-final-gate.c
++++ b/libobs/obs-master-final-gate.c
+@@ -13,7 +13,7 @@ static struct {
+  volatile long seq, serial, identity, generation, enabled, active, duration;
+ } command;
+ static struct {
+- volatile long seq, identity, generation, command_serial, enabled, active, running, fault;
++ volatile long seq, identity, generation, command_serial, enabled, active, running, fault, target_supported;
+  volatile long gain, frame_seq, pts_lo, pts_hi;
+ } observed;
+ static uint32_t load(const volatile long *p){return (uint32_t)os_atomic_load_long(p);}
+@@ -46,14 +46,15 @@ void obs_master_final_gate_reset(void){
+  }store(&generation,0); /* Exhaustion/contention fails closed, never reuse an old epoch. */
+ }
+ bool obs_master_final_gate_get(struct obs_master_final_gate_state *s){
+- if(!s)return false;memset(s,0,sizeof(*s));s->contract_version=1;
++ if(!s)return false;memset(s,0,sizeof(*s));s->contract_version=2;
+  for(unsigned attempt=0;attempt<4;attempt++){
+   const uint32_t a=load(&observed.seq);if(a&1)continue;
+   s->mix_identity=load(&observed.identity);s->generation=load(&observed.generation);s->command_serial=load(&observed.command_serial);
+   s->enabled=load(&observed.enabled)!=0;s->requested_active=load(&observed.active)!=0;s->running=load(&observed.running)!=0;s->clock_fault=load(&observed.fault)!=0;
++  s->target_supported=load(&observed.target_supported)!=0;
+   s->gain_q24=load(&observed.gain);s->frame_seq=load(&observed.frame_seq);s->frame_pts_ns=((uint64_t)load(&observed.pts_hi)<<32)|load(&observed.pts_lo);
+   if(a!=load(&observed.seq))continue;
+-  s->available=load(&available)!=0&&s->mix_identity!=0&&s->generation==load(&generation)&&!s->clock_fault;
++  s->available=load(&available)!=0&&s->target_supported&&s->mix_identity!=0&&s->generation==load(&generation)&&!s->clock_fault;
+   s->black_observed=s->available&&s->enabled&&s->requested_active&&!s->running&&s->gain_q24==0;
+   s->normal_observed=s->available&&!s->running&&s->gain_q24==16777216u;
+   return true;
+@@ -126,6 +127,7 @@ void obs_final_gate_publish(struct obs_final_gate_runtime *r,uint64_t pts,bool d
+  uint32_t seq;if(!lock_seq(&observed.seq,&seq)){store(&available,0);return;}
+  store(&observed.identity,r->identity);store(&observed.generation,r->generation);store(&observed.command_serial,r->applied_serial);
+  store(&observed.enabled,r->enabled);store(&observed.active,r->requested_active);store(&observed.running,r->running);store(&observed.fault,r->clock_fault);
++ store(&observed.target_supported,r->target_supported);
+  store(&observed.gain,(uint32_t)(r->gain*16777216.0));store(&observed.frame_seq,++r->frame_seq);store(&observed.pts_lo,(uint32_t)pts);store(&observed.pts_hi,(uint32_t)(pts>>32));
+- unlock_seq(&observed.seq,seq);store(&available,r->identity&&r->generation==load(&generation)&&!r->clock_fault);
++ unlock_seq(&observed.seq,seq);store(&available,r->target_supported&&r->identity&&r->generation==load(&generation)&&!r->clock_fault);
+ }
+-- 
+2.56.0.windows.1
+

@@ -1,0 +1,28 @@
+{
+  "status": "ROOT_ACTUAL_LOCAL_TAP_DIAGNOSTIC_ONLY",
+  "files": [
+    {
+      "path": "browser-report.json",
+      "bytes": 175054,
+      "sha256": "1c4af3748dd7217e7c304fd39a061c4d3d71c1c6962495372b0194bc509d3ae8"
+    },
+    {
+      "path": "receipt.json",
+      "bytes": 3094,
+      "sha256": "4e077ef4983e0673e95ccd236966088f35ed361df8276779999a33e929a62a75"
+    },
+    {
+      "path": "ROOT-REVIEW.json",
+      "bytes": 577,
+      "sha256": "0a0be723037e8d758d9e16dd41bca36aff5a648328e56871872df8f4246b08e7"
+    },
+    {
+      "path": "root-result.jpg",
+      "bytes": 83230,
+      "sha256": "27d7afbe8bd73cf5463b3c53fecf8f81564cc1e65ed157bf28a666bb6100708f"
+    }
+  ],
+  "credentials": false,
+  "rawOperatorLogs": false,
+  "productAVApproval": false
+}

@@ -3,7 +3,7 @@
 /* Render-thread owned, zero initialized on every video-mix allocation. */
 struct obs_final_gate_runtime {
  uint32_t identity, generation, applied_serial, frame_seq;
- bool master, follows_master, enabled, requested_active, running, clock_fault;
+ bool master, follows_master, enabled, requested_active, running, clock_fault, target_supported;
  uint32_t parent_identity;
  double gain, from_gain, to_gain;
  uint64_t start_pts_ns, last_pts_ns, duration_ns;

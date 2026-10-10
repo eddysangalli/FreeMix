@@ -1,0 +1,4296 @@
+{
+  "status": "INCONCLUSIVE_INSUFFICIENT_RECEIVED_PAIRS",
+  "scope": "SYNTHETIC_BROWSER_AV_RECEIVER_ONLY",
+  "experimental": true,
+  "nativeStarted": false,
+  "CEF": false,
+  "VDO": false,
+  "externalServersUsed": false,
+  "microphoneCaptured": false,
+  "audibleOutput": false,
+  "avSyncProven": false,
+  "durationRequestedMs": 20000,
+  "sourceClock": {
+    "videoFpsNumerator": 30000,
+    "videoFpsDenominator": 1001,
+    "audioSampleRate": 48000,
+    "audioBlockFrames": 2400,
+    "commonOriginNs": "3000000000000",
+    "audioFirstSample": "144000000"
+  },
+  "capabilities": {
+    "video": {
+      "available": true,
+      "required": {
+        "VideoFrame": true,
+        "MediaStreamTrackGenerator": true,
+        "RTCPeerConnection": true
+      }
+    },
+    "audio": {
+      "available": true,
+      "experimental": true,
+      "avSyncProven": false
+    },
+    "AudioContext": true,
+    "AudioWorkletNode": true,
+    "requestVideoFrameCallback": true
+  },
+  "videoEvents": [
+    {
+      "id": 1,
+      "wallMs": 5662.7,
+      "callbackMs": 5656.6,
+      "mediaTime": 0.983,
+      "presentedFrames": 30
+    },
+    {
+      "id": 2,
+      "wallMs": 6663.2,
+      "callbackMs": 6657.1,
+      "mediaTime": 1.986,
+      "presentedFrames": 60
+    },
+    {
+      "id": 3,
+      "wallMs": 7684.7,
+      "callbackMs": 7686.2,
+      "mediaTime": 2.988,
+      "presentedFrames": 90
+    },
+    {
+      "id": 4,
+      "wallMs": 8682.4,
+      "callbackMs": 8676.4,
+      "mediaTime": 3.986,
+      "presentedFrames": 120
+    },
+    {
+      "id": 5,
+      "wallMs": 9683.4,
+      "callbackMs": 9685.3,
+      "mediaTime": 4.988,
+      "presentedFrames": 150
+    },
+    {
+      "id": 6,
+      "wallMs": 10717.1,
+      "callbackMs": 10718.7,
+      "mediaTime": 6.045,
+      "presentedFrames": 180
+    },
+    {
+      "id": 7,
+      "wallMs": 11799.1,
+      "callbackMs": 11793,
+      "mediaTime": 7.125,
+      "presentedFrames": 210
+    },
+    {
+      "id": 8,
+      "wallMs": 12878.2,
+      "callbackMs": 12872.2,
+      "mediaTime": 8.207,
+      "presentedFrames": 240
+    },
+    {
+      "id": 9,
+      "wallMs": 13963.1,
+      "callbackMs": 13957,
+      "mediaTime": 9.288,
+      "presentedFrames": 270
+    },
+    {
+      "id": 10,
+      "wallMs": 15041.8,
+      "callbackMs": 15035.8,
+      "mediaTime": 10.368,
+      "presentedFrames": 300
+    },
+    {
+      "id": 11,
+      "wallMs": 16121.5,
+      "callbackMs": 16115.4,
+      "mediaTime": 11.449,
+      "presentedFrames": 330
+    },
+    {
+      "id": 12,
+      "wallMs": 17203,
+      "callbackMs": 17196.9,
+      "mediaTime": 12.529,
+      "presentedFrames": 360
+    },
+    {
+      "id": 13,
+      "wallMs": 18283.7,
+      "callbackMs": 18277.7,
+      "mediaTime": 13.61,
+      "presentedFrames": 390
+    },
+    {
+      "id": 14,
+      "wallMs": 19366.5,
+      "callbackMs": 19360.5,
+      "mediaTime": 14.691,
+      "presentedFrames": 420
+    },
+    {
+      "id": 15,
+      "wallMs": 20447.3,
+      "callbackMs": 20441.3,
+      "mediaTime": 15.772,
+      "presentedFrames": 450
+    },
+    {
+      "id": 16,
+      "wallMs": 21604.3,
+      "callbackMs": 21598.3,
+      "mediaTime": 16.933,
+      "presentedFrames": 480
+    },
+    {
+      "id": 17,
+      "wallMs": 22685,
+      "callbackMs": 22679,
+      "mediaTime": 18.014,
+      "presentedFrames": 510
+    },
+    {
+      "id": 18,
+      "wallMs": 23768.6,
+      "callbackMs": 23762.6,
+      "mediaTime": 19.095,
+      "presentedFrames": 540
+    },
+    {
+      "id": 19,
+      "wallMs": 24848,
+      "callbackMs": 24841.9,
+      "mediaTime": 20.177,
+      "presentedFrames": 570
+    }
+  ],
+  "audioEvents": [],
+  "audioUnclassified": 0,
+  "callbackCount": 579,
+  "callbackSampleGaps": 0,
+  "maxCallbackLatenessMs": 2.1999999999970896,
+  "clockSamples": [
+    {
+      "contextTime": 0.006359000000000006,
+      "performanceTime": 4776.799999952316,
+      "offsetMs": 4770.440999952316
+    },
+    {
+      "contextTime": 0.10624,
+      "performanceTime": 4876.700000047684,
+      "offsetMs": 4770.460000047684
+    },
+    {
+      "contextTime": 0.206411,
+      "performanceTime": 4976.899999976158,
+      "offsetMs": 4770.488999976158
+    },
+    {
+      "contextTime": 0.30632899999999996,
+      "performanceTime": 5076.700000047684,
+      "offsetMs": 4770.371000047684
+    },
+    {
+      "contextTime": 0.40633199999999997,
+      "performanceTime": 5177,
+      "offsetMs": 4770.668
+    },
+    {
+      "contextTime": 0.506285,
+      "performanceTime": 5276.899999976158,
+      "offsetMs": 4770.614999976158
+    },
+    {
+      "contextTime": 0.6063420000000002,
+      "performanceTime": 5377,
+      "offsetMs": 4770.657999999999
+    },
+    {
+      "contextTime": 0.706469,
+      "performanceTime": 5477.100000023842,
+      "offsetMs": 4770.631000023842
+    },
+    {
+      "contextTime": 0.806323,
+      "performanceTime": 5576.799999952316,
+      "offsetMs": 4770.476999952316
+    },
+    {
+      "contextTime": 0.906252,
+      "performanceTime": 5676.799999952316,
+      "offsetMs": 4770.547999952316
+    },
+    {
+      "contextTime": 1.006459,
+      "performanceTime": 5777.100000023842,
+      "offsetMs": 4770.641000023842
+    },
+    {
+      "contextTime": 1.1063249999999998,
+      "performanceTime": 5876.899999976158,
+      "offsetMs": 4770.574999976158
+    },
+    {
+      "contextTime": 1.206314,
+      "performanceTime": 5976.899999976158,
+      "offsetMs": 4770.585999976158
+    },
+    {
+      "contextTime": 1.306279,
+      "performanceTime": 6076.799999952316,
+      "offsetMs": 4770.520999952316
+    },
+    {
+      "contextTime": 1.406417,
+      "performanceTime": 6177,
+      "offsetMs": 4770.5830000000005
+    },
+    {
+      "contextTime": 1.506285,
+      "performanceTime": 6276.899999976158,
+      "offsetMs": 4770.614999976158
+    },
+    {
+      "contextTime": 1.6063429999999999,
+      "performanceTime": 6376.899999976158,
+      "offsetMs": 4770.556999976158
+    },
+    {
+      "contextTime": 1.706213,
+      "performanceTime": 6476.600000023842,
+      "offsetMs": 4770.387000023842
+    },
+    {
+      "contextTime": 1.8063770000000001,
+      "performanceTime": 6576.899999976158,
+      "offsetMs": 4770.522999976158
+    },
+    {
+      "contextTime": 1.9062999999999999,
+      "performanceTime": 6676.799999952316,
+      "offsetMs": 4770.499999952316
+    },
+    {
+      "contextTime": 2.00643,
+      "performanceTime": 6776.899999976158,
+      "offsetMs": 4770.469999976158
+    },
+    {
+      "contextTime": 2.106352,
+      "performanceTime": 6876.899999976158,
+      "offsetMs": 4770.547999976158
+    },
+    {
+      "contextTime": 2.206436,
+      "performanceTime": 6977,
+      "offsetMs": 4770.564
+    },
+    {
+      "contextTime": 2.306317,
+      "performanceTime": 7076.799999952316,
+      "offsetMs": 4770.482999952316
+    },
+    {
+      "contextTime": 2.406337,
+      "performanceTime": 7176.700000047684,
+      "offsetMs": 4770.363000047684
+    },
+    {
+      "contextTime": 2.5062919999999997,
+      "performanceTime": 7276.799999952316,
+      "offsetMs": 4770.507999952317
+    },
+    {
+      "contextTime": 2.6063379999999996,
+      "performanceTime": 7376.899999976158,
+      "offsetMs": 4770.561999976158
+    },
+    {
+      "contextTime": 2.706271,
+      "performanceTime": 7476.799999952316,
+      "offsetMs": 4770.528999952316
+    },
+    {
+      "contextTime": 2.806328,
+      "performanceTime": 7576.899999976158,
+      "offsetMs": 4770.571999976159
+    },
+    {
+      "contextTime": 2.906323,
+      "performanceTime": 7676.899999976158,
+      "offsetMs": 4770.576999976158
+    },
+    {
+      "contextTime": 3.006466,
+      "performanceTime": 7777,
+      "offsetMs": 4770.534
+    },
+    {
+      "contextTime": 3.10635,
+      "performanceTime": 7876.799999952316,
+      "offsetMs": 4770.449999952316
+    },
+    {
+      "contextTime": 3.1964609999999998,
+      "performanceTime": 7966.899999976158,
+      "offsetMs": 4770.438999976159
+    },
+    {
+      "contextTime": 3.3062690000000003,
+      "performanceTime": 8076.799999952316,
+      "offsetMs": 4770.530999952316
+    },
+    {
+      "contextTime": 3.406343,
+      "performanceTime": 8176.799999952316,
+      "offsetMs": 4770.4569999523155
+    },
+    {
+      "contextTime": 3.506361,
+      "performanceTime": 8276.799999952316,
+      "offsetMs": 4770.438999952316
+    },
+    {
+      "contextTime": 3.6063850000000004,
+      "performanceTime": 8376.799999952316,
+      "offsetMs": 4770.414999952316
+    },
+    {
+      "contextTime": 3.706307,
+      "performanceTime": 8476.700000047684,
+      "offsetMs": 4770.393000047684
+    },
+    {
+      "contextTime": 3.806362,
+      "performanceTime": 8576.899999976158,
+      "offsetMs": 4770.537999976158
+    },
+    {
+      "contextTime": 3.9063130000000004,
+      "performanceTime": 8676.799999952316,
+      "offsetMs": 4770.486999952316
+    },
+    {
+      "contextTime": 3.9963020000000005,
+      "performanceTime": 8766.799999952316,
+      "offsetMs": 4770.497999952316
+    },
+    {
+      "contextTime": 4.096485,
+      "performanceTime": 8867,
+      "offsetMs": 4770.514999999999
+    },
+    {
+      "contextTime": 4.196327000000001,
+      "performanceTime": 8966.899999976158,
+      "offsetMs": 4770.572999976157
+    },
+    {
+      "contextTime": 4.296654,
+      "performanceTime": 9067.100000023842,
+      "offsetMs": 4770.446000023841
+    },
+    {
+      "contextTime": 4.406320000000001,
+      "performanceTime": 9176.799999952316,
+      "offsetMs": 4770.479999952316
+    },
+    {
+      "contextTime": 4.496406,
+      "performanceTime": 9266.899999976158,
+      "offsetMs": 4770.493999976158
+    },
+    {
+      "contextTime": 4.606368000000002,
+      "performanceTime": 9376.899999976158,
+      "offsetMs": 4770.531999976157
+    },
+    {
+      "contextTime": 4.706321,
+      "performanceTime": 9476.799999952316,
+      "offsetMs": 4770.478999952316
+    },
+    {
+      "contextTime": 4.806463,
+      "performanceTime": 9577.200000047684,
+      "offsetMs": 4770.737000047684
+    },
+    {
+      "contextTime": 4.906364,
+      "performanceTime": 9677,
+      "offsetMs": 4770.636
+    },
+    {
+      "contextTime": 5.006341,
+      "performanceTime": 9776.899999976158,
+      "offsetMs": 4770.558999976158
+    },
+    {
+      "contextTime": 5.1062780000000005,
+      "performanceTime": 9876.799999952316,
+      "offsetMs": 4770.521999952316
+    },
+    {
+      "contextTime": 5.206403,
+      "performanceTime": 9976.899999976158,
+      "offsetMs": 4770.496999976158
+    },
+    {
+      "contextTime": 5.2964590000000005,
+      "performanceTime": 10067,
+      "offsetMs": 4770.540999999999
+    },
+    {
+      "contextTime": 5.406377,
+      "performanceTime": 10176.899999976158,
+      "offsetMs": 4770.522999976158
+    },
+    {
+      "contextTime": 5.506352000000001,
+      "performanceTime": 10276.799999952316,
+      "offsetMs": 4770.4479999523155
+    },
+    {
+      "contextTime": 5.606490000000001,
+      "performanceTime": 10376.899999976158,
+      "offsetMs": 4770.409999976157
+    },
+    {
+      "contextTime": 5.706300000000001,
+      "performanceTime": 10476.899999976158,
+      "offsetMs": 4770.599999976158
+    },
+    {
+      "contextTime": 5.7963309999999995,
+      "performanceTime": 10566.700000047684,
+      "offsetMs": 4770.3690000476845
+    },
+    {
+      "contextTime": 5.906303000000001,
+      "performanceTime": 10676.799999952316,
+      "offsetMs": 4770.4969999523155
+    },
+    {
+      "contextTime": 6.006523999999999,
+      "performanceTime": 10777.100000023842,
+      "offsetMs": 4770.576000023843
+    },
+    {
+      "contextTime": 6.1063350000000005,
+      "performanceTime": 10876.799999952316,
+      "offsetMs": 4770.464999952315
+    },
+    {
+      "contextTime": 6.196344000000001,
+      "performanceTime": 10966.799999952316,
+      "offsetMs": 4770.455999952315
+    },
+    {
+      "contextTime": 6.296362,
+      "performanceTime": 11066.799999952316,
+      "offsetMs": 4770.437999952316
+    },
+    {
+      "contextTime": 6.40639,
+      "performanceTime": 11176.899999976158,
+      "offsetMs": 4770.509999976158
+    },
+    {
+      "contextTime": 6.506336,
+      "performanceTime": 11276.799999952316,
+      "offsetMs": 4770.463999952316
+    },
+    {
+      "contextTime": 6.606364000000001,
+      "performanceTime": 11376.799999952316,
+      "offsetMs": 4770.435999952315
+    },
+    {
+      "contextTime": 6.706338999999999,
+      "performanceTime": 11476.899999976158,
+      "offsetMs": 4770.560999976159
+    },
+    {
+      "contextTime": 6.806425999999999,
+      "performanceTime": 11576.899999976158,
+      "offsetMs": 4770.473999976159
+    },
+    {
+      "contextTime": 6.90631,
+      "performanceTime": 11676.700000047684,
+      "offsetMs": 4770.390000047683
+    },
+    {
+      "contextTime": 6.996323,
+      "performanceTime": 11766.799999952316,
+      "offsetMs": 4770.476999952316
+    },
+    {
+      "contextTime": 7.096356,
+      "performanceTime": 11866.799999952316,
+      "offsetMs": 4770.4439999523165
+    },
+    {
+      "contextTime": 7.206466,
+      "performanceTime": 11976.899999976158,
+      "offsetMs": 4770.433999976159
+    },
+    {
+      "contextTime": 7.306337,
+      "performanceTime": 12076.799999952316,
+      "offsetMs": 4770.462999952316
+    },
+    {
+      "contextTime": 7.406423000000001,
+      "performanceTime": 12177,
+      "offsetMs": 4770.576999999999
+    },
+    {
+      "contextTime": 7.506278,
+      "performanceTime": 12276.600000023842,
+      "offsetMs": 4770.322000023842
+    },
+    {
+      "contextTime": 7.596403,
+      "performanceTime": 12366.899999976158,
+      "offsetMs": 4770.496999976159
+    },
+    {
+      "contextTime": 7.696343000000001,
+      "performanceTime": 12466.700000047684,
+      "offsetMs": 4770.357000047683
+    },
+    {
+      "contextTime": 7.796324,
+      "performanceTime": 12566.700000047684,
+      "offsetMs": 4770.376000047683
+    },
+    {
+      "contextTime": 7.896352,
+      "performanceTime": 12666.799999952316,
+      "offsetMs": 4770.447999952316
+    },
+    {
+      "contextTime": 7.996331999999999,
+      "performanceTime": 12766.899999976158,
+      "offsetMs": 4770.56799997616
+    },
+    {
+      "contextTime": 8.096392,
+      "performanceTime": 12867,
+      "offsetMs": 4770.608
+    },
+    {
+      "contextTime": 8.19648,
+      "performanceTime": 12967,
+      "offsetMs": 4770.52
+    },
+    {
+      "contextTime": 8.296354999999998,
+      "performanceTime": 13066.799999952316,
+      "offsetMs": 4770.4449999523185
+    },
+    {
+      "contextTime": 8.396299999999998,
+      "performanceTime": 13166.899999976158,
+      "offsetMs": 4770.599999976161
+    },
+    {
+      "contextTime": 8.496395999999997,
+      "performanceTime": 13266.899999976158,
+      "offsetMs": 4770.503999976161
+    },
+    {
+      "contextTime": 8.596302,
+      "performanceTime": 13366.899999976158,
+      "offsetMs": 4770.5979999761585
+    },
+    {
+      "contextTime": 8.706342,
+      "performanceTime": 13476.799999952316,
+      "offsetMs": 4770.457999952318
+    },
+    {
+      "contextTime": 8.796560999999999,
+      "performanceTime": 13567,
+      "offsetMs": 4770.439000000002
+    },
+    {
+      "contextTime": 8.906268999999998,
+      "performanceTime": 13676.799999952316,
+      "offsetMs": 4770.530999952318
+    },
+    {
+      "contextTime": 9.006328000000002,
+      "performanceTime": 13776.899999976158,
+      "offsetMs": 4770.571999976157
+    },
+    {
+      "contextTime": 9.096489,
+      "performanceTime": 13867.100000023842,
+      "offsetMs": 4770.611000023842
+    },
+    {
+      "contextTime": 9.196496,
+      "performanceTime": 13967.100000023842,
+      "offsetMs": 4770.604000023843
+    },
+    {
+      "contextTime": 9.296330999999999,
+      "performanceTime": 14066.799999952316,
+      "offsetMs": 4770.468999952318
+    },
+    {
+      "contextTime": 9.396359,
+      "performanceTime": 14166.899999976158,
+      "offsetMs": 4770.540999976158
+    },
+    {
+      "contextTime": 9.496346999999998,
+      "performanceTime": 14266.899999976158,
+      "offsetMs": 4770.55299997616
+    },
+    {
+      "contextTime": 9.596373999999999,
+      "performanceTime": 14367,
+      "offsetMs": 4770.626
+    },
+    {
+      "contextTime": 9.706306,
+      "performanceTime": 14476.899999976158,
+      "offsetMs": 4770.593999976158
+    },
+    {
+      "contextTime": 9.79629,
+      "performanceTime": 14566.799999952316,
+      "offsetMs": 4770.509999952315
+    },
+    {
+      "contextTime": 9.906294999999998,
+      "performanceTime": 14676.799999952316,
+      "offsetMs": 4770.504999952318
+    },
+    {
+      "contextTime": 10.006425,
+      "performanceTime": 14776.899999976158,
+      "offsetMs": 4770.474999976159
+    },
+    {
+      "contextTime": 10.106309000000001,
+      "performanceTime": 14876.799999952316,
+      "offsetMs": 4770.490999952315
+    },
+    {
+      "contextTime": 10.206329,
+      "performanceTime": 14976.799999952316,
+      "offsetMs": 4770.470999952317
+    },
+    {
+      "contextTime": 10.296355,
+      "performanceTime": 15066.700000047684,
+      "offsetMs": 4770.345000047684
+    },
+    {
+      "contextTime": 10.396324999999997,
+      "performanceTime": 15166.799999952316,
+      "offsetMs": 4770.474999952319
+    },
+    {
+      "contextTime": 10.506276999999999,
+      "performanceTime": 15276.899999976158,
+      "offsetMs": 4770.62299997616
+    },
+    {
+      "contextTime": 10.606345999999998,
+      "performanceTime": 15376.899999976158,
+      "offsetMs": 4770.55399997616
+    },
+    {
+      "contextTime": 10.706304,
+      "performanceTime": 15476.700000047684,
+      "offsetMs": 4770.396000047684
+    },
+    {
+      "contextTime": 10.796357999999998,
+      "performanceTime": 15566.899999976158,
+      "offsetMs": 4770.54199997616
+    },
+    {
+      "contextTime": 10.896443999999997,
+      "performanceTime": 15667,
+      "offsetMs": 4770.556000000002
+    },
+    {
+      "contextTime": 11.006383,
+      "performanceTime": 15777,
+      "offsetMs": 4770.617
+    },
+    {
+      "contextTime": 11.096402999999999,
+      "performanceTime": 15867,
+      "offsetMs": 4770.597000000002
+    },
+    {
+      "contextTime": 11.196361999999999,
+      "performanceTime": 15966.700000047684,
+      "offsetMs": 4770.338000047685
+    },
+    {
+      "contextTime": 11.306311999999998,
+      "performanceTime": 16076.799999952316,
+      "offsetMs": 4770.487999952318
+    },
+    {
+      "contextTime": 11.406383999999997,
+      "performanceTime": 16176.899999976158,
+      "offsetMs": 4770.51599997616
+    },
+    {
+      "contextTime": 11.496334999999998,
+      "performanceTime": 16266.799999952316,
+      "offsetMs": 4770.464999952317
+    },
+    {
+      "contextTime": 11.606441,
+      "performanceTime": 16377,
+      "offsetMs": 4770.558999999999
+    },
+    {
+      "contextTime": 11.706318999999999,
+      "performanceTime": 16476.799999952316,
+      "offsetMs": 4770.480999952317
+    },
+    {
+      "contextTime": 11.806374,
+      "performanceTime": 16577,
+      "offsetMs": 4770.626
+    },
+    {
+      "contextTime": 11.906303999999999,
+      "performanceTime": 16676.799999952316,
+      "offsetMs": 4770.495999952318
+    },
+    {
+      "contextTime": 11.996438,
+      "performanceTime": 16766.799999952316,
+      "offsetMs": 4770.361999952316
+    },
+    {
+      "contextTime": 12.096518,
+      "performanceTime": 16867.100000023842,
+      "offsetMs": 4770.582000023842
+    },
+    {
+      "contextTime": 12.196313000000002,
+      "performanceTime": 16966.700000047684,
+      "offsetMs": 4770.387000047682
+    },
+    {
+      "contextTime": 12.306265999999999,
+      "performanceTime": 17076.899999976158,
+      "offsetMs": 4770.6339999761585
+    },
+    {
+      "contextTime": 12.406379999999999,
+      "performanceTime": 17176.899999976158,
+      "offsetMs": 4770.519999976159
+    },
+    {
+      "contextTime": 12.506323,
+      "performanceTime": 17276.899999976158,
+      "offsetMs": 4770.576999976158
+    },
+    {
+      "contextTime": 12.606342000000001,
+      "performanceTime": 17376.899999976158,
+      "offsetMs": 4770.557999976156
+    },
+    {
+      "contextTime": 12.706289999999997,
+      "performanceTime": 17476.899999976158,
+      "offsetMs": 4770.609999976161
+    },
+    {
+      "contextTime": 12.806382999999999,
+      "performanceTime": 17576.799999952316,
+      "offsetMs": 4770.416999952318
+    },
+    {
+      "contextTime": 12.896331999999997,
+      "performanceTime": 17666.899999976158,
+      "offsetMs": 4770.567999976161
+    },
+    {
+      "contextTime": 13.006532000000002,
+      "performanceTime": 17777.100000023842,
+      "offsetMs": 4770.568000023841
+    },
+    {
+      "contextTime": 13.106273,
+      "performanceTime": 17876.799999952316,
+      "offsetMs": 4770.526999952317
+    },
+    {
+      "contextTime": 13.206422,
+      "performanceTime": 17977,
+      "offsetMs": 4770.5779999999995
+    },
+    {
+      "contextTime": 13.306254000000001,
+      "performanceTime": 18076.899999976158,
+      "offsetMs": 4770.645999976157
+    },
+    {
+      "contextTime": 13.406360999999997,
+      "performanceTime": 18177,
+      "offsetMs": 4770.639000000003
+    },
+    {
+      "contextTime": 13.506507,
+      "performanceTime": 18277.100000023842,
+      "offsetMs": 4770.593000023842
+    },
+    {
+      "contextTime": 13.596383,
+      "performanceTime": 18366.899999976158,
+      "offsetMs": 4770.516999976158
+    },
+    {
+      "contextTime": 13.706294,
+      "performanceTime": 18476.899999976158,
+      "offsetMs": 4770.605999976158
+    },
+    {
+      "contextTime": 13.806453,
+      "performanceTime": 18576.899999976158,
+      "offsetMs": 4770.446999976159
+    },
+    {
+      "contextTime": 13.906289999999998,
+      "performanceTime": 18676.799999952316,
+      "offsetMs": 4770.509999952317
+    },
+    {
+      "contextTime": 14.006355000000001,
+      "performanceTime": 18776.899999976158,
+      "offsetMs": 4770.544999976157
+    },
+    {
+      "contextTime": 14.106246,
+      "performanceTime": 18876.799999952316,
+      "offsetMs": 4770.553999952315
+    },
+    {
+      "contextTime": 14.206448,
+      "performanceTime": 18976.899999976158,
+      "offsetMs": 4770.451999976158
+    },
+    {
+      "contextTime": 14.306316,
+      "performanceTime": 19076.799999952316,
+      "offsetMs": 4770.483999952316
+    },
+    {
+      "contextTime": 14.406321999999998,
+      "performanceTime": 19176.899999976158,
+      "offsetMs": 4770.57799997616
+    },
+    {
+      "contextTime": 14.506304,
+      "performanceTime": 19276.799999952316,
+      "offsetMs": 4770.495999952316
+    },
+    {
+      "contextTime": 14.606383,
+      "performanceTime": 19376.899999976158,
+      "offsetMs": 4770.516999976158
+    },
+    {
+      "contextTime": 14.706358,
+      "performanceTime": 19476.799999952316,
+      "offsetMs": 4770.441999952316
+    },
+    {
+      "contextTime": 14.806523999999998,
+      "performanceTime": 19577,
+      "offsetMs": 4770.476000000002
+    },
+    {
+      "contextTime": 14.906355999999999,
+      "performanceTime": 19676.899999976158,
+      "offsetMs": 4770.54399997616
+    },
+    {
+      "contextTime": 15.006377,
+      "performanceTime": 19776.799999952316,
+      "offsetMs": 4770.422999952316
+    },
+    {
+      "contextTime": 15.106275,
+      "performanceTime": 19876.799999952316,
+      "offsetMs": 4770.524999952317
+    },
+    {
+      "contextTime": 15.206498,
+      "performanceTime": 19977,
+      "offsetMs": 4770.502
+    },
+    {
+      "contextTime": 15.306348999999999,
+      "performanceTime": 20076.799999952316,
+      "offsetMs": 4770.450999952318
+    },
+    {
+      "contextTime": 15.406419999999999,
+      "performanceTime": 20176.899999976158,
+      "offsetMs": 4770.47999997616
+    },
+    {
+      "contextTime": 15.506321,
+      "performanceTime": 20276.799999952316,
+      "offsetMs": 4770.478999952316
+    },
+    {
+      "contextTime": 15.606428999999999,
+      "performanceTime": 20376.799999952316,
+      "offsetMs": 4770.370999952318
+    },
+    {
+      "contextTime": 15.706308,
+      "performanceTime": 20476.899999976158,
+      "offsetMs": 4770.591999976159
+    },
+    {
+      "contextTime": 15.80637,
+      "performanceTime": 20576.799999952316,
+      "offsetMs": 4770.429999952317
+    },
+    {
+      "contextTime": 15.906388,
+      "performanceTime": 20676.899999976158,
+      "offsetMs": 4770.511999976159
+    },
+    {
+      "contextTime": 16.006309,
+      "performanceTime": 20776.600000023842,
+      "offsetMs": 4770.291000023841
+    },
+    {
+      "contextTime": 16.106288000000003,
+      "performanceTime": 20876.799999952316,
+      "offsetMs": 4770.511999952314
+    },
+    {
+      "contextTime": 16.206393,
+      "performanceTime": 20976.799999952316,
+      "offsetMs": 4770.406999952318
+    },
+    {
+      "contextTime": 16.306298,
+      "performanceTime": 21076.799999952316,
+      "offsetMs": 4770.501999952314
+    },
+    {
+      "contextTime": 16.396349,
+      "performanceTime": 21166.899999976158,
+      "offsetMs": 4770.550999976156
+    },
+    {
+      "contextTime": 16.506476999999997,
+      "performanceTime": 21277,
+      "offsetMs": 4770.523000000005
+    },
+    {
+      "contextTime": 16.60637,
+      "performanceTime": 21377,
+      "offsetMs": 4770.630000000001
+    },
+    {
+      "contextTime": 16.706331000000002,
+      "performanceTime": 21476.899999976158,
+      "offsetMs": 4770.568999976156
+    },
+    {
+      "contextTime": 16.806457000000005,
+      "performanceTime": 21577.100000023842,
+      "offsetMs": 4770.643000023836
+    },
+    {
+      "contextTime": 16.906287000000003,
+      "performanceTime": 21676.799999952316,
+      "offsetMs": 4770.512999952312
+    },
+    {
+      "contextTime": 17.006348000000003,
+      "performanceTime": 21776.899999976158,
+      "offsetMs": 4770.551999976156
+    },
+    {
+      "contextTime": 17.106273,
+      "performanceTime": 21876.899999976158,
+      "offsetMs": 4770.626999976157
+    },
+    {
+      "contextTime": 17.206364999999998,
+      "performanceTime": 21977,
+      "offsetMs": 4770.635000000002
+    },
+    {
+      "contextTime": 17.306268000000003,
+      "performanceTime": 22076.799999952316,
+      "offsetMs": 4770.531999952313
+    },
+    {
+      "contextTime": 17.406570000000002,
+      "performanceTime": 22177.200000047684,
+      "offsetMs": 4770.63000004768
+    },
+    {
+      "contextTime": 17.506342,
+      "performanceTime": 22276.899999976158,
+      "offsetMs": 4770.557999976158
+    },
+    {
+      "contextTime": 17.606360999999996,
+      "performanceTime": 22376.899999976158,
+      "offsetMs": 4770.538999976161
+    },
+    {
+      "contextTime": 17.696462,
+      "performanceTime": 22466.899999976158,
+      "offsetMs": 4770.437999976159
+    },
+    {
+      "contextTime": 17.806368,
+      "performanceTime": 22576.899999976158,
+      "offsetMs": 4770.53199997616
+    },
+    {
+      "contextTime": 17.906345,
+      "performanceTime": 22676.899999976158,
+      "offsetMs": 4770.554999976157
+    },
+    {
+      "contextTime": 18.006396000000002,
+      "performanceTime": 22776.799999952316,
+      "offsetMs": 4770.403999952316
+    },
+    {
+      "contextTime": 18.106344,
+      "performanceTime": 22876.899999976158,
+      "offsetMs": 4770.555999976157
+    },
+    {
+      "contextTime": 18.206421000000002,
+      "performanceTime": 22977,
+      "offsetMs": 4770.578999999998
+    },
+    {
+      "contextTime": 18.306337000000003,
+      "performanceTime": 23076.899999976158,
+      "offsetMs": 4770.562999976155
+    },
+    {
+      "contextTime": 18.406393,
+      "performanceTime": 23177,
+      "offsetMs": 4770.607
+    },
+    {
+      "contextTime": 18.506341000000003,
+      "performanceTime": 23276.899999976158,
+      "offsetMs": 4770.558999976154
+    },
+    {
+      "contextTime": 18.606355,
+      "performanceTime": 23376.700000047684,
+      "offsetMs": 4770.345000047684
+    },
+    {
+      "contextTime": 18.696329,
+      "performanceTime": 23467,
+      "offsetMs": 4770.671000000002
+    },
+    {
+      "contextTime": 18.806278000000002,
+      "performanceTime": 23576.899999976158,
+      "offsetMs": 4770.621999976156
+    },
+    {
+      "contextTime": 18.906274,
+      "performanceTime": 23676.899999976158,
+      "offsetMs": 4770.625999976157
+    },
+    {
+      "contextTime": 19.006346,
+      "performanceTime": 23777,
+      "offsetMs": 4770.653999999999
+    },
+    {
+      "contextTime": 19.106256,
+      "performanceTime": 23876.799999952316,
+      "offsetMs": 4770.543999952319
+    },
+    {
+      "contextTime": 19.206295,
+      "performanceTime": 23976.799999952316,
+      "offsetMs": 4770.504999952314
+    },
+    {
+      "contextTime": 19.306298000000005,
+      "performanceTime": 24077,
+      "offsetMs": 4770.701999999994
+    },
+    {
+      "contextTime": 19.406325000000002,
+      "performanceTime": 24176.899999976158,
+      "offsetMs": 4770.574999976157
+    },
+    {
+      "contextTime": 19.506271,
+      "performanceTime": 24276.799999952316,
+      "offsetMs": 4770.528999952316
+    },
+    {
+      "contextTime": 19.606352,
+      "performanceTime": 24376.799999952316,
+      "offsetMs": 4770.447999952314
+    },
+    {
+      "contextTime": 19.706283,
+      "performanceTime": 24476.899999976158,
+      "offsetMs": 4770.616999976159
+    },
+    {
+      "contextTime": 19.806391,
+      "performanceTime": 24576.899999976158,
+      "offsetMs": 4770.5089999761585
+    },
+    {
+      "contextTime": 19.896428000000004,
+      "performanceTime": 24667,
+      "offsetMs": 4770.5719999999965
+    },
+    {
+      "contextTime": 19.996451000000004,
+      "performanceTime": 24767,
+      "offsetMs": 4770.548999999995
+    },
+    {
+      "contextTime": 20.096360999999998,
+      "performanceTime": 24866.899999976158,
+      "offsetMs": 4770.538999976161
+    },
+    {
+      "contextTime": 20.196428,
+      "performanceTime": 24966.799999952316,
+      "offsetMs": 4770.371999952316
+    },
+    {
+      "contextTime": 20.296422999999997,
+      "performanceTime": 25066.899999976158,
+      "offsetMs": 4770.476999976159
+    }
+  ],
+  "visibilityEvents": [],
+  "receiverReadback": {
+    "callbacks": 579,
+    "valid": 579,
+    "invalidDimensions": 0,
+    "readbackErrors": 0,
+    "changes": [
+      {
+        "callback": 1,
+        "mediaTime": 0,
+        "metadataWidth": 640,
+        "metadataHeight": 360,
+        "videoWidth": 640,
+        "videoHeight": 360
+      }
+    ],
+    "changesTruncated": 0,
+    "first": {
+      "callback": 1,
+      "mediaTime": 0,
+      "metadataWidth": 640,
+      "metadataHeight": 360,
+      "videoWidth": 640,
+      "videoHeight": 360
+    },
+    "last": {
+      "callback": 579,
+      "mediaTime": 20.477,
+      "metadataWidth": 640,
+      "metadataHeight": 360,
+      "videoWidth": 640,
+      "videoHeight": 360
+    },
+    "lastKey": "640/360/640/360",
+    "alpha": {
+      "transparent": 0,
+      "partialAlpha": 0,
+      "opaqueBlack": 0,
+      "opaqueColour": 579,
+      "invalid": 0
+    }
+  },
+  "audioDiagnostics": {
+    "mode": "OBSERVATION_ONLY_GAIN0_UNCHANGED",
+    "beforeGenerator": {
+      "blocks": 400,
+      "frames": 960000,
+      "samples": 1920000,
+      "nonzero": 145920,
+      "aboveToneThreshold": 119278,
+      "nonfinite": 0,
+      "peak": 0.3499999940395355,
+      "squares": 8936.478781189337,
+      "rms": 0.06822328071757797,
+      "firstTimestamp": 0,
+      "lastTimestamp": 19950000,
+      "backwards": 0,
+      "shapes": [
+        {
+          "key": "2400/2",
+          "frames": 2400,
+          "channels": 2
+        }
+      ],
+      "shapesTruncated": 0,
+      "readbackErrors": 0
+    },
+    "constructedAudioData": {
+      "blocks": 400,
+      "frames": 960000,
+      "samples": 1920000,
+      "nonzero": 145920,
+      "aboveToneThreshold": 119278,
+      "nonfinite": 0,
+      "peak": 0.3499999940395355,
+      "squares": 8936.478781189337,
+      "rms": 0.06822328071757797,
+      "firstTimestamp": 0,
+      "lastTimestamp": 19950000,
+      "backwards": 0,
+      "shapes": [
+        {
+          "key": "2400/2",
+          "frames": 2400,
+          "channels": 2
+        }
+      ],
+      "shapesTruncated": 0,
+      "readbackErrors": 0
+    },
+    "receiverWorklet": {
+      "messages": 103,
+      "truncated": 0,
+      "first": {
+        "type": "audio-diagnostic",
+        "role": "receiver",
+        "processCalls": 1,
+        "emptyCalls": 0,
+        "inputFrames": 128,
+        "inputSamples": 256,
+        "nonzeroSamples": 0,
+        "aboveToneThreshold": 0,
+        "nonfiniteSamples": 0,
+        "maxInputChannels": 2,
+        "maxInputFrames": 128,
+        "peak": 0,
+        "emitted": 1,
+        "rms": 0,
+        "frame": 0,
+        "contextTime": 0,
+        "sampleRate": 48000
+      },
+      "last": {
+        "type": "audio-diagnostic",
+        "role": "receiver",
+        "processCalls": 7651,
+        "emptyCalls": 0,
+        "inputFrames": 979328,
+        "inputSamples": 1958656,
+        "nonzeroSamples": 0,
+        "aboveToneThreshold": 0,
+        "nonfiniteSamples": 0,
+        "maxInputChannels": 2,
+        "maxInputFrames": 128,
+        "peak": 0,
+        "emitted": 103,
+        "rms": 0,
+        "frame": 979200,
+        "contextTime": 20.4,
+        "sampleRate": 48000
+      },
+      "rows": [
+        {
+          "type": "audio-diagnostic",
+          "role": "receiver",
+          "processCalls": 1,
+          "emptyCalls": 0,
+          "inputFrames": 128,
+          "inputSamples": 256,
+          "nonzeroSamples": 0,
+          "aboveToneThreshold": 0,
+          "nonfiniteSamples": 0,
+          "maxInputChannels": 2,
+          "maxInputFrames": 128,
+          "peak": 0,
+          "emitted": 1,
+          "rms": 0,
+          "frame": 0,
+          "contextTime": 0,
+          "sampleRate": 48000
+        },
+        {
+          "type": "audio-diagnostic",
+          "role": "receiver",
+          "processCalls": 76,
+          "emptyCalls": 0,
+          "inputFrames": 9728,
+          "inputSamples": 19456,
+          "nonzeroSamples": 0,
+          "aboveToneThreshold": 0,
+          "nonfiniteSamples": 0,
+          "maxInputChannels": 2,
+          "maxInputFrames": 128,
+          "peak": 0,
+          "emitted": 2,
+          "rms": 0,
+          "frame": 9600,
+          "contextTime": 0.2,
+          "sampleRate": 48000
+        },
+        {
+          "type": "audio-diagnostic",
+          "role": "receiver",
+          "processCalls": 151,
+          "emptyCalls": 0,
+          "inputFrames": 19328,
+          "inputSamples": 38656,
+          "nonzeroSamples": 0,
+          "aboveToneThreshold": 0,
+          "nonfiniteSamples": 0,
+          "maxInputChannels": 2,
+          "maxInputFrames": 128,
+          "peak": 0,
+          "emitted": 3,
+          "rms": 0,
+          "frame": 19200,
+          "contextTime": 0.4,
+          "sampleRate": 48000
+        },
+        {
+          "type": "audio-diagnostic",
+          "role": "receiver",
+          "processCalls": 226,
+          "emptyCalls": 0,
+          "inputFrames": 28928,
+          "inputSamples": 57856,
+          "nonzeroSamples": 0,
+          "aboveToneThreshold": 0,
+          "nonfiniteSamples": 0,
+          "maxInputChannels": 2,
+          "maxInputFrames": 128,
+          "peak": 0,
+          "emitted": 4,
+          "rms": 0,
+          "frame": 28800,
+          "contextTime": 0.6,
+          "sampleRate": 48000
+        },
+        {
+          "type": "audio-diagnostic",
+          "role": "receiver",
+          "processCalls": 301,
+          "emptyCalls": 0,
+          "inputFrames": 38528,
+          "inputSamples": 77056,
+          "nonzeroSamples": 0,
+          "aboveToneThreshold": 0,
+          "nonfiniteSamples": 0,
+          "maxInputChannels": 2,
+          "maxInputFrames": 128,
+          "peak": 0,
+          "emitted": 5,
+          "rms": 0,
+          "frame": 38400,
+          "contextTime": 0.8,
+          "sampleRate": 48000
+        },
+        {
+          "type": "audio-diagnostic",
+          "role": "receiver",
+          "processCalls": 376,
+          "emptyCalls": 0,
+          "inputFrames": 48128,
+          "inputSamples": 96256,
+          "nonzeroSamples": 0,
+          "aboveToneThreshold": 0,
+          "nonfiniteSamples": 0,
+          "maxInputChannels": 2,
+          "maxInputFrames": 128,
+          "peak": 0,
+          "emitted": 6,
+          "rms": 0,
+          "frame": 48000,
+          "contextTime": 1,
+          "sampleRate": 48000
+        },
+        {
+          "type": "audio-diagnostic",
+          "role": "receiver",
+          "processCalls": 451,
+          "emptyCalls": 0,
+          "inputFrames": 57728,
+          "inputSamples": 115456,
+          "nonzeroSamples": 0,
+          "aboveToneThreshold": 0,
+          "nonfiniteSamples": 0,
+          "maxInputChannels": 2,
+          "maxInputFrames": 128,
+          "peak": 0,
+          "emitted": 7,
+          "rms": 0,
+          "frame": 57600,
+          "contextTime": 1.2,
+          "sampleRate": 48000
+        },
+        {
+          "type": "audio-diagnostic",
+          "role": "receiver",
+          "processCalls": 526,
+          "emptyCalls": 0,
+          "inputFrames": 67328,
+          "inputSamples": 134656,
+          "nonzeroSamples": 0,
+          "aboveToneThreshold": 0,
+          "nonfiniteSamples": 0,
+          "maxInputChannels": 2,
+          "maxInputFrames": 128,
+          "peak": 0,
+          "emitted": 8,
+          "rms": 0,
+          "frame": 67200,
+          "contextTime": 1.4,
+          "sampleRate": 48000
+        },
+        {
+          "type": "audio-diagnostic",
+          "role": "receiver",
+          "processCalls": 601,
+          "emptyCalls": 0,
+          "inputFrames": 76928,
+          "inputSamples": 153856,
+          "nonzeroSamples": 0,
+          "aboveToneThreshold": 0,
+          "nonfiniteSamples": 0,
+          "maxInputChannels": 2,
+          "maxInputFrames": 128,
+          "peak": 0,
+          "emitted": 9,
+          "rms": 0,
+          "frame": 76800,
+          "contextTime": 1.6,
+          "sampleRate": 48000
+        },
+        {
+          "type": "audio-diagnostic",
+          "role": "receiver",
+          "processCalls": 676,
+          "emptyCalls": 0,
+          "inputFrames": 86528,
+          "inputSamples": 173056,
+          "nonzeroSamples": 0,
+          "aboveToneThreshold": 0,
+          "nonfiniteSamples": 0,
+          "maxInputChannels": 2,
+          "maxInputFrames": 128,
+          "peak": 0,
+          "emitted": 10,
+          "rms": 0,
+          "frame": 86400,
+          "contextTime": 1.8,
+          "sampleRate": 48000
+        },
+        {
+          "type": "audio-diagnostic",
+          "role": "receiver",
+          "processCalls": 751,
+          "emptyCalls": 0,
+          "inputFrames": 96128,
+          "inputSamples": 192256,
+          "nonzeroSamples": 0,
+          "aboveToneThreshold": 0,
+          "nonfiniteSamples": 0,
+          "maxInputChannels": 2,
+          "maxInputFrames": 128,
+          "peak": 0,
+          "emitted": 11,
+          "rms": 0,
+          "frame": 96000,
+          "contextTime": 2,
+          "sampleRate": 48000
+        },
+        {
+          "type": "audio-diagnostic",
+          "role": "receiver",
+          "processCalls": 826,
+          "emptyCalls": 0,
+          "inputFrames": 105728,
+          "inputSamples": 211456,
+          "nonzeroSamples": 0,
+          "aboveToneThreshold": 0,
+          "nonfiniteSamples": 0,
+          "maxInputChannels": 2,
+          "maxInputFrames": 128,
+          "peak": 0,
+          "emitted": 12,
+          "rms": 0,
+          "frame": 105600,
+          "contextTime": 2.2,
+          "sampleRate": 48000
+        },
+        {
+          "type": "audio-diagnostic",
+          "role": "receiver",
+          "processCalls": 901,
+          "emptyCalls": 0,
+          "inputFrames": 115328,
+          "inputSamples": 230656,
+          "nonzeroSamples": 0,
+          "aboveToneThreshold": 0,
+          "nonfiniteSamples": 0,
+          "maxInputChannels": 2,
+          "maxInputFrames": 128,
+          "peak": 0,
+          "emitted": 13,
+          "rms": 0,
+          "frame": 115200,
+          "contextTime": 2.4,
+          "sampleRate": 48000
+        },
+        {
+          "type": "audio-diagnostic",
+          "role": "receiver",
+          "processCalls": 976,
+          "emptyCalls": 0,
+          "inputFrames": 124928,
+          "inputSamples": 249856,
+          "nonzeroSamples": 0,
+          "aboveToneThreshold": 0,
+          "nonfiniteSamples": 0,
+          "maxInputChannels": 2,
+          "maxInputFrames": 128,
+          "peak": 0,
+          "emitted": 14,
+          "rms": 0,
+          "frame": 124800,
+          "contextTime": 2.6,
+          "sampleRate": 48000
+        },
+        {
+          "type": "audio-diagnostic",
+          "role": "receiver",
+          "processCalls": 1051,
+          "emptyCalls": 0,
+          "inputFrames": 134528,
+          "inputSamples": 269056,
+          "nonzeroSamples": 0,
+          "aboveToneThreshold": 0,
+          "nonfiniteSamples": 0,
+          "maxInputChannels": 2,
+          "maxInputFrames": 128,
+          "peak": 0,
+          "emitted": 15,
+          "rms": 0,
+          "frame": 134400,
+          "contextTime": 2.8,
+          "sampleRate": 48000
+        },
+        {
+          "type": "audio-diagnostic",
+          "role": "receiver",
+          "processCalls": 1126,
+          "emptyCalls": 0,
+          "inputFrames": 144128,
+          "inputSamples": 288256,
+          "nonzeroSamples": 0,
+          "aboveToneThreshold": 0,
+          "nonfiniteSamples": 0,
+          "maxInputChannels": 2,
+          "maxInputFrames": 128,
+          "peak": 0,
+          "emitted": 16,
+          "rms": 0,
+          "frame": 144000,
+          "contextTime": 3,
+          "sampleRate": 48000
+        },
+        {
+          "type": "audio-diagnostic",
+          "role": "receiver",
+          "processCalls": 1201,
+          "emptyCalls": 0,
+          "inputFrames": 153728,
+          "inputSamples": 307456,
+          "nonzeroSamples": 0,
+          "aboveToneThreshold": 0,
+          "nonfiniteSamples": 0,
+          "maxInputChannels": 2,
+          "maxInputFrames": 128,
+          "peak": 0,
+          "emitted": 17,
+          "rms": 0,
+          "frame": 153600,
+          "contextTime": 3.2,
+          "sampleRate": 48000
+        },
+        {
+          "type": "audio-diagnostic",
+          "role": "receiver",
+          "processCalls": 1276,
+          "emptyCalls": 0,
+          "inputFrames": 163328,
+          "inputSamples": 326656,
+          "nonzeroSamples": 0,
+          "aboveToneThreshold": 0,
+          "nonfiniteSamples": 0,
+          "maxInputChannels": 2,
+          "maxInputFrames": 128,
+          "peak": 0,
+          "emitted": 18,
+          "rms": 0,
+          "frame": 163200,
+          "contextTime": 3.4,
+          "sampleRate": 48000
+        },
+        {
+          "type": "audio-diagnostic",
+          "role": "receiver",
+          "processCalls": 1351,
+          "emptyCalls": 0,
+          "inputFrames": 172928,
+          "inputSamples": 345856,
+          "nonzeroSamples": 0,
+          "aboveToneThreshold": 0,
+          "nonfiniteSamples": 0,
+          "maxInputChannels": 2,
+          "maxInputFrames": 128,
+          "peak": 0,
+          "emitted": 19,
+          "rms": 0,
+          "frame": 172800,
+          "contextTime": 3.6,
+          "sampleRate": 48000
+        },
+        {
+          "type": "audio-diagnostic",
+          "role": "receiver",
+          "processCalls": 1426,
+          "emptyCalls": 0,
+          "inputFrames": 182528,
+          "inputSamples": 365056,
+          "nonzeroSamples": 0,
+          "aboveToneThreshold": 0,
+          "nonfiniteSamples": 0,
+          "maxInputChannels": 2,
+          "maxInputFrames": 128,
+          "peak": 0,
+          "emitted": 20,
+          "rms": 0,
+          "frame": 182400,
+          "contextTime": 3.8,
+          "sampleRate": 48000
+        },
+        {
+          "type": "audio-diagnostic",
+          "role": "receiver",
+          "processCalls": 1501,
+          "emptyCalls": 0,
+          "inputFrames": 192128,
+          "inputSamples": 384256,
+          "nonzeroSamples": 0,
+          "aboveToneThreshold": 0,
+          "nonfiniteSamples": 0,
+          "maxInputChannels": 2,
+          "maxInputFrames": 128,
+          "peak": 0,
+          "emitted": 21,
+          "rms": 0,
+          "frame": 192000,
+          "contextTime": 4,
+          "sampleRate": 48000
+        },
+        {
+          "type": "audio-diagnostic",
+          "role": "receiver",
+          "processCalls": 1576,
+          "emptyCalls": 0,
+          "inputFrames": 201728,
+          "inputSamples": 403456,
+          "nonzeroSamples": 0,
+          "aboveToneThreshold": 0,
+          "nonfiniteSamples": 0,
+          "maxInputChannels": 2,
+          "maxInputFrames": 128,
+          "peak": 0,
+          "emitted": 22,
+          "rms": 0,
+          "frame": 201600,
+          "contextTime": 4.2,
+          "sampleRate": 48000
+        },
+        {
+          "type": "audio-diagnostic",
+          "role": "receiver",
+          "processCalls": 1651,
+          "emptyCalls": 0,
+          "inputFrames": 211328,
+          "inputSamples": 422656,
+          "nonzeroSamples": 0,
+          "aboveToneThreshold": 0,
+          "nonfiniteSamples": 0,
+          "maxInputChannels": 2,
+          "maxInputFrames": 128,
+          "peak": 0,
+          "emitted": 23,
+          "rms": 0,
+          "frame": 211200,
+          "contextTime": 4.4,
+          "sampleRate": 48000
+        },
+        {
+          "type": "audio-diagnostic",
+          "role": "receiver",
+          "processCalls": 1726,
+          "emptyCalls": 0,
+          "inputFrames": 220928,
+          "inputSamples": 441856,
+          "nonzeroSamples": 0,
+          "aboveToneThreshold": 0,
+          "nonfiniteSamples": 0,
+          "maxInputChannels": 2,
+          "maxInputFrames": 128,
+          "peak": 0,
+          "emitted": 24,
+          "rms": 0,
+          "frame": 220800,
+          "contextTime": 4.6,
+          "sampleRate": 48000
+        },
+        {
+          "type": "audio-diagnostic",
+          "role": "receiver",
+          "processCalls": 1801,
+          "emptyCalls": 0,
+          "inputFrames": 230528,
+          "inputSamples": 461056,
+          "nonzeroSamples": 0,
+          "aboveToneThreshold": 0,
+          "nonfiniteSamples": 0,
+          "maxInputChannels": 2,
+          "maxInputFrames": 128,
+          "peak": 0,
+          "emitted": 25,
+          "rms": 0,
+          "frame": 230400,
+          "contextTime": 4.8,
+          "sampleRate": 48000
+        },
+        {
+          "type": "audio-diagnostic",
+          "role": "receiver",
+          "processCalls": 1876,
+          "emptyCalls": 0,
+          "inputFrames": 240128,
+          "inputSamples": 480256,
+          "nonzeroSamples": 0,
+          "aboveToneThreshold": 0,
+          "nonfiniteSamples": 0,
+          "maxInputChannels": 2,
+          "maxInputFrames": 128,
+          "peak": 0,
+          "emitted": 26,
+          "rms": 0,
+          "frame": 240000,
+          "contextTime": 5,
+          "sampleRate": 48000
+        },
+        {
+          "type": "audio-diagnostic",
+          "role": "receiver",
+          "processCalls": 1951,
+          "emptyCalls": 0,
+          "inputFrames": 249728,
+          "inputSamples": 499456,
+          "nonzeroSamples": 0,
+          "aboveToneThreshold": 0,
+          "nonfiniteSamples": 0,
+          "maxInputChannels": 2,
+          "maxInputFrames": 128,
+          "peak": 0,
+          "emitted": 27,
+          "rms": 0,
+          "frame": 249600,
+          "contextTime": 5.2,
+          "sampleRate": 48000
+        },
+        {
+          "type": "audio-diagnostic",
+          "role": "receiver",
+          "processCalls": 2026,
+          "emptyCalls": 0,
+          "inputFrames": 259328,
+          "inputSamples": 518656,
+          "nonzeroSamples": 0,
+          "aboveToneThreshold": 0,
+          "nonfiniteSamples": 0,
+          "maxInputChannels": 2,
+          "maxInputFrames": 128,
+          "peak": 0,
+          "emitted": 28,
+          "rms": 0,
+          "frame": 259200,
+          "contextTime": 5.4,
+          "sampleRate": 48000
+        },
+        {
+          "type": "audio-diagnostic",
+          "role": "receiver",
+          "processCalls": 2101,
+          "emptyCalls": 0,
+          "inputFrames": 268928,
+          "inputSamples": 537856,
+          "nonzeroSamples": 0,
+          "aboveToneThreshold": 0,
+          "nonfiniteSamples": 0,
+          "maxInputChannels": 2,
+          "maxInputFrames": 128,
+          "peak": 0,
+          "emitted": 29,
+          "rms": 0,
+          "frame": 268800,
+          "contextTime": 5.6,
+          "sampleRate": 48000
+        },
+        {
+          "type": "audio-diagnostic",
+          "role": "receiver",
+          "processCalls": 2176,
+          "emptyCalls": 0,
+          "inputFrames": 278528,
+          "inputSamples": 557056,
+          "nonzeroSamples": 0,
+          "aboveToneThreshold": 0,
+          "nonfiniteSamples": 0,
+          "maxInputChannels": 2,
+          "maxInputFrames": 128,
+          "peak": 0,
+          "emitted": 30,
+          "rms": 0,
+          "frame": 278400,
+          "contextTime": 5.8,
+          "sampleRate": 48000
+        },
+        {
+          "type": "audio-diagnostic",
+          "role": "receiver",
+          "processCalls": 2251,
+          "emptyCalls": 0,
+          "inputFrames": 288128,
+          "inputSamples": 576256,
+          "nonzeroSamples": 0,
+          "aboveToneThreshold": 0,
+          "nonfiniteSamples": 0,
+          "maxInputChannels": 2,
+          "maxInputFrames": 128,
+          "peak": 0,
+          "emitted": 31,
+          "rms": 0,
+          "frame": 288000,
+          "contextTime": 6,
+          "sampleRate": 48000
+        },
+        {
+          "type": "audio-diagnostic",
+          "role": "receiver",
+          "processCalls": 2326,
+          "emptyCalls": 0,
+          "inputFrames": 297728,
+          "inputSamples": 595456,
+          "nonzeroSamples": 0,
+          "aboveToneThreshold": 0,
+          "nonfiniteSamples": 0,
+          "maxInputChannels": 2,
+          "maxInputFrames": 128,
+          "peak": 0,
+          "emitted": 32,
+          "rms": 0,
+          "frame": 297600,
+          "contextTime": 6.2,
+          "sampleRate": 48000
+        },
+        {
+          "type": "audio-diagnostic",
+          "role": "receiver",
+          "processCalls": 2401,
+          "emptyCalls": 0,
+          "inputFrames": 307328,
+          "inputSamples": 614656,
+          "nonzeroSamples": 0,
+          "aboveToneThreshold": 0,
+          "nonfiniteSamples": 0,
+          "maxInputChannels": 2,
+          "maxInputFrames": 128,
+          "peak": 0,
+          "emitted": 33,
+          "rms": 0,
+          "frame": 307200,
+          "contextTime": 6.4,
+          "sampleRate": 48000
+        },
+        {
+          "type": "audio-diagnostic",
+          "role": "receiver",
+          "processCalls": 2476,
+          "emptyCalls": 0,
+          "inputFrames": 316928,
+          "inputSamples": 633856,
+          "nonzeroSamples": 0,
+          "aboveToneThreshold": 0,
+          "nonfiniteSamples": 0,
+          "maxInputChannels": 2,
+          "maxInputFrames": 128,
+          "peak": 0,
+          "emitted": 34,
+          "rms": 0,
+          "frame": 316800,
+          "contextTime": 6.6,
+          "sampleRate": 48000
+        },
+        {
+          "type": "audio-diagnostic",
+          "role": "receiver",
+          "processCalls": 2551,
+          "emptyCalls": 0,
+          "inputFrames": 326528,
+          "inputSamples": 653056,
+          "nonzeroSamples": 0,
+          "aboveToneThreshold": 0,
+          "nonfiniteSamples": 0,
+          "maxInputChannels": 2,
+          "maxInputFrames": 128,
+          "peak": 0,
+          "emitted": 35,
+          "rms": 0,
+          "frame": 326400,
+          "contextTime": 6.8,
+          "sampleRate": 48000
+        },
+        {
+          "type": "audio-diagnostic",
+          "role": "receiver",
+          "processCalls": 2626,
+          "emptyCalls": 0,
+          "inputFrames": 336128,
+          "inputSamples": 672256,
+          "nonzeroSamples": 0,
+          "aboveToneThreshold": 0,
+          "nonfiniteSamples": 0,
+          "maxInputChannels": 2,
+          "maxInputFrames": 128,
+          "peak": 0,
+          "emitted": 36,
+          "rms": 0,
+          "frame": 336000,
+          "contextTime": 7,
+          "sampleRate": 48000
+        },
+        {
+          "type": "audio-diagnostic",
+          "role": "receiver",
+          "processCalls": 2701,
+          "emptyCalls": 0,
+          "inputFrames": 345728,
+          "inputSamples": 691456,
+          "nonzeroSamples": 0,
+          "aboveToneThreshold": 0,
+          "nonfiniteSamples": 0,
+          "maxInputChannels": 2,
+          "maxInputFrames": 128,
+          "peak": 0,
+          "emitted": 37,
+          "rms": 0,
+          "frame": 345600,
+          "contextTime": 7.2,
+          "sampleRate": 48000
+        },
+        {
+          "type": "audio-diagnostic",
+          "role": "receiver",
+          "processCalls": 2776,
+          "emptyCalls": 0,
+          "inputFrames": 355328,
+          "inputSamples": 710656,
+          "nonzeroSamples": 0,
+          "aboveToneThreshold": 0,
+          "nonfiniteSamples": 0,
+          "maxInputChannels": 2,
+          "maxInputFrames": 128,
+          "peak": 0,
+          "emitted": 38,
+          "rms": 0,
+          "frame": 355200,
+          "contextTime": 7.4,
+          "sampleRate": 48000
+        },
+        {
+          "type": "audio-diagnostic",
+          "role": "receiver",
+          "processCalls": 2851,
+          "emptyCalls": 0,
+          "inputFrames": 364928,
+          "inputSamples": 729856,
+          "nonzeroSamples": 0,
+          "aboveToneThreshold": 0,
+          "nonfiniteSamples": 0,
+          "maxInputChannels": 2,
+          "maxInputFrames": 128,
+          "peak": 0,
+          "emitted": 39,
+          "rms": 0,
+          "frame": 364800,
+          "contextTime": 7.6,
+          "sampleRate": 48000
+        },
+        {
+          "type": "audio-diagnostic",
+          "role": "receiver",
+          "processCalls": 2926,
+          "emptyCalls": 0,
+          "inputFrames": 374528,
+          "inputSamples": 749056,
+          "nonzeroSamples": 0,
+          "aboveToneThreshold": 0,
+          "nonfiniteSamples": 0,
+          "maxInputChannels": 2,
+          "maxInputFrames": 128,
+          "peak": 0,
+          "emitted": 40,
+          "rms": 0,
+          "frame": 374400,
+          "contextTime": 7.8,
+          "sampleRate": 48000
+        },
+        {
+          "type": "audio-diagnostic",
+          "role": "receiver",
+          "processCalls": 3001,
+          "emptyCalls": 0,
+          "inputFrames": 384128,
+          "inputSamples": 768256,
+          "nonzeroSamples": 0,
+          "aboveToneThreshold": 0,
+          "nonfiniteSamples": 0,
+          "maxInputChannels": 2,
+          "maxInputFrames": 128,
+          "peak": 0,
+          "emitted": 41,
+          "rms": 0,
+          "frame": 384000,
+          "contextTime": 8,
+          "sampleRate": 48000
+        },
+        {
+          "type": "audio-diagnostic",
+          "role": "receiver",
+          "processCalls": 3076,
+          "emptyCalls": 0,
+          "inputFrames": 393728,
+          "inputSamples": 787456,
+          "nonzeroSamples": 0,
+          "aboveToneThreshold": 0,
+          "nonfiniteSamples": 0,
+          "maxInputChannels": 2,
+          "maxInputFrames": 128,
+          "peak": 0,
+          "emitted": 42,
+          "rms": 0,
+          "frame": 393600,
+          "contextTime": 8.2,
+          "sampleRate": 48000
+        },
+        {
+          "type": "audio-diagnostic",
+          "role": "receiver",
+          "processCalls": 3151,
+          "emptyCalls": 0,
+          "inputFrames": 403328,
+          "inputSamples": 806656,
+          "nonzeroSamples": 0,
+          "aboveToneThreshold": 0,
+          "nonfiniteSamples": 0,
+          "maxInputChannels": 2,
+          "maxInputFrames": 128,
+          "peak": 0,
+          "emitted": 43,
+          "rms": 0,
+          "frame": 403200,
+          "contextTime": 8.4,
+          "sampleRate": 48000
+        },
+        {
+          "type": "audio-diagnostic",
+          "role": "receiver",
+          "processCalls": 3226,
+          "emptyCalls": 0,
+          "inputFrames": 412928,
+          "inputSamples": 825856,
+          "nonzeroSamples": 0,
+          "aboveToneThreshold": 0,
+          "nonfiniteSamples": 0,
+          "maxInputChannels": 2,
+          "maxInputFrames": 128,
+          "peak": 0,
+          "emitted": 44,
+          "rms": 0,
+          "frame": 412800,
+          "contextTime": 8.6,
+          "sampleRate": 48000
+        },
+        {
+          "type": "audio-diagnostic",
+          "role": "receiver",
+          "processCalls": 3301,
+          "emptyCalls": 0,
+          "inputFrames": 422528,
+          "inputSamples": 845056,
+          "nonzeroSamples": 0,
+          "aboveToneThreshold": 0,
+          "nonfiniteSamples": 0,
+          "maxInputChannels": 2,
+          "maxInputFrames": 128,
+          "peak": 0,
+          "emitted": 45,
+          "rms": 0,
+          "frame": 422400,
+          "contextTime": 8.8,
+          "sampleRate": 48000
+        },
+        {
+          "type": "audio-diagnostic",
+          "role": "receiver",
+          "processCalls": 3376,
+          "emptyCalls": 0,
+          "inputFrames": 432128,
+          "inputSamples": 864256,
+          "nonzeroSamples": 0,
+          "aboveToneThreshold": 0,
+          "nonfiniteSamples": 0,
+          "maxInputChannels": 2,
+          "maxInputFrames": 128,
+          "peak": 0,
+          "emitted": 46,
+          "rms": 0,
+          "frame": 432000,
+          "contextTime": 9,
+          "sampleRate": 48000
+        },
+        {
+          "type": "audio-diagnostic",
+          "role": "receiver",
+          "processCalls": 3451,
+          "emptyCalls": 0,
+          "inputFrames": 441728,
+          "inputSamples": 883456,
+          "nonzeroSamples": 0,
+          "aboveToneThreshold": 0,
+          "nonfiniteSamples": 0,
+          "maxInputChannels": 2,
+          "maxInputFrames": 128,
+          "peak": 0,
+          "emitted": 47,
+          "rms": 0,
+          "frame": 441600,
+          "contextTime": 9.2,
+          "sampleRate": 48000
+        },
+        {
+          "type": "audio-diagnostic",
+          "role": "receiver",
+          "processCalls": 3526,
+          "emptyCalls": 0,
+          "inputFrames": 451328,
+          "inputSamples": 902656,
+          "nonzeroSamples": 0,
+          "aboveToneThreshold": 0,
+          "nonfiniteSamples": 0,
+          "maxInputChannels": 2,
+          "maxInputFrames": 128,
+          "peak": 0,
+          "emitted": 48,
+          "rms": 0,
+          "frame": 451200,
+          "contextTime": 9.4,
+          "sampleRate": 48000
+        },
+        {
+          "type": "audio-diagnostic",
+          "role": "receiver",
+          "processCalls": 3601,
+          "emptyCalls": 0,
+          "inputFrames": 460928,
+          "inputSamples": 921856,
+          "nonzeroSamples": 0,
+          "aboveToneThreshold": 0,
+          "nonfiniteSamples": 0,
+          "maxInputChannels": 2,
+          "maxInputFrames": 128,
+          "peak": 0,
+          "emitted": 49,
+          "rms": 0,
+          "frame": 460800,
+          "contextTime": 9.6,
+          "sampleRate": 48000
+        },
+        {
+          "type": "audio-diagnostic",
+          "role": "receiver",
+          "processCalls": 3676,
+          "emptyCalls": 0,
+          "inputFrames": 470528,
+          "inputSamples": 941056,
+          "nonzeroSamples": 0,
+          "aboveToneThreshold": 0,
+          "nonfiniteSamples": 0,
+          "maxInputChannels": 2,
+          "maxInputFrames": 128,
+          "peak": 0,
+          "emitted": 50,
+          "rms": 0,
+          "frame": 470400,
+          "contextTime": 9.8,
+          "sampleRate": 48000
+        },
+        {
+          "type": "audio-diagnostic",
+          "role": "receiver",
+          "processCalls": 3751,
+          "emptyCalls": 0,
+          "inputFrames": 480128,
+          "inputSamples": 960256,
+          "nonzeroSamples": 0,
+          "aboveToneThreshold": 0,
+          "nonfiniteSamples": 0,
+          "maxInputChannels": 2,
+          "maxInputFrames": 128,
+          "peak": 0,
+          "emitted": 51,
+          "rms": 0,
+          "frame": 480000,
+          "contextTime": 10,
+          "sampleRate": 48000
+        },
+        {
+          "type": "audio-diagnostic",
+          "role": "receiver",
+          "processCalls": 3826,
+          "emptyCalls": 0,
+          "inputFrames": 489728,
+          "inputSamples": 979456,
+          "nonzeroSamples": 0,
+          "aboveToneThreshold": 0,
+          "nonfiniteSamples": 0,
+          "maxInputChannels": 2,
+          "maxInputFrames": 128,
+          "peak": 0,
+          "emitted": 52,
+          "rms": 0,
+          "frame": 489600,
+          "contextTime": 10.2,
+          "sampleRate": 48000
+        },
+        {
+          "type": "audio-diagnostic",
+          "role": "receiver",
+          "processCalls": 3901,
+          "emptyCalls": 0,
+          "inputFrames": 499328,
+          "inputSamples": 998656,
+          "nonzeroSamples": 0,
+          "aboveToneThreshold": 0,
+          "nonfiniteSamples": 0,
+          "maxInputChannels": 2,
+          "maxInputFrames": 128,
+          "peak": 0,
+          "emitted": 53,
+          "rms": 0,
+          "frame": 499200,
+          "contextTime": 10.4,
+          "sampleRate": 48000
+        },
+        {
+          "type": "audio-diagnostic",
+          "role": "receiver",
+          "processCalls": 3976,
+          "emptyCalls": 0,
+          "inputFrames": 508928,
+          "inputSamples": 1017856,
+          "nonzeroSamples": 0,
+          "aboveToneThreshold": 0,
+          "nonfiniteSamples": 0,
+          "maxInputChannels": 2,
+          "maxInputFrames": 128,
+          "peak": 0,
+          "emitted": 54,
+          "rms": 0,
+          "frame": 508800,
+          "contextTime": 10.6,
+          "sampleRate": 48000
+        },
+        {
+          "type": "audio-diagnostic",
+          "role": "receiver",
+          "processCalls": 4051,
+          "emptyCalls": 0,
+          "inputFrames": 518528,
+          "inputSamples": 1037056,
+          "nonzeroSamples": 0,
+          "aboveToneThreshold": 0,
+          "nonfiniteSamples": 0,
+          "maxInputChannels": 2,
+          "maxInputFrames": 128,
+          "peak": 0,
+          "emitted": 55,
+          "rms": 0,
+          "frame": 518400,
+          "contextTime": 10.8,
+          "sampleRate": 48000
+        },
+        {
+          "type": "audio-diagnostic",
+          "role": "receiver",
+          "processCalls": 4126,
+          "emptyCalls": 0,
+          "inputFrames": 528128,
+          "inputSamples": 1056256,
+          "nonzeroSamples": 0,
+          "aboveToneThreshold": 0,
+          "nonfiniteSamples": 0,
+          "maxInputChannels": 2,
+          "maxInputFrames": 128,
+          "peak": 0,
+          "emitted": 56,
+          "rms": 0,
+          "frame": 528000,
+          "contextTime": 11,
+          "sampleRate": 48000
+        },
+        {
+          "type": "audio-diagnostic",
+          "role": "receiver",
+          "processCalls": 4201,
+          "emptyCalls": 0,
+          "inputFrames": 537728,
+          "inputSamples": 1075456,
+          "nonzeroSamples": 0,
+          "aboveToneThreshold": 0,
+          "nonfiniteSamples": 0,
+          "maxInputChannels": 2,
+          "maxInputFrames": 128,
+          "peak": 0,
+          "emitted": 57,
+          "rms": 0,
+          "frame": 537600,
+          "contextTime": 11.2,
+          "sampleRate": 48000
+        },
+        {
+          "type": "audio-diagnostic",
+          "role": "receiver",
+          "processCalls": 4276,
+          "emptyCalls": 0,
+          "inputFrames": 547328,
+          "inputSamples": 1094656,
+          "nonzeroSamples": 0,
+          "aboveToneThreshold": 0,
+          "nonfiniteSamples": 0,
+          "maxInputChannels": 2,
+          "maxInputFrames": 128,
+          "peak": 0,
+          "emitted": 58,
+          "rms": 0,
+          "frame": 547200,
+          "contextTime": 11.4,
+          "sampleRate": 48000
+        },
+        {
+          "type": "audio-diagnostic",
+          "role": "receiver",
+          "processCalls": 4351,
+          "emptyCalls": 0,
+          "inputFrames": 556928,
+          "inputSamples": 1113856,
+          "nonzeroSamples": 0,
+          "aboveToneThreshold": 0,
+          "nonfiniteSamples": 0,
+          "maxInputChannels": 2,
+          "maxInputFrames": 128,
+          "peak": 0,
+          "emitted": 59,
+          "rms": 0,
+          "frame": 556800,
+          "contextTime": 11.6,
+          "sampleRate": 48000
+        },
+        {
+          "type": "audio-diagnostic",
+          "role": "receiver",
+          "processCalls": 4426,
+          "emptyCalls": 0,
+          "inputFrames": 566528,
+          "inputSamples": 1133056,
+          "nonzeroSamples": 0,
+          "aboveToneThreshold": 0,
+          "nonfiniteSamples": 0,
+          "maxInputChannels": 2,
+          "maxInputFrames": 128,
+          "peak": 0,
+          "emitted": 60,
+          "rms": 0,
+          "frame": 566400,
+          "contextTime": 11.8,
+          "sampleRate": 48000
+        },
+        {
+          "type": "audio-diagnostic",
+          "role": "receiver",
+          "processCalls": 4501,
+          "emptyCalls": 0,
+          "inputFrames": 576128,
+          "inputSamples": 1152256,
+          "nonzeroSamples": 0,
+          "aboveToneThreshold": 0,
+          "nonfiniteSamples": 0,
+          "maxInputChannels": 2,
+          "maxInputFrames": 128,
+          "peak": 0,
+          "emitted": 61,
+          "rms": 0,
+          "frame": 576000,
+          "contextTime": 12,
+          "sampleRate": 48000
+        },
+        {
+          "type": "audio-diagnostic",
+          "role": "receiver",
+          "processCalls": 4576,
+          "emptyCalls": 0,
+          "inputFrames": 585728,
+          "inputSamples": 1171456,
+          "nonzeroSamples": 0,
+          "aboveToneThreshold": 0,
+          "nonfiniteSamples": 0,
+          "maxInputChannels": 2,
+          "maxInputFrames": 128,
+          "peak": 0,
+          "emitted": 62,
+          "rms": 0,
+          "frame": 585600,
+          "contextTime": 12.2,
+          "sampleRate": 48000
+        },
+        {
+          "type": "audio-diagnostic",
+          "role": "receiver",
+          "processCalls": 4651,
+          "emptyCalls": 0,
+          "inputFrames": 595328,
+          "inputSamples": 1190656,
+          "nonzeroSamples": 0,
+          "aboveToneThreshold": 0,
+          "nonfiniteSamples": 0,
+          "maxInputChannels": 2,
+          "maxInputFrames": 128,
+          "peak": 0,
+          "emitted": 63,
+          "rms": 0,
+          "frame": 595200,
+          "contextTime": 12.4,
+          "sampleRate": 48000
+        },
+        {
+          "type": "audio-diagnostic",
+          "role": "receiver",
+          "processCalls": 4726,
+          "emptyCalls": 0,
+          "inputFrames": 604928,
+          "inputSamples": 1209856,
+          "nonzeroSamples": 0,
+          "aboveToneThreshold": 0,
+          "nonfiniteSamples": 0,
+          "maxInputChannels": 2,
+          "maxInputFrames": 128,
+          "peak": 0,
+          "emitted": 64,
+          "rms": 0,
+          "frame": 604800,
+          "contextTime": 12.6,
+          "sampleRate": 48000
+        },
+        {
+          "type": "audio-diagnostic",
+          "role": "receiver",
+          "processCalls": 4801,
+          "emptyCalls": 0,
+          "inputFrames": 614528,
+          "inputSamples": 1229056,
+          "nonzeroSamples": 0,
+          "aboveToneThreshold": 0,
+          "nonfiniteSamples": 0,
+          "maxInputChannels": 2,
+          "maxInputFrames": 128,
+          "peak": 0,
+          "emitted": 65,
+          "rms": 0,
+          "frame": 614400,
+          "contextTime": 12.8,
+          "sampleRate": 48000
+        },
+        {
+          "type": "audio-diagnostic",
+          "role": "receiver",
+          "processCalls": 4876,
+          "emptyCalls": 0,
+          "inputFrames": 624128,
+          "inputSamples": 1248256,
+          "nonzeroSamples": 0,
+          "aboveToneThreshold": 0,
+          "nonfiniteSamples": 0,
+          "maxInputChannels": 2,
+          "maxInputFrames": 128,
+          "peak": 0,
+          "emitted": 66,
+          "rms": 0,
+          "frame": 624000,
+          "contextTime": 13,
+          "sampleRate": 48000
+        },
+        {
+          "type": "audio-diagnostic",
+          "role": "receiver",
+          "processCalls": 4951,
+          "emptyCalls": 0,
+          "inputFrames": 633728,
+          "inputSamples": 1267456,
+          "nonzeroSamples": 0,
+          "aboveToneThreshold": 0,
+          "nonfiniteSamples": 0,
+          "maxInputChannels": 2,
+          "maxInputFrames": 128,
+          "peak": 0,
+          "emitted": 67,
+          "rms": 0,
+          "frame": 633600,
+          "contextTime": 13.2,
+          "sampleRate": 48000
+        },
+        {
+          "type": "audio-diagnostic",
+          "role": "receiver",
+          "processCalls": 5026,
+          "emptyCalls": 0,
+          "inputFrames": 643328,
+          "inputSamples": 1286656,
+          "nonzeroSamples": 0,
+          "aboveToneThreshold": 0,
+          "nonfiniteSamples": 0,
+          "maxInputChannels": 2,
+          "maxInputFrames": 128,
+          "peak": 0,
+          "emitted": 68,
+          "rms": 0,
+          "frame": 643200,
+          "contextTime": 13.4,
+          "sampleRate": 48000
+        },
+        {
+          "type": "audio-diagnostic",
+          "role": "receiver",
+          "processCalls": 5101,
+          "emptyCalls": 0,
+          "inputFrames": 652928,
+          "inputSamples": 1305856,
+          "nonzeroSamples": 0,
+          "aboveToneThreshold": 0,
+          "nonfiniteSamples": 0,
+          "maxInputChannels": 2,
+          "maxInputFrames": 128,
+          "peak": 0,
+          "emitted": 69,
+          "rms": 0,
+          "frame": 652800,
+          "contextTime": 13.6,
+          "sampleRate": 48000
+        },
+        {
+          "type": "audio-diagnostic",
+          "role": "receiver",
+          "processCalls": 5176,
+          "emptyCalls": 0,
+          "inputFrames": 662528,
+          "inputSamples": 1325056,
+          "nonzeroSamples": 0,
+          "aboveToneThreshold": 0,
+          "nonfiniteSamples": 0,
+          "maxInputChannels": 2,
+          "maxInputFrames": 128,
+          "peak": 0,
+          "emitted": 70,
+          "rms": 0,
+          "frame": 662400,
+          "contextTime": 13.8,
+          "sampleRate": 48000
+        },
+        {
+          "type": "audio-diagnostic",
+          "role": "receiver",
+          "processCalls": 5251,
+          "emptyCalls": 0,
+          "inputFrames": 672128,
+          "inputSamples": 1344256,
+          "nonzeroSamples": 0,
+          "aboveToneThreshold": 0,
+          "nonfiniteSamples": 0,
+          "maxInputChannels": 2,
+          "maxInputFrames": 128,
+          "peak": 0,
+          "emitted": 71,
+          "rms": 0,
+          "frame": 672000,
+          "contextTime": 14,
+          "sampleRate": 48000
+        },
+        {
+          "type": "audio-diagnostic",
+          "role": "receiver",
+          "processCalls": 5326,
+          "emptyCalls": 0,
+          "inputFrames": 681728,
+          "inputSamples": 1363456,
+          "nonzeroSamples": 0,
+          "aboveToneThreshold": 0,
+          "nonfiniteSamples": 0,
+          "maxInputChannels": 2,
+          "maxInputFrames": 128,
+          "peak": 0,
+          "emitted": 72,
+          "rms": 0,
+          "frame": 681600,
+          "contextTime": 14.2,
+          "sampleRate": 48000
+        },
+        {
+          "type": "audio-diagnostic",
+          "role": "receiver",
+          "processCalls": 5401,
+          "emptyCalls": 0,
+          "inputFrames": 691328,
+          "inputSamples": 1382656,
+          "nonzeroSamples": 0,
+          "aboveToneThreshold": 0,
+          "nonfiniteSamples": 0,
+          "maxInputChannels": 2,
+          "maxInputFrames": 128,
+          "peak": 0,
+          "emitted": 73,
+          "rms": 0,
+          "frame": 691200,
+          "contextTime": 14.4,
+          "sampleRate": 48000
+        },
+        {
+          "type": "audio-diagnostic",
+          "role": "receiver",
+          "processCalls": 5476,
+          "emptyCalls": 0,
+          "inputFrames": 700928,
+          "inputSamples": 1401856,
+          "nonzeroSamples": 0,
+          "aboveToneThreshold": 0,
+          "nonfiniteSamples": 0,
+          "maxInputChannels": 2,
+          "maxInputFrames": 128,
+          "peak": 0,
+          "emitted": 74,
+          "rms": 0,
+          "frame": 700800,
+          "contextTime": 14.6,
+          "sampleRate": 48000
+        },
+        {
+          "type": "audio-diagnostic",
+          "role": "receiver",
+          "processCalls": 5551,
+          "emptyCalls": 0,
+          "inputFrames": 710528,
+          "inputSamples": 1421056,
+          "nonzeroSamples": 0,
+          "aboveToneThreshold": 0,
+          "nonfiniteSamples": 0,
+          "maxInputChannels": 2,
+          "maxInputFrames": 128,
+          "peak": 0,
+          "emitted": 75,
+          "rms": 0,
+          "frame": 710400,
+          "contextTime": 14.8,
+          "sampleRate": 48000
+        },
+        {
+          "type": "audio-diagnostic",
+          "role": "receiver",
+          "processCalls": 5626,
+          "emptyCalls": 0,
+          "inputFrames": 720128,
+          "inputSamples": 1440256,
+          "nonzeroSamples": 0,
+          "aboveToneThreshold": 0,
+          "nonfiniteSamples": 0,
+          "maxInputChannels": 2,
+          "maxInputFrames": 128,
+          "peak": 0,
+          "emitted": 76,
+          "rms": 0,
+          "frame": 720000,
+          "contextTime": 15,
+          "sampleRate": 48000
+        },
+        {
+          "type": "audio-diagnostic",
+          "role": "receiver",
+          "processCalls": 5701,
+          "emptyCalls": 0,
+          "inputFrames": 729728,
+          "inputSamples": 1459456,
+          "nonzeroSamples": 0,
+          "aboveToneThreshold": 0,
+          "nonfiniteSamples": 0,
+          "maxInputChannels": 2,
+          "maxInputFrames": 128,
+          "peak": 0,
+          "emitted": 77,
+          "rms": 0,
+          "frame": 729600,
+          "contextTime": 15.2,
+          "sampleRate": 48000
+        },
+        {
+          "type": "audio-diagnostic",
+          "role": "receiver",
+          "processCalls": 5776,
+          "emptyCalls": 0,
+          "inputFrames": 739328,
+          "inputSamples": 1478656,
+          "nonzeroSamples": 0,
+          "aboveToneThreshold": 0,
+          "nonfiniteSamples": 0,
+          "maxInputChannels": 2,
+          "maxInputFrames": 128,
+          "peak": 0,
+          "emitted": 78,
+          "rms": 0,
+          "frame": 739200,
+          "contextTime": 15.4,
+          "sampleRate": 48000
+        },
+        {
+          "type": "audio-diagnostic",
+          "role": "receiver",
+          "processCalls": 5851,
+          "emptyCalls": 0,
+          "inputFrames": 748928,
+          "inputSamples": 1497856,
+          "nonzeroSamples": 0,
+          "aboveToneThreshold": 0,
+          "nonfiniteSamples": 0,
+          "maxInputChannels": 2,
+          "maxInputFrames": 128,
+          "peak": 0,
+          "emitted": 79,
+          "rms": 0,
+          "frame": 748800,
+          "contextTime": 15.6,
+          "sampleRate": 48000
+        },
+        {
+          "type": "audio-diagnostic",
+          "role": "receiver",
+          "processCalls": 5926,
+          "emptyCalls": 0,
+          "inputFrames": 758528,
+          "inputSamples": 1517056,
+          "nonzeroSamples": 0,
+          "aboveToneThreshold": 0,
+          "nonfiniteSamples": 0,
+          "maxInputChannels": 2,
+          "maxInputFrames": 128,
+          "peak": 0,
+          "emitted": 80,
+          "rms": 0,
+          "frame": 758400,
+          "contextTime": 15.8,
+          "sampleRate": 48000
+        },
+        {
+          "type": "audio-diagnostic",
+          "role": "receiver",
+          "processCalls": 6001,
+          "emptyCalls": 0,
+          "inputFrames": 768128,
+          "inputSamples": 1536256,
+          "nonzeroSamples": 0,
+          "aboveToneThreshold": 0,
+          "nonfiniteSamples": 0,
+          "maxInputChannels": 2,
+          "maxInputFrames": 128,
+          "peak": 0,
+          "emitted": 81,
+          "rms": 0,
+          "frame": 768000,
+          "contextTime": 16,
+          "sampleRate": 48000
+        },
+        {
+          "type": "audio-diagnostic",
+          "role": "receiver",
+          "processCalls": 6076,
+          "emptyCalls": 0,
+          "inputFrames": 777728,
+          "inputSamples": 1555456,
+          "nonzeroSamples": 0,
+          "aboveToneThreshold": 0,
+          "nonfiniteSamples": 0,
+          "maxInputChannels": 2,
+          "maxInputFrames": 128,
+          "peak": 0,
+          "emitted": 82,
+          "rms": 0,
+          "frame": 777600,
+          "contextTime": 16.2,
+          "sampleRate": 48000
+        },
+        {
+          "type": "audio-diagnostic",
+          "role": "receiver",
+          "processCalls": 6151,
+          "emptyCalls": 0,
+          "inputFrames": 787328,
+          "inputSamples": 1574656,
+          "nonzeroSamples": 0,
+          "aboveToneThreshold": 0,
+          "nonfiniteSamples": 0,
+          "maxInputChannels": 2,
+          "maxInputFrames": 128,
+          "peak": 0,
+          "emitted": 83,
+          "rms": 0,
+          "frame": 787200,
+          "contextTime": 16.4,
+          "sampleRate": 48000
+        },
+        {
+          "type": "audio-diagnostic",
+          "role": "receiver",
+          "processCalls": 6226,
+          "emptyCalls": 0,
+          "inputFrames": 796928,
+          "inputSamples": 1593856,
+          "nonzeroSamples": 0,
+          "aboveToneThreshold": 0,
+          "nonfiniteSamples": 0,
+          "maxInputChannels": 2,
+          "maxInputFrames": 128,
+          "peak": 0,
+          "emitted": 84,
+          "rms": 0,
+          "frame": 796800,
+          "contextTime": 16.6,
+          "sampleRate": 48000
+        },
+        {
+          "type": "audio-diagnostic",
+          "role": "receiver",
+          "processCalls": 6301,
+          "emptyCalls": 0,
+          "inputFrames": 806528,
+          "inputSamples": 1613056,
+          "nonzeroSamples": 0,
+          "aboveToneThreshold": 0,
+          "nonfiniteSamples": 0,
+          "maxInputChannels": 2,
+          "maxInputFrames": 128,
+          "peak": 0,
+          "emitted": 85,
+          "rms": 0,
+          "frame": 806400,
+          "contextTime": 16.8,
+          "sampleRate": 48000
+        },
+        {
+          "type": "audio-diagnostic",
+          "role": "receiver",
+          "processCalls": 6376,
+          "emptyCalls": 0,
+          "inputFrames": 816128,
+          "inputSamples": 1632256,
+          "nonzeroSamples": 0,
+          "aboveToneThreshold": 0,
+          "nonfiniteSamples": 0,
+          "maxInputChannels": 2,
+          "maxInputFrames": 128,
+          "peak": 0,
+          "emitted": 86,
+          "rms": 0,
+          "frame": 816000,
+          "contextTime": 17,
+          "sampleRate": 48000
+        },
+        {
+          "type": "audio-diagnostic",
+          "role": "receiver",
+          "processCalls": 6451,
+          "emptyCalls": 0,
+          "inputFrames": 825728,
+          "inputSamples": 1651456,
+          "nonzeroSamples": 0,
+          "aboveToneThreshold": 0,
+          "nonfiniteSamples": 0,
+          "maxInputChannels": 2,
+          "maxInputFrames": 128,
+          "peak": 0,
+          "emitted": 87,
+          "rms": 0,
+          "frame": 825600,
+          "contextTime": 17.2,
+          "sampleRate": 48000
+        },
+        {
+          "type": "audio-diagnostic",
+          "role": "receiver",
+          "processCalls": 6526,
+          "emptyCalls": 0,
+          "inputFrames": 835328,
+          "inputSamples": 1670656,
+          "nonzeroSamples": 0,
+          "aboveToneThreshold": 0,
+          "nonfiniteSamples": 0,
+          "maxInputChannels": 2,
+          "maxInputFrames": 128,
+          "peak": 0,
+          "emitted": 88,
+          "rms": 0,
+          "frame": 835200,
+          "contextTime": 17.4,
+          "sampleRate": 48000
+        },
+        {
+          "type": "audio-diagnostic",
+          "role": "receiver",
+          "processCalls": 6601,
+          "emptyCalls": 0,
+          "inputFrames": 844928,
+          "inputSamples": 1689856,
+          "nonzeroSamples": 0,
+          "aboveToneThreshold": 0,
+          "nonfiniteSamples": 0,
+          "maxInputChannels": 2,
+          "maxInputFrames": 128,
+          "peak": 0,
+          "emitted": 89,
+          "rms": 0,
+          "frame": 844800,
+          "contextTime": 17.6,
+          "sampleRate": 48000
+        },
+        {
+          "type": "audio-diagnostic",
+          "role": "receiver",
+          "processCalls": 6676,
+          "emptyCalls": 0,
+          "inputFrames": 854528,
+          "inputSamples": 1709056,
+          "nonzeroSamples": 0,
+          "aboveToneThreshold": 0,
+          "nonfiniteSamples": 0,
+          "maxInputChannels": 2,
+          "maxInputFrames": 128,
+          "peak": 0,
+          "emitted": 90,
+          "rms": 0,
+          "frame": 854400,
+          "contextTime": 17.8,
+          "sampleRate": 48000
+        },
+        {
+          "type": "audio-diagnostic",
+          "role": "receiver",
+          "processCalls": 6751,
+          "emptyCalls": 0,
+          "inputFrames": 864128,
+          "inputSamples": 1728256,
+          "nonzeroSamples": 0,
+          "aboveToneThreshold": 0,
+          "nonfiniteSamples": 0,
+          "maxInputChannels": 2,
+          "maxInputFrames": 128,
+          "peak": 0,
+          "emitted": 91,
+          "rms": 0,
+          "frame": 864000,
+          "contextTime": 18,
+          "sampleRate": 48000
+        },
+        {
+          "type": "audio-diagnostic",
+          "role": "receiver",
+          "processCalls": 6826,
+          "emptyCalls": 0,
+          "inputFrames": 873728,
+          "inputSamples": 1747456,
+          "nonzeroSamples": 0,
+          "aboveToneThreshold": 0,
+          "nonfiniteSamples": 0,
+          "maxInputChannels": 2,
+          "maxInputFrames": 128,
+          "peak": 0,
+          "emitted": 92,
+          "rms": 0,
+          "frame": 873600,
+          "contextTime": 18.2,
+          "sampleRate": 48000
+        },
+        {
+          "type": "audio-diagnostic",
+          "role": "receiver",
+          "processCalls": 6901,
+          "emptyCalls": 0,
+          "inputFrames": 883328,
+          "inputSamples": 1766656,
+          "nonzeroSamples": 0,
+          "aboveToneThreshold": 0,
+          "nonfiniteSamples": 0,
+          "maxInputChannels": 2,
+          "maxInputFrames": 128,
+          "peak": 0,
+          "emitted": 93,
+          "rms": 0,
+          "frame": 883200,
+          "contextTime": 18.4,
+          "sampleRate": 48000
+        },
+        {
+          "type": "audio-diagnostic",
+          "role": "receiver",
+          "processCalls": 6976,
+          "emptyCalls": 0,
+          "inputFrames": 892928,
+          "inputSamples": 1785856,
+          "nonzeroSamples": 0,
+          "aboveToneThreshold": 0,
+          "nonfiniteSamples": 0,
+          "maxInputChannels": 2,
+          "maxInputFrames": 128,
+          "peak": 0,
+          "emitted": 94,
+          "rms": 0,
+          "frame": 892800,
+          "contextTime": 18.6,
+          "sampleRate": 48000
+        },
+        {
+          "type": "audio-diagnostic",
+          "role": "receiver",
+          "processCalls": 7051,
+          "emptyCalls": 0,
+          "inputFrames": 902528,
+          "inputSamples": 1805056,
+          "nonzeroSamples": 0,
+          "aboveToneThreshold": 0,
+          "nonfiniteSamples": 0,
+          "maxInputChannels": 2,
+          "maxInputFrames": 128,
+          "peak": 0,
+          "emitted": 95,
+          "rms": 0,
+          "frame": 902400,
+          "contextTime": 18.8,
+          "sampleRate": 48000
+        },
+        {
+          "type": "audio-diagnostic",
+          "role": "receiver",
+          "processCalls": 7126,
+          "emptyCalls": 0,
+          "inputFrames": 912128,
+          "inputSamples": 1824256,
+          "nonzeroSamples": 0,
+          "aboveToneThreshold": 0,
+          "nonfiniteSamples": 0,
+          "maxInputChannels": 2,
+          "maxInputFrames": 128,
+          "peak": 0,
+          "emitted": 96,
+          "rms": 0,
+          "frame": 912000,
+          "contextTime": 19,
+          "sampleRate": 48000
+        },
+        {
+          "type": "audio-diagnostic",
+          "role": "receiver",
+          "processCalls": 7201,
+          "emptyCalls": 0,
+          "inputFrames": 921728,
+          "inputSamples": 1843456,
+          "nonzeroSamples": 0,
+          "aboveToneThreshold": 0,
+          "nonfiniteSamples": 0,
+          "maxInputChannels": 2,
+          "maxInputFrames": 128,
+          "peak": 0,
+          "emitted": 97,
+          "rms": 0,
+          "frame": 921600,
+          "contextTime": 19.2,
+          "sampleRate": 48000
+        },
+        {
+          "type": "audio-diagnostic",
+          "role": "receiver",
+          "processCalls": 7276,
+          "emptyCalls": 0,
+          "inputFrames": 931328,
+          "inputSamples": 1862656,
+          "nonzeroSamples": 0,
+          "aboveToneThreshold": 0,
+          "nonfiniteSamples": 0,
+          "maxInputChannels": 2,
+          "maxInputFrames": 128,
+          "peak": 0,
+          "emitted": 98,
+          "rms": 0,
+          "frame": 931200,
+          "contextTime": 19.4,
+          "sampleRate": 48000
+        },
+        {
+          "type": "audio-diagnostic",
+          "role": "receiver",
+          "processCalls": 7351,
+          "emptyCalls": 0,
+          "inputFrames": 940928,
+          "inputSamples": 1881856,
+          "nonzeroSamples": 0,
+          "aboveToneThreshold": 0,
+          "nonfiniteSamples": 0,
+          "maxInputChannels": 2,
+          "maxInputFrames": 128,
+          "peak": 0,
+          "emitted": 99,
+          "rms": 0,
+          "frame": 940800,
+          "contextTime": 19.6,
+          "sampleRate": 48000
+        },
+        {
+          "type": "audio-diagnostic",
+          "role": "receiver",
+          "processCalls": 7426,
+          "emptyCalls": 0,
+          "inputFrames": 950528,
+          "inputSamples": 1901056,
+          "nonzeroSamples": 0,
+          "aboveToneThreshold": 0,
+          "nonfiniteSamples": 0,
+          "maxInputChannels": 2,
+          "maxInputFrames": 128,
+          "peak": 0,
+          "emitted": 100,
+          "rms": 0,
+          "frame": 950400,
+          "contextTime": 19.8,
+          "sampleRate": 48000
+        },
+        {
+          "type": "audio-diagnostic",
+          "role": "receiver",
+          "processCalls": 7501,
+          "emptyCalls": 0,
+          "inputFrames": 960128,
+          "inputSamples": 1920256,
+          "nonzeroSamples": 0,
+          "aboveToneThreshold": 0,
+          "nonfiniteSamples": 0,
+          "maxInputChannels": 2,
+          "maxInputFrames": 128,
+          "peak": 0,
+          "emitted": 101,
+          "rms": 0,
+          "frame": 960000,
+          "contextTime": 20,
+          "sampleRate": 48000
+        },
+        {
+          "type": "audio-diagnostic",
+          "role": "receiver",
+          "processCalls": 7576,
+          "emptyCalls": 0,
+          "inputFrames": 969728,
+          "inputSamples": 1939456,
+          "nonzeroSamples": 0,
+          "aboveToneThreshold": 0,
+          "nonfiniteSamples": 0,
+          "maxInputChannels": 2,
+          "maxInputFrames": 128,
+          "peak": 0,
+          "emitted": 102,
+          "rms": 0,
+          "frame": 969600,
+          "contextTime": 20.2,
+          "sampleRate": 48000
+        },
+        {
+          "type": "audio-diagnostic",
+          "role": "receiver",
+          "processCalls": 7651,
+          "emptyCalls": 0,
+          "inputFrames": 979328,
+          "inputSamples": 1958656,
+          "nonzeroSamples": 0,
+          "aboveToneThreshold": 0,
+          "nonfiniteSamples": 0,
+          "maxInputChannels": 2,
+          "maxInputFrames": 128,
+          "peak": 0,
+          "emitted": 103,
+          "rms": 0,
+          "frame": 979200,
+          "contextTime": 20.4,
+          "sampleRate": 48000
+        }
+      ],
+      "invalid": 0
+    },
+    "localWorklet": {
+      "messages": 0,
+      "truncated": 0,
+      "first": null,
+      "last": null,
+      "rows": [],
+      "invalid": 0
+    },
+    "localTapEnabled": false,
+    "processorErrors": [],
+    "processorErrorsTruncated": 0,
+    "trackChanges": [
+      {
+        "role": "generated-audio",
+        "event": "initial",
+        "atMs": 4294.399999976158,
+        "kind": "audio",
+        "enabled": true,
+        "muted": false,
+        "readyState": "live"
+      },
+      {
+        "role": "received-audio",
+        "event": "initial",
+        "atMs": 4438.200000047684,
+        "kind": "audio",
+        "enabled": true,
+        "muted": true,
+        "readyState": "live"
+      },
+      {
+        "role": "received-audio",
+        "event": "unmute",
+        "atMs": 4631.399999976158,
+        "kind": "audio",
+        "enabled": true,
+        "muted": false,
+        "readyState": "live"
+      }
+    ],
+    "trackChangesTruncated": 0,
+    "rtpTimeline": [
+      {
+        "atMs": 5481.299999952316,
+        "receivedTrack": {
+          "kind": "audio",
+          "enabled": true,
+          "muted": false,
+          "readyState": "live"
+        },
+        "generatedTrack": {
+          "kind": "audio",
+          "enabled": true,
+          "muted": false,
+          "readyState": "live"
+        },
+        "senderAudio": [
+          {
+            "type": "outbound-rtp",
+            "kind": "audio",
+            "packetsSent": 45,
+            "bytesSent": 1571
+          }
+        ],
+        "receiverAudio": [
+          {
+            "type": "inbound-rtp",
+            "kind": "audio",
+            "packetsReceived": 45,
+            "packetsLost": 0,
+            "jitter": 0.022,
+            "totalSamplesReceived": 0,
+            "concealedSamples": 0,
+            "concealmentEvents": 0,
+            "insertedSamplesForDeceleration": 0,
+            "removedSamplesForAcceleration": 0,
+            "jitterBufferDelay": 0,
+            "jitterBufferEmittedCount": 0,
+            "bytesReceived": 1571
+          }
+        ]
+      },
+      {
+        "atMs": 6478.899999976158,
+        "receivedTrack": {
+          "kind": "audio",
+          "enabled": true,
+          "muted": false,
+          "readyState": "live"
+        },
+        "generatedTrack": {
+          "kind": "audio",
+          "enabled": true,
+          "muted": false,
+          "readyState": "live"
+        },
+        "senderAudio": [
+          {
+            "type": "outbound-rtp",
+            "kind": "audio",
+            "packetsSent": 92,
+            "bytesSent": 2353
+          }
+        ],
+        "receiverAudio": [
+          {
+            "type": "inbound-rtp",
+            "kind": "audio",
+            "packetsReceived": 92,
+            "packetsLost": 0,
+            "jitter": 0.023,
+            "totalSamplesReceived": 0,
+            "concealedSamples": 0,
+            "concealmentEvents": 0,
+            "insertedSamplesForDeceleration": 0,
+            "removedSamplesForAcceleration": 0,
+            "jitterBufferDelay": 0,
+            "jitterBufferEmittedCount": 0,
+            "bytesReceived": 2353
+          }
+        ]
+      },
+      {
+        "atMs": 7481.200000047684,
+        "receivedTrack": {
+          "kind": "audio",
+          "enabled": true,
+          "muted": false,
+          "readyState": "live"
+        },
+        "generatedTrack": {
+          "kind": "audio",
+          "enabled": true,
+          "muted": false,
+          "readyState": "live"
+        },
+        "senderAudio": [
+          {
+            "type": "outbound-rtp",
+            "kind": "audio",
+            "packetsSent": 145,
+            "bytesSent": 3060
+          }
+        ],
+        "receiverAudio": [
+          {
+            "type": "inbound-rtp",
+            "kind": "audio",
+            "packetsReceived": 145,
+            "packetsLost": 0,
+            "jitter": 0.023,
+            "totalSamplesReceived": 0,
+            "concealedSamples": 0,
+            "concealmentEvents": 0,
+            "insertedSamplesForDeceleration": 0,
+            "removedSamplesForAcceleration": 0,
+            "jitterBufferDelay": 0,
+            "jitterBufferEmittedCount": 0,
+            "bytesReceived": 3060
+          }
+        ]
+      },
+      {
+        "atMs": 8481.299999952316,
+        "receivedTrack": {
+          "kind": "audio",
+          "enabled": true,
+          "muted": false,
+          "readyState": "live"
+        },
+        "generatedTrack": {
+          "kind": "audio",
+          "enabled": true,
+          "muted": false,
+          "readyState": "live"
+        },
+        "senderAudio": [
+          {
+            "type": "outbound-rtp",
+            "kind": "audio",
+            "packetsSent": 195,
+            "bytesSent": 3758
+          }
+        ],
+        "receiverAudio": [
+          {
+            "type": "inbound-rtp",
+            "kind": "audio",
+            "packetsReceived": 195,
+            "packetsLost": 0,
+            "jitter": 0.023,
+            "totalSamplesReceived": 0,
+            "concealedSamples": 0,
+            "concealmentEvents": 0,
+            "insertedSamplesForDeceleration": 0,
+            "removedSamplesForAcceleration": 0,
+            "jitterBufferDelay": 0,
+            "jitterBufferEmittedCount": 0,
+            "bytesReceived": 3758
+          }
+        ]
+      },
+      {
+        "atMs": 9477.100000023842,
+        "receivedTrack": {
+          "kind": "audio",
+          "enabled": true,
+          "muted": false,
+          "readyState": "live"
+        },
+        "generatedTrack": {
+          "kind": "audio",
+          "enabled": true,
+          "muted": false,
+          "readyState": "live"
+        },
+        "senderAudio": [
+          {
+            "type": "outbound-rtp",
+            "kind": "audio",
+            "packetsSent": 242,
+            "bytesSent": 4447
+          }
+        ],
+        "receiverAudio": [
+          {
+            "type": "inbound-rtp",
+            "kind": "audio",
+            "packetsReceived": 242,
+            "packetsLost": 0,
+            "jitter": 0.023,
+            "totalSamplesReceived": 0,
+            "concealedSamples": 0,
+            "concealmentEvents": 0,
+            "insertedSamplesForDeceleration": 0,
+            "removedSamplesForAcceleration": 0,
+            "jitterBufferDelay": 0,
+            "jitterBufferEmittedCount": 0,
+            "bytesReceived": 4447
+          }
+        ]
+      },
+      {
+        "atMs": 10477.399999976158,
+        "receivedTrack": {
+          "kind": "audio",
+          "enabled": true,
+          "muted": false,
+          "readyState": "live"
+        },
+        "generatedTrack": {
+          "kind": "audio",
+          "enabled": true,
+          "muted": false,
+          "readyState": "live"
+        },
+        "senderAudio": [
+          {
+            "type": "outbound-rtp",
+            "kind": "audio",
+            "packetsSent": 292,
+            "bytesSent": 5145
+          }
+        ],
+        "receiverAudio": [
+          {
+            "type": "inbound-rtp",
+            "kind": "audio",
+            "packetsReceived": 292,
+            "packetsLost": 0,
+            "jitter": 0.023,
+            "totalSamplesReceived": 0,
+            "concealedSamples": 0,
+            "concealmentEvents": 0,
+            "insertedSamplesForDeceleration": 0,
+            "removedSamplesForAcceleration": 0,
+            "jitterBufferDelay": 0,
+            "jitterBufferEmittedCount": 0,
+            "bytesReceived": 5145
+          }
+        ]
+      },
+      {
+        "atMs": 11477.700000047684,
+        "receivedTrack": {
+          "kind": "audio",
+          "enabled": true,
+          "muted": false,
+          "readyState": "live"
+        },
+        "generatedTrack": {
+          "kind": "audio",
+          "enabled": true,
+          "muted": false,
+          "readyState": "live"
+        },
+        "senderAudio": [
+          {
+            "type": "outbound-rtp",
+            "kind": "audio",
+            "packetsSent": 342,
+            "bytesSent": 5843
+          }
+        ],
+        "receiverAudio": [
+          {
+            "type": "inbound-rtp",
+            "kind": "audio",
+            "packetsReceived": 342,
+            "packetsLost": 0,
+            "jitter": 0.024,
+            "totalSamplesReceived": 0,
+            "concealedSamples": 0,
+            "concealmentEvents": 0,
+            "insertedSamplesForDeceleration": 0,
+            "removedSamplesForAcceleration": 0,
+            "jitterBufferDelay": 0,
+            "jitterBufferEmittedCount": 0,
+            "bytesReceived": 5843
+          }
+        ]
+      },
+      {
+        "atMs": 12473.799999952316,
+        "receivedTrack": {
+          "kind": "audio",
+          "enabled": true,
+          "muted": false,
+          "readyState": "live"
+        },
+        "generatedTrack": {
+          "kind": "audio",
+          "enabled": true,
+          "muted": false,
+          "readyState": "live"
+        },
+        "senderAudio": [
+          {
+            "type": "outbound-rtp",
+            "kind": "audio",
+            "packetsSent": 392,
+            "bytesSent": 6541
+          }
+        ],
+        "receiverAudio": [
+          {
+            "type": "inbound-rtp",
+            "kind": "audio",
+            "packetsReceived": 392,
+            "packetsLost": 0,
+            "jitter": 0.023,
+            "totalSamplesReceived": 0,
+            "concealedSamples": 0,
+            "concealmentEvents": 0,
+            "insertedSamplesForDeceleration": 0,
+            "removedSamplesForAcceleration": 0,
+            "jitterBufferDelay": 0,
+            "jitterBufferEmittedCount": 0,
+            "bytesReceived": 6541
+          }
+        ]
+      },
+      {
+        "atMs": 13482.700000047684,
+        "receivedTrack": {
+          "kind": "audio",
+          "enabled": true,
+          "muted": false,
+          "readyState": "live"
+        },
+        "generatedTrack": {
+          "kind": "audio",
+          "enabled": true,
+          "muted": false,
+          "readyState": "live"
+        },
+        "senderAudio": [
+          {
+            "type": "outbound-rtp",
+            "kind": "audio",
+            "packetsSent": 445,
+            "bytesSent": 7248
+          }
+        ],
+        "receiverAudio": [
+          {
+            "type": "inbound-rtp",
+            "kind": "audio",
+            "packetsReceived": 445,
+            "packetsLost": 0,
+            "jitter": 0.023,
+            "totalSamplesReceived": 0,
+            "concealedSamples": 0,
+            "concealmentEvents": 0,
+            "insertedSamplesForDeceleration": 0,
+            "removedSamplesForAcceleration": 0,
+            "jitterBufferDelay": 0,
+            "jitterBufferEmittedCount": 0,
+            "bytesReceived": 7248
+          }
+        ]
+      },
+      {
+        "atMs": 14481.299999952316,
+        "receivedTrack": {
+          "kind": "audio",
+          "enabled": true,
+          "muted": false,
+          "readyState": "live"
+        },
+        "generatedTrack": {
+          "kind": "audio",
+          "enabled": true,
+          "muted": false,
+          "readyState": "live"
+        },
+        "senderAudio": [
+          {
+            "type": "outbound-rtp",
+            "kind": "audio",
+            "packetsSent": 493,
+            "bytesSent": 7940
+          }
+        ],
+        "receiverAudio": [
+          {
+            "type": "inbound-rtp",
+            "kind": "audio",
+            "packetsReceived": 494,
+            "packetsLost": 0,
+            "jitter": 0.023,
+            "totalSamplesReceived": 0,
+            "concealedSamples": 0,
+            "concealmentEvents": 0,
+            "insertedSamplesForDeceleration": 0,
+            "removedSamplesForAcceleration": 0,
+            "jitterBufferDelay": 0,
+            "jitterBufferEmittedCount": 0,
+            "bytesReceived": 7943
+          }
+        ]
+      },
+      {
+        "atMs": 15481.399999976158,
+        "receivedTrack": {
+          "kind": "audio",
+          "enabled": true,
+          "muted": false,
+          "readyState": "live"
+        },
+        "generatedTrack": {
+          "kind": "audio",
+          "enabled": true,
+          "muted": false,
+          "readyState": "live"
+        },
+        "senderAudio": [
+          {
+            "type": "outbound-rtp",
+            "kind": "audio",
+            "packetsSent": 545,
+            "bytesSent": 8644
+          }
+        ],
+        "receiverAudio": [
+          {
+            "type": "inbound-rtp",
+            "kind": "audio",
+            "packetsReceived": 545,
+            "packetsLost": 0,
+            "jitter": 0.023,
+            "totalSamplesReceived": 0,
+            "concealedSamples": 0,
+            "concealmentEvents": 0,
+            "insertedSamplesForDeceleration": 0,
+            "removedSamplesForAcceleration": 0,
+            "jitterBufferDelay": 0,
+            "jitterBufferEmittedCount": 0,
+            "bytesReceived": 8644
+          }
+        ]
+      },
+      {
+        "atMs": 16481.600000023842,
+        "receivedTrack": {
+          "kind": "audio",
+          "enabled": true,
+          "muted": false,
+          "readyState": "live"
+        },
+        "generatedTrack": {
+          "kind": "audio",
+          "enabled": true,
+          "muted": false,
+          "readyState": "live"
+        },
+        "senderAudio": [
+          {
+            "type": "outbound-rtp",
+            "kind": "audio",
+            "packetsSent": 594,
+            "bytesSent": 9339
+          }
+        ],
+        "receiverAudio": [
+          {
+            "type": "inbound-rtp",
+            "kind": "audio",
+            "packetsReceived": 595,
+            "packetsLost": 0,
+            "jitter": 0.023,
+            "totalSamplesReceived": 0,
+            "concealedSamples": 0,
+            "concealmentEvents": 0,
+            "insertedSamplesForDeceleration": 0,
+            "removedSamplesForAcceleration": 0,
+            "jitterBufferDelay": 0,
+            "jitterBufferEmittedCount": 0,
+            "bytesReceived": 9342
+          }
+        ]
+      },
+      {
+        "atMs": 17480.899999976158,
+        "receivedTrack": {
+          "kind": "audio",
+          "enabled": true,
+          "muted": false,
+          "readyState": "live"
+        },
+        "generatedTrack": {
+          "kind": "audio",
+          "enabled": true,
+          "muted": false,
+          "readyState": "live"
+        },
+        "senderAudio": [
+          {
+            "type": "outbound-rtp",
+            "kind": "audio",
+            "packetsSent": 645,
+            "bytesSent": 10040
+          }
+        ],
+        "receiverAudio": [
+          {
+            "type": "inbound-rtp",
+            "kind": "audio",
+            "packetsReceived": 645,
+            "packetsLost": 0,
+            "jitter": 0.023,
+            "totalSamplesReceived": 0,
+            "concealedSamples": 0,
+            "concealmentEvents": 0,
+            "insertedSamplesForDeceleration": 0,
+            "removedSamplesForAcceleration": 0,
+            "jitterBufferDelay": 0,
+            "jitterBufferEmittedCount": 0,
+            "bytesReceived": 10040
+          }
+        ]
+      },
+      {
+        "atMs": 18480.600000023842,
+        "receivedTrack": {
+          "kind": "audio",
+          "enabled": true,
+          "muted": false,
+          "readyState": "live"
+        },
+        "generatedTrack": {
+          "kind": "audio",
+          "enabled": true,
+          "muted": false,
+          "readyState": "live"
+        },
+        "senderAudio": [
+          {
+            "type": "outbound-rtp",
+            "kind": "audio",
+            "packetsSent": 692,
+            "bytesSent": 10729
+          }
+        ],
+        "receiverAudio": [
+          {
+            "type": "inbound-rtp",
+            "kind": "audio",
+            "packetsReceived": 692,
+            "packetsLost": 0,
+            "jitter": 0.023,
+            "totalSamplesReceived": 0,
+            "concealedSamples": 0,
+            "concealmentEvents": 0,
+            "insertedSamplesForDeceleration": 0,
+            "removedSamplesForAcceleration": 0,
+            "jitterBufferDelay": 0,
+            "jitterBufferEmittedCount": 0,
+            "bytesReceived": 10729
+          }
+        ]
+      },
+      {
+        "atMs": 19477.100000023842,
+        "receivedTrack": {
+          "kind": "audio",
+          "enabled": true,
+          "muted": false,
+          "readyState": "live"
+        },
+        "generatedTrack": {
+          "kind": "audio",
+          "enabled": true,
+          "muted": false,
+          "readyState": "live"
+        },
+        "senderAudio": [
+          {
+            "type": "outbound-rtp",
+            "kind": "audio",
+            "packetsSent": 742,
+            "bytesSent": 11427
+          }
+        ],
+        "receiverAudio": [
+          {
+            "type": "inbound-rtp",
+            "kind": "audio",
+            "packetsReceived": 742,
+            "packetsLost": 0,
+            "jitter": 0.023,
+            "totalSamplesReceived": 0,
+            "concealedSamples": 0,
+            "concealmentEvents": 0,
+            "insertedSamplesForDeceleration": 0,
+            "removedSamplesForAcceleration": 0,
+            "jitterBufferDelay": 0,
+            "jitterBufferEmittedCount": 0,
+            "bytesReceived": 11427
+          }
+        ]
+      },
+      {
+        "atMs": 20477,
+        "receivedTrack": {
+          "kind": "audio",
+          "enabled": true,
+          "muted": false,
+          "readyState": "live"
+        },
+        "generatedTrack": {
+          "kind": "audio",
+          "enabled": true,
+          "muted": false,
+          "readyState": "live"
+        },
+        "senderAudio": [
+          {
+            "type": "outbound-rtp",
+            "kind": "audio",
+            "packetsSent": 792,
+            "bytesSent": 12125
+          }
+        ],
+        "receiverAudio": [
+          {
+            "type": "inbound-rtp",
+            "kind": "audio",
+            "packetsReceived": 792,
+            "packetsLost": 0,
+            "jitter": 0.023,
+            "totalSamplesReceived": 0,
+            "concealedSamples": 0,
+            "concealmentEvents": 0,
+            "insertedSamplesForDeceleration": 0,
+            "removedSamplesForAcceleration": 0,
+            "jitterBufferDelay": 0,
+            "jitterBufferEmittedCount": 0,
+            "bytesReceived": 12125
+          }
+        ]
+      },
+      {
+        "atMs": 21481.399999976158,
+        "receivedTrack": {
+          "kind": "audio",
+          "enabled": true,
+          "muted": false,
+          "readyState": "live"
+        },
+        "generatedTrack": {
+          "kind": "audio",
+          "enabled": true,
+          "muted": false,
+          "readyState": "live"
+        },
+        "senderAudio": [
+          {
+            "type": "outbound-rtp",
+            "kind": "audio",
+            "packetsSent": 844,
+            "bytesSent": 12829
+          }
+        ],
+        "receiverAudio": [
+          {
+            "type": "inbound-rtp",
+            "kind": "audio",
+            "packetsReceived": 844,
+            "packetsLost": 0,
+            "jitter": 0.023,
+            "totalSamplesReceived": 0,
+            "concealedSamples": 0,
+            "concealmentEvents": 0,
+            "insertedSamplesForDeceleration": 0,
+            "removedSamplesForAcceleration": 0,
+            "jitterBufferDelay": 0,
+            "jitterBufferEmittedCount": 0,
+            "bytesReceived": 12829
+          }
+        ]
+      },
+      {
+        "atMs": 22476.600000023842,
+        "receivedTrack": {
+          "kind": "audio",
+          "enabled": true,
+          "muted": false,
+          "readyState": "live"
+        },
+        "generatedTrack": {
+          "kind": "audio",
+          "enabled": true,
+          "muted": false,
+          "readyState": "live"
+        },
+        "senderAudio": [
+          {
+            "type": "outbound-rtp",
+            "kind": "audio",
+            "packetsSent": 892,
+            "bytesSent": 13521
+          }
+        ],
+        "receiverAudio": [
+          {
+            "type": "inbound-rtp",
+            "kind": "audio",
+            "packetsReceived": 892,
+            "packetsLost": 0,
+            "jitter": 0.023,
+            "totalSamplesReceived": 0,
+            "concealedSamples": 0,
+            "concealmentEvents": 0,
+            "insertedSamplesForDeceleration": 0,
+            "removedSamplesForAcceleration": 0,
+            "jitterBufferDelay": 0,
+            "jitterBufferEmittedCount": 0,
+            "bytesReceived": 13521
+          }
+        ]
+      },
+      {
+        "atMs": 23476.5,
+        "receivedTrack": {
+          "kind": "audio",
+          "enabled": true,
+          "muted": false,
+          "readyState": "live"
+        },
+        "generatedTrack": {
+          "kind": "audio",
+          "enabled": true,
+          "muted": false,
+          "readyState": "live"
+        },
+        "senderAudio": [
+          {
+            "type": "outbound-rtp",
+            "kind": "audio",
+            "packetsSent": 942,
+            "bytesSent": 14219
+          }
+        ],
+        "receiverAudio": [
+          {
+            "type": "inbound-rtp",
+            "kind": "audio",
+            "packetsReceived": 942,
+            "packetsLost": 0,
+            "jitter": 0.023,
+            "totalSamplesReceived": 0,
+            "concealedSamples": 0,
+            "concealmentEvents": 0,
+            "insertedSamplesForDeceleration": 0,
+            "removedSamplesForAcceleration": 0,
+            "jitterBufferDelay": 0,
+            "jitterBufferEmittedCount": 0,
+            "bytesReceived": 14219
+          }
+        ]
+      },
+      {
+        "atMs": 24477.700000047684,
+        "receivedTrack": {
+          "kind": "audio",
+          "enabled": true,
+          "muted": false,
+          "readyState": "live"
+        },
+        "generatedTrack": {
+          "kind": "audio",
+          "enabled": true,
+          "muted": false,
+          "readyState": "live"
+        },
+        "senderAudio": [
+          {
+            "type": "outbound-rtp",
+            "kind": "audio",
+            "packetsSent": 992,
+            "bytesSent": 14917
+          }
+        ],
+        "receiverAudio": [
+          {
+            "type": "inbound-rtp",
+            "kind": "audio",
+            "packetsReceived": 995,
+            "packetsLost": 0,
+            "jitter": 0.023,
+            "totalSamplesReceived": 0,
+            "concealedSamples": 0,
+            "concealmentEvents": 0,
+            "insertedSamplesForDeceleration": 0,
+            "removedSamplesForAcceleration": 0,
+            "jitterBufferDelay": 0,
+            "jitterBufferEmittedCount": 0,
+            "bytesReceived": 14926
+          }
+        ]
+      }
+    ],
+    "rtpTimelineTruncated": 0,
+    "statsErrors": 0,
+    "graph": {
+      "receiver": "remoteAudioTrack -> MediaStreamSource -> toneWorklet -> Gain0 -> destination",
+      "workletOutputZero": true,
+      "gainValue": 0
+    },
+    "finalTrackStates": {
+      "received": {
+        "kind": "audio",
+        "enabled": true,
+        "muted": false,
+        "readyState": "live"
+      },
+      "generated": {
+        "kind": "audio",
+        "enabled": true,
+        "muted": false,
+        "readyState": "live"
+      }
+    }
+  },
+  "audioContext": {
+    "sampleRate": 48000,
+    "baseLatency": 0.01,
+    "outputLatency": 0,
+    "receiverClockMapping": "getOutputTimestamp contextTime/performanceTime; silent destination, no physical output approval"
+  },
+  "durationMs": 20688.399999976158,
+  "sourceCounts": {
+    "videoFrames": 600,
+    "audioBlocks": 400,
+    "audioSamples": 960000
+  },
+  "sender": [
+    {
+      "type": "codec",
+      "mimeType": "audio/opus",
+      "clockRate": 48000
+    },
+    {
+      "type": "codec",
+      "mimeType": "video/VP8",
+      "clockRate": 90000
+    },
+    {
+      "type": "outbound-rtp",
+      "kind": "audio",
+      "packetsSent": 1000,
+      "bytesSent": 14941
+    },
+    {
+      "type": "outbound-rtp",
+      "kind": "video",
+      "framesEncoded": 599,
+      "framesSent": 599,
+      "framesPerSecond": 14,
+      "packetsSent": 707,
+      "bytesSent": 165297,
+      "totalEncodeTime": 0.587
+    }
+  ],
+  "receiver": [
+    {
+      "type": "codec",
+      "mimeType": "audio/opus",
+      "clockRate": 48000
+    },
+    {
+      "type": "codec",
+      "mimeType": "video/VP8",
+      "clockRate": 90000
+    },
+    {
+      "type": "inbound-rtp",
+      "kind": "audio",
+      "packetsReceived": 1000,
+      "packetsLost": 0,
+      "jitter": 0.023,
+      "totalSamplesReceived": 0,
+      "concealedSamples": 0,
+      "concealmentEvents": 0,
+      "insertedSamplesForDeceleration": 0,
+      "removedSamplesForAcceleration": 0,
+      "jitterBufferDelay": 0,
+      "jitterBufferEmittedCount": 0,
+      "bytesReceived": 14941
+    },
+    {
+      "type": "inbound-rtp",
+      "kind": "video",
+      "framesDecoded": 579,
+      "framesReceived": 599,
+      "framesDropped": 0,
+      "framesPerSecond": 27,
+      "packetsReceived": 707,
+      "packetsLost": 0,
+      "jitter": 0.002,
+      "jitterBufferDelay": 246.698644,
+      "jitterBufferEmittedCount": 579,
+      "bytesReceived": 165297,
+      "totalDecodeTime": 0.20818899999999999
+    }
+  ],
+  "videoWriter": {
+    "offered": 600,
+    "written": 600,
+    "dropped": 0,
+    "faults": 0,
+    "closedFrames": 600,
+    "maxPending": 1
+  },
+  "audioWriter": {
+    "offered": 400,
+    "written": 400,
+    "dropped": 0,
+    "closedFrames": 400,
+    "faults": 0,
+    "maxPending": 1
+  },
+  "avClock": {
+    "audioOffered": 400,
+    "videoOffered": 600,
+    "audioSent": 400,
+    "videoSent": 600,
+    "audioDropped": 0,
+    "videoDropped": 0,
+    "maxAudioPending": 4,
+    "maxVideoPending": 6,
+    "faults": 0,
+    "audioGapSamples": 0,
+    "maxDispatchLatenessMs": 15.23399995231739
+  },
+  "measurement": {
+    "pairs": [],
+    "steadyPairs": 0,
+    "skewMs": null,
+    "driftMsPerSecond": null,
+    "driftIntervalMs": null,
+    "maxAbsOffsetMs": null,
+    "measurementUncertaintyMs": 43.460740152599584,
+    "uncertaintyComponents": {
+      "frameMs": 33.36666666666667,
+      "audioQuantumMs": 2.6666666666666665,
+      "clockMappingResidualMs": 0.22740681926916295,
+      "callbackLatenessMs": 2.1999999999970896,
+      "codecThresholdAllowanceMs": 5
+    },
+    "withinMeasuredBound": false,
+    "limit": "Bound is measurement-resolution estimate, not physical sync/genlock acceptance"
+  },
+  "closed": {
+    "video": true,
+    "audio": true,
+    "send": true,
+    "receive": true,
+    "audioContext": true,
+    "clock": true
+  },
+  "stopPerformanceMs": 25262.700000047684
+}

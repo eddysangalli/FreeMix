@@ -1,8 +1,8 @@
 {
   "status": "PASS",
   "base": "ba2f32bdf791005443988a4955e963663e16b1ed",
-  "head": "c4b5af00ea4a4b744a3a19fef5ec861f693c9a69",
-  "resultTree": "ee8a93355681dd637f8bb8d74306e58704ea005b",
+  "head": "a09423dae10dbeed6d7f18b30a6cc22b78c49731",
+  "resultTree": "3e2898994e62ad53624fd70e09fc40f8a9123d57",
   "submodules": [
     {
       "path": "deps/libdshowcapture/src",
@@ -177,13 +177,18 @@
     },
     {
       "path": "frontend/widgets/FreeMixCallAudio.cpp",
-      "bytes": 6628,
-      "sha256": "ac2d33a4f761c2be39952a01ad1ad34244f420f595bdf10d5f6113a29545e926"
+      "bytes": 10846,
+      "sha256": "3a6ea0b9667592c763534cf3af6d51027c55c416f609e6a7b3da33e9ad42aab9"
     },
     {
       "path": "frontend/widgets/FreeMixCallAudio.hpp",
-      "bytes": 237,
-      "sha256": "ff9f1f66865d5408cbe8943597c7859e4403232675221714b83378d06c095826"
+      "bytes": 435,
+      "sha256": "420a66b20a78fe4499b5e027cfad21f7d6a1d48f171d15153c012b410441c41a"
+    },
+    {
+      "path": "frontend/widgets/FreeMixCallAudioClock.hpp",
+      "bytes": 2175,
+      "sha256": "c860bd58fed384bb94c3ee63f37776f6ac46d830b23ac3734d75a0d5a63c5676"
     },
     {
       "path": "frontend/widgets/FreeMixCallVideo.cpp",
@@ -237,8 +242,8 @@
     },
     {
       "path": "frontend/widgets/FreeMixFinalProgramGate.hpp",
-      "bytes": 8630,
-      "sha256": "0d8966a23f9eae86aa959ce751c18f93bdd5d8e53728783c90ab60ea914a0177"
+      "bytes": 9119,
+      "sha256": "05e6e8b469fae2c4f6d4255c11b338db769f339056ddf63a177cdb88efb3378d"
     },
     {
       "path": "frontend/widgets/FreeMixFtbContract.hpp",
@@ -512,18 +517,18 @@
     },
     {
       "path": "libobs/obs-final-gate-internal.h",
-      "bytes": 1054,
-      "sha256": "47e9d69194f63649c065232f99c0ea5b0e6440ace4b7bef2bdaf577dd07174c0"
+      "bytes": 1072,
+      "sha256": "b7a62e1970e0597e54bb4b022f9e66502ad68a7b94971f2664f3d0a089ad6687"
     },
     {
       "path": "libobs/obs-final-gate-render.h",
-      "bytes": 1078,
-      "sha256": "fdfe60af2320a81011e027d6d6d170e5ba91f804ddf0660a117489834fd64dee"
+      "bytes": 1940,
+      "sha256": "f27ddc7bc8c9dd5fc7a88960e2ff390460c155a3c8e081671e3d25fe0050b79f"
     },
     {
       "path": "libobs/obs-final-gate.h",
-      "bytes": 1073,
-      "sha256": "9680a6079ef727b538aeffa9d1246f0b620f982132d5edb4ec0713ad2ac11eba"
+      "bytes": 1170,
+      "sha256": "517d674a581c3746a001f0ec5efd83e7da32b5346e4fc9319fc6ca92a3a8de93"
     },
     {
       "path": "libobs/obs-internal.h",
@@ -532,8 +537,8 @@
     },
     {
       "path": "libobs/obs-master-final-gate.c",
-      "bytes": 8635,
-      "sha256": "d124f4c8bcd900729901a2d9f6258c700193ce20f084b2994d1ae142dde6c6c7"
+      "bytes": 8810,
+      "sha256": "8ed8f8857a720504908afeade6a5e7289337587d0528c06aa22b38c693940295"
     },
     {
       "path": "libobs/obs-output.c",

@@ -1,9 +1,5 @@
 # Motor nativo do FreeMix
 
-A série atual tem27 patches sobre o OBS Studio32.2.2, base e hashes exatos em [manifest.json](manifest.json). HEAD de desenvolvimento:c4b5af00ea4a4b744a3a19fef5ec861f693c9a69; árvore verificada:ee8a93355681dd637f8bb8d74306e58704ea005b.
+Série28 patches/3submódulos, HEADa09423dae10dbeed6d7f18b30a6cc22b78c49731, árvore3e2898994e62ad53624fd70e09fc40f8a9123d57. Confira [manifesto](manifest.json) e [source-verification](source-verification.json). `node scripts/reconstruir-motor.mjs --check` confere localmente; reconstrução exige pasta nova e bases oficiais.
 
-No repositório FreeMix, confira com `node scripts/reconstruir-motor.mjs --check`. Para reconstruir, forneça uma pasta nova: `node scripts/reconstruir-motor.mjs --dest=C:/caminho/novo/FreeMix-native`. Esse segundo comando obtém bases oficiais; o export local já verificou a árvore usando índice próprio, sem rede. Leia [BUILD-FROM-SOURCE.md](../docs/BUILD-FROM-SOURCE.md).
-
-Build Native27 completa passou. Gate final Master/saídas Programme exige prova GPU/recepção; defaultOFF/áudio audível. Vídeo contínuo Native25 passou20s em IAB/CEF, sem PCM/AV/VDO; controle Calls integrado, opt-inOFF. HTTP/editor passou em QA própria; diagnóstico Native27 de duas fontes passou com RGBA exato, aguardando confirmação de cor no CEF. O instalador selecionado continua600/Native24. Não atribuir essas correções às entregas antigas.
-
-Histórico anterior: [registro preservado](../docs/historico/20261010-preNative25/FORK-LEIAME.md).
+BuildNative28 completa passou. Ganho finalSDR8linear e proteçãoepochPCM estão integrados, com prova de mídia pendente. Gate geral e contínuoCalls continuamOFF. Meter e caminhos longos do desinstalador ainda não foram integrados. Entrega selecionada600/Native24 preservada;093000 teveFAILfinal na desinstalação. [Evidência](../docs/evidencias/20261010-native28-build/README.md) · [pendências](../docs/PENDENCIAS-REAIS.md).

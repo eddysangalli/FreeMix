@@ -17,7 +17,7 @@ void OBSBasic::FreeMixFinalProgramGateRequest(obs_data_t *request,obs_data_t *re
  if(!finalGateScope.empty()&&finalGateScope!=base.scope){ResetFreeMixFinalGate();}
  finalGateScope=base.scope;
  obs_master_final_gate_state stage={};const bool read=obs_master_final_gate_get(&stage);
- const bool coreAvailable=read&&stage.available;
+ const bool coreAvailable=read&&stage.contract_version==2&&stage.target_supported&&stage.available;
  if(coreAvailable){
   if(finalGateBoundIdentity&&(finalGateBoundIdentity!=stage.mix_identity||finalGateBoundGeneration!=stage.generation)){
    // Core video reset already starts identity. Invalidate old pending receipts, never re-enable it.
@@ -30,12 +30,15 @@ void OBSBasic::FreeMixFinalProgramGateRequest(obs_data_t *request,obs_data_t *re
  if(coreAvailable&&stage.normal_observed&&!stage.requested_active&&!finalGatePolicy.Pending())finalGateCapture=nullptr;
  const auto writeState=[&](){
   obs_master_final_gate_state current={};const bool fresh=obs_master_final_gate_get(&current);
-  obs_data_set_int(response,"contractVersion",1);
-  obs_data_set_string(response,"contract","experimental-master-final-video-gate-v1");
+  obs_data_set_int(response,"contractVersion",2);
+  obs_data_set_string(response,"contract","experimental-master-final-video-gate-v2");
   obs_data_set_string(response,"coverage","main-video-only-after-composition");
   obs_data_set_string(response,"audioPolicy","unchanged");
+  obs_data_set_string(response,"gainDomain","linear-sRGB");
+  obs_data_set_string(response,"renderTargetContract","sRGB-SDR8");
+  obs_data_set_bool(response,"renderTargetSupported",fresh&&current.contract_version==2&&current.target_supported);
   obs_data_set_bool(response,"experimental",true);obs_data_set_bool(response,"experimentalOptIn",finalGateExperimental);
-  obs_data_set_bool(response,"available",fresh&&current.available&&base.studio&&!base.requested&&!captureMismatch);
+  obs_data_set_bool(response,"available",fresh&&current.contract_version==2&&current.target_supported&&current.available&&base.studio&&!base.requested&&!captureMismatch);
   obs_data_set_bool(response,"enabled",current.enabled);obs_data_set_bool(response,"requestedActive",current.requested_active);
   obs_data_set_bool(response,"transitionRunning",current.running||base.running||finalGatePolicy.Pending());
   obs_data_set_bool(response,"blackStageApplied",current.black_observed&&!captureMismatch);
@@ -74,7 +77,8 @@ void OBSBasic::FreeMixFinalProgramGateRequest(obs_data_t *request,obs_data_t *re
   if(!old->error.empty()){fail(old->error.c_str());return;}
   obs_data_set_bool(response,"replayed",true);obs_data_set_bool(response,"accepted",true);obs_data_set_int(response,"acceptedSerial",old->serial);obs_data_set_bool(response,"success",true);return;
  }
- if(!coreAvailable||!base.studio||base.requested||base.running||base.manual||stage.running||finalGatePolicy.Pending()||captureMismatch||program!=base.program||preview!=base.preview||output!=base.output||!freemix_ftb::Uuid(program)||!freemix_ftb::Uuid(preview)||!freemix_ftb::Uuid(output)){
+ if(!coreAvailable){fail("Etapa final v2 indisponível: exige alvo sRGB SDR8 RGBA/BGRA; HDR/16F não suportado. Consulte o estado sem reenviar.");return;}
+ if(!base.studio||base.requested||base.running||base.manual||stage.running||finalGatePolicy.Pending()||captureMismatch||program!=base.program||preview!=base.preview||output!=base.output||!freemix_ftb::Uuid(program)||!freemix_ftb::Uuid(preview)||!freemix_ftb::Uuid(output)){
   fail("Estado/Programa/Preview/saída não confirmado, ou FTB-v2/transição ativa. Nenhum gate enviado.");return;
  }
  OBSSourceAutoRelease outputTransition=obs_get_output_source(0);

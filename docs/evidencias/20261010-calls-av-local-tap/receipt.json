@@ -1,0 +1,89 @@
+{
+  "status": "OBSERVED_SYNTHETIC_AV_CONSUMER_DIAGNOSTIC_NO_PRODUCT_AV_APPROVAL",
+  "nativeStarted": false,
+  "operatorTouched": false,
+  "productModified": false,
+  "experimental": true,
+  "avSyncProven": false,
+  "externalServersUsed": false,
+  "startedAt": "2026-10-10T10:44:14.959Z",
+  "args": {
+    "root-reviewed": "EXECUTE-OWN-SYNTHETIC-BROWSER-AV-GENERATOR-LOCAL-TAP-20S",
+    "preparation-sha": "5a6a9441f1ace67868c842d8883b141ee8c20cfe7d894000c70e12708aa2cb9c",
+    "allowlist-sha": "8fd416891a004be820f12cb4461c2acaf1ea3ce6dc4ed64a7a0a95ff5181d411"
+  },
+  "checks": [],
+  "port": 59460,
+  "url": "http://127.0.0.1:59460/",
+  "browserReportSha256": "1c4af3748dd7217e7c304fd39a061c4d3d71c1c6962495372b0194bc509d3ae8",
+  "originalAvAcceptance": {
+    "pass": false,
+    "error": "ERR_ASSERTION",
+    "browserStatus": "INCONCLUSIVE_INSUFFICIENT_RECEIVED_PAIRS"
+  },
+  "diagnostic": {
+    "localTapEnabled": true,
+    "localHeartbeatMessages": 103,
+    "lastLocalHeartbeat": {
+      "type": "audio-diagnostic",
+      "role": "synthetic-local",
+      "processCalls": 7651,
+      "emptyCalls": 0,
+      "inputFrames": 979328,
+      "inputSamples": 1958656,
+      "nonzeroSamples": 145920,
+      "aboveToneThreshold": 119278,
+      "nonfiniteSamples": 0,
+      "maxInputChannels": 2,
+      "maxInputFrames": 128,
+      "peak": 0.3499999940395355,
+      "emitted": 103,
+      "rms": 0.06754669910364973,
+      "frame": 979200,
+      "contextTime": 20.4,
+      "sampleRate": 48000
+    },
+    "receiverHeartbeatMessages": 103,
+    "lastReceiverHeartbeat": {
+      "type": "audio-diagnostic",
+      "role": "receiver",
+      "processCalls": 7651,
+      "emptyCalls": 0,
+      "inputFrames": 979328,
+      "inputSamples": 1958656,
+      "nonzeroSamples": 0,
+      "aboveToneThreshold": 0,
+      "nonfiniteSamples": 0,
+      "maxInputChannels": 2,
+      "maxInputFrames": 128,
+      "peak": 0,
+      "emitted": 103,
+      "rms": 0,
+      "frame": 979200,
+      "contextTime": 20.4,
+      "sampleRate": 48000
+    },
+    "beforeGeneratorBlocks": 400,
+    "beforeGeneratorPeak": 0.3499999940395355,
+    "constructedAudioDataPeak": 0.3499999940395355,
+    "processorErrors": 0,
+    "rtpSamples": 20,
+    "causeProven": false
+  },
+  "httpClosed": true,
+  "afterPinChecks": {
+    "texts": 9,
+    "externalHelpers": 2,
+    "noLinks": true,
+    "hashesMatch": true,
+    "httpClosed": true
+  },
+  "finishedAt": "2026-10-10T10:44:56.625Z",
+  "limits": [
+    "Synthetic browser AudioData/VideoFrame generated source and local RTC only; no actual NativePCM, CEF, VDO SDK, WAN or microphone",
+    "A zero-gain AudioContext destination participates in browser output clock; no audible tone or physical device calibration claimed",
+    "Received edges use browser expectedDisplayTime and mapped silent audio context output time; frame/quantum/mapping/threshold uncertainty stated",
+    "PASS threshold is finite-run declared measurement resolution; avSyncProven remainsfalse for product",
+    "Native25 CEF prior proof was595decoded vs540callbacks; this audio experiment does not reinterpret those counts"
+  ]
+}

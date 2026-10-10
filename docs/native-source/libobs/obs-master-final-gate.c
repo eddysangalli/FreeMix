@@ -13,7 +13,7 @@ static struct {
  volatile long seq, serial, identity, generation, enabled, active, duration;
 } command;
 static struct {
- volatile long seq, identity, generation, command_serial, enabled, active, running, fault;
+ volatile long seq, identity, generation, command_serial, enabled, active, running, fault, target_supported;
  volatile long gain, frame_seq, pts_lo, pts_hi;
 } observed;
 static uint32_t load(const volatile long *p){return (uint32_t)os_atomic_load_long(p);}
@@ -46,14 +46,15 @@ void obs_master_final_gate_reset(void){
  }store(&generation,0); /* Exhaustion/contention fails closed, never reuse an old epoch. */
 }
 bool obs_master_final_gate_get(struct obs_master_final_gate_state *s){
- if(!s)return false;memset(s,0,sizeof(*s));s->contract_version=1;
+ if(!s)return false;memset(s,0,sizeof(*s));s->contract_version=2;
  for(unsigned attempt=0;attempt<4;attempt++){
   const uint32_t a=load(&observed.seq);if(a&1)continue;
   s->mix_identity=load(&observed.identity);s->generation=load(&observed.generation);s->command_serial=load(&observed.command_serial);
   s->enabled=load(&observed.enabled)!=0;s->requested_active=load(&observed.active)!=0;s->running=load(&observed.running)!=0;s->clock_fault=load(&observed.fault)!=0;
+  s->target_supported=load(&observed.target_supported)!=0;
   s->gain_q24=load(&observed.gain);s->frame_seq=load(&observed.frame_seq);s->frame_pts_ns=((uint64_t)load(&observed.pts_hi)<<32)|load(&observed.pts_lo);
   if(a!=load(&observed.seq))continue;
-  s->available=load(&available)!=0&&s->mix_identity!=0&&s->generation==load(&generation)&&!s->clock_fault;
+  s->available=load(&available)!=0&&s->target_supported&&s->mix_identity!=0&&s->generation==load(&generation)&&!s->clock_fault;
   s->black_observed=s->available&&s->enabled&&s->requested_active&&!s->running&&s->gain_q24==0;
   s->normal_observed=s->available&&!s->running&&s->gain_q24==16777216u;
   return true;
@@ -126,6 +127,7 @@ void obs_final_gate_publish(struct obs_final_gate_runtime *r,uint64_t pts,bool d
  uint32_t seq;if(!lock_seq(&observed.seq,&seq)){store(&available,0);return;}
  store(&observed.identity,r->identity);store(&observed.generation,r->generation);store(&observed.command_serial,r->applied_serial);
  store(&observed.enabled,r->enabled);store(&observed.active,r->requested_active);store(&observed.running,r->running);store(&observed.fault,r->clock_fault);
+ store(&observed.target_supported,r->target_supported);
  store(&observed.gain,(uint32_t)(r->gain*16777216.0));store(&observed.frame_seq,++r->frame_seq);store(&observed.pts_lo,(uint32_t)pts);store(&observed.pts_hi,(uint32_t)(pts>>32));
- unlock_seq(&observed.seq,seq);store(&available,r->identity&&r->generation==load(&generation)&&!r->clock_fault);
+ unlock_seq(&observed.seq,seq);store(&available,r->target_supported&&r->identity&&r->generation==load(&generation)&&!r->clock_fault);
 }

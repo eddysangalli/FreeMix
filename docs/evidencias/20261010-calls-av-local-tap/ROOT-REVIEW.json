@@ -1,0 +1,15 @@
+{
+  "status": "ROOT_PINS_AND_FINITE_SOURCE_DELTA_REVIEW_PASS_ONE_LOCAL_TAP_AUTHORIZED",
+  "at": "2026-10-10T10:44:08.153Z",
+  "outerFiles": 39,
+  "preparationFiles": 9,
+  "externalModules": 2,
+  "operatorTouched": false,
+  "nativeStarted": false,
+  "avSyncProven": false,
+  "limits": [
+    "Same Generator track receives one extra silent local Worklet tap; this can change graph pull and is a diagnostic intervention",
+    "PTS, original AV criteria, Gain0 and silent Worklet unchanged",
+    "No retimestamp adapter, microphone, Native, CEF, VDO, WAN or product changes"
+  ]
+}

@@ -1,0 +1,59 @@
+{
+  "status": "ROOT_EIGHT_NATIVE_SOURCES_INTEGRATED_NOT_BUILT",
+  "at": "2026-10-10T10:16:40.080Z",
+  "baseHead": "c4b5af00ea4a4b744a3a19fef5ec861f693c9a69",
+  "nativeFiles": [
+    {
+      "path": "frontend/widgets/FreeMixFinalProgramGate.hpp",
+      "beforeSha256": "0d8966a23f9eae86aa959ce751c18f93bdd5d8e53728783c90ab60ea914a0177",
+      "afterSha256": "8205c2664dec15b821d7d57d40c4e8f1374c4deb056b02a101571796063eea13"
+    },
+    {
+      "path": "libobs/obs-final-gate-internal.h",
+      "beforeSha256": "47e9d69194f63649c065232f99c0ea5b0e6440ace4b7bef2bdaf577dd07174c0",
+      "afterSha256": "45b739584de6d210bffa1e95af25ed2a4bca17906fa4a9ce21ae6ae414e714f6"
+    },
+    {
+      "path": "libobs/obs-final-gate-render.h",
+      "beforeSha256": "fdfe60af2320a81011e027d6d6d170e5ba91f804ddf0660a117489834fd64dee",
+      "afterSha256": "e0a04934974968789f23de2173bf5b779ecd7f71b662d1832765726cf3bda4ef"
+    },
+    {
+      "path": "libobs/obs-final-gate.h",
+      "beforeSha256": "9680a6079ef727b538aeffa9d1246f0b620f982132d5edb4ec0713ad2ac11eba",
+      "afterSha256": "eec4d4963f7eaccbb627efca7471400aedbb2d7da0efa3abf1ab70ba67b8b439"
+    },
+    {
+      "path": "libobs/obs-master-final-gate.c",
+      "beforeSha256": "d124f4c8bcd900729901a2d9f6258c700193ce20f084b2994d1ae142dde6c6c7",
+      "afterSha256": "319d8822e0e0850ab08607a2db25e43c74cd2dec9f8b746faa5bbd4276f88d2b"
+    },
+    {
+      "path": "frontend/widgets/FreeMixCallAudio.cpp",
+      "beforeSha256": "ac2d33a4f761c2be39952a01ad1ad34244f420f595bdf10d5f6113a29545e926",
+      "afterSha256": "6edb53cd084d63037c215f90e1d0eb1b07282ed23297ded77c1b238070c0442f"
+    },
+    {
+      "path": "frontend/widgets/FreeMixCallAudio.hpp",
+      "beforeSha256": "ff9f1f66865d5408cbe8943597c7859e4403232675221714b83378d06c095826",
+      "afterSha256": "907925c95ed07571592c2951fa6d6d3953b0ddd7e5429ea5a4e02d3f94f5c574"
+    },
+    {
+      "path": "frontend/widgets/FreeMixCallAudioClock.hpp",
+      "beforeSha256": null,
+      "afterSha256": "95ae17fc52c5905536e921741f4284c73106133bc71fa7313c1395d7bc14aa22"
+    }
+  ],
+  "gateModelChecks": 106,
+  "pcmModelChecks": 54,
+  "legacyTimestampComparisons": 200000,
+  "privacyRaceBarriers": 5,
+  "sourceReviewFull": true,
+  "experimentalFtbQualified": false,
+  "avSynchronismQualified": false,
+  "canonicalProductUnchanged": true,
+  "sealed093000Unchanged": true,
+  "operatorTouched": false,
+  "nativeExecuted": false,
+  "buildStarted": false
+}

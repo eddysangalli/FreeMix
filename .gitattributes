@@ -164,3 +164,9 @@ docs/evidencias/20261010-http25-gate-backend/** -text -whitespace
 docs/evidencias/20261010-calls-native25/** -text -whitespace
 docs/evidencias/20261010-gate3-domain-fail/** -text -whitespace
 docs/evidencias/20261010-calls-av-roi-inconclusive/** -text -whitespace
+
+docs/evidencias/20261010-setup093000-fail/** -text -whitespace
+docs/evidencias/20261010-calls-av-consumer-diagnostic/** -text -whitespace
+
+docs/evidencias/20261010-native28-build/** -text -whitespace
+docs/evidencias/20261010-calls-av-local-tap/** -text -whitespace

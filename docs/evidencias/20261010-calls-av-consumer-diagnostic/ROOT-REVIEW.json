@@ -1,0 +1,25 @@
+{
+  "status": "ROOT_FULL_SOURCE_REVIEW_AND_PINS_PASS_ONE_DIAGNOSTIC_AUTHORIZED",
+  "at": "2026-10-10T10:26:10.389Z",
+  "files": 28,
+  "externalModules": 2,
+  "allowlistSha256": "f05f3556af9a1bdb54eeb8b330c6fd2df29862d40704c1cedfef8438cb83adfe",
+  "preparationSha256": "6b98b3be038deff5ee09017e4af48169e7bb9e6c23520969945e6c15be8e123e",
+  "reviewed": [
+    "runner",
+    "launch",
+    "probe",
+    "audio-diagnostics",
+    "tone-worklet",
+    "synthetic-media",
+    "received-roi",
+    "av-clock",
+    "call-video-track"
+  ],
+  "limits": [
+    "Synthetic loopback diagnostic only; no Native/microphone/VDO/WAN",
+    "Silent graph with Gain0 and detector criteria unchanged",
+    "No product AV approval; original inconclusive preserved"
+  ],
+  "operatorTouched": false
+}
