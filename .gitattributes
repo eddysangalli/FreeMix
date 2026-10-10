@@ -93,3 +93,7 @@ qa-finalizacao/package-native-startup-045000-qr-fail-allowlist.json -text -white
 
 qa-finalizacao/gtzip-qr-recovery/** -text -whitespace
 qa-finalizacao/gtzip-activation-event-order/** -text -whitespace
+
+qa-finalizacao/installer-real-004500-qr*/** -text -whitespace
+qa-finalizacao/installer-real-004500-qr-allowlist-20261010.json -text -whitespace
+docs/RELATORIO-INSTALADOR-QR-004500-20261010.md -text -whitespace
