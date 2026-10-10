@@ -1,0 +1,49 @@
+{
+  "status": "PASS_PUBLIC_OWN_IAB_REAL_NATIVE27",
+  "at": "2026-10-10T09:31:56.792Z",
+  "files": [
+    {
+      "path": "receipt.json",
+      "sha256": "f1f393a8b9a58ca3f05fc864b1a9c775f47a00f8a5e6984b59ea679290591f59",
+      "bytes": 112948
+    },
+    {
+      "path": "report.json",
+      "sha256": "6929ae8b14bc6d5bddd4affd29c8727c95db24c40fbe3af14c9066a448ac5593",
+      "bytes": 6725
+    },
+    {
+      "path": "ALLOWLIST-RESULT.json",
+      "sha256": "8368f6a0e9ecc816dd391e622e5118745fae0f82b58b7a1c189cf83a4a404558",
+      "bytes": 3971
+    },
+    {
+      "path": "root-iab-proof.json",
+      "sha256": "ef8a4302950b6136ff7532db10433da5c38bf654f1aee9b9593838100b5d24d4",
+      "bytes": 1314
+    },
+    {
+      "path": "root-preview.jpg",
+      "sha256": "044a984d10bd6e3a5bc4443d170d1a6994449c5ba44941ed6c3bedf3fb3dec4b",
+      "bytes": 67894
+    },
+    {
+      "path": "root-cut.jpg",
+      "sha256": "4e26dd080bd67abbcf550d3ab66c8507321a22048ee5687783a21b1988dacc2c",
+      "bytes": 67743
+    },
+    {
+      "path": "root-minimized.jpg",
+      "sha256": "28782d2df35de311f9c6d7e3ed569290707608c486b88e01731613f79f271bb4",
+      "bytes": 63900
+    },
+    {
+      "path": "root-restored.jpg",
+      "sha256": "a3d6b992192c0947727f4559d7e1aab3c806a5ec4b5c9f7a9e3d88672b45f53a",
+      "bytes": 67697
+    }
+  ],
+  "meterWarnings": 3,
+  "operatorTouched": false,
+  "selectedInstallerChanged": false
+}

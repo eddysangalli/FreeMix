@@ -1,0 +1,19 @@
+{
+  "status": "ROOT_REVIEWED_ONE_DIAGNOSTIC_AUTHORIZED",
+  "at": "2026-10-10T09:10:12.588Z",
+  "allowlistSha256": "a35360e89a8c7b031623bfd5adc8849f4a07a5f376ee8cc25379443f42adafef",
+  "previousFailPreservedSha256": "23ed2016b702324fb381b27bff0bfec592be8ae0633fd6924ec48dc2773d8b05",
+  "nativeHead": "c4b5af00ea4a4b744a3a19fef5ec861f693c9a69",
+  "review": [
+    "Actual full probe/phase/scenarios and launch/verify contract reviewed.",
+    "Lifecycle byteidentical to prior reviewed runner except explicit QA marker.",
+    "ROI logs actual dimensions+alpha and paired fixed ROI; no threshold relaxation.",
+    "Pending phase ACK before one setter; finite5s deadline; steady mismatch still zero."
+  ],
+  "limits": [
+    "ONE own Native/CEF execution, no other Native QA in parallel.",
+    "No canonical Calls publisher/audio/VDO/WAN claim.",
+    "Preserve previous FAIL; report actual results without reclassification.",
+    "Production operator untouched; no API start, no Native force close."
+  ]
+}

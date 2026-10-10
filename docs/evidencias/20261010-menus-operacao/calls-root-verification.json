@@ -1,0 +1,18 @@
+{
+  "status": "PASS_CANONICAL_UI_VM",
+  "files": [
+    {
+      "path": "calls.html",
+      "sha256": "c4ef654c39e98bbaa63dcef3f9ea1846f1d590f259065b8da282663bbdeae83c"
+    },
+    {
+      "path": "calls.js",
+      "sha256": "424718087d09f0470ad0f8ee84bf1747cbf0d96af2b4b69bed8f271a869ae06d"
+    }
+  ],
+  "checks": {
+    "current": 20,
+    "holdLease": 35
+  },
+  "scope": "Actual canonical JS/HTML; isolated VM and own synthetic state; no Native/audio proof"
+}

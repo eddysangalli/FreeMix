@@ -1,0 +1,47 @@
+{
+  "status": "ROOT_VERIFIED_CEF27_ROI_PASS",
+  "at": "2026-10-10T09:23:17.202Z",
+  "files": [
+    {
+      "path": "receipt.json",
+      "sha256": "c879bbd3190a642230c086e1162e0168faf86fb817e82b456b327226e3a1b61c",
+      "bytes": 27363
+    },
+    {
+      "path": "report.json",
+      "sha256": "158d62fdda4c276d9fd1004a40ae04a8a7051357ef5b9400c373888bd721c098",
+      "bytes": 22196
+    },
+    {
+      "path": "ALLOWLIST-RESULT-PASS.json",
+      "sha256": "67a44acea18bb27f387d42f50f156fe8806df65a288e2115cbbd58957254936b",
+      "bytes": 6217
+    },
+    {
+      "path": "ROOT-REVIEW.json",
+      "sha256": "3933e7c7114b3da73e9062f2a25344986843aa394bcfb4a1539558ebccb4bd9b",
+      "bytes": 999
+    },
+    {
+      "path": "public-red-own.png",
+      "sha256": "130e8c93729d2b2646bc148a6126e75e92df349784c748d52836dfab3d6e649c",
+      "bytes": 692
+    },
+    {
+      "path": "public-blue-own.png",
+      "sha256": "49773aa6c06369491e6ffd481e0c07b3864ce16397752e60721e4852c20adbb9",
+      "bytes": 692
+    },
+    {
+      "path": "public-asymmetric-own.png",
+      "sha256": "de6c19a7badd775bfb01bccf2c390eaf5b907014f2daf992b04cce21fde2f0cc",
+      "bytes": 696
+    }
+  ],
+  "oldFailPreserved": true,
+  "operatorTouched": false,
+  "selectedInstallerChanged": false,
+  "rawLogsIncluded": false,
+  "credentialsIncluded": false,
+  "actualGuestAvQualified": false
+}

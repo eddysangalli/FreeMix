@@ -1,0 +1,93 @@
+{
+  "status": "PASS_DRAFT_DOM_VM",
+  "results": [
+    {
+      "name": "Delayed Save ACK never erases a newer revision",
+      "status": "PASS"
+    },
+    {
+      "name": "Old scope Save ACK cannot clear or confirm same UUID draft in a new scope",
+      "status": "PASS"
+    },
+    {
+      "name": "Confirmed four values remain until state echo; bounded timeout blocks replay Save",
+      "status": "PASS"
+    },
+    {
+      "name": "Failed Save preserves draft values and never reports confirmed phase",
+      "status": "PASS"
+    },
+    {
+      "name": "Custom audio removed-own-audio remains checked unavailable and blocks Save until explicit removal",
+      "status": "PASS"
+    },
+    {
+      "name": "Custom audio director remains checked unavailable and blocks Save until explicit removal",
+      "status": "PASS"
+    },
+    {
+      "name": "Custom audio guest-a remains checked unavailable and blocks Save until explicit removal",
+      "status": "PASS"
+    },
+    {
+      "name": "Saved video UUID removed is not replaced by Program and blocks Save",
+      "status": "PASS"
+    },
+    {
+      "name": "Removed guest UUID clears its draft; recreation never inherits, opening/poll no mutation",
+      "status": "PASS"
+    },
+    {
+      "name": "Pending Save with no original draft removed UUID cannot confirm recreated row",
+      "status": "PASS"
+    },
+    {
+      "name": "Own draft map limit8 refuses ninth Save without dispatch",
+      "status": "PASS"
+    },
+    {
+      "name": "Empty connected view exposes one instruction and hides guest-only controls, zero writes",
+      "status": "PASS"
+    },
+    {
+      "name": "Disconnected unknown guest state does not falsely instruct creation",
+      "status": "PASS"
+    },
+    {
+      "name": "First guest exposes existing controls; no prepare, conference or target mutation",
+      "status": "PASS"
+    },
+    {
+      "name": "Guest controls return to empty state after removal, zero writes while not holding",
+      "status": "PASS"
+    },
+    {
+      "name": "Legacy return limit moved into collapsed explanation without claiming individual",
+      "status": "PASS"
+    },
+    {
+      "name": "Existing elements remain unique; return before talkback; limitations retained",
+      "status": "PASS"
+    },
+    {
+      "name": "Individual capability with all publishers stopped never claims prepared or hearing",
+      "status": "PASS"
+    },
+    {
+      "name": "Saved route state echo replaces waiting feedback with confirmed success",
+      "status": "PASS"
+    },
+    {
+      "name": "Route state echo preserves a newer error rather than replacing feedback",
+      "status": "PASS"
+    }
+  ],
+  "checks": 20,
+  "nativeExecuted": false,
+  "operatorTouched": false,
+  "limits": [
+    "Own fake DOM/VM only; no CEF/layout/media/audio/WAN or operator proof.",
+    "Original delayed-save/revision/scope/custom-audio guards reused, full canonical callbacks executed against own mocked state.",
+    "No network server started."
+  ]
+}

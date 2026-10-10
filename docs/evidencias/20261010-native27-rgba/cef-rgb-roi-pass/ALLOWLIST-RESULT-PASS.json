@@ -1,0 +1,207 @@
+{
+  "status": "FROZEN_PASS_CEF27_RGB_ROI_DIAGNOSTIC",
+  "executionCount": 1,
+  "files": [
+    {
+      "path": "ALLOWLIST-PREPARATION.json",
+      "bytes": 5308,
+      "sha256": "a35360e89a8c7b031623bfd5adc8849f4a07a5f376ee8cc25379443f42adafef"
+    },
+    {
+      "path": "ANALYSIS.md",
+      "bytes": 4044,
+      "sha256": "a6fabb416fa7f7974821799e2164fe9a894f4577f2d383a293f1513fcd6eeba6"
+    },
+    {
+      "path": "cef27-rgb-vs-cef25.diff",
+      "bytes": 47861,
+      "sha256": "83616c81cdd397d39b04005018001f75c11b40d962741a13f93cf379ae5297c7"
+    },
+    {
+      "path": "colour-contract.mjs",
+      "bytes": 1273,
+      "sha256": "dc3925da8fe01bac344691160aa281271d7c94fe1ee6506a8066bb8df5cf8d92"
+    },
+    {
+      "path": "DERIVATION.json",
+      "bytes": 738,
+      "sha256": "d6fb463eb06b81d871e272cb64c647b4160aa0c1096ca817c6b0f8d4ad6da232"
+    },
+    {
+      "path": "derive-diagnostic.mjs",
+      "bytes": 7665,
+      "sha256": "94ab202e23032583654e84940fa7cb4a8e9c7bd5a37d33726b0baa8b0472ae01"
+    },
+    {
+      "path": "derive-postpins.mjs",
+      "bytes": 4191,
+      "sha256": "25bcbcef6d9fa9efa0a3bdeb10a7346dc912568fd017b561f111b4907f6da781"
+    },
+    {
+      "path": "derive.mjs",
+      "bytes": 1665,
+      "sha256": "9671e6b568ed2ee93092a93c5c154cc56bb55bd53d77d23ce5b8b1028a3d3f4c"
+    },
+    {
+      "path": "diagnostic-tests.json",
+      "bytes": 1469,
+      "sha256": "b374f112f1acc545f847ac76a261e0654160fb36d20f53574c9691e1c5d20a3f"
+    },
+    {
+      "path": "edit-colour-qa.mjs",
+      "bytes": 6392,
+      "sha256": "ef0d6b8fd3caf12a5180537335158e5ed81daad29fd9fffcf4f9120b626d99bd"
+    },
+    {
+      "path": "freeze-diagnostic.mjs",
+      "bytes": 5352,
+      "sha256": "9393b3071cace08be2f176e34563f3c2b20e84fd8ee1455978960e6d4bdb5219"
+    },
+    {
+      "path": "freeze-preparation.mjs",
+      "bytes": 4792,
+      "sha256": "326a12b4fad5de4c600c9fd744444c6e771909ff64c33303d2c72d6e76a1b852"
+    },
+    {
+      "path": "freeze-result.mjs",
+      "bytes": 6279,
+      "sha256": "6c7f217b478f714be17bbf66bb9f875c7141a4a531b5384a8dd7eef6593503a5"
+    },
+    {
+      "path": "freeze-revision.mjs",
+      "bytes": 3960,
+      "sha256": "c7281f31f3c3e2e4da22679b4a5a33d1fadd0a7e0bb7cd9b34c58d09c2cfe4d1"
+    },
+    {
+      "path": "harden-preparation.mjs",
+      "bytes": 811,
+      "sha256": "34910b244fd94057a85fce461b4f1faa576cd35ef2728a948ed37f24264e7733"
+    },
+    {
+      "path": "launch-child.mjs",
+      "bytes": 1384,
+      "sha256": "6f52d07407fb21e5dd94780c6d2d3def287aa428450a4552a370b54ffe190ec1"
+    },
+    {
+      "path": "png-centre.mjs",
+      "bytes": 2216,
+      "sha256": "12e7fd583edc58427153de4228775a0f85868e7bd9b5f221f5043f72fd437d3f"
+    },
+    {
+      "path": "postpins-tests.json",
+      "bytes": 1280,
+      "sha256": "dafa6b86939765c49576cdc3b0b1b5b4a2f24b6f2f7477de7fb9332a8f3cf2ca"
+    },
+    {
+      "path": "postpins-vs-3c433.diff",
+      "bytes": 29362,
+      "sha256": "27de89ac00e04614c8b3b2afa37801e11cfbee5ad47acd789319b0cbba677671"
+    },
+    {
+      "path": "preparation-tests.json",
+      "bytes": 968,
+      "sha256": "8d68296c2182bfcf04b26fe9fb64fecb7df9d2ca8ecdf4c0a74a61414c3b5514"
+    },
+    {
+      "path": "PREPARATION.json",
+      "bytes": 5115,
+      "sha256": "0f8d04b6f4ec9ec4ae58bf9524e1e5cbae609cbbc1dc120cf839a80c2a12c235"
+    },
+    {
+      "path": "probe.html",
+      "bytes": 10154,
+      "sha256": "fa03fbc93021d6c00892ea327e8c175a08e817e2841ef1f068213a52d65e65f5"
+    },
+    {
+      "path": "public-asymmetric-own.png",
+      "bytes": 696,
+      "sha256": "de6c19a7badd775bfb01bccf2c390eaf5b907014f2daf992b04cce21fde2f0cc"
+    },
+    {
+      "path": "public-blue-own.png",
+      "bytes": 692,
+      "sha256": "49773aa6c06369491e6ffd481e0c07b3864ce16397752e60721e4852c20adbb9"
+    },
+    {
+      "path": "public-red-own.png",
+      "bytes": 692,
+      "sha256": "130e8c93729d2b2646bc148a6126e75e92df349784c748d52836dfab3d6e649c"
+    },
+    {
+      "path": "README.md",
+      "bytes": 4966,
+      "sha256": "df43b57a7a32abc50a6caa442baa2c2ecdbeaa40ecccee4f32be9bd3421ee3ca"
+    },
+    {
+      "path": "receipt.json",
+      "bytes": 27363,
+      "sha256": "c879bbd3190a642230c086e1162e0168faf86fb817e82b456b327226e3a1b61c"
+    },
+    {
+      "path": "report.json",
+      "bytes": 22196,
+      "sha256": "158d62fdda4c276d9fd1004a40ae04a8a7051357ef5b9400c373888bd721c098"
+    },
+    {
+      "path": "REVISION.json",
+      "bytes": 439,
+      "sha256": "cd5fa55c42b3bcf92209f66e3e795016bc0fccb1bce91ddc04cbebb78263c531"
+    },
+    {
+      "path": "ROI-DERIVATION.json",
+      "bytes": 404,
+      "sha256": "88413712298c96acc4a3c4e09069e4df71f8125f39075e5afaab698f010e4d1b"
+    },
+    {
+      "path": "roi-diagnostic-vs-fail.diff",
+      "bytes": 52957,
+      "sha256": "968fd5e4f7ac47b567a53500b2258a404608a662bdf12f320ade9ea9749747bb"
+    },
+    {
+      "path": "roi-phase.mjs",
+      "bytes": 2646,
+      "sha256": "1939ef6926edab78d7f39cf2a3e0f365c5eb0f7fc30c6a1530e7c59059a2f2d2"
+    },
+    {
+      "path": "root-command.json",
+      "bytes": 1670,
+      "sha256": "bae67eed3c840a129f11e1f5015496123292175a6ef12b8ccd3187a54078990b"
+    },
+    {
+      "path": "ROOT-REVIEW.json",
+      "bytes": 999,
+      "sha256": "3933e7c7114b3da73e9062f2a25344986843aa394bcfb4a1539558ebccb4bd9b"
+    },
+    {
+      "path": "runner.mjs",
+      "bytes": 15952,
+      "sha256": "b04a1fcce57e653e099acde08188153fedbfff97719a7a350c784695e262fa1d"
+    },
+    {
+      "path": "scenarios.mjs",
+      "bytes": 12497,
+      "sha256": "4d17cb2e470da8e1333d1c2ecc19cb03135cdbc5ec6fa3d03195e4c784e894ef"
+    },
+    {
+      "path": "test-diagnostic.mjs",
+      "bytes": 5552,
+      "sha256": "b8577e11ac9aa367fb7e9fb6a0cd75a9c47897e2e2c3eef2fc615ccee6d4f2e9"
+    },
+    {
+      "path": "test-postpins.mjs",
+      "bytes": 4519,
+      "sha256": "37fbe7215c665eee11f7e17a36e6469d7ff693f8fd66789ff81efbb3025675dc"
+    },
+    {
+      "path": "test-preparation.mjs",
+      "bytes": 4288,
+      "sha256": "b6e39f53a409b61e6f37b5e26bd5f19bda0c0cb643c82e097e51ec1aa798853d"
+    },
+    {
+      "path": "verify-pins.mjs",
+      "bytes": 2113,
+      "sha256": "11574533f2b10c7c0efcd5e075a9d827762d0d153dac6ee78e6de4900ccf55d5"
+    }
+  ],
+  "productApplied": false
+}

@@ -1,0 +1,45 @@
+{
+  "steps": {
+    "tally": true,
+    "preview": true,
+    "minimized": true,
+    "restored": true,
+    "cut": true
+  },
+  "files": [
+    {
+      "bytes": 67894,
+      "mime": "image/jpeg",
+      "sha256": "044a984d10bd6e3a5bc4443d170d1a6994449c5ba44941ed6c3bedf3fb3dec4b",
+      "file": "root-preview.jpg"
+    },
+    {
+      "bytes": 67743,
+      "mime": "image/jpeg",
+      "sha256": "4e26dd080bd67abbcf550d3ab66c8507321a22048ee5687783a21b1988dacc2c",
+      "file": "root-cut.jpg"
+    },
+    {
+      "bytes": 63900,
+      "mime": "image/jpeg",
+      "sha256": "28782d2df35de311f9c6d7e3ed569290707608c486b88e01731613f79f271bb4",
+      "file": "root-minimized.jpg"
+    },
+    {
+      "bytes": 67697,
+      "mime": "image/jpeg",
+      "sha256": "a3d6b992192c0947727f4559d7e1aab3c806a5ec4b5c9f7a9e3d88672b45f53a",
+      "file": "root-restored.jpg"
+    }
+  ],
+  "ownOnly": true,
+  "nativeExpected": {
+    "programBefore": "1cfef7ed-4a55-4458-8a4d-0ef9e1fd2274",
+    "programAfter": "407f4ab3-c31e-4528-bcd6-b0a33a7a3a97",
+    "previewTarget": "407f4ab3-c31e-4528-bcd6-b0a33a7a3a97"
+  },
+  "reviewed": true,
+  "contextSha256": "316b223047c4e798bfe02b6ded517dc0406f106b878cd1198e52d2f67b4e9f07",
+  "handoffId": "541cb0f9-7630-4d4d-9869-03da08b839e1",
+  "backendReal": true
+}

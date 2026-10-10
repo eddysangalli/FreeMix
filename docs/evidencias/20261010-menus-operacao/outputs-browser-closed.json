@@ -1,0 +1,19 @@
+{
+  "status": "CLOSED_OWN_QA",
+  "startedAt": "2026-10-10T09:25:32.160Z",
+  "closedAt": "2026-10-10T09:26:59.795Z",
+  "reason": "own-close-request",
+  "pid": 119816,
+  "counters": {
+    "httpReads": 28,
+    "outputReads": 25,
+    "externalReads": 0,
+    "denied": 2,
+    "wsConnections": 2,
+    "wsMessagesDenied": 0
+  },
+  "immutableAfter": true,
+  "NativeStarted": false,
+  "realOutputCommands": 0,
+  "operatorContacted": false
+}

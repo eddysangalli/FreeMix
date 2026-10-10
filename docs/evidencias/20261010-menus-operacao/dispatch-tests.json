@@ -1,0 +1,89 @@
+{
+  "status": "PASS_ACTUAL_SHARED_CLIENT_VM",
+  "sourceSha256": "cd3db9458a3e3294feb6ce00b11c998a21c51ae9ad644c14b6b1222f8761bbe0",
+  "cases": [
+    {
+      "page": "calls",
+      "dataset": {
+        "route": "guest-a"
+      },
+      "commands": [],
+      "status": "PASS"
+    },
+    {
+      "page": "calls",
+      "dataset": {
+        "route": "guest-a",
+        "copy": "1"
+      },
+      "commands": [],
+      "status": "PASS"
+    },
+    {
+      "page": "calls",
+      "dataset": {
+        "route": "guest-a",
+        "reconnect": "1"
+      },
+      "commands": [],
+      "status": "PASS"
+    },
+    {
+      "page": "audio",
+      "dataset": {
+        "route": "Own microphone",
+        "bus": "M"
+      },
+      "commands": [
+        {
+          "action": "audio_bus",
+          "input": "Own microphone",
+          "bus": "M"
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "page": "audio",
+      "dataset": {
+        "route": "Own microphone",
+        "bus": "A"
+      },
+      "commands": [
+        {
+          "action": "audio_bus",
+          "input": "Own microphone",
+          "bus": "A"
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "page": "audio",
+      "dataset": {
+        "route": "Own microphone",
+        "bus": "B"
+      },
+      "commands": [
+        {
+          "action": "audio_bus",
+          "input": "Own microphone",
+          "bus": "B"
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "page": "settings",
+      "dataset": {
+        "route": "Own unrelated row"
+      },
+      "commands": [],
+      "status": "PASS"
+    }
+  ],
+  "limits": [
+    "Actual controle.js document handler, isolated VM network mock.",
+    "Calls browser interaction and actual Native audio are separate evidence."
+  ]
+}

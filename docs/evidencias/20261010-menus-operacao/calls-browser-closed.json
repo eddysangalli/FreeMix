@@ -1,0 +1,25 @@
+{
+  "status": "CLOSED_OWN_SERVERS",
+  "events": [
+    {
+      "mode": "guests",
+      "action": "call_return_route",
+      "key": "guest-a",
+      "video": "own-cam",
+      "audio": "program",
+      "gain": 1,
+      "audioSources": []
+    },
+    {
+      "mode": "guests",
+      "action": "call_rapid_targets",
+      "targets": [
+        "guest-a",
+        "guest-b"
+      ]
+    }
+  ],
+  "operatorTouched": false,
+  "nativeStarted": false,
+  "audioStarted": false
+}

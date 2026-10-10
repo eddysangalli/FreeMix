@@ -1,0 +1,91 @@
+{
+  "status": "ROOT_INTEGRATED_AND_REVIEWED_UI",
+  "at": "2026-10-10T09:28:32.759Z",
+  "checks": 90,
+  "files": [
+    {
+      "path": "calls-root-verification.json",
+      "sha256": "5999ee9d61f1a0db2b22cb44b968ba9546628249de26aa30730c55069e5a2400",
+      "bytes": 459
+    },
+    {
+      "path": "calls-current-tests.json",
+      "sha256": "8275e5d841443f4394bae879328f76c2becad8084bddfe18f171aaf59030cbc7",
+      "bytes": 2992
+    },
+    {
+      "path": "calls-hold-tests.json",
+      "sha256": "7dbe7b6303048faa7ded53f8e1385a526b551df181641c3812d4d28e1aaa4b96",
+      "bytes": 3665
+    },
+    {
+      "path": "dispatch-tests.json",
+      "sha256": "2beb3127996ac3ab426f43c7481d843d2a8cbbc20c3715afb8f5d4e3f5654ac7",
+      "bytes": 1765
+    },
+    {
+      "path": "output-capacity-tests.json",
+      "sha256": "6eba051271832cbf8ce39b4c48e52ba477fc564644a47177e9e1faea373deb48",
+      "bytes": 5299
+    },
+    {
+      "path": "calls-browser-closed.json",
+      "sha256": "815afe294666fb117c7c743604561f0869e9c9072b8a3d3fffc6d6c748c09f19",
+      "bytes": 465
+    },
+    {
+      "path": "calls-desktop.png",
+      "sha256": "3ed2f03e2b88a09f73dcf87900fa7f3b1656100fcb4c7b4486ca4fa906588f6d",
+      "bytes": 119224
+    },
+    {
+      "path": "calls-mobile.png",
+      "sha256": "3be710acf7d32ea8b6dc37c3aaf453b11d56e84ef6d5bc3c5fba4078e12df335",
+      "bytes": 109849
+    },
+    {
+      "path": "calls-empty.png",
+      "sha256": "2ee71bc8ff2f694208c9814f6b9f87a443f104eb56b0977b2742710a00d72627",
+      "bytes": 20215
+    },
+    {
+      "path": "srt-destino.jpg",
+      "sha256": "3fe9ed2ae486f8ab0db3a0d690d8cdd3beaa5cea324c26bfa4bc1e8b9c81a9cb",
+      "bytes": 92931
+    },
+    {
+      "path": "srt-conteudo.jpg",
+      "sha256": "2544b1ec8692438e47fafd6f4267e542eac30824c1fe151660a007091afe9d87",
+      "bytes": 88855
+    },
+    {
+      "path": "srt-conferir.jpg",
+      "sha256": "1b04ff3b31dc5f943ca8e969734da5423daee5412105493274a2859ec058024d",
+      "bytes": 79025
+    },
+    {
+      "path": "multistream-destino.jpg",
+      "sha256": "279d16961dab4ecd45b373c2485565ceb52a77db78f96b395039722af8769b64",
+      "bytes": 79870
+    },
+    {
+      "path": "multistream-conteudo.jpg",
+      "sha256": "2f5f67f027198fa62aa572b83a56eb140068cb321b6c4c9bb110c84a523c6d80",
+      "bytes": 92361
+    },
+    {
+      "path": "multistream-conferir.jpg",
+      "sha256": "eefccf8309c6b24a838e7f359da522c7f4669b4265118570e2f2db793c7cfaa0",
+      "bytes": 79656
+    },
+    {
+      "path": "outputs-browser-closed.json",
+      "sha256": "eff0ee2ac08107260ec12dde20d7d1d8586cb776c3a2e892dc170e474f891f45",
+      "bytes": 432
+    }
+  ],
+  "syntheticFrontendScreenshots": true,
+  "operatorTouched": false,
+  "selectedInstallerChanged": false,
+  "realMediaQualified": false
+}

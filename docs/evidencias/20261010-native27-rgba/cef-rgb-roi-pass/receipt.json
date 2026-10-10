@@ -1,0 +1,1165 @@
+{
+  "status": "PASS_OWN_REAL_NATIVE27_NODE_CEF_VIDEO_TRANSPORT",
+  "started": "2026-10-10T09:10:33.265Z",
+  "operatorTouched": false,
+  "productChanged": false,
+  "qaCompositionOnly": true,
+  "nativeHead": "c4b5af00ea4a4b744a3a19fef5ec861f693c9a69",
+  "noApiStarted": true,
+  "noNativeUiAutomation": true,
+  "checks": [
+    {
+      "name": "Signed600 base and entire frozen Native27 pinned; own FPS configured before spawn",
+      "status": "PASS"
+    },
+    {
+      "name": "Own Native composition -> captured-connection relay -> actual Native CEF generated track -> RTC receiver; public PNG, per-phase exact wire RGB and decoded CEF canvas RGB with rational PTS, no external SDK/audio",
+      "status": "PASS"
+    }
+  ],
+  "cases": [],
+  "requests": [],
+  "processObservations": [],
+  "pins": {
+    "candidate": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\candidate-release-060000.json",
+    "candidate-sha": "456696515dd7aabf87958e11a91bd324bab3f405fef68549c2cc16bf1e59647d",
+    "manifest-sha": "7107aa50b55dd2584be4fc30760af6ef1c85855c6995cd10758e65decc0a93b4",
+    "native-freeze": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\native-build-frozen-c4b5af0-configured.json",
+    "native-freeze-sha": "d7d7e623597b2eadef12a57b5f702bb3e20711f4e86e4b18c9a300cf947ac616",
+    "native-head": "c4b5af00ea4a4b744a3a19fef5ec861f693c9a69",
+    "preparation": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\calls-native27-cef-roi-diagnostic-preparation\\PREPARATION.json",
+    "preparation-sha": "0f8d04b6f4ec9ec4ae58bf9524e1e5cbae609cbbc1dc120cf839a80c2a12c235",
+    "receipt": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\calls-native27-cef-roi-diagnostic-preparation\\receipt.json",
+    "root-reviewed": "EXECUTE-OWN-REAL-NATIVE27-CALLS-NODE-CEF-ROI-DIAGNOSTIC",
+    "main-fps": "30000/1001",
+    "allowlist": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\calls-native27-cef-roi-diagnostic-preparation\\ALLOWLIST-PREPARATION.json",
+    "allowlist-sha": "a35360e89a8c7b031623bfd5adc8849f4a07a5f376ee8cc25379443f42adafef"
+  },
+  "scopeFresh17Reference": {
+    "receipt": "qa-finalizacao/calls-program-safe-canonical-tests/receipt.json",
+    "sha256": "88275551dd41463dcf9c597a1bfecfb8b31266adc6fab3c403cdd6e28c3304ef",
+    "canonicalCallsSha256": "1e4ce912c8f33c563aa424ef5a832e010db395f45cbf6eb25a041831d40dfffa",
+    "canonicalCoreSha256": "be4682074442b6cbb8f06c2aa6638223009abe071b8d769d5a2aac870bd42908",
+    "executedInThisVideoQa": false
+  },
+  "beforePinChecks": {
+    "preparationTexts": 32,
+    "externalHelpers": 7,
+    "additionalModules": 6,
+    "allowlistPinned": true,
+    "noLinks": true,
+    "hashesMatch": true
+  },
+  "childTempOnly": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\calls-bridge-temp",
+  "root": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\calls-bridge-temp\\FreeMix-QA-CallsNativeCefTwentySeven-iBKPaf",
+  "installed": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\calls-bridge-temp\\FreeMix-QA-CallsNativeCefTwentySeven-iBKPaf\\FreeMix-QA-Native27 Studio with spaces",
+  "mainFpsRequested": "30000/1001",
+  "sourceDraftOverlay": false,
+  "apiPortReservedNotStarted": 62990,
+  "wsPort": 62991,
+  "signedBaseFiles": 9582,
+  "fullNativeFilesPinned": 2085,
+  "ownProfileFpsEditedOnlyBeforeSpawn": true,
+  "nativePid": 75536,
+  "readinessObservations": [
+    {
+      "context": "startup",
+      "pid": 75536,
+      "elapsedMs": 7907,
+      "vendorOwnPidConfirmed": true,
+      "studioAndIdleConfirmed": true
+    },
+    {
+      "context": "cleanup",
+      "pid": 75536,
+      "elapsedMs": 45,
+      "vendorOwnPidConfirmed": true,
+      "studioAndIdleConfirmed": true
+    }
+  ],
+  "video": {
+    "baseWidth": 1920,
+    "baseHeight": 1080,
+    "fpsNumerator": 30000,
+    "fpsDenominator": 1001
+  },
+  "runtimeContextOwned": true,
+  "sceneCapturedIsPublicComposition": true,
+  "sourceUuid": "92e4f15b-0632-4ad3-875f-45e6573173e1",
+  "sceneNeverPutOnProgramByQa": true,
+  "colourProof": {
+    "publicPng": [
+      {
+        "id": "red",
+        "sourceUuid": "b7102d61-7e2f-4041-8855-0bc4c10d2d96",
+        "setting": 4278190335,
+        "expectedRgb": [
+          255,
+          0,
+          0
+        ],
+        "sha256": "130e8c93729d2b2646bc148a6126e75e92df349784c748d52836dfab3d6e649c",
+        "width": 320,
+        "height": 180,
+        "rgba": [
+          255,
+          0,
+          0,
+          255
+        ]
+      },
+      {
+        "id": "blue",
+        "sourceUuid": "b7102d61-7e2f-4041-8855-0bc4c10d2d96",
+        "setting": 4294901760,
+        "expectedRgb": [
+          0,
+          0,
+          255
+        ],
+        "sha256": "49773aa6c06369491e6ffd481e0c07b3864ce16397752e60721e4852c20adbb9",
+        "width": 320,
+        "height": 180,
+        "rgba": [
+          0,
+          0,
+          255,
+          255
+        ]
+      },
+      {
+        "id": "asymmetric",
+        "sourceUuid": "b7102d61-7e2f-4041-8855-0bc4c10d2d96",
+        "setting": 4280530040,
+        "expectedRgb": [
+          120,
+          180,
+          35
+        ],
+        "sha256": "de6c19a7badd775bfb01bccf2c390eaf5b907014f2daf992b04cce21fde2f0cc",
+        "width": 320,
+        "height": 180,
+        "rgba": [
+          120,
+          180,
+          35,
+          255
+        ]
+      }
+    ],
+    "wireTolerance": 2,
+    "decodedCanvasTolerance": 16,
+    "phaseSettleMs": 500,
+    "transitions": [
+      {
+        "index": 1,
+        "id": "blue",
+        "requestedAt": 1791623641337,
+        "ackedAt": 1791623641338,
+        "setRequestedAt": 1791623641338,
+        "setConfirmedAt": 1791623641338,
+        "pngConfirmedAt": 1791623641395
+      },
+      {
+        "index": 2,
+        "id": "asymmetric",
+        "requestedAt": 1791623647353,
+        "ackedAt": 1791623647354,
+        "setRequestedAt": 1791623647354,
+        "setConfirmedAt": 1791623647354,
+        "pngConfirmedAt": 1791623647416
+      }
+    ],
+    "pairedPerPhase": true
+  },
+  "probeUrl": "http://127.0.0.1:56318/",
+  "probeReady": true,
+  "cefOpenAccepted": true,
+  "browser": {
+    "dimensions": {
+      "callbacks": 569,
+      "validRoi": 569,
+      "invalidDimensions": 0,
+      "readbackErrors": 0,
+      "changes": [
+        {
+          "callback": 1,
+          "mediaTime": 0,
+          "metadataWidth": 320,
+          "metadataHeight": 180,
+          "videoWidth": 320,
+          "videoHeight": 180
+        },
+        {
+          "callback": 120,
+          "mediaTime": 3.982,
+          "metadataWidth": 480,
+          "metadataHeight": 270,
+          "videoWidth": 480,
+          "videoHeight": 270
+        },
+        {
+          "callback": 470,
+          "mediaTime": 16.097,
+          "metadataWidth": 640,
+          "metadataHeight": 360,
+          "videoWidth": 640,
+          "videoHeight": 360
+        }
+      ],
+      "first": {
+        "callback": 1,
+        "mediaTime": 0,
+        "metadataWidth": 320,
+        "metadataHeight": 180,
+        "videoWidth": 320,
+        "videoHeight": 180
+      },
+      "last": {
+        "callback": 569,
+        "mediaTime": 19.799,
+        "metadataWidth": 640,
+        "metadataHeight": 360,
+        "videoWidth": 640,
+        "videoHeight": 360
+      },
+      "changesTruncated": 0,
+      "lastKey": "640/360/640/360"
+    },
+    "alpha": {
+      "transparent": 0,
+      "partialAlpha": 0,
+      "opaqueBlack": 0,
+      "opaqueColour": 569,
+      "invalid": 0
+    },
+    "legacyFixedRoi": {
+      "outsideCount": 119,
+      "alpha0": 119,
+      "opaqueBlack": 0,
+      "firstOutside": {
+        "callback": 1,
+        "mediaTime": 0,
+        "metadataWidth": 320,
+        "metadataHeight": 180,
+        "videoWidth": 320,
+        "videoHeight": 180,
+        "actualCentreRoi": {
+          "x": 160,
+          "y": 90,
+          "width": 1,
+          "height": 1,
+          "sourceWidth": 320,
+          "sourceHeight": 180
+        },
+        "legacyRgba": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "actualRgba": [
+          251,
+          3,
+          0,
+          255
+        ]
+      },
+      "lastOutside": {
+        "callback": 119,
+        "mediaTime": 3.949,
+        "metadataWidth": 320,
+        "metadataHeight": 180,
+        "videoWidth": 320,
+        "videoHeight": 180,
+        "actualCentreRoi": {
+          "x": 160,
+          "y": 90,
+          "width": 1,
+          "height": 1,
+          "sourceWidth": 320,
+          "sourceHeight": 180
+        },
+        "legacyRgba": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "actualRgba": [
+          254,
+          1,
+          1,
+          255
+        ]
+      }
+    },
+    "phaseAccounting": {
+      "index": 2,
+      "id": "asymmetric",
+      "pending": null,
+      "at": 12928.899999976158,
+      "phases": {
+        "red": {
+          "wire": {
+            "count": 166,
+            "first": {
+              "rgba": [
+                255,
+                0,
+                0,
+                255
+              ],
+              "stamp": "628744904998010"
+            },
+            "last": {
+              "rgba": [
+                255,
+                0,
+                0,
+                255
+              ],
+              "stamp": "628750410497900"
+            },
+            "mismatches": 0,
+            "maxError": 0
+          },
+          "canvas": {
+            "count": 163,
+            "first": {
+              "rgba": [
+                254,
+                1,
+                1,
+                255
+              ],
+              "stamp": 0.312
+            },
+            "last": {
+              "rgba": [
+                251,
+                1,
+                0,
+                255
+              ],
+              "stamp": 5.789
+            },
+            "mismatches": 0,
+            "maxError": 8
+          }
+        },
+        "blue": {
+          "wire": {
+            "count": 164,
+            "first": {
+              "rgba": [
+                0,
+                0,
+                255,
+                255
+              ],
+              "stamp": "628750977731222"
+            },
+            "last": {
+              "rgba": [
+                0,
+                0,
+                255,
+                255
+              ],
+              "stamp": "628756416497780"
+            },
+            "mismatches": 0,
+            "maxError": 0
+          },
+          "canvas": {
+            "count": 153,
+            "first": {
+              "rgba": [
+                0,
+                1,
+                249,
+                255
+              ],
+              "stamp": 6.355
+            },
+            "last": {
+              "rgba": [
+                0,
+                1,
+                249,
+                255
+              ],
+              "stamp": 11.792
+            },
+            "mismatches": 0,
+            "maxError": 6
+          }
+        },
+        "asymmetric": {
+          "wire": {
+            "count": 224,
+            "first": {
+              "rgba": [
+                120,
+                180,
+                35,
+                255
+              ],
+              "stamp": "628756983731102"
+            },
+            "last": {
+              "rgba": [
+                120,
+                180,
+                35,
+                255
+              ],
+              "stamp": "628764424497620"
+            },
+            "mismatches": 0,
+            "maxError": 0
+          },
+          "canvas": {
+            "count": 211,
+            "first": {
+              "rgba": [
+                119,
+                179,
+                34,
+                255
+              ],
+              "stamp": 12.394
+            },
+            "last": {
+              "rgba": [
+                118,
+                181,
+                36,
+                255
+              ],
+              "stamp": 19.799
+            },
+            "mismatches": 0,
+            "maxError": 3
+          }
+        }
+      },
+      "transitions": [
+        {
+          "id": "blue",
+          "index": 1,
+          "beganAt": 6850.100000023842,
+          "endedAt": 6909.399999976158,
+          "wire": {
+            "count": 2,
+            "first": {
+              "rgba": [
+                255,
+                0,
+                0,
+                255
+              ],
+              "stamp": "628750443864566"
+            },
+            "last": {
+              "rgba": [
+                0,
+                0,
+                255,
+                255
+              ],
+              "stamp": "628750477231232"
+            }
+          },
+          "canvas": {
+            "count": 1,
+            "first": {
+              "rgba": [
+                251,
+                1,
+                0,
+                255
+              ],
+              "stamp": 5.821
+            },
+            "last": {
+              "rgba": [
+                251,
+                1,
+                0,
+                255
+              ],
+              "stamp": 5.821
+            }
+          }
+        },
+        {
+          "id": "asymmetric",
+          "index": 2,
+          "beganAt": 12866,
+          "endedAt": 12928.899999976158,
+          "wire": {
+            "count": 2,
+            "first": {
+              "rgba": [
+                0,
+                0,
+                255,
+                255
+              ],
+              "stamp": "628756449864446"
+            },
+            "last": {
+              "rgba": [
+                120,
+                180,
+                35,
+                255
+              ],
+              "stamp": "628756483231112"
+            }
+          },
+          "canvas": {
+            "count": 2,
+            "first": {
+              "rgba": [
+                0,
+                1,
+                249,
+                255
+              ],
+              "stamp": 11.825
+            },
+            "last": {
+              "rgba": [
+                0,
+                1,
+                249,
+                255
+              ],
+              "stamp": 11.858
+            }
+          }
+        }
+      ],
+      "unassigned": {
+        "wire": {
+          "count": 0,
+          "first": null,
+          "last": null
+        },
+        "canvas": {
+          "count": 0,
+          "first": null,
+          "last": null
+        }
+      },
+      "settling": {
+        "red": {
+          "wire": {
+            "count": 11,
+            "first": {
+              "rgba": [
+                255,
+                0,
+                0,
+                255
+              ],
+              "stamp": "628744537964684"
+            },
+            "last": {
+              "rgba": [
+                255,
+                0,
+                0,
+                255
+              ],
+              "stamp": "628744871631344"
+            }
+          },
+          "canvas": {
+            "count": 9,
+            "first": {
+              "rgba": [
+                251,
+                3,
+                0,
+                255
+              ],
+              "stamp": 0
+            },
+            "last": {
+              "rgba": [
+                254,
+                1,
+                1,
+                255
+              ],
+              "stamp": 0.277
+            }
+          }
+        },
+        "blue": {
+          "wire": {
+            "count": 14,
+            "first": {
+              "rgba": [
+                0,
+                0,
+                255,
+                255
+              ],
+              "stamp": "628750510597898"
+            },
+            "last": {
+              "rgba": [
+                0,
+                0,
+                255,
+                255
+              ],
+              "stamp": "628750944364556"
+            }
+          },
+          "canvas": {
+            "count": 15,
+            "first": {
+              "rgba": [
+                251,
+                1,
+                0,
+                255
+              ],
+              "stamp": 5.856
+            },
+            "last": {
+              "rgba": [
+                0,
+                1,
+                249,
+                255
+              ],
+              "stamp": 6.322
+            }
+          }
+        },
+        "asymmetric": {
+          "wire": {
+            "count": 14,
+            "first": {
+              "rgba": [
+                120,
+                180,
+                35,
+                255
+              ],
+              "stamp": "628756516597778"
+            },
+            "last": {
+              "rgba": [
+                120,
+                180,
+                35,
+                255
+              ],
+              "stamp": "628756950364436"
+            }
+          },
+          "canvas": {
+            "count": 15,
+            "first": {
+              "rgba": [
+                119,
+                179,
+                34,
+                255
+              ],
+              "stamp": 11.892
+            },
+            "last": {
+              "rgba": [
+                119,
+                179,
+                34,
+                255
+              ],
+              "stamp": 12.36
+            }
+          }
+        }
+      }
+    },
+    "wireRgb": {
+      "red": {
+        "count": 178,
+        "first": {
+          "rgb": [
+            255,
+            0,
+            0
+          ],
+          "stamp": "628744537964684"
+        },
+        "last": {
+          "rgb": [
+            255,
+            0,
+            0
+          ],
+          "stamp": "628750443864566"
+        },
+        "maxError": 0
+      },
+      "blue": {
+        "count": 180,
+        "first": {
+          "rgb": [
+            0,
+            0,
+            255
+          ],
+          "stamp": "628750477231232"
+        },
+        "last": {
+          "rgb": [
+            0,
+            0,
+            255
+          ],
+          "stamp": "628756449864446"
+        },
+        "maxError": 0
+      },
+      "asymmetric": {
+        "count": 239,
+        "first": {
+          "rgb": [
+            120,
+            180,
+            35
+          ],
+          "stamp": "628756483231112"
+        },
+        "last": {
+          "rgb": [
+            120,
+            180,
+            35
+          ],
+          "stamp": "628764424497620"
+        },
+        "maxError": 0
+      },
+      "other": {
+        "count": 0,
+        "first": null,
+        "last": null,
+        "maxError": 0
+      },
+      "invalid": {
+        "count": 0,
+        "first": null,
+        "last": null,
+        "maxError": 0
+      }
+    },
+    "canvasRgb": {
+      "red": {
+        "count": 174,
+        "first": {
+          "rgb": [
+            251,
+            3,
+            0
+          ],
+          "stamp": 0
+        },
+        "last": {
+          "rgb": [
+            251,
+            1,
+            0
+          ],
+          "stamp": 5.856
+        },
+        "maxError": 9
+      },
+      "blue": {
+        "count": 169,
+        "first": {
+          "rgb": [
+            2,
+            0,
+            249
+          ],
+          "stamp": 5.889
+        },
+        "last": {
+          "rgb": [
+            0,
+            1,
+            249
+          ],
+          "stamp": 11.858
+        },
+        "maxError": 6
+      },
+      "asymmetric": {
+        "count": 226,
+        "first": {
+          "rgb": [
+            119,
+            179,
+            34
+          ],
+          "stamp": 11.892
+        },
+        "last": {
+          "rgb": [
+            118,
+            181,
+            36
+          ],
+          "stamp": 19.799
+        },
+        "maxError": 3
+      },
+      "other": {
+        "count": 0,
+        "first": null,
+        "last": null,
+        "maxError": 0
+      },
+      "invalid": {
+        "count": 0,
+        "first": null,
+        "last": null,
+        "maxError": 0
+      }
+    },
+    "phases": {
+      "red": {
+        "wire": {
+          "count": 166,
+          "first": {
+            "rgba": [
+              255,
+              0,
+              0,
+              255
+            ],
+            "stamp": "628744904998010"
+          },
+          "last": {
+            "rgba": [
+              255,
+              0,
+              0,
+              255
+            ],
+            "stamp": "628750410497900"
+          },
+          "mismatches": 0,
+          "maxError": 0
+        },
+        "canvas": {
+          "count": 163,
+          "first": {
+            "rgba": [
+              254,
+              1,
+              1,
+              255
+            ],
+            "stamp": 0.312
+          },
+          "last": {
+            "rgba": [
+              251,
+              1,
+              0,
+              255
+            ],
+            "stamp": 5.789
+          },
+          "mismatches": 0,
+          "maxError": 8
+        }
+      },
+      "blue": {
+        "wire": {
+          "count": 164,
+          "first": {
+            "rgba": [
+              0,
+              0,
+              255,
+              255
+            ],
+            "stamp": "628750977731222"
+          },
+          "last": {
+            "rgba": [
+              0,
+              0,
+              255,
+              255
+            ],
+            "stamp": "628756416497780"
+          },
+          "mismatches": 0,
+          "maxError": 0
+        },
+        "canvas": {
+          "count": 153,
+          "first": {
+            "rgba": [
+              0,
+              1,
+              249,
+              255
+            ],
+            "stamp": 6.355
+          },
+          "last": {
+            "rgba": [
+              0,
+              1,
+              249,
+              255
+            ],
+            "stamp": 11.792
+          },
+          "mismatches": 0,
+          "maxError": 6
+        }
+      },
+      "asymmetric": {
+        "wire": {
+          "count": 224,
+          "first": {
+            "rgba": [
+              120,
+              180,
+              35,
+              255
+            ],
+            "stamp": "628756983731102"
+          },
+          "last": {
+            "rgba": [
+              120,
+              180,
+              35,
+              255
+            ],
+            "stamp": "628764424497620"
+          },
+          "mismatches": 0,
+          "maxError": 0
+        },
+        "canvas": {
+          "count": 211,
+          "first": {
+            "rgba": [
+              119,
+              179,
+              34,
+              255
+            ],
+            "stamp": 12.394
+          },
+          "last": {
+            "rgba": [
+              118,
+              181,
+              36,
+              255
+            ],
+            "stamp": 19.799
+          },
+          "mismatches": 0,
+          "maxError": 3
+        }
+      }
+    },
+    "rgbContract": {
+      "wireTolerance": 2,
+      "decodedTolerance": 16,
+      "phaseSettleMs": 500
+    },
+    "status": "OBSERVED_REAL_NATIVE_NODE_BROWSER_RTC_LOOPBACK",
+    "scope": "Native27OwnRTCOnly",
+    "CEF": true,
+    "audioIncluded": false,
+    "avSyncProven": false,
+    "externalServersUsed": false,
+    "capabilities": {
+      "available": true,
+      "required": {
+        "VideoFrame": true,
+        "MediaStreamTrackGenerator": true,
+        "RTCPeerConnection": true
+      }
+    },
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.6533.120 OBS/32.2.2 Safari/537.36",
+    "obsstudioExposed": true,
+    "durationRequestedMs": 20000,
+    "nativeFrames": 597,
+    "discardedBeforeConfig": 0,
+    "frameCallbacks": 569,
+    "backwardsPTS": 0,
+    "mediaTimesBackwards": 0,
+    "fpsNumerator": 30000,
+    "fpsDenominator": 1001,
+    "durationMs": 20045.100000023842,
+    "firstPTS": "628744537964684",
+    "lastPTS": "628764424497620",
+    "firstSequence": "1",
+    "lastSequence": "597",
+    "writer": {
+      "offered": 597,
+      "written": 597,
+      "dropped": 0,
+      "faults": 0,
+      "closedFrames": 597,
+      "maxPending": 1
+    },
+    "sender": [
+      {
+        "type": "codec",
+        "mimeType": "video/VP8"
+      },
+      {
+        "type": "outbound-rtp",
+        "frameWidth": 640,
+        "frameHeight": 360,
+        "kind": "video",
+        "framesEncoded": 595,
+        "framesSent": 595,
+        "framesPerSecond": 30,
+        "bytesSent": 58359,
+        "totalEncodeTime": 0.427
+      }
+    ],
+    "receiver": [
+      {
+        "type": "codec",
+        "mimeType": "video/VP8"
+      },
+      {
+        "type": "inbound-rtp",
+        "frameWidth": 640,
+        "frameHeight": 360,
+        "kind": "video",
+        "framesDecoded": 595,
+        "framesReceived": 595,
+        "framesDropped": 0,
+        "framesPerSecond": 30,
+        "bytesReceived": 58359,
+        "packetsLost": 0,
+        "jitter": 0.004,
+        "totalDecodeTime": 0.118257
+      }
+    ],
+    "receiverTrackSettings": {
+      "aspectRatio": 1.7777777777777777,
+      "deviceId": "9425578c-4089-44db-8c8d-f17b6cf1f3cb",
+      "frameRate": 30.006908955696147,
+      "height": 360,
+      "resizeMode": "none",
+      "width": 640
+    },
+    "closed": {
+      "track": true,
+      "send": true,
+      "receive": true,
+      "ws": true
+    }
+  },
+  "controller": {
+    "experimental": true,
+    "enabled": true,
+    "audioIncluded": false,
+    "avSyncProven": false,
+    "contract": "rgba640x360-derived-fps-opaque-pts-v1",
+    "nativeAvailable": true,
+    "sources": []
+  },
+  "colorsSent": 3,
+  "cefCloseAccepted": true,
+  "cefPanelRemovedObserved": true,
+  "finalCallsState": {
+    "audioIncluded": false,
+    "autoStart": false,
+    "available": true,
+    "completed": [
+      {
+        "captured": 597,
+        "faultCode": 0,
+        "generation": 1,
+        "sent": 597,
+        "slot": 0,
+        "stage": "retired"
+      }
+    ],
+    "contract": "rgba640x360-derived-fps-opaque-pts-v1",
+    "experimental": true,
+    "frameDivisor": 1,
+    "mainFpsCompatible": true,
+    "mainFpsDenominator": 1001,
+    "mainFpsNumerator": 30000,
+    "maxUniqueSources": 2,
+    "outputFpsDenominator": 1001,
+    "outputFpsNumerator": 30000,
+    "pending": false,
+    "registered": true,
+    "sessions": [],
+    "success": true
+  },
+  "shutdownAccepted": true,
+  "nativeClosed": true,
+  "logs": [
+    {
+      "sha256": "4ea11f5eaee872d9701fde09704f87b3ad46228f3896bc871549cf04c9a37b1b",
+      "vendorConfirmed": true,
+      "allocations": [
+        0
+      ],
+      "meterWarnings": 0,
+      "remainingObjects": 0,
+      "doubleDestroyWarnings": 0
+    }
+  ],
+  "crashArtifacts": 0,
+  "afterPinChecks": {
+    "preparation": {
+      "preparationTexts": 32,
+      "externalHelpers": 7,
+      "additionalModules": 6,
+      "allowlistPinned": true,
+      "noLinks": true,
+      "hashesMatch": true
+    },
+    "native": {
+      "sourceFiles": 2085,
+      "destinationFiles": 2085,
+      "noLinks": true,
+      "hashesMatch": true
+    },
+    "baseManifestPinned": true,
+    "complete": true
+  },
+  "finished": "2026-10-10T09:14:22.384Z",
+  "limits": [
+    "QA composition600+whole frozen Native27, not a new distribution release",
+    "Own HTTP and NativeCallVideo relay; Native open_panel CEF tested, canonical CallReturns and VDO SDK not exercised",
+    "No FTB actions. Pixel observations are browser received video center samples, never desktop window capture",
+    "One explicit Main FPS run; no unexecuted rational rates inferred",
+    "No retained-output-ref/callback-delay instrumentation, VDO SDK/WAN/endurance/hardware claim",
+    "No PCM/Master/N-1 or fade audio verification; video fixtures only",
+    "Qt sourceEditors query does not confirm editor open/focus/z-order",
+    "Standard production resource updater may perform read-only HTTP requests; no QA URL guard inserted"
+  ]
+}

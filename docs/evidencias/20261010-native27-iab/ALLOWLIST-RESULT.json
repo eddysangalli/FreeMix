@@ -1,0 +1,126 @@
+{
+  "status": "FROZEN_PASS_OWN_NATIVE27_IAB_ACK_REAL_BACKEND",
+  "files": [
+    {
+      "path": "receipt.json",
+      "sha256": "f1f393a8b9a58ca3f05fc864b1a9c775f47a00f8a5e6984b59ea679290591f59",
+      "bytes": 112948,
+      "kind": "text"
+    },
+    {
+      "path": "report.json",
+      "sha256": "6929ae8b14bc6d5bddd4affd29c8727c95db24c40fbe3af14c9066a448ac5593",
+      "bytes": 6725,
+      "kind": "text"
+    },
+    {
+      "path": "freeze-result.mjs",
+      "sha256": "2c7f14a34dd1b3671d19607a382f1ebde9b8d71c118c4bdc2583a6303a37a908",
+      "bytes": 5556,
+      "kind": "text"
+    },
+    {
+      "path": "ALLOWLIST-PREPARATION.json",
+      "sha256": "d1d4ac768708c893582e5397c70566aedf1ae2176e833b2d88f5717dc81007d1",
+      "bytes": 22842,
+      "kind": "text"
+    },
+    {
+      "path": "PREPARATION.json",
+      "sha256": "503eb4a81534f4a0fd5837a40a8f1eb42755eaca9ce15ac8a0bdb127f1488bf7",
+      "bytes": 42406,
+      "kind": "text"
+    },
+    {
+      "path": "README.md",
+      "sha256": "c4397ca68c1febacc2589224d7d88fee3619512c245168ae8d9e0fccddec2e2f",
+      "bytes": 3769,
+      "kind": "text"
+    },
+    {
+      "path": "DERIVATION.json",
+      "sha256": "962ccd51a1d8af024ae592e130dc7230301cead815dab7c66863575b2e108989",
+      "bytes": 2931,
+      "kind": "text"
+    },
+    {
+      "path": "runner.mjs",
+      "sha256": "34cd87dbb95638d17b6b8488b2bc23aec9bdd1107503c4d295962a164f80a880",
+      "bytes": 15810,
+      "kind": "text"
+    },
+    {
+      "path": "scenarios.mjs",
+      "sha256": "48c4ab7e89f3dc13e07c3af0333f646613dac8a6c9be04b94172c2c84ca8e452",
+      "bytes": 9740,
+      "kind": "text"
+    },
+    {
+      "path": "reuse-closed.mjs",
+      "sha256": "7f08f071d45bf7713935d295ae7ea6c5b2267172383381a40a73af48080a1b89",
+      "bytes": 5145,
+      "kind": "text"
+    },
+    {
+      "path": "api-child.mjs",
+      "sha256": "6af4fc440697364dd626bbf1c57b8c0650a61865f7e3f965101938aacf334289",
+      "bytes": 1558,
+      "kind": "text"
+    },
+    {
+      "path": "handoff-policy.mjs",
+      "sha256": "cbcb6a449f9a61a5df00dd673a3b0d50069bd9b8419d36b48093cc73ad3b8921",
+      "bytes": 5540,
+      "kind": "text"
+    },
+    {
+      "path": "root-command.json",
+      "sha256": "b5f9a2b58623df2b799d97fb04f222e7329188363f2a7447eeb7074769bc16e2",
+      "bytes": 1540,
+      "kind": "text"
+    },
+    {
+      "path": "root-iab-proof.json",
+      "sha256": "ef8a4302950b6136ff7532db10433da5c38bf654f1aee9b9593838100b5d24d4",
+      "bytes": 1314,
+      "kind": "text"
+    },
+    {
+      "path": "root-preview.jpg",
+      "sha256": "044a984d10bd6e3a5bc4443d170d1a6994449c5ba44941ed6c3bedf3fb3dec4b",
+      "bytes": 67894,
+      "kind": "own-root-iab-image"
+    },
+    {
+      "path": "root-cut.jpg",
+      "sha256": "4e26dd080bd67abbcf550d3ab66c8507321a22048ee5687783a21b1988dacc2c",
+      "bytes": 67743,
+      "kind": "own-root-iab-image"
+    },
+    {
+      "path": "root-minimized.jpg",
+      "sha256": "28782d2df35de311f9c6d7e3ed569290707608c486b88e01731613f79f271bb4",
+      "bytes": 63900,
+      "kind": "own-root-iab-image"
+    },
+    {
+      "path": "root-restored.jpg",
+      "sha256": "a3d6b992192c0947727f4559d7e1aab3c806a5ec4b5c9f7a9e3d88672b45f53a",
+      "bytes": 67697,
+      "kind": "own-root-iab-image"
+    }
+  ],
+  "previousFailPreserved": {
+    "path": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\native27-mesa-iab-short-frozen-20261010\\ALLOWLIST-FAIL-RESULT.json",
+    "sha256": "e41b45604a9bbcf957886886f2c503f1fe5fe07df3b2343606d26b8ad7ac2e0e",
+    "oldMinimizedImage": {
+      "path": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\native27-mesa-iab-short-frozen-20261010\\root-minimized.png",
+      "sha256": "3bf06fb281ecb479da1084cdd5d6b62366ed5df9a962a7f03aa57c0a8777aa6b",
+      "mime": "image/jpeg",
+      "proofScope": "only shown minimized state; old FAIL remains"
+    }
+  },
+  "noCredentialsRawLogsConfigsOrInstallations": true,
+  "rootEventJournalExcluded": true,
+  "noPackageSelectionChange": true
+}

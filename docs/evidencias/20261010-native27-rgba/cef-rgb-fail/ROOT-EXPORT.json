@@ -1,0 +1,42 @@
+{
+  "status": "ROOT_PRESERVED_CEF27_RGB_MEASUREMENT_FAILURE",
+  "at": "2026-10-10T08:54:00.748Z",
+  "files": [
+    {
+      "path": "receipt.json",
+      "sha256": "f8f5966276a476ae07ce96be808381eb46cbe863c04f07e9a4a43103a39d9f1d",
+      "bytes": 14657
+    },
+    {
+      "path": "report-fail.json",
+      "sha256": "b85e6b76af6ee11ba60ae7dbcd56a00e3835ac95c156c9a6968faa10ffe3694f",
+      "bytes": 8689
+    },
+    {
+      "path": "ALLOWLIST-RESULT-FAIL.json",
+      "sha256": "23ed2016b702324fb381b27bff0bfec592be8ae0633fd6924ec48dc2773d8b05",
+      "bytes": 4837
+    },
+    {
+      "path": "public-red-own.png",
+      "sha256": "130e8c93729d2b2646bc148a6126e75e92df349784c748d52836dfab3d6e649c",
+      "bytes": 692
+    },
+    {
+      "path": "public-blue-own.png",
+      "sha256": "49773aa6c06369491e6ffd481e0c07b3864ce16397752e60721e4852c20adbb9",
+      "bytes": 692
+    },
+    {
+      "path": "public-asymmetric-own.png",
+      "sha256": "de6c19a7badd775bfb01bccf2c390eaf5b907014f2daf992b04cce21fde2f0cc",
+      "bytes": 696
+    }
+  ],
+  "operatorTouched": false,
+  "selectedInstallerChanged": false,
+  "rawLogsIncluded": false,
+  "credentialsIncluded": false,
+  "cefColourQualified": false,
+  "reasonInvestigated": false
+}

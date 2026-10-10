@@ -1,0 +1,1004 @@
+{
+  "status": "PASS_CEF27_RGB_AND_CONFIRMED_LEGACY_ROI_OUTSIDE_FRAME",
+  "receiptSha256": "c879bbd3190a642230c086e1162e0168faf86fb817e82b456b327226e3a1b61c",
+  "executionCount": 1,
+  "productChanged": false,
+  "operatorTouched": false,
+  "native": {
+    "head": "c4b5af00ea4a4b744a3a19fef5ec861f693c9a69",
+    "freezeSha256": "d7d7e623597b2eadef12a57b5f702bb3e20711f4e86e4b18c9a300cf947ac616",
+    "mainFps": "30000/1001",
+    "pid": 75536,
+    "closed": true,
+    "shutdownAccepted": true,
+    "logs": [
+      {
+        "sha256": "4ea11f5eaee872d9701fde09704f87b3ad46228f3896bc871549cf04c9a37b1b",
+        "vendorConfirmed": true,
+        "allocations": [
+          0
+        ],
+        "meterWarnings": 0,
+        "remainingObjects": 0,
+        "doubleDestroyWarnings": 0
+      }
+    ],
+    "crashArtifacts": 0
+  },
+  "observed": {
+    "durationMs": 20045.100000023842,
+    "nativeFrames": 597,
+    "rtcReceivedAndDecoded": {
+      "type": "inbound-rtp",
+      "frameWidth": 640,
+      "frameHeight": 360,
+      "kind": "video",
+      "framesDecoded": 595,
+      "framesReceived": 595,
+      "framesDropped": 0,
+      "framesPerSecond": 30,
+      "bytesReceived": 58359,
+      "packetsLost": 0,
+      "jitter": 0.004,
+      "totalDecodeTime": 0.118257
+    },
+    "presentationCallbacks": 569,
+    "writer": {
+      "offered": 597,
+      "written": 597,
+      "dropped": 0,
+      "faults": 0,
+      "closedFrames": 597,
+      "maxPending": 1
+    },
+    "wireRgb": {
+      "red": {
+        "count": 178,
+        "first": {
+          "rgb": [
+            255,
+            0,
+            0
+          ],
+          "stamp": "628744537964684"
+        },
+        "last": {
+          "rgb": [
+            255,
+            0,
+            0
+          ],
+          "stamp": "628750443864566"
+        },
+        "maxError": 0
+      },
+      "blue": {
+        "count": 180,
+        "first": {
+          "rgb": [
+            0,
+            0,
+            255
+          ],
+          "stamp": "628750477231232"
+        },
+        "last": {
+          "rgb": [
+            0,
+            0,
+            255
+          ],
+          "stamp": "628756449864446"
+        },
+        "maxError": 0
+      },
+      "asymmetric": {
+        "count": 239,
+        "first": {
+          "rgb": [
+            120,
+            180,
+            35
+          ],
+          "stamp": "628756483231112"
+        },
+        "last": {
+          "rgb": [
+            120,
+            180,
+            35
+          ],
+          "stamp": "628764424497620"
+        },
+        "maxError": 0
+      },
+      "other": {
+        "count": 0,
+        "first": null,
+        "last": null,
+        "maxError": 0
+      },
+      "invalid": {
+        "count": 0,
+        "first": null,
+        "last": null,
+        "maxError": 0
+      }
+    },
+    "canvasRgb": {
+      "red": {
+        "count": 174,
+        "first": {
+          "rgb": [
+            251,
+            3,
+            0
+          ],
+          "stamp": 0
+        },
+        "last": {
+          "rgb": [
+            251,
+            1,
+            0
+          ],
+          "stamp": 5.856
+        },
+        "maxError": 9
+      },
+      "blue": {
+        "count": 169,
+        "first": {
+          "rgb": [
+            2,
+            0,
+            249
+          ],
+          "stamp": 5.889
+        },
+        "last": {
+          "rgb": [
+            0,
+            1,
+            249
+          ],
+          "stamp": 11.858
+        },
+        "maxError": 6
+      },
+      "asymmetric": {
+        "count": 226,
+        "first": {
+          "rgb": [
+            119,
+            179,
+            34
+          ],
+          "stamp": 11.892
+        },
+        "last": {
+          "rgb": [
+            118,
+            181,
+            36
+          ],
+          "stamp": 19.799
+        },
+        "maxError": 3
+      },
+      "other": {
+        "count": 0,
+        "first": null,
+        "last": null,
+        "maxError": 0
+      },
+      "invalid": {
+        "count": 0,
+        "first": null,
+        "last": null,
+        "maxError": 0
+      }
+    },
+    "phases": {
+      "red": {
+        "wire": {
+          "count": 166,
+          "first": {
+            "rgba": [
+              255,
+              0,
+              0,
+              255
+            ],
+            "stamp": "628744904998010"
+          },
+          "last": {
+            "rgba": [
+              255,
+              0,
+              0,
+              255
+            ],
+            "stamp": "628750410497900"
+          },
+          "mismatches": 0,
+          "maxError": 0
+        },
+        "canvas": {
+          "count": 163,
+          "first": {
+            "rgba": [
+              254,
+              1,
+              1,
+              255
+            ],
+            "stamp": 0.312
+          },
+          "last": {
+            "rgba": [
+              251,
+              1,
+              0,
+              255
+            ],
+            "stamp": 5.789
+          },
+          "mismatches": 0,
+          "maxError": 8
+        }
+      },
+      "blue": {
+        "wire": {
+          "count": 164,
+          "first": {
+            "rgba": [
+              0,
+              0,
+              255,
+              255
+            ],
+            "stamp": "628750977731222"
+          },
+          "last": {
+            "rgba": [
+              0,
+              0,
+              255,
+              255
+            ],
+            "stamp": "628756416497780"
+          },
+          "mismatches": 0,
+          "maxError": 0
+        },
+        "canvas": {
+          "count": 153,
+          "first": {
+            "rgba": [
+              0,
+              1,
+              249,
+              255
+            ],
+            "stamp": 6.355
+          },
+          "last": {
+            "rgba": [
+              0,
+              1,
+              249,
+              255
+            ],
+            "stamp": 11.792
+          },
+          "mismatches": 0,
+          "maxError": 6
+        }
+      },
+      "asymmetric": {
+        "wire": {
+          "count": 224,
+          "first": {
+            "rgba": [
+              120,
+              180,
+              35,
+              255
+            ],
+            "stamp": "628756983731102"
+          },
+          "last": {
+            "rgba": [
+              120,
+              180,
+              35,
+              255
+            ],
+            "stamp": "628764424497620"
+          },
+          "mismatches": 0,
+          "maxError": 0
+        },
+        "canvas": {
+          "count": 211,
+          "first": {
+            "rgba": [
+              119,
+              179,
+              34,
+              255
+            ],
+            "stamp": 12.394
+          },
+          "last": {
+            "rgba": [
+              118,
+              181,
+              36,
+              255
+            ],
+            "stamp": 19.799
+          },
+          "mismatches": 0,
+          "maxError": 3
+        }
+      }
+    },
+    "rgbContract": {
+      "wireTolerance": 2,
+      "decodedTolerance": 16,
+      "phaseSettleMs": 500
+    },
+    "dimensions": {
+      "callbacks": 569,
+      "validRoi": 569,
+      "invalidDimensions": 0,
+      "readbackErrors": 0,
+      "changes": [
+        {
+          "callback": 1,
+          "mediaTime": 0,
+          "metadataWidth": 320,
+          "metadataHeight": 180,
+          "videoWidth": 320,
+          "videoHeight": 180
+        },
+        {
+          "callback": 120,
+          "mediaTime": 3.982,
+          "metadataWidth": 480,
+          "metadataHeight": 270,
+          "videoWidth": 480,
+          "videoHeight": 270
+        },
+        {
+          "callback": 470,
+          "mediaTime": 16.097,
+          "metadataWidth": 640,
+          "metadataHeight": 360,
+          "videoWidth": 640,
+          "videoHeight": 360
+        }
+      ],
+      "first": {
+        "callback": 1,
+        "mediaTime": 0,
+        "metadataWidth": 320,
+        "metadataHeight": 180,
+        "videoWidth": 320,
+        "videoHeight": 180
+      },
+      "last": {
+        "callback": 569,
+        "mediaTime": 19.799,
+        "metadataWidth": 640,
+        "metadataHeight": 360,
+        "videoWidth": 640,
+        "videoHeight": 360
+      },
+      "changesTruncated": 0,
+      "lastKey": "640/360/640/360"
+    },
+    "alpha": {
+      "transparent": 0,
+      "partialAlpha": 0,
+      "opaqueBlack": 0,
+      "opaqueColour": 569,
+      "invalid": 0
+    },
+    "legacyFixedRoi": {
+      "outsideCount": 119,
+      "alpha0": 119,
+      "opaqueBlack": 0,
+      "firstOutside": {
+        "callback": 1,
+        "mediaTime": 0,
+        "metadataWidth": 320,
+        "metadataHeight": 180,
+        "videoWidth": 320,
+        "videoHeight": 180,
+        "actualCentreRoi": {
+          "x": 160,
+          "y": 90,
+          "width": 1,
+          "height": 1,
+          "sourceWidth": 320,
+          "sourceHeight": 180
+        },
+        "legacyRgba": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "actualRgba": [
+          251,
+          3,
+          0,
+          255
+        ]
+      },
+      "lastOutside": {
+        "callback": 119,
+        "mediaTime": 3.949,
+        "metadataWidth": 320,
+        "metadataHeight": 180,
+        "videoWidth": 320,
+        "videoHeight": 180,
+        "actualCentreRoi": {
+          "x": 160,
+          "y": 90,
+          "width": 1,
+          "height": 1,
+          "sourceWidth": 320,
+          "sourceHeight": 180
+        },
+        "legacyRgba": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "actualRgba": [
+          254,
+          1,
+          1,
+          255
+        ]
+      }
+    },
+    "phaseAccounting": {
+      "index": 2,
+      "id": "asymmetric",
+      "pending": null,
+      "at": 12928.899999976158,
+      "phases": {
+        "red": {
+          "wire": {
+            "count": 166,
+            "first": {
+              "rgba": [
+                255,
+                0,
+                0,
+                255
+              ],
+              "stamp": "628744904998010"
+            },
+            "last": {
+              "rgba": [
+                255,
+                0,
+                0,
+                255
+              ],
+              "stamp": "628750410497900"
+            },
+            "mismatches": 0,
+            "maxError": 0
+          },
+          "canvas": {
+            "count": 163,
+            "first": {
+              "rgba": [
+                254,
+                1,
+                1,
+                255
+              ],
+              "stamp": 0.312
+            },
+            "last": {
+              "rgba": [
+                251,
+                1,
+                0,
+                255
+              ],
+              "stamp": 5.789
+            },
+            "mismatches": 0,
+            "maxError": 8
+          }
+        },
+        "blue": {
+          "wire": {
+            "count": 164,
+            "first": {
+              "rgba": [
+                0,
+                0,
+                255,
+                255
+              ],
+              "stamp": "628750977731222"
+            },
+            "last": {
+              "rgba": [
+                0,
+                0,
+                255,
+                255
+              ],
+              "stamp": "628756416497780"
+            },
+            "mismatches": 0,
+            "maxError": 0
+          },
+          "canvas": {
+            "count": 153,
+            "first": {
+              "rgba": [
+                0,
+                1,
+                249,
+                255
+              ],
+              "stamp": 6.355
+            },
+            "last": {
+              "rgba": [
+                0,
+                1,
+                249,
+                255
+              ],
+              "stamp": 11.792
+            },
+            "mismatches": 0,
+            "maxError": 6
+          }
+        },
+        "asymmetric": {
+          "wire": {
+            "count": 224,
+            "first": {
+              "rgba": [
+                120,
+                180,
+                35,
+                255
+              ],
+              "stamp": "628756983731102"
+            },
+            "last": {
+              "rgba": [
+                120,
+                180,
+                35,
+                255
+              ],
+              "stamp": "628764424497620"
+            },
+            "mismatches": 0,
+            "maxError": 0
+          },
+          "canvas": {
+            "count": 211,
+            "first": {
+              "rgba": [
+                119,
+                179,
+                34,
+                255
+              ],
+              "stamp": 12.394
+            },
+            "last": {
+              "rgba": [
+                118,
+                181,
+                36,
+                255
+              ],
+              "stamp": 19.799
+            },
+            "mismatches": 0,
+            "maxError": 3
+          }
+        }
+      },
+      "transitions": [
+        {
+          "id": "blue",
+          "index": 1,
+          "beganAt": 6850.100000023842,
+          "endedAt": 6909.399999976158,
+          "wire": {
+            "count": 2,
+            "first": {
+              "rgba": [
+                255,
+                0,
+                0,
+                255
+              ],
+              "stamp": "628750443864566"
+            },
+            "last": {
+              "rgba": [
+                0,
+                0,
+                255,
+                255
+              ],
+              "stamp": "628750477231232"
+            }
+          },
+          "canvas": {
+            "count": 1,
+            "first": {
+              "rgba": [
+                251,
+                1,
+                0,
+                255
+              ],
+              "stamp": 5.821
+            },
+            "last": {
+              "rgba": [
+                251,
+                1,
+                0,
+                255
+              ],
+              "stamp": 5.821
+            }
+          }
+        },
+        {
+          "id": "asymmetric",
+          "index": 2,
+          "beganAt": 12866,
+          "endedAt": 12928.899999976158,
+          "wire": {
+            "count": 2,
+            "first": {
+              "rgba": [
+                0,
+                0,
+                255,
+                255
+              ],
+              "stamp": "628756449864446"
+            },
+            "last": {
+              "rgba": [
+                120,
+                180,
+                35,
+                255
+              ],
+              "stamp": "628756483231112"
+            }
+          },
+          "canvas": {
+            "count": 2,
+            "first": {
+              "rgba": [
+                0,
+                1,
+                249,
+                255
+              ],
+              "stamp": 11.825
+            },
+            "last": {
+              "rgba": [
+                0,
+                1,
+                249,
+                255
+              ],
+              "stamp": 11.858
+            }
+          }
+        }
+      ],
+      "unassigned": {
+        "wire": {
+          "count": 0,
+          "first": null,
+          "last": null
+        },
+        "canvas": {
+          "count": 0,
+          "first": null,
+          "last": null
+        }
+      },
+      "settling": {
+        "red": {
+          "wire": {
+            "count": 11,
+            "first": {
+              "rgba": [
+                255,
+                0,
+                0,
+                255
+              ],
+              "stamp": "628744537964684"
+            },
+            "last": {
+              "rgba": [
+                255,
+                0,
+                0,
+                255
+              ],
+              "stamp": "628744871631344"
+            }
+          },
+          "canvas": {
+            "count": 9,
+            "first": {
+              "rgba": [
+                251,
+                3,
+                0,
+                255
+              ],
+              "stamp": 0
+            },
+            "last": {
+              "rgba": [
+                254,
+                1,
+                1,
+                255
+              ],
+              "stamp": 0.277
+            }
+          }
+        },
+        "blue": {
+          "wire": {
+            "count": 14,
+            "first": {
+              "rgba": [
+                0,
+                0,
+                255,
+                255
+              ],
+              "stamp": "628750510597898"
+            },
+            "last": {
+              "rgba": [
+                0,
+                0,
+                255,
+                255
+              ],
+              "stamp": "628750944364556"
+            }
+          },
+          "canvas": {
+            "count": 15,
+            "first": {
+              "rgba": [
+                251,
+                1,
+                0,
+                255
+              ],
+              "stamp": 5.856
+            },
+            "last": {
+              "rgba": [
+                0,
+                1,
+                249,
+                255
+              ],
+              "stamp": 6.322
+            }
+          }
+        },
+        "asymmetric": {
+          "wire": {
+            "count": 14,
+            "first": {
+              "rgba": [
+                120,
+                180,
+                35,
+                255
+              ],
+              "stamp": "628756516597778"
+            },
+            "last": {
+              "rgba": [
+                120,
+                180,
+                35,
+                255
+              ],
+              "stamp": "628756950364436"
+            }
+          },
+          "canvas": {
+            "count": 15,
+            "first": {
+              "rgba": [
+                119,
+                179,
+                34,
+                255
+              ],
+              "stamp": 11.892
+            },
+            "last": {
+              "rgba": [
+                119,
+                179,
+                34,
+                255
+              ],
+              "stamp": 12.36
+            }
+          }
+        }
+      }
+    },
+    "serverPhaseTransitions": [
+      {
+        "index": 1,
+        "id": "blue",
+        "requestedAt": 1791623641337,
+        "ackedAt": 1791623641338,
+        "setRequestedAt": 1791623641338,
+        "setConfirmedAt": 1791623641338,
+        "pngConfirmedAt": 1791623641395
+      },
+      {
+        "index": 2,
+        "id": "asymmetric",
+        "requestedAt": 1791623647353,
+        "ackedAt": 1791623647354,
+        "setRequestedAt": 1791623647354,
+        "setConfirmedAt": 1791623647354,
+        "pngConfirmedAt": 1791623647416
+      }
+    ],
+    "backwardsPTS": 0,
+    "mediaTimesBackwards": 0,
+    "closed": {
+      "track": true,
+      "send": true,
+      "receive": true,
+      "ws": true
+    },
+    "controllerAfterCleanup": {
+      "experimental": true,
+      "enabled": true,
+      "audioIncluded": false,
+      "avSyncProven": false,
+      "contract": "rgba640x360-derived-fps-opaque-pts-v1",
+      "nativeAvailable": true,
+      "sources": []
+    }
+  },
+  "images": [
+    {
+      "id": "red",
+      "sourceUuid": "b7102d61-7e2f-4041-8855-0bc4c10d2d96",
+      "setting": 4278190335,
+      "expectedRgb": [
+        255,
+        0,
+        0
+      ],
+      "sha256": "130e8c93729d2b2646bc148a6126e75e92df349784c748d52836dfab3d6e649c",
+      "width": 320,
+      "height": 180,
+      "rgba": [
+        255,
+        0,
+        0,
+        255
+      ],
+      "path": "public-red-own.png"
+    },
+    {
+      "id": "blue",
+      "sourceUuid": "b7102d61-7e2f-4041-8855-0bc4c10d2d96",
+      "setting": 4294901760,
+      "expectedRgb": [
+        0,
+        0,
+        255
+      ],
+      "sha256": "49773aa6c06369491e6ffd481e0c07b3864ce16397752e60721e4852c20adbb9",
+      "width": 320,
+      "height": 180,
+      "rgba": [
+        0,
+        0,
+        255,
+        255
+      ],
+      "path": "public-blue-own.png"
+    },
+    {
+      "id": "asymmetric",
+      "sourceUuid": "b7102d61-7e2f-4041-8855-0bc4c10d2d96",
+      "setting": 4280530040,
+      "expectedRgb": [
+        120,
+        180,
+        35
+      ],
+      "sha256": "de6c19a7badd775bfb01bccf2c390eaf5b907014f2daf992b04cce21fde2f0cc",
+      "width": 320,
+      "height": 180,
+      "rgba": [
+        120,
+        180,
+        35,
+        255
+      ],
+      "path": "public-asymmetric-own.png"
+    }
+  ],
+  "afterPinChecks": {
+    "preparation": {
+      "preparationTexts": 32,
+      "externalHelpers": 7,
+      "additionalModules": 6,
+      "allowlistPinned": true,
+      "noLinks": true,
+      "hashesMatch": true
+    },
+    "native": {
+      "sourceFiles": 2085,
+      "destinationFiles": 2085,
+      "noLinks": true,
+      "hashesMatch": true
+    },
+    "baseManifestPinned": true,
+    "complete": true
+  },
+  "priorFail": {
+    "path": "qa-finalizacao/calls-native27-cef-rgb-postpins-preparation/ALLOWLIST-RESULT-FAIL.json",
+    "sha256": "23ed2016b702324fb381b27bff0bfec592be8ae0633fd6924ec48dc2773d8b05",
+    "filesUnchanged": 30,
+    "statusPreserved": true
+  },
+  "interpretation": [
+    "This execution directly measured 119 adaptive320x180 frames: legacy x320/y180 returns alpha0 while actual x160/y90 returns correct opaque red. It confirms the harness ROI defect in this execution.",
+    "Earlier FAIL remains immutable and did not record dimensions/alpha; this new result is separate evidence, not a rewritten earlier PASS.",
+    "Global color counters retain all observations; two bounded handshake transitions and the original500ms settling windows are explicitly counted separately. No tolerance/minimum relaxed.",
+    "RTC decoded595 is distinct from569 presentation callbacks. Writer latest-frame bound1 and zero loss/drop do not imply universal display cadence or WAN performance."
+  ],
+  "limits": [
+    "20s own synthetic opaque color fixture, Main30000/1001, local Native27→captured-connection helper→loopback WS→actual Native CEF generated track→RTC loopback receiver",
+    "Installed600 signed base plus pinnedNative27 is own QA composition, not newly installed release",
+    "No canonical Calls publisher/N1, PCM/audio/AV, VDO SDK/real guests, WAN/STUN/TURN/hardware/endurance tested",
+    "Adaptive resolution320x180→480x270→640x360 is observed, not constant640x360 throughput qualification",
+    "No product source modified and no second run authorized/performed"
+  ]
+}

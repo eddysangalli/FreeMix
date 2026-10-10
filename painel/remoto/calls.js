@@ -7,7 +7,7 @@
  const routeValues=v=>({video:v.video||'program',audio:v.audio||'program',gain:Number(v.gain??1),audioSources:v.audio==='custom'?[...new Set(v.audioSources||[])].sort():[]});
  const routeSignature=v=>JSON.stringify(routeValues(v));
  const allowedAudio=g=>(calls().audioChoices||[]).filter(a=>a.key!==g&&a.key!==calls().director?.key);
- function reconcileDrafts(){for(const[key,d]of guestDrafts){if(d.phase!=='awaitEcho'&&d.phase!=='echoTimeout')continue;const saved=calls().returns?.find(r=>r.key===key);if(saved&&routeSignature(saved)===routeSignature(d)){guestDrafts.delete(key);guestFingerprint='';}else if(d.phase==='awaitEcho'&&Date.now()>d.until){d.phase='echoTimeout';guestFingerprint='';}}}
+ function reconcileDrafts(){let confirmed=false;for(const[key,d]of guestDrafts){if(d.phase!=='awaitEcho'&&d.phase!=='echoTimeout')continue;const saved=calls().returns?.find(r=>r.key===key);if(saved&&routeSignature(saved)===routeSignature(d)){guestDrafts.delete(key);guestFingerprint='';confirmed=true;}else if(d.phase==='awaitEcho'&&Date.now()>d.until){d.phase='echoTimeout';guestFingerprint='';}}if(confirmed&&![...guestDrafts.values()].some(d=>d.phase==='awaitEcho')&&E('message').textContent==='Retorno salvo no motor. Aguardando atualização do estado…')message('Retorno salvo.');}
  const signature=value=>JSON.stringify(value===null?null:[...(value||[])].sort());
  const calls=()=>state.calls||{},guests=()=>calls().guests||[],targetKeys=()=>selection===null?guests().map(g=>g.key):selection||[];
  async function request(action,data={}){
@@ -48,7 +48,7 @@
  }
  function renderHealth(){
   const c=calls(),keys=targetKeys(),names=keys.map(key=>guests().find(g=>g.key===key)?.person?.name||guests().find(g=>g.key===key)?.name||'Call removido');
-  E('talk-targets').textContent=names.length?'Recebem sua voz: '+names.join(', ')+'.':'Ninguém selecionado.';
+  E('talk-targets').textContent=names.length?'Sua voz vai para: '+names.join(', ')+'.':'Ninguém selecionado.';
   const reason=readiness();E('talk').disabled=!!reason;
   if(reason&&held)stop();
   E('talk-status').textContent=held&&lease?'Microfone aberto apenas para os destinos acima.':starting?'Aguardando confirmação do motor…':reason||'Pronto. Segure para falar.';
@@ -128,15 +128,21 @@
    return '<article class="call"><div class="call-heading"><strong>'+esc(g.person?.name||g.name)+'</strong><span class="badge">'+esc(r?.publisher==='publishing'?(r.peerConnectionVerified?'Retorno conectado':'Retorno pronto · aguarda convidado'):'Retorno não preparado')+'</span></div><p class="summary">O convidado vê: <strong>'+esc(videoName)+'</strong><br>O convidado ouve: <strong>'+esc(audioName)+'</strong></p><label>Link do convidado<div class="call-link"><input data-link readonly value="'+esc(g.guest)+'"><button data-route="'+esc(g.key)+'" data-copy="1">Copiar link</button></div></label><details data-key="'+esc(g.key)+'"'+(open.has(g.key)?' open':'')+'><summary>Ajustar o que este convidado vê e ouve</summary><div class="call-grid"><label>Vídeo<select data-video><option value="program">Programa</option>'+options+'</select></label><label>Áudio<select data-audio>'+['program','custom','silent'].map((v,i)=>'<option value="'+v+'"'+(audioMode===v?' selected':'')+'>'+['Programa sem a própria voz','Escolher fontes de áudio','Somente talkback'][i]+'</option>').join('')+'</select></label><div data-custom'+(audioMode!=='custom'?' hidden':'')+'>Fontes escolhidas<div class="sources">'+audio+'</div></div></div><p role="status">'+esc(draftNote)+'</p><button data-route="'+esc(g.key)+'"'+(pendingRoutes.has(g.key)||['awaitEcho','echoTimeout'].includes(draft?.phase)?' disabled':'')+'>Salvar retorno</button> <button data-route="'+esc(g.key)+'" data-reconnect="1"'+(!individual?' disabled':'')+'>Reconectar</button><details data-key="'+esc(g.key)+'-advanced"'+(open.has(g.key+'-advanced')?' open':'')+'><summary>Nível e diagnóstico avançado</summary><label>Nível do retorno (%)<input data-gain type="number" min="0" max="200" step="5" value="'+Math.round((values?.gain??1)*100)+'"></label><p>'+esc(d?`${d.ice||'Sem ICE'} · ${d.transport||'Sem transporte'} · RTT ${d.rttMs===null?'—':Math.round(d.rttMs)+'ms'} · fila ${Math.round(d.queuedMs)}ms`:'Sem diagnóstico de retorno.')+'</p></details></details>'+(r?.error?'<p role="alert">'+esc(r.error)+'</p>':'')+'</article>';
   }).join('')||'<p>Nenhuma entrada Call criada.</p>';
  }
+ function renderAvailability(){
+  const present=guests().length>0;
+  E('calls-empty').hidden=present||!state.connected;
+  for(const id of ['calls-returns','calls-talkback','calls-network'])E(id).hidden=!present;
+ }
  function refresh(){
   state=window.FreeMixRemote?.getState()||{};const c=calls(),nextScope=state.preset||'';
   if(scope!==nextScope){stop();scope=nextScope;guestDrafts.clear();pendingRoutes.clear();selection=c.rapidTargets??null;saving=false;selectionEpoch++;echo=null;selectionMessage='';selectionError=false;guestFingerprint='';targetFingerprint='';}
   if(!saving){const value=c.rapidTargets??null,sig=signature(value);if(echo&&sig===echo.expected)echo=null;if(!echo||sig!==echo.previous||Date.now()>echo.until){if(signature(selection)!==sig){stop();selection=value===null?null:[...value];selectionMessage='';selectionError=false;}echo=null;}}
   const liveGuestKeys=new Set(guests().map(g=>g.key));for(const key of guestDrafts.keys())if(!liveGuestKeys.has(key)){guestDrafts.delete(key);pendingRoutes.delete(key);}
   for(const key of pendingRoutes.keys())if(!liveGuestKeys.has(key))pendingRoutes.delete(key);
-  renderTargets();renderGuests();
+  renderTargets();renderGuests();renderAvailability();
   E('conference').checked=c.conference!==false;
-  E('return-status').textContent=c.capability==='individual-PCM-WebRTC'?'Retornos separados: cada pessoa recebe o próprio retorno, sem ouvir a própria voz.':'Prepare os retornos individuais. O retorno B antigo é compartilhado e não garante seleção por convidado.';
+  E('return-status').textContent=c.capability==='individual-PCM-WebRTC'?'Retorno individual por convidado.':'Clique Preparar retornos para configurar o retorno de cada convidado.';
+  E('return-compatibility').textContent=c.capability==='individual-PCM-WebRTC'?'Cada pessoa recebe o próprio retorno, sem ouvir a própria voz.':'O retorno B antigo é compartilhado e não garante seleção por convidado.';
   E('ice-status').textContent=c.ice?.configured?'TURN configurado · '+c.ice.servers+'servidor(es) · '+c.ice.transportPolicy+' · credenciais ocultas.':'Rede automática.';
   if(document.activeElement!==E('mic')){const previous=E('mic').value;E('mic').innerHTML=(state.audioInputs||[]).filter(i=>['wasapi_input_capture','ffmpeg_source'].includes(i.kind)).map(i=>'<option value="'+esc(i.name)+'">'+esc(i.name)+'</option>').join('');if([...E('mic').options].some(o=>o.value===previous))E('mic').value=previous;}
  }

@@ -27,6 +27,8 @@
   });
   const status = document.createElement('p');
   status.id = 'operation-status'; status.setAttribute('role', 'status');
+  const capacityNote = document.createElement('p');
+  capacityNote.id = 'operation-capacity'; capacityNote.className = 'operation-help';
   const footer = document.createElement('div'); footer.className = 'operation-footer';
   const back = document.createElement('button'); back.type = 'button'; back.textContent = 'Voltar';
   const next = document.createElement('button'); next.type = 'button'; next.className = 'operation-primary';
@@ -81,7 +83,7 @@
   const reserve = document.createElement('div'); reserve.hidden = true;
   for (const node of original) reserve.append(node);
   content.append(reserve);
-  workflow.append(navigation, status, ...sections);
+  workflow.append(navigation, status, capacityNote, ...sections);
   content.prepend(workflow);
   sections[0].append(hint); move('name', sections[0]); sections[0].append(protocolLabel);
   if (connection) {
@@ -168,6 +170,12 @@
     principalDetails.hidden = !showing() || srt();
     if (!showing()) return;
     const ready = typeof outputs !== 'undefined' && !!outputs, selected = ready && index >= 0;
+    const destinations = ready && Array.isArray(outputs.destinations) ? outputs.destinations : null;
+    if (!destinations?.length) capacityNote.textContent = 'Aguardando a capacidade dos destinos adicionais. A transmissão principal é separada.';
+    else {
+      const available = destinations.filter(destination => destination && !destination.active && !destination.enabled && !destination.server).length;
+      capacityNote.textContent = 'Destinos adicionais: ' + destinations.length + ' no total, compartilhados entre MultiStream e SRT/RIST desta tela · ' + available + (available === 1 ? ' livre na última leitura.' : ' livres na última leitura.') + ' A transmissão principal é separada.';
+    }
     const selection = (srt() ? 'srt:' : 'stream:') + index;
     if (selection !== lastSelection) { step = 0; lastSelection = selection; actionError = ''; }
     sections.forEach((section, n) => { section.hidden = n !== step || !selected; });

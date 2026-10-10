@@ -52,7 +52,7 @@
     if(b.dataset.media){action='media';data={input:el('media-select').value,command:b.dataset.media};}
     if(b.dataset.mute){action='audio_mute';data={input:b.dataset.mute};}
     if(b.dataset.monitor){action='audio_monitor';data={input:b.dataset.monitor,enabled:b.dataset.on!=='true'};}
-    if(b.dataset.route){action='audio_bus';data={input:b.dataset.route,bus:b.dataset.bus};}
+    if(page==='audio'&&b.dataset.route){action='audio_bus';data={input:b.dataset.route,bus:b.dataset.bus};}
     if(b.dataset.gc){const score=b.dataset.gc==='score';action='gc';data={kind:score?'score':'lower',on:b.dataset.on==='true',data:score?{teamHome:el('team-home').value,teamAway:el('team-away').value,minutes:Number(el('minutes').value),period:el('period').value}:{title:el('title').value,subtitle:el('subtitle').value}};}
     if(b.dataset.team){action='score';data={team:b.dataset.team,delta:Number(b.dataset.delta)};}
     if(action){b.disabled=true;cmd(action,data).catch(()=>{}).finally(()=>b.disabled=false);}

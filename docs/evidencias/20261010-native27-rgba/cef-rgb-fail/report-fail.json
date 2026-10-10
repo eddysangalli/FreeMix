@@ -1,0 +1,412 @@
+{
+  "status": "FROZEN_FAIL_CEF27_RGB_STARTUP_BLACK_WITH_RAW_RGBA_CORRECT",
+  "receiptSha256": "f8f5966276a476ae07ce96be808381eb46cbe863c04f07e9a4a43103a39d9f1d",
+  "preparationAllowlistSha256": "45c42b104e840ddba28a2a12d3b4fc6f9894150a28ec2503200bff08644d6819",
+  "nativeHead": "c4b5af00ea4a4b744a3a19fef5ec861f693c9a69",
+  "nativePid": 12684,
+  "closed": {
+    "shutdownAccepted": true,
+    "nativeClosed": true,
+    "counter0": true,
+    "objects0": true,
+    "doubleDestroy0": true,
+    "crashArtifacts": 0,
+    "meterWarnings": 0
+  },
+  "afterPinChecks": {
+    "preparation": {
+      "preparationTexts": 24,
+      "externalHelpers": 7,
+      "additionalModules": 5,
+      "allowlistPinned": true,
+      "noLinks": true,
+      "hashesMatch": true
+    },
+    "native": {
+      "sourceFiles": 2085,
+      "destinationFiles": 2085,
+      "noLinks": true,
+      "hashesMatch": true
+    },
+    "baseManifestPinned": true,
+    "complete": true
+  },
+  "observedWireRgbMatchesPublicPng": true,
+  "ownPublicPngs": [
+    {
+      "path": "public-red-own.png",
+      "sha256": "130e8c93729d2b2646bc148a6126e75e92df349784c748d52836dfab3d6e649c"
+    },
+    {
+      "path": "public-blue-own.png",
+      "sha256": "49773aa6c06369491e6ffd481e0c07b3864ce16397752e60721e4852c20adbb9"
+    },
+    {
+      "path": "public-asymmetric-own.png",
+      "sha256": "de6c19a7badd775bfb01bccf2c390eaf5b907014f2daf992b04cce21fde2f0cc"
+    }
+  ],
+  "scope": {
+    "Native": true,
+    "CEF": true,
+    "RTC": "loopback",
+    "PCM": false,
+    "VDO": false,
+    "WAN": false,
+    "operatorTouched": false
+  },
+  "observations": {
+    "durationMs": 20038.799999952316,
+    "nativeFramesSnapshot": 598,
+    "writerSnapshot": {
+      "offered": 597,
+      "written": 597,
+      "dropped": 0,
+      "faults": 0,
+      "closedFrames": 597,
+      "maxPending": 1
+    },
+    "decoded": [
+      {
+        "framesDecoded": 595,
+        "framesReceived": 595,
+        "framesDropped": 0,
+        "packetsLost": 0,
+        "jitter": 0.006
+      }
+    ],
+    "presentationCallbacks": 548,
+    "wireRgb": {
+      "red": {
+        "count": 178,
+        "first": {
+          "rgb": [
+            255,
+            0,
+            0
+          ],
+          "stamp": "627282709758020"
+        },
+        "last": {
+          "rgb": [
+            255,
+            0,
+            0
+          ],
+          "stamp": "627288615657902"
+        },
+        "maxError": 0
+      },
+      "blue": {
+        "count": 181,
+        "first": {
+          "rgb": [
+            0,
+            0,
+            255
+          ],
+          "stamp": "627288649024568"
+        },
+        "last": {
+          "rgb": [
+            0,
+            0,
+            255
+          ],
+          "stamp": "627294655024448"
+        },
+        "maxError": 0
+      },
+      "asymmetric": {
+        "count": 239,
+        "first": {
+          "rgb": [
+            120,
+            180,
+            35
+          ],
+          "stamp": "627294688391114"
+        },
+        "last": {
+          "rgb": [
+            120,
+            180,
+            35
+          ],
+          "stamp": "627302629657622"
+        },
+        "maxError": 0
+      },
+      "other": {
+        "count": 0,
+        "first": null,
+        "last": null,
+        "maxError": 0
+      },
+      "invalid": {
+        "count": 0,
+        "first": null,
+        "last": null,
+        "maxError": 0
+      }
+    },
+    "canvasRgb": {
+      "red": {
+        "count": 43,
+        "first": {
+          "rgb": [
+            247,
+            4,
+            3
+          ],
+          "stamp": 3.981
+        },
+        "last": {
+          "rgb": [
+            251,
+            1,
+            0
+          ],
+          "stamp": 5.875
+        },
+        "maxError": 8
+      },
+      "blue": {
+        "count": 170,
+        "first": {
+          "rgb": [
+            2,
+            0,
+            249
+          ],
+          "stamp": 5.908
+        },
+        "last": {
+          "rgb": [
+            0,
+            1,
+            249
+          ],
+          "stamp": 11.906
+        },
+        "maxError": 6
+      },
+      "asymmetric": {
+        "count": 216,
+        "first": {
+          "rgb": [
+            119,
+            179,
+            34
+          ],
+          "stamp": 12.272
+        },
+        "last": {
+          "rgb": [
+            118,
+            181,
+            36
+          ],
+          "stamp": 19.811
+        },
+        "maxError": 5
+      },
+      "other": {
+        "count": 119,
+        "first": {
+          "rgb": [
+            0,
+            0,
+            0
+          ],
+          "stamp": 0
+        },
+        "last": {
+          "rgb": [
+            0,
+            0,
+            0
+          ],
+          "stamp": 3.947
+        },
+        "maxError": 180
+      },
+      "invalid": {
+        "count": 0,
+        "first": null,
+        "last": null,
+        "maxError": 0
+      }
+    },
+    "phases": {
+      "red": {
+        "wire": {
+          "count": 167,
+          "mismatches": 1,
+          "first": {
+            "rgb": [
+              255,
+              0,
+              0
+            ],
+            "stamp": "627283110158012"
+          },
+          "last": {
+            "rgb": [
+              0,
+              0,
+              255
+            ],
+            "stamp": "627288649024568"
+          },
+          "maxError": 255
+        },
+        "canvas": {
+          "count": 152,
+          "mismatches": 110,
+          "first": {
+            "rgb": [
+              0,
+              0,
+              0
+            ],
+            "stamp": 0.32
+          },
+          "last": {
+            "rgb": [
+              251,
+              1,
+              0
+            ],
+            "stamp": 5.842
+          },
+          "maxError": 255
+        }
+      },
+      "blue": {
+        "wire": {
+          "count": 166,
+          "mismatches": 1,
+          "first": {
+            "rgb": [
+              0,
+              0,
+              255
+            ],
+            "stamp": "627289182891224"
+          },
+          "last": {
+            "rgb": [
+              120,
+              180,
+              35
+            ],
+            "stamp": "627294688391114"
+          },
+          "maxError": 220
+        },
+        "canvas": {
+          "count": 156,
+          "mismatches": 0,
+          "first": {
+            "rgb": [
+              0,
+              1,
+              249
+            ],
+            "stamp": 6.372
+          },
+          "last": {
+            "rgb": [
+              0,
+              1,
+              249
+            ],
+            "stamp": 11.906
+          },
+          "maxError": 6
+        }
+      },
+      "asymmetric": {
+        "wire": {
+          "count": 223,
+          "mismatches": 0,
+          "first": {
+            "rgb": [
+              120,
+              180,
+              35
+            ],
+            "stamp": "627295222257770"
+          },
+          "last": {
+            "rgb": [
+              120,
+              180,
+              35
+            ],
+            "stamp": "627302629657622"
+          },
+          "maxError": 0
+        },
+        "canvas": {
+          "count": 211,
+          "mismatches": 0,
+          "first": {
+            "rgb": [
+              119,
+              179,
+              34
+            ],
+            "stamp": 12.439
+          },
+          "last": {
+            "rgb": [
+              118,
+              181,
+              36
+            ],
+            "stamp": 19.811
+          },
+          "maxError": 5
+        }
+      }
+    }
+  },
+  "failure": {
+    "actual": "CEF decoded canvas missing colours",
+    "decodedCanvasStartupBlack": {
+      "count": 119,
+      "first": {
+        "rgb": [
+          0,
+          0,
+          0
+        ],
+        "stamp": 0
+      },
+      "last": {
+        "rgb": [
+          0,
+          0,
+          0
+        ],
+        "stamp": 3.947
+      }
+    },
+    "redDecodedCanvasCount": 43,
+    "requiredPerColour": 60,
+    "unknownMaximum": 60,
+    "thresholdsUnchanged": true,
+    "reexecuted": false,
+    "startupBlackCause": "UNKNOWN_NOT_ATTRIBUTED_FROM_THIS_ONE_RUN",
+    "additionalHarnessBoundaryIssue": "SetInputSettings changes wire before post-PNG colour-phase notification: one next-colour frame under previous phase at each transition. This is not itself proof of wrong channel order."
+  },
+  "limits": [
+    "Raw RGBA fix is observed on exact three public inputs; full CEF RGB acceptance remains FAIL",
+    "595 decoded is separate from548 presented callbacks",
+    "Tail snapshot differs native598 vs writer597: counts are captured at separate times, not an atomic joined statistic",
+    "No AV/audio/guest/WAN/endurance claim",
+    "Original CEF25 PASS and Native25 two-source RGB FAIL untouched"
+  ]
+}
