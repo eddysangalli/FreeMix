@@ -81,3 +81,23 @@ Estado em 2026-10-09T22:41:31.392Z. A entrega instalável continua sendo 213415,
 - Fontes: exportação Native verifica a série completa em índice separado e compara a árvore ao HEAD antes de escrever snapshots. O builder exige ZIP e destino explícitos, preservando releases existentes. Logs brutos de QA não são publicados no Git.
 
 Subagentes ativos: replay/áudio/VFR; regressão SRT e guards SDI; rastreamento isolado das alocações. Nenhuma sessão, gravação ou instalação do operador foi ativada/alterada.
+
+## Integração Native21 — 2026-10-10T00:21:27.223Z
+
+Estado operacional atual em CONTINUAR.md; os blocos acima são cronologia. Native4793d1a40f56ea9b6e887eb49189d937758e3b7f compilado/freeze2085arquivos;21 patches/187 snapshots reconstruídos para árvore7604633e921339aa65f40015dcc3175e26accfc7. Marca/privacidade OAuth e GTZIP Polygon/Path diretos integrados e enviados ao GitHub3737e79. Coletor149 verificações PASS; GTZIP33PASS.
+
+Candidato000500:9563 arquivos assinados e hash-verificados, manifesto6fbf37845536e8b3a6478ec15274f5ce9f7bf14051e10703f2c197550f417619. ZIP/CRC/hashes PASS e EXEcd7529d9d9ebf2806b40252691d73c7f28d5dcf49aeeddcbf85ea2cd5c624798 gerado. Startup instalado Native21 PASS, NDI/buses/API prontos, noveHTML, fechamento773ms, contador0/crashes0 e processos próprios encerrados. Duas instalações/diagnósticos OAuth/importações/desinstalações ainda em execução antes da seleção. Candidato233334 PASS permanece histórico não selecionado e imutável.
+
+## Master digital A/B/C/D — Native21
+
+QA própria capturou mix0/track1 final, estéreo48k, em oito segmentos: ProgramaA/B/C/D, áudio desabilitado, fora do ar, ganho−6dB e arquivo substituído. Cada player entregou o tom próprio (440/660/880/1100Hz), demais bins abaixo do critério1.5%, estados de mute com PCM zero e ganho medido0.5011919 para esperado0.5011872. View liberada, saídas0, shutdown aceito,exit0/776ms,contador0 e marcadores de crash0. Não houve mudança de produto, SourceRecord nos players, dispositivo físico ou operador. Prova fecha a lacuna local do Master citada no relatório de auditoria; transientes rápidos/endurance/audição física continuam fora do escopo. Allowlist qa-finalizacao/replay-master-four/ALLOWLIST.json SHA446690f32f8938e423c5798c3bd16937b9c4fdf81fcdbdfe3b003b30e492b9c6.
+
+## Entrega selecionada — 2026-10-10T00:31:16.414Z
+
+Instalador atual: **0.1.0-local.20261010000500**, selecionado em entregas/INSTALADOR-ATUAL.json. Use **INSTALAR-FREEMIX.cmd**, escolha uma pasta nova/vazia e depois abra pelo atalho FreeMix Studio. Duas instalações/importações/diagnósticos/desinstalações reais e startup passaram. Native **4793d1a40f56ea9b6e887eb49189d937758e3b7f**, 21 patches/187 snapshots com reconstrução de árvore verificada. Fechamento cooperativo em 773 ms, contador de alocações zero e nenhum crash novo no ensaio instalado.
+
+A instalação do operador não foi substituída. ABRIR-FREEMIX.cmd mantém a mesa legada e seu atualizador incremental; não aplicar pacote completo por esse atualizador. Créditos/licenças OBS permanecem. Diagnósticos são ZIP local sanitizado, enviado manualmente. Nenhum upload ou serviço externo foi publicado.
+
+Fontes do payload correspondem ao Git **3737e790945962df9feff07287e4dda3e07c054d**, branch feat/native-menus-config-screens. Provas posteriores e documentação recebem commits separados. O EXE contém assinatura interna Ed25519, sem certificado Authenticode.
+
+Master digital dos quatro players passou; relatório instalado000500 e allowlist foram congelados. Auditoria implementa QR GTZIP offline com edição validada e leitura independente; root integra em nova versão após freeze. Installer/transportes encerraram as matrizes locais. Demais recursos externos e limites estão no estado atual de PENDENCIAS-REAIS.md; os blocos acima são cronologia.

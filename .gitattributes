@@ -63,4 +63,16 @@ qa-finalizacao/native-branding-qa/** -text -whitespace
 qa-finalizacao/native21-startup-preparation/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
 qa-finalizacao/package-native-startup-native21.mjs -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
 qa-finalizacao/gtzip-direct-shapes/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+qa-finalizacao/replay-master-four/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+qa-finalizacao/package-native-startup-000500-native21*.json -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+qa-finalizacao/auditoria-pendencias-pos-oauth/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
 *.patch -text -whitespace
+
+qa-finalizacao/installer-real-000500*/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+qa-finalizacao/installer-real-000500-native21-allowlist-20261010.json -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+docs/RELATORIO-INSTALADOR-REAL-000500-NATIVE21-20261010.md -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+qa-finalizacao/export-installer-native21-receipts.mjs -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+qa-finalizacao/candidate-*-000500.json -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+qa-finalizacao/full-*-verificado-000500.json -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+qa-finalizacao/installer-pointer-before-000500.json -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+entregas/INSTALADOR-ATUAL.json -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol

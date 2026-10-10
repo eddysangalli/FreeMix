@@ -1,15 +1,14 @@
 # Instalar o FreeMix Studio
 
-Abra INSTALAR-FREEMIX.cmd na raiz, ou envie entregas/FreeMix-Studio-Setup-0.1.0-local.20261009213415.exe para outro Windows x64. O EXE contém o pacote completo, aproximadamente 1,38 GB. Escolha uma pasta nova/vazia; motor, plugins, Node, FFmpeg e NDI 6.3.2 são locais. Depois abra FreeMix Studio pelo atalho ou FreeMix Studio.cmd da instalação.
+Abra INSTALAR-FREEMIX.cmd na raiz ou envie entregas/FreeMix-Studio-Setup-0.1.0-local.20261010000500.exe para Windows x64. O EXE tem1375709028bytes e contém motor,plugins,Node,FFmpeg eNDI6.3.2. Escolha uma pasta nova/vazia; depois use o atalho FreeMix Studio ou FreeMix Studio.cmd. Não execute apenas o motor.
 
-O padrão é uma mesa nova. A importação .fmx é explícita, preserva a origem e cria coleção com mídia verificada, novas credenciais e saídas/automações paradas. O instalador recusa pasta não vazia. A desinstalação conserva projetos, mídia, configurações e arquivos distribuídos que foram alterados. Não migre copiando toda a configuração da mesa anterior.
+A instalação começa com mesa própria. Importar .fmx é opt-in, conserva a origem e gera credenciais/portas próprias, com saídas e automações paradas. A desinstalação preserva projetos,mídia,configurações e arquivos distribuídos modificados. A instalação do operador não foi ativada por estes testes.
 
-Diagnósticos ou COLETAR-LOGS.cmd gera ZIP local sanitizado. Revise e envie manualmente por e-mail/WhatsApp; não há upload automático. Configurar rede é uma ação separada, opcional; nenhuma regra de firewall é aplicada pela instalação normal.
+Diagnósticos ou COLETAR-LOGS.cmd gera ZIP local sanitizado para envio manual por e-mail/WhatsApp. Queries OAuth relativas/code/state foram verificadas nos dois ZIPs produzidos na instalação real. Sem upload automático. Rede/firewall é configuração separada e opcional.
 
-Conferência: duas instalações pelo EXE real em TEMP com espaços; importação opt-in, hash de prévia, mídia, segredos/autostart, diagnóstico e duas desinstalações passaram. Root abriu controle + Native real da cópia instalada, NDI carregado, nove rotas HTTP acessíveis, zero REC/stream/saídas e fechamento cooperativo em 776 ms sem novo crash. O log contabilizou duas alocações não liberadas, sob investigação.
+Duas instalações reais pelo novo EXE, importação, hash de prévia, credenciais, diagnóstico e desinstalação PASS. Startup instalado confirmou Native4793d1a40f56ea9b6e887eb49189d937758e3b7f, NDI/buses, nove rotasHTTP, saídas/REC/stream paradas e fechamento cooperativo em773ms; contador0 e crashes0. HTTP não é aprovação visual de todas as telas; a matriz CEF anterior é separada.
 
-O EXE não possui Authenticode. O pacote interno tem assinatura Ed25519 e hashes dos 9.520 arquivos verificados. Windows limpo, drivers/dispositivos físicos e WAN ainda não foram homologados. A mesa do operador não foi atualizada/ativada por este ensaio. HDR SDI e a nova correção de sincronismo A/B entrarão em outra versão.
+Pacote interno: Ed25519 e hashes de9563arquivos conferidos; EXE sem Authenticode. Windows limpo, equipamentos e WAN continuam em PENDENCIAS-REAIS.md.
 
-SHA-256 do EXE: 8b1398c5b46435bff9518c4841756aa41754f971456a357366779864b0577773
-
-Recibos: docs/evidencias-distribuicao-conclusao/resultado-package-native-startup-213415.json e qa-candidate-report.json.
+SHA-256 EXE: cd7529d9d9ebf2806b40252691d73c7f28d5dcf49aeeddcbf85ea2cd5c624798
+SHA-256 ZIP: 997e859eb7b76a77d7d8ca63a15582db9fa05e1c2afe8eeef5b9495fb62aa019

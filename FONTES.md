@@ -1,3 +1,13 @@
+# Fontes da entrega atual 000500 — Native21
+
+A entrega 0.1.0-local.20261010000500 corresponde ao Native 4793d1a40f56ea9b6e887eb49189d937758e3b7f e aos fontes operacionais do Git3737e790945962df9feff07287e4dda3e07c054d. fork/manifest.json contém21 patches completos e docs/native-source contém187 snapshots. Aplicação dos patches reconstruiu a árvore7604633e921339aa65f40015dcc3175e26accfc7, verificada em fork/source-verification.json. Veja docs/BUILD-FROM-SOURCE.md.
+
+Native21 passou por build configurada, startup instalado e fechamento normal; Replay/PCM/Master digital e diagnóstico OAuth instalado têm provas distintas em qa-finalizacao e docs. Fontes posteriores em desenvolvimento não alteram o payload selado000500. QR GTZIP offline está ativo e ainda não integra esta versão. Limites atuais em docs/PENDENCIAS-REAIS.md.
+
+NDI6.3.2 e demais runtimes têm licenças/proveniência no pacote. Fontes e patches dos plugins reconstruídos estão em licenses/freemix-localvocal e licenses/freemix-sceneswitcher. NDI HDR exige Advanced SDK/licença e implementação; não é ativado pelo runtime padrão. Chave Ed25519 privada não pertence ao Git nem ao pacote. Créditos/licenças upstream são preservados.
+
+## Proveniência histórica de versões anteriores
+
 # Fontes posteriores a 213415 — em conferência
 
 A série em fork/manifest.json já contém as alterações posteriores de SDI HDR e seek/EOF de mídia. Sua árvore foi verificada contra o Native; isso não muda o instalador 213415 nem comprova a aprovação do novo replay multicâmera. Leia docs/PENDENCIAS-REAIS.md e fork/source-verification.json para separar fontes, builds e ensaios.

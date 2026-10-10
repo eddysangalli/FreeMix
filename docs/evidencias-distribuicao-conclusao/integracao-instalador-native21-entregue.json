@@ -1,0 +1,109 @@
+{
+  "status": "VERIFIED_SELECTED_WITH_LIMITS",
+  "at": "2026-10-10T00:29:57.065Z",
+  "version": "0.1.0-local.20261010000500",
+  "setupSha256": "cd7529d9d9ebf2806b40252691d73c7f28d5dcf49aeeddcbf85ea2cd5c624798",
+  "operatorActivated": false,
+  "files": [
+    {
+      "path": "qa-finalizacao/export-installer-native21-receipts.mjs",
+      "sourceSha256": "70b163d7e326d8af9aa79ff27fe27c7dc45d653f478e51938e9ae21a0e027ff6",
+      "outputSha256": "826b1b1c9e94d47b4aee53f0f10ea9de06ff3a4d273ae96bffd2bf4c0af07c8a"
+    },
+    {
+      "path": "docs/RELATORIO-INSTALADOR-REAL-000500-NATIVE21-20261010.md",
+      "sourceSha256": "0a2e104df51e5491e7f6b82663d1282ce0691dd92c9521878314fa0297c4a3c8",
+      "outputSha256": "0a2e104df51e5491e7f6b82663d1282ce0691dd92c9521878314fa0297c4a3c8"
+    },
+    {
+      "path": "qa-finalizacao/installer-real-000500-native21-final/evidence-copy.json",
+      "sourceSha256": "8aad29d19c5a5fa7c1ad451b5faece21f959a7f2c3eb81e43f127391d21f63af",
+      "outputSha256": "8aad29d19c5a5fa7c1ad451b5faece21f959a7f2c3eb81e43f127391d21f63af"
+    },
+    {
+      "path": "qa-finalizacao/installer-real-000500-native21-final/qa-candidate-context.json",
+      "sourceSha256": "212d14a9ae428e79767f938c53aab442ab1b1ebe865b5e796db8ff07ae711076",
+      "outputSha256": "212d14a9ae428e79767f938c53aab442ab1b1ebe865b5e796db8ff07ae711076"
+    },
+    {
+      "path": "qa-finalizacao/installer-real-000500-native21-final/qa-candidate-credentials.json",
+      "sourceSha256": "97e0712e3a7988d5e413b9819f4791dea056a55518cca2aff81bfa593325e182",
+      "outputSha256": "97e0712e3a7988d5e413b9819f4791dea056a55518cca2aff81bfa593325e182"
+    },
+    {
+      "path": "qa-finalizacao/installer-real-000500-native21-final/qa-candidate-distribution.json",
+      "sourceSha256": "47b017409412c830664c08cbc69ea21ec0faf748964fee00fd9ff86d5f0e8d3c",
+      "outputSha256": "47b017409412c830664c08cbc69ea21ec0faf748964fee00fd9ff86d5f0e8d3c"
+    },
+    {
+      "path": "qa-finalizacao/installer-real-000500-native21-final/qa-candidate-report.json",
+      "sourceSha256": "81f1c42449d9b0945bb1f7c25a38becd290ce192dbd798ea6897dc4c4d5cf613",
+      "outputSha256": "81f1c42449d9b0945bb1f7c25a38becd290ce192dbd798ea6897dc4c4d5cf613"
+    },
+    {
+      "path": "qa-finalizacao/installer-real-000500-native21-final/qa-candidate-setup-verify.json",
+      "sourceSha256": "504367462b96a2822ef59052e02a878d70f60baa7518311b0df7a2a3a8f9444f",
+      "outputSha256": "504367462b96a2822ef59052e02a878d70f60baa7518311b0df7a2a3a8f9444f"
+    },
+    {
+      "path": "qa-finalizacao/installer-real-000500-native21-final/run-context.json",
+      "sourceSha256": "a50d915cca058fddd0e61240d670f1358cb3cac7afa23687d118b3ac87f01667",
+      "outputSha256": "a50d915cca058fddd0e61240d670f1358cb3cac7afa23687d118b3ac87f01667"
+    },
+    {
+      "path": "qa-finalizacao/installer-real-000500-native21-final/run-credentials.json",
+      "sourceSha256": "b4aaa045863007728fd255d0f3e7e82eb5ff9bf5228ad3705e88c60e5cfbe916",
+      "outputSha256": "b4aaa045863007728fd255d0f3e7e82eb5ff9bf5228ad3705e88c60e5cfbe916"
+    },
+    {
+      "path": "qa-finalizacao/installer-real-000500-native21-final/run-distribution.json",
+      "sourceSha256": "86ca32e2115a6605dad8b0a63293ff7be3dc3144c2090c947bcf98bf014f1897",
+      "outputSha256": "86ca32e2115a6605dad8b0a63293ff7be3dc3144c2090c947bcf98bf014f1897"
+    },
+    {
+      "path": "qa-finalizacao/installer-real-000500-native21-final/run-report.json",
+      "sourceSha256": "c2a9057fc1c407d0577a8913cf6c56d4824f780b5689aeee153a89b88428e297",
+      "outputSha256": "c2a9057fc1c407d0577a8913cf6c56d4824f780b5689aeee153a89b88428e297"
+    },
+    {
+      "path": "qa-finalizacao/installer-real-000500-native21-final/run-verify.json",
+      "sourceSha256": "d60f7062b808a873ddbef887f55c092b901fca65a3ec00a681413afe7c0b957d",
+      "outputSha256": "d60f7062b808a873ddbef887f55c092b901fca65a3ec00a681413afe7c0b957d"
+    },
+    {
+      "path": "qa-finalizacao/installer-real-000500-native21-allowlist-20261010.json",
+      "sourceSha256": "040afe3ff88c67147b2144433bcd16ecc73d3d62a1cd5030bef8204a0678274d",
+      "outputSha256": "040afe3ff88c67147b2144433bcd16ecc73d3d62a1cd5030bef8204a0678274d"
+    },
+    {
+      "path": "qa-finalizacao/candidate-release-000500.json",
+      "sourceSha256": "7baea35b64c444ba193928a18eae38e901dc8f62d7e65f8a70dea541a792750b",
+      "outputSha256": "7baea35b64c444ba193928a18eae38e901dc8f62d7e65f8a70dea541a792750b"
+    },
+    {
+      "path": "qa-finalizacao/candidate-delivery-000500.json",
+      "sourceSha256": "efe26ab7db796b396945e4ef2570ba99debd0793380bad7821f9f761262bdf7f",
+      "outputSha256": "efe26ab7db796b396945e4ef2570ba99debd0793380bad7821f9f761262bdf7f"
+    },
+    {
+      "path": "qa-finalizacao/full-payload-verificado-000500.json",
+      "sourceSha256": "a4b3770f07b482046537d99f4312d47ca5e830ad94f80e80df99ab40cac2244b",
+      "outputSha256": "a4b3770f07b482046537d99f4312d47ca5e830ad94f80e80df99ab40cac2244b"
+    },
+    {
+      "path": "qa-finalizacao/full-zip-verificado-000500.json",
+      "sourceSha256": "e7ff6d1aa1d9bcfe7c5f72ef6d8b82be9dce62eacaed555340a99d763b3f063e",
+      "outputSha256": "e7ff6d1aa1d9bcfe7c5f72ef6d8b82be9dce62eacaed555340a99d763b3f063e"
+    },
+    {
+      "path": "qa-finalizacao/installer-pointer-before-000500.json",
+      "sourceSha256": "474189a764bc26f81e29fddce5b013ba2cf7fb0cfe14dc013f0b3cd5af053027",
+      "outputSha256": "474189a764bc26f81e29fddce5b013ba2cf7fb0cfe14dc013f0b3cd5af053027"
+    },
+    {
+      "path": "entregas/INSTALADOR-ATUAL.json",
+      "sourceSha256": "4f9f97979ed70f8d86795d2d0f90e8be960b18b9f7a242fdf2658225473d6292",
+      "outputSha256": "4f9f97979ed70f8d86795d2d0f90e8be960b18b9f7a242fdf2658225473d6292"
+    }
+  ]
+}

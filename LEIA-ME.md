@@ -1,11 +1,9 @@
-# FreeMix Studio — pacote completo 0.1.0-local.20261009213415
+# FreeMix Studio — entrega verificada 0.1.0-local.20261010000500
 
-Instale pelo EXE FreeMix-Studio-Setup-0.1.0-local.20261009213415.exe. Na pasta instalada, abra FreeMix Studio.cmd ou o atalho: motor e controle iniciam juntos. Não exige Node, Python ou OBS instalados à parte. NDI6.3.2 e as dependências locais estão neste pacote; drivers dos equipamentos continuam sendo os do fabricante.
+Na raiz do workspace abra INSTALAR-FREEMIX.cmd, ou execute FreeMix-Studio-Setup-0.1.0-local.20261010000500.exe. Escolha pasta nova/vazia. Depois abra o atalho FreeMix Studio ou FreeMix Studio.cmd: motor e controle iniciam juntos. Node, FFmpeg e NDI6.3.2 acompanham o pacote; drivers físicos continuam sendo os do fabricante.
 
-Transmitir: MultiStream. Externo: SRT/NDI/OMT/SDI. Ajustes de gravação, MultiGravação e Replay ficam nos próprios módulos. Recuperação/importação .fmx é explícita e cria coleção nova, sem autostart. O instalador não altera automaticamente sua mesa anterior.
+Transmitir abre MultiStream. Externo reúne SRT/NDI/OMT/SDI. Configurações de gravação, MultiGravação e Replay ficam nos módulos. Replay oferece timeline contínua durante REC, reprodução/busca e marcação IN/OUT; players têm autoplay no ar e áudio opt-in. Importação .fmx é explícita, conserva a origem, cria credenciais e não inicia saídas.
 
-Diagnósticos ou COLETAR-LOGS.cmd gera um ZIP local sanitizado; revise e encaminhe manualmente por e-mail/WhatsApp. Configurar rede é opcional e pede elevação do Windows; nenhuma regra é aplicada ao instalar.
+Diagnósticos ou COLETAR-LOGS.cmd gera ZIP local sanitizado para envio manual. Instalar não aplica firewall automaticamente nem substitui a mesa anterior. Duas instalações/importações/diagnósticos/desinstalações e startup passaram; Native21 fechou em773ms, contador zero e sem crash no ensaio.
 
-Leia docs/ENTREGA-ATUAL.md e docs/PENDENCIAS-REAIS.md para evidências e limites. O receptor alpha de navegador foi abortado. A ponte nativa alpha está em beta separada. Sem homologação de hardware/WAN/Windows limpo nesta rodada.
-
-Instalador 213415 conferido: duas instalações reais e respectivas desinstalações; startup Native/NDI e nove janelas essenciais, sem ativar a mesa do operador. HDR SDI, nova correção de sincronismo A/B e investigação das alocações de fechamento seguem ativos e entrarão em outra versão.
+Leia docs/ENTREGA-ATUAL.md, docs/INSTALACAO.md e docs/PENDENCIAS-REAIS.md. QR GTZIP está em desenvolvimento após esta versão. Hardware/WAN/Windows limpo ainda precisam de ensaio. O receptor alpha WebBrowser permanece abortado; ponte nativa SRT→NDI é beta separada.

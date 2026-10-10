@@ -1,3 +1,29 @@
+# Fontes da entrega atual 000500 — Native21
+
+A entrega 0.1.0-local.20261010000500 corresponde ao Native 4793d1a40f56ea9b6e887eb49189d937758e3b7f e aos fontes operacionais do Git3737e790945962df9feff07287e4dda3e07c054d. fork/manifest.json contém21 patches completos e docs/native-source contém187 snapshots. Aplicação dos patches reconstruiu a árvore7604633e921339aa65f40015dcc3175e26accfc7, verificada em fork/source-verification.json. Veja docs/BUILD-FROM-SOURCE.md.
+
+Native21 passou por build configurada, startup instalado e fechamento normal; Replay/PCM/Master digital e diagnóstico OAuth instalado têm provas distintas em qa-finalizacao e docs. Fontes posteriores em desenvolvimento não alteram o payload selado000500. QR GTZIP offline está ativo e ainda não integra esta versão. Limites atuais em docs/PENDENCIAS-REAIS.md.
+
+NDI6.3.2 e demais runtimes têm licenças/proveniência no pacote. Fontes e patches dos plugins reconstruídos estão em licenses/freemix-localvocal e licenses/freemix-sceneswitcher. NDI HDR exige Advanced SDK/licença e implementação; não é ativado pelo runtime padrão. Chave Ed25519 privada não pertence ao Git nem ao pacote. Créditos/licenças upstream são preservados.
+
+## Proveniência histórica de versões anteriores
+
+# Fontes posteriores a 213415 — em conferência
+
+A série em fork/manifest.json já contém as alterações posteriores de SDI HDR e seek/EOF de mídia. Sua árvore foi verificada contra o Native; isso não muda o instalador 213415 nem comprova a aprovação do novo replay multicâmera. Leia docs/PENDENCIAS-REAIS.md e fork/source-verification.json para separar fontes, builds e ensaios.
+
+# Fontes da entrega completa 213415
+
+Estado em 2026-10-09T22:14:45.649Z. Native99e5944cf61aacc4c07167ef867d4ce52a752ae6, EXE1c045e5d43bae20eca9b15df50d73d297b9d433e381027eb861f0ff21f014744. As fontes/painéis operacionais estão no repositório FreeMix, com 14 patches completos sobre a base OBS fixada em fork/manifest.json; reconstrução em docs/BUILD-FROM-SOURCE.md. O pacote guarda snapshot das fontes Native e as licenças correspondentes.
+
+NDI6.3.2.0 está incluído no pacote completo, em runtime/ndi-v6, com hash pinado e licença/proveniência/termos em licenses/ndi-runtime. O ambiente é configurado somente no processo, sem instalador global de NDI. Registros antigos abaixo que dizem "não redistribuído" descrevem as entregas anteriores. NDI HDR não é ativado com o SDK padrão; contrato e fonte oficial em docs/NDI-HDR-CONTRATO.md.
+
+Os três DLLs LocalVocal/SceneSwitcher reconstruídos incluem patches, fontes oficiais e receitas sob licenses/freemix-localvocal e licenses/freemix-sceneswitcher. Node/FFmpeg incluem seus termos em runtime. A chave Ed25519 privada não pertence ao pacote nem ao Git.
+
+A ponte SRT→NDI alpha é beta separada, com fonte main.cpp, cabeçalhos, licenças, dependências e manifest assinado próprios; não pertence ao instalador completo.
+
+## Registros históricos preservados
+
 # Proveniência da versão local
 
 O executável é o fork compilado de `freemix-app`, ramo `freemix/broadcast-suite`, commit `a76f99a20ecae3ffcce10a20dd889d5bebc3bd51`, acrescido da alteração de busca de mídia em `shared/media-playback/media-playback/media.c`. O código correspondente está no workspace deste projeto, pasta `freemix-app`. A base upstream é https://github.com/obsproject/obs-studio ; não substituir este fork por um executável oficial avulso.
