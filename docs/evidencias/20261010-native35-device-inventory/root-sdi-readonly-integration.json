@@ -1,0 +1,42 @@
+{
+  "status": "ROOT_SDI_READONLY_SIX_SOURCE_FILES_INTEGRATED_PENDING_NATIVE_BUILD_QA",
+  "at": "2026-10-10T17:44:13.695Z",
+  "targets": [
+    {
+      "path": "freemix-app/frontend/widgets/FreeMixVideoTransports.hpp",
+      "before": "54c8633951bc1091892d7cb4127bc3b7bd58ac0561af51c48fe27bb290fca52a",
+      "after": "42354ea379f1a381db856df025e6272efaa19e1f7fb840ab4818bbd9ac4221a6"
+    },
+    {
+      "path": "freemix-app/frontend/widgets/FreeMixSdiOutput.hpp",
+      "before": "41c519b334ba53d0e6c92a15fcb44a9ffbca79a27db20b5bd552db0567e008f6",
+      "after": "8a6219642a7cd32be07f5f114563931f3f156759f1c5555cf15c5e9276d49516"
+    },
+    {
+      "path": "freemix-app/frontend/widgets/FreeMixMultistream.cpp",
+      "before": "61df658a8ff6f4cf5252e7689899891564de8284aaf6fa383d9786d37afd8576",
+      "after": "802439c9f65d62a5881c8e61588740992f6ef526bbd9dc6b95822e06ddb737eb"
+    },
+    {
+      "path": "FreeMix/ferramentas/saidas-producao.mjs",
+      "before": "4014d7d5fabd30e2851852f0e8cf6d599aaec9c454fc1c73b05d9d0a355452f3",
+      "after": "043db7e2f2291ed49a1a93cb1da4d4cdb3692580d7accce44d359a694f1ec3c8"
+    },
+    {
+      "path": "FreeMix/painel/remoto/saidas.js",
+      "before": "0d32bbf483c19c193e66d4eaf2df866498ce3a49b36e1ae6e8d8dfbd8132c246",
+      "after": "e55935f45e3dad1d5878a696f6a366f37bec40954dd073344fa2abab4842c23c"
+    },
+    {
+      "path": "FreeMix/painel/remoto/saidas-sdi-hdr-ui.js",
+      "before": "4033a009da2d8b443e7ac84c82c766bf9bfa64eb9cf2a40f038362921bbc1c78",
+      "after": "082f392df7ed83b565b3f56b1726e9346014249b6dd51c2ca22fda7a18de900b"
+    }
+  ],
+  "RootModels": 13,
+  "independentReviewSha256": "daa341511d8b9bcf994a7ddc0b7523e5add8df7ef23430e3e57b794e48eb3ec3",
+  "NativeBuilt": false,
+  "NativeExecuted": false,
+  "operatorTouched": false,
+  "newPackageApproved": false
+}

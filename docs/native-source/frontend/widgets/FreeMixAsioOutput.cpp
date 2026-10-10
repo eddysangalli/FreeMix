@@ -11,11 +11,21 @@ namespace {
 bool Okay(ASIOError e){return e==ASE_OK||e==ASE_SUCCESS;}
 std::string UTF8(const wchar_t *s){int n=WideCharToMultiByte(CP_UTF8,0,s,-1,nullptr,0,nullptr,nullptr);if(n<2)return {};std::string out(size_t(n),0);WideCharToMultiByte(CP_UTF8,0,s,-1,out.data(),n,nullptr,nullptr);out.pop_back();return out;}
 }
-std::vector<FreeMixAsioDriver> FreeMixAsioOutput::Drivers(){
+std::vector<FreeMixAsioDriver> FreeMixAsioOutput::Drivers(bool *complete){
+ if(complete)*complete=false;
  std::vector<FreeMixAsioDriver> list;HKEY root=nullptr;
- if(RegOpenKeyExW(HKEY_LOCAL_MACHINE,L"SOFTWARE\\ASIO",0,KEY_READ|KEY_WOW64_64KEY,&root)!=ERROR_SUCCESS)return list;
- for(DWORD index=0;index<256;index++){wchar_t name[256]{};DWORD len=256;if(RegEnumKeyExW(root,index,name,&len,nullptr,nullptr,nullptr,nullptr)!=ERROR_SUCCESS)break;HKEY key=nullptr;if(RegOpenKeyExW(root,name,0,KEY_READ,&key)!=ERROR_SUCCESS)continue;wchar_t clsid[128]{},description[512]{};DWORD bytes=sizeof(clsid);const auto ok=RegGetValueW(key,nullptr,L"CLSID",RRF_RT_REG_SZ,nullptr,clsid,&bytes);bytes=sizeof(description);RegGetValueW(key,nullptr,L"Description",RRF_RT_REG_SZ,nullptr,description,&bytes);RegCloseKey(key);CLSID guid{};if(ok==ERROR_SUCCESS&&SUCCEEDED(CLSIDFromString(clsid,&guid)))list.push_back({UTF8(clsid),UTF8(*description?description:name)});}
- RegCloseKey(root);return list;
+ const auto opened=RegOpenKeyExW(HKEY_LOCAL_MACHINE,L"SOFTWARE\\ASIO",0,KEY_READ|KEY_WOW64_64KEY,&root);
+ if(opened!=ERROR_SUCCESS){if(complete)*complete=opened==ERROR_FILE_NOT_FOUND;return list;}
+ bool okay=true,ended=false;
+ for(DWORD index=0;index<256;index++){
+  wchar_t name[256]{};DWORD len=256;const auto enumerated=RegEnumKeyExW(root,index,name,&len,nullptr,nullptr,nullptr,nullptr);
+  if(enumerated==ERROR_NO_MORE_ITEMS){ended=true;break;}if(enumerated!=ERROR_SUCCESS){okay=false;break;}
+  HKEY key=nullptr;if(RegOpenKeyExW(root,name,0,KEY_READ,&key)!=ERROR_SUCCESS){okay=false;continue;}
+  wchar_t clsid[128]{},description[512]{};DWORD bytes=sizeof(clsid);const auto result=RegGetValueW(key,nullptr,L"CLSID",RRF_RT_REG_SZ,nullptr,clsid,&bytes);
+  bytes=sizeof(description);RegGetValueW(key,nullptr,L"Description",RRF_RT_REG_SZ,nullptr,description,&bytes);RegCloseKey(key);
+  CLSID guid{};if(result==ERROR_SUCCESS&&SUCCEEDED(CLSIDFromString(clsid,&guid)))list.push_back({UTF8(clsid),UTF8(*description?description:name)});else okay=false;
+ }
+ RegCloseKey(root);if(complete)*complete=okay&&ended;return list;
 }
 size_t FreeMixAsioOutput::SampleBytes(ASIOSampleType t){switch(t){case ASIOSTInt16MSB:case ASIOSTInt16LSB:return 2;case ASIOSTInt24MSB:case ASIOSTInt24LSB:return 3;case ASIOSTFloat64MSB:case ASIOSTFloat64LSB:return 8;case ASIOSTInt32MSB:case ASIOSTInt32LSB:case ASIOSTFloat32MSB:case ASIOSTFloat32LSB:case ASIOSTInt32MSB16:case ASIOSTInt32MSB18:case ASIOSTInt32MSB20:case ASIOSTInt32MSB24:case ASIOSTInt32LSB16:case ASIOSTInt32LSB18:case ASIOSTInt32LSB20:case ASIOSTInt32LSB24:return 4;default:return 0;}}
 bool FreeMixAsioOutput::Encode(ASIOSampleType t,float x,void *output){

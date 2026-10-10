@@ -43,7 +43,7 @@ class FreeMixAsioOutput {
  void render(long);
 public:
  ~FreeMixAsioOutput();
- static std::vector<FreeMixAsioDriver> Drivers(); // read-only registry enumeration, no COM driver open
+ static std::vector<FreeMixAsioDriver> Drivers(bool *complete=nullptr); // explicit registry inventory; never opens COM
  bool Start(const std::string &,const std::vector<FreeMixAsioRoute> &,uint32_t,long,void *,std::string &);
  // Test seam: same native IASIO interface and callback path; no registration.
  bool StartInjected(IASIO *,const std::vector<FreeMixAsioRoute> &,uint32_t,long,void *,std::string &);

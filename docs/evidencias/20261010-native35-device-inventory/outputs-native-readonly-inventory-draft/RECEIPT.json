@@ -1,0 +1,16 @@
+{
+  "status": "FROZEN_OFFSIDE_REQUIRES_ROOT_REVIEW_BUILD_REAL_GET_QA",
+  "targets": 6,
+  "patchRoundtrips": 6,
+  "models": 13,
+  "syntax": 4,
+  "pythonAst": 2,
+  "canonicalModified": false,
+  "NativeExecuted": false,
+  "SDKExecuted": false,
+  "compiled": false,
+  "APIStarted": false,
+  "browserStarted": false,
+  "rootHeadProvided": "a73b97c",
+  "reviewedIntegration": false
+}

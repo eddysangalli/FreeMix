@@ -1,0 +1,45 @@
+{
+  "status": "ROOT_AUDIO_READONLY_FIVE_SOURCE_FILES_INTEGRATED_PENDING_BUILD_REAL_QA",
+  "at": "2026-10-10T17:52:38.166Z",
+  "authorAllowlistSha256": "134153503a642e7fb4b4c5bbfe685f89c515045dca3107249643b928d1019160",
+  "independentAllowlistSha256": "3754d1f78ddd73b05a8404c09764269134b99b887b8e033213bb5119564f0811",
+  "productFiles": [
+    {
+      "path": "freemix-app/frontend/widgets/FreeMixAsioOutput.hpp",
+      "baseline": "1dbc298c8cc8737252f2b37bc927977524107f33531aca5990da925013dfb4a3",
+      "draft": "930f527df28177ff18edf7f1419d1fed277ca9f91504b6601e38bd0a97569702",
+      "eol": "LF"
+    },
+    {
+      "path": "freemix-app/frontend/widgets/FreeMixAsioOutput.cpp",
+      "baseline": "a1fba1dc1c3491cb491fa482825034e24e15d1781c8cfac241af0405e19de389",
+      "draft": "280b736bd8d4f73db5b24f1c0f5b61e1a283e4310c6cf7e9708f5d7899c69f18",
+      "eol": "LF"
+    },
+    {
+      "path": "freemix-app/frontend/widgets/FreeMixAudioRouting.cpp",
+      "baseline": "697b61c9e11c6372339649f74272bc52c7f56389a3dc9c13f67536710c5ff818",
+      "draft": "d2e75489e50fc1483bbf6c0e76f6ce7cc1a37554fdad25833a7dcd7baa63f96a",
+      "eol": "LF"
+    },
+    {
+      "path": "FreeMix/ferramentas/audio-buses-producao.mjs",
+      "baseline": "1e2897859efa25c9699e1e64cf628d9a9e2c9f9f50a30a7bb17cc7e7bf40cbd5",
+      "draft": "f53fff2aee94e51c36751350aea90151da86dfa7d821212ee4b2b14c302cb91c",
+      "eol": "LF"
+    },
+    {
+      "path": "FreeMix/painel/remoto/audio-buses.js",
+      "baseline": "bb5aca29b52fe55f66ac892547da61f5c4c2ef08c76886ead324198736ad3f8f",
+      "draft": "d5173ff3418b85b675e297c1b1b13db9837dec95fcac712b949792422548e706",
+      "eol": "LF"
+    }
+  ],
+  "RootModels": 25,
+  "syntaxChecks": 2,
+  "NativeBuilt": false,
+  "NativeExecuted": false,
+  "operatorTouched": false,
+  "DirectOutDirtyFormPending": true,
+  "newPackageApproved": false
+}

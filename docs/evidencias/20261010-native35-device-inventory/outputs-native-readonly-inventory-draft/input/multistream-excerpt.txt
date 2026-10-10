@@ -1,0 +1,184 @@
+ void ClearView(){sourceAudio.reset();if(view){obs_view_remove(view);obs_view_set_source(view,0,nullptr);obs_view_destroy(view);view=nullptr;}scene=nullptr;}
+ ~NetworkMedia(){ClearView();}
+};
+std::map<std::string, OBSOutputAutoRelease> networkOutputs;
+std::map<std::string,std::unique_ptr<NetworkMedia>> networkMedia;
+// GUI thread: startup/explicit start probes SDKs; state only reads these flags.
+bool networkOmtSdkAvailable=false,networkNdiSdkAvailable=false;
+void RetireStoppedNetworkMedia(obs_output_t *output,NetworkMedia &media)
+{
+ // Same terminal predicate/sequence as the former request cleanup.
+ if(!(output&&obs_output_active(output))&&(media.view||media.sourceAudio)){
+  if(output)obs_output_set_media(output,obs_get_video(),obs_get_audio());
+  media.ClearView();
+ }
+}
+void StopNetworkOutputs()
+{
+ FreeMixCallVideoStop();
+ freemix_omt_hdr::StopAll();
+ freemix_srt_hdr::StopAll();
+ // Force stop/join the raw plugin callbacks before destroying their video view.
+ for(auto &entry:networkOutputs)if(entry.second&&obs_output_active(entry.second))obs_output_force_stop(entry.second);
+ networkOutputs.clear();networkMedia.clear();freemix_sdi::Stop();
+}
+void RequestFadeToBlack(obs_data_t *request,obs_data_t *response,void *)
+{
+ const QPointer<OBSBasic> main=OBSBasic::Get();
+ const auto fail=[response](){obs_data_set_bool(response,"success",false);obs_data_set_string(response,"error","O FreeMix está encerrando ou mudou de contexto. Nenhum FTB será enviado.");};
+ if(!main||frontendClosing){fail();return;}
+ const auto work=[main,request,response,fail](){if(!main||frontendClosing||main->isClosing()){fail();return;}main->FreeMixFadeToBlackRequest(request,response);};
+ if(QThread::currentThread()==main->thread())work();
+ else if(!QMetaObject::invokeMethod(main.data(),work,Qt::BlockingQueuedConnection))fail();
+}
+
+void RequestFinalProgramGate(obs_data_t *request,obs_data_t *response,void *)
+{
+ const QPointer<OBSBasic> main=OBSBasic::Get();
+ const auto fail=[response](){obs_data_set_bool(response,"success",false);obs_data_set_string(response,"error","O FreeMix está encerrando ou mudou de contexto. Nenhum FTB será enviado.");};
+ if(!main||frontendClosing){fail();return;}
+ const auto work=[main,request,response,fail](){if(!main||frontendClosing||main->isClosing()){fail();return;}main->FreeMixFinalProgramGateRequest(request,response);};
+ if(QThread::currentThread()==main->thread())work();
+ else if(!QMetaObject::invokeMethod(main.data(),work,Qt::BlockingQueuedConnection))fail();
+}
+
+void RequestSdiOutput(obs_data_t *request,obs_data_t *response,void *){QMetaObject::invokeMethod(OBSBasic::Get(),[=](){if(frontendClosing){obs_data_set_bool(response,"success",false);return;}freemix_sdi::Request(request,response,IsPrivateSource);},Qt::BlockingQueuedConnection);}
+void RequestSrtHdrOutput(obs_data_t *request,obs_data_t *response,void *){
+ auto *main=OBSBasic::Get();if(!main){obs_data_set_bool(response,"success",false);return;}
+ const auto work=[=](){if(frontendClosing){obs_data_set_bool(response,"success",false);obs_data_set_string(response,"error","frontend is closing or changing context");return;}freemix_srt_hdr::Request(request,response,IsPrivateSource);};
+
+void Describe(obs_data_t *out)
+{
+	OBSDataArrayAutoRelease list = obs_data_array_create();
+	{
+		std::lock_guard<std::recursive_mutex> lock(destinationsMutex);
+		for (const Destination &d : destinations) {
+			OBSDataAutoRelease item = obs_data_create();
+			obs_data_set_string(item, "name", d.name.c_str());
+			obs_data_set_string(item, "server", d.server.c_str());
+			obs_data_set_string(item, "key", d.key.c_str());
+			obs_data_set_bool(item, "enabled", d.enabled);
+			obs_data_set_string(item, "state", d.state.c_str());
+			obs_data_set_string(item, "error", d.error.c_str());
+			WriteVideoConfig(item, d);
+			obs_data_set_bool(item, "active", d.output && obs_output_active(d.output));
+			obs_data_set_bool(item, "recording", !d.recordPath.empty() && d.output);
+			obs_data_set_string(item, "renderedUuid", d.renderedUuid.c_str());
+			obs_data_set_int(item,"encodedWidth",d.alphaMode=="packed"?d.width*2:d.width);obs_data_set_int(item,"encodedHeight",d.height);obs_data_set_string(item,"alphaLayout",d.alphaMode=="packed"?"fill-left-key-right":d.alphaMode=="fill"?"fill-only":d.alphaMode=="key"?"key-only":"none");
+			obs_data_array_push_back(list, item);
+		}
+	}
+	obs_data_set_array(out, "destinations", list);
+	obs_data_set_bool(out, "main_active", !frontendClosing && obs_frontend_streaming_active());
+	obs_data_set_int(out, "max", (long long)kMaxDestinations);
+	obs_data_set_bool(out, "independentVideo", true);
+	obs_data_set_bool(out, "independentAudio", true);
+	obs_data_set_bool(out,"audioSourceSelectable",true);
+	const bool srt444=OutputLoaded("ffmpeg_mpegts_muxer")&&obs_get_encoder_type("obs_x264")==OBS_ENCODER_VIDEO&&KnownVideoCodec(obs_get_encoder_codec("obs_x264"));
+	obs_data_set_bool(out,"srtChroma444Supported",srt444);obs_data_set_bool(out,"srtPackedAlphaSupported",srt444);obs_data_set_int(out,"srtPackedAlphaMaxWidth",1920);obs_data_set_string(out,"srt444Encoder","obs_x264");obs_data_set_string(out,"srtAlphaLayout","fill-left-key-right");
+	obs_data_set_bool(out,"srtPackedAlpha420Supported",srt444);
+	obs_data_set_bool(out,"srtSeparateAlphaSupported",srt444);obs_data_set_bool(out,"srtSeparateFillKeySupported",srt444);obs_data_set_string(out,"srtSeparateFillKeyEncoder","obs_x264");obs_data_set_string(out,"srtSeparateFillKeyChroma","420");obs_data_set_bool(out,"srtSeparateFillKeyFrameLocked",false);obs_data_set_bool(out,"srtSeparateKeyAudioSilent",true);
+	OBSDataAutoRelease videoTransports=FreeMixVideoTransports();obs_data_set_obj(out,"videoTransports",videoTransports);
+	OBSDataArrayAutoRelease audioSources=obs_data_array_create();
+	obs_enum_sources([](void *param,obs_source_t *source){if(FreeMixAudioBusAllowed(source)){OBSDataAutoRelease row=obs_data_create();obs_data_set_string(row,"uuid",obs_source_get_uuid(source));obs_data_set_string(row,"name",obs_source_get_name(source));obs_data_array_push_back(static_cast<obs_data_array_t *>(param),row);}return true;},audioSources.Get());
+	obs_data_set_array(out,"audioSources",audioSources);
+	OBSDataArrayAutoRelease encoders = obs_data_array_create(); const char *encoderId;
+	for (size_t i=0; obs_enum_encoder_types(i, &encoderId); i++) {
+		const char *codec = obs_get_encoder_codec(encoderId);
+		if (!KnownVideoCodec(codec) || obs_get_encoder_type(encoderId)!=OBS_ENCODER_VIDEO||(obs_get_encoder_caps(encoderId)&(OBS_ENCODER_CAP_INTERNAL|OBS_ENCODER_CAP_DEPRECATED))) continue;
+		OBSDataAutoRelease item = obs_data_create(); obs_data_set_string(item,"id",encoderId);
+		obs_data_set_string(item,"codec",codec);
+		obs_data_set_string(item,"name",obs_encoder_get_display_name(encoderId)); obs_data_array_push_back(encoders,item);
+	}
+	obs_data_set_array(out,"encoders",encoders);
+	OBSDataArrayAutoRelease protocols=obs_data_array_create();
+	for(const char *protocol:{"rtmp","rtmps","srt","rist","hls"}){
+		const std::string p=protocol;const char *type=p=="hls"?"ffmpeg_hls_muxer":p=="srt"||p=="rist"?"ffmpeg_mpegts_muxer":"rtmp_output";
+		OBSDataAutoRelease row=obs_data_create();obs_data_set_string(row,"id",protocol);obs_data_set_string(row,"outputId",type);obs_data_set_bool(row,"available",OutputLoaded(type));
+		obs_data_set_string(row,"videoCodecs",obs_get_output_supported_video_codecs(type));obs_data_set_string(row,"audioCodecs",obs_get_output_supported_audio_codecs(type));obs_data_set_bool(row,"enhancedRtmp",p=="rtmp"||p=="rtmps");obs_data_array_push_back(protocols,row);
+	}
+	obs_data_set_array(out,"protocols",protocols);obs_data_set_array(out,"recordingVideoCodecs",CodecList(obs_get_output_supported_video_codecs("ffmpeg_muxer")));obs_data_set_int(out,"capabilitiesVersion",2);obs_data_set_string(out,"hlsService","freemix_hls");
+	obs_video_info info; if(obs_get_video_info(&info)) { obs_data_set_int(out,"fpsNum",info.fps_num); obs_data_set_int(out,"fpsDen",info.fps_den); }
+	obs_data_set_int(out,"maxFpsDivisor",8); obs_data_set_bool(out,"overlaySelection",true);
+}
+
+void EmitChanged()
+  return true;
+ }, nullptr);
+}
+
+void OnFrontendEvent(enum obs_frontend_event event, void *)
+{
+	switch (event) {
+	case OBS_FRONTEND_EVENT_SCENE_COLLECTION_CLEANUP:
+  frontendClosing=true;
+  if(auto *main=OBSBasic::Get())main->ResetFreeMixFtbContext();
+  if(talkTimer)talkTimer->stop();
+  StopNetworkOutputs(); StopAll();
+  for(auto &mix:independentMixes){ClearIndependentTransition(mix);mix.programUuid.clear();mix.previewUuid.clear();}
+  FreeMixCallAudioStop(); talkLease.clear();
+  break;
+	case OBS_FRONTEND_EVENT_PREVIEW_SCENE_CHANGED:
+	case OBS_FRONTEND_EVENT_SCENE_CHANGED:
+		RefreshProgramVideos();
+		break;
+	case OBS_FRONTEND_EVENT_SCENE_COLLECTION_CHANGED:
+  StopNetworkOutputs();
+  StopAll();
+  for(auto &mix:independentMixes){ClearIndependentTransition(mix);mix.programUuid.clear();mix.previewUuid.clear();}
+  RestorePrivateDirector();
+  LoadIndependentMix(); frontendClosing=false; if(talkTimer)talkTimer->start(100);
+  break;
+	case OBS_FRONTEND_EVENT_FINISHED_LOADING:
+		frontendClosing=false;
+		RegisterVendor();
+  for(QDockWidget *dock : OBSBasic::Get()->findChildren<QDockWidget *>()) {
+   if(dock->objectName()=="Menu_extraBrowser"||dock->objectName()=="Mesa_extraBrowser") {
+    auto *title=new QWidget(dock);title->setFixedHeight(0);dock->setTitleBarWidget(title);
+    if(dock->objectName()=="Menu_extraBrowser") dock->setFixedHeight(24);
+   }
+  }
+  RestorePrivateDirector();
+		Load();
+		break;
+	case OBS_FRONTEND_EVENT_PROFILE_CHANGING:
+  frontendClosing=true; if(auto *main=OBSBasic::Get())main->ResetFreeMixFtbContext(); if(talkTimer)talkTimer->stop();
+  StopNetworkOutputs();
+		StopAll();
+  for(auto &mix:independentMixes){ClearIndependentTransition(mix);mix.programUuid.clear();mix.previewUuid.clear();}
+		break;
+	case OBS_FRONTEND_EVENT_PROFILE_CHANGED:
+		frontendClosing=false; if(talkTimer)talkTimer->start(100);
+		Load();
+		EmitChanged();
+		break;
+	case OBS_FRONTEND_EVENT_STREAMING_STARTED:
+		Apply();
+		break;
+	case OBS_FRONTEND_EVENT_STREAMING_STOPPING:
+	case OBS_FRONTEND_EVENT_STREAMING_STOPPED:
+	case OBS_FRONTEND_EVENT_EXIT:
+  if(event==OBS_FRONTEND_EVENT_EXIT){frontendClosing=true;if(talkTimer)talkTimer->stop();}
+  if(event==OBS_FRONTEND_EVENT_EXIT)StopNetworkOutputs();
+  FreeMixCallAudioStop();
+  talkLease.clear(); ApplyTalkback(false);
+		StopAll();
+  if(event==OBS_FRONTEND_EVENT_EXIT){for(auto &mix:independentMixes){ClearIndependentTransition(mix);mix.programUuid.clear();mix.previewUuid.clear();}}
+		break;
+	default:
+		break;
+	}
+}
+
+} // namespace
+
+bool FreeMixMultistreamDrainSrtHdr(unsigned timeoutMs)
+{
+ // Existing guarded close/profile/collection/video-reset callsites also drain Calls.
+ if(frontendDrainActive)return false; // Nested context change must not clear outer gate.
+ if(!FreeMixCallVideoPending()&&!freemix_srt_hdr::Pending())return true;
+ auto *main=OBSBasic::Get();if(!main||QThread::currentThread()!=main->thread())return false;
+ frontendDrainActive=true;
+ const bool wasClosing=frontendClosing.exchange(true);
+ const uint64_t started=os_gettime_ns();
+ const bool callsDone=FreeMixCallVideoDrain(timeoutMs);

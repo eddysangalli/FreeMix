@@ -1,0 +1,1 @@
+{"status":"HARNESS_ASSERTION_FAILED","location":"Native getter source guard","expected":1,"actual":2,"cause":"Regex Asio() also matched suffix DiscoverAsio(); token word-boundary required. No product behavior failure established.","correction":"Only harness regex uses \\bAsio\\(\\); product unchanged.","nativeExecuted":false}

@@ -1,0 +1,24 @@
+{
+  "status": "PASS_OFFSIDE_SOURCE_AND_VM_ONLY",
+  "checks": 13,
+  "details": [
+    "Native default getter cannot invoke properties/apply/proc/refresh",
+    "SDK probes live in explicit refresh function; state response and Describe use getter",
+    "Refresh cannot save/create/start and lifecycle invalidates only JSON",
+    "Cold polling unknown with zero SDK probes; unknown never known-empty",
+    "Successful explicit empty inventory is known-empty; copies cannot modify cache",
+    "Failed probe preserves last snapshot but refuses usability; plugin missing/FPS mismatch refuse",
+    "Reset/reentrant context change prevents stale probe publish",
+    "SDR coldunknown then refresh preserves nonfirst saved plate/mode/keyer; no opening write",
+    "No saved selection picks no first plate; only explicit refresh dispatches refresh",
+    "HDR coldunknown\u00e2\u2020\u2019fresh restores savednonfirst mode/source, config unchanged",
+    "HDR dirty edit survives failedprobe/missing source/mode, stays disabled with no implicit fallback",
+    "Plugin absent keeps saved choice unknown; no unsupported/hardwareabsence claim",
+    "Backend refresh uses existing explicit command branch; no configure/SDK command from read"
+  ],
+  "NativeExecuted": false,
+  "SDKExecuted": false,
+  "APIStarted": false,
+  "BrowserStarted": false,
+  "compiled": false
+}

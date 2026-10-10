@@ -1,0 +1,327 @@
+[
+  {
+    "path": "FULL-NATIVE35-BUILD-FREEZE.json",
+    "bytes": 373561,
+    "sha256": "2bfcc32434df9d1a485dbe5534496e1e51bb738b63fcf0dc2badbd1993a3edb7"
+  },
+  {
+    "path": "root-sdi-readonly-review.json",
+    "bytes": 3484,
+    "sha256": "99d488ea94ad0de72e1b4d3699f54d10d1bf57fda023df8f6359603d0b3c7acc"
+  },
+  {
+    "path": "root-sdi-readonly-integration.json",
+    "bytes": 1819,
+    "sha256": "c4198eb6e47c3f7267720d4d2150b3df722f49bd11862a5d6d42942b29966d5c"
+  },
+  {
+    "path": "root-audio-readonly-integration.json",
+    "bytes": 1854,
+    "sha256": "f70ca2af686b3627d083418e849e644b64215445090092df340e6181f4a11236"
+  },
+  {
+    "path": "root-audio-readonly-review-20261010--CHECKS.json",
+    "bytes": 1903,
+    "sha256": "2a99fd8fb255c375c4182d8eba11d69f76e17c7eac9d58823ca510f58f530d92"
+  },
+  {
+    "path": "review-integrate-audio-readonly-root.mjs",
+    "bytes": 3100,
+    "sha256": "e655c513a9faa0c8770a2e986fb0c03122a19a064aa591076abb0a45b5af43b6"
+  },
+  {
+    "path": "outputs-native-readonly-inventory-draft/ALLOWLIST.json",
+    "bytes": 5290,
+    "sha256": "c8a3ead1bae68ff303402313ed0cc786f49391095ec6871b56b83a464baab3d4"
+  },
+  {
+    "path": "outputs-native-readonly-inventory-draft/AGY-DISPOSITION.json",
+    "bytes": 577,
+    "sha256": "b7a6ba809c6c82dc2601b6400bff2e4717caa21fc34ec0b17c2eada2b4eb8153"
+  },
+  {
+    "path": "outputs-native-readonly-inventory-draft/AGY-START.json",
+    "bytes": 326,
+    "sha256": "1c05515a551e8d6a9526570a9781f7404639cc874ee3d45b94f5fddb8bc9234b"
+  },
+  {
+    "path": "outputs-native-readonly-inventory-draft/DEVELOPMENT-FAIL.json",
+    "bytes": 339,
+    "sha256": "dabcd2dbbd13d187ca7cdf530466cda374fe14a0786d81d0238a0c854c6a943c"
+  },
+  {
+    "path": "outputs-native-readonly-inventory-draft/draft/FreeMix/ferramentas/saidas-producao.mjs",
+    "bytes": 13790,
+    "sha256": "043db7e2f2291ed49a1a93cb1da4d4cdb3692580d7accce44d359a694f1ec3c8"
+  },
+  {
+    "path": "outputs-native-readonly-inventory-draft/draft/FreeMix/painel/remoto/saidas-sdi-hdr-ui.js",
+    "bytes": 7482,
+    "sha256": "082f392df7ed83b565b3f56b1726e9346014249b6dd51c2ca22fda7a18de900b"
+  },
+  {
+    "path": "outputs-native-readonly-inventory-draft/draft/FreeMix/painel/remoto/saidas.js",
+    "bytes": 18851,
+    "sha256": "e55935f45e3dad1d5878a696f6a366f37bec40954dd073344fa2abab4842c23c"
+  },
+  {
+    "path": "outputs-native-readonly-inventory-draft/draft/freemix-app/frontend/widgets/FreeMixMultistream.cpp",
+    "bytes": 124688,
+    "sha256": "802439c9f65d62a5881c8e61588740992f6ef526bbd9dc6b95822e06ddb737eb"
+  },
+  {
+    "path": "outputs-native-readonly-inventory-draft/draft/freemix-app/frontend/widgets/FreeMixSdiOutput.hpp",
+    "bytes": 11609,
+    "sha256": "8a6219642a7cd32be07f5f114563931f3f156759f1c5555cf15c5e9276d49516"
+  },
+  {
+    "path": "outputs-native-readonly-inventory-draft/draft/freemix-app/frontend/widgets/FreeMixVideoTransports.hpp",
+    "bytes": 7148,
+    "sha256": "42354ea379f1a381db856df025e6272efaa19e1f7fb840ab4818bbd9ac4221a6"
+  },
+  {
+    "path": "outputs-native-readonly-inventory-draft/freeze.py",
+    "bytes": 4081,
+    "sha256": "8c810ae0252f55d2856afab7a3c691aca8701c8644e336e5ac13ffcff107306a"
+  },
+  {
+    "path": "outputs-native-readonly-inventory-draft/input/decklink-properties-excerpt.txt",
+    "bytes": 3554,
+    "sha256": "7cddc6750effda401c5efc95154d6b5e21caf51b56f709e24072455a4aa3c968"
+  },
+  {
+    "path": "outputs-native-readonly-inventory-draft/input/FreeMixMultistream.cpp",
+    "bytes": 124583,
+    "sha256": "61df658a8ff6f4cf5252e7689899891564de8284aaf6fa383d9786d37afd8576"
+  },
+  {
+    "path": "outputs-native-readonly-inventory-draft/input/FreeMixSdiOutput.hpp",
+    "bytes": 10570,
+    "sha256": "41c519b334ba53d0e6c92a15fcb44a9ffbca79a27db20b5bd552db0567e008f6"
+  },
+  {
+    "path": "outputs-native-readonly-inventory-draft/input/FreeMixVideoTransports.hpp",
+    "bytes": 3592,
+    "sha256": "54c8633951bc1091892d7cb4127bc3b7bd58ac0561af51c48fe27bb290fca52a"
+  },
+  {
+    "path": "outputs-native-readonly-inventory-draft/input/multistream-excerpt.txt",
+    "bytes": 11325,
+    "sha256": "a1b1111213b26b32b834882ef745a7131971d90470a461b88473a17b82963555"
+  },
+  {
+    "path": "outputs-native-readonly-inventory-draft/input/saidas-producao.mjs",
+    "bytes": 13780,
+    "sha256": "4014d7d5fabd30e2851852f0e8cf6d599aaec9c454fc1c73b05d9d0a355452f3"
+  },
+  {
+    "path": "outputs-native-readonly-inventory-draft/input/saidas-sdi-hdr-ui.js",
+    "bytes": 6185,
+    "sha256": "4033a009da2d8b443e7ac84c82c766bf9bfa64eb9cf2a40f038362921bbc1c78"
+  },
+  {
+    "path": "outputs-native-readonly-inventory-draft/input/saidas.js",
+    "bytes": 17057,
+    "sha256": "0d32bbf483c19c193e66d4eaf2df866498ce3a49b36e1ae6e8d8dfbd8132c246"
+  },
+  {
+    "path": "outputs-native-readonly-inventory-draft/MODEL-RESULT.json",
+    "bytes": 1375,
+    "sha256": "b759a82857e9b49b3c97c716c40bd1dfaa3b37fb5a13b2d4d9b5f85f1d819177"
+  },
+  {
+    "path": "outputs-native-readonly-inventory-draft/patches/FreeMixMultistream.cpp.patch",
+    "bytes": 590,
+    "sha256": "5437e47b46605239736a7494113270d71046e41414f359d8e8cb510ed0eb61f7"
+  },
+  {
+    "path": "outputs-native-readonly-inventory-draft/patches/FreeMixSdiOutput.hpp.patch",
+    "bytes": 4647,
+    "sha256": "e38927784302dbe27a9eb7ce5a8a63e3186ca5cd70e37c2bb1728fbf7363fb8f"
+  },
+  {
+    "path": "outputs-native-readonly-inventory-draft/patches/FreeMixVideoTransports.hpp.patch",
+    "bytes": 7096,
+    "sha256": "b97a914b4e691b5d8cb2deabf9cb184723845ccca64c497dac9dbc0a790dd8ce"
+  },
+  {
+    "path": "outputs-native-readonly-inventory-draft/patches/saidas-producao.mjs.patch",
+    "bytes": 3363,
+    "sha256": "e6646797a5182b8ac5b432b894ab3f0bfc89a642db36282a463194b8c1133b22"
+  },
+  {
+    "path": "outputs-native-readonly-inventory-draft/patches/saidas-sdi-hdr-ui.js.patch",
+    "bytes": 7070,
+    "sha256": "7b7734e8805524df679706d8e8a9b019872d0a0d448922e4c86374e30ae3da77"
+  },
+  {
+    "path": "outputs-native-readonly-inventory-draft/patches/saidas.js.patch",
+    "bytes": 8517,
+    "sha256": "947f2833e04639254e166b1d50fe8d224a46f16b8f2966efbdd1fba486e8218f"
+  },
+  {
+    "path": "outputs-native-readonly-inventory-draft/prepare.py",
+    "bytes": 16619,
+    "sha256": "077de5498fcd08f2afb5a2f382f8dc962388aab42a64748e04d23b0e92b000af"
+  },
+  {
+    "path": "outputs-native-readonly-inventory-draft/README.md",
+    "bytes": 4242,
+    "sha256": "aae5340efb588ed9fb0db03583580d64191c214f7e1afc1ee518ad349b8709a8"
+  },
+  {
+    "path": "outputs-native-readonly-inventory-draft/RECEIPT.json",
+    "bytes": 394,
+    "sha256": "cbca05417135163356fa754164385c2146bea8c22b2bc67272a2163d11795f10"
+  },
+  {
+    "path": "outputs-native-readonly-inventory-draft/SOURCE-PINS.json",
+    "bytes": 3919,
+    "sha256": "b4f30b954c6155b81fecca174fed068a96f86c83c945266a26c094c6016010b9"
+  },
+  {
+    "path": "outputs-native-readonly-inventory-draft/TARGETS.json",
+    "bytes": 2991,
+    "sha256": "eef90eb05c7457f19612f8e8372eb106abab3a3cdbf7bf8b62d3526403f4ffe2"
+  },
+  {
+    "path": "outputs-native-readonly-inventory-draft/test.mjs",
+    "bytes": 12018,
+    "sha256": "e70b33f36adb2f45dd8edb3ae0aba84354fd33f8ab87a6b0410446b94daa6ba5"
+  },
+  {
+    "path": "asio-capabilities-readonly-offside-20261010/ALLOWLIST.json",
+    "bytes": 7404,
+    "sha256": "134153503a642e7fb4b4c5bbfe685f89c515045dca3107249643b928d1019160"
+  },
+  {
+    "path": "asio-capabilities-readonly-offside-20261010/AGY-EXCERPTS-RESULT.json",
+    "bytes": 231,
+    "sha256": "24f6fdcea63fcc75ddc09bcd2d8b0ee753a47d2f25eebde8ab906f8522198e59"
+  },
+  {
+    "path": "asio-capabilities-readonly-offside-20261010/AGY-EXCERPTS-STDERR.txt",
+    "bytes": 80,
+    "sha256": "91a83375e30fca91552adef44f401ebb83705a8f337d30c95102844dd0d73ab9"
+  },
+  {
+    "path": "asio-capabilities-readonly-offside-20261010/AGY-LAUNCH-FAIL.json",
+    "bytes": 455,
+    "sha256": "006822f24472f3dae9be2130bbf941c5b0c001e1245429e61f25b65468b4c470"
+  },
+  {
+    "path": "asio-capabilities-readonly-offside-20261010/AGY-RESULT.json",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "asio-capabilities-readonly-offside-20261010/AGY-STDERR.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "asio-capabilities-readonly-offside-20261010/baseline/FreeMix/ferramentas/audio-buses-producao.mjs",
+    "bytes": 14388,
+    "sha256": "1e2897859efa25c9699e1e64cf628d9a9e2c9f9f50a30a7bb17cc7e7bf40cbd5"
+  },
+  {
+    "path": "asio-capabilities-readonly-offside-20261010/baseline/FreeMix/painel/remoto/audio-buses.js",
+    "bytes": 9666,
+    "sha256": "bb5aca29b52fe55f66ac892547da61f5c4c2ef08c76886ead324198736ad3f8f"
+  },
+  {
+    "path": "asio-capabilities-readonly-offside-20261010/baseline/freemix-app/frontend/widgets/FreeMixAsioOutput.cpp",
+    "bytes": 11251,
+    "sha256": "a1fba1dc1c3491cb491fa482825034e24e15d1781c8cfac241af0405e19de389"
+  },
+  {
+    "path": "asio-capabilities-readonly-offside-20261010/baseline/freemix-app/frontend/widgets/FreeMixAsioOutput.hpp",
+    "bytes": 2598,
+    "sha256": "1dbc298c8cc8737252f2b37bc927977524107f33531aca5990da925013dfb4a3"
+  },
+  {
+    "path": "asio-capabilities-readonly-offside-20261010/baseline/freemix-app/frontend/widgets/FreeMixAudioRouting.cpp",
+    "bytes": 23292,
+    "sha256": "697b61c9e11c6372339649f74272bc52c7f56389a3dc9c13f67536710c5ff818"
+  },
+  {
+    "path": "asio-capabilities-readonly-offside-20261010/BRIEF.txt",
+    "bytes": 3754,
+    "sha256": "1e7096b1f68d3e5122b3bcaa0ac7994b8699ed435e66be60cd2acca59f3e0add"
+  },
+  {
+    "path": "asio-capabilities-readonly-offside-20261010/CHECKS.json",
+    "bytes": 1903,
+    "sha256": "2a99fd8fb255c375c4182d8eba11d69f76e17c7eac9d58823ca510f58f530d92"
+  },
+  {
+    "path": "asio-capabilities-readonly-offside-20261010/draft/FreeMix/ferramentas/audio-buses-producao.mjs",
+    "bytes": 15765,
+    "sha256": "f53fff2aee94e51c36751350aea90151da86dfa7d821212ee4b2b14c302cb91c"
+  },
+  {
+    "path": "asio-capabilities-readonly-offside-20261010/draft/FreeMix/painel/remoto/audio-buses.js",
+    "bytes": 12395,
+    "sha256": "d5173ff3418b85b675e297c1b1b13db9837dec95fcac712b949792422548e706"
+  },
+  {
+    "path": "asio-capabilities-readonly-offside-20261010/draft/freemix-app/frontend/widgets/FreeMixAsioOutput.cpp",
+    "bytes": 11595,
+    "sha256": "280b736bd8d4f73db5b24f1c0f5b61e1a283e4310c6cf7e9708f5d7899c69f18"
+  },
+  {
+    "path": "asio-capabilities-readonly-offside-20261010/draft/freemix-app/frontend/widgets/FreeMixAsioOutput.hpp",
+    "bytes": 2614,
+    "sha256": "930f527df28177ff18edf7f1419d1fed277ca9f91504b6601e38bd0a97569702"
+  },
+  {
+    "path": "asio-capabilities-readonly-offside-20261010/draft/freemix-app/frontend/widgets/FreeMixAudioRouting.cpp",
+    "bytes": 29379,
+    "sha256": "d2e75489e50fc1483bbf6c0e76f6ce7cc1a37554fdad25833a7dcd7baa63f96a"
+  },
+  {
+    "path": "asio-capabilities-readonly-offside-20261010/EXCERPTS-PROMPT.txt",
+    "bytes": 24172,
+    "sha256": "836f9981c8e9c36573b904add410a92851553d84f5c9e512d82d1818ac61b7aa"
+  },
+  {
+    "path": "asio-capabilities-readonly-offside-20261010/FIRST-CHECK-FAIL.json",
+    "bytes": 328,
+    "sha256": "cbd7e01f007ebaf3dcb6dd1467bf5cef4d641e5333af3c856994441cf4fb91da"
+  },
+  {
+    "path": "asio-capabilities-readonly-offside-20261010/freeze.py",
+    "bytes": 1368,
+    "sha256": "e591c23eb7ec281556071775d2e5e0c88d09ad0fcbfeb3ca2174c1bb736bd350"
+  },
+  {
+    "path": "asio-capabilities-readonly-offside-20261010/materialize.py",
+    "bytes": 20570,
+    "sha256": "b8d1de4ee50de63af39537939dbab7e037359c45d31931c2ab9ded29ec4061cc"
+  },
+  {
+    "path": "asio-capabilities-readonly-offside-20261010/PRODUCT-PINS.json",
+    "bytes": 1297,
+    "sha256": "747fde325ef9b0a720c379fcc2e92126ae50c8b4d21e18f7a56f1cb8be07d06b"
+  },
+  {
+    "path": "asio-capabilities-readonly-offside-20261010/README.md",
+    "bytes": 5987,
+    "sha256": "5e933df75349d50a2e75a14a70d2dd4b019ec4ec9b987c5eaf447070e897c253"
+  },
+  {
+    "path": "asio-capabilities-readonly-offside-20261010/readonly-asio.patch",
+    "bytes": 58680,
+    "sha256": "fa310cf7243459c9caff71c1d4f70727fbf599e80513ddca2db747036ac0ba35"
+  },
+  {
+    "path": "asio-capabilities-readonly-offside-20261010/REVIEW-NOTES.json",
+    "bytes": 894,
+    "sha256": "b3ef4a17b85f3ed5755fe2382fb8afea210f62dce91ceca2fdc9d657cb0d7f42"
+  },
+  {
+    "path": "asio-capabilities-readonly-offside-20261010/test.mjs",
+    "bytes": 12942,
+    "sha256": "ddcd3bdbde0106a678a2e9285b89f21ef2071c446a0fb3749729d394f554a7b2"
+  }
+]

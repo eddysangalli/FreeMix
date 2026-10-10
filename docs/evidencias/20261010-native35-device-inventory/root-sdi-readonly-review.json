@@ -1,0 +1,71 @@
+{
+  "status": "ROOT_SDI_READONLY_SOURCE_REVIEW_AND_13_MODELS_PASS",
+  "at": "2026-10-10T17:41:49.461Z",
+  "allowlistSha256": "c8a3ead1bae68ff303402313ed0cc786f49391095ec6871b56b83a464baab3d4",
+  "targets": [
+    {
+      "path": "freemix-app/frontend/widgets/FreeMixVideoTransports.hpp",
+      "before": "54c8633951bc1091892d7cb4127bc3b7bd58ac0561af51c48fe27bb290fca52a",
+      "after": "42354ea379f1a381db856df025e6272efaa19e1f7fb840ab4818bbd9ac4221a6"
+    },
+    {
+      "path": "freemix-app/frontend/widgets/FreeMixSdiOutput.hpp",
+      "before": "41c519b334ba53d0e6c92a15fcb44a9ffbca79a27db20b5bd552db0567e008f6",
+      "after": "8a6219642a7cd32be07f5f114563931f3f156759f1c5555cf15c5e9276d49516"
+    },
+    {
+      "path": "freemix-app/frontend/widgets/FreeMixMultistream.cpp",
+      "before": "61df658a8ff6f4cf5252e7689899891564de8284aaf6fa383d9786d37afd8576",
+      "after": "802439c9f65d62a5881c8e61588740992f6ef526bbd9dc6b95822e06ddb737eb"
+    },
+    {
+      "path": "FreeMix/ferramentas/saidas-producao.mjs",
+      "before": "4014d7d5fabd30e2851852f0e8cf6d599aaec9c454fc1c73b05d9d0a355452f3",
+      "after": "043db7e2f2291ed49a1a93cb1da4d4cdb3692580d7accce44d359a694f1ec3c8"
+    },
+    {
+      "path": "FreeMix/painel/remoto/saidas.js",
+      "before": "0d32bbf483c19c193e66d4eaf2df866498ce3a49b36e1ae6e8d8dfbd8132c246",
+      "after": "e55935f45e3dad1d5878a696f6a366f37bec40954dd073344fa2abab4842c23c"
+    },
+    {
+      "path": "FreeMix/painel/remoto/saidas-sdi-hdr-ui.js",
+      "before": "4033a009da2d8b443e7ac84c82c766bf9bfa64eb9cf2a40f038362921bbc1c78",
+      "after": "082f392df7ed83b565b3f56b1726e9346014249b6dd51c2ca22fda7a18de900b"
+    }
+  ],
+  "modelResult": {
+    "status": "PASS_OFFSIDE_SOURCE_AND_VM_ONLY",
+    "checks": 13,
+    "details": [
+      "Native default getter cannot invoke properties/apply/proc/refresh",
+      "SDK probes live in explicit refresh function; state response and Describe use getter",
+      "Refresh cannot save/create/start and lifecycle invalidates only JSON",
+      "Cold polling unknown with zero SDK probes; unknown never known-empty",
+      "Successful explicit empty inventory is known-empty; copies cannot modify cache",
+      "Failed probe preserves last snapshot but refuses usability; plugin missing/FPS mismatch refuse",
+      "Reset/reentrant context change prevents stale probe publish",
+      "SDR coldunknown then refresh preserves nonfirst saved plate/mode/keyer; no opening write",
+      "No saved selection picks no first plate; only explicit refresh dispatches refresh",
+      "HDR coldunknown→fresh restores savednonfirst mode/source, config unchanged",
+      "HDR dirty edit survives failedprobe/missing source/mode, stays disabled with no implicit fallback",
+      "Plugin absent keeps saved choice unknown; no unsupported/hardwareabsence claim",
+      "Backend refresh uses existing explicit command branch; no configure/SDK command from read"
+    ],
+    "NativeExecuted": false,
+    "SDKExecuted": false,
+    "APIStarted": false,
+    "BrowserStarted": false,
+    "compiled": false
+  },
+  "NativeBuilt": false,
+  "NativeExecuted": false,
+  "operatorTouched": false,
+  "integrated": false,
+  "limits": [
+    "Driver probes remain explicit operations, never qualified as pure reads",
+    "Known cached inventory is last probe metadata, not hotplug or physical verification",
+    "Preserved SDR/HDR choices require explicit validation before sending",
+    "Existing profile/config scope behavior unchanged"
+  ]
+}

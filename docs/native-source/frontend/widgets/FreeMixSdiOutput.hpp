@@ -34,10 +34,11 @@ inline void Request(obs_data_t *request,obs_data_t *response,bool (*isPrivate)(o
  if(action=="configure"){
   if(active)error="Pare SDI antes de configurar";
   else{OBSDataAutoRelease proposed=obs_data_get_obj(request,"config");if(!proposed)error="Configuração SDI ausente";else{
-   OBSDataAutoRelease transports=FreeMixVideoTransports(),deck=obs_data_get_obj(transports,"decklink");OBSDataArrayAutoRelease devices=obs_data_get_array(deck,"devices");bool valid=false;
+   OBSDataAutoRelease transports=FreeMixRefreshVideoTransportInventory(),deck=obs_data_get_obj(transports,"decklink");OBSDataArrayAutoRelease devices=obs_data_get_array(deck,"devices");bool valid=false;
    for(size_t n=0;n<obs_data_array_count(devices);n++){OBSDataAutoRelease device=obs_data_array_item(devices,n);if(std::string(obs_data_get_string(device,"hash"))!=obs_data_get_string(proposed,"deviceHash"))continue;OBSDataArrayAutoRelease modes=obs_data_get_array(device,obs_data_get_bool(proposed,"hdr")?"hdrModes":"modes"),keyers=obs_data_get_array(device,"keyers");bool mode=false,key=false;for(size_t i=0;i<obs_data_array_count(modes);i++){OBSDataAutoRelease v=obs_data_array_item(modes,i);mode|=obs_data_get_int(v,"value")==obs_data_get_int(proposed,"modeId");}for(size_t i=0;i<obs_data_array_count(keyers);i++){OBSDataAutoRelease v=obs_data_array_item(keyers,i);key|=obs_data_get_int(v,"value")==obs_data_get_int(proposed,"keyer");}valid=mode&&key;}
    OBSSourceAutoRelease selected=obs_get_source_by_uuid(obs_data_get_string(proposed,"sourceUuid"));
    if(selected&&isPrivate(selected))error="SDI recusado: fonte contém áudio privado";
+   else if(!obs_data_get_bool(deck,"inventorySnapshotUsable")||!obs_data_get_bool(deck,"inventoryProbeAccepted"))error="Inventário SDI desconhecido, contexto alterado ou sondagem inconclusiva; consulte placas e modos explicitamente";
    else if(!valid)error="Dispositivo, modo FPS ou keyer SDI não anunciado pelo driver";
    else if(obs_data_get_bool(proposed,"hdr"))error=HdrPreflight(proposed,isPrivate,hdrProof);
    else if(obs_data_get_int(proposed,"audioTrack")<0||obs_data_get_int(proposed,"audioTrack")>2)error="Áudio SDI deve ser Master/A/B ou UUID de bus isolado";
@@ -60,7 +61,13 @@ inline void Request(obs_data_t *request,obs_data_t *response,bool (*isPrivate)(o
     if(!error.empty())Stop();
    }
   }
- }else if(action=="preflight"){OBSDataAutoRelease proposed=obs_data_get_obj(request,"config");auto *c=proposed?proposed.Get():config.Get();if(!obs_data_get_bool(c,"hdr"))error="Preflight HDR requer HDR habilitado";else error=HdrPreflight(c,isPrivate,hdrProof);
+ }else if(action=="refresh"){
+  if(active)error="Pare SDI antes de consultar placas e modos";
+  else{OBSDataAutoRelease transports=FreeMixRefreshVideoTransportInventory(),deck=obs_data_get_obj(transports,"decklink");if(!obs_data_get_bool(deck,"inventorySnapshotUsable")||!obs_data_get_bool(deck,"inventoryProbeAccepted"))error="Sondagem SDI inconclusiva ou contexto alterado; inventário não confirmado";}
+ }else if(action=="preflight"){OBSDataAutoRelease proposed=obs_data_get_obj(request,"config");auto *c=proposed?proposed.Get():config.Get();
+  if(active)error="Pare SDI antes de verificar fonte e driver";
+  else if(!obs_data_get_bool(c,"hdr"))error="Preflight HDR requer HDR habilitado";
+  else{OBSDataAutoRelease transports=FreeMixRefreshVideoTransportInventory(),deck=obs_data_get_obj(transports,"decklink");if(!obs_data_get_bool(deck,"inventorySnapshotUsable")||!obs_data_get_bool(deck,"inventoryProbeAccepted"))error="Inventário SDI desconhecido, contexto alterado ou sondagem inconclusiva";else error=HdrPreflight(c,isPrivate,hdrProof);}
  }else if(action=="stop")Stop();else if(action!="state")error="Ação SDI inválida";
  obs_data_set_obj(response,"hdrPreflight",hdrProof);obs_data_set_bool(response,"hdrAlphaSupported",false);obs_data_set_bool(response,"physicalHdrVerified",false);
  struct Sources{obs_data_array_t *rows;bool (*privateSource)(obs_source_t *);};OBSDataArrayAutoRelease hdrSources=obs_data_array_create();Sources list{hdrSources.Get(),isPrivate};auto enumerate=[](void *p,obs_source_t *s){auto &l=*static_cast<Sources *>(p);const auto cs=obs_source_get_color_space(s,0,nullptr);if(!l.privateSource(s)&&(cs==GS_CS_709_EXTENDED||cs==GS_CS_709_SCRGB)&&obs_source_get_width(s)&&obs_source_get_height(s)){OBSDataAutoRelease row=obs_data_create();obs_data_set_string(row,"uuid",obs_source_get_uuid(s));obs_data_set_string(row,"name",obs_source_get_name(s));obs_data_array_push_back(l.rows,row);}return true;};obs_enum_sources(enumerate,&list);obs_enum_scenes(enumerate,&list);obs_data_set_array(response,"hdrSources",hdrSources);

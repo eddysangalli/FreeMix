@@ -141,6 +141,7 @@ void StopNetworkOutputs()
  // Force stop/join the raw plugin callbacks before destroying their video view.
  for(auto &entry:networkOutputs)if(entry.second&&obs_output_active(entry.second))obs_output_force_stop(entry.second);
  networkOutputs.clear();networkMedia.clear();freemix_sdi::Stop();
+ FreeMixResetVideoTransportInventory(); // metadata only; profile/collection/exit invalidate, never scan
 }
 void RequestFadeToBlack(obs_data_t *request,obs_data_t *response,void *)
 {

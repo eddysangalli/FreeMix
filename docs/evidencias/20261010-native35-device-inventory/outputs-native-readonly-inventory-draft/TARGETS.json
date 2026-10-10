@@ -1,0 +1,55 @@
+{
+  "status": "OFFSIDE_PENDING_ROOT_REVIEW_NO_BUILD_OR_RUNTIME",
+  "targets": [
+    {
+      "path": "freemix-app/frontend/widgets/FreeMixVideoTransports.hpp",
+      "beforeSha256": "54c8633951bc1091892d7cb4127bc3b7bd58ac0561af51c48fe27bb290fca52a",
+      "afterSha256": "42354ea379f1a381db856df025e6272efaa19e1f7fb840ab4818bbd9ac4221a6",
+      "patch": "patches/FreeMixVideoTransports.hpp.patch",
+      "patchSha256": "b97a914b4e691b5d8cb2deabf9cb184723845ccca64c497dac9dbc0a790dd8ce",
+      "draft": "draft/freemix-app/frontend/widgets/FreeMixVideoTransports.hpp"
+    },
+    {
+      "path": "freemix-app/frontend/widgets/FreeMixSdiOutput.hpp",
+      "beforeSha256": "41c519b334ba53d0e6c92a15fcb44a9ffbca79a27db20b5bd552db0567e008f6",
+      "afterSha256": "8a6219642a7cd32be07f5f114563931f3f156759f1c5555cf15c5e9276d49516",
+      "patch": "patches/FreeMixSdiOutput.hpp.patch",
+      "patchSha256": "e38927784302dbe27a9eb7ce5a8a63e3186ca5cd70e37c2bb1728fbf7363fb8f",
+      "draft": "draft/freemix-app/frontend/widgets/FreeMixSdiOutput.hpp"
+    },
+    {
+      "path": "freemix-app/frontend/widgets/FreeMixMultistream.cpp",
+      "beforeSha256": "61df658a8ff6f4cf5252e7689899891564de8284aaf6fa383d9786d37afd8576",
+      "afterSha256": "802439c9f65d62a5881c8e61588740992f6ef526bbd9dc6b95822e06ddb737eb",
+      "patch": "patches/FreeMixMultistream.cpp.patch",
+      "patchSha256": "5437e47b46605239736a7494113270d71046e41414f359d8e8cb510ed0eb61f7",
+      "draft": "draft/freemix-app/frontend/widgets/FreeMixMultistream.cpp"
+    },
+    {
+      "path": "FreeMix/ferramentas/saidas-producao.mjs",
+      "beforeSha256": "4014d7d5fabd30e2851852f0e8cf6d599aaec9c454fc1c73b05d9d0a355452f3",
+      "afterSha256": "043db7e2f2291ed49a1a93cb1da4d4cdb3692580d7accce44d359a694f1ec3c8",
+      "patch": "patches/saidas-producao.mjs.patch",
+      "patchSha256": "e6646797a5182b8ac5b432b894ab3f0bfc89a642db36282a463194b8c1133b22",
+      "draft": "draft/FreeMix/ferramentas/saidas-producao.mjs"
+    },
+    {
+      "path": "FreeMix/painel/remoto/saidas.js",
+      "beforeSha256": "0d32bbf483c19c193e66d4eaf2df866498ce3a49b36e1ae6e8d8dfbd8132c246",
+      "afterSha256": "e55935f45e3dad1d5878a696f6a366f37bec40954dd073344fa2abab4842c23c",
+      "patch": "patches/saidas.js.patch",
+      "patchSha256": "947f2833e04639254e166b1d50fe8d224a46f16b8f2966efbdd1fba486e8218f",
+      "draft": "draft/FreeMix/painel/remoto/saidas.js"
+    },
+    {
+      "path": "FreeMix/painel/remoto/saidas-sdi-hdr-ui.js",
+      "beforeSha256": "4033a009da2d8b443e7ac84c82c766bf9bfa64eb9cf2a40f038362921bbc1c78",
+      "afterSha256": "082f392df7ed83b565b3f56b1726e9346014249b6dd51c2ca22fda7a18de900b",
+      "patch": "patches/saidas-sdi-hdr-ui.js.patch",
+      "patchSha256": "7b7734e8805524df679706d8e8a9b019872d0a0d448922e4c86374e30ae3da77",
+      "draft": "draft/FreeMix/painel/remoto/saidas-sdi-hdr-ui.js"
+    }
+  ],
+  "nativeHeadExpected": "a73b97c",
+  "canonicalModified": false
+}

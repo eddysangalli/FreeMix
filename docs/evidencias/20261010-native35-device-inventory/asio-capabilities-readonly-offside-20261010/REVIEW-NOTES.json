@@ -1,0 +1,10 @@
+{
+  "reviewer":"/root/installer_exe",
+  "scope":"independent source review, no runtime",
+  "initialFindings":["WASAPI enumerator remained in getter","known removed driver could auto-select another driver","unknown inventory prevented existing Direct Out stop","lifecycle must register at Configure before context switch"],
+  "addressedInDraft":["separate HRESULT/partial-aware WASAPI cache, explicit scan only","disabled missing selection preserved and listed-ID configure guard","verified existing-filter disable without inventory/settings/create","InitLifecycle on explicit session creation; getter peek only"],
+  "reviewerDisposition":"Initial getter blockers removed; lifecycle/watchdog adequate in source; Direct pending dirty-form/profile behavior remains inherited limitation, not claimed fixed.",
+  "checks":"25 CPU + 2 syntax PASS",
+  "nativeCompiled":false,
+  "nativeRuntime":false
+}

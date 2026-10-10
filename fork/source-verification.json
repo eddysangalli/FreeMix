@@ -1,8 +1,8 @@
 {
   "status": "PASS",
   "base": "ba2f32bdf791005443988a4955e963663e16b1ed",
-  "head": "a73b97cefd8904191d73dae8693f425fac02e897",
-  "resultTree": "2c675aa471e8b72c4e1a026f8831a7c4a1b99caa",
+  "head": "5b680a17a1db65c66ce6a696f1da8ca69d29f49e",
+  "resultTree": "2239ec5600ac59b8579bf34cd6dae2b5ffc05d41",
   "submodules": [
     {
       "path": "deps/libdshowcapture/src",
@@ -197,18 +197,18 @@
     },
     {
       "path": "frontend/widgets/FreeMixAsioOutput.cpp",
-      "bytes": 11251,
-      "sha256": "a1fba1dc1c3491cb491fa482825034e24e15d1781c8cfac241af0405e19de389"
+      "bytes": 11595,
+      "sha256": "280b736bd8d4f73db5b24f1c0f5b61e1a283e4310c6cf7e9708f5d7899c69f18"
     },
     {
       "path": "frontend/widgets/FreeMixAsioOutput.hpp",
-      "bytes": 2598,
-      "sha256": "1dbc298c8cc8737252f2b37bc927977524107f33531aca5990da925013dfb4a3"
+      "bytes": 2614,
+      "sha256": "930f527df28177ff18edf7f1419d1fed277ca9f91504b6601e38bd0a97569702"
     },
     {
       "path": "frontend/widgets/FreeMixAudioRouting.cpp",
-      "bytes": 23292,
-      "sha256": "697b61c9e11c6372339649f74272bc52c7f56389a3dc9c13f67536710c5ff818"
+      "bytes": 29379,
+      "sha256": "d2e75489e50fc1483bbf6c0e76f6ce7cc1a37554fdad25833a7dcd7baa63f96a"
     },
     {
       "path": "frontend/widgets/FreeMixAudioRouting.hpp",
@@ -302,8 +302,8 @@
     },
     {
       "path": "frontend/widgets/FreeMixMultistream.cpp",
-      "bytes": 124583,
-      "sha256": "61df658a8ff6f4cf5252e7689899891564de8284aaf6fa383d9786d37afd8576"
+      "bytes": 124688,
+      "sha256": "802439c9f65d62a5881c8e61588740992f6ef526bbd9dc6b95822e06ddb737eb"
     },
     {
       "path": "frontend/widgets/FreeMixMultistream.hpp",
@@ -377,8 +377,8 @@
     },
     {
       "path": "frontend/widgets/FreeMixSdiOutput.hpp",
-      "bytes": 10570,
-      "sha256": "41c519b334ba53d0e6c92a15fcb44a9ffbca79a27db20b5bd552db0567e008f6"
+      "bytes": 11609,
+      "sha256": "8a6219642a7cd32be07f5f114563931f3f156759f1c5555cf15c5e9276d49516"
     },
     {
       "path": "frontend/widgets/FreeMixSrtAlpha.hpp",
@@ -397,8 +397,8 @@
     },
     {
       "path": "frontend/widgets/FreeMixVideoTransports.hpp",
-      "bytes": 3592,
-      "sha256": "54c8633951bc1091892d7cb4127bc3b7bd58ac0561af51c48fe27bb290fca52a"
+      "bytes": 7148,
+      "sha256": "42354ea379f1a381db856df025e6272efaa19e1f7fb840ab4818bbd9ac4221a6"
     },
     {
       "path": "frontend/widgets/OBSBasic.cpp",

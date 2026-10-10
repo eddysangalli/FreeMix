@@ -1,0 +1,30 @@
+(() => {
+ const panel=E('sdi-panel');if(!panel)return;
+ const values={redX:.708,redY:.292,greenX:.170,greenY:.797,blueX:.131,blueY:.046,whiteX:.3127,whiteY:.329,maxMastering:1000,minMastering:.0001,maxContent:1000,maxAverage:400};
+ const names={redX:'Primária vermelha x',redY:'Primária vermelha y',greenX:'Primária verde x',greenY:'Primária verde y',blueX:'Primária azul x',blueY:'Primária azul y',whiteX:'Branco x',whiteY:'Branco y',maxMastering:'Mastering máximo (nits)',minMastering:'Mastering mínimo (nits)',maxContent:'MaxCLL (nits)',maxAverage:'MaxFALL (nits)'};
+ panel.insertAdjacentHTML('beforeend',`<details id="sdi-hdr-panel"><summary>SDI HDR · PQ / HLG opaco</summary><p>Selecione diretamente uma fonte HDR. A mesa SDR não se transforma em HDR. Esta saída preserva a renderização em float e converte para RGB de 10 bits na última etapa. O driver precisa anunciar SDI, modo Rec.2020, formato RGB10 e metadados HDR; a placa e o receptor ainda precisam de homologação física.</p><label>Fonte HDR própria<select id="sdi-hdr-source"></select></label><label>Modo e FPS próprios do driver<select id="sdi-hdr-mode"></select></label><label>Transferência<select id="sdi-hdr-transfer"><option value="pq">PQ · BT.2100</option><option value="hlg">HLG · BT.2100</option></select></label><details><summary>Metadados do conteúdo · revisar antes de confirmar</summary><p>Os valores abaixo são sugestões editáveis. Use os metadados de mastering reais do conteúdo; o FreeMix não os detecta automaticamente. Primárias e branco usam coordenadas CIE x/y.</p>${Object.entries(values).map(([key,value])=>`<label>${names[key]}<input id="sdi-hdr-${key}" type="number" step="any" value="${value}"></label>`).join('')}</details><label class="check"><input id="sdi-hdr-confirm" type="checkbox">Conferi os metadados reais do conteúdo e a transferência do receptor.</label><p>HDR usa keyer desligado e vídeo opaco. Alpha / Fill+Key continuam no modo SDR. O áudio utiliza a seleção Master/A/B ou bus independente acima.</p><div class="row"><button id="sdi-hdr-preflight">Verificar fonte e driver</button><button id="sdi-hdr-configure">Salvar HDR</button><button id="sdi-hdr-start">Ligar HDR salvo</button></div><p id="sdi-hdr-status" role="status"></p></details>`);
+ let dirty=false,signature='',message='';
+ const fields=['source','mode','transfer','confirm',...Object.keys(values)];
+ for(const field of fields)E('sdi-hdr-'+field).addEventListener('change',()=>{dirty=true;message='Alterações HDR ainda não salvas';paint();});
+ for(const id of ['sdi-device','sdi-audio'])E(id).addEventListener('change',()=>{dirty=true;message='Dispositivo, modo ou áudio alterado; salve a configuração HDR';paint();});
+ function paint(){
+  const state=outputs?.sdi||{},config=state.config||{},supported=state.capabilities?.decklink?.hdrOutputImplemented,source=E('sdi-hdr-source'),rows=state.hdrSources||[],sig=JSON.stringify(rows),old=source.value;
+  if(source.dataset.signature!==sig){source.dataset.signature=sig;source.innerHTML=rows.length?rows.map(s=>`<option value="${esc(s.uuid)}">${esc(s.name)}</option>`).join(''):'<option value="">Nenhuma fonte HDR reconhecida</option>';if(rows.some(s=>s.uuid===old))source.value=old;}
+  const mode=E('sdi-hdr-mode'),modes=state.capabilities?.decklink?.devices?.find(d=>d.hash===E('sdi-device').value)?.hdrModes||[],modeSig=JSON.stringify([E('sdi-device').value,modes]),oldMode=mode.value;if(mode.dataset.signature!==modeSig){mode.dataset.signature=modeSig;mode.innerHTML=modes.map(m=>`<option value="${m.value}">${esc(m.name)}</option>`).join('');if(modes.some(m=>String(m.value)===oldMode))mode.value=oldMode;}
+  const saved=JSON.stringify(config);
+  if(!dirty&&saved!==signature&&config.hdr)mode.value=String(config.modeId);
+  if(!dirty&&saved!==signature){signature=saved;if(config.hdr){if(!rows.some(s=>s.uuid===config.sourceUuid))source.add(new Option('Fonte salva indisponível',config.sourceUuid));source.value=config.sourceUuid;E('sdi-hdr-transfer').value=config.hdrTransfer;for(const key of Object.keys(values))if(config.hdrMetadata?.[key]!==undefined)E('sdi-hdr-'+key).value=config.hdrMetadata[key];E('sdi-hdr-confirm').checked=config.hdrMetadata?.confirmed===true;}}
+  for(const field of fields)E('sdi-hdr-'+field).disabled=!!state.active;
+  for(const action of ['configure','preflight'])E('sdi-hdr-'+action).disabled=!supported||!!state.active||!source.value;
+  E('sdi-hdr-start').disabled=!supported||!!state.active||dirty||!config.hdr;
+  // Avoid a button labelled SDR starting a persisted HDR route.
+  E('sdi-start').hidden=!!config.hdr;E('sdi-configure').textContent=config.hdr?'Salvar seleção acima como SDR':'Salvar SDI';
+  const proof=state.hdrPreflight||{};
+  E('sdi-hdr-status').textContent=message||(!supported?'Motor/DeckLink ainda não oferece o contrato HDR':state.active&&config.hdr?'SDI HDR ativo · '+String(config.hdrTransfer).toUpperCase()+' · homologação física pendente':proof.success?'Driver confirmou '+proof.width+'×'+proof.height+' · RGB10 / Rec.2020; nenhuma saída iniciou':'HDR parado · revise metadados e verifique o driver');
+ }
+ async function action(command){const audio=E('sdi-audio').value,hdrMetadata={confirmed:E('sdi-hdr-confirm').checked};for(const key of Object.keys(values))hdrMetadata[key]=Number(E('sdi-hdr-'+key).value);
+  try{await cmd('outputs_sdi',{command,hdr:true,keyer:0,deviceHash:E('sdi-device').value,modeId:Number(E('sdi-hdr-mode').value),sourceUuid:E('sdi-hdr-source').value,hdrTransfer:E('sdi-hdr-transfer').value,hdrMetadata,audioTrack:audio.startsWith('bus:')?0:Number(audio),audioSourceUuid:audio.startsWith('bus:')?audio.slice(4):''});if(command==='configure'){dirty=false;signature='';}message=command==='preflight'?'Fonte e driver confirmados para HDR. Nenhuma saída iniciou.':command==='configure'?'HDR salvo. Clique Ligar HDR salvo para enviar.':'Motor confirmou SDI HDR ligado; confira o sinal físico.';}catch(error){message=error.message;}paint();
+ }
+ for(const command of ['preflight','configure','start'])E('sdi-hdr-'+command).onclick=()=>action(command);
+ const previous=paintStatus;paintStatus=function(){previous();paint();};paint();
+})();

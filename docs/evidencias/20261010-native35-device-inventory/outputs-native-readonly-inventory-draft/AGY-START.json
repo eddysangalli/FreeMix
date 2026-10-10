@@ -1,0 +1,9 @@
+{
+  "toolsRequested": false,
+  "startedAt": "2026-10-10T17:25:14.7530997Z",
+  "model": "gemini-3.8-flash-high",
+  "mode": "plan",
+  "runtimeAuthorized": false,
+  "cwd": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\outputs-native-readonly-inventory-draft",
+  "status": "AGY_INLINE_IMPLEMENTATION_INVOKED"
+}

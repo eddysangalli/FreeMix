@@ -1,12 +1,12 @@
 # Pendências reais — visão atual em 10/10/2026
 
-**Entrega aprovada:0.1.0-local.20261010060000 / Native24, imutável. Fonte atual Native34 e DLL LocalVocal cumulativa são QA/fonte, sem novo instalador aprovado.** Os PASS abaixo têm escopo finito; o histórico posterior não substitui esta visão vigente.
+**Entrega aprovada:0.1.0-local.20261010060000 / Native24, imutável. Fonte atual Native35 e DLL LocalVocal cumulativa são QA/fonte, sem novo instalador aprovado.** Os PASS abaixo têm escopo finito; o histórico posterior não substitui esta visão vigente.
 
 ## Software que ainda exige trabalho ou prova
 
 | Prioridade / frente | Estado comprovado | Trabalho concreto e critério | Quem pode provar / condição |
 |---|---|---|---|
-| P0 — abrir menus sem executar comandos | Guard idle e feedback UUID integrados; Native34 network/talkback getters separados,40checks/buildPASS. App32R2FAIL preservado; App34 real ainda não executado. | Repetir cinco telas/polling comrun0 e snapshots iguais, sem omitir manutenção/driver desconhecido; provar watchdog/start-stop e depois Preview/Cut/ACK/latência/persistência. | Root integra e executa QA própria; não atribuir nomes às duas ações antigas do ledgerOTHER/saturado nem classificar fonte nova como PASS real. |
+| P0 — abrir menus sem executar comandos | Network/talkback cacheados34; áudio/SDI cacheados35,38modelos Root/build/reconstruçãoPASS. App32R2FAIL e App34BLOCKED preservados. | Finalizar dirty-form DirectOut e derivar App35; repetir cinco telas/polling comrun0 e snapshots iguais. Só depois Preview/Cut/ACK/latência/persistência/watchdog. | Root executa QA própria; inventários não certificam drivers nem autorização de scan. Native35 real ainda pendente. |
 | P0 — Calls A/V | Vídeo/RGB/CEF e áudio sintético recebido têm provas separadas; drift9,778863ms/sFAIL. | Coletar metadata recebida/pinos/cleanup e correlacionar flash→callback/RTP com codec observado. Só então implementar correção causal e repetir mesmos bounds. Depois integrar/qualificar PCM Native/N-1/talkback e VDO real. | Root aprova uma execução exclusiva; agente analisa clock/draft. Campos ausentes ficam desconhecidos; submittedPTS/packetloss0 não aprovam A/V. ContínuoOFF. |
 | P1 — RNNoise | Filtro criado/readback confirmado; Master real/preset/limitador/restauraçãoPASS. Redução1,0358dB<3:FAIL. | Isolar PCM antes/depois, bordas da captura e parâmetros reais mantendo fixture/3dB. Corrigir apenas causa reproduzida e repetir restauração/zero corrupção. Não substituir estímulo/meta para passar. | Root executa captura digital própria; agente diagnostica fonte/oracle. Não exige microfone/hardware para esta lacuna digital. |
 | P1 — LocalVocal vivo | Português próprio3/5PASS no critério finito; close ordinário após remover/desabilitar filtros passou0. DLL cumulativa somente QA. | Ensaio separado com filtro ainda vivo/inferência em curso, cancelamento real/cooperativo, fonte/contexts liberados, exit0/alloc0/crash0 e pins.17casos negativos/inglês ainda não qualificados. | Root integra/build e executa QA exclusiva; agente prepara cenários/patch após evidência. Não atribuir todas35alocações antigas a um único leak nem inferir cancelamento pelo log pós-whisper. |
@@ -39,7 +39,7 @@ Revisão Root deste topo: GitHub98d4bad. Duas ações de abertura têm caminho e
 
 # Pendências reais do FreeMix
 
-Entrega selecionada: **0.1.0-local.20261010060000, Native24/a047860**, imutável. Fonte atual Native34/a73b97c compilada viaALL_BUILD e congelada:2085arquivos,34patches/3submódulos/231snapshots reconstruídos. Cursor retido integrado; reinício NTSC real33 PASS no cursor, fullFTB ainda pendente. Ainda não há novo instalador aprovado. Native30/93d73e2 e candidato093000/FAIL permanecem históricos.
+Entrega selecionada: **0.1.0-local.20261010060000, Native24/a047860**, imutável. Fonte atual Native35/5b680a1 compilada viaALL_BUILD e congelada:2085arquivos,35patches/3submódulos/231snapshots reconstruídos. Cursor retido integrado; reinício NTSC real33 PASS no cursor, fullFTB ainda pendente. Ainda não há novo instalador aprovado. Native30/93d73e2 e candidato093000/FAIL permanecem históricos.
 
 | Frente | Prova atual | Falta concreta |
 |---|---|---|
@@ -149,3 +149,12 @@ Um RESTART próprio,196samples completos:1634→1634(retido/inválido,epoch2)→
 Root integrou uma fonte após40checks: network/state sem inserir mapas/criar output-view-áudio/carregarSDK/aposentar mídia; capacidade cacheada no startup/start explícito. Timer e writes conservam aposentadoria terminal. talkback/state deixa expiração ao watchdog existente. Configure/ALL_BUILD/2085frozen+rehash/34patches/3submódulos/231snapshots/reconstruçãoPASS. Fonte 0.1.0-local.20261010171617 somenteDEV; nenhum Native34 iniciado nesta rodada. SDK real, scheduler/readonlyApp34/Preview-Cut/latência/persistência/fechamento continuam gates. Sem relaxar zero mutação.
 
 Antigravity priorizado: implementação headless recusada/vazia/truncada nos limites finitos, fallback declarado; isso não é prova de falta de cota. Revisões curtas inline do Gemini concluíram54,5s/89s sem ferramentas. LocalVocal telemetria OFF/CMake e Calls result-order continuam drafts/preparações, sem build ou prova de cancelamento/AV. Setup600 selecionado e imutável. [Build, fonte e limites](evidencias/20261010-native34-readonly-state/ROOT-README.md).
+
+
+## Native35 — inventários explícitos de áudio e SDI; compilado, teste real pendente
+
+Root integrou onze arquivos de produto (seis Native/cinco painel) após repetir25modelos áudio e13SDI e verificar as revisões independentes. Leituras de áudio usam inventários cacheados sem criar sessão/timer ASIO nem enumerador WASAPI. Atualizar dispositivos consulta explicitamente. SDI/destinos leem cache; Consultar placas e modos faz refresh explícito e configure/start revalidam. IDs salvos ausentes permanecem indisponíveis, sem escolher outro driver automaticamente. Parar Direct Out existente continua possível sem inventário e sem criar filtro. Configure ASIO registra imediatamente invalidação de perfil/coleção; watchdog permanece.
+
+Native35 5b680a17a1db65c66ce6a696f1da8ca69d29f49e ALL_BUILD/2085arquivos rehash/35patches/3submódulos/231snapshots/reconstrução--checkPASS. Fonte 0.1.0-local.20261010175421 somenteDEV. Nenhum Native35 iniciado. App34 bloqueado original preservado; App35 precisa snapshot/classificação atual e QA real com zero comandos/mutações ao abrir menus. Dirty-form DirectOut está em revisão separada: polling ainda pode sobrescrever uma escolha pendente até essa correção. Não há prova física de ASIO/SDI/HDR, hotplug ou latência/watchdog. Flags de inventário não certificam hardware.
+
+Gemini foi priorizado: áudio recebeu resposta vazia/exit0 e SDI timeout vazio; fallback operacional documentado, sem alegar cota. Revisão compacta de áudio retornou2334bytes/31,9s e recebeu crítica independente. Setup600 permanece selecionado e imutável. [Fontes, pinos e limites](evidencias/20261010-native35-device-inventory/ROOT-README.md).

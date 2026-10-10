@@ -1,0 +1,160 @@
+{
+  "status": "FROZEN_DRAFT_NO_NATIVE_EXECUTION",
+  "files": [
+    {
+      "path": "AGY-DISPOSITION.json",
+      "sha256": "b7a6ba809c6c82dc2601b6400bff2e4717caa21fc34ec0b17c2eada2b4eb8153",
+      "bytes": 577
+    },
+    {
+      "path": "AGY-START.json",
+      "sha256": "1c05515a551e8d6a9526570a9781f7404639cc874ee3d45b94f5fddb8bc9234b",
+      "bytes": 326
+    },
+    {
+      "path": "DEVELOPMENT-FAIL.json",
+      "sha256": "dabcd2dbbd13d187ca7cdf530466cda374fe14a0786d81d0238a0c854c6a943c",
+      "bytes": 339
+    },
+    {
+      "path": "draft/FreeMix/ferramentas/saidas-producao.mjs",
+      "sha256": "043db7e2f2291ed49a1a93cb1da4d4cdb3692580d7accce44d359a694f1ec3c8",
+      "bytes": 13790
+    },
+    {
+      "path": "draft/FreeMix/painel/remoto/saidas-sdi-hdr-ui.js",
+      "sha256": "082f392df7ed83b565b3f56b1726e9346014249b6dd51c2ca22fda7a18de900b",
+      "bytes": 7482
+    },
+    {
+      "path": "draft/FreeMix/painel/remoto/saidas.js",
+      "sha256": "e55935f45e3dad1d5878a696f6a366f37bec40954dd073344fa2abab4842c23c",
+      "bytes": 18851
+    },
+    {
+      "path": "draft/freemix-app/frontend/widgets/FreeMixMultistream.cpp",
+      "sha256": "802439c9f65d62a5881c8e61588740992f6ef526bbd9dc6b95822e06ddb737eb",
+      "bytes": 124688
+    },
+    {
+      "path": "draft/freemix-app/frontend/widgets/FreeMixSdiOutput.hpp",
+      "sha256": "8a6219642a7cd32be07f5f114563931f3f156759f1c5555cf15c5e9276d49516",
+      "bytes": 11609
+    },
+    {
+      "path": "draft/freemix-app/frontend/widgets/FreeMixVideoTransports.hpp",
+      "sha256": "42354ea379f1a381db856df025e6272efaa19e1f7fb840ab4818bbd9ac4221a6",
+      "bytes": 7148
+    },
+    {
+      "path": "freeze.py",
+      "sha256": "8c810ae0252f55d2856afab7a3c691aca8701c8644e336e5ac13ffcff107306a",
+      "bytes": 4081
+    },
+    {
+      "path": "input/decklink-properties-excerpt.txt",
+      "sha256": "7cddc6750effda401c5efc95154d6b5e21caf51b56f709e24072455a4aa3c968",
+      "bytes": 3554
+    },
+    {
+      "path": "input/FreeMixMultistream.cpp",
+      "sha256": "61df658a8ff6f4cf5252e7689899891564de8284aaf6fa383d9786d37afd8576",
+      "bytes": 124583
+    },
+    {
+      "path": "input/FreeMixSdiOutput.hpp",
+      "sha256": "41c519b334ba53d0e6c92a15fcb44a9ffbca79a27db20b5bd552db0567e008f6",
+      "bytes": 10570
+    },
+    {
+      "path": "input/FreeMixVideoTransports.hpp",
+      "sha256": "54c8633951bc1091892d7cb4127bc3b7bd58ac0561af51c48fe27bb290fca52a",
+      "bytes": 3592
+    },
+    {
+      "path": "input/multistream-excerpt.txt",
+      "sha256": "a1b1111213b26b32b834882ef745a7131971d90470a461b88473a17b82963555",
+      "bytes": 11325
+    },
+    {
+      "path": "input/saidas-producao.mjs",
+      "sha256": "4014d7d5fabd30e2851852f0e8cf6d599aaec9c454fc1c73b05d9d0a355452f3",
+      "bytes": 13780
+    },
+    {
+      "path": "input/saidas-sdi-hdr-ui.js",
+      "sha256": "4033a009da2d8b443e7ac84c82c766bf9bfa64eb9cf2a40f038362921bbc1c78",
+      "bytes": 6185
+    },
+    {
+      "path": "input/saidas.js",
+      "sha256": "0d32bbf483c19c193e66d4eaf2df866498ce3a49b36e1ae6e8d8dfbd8132c246",
+      "bytes": 17057
+    },
+    {
+      "path": "MODEL-RESULT.json",
+      "sha256": "b759a82857e9b49b3c97c716c40bd1dfaa3b37fb5a13b2d4d9b5f85f1d819177",
+      "bytes": 1375
+    },
+    {
+      "path": "patches/FreeMixMultistream.cpp.patch",
+      "sha256": "5437e47b46605239736a7494113270d71046e41414f359d8e8cb510ed0eb61f7",
+      "bytes": 590
+    },
+    {
+      "path": "patches/FreeMixSdiOutput.hpp.patch",
+      "sha256": "e38927784302dbe27a9eb7ce5a8a63e3186ca5cd70e37c2bb1728fbf7363fb8f",
+      "bytes": 4647
+    },
+    {
+      "path": "patches/FreeMixVideoTransports.hpp.patch",
+      "sha256": "b97a914b4e691b5d8cb2deabf9cb184723845ccca64c497dac9dbc0a790dd8ce",
+      "bytes": 7096
+    },
+    {
+      "path": "patches/saidas-producao.mjs.patch",
+      "sha256": "e6646797a5182b8ac5b432b894ab3f0bfc89a642db36282a463194b8c1133b22",
+      "bytes": 3363
+    },
+    {
+      "path": "patches/saidas-sdi-hdr-ui.js.patch",
+      "sha256": "7b7734e8805524df679706d8e8a9b019872d0a0d448922e4c86374e30ae3da77",
+      "bytes": 7070
+    },
+    {
+      "path": "patches/saidas.js.patch",
+      "sha256": "947f2833e04639254e166b1d50fe8d224a46f16b8f2966efbdd1fba486e8218f",
+      "bytes": 8517
+    },
+    {
+      "path": "prepare.py",
+      "sha256": "077de5498fcd08f2afb5a2f382f8dc962388aab42a64748e04d23b0e92b000af",
+      "bytes": 16619
+    },
+    {
+      "path": "README.md",
+      "sha256": "aae5340efb588ed9fb0db03583580d64191c214f7e1afc1ee518ad349b8709a8",
+      "bytes": 4242
+    },
+    {
+      "path": "RECEIPT.json",
+      "sha256": "cbca05417135163356fa754164385c2146bea8c22b2bc67272a2163d11795f10",
+      "bytes": 394
+    },
+    {
+      "path": "SOURCE-PINS.json",
+      "sha256": "b4f30b954c6155b81fecca174fed068a96f86c83c945266a26c094c6016010b9",
+      "bytes": 3919
+    },
+    {
+      "path": "TARGETS.json",
+      "sha256": "eef90eb05c7457f19612f8e8372eb106abab3a3cdbf7bf8b62d3526403f4ffe2",
+      "bytes": 2991
+    },
+    {
+      "path": "test.mjs",
+      "sha256": "e70b33f36adb2f45dd8edb3ae0aba84354fd33f8ab87a6b0410446b94daa6ba5",
+      "bytes": 12018
+    }
+  ]
+}

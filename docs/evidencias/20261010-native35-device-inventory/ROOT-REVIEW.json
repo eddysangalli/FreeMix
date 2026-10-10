@@ -1,0 +1,27 @@
+{
+  "status": "ROOT_NATIVE35_BUILD_RECONSTRUCTION_PASS_REAL_MENU_QA_PENDING",
+  "at": "2026-10-10T17:55:46.267Z",
+  "head": "5b680a17a1db65c66ce6a696f1da8ca69d29f49e",
+  "version": "0.1.0-local.20261010175421",
+  "freezeSha256": "2bfcc32434df9d1a485dbe5534496e1e51bb738b63fcf0dc2badbd1993a3edb7",
+  "fullFrozenFilesVerified": 2085,
+  "parentPatches": 35,
+  "submodules": 3,
+  "sourceSnapshots": 231,
+  "reconstruction": {
+    "status": "PASS",
+    "checkOnly": true,
+    "networkStarted": false,
+    "parentPatches": 35,
+    "submodules": 3
+  },
+  "RootAudioModels": 25,
+  "RootSdiModels": 13,
+  "Native35Started": false,
+  "App35Qualified": false,
+  "DirectOutDirtyFormPending": true,
+  "hardwareVerified": false,
+  "operatorTouched": false,
+  "newInstallerApproved": false,
+  "selectedSetupChanged": false
+}

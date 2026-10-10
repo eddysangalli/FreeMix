@@ -1,0 +1,14 @@
+{
+  "conversationId": "3379394c-b2b4-4ac9-aaa1-e36a4bb96c45",
+  "cliStatus": "SUCCESS",
+  "nonemptyCompletion": false,
+  "timeoutSeconds": 120,
+  "zeroPatchProduced": true,
+  "classification": "REAL_OPERATIONAL_PRINT_TIMEOUT_NOT_QUOTA_EVIDENCE",
+  "toolsRequested": false,
+  "permissionsChanged": false,
+  "protectionBypassed": false,
+  "fallback": "Codex after timeout/empty response",
+  "rawResultSha256": "5d7a9e361fd0acfdbd12b3687fec44ce72098eab2745bbbcf2c2b7821d252b21",
+  "stderrSha256": "fe172e6515faae7e07ac85a7a1a00e33cf5a006cca976a646972aa6110a5b3ce"
+}

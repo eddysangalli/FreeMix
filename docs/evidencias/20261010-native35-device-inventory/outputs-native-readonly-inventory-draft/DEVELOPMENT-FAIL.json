@@ -1,0 +1,1 @@
+{"status":"PRESERVED_FIRST_PURE_HARNESS_FAIL","cause":"VM extractor included unrelated next network-alpha onchange; fixture had no such element","NativeExecuted":false,"SDKExecuted":false,"productChangedForFailure":false,"repair":"Limit existing one-line paintVideoTransports to its own source line; other real function bodies unchanged"}
