@@ -1,0 +1,15 @@
+{
+  "status": "NATIVE22_QR_TICKER_RECOVERY_SOURCE_PINS_AND_DOCS_PASS",
+  "at": "2026-10-10T03:01:02.710Z",
+  "version": "0.1.0-local.20261010031500",
+  "nativeCommit": "500ced5ea0928453f9f27dc7d5649531e2671e28",
+  "githubCommit": "b078553ec7f125becc1c69cf9a6c1fbe14a1ab73",
+  "sourcePatches": 22,
+  "sourceSnapshots": 188,
+  "sourceSchema": 2,
+  "sourceTree": "5e0da1554f23fe64c2cd3a2b30e0a7b4e41ac00b",
+  "runtimeModules": 101,
+  "productPins": 7,
+  "installedRecoveryPending": true,
+  "operatorTouched": false
+}
