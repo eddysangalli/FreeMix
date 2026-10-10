@@ -42,6 +42,8 @@
 #include <QAccessible>
 #include <QSystemTrayIcon>
 
+#include "FreeMixFtbContract.hpp"
+
 #include <atomic>
 #include <deque>
 
@@ -1556,6 +1558,9 @@ private:
 	bool tBarActive = false;
 
 	OBSSource prevFTBSource = nullptr;
+	freemix_ftb::Policy freeMixFtbPolicy;
+	freemix_ftb::Snapshot FreeMixFtbSnapshot();
+	bool FreeMixTriggerFadeToBlack(const QuickTransition &quick);
 
 	void InitDefaultTransitions();
 	void InitTransition(obs_source_t *transition);
@@ -1598,6 +1603,8 @@ private:
 	void UpdateCurrentTransition(const std::string &uuid, bool setTransition);
 
 public slots:
+	void FreeMixFadeToBlackRequest(obs_data_t *request, obs_data_t *response);
+	void ResetFreeMixFtbContext() { freeMixFtbPolicy.Reset(); }
 	void SetCurrentScene(OBSSource scene, bool force = false);
 
 	void SetTransition(OBSSource transition);

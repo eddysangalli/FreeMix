@@ -1,0 +1,101 @@
+{
+  "status": "ROOT_INTEGRATED_NATIVE25_DRAFT_COMPILE_AND_NATIVE_QA_PENDING",
+  "at": "2026-10-10T06:49:41.664Z",
+  "baseHead": "a04786090fcbe7ede495f18e5ad38ccaa9793478",
+  "fronts": [
+    {
+      "name": "calls-native-continuous-rational-draft",
+      "sha256": "a183644736f2861f2c253580b557692990afe0f3bbe5fc4eaa7dd2f40a88e468"
+    },
+    {
+      "name": "ftb-native-implementation-draft",
+      "sha256": "50bf3e6a88652ee089b211d7293f766a1e39804b541ddc7e801ba742b45b0a9b"
+    },
+    {
+      "name": "native-editor-observability-20261010",
+      "sha256": "04de171a94a4cad64460337c91f133691e90882e3f2df8b5fe4d5a5a8e070a8f"
+    }
+  ],
+  "before": [
+    {
+      "path": "frontend/widgets/FreeMixMultistream.cpp",
+      "sha256": "7c2fa3f2b4c120d1221f7ee6a7cfc3133fbd8f0fedb930736fc6a05876868e71"
+    },
+    {
+      "path": "frontend/widgets/OBSBasic.hpp",
+      "sha256": "b2aa94614a51cae6a155706131001e7a287c4d34c15fa7afa0acf00c60e586d3"
+    },
+    {
+      "path": "frontend/widgets/OBSBasic_Transitions.cpp",
+      "sha256": "2790d1d8dea87c7ce3f1fe69f864e21f2ff228a8a71093656157996a7c6f602e"
+    },
+    {
+      "path": "frontend/widgets/OBSBasic_MainControls.cpp",
+      "sha256": "0bfc2e53ce25524d8cc33689aee5df7f83dce2bda1893172dad6abf682314190"
+    },
+    {
+      "path": "frontend/cmake/ui-widgets.cmake",
+      "sha256": "13972f6fd30d0aa8722a48874860c8c3ddb6176aba4a81a2593439f0d159fd69"
+    }
+  ],
+  "after": [
+    {
+      "path": "frontend/widgets/FreeMixMultistream.cpp",
+      "sha256": "acb98c717b0852bb48be07c0fea20609829a609218a1d6dc2c14a16ca8ce0e68",
+      "bytes": 122334
+    },
+    {
+      "path": "frontend/widgets/OBSBasic.hpp",
+      "sha256": "9b87b7b3d76c8d5b277f85e8c1e5a8e2301cbd59fa998680699cf9466cc9e95a",
+      "bytes": 52239
+    },
+    {
+      "path": "frontend/widgets/OBSBasic_Transitions.cpp",
+      "sha256": "b68b6220aa52aed59761b8bdbd98af6d90b7758483019a82eb94ded8e8ab7f77",
+      "bytes": 53456
+    },
+    {
+      "path": "frontend/widgets/OBSBasic_MainControls.cpp",
+      "sha256": "6d9c8e03f0e56500b88580f2301599e5889c5f24cd7fb589ec68588ba5b2f582",
+      "bytes": 19207
+    },
+    {
+      "path": "frontend/cmake/ui-widgets.cmake",
+      "sha256": "6b301fa573b0c01f286df859ca9a1505338eab1c844c363c4590fb079d34af62",
+      "bytes": 2837
+    },
+    {
+      "path": "frontend/widgets/FreeMixCallVideo.cpp",
+      "sha256": "a4a23fea9a6c499ed3ac77d9d8d8b089ec990b63400d4c9ce6a64f23f24c7078",
+      "bytes": 16644
+    },
+    {
+      "path": "frontend/widgets/FreeMixCallVideo.hpp",
+      "sha256": "ccda759302aaf26615ae184ba2bd18cf3eb399c43394bfb73fcd7175d60c60b7",
+      "bytes": 462
+    },
+    {
+      "path": "frontend/widgets/FreeMixCallVideoPool.hpp",
+      "sha256": "91c30b9b67286bad6ec39777949804ee62ce62e18a1b8f71055633c196261619",
+      "bytes": 3936
+    },
+    {
+      "path": "frontend/widgets/FreeMixCallVideoIpc.hpp",
+      "sha256": "54be404cf78c0f9992b908160d004090127bfd3231175551f9ea6a13a79588d5",
+      "bytes": 2675
+    },
+    {
+      "path": "frontend/widgets/FreeMixCallVideoPolicy.hpp",
+      "sha256": "8476f8ec4802658cc9691bd268c6be340d7970ff2f9e63860f7d97c977a167d9",
+      "bytes": 1643
+    },
+    {
+      "path": "frontend/widgets/FreeMixFtbContract.hpp",
+      "sha256": "e05161eeb157e2cd86bcfd861cf6ac84defde368e71a3f370717bd230d0a241e",
+      "bytes": 4920
+    }
+  ],
+  "operatorTouched": false,
+  "compiled": false,
+  "nativeExecuted": false
+}

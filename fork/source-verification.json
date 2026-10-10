@@ -1,8 +1,8 @@
 {
   "status": "PASS",
   "base": "ba2f32bdf791005443988a4955e963663e16b1ed",
-  "head": "a04786090fcbe7ede495f18e5ad38ccaa9793478",
-  "resultTree": "e67ece9930c4cea0548afa9f3d4f658e0f7814b7",
+  "head": "de136e83595be92162ada8c7adc50f52751bd4ef",
+  "resultTree": "4ad626ccd13cba0d7f13f3ca0fa670bada8425be",
   "submodules": [
     {
       "path": "deps/libdshowcapture/src",
@@ -77,8 +77,8 @@
     },
     {
       "path": "frontend/cmake/ui-widgets.cmake",
-      "bytes": 2573,
-      "sha256": "4f0e1a91caa21243afa619c7cc28270a728922fe0cbe967beadf0a7180239c56"
+      "bytes": 2751,
+      "sha256": "0e39997dd64478835e265c3476ca59a641354e79dc0ab3cc871e4ee051b00d88"
     },
     {
       "path": "frontend/cmake/windows/freemix.ico",
@@ -186,6 +186,31 @@
       "sha256": "ff9f1f66865d5408cbe8943597c7859e4403232675221714b83378d06c095826"
     },
     {
+      "path": "frontend/widgets/FreeMixCallVideo.cpp",
+      "bytes": 16455,
+      "sha256": "fae46a71301e773f4ce35206c562adee554b1cd628398e413e8e5060a5143e5e"
+    },
+    {
+      "path": "frontend/widgets/FreeMixCallVideo.hpp",
+      "bytes": 452,
+      "sha256": "12cf5332ae4fbc976bfc62458244007a9c4f122753529c88f5ad1e981090f225"
+    },
+    {
+      "path": "frontend/widgets/FreeMixCallVideoIpc.hpp",
+      "bytes": 2633,
+      "sha256": "13c88f6e841bce979fb43f0063511e8f270e60f3296841e529d9b279be01adcb"
+    },
+    {
+      "path": "frontend/widgets/FreeMixCallVideoPolicy.hpp",
+      "bytes": 1614,
+      "sha256": "84290b414d31a77534e6c3bc5c931580dd4c1a7dcc013b4bef17119506001d75"
+    },
+    {
+      "path": "frontend/widgets/FreeMixCallVideoPool.hpp",
+      "bytes": 3876,
+      "sha256": "e65c248718ac4f9eeeb1d0bcffe7e7a5955ff88c439f0511b039809cd21cbd11"
+    },
+    {
       "path": "frontend/widgets/FreeMixCenterColumn.cpp",
       "bytes": 15794,
       "sha256": "0496641ce5547cb334ea8743338891a276e77e0fe75bdb1da79ebd5895bc40af"
@@ -206,6 +231,11 @@
       "sha256": "82b05b80a51dc9d19bee6532ddcb0a18cd0403b7f0e6a5bb5205ccbc0ecdb204"
     },
     {
+      "path": "frontend/widgets/FreeMixFtbContract.hpp",
+      "bytes": 4920,
+      "sha256": "e05161eeb157e2cd86bcfd861cf6ac84defde368e71a3f370717bd230d0a241e"
+    },
+    {
       "path": "frontend/widgets/FreeMixGlobalHotkeys.cpp",
       "bytes": 6857,
       "sha256": "66ae79e384ebdf04423bfc4105a2647c357350e389d9f8b01e0efc839d49ec63"
@@ -217,8 +247,8 @@
     },
     {
       "path": "frontend/widgets/FreeMixMultistream.cpp",
-      "bytes": 116066,
-      "sha256": "694589919242f7d9a8c45292f2bc8c8407aa4bccf0abbf300f26cee01645cbc4"
+      "bytes": 120410,
+      "sha256": "f7f3fdc7ba4856d284b60ecbfaf24c9d083edf749c6f6a489f82e1cf20d7ef8b"
     },
     {
       "path": "frontend/widgets/FreeMixMultistream.hpp",
@@ -302,8 +332,8 @@
     },
     {
       "path": "frontend/widgets/OBSBasic.hpp",
-      "bytes": 50172,
-      "sha256": "db060e4a5794967d0316e19323fe31e8c3f88acd8d76e5039747b771a7fc617f"
+      "bytes": 50491,
+      "sha256": "03284b4787d85d65df51d164a7425a0e2902a6be89cc348e134307358412263b"
     },
     {
       "path": "frontend/widgets/OBSBasicStats.cpp",
@@ -317,8 +347,8 @@
     },
     {
       "path": "frontend/widgets/OBSBasic_MainControls.cpp",
-      "bytes": 18289,
-      "sha256": "20d54c8ff57ed09050d6d5b2080f5d7413a565d9145c212cd5994b7123c1bb9d"
+      "bytes": 18476,
+      "sha256": "29fa0ce56a332e3ce3180ec0b4a34dbe731cab2b21355984ed550c853da30a52"
     },
     {
       "path": "frontend/widgets/OBSBasic_Preview.cpp",
@@ -357,8 +387,8 @@
     },
     {
       "path": "frontend/widgets/OBSBasic_Transitions.cpp",
-      "bytes": 43644,
-      "sha256": "7db18c224b892c414da5129dd95e5129e7064cba7e633c780d7498980942ee3b"
+      "bytes": 51743,
+      "sha256": "67ddabe9258b99b26af3fb050521da9c42c3d893f38977d8ea153ff9ccd6cb8e"
     },
     {
       "path": "frontend/widgets/OBSProjector.cpp",

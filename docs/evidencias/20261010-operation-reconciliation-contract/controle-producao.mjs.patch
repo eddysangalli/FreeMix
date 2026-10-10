@@ -1,0 +1,71 @@
+diff --git a/ferramentas/controle-producao.mjs b/ferramentas/controle-producao.mjs
+index a098450..8b74e7c 100644
+--- a/ferramentas/controle-producao.mjs
++++ b/ferramentas/controle-producao.mjs
+@@ -48,7 +48,7 @@ export class Production {
+   req(type,data={}) { const obs=this.getObs(); if(!obs) throw new Error('Sem conexão com o motor FreeMix'); return obs.req(type,data); }
+   async optional(type,data) { try { return await this.req(type,data); } catch { return null; } }
+   async vendor(type,data={},name='downstream-keyer') { const r=await this.req('CallVendorRequest',{vendorName:name,requestType:type,requestData:data}); if(r.responseData?.success===false) throw new Error(`O motor recusou ${type}${r.responseData.error?': '+r.responseData.error:''}`); return r.responseData; }
+-  run(action,data={}) { if(action==='gc_library_import'&&data.payload?.kind==='freemix-gtzip-import'&&data.payload.operation==='update'){if(data.payload.format!==1)return Promise.reject(Error('Formato de importação GTZIP inválido'));return this.runTickerUpdate(data);} if(['preview','active','cut','fade','transition','input_remove'].includes(action))return this.runRealtime(action,data);if(action==='macro_cancel')this.macroEngine.cancel();const p=this.tail.then(async()=>{this.sessionRecovery.beginMutation();try{await this.refresh(); await this.routeLegacyAudio(); await this.execute(action,data); this.macroEngine.recordAction?.(action,data); await this.sessionRecovery.journal(action,data); await this.refresh(); return this.state;}finally{this.sessionRecovery.endMutation();}}); this.tail=p.catch(()=>{}); return p; }
++  run(action,data={}) { if(action==='gc_library_import'&&data.payload?.kind==='freemix-gtzip-import'&&data.payload.operation==='update'){if(data.payload.format!==1)return Promise.reject(Error('Formato de importação GTZIP inválido'));return this.runTickerUpdate(data);} if(['preview','active','cut','fade','transition','ftb','input_remove'].includes(action))return this.runRealtime(action,data);if(action==='macro_cancel')this.macroEngine.cancel();const p=this.tail.then(async()=>{this.sessionRecovery.beginMutation();try{await this.refresh(); await this.routeLegacyAudio(); await this.execute(action,data); this.macroEngine.recordAction?.(action,data); await this.sessionRecovery.journal(action,data); await this.refresh(); return this.state;}finally{this.sessionRecovery.endMutation();}}); this.tail=p.catch(()=>{}); return p; }
+ 
+   runTickerUpdate(data) {
+     const queued=this.tail.then(async()=>{this.sessionRecovery.beginMutation();try{await this.refresh();const scope=this.scope,connection=this.getObs(),assertContext=()=>{if(this.scope!==scope||this.getObs()!==connection)throw Error('Projeto ou conexão mudou; atualização de ticker não enviada');};const dispatched=await dispatchGtTickerUpdate(this.gcLibrary,data.payload,{assertContext});this.gcLibrary.last=dispatched.receipt;this.state={...this.state,gcLibrary:this.gcLibrary.summary()};return {scope,connection,dispatched};}finally{this.sessionRecovery.endMutation();}});
+@@ -64,19 +64,20 @@ export class Production {
+       let operation={id:id||null,action,scope:String(data.expectedScope||this.scope||''),targetKey:data.input||null,targetName:null,receivedAt,startedAt,engineConfirmedAt:null,finishedAt:null,stage:'pending'};
+       const signature=JSON.stringify([action,data.input||'$preview',data.duration??null]);
+       const cacheKey=id?operation.scope+':'+id:null;
+-      this.operationReceipts??=new Map();
++      this.operationReceipts??=new Map();this.operationConnections??=new Map();
+       this.sessionRecovery.beginMutation();
+       try {
+         const previous=cacheKey&&this.operationReceipts.get(cacheKey);
+         if(previous){preservePrevious=true;if(previous.signature!==signature)throw Error('Identificação reutilizada para outro comando');this.state={...this.state,operation:{...previous,replayed:true}};this.publish(this.state);if(previous.stage!=='confirmed')throw Error('Este comando foi recusado ou tem confirmação pendente; não será repetido');return this.state;}
+         operation.signature=signature;
+-        if(cacheKey){if(this.operationReceipts.size>=128){const oldest=[...this.operationReceipts].find(([,r])=>r.stage==='confirmed'||r.stage==='rejected');if(oldest)this.operationReceipts.delete(oldest[0]);else throw Error('Há muitas operações sem confirmação; confira o motor');}this.operationReceipts.set(cacheKey,operation);}
++        if(cacheKey){if(this.operationReceipts.size>=128){const oldest=[...this.operationReceipts].find(([,r])=>r.stage==='confirmed'||r.stage==='rejected');if(oldest){this.operationReceipts.delete(oldest[0]);this.operationConnections.delete(oldest[0]);}else throw Error('Há muitas operações sem confirmação; confira o motor');}this.operationReceipts.set(cacheKey,operation);this.operationConnections.set(cacheKey,connection);}
+         if(!connection||this.getObs()!==connection)throw Error('Conexão mudou antes do comando. Confira o Programa antes de tentar novamente.');
+         await this.prepareRealtime(action,data);
+         if(this.getObs()!==connection)throw Error('Conexão mudou durante a confirmação inicial');
+         const target=data.input?this.scene(data.input):this.state.inputs.find(i=>i.name===this.state.preview);
+         if(!target)throw Error('Entrada removida ou Preview não identificado');
+         Object.assign(operation,{scope:this.scope,targetKey:target.key,targetName:target.name});
++        if(action==='ftb')throw Error('FTB ainda não está disponível pelo controle FreeMix. Use o botão FTB do motor; o atalho não fará uma transição Fade comum.');
+         await this.routeLegacyAudio();
+         if(this.getObs()!==connection)throw Error('Conexão mudou antes de executar');
+         executionStarted=true;await this.execute(action,{...data,input:target.key});operation.engineConfirmedAt=Date.now();
+@@ -90,6 +91,34 @@ export class Production {
+       finally{this.sessionRecovery.endMutation();}
+     });this.tail=p.catch(()=>{});return p;
+   }
++  // Explicit correlated read-only reconciliation; never calls execute/refresh/audio routing.
++  checkOperation({id,scope}={}) {
++    if(!/^[A-Za-z0-9_-]{1,80}$/.test(String(id||''))||typeof scope!=='string'||!scope||scope.length>200)return Promise.reject(Error('Identificação de confirmação inválida'));
++    const connection=this.getObs(),cacheKey=scope+':'+id;
++    const queued=this.tail.then(async()=>{
++      const receipt=this.operationReceipts?.get(cacheKey);
++      if(!receipt)throw Error('Comando não identificado; nenhuma operação será repetida.');
++      if(!connection||this.getObs()!==connection)throw Error('Conexão mudou durante a consulta. Confira novamente o motor.');
++      const transitionAction=['cut','fade','transition'].includes(receipt.action);
++      const [sc,preset,cursor]=await Promise.all([this.req('GetSceneList'),this.req('GetSceneCollectionList'),transitionAction?this.req('GetCurrentSceneTransitionCursor'):Promise.resolve(null)]);
++      if(this.getObs()!==connection)throw Error('Conexão mudou durante a consulta. Confira novamente o motor.');
++      const scenes=sc.scenes||[],keyOf=name=>scenes.find(s=>s.sceneName===name)?.sceneUuid||null;
++      const current={scope:preset.currentSceneCollectionName,program:{key:sc.currentProgramSceneUuid||keyOf(sc.currentProgramSceneName),name:sc.currentProgramSceneName},preview:{key:sc.currentPreviewSceneUuid||keyOf(sc.currentPreviewSceneName),name:sc.currentPreviewSceneName},transitionComplete:!transitionAction||cursor?.transitionCursor===1};
++      const sameContext=current.scope===scope&&this.operationConnections?.get(cacheKey)===connection;
++      let desiredMatches=false;
++      if(sameContext&&receipt.targetKey){
++        if(receipt.action==='input_remove')desiredMatches=!scenes.some(s=>s.sceneUuid===receipt.targetKey);
++        else if(receipt.action==='preview')desiredMatches=current.preview.key===receipt.targetKey;
++        else if(['active','cut','fade','transition'].includes(receipt.action))desiredMatches=current.program.key===receipt.targetKey&&current.transitionComplete;
++      }
++      if(receipt.stage==='uncertain'&&desiredMatches){
++        Object.assign(receipt,{stage:'confirmed',confirmation:'current-state',reconciledAt:Date.now(),originalStage:'uncertain'});
++        this.state={...this.state,operation:this.state.operation?.id===id&&this.state.operation?.scope===scope?{...receipt}:this.state.operation,operationReceipts:[...this.operationReceipts.values()].map(r=>({...r}))};this.publish(this.state);
++      }
++      return {operation:{...receipt},current,sameContext,desiredMatches,checkedAt:Date.now(),releaseAllowed:receipt.stage==='uncertain'&&current.transitionComplete};
++    });this.tail=queued.catch(()=>{});return queued;
++  }
++
+   async prepareRealtime(action,data) {
+     const [sc,preset,mode,tr]=await Promise.all([this.req('GetSceneList'),this.req('GetSceneCollectionList'),this.req('GetStudioModeEnabled'),this.req('GetSceneTransitionList')]);
+     if(data.expectedScope&&data.expectedScope!==preset.currentSceneCollectionName)throw Error('O projeto mudou. Abra a entrada novamente antes de executar.');

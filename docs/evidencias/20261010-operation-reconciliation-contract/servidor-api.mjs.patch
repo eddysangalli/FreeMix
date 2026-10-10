@@ -1,0 +1,25 @@
+diff --git a/ferramentas/servidor-api.mjs b/ferramentas/servidor-api.mjs
+index 11c83fa..9d317c3 100644
+--- a/ferramentas/servidor-api.mjs
++++ b/ferramentas/servidor-api.mjs
+@@ -44,7 +44,7 @@ function publicOperation(receipt){
+   if(!receipt||typeof receipt!=='object')return undefined;
+   const {id,action,scope,targetKey,targetName,receivedAt,startedAt,engineConfirmedAt,finishedAt,stage,replayed}=receipt;
+   const error=receipt.error?String(receipt.error).replace(/(password|key|secret|token)\s*[:=]\s*[^\s,]+/gi,'$1=[omitido]').slice(0,500):undefined;
+-  return {id,action,scope,targetKey,targetName,receivedAt,startedAt,engineConfirmedAt,finishedAt,stage,...(replayed!==undefined?{replayed}:{}),...(error?{error}: {})};
++  return {id,action,scope,targetKey,targetName,receivedAt,startedAt,engineConfirmedAt,finishedAt,stage,...(receipt.confirmation?{confirmation:receipt.confirmation,reconciledAt:receipt.reconciledAt,originalStage:receipt.originalStage}:{}),...(replayed!==undefined?{replayed}:{}),...(error?{error}: {})};
+ }
+ 
+ const clean=(s=production.state)=>({...s,operation:publicOperation(s.operation),operationReceipts:(s.operationReceipts||[]).map(publicOperation).filter(Boolean),replay:replay.state,iso:iso.state,ips:ips()});
+@@ -169,6 +169,11 @@ const server=createServer(async(req,res)=>{
+       }
+       if(path==='/api/effects'&&req.method==='GET'){if(!local(req))return json(res,403,{success:false,error:'Efeitos disponíveis somente neste computador'});return json(res,200,{success:true,effects:await production.effectsEngine.summary(u.searchParams.get('key')||undefined)});}
+       if(path==='/api/audio-routing'&&req.method==='GET'){if(!local(req))return json(res,403,{success:false,error:'Áudio disponível somente neste computador'});return json(res,200,{success:true,audioRouting:await production.audioRoutingEngine.read(u.searchParams.get('key')||undefined)});}
++      if(path==='/api/operation-check'){
++        if(req.method!=='GET')return json(res,405,{success:false});
++        const checked=await production.checkOperation({id:u.searchParams.get('id'),scope:u.searchParams.get('scope')});
++        return json(res,200,{success:true,...checked,operation:publicOperation(checked.operation)});
++      }
+       if(path==='/api/srt-hdr'){if(req.method!=='GET')return json(res,405,{success:false});if(!local(req))return json(res,403,{success:false,error:'Consulta HDR disponível somente neste computador'});const id=u.searchParams.get('senderId')??'0';if(!/^[0-3]$/.test(id))throw Error('Envio HDR inválido');return json(res,200,{success:true,outputs:await production.outputEngine.readSrtHdr(Number(id))});}
+       if(path==='/api/network'&&req.method==='GET'){if(!local(req))return json(res,403,{success:false,error:'Rede disponível somente neste computador'});return json(res,200,await production.networkEngine.read());}
+       if(path==='/api/gc-compatible'&&req.method==='GET'){if(!local(req))return json(res,403,{success:false,error:'Editor HTML apenas local'});return json(res,200,{success:true,gcCompatible:await production.gcCompatible.summary()});}

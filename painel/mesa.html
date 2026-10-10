@@ -519,7 +519,7 @@ body.popup-mode #pop[data-panel="add"] .add .types { display:flex; flex-directio
   <div class="bot" id="bot"></div>
   <div class="stat" id="stat"></div>
   <div class="pop" id="pop"></div>
-  <div id="operation-status" hidden style="position:fixed;top:4px;left:50%;transform:translateX(-50%);width:max-content;max-width:calc(100vw - 24px);box-sizing:border-box;z-index:2000;background:#27313c;color:white;padding:6px;border:1px solid #8aa1b7">Comando aguardando confirmação · <button data-a="operationcheck">Conferir motor</button></div>
+  <div id="operation-status" hidden style="position:fixed;top:4px;left:50%;transform:translateX(-50%);width:max-content;max-width:calc(100vw - 24px);box-sizing:border-box;z-index:2000;background:#27313c;color:white;padding:6px;border:1px solid #8aa1b7">Comando aguardando confirmação · <button data-a="operationcheck">Conferir motor</button> <button id="operation-release" data-a="operationrelease" hidden>Liberar controles sem repetir</button></div>
   <div class="toast" id="toast"></div>
 
 <script src="local.js"></script>
@@ -725,16 +725,33 @@ body.popup-mode #pop[data-panel="add"] .add .types { display:flex; flex-directio
     catch(error){if(previewIntent?.sequence===intent.sequence&&!error.uncertain)previewIntent=previous;throw error;}
   }
 
-  let operationalPending=null,operationalSequence=0;
-  const operationTypes=new Set(['active','cut','fade','transition','input_remove']);
-  function showOperationalPending(){const el=$('operation-status');if(el)el.hidden=!operationalPending;}
-  function reconcileOperation(state){const p=operationalPending,op=p&&[state?.operation,...(state?.operationReceipts||[])].find(r=>r?.id===p.id&&r.scope===p.scope);if(op&&['confirmed','rejected'].includes(op.stage)){if(op.stage==='confirmed'&&['active','cut','fade','transition'].includes(op.action))previewIntent=null;operationalPending=null;showOperationalPending();toast(op.stage==='confirmed'?'Comando confirmado no motor.':op.error||'Comando recusado antes de executar.',op.stage!=='confirmed');}}
-  async function checkOperationalPending(){const r=await fetch(new URL('/api/json',replayUrl).href,{signal:AbortSignal.timeout(4000)});if(!r.ok)throw Error('Não foi possível consultar o motor');reconcileOperation(await r.json());if(operationalPending)toast('Ainda sem confirmação segura. Confira o Programa; o comando não será repetido.',true);}
+  let operationalPending=null,operationalSequence=0,operationalCheck=null;
+  const operationTypes=new Set(['active','cut','fade','transition','ftb','input_remove']);
+  function showOperationalPending(){const el=$('operation-status');if(el)el.hidden=!operationalPending;const release=$('operation-release');if(release)release.hidden=!(operationalPending&&operationalCheck?.releaseAllowed&&operationalCheck.id===operationalPending.id&&operationalCheck.scope===operationalPending.scope);}
+  function reconcileOperation(state){const p=operationalPending,op=p&&[state?.operation,...(state?.operationReceipts||[])].find(r=>r?.id===p.id&&r.scope===p.scope);if(op&&['confirmed','rejected'].includes(op.stage)){if(op.stage==='confirmed'&&['active','cut','fade','transition'].includes(op.action))previewIntent=null;operationalPending=null;operationalCheck=null;showOperationalPending();toast(op.stage==='confirmed'?(op.confirmation==='current-state'?'Estado atual do motor confere com o alvo; o ACK original não foi recuperado.':'Comando confirmado no motor.'):op.error||'Comando recusado antes de executar.',op.stage!=='confirmed');}}
+  async function checkOperationalPending(){
+    const pendingCheck=operationalPending;if(!pendingCheck)return;
+    operationalCheck=null;showOperationalPending();
+    const url=new URL('/api/operation-check',replayUrl);url.searchParams.set('id',pendingCheck.id);url.searchParams.set('scope',pendingCheck.scope);
+    const r=await fetch(url.href,{signal:AbortSignal.timeout(4000)}),data=await r.json();
+    if(!r.ok||data.success!==true)throw Error(data.error||'Não foi possível consultar o motor');
+    if(operationalPending?.id!==pendingCheck.id||operationalPending?.scope!==pendingCheck.scope)return;
+    if(data.operation?.id!==pendingCheck.id||data.operation?.scope!==pendingCheck.scope)throw Error('A consulta não confirmou a identificação deste comando.');
+    reconcileOperation({operation:data.operation});
+    if(operationalPending){operationalCheck={id:pendingCheck.id,scope:pendingCheck.scope,checkedAt:Date.now(),releaseAllowed:data.releaseAllowed===true,programName:data.current?.program?.name||'',currentScope:data.current?.scope||''};showOperationalPending();toast(data.releaseAllowed?'Resultado original ainda incerto. Estado atual consultado; você pode liberar os controles sem repetir este comando.':'Ainda sem confirmação segura. Aguarde a operação terminar e use Conferir motor.',true);}
+  }
+  function releaseOperationalPending(){
+    const p=operationalPending,c=operationalCheck;
+    if(!p||!c||!c.releaseAllowed||c.id!==p.id||c.scope!==p.scope||Date.now()-c.checkedAt>5000){operationalCheck=null;showOperationalPending();return toast('Confira o motor novamente antes de liberar os controles.',true);}
+    if(!confirm('O resultado original continua incerto. Programa atual: '+c.programName+' · Projeto: '+c.currentScope+'. Liberar os controles NÃO repete nem desfaz o comando. Confira o Programa antes de continuar.'))return;
+    // Explicit local abandonment only; backend keeps the uncertain receipt for dedupe.
+    operationalPending=null;operationalCheck=null;previewIntent=null;showOperationalPending();toast('Controles liberados. O comando anterior não foi repetido e seu resultado original continua incerto.',true);
+  }
   setInterval(()=>reconcileOperation(window.FreeMixProductionState),500);
 
   async function productionAction(action,data={}){
     const gated=operationTypes.has(action);let operation;
-    if(gated){if(operationalPending)throw Error('Há um comando em confirmação. Aguarde e confira o Programa; não repita o corte.');const scope=String(data.expectedScope||st.preset||window.FreeMixProductionState?.preset||'');if(!scope)throw Error('Aguarde identificar o projeto do motor.');const nonce=Array.from(crypto.getRandomValues(new Uint32Array(2)),n=>n.toString(36)).join('_');operation={id:'mesa_'+Date.now()+'_'+nonce+'_'+(++operationalSequence),scope,clickedAt:Date.now()};operationalPending=operation;showOperationalPending();data={...data,operationId:operation.id,expectedScope:scope};toast('Comando enviado; aguardando confirmação do motor…');}
+    if(gated){if(operationalPending)throw Error('Há um comando em confirmação. Aguarde e confira o Programa; não repita o corte.');const scope=String(data.expectedScope||st.preset||window.FreeMixProductionState?.preset||'');if(!scope)throw Error('Aguarde identificar o projeto do motor.');const nonce=Array.from(crypto.getRandomValues(new Uint32Array(2)),n=>n.toString(36)).join('_');operation={id:'mesa_'+Date.now()+'_'+nonce+'_'+(++operationalSequence),scope,clickedAt:Date.now()};operationalPending=operation;operationalCheck=null;showOperationalPending();data={...data,operationId:operation.id,expectedScope:scope};toast('Comando enviado; aguardando confirmação do motor…');}
     try{
       const r=await fetch(replayUrl.replace(/replay$/,'control'),{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action,...data}),signal:AbortSignal.timeout(120000)}),result=await r.json();
       if(operation)reconcileOperation(result.state||{operation:result.operation,operationReceipts:result.operationReceipts});
@@ -887,22 +904,45 @@ body.popup-mode #pop[data-panel="add"] .add .types { display:flex; flex-directio
     }
   }
 
-  /* ---- thumbnails: programa e preview a cada volta, as demais em rodízio ---- */
+  /* ---- miniaturas: só entradas visíveis, com orçamento separado dos comandos ---- */
   const shown = () => st.scenes.filter((n) => (st.filter === -2 ? n.toLowerCase().includes((st.find || "").toLowerCase()) : st.filter < 0 || st.tags[n] === st.filter) && (!st.tagFilter || st.inputTags?.[n]?.includes(st.tagFilter)));
+  function visibleThumbnailNames() {
+    if (!st.on || document.hidden || st.paused) return [];
+    const box = $("tiles"), bounds = box?.getBoundingClientRect();
+    if (!bounds || bounds.width <= 0 || bounds.height <= 0) return [];
+    const left = Math.max(0, bounds.left), top = Math.max(0, bounds.top);
+    const right = Math.min(innerWidth, bounds.right), bottom = Math.min(innerHeight, bounds.bottom);
+    const names = new Set();
+    for (const img of box.querySelectorAll("img[data-t]")) {
+      const name = img.dataset.t, r = img.getBoundingClientRect();
+      if (img.isConnected && st.scenes.includes(name) && !st.minimized?.[name] &&
+          r.width > 0 && r.height > 0 && r.right > left && r.left < right && r.bottom > top && r.top < bottom) names.add(name);
+    }
+    return [...names];
+  }
   async function thumbLoop() {
-    let turn = 0;
+    let turn = 0, coldAt = -Infinity;
+    const last = new Map();
     for (;;) {
-      const names = st.on && !document.hidden && !st.paused ? shown() : [];
+      const names = visibleThumbnailNames();
       if (!names.length) { await sleep(500); continue; }
+      for (const name of last.keys()) if (!st.scenes.includes(name)) last.delete(name);
+      const now = performance.now();
       const hot = [st.program, st.preview].filter((n) => names.includes(n)), cold = names.filter((n) => !hot.includes(n));
-      const batch = new Set(hot); for (let k = 0; k < 2 && cold.length; k++) batch.add(cold[turn++ % cold.length]);
+      const batch = new Set(hot.filter((n) => now - (last.get(n) ?? -Infinity) >= 350));
+      if (cold.length && now - coldAt >= 1000) { batch.add(cold[turn++ % cold.length]); coldAt = now; }
       for (const name of batch) {
+        // Revalidate after each awaited capture: minimization, scrolling and disconnect are immediate.
+        if (!visibleThumbnailNames().includes(name)) continue;
+        last.set(name, performance.now());
         const r = await tryReq("GetSourceScreenshot", { sourceName: name, imageFormat: "jpg", imageWidth: 256, imageCompressionQuality: 60 });
-        if (!r) continue;
-        thumbs.set(name, r.imageData);
-        const img = document.querySelector(`img[data-t="${CSS.escape(name)}"]`); if (img) img.src = r.imageData;
+        if (r && visibleThumbnailNames().includes(name)) {
+          thumbs.set(name, r.imageData);
+          const img = document.querySelector(`img[data-t="${CSS.escape(name)}"]`); if (img) img.src = r.imageData;
+        }
+        await sleep(75);
       }
-      await sleep(110);
+      await sleep(125);
     }
   }
   async function slowLoop() {
@@ -973,11 +1013,7 @@ body.popup-mode #pop[data-panel="add"] .add .types { display:flex; flex-directio
           break;
         }
         case "FTB": {
-          const ftb = st.transitions.find((t) => /ftb|fade/i.test(t.name));
-          if (ftb) {
-            await req("SetCurrentSceneTransition", { transitionName: ftb.name });
-            if (st.studio) await req("TriggerStudioModeTransition");
-          }
+          await productionAction('ftb',{input:previewTakeInput()});
           break;
         }
         case "PreviewInput": {
@@ -1073,6 +1109,7 @@ body.popup-mode #pop[data-panel="add"] .add .types { display:flex; flex-directio
   }
   const A = {
     operationcheck:()=>run(checkOperationalPending()),
+    operationrelease:()=>releaseOperationalPending(),
     sc_capture: () => { st.capturingShortcut = true; renderPop(); },
     sc_cancel_capture: () => { st.capturingShortcut = false; renderPop(); },
     sc_add: () => {

@@ -1,0 +1,30 @@
+{
+  "status": "ROOT_INTEGRATED_OPERATION_DRAFT_NATIVE_QA_PENDING",
+  "at": "2026-10-10T06:25:52.075Z",
+  "freezeSha256": "e6c864b6310c04d01ee9b3d3da14e1485f1aa2ceef81d343629182a7b98bd454",
+  "focusedCases": 24,
+  "files": [
+    {
+      "path": "painel/mesa.html",
+      "beforeSha": "91c66d7b4a64514de9b178d89bcbe5c65952bfce9b85fbac1ea762e3154564e8",
+      "afterSha": "db5e141fd285c0a8910fa47066696cf98c34d32d4b1be51bb42fd80696008cb1"
+    },
+    {
+      "path": "ferramentas/controle-producao.mjs",
+      "beforeSha": "46e18809a91a8ee8664c4e1c1bc8366100a71c4abc0d5809392380b3488e5cb5",
+      "afterSha": "66c08b76d314a5b1173c9d8ccea2ca5285a90ca67a2b9fddc0067aa87bade503"
+    },
+    {
+      "path": "ferramentas/servidor-api.mjs",
+      "beforeSha": "c3929632f01aeaa7fb9f2fb6be473e20453a54b610326d145a5d05333a02a3c6",
+      "afterSha": "49b89d2e875d9a4e277449f59555ba14f9bcfd801d25160977e7d1b9b525176f"
+    }
+  ],
+  "selected060000ContainsThisChange": false,
+  "operatorTouched": false,
+  "limits": [
+    "Mock/VM proof only until new Native test",
+    "FTB legacy refused safely; true Native public FTB implementation pending",
+    "Explicit local lock release does not repeat/undo or recover the original ACK"
+  ]
+}

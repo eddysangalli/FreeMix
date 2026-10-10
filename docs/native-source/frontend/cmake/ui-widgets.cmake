@@ -32,6 +32,11 @@ target_sources(
     widgets/FreeMixMultistream.hpp
     widgets/FreeMixSrtHdrOutput.hpp
     widgets/FreeMixSrtHdrLifecycle.hpp
+    widgets/FreeMixCallVideo.cpp
+    widgets/FreeMixCallVideo.hpp
+    widgets/FreeMixCallVideoPool.hpp
+    widgets/FreeMixCallVideoIpc.hpp
+    widgets/FreeMixCallVideoPolicy.hpp
     widgets/FreeMixCallAudio.cpp
     widgets/FreeMixCallAudio.hpp
     widgets/FreeMixAudioRouting.cpp

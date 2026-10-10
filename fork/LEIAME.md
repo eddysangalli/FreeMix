@@ -1,9 +1,9 @@
 # Motor nativo do FreeMix
 
-A série de catorze patches aplica-se ao OBS Studio 32.2.2, com commit upstream exato e hashes em [manifest.json](manifest.json). Inclui todas as alterações nativas da entrega local 0.1.0-local.20261009153453, inclusive áudio, saídas, preferências e correção de reset RAW.
+A série atual tem25 patches sobre o OBS Studio32.2.2, base e hashes exatos em [manifest.json](manifest.json). HEAD de desenvolvimento:de136e83595be92162ada8c7adc50f52751bd4ef; árvore verificada:4ad626ccd13cba0d7f13f3ca0fa670bada8425be.
 
-Para verificar: `node scripts/reconstruir-motor.mjs --check`. Para reconstruir a partir de uma pasta nova: `node scripts/reconstruir-motor.mjs`. Leia [BUILD-FROM-SOURCE.md](../docs/BUILD-FROM-SOURCE.md) antes de compilar.
+No repositório FreeMix, confira com `node scripts/reconstruir-motor.mjs --check`. Para reconstruir, forneça uma pasta nova: `node scripts/reconstruir-motor.mjs --dest=C:/caminho/novo/FreeMix-native`. Esse segundo comando obtém bases oficiais; o export local já verificou a árvore usando índice próprio, sem rede. Leia [BUILD-FROM-SOURCE.md](../docs/BUILD-FROM-SOURCE.md).
 
-A série foi aplicada em índice separado sobre a base e a árvore resultante coincidiu com o HEAD nativo local; recibo em docs/evidencias-ultima-rodada/github-patches-verificados.json. O OBS oficial não recebe push destas alterações.
+Build completa passou; QA real e integração do controle da nova versão estão pendentes. O instalador selecionado continua600/Native24. Não atribuir FTBv2 ou retorno contínuo às entregas antigas.
 
-A série atual inclui também as correções de Fill/Key, o host ASIO multicanal e as quatro saídas HDR por OMT com contrato manual PQ/HLG. As fontes posteriores à entrega 153453 ainda aguardam o novo instalador integrado; não atribuir essas correções ao pacote antigo.
+Histórico anterior: [registro preservado](../docs/historico/20261010-preNative25/FORK-LEIAME.md).

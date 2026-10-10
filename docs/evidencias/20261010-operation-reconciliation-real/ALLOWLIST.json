@@ -1,0 +1,180 @@
+{
+  "status": "TEXT_ONLY_OWN_REAL_NATIVE24_RECONCILIATION_ALLOWLIST_FROZEN",
+  "files": [
+    {
+      "sourceAbsolute": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\operacao-reconciliacao-060000-20261010\\native-real-retry2\\runner.mjs",
+      "sourceRelative": "qa-finalizacao/operacao-reconciliacao-060000-20261010/native-real-retry2/runner.mjs",
+      "targetRelative": "docs/evidencias/20261010-operation-reconciliation-real/qa-finalizacao/operacao-reconciliacao-060000-20261010/native-real-retry2/runner.mjs",
+      "sha256": "437d70fef5864ef03cb84c6e04f998bddb565dd5d2fc3e3b869f1c84b70ba749",
+      "bytes": 21531
+    },
+    {
+      "sourceAbsolute": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\operacao-reconciliacao-060000-20261010\\native-real-retry2\\prepare.mjs",
+      "sourceRelative": "qa-finalizacao/operacao-reconciliacao-060000-20261010/native-real-retry2/prepare.mjs",
+      "targetRelative": "docs/evidencias/20261010-operation-reconciliation-real/qa-finalizacao/operacao-reconciliacao-060000-20261010/native-real-retry2/prepare.mjs",
+      "sha256": "e7f8f2136882b0a14cd3ed252786274988f6ed26d786858a642fdc670baa24c4",
+      "bytes": 5629
+    },
+    {
+      "sourceAbsolute": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\operacao-reconciliacao-060000-20261010\\native-real-retry2\\PREPARATION.json",
+      "sourceRelative": "qa-finalizacao/operacao-reconciliacao-060000-20261010/native-real-retry2/PREPARATION.json",
+      "targetRelative": "docs/evidencias/20261010-operation-reconciliation-real/qa-finalizacao/operacao-reconciliacao-060000-20261010/native-real-retry2/PREPARATION.json",
+      "sha256": "68efdab6ff6943870de516cbcfde1faef75781b0e40f7f5dff955f602f3c408e",
+      "bytes": 31323
+    },
+    {
+      "sourceAbsolute": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\operacao-reconciliacao-060000-20261010\\native-real-retry2\\ALLOWLIST-PREPARATION.json",
+      "sourceRelative": "qa-finalizacao/operacao-reconciliacao-060000-20261010/native-real-retry2/ALLOWLIST-PREPARATION.json",
+      "targetRelative": "docs/evidencias/20261010-operation-reconciliation-real/qa-finalizacao/operacao-reconciliacao-060000-20261010/native-real-retry2/ALLOWLIST-PREPARATION.json",
+      "sha256": "5816dede376c8c9ae55b988d5b0579881f3d92c9d2e241a39da29f95ce261410",
+      "bytes": 32480
+    },
+    {
+      "sourceAbsolute": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\operacao-reconciliacao-060000-20261010\\native-real-retry2\\root-command.json",
+      "sourceRelative": "qa-finalizacao/operacao-reconciliacao-060000-20261010/native-real-retry2/root-command.json",
+      "targetRelative": "docs/evidencias/20261010-operation-reconciliation-real/qa-finalizacao/operacao-reconciliacao-060000-20261010/native-real-retry2/root-command.json",
+      "sha256": "9050737d3d8fde521e3ec800e325040d6eeec20caff5d38a4635cb7488d87691",
+      "bytes": 1570
+    },
+    {
+      "sourceAbsolute": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\operacao-reconciliacao-060000-20261010\\native-real-retry2\\README.md",
+      "sourceRelative": "qa-finalizacao/operacao-reconciliacao-060000-20261010/native-real-retry2/README.md",
+      "targetRelative": "docs/evidencias/20261010-operation-reconciliation-real/qa-finalizacao/operacao-reconciliacao-060000-20261010/native-real-retry2/README.md",
+      "sha256": "82e9927d36f41831a7cb3602c58929c734de0283c86dfff13d0f7d20bf59c1a3",
+      "bytes": 4390
+    },
+    {
+      "sourceAbsolute": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\operacao-reconciliacao-060000-20261010\\native-real-retry2\\DERIVATION.json",
+      "sourceRelative": "qa-finalizacao/operacao-reconciliacao-060000-20261010/native-real-retry2/DERIVATION.json",
+      "targetRelative": "docs/evidencias/20261010-operation-reconciliation-real/qa-finalizacao/operacao-reconciliacao-060000-20261010/native-real-retry2/DERIVATION.json",
+      "sha256": "bdd998c47ddc854abb886962f09b92120062ff3793bdaa81f16ea42662a59abd",
+      "bytes": 4481
+    },
+    {
+      "sourceAbsolute": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\operacao-reconciliacao-060000-20261010\\native-real-retry2\\receipt.json",
+      "sourceRelative": "qa-finalizacao/operacao-reconciliacao-060000-20261010/native-real-retry2/receipt.json",
+      "targetRelative": "docs/evidencias/20261010-operation-reconciliation-real/qa-finalizacao/operacao-reconciliacao-060000-20261010/native-real-retry2/receipt.json",
+      "sha256": "c64185f11543b048c7f9b237c461841085e814b8693620664b7b6f32082ec6c5",
+      "bytes": 84127
+    },
+    {
+      "sourceAbsolute": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\operacao-reconciliacao-060000-20261010\\native-real-retry2\\report.json",
+      "sourceRelative": "qa-finalizacao/operacao-reconciliacao-060000-20261010/native-real-retry2/report.json",
+      "targetRelative": "docs/evidencias/20261010-operation-reconciliation-real/qa-finalizacao/operacao-reconciliacao-060000-20261010/native-real-retry2/report.json",
+      "sha256": "4ca13e40c5ac4d473e7560483dc90fc8aa3f6b3295ee7fd11ce62f5d5461956c",
+      "bytes": 25422
+    },
+    {
+      "sourceAbsolute": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\operacao-reconciliacao-060000-20261010\\native-real-retry2\\freeze.mjs",
+      "sourceRelative": "qa-finalizacao/operacao-reconciliacao-060000-20261010/native-real-retry2/freeze.mjs",
+      "targetRelative": "docs/evidencias/20261010-operation-reconciliation-real/qa-finalizacao/operacao-reconciliacao-060000-20261010/native-real-retry2/freeze.mjs",
+      "sha256": "95d8ad4a5951a6aa8005187fe9b6bf44744c19417a85c2803081492e47b14484",
+      "bytes": 7072
+    },
+    {
+      "sourceAbsolute": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\operacao-reconciliacao-060000-20261010\\native-real-retry2\\FREEZE-DERIVATION.json",
+      "sourceRelative": "qa-finalizacao/operacao-reconciliacao-060000-20261010/native-real-retry2/FREEZE-DERIVATION.json",
+      "targetRelative": "docs/evidencias/20261010-operation-reconciliation-real/qa-finalizacao/operacao-reconciliacao-060000-20261010/native-real-retry2/FREEZE-DERIVATION.json",
+      "sha256": "7b7f952f81535cdb4cae1c18fe6ecc417cac6f2d566a53baef92833c07170525",
+      "bytes": 709
+    },
+    {
+      "sourceAbsolute": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\operacao-reconciliacao-060000-20261010\\prepare-native-real-retry1.mjs",
+      "sourceRelative": "qa-finalizacao/operacao-reconciliacao-060000-20261010/prepare-native-real-retry1.mjs",
+      "targetRelative": "docs/evidencias/20261010-operation-reconciliation-real/qa-finalizacao/operacao-reconciliacao-060000-20261010/prepare-native-real-retry1.mjs",
+      "sha256": "962ccc580072ad3c6ce9799c18201f9657a9a2733664a837f68e815a18203d7f",
+      "bytes": 4887
+    },
+    {
+      "sourceAbsolute": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\operacao-reconciliacao-060000-20261010\\prepare-freeze-native-real-retry1.mjs",
+      "sourceRelative": "qa-finalizacao/operacao-reconciliacao-060000-20261010/prepare-freeze-native-real-retry1.mjs",
+      "targetRelative": "docs/evidencias/20261010-operation-reconciliation-real/qa-finalizacao/operacao-reconciliacao-060000-20261010/prepare-freeze-native-real-retry1.mjs",
+      "sha256": "704d825904db2b957f796fd9078ce3c507866308fdcbaf2c5185ab43b7734f33",
+      "bytes": 2637
+    },
+    {
+      "sourceAbsolute": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\operacao-reconciliacao-060000-20261010\\native-real\\runner.mjs",
+      "sourceRelative": "qa-finalizacao/operacao-reconciliacao-060000-20261010/native-real/runner.mjs",
+      "targetRelative": "docs/evidencias/20261010-operation-reconciliation-real/qa-finalizacao/operacao-reconciliacao-060000-20261010/native-real/runner.mjs",
+      "sha256": "3706437d1aa55a9f1c4dfeb021421f7ee4425f92803d83074c7f8cfe72405438",
+      "bytes": 18274
+    },
+    {
+      "sourceAbsolute": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\operacao-reconciliacao-060000-20261010\\native-real\\PREPARATION.json",
+      "sourceRelative": "qa-finalizacao/operacao-reconciliacao-060000-20261010/native-real/PREPARATION.json",
+      "targetRelative": "docs/evidencias/20261010-operation-reconciliation-real/qa-finalizacao/operacao-reconciliacao-060000-20261010/native-real/PREPARATION.json",
+      "sha256": "7933120390b3f622b20e28a675d4ce62f8da822fd6d3d2239efa56154bf4cb91",
+      "bytes": 31309
+    },
+    {
+      "sourceAbsolute": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\operacao-reconciliacao-060000-20261010\\native-real\\receipt.json",
+      "sourceRelative": "qa-finalizacao/operacao-reconciliacao-060000-20261010/native-real/receipt.json",
+      "targetRelative": "docs/evidencias/20261010-operation-reconciliation-real/qa-finalizacao/operacao-reconciliacao-060000-20261010/native-real/receipt.json",
+      "sha256": "46c041cfcef8884299f3c4466b75cd4bdb9a1f56e5b29bd2c2790a5dd3cc0598",
+      "bytes": 3124
+    },
+    {
+      "sourceAbsolute": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\operacao-reconciliacao-060000-20261010\\native-real\\cleanup-first-failure.mjs",
+      "sourceRelative": "qa-finalizacao/operacao-reconciliacao-060000-20261010/native-real/cleanup-first-failure.mjs",
+      "targetRelative": "docs/evidencias/20261010-operation-reconciliation-real/qa-finalizacao/operacao-reconciliacao-060000-20261010/native-real/cleanup-first-failure.mjs",
+      "sha256": "96fd95820ac6ee0f5913816591daa5eeea7efa4c97dc1af5267fdd6c4dc6c06e",
+      "bytes": 3820
+    },
+    {
+      "sourceAbsolute": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\operacao-reconciliacao-060000-20261010\\native-real\\first-failure-cleanup.json",
+      "sourceRelative": "qa-finalizacao/operacao-reconciliacao-060000-20261010/native-real/first-failure-cleanup.json",
+      "targetRelative": "docs/evidencias/20261010-operation-reconciliation-real/qa-finalizacao/operacao-reconciliacao-060000-20261010/native-real/first-failure-cleanup.json",
+      "sha256": "12b1552d6fa5eed76c326aed5208e4d002dbbd99f34b48cf6d8a6cfc196be036",
+      "bytes": 671
+    },
+    {
+      "sourceAbsolute": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\operacao-reconciliacao-060000-20261010\\native-real-retry1\\runner.mjs",
+      "sourceRelative": "qa-finalizacao/operacao-reconciliacao-060000-20261010/native-real-retry1/runner.mjs",
+      "targetRelative": "docs/evidencias/20261010-operation-reconciliation-real/qa-finalizacao/operacao-reconciliacao-060000-20261010/native-real-retry1/runner.mjs",
+      "sha256": "5907a4b84b4ce7fef4c2344afaab3acc0854515a658d80db7b939adce9ca1ee1",
+      "bytes": 19713
+    },
+    {
+      "sourceAbsolute": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\operacao-reconciliacao-060000-20261010\\native-real-retry1\\PREPARATION.json",
+      "sourceRelative": "qa-finalizacao/operacao-reconciliacao-060000-20261010/native-real-retry1/PREPARATION.json",
+      "targetRelative": "docs/evidencias/20261010-operation-reconciliation-real/qa-finalizacao/operacao-reconciliacao-060000-20261010/native-real-retry1/PREPARATION.json",
+      "sha256": "ef5feb0af8d945d88f9d20f580bc5815669f0fb019ee4b53449261656a6bb976",
+      "bytes": 31323
+    },
+    {
+      "sourceAbsolute": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\operacao-reconciliacao-060000-20261010\\native-real-retry1\\receipt.json",
+      "sourceRelative": "qa-finalizacao/operacao-reconciliacao-060000-20261010/native-real-retry1/receipt.json",
+      "targetRelative": "docs/evidencias/20261010-operation-reconciliation-real/qa-finalizacao/operacao-reconciliacao-060000-20261010/native-real-retry1/receipt.json",
+      "sha256": "7e1b8e15accc925bbb285f9519bd4b87f5c880b69b1760aec452d9e4960376d0",
+      "bytes": 42158
+    },
+    {
+      "sourceAbsolute": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\operacao-reconciliacao-060000-20261010\\prepare-native-real-retry2.mjs",
+      "sourceRelative": "qa-finalizacao/operacao-reconciliacao-060000-20261010/prepare-native-real-retry2.mjs",
+      "targetRelative": "docs/evidencias/20261010-operation-reconciliation-real/qa-finalizacao/operacao-reconciliacao-060000-20261010/prepare-native-real-retry2.mjs",
+      "sha256": "93e729ff716dc739cec0878e1e793dfda51e6ea31ca70e1946d74795c5c7b540",
+      "bytes": 6000
+    },
+    {
+      "sourceAbsolute": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\operacao-reconciliacao-060000-20261010\\prepare-freeze-native-real-retry2.mjs",
+      "sourceRelative": "qa-finalizacao/operacao-reconciliacao-060000-20261010/prepare-freeze-native-real-retry2.mjs",
+      "targetRelative": "docs/evidencias/20261010-operation-reconciliation-real/qa-finalizacao/operacao-reconciliacao-060000-20261010/prepare-freeze-native-real-retry2.mjs",
+      "sha256": "31854d9fb900bd941eaaae5a79c2f9bf262414d65b61cfca019c0ef5a454ba44",
+      "bytes": 1819
+    }
+  ],
+  "operatorTouched": false,
+  "productChanged": false,
+  "selectionChanged": false,
+  "rawLogsExported": false,
+  "credentialsExported": false,
+  "configsExported": false,
+  "tempInstallationsExported": false,
+  "mirroredRuntimeModulesExported": false,
+  "actualOwnCredentialScanPass": true,
+  "limits": [
+    "104 mirrored modules remain QA-private; preparation records all hashes and three draft overrides",
+    "Full state/credentials/logs stay in own TEMP; report contains only own UUIDs/requests/counters/hashes",
+    "Root performs integration/commits; this freezer does not"
+  ]
+}

@@ -1,46 +1,21 @@
-# FreeMix — PENDENCIAS-REAIS /060000
+# Pendências reais do FreeMix
 
-Estado vigente após aceite Root: **0.1.0-local.20261010060000, Native24/a047860**. Uma instalação própria, dois ciclos cooperativos counter0/crash0, Meter [0,0] preservados, diagnóstico instalado sanitizado e desinstalação conservadora. Operador preservado, não ativado/substituído.
+O instalador selecionado é **0.1.0-local.20261010060000, Native24/a047860**. As correções posteriores estão em desenvolvimento e não estão incluídas nesse instalador.
 
-Git do payload selado: **6adcd19315c01a4f01baaab2fd5d9e560872619b**. O commit posterior de provas/documentação não recompõe o payload. Manifesto 7107aa50b55dd2584be4fc30760af6ef1c85855c6995cd10758e65decc0a93b4; Setup 3a53cc01ea2998d785e4914c219084e6868ad4bf7b33fff31f074685878993bd; ZIP 82769392912badfb5a4f03a717181e915b404d8418fe7e2376f2702dddbfe821. Todos9582 arquivos assinados e2085pinsNative foram conferidos.
+| Frente | O que já existe | O que falta para encerrar |
+|---|---|---|
+| Botões de operação | Recuperação por UUID/cursor sem repetir comandos;24 testes de contrato e Cut/Preview/exclusão/contexto passaram em Native real. | Verificar endpoint HTTP e mesa; a prova direta de Production não cobre CEF/modal. Dois FAILs anteriores de fixture permanecem preservados. |
+| Lentidão dos comandos | Miniaturas somente visíveis, com rotação limitada;11 testes. Consultas periódicas HTTP saíram da fila de comandos;13 testes com HTTP próprio. | Medir comportamento na mesa com Native/CEF e carga real. Testes de orçamento/fila não comprovam latência da GPU. |
+| FTB | C++ integrado em de136e8: preto e retorno ao Programa renderizado, mantendo Preview;48 casos do modelo. | Build completa passou; observar quadros reais e metadados, integrar backend/UI e provar dedupe/erros sem reenvio. |
+| Calls: vídeo contínuo por entrada | Captura AUX640×360 com PTS, três buffers, limite de duas fontes e25/30/29,97fps derivados; C++ integrado. | Provar captura/stop/leases no Native; integrar Node/browser; sincronizar com PCM/N-1 e verificar Master, CEF e convidados. O instalador600 ainda usa JPEG até5fps. |
+| Editores de entrada | Handoff de Properties/Filters e nova observação opcional por UUID/visibilidade/foco Qt. | Build completa passou; observar no Native. Estado Qt não comprova ordem das janelas no Windows. |
+| NDI HDR | NDI SDR/alpha e runtime distribuído; contratos HDR em outras saídas. | Acesso/licença Advanced SDK, implementar renderer/API e provar mídia em receptor HDR. SDK sozinho não conclui. |
+| GTZIP além do contrato finito | Títulos literais/ticker dentro do conjunto implementado. | Obter exemplos com recursos/tempos ausentes e implementar por família. Não há suporte universal a3D/imagens/feeds. |
+| Replay, ASIO, SDI, OMT, PTZ/controladores | Contratos e ensaios de software registrados. | Equipamento/driver/receptor/câmeras/SSD/GPU, audição e sessão longa no destino. |
+| WAN, bonding e Calls externos | Loopback/FEC/NACK/HTTPS local e provas delimitadas. | Duas conexões reais, VPS/domínio/TURN, destinatários e condições de perda. Loopback não comprova internet. |
+| Distribuição pública | Setup local, diagnósticoZIP manual e assinatura interna Ed25519. | Windows limpo e homologação de destino; certificado Authenticode para assinatura Windows; DNS/VPS para publicação HTTPS. |
 
-Menus/NAV/Replay Settings/Calls/Externo e as correções Calls/HDR desta fonte fazem parte do candidato600. O QA instalado usa HDR GET sem transmissão; mídia HDR local anterior continua uma prova separada.050500 foi candidato não selecionado: FAIL de observação API preservado, seguido de diagnóstico/uninstall em continuação separada; não virou PASS.035000 permanece como seleção anterior preservada.
+As primeiras cinco linhas ainda têm trabalho de software implementável; não são todas dependências de hardware. As demais exigem recursos específicos, além de possíveis correções durante os ensaios. As estimativas dependem do primeiro teste real e não constituem promessa de término.
 
-Gates remanescentes incluem retorno custom contínuo, observação dos editores e recursos físicos/rede/SDK. Não há prazo universal sem contratos/recursos disponíveis.
-
-Baseline aprovada somente no escopo dos recibos, sem promessa100%. A auditoria posterior identificou recuperação incompleta de operações incertas e um atalho FTB sem contrato público confirmável; ambos continuam em correção posterior, junto do retorno contínuo das Calls. IAB com backend Native real não prova CEF desktop, editores visíveis/foco/z-order, GPU/PCM, endurance ou todos encoders. Retorno custom Calls usa JPEG640×360 até5fps; vídeo contínuo25/30fps por fonte ainda requer pipeline próprio com PTS/backpressure/sincronismo, não só timer/hardware. Programa usa câmera virtual com taxa ideal solicitada, sem taxa efetiva homologada aqui. ASIO/SDI/PTZ/controladores físicos, WAN/TURN/bonding, Windows limpo, receptor/monitor HDR e NDI HDR Advanced SDK/licença/implementação continuam gates separados. GTZIP finito não implica compatibilidade universal/3D/frames ausentes. Alpha web abortado; ponte alpha nativa beta separada. Assinatura interna Ed25519; sem Authenticode.
-
-Provas instaladas: qa-finalizacao/setup-060000-qa/report.json SHA 77d835df3da98d84c5e4458450cbbd0ecc2917e767dc43061d9551d7e53ded0c; allowlist SHA 703df68812198b839e1a697f8303805d0f4b9fc2c012108db3646398f998d25a; Root IAB files5 SHA 7c5b0acb987cd81f4a8179bc84a5592efffc91dfc089a9a5fee96f67306253d3.
-
----
-
-## Histórico preservado — estado anterior à seleção060000
-
-Referências a atual/pendente/próximo abaixo pertencem ao registro original; artefatos selados/recibos não foram reescritos.
-
-# FreeMix — PENDENCIAS-REAIS / fontes060000
-
-Estado em 10/10/2026: **035000 continua selecionado e aprovado no seu ensaio local.** 050500 foi selado e instalado, mas o verificador falhou ao observar a saída da API; esse FAIL foi preservado. Dois fechamentos Native24 tiveram contador zero/crash zero. Diagnóstico e desinstalação passaram numa continuação separada, que não transforma o ensaio completo em PASS.
-
-**060000/Native24/a047860 contém correções posteriores nas fontes; ainda aguarda novo pacote e QA instalada.** Foram reproduzidos bloqueio de HDR sem prazo, perda de edição do retorno Calls após blur/poll e fallback indevido para Programa quando uma fonte desaparece. As fontes corrigidas têm os mesmos bytes dos drafts que passaram12 testes de corridas, eco do estado, fontes ausentes e HTTP real com corpo incompleto. Abrir ou consultar estas telas não inicia transmissão. Nenhuma mesa do operador foi substituída.
-
-| Frente | O que falta para concluir |
-|---|---|
-| Distribuição060000 | Setup real, ações/startup/restart/fechamento/ZIP/uninstall e seleção pinada. |
-| Retorno custom das Calls | Substituir snapshots5fps por pipeline contínuo, timestamps comuns com PCM, backpressure e teste A/V; protótipo não equivale a recurso entregue. |
-| Editores de entrada | Observar Properties/Filters realmente visíveis e acessíveis no desktop; investigar reprodução quando houver. |
-| NDI HDR | SDK/licença/API e implementação do renderer, depois prova de mídia. |
-| GTZIP fora do contrato | Exemplos, frames/tempos e recursos ausentes; implementar por família e testar. |
-| ASIO/SDI/OMT/PTZ/controladores/Replay | Equipamento/driver/loopback/receptor/câmeras/SSD/GPU, audição e sessão longa. |
-| SRT HDR/WAN/bonding/Calls | Receptor/monitorHDR/GPU, VPS/duas conexões/TURN/domínio e convidados reais; local não é WAN. |
-| Distribuição pública | DNS/VPS/permissões e certificado Authenticode; HTTPS local50checks já passou. |
-
-Após recursos: matrizes iniciais de áudio/Replay/controladores/Windows limpo2–4h; SDI/bonding4–8h; HTTPS/TURN2–4h mais sessão Calls1–2h. São estimativas de teste, não prazo garantido para corrigir defeitos desconhecidos. Retorno contínuo/SDK/GTZIP sem prazo fechado antes dos contratos e da primeira prova.
-
-Retorno Calls de entrada/composição: **JPEG640×360 até5fps**, limite de software. Vídeo contínuo25/30fps por fonte ainda precisa implementação e medição; uma frente isolada investiga PTS, buffers limitados e sincronismo com N-1. Programa usa câmera virtual, sem garantia da taxa efetiva neste registro.
-
-Properties/Filters: handoff queued não comprova visibilidade, foco ou z-order desktop. NDI HDR depende de Advanced SDK/licença e implementação. Hardware ASIO/SDI/PTZ/controladores, convidados/TURN/WAN/VPS, receptor/monitorHDR, carga prolongada e Windows limpo continuam gates reais. GTZIP finito não implica suporte universal a templates, imagens, feeds ou3D. Não retomar alpha WebBrowser abortado; ponte nativa permanece beta separada. Assinatura interna Ed25519 não substitui Authenticode.
-
-Provas públicas: [correções e12testes](evidencias/20261010-calls-hdr-timeout/revision2/README.md); [050500 em duas fases](evidencias/20261010-setup050500-two-phase/qa-finalizacao/setup-050500-continuation/report.json). Os recibos antigos permanecem íntegros.
-
-Histórico anterior completo, preservado byte a byte: [arquivo histórico](historico/20261010-pre060000/PENDENCIAS-REAIS.md). As instruções vigentes são as desta página.
+Alpha via Web Browser foi abortado por desempenho. Ponte alpha nativa permanece beta separada. Não reativar o caminho rejeitado.
+Histórico anterior completo: [registro preservado](historico/20261010-preNative25/PENDENCIAS-REAIS.md).

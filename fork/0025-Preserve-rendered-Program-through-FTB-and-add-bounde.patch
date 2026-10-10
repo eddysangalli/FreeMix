@@ -1,0 +1,865 @@
+From de136e83595be92162ada8c7adc50f52751bd4ef Mon Sep 17 00:00:00 2001
+From: Eddy Sangalli <eddyrodrigues@outlook.com>
+Date: Sat, 10 Oct 2026 03:50:09 -0300
+Subject: [PATCH] Preserve rendered Program through FTB and add bounded Calls
+ video capture
+
+---
+ frontend/cmake/ui-widgets.cmake             |   5 +
+ frontend/widgets/FreeMixCallVideo.cpp       | 189 ++++++++++++++++++++
+ frontend/widgets/FreeMixCallVideo.hpp       |  10 ++
+ frontend/widgets/FreeMixCallVideoIpc.hpp    |  42 +++++
+ frontend/widgets/FreeMixCallVideoPolicy.hpp |  29 +++
+ frontend/widgets/FreeMixCallVideoPool.hpp   |  60 +++++++
+ frontend/widgets/FreeMixFtbContract.hpp     |  70 ++++++++
+ frontend/widgets/FreeMixMultistream.cpp     |  79 +++++++-
+ frontend/widgets/OBSBasic.hpp               |   7 +
+ frontend/widgets/OBSBasic_MainControls.cpp  |   2 +
+ frontend/widgets/OBSBasic_Transitions.cpp   | 126 +++++++++++++
+ 11 files changed, 613 insertions(+), 6 deletions(-)
+ create mode 100644 frontend/widgets/FreeMixCallVideo.cpp
+ create mode 100644 frontend/widgets/FreeMixCallVideo.hpp
+ create mode 100644 frontend/widgets/FreeMixCallVideoIpc.hpp
+ create mode 100644 frontend/widgets/FreeMixCallVideoPolicy.hpp
+ create mode 100644 frontend/widgets/FreeMixCallVideoPool.hpp
+ create mode 100644 frontend/widgets/FreeMixFtbContract.hpp
+
+diff --git a/frontend/cmake/ui-widgets.cmake b/frontend/cmake/ui-widgets.cmake
+index 7df14c5..84c623d 100644
+--- a/frontend/cmake/ui-widgets.cmake
++++ b/frontend/cmake/ui-widgets.cmake
+@@ -32,6 +32,11 @@ target_sources(
+     widgets/FreeMixMultistream.hpp
+     widgets/FreeMixSrtHdrOutput.hpp
+     widgets/FreeMixSrtHdrLifecycle.hpp
++    widgets/FreeMixCallVideo.cpp
++    widgets/FreeMixCallVideo.hpp
++    widgets/FreeMixCallVideoPool.hpp
++    widgets/FreeMixCallVideoIpc.hpp
++    widgets/FreeMixCallVideoPolicy.hpp
+     widgets/FreeMixCallAudio.cpp
+     widgets/FreeMixCallAudio.hpp
+     widgets/FreeMixAudioRouting.cpp
+diff --git a/frontend/widgets/FreeMixCallVideo.cpp b/frontend/widgets/FreeMixCallVideo.cpp
+new file mode 100644
+index 0000000..849cc6a
+--- /dev/null
++++ b/frontend/widgets/FreeMixCallVideo.cpp
+@@ -0,0 +1,189 @@
++// SPDX-License-Identifier: GPL-2.0-or-later
++// Isolated Native draft, not installed. Public-only AUX video; no audio or Master capture.
++#include "FreeMixCallVideo.hpp"
++#include "FreeMixCallVideoPool.hpp"
++#include "FreeMixCallVideoIpc.hpp"
++#include "FreeMixCallVideoPolicy.hpp"
++#include <obs.hpp>
++#include <QCoreApplication>
++#include <QEventLoop>
++#include <QHostAddress>
++#include <QTcpSocket>
++#include <QThread>
++#include <array>
++#include <algorithm>
++#include <climits>
++#include <chrono>
++#include <memory>
++#include <new>
++#include <string>
++#include <thread>
++#include <util/platform.h>
++
++namespace {
++using namespace freemix_call_video;
++constexpr uint64_t LeaseNs=5000000000ULL;
++struct Session;
++struct RawContext {
++ obs_output_t *output=nullptr;
++ std::atomic<Session *> owner{nullptr};std::atomic<unsigned> readers{0};
++};
++// SC ordering: a reader that observed old owner was counted before detach.
++// Detach waits for all readers before Session can be retired.
++struct OwnerRead {
++ RawContext &context;Session *owner;
++ explicit OwnerRead(void *data):context(*static_cast<RawContext *>(data)){
++  context.readers.fetch_add(1);owner=context.owner.load();
++ }
++ ~OwnerRead(){context.readers.fetch_sub(1);}
++};
++struct Session {
++ uint32_t slot=0,generation=0,baseWidth=0,baseHeight=0,fpsNum=0,fpsDen=0;uint16_t port=0;
++ std::string uuid;std::array<uint8_t,32> token{};Pool pool;
++ obs_source_t *source=nullptr;obs_scene_t *scene=nullptr;obs_view_t *view=nullptr;video_t *video=nullptr;
++ // Created output ref belongs to worker. External observers may retain their own refs.
++ obs_output_t *output=nullptr;RawContext *raw=nullptr;std::thread worker;
++ Ipc ipc;std::atomic<bool> startSettled{false},finished{false},allowStart{false};
++ uint64_t until=0;bool started=false;
++ void RequestStop(){pool.accepting.store(false);ipc.stop.store(true);if(!started)startSettled.store(true);}
++ bool ReleaseGui(){
++  if(worker.joinable()&&!finished.load(std::memory_order_acquire))return false;
++  if(worker.joinable()){try{worker.detach();}catch(...){return false;}}output=nullptr;raw=nullptr;video=nullptr;
++  if(view){obs_view_remove(view);obs_view_set_source(view,0,nullptr);obs_view_destroy(view);view=nullptr;}
++  if(scene){obs_scene_release(scene);scene=nullptr;}if(source){obs_source_release(source);source=nullptr;}
++  token.fill(0);return true;
++ }
++ // No destructor touches OBS or joins. Session is deleted only after safe explicit retirement.
++};
++// Plain registry has no exit destructor: never free live OBS refs after obs_shutdown.
++// Root gates MUST refuse context teardown while Pending; this is not a force-close fallback.
++std::array<Session *,2> &Sessions(){static std::array<Session *,2> value{};return value;}
++std::array<uint32_t,2> generations{};
++thread_local Session *creating=nullptr;
++bool registered=false,draining=false;
++struct Completion{uint32_t generation=0,fault=0;uint64_t sent=0,captured=0;};
++std::array<Completion,2> completed{};
++void Retire(Session *&s){if(!s->finished.load(std::memory_order_acquire)||!s->ReleaseGui())return;completed[s->slot]={s->generation,s->ipc.fault.load(),s->ipc.sent.load(),s->pool.captured.load()};delete s;s=nullptr;}
++bool Gui(){auto *app=QCoreApplication::instance();return app&&QThread::currentThread()==app->thread();}
++bool OwnReturn(obs_source_t *source){
++ if(!source)return true;bool found=false;
++ auto check=[](obs_source_t *child,bool &found){OBSDataAutoRelease settings=obs_source_get_private_settings(child);if(obs_data_get_bool(settings,"freemix_call_video_return_private"))found=true;};
++ check(source,found);obs_source_enum_full_tree(source,[](obs_source_t *,obs_source_t *child,void *param){OBSDataAutoRelease settings=obs_source_get_private_settings(child);if(obs_data_get_bool(settings,"freemix_call_video_return_private"))*static_cast<bool *>(param)=true;},&found);return found;
++}
++const char *Name(void *){return "FreeMix Calls continuous return video";}
++void *Create(obs_data_t *,obs_output_t *output){
++ if(!creating)return nullptr;auto *context=new(std::nothrow) RawContext;
++ if(!context)return nullptr;context->output=output;context->owner=creating;
++ creating->output=output;creating->raw=context;return context;
++}
++void Destroy(void *data){delete static_cast<RawContext *>(data);}
++bool StartRaw(void *data){
++ OwnerRead read(data);auto *s=read.owner;
++ return s&&Gui()&&s->allowStart.exchange(false)&&!s->ipc.stop.load()&&obs_output_begin_data_capture(read.context.output,OBS_OUTPUT_VIDEO);
++}
++void StopRaw(void *data,uint64_t){
++ OwnerRead read(data);if(read.owner)read.owner->pool.accepting.store(false);
++ obs_output_end_data_capture(read.context.output);
++}
++void RawVideo(void *data,video_data *frame){OwnerRead read(data);if(read.owner&&frame)read.owner->pool.Capture(frame->data[0],frame->linesize[0],frame->timestamp);}
++uint64_t Bytes(void *data){OwnerRead read(data);return read.owner?read.owner->ipc.bytes.load():0;}
++int PoolDropped(Session &s){auto &p=s.pool;return int(std::min<uint64_t>(INT_MAX,p.replaced.load()+p.busyDropped.load()+p.clockDropped.load()));}
++int Dropped(void *data){OwnerRead read(data);return read.owner?PoolDropped(*read.owner):0;}
++void Worker(Session &s){
++ auto finish=[&](){
++  s.pool.accepting.store(false);
++  // GUI start cannot race teardown: stop request settles a never-started session.
++  while(!s.startSettled.load())std::this_thread::sleep_for(std::chrono::milliseconds(1));
++  if(s.output){
++   obs_output_force_stop(s.output);
++   // active=false follows stop_raw_video/disconnect in libobs, which joins raw callbacks.
++   // A stuck OBS worker is NOT forcibly freed: GUI Drain deadline refuses context teardown.
++   while(obs_output_active(s.output))std::this_thread::sleep_for(std::chrono::milliseconds(1));
++   s.raw->owner.exchange(nullptr);
++   while(s.raw->readers.load()!=0)std::this_thread::sleep_for(std::chrono::milliseconds(1));
++   s.raw=nullptr;obs_output_set_media(s.output,nullptr,nullptr);obs_output_release(s.output); // External output ref no longer exposes released AUX video.
++  }
++  s.token.fill(0);s.finished.store(true,std::memory_order_release); // Last Session access; remaining thread exit touches no OBS/Session.
++ };
++ try{RunIpc(s.pool,s.ipc,s.port,s.slot,s.generation,s.token);}catch(...){s.ipc.fault=7;}
++ finish();
++}
++std::string Build(Session &s,bool (*isPrivate)(obs_source_t *)){
++ s.source=obs_get_source_by_uuid(s.uuid.c_str());
++ if(!s.source||obs_source_removed(s.source)||!isPrivate||isPrivate(s.source)||OwnReturn(s.source)||(obs_source_get_output_flags(s.source)&OBS_SOURCE_VIDEO)==0||!obs_source_get_width(s.source)||!obs_source_get_height(s.source))return "Public loaded video source outside private audio/return loops required";
++ const auto cs=obs_source_get_color_space(s.source,0,nullptr);if(cs!=GS_CS_SRGB&&cs!=GS_CS_SRGB_16F)return "This finite return supports SDR sources only";
++ obs_video_info info{};if(!obs_get_video_info(&info)||!info.base_width||!info.base_height||!info.fps_den)return "Native video context unavailable";
++ const auto fps=DeriveFps(info.fps_num,info.fps_den);if(!fps.divisor)return "Continuous return requires Main25/50,30/60 or30000/60000 over1001; no video reset or FPS relabel";
++ s.pool.divisor=fps.divisor;s.pool.fpsNum=fps.numerator;s.pool.fpsDen=fps.denominator;s.fpsNum=info.fps_num;s.fpsDen=info.fps_den;s.baseWidth=info.base_width;s.baseHeight=info.base_height;
++ s.scene=obs_scene_create_private("FreeMix Calls auxiliary frame");if(!s.scene)return "Could not allocate private frame";
++ {OBSDataAutoRelease settings=obs_source_get_private_settings(obs_scene_get_source(s.scene));obs_data_set_bool(settings,"freemix_call_video_return_private",true);}
++ obs_source_set_audio_mixers(obs_scene_get_source(s.scene),0);obs_source_set_monitoring_type(obs_scene_get_source(s.scene),OBS_MONITORING_TYPE_NONE);
++ auto *item=obs_scene_add(s.scene,s.source);if(!item)return "Could not frame video source";
++ vec2 size{},position{};vec2_set(&size,float(info.base_width),float(info.base_height));vec2_set(&position,size.x/2,size.y/2);
++ obs_sceneitem_set_alignment(item,OBS_ALIGN_CENTER);obs_sceneitem_set_pos(item,&position);obs_sceneitem_set_bounds_type(item,OBS_BOUNDS_SCALE_INNER);obs_sceneitem_set_bounds_alignment(item,OBS_ALIGN_CENTER);obs_sceneitem_set_bounds(item,&size);
++ info.output_width=Width;info.output_height=Height;info.output_format=VIDEO_FORMAT_RGBA;info.colorspace=VIDEO_CS_709;info.range=VIDEO_RANGE_FULL;info.gpu_conversion=false;
++ s.view=obs_view_create();if(!s.view)return "Could not create AUX view";obs_view_set_source(s.view,0,obs_scene_get_source(s.scene));s.video=obs_view_add2(s.view,&info);if(!s.video)return "AUX video context unavailable";
++ creating=&s;s.output=obs_output_create("freemix_calls_return_video","FreeMix Calls auxiliary video",nullptr,nullptr);creating=nullptr;if(!s.output)return "Raw AUX output unavailable";
++ obs_output_set_media(s.output,s.video,nullptr);
++ video_scale_info conversion{};conversion.format=VIDEO_FORMAT_RGBA;conversion.width=Width;conversion.height=Height;conversion.colorspace=VIDEO_CS_709;conversion.range=VIDEO_RANGE_FULL;obs_output_set_video_conversion(s.output,&conversion);
++ try{s.worker=std::thread([&s](){Worker(s);});}catch(...){obs_output_release(s.output);s.output=nullptr;return "Could not create bounded IPC worker";}
++ return "";
++}
++void State(obs_data_t *response){
++ obs_video_info info{};const bool context=obs_get_video_info(&info);const auto fps=context?DeriveFps(info.fps_num,info.fps_den):FpsPlan{};const bool compatible=fps.divisor!=0;
++ obs_data_set_bool(response,"available",registered&&compatible);obs_data_set_bool(response,"registered",registered);obs_data_set_bool(response,"mainFpsCompatible",compatible);obs_data_set_int(response,"mainFpsNumerator",context?info.fps_num:0);obs_data_set_int(response,"mainFpsDenominator",context?info.fps_den:0);obs_data_set_int(response,"outputFpsNumerator",fps.numerator);obs_data_set_int(response,"outputFpsDenominator",fps.denominator);obs_data_set_int(response,"frameDivisor",fps.divisor);obs_data_set_bool(response,"experimental",true);obs_data_set_bool(response,"autoStart",false);obs_data_set_bool(response,"audioIncluded",false);obs_data_set_int(response,"maxUniqueSources",2);obs_data_set_string(response,"contract","rgba640x360-derived-fps-opaque-pts-v1");
++ OBSDataArrayAutoRelease rows=obs_data_array_create();
++ for(auto &s:Sessions())if(s){OBSDataAutoRelease row=obs_data_create();obs_data_set_int(row,"slot",s->slot);obs_data_set_int(row,"generation",s->generation);obs_data_set_string(row,"sourceUuid",s->uuid.c_str());obs_data_set_int(row,"mainFpsNumerator",s->fpsNum);obs_data_set_int(row,"mainFpsDenominator",s->fpsDen);obs_data_set_int(row,"outputFpsNumerator",s->pool.fpsNum);obs_data_set_int(row,"outputFpsDenominator",s->pool.fpsDen);obs_data_set_int(row,"frameDivisor",s->pool.divisor);obs_data_set_string(row,"state",s->ipc.stop.load()?"stopping":s->started?"capturing":"starting");obs_data_set_int(row,"faultCode",s->ipc.fault.load());obs_data_set_int(row,"captured",s->pool.captured.load());obs_data_set_int(row,"sent",s->ipc.sent.load());obs_data_set_int(row,"dropped",PoolDropped(*s));obs_data_set_int(row,"socketBackpressure",s->ipc.backpressure.load());obs_data_array_push_back(rows,row);}
++ obs_data_set_array(response,"sessions",rows);obs_data_set_bool(response,"pending",FreeMixCallVideoPending());
++ OBSDataArrayAutoRelease receipts=obs_data_array_create();for(uint32_t slot=0;slot<2;slot++)if(completed[slot].generation){OBSDataAutoRelease row=obs_data_create();obs_data_set_int(row,"slot",slot);obs_data_set_int(row,"generation",completed[slot].generation);obs_data_set_int(row,"faultCode",completed[slot].fault);obs_data_set_int(row,"sent",completed[slot].sent);obs_data_set_int(row,"captured",completed[slot].captured);obs_data_set_string(row,"stage","retired");obs_data_array_push_back(receipts,row);}obs_data_set_array(response,"completed",receipts);
++}
++} // namespace
++void FreeMixCallVideoRegister(){if(!Gui()||registered)return;obs_output_info info{};info.id="freemix_calls_return_video";info.flags=OBS_OUTPUT_VIDEO;info.get_name=Name;info.create=Create;info.destroy=Destroy;info.start=StartRaw;info.stop=StopRaw;info.raw_video=RawVideo;info.get_total_bytes=Bytes;info.get_dropped_frames=Dropped;obs_register_output(&info);registered=true;}
++void FreeMixCallVideoRequest(obs_data_t *r,obs_data_t *response,bool (*isPrivate)(obs_source_t *)){
++ if(!Gui()){obs_data_set_bool(response,"success",false);obs_data_set_string(response,"error","GUI-thread wrapper required");return;}
++ const std::string action=obs_data_get_string(r,"action");std::string error;
++ if(action=="state"){State(response);obs_data_set_bool(response,"success",true);return;}
++ error=ActionGuard(action,obs_data_get_bool(r,"experimentalContinuousVideo"),draining);
++ if(error.empty()&&action=="start"){
++  const std::string uuid=obs_data_get_string(r,"sourceUuid");const auto port=obs_data_get_int(r,"loopbackPort");std::array<uint8_t,32> token{};
++  if(uuid.empty()||uuid.size()>128||port<1||port>65535||!ParseToken(obs_data_get_string(r,"secretHex"),token))error="Public UUID, loopback port and ephemeral32byte secret required";
++  else {
++   bool duplicate=false;for(auto &s:Sessions())if(s&&s->uuid==uuid)duplicate=true;
++   if(duplicate)error="Source UUID already captured; reuse its slot/generation, no new view";
++   else {int free=-1;for(int i=0;i<2;i++)if(!Sessions()[i]){free=i;break;}
++    if(free<0)error="Conservative limit2unique return sources reached";
++    else if(!registered||generations[free]==UINT32_MAX)error="Raw output unavailable or generation exhausted";
++    else {auto s=std::make_unique<Session>();s->slot=uint32_t(free);s->generation=++generations[free];s->uuid=uuid;s->port=uint16_t(port);s->token=token;s->until=os_gettime_ns()+LeaseNs;
++     error=Build(*s,isPrivate);if(error.empty()){obs_data_set_int(response,"slot",s->slot);obs_data_set_int(response,"generation",s->generation);Sessions()[free]=s.release();}else s->ReleaseGui();
++    }
++   }
++  }token.fill(0);
++ }else if(error.empty()&&(action=="stop"||action=="pulse")){
++  const auto slot=obs_data_get_int(r,"slot"),generation=obs_data_get_int(r,"generation");
++  if(slot<0||slot>1||!Sessions()[slot]||generation!=Sessions()[slot]->generation)error="Current owned slot/generation required";
++  else if(action=="stop")Sessions()[slot]->RequestStop();
++  else if(Sessions()[slot]->ipc.stop.load())error="Session stopping; start explicitly after idle";
++  else Sessions()[slot]->until=os_gettime_ns()+LeaseNs;
++ }
++ State(response);obs_data_set_bool(response,"success",error.empty());if(!error.empty())obs_data_set_string(response,"error",error.c_str());
++}
++void FreeMixCallVideoTick(bool (*isPrivate)(obs_source_t *)){
++ if(!Gui())return;
++ for(auto &s:Sessions())if(s){
++  if(s->finished.load(std::memory_order_acquire)){Retire(s);continue;}
++  const auto color=obs_source_get_color_space(s->source,0,nullptr);
++  obs_video_info info{};const bool invalid=!obs_get_video_info(&info)||info.base_width!=s->baseWidth||info.base_height!=s->baseHeight||info.fps_num!=s->fpsNum||info.fps_den!=s->fpsDen||obs_source_removed(s->source)||!obs_source_get_width(s->source)||!obs_source_get_height(s->source)||(color!=GS_CS_SRGB&&color!=GS_CS_SRGB_16F)||!isPrivate||isPrivate(s->source)||OwnReturn(s->source)||os_gettime_ns()>=s->until;
++  if(invalid&&!s->ipc.fault.load())s->ipc.fault=os_gettime_ns()>=s->until?9:8;
++  if(invalid||s->ipc.fault.load())s->RequestStop();
++  if(!s->ipc.stop.load()&&s->ipc.ready.load()&&!s->started){s->started=true;s->pool.accepting.store(true);s->allowStart.store(true);if(!obs_output_start(s->output)){s->ipc.fault=5;s->RequestStop();}s->startSettled=true;}
++ }
++}
++void FreeMixCallVideoStop(){if(Gui())for(auto &s:Sessions())if(s)s->RequestStop();}
++bool FreeMixCallVideoPending(){for(auto &s:Sessions())if(s)return true;return false;}
++bool FreeMixCallVideoDrain(unsigned timeoutMs){
++ if(!FreeMixCallVideoPending())return true;if(!Gui())return false;draining=true;FreeMixCallVideoStop();const auto end=std::chrono::steady_clock::now()+std::chrono::milliseconds(std::min(timeoutMs,5000u));
++ while(FreeMixCallVideoPending()&&std::chrono::steady_clock::now()<end){
++  for(auto &s:Sessions())if(s&&s->finished.load(std::memory_order_acquire)){Retire(s);}
++  QCoreApplication::processEvents(QEventLoop::ExcludeUserInputEvents|QEventLoop::ExcludeSocketNotifiers,2);std::this_thread::sleep_for(std::chrono::milliseconds(1));
++ }draining=false;return !FreeMixCallVideoPending(); // Timeout retains refs: Root must refuse context change/close.
++}
+diff --git a/frontend/widgets/FreeMixCallVideo.hpp b/frontend/widgets/FreeMixCallVideo.hpp
+new file mode 100644
+index 0000000..74e3032
+--- /dev/null
++++ b/frontend/widgets/FreeMixCallVideo.hpp
+@@ -0,0 +1,10 @@
++// SPDX-License-Identifier: GPL-2.0-or-later
++#pragma once
++#include <obs.h>
++// GUI-thread functions. Root owns queued vendor wrapper and close/context gates.
++void FreeMixCallVideoRegister();
++void FreeMixCallVideoRequest(obs_data_t *,obs_data_t *,bool (*isPrivate)(obs_source_t *));
++void FreeMixCallVideoTick(bool (*isPrivate)(obs_source_t *));
++void FreeMixCallVideoStop();
++bool FreeMixCallVideoPending();
++bool FreeMixCallVideoDrain(unsigned timeoutMs);
+diff --git a/frontend/widgets/FreeMixCallVideoIpc.hpp b/frontend/widgets/FreeMixCallVideoIpc.hpp
+new file mode 100644
+index 0000000..0c4e295
+--- /dev/null
++++ b/frontend/widgets/FreeMixCallVideoIpc.hpp
+@@ -0,0 +1,42 @@
++// SPDX-License-Identifier: GPL-2.0-or-later
++#pragma once
++// Qt socket worker only. No OBS, callback, GUI/network wait or global environment.
++#include "FreeMixCallVideoPool.hpp"
++#include <QHostAddress>
++#include <QTcpSocket>
++#include <chrono>
++#include <algorithm>
++#include <thread>
++namespace freemix_call_video {
++struct Ipc {
++ std::atomic<bool> stop{false},ready{false};std::atomic<uint32_t> fault{0};
++ std::atomic<uint64_t> sent{0},bytes{0},backpressure{0},socketHighWater{0};
++};
++inline void RunIpc(Pool &pool,Ipc &state,uint16_t port,uint32_t slot,uint32_t generation,std::array<uint8_t,32> &token){
++ constexpr qint64 packetBytes=HeaderSize+Payload,bound=2*packetBytes;
++ QTcpSocket socket;socket.connectToHost(QHostAddress::LocalHost,port);
++ if(!socket.waitForConnected(250)||state.stop.load()){if(!state.stop.load())state.fault=1;token.fill(0);socket.abort();return;}
++ socket.setSocketOption(QAbstractSocket::SendBufferSizeSocketOption,int(packetBytes));
++ std::array<uint8_t,48> auth{};std::memcpy(auth.data(),"FMVA",4);Put32(auth.data()+4,1);Put32(auth.data()+8,slot);Put32(auth.data()+12,generation);std::memcpy(auth.data()+16,token.data(),32);
++ const auto accepted=socket.write(reinterpret_cast<const char *>(auth.data()),auth.size());auth.fill(0);token.fill(0);
++ if(accepted!=48){state.fault=2;socket.abort();return;}state.ready=true;
++ auto lastProgress=std::chrono::steady_clock::now();qint64 previousPending=socket.bytesToWrite();
++ while(!state.stop.load()){
++  if(socket.state()!=QAbstractSocket::ConnectedState){state.fault=3;break;}
++  const auto pending=socket.bytesToWrite();
++  if(pending<previousPending||pending==0)lastProgress=std::chrono::steady_clock::now();previousPending=pending;
++  if(pending+packetBytes>bound){
++   state.backpressure++;socket.waitForBytesWritten(10);
++   if(std::chrono::steady_clock::now()-lastProgress>std::chrono::milliseconds(500)){state.fault=6;break;}
++   continue;
++  }
++  auto lease=pool.TakeLatest();
++  if(lease.index<0){socket.waitForReadyRead(1);if(socket.bytesAvailable()){state.fault=4;break;}std::this_thread::sleep_for(std::chrono::milliseconds(1));continue;}
++  const auto h=Header(slot,generation,lease.sequence,lease.pts,pool.fpsNum,pool.fpsDen);
++  const bool sent=socket.write(reinterpret_cast<const char *>(h.data()),h.size())==qint64(h.size())&&socket.write(reinterpret_cast<const char *>(lease.rgba),Payload)==Payload;
++  pool.Release(lease);if(!sent){state.fault=2;break;}state.sent++;state.bytes+=packetBytes;
++  state.socketHighWater.store(std::max<uint64_t>(state.socketHighWater.load(),uint64_t(socket.bytesToWrite())));
++  socket.waitForBytesWritten(1);
++ }socket.abort();
++}
++}
+diff --git a/frontend/widgets/FreeMixCallVideoPolicy.hpp b/frontend/widgets/FreeMixCallVideoPolicy.hpp
+new file mode 100644
+index 0000000..4d584f0
+--- /dev/null
++++ b/frontend/widgets/FreeMixCallVideoPolicy.hpp
+@@ -0,0 +1,29 @@
++// SPDX-License-Identifier: GPL-2.0-or-later
++#pragma once
++#include <array>
++#include <cstdint>
++#include <cstring>
++#include <string>
++#include <numeric>
++namespace freemix_call_video {
++struct FpsPlan{unsigned divisor=0;uint32_t numerator=0,denominator=0;};
++inline FpsPlan DeriveFps(uint32_t numerator,uint32_t denominator){
++ if(!numerator||!denominator)return {};auto gcd=std::gcd(numerator,denominator);numerator/=gcd;denominator/=gcd;
++ unsigned divisor=0;
++ if((denominator==1&&(numerator==25||numerator==30))||(denominator==1001&&numerator==30000))divisor=1;
++ if((denominator==1&&(numerator==50||numerator==60))||(denominator==1001&&numerator==60000))divisor=2;
++ if(!divisor)return {};return {divisor,numerator/divisor,denominator};
++}
++inline unsigned FpsDivisor(uint32_t numerator,uint32_t denominator){return DeriveFps(numerator,denominator).divisor;}
++inline const char *ActionGuard(const std::string &action,bool optIn,bool draining){
++ if(action=="state")return "";
++ if(action!="start"&&action!="stop"&&action!="pulse")return "Unknown action";
++ if(!optIn)return "Continuous video requires explicit experimental opt-in";
++ if(draining&&action!="stop")return "Context draining; no start or renewal";return "";
++}
++inline bool ParseToken(const char *hex,std::array<uint8_t,32> &out){
++ out.fill(0);if(!hex||std::strlen(hex)!=64)return false;
++ auto digit=[](char c){return c>='0'&&c<='9'?c-'0':c>='a'&&c<='f'?c-'a'+10:c>='A'&&c<='F'?c-'A'+10:-1;};bool any=false;
++ for(int i=0;i<32;i++){int a=digit(hex[i*2]),b=digit(hex[i*2+1]);if(a<0||b<0){out.fill(0);return false;}out[i]=uint8_t(a*16+b);any|=out[i]!=0;}return any;
++}
++}
+diff --git a/frontend/widgets/FreeMixCallVideoPool.hpp b/frontend/widgets/FreeMixCallVideoPool.hpp
+new file mode 100644
+index 0000000..986943d
+--- /dev/null
++++ b/frontend/widgets/FreeMixCallVideoPool.hpp
+@@ -0,0 +1,60 @@
++// SPDX-License-Identifier: GPL-2.0-or-later
++#pragma once
++// Own draft. No OBS/Qt dependency. Three fixed slots, one serialized producer.
++#include <array>
++#include <atomic>
++#include <cstdint>
++#include <cstring>
++#include <memory>
++
++namespace freemix_call_video {
++static_assert(std::atomic<uint32_t>::is_always_lock_free&&std::atomic<uint64_t>::is_always_lock_free,"Capture pool requires lock-free counters on this target");
++constexpr uint32_t Width=640,Height=360,Stride=Width*4,Payload=Stride*Height,HeaderSize=64;
++inline void Put16(uint8_t *p,uint16_t v){p[0]=uint8_t(v);p[1]=uint8_t(v>>8);}
++inline void Put32(uint8_t *p,uint32_t v){for(int i=0;i<4;i++)p[i]=uint8_t(v>>(i*8));}
++inline void Put64(uint8_t *p,uint64_t v){for(int i=0;i<8;i++)p[i]=uint8_t(v>>(i*8));}
++inline std::array<uint8_t,HeaderSize> Header(uint32_t slot,uint32_t generation,uint64_t sequence,uint64_t pts,uint32_t fpsNum=30,uint32_t fpsDen=1){
++ std::array<uint8_t,HeaderSize> h{};std::memcpy(h.data(),"FMVF",4);Put16(h.data()+4,1);Put16(h.data()+6,HeaderSize);
++ Put16(h.data()+8,Width);Put16(h.data()+10,Height);Put16(h.data()+12,1);Put32(h.data()+16,Stride);Put32(h.data()+20,Payload);
++ Put32(h.data()+24,slot);Put32(h.data()+28,generation);Put64(h.data()+32,sequence);Put64(h.data()+40,pts);Put32(h.data()+48,fpsNum);Put32(h.data()+52,fpsDen);return h;
++}
++class Pool {
++ enum State : uint32_t {Free,Writing,Ready,Reading};
++ struct Cell {std::atomic<uint32_t> state{Free};std::unique_ptr<uint8_t[]> rgba{new uint8_t[Payload]};std::atomic<uint64_t> sequence{0};uint64_t pts=0;};
++ std::array<Cell,3> cells;
++ uint64_t sequence=0,lastPts=0,callbacks=0;
++public:
++ struct Lease {int index=-1;const uint8_t *rgba=nullptr;uint64_t sequence=0,pts=0;};
++ std::atomic<bool> accepting{false};
++ std::atomic<uint64_t> captured{0},replaced{0},busyDropped{0},clockDropped{0},invalid{0},consumed{0};
++ unsigned divisor=1;uint32_t fpsNum=30,fpsDen=1; // Set while idle; derived actual rational, never relabel PTS.
++ bool Capture(const uint8_t *rgba,uint32_t stride,uint64_t pts) noexcept {
++  if(!accepting.load(std::memory_order_relaxed))return false;
++  if(!rgba||stride<Stride||!pts){invalid++;return false;}
++  if(++callbacks%divisor!=0)return false;
++  if(pts<=lastPts){clockDropped++;return false;}lastPts=pts;
++  int chosen=-1;
++  for(int i=0;i<3;i++){uint32_t expected=Free;if(cells[i].state.compare_exchange_strong(expected,Writing,std::memory_order_acquire)){chosen=i;break;}}
++  if(chosen<0)for(int i=0;i<3;i++){uint32_t expected=Ready;if(cells[i].state.compare_exchange_strong(expected,Writing,std::memory_order_acquire)){chosen=i;replaced++;break;}}
++  if(chosen<0){busyDropped++;return false;}
++  auto &cell=cells[chosen];
++  for(uint32_t y=0;y<Height;y++){auto *row=cell.rgba.get()+y*Stride;std::memcpy(row,rgba+uint64_t(y)*stride,Stride);for(uint32_t x=3;x<Stride;x+=4)row[x]=255;}
++  cell.sequence=++sequence;cell.pts=pts;captured++;cell.state.store(Ready,std::memory_order_release);return true;
++ }
++ Lease TakeLatest() noexcept {
++  Lease best;
++  for(int i=0;i<3;i++){
++   uint32_t expected=Ready;if(!cells[i].state.compare_exchange_strong(expected,Reading,std::memory_order_acquire))continue;
++   auto &cell=cells[i];
++   if(best.index<0||cell.sequence.load()>best.sequence){if(best.index>=0){cells[best.index].state.store(Free,std::memory_order_release);replaced++;}best={i,cell.rgba.get(),cell.sequence.load(),cell.pts};}
++   else {cell.state.store(Free,std::memory_order_release);replaced++;}
++  }
++  if(best.index>=0)consumed++;return best;
++ }
++ bool Release(Lease &lease) noexcept {
++  if(lease.index<0||lease.index>2||lease.rgba!=cells[lease.index].rgba.get()||lease.sequence!=cells[lease.index].sequence.load())return false;
++  uint32_t expected=Reading;if(!cells[lease.index].state.compare_exchange_strong(expected,Free,std::memory_order_release))return false;
++  lease={};return true;
++ }
++};
++} // namespace freemix_call_video
+diff --git a/frontend/widgets/FreeMixFtbContract.hpp b/frontend/widgets/FreeMixFtbContract.hpp
+new file mode 100644
+index 0000000..3bee680
+--- /dev/null
++++ b/frontend/widgets/FreeMixFtbContract.hpp
+@@ -0,0 +1,70 @@
++// FreeMix FTB contract policy. No OBS/Qt/global state or I/O in this header.
++#pragma once
++#include <algorithm>
++#include <chrono>
++#include <deque>
++#include <string>
++#include <unordered_map>
++
++namespace freemix_ftb {
++struct Snapshot {
++ bool available=false, studio=false, closing=false, running=false, manual=false;
++ bool requested=false, blackObserved=false, normalObserved=false, restoreRemoved=false;
++ std::string scope, context, program, preview, output, restore;
++};
++struct Request {
++ bool active=false;
++ std::string id, connection, scope, context, program, preview, output;
++};
++enum class Kind { Reject, Start, Unchanged, Replayed };
++struct Decision { Kind kind=Kind::Reject; std::string error; };
++struct Receipt {
++ std::string signature, id, connection, expectedOutput, failure;
++ bool active=false, terminal=false;
++};
++inline bool Identifier(const std::string &s) {
++ if(s.empty()||s.size()>80)return false;
++ return std::all_of(s.begin(),s.end(),[](unsigned char c){return (c>='a'&&c<='z')||(c>='A'&&c<='Z')||(c>='0'&&c<='9')||c=='_'||c=='-';});
++}
++inline bool Uuid(const std::string &s) {
++ if(s.size()!=36)return false;
++ for(size_t n=0;n<s.size();++n){if(n==8||n==13||n==18||n==23){if(s[n]!='-')return false;}else if(!((s[n]>='0'&&s[n]<='9')||(s[n]>='a'&&s[n]<='f')||(s[n]>='A'&&s[n]<='F')))return false;}return true;
++}
++class Policy {
++ std::string seed=std::to_string(std::chrono::steady_clock::now().time_since_epoch().count()), scope;
++ unsigned long long epoch=1;
++ std::unordered_map<std::string,Receipt> receipts;
++ std::deque<std::string> order;
++ static std::string Key(const Request &r){return r.connection+":"+r.id;}
++ static std::string Signature(const Request &r){return (r.active?"1|":"0|")+r.context+"|"+r.program+"|"+r.preview+"|"+r.output;}
++public:
++ void Reset(){++epoch;scope.clear();receipts.clear();order.clear();}
++ std::string Context(const std::string &currentScope){if(scope!=currentScope){++epoch;scope=currentScope;receipts.clear();order.clear();}return seed+":"+std::to_string(epoch);}
++ void Observe(const Snapshot &s){for(auto &entry:receipts){auto &r=entry.second;if(!r.terminal)r.terminal=r.active?s.blackObserved:(s.normalObserved&&s.output==r.expectedOutput);}}
++ Decision Check(const Request &r,const Snapshot &s)const {
++  const auto reject=[](const char *e){return Decision{Kind::Reject,e};};
++  if(!Identifier(r.id)||!Identifier(r.connection)||!Uuid(r.program)||!Uuid(r.preview))return reject("Identificação FTB ou UUID inválido.");
++  if(s.closing)return reject("O FreeMix está encerrando; nenhum FTB será enviado.");
++  if(r.scope!=s.scope||r.context!=s.context)return reject("Projeto ou contexto do motor mudou. Consulte FTB novamente.");
++  const auto old=receipts.find(Key(r));
++  if(old!=receipts.end()){if(old->second.signature!=Signature(r))return reject("ID FTB reutilizado para outro comando.");if(!old->second.failure.empty())return {Kind::Reject,old->second.failure};return {Kind::Replayed,{}};}
++  if(!s.studio)return reject("Ative o modo Preview/Programa para usar o FTB.");
++  if(!s.available)return reject("Não há quicktransition FTB nativa configurada. Nenhuma transição Fade comum será usada.");
++  if(r.output!=s.output)return reject("A saída renderizada do Programa mudou. Consulte o motor antes de enviar FTB.");
++  if(r.program!=s.program||r.preview!=s.preview)return reject("Programa ou Preview mudou. Consulte o motor antes de enviar FTB.");
++  if(s.running||s.manual)return reject("Uma transição de vídeo ou áudio está ativa. Aguarde terminar; o FTB não será repetido.");
++  if(s.restoreRemoved)return reject("A fonte de retorno do FTB foi removida. Confira o motor; nenhum retorno será inventado.");
++  if((s.requested&&!s.blackObserved)||(!s.requested&&!s.normalObserved))return reject("Estado FTB não confirmado. Confira o motor; nenhum toggle será enviado.");
++  if(receipts.size()>=128&&std::none_of(order.begin(),order.end(),[&](const auto &k){return receipts.at(k).terminal;}))return reject("Limite de comandos FTB sem confirmação. Confira o motor.");
++  if(r.active==s.requested)return {Kind::Unchanged,{}};
++  return {Kind::Start,{}};
++ }
++ void Accept(const Request &r,const Snapshot &before,bool unchanged){
++  if(receipts.size()>=128){const auto old=std::find_if(order.begin(),order.end(),[&](const auto &k){return receipts.at(k).terminal;});if(old!=order.end()){receipts.erase(*old);order.erase(old);}}
++  const auto key=Key(r);receipts.emplace(key,Receipt{Signature(r),r.id,r.connection,r.active?std::string{}:before.restore,{},r.active,unchanged});order.push_back(key);
++ }
++ void RejectAccepted(const Request &r,const std::string &failure){const auto i=receipts.find(Key(r));if(i!=receipts.end()){i->second.failure=failure;i->second.terminal=true;}}
++ const Receipt *Find(const Request &r)const{const auto i=receipts.find(Key(r));return i==receipts.end()?nullptr:&i->second;}
++ size_t Size()const{return receipts.size();}
++};
++} // namespace freemix_ftb
+diff --git a/frontend/widgets/FreeMixMultistream.cpp b/frontend/widgets/FreeMixMultistream.cpp
+index d17eaae..e690a81 100644
+--- a/frontend/widgets/FreeMixMultistream.cpp
++++ b/frontend/widgets/FreeMixMultistream.cpp
+@@ -37,6 +37,7 @@
+ #include <QTimer>
+ #include "FreeMixCenterColumn.hpp"
+ #include "FreeMixCallAudio.hpp"
++#include "FreeMixCallVideo.hpp"
+ #include "FreeMixAudioRouting.hpp"
+ #include "FreeMixVideoTransports.hpp"
+ #include "OBSBasic.hpp"
+@@ -44,6 +45,7 @@
+ #include <QDockWidget>
+ #include <QPixmap>
+ #include <QDialog>
++#include <QApplication>
+ #include <QDir>
+ #include <QFileInfo>
+ #include <QFile>
+@@ -121,18 +123,38 @@ std::map<std::string, OBSOutputAutoRelease> networkOutputs;
+ std::map<std::string,std::unique_ptr<NetworkMedia>> networkMedia;
+ void StopNetworkOutputs()
+ {
++ FreeMixCallVideoStop();
+  freemix_omt_hdr::StopAll();
+  freemix_srt_hdr::StopAll();
+  // Force stop/join the raw plugin callbacks before destroying their video view.
+  for(auto &entry:networkOutputs)if(entry.second&&obs_output_active(entry.second))obs_output_force_stop(entry.second);
+  networkOutputs.clear();networkMedia.clear();freemix_sdi::Stop();
+ }
++void RequestFadeToBlack(obs_data_t *request,obs_data_t *response,void *)
++{
++ const QPointer<OBSBasic> main=OBSBasic::Get();
++ const auto fail=[response](){obs_data_set_bool(response,"success",false);obs_data_set_string(response,"error","O FreeMix está encerrando ou mudou de contexto. Nenhum FTB será enviado.");};
++ if(!main||frontendClosing){fail();return;}
++ const auto work=[main,request,response,fail](){if(!main||frontendClosing||main->isClosing()){fail();return;}main->FreeMixFadeToBlackRequest(request,response);};
++ if(QThread::currentThread()==main->thread())work();
++ else if(!QMetaObject::invokeMethod(main.data(),work,Qt::BlockingQueuedConnection))fail();
++}
++
+ void RequestSdiOutput(obs_data_t *request,obs_data_t *response,void *){QMetaObject::invokeMethod(OBSBasic::Get(),[=](){if(frontendClosing){obs_data_set_bool(response,"success",false);return;}freemix_sdi::Request(request,response,IsPrivateSource);},Qt::BlockingQueuedConnection);}
+ void RequestSrtHdrOutput(obs_data_t *request,obs_data_t *response,void *){
+  auto *main=OBSBasic::Get();if(!main){obs_data_set_bool(response,"success",false);return;}
+  const auto work=[=](){if(frontendClosing){obs_data_set_bool(response,"success",false);obs_data_set_string(response,"error","frontend is closing or changing context");return;}freemix_srt_hdr::Request(request,response,IsPrivateSource);};
+  if(QThread::currentThread()==main->thread())work();else QMetaObject::invokeMethod(main,work,Qt::BlockingQueuedConnection);
+ }
++void RequestCallVideo(obs_data_t *request,obs_data_t *response,void *){
++ auto *main=OBSBasic::Get();if(!main){obs_data_set_bool(response,"success",false);return;}
++ const auto work=[=](){
++  const std::string action=obs_data_get_string(request,"action");
++  if(frontendClosing&&action!="state"&&action!="stop"){obs_data_set_bool(response,"success",false);obs_data_set_string(response,"error","frontend is closing or changing context");return;}
++  FreeMixCallVideoRequest(request,response,IsPrivateSource);
++ };
++ if(QThread::currentThread()==main->thread())work();else QMetaObject::invokeMethod(main,work,Qt::BlockingQueuedConnection);
++}
+ void RequestOmtHdrOutput(obs_data_t *request,obs_data_t *response,void *){QMetaObject::invokeMethod(OBSBasic::Get(),[=](){if(frontendClosing){obs_data_set_bool(response,"success",false);return;}freemix_omt_hdr::Request(request,response,IsPrivateSource);},Qt::BlockingQueuedConnection);}
+ void RequestNetworkOutput(obs_data_t *request, obs_data_t *response, void *)
+ {
+@@ -1486,12 +1508,14 @@ void RequestGetInterface(obs_data_t *request, obs_data_t *response, void *)
+ {
+  const bool capture = obs_data_get_bool(request, "screenshot");
+  const bool show = obs_data_get_bool(request, "show");
+- QMetaObject::invokeMethod(OBSBasic::Get(), [response, capture, show]() {
++ const bool sourceEditors = obs_data_get_bool(request, "sourceEditors");
++ QMetaObject::invokeMethod(OBSBasic::Get(), [response, capture, show, sourceEditors]() {
+   auto *main = OBSBasic::Get();
+    if (!main || main->isClosing() || frontendClosing || panelDeletionDepth) {
+     obs_data_set_int(response, "pid", QCoreApplication::applicationPid());
+     obs_data_set_string(response, "executable", QCoreApplication::applicationFilePath().toUtf8().constData());
+     obs_data_set_bool(response, "interfaceBusy", true);
++    if (sourceEditors) obs_data_set_bool(response, "sourceEditorsObserved", false);
+     obs_data_set_bool(response, "closing", !main || main->isClosing() || frontendClosing);
+     obs_data_set_bool(response, "success", true);
+     return;
+@@ -1545,6 +1569,33 @@ void RequestGetInterface(obs_data_t *request, obs_data_t *response, void *)
+    obs_data_array_push_back(windows, item);
+   }
+   obs_data_set_array(response, "panels", windows);
++  // Optional Qt observations only: never interpret visibility as external z-order proof.
++  if (sourceEditors) {
++   OBSDataArrayAutoRelease editors = obs_data_array_create();
++   QWidget *focus = QApplication::focusWidget();
++   size_t editorCount = 0;
++   bool truncated = false;
++   for (auto *dialog : main->findChildren<QDialog *>(QString(), Qt::FindDirectChildrenOnly)) {
++    const QString type = QString::fromLatin1(dialog->metaObject()->className());
++    const char *kind = type == "OBSBasicProperties" ? "properties" : type == "OBSBasicFilters" ? "filters" : nullptr;
++    if (!kind) continue;
++    if (editorCount++ >= 8) { truncated = true; break; }
++    OBSDataAutoRelease item = obs_data_create();
++    const QString sourceUuid = dialog->property("freemixSourceUuid").toString();
++    obs_data_set_string(item, "kind", kind);
++    obs_data_set_string(item, "sourceUuid", sourceUuid.toUtf8().constData());
++    obs_data_set_bool(item, "identityKnown", !sourceUuid.isEmpty());
++    obs_data_set_bool(item, "visible", dialog->isVisible());
++    obs_data_set_bool(item, "minimized", dialog->isMinimized());
++    obs_data_set_bool(item, "activeWindow", dialog->isActiveWindow());
++    obs_data_set_bool(item, "focusWithin", focus && (focus == dialog || dialog->isAncestorOf(focus)));
++    obs_data_array_push_back(editors, item);
++   }
++   obs_data_set_array(response, "sourceEditors", editors);
++   obs_data_set_bool(response, "sourceEditorsObserved", true);
++   obs_data_set_bool(response, "sourceEditorsTruncated", truncated);
++   obs_data_set_bool(response, "sourceEditorsZOrderVerified", false);
++  }
+   bool settingsOpen = false;
+    for (auto *dialog : main->findChildren<QDialog *>(QString(), Qt::FindDirectChildrenOnly)) {
+    if (QString::fromLatin1(dialog->metaObject()->className()) == "OBSBasicSettings" && dialog->isVisible()) settingsOpen = true;
+@@ -1599,6 +1650,8 @@ std::string talkLease;
+ bool isolatedTalk = false;
+ std::chrono::steady_clock::time_point talkUntil;
+ QTimer *talkTimer = nullptr;
++QTimer *callVideoTimer = nullptr;
++bool frontendDrainActive=false;
+ void ApplyTalkback(bool on)
+ {
+  FreeMixCallAudioDirector(directorUuid.c_str(), on ? talkLease.c_str() : "");
+@@ -1671,6 +1724,7 @@ void RequestTalkback(obs_data_t *request, obs_data_t *response, void *)
+ void RegisterVendor()
+ {
+  FreeMixAudioRoutingRegister();
++ FreeMixCallVideoRegister();
+ 	if (vendor) {
+ 		return;
+ 	}
+@@ -1679,6 +1733,7 @@ void RegisterVendor()
+ 		blog(LOG_WARNING, "[freemix] control server not available: extra destinations cannot be edited");
+ 		return;
+ 	}
++	obs_websocket_vendor_register_request(vendor, "fade_to_black", RequestFadeToBlack, nullptr);
+ 	obs_websocket_vendor_register_request(vendor, "get_destinations", RequestGet, nullptr);
+ 	obs_websocket_vendor_register_request(vendor, "set_destinations", RequestSet, nullptr);
+ 	obs_websocket_vendor_register_request(vendor, "control_destination", RequestControlDestination, nullptr);
+@@ -1702,8 +1757,12 @@ void RegisterVendor()
+  obs_websocket_vendor_register_request(vendor, "reorder_inputs", RequestReorderInputs, nullptr);
+  obs_websocket_vendor_register_request(vendor, "talkback", RequestTalkback, nullptr);
+  obs_websocket_vendor_register_request(vendor, "call_audio", FreeMixCallAudioRequest, nullptr);
++ obs_websocket_vendor_register_request(vendor,"call_video",RequestCallVideo,nullptr);
+  obs_websocket_vendor_register_request(vendor, "audio_capabilities", FreeMixAudioCapabilitiesRequest, nullptr);
+  obs_websocket_vendor_register_request(vendor, "shutdown_idle", RequestShutdownIdle, nullptr);
++ callVideoTimer = new QTimer(OBSBasic::Get());
++ QObject::connect(callVideoTimer,&QTimer::timeout,OBSBasic::Get(),[](){if(frontendClosing)FreeMixCallVideoStop();FreeMixCallVideoTick(IsPrivateSource);});
++ callVideoTimer->start(100); // Poll retirement even while frontendClosing/talkTimer stopped.
+  talkTimer = new QTimer(OBSBasic::Get());
+  QObject::connect(talkTimer, &QTimer::timeout, OBSBasic::Get(), []() {
+   if(frontendClosing)return;
+@@ -1746,6 +1805,7 @@ void OnFrontendEvent(enum obs_frontend_event event, void *)
+ 	switch (event) {
+ 	case OBS_FRONTEND_EVENT_SCENE_COLLECTION_CLEANUP:
+   frontendClosing=true;
++  if(auto *main=OBSBasic::Get())main->ResetFreeMixFtbContext();
+   if(talkTimer)talkTimer->stop();
+   StopNetworkOutputs(); StopAll();
+   for(auto &mix:independentMixes){ClearIndependentTransition(mix);mix.programUuid.clear();mix.previewUuid.clear();}
+@@ -1775,7 +1835,7 @@ void OnFrontendEvent(enum obs_frontend_event event, void *)
+ 		Load();
+ 		break;
+ 	case OBS_FRONTEND_EVENT_PROFILE_CHANGING:
+-  frontendClosing=true; if(talkTimer)talkTimer->stop();
++  frontendClosing=true; if(auto *main=OBSBasic::Get())main->ResetFreeMixFtbContext(); if(talkTimer)talkTimer->stop();
+   StopNetworkOutputs();
+ 		StopAll();
+   for(auto &mix:independentMixes){ClearIndependentTransition(mix);mix.programUuid.clear();mix.previewUuid.clear();}
+@@ -1807,12 +1867,19 @@ void OnFrontendEvent(enum obs_frontend_event event, void *)
+ 
+ bool FreeMixMultistreamDrainSrtHdr(unsigned timeoutMs)
+ {
+- if(!freemix_srt_hdr::Pending())return true;
++ // Existing guarded close/profile/collection/video-reset callsites also drain Calls.
++ if(frontendDrainActive)return false; // Nested context change must not clear outer gate.
++ if(!FreeMixCallVideoPending()&&!freemix_srt_hdr::Pending())return true;
+  auto *main=OBSBasic::Get();if(!main||QThread::currentThread()!=main->thread())return false;
++ frontendDrainActive=true;
+  const bool wasClosing=frontendClosing.exchange(true);
+- const bool completed=freemix_srt_hdr::Drain(timeoutMs);
+- frontendClosing=wasClosing;
+- if(!completed){if(!wasClosing&&talkTimer)talkTimer->start(100);blog(LOG_WARNING,"FreeMix SRT HDR drain timed out: resources retained; context change/close refused");}
++ const uint64_t started=os_gettime_ns();
++ const bool callsDone=FreeMixCallVideoDrain(timeoutMs);
++ const uint64_t elapsed=(os_gettime_ns()-started)/1000000ULL;
++ const unsigned remaining=elapsed>=timeoutMs?0:timeoutMs-unsigned(elapsed);
++ const bool completed=callsDone&&freemix_srt_hdr::Drain(remaining);
++ frontendClosing=wasClosing;frontendDrainActive=false;
++ if(!completed){if(!wasClosing&&talkTimer)talkTimer->start(100);blog(LOG_WARNING,"FreeMix network drain timed out: resources retained; context change/close refused");}
+  return completed;
+ }
+ 
+diff --git a/frontend/widgets/OBSBasic.hpp b/frontend/widgets/OBSBasic.hpp
+index bd4814f..1d323de 100644
+--- a/frontend/widgets/OBSBasic.hpp
++++ b/frontend/widgets/OBSBasic.hpp
+@@ -42,6 +42,8 @@
+ #include <QAccessible>
+ #include <QSystemTrayIcon>
+ 
++#include "FreeMixFtbContract.hpp"
++
+ #include <atomic>
+ #include <deque>
+ 
+@@ -1556,6 +1558,9 @@ private:
+ 	bool tBarActive = false;
+ 
+ 	OBSSource prevFTBSource = nullptr;
++	freemix_ftb::Policy freeMixFtbPolicy;
++	freemix_ftb::Snapshot FreeMixFtbSnapshot();
++	bool FreeMixTriggerFadeToBlack(const QuickTransition &quick);
+ 
+ 	void InitDefaultTransitions();
+ 	void InitTransition(obs_source_t *transition);
+@@ -1598,6 +1603,8 @@ private:
+ 	void UpdateCurrentTransition(const std::string &uuid, bool setTransition);
+ 
+ public slots:
++	void FreeMixFadeToBlackRequest(obs_data_t *request, obs_data_t *response);
++	void ResetFreeMixFtbContext() { freeMixFtbPolicy.Reset(); }
+ 	void SetCurrentScene(OBSSource scene, bool force = false);
+ 
+ 	void SetTransition(OBSSource transition);
+diff --git a/frontend/widgets/OBSBasic_MainControls.cpp b/frontend/widgets/OBSBasic_MainControls.cpp
+index 6f738ff..a8b3d1b 100644
+--- a/frontend/widgets/OBSBasic_MainControls.cpp
++++ b/frontend/widgets/OBSBasic_MainControls.cpp
+@@ -111,6 +111,7 @@ void OBSBasic::CreatePropertiesWindow(obs_source_t *source)
+ 	}
+ 
+ 	properties = new OBSBasicProperties(this, source);
++	properties->setProperty("freemixSourceUuid", QString::fromUtf8(obs_source_get_uuid(source)));
+ 	properties->Init();
+ 	properties->setAttribute(Qt::WA_DeleteOnClose, true);
+ 	FreeMixRaiseInputDialog(properties, this, requester);
+@@ -129,6 +130,7 @@ void OBSBasic::CreateFiltersWindow(obs_source_t *source)
+ 	}
+ 
+ 	filters = new OBSBasicFilters(this, source);
++	filters->setProperty("freemixSourceUuid", QString::fromUtf8(obs_source_get_uuid(source)));
+ 	filters->Init();
+ 	filters->setAttribute(Qt::WA_DeleteOnClose, true);
+ 	FreeMixRaiseInputDialog(filters, this, requester);
+diff --git a/frontend/widgets/OBSBasic_Transitions.cpp b/frontend/widgets/OBSBasic_Transitions.cpp
+index 97dd78e..b383581 100644
+--- a/frontend/widgets/OBSBasic_Transitions.cpp
++++ b/frontend/widgets/OBSBasic_Transitions.cpp
+@@ -112,6 +112,7 @@ void OBSBasic::TriggerQuickTransition(int id)
+ 	QuickTransition *qt = GetQuickTransition(id);
+ 
+ 	if (qt && previewProgramMode) {
++		if (qt->fadeToBlack) { FreeMixTriggerFadeToBlack(*qt); return; }
+ 		OBSScene scene = GetCurrentScene();
+ 		obs_source_t *source = obs_scene_get_source(scene);
+ 
+@@ -124,6 +125,131 @@ void OBSBasic::TriggerQuickTransition(int id)
+ 	}
+ }
+ 
++// FreeMix manual FTB: the native quicktransition flag is authoritative.
++freemix_ftb::Snapshot OBSBasic::FreeMixFtbSnapshot()
++{
++ freemix_ftb::Snapshot state;
++ char *rawScope=obs_frontend_get_current_scene_collection();
++ state.scope=rawScope?rawScope:"";bfree(rawScope);
++ state.context=freeMixFtbPolicy.Context(state.scope);
++ state.studio=IsPreviewProgramMode();state.closing=isClosing();state.manual=tBarActive;
++ const auto quick=std::find_if(quickTransitions.begin(),quickTransitions.end(),[](const QuickTransition &q){return q.fadeToBlack&&q.source&&!obs_source_removed(q.source)&&strcmp(obs_source_get_id(q.source),"fade_transition")==0&&q.duration>=50&&q.duration<=20000;});
++ state.available=quick!=quickTransitions.end();
++ OBSSourceAutoRelease outputTransition=obs_get_output_source(0);
++ OBSSourceAutoRelease output=outputTransition?obs_transition_get_active_source(outputTransition):nullptr;
++ OBSSourceAutoRelease program=obs_frontend_get_current_scene();
++ const OBSSource preview=GetCurrentSceneSource();
++ state.running=outputTransition&&obs_transition_is_active(outputTransition);
++ state.requested=bool(prevFTBSource);
++ state.output=output?obs_source_get_uuid(output):"";
++ state.program=program?obs_source_get_uuid(program):"";
++ state.preview=preview?obs_source_get_uuid(preview):"";
++ state.restore=prevFTBSource?obs_source_get_uuid(prevFTBSource):"";
++ state.restoreRemoved=prevFTBSource&&obs_source_removed(prevFTBSource);
++ state.blackObserved=outputTransition&&state.requested&&!state.running&&!output;
++ state.normalObserved=outputTransition&&!state.requested&&!state.running&&bool(output);
++ freeMixFtbPolicy.Observe(state);
++ return state;
++}
++
++bool OBSBasic::FreeMixTriggerFadeToBlack(const QuickTransition &quick)
++{
++ if(isClosing()||!IsPreviewProgramMode()||tBarActive||!quick.fadeToBlack||!quick.source||obs_source_removed(quick.source)||strcmp(obs_source_get_id(quick.source),"fade_transition")!=0||quick.duration<50||quick.duration>20000)return false;
++ OBSSourceAutoRelease current=obs_get_output_source(0);
++ if(!current||obs_transition_is_active(current)||obs_transition_is_active(quick.source))return false;
++ OBSSourceAutoRelease rendered=obs_transition_get_active_source(current);
++ const bool turningOn=!prevFTBSource;
++ if((turningOn&&!rendered)||(!turningOn&&rendered))return false;
++ // Capture the actual rendered Program, including an existing private clone.
++ // Do not route through TransitionToScene: it changes PGM metadata/Preview and duplicates scenes.
++ const OBSSource target=turningOn?OBSSource(rendered.Get()):prevFTBSource;
++ if(!target||obs_source_removed(target)||!obs_scene_from_source(target))return false;
++ const bool oldOverride=overridingTransition;
++ const bool changed=current.Get()!=quick.source.Get();
++ if(changed){OverrideTransition(quick.source);overridingTransition=true;}
++ if(!obs_transition_start(quick.source,OBS_TRANSITION_MODE_AUTO,quick.duration,turningOn?nullptr:target.Get())){
++  if(changed){OverrideTransition(current.Get());overridingTransition=oldOverride;}
++  return false;
++ }
++ prevFTBSource=turningOn?target:OBSSource(nullptr);
++ // A FTB is not a scene take: pending swap metadata must not replace Preview on stop.
++ swapScene=nullptr;
++ return true;
++}
++
++static void FreeMixWriteFtbState(const freemix_ftb::Snapshot &s,obs_data_t *response)
++{
++ obs_data_set_int(response,"contractVersion",2);
++ obs_data_set_string(response,"restoreSemantics","rendered-program-preserve-preview-v2");
++ obs_data_set_bool(response,"available",s.available);
++ obs_data_set_bool(response,"studioMode",s.studio);
++ obs_data_set_bool(response,"requestedActive",s.requested);
++ obs_data_set_bool(response,"transitionRunning",s.running);
++ obs_data_set_bool(response,"manualTransition",s.manual);
++ obs_data_set_bool(response,"blackObserved",s.blackObserved);
++ obs_data_set_bool(response,"normalObserved",s.normalObserved);
++ obs_data_set_bool(response,"restoreRemoved",s.restoreRemoved);
++ obs_data_set_string(response,"scope",s.scope.c_str());
++ obs_data_set_string(response,"contextToken",s.context.c_str());
++ obs_data_set_string(response,"programUuid",s.program.c_str());
++ obs_data_set_string(response,"previewUuid",s.preview.c_str());
++ obs_data_set_string(response,"outputSourceUuid",s.output.c_str());
++ obs_data_set_string(response,"restoreSourceUuid",s.restore.c_str());
++ obs_data_set_string(response,"phase",s.running?"transitioning":s.blackObserved?"black":s.normalObserved?"normal":"uncertain");
++}
++
++void OBSBasic::FreeMixFadeToBlackRequest(obs_data_t *request,obs_data_t *response)
++{
++ const auto fail=[response](const char *reason){obs_data_set_bool(response,"success",false);obs_data_set_string(response,"error",reason);};
++ if(isClosing()){fail("O FreeMix está encerrando. Nenhum FTB será enviado.");return;}
++ const std::string command=obs_data_get_string(request,"command");
++ if(command!="state"&&command!="set"){fail("Use state ou set com active explícito para FTB.");return;}
++ const auto before=FreeMixFtbSnapshot();FreeMixWriteFtbState(before,response);
++ if(command=="state"){obs_data_set_bool(response,"success",true);return;}
++ obs_data_item_t *active=obs_data_item_byname(request,"active");
++ const bool validActive=active&&obs_data_item_gettype(active)==OBS_DATA_BOOLEAN;
++ obs_data_item_release(&active);
++ if(!validActive){fail("active precisa ser true ou false; FTB não aceita toggle implícito.");return;}
++ obs_data_item_t *outputGuard=obs_data_item_byname(request,"expectedOutputSourceUuid");
++ const bool validOutputGuard=outputGuard&&obs_data_item_gettype(outputGuard)==OBS_DATA_STRING;
++ obs_data_item_release(&outputGuard);
++ if(!validOutputGuard){fail("expectedOutputSourceUuid precisa identificar a saída renderizada consultada, inclusive string vazia no preto.");return;}
++ freemix_ftb::Request input;
++ input.active=obs_data_get_bool(request,"active");
++ input.id=obs_data_get_string(request,"operationId");
++ input.connection=obs_data_get_string(request,"connectionId");
++ input.scope=obs_data_get_string(request,"expectedScope");
++ input.context=obs_data_get_string(request,"expectedContextToken");
++ input.program=obs_data_get_string(request,"expectedProgramUuid");
++ input.preview=obs_data_get_string(request,"expectedPreviewUuid");
++ input.output=obs_data_get_string(request,"expectedOutputSourceUuid");
++ const auto decision=freeMixFtbPolicy.Check(input,before);
++ if(decision.kind==freemix_ftb::Kind::Reject){fail(decision.error.c_str());return;}
++ obs_data_set_string(response,"operationId",input.id.c_str());
++ obs_data_set_bool(response,"accepted",true);
++ obs_data_set_bool(response,"replayed",decision.kind==freemix_ftb::Kind::Replayed);
++ obs_data_set_bool(response,"unchanged",decision.kind==freemix_ftb::Kind::Unchanged);
++ if(decision.kind!=freemix_ftb::Kind::Replayed){
++  // Record before triggering: nested frontend events cannot dispatch this ID twice.
++  freeMixFtbPolicy.Accept(input,before,decision.kind==freemix_ftb::Kind::Unchanged);
++  if(decision.kind==freemix_ftb::Kind::Start){
++   const auto quick=std::find_if(quickTransitions.begin(),quickTransitions.end(),[](const QuickTransition &q){return q.fadeToBlack&&q.source&&!obs_source_removed(q.source)&&strcmp(obs_source_get_id(q.source),"fade_transition")==0&&q.duration>=50&&q.duration<=20000;});
++   if(quick==quickTransitions.end()){fail("A quicktransition FTB foi removida; confira o motor.");return;}
++   if(!FreeMixTriggerFadeToBlack(*quick)){
++    const char *reason="Não foi possível confirmar o início do FTB. Confira o motor; este ID não será reenviado.";
++    freeMixFtbPolicy.RejectAccepted(input,reason);
++    FreeMixWriteFtbState(FreeMixFtbSnapshot(),response);
++    obs_data_set_bool(response,"accepted",false);fail(reason);return;
++   }
++  }
++ }
++ const auto after=FreeMixFtbSnapshot();FreeMixWriteFtbState(after,response);
++ const auto receipt=freeMixFtbPolicy.Find(input);
++ obs_data_set_bool(response,"operationCompleted",receipt&&receipt->terminal);
++ obs_data_set_string(response,"operationStatus",receipt&&receipt->terminal?"observed-state":"accepted-not-observed");
++ obs_data_set_bool(response,"success",true);
++}
++
+ void OBSBasic::RemoveQuickTransitionHotkey(QuickTransition *qt)
+ {
+ 	obs_hotkey_unregister(qt->hotkey);
+-- 
+2.56.0.windows.1
+

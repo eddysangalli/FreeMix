@@ -1,0 +1,45 @@
+{
+  "status": "CURRENT_DOCS_DEDUPLICATED_HISTORY_BYTES_PRESERVED",
+  "at": "2026-10-10T06:52:59.675Z",
+  "selectedVersion": "0.1.0-local.20261010060000",
+  "nativeDevelopmentHead": "de136e83595be92162ada8c7adc50f52751bd4ef",
+  "records": [
+    {
+      "name": "CONTINUAR",
+      "beforeSha256": "0d7fd36eba7bdc6c9b2bac5f98646683c1120cfb4ca9ccc4865b108d9f34c82c",
+      "afterSha256": "f6a58c4ccc7f4bb16109005ebf43eb31d1290680af662d161b7b98d7a19dafd4",
+      "history": "20261010-preNative25"
+    },
+    {
+      "name": "PENDENCIAS",
+      "beforeSha256": "9718c48c4db255b4386cae3249305b6c2f1b5e75f30da7d839326d783297786a",
+      "afterSha256": "217c8031818ecb94f542a91b6a8a8f8eee11f1162b74ce22212b3048cd56242e",
+      "history": "20261010-preNative25"
+    },
+    {
+      "name": "PENDENCIAS-REAIS",
+      "beforeSha256": "6c0f7d4d6718376c20ef3e3d38c0927f6af9c6560a3ad68c7ee2905039eabe75",
+      "afterSha256": "51d2ad4d6308dd03235ed626676e7ab134c8b8c06dc164f93106d5231d2cf1cc",
+      "history": "20261010-preNative25"
+    },
+    {
+      "name": "PLANO-CONCLUSAO-20261013",
+      "beforeSha256": "593fa92365fbb32690af174f73d7dfac7a57e6b3fba57c5da5cfee7192da2076",
+      "afterSha256": "69895c18601cbe7e20c7281295ea5a8a0a1795226d19c1dfa7b49dcd30889a46",
+      "history": "20261010-preNative25"
+    },
+    {
+      "name": "ATUALIZACAO-20261010",
+      "beforeSha256": "8e2c231cf6c3110c34b2ddf020d2d59789b455bac7090ec8578fdb986fa71ea1",
+      "afterSha256": "cd825717e98c5b8293aa12aa4531c99c31a65f94858527dcbee8fe5694502006",
+      "history": "20261010-preNative25"
+    },
+    {
+      "name": "ENTREGA-ATUAL",
+      "beforeSha256": "d6869f1bf8249b0e719e96788bdf0caae9c3fdda091b87a0aa506c67d0af9d5c",
+      "afterSha256": "6e980fa8e09dbb403def9a992ad3e221dd4006ed0221164826c461d7deef82ba",
+      "history": "20261010-preNative25"
+    }
+  ],
+  "operatorTouched": false
+}

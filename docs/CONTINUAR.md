@@ -1,35 +1,14 @@
-# FreeMix — CONTINUAR /060000
+# Continuidade do FreeMix
 
-Estado vigente após aceite Root: **0.1.0-local.20261010060000, Native24/a047860**. Uma instalação própria, dois ciclos cooperativos counter0/crash0, Meter [0,0] preservados, diagnóstico instalado sanitizado e desinstalação conservadora. Operador preservado, não ativado/substituído.
+O instalador selecionado é **0.1.0-local.20261010060000, Native24/a047860**. As correções posteriores estão em desenvolvimento e não estão incluídas nesse instalador.
 
-Git do payload selado: **6adcd19315c01a4f01baaab2fd5d9e560872619b**. O commit posterior de provas/documentação não recompõe o payload. Manifesto 7107aa50b55dd2584be4fc30760af6ef1c85855c6995cd10758e65decc0a93b4; Setup 3a53cc01ea2998d785e4914c219084e6868ad4bf7b33fff31f074685878993bd; ZIP 82769392912badfb5a4f03a717181e915b404d8418fe7e2376f2702dddbfe821. Todos9582 arquivos assinados e2085pinsNative foram conferidos.
+Leia [entrega](ENTREGA-ATUAL.md), [situação atual](ATUALIZACAO-20261010.md), [pendências reais](PENDENCIAS-REAIS.md) e [plano até 13/10](PLANO-CONCLUSAO-20261013.md).
 
-Menus/NAV/Replay Settings/Calls/Externo e as correções Calls/HDR desta fonte fazem parte do candidato600. O QA instalado usa HDR GET sem transmissão; mídia HDR local anterior continua uma prova separada.050500 foi candidato não selecionado: FAIL de observação API preservado, seguido de diagnóstico/uninstall em continuação separada; não virou PASS.035000 permanece como seleção anterior preservada.
+A próxima versão Native está no commit local **de136e83595be92162ada8c7adc50f52751bd4ef**, com FTB que restaura o Programa renderizado, captura contínua de vídeo das Calls e observação opcional dos editores Qt. A compilação completa passou e o runtime de2085 arquivos foi congelado para QA real. Não selecionar ou distribuir como aprovada por antecipação.
 
-Instale em pasta nova/vazia por INSTALAR-FREEMIX.cmd; próxima etapa de software é integrar e testar recuperação dos comandos incertos, FTB real confirmável e retorno contínuo das Calls; validação no destino e recursos físicos/rede seguem separados. Preserve a mesa do operador.
+Root integra arquivos centrais e compila. Três agentes trabalham em reconciliação/QA, contrato FTB no backend e retorno contínuo Node/browser. Não duplicar frentes ou abrir chats extras. Os drafts têm allowlists e falhas anteriores preservadas.
 
-Baseline aprovada somente no escopo dos recibos, sem promessa100%. A auditoria posterior identificou recuperação incompleta de operações incertas e um atalho FTB sem contrato público confirmável; ambos continuam em correção posterior, junto do retorno contínuo das Calls. IAB com backend Native real não prova CEF desktop, editores visíveis/foco/z-order, GPU/PCM, endurance ou todos encoders. Retorno custom Calls usa JPEG640×360 até5fps; vídeo contínuo25/30fps por fonte ainda requer pipeline próprio com PTS/backpressure/sincronismo, não só timer/hardware. Programa usa câmera virtual com taxa ideal solicitada, sem taxa efetiva homologada aqui. ASIO/SDI/PTZ/controladores físicos, WAN/TURN/bonding, Windows limpo, receptor/monitor HDR e NDI HDR Advanced SDK/licença/implementação continuam gates separados. GTZIP finito não implica compatibilidade universal/3D/frames ausentes. Alpha web abortado; ponte alpha nativa beta separada. Assinatura interna Ed25519; sem Authenticode.
+Preserve processos, mesa, configurações e mídia do operador. Use somente raízes/portas próprias. Não repetir o ensaio do instalador600 sem mudança ou falha nova. Nenhuma publicação/upload de dados externos está autorizada; commit/push das fontes no GitHub e pacote local estão autorizados. O receptor alpha web foi abortado; não retomá-lo. A ponte alpha nativa permanece beta separada.
 
-Provas instaladas: qa-finalizacao/setup-060000-qa/report.json SHA 77d835df3da98d84c5e4458450cbbd0ecc2917e767dc43061d9551d7e53ded0c; allowlist SHA 703df68812198b839e1a697f8303805d0f4b9fc2c012108db3646398f998d25a; Root IAB files5 SHA 7c5b0acb987cd81f4a8179bc84a5592efffc91dfc089a9a5fee96f67306253d3.
-
----
-
-## Histórico preservado — estado anterior à seleção060000
-
-Referências a atual/pendente/próximo abaixo pertencem ao registro original; artefatos selados/recibos não foram reescritos.
-
-# FreeMix — CONTINUAR / fontes060000
-
-Estado em 10/10/2026: **035000 continua selecionado e aprovado no seu ensaio local.** 050500 foi selado e instalado, mas o verificador falhou ao observar a saída da API; esse FAIL foi preservado. Dois fechamentos Native24 tiveram contador zero/crash zero. Diagnóstico e desinstalação passaram numa continuação separada, que não transforma o ensaio completo em PASS.
-
-**060000/Native24/a047860 contém correções posteriores nas fontes; ainda aguarda novo pacote e QA instalada.** Foram reproduzidos bloqueio de HDR sem prazo, perda de edição do retorno Calls após blur/poll e fallback indevido para Programa quando uma fonte desaparece. As fontes corrigidas têm os mesmos bytes dos drafts que passaram12 testes de corridas, eco do estado, fontes ausentes e HTTP real com corpo incompleto. Abrir ou consultar estas telas não inicia transmissão. Nenhuma mesa do operador foi substituída.
-
-Próximo: gerar/selar060000 das fontes commitadas, instalar em raiz/portas próprias e conferir startup, ações, dois fechamentos, diagnóstico e desinstalação. Selecionar somente após provas. Depois integrar e testar retorno contínuo em frente própria; Root é responsável por arquivos centrais e build Native. Preserve operador, releases seladas e falhas anteriores.
-
-Retorno Calls de entrada/composição: **JPEG640×360 até5fps**, limite de software. Vídeo contínuo25/30fps por fonte ainda precisa implementação e medição; uma frente isolada investiga PTS, buffers limitados e sincronismo com N-1. Programa usa câmera virtual, sem garantia da taxa efetiva neste registro.
-
-Properties/Filters: handoff queued não comprova visibilidade, foco ou z-order desktop. NDI HDR depende de Advanced SDK/licença e implementação. Hardware ASIO/SDI/PTZ/controladores, convidados/TURN/WAN/VPS, receptor/monitorHDR, carga prolongada e Windows limpo continuam gates reais. GTZIP finito não implica suporte universal a templates, imagens, feeds ou3D. Não retomar alpha WebBrowser abortado; ponte nativa permanece beta separada. Assinatura interna Ed25519 não substitui Authenticode.
-
-Provas públicas: [correções e12testes](evidencias/20261010-calls-hdr-timeout/revision2/README.md); [050500 em duas fases](evidencias/20261010-setup050500-two-phase/qa-finalizacao/setup-050500-continuation/report.json). Os recibos antigos permanecem íntegros.
-
-Histórico anterior completo, preservado byte a byte: [arquivo histórico](historico/20261010-pre060000/CONTINUAR.md). As instruções vigentes são as desta página.
+Não marcar o objetivo completo pelo prazo ou por testes simulados. Separar implementação, prova Native/CEF, áudio/GPU, equipamento físico e WAN. Atualizar as pendências conforme evidências; remover a automação somente quando o objetivo for realmente concluído.
+Histórico anterior completo: [registro preservado](historico/20261010-preNative25/CONTINUAR.md).

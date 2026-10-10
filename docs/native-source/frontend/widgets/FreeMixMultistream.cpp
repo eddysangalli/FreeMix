@@ -37,6 +37,7 @@
 #include <QTimer>
 #include "FreeMixCenterColumn.hpp"
 #include "FreeMixCallAudio.hpp"
+#include "FreeMixCallVideo.hpp"
 #include "FreeMixAudioRouting.hpp"
 #include "FreeMixVideoTransports.hpp"
 #include "OBSBasic.hpp"
@@ -44,6 +45,7 @@
 #include <QDockWidget>
 #include <QPixmap>
 #include <QDialog>
+#include <QApplication>
 #include <QDir>
 #include <QFileInfo>
 #include <QFile>
@@ -121,16 +123,36 @@ std::map<std::string, OBSOutputAutoRelease> networkOutputs;
 std::map<std::string,std::unique_ptr<NetworkMedia>> networkMedia;
 void StopNetworkOutputs()
 {
+ FreeMixCallVideoStop();
  freemix_omt_hdr::StopAll();
  freemix_srt_hdr::StopAll();
  // Force stop/join the raw plugin callbacks before destroying their video view.
  for(auto &entry:networkOutputs)if(entry.second&&obs_output_active(entry.second))obs_output_force_stop(entry.second);
  networkOutputs.clear();networkMedia.clear();freemix_sdi::Stop();
 }
+void RequestFadeToBlack(obs_data_t *request,obs_data_t *response,void *)
+{
+ const QPointer<OBSBasic> main=OBSBasic::Get();
+ const auto fail=[response](){obs_data_set_bool(response,"success",false);obs_data_set_string(response,"error","O FreeMix está encerrando ou mudou de contexto. Nenhum FTB será enviado.");};
+ if(!main||frontendClosing){fail();return;}
+ const auto work=[main,request,response,fail](){if(!main||frontendClosing||main->isClosing()){fail();return;}main->FreeMixFadeToBlackRequest(request,response);};
+ if(QThread::currentThread()==main->thread())work();
+ else if(!QMetaObject::invokeMethod(main.data(),work,Qt::BlockingQueuedConnection))fail();
+}
+
 void RequestSdiOutput(obs_data_t *request,obs_data_t *response,void *){QMetaObject::invokeMethod(OBSBasic::Get(),[=](){if(frontendClosing){obs_data_set_bool(response,"success",false);return;}freemix_sdi::Request(request,response,IsPrivateSource);},Qt::BlockingQueuedConnection);}
 void RequestSrtHdrOutput(obs_data_t *request,obs_data_t *response,void *){
  auto *main=OBSBasic::Get();if(!main){obs_data_set_bool(response,"success",false);return;}
  const auto work=[=](){if(frontendClosing){obs_data_set_bool(response,"success",false);obs_data_set_string(response,"error","frontend is closing or changing context");return;}freemix_srt_hdr::Request(request,response,IsPrivateSource);};
+ if(QThread::currentThread()==main->thread())work();else QMetaObject::invokeMethod(main,work,Qt::BlockingQueuedConnection);
+}
+void RequestCallVideo(obs_data_t *request,obs_data_t *response,void *){
+ auto *main=OBSBasic::Get();if(!main){obs_data_set_bool(response,"success",false);return;}
+ const auto work=[=](){
+  const std::string action=obs_data_get_string(request,"action");
+  if(frontendClosing&&action!="state"&&action!="stop"){obs_data_set_bool(response,"success",false);obs_data_set_string(response,"error","frontend is closing or changing context");return;}
+  FreeMixCallVideoRequest(request,response,IsPrivateSource);
+ };
  if(QThread::currentThread()==main->thread())work();else QMetaObject::invokeMethod(main,work,Qt::BlockingQueuedConnection);
 }
 void RequestOmtHdrOutput(obs_data_t *request,obs_data_t *response,void *){QMetaObject::invokeMethod(OBSBasic::Get(),[=](){if(frontendClosing){obs_data_set_bool(response,"success",false);return;}freemix_omt_hdr::Request(request,response,IsPrivateSource);},Qt::BlockingQueuedConnection);}
@@ -1486,12 +1508,14 @@ void RequestGetInterface(obs_data_t *request, obs_data_t *response, void *)
 {
  const bool capture = obs_data_get_bool(request, "screenshot");
  const bool show = obs_data_get_bool(request, "show");
- QMetaObject::invokeMethod(OBSBasic::Get(), [response, capture, show]() {
+ const bool sourceEditors = obs_data_get_bool(request, "sourceEditors");
+ QMetaObject::invokeMethod(OBSBasic::Get(), [response, capture, show, sourceEditors]() {
   auto *main = OBSBasic::Get();
    if (!main || main->isClosing() || frontendClosing || panelDeletionDepth) {
     obs_data_set_int(response, "pid", QCoreApplication::applicationPid());
     obs_data_set_string(response, "executable", QCoreApplication::applicationFilePath().toUtf8().constData());
     obs_data_set_bool(response, "interfaceBusy", true);
+    if (sourceEditors) obs_data_set_bool(response, "sourceEditorsObserved", false);
     obs_data_set_bool(response, "closing", !main || main->isClosing() || frontendClosing);
     obs_data_set_bool(response, "success", true);
     return;
@@ -1545,6 +1569,33 @@ void RequestGetInterface(obs_data_t *request, obs_data_t *response, void *)
    obs_data_array_push_back(windows, item);
   }
   obs_data_set_array(response, "panels", windows);
+  // Optional Qt observations only: never interpret visibility as external z-order proof.
+  if (sourceEditors) {
+   OBSDataArrayAutoRelease editors = obs_data_array_create();
+   QWidget *focus = QApplication::focusWidget();
+   size_t editorCount = 0;
+   bool truncated = false;
+   for (auto *dialog : main->findChildren<QDialog *>(QString(), Qt::FindDirectChildrenOnly)) {
+    const QString type = QString::fromLatin1(dialog->metaObject()->className());
+    const char *kind = type == "OBSBasicProperties" ? "properties" : type == "OBSBasicFilters" ? "filters" : nullptr;
+    if (!kind) continue;
+    if (editorCount++ >= 8) { truncated = true; break; }
+    OBSDataAutoRelease item = obs_data_create();
+    const QString sourceUuid = dialog->property("freemixSourceUuid").toString();
+    obs_data_set_string(item, "kind", kind);
+    obs_data_set_string(item, "sourceUuid", sourceUuid.toUtf8().constData());
+    obs_data_set_bool(item, "identityKnown", !sourceUuid.isEmpty());
+    obs_data_set_bool(item, "visible", dialog->isVisible());
+    obs_data_set_bool(item, "minimized", dialog->isMinimized());
+    obs_data_set_bool(item, "activeWindow", dialog->isActiveWindow());
+    obs_data_set_bool(item, "focusWithin", focus && (focus == dialog || dialog->isAncestorOf(focus)));
+    obs_data_array_push_back(editors, item);
+   }
+   obs_data_set_array(response, "sourceEditors", editors);
+   obs_data_set_bool(response, "sourceEditorsObserved", true);
+   obs_data_set_bool(response, "sourceEditorsTruncated", truncated);
+   obs_data_set_bool(response, "sourceEditorsZOrderVerified", false);
+  }
   bool settingsOpen = false;
    for (auto *dialog : main->findChildren<QDialog *>(QString(), Qt::FindDirectChildrenOnly)) {
    if (QString::fromLatin1(dialog->metaObject()->className()) == "OBSBasicSettings" && dialog->isVisible()) settingsOpen = true;
@@ -1599,6 +1650,8 @@ std::string talkLease;
 bool isolatedTalk = false;
 std::chrono::steady_clock::time_point talkUntil;
 QTimer *talkTimer = nullptr;
+QTimer *callVideoTimer = nullptr;
+bool frontendDrainActive=false;
 void ApplyTalkback(bool on)
 {
  FreeMixCallAudioDirector(directorUuid.c_str(), on ? talkLease.c_str() : "");
@@ -1671,6 +1724,7 @@ void RequestTalkback(obs_data_t *request, obs_data_t *response, void *)
 void RegisterVendor()
 {
  FreeMixAudioRoutingRegister();
+ FreeMixCallVideoRegister();
 	if (vendor) {
 		return;
 	}
@@ -1679,6 +1733,7 @@ void RegisterVendor()
 		blog(LOG_WARNING, "[freemix] control server not available: extra destinations cannot be edited");
 		return;
 	}
+	obs_websocket_vendor_register_request(vendor, "fade_to_black", RequestFadeToBlack, nullptr);
 	obs_websocket_vendor_register_request(vendor, "get_destinations", RequestGet, nullptr);
 	obs_websocket_vendor_register_request(vendor, "set_destinations", RequestSet, nullptr);
 	obs_websocket_vendor_register_request(vendor, "control_destination", RequestControlDestination, nullptr);
@@ -1702,8 +1757,12 @@ void RegisterVendor()
  obs_websocket_vendor_register_request(vendor, "reorder_inputs", RequestReorderInputs, nullptr);
  obs_websocket_vendor_register_request(vendor, "talkback", RequestTalkback, nullptr);
  obs_websocket_vendor_register_request(vendor, "call_audio", FreeMixCallAudioRequest, nullptr);
+ obs_websocket_vendor_register_request(vendor,"call_video",RequestCallVideo,nullptr);
  obs_websocket_vendor_register_request(vendor, "audio_capabilities", FreeMixAudioCapabilitiesRequest, nullptr);
  obs_websocket_vendor_register_request(vendor, "shutdown_idle", RequestShutdownIdle, nullptr);
+ callVideoTimer = new QTimer(OBSBasic::Get());
+ QObject::connect(callVideoTimer,&QTimer::timeout,OBSBasic::Get(),[](){if(frontendClosing)FreeMixCallVideoStop();FreeMixCallVideoTick(IsPrivateSource);});
+ callVideoTimer->start(100); // Poll retirement even while frontendClosing/talkTimer stopped.
  talkTimer = new QTimer(OBSBasic::Get());
  QObject::connect(talkTimer, &QTimer::timeout, OBSBasic::Get(), []() {
   if(frontendClosing)return;
@@ -1746,6 +1805,7 @@ void OnFrontendEvent(enum obs_frontend_event event, void *)
 	switch (event) {
 	case OBS_FRONTEND_EVENT_SCENE_COLLECTION_CLEANUP:
   frontendClosing=true;
+  if(auto *main=OBSBasic::Get())main->ResetFreeMixFtbContext();
   if(talkTimer)talkTimer->stop();
   StopNetworkOutputs(); StopAll();
   for(auto &mix:independentMixes){ClearIndependentTransition(mix);mix.programUuid.clear();mix.previewUuid.clear();}
@@ -1775,7 +1835,7 @@ void OnFrontendEvent(enum obs_frontend_event event, void *)
 		Load();
 		break;
 	case OBS_FRONTEND_EVENT_PROFILE_CHANGING:
-  frontendClosing=true; if(talkTimer)talkTimer->stop();
+  frontendClosing=true; if(auto *main=OBSBasic::Get())main->ResetFreeMixFtbContext(); if(talkTimer)talkTimer->stop();
   StopNetworkOutputs();
 		StopAll();
   for(auto &mix:independentMixes){ClearIndependentTransition(mix);mix.programUuid.clear();mix.previewUuid.clear();}
@@ -1807,12 +1867,19 @@ void OnFrontendEvent(enum obs_frontend_event event, void *)
 
 bool FreeMixMultistreamDrainSrtHdr(unsigned timeoutMs)
 {
- if(!freemix_srt_hdr::Pending())return true;
+ // Existing guarded close/profile/collection/video-reset callsites also drain Calls.
+ if(frontendDrainActive)return false; // Nested context change must not clear outer gate.
+ if(!FreeMixCallVideoPending()&&!freemix_srt_hdr::Pending())return true;
  auto *main=OBSBasic::Get();if(!main||QThread::currentThread()!=main->thread())return false;
+ frontendDrainActive=true;
  const bool wasClosing=frontendClosing.exchange(true);
- const bool completed=freemix_srt_hdr::Drain(timeoutMs);
- frontendClosing=wasClosing;
- if(!completed){if(!wasClosing&&talkTimer)talkTimer->start(100);blog(LOG_WARNING,"FreeMix SRT HDR drain timed out: resources retained; context change/close refused");}
+ const uint64_t started=os_gettime_ns();
+ const bool callsDone=FreeMixCallVideoDrain(timeoutMs);
+ const uint64_t elapsed=(os_gettime_ns()-started)/1000000ULL;
+ const unsigned remaining=elapsed>=timeoutMs?0:timeoutMs-unsigned(elapsed);
+ const bool completed=callsDone&&freemix_srt_hdr::Drain(remaining);
+ frontendClosing=wasClosing;frontendDrainActive=false;
+ if(!completed){if(!wasClosing&&talkTimer)talkTimer->start(100);blog(LOG_WARNING,"FreeMix network drain timed out: resources retained; context change/close refused");}
  return completed;
 }
 

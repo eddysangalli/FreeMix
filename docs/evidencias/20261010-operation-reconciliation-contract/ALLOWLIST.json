@@ -1,0 +1,90 @@
+{
+  "status": "FROZEN_DRAFT_24_MOCK_VM_PASS_ROOT_REVIEW_PENDING",
+  "at": "2026-10-10T06:15:01.067Z",
+  "baseCommit": "6adcd19315c01a4f01baaab2fd5d9e560872619b",
+  "files": [
+    {
+      "path": "baseline/controle-producao.mjs",
+      "bytes": 45920,
+      "sha256": "46e18809a91a8ee8664c4e1c1bc8366100a71c4abc0d5809392380b3488e5cb5"
+    },
+    {
+      "path": "baseline/mesa.html",
+      "bytes": 249288,
+      "sha256": "91c66d7b4a64514de9b178d89bcbe5c65952bfce9b85fbac1ea762e3154564e8"
+    },
+    {
+      "path": "baseline/servidor-api.mjs",
+      "bytes": 28814,
+      "sha256": "c3929632f01aeaa7fb9f2fb6be473e20453a54b610326d145a5d05333a02a3c6"
+    },
+    {
+      "path": "BASELINE.json",
+      "bytes": 1161,
+      "sha256": "42015d695d892052b14e0bcb46cc068cf506a968b004af3b7e42fd54d80f1e57"
+    },
+    {
+      "path": "controle-producao.mjs.patch",
+      "bytes": 9214,
+      "sha256": "ac5c77b792a0ba922acc3fc1af13ff09dbd446408e6c1ff4544aa6c05d543687"
+    },
+    {
+      "path": "draft/controle-producao.mjs",
+      "bytes": 49375,
+      "sha256": "66c08b76d314a5b1173c9d8ccea2ca5285a90ca67a2b9fddc0067aa87bade503"
+    },
+    {
+      "path": "draft/mesa.html",
+      "bytes": 254162,
+      "sha256": "db5e141fd285c0a8910fa47066696cf98c34d32d4b1be51bb42fd80696008cb1"
+    },
+    {
+      "path": "draft/servidor-api.mjs",
+      "bytes": 29506,
+      "sha256": "49b89d2e875d9a4e277449f59555ba14f9bcfd801d25160977e7d1b9b525176f"
+    },
+    {
+      "path": "harness-initial-failure.json",
+      "bytes": 326,
+      "sha256": "485531e7c39e78e60eed9a36b73fd65016d1860fe882cc3a093fb4b441dbfb4c"
+    },
+    {
+      "path": "mesa.html.patch",
+      "bytes": 8718,
+      "sha256": "f21935de86ea387055d7d5db156665638a95974aae2bb99ccae5ffd9b2746609"
+    },
+    {
+      "path": "prepare.mjs",
+      "bytes": 9736,
+      "sha256": "cda8e979edf93a1ebabf0208357f5664963b6d675927a2274d3298de242a0653"
+    },
+    {
+      "path": "README.md",
+      "bytes": 4389,
+      "sha256": "1c77d9a3fbc9661808ff859ba6450905d1663cb31bd498d897a1f85183a35ffb"
+    },
+    {
+      "path": "result.json",
+      "bytes": 3090,
+      "sha256": "78e9c8dd3657f20c3f553b34f290d7a8c24e6a68337ed739fc68931baaa177cd"
+    },
+    {
+      "path": "servidor-api.mjs.patch",
+      "bytes": 3090,
+      "sha256": "de63425c82c738ff416040bdc3bc0070b21544f681d2f698e3438ff970632001"
+    },
+    {
+      "path": "test-initial-harness.mjs",
+      "bytes": 14139,
+      "sha256": "d36a3abda1965320e568bb6aef2aae82b1cfe12418e9e337b1b1efb2c6694624"
+    },
+    {
+      "path": "test.mjs",
+      "bytes": 15882,
+      "sha256": "3d879e30a98d9a151cf3fac907b9a1570d4b84275ef8fd1edce314453045385c"
+    }
+  ],
+  "productChanged": false,
+  "operatorTouched": false,
+  "nativeExecuted": false
+}

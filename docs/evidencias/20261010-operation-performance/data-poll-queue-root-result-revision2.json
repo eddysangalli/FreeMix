@@ -1,0 +1,71 @@
+{
+  "status": "PASS_REAL_OWN_HTTP_STAGED_DATA_AND_PRODUCTION_TAIL_FIXTURE",
+  "at": "2026-10-10T06:37:47.566Z",
+  "checks": [
+    {
+      "name": "Actual delayed HTTP download stages rows without mutating active table",
+      "status": "PASS"
+    },
+    {
+      "name": "Production tick releases the actual control tail while HTTP is still pending",
+      "status": "PASS"
+    },
+    {
+      "name": "Consecutive ticks do not duplicate an in-flight poll",
+      "status": "PASS"
+    },
+    {
+      "name": "At most two real HTTP downloads run concurrently and later due tables are reached",
+      "status": "PASS"
+    },
+    {
+      "name": "Scope changed during HTTP read refuses the late result",
+      "status": "PASS"
+    },
+    {
+      "name": "Removed table wins over late staged HTTP data",
+      "status": "PASS"
+    },
+    {
+      "name": "Reconfigured table wins over late staged HTTP data",
+      "status": "PASS"
+    },
+    {
+      "name": "New binding wins over late staged HTTP data",
+      "status": "PASS"
+    },
+    {
+      "name": "New row selection wins over late staged HTTP data",
+      "status": "PASS"
+    },
+    {
+      "name": "Same ID replacement wins over late staged HTTP data",
+      "status": "PASS"
+    },
+    {
+      "name": "HTTP error retains rows and applies a bounded retry timestamp",
+      "status": "PASS"
+    },
+    {
+      "name": "Failed persistence rolls staged rows back and never authorizes automatic publication",
+      "status": "PASS"
+    },
+    {
+      "name": "Automatic publication executes only in the serial tail after accepted rows",
+      "status": "PASS"
+    }
+  ],
+  "pins": {
+    "FreeMix/ferramentas/fontes-dados.mjs": "e25c386846bc3c58ff8ec7c122112452f722d71ca49d2cca35fa386468d76393",
+    "FreeMix/ferramentas/controle-producao.mjs": "4f53e7d4a09687a22b3e56c8b8a52a3c1b63b33c5471a88b26f401744bf20b98"
+  },
+  "maxConcurrentHttp": 2,
+  "root": "C:\\Users\\eddyr\\AppData\\Local\\Temp\\FreeMix-QA-DetachedDataPoll-0DbfGX",
+  "limits": [
+    "HTTP server and file persistence are real own resources",
+    "Production.tick is the actual product method; Native refresh/audio/observers are explicit fixtures",
+    "No Native, operator, external URL, output or audio device accessed",
+    "Manual explicit data configuration/refresh remains serialized; this fix concerns periodic polling",
+    "This is not a desktop latency, GPU, CEF or Native playback measurement"
+  ]
+}

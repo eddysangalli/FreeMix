@@ -1,0 +1,7 @@
+{
+  "status": "FAIL_TEST_FIXTURE_STATE_NOT_RESET",
+  "test": "Old capture result does not repaint a newly minimized image",
+  "reason": "The second simulation reused image.src written by the first simulation, so its expected empty initial image was false.",
+  "repair": "Reset only simulated image.src between runs; product code unchanged.",
+  "operatorTouched": false
+}

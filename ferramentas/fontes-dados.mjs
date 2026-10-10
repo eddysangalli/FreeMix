@@ -31,7 +31,39 @@ export class DataSources {
  async import(d){if(this.items.length>=40)throw Error('Limite de quarenta tabelas');const format=String(d.format||'csv'),bytes=d.base64?Buffer.from(d.base64,'base64'):Buffer.from(String(d.text||'')),parsed=await parse(bytes,d);const name=String(d.name||'Tabela').slice(0,200);const s={id:randomUUID(),name,type:'manual',scope:d.scope==='global'?'global':'project',format,rows:parsed.rows,sheets:parsed.sheets,selected:0,binding:null,updatedAt:Date.now(),error:null};this.items.push(s);await this.save();return s;}
  async configure(d,type){if(this.items.length>=40&&!d.id)throw Error('Limite de quarenta tabelas');const original=d.id?this.get(d.id):null,s=original?structuredClone(original):{id:randomUUID(),name:String(d.name||'Tabela').slice(0,200),rows:[],selected:0,binding:null,scope:d.scope==='global'?'global':'project'};const format=d.format||extname(d.path||'').slice(1)||'csv';if(!['csv','json','xlsx'].includes(format))throw Error('Formato inválido');const interval=Number(d.intervalSeconds||5);if(!Number.isFinite(interval)||interval<1||interval>3600)throw Error('Intervalo: 1 a 3600 segundos');Object.assign(s,{type,format,delimiter:d.delimiter||',',sheet:d.sheet||'',jsonPath:d.jsonPath||'',intervalSeconds:interval,...(type==='http'?{url:String(d.url||'')}:{path:String(d.path||'')})});await this.refresh(s);if(original)this.items[this.items.indexOf(original)]=s;else this.items.push(s);await this.save();return s;}
  async refresh(s){let bytes;if(s.type==='http')bytes=await download(s.url);else if(s.type==='file'){if(!/\.(csv|json|xlsx)$/i.test(s.path))throw Error('Arquivo deve ser CSV, JSON ou XLSX');if((await stat(s.path)).size>limit)throw Error('Tabela maior que 5 MB');bytes=await readFile(s.path);}else return false;const data=await parse(bytes,s),changed=JSON.stringify(data.rows)!==JSON.stringify(s.rows);s.rows=data.rows;s.sheets=data.sheets;s.selected=Math.min(s.selected,Math.max(0,s.rows.length-1));s.updatedAt=Date.now();s.error=null;s.nextAt=Date.now()+s.intervalSeconds*1000;return changed;}
- async poll(){const changed=[];for(const s of this.items){if(s.type==='manual'||s.nextAt>Date.now())continue;try{if(await this.refresh(s))changed.push(s);}catch(e){s.error=e.message;s.nextAt=Date.now()+(s.intervalSeconds||5)*1000;}}if(changed.length)await this.save();return changed;}
+ async preparePoll(){
+  // Network/file reads never mutate the active project while an operator command is running.
+  const scope=this.scope,due=this.items.filter(s=>s.type!=='manual'&&!(s.nextAt>Date.now()));
+  if(!due.length)return {scope,items:[]};
+  const start=(this.pollCursor||0)%due.length,count=Math.min(2,due.length);
+  this.pollCursor=start+count;
+  const selected=Array.from({length:count},(_,i)=>due[(start+i)%due.length]);
+  const items=await Promise.all(selected.map(async original=>{
+   const before=JSON.stringify(original),result=structuredClone(original);let changed=false;
+   try{changed=await this.refresh(result);}catch(e){result.error=e.message;result.nextAt=Date.now()+(result.intervalSeconds||5)*1000;}
+   return {original,before,result,changed};
+  }));
+  return {scope,items};
+ }
+ async applyPoll(batch){
+  if(batch.scope!==this.scope)return [];
+  const changed=[],applied=[];
+  for(const item of batch.items){
+   // A removed/reconfigured table, new row selection or binding wins over an old HTTP response.
+   if(!this.items.includes(item.original)||JSON.stringify(item.original)!==item.before)continue;
+   applied.push({source:item.original,previous:structuredClone(item.original)});
+   for(const key of ['rows','sheets','selected','updatedAt','error','nextAt'])item.original[key]=item.result[key];
+   if(item.changed)changed.push(item.original);
+  }
+  if(changed.length)try{await this.save();}catch(error){
+   for(const {source,previous}of applied)for(const key of ['rows','sheets','selected','updatedAt','error','nextAt']){
+    if(Object.hasOwn(previous,key))source[key]=previous[key];else delete source[key];
+   }
+   throw error;
+  }
+  return changed;
+ }
+ async poll(){return this.applyPoll(await this.preparePoll());}
  async select(id,index){const s=this.get(id);index=Number(index);if(!Number.isInteger(index)||index<0||index>=s.rows.length)throw Error('Linha inexistente');s.selected=index;await this.save();return s;}
  async edit(d){const s=this.get(d.id);if(s.type!=='manual')throw Error('Edite a fonte original ou importe como tabela manual');const r=s.rows[Number(d.row)];if(!r||!Object.hasOwn(r,d.column))throw Error('Célula inexistente');const value=String(d.value??'');if(value.length>10000)throw Error('Célula muito longa');r[d.column]=value;s.updatedAt=Date.now();await this.save();}
  async bind(d){const s=this.get(d.id),kind=d.kind||'lower';if(!['lower','score','text','browser','variables','inputName','person'].includes(kind))throw Error('Destino de dados inválido');const allowed=kind==='score'?['teamHome','teamAway','scoreHome','scoreAway','minutes','period']:kind==='person'?['title','subtitle','color','input','call']:kind==='lower'?['title','subtitle','color']:kind==='text'?['text']:kind==='inputName'?['name']:null;if(!d.mapping||typeof d.mapping!=='object'||Array.isArray(d.mapping)||Object.keys(d.mapping).length>100)throw Error('Informe os vínculos');for(const [field,col]of Object.entries(d.mapping))if(bad.has(field)||!/^[A-Za-z][A-Za-z0-9_]{0,63}$/.test(field)||allowed&&!allowed.includes(field)||!Object.hasOwn(s.rows[0]||{},col))throw Error('Vínculo inválido');const target=String(d.target||'');if(['text','browser','inputName'].includes(kind)&&(!target||target.length>256))throw Error('Selecione a fonte de destino');s.binding={kind,target,mapping:d.mapping,autoPublish:d.autoPublish===true};await this.save();}

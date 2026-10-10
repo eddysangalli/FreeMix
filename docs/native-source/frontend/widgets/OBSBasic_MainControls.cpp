@@ -111,6 +111,7 @@ void OBSBasic::CreatePropertiesWindow(obs_source_t *source)
 	}
 
 	properties = new OBSBasicProperties(this, source);
+	properties->setProperty("freemixSourceUuid", QString::fromUtf8(obs_source_get_uuid(source)));
 	properties->Init();
 	properties->setAttribute(Qt::WA_DeleteOnClose, true);
 	FreeMixRaiseInputDialog(properties, this, requester);
@@ -129,6 +130,7 @@ void OBSBasic::CreateFiltersWindow(obs_source_t *source)
 	}
 
 	filters = new OBSBasicFilters(this, source);
+	filters->setProperty("freemixSourceUuid", QString::fromUtf8(obs_source_get_uuid(source)));
 	filters->Init();
 	filters->setAttribute(Qt::WA_DeleteOnClose, true);
 	FreeMixRaiseInputDialog(filters, this, requester);

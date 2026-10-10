@@ -1,0 +1,58 @@
+{
+  "status": "PASS_THUMBNAIL_SCHEDULER_ACTUAL_SOURCE_SIMULATED_CLOCK_DOM",
+  "source": "FreeMix/painel/mesa.html",
+  "sha256": "29d158e2b1f0268e45c1697aa160227f9e49a143096862e6566bad0c7159c79f",
+  "at": "2026-10-10T06:31:51.104Z",
+  "checks": [
+    {
+      "name": "Only actually rendered images inside tiles and viewport are eligible",
+      "status": "PASS"
+    },
+    {
+      "name": "Disconnected requests no screenshot",
+      "status": "PASS"
+    },
+    {
+      "name": "Paused requests no screenshot",
+      "status": "PASS"
+    },
+    {
+      "name": "Hidden document requests no screenshot",
+      "status": "PASS"
+    },
+    {
+      "name": "Popup with hidden tiles requests no screenshot",
+      "status": "PASS"
+    },
+    {
+      "name": "Detached or removed source is ineligible",
+      "status": "PASS"
+    },
+    {
+      "name": "Ten-second budget is bounded below eight requests per second",
+      "status": "PASS"
+    },
+    {
+      "name": "Minimized, offscreen and clipped sources receive zero requests",
+      "status": "PASS"
+    },
+    {
+      "name": "Preview and Program retain independent refresh; other visible inputs receive fair rotation",
+      "status": "PASS"
+    },
+    {
+      "name": "Minimize during an awaited screenshot cancels the remaining affected batch",
+      "status": "PASS"
+    },
+    {
+      "name": "Old capture result does not repaint a newly minimized image",
+      "status": "PASS"
+    }
+  ],
+  "tenSecondRequests": 57,
+  "limits": [
+    "Actual product functions extracted unchanged; request transport, clock and DOM geometry are controlled fixtures",
+    "This measures screenshot request budget, not GPU time, desktop frame rate or operator latency",
+    "No operator Native, API or port accessed; selected 060000 payload unchanged"
+  ]
+}

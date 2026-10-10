@@ -1,0 +1,109 @@
+{
+  "status": "PASS_DRAFT_MOCK_VM_ONLY",
+  "at": "2026-10-10T06:14:18.130Z",
+  "checks": 24,
+  "results": [
+    {
+      "name": "uncertain_active_reconciles_exact_UUID_without_redispatch",
+      "status": "PASS"
+    },
+    {
+      "name": "uncertain_cut_requires_transition_completed",
+      "status": "PASS"
+    },
+    {
+      "name": "uncertain_different_PGM_retained_explicit_release_permitted_no_reject",
+      "status": "PASS"
+    },
+    {
+      "name": "delete_absent_exact_UUID_reconciled_readonly",
+      "status": "PASS"
+    },
+    {
+      "name": "delete_same_name_recreated_UUID_does_not_fake_old_identity",
+      "status": "PASS"
+    },
+    {
+      "name": "scope_change_never_confirms_old_receipt_but_explicit_release_safe",
+      "status": "PASS"
+    },
+    {
+      "name": "new_connection_same_scope_no_false_confirmation",
+      "status": "PASS"
+    },
+    {
+      "name": "stable_reconnected_identity_same_scope_no_original_ACK_claim",
+      "status": "PASS"
+    },
+    {
+      "name": "check_serial_waits_original_command_finish_then_no_mutation",
+      "status": "PASS"
+    },
+    {
+      "name": "unknown_operation_refused_and_failed_read_never_unblocks",
+      "status": "PASS"
+    },
+    {
+      "name": "FTB_negative_correlated_rejected_before_any_trigger",
+      "status": "PASS"
+    },
+    {
+      "name": "FTB_repeated_press_shared_guard_late_rejection_clears_only_own_gate",
+      "status": "PASS"
+    },
+    {
+      "name": "FTB_keyboard_repeat_does_not_dispatch",
+      "status": "PASS"
+    },
+    {
+      "name": "current_state_confirmation_message_distinguishes_ACK_original",
+      "status": "PASS"
+    },
+    {
+      "name": "explicit_release_preserves_uncertain_backend_no_mutation_or_retry",
+      "status": "PASS"
+    },
+    {
+      "name": "release_requires_fresh_check_and_confirmation_never_auto",
+      "status": "PASS"
+    },
+    {
+      "name": "late_check_for_previous_operation_ignored_after_new_operation",
+      "status": "PASS"
+    },
+    {
+      "name": "late_ACK_old_id_cannot_clear_new_gate",
+      "status": "PASS"
+    },
+    {
+      "name": "API_public_receipt_exports_current_state_marker_and_GET_only",
+      "status": "PASS"
+    },
+    {
+      "name": "FTB_cannot_dispatch_while_Cut_waits_ACK",
+      "status": "PASS"
+    },
+    {
+      "name": "release_cancel_keeps_pending_and_no_backend_write",
+      "status": "PASS"
+    },
+    {
+      "name": "mismatched_check_receipt_refused_not_used_to_release",
+      "status": "PASS"
+    },
+    {
+      "name": "confirmed_receipt_dedupe_after_reconciliation_no_repeat",
+      "status": "PASS"
+    },
+    {
+      "name": "inline_script_syntax_and_baseline_pins_unchanged",
+      "status": "PASS"
+    }
+  ],
+  "limits": [
+    "No Native/CEF/installer/operator run.",
+    "Actual source methods extracted to VM; Native reads and mutations modeled by explicit synthetic UUID fixtures.",
+    "FTB internal QuickTransition exists; public FreeMix FTB control contract missing, so no FTB implementation claimed.",
+    "Root integration and real Native read-only reconciliation remain pending."
+  ]
+}

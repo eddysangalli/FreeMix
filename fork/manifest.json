@@ -1,8 +1,8 @@
 {
   "upstream": "https://github.com/obsproject/obs-studio.git",
   "base": "ba2f32bdf791005443988a4955e963663e16b1ed",
-  "head": "a04786090fcbe7ede495f18e5ad38ccaa9793478",
-  "version": "0.1.0-local.20261010060000",
+  "head": "de136e83595be92162ada8c7adc50f52751bd4ef",
+  "version": "0.1.0-local.20261010070000",
   "patches": [
     {
       "path": "0001-feat-branding-replace-OBS-identity-with-FreeMix-Stud.patch",
@@ -99,11 +99,15 @@
     {
       "path": "0024-Add-isolated-manual-SRT-HDR-output-with-bounded-shut.patch",
       "sha256": "8c9d028026dc9767f2688188eaf0dd19466f117ef86a5d5f916b591ae1223e12"
+    },
+    {
+      "path": "0025-Preserve-rendered-Program-through-FTB-and-add-bounde.patch",
+      "sha256": "95e837c9c02705c4469183979e9c3e4b2ffe5207f1e5cb0e9dc06e87324f1367"
     }
   ],
-  "sourceUpdatedAt": "2026-10-10T05:00:34.585Z",
+  "sourceUpdatedAt": "2026-10-10T06:55:27.056Z",
   "sourceSchema": 2,
-  "tree": "e67ece9930c4cea0548afa9f3d4f658e0f7814b7",
+  "tree": "4ad626ccd13cba0d7f13f3ca0fa670bada8425be",
   "submodules": [
     {
       "path": "deps/libdshowcapture/src",

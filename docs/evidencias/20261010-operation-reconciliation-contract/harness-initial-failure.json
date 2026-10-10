@@ -1,0 +1,8 @@
+{
+  "status": "FAIL_HARNESS",
+  "case": "FTB_repeated_press_shared_guard_late_rejection_clears_only_own_gate",
+  "actualFetches": 0,
+  "expectedFetches": 1,
+  "cause": "Frontend extracted VM omitted outer replayUrl constant; caught ReferenceError prevented fetch. Native/product never started.",
+  "checksBeforeFailure": 11
+}
