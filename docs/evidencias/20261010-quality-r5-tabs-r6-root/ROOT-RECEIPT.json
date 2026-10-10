@@ -1,0 +1,90 @@
+{
+  "status": "SOURCE_INTEGRATED_R5_R6_ROOT_CHECKS_PASS",
+  "checks": [
+    {
+      "test": "test-r5.mjs",
+      "cases": 9,
+      "status": "PASS"
+    },
+    {
+      "test": "origin-test-adapter-defaults-final-r3.mjs",
+      "cases": 28,
+      "status": "PASS"
+    },
+    {
+      "test": "test-tabs.mjs",
+      "cases": 8,
+      "status": "PASS"
+    }
+  ],
+  "files": [
+    {
+      "canonical": "FreeMix/ferramentas/efeitos-producao.mjs",
+      "beforeSha256": "49f97a6f8bcf9a014e25fbb5584dbb8b33852ce415547c2f6f9672c7eed1f930",
+      "sha256": "6c4d8ef25b8c319fc651391c4e68dd222e5fe6bfdffae75f4945adfb26b86e1f"
+    },
+    {
+      "canonical": "FreeMix/painel/remoto/efeitos.html",
+      "beforeSha256": "3348c01431ab8965f24e2791a5a0d5b75e1ec2d6ab5a4db4ae6209890a5ef9d6",
+      "sha256": "a96dd3a8e1022d754dc694dd1da06767c82433efe12401b3f60f13b05479c158"
+    },
+    {
+      "canonical": "FreeMix/painel/remoto/efeitos.js",
+      "beforeSha256": "1a63a191d382bb561065744f96c45565860b09b7d660082a3ee46ad4092e3a4d",
+      "sha256": "95833f729018ecea7dd3cac53ce50e95e62f01e33b6fd38e21d9f94e074f265d"
+    },
+    {
+      "canonical": "FreeMix/ferramentas/qualidade-producao.mjs",
+      "beforeSha256": null,
+      "sha256": "c912c1ac64e9459bb182855193124bb7fd50a541f0ec20dd7a3d3d5d7c54cf67"
+    },
+    {
+      "canonical": "FreeMix/ferramentas/qualidade-sdk.mjs",
+      "beforeSha256": null,
+      "sha256": "b810ebd8d6068fa362c630b606ea5c068530fe663b895598a6ba742d78c5cc76"
+    },
+    {
+      "canonical": "FreeMix/ferramentas/qualidade-sdk-policy.json",
+      "beforeSha256": null,
+      "sha256": "56b5405ab52c3d9ae3b6c36b7dbdc06c3a8f242b0d24684da3e411649017026a"
+    },
+    {
+      "canonical": "FreeMix/painel/remoto/qualidade.js",
+      "beforeSha256": null,
+      "sha256": "48e15fbc866c1b692955dd262c2c147e0a54b00404a5ac0ddf1674d307f5a4e2"
+    },
+    {
+      "canonical": "FreeMix/ferramentas/efeitos-operacoes.mjs",
+      "beforeSha256": null,
+      "sha256": "03cf7f7729ee2e83af9e937d7169381a605131991fada22ff5aa685f8cc7da99"
+    },
+    {
+      "canonical": "FreeMix/painel/remoto/efeitos-gate.js",
+      "beforeSha256": null,
+      "sha256": "4af1f68d93273bf250c82f820c9ebe01259db4d736c6447eacb34be52a12d1c5"
+    },
+    {
+      "canonical": "FreeMix/ferramentas/qualidade-model-cache.mjs",
+      "beforeSha256": null,
+      "sha256": "82f84fbc1fdc5b10e8d65c52dc28f3ff456ec586a297570c32443d3d3a4825dd"
+    },
+    {
+      "canonical": "FreeMix/painel/remoto/efeitos-abas.js",
+      "beforeSha256": null,
+      "sha256": "d229eb0dbac883a9dc48753e61c65e899d63361bff443b1c0034745c7cb20006"
+    }
+  ],
+  "frozenR5Pins": 39,
+  "frozenR6Pins": 11,
+  "externalPinsUnchanged": true,
+  "operatorTouched": false,
+  "NativeStarted": false,
+  "installedRuntimeChanged": false,
+  "SDKApproved": false,
+  "EnglishTranslationApproved": false,
+  "limits": [
+    "Mock-OBS adapter and DOM proofs; pixels/PCM/inference and rendered UI qualification pending",
+    "Native SDK preload governance not yet integrated",
+    "Source changes are not a new installed release"
+  ]
+}

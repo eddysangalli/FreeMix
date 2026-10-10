@@ -1,0 +1,45 @@
+{
+  "status": "PASS_ACTUAL_OPERATIONS_AND_ADAPTER_MODELS_ONLY",
+  "cases": 9,
+  "tests": [
+    {
+      "name": "R4 foreign RAW bypass is reproduced in real QualityAdapter.session, own stub only",
+      "pass": true
+    },
+    {
+      "name": "R5 stale accessor throws before returning any OBS object to QualityAdapter.session",
+      "pass": true
+    },
+    {
+      "name": "Connection switches between EffectsEngine.discover awaits and Quality.session entry; no foreign/raw requests",
+      "pass": true
+    },
+    {
+      "name": "Captions entering session after discover cannot rebind to new OBS",
+      "pass": true
+    },
+    {
+      "name": "Same OBS but scope switches before Quality.session entry; no writes to new collection",
+      "pass": true
+    },
+    {
+      "name": "Existing captured Quality.session req is guarded after connection switch; no raw fallback",
+      "pass": true
+    },
+    {
+      "name": "Disconnect after old connection wrote stays uncertain, no subsequent write to foreign",
+      "pass": true
+    },
+    {
+      "name": "Connected false during preflight prevents access and zero-dispatch refusal is explicit",
+      "pass": true
+    },
+    {
+      "name": "Successful captured context still returns stable wrapper and tracks writes exactly once",
+      "pass": true
+    }
+  ],
+  "NativeStarted": false,
+  "APIStarted": false,
+  "browserStarted": false
+}

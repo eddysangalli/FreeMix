@@ -1,0 +1,123 @@
+{
+  "status": "PASS_ACTUAL_DRAFT_ADAPTER_WITH_MOCK_OBS_ONLY",
+  "cases": 28,
+  "tests": [
+    {
+      "name": "Real EffectsEngine dispatch effects_source works through actual draft adapter",
+      "pass": true
+    },
+    {
+      "name": "Opening quality summary reads only and starts no filter",
+      "pass": true
+    },
+    {
+      "name": "Enum/default malformed or unavailable refuses mutations",
+      "pass": true
+    },
+    {
+      "name": "Director/public private row/shared/bus source is protected before mutation",
+      "pass": true
+    },
+    {
+      "name": "Video-only and audio-only eligibility are distinct",
+      "pass": true
+    },
+    {
+      "name": "Reconnect during enum/default/model read prevents next action on either connection",
+      "pass": true
+    },
+    {
+      "name": "Scope change after setting never sends activation to new production",
+      "pass": true
+    },
+    {
+      "name": "Reserved name with external kind refuses overwrite",
+      "pass": true
+    },
+    {
+      "name": "Color overlay preserves external/default settings and no reorder",
+      "pass": true
+    },
+    {
+      "name": "Readback enabled/settings mismatch is rejection, not confirmation/retry",
+      "pass": true
+    },
+    {
+      "name": "Background basic alternatives require explicit previous disable",
+      "pass": true
+    },
+    {
+      "name": "Remove only own matching filter and confirms absence",
+      "pass": true
+    },
+    {
+      "name": "Finite fields reject unknown/nonfinite/string/fraction/ranges before writes",
+      "pass": true
+    },
+    {
+      "name": "Caption transcribe explicitly clears prior whisper translation and all cloud/output flags",
+      "pass": true
+    },
+    {
+      "name": "English requires verified plugincontract AND model; generic/cloud mode reject",
+      "pass": true
+    },
+    {
+      "name": "Verified finite English maps whisper_translate true, translator stays false",
+      "pass": true
+    },
+    {
+      "name": "Caption missing/private output, bad language or model never writes",
+      "pass": true
+    },
+    {
+      "name": "Speech preset requires exact name/explicitreview and all kinds before writes",
+      "pass": true
+    },
+    {
+      "name": "Speech uses actual AudioRoutingEngine.command/validation/names and confirms three filters",
+      "pass": true
+    },
+    {
+      "name": "SDK fingerprint change disables NVIDIA without calling it absent",
+      "pass": true
+    },
+    {
+      "name": "Actual SDK verifier rejects synthetic changed bytes and unapproved policy",
+      "pass": true
+    },
+    {
+      "name": "Caption read state independently exposes whisper/separate/cloud flags without secrets",
+      "pass": true
+    },
+    {
+      "name": "Speech refuses stale audio scope before mutating filters",
+      "pass": true
+    },
+    {
+      "name": "SDK policy rejects empty/duplicate/partial/nonhex lists without approval",
+      "pass": true
+    },
+    {
+      "name": "One pending quality command refuses a second, without a mutation queue",
+      "pass": true
+    },
+    {
+      "name": "Changing production before first microtask rejects rather than rebinding queued intent",
+      "pass": true
+    },
+    {
+      "name": "Disabled source configuration stays disabled and removal tolerates absence only",
+      "pass": true
+    },
+    {
+      "name": "Speech readback failure reports partial state and never retries or routes Master",
+      "pass": true
+    }
+  ],
+  "NativeStarted": false,
+  "APIStarted": false,
+  "realPixelsOrPCMProven": false,
+  "modelInferenceExecuted": false,
+  "UIVisualVerified": false
+}

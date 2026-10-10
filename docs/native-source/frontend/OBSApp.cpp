@@ -300,7 +300,7 @@ bool OBSApp::InitGlobalConfigDefaults()
 	config_set_default_uint(appConfig, "General", "MaxLogs", 10);
 	config_set_default_int(appConfig, "General", "InfoIncrement", -1);
 	config_set_default_string(appConfig, "General", "ProcessPriority", "Normal");
-	config_set_default_bool(appConfig, "General", "EnableAutoUpdates", true);
+	config_set_default_bool(appConfig, "General", "EnableAutoUpdates", false);
 
 #if _WIN32
 	config_set_default_string(appConfig, "Video", "Renderer", "Direct3D 11");
@@ -1365,7 +1365,8 @@ bool OBSApp::IsPortableMode()
 
 bool OBSApp::IsUpdaterDisabled()
 {
-	return opt_disable_updater;
+	/* FreeMix releases own the engine and plugins. CLI/config cannot enable OBS updates. */
+	return true;
 }
 
 bool OBSApp::IsMissingFilesCheckDisabled()

@@ -1,0 +1,159 @@
+{
+  "status": "NATIVE_SOURCES_INTEGRATED_NOT_COMPILED",
+  "files": [
+    {
+      "canonical": "freemix-app/frontend/widgets/OBSBasic.cpp",
+      "baselineSha256": "889825308ec44cc7acc38e8e9b40a3fd39cc1ce1b053ed37ad3815044db738fd",
+      "draftSha256": "dff1ef69865bc133e01138c2ecf1c6eaec805e025eff1f3e5fe68df3f7367832",
+      "integratedSha256": "dff1ef69865bc133e01138c2ecf1c6eaec805e025eff1f3e5fe68df3f7367832",
+      "rootDerivation": null
+    },
+    {
+      "canonical": "freemix-app/plugins/nv-filters/nv-filters.c",
+      "baselineSha256": "7154d53309d0b98d77378162702455ebfd9ce54189609d2d87c693009db6cac4",
+      "draftSha256": "7bf7dff2e7e93f13025299aa1869bc6bce4e315d011c35d41679f4402255f05b",
+      "integratedSha256": "2049f8d385addfa6b57d53e43ad6994a9fcbf8c763a9cb6d9e4429f3b43b870b",
+      "rootDerivation": "Only expected unapproved-policy registration notices use INFO; actual loader failures retain WARNING"
+    },
+    {
+      "canonical": "freemix-app/plugins/nv-filters/nvafx-load.h",
+      "baselineSha256": "bcadb0688b0ccda79d5c1eff901a6e65a4fee7cf7d429a38df7c1f3077b21c3d",
+      "draftSha256": "9780adf558c0b970c5e2c20d32997e53196854c762dc5d79b625751b92eff3e4",
+      "integratedSha256": "9780adf558c0b970c5e2c20d32997e53196854c762dc5d79b625751b92eff3e4",
+      "rootDerivation": null
+    },
+    {
+      "canonical": "freemix-app/plugins/nv-filters/nvvfx-load.h",
+      "baselineSha256": "4af739bb4d401a0e51ed3a27aff212fd2f107d080ffc0bbd9d7378108472e1cc",
+      "draftSha256": "e988fdc3e661f941b4ead747076166fbaa4cc8eb17a7f1548de532278fc18214",
+      "integratedSha256": "e988fdc3e661f941b4ead747076166fbaa4cc8eb17a7f1548de532278fc18214",
+      "rootDerivation": null
+    },
+    {
+      "canonical": "freemix-app/plugins/nv-filters/CMakeLists.txt",
+      "baselineSha256": "30238f2b09ccc13aca8c7019183aa8a7130cba4046e24d53eb55a55fd4a0d99d",
+      "draftSha256": "fa2b256fc231ee2d3ba3168c38adac2e3e3e1c3c02bca144fb9cb9a5ce82890c",
+      "integratedSha256": "fa2b256fc231ee2d3ba3168c38adac2e3e3e1c3c02bca144fb9cb9a5ce82890c",
+      "rootDerivation": null
+    },
+    {
+      "canonical": "freemix-app/plugins/nv-filters/FreeMixNvSdkPolicy.c",
+      "baselineSha256": null,
+      "draftSha256": "08daefad928c11c77f3237642caa30ab38748639e24167c0e1a45dda134c03ad",
+      "integratedSha256": "08daefad928c11c77f3237642caa30ab38748639e24167c0e1a45dda134c03ad",
+      "rootDerivation": null
+    },
+    {
+      "canonical": "freemix-app/plugins/nv-filters/FreeMixNvSdkPolicy.h",
+      "baselineSha256": null,
+      "draftSha256": "99ecfd4a18c9baa3830bbc75cf3808760c80a7e9c02ae0b0b7ee0c2918c466b4",
+      "integratedSha256": "99ecfd4a18c9baa3830bbc75cf3808760c80a7e9c02ae0b0b7ee0c2918c466b4",
+      "rootDerivation": null
+    },
+    {
+      "canonical": "freemix-app/frontend/OBSApp.cpp",
+      "baselineSha256": "f0fa15cc89aecac8bc0602a0f27dce1e8a02c333249882f8d2a88ee0bf0947b1",
+      "draftSha256": "1d4b4b5d0bccd1a2a89e289e2372da5f864abb337f878707313c321ff1aae3ec",
+      "integratedSha256": "1d4b4b5d0bccd1a2a89e289e2372da5f864abb337f878707313c321ff1aae3ec",
+      "rootDerivation": null
+    },
+    {
+      "canonical": "freemix-app/frontend/widgets/OBSBasic_Updater.cpp",
+      "baselineSha256": "7d3969a032d61345c10ea10bf230a2901e799a21adfdfd5c398b4640da7d99dc",
+      "draftSha256": "8ff7bbeb7381124d1a972c9314626dbaa70b99cdb7800698514d2508ae69bb82",
+      "integratedSha256": "8ff7bbeb7381124d1a972c9314626dbaa70b99cdb7800698514d2508ae69bb82",
+      "rootDerivation": null
+    },
+    {
+      "canonical": "freemix-app/frontend/widgets/OBSBasic_MainControls.cpp",
+      "baselineSha256": "6d9c8e03f0e56500b88580f2301599e5889c5f24cd7fb589ec68588ba5b2f582",
+      "draftSha256": "98eb6e55676b548fe95455cda117b2ab4fbb99c621e197805e485b01565d015f",
+      "integratedSha256": "98eb6e55676b548fe95455cda117b2ab4fbb99c621e197805e485b01565d015f",
+      "rootDerivation": null
+    },
+    {
+      "canonical": "freemix-app/frontend/utility/AutoUpdateThread.cpp",
+      "baselineSha256": "68fbbec1130f07365469d29a898ca1124c836beb671da5f383b9f765e2112252",
+      "draftSha256": "8730dd3fd6c61ca173ab44a3e64e39f99384223813bf20c41b707ebffb364243",
+      "integratedSha256": "8730dd3fd6c61ca173ab44a3e64e39f99384223813bf20c41b707ebffb364243",
+      "rootDerivation": null
+    },
+    {
+      "canonical": "freemix-app/frontend/utility/MacUpdateThread.cpp",
+      "baselineSha256": "785f7ec75ab4007992d49702a8508426614488c6d2c29c7eb355f33dc4799f98",
+      "draftSha256": "626de4fc040c022909a2a17e4add86dbe3eddfd3857a13cd63bba538043f3a92",
+      "integratedSha256": "626de4fc040c022909a2a17e4add86dbe3eddfd3857a13cd63bba538043f3a92",
+      "rootDerivation": null
+    },
+    {
+      "canonical": "freemix-app/shared/file-updater/file-updater/file-updater.c",
+      "baselineSha256": "137dd8a2248cc5e8e67c602317b26132caf647e56dcc4c9ae5697b43cf9af806",
+      "draftSha256": "8aecfa3d7a16d752b37a53aa4b0495ba9ca109e153434eca1f54ab7674c9044a",
+      "integratedSha256": "8aecfa3d7a16d752b37a53aa4b0495ba9ca109e153434eca1f54ab7674c9044a",
+      "rootDerivation": null
+    },
+    {
+      "canonical": "freemix-app/plugins/win-capture/plugin-main.c",
+      "baselineSha256": "88ce97e7da790a6e3b26f3c7bee364585ec0f05e3e10cf74e0223b957ef24abd",
+      "draftSha256": "4f70ee8d3f7e3e3c787372142df6515f67da5bdeb0ceb1bd5ddc163809de3f26",
+      "integratedSha256": "4f70ee8d3f7e3e3c787372142df6515f67da5bdeb0ceb1bd5ddc163809de3f26",
+      "rootDerivation": null
+    },
+    {
+      "canonical": "freemix-app/plugins/rtmp-services/rtmp-services-main.c",
+      "baselineSha256": "739e7eb99ded076f7734f8db2b26ece605eef409fc01e5decc6658a97e32d2f9",
+      "draftSha256": "e6765490cc8ff04e30661e1b1cfd0f68d11bbf8e05115a82234bd8d9dd2cf965",
+      "integratedSha256": "e6765490cc8ff04e30661e1b1cfd0f68d11bbf8e05115a82234bd8d9dd2cf965",
+      "rootDerivation": null
+    },
+    {
+      "canonical": "freemix-app/shared/media-playback/media-playback/media-playback.h",
+      "baselineSha256": "d5dd0b8a60bd69bc30098985bb0df13c9ad3ba811031a2942c97a5a547613ab6",
+      "draftSha256": "2e8132d4ddc49607cb173860ce7c5ee49caf63b7f73b5b604d33cedd2d7083cd",
+      "integratedSha256": "2e8132d4ddc49607cb173860ce7c5ee49caf63b7f73b5b604d33cedd2d7083cd",
+      "rootDerivation": null
+    },
+    {
+      "canonical": "freemix-app/shared/media-playback/media-playback/media.h",
+      "baselineSha256": "9a6e78a30481b42bdd71062d99296ea50894daca64ff40de2051f534653e2342",
+      "draftSha256": "1f220f1ab7e07634d5779d51fe7f8212328482df32ad993a3459e558aefc0b87",
+      "integratedSha256": "1f220f1ab7e07634d5779d51fe7f8212328482df32ad993a3459e558aefc0b87",
+      "rootDerivation": null
+    },
+    {
+      "canonical": "freemix-app/shared/media-playback/media-playback/media.c",
+      "baselineSha256": "01c7cba5c0eb36656bb00a6d1081cb0e8244d0b6a3992746e55d425cf1b0872f",
+      "draftSha256": "057123e52eae4ed276df685799a81fdf8a161dba1e303bb41d2211e8aac93fc7",
+      "integratedSha256": "057123e52eae4ed276df685799a81fdf8a161dba1e303bb41d2211e8aac93fc7",
+      "rootDerivation": null
+    },
+    {
+      "canonical": "freemix-app/plugins/obs-ffmpeg/obs-ffmpeg-source.c",
+      "baselineSha256": "38837769b21f675374822d5a8823a3223ce9cf3fa01336dc1098c8d8290b86f9",
+      "draftSha256": "4bd7b9a69ae02cc76f5be930a0a49f38d6f26bc0584304a44191529e07e5a467",
+      "integratedSha256": "4bd7b9a69ae02cc76f5be930a0a49f38d6f26bc0584304a44191529e07e5a467",
+      "rootDerivation": null
+    },
+    {
+      "canonical": "freemix-app/plugins/obs-websocket/src/requesthandler/RequestHandler_MediaInputs.cpp",
+      "baselineSha256": "fc8981d15deec3f392f1532c9120915eaebd8c6db430a98a1183320e144e61d5",
+      "draftSha256": "680d80b080e9cc0b3570a2e7def8215618b1a86607072f1cd9f1850d774c9546",
+      "integratedSha256": "680d80b080e9cc0b3570a2e7def8215618b1a86607072f1cd9f1850d774c9546",
+      "rootDerivation": null
+    }
+  ],
+  "guardCases": 22,
+  "updaterCasesHistorical": 19,
+  "clockCasesHistorical": 32,
+  "allFrozenPinsUnchanged": true,
+  "legacyCursorAndSeekUnchanged": true,
+  "operatorTouched": false,
+  "SDKApproved": false,
+  "completeSDKPayloadApproved": false,
+  "buildExecuted": false,
+  "limits": [
+    "Actual Windows loader/hash execution, Native lifecycle and diagnostic-clock runtime still require a new build and own QA",
+    "No claim to govern all closed third-party plugin updaters/driver/NDI/OMT/VST/macros",
+    "Diagnostic submitted source PTS is not a display/audio acknowledgement"
+  ]
+}

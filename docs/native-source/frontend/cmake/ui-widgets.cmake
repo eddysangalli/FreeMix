@@ -30,6 +30,10 @@ target_sources(
     widgets/FreeMixCenterColumn.hpp
     widgets/FreeMixMultistream.cpp
     widgets/FreeMixMultistream.hpp
+    widgets/FreeMixProjectPolicy.cpp
+    widgets/FreeMixProjectPolicy.hpp
+    widgets/FreeMixProjectInventory.cpp
+    widgets/FreeMixProjectInventory.hpp
     widgets/FreeMixSrtHdrOutput.hpp
     widgets/FreeMixSrtHdrLifecycle.hpp
     widgets/FreeMixCallVideo.cpp

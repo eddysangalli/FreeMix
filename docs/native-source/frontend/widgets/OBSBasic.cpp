@@ -117,74 +117,9 @@ std::once_flag saveOnceFlag;
 
 static void AddExtraModulePaths()
 {
-	string plugins_path, plugins_data_path;
-	char *s;
-
-	s = getenv("OBS_PLUGINS_PATH");
-	if (s) {
-		plugins_path = s;
-	}
-
-	s = getenv("OBS_PLUGINS_DATA_PATH");
-	if (s) {
-		plugins_data_path = s;
-	}
-
-	if (!plugins_path.empty() && !plugins_data_path.empty()) {
-#if defined(__APPLE__)
-		plugins_path += "/%module%.plugin/Contents/MacOS";
-		plugins_data_path += "/%module%.plugin/Contents/Resources";
-		obs_add_module_path(plugins_path.c_str(), plugins_data_path.c_str());
-#else
-		string data_path_with_module_suffix;
-		data_path_with_module_suffix += plugins_data_path;
-		data_path_with_module_suffix += "/%module%";
-		obs_add_module_path(plugins_path.c_str(), data_path_with_module_suffix.c_str());
-#endif
-	}
-
-	if (portable_mode) {
-		return;
-	}
-
-	char base_module_dir[512];
-#if defined(_WIN32)
-	int ret = GetProgramDataPath(base_module_dir, sizeof(base_module_dir), "obs-studio/plugins/%module%");
-#elif defined(__APPLE__)
-	int ret = GetAppConfigPath(base_module_dir, sizeof(base_module_dir), "obs-studio/plugins/%module%.plugin");
-#else
-	int ret = GetAppConfigPath(base_module_dir, sizeof(base_module_dir), "obs-studio/plugins/%module%");
-#endif
-
-	if (ret <= 0) {
-		return;
-	}
-
-	string path = base_module_dir;
-#if defined(__APPLE__)
-	/* User Application Support Search Path */
-	obs_add_module_path((path + "/Contents/MacOS").c_str(), (path + "/Contents/Resources").c_str());
-
-#ifndef __aarch64__
-	/* Legacy System Library Search Path */
-	char system_legacy_module_dir[PATH_MAX];
-	GetProgramDataPath(system_legacy_module_dir, sizeof(system_legacy_module_dir), "obs-studio/plugins/%module%");
-	std::string path_system_legacy = system_legacy_module_dir;
-	obs_add_module_path((path_system_legacy + "/bin").c_str(), (path_system_legacy + "/data").c_str());
-
-	/* Legacy User Application Support Search Path */
-	char user_legacy_module_dir[PATH_MAX];
-	GetAppConfigPath(user_legacy_module_dir, sizeof(user_legacy_module_dir), "obs-studio/plugins/%module%");
-	std::string path_user_legacy = user_legacy_module_dir;
-	obs_add_module_path((path_user_legacy + "/bin").c_str(), (path_user_legacy + "/data").c_str());
-#endif
-#else
-#if ARCH_BITS == 64
-	obs_add_module_path((path + "/bin/64bit").c_str(), (path + "/data").c_str());
-#else
-	obs_add_module_path((path + "/bin/32bit").c_str(), (path + "/data").c_str());
-#endif
-#endif
+	// Customer fork: only module paths supplied by the packaged engine.
+	// Environment and user/global third-party folders cannot extend them.
+	blog(LOG_INFO, "[FreeMix] External plugin search paths disabled by release policy");
 }
 
 /* First-party modules considered to be potentially unsafe to load in Safe Mode

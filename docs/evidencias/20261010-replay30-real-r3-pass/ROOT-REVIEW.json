@@ -1,0 +1,26 @@
+{
+  "status": "PASS_FINITE_OWN_SYNTHETIC_REVIEW",
+  "receiptSha256": "f8742597146165eee71bb177f903a9ca06eb36f88df61b63b3a714b6e1241f77",
+  "warnings": 0,
+  "allocations": [
+    0
+  ],
+  "crashMarkers": 0,
+  "pidPresent": false,
+  "cooperativeExit": 0,
+  "rawLogCopied": false,
+  "captures": [
+    {
+      "path": "paused-30.png",
+      "sha256": "0eb5a39699d96a003a1ce14e0f8f48bc9b78e71739395ee6f494ab5631f3c47a",
+      "rootVisuallyInspected": true
+    },
+    {
+      "path": "cadence-play-late-vfr.png",
+      "sha256": "033afce5b95433f394d476dc1bb06a0d09750a348822bc241b667561c51a38e3",
+      "rootVisuallyInspected": true
+    }
+  ],
+  "operatorTouched": false,
+  "newNative32QualifiedByThisReplay": false
+}

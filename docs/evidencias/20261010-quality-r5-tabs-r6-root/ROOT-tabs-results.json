@@ -1,0 +1,41 @@
+{
+  "status": "PASS_ACTUAL_HELPER_DOM_MODEL_ONLY",
+  "cases": 8,
+  "tests": [
+    {
+      "name": "Default shows exactly Quality, with roving tabindex and aria selected",
+      "pass": true
+    },
+    {
+      "name": "Click each tab keeps exactly one panel and updates URL hash; no fetch",
+      "pass": true
+    },
+    {
+      "name": "Keyboard arrows wrap and Home/End focus without invoking any command",
+      "pass": true
+    },
+    {
+      "name": "Valid deep link and hash changes select panel without input reset",
+      "pass": true
+    },
+    {
+      "name": "Invalid and malformed hashes fall back to Quality, never selector injection",
+      "pass": true
+    },
+    {
+      "name": "Tab change preserves choices/hidden-control state and shared pending gate identity",
+      "pass": true
+    },
+    {
+      "name": "HTML preserves every old ID exactly once and all panel contents byte-exact",
+      "pass": true
+    },
+    {
+      "name": "Existing scripts/order/handlers/gate remain and helper contains no network/mutation code",
+      "pass": true
+    }
+  ],
+  "NativeStarted": false,
+  "browserStarted": false,
+  "visualApproved": false
+}

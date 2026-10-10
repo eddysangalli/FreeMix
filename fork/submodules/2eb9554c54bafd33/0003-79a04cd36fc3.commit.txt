@@ -1,0 +1,6 @@
+tree 1416ee7809d02369024a1006d7fcf700708af9d4
+parent 70e881a141e6533e34e56923f0da095cd87e7839
+author Eddy Sangalli <eddyrodrigues@outlook.com> 1791639186 -0300
+committer Eddy Sangalli <eddyrodrigues@outlook.com> 1791639186 -0300
+
+Expose read-only source clock diagnostics for FreeMix QA

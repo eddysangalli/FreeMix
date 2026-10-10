@@ -1,0 +1,21 @@
+From 877b214d197fd013a83f0f6c625bfa4767eed936 Mon Sep 17 00:00:00 2001
+From: Eddy Sangalli <eddyrodrigues@outlook.com>
+Date: Sat, 10 Oct 2026 10:33:43 -0300
+Subject: [PATCH] Normalize SDK policy header ending
+
+---
+ plugins/nv-filters/FreeMixNvSdkPolicy.h | 1 -
+ 1 file changed, 1 deletion(-)
+
+diff --git a/plugins/nv-filters/FreeMixNvSdkPolicy.h b/plugins/nv-filters/FreeMixNvSdkPolicy.h
+index e6ed9fb..3dddaef 100644
+--- a/plugins/nv-filters/FreeMixNvSdkPolicy.h
++++ b/plugins/nv-filters/FreeMixNvSdkPolicy.h
+@@ -16,4 +16,3 @@ const char *freemix_nv_sdk_reason(enum freemix_nv_family family);
+ #ifdef __cplusplus
+ }
+ #endif
+-
+-- 
+2.56.0.windows.1
+

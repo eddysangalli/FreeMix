@@ -1,0 +1,99 @@
+{
+  "status": "PASS_SOURCE_CONTRACT_AND_TRANSLATED_FUNCTION_MODELS_ONLY",
+  "cases": [
+    {
+      "name": "actual C predicate rejects every incomplete approval combination",
+      "pass": true
+    },
+    {
+      "name": "actual C path shape rejects relative, UNC and traversal",
+      "pass": true
+    },
+    {
+      "name": "actual C hash compares all 32 bytes and rejects same-version changed content",
+      "pass": true
+    },
+    {
+      "name": "compiled policy remains false for both families and complete-payload approval",
+      "pass": true
+    },
+    {
+      "name": "actual module function approval=false never probes or loads SDK and registers no sources",
+      "pass": true
+    },
+    {
+      "name": "actual direct AFX loader also rejects unapproved family before LoadLibrary",
+      "pass": true
+    },
+    {
+      "name": "actual direct VFX loader also rejects unapproved family before LoadLibrary",
+      "pass": true
+    },
+    {
+      "name": "actual loader rejects approved but incomplete SDK closure",
+      "pass": true
+    },
+    {
+      "name": "actual AFX loader changed fingerprint prevents SDK load",
+      "pass": true
+    },
+    {
+      "name": "actual VFX second principal file failure prevents both loads and closes first pin",
+      "pass": true
+    },
+    {
+      "name": "actual VFX first file failure prevents loads and creates no pins",
+      "pass": true
+    },
+    {
+      "name": "actual AFX verified file stays pinned through SDK load then closes",
+      "pass": true
+    },
+    {
+      "name": "actual VFX verifies and pins both before either load",
+      "pass": true
+    },
+    {
+      "name": "actual module registers four source descriptors only when both approved SDK loaders succeed",
+      "pass": true
+    },
+    {
+      "name": "actual LoadLibrary failure never registers a source and releases verification handles",
+      "pass": true
+    },
+    {
+      "name": "actual extra module paths never reads environment or registers a path",
+      "pass": true
+    },
+    {
+      "name": "C guard rejects approval before file IO and checks hash before success",
+      "pass": true
+    },
+    {
+      "name": "hash cleanup releases BCrypt handles on failure and success",
+      "pass": true
+    },
+    {
+      "name": "public reason export never loads SDK, returns no private path, and needs no global callback",
+      "pass": true
+    },
+    {
+      "name": "public policy contract and approval exports are read-only and do not claim media availability",
+      "pass": true
+    },
+    {
+      "name": "build recipe links Windows BCrypt and keeps original SDK feature options",
+      "pass": true
+    },
+    {
+      "name": "canonical baseline and all draft target bytes match pinned PREP",
+      "pass": true
+    }
+  ],
+  "limits": [
+    "No native compilation, Windows BCrypt execution, DLL loading, GPU/audio/source creation or runtime approval.",
+    "Win32 path/hash IO is checked in source, not exercised by these pure models.",
+    "Complete SDK dependency/model closure and adversarial path races remain unqualified; policy remains approved=false."
+  ],
+  "canonicalUnchanged": true
+}

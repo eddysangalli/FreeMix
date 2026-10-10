@@ -345,12 +345,33 @@ static inline bool mp_media_can_play_frame(mp_media_t *m, struct mp_decode *d)
 	return d->frame_ready && (d->frame_pts <= m->next_pts_ns || (d->frame_pts - m->next_pts_ns > MAX_TS_VAR));
 }
 
+static void publish_clock(mp_media_t *m)
+{
+    if (!m->clock_cb) return;
+    struct mp_clock_snapshot snapshot;
+    pthread_mutex_lock(&m->mutex);
+    snapshot = (struct mp_clock_snapshot){
+        .generation = m->clock_generation, .revision = ++m->clock_revision,
+        .epoch = m->clock_epoch, .requested_resets = m->clock_requested_resets,
+        .completed_resets = m->clock_completed_resets,
+        .presented_pts_ns = m->presented_pts, .speed = m->speed,
+        .supported = true, .presented_valid = m->presented_valid,
+        .reset_in_progress = m->clock_reset_in_progress, .reset_pending = m->reset,
+        .ready = m->presented_valid && !m->reset && !m->clock_reset_in_progress &&
+                 m->clock_completed_resets == m->clock_requested_resets,
+    };
+    pthread_mutex_unlock(&m->mutex);
+    /* Never call an observer holding the decoder mutex. */
+    m->clock_cb(m->opaque, &snapshot);
+}
+
 static void remember_presented_pts(mp_media_t *m, int64_t pts)
 {
 	pthread_mutex_lock(&m->mutex);
 	m->presented_pts = pts;
 	m->presented_valid = pts >= 0;
 	pthread_mutex_unlock(&m->mutex);
+	publish_clock(m);
 }
 
 
@@ -611,7 +632,11 @@ bool mp_media_reset(mp_media_t *m)
 {
 	pthread_mutex_lock(&m->mutex);
 	m->presented_valid = false;
+	m->clock_reset_in_progress = true;
+	++m->clock_epoch;
+	const uint64_t clock_request = m->clock_requested_resets;
 	pthread_mutex_unlock(&m->mutex);
+	publish_clock(m);
 	bool stopping;
 	bool active;
 
@@ -649,6 +674,12 @@ bool mp_media_reset(mp_media_t *m)
 	}
 
 	m->pause = false;
+
+	pthread_mutex_lock(&m->mutex);
+	m->clock_completed_resets = clock_request;
+	m->clock_reset_in_progress = false;
+	pthread_mutex_unlock(&m->mutex);
+	publish_clock(m);
 
 	if (!active && m->is_local_file && m->v_preload_cb)
 		mp_media_next_video(m, true);
@@ -948,6 +979,8 @@ bool mp_media_init(mp_media_t *media, const struct mp_media_info *info)
 	media->v_cb = info->v_cb;
 	media->a_cb = info->a_cb;
 	media->stop_cb = info->stop_cb;
+	media->clock_cb = info->full_decode ? NULL : info->clock_cb;
+	media->clock_generation = info->clock_generation;
 	media->ffmpeg_options = info->ffmpeg_options;
 	media->v_seek_cb = info->v_seek_cb;
 	media->v_preload_cb = info->v_preload_cb;
@@ -1019,8 +1052,10 @@ void mp_media_play(mp_media_t *m, bool loop, bool reconnecting)
 {
 	pthread_mutex_lock(&m->mutex);
 
-	if (m->active)
+	if (m->active) {
 		m->reset = true;
+		++m->clock_requested_resets;
+	}
 
 	m->looping = loop;
 	m->active = true;
@@ -1028,6 +1063,7 @@ void mp_media_play(mp_media_t *m, bool loop, bool reconnecting)
 
 	pthread_mutex_unlock(&m->mutex);
 
+	publish_clock(m);
 	os_sem_post(m->sem);
 }
 
@@ -1058,11 +1094,13 @@ void mp_media_stop(mp_media_t *m)
 	pthread_mutex_lock(&m->mutex);
 	if (m->active) {
 		m->reset = true;
+		++m->clock_requested_resets;
 		m->active = false;
 		m->stopping = true;
 	}
 	pthread_mutex_unlock(&m->mutex);
 
+	publish_clock(m);
 	os_sem_post(m->sem);
 }
 

@@ -31,6 +31,8 @@
 struct ffmpeg_source {
 	media_playback_t *media;
 	bool destroy_media;
+	pthread_mutex_t clock_mutex;
+	struct mp_clock_snapshot clock;
 
 	enum video_range_type range;
 	bool is_linear_alpha;
@@ -65,6 +67,53 @@ struct ffmpeg_source {
 	obs_hotkey_pair_id play_pause_hotkey;
 	obs_hotkey_id stop_hotkey;
 };
+
+static uint64_t prepare_source_clock(struct ffmpeg_source *s)
+{
+    pthread_mutex_lock(&s->clock_mutex);
+    const uint64_t generation = s->clock.generation + 1;
+    s->clock = (struct mp_clock_snapshot){.generation = generation};
+    pthread_mutex_unlock(&s->clock_mutex);
+    return generation;
+}
+
+static void update_source_clock(void *opaque, const struct mp_clock_snapshot *clock)
+{
+    struct ffmpeg_source *s = opaque;
+    pthread_mutex_lock(&s->clock_mutex);
+    if (clock->generation == s->clock.generation && clock->revision > s->clock.revision)
+        s->clock = *clock;
+    pthread_mutex_unlock(&s->clock_mutex);
+}
+
+static void source_clock_proc(void *opaque, calldata_t *cd)
+{
+    struct ffmpeg_source *s = opaque;
+    struct mp_clock_snapshot snapshot;
+    pthread_mutex_lock(&s->clock_mutex);
+    snapshot = s->clock;
+    pthread_mutex_unlock(&s->clock_mutex);
+    /* No decoder pointer or reconnect mutex is dereferenced by this getter. */
+    obs_data_t *data = obs_data_create();
+    obs_data_set_int(data, "contractVersion", 1);
+    obs_data_set_string(data, "sourceUuid", obs_source_get_uuid(s->source));
+    obs_data_set_bool(data, "supported", snapshot.supported);
+    obs_data_set_int(data, "generation", snapshot.generation);
+    obs_data_set_int(data, "revision", snapshot.revision);
+    obs_data_set_int(data, "epoch", snapshot.epoch);
+    obs_data_set_int(data, "requestedResets", snapshot.requested_resets);
+    obs_data_set_int(data, "completedResets", snapshot.completed_resets);
+    obs_data_set_bool(data, "presentedValid", snapshot.presented_valid);
+    obs_data_set_string(data, "timestampSource", !snapshot.supported ? "unavailable" :
+                        snapshot.presented_valid ? "submitted-source-pts" : "decoder-base-fallback");
+    obs_data_set_bool(data, "resetInProgress", snapshot.reset_in_progress);
+    obs_data_set_bool(data, "resetPending", snapshot.reset_pending);
+    obs_data_set_bool(data, "resetReady", snapshot.ready);
+    obs_data_set_double(data, "submittedCursorMs", snapshot.presented_pts_ns * (double)snapshot.speed / 100000000.0);
+    obs_data_set_string(data, "timestampDomain", "submitted-source-pts-before-wall-conversion");
+    calldata_set_string(cd, "clock", obs_data_get_json(data));
+    obs_data_release(data);
+}
 
 // Used to safely cancel and join any active reconnect threads
 // Use this to join any finished reconnect thread too!
@@ -301,6 +350,8 @@ static void ffmpeg_source_open(struct ffmpeg_source *s)
 			.v_seek_cb = seek_frame,
 			.a_cb = get_audio,
 			.stop_cb = media_stopped,
+			.clock_cb = update_source_clock,
+			.clock_generation = prepare_source_clock(s),
 			.path = s->input,
 			.format = s->input_format,
 			.buffering = s->buffering_mb * 1024 * 1024,
@@ -361,6 +412,7 @@ static void ffmpeg_source_tick(void *data, float seconds)
 	struct ffmpeg_source *s = data;
 	if (s->destroy_media) {
 		if (s->media) {
+			prepare_source_clock(s);
 			media_playback_destroy(s->media);
 			s->media = NULL;
 		}
@@ -485,6 +537,7 @@ static void ffmpeg_source_update(void *data, obs_data_t *settings)
 		s->speed_percent = 100;
 
 	if (s->media && should_restart_media) {
+		prepare_source_clock(s);
 		media_playback_destroy(s->media);
 		s->media = NULL;
 	}
@@ -620,6 +673,14 @@ static void *ffmpeg_source_create(obs_data_t *settings, obs_source_t *source)
 		return NULL;
 	}
 
+    if (pthread_mutex_init(&s->clock_mutex, NULL)) {
+        FF_BLOG(LOG_ERROR, "Failed to initialize source clock mutex");
+        pthread_mutex_destroy(&s->reconnect_mutex);
+        os_event_destroy(s->reconnect_stop_event);
+        bfree(s);
+        return NULL;
+    }
+
 	s->hotkey = obs_hotkey_register_source(source, "MediaSource.Restart", obs_module_text("RestartMedia"),
 					       restart_hotkey, s);
 
@@ -632,6 +693,7 @@ static void *ffmpeg_source_create(obs_data_t *settings, obs_source_t *source)
 						    ffmpeg_source_stop_hotkey, s);
 
 	proc_handler_t *ph = obs_source_get_proc_handler(source);
+	proc_handler_add(ph, "void freemix_media_clock(out string clock)", source_clock_proc, s);
 	proc_handler_add(ph, "void restart()", restart_proc, s);
 	proc_handler_add(ph, "void preload_first_frame()", preload_first_frame_proc, s);
 	proc_handler_add(ph, "void get_duration(out int duration)", get_duration, s);
@@ -649,8 +711,11 @@ static void ffmpeg_source_destroy(void *data)
 
 	if (s->hotkey)
 		obs_hotkey_unregister(s->hotkey);
-	if (s->media)
+	if (s->media) {
+		prepare_source_clock(s);
 		media_playback_destroy(s->media);
+	}
+	pthread_mutex_destroy(&s->clock_mutex);
 
 	pthread_mutex_destroy(&s->reconnect_mutex);
 	os_event_destroy(s->reconnect_stop_event);

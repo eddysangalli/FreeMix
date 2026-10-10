@@ -1,0 +1,1998 @@
+{
+  "status": "PASS_FINITE_OWN_SYNTHETIC_NATIVE30_REPLAY_R2",
+  "scope": "OWN_SYNTHETIC_NATIVE_REPLAY_VISUAL_AND_DIGITAL_MASTER",
+  "nativeHead": "93d73e25b90bea7920e58dcd2af197aeb3e2bc1d",
+  "nativeReceiptSha256": "21b83824b38012dbecac97c83e8501959b251a4248e60912ed97765210523d49",
+  "operatorTouched": false,
+  "physicalGenlock": false,
+  "hardwareAudio": false,
+  "sourceRecordOnPlayers": false,
+  "criteria": {
+    "visualMaxFrames": 1,
+    "audioMinSeconds": 1.5,
+    "selectedToneMinAmplitude": 0.02,
+    "otherToneMaxRatio": 0.015,
+    "silencePeakMax": 0.00001,
+    "settlingMs": 650,
+    "closeDeadlineMs": 10000,
+    "wholeCadenceRequiredForVfrFixtures": true,
+    "physicalGenlock": false
+  },
+  "sourcePins": [
+    {
+      "path": "FreeMix/ferramentas/replay-disco.mjs",
+      "sha256": "9c0b476aa321cf628f35064542b3c0bf879cca9111e5904791988bc197bef1c7",
+      "bytes": 75146,
+      "runtime": true
+    },
+    {
+      "path": "FreeMix/ferramentas/replay-sincronia.mjs",
+      "sha256": "177e30efa904567147efec16785ac6603f263ea13009ee5df319749a13e73a98",
+      "bytes": 6297,
+      "runtime": true
+    },
+    {
+      "path": "FreeMix/ferramentas/replay-preview.mjs",
+      "sha256": "6fadf72f276c46de7b9640331e989a539863275a698df1316559de7da744a4af",
+      "bytes": 6991,
+      "runtime": true
+    },
+    {
+      "path": "FreeMix/ferramentas/obsws.mjs",
+      "sha256": "735a395d1fdd4774b0e44ba8c65926b3601aa5035bf17a8dcb53ca9b907c9cdc",
+      "bytes": 3188,
+      "runtime": true
+    },
+    {
+      "path": "FreeMix/painel/remoto/replay.js",
+      "sha256": "d48eefda6780dd3e5f9b541e5485ab50bba5e6454b4958c237921031652fb9bd",
+      "bytes": 23542,
+      "runtime": true
+    },
+    {
+      "path": "qa-finalizacao/replay-sincronia-native/resumo-stage5-final.json",
+      "sha256": "de747986e81f49b68cd984e32889f69a0eabfd80ab29884ea375124ff339fdfc",
+      "bytes": 5178,
+      "runtime": true
+    },
+    {
+      "path": "qa-finalizacao/replay-sincronia-native/native-receipt-final.json",
+      "sha256": "b6c503b795b407aa15dcafec98803d3734345d61f43a1b8800f739521bd66e6f",
+      "bytes": 641,
+      "runtime": true
+    },
+    {
+      "path": "qa-finalizacao/replay-master-four/resultado.json",
+      "sha256": "b6407ef18e8d2e2a4114a0fb96e881ee929475678a58d3b6ce4f4a996cf02285",
+      "bytes": 16385,
+      "runtime": true
+    },
+    {
+      "path": "qa-finalizacao/replay-master-four/resultado-native.json",
+      "sha256": "48ebf4961e57d4fed254af7e9576a212f028066819a865a94b07977bd68e44da",
+      "bytes": 6464,
+      "runtime": true
+    },
+    {
+      "path": "qa-finalizacao/replay-master-four/qa-master-probe.cpp",
+      "sha256": "252fbbc5d65140907c3239be3e7ca1dc2962a64d68081faa161ed1ae7b4d745d",
+      "bytes": 4299,
+      "runtime": true
+    },
+    {
+      "path": "obs-vmix/runtime/ffmpeg.exe",
+      "sha256": "09948d4cdd0650da6ff5a87577469f2a218dc2615ae379f8f734d24c49de0f73",
+      "bytes": 227398656,
+      "runtime": true
+    },
+    {
+      "path": "obs-vmix/runtime/ffprobe.exe",
+      "sha256": "a6618e99bb58869ded3c6f37b53aa1a8d701c3591dbb7b5b317d47369c112be2",
+      "bytes": 227193344,
+      "runtime": true
+    },
+    {
+      "path": "qa-finalizacao/replay-master-four/qa-master-four.dll",
+      "sha256": "0c0ed92fd165ea7a30c45fed5361677f9e0c7037b22944005e4fe9d15c59e2c5",
+      "bytes": 23040,
+      "runtime": true
+    },
+    {
+      "path": "FreeMix/node_modules/ws/index.js",
+      "sha256": "924564d5be26d59b9682c4263f68320e48dde7240bd2d1ad17ec305537429dd2",
+      "bytes": 796,
+      "runtime": true
+    },
+    {
+      "path": "FreeMix/node_modules/ws/package.json",
+      "sha256": "c1ef91ca04eb4754c011c5f0e7638b5078ff71104fada400c44ac761cf93e0b1",
+      "bytes": 1829,
+      "runtime": true
+    },
+    {
+      "path": "FreeMix/node_modules/ws/lib/buffer-util.js",
+      "sha256": "8b0a45739132f82e25ea13163780abf547ccfe989267f3eb7abb475beec92da3",
+      "bytes": 3056,
+      "runtime": true
+    },
+    {
+      "path": "FreeMix/node_modules/ws/lib/constants.js",
+      "sha256": "391e823142b8b370e55a2fd32b022deaf03b8415c56000009674ebc86a0b4f86",
+      "bytes": 503,
+      "runtime": true
+    },
+    {
+      "path": "FreeMix/node_modules/ws/lib/event-target.js",
+      "sha256": "c45d3c6e12d170c860c0c3f1a050aa0f864d9806632b609a1e607d675aba128c",
+      "bytes": 7321,
+      "runtime": true
+    },
+    {
+      "path": "FreeMix/node_modules/ws/lib/extension.js",
+      "sha256": "852564f0f6b460287043803eae732666fb5610f676874354fc89f06aa4e986ed",
+      "bytes": 6183,
+      "runtime": true
+    },
+    {
+      "path": "FreeMix/node_modules/ws/lib/limiter.js",
+      "sha256": "e0469d4b83f6ba764b15f80e1766b75c136fbff68f048f4c050f0b1c7f065f69",
+      "bytes": 1034,
+      "runtime": true
+    },
+    {
+      "path": "FreeMix/node_modules/ws/lib/permessage-deflate.js",
+      "sha256": "16a91536988a53c23047ee5882392068728a839a244178c3b09b8c54982f58b0",
+      "bytes": 14669,
+      "runtime": true
+    },
+    {
+      "path": "FreeMix/node_modules/ws/lib/receiver.js",
+      "sha256": "a6ada33c9a2d54eaf595824b821ea89ca2c6395f89aa06755c52142148274884",
+      "bytes": 17439,
+      "runtime": true
+    },
+    {
+      "path": "FreeMix/node_modules/ws/lib/sender.js",
+      "sha256": "d0791d30c3defd44dcabbddb879a901c757993fea2c00a7ffea01d53b23b4b77",
+      "bytes": 16886,
+      "runtime": true
+    },
+    {
+      "path": "FreeMix/node_modules/ws/lib/stream.js",
+      "sha256": "a56fcb6e2b152097ee820b6f5410b1f71e59819b45d08d9f8bda588fe39070ec",
+      "bytes": 4204,
+      "runtime": true
+    },
+    {
+      "path": "FreeMix/node_modules/ws/lib/subprotocol.js",
+      "sha256": "be3f6323d6f549568577dcba9004c1479d95c65a7abb0fe0c582875b9fac0b7c",
+      "bytes": 1498,
+      "runtime": true
+    },
+    {
+      "path": "FreeMix/node_modules/ws/lib/validation.js",
+      "sha256": "41ce8e83d0d434132e1704895fedb91f6703a701b42d91c80954ab29b2845593",
+      "bytes": 3903,
+      "runtime": true
+    },
+    {
+      "path": "FreeMix/node_modules/ws/lib/websocket-server.js",
+      "sha256": "6d8dd89a841748c80445fd5fcdb5ba8005369b53cc3525135e11304c8b9c55e5",
+      "bytes": 17022,
+      "runtime": true
+    },
+    {
+      "path": "FreeMix/node_modules/ws/lib/websocket.js",
+      "sha256": "7ccf305925f0cdb74e06b75b4c84de134b1bd771a220ef409b24520def08128f",
+      "bytes": 37848,
+      "runtime": true
+    },
+    {
+      "path": "FreeMix/ferramentas/replay-cadence.mjs",
+      "sha256": "1061d8cbe1323aae306093a621e4e327bba743d5151b851306c3a78af5b653bc",
+      "bytes": 7929,
+      "runtime": true
+    }
+  ],
+  "NativeGeneration": 30,
+  "apiPath": "isolated DiskReplay.command -> authenticated Native OBSWS; no Core HTTP server",
+  "visual": [
+    {
+      "label": "paused-30",
+      "file": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\replay-native30-r3-cooperative-scope\\own-runtime\\FreeMix-QA-Replay30R3-gpA9A8\\qa-replay-evidence\\paused-30.png",
+      "sha256": "0eb5a39699d96a003a1ce14e0f8f48bc9b78e71739395ee6f494ab5631f3c47a",
+      "ids": [
+        90,
+        90,
+        90,
+        90
+      ],
+      "positions": [
+        90,
+        90
+      ],
+      "statuses": [
+        {
+          "mediaCursor": 3000,
+          "mediaDuration": 30000,
+          "mediaState": "OBS_MEDIA_STATE_PAUSED"
+        },
+        {
+          "mediaCursor": 3000,
+          "mediaDuration": 30000,
+          "mediaState": "OBS_MEDIA_STATE_PAUSED"
+        }
+      ],
+      "cursorEvidence": "separate-status-not-render-proof",
+      "frameDifference": 0
+    },
+    {
+      "label": "start-30",
+      "file": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\replay-native30-r3-cooperative-scope\\own-runtime\\FreeMix-QA-Replay30R3-gpA9A8\\qa-replay-evidence\\start-30.png",
+      "sha256": "465acfb5f8c5d6854a2eaeb4ef9a254be7247ca41052bedee8b8052647e69f10",
+      "ids": [
+        94,
+        94,
+        94,
+        94
+      ],
+      "positions": [
+        94,
+        94
+      ],
+      "statuses": [
+        {
+          "mediaCursor": 3167,
+          "mediaDuration": 30000,
+          "mediaState": "OBS_MEDIA_STATE_PLAYING"
+        },
+        {
+          "mediaCursor": 3167,
+          "mediaDuration": 30000,
+          "mediaState": "OBS_MEDIA_STATE_PLAYING"
+        }
+      ],
+      "cursorEvidence": "separate-status-not-render-proof",
+      "frameDifference": 0
+    },
+    {
+      "label": "playing-seek-30",
+      "file": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\replay-native30-r3-cooperative-scope\\own-runtime\\FreeMix-QA-Replay30R3-gpA9A8\\qa-replay-evidence\\playing-seek-30.png",
+      "sha256": "cf533111803986a74cf11ad1f8b9f9f94f112b70ba252adb56db9d063772ed20",
+      "ids": [
+        212,
+        212,
+        212,
+        212
+      ],
+      "positions": [
+        212,
+        212
+      ],
+      "statuses": [
+        {
+          "mediaCursor": 7100,
+          "mediaDuration": 30000,
+          "mediaState": "OBS_MEDIA_STATE_PLAYING"
+        },
+        {
+          "mediaCursor": 7100,
+          "mediaDuration": 30000,
+          "mediaState": "OBS_MEDIA_STATE_PLAYING"
+        }
+      ],
+      "cursorEvidence": "separate-status-not-render-proof",
+      "frameDifference": 0
+    },
+    {
+      "label": "step-30",
+      "file": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\replay-native30-r3-cooperative-scope\\own-runtime\\FreeMix-QA-Replay30R3-gpA9A8\\qa-replay-evidence\\step-30.png",
+      "sha256": "33004c67f0c6f4c15e839c8097b01774527797a08757a2b87be73938aed3ddf8",
+      "ids": [
+        214,
+        214,
+        214,
+        214
+      ],
+      "positions": [
+        214,
+        214
+      ],
+      "statuses": [
+        {
+          "mediaCursor": 7133,
+          "mediaDuration": 30000,
+          "mediaState": "OBS_MEDIA_STATE_PAUSED"
+        },
+        {
+          "mediaCursor": 7133,
+          "mediaDuration": 30000,
+          "mediaState": "OBS_MEDIA_STATE_PAUSED"
+        }
+      ],
+      "cursorEvidence": "separate-status-not-render-proof",
+      "frameDifference": 0
+    },
+    {
+      "label": "paused-50",
+      "file": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\replay-native30-r3-cooperative-scope\\own-runtime\\FreeMix-QA-Replay30R3-gpA9A8\\qa-replay-evidence\\paused-50.png",
+      "sha256": "0eb5a39699d96a003a1ce14e0f8f48bc9b78e71739395ee6f494ab5631f3c47a",
+      "ids": [
+        90,
+        90,
+        90,
+        90
+      ],
+      "positions": [
+        90,
+        90
+      ],
+      "statuses": [
+        {
+          "mediaCursor": 3000,
+          "mediaDuration": 30000,
+          "mediaState": "OBS_MEDIA_STATE_PAUSED"
+        },
+        {
+          "mediaCursor": 3000,
+          "mediaDuration": 30000,
+          "mediaState": "OBS_MEDIA_STATE_PAUSED"
+        }
+      ],
+      "cursorEvidence": "separate-status-not-render-proof",
+      "frameDifference": 0
+    },
+    {
+      "label": "start-50",
+      "file": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\replay-native30-r3-cooperative-scope\\own-runtime\\FreeMix-QA-Replay30R3-gpA9A8\\qa-replay-evidence\\start-50.png",
+      "sha256": "82f9aa6ebaed8deb0f1713bdfad8b3430a1e6be7042cad61db8aba408e681fac",
+      "ids": [
+        97,
+        97,
+        97,
+        97
+      ],
+      "positions": [
+        97,
+        97
+      ],
+      "statuses": [
+        {
+          "mediaCursor": 3267,
+          "mediaDuration": 30000,
+          "mediaState": "OBS_MEDIA_STATE_PLAYING"
+        },
+        {
+          "mediaCursor": 3267,
+          "mediaDuration": 30000,
+          "mediaState": "OBS_MEDIA_STATE_PLAYING"
+        }
+      ],
+      "cursorEvidence": "separate-status-not-render-proof",
+      "frameDifference": 0
+    },
+    {
+      "label": "playing-seek-50",
+      "file": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\replay-native30-r3-cooperative-scope\\own-runtime\\FreeMix-QA-Replay30R3-gpA9A8\\qa-replay-evidence\\playing-seek-50.png",
+      "sha256": "05567c96177b00d6545d203db30fc574c43f48afec938a187597d25488911c9f",
+      "ids": [
+        215,
+        215,
+        215,
+        215
+      ],
+      "positions": [
+        215,
+        215
+      ],
+      "statuses": [
+        {
+          "mediaCursor": 7200,
+          "mediaDuration": 30000,
+          "mediaState": "OBS_MEDIA_STATE_PLAYING"
+        },
+        {
+          "mediaCursor": 7200,
+          "mediaDuration": 30000,
+          "mediaState": "OBS_MEDIA_STATE_PLAYING"
+        }
+      ],
+      "cursorEvidence": "separate-status-not-render-proof",
+      "frameDifference": 0
+    },
+    {
+      "label": "step-50",
+      "file": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\replay-native30-r3-cooperative-scope\\own-runtime\\FreeMix-QA-Replay30R3-gpA9A8\\qa-replay-evidence\\step-50.png",
+      "sha256": "71edd7293e081be0bf792356024a9fa1851e356da86a0cb9f8cec2b34efd84cf",
+      "ids": [
+        217,
+        217,
+        217,
+        217
+      ],
+      "positions": [
+        217,
+        217
+      ],
+      "statuses": [
+        {
+          "mediaCursor": 7233,
+          "mediaDuration": 30000,
+          "mediaState": "OBS_MEDIA_STATE_PAUSED"
+        },
+        {
+          "mediaCursor": 7233,
+          "mediaDuration": 30000,
+          "mediaState": "OBS_MEDIA_STATE_PAUSED"
+        }
+      ],
+      "cursorEvidence": "separate-status-not-render-proof",
+      "frameDifference": 0
+    },
+    {
+      "label": "paused-100",
+      "file": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\replay-native30-r3-cooperative-scope\\own-runtime\\FreeMix-QA-Replay30R3-gpA9A8\\qa-replay-evidence\\paused-100.png",
+      "sha256": "0eb5a39699d96a003a1ce14e0f8f48bc9b78e71739395ee6f494ab5631f3c47a",
+      "ids": [
+        90,
+        90,
+        90,
+        90
+      ],
+      "positions": [
+        90,
+        90
+      ],
+      "statuses": [
+        {
+          "mediaCursor": 3000,
+          "mediaDuration": 30000,
+          "mediaState": "OBS_MEDIA_STATE_PAUSED"
+        },
+        {
+          "mediaCursor": 3000,
+          "mediaDuration": 30000,
+          "mediaState": "OBS_MEDIA_STATE_PAUSED"
+        }
+      ],
+      "cursorEvidence": "separate-status-not-render-proof",
+      "frameDifference": 0
+    },
+    {
+      "label": "start-100",
+      "file": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\replay-native30-r3-cooperative-scope\\own-runtime\\FreeMix-QA-Replay30R3-gpA9A8\\qa-replay-evidence\\start-100.png",
+      "sha256": "bacb074aff063ec03c9c84716dcb17e1fa60ebffcbc62e323a58a5ed6f82953b",
+      "ids": [
+        105,
+        105,
+        104,
+        104
+      ],
+      "positions": [
+        105,
+        105
+      ],
+      "statuses": [
+        {
+          "mediaCursor": 3533,
+          "mediaDuration": 30000,
+          "mediaState": "OBS_MEDIA_STATE_PLAYING"
+        },
+        {
+          "mediaCursor": 3533,
+          "mediaDuration": 30000,
+          "mediaState": "OBS_MEDIA_STATE_PLAYING"
+        }
+      ],
+      "cursorEvidence": "separate-status-not-render-proof",
+      "frameDifference": 0
+    },
+    {
+      "label": "playing-seek-100",
+      "file": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\replay-native30-r3-cooperative-scope\\own-runtime\\FreeMix-QA-Replay30R3-gpA9A8\\qa-replay-evidence\\playing-seek-100.png",
+      "sha256": "bd1b818ad5a518af09e0cb688bd0399c8bb8818518cb09489bc7b6fc104fb5a8",
+      "ids": [
+        221,
+        221,
+        221,
+        221
+      ],
+      "positions": [
+        221,
+        221
+      ],
+      "statuses": [
+        {
+          "mediaCursor": 7433,
+          "mediaDuration": 30000,
+          "mediaState": "OBS_MEDIA_STATE_PLAYING"
+        },
+        {
+          "mediaCursor": 7433,
+          "mediaDuration": 30000,
+          "mediaState": "OBS_MEDIA_STATE_PLAYING"
+        }
+      ],
+      "cursorEvidence": "separate-status-not-render-proof",
+      "frameDifference": 0
+    },
+    {
+      "label": "step-100",
+      "file": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\replay-native30-r3-cooperative-scope\\own-runtime\\FreeMix-QA-Replay30R3-gpA9A8\\qa-replay-evidence\\step-100.png",
+      "sha256": "30b0c3bdde3c0451333e55824e498986afee14b9631ecb77ab32a48e32031bef",
+      "ids": [
+        224,
+        224,
+        224,
+        224
+      ],
+      "positions": [
+        224,
+        224
+      ],
+      "statuses": [
+        {
+          "mediaCursor": 7467,
+          "mediaDuration": 30000,
+          "mediaState": "OBS_MEDIA_STATE_PAUSED"
+        },
+        {
+          "mediaCursor": 7467,
+          "mediaDuration": 30000,
+          "mediaState": "OBS_MEDIA_STATE_PAUSED"
+        }
+      ],
+      "cursorEvidence": "separate-status-not-render-proof",
+      "frameDifference": 0
+    },
+    {
+      "label": "cadence-seek-ntsc",
+      "file": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\replay-native30-r3-cooperative-scope\\own-runtime\\FreeMix-QA-Replay30R3-gpA9A8\\qa-replay-evidence\\cadence-seek-ntsc.png",
+      "sha256": "009ae35cd85e17b3b325b58487816a7f20968158bdf6b7d0a88f97eb6aef2109",
+      "ids": [
+        31,
+        31,
+        32,
+        32
+      ],
+      "positions": [
+        31,
+        31
+      ],
+      "statuses": [
+        {
+          "mediaCursor": 1034,
+          "mediaDuration": 30030,
+          "mediaState": "OBS_MEDIA_STATE_PAUSED"
+        },
+        {
+          "mediaCursor": 1034,
+          "mediaDuration": 30030,
+          "mediaState": "OBS_MEDIA_STATE_PAUSED"
+        }
+      ],
+      "cursorEvidence": "separate-status-not-render-proof",
+      "frameDifference": 0
+    },
+    {
+      "label": "cadence-play-ntsc",
+      "file": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\replay-native30-r3-cooperative-scope\\own-runtime\\FreeMix-QA-Replay30R3-gpA9A8\\qa-replay-evidence\\cadence-play-ntsc.png",
+      "sha256": "af8b942e821970ad9612225d748be366f76cbb5c528f86adbb213350067435f1",
+      "ids": [
+        44,
+        44,
+        45,
+        45
+      ],
+      "positions": [
+        44,
+        44
+      ],
+      "statuses": [
+        {
+          "mediaCursor": 1568,
+          "mediaDuration": 30030,
+          "mediaState": "OBS_MEDIA_STATE_PLAYING"
+        },
+        {
+          "mediaCursor": 1568,
+          "mediaDuration": 30030,
+          "mediaState": "OBS_MEDIA_STATE_PLAYING"
+        }
+      ],
+      "cursorEvidence": "separate-status-not-render-proof",
+      "frameDifference": 0
+    },
+    {
+      "label": "cadence-seek-vfr",
+      "file": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\replay-native30-r3-cooperative-scope\\own-runtime\\FreeMix-QA-Replay30R3-gpA9A8\\qa-replay-evidence\\cadence-seek-vfr.png",
+      "sha256": "bccd6beab1310179af9f7bf2dd59d73b7d2c25fe11c0dd79bf06218611fd994b",
+      "ids": [
+        165,
+        165,
+        165,
+        165
+      ],
+      "positions": [
+        99,
+        99
+      ],
+      "statuses": [
+        {
+          "mediaCursor": 5500,
+          "mediaDuration": 30000,
+          "mediaState": "OBS_MEDIA_STATE_PAUSED"
+        },
+        {
+          "mediaCursor": 5500,
+          "mediaDuration": 30000,
+          "mediaState": "OBS_MEDIA_STATE_PAUSED"
+        }
+      ],
+      "cursorEvidence": "separate-status-not-render-proof",
+      "frameDifference": 0
+    },
+    {
+      "label": "cadence-play-vfr",
+      "file": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\replay-native30-r3-cooperative-scope\\own-runtime\\FreeMix-QA-Replay30R3-gpA9A8\\qa-replay-evidence\\cadence-play-vfr.png",
+      "sha256": "033afce5b95433f394d476dc1bb06a0d09750a348822bc241b667561c51a38e3",
+      "ids": [
+        180,
+        180,
+        180,
+        180
+      ],
+      "positions": [
+        108,
+        108
+      ],
+      "statuses": [
+        {
+          "mediaCursor": 6067,
+          "mediaDuration": 30000,
+          "mediaState": "OBS_MEDIA_STATE_PLAYING"
+        },
+        {
+          "mediaCursor": 6067,
+          "mediaDuration": 30000,
+          "mediaState": "OBS_MEDIA_STATE_PLAYING"
+        }
+      ],
+      "cursorEvidence": "separate-status-not-render-proof",
+      "frameDifference": 0
+    },
+    {
+      "label": "cadence-seek-late-vfr",
+      "file": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\replay-native30-r3-cooperative-scope\\own-runtime\\FreeMix-QA-Replay30R3-gpA9A8\\qa-replay-evidence\\cadence-seek-late-vfr.png",
+      "sha256": "8c220e7a577edad4194b8139946449052c03d553f093f6212a050c5673d4e8a3",
+      "ids": [
+        166,
+        166,
+        165,
+        165
+      ],
+      "positions": [
+        158,
+        158
+      ],
+      "statuses": [
+        {
+          "mediaCursor": 5533,
+          "mediaDuration": 30000,
+          "mediaState": "OBS_MEDIA_STATE_PAUSED"
+        },
+        {
+          "mediaCursor": 5533,
+          "mediaDuration": 30000,
+          "mediaState": "OBS_MEDIA_STATE_PAUSED"
+        }
+      ],
+      "cursorEvidence": "separate-status-not-render-proof",
+      "frameDifference": 0
+    },
+    {
+      "label": "cadence-play-late-vfr",
+      "file": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\replay-native30-r3-cooperative-scope\\own-runtime\\FreeMix-QA-Replay30R3-gpA9A8\\qa-replay-evidence\\cadence-play-late-vfr.png",
+      "sha256": "033afce5b95433f394d476dc1bb06a0d09750a348822bc241b667561c51a38e3",
+      "ids": [
+        180,
+        180,
+        180,
+        180
+      ],
+      "positions": [
+        165,
+        165
+      ],
+      "statuses": [
+        {
+          "mediaCursor": 6067,
+          "mediaDuration": 30000,
+          "mediaState": "OBS_MEDIA_STATE_PLAYING"
+        },
+        {
+          "mediaCursor": 6067,
+          "mediaDuration": 30000,
+          "mediaState": "OBS_MEDIA_STATE_PLAYING"
+        }
+      ],
+      "cursorEvidence": "separate-status-not-render-proof",
+      "frameDifference": 0
+    }
+  ],
+  "audioSegments": [
+    {
+      "label": "PGM-A-30",
+      "desired": 132,
+      "startNs": 643537930331300,
+      "endNs": 643539630881200,
+      "program": "REPLAY A",
+      "mutes": [
+        {
+          "inputMuted": false
+        },
+        {
+          "inputMuted": true
+        },
+        {
+          "inputMuted": true
+        },
+        {
+          "inputMuted": true
+        }
+      ],
+      "left": {
+        "seconds": 1.6853333333333333,
+        "rms": 0.08837478884986097,
+        "peak": 0.12498735636472702,
+        "tones": [
+          {
+            "frequency": 132,
+            "amplitude": 0.12499016722384661
+          },
+          {
+            "frequency": 198,
+            "amplitude": 0.00020645405824857153
+          },
+          {
+            "frequency": 264,
+            "amplitude": 0.00012694564076309796
+          },
+          {
+            "frequency": 330,
+            "amplitude": 0.00005595602179911074
+          }
+        ]
+      },
+      "right": {
+        "seconds": 1.6853333333333333,
+        "rms": 0.08837478884986097,
+        "peak": 0.12498735636472702,
+        "tones": [
+          {
+            "frequency": 132,
+            "amplitude": 0.12499016722384661
+          },
+          {
+            "frequency": 198,
+            "amplitude": 0.00020645405824857153
+          },
+          {
+            "frequency": 264,
+            "amplitude": 0.00012694564076309796
+          },
+          {
+            "frequency": 330,
+            "amplitude": 0.00005595602179911074
+          }
+        ]
+      }
+    },
+    {
+      "label": "PGM-B-30",
+      "desired": 198,
+      "startNs": 643540284735200,
+      "endNs": 643541985481400,
+      "program": "REPLAY B",
+      "mutes": [
+        {
+          "inputMuted": true
+        },
+        {
+          "inputMuted": false
+        },
+        {
+          "inputMuted": true
+        },
+        {
+          "inputMuted": true
+        }
+      ],
+      "left": {
+        "seconds": 1.7066666666666668,
+        "rms": 0.08835872446788251,
+        "peak": 0.12498252838850021,
+        "tones": [
+          {
+            "frequency": 132,
+            "amplitude": 0.00027882565267449395
+          },
+          {
+            "frequency": 198,
+            "amplitude": 0.12494416428934327
+          },
+          {
+            "frequency": 264,
+            "amplitude": 0.0003691828632222358
+          },
+          {
+            "frequency": 330,
+            "amplitude": 0.00015206135583371595
+          }
+        ]
+      },
+      "right": {
+        "seconds": 1.7066666666666668,
+        "rms": 0.08835872446788251,
+        "peak": 0.12498252838850021,
+        "tones": [
+          {
+            "frequency": 132,
+            "amplitude": 0.00027882565267449395
+          },
+          {
+            "frequency": 198,
+            "amplitude": 0.12494416428934327
+          },
+          {
+            "frequency": 264,
+            "amplitude": 0.0003691828632222358
+          },
+          {
+            "frequency": 330,
+            "amplitude": 0.00015206135583371595
+          }
+        ]
+      }
+    },
+    {
+      "label": "PGM-C-30",
+      "desired": 264,
+      "startNs": 643542640177800,
+      "endNs": 643544340824200,
+      "program": "REPLAY C",
+      "mutes": [
+        {
+          "inputMuted": true
+        },
+        {
+          "inputMuted": true
+        },
+        {
+          "inputMuted": false
+        },
+        {
+          "inputMuted": true
+        }
+      ],
+      "left": {
+        "seconds": 1.7066666666666668,
+        "rms": 0.08836374559776741,
+        "peak": 0.12498379498720169,
+        "tones": [
+          {
+            "frequency": 132,
+            "amplitude": 0.000161170788356577
+          },
+          {
+            "frequency": 198,
+            "amplitude": 0.0003639112705533708
+          },
+          {
+            "frequency": 264,
+            "amplitude": 0.12495819107312196
+          },
+          {
+            "frequency": 330,
+            "amplitude": 0.0002966671696440204
+          }
+        ]
+      },
+      "right": {
+        "seconds": 1.7066666666666668,
+        "rms": 0.08836374559776741,
+        "peak": 0.12498379498720169,
+        "tones": [
+          {
+            "frequency": 132,
+            "amplitude": 0.000161170788356577
+          },
+          {
+            "frequency": 198,
+            "amplitude": 0.0003639112705533708
+          },
+          {
+            "frequency": 264,
+            "amplitude": 0.12495819107312196
+          },
+          {
+            "frequency": 330,
+            "amplitude": 0.0002966671696440204
+          }
+        ]
+      }
+    },
+    {
+      "label": "PGM-D-30",
+      "desired": 330,
+      "startNs": 643544996504100,
+      "endNs": 643546697025700,
+      "program": "REPLAY D",
+      "mutes": [
+        {
+          "inputMuted": true
+        },
+        {
+          "inputMuted": true
+        },
+        {
+          "inputMuted": true
+        },
+        {
+          "inputMuted": false
+        }
+      ],
+      "left": {
+        "seconds": 1.6853333333333333,
+        "rms": 0.08836006184750911,
+        "peak": 0.1249861940741539,
+        "tones": [
+          {
+            "frequency": 132,
+            "amplitude": 0.00014168091231958328
+          },
+          {
+            "frequency": 198,
+            "amplitude": 0.00019559953471547065
+          },
+          {
+            "frequency": 264,
+            "amplitude": 0.00022836651253240495
+          },
+          {
+            "frequency": 330,
+            "amplitude": 0.1249462735572906
+          }
+        ]
+      },
+      "right": {
+        "seconds": 1.6853333333333333,
+        "rms": 0.08836006184750911,
+        "peak": 0.1249861940741539,
+        "tones": [
+          {
+            "frequency": 132,
+            "amplitude": 0.00014168091231958328
+          },
+          {
+            "frequency": 198,
+            "amplitude": 0.00019559953471547065
+          },
+          {
+            "frequency": 264,
+            "amplitude": 0.00022836651253240495
+          },
+          {
+            "frequency": 330,
+            "amplitude": 0.1249462735572906
+          }
+        ]
+      }
+    },
+    {
+      "label": "PGM-A-50",
+      "desired": 220,
+      "startNs": 643548697416600,
+      "endNs": 643550397589000,
+      "program": "REPLAY A",
+      "mutes": [
+        {
+          "inputMuted": false
+        },
+        {
+          "inputMuted": true
+        },
+        {
+          "inputMuted": true
+        },
+        {
+          "inputMuted": true
+        }
+      ],
+      "left": {
+        "seconds": 1.7066666666666668,
+        "rms": 0.0883648547785018,
+        "peak": 0.12498071044683456,
+        "tones": [
+          {
+            "frequency": 220,
+            "amplitude": 0.1249619017336931
+          },
+          {
+            "frequency": 330,
+            "amplitude": 0.00019072274868118798
+          },
+          {
+            "frequency": 440,
+            "amplitude": 0.00013600408346735535
+          },
+          {
+            "frequency": 550,
+            "amplitude": 0.0000527319548792011
+          }
+        ]
+      },
+      "right": {
+        "seconds": 1.7066666666666668,
+        "rms": 0.0883648547785018,
+        "peak": 0.12498071044683456,
+        "tones": [
+          {
+            "frequency": 220,
+            "amplitude": 0.1249619017336931
+          },
+          {
+            "frequency": 330,
+            "amplitude": 0.00019072274868118798
+          },
+          {
+            "frequency": 440,
+            "amplitude": 0.00013600408346735535
+          },
+          {
+            "frequency": 550,
+            "amplitude": 0.0000527319548792011
+          }
+        ]
+      }
+    },
+    {
+      "label": "PGM-B-50",
+      "desired": 330,
+      "startNs": 643551051659200,
+      "endNs": 643552752139700,
+      "program": "REPLAY B",
+      "mutes": [
+        {
+          "inputMuted": true
+        },
+        {
+          "inputMuted": false
+        },
+        {
+          "inputMuted": true
+        },
+        {
+          "inputMuted": true
+        }
+      ],
+      "left": {
+        "seconds": 1.6853333333333333,
+        "rms": 0.08837394918757804,
+        "peak": 0.12497919797897339,
+        "tones": [
+          {
+            "frequency": 220,
+            "amplitude": 0.00019681486082351982
+          },
+          {
+            "frequency": 330,
+            "amplitude": 0.12498717139884803
+          },
+          {
+            "frequency": 440,
+            "amplitude": 0.00021434606475337247
+          },
+          {
+            "frequency": 550,
+            "amplitude": 0.00006657575618021116
+          }
+        ]
+      },
+      "right": {
+        "seconds": 1.6853333333333333,
+        "rms": 0.08837394918757804,
+        "peak": 0.12497919797897339,
+        "tones": [
+          {
+            "frequency": 220,
+            "amplitude": 0.00019681486082351982
+          },
+          {
+            "frequency": 330,
+            "amplitude": 0.12498717139884803
+          },
+          {
+            "frequency": 440,
+            "amplitude": 0.00021434606475337247
+          },
+          {
+            "frequency": 550,
+            "amplitude": 0.00006657575618021116
+          }
+        ]
+      }
+    },
+    {
+      "label": "PGM-C-50",
+      "desired": 440,
+      "startNs": 643553405892800,
+      "endNs": 643555106549200,
+      "program": "REPLAY C",
+      "mutes": [
+        {
+          "inputMuted": true
+        },
+        {
+          "inputMuted": true
+        },
+        {
+          "inputMuted": false
+        },
+        {
+          "inputMuted": true
+        }
+      ],
+      "left": {
+        "seconds": 1.7066666666666668,
+        "rms": 0.08837245994717693,
+        "peak": 0.12498379498720169,
+        "tones": [
+          {
+            "frequency": 220,
+            "amplitude": 0.00013894047295335936
+          },
+          {
+            "frequency": 330,
+            "amplitude": 0.0001697746194132238
+          },
+          {
+            "frequency": 440,
+            "amplitude": 0.12498291439475699
+          },
+          {
+            "frequency": 550,
+            "amplitude": 0.00013508777225573098
+          }
+        ]
+      },
+      "right": {
+        "seconds": 1.7066666666666668,
+        "rms": 0.08837245994717693,
+        "peak": 0.12498379498720169,
+        "tones": [
+          {
+            "frequency": 220,
+            "amplitude": 0.00013894047295335936
+          },
+          {
+            "frequency": 330,
+            "amplitude": 0.0001697746194132238
+          },
+          {
+            "frequency": 440,
+            "amplitude": 0.12498291439475699
+          },
+          {
+            "frequency": 550,
+            "amplitude": 0.00013508777225573098
+          }
+        ]
+      }
+    },
+    {
+      "label": "PGM-D-50",
+      "desired": 550,
+      "startNs": 643555759746600,
+      "endNs": 643557460730400,
+      "program": "REPLAY D",
+      "mutes": [
+        {
+          "inputMuted": true
+        },
+        {
+          "inputMuted": true
+        },
+        {
+          "inputMuted": true
+        },
+        {
+          "inputMuted": false
+        }
+      ],
+      "left": {
+        "seconds": 1.7066666666666668,
+        "rms": 0.0883652568768288,
+        "peak": 0.124977245926857,
+        "tones": [
+          {
+            "frequency": 220,
+            "amplitude": 0.00003443656551543683
+          },
+          {
+            "frequency": 330,
+            "amplitude": 0.00011292645350431782
+          },
+          {
+            "frequency": 440,
+            "amplitude": 0.00017335799117653247
+          },
+          {
+            "frequency": 550,
+            "amplitude": 0.12496115676862707
+          }
+        ]
+      },
+      "right": {
+        "seconds": 1.7066666666666668,
+        "rms": 0.0883652568768288,
+        "peak": 0.124977245926857,
+        "tones": [
+          {
+            "frequency": 220,
+            "amplitude": 0.00003443656551543683
+          },
+          {
+            "frequency": 330,
+            "amplitude": 0.00011292645350431782
+          },
+          {
+            "frequency": 440,
+            "amplitude": 0.00017335799117653247
+          },
+          {
+            "frequency": 550,
+            "amplitude": 0.12496115676862707
+          }
+        ]
+      }
+    },
+    {
+      "label": "PGM-A-100",
+      "desired": 440,
+      "startNs": 643559447175900,
+      "endNs": 643561148007600,
+      "program": "REPLAY A",
+      "mutes": [
+        {
+          "inputMuted": false
+        },
+        {
+          "inputMuted": true
+        },
+        {
+          "inputMuted": true
+        },
+        {
+          "inputMuted": true
+        }
+      ],
+      "left": {
+        "seconds": 1.7066666666666668,
+        "rms": 0.08837010332874491,
+        "peak": 0.124969482421875,
+        "tones": [
+          {
+            "frequency": 440,
+            "amplitude": 0.12497636551693492
+          },
+          {
+            "frequency": 660,
+            "amplitude": 0.00009941406708537613
+          },
+          {
+            "frequency": 880,
+            "amplitude": 0.000011714721365658606
+          },
+          {
+            "frequency": 1100,
+            "amplitude": 0.00003084514929011921
+          }
+        ]
+      },
+      "right": {
+        "seconds": 1.7066666666666668,
+        "rms": 0.08837010332874491,
+        "peak": 0.124969482421875,
+        "tones": [
+          {
+            "frequency": 440,
+            "amplitude": 0.12497636551693492
+          },
+          {
+            "frequency": 660,
+            "amplitude": 0.00009941406708537613
+          },
+          {
+            "frequency": 880,
+            "amplitude": 0.000011714721365658606
+          },
+          {
+            "frequency": 1100,
+            "amplitude": 0.00003084514929011921
+          }
+        ]
+      }
+    },
+    {
+      "label": "PGM-B-100",
+      "desired": 660,
+      "startNs": 643561802139500,
+      "endNs": 643563502802600,
+      "program": "REPLAY B",
+      "mutes": [
+        {
+          "inputMuted": true
+        },
+        {
+          "inputMuted": false
+        },
+        {
+          "inputMuted": true
+        },
+        {
+          "inputMuted": true
+        }
+      ],
+      "left": {
+        "seconds": 1.6853333333333333,
+        "rms": 0.08836306353155088,
+        "peak": 0.124969482421875,
+        "tones": [
+          {
+            "frequency": 440,
+            "amplitude": 0.00007868712880145302
+          },
+          {
+            "frequency": 660,
+            "amplitude": 0.12495629837676556
+          },
+          {
+            "frequency": 880,
+            "amplitude": 0.00008465605115402424
+          },
+          {
+            "frequency": 1100,
+            "amplitude": 0.00006038795319545931
+          }
+        ]
+      },
+      "right": {
+        "seconds": 1.6853333333333333,
+        "rms": 0.08836306353155088,
+        "peak": 0.124969482421875,
+        "tones": [
+          {
+            "frequency": 440,
+            "amplitude": 0.00007868712880145302
+          },
+          {
+            "frequency": 660,
+            "amplitude": 0.12495629837676556
+          },
+          {
+            "frequency": 880,
+            "amplitude": 0.00008465605115402424
+          },
+          {
+            "frequency": 1100,
+            "amplitude": 0.00006038795319545931
+          }
+        ]
+      }
+    },
+    {
+      "label": "PGM-C-100",
+      "desired": 880,
+      "startNs": 643564157752400,
+      "endNs": 643565858540600,
+      "program": "REPLAY C",
+      "mutes": [
+        {
+          "inputMuted": true
+        },
+        {
+          "inputMuted": true
+        },
+        {
+          "inputMuted": false
+        },
+        {
+          "inputMuted": true
+        }
+      ],
+      "left": {
+        "seconds": 1.7066666666666668,
+        "rms": 0.08836510918843157,
+        "peak": 0.124969482421875,
+        "tones": [
+          {
+            "frequency": 440,
+            "amplitude": 0.000021225034797842272
+          },
+          {
+            "frequency": 660,
+            "amplitude": 0.00009452777454698869
+          },
+          {
+            "frequency": 880,
+            "amplitude": 0.12496237117272009
+          },
+          {
+            "frequency": 1100,
+            "amplitude": 0.00011208793386596611
+          }
+        ]
+      },
+      "right": {
+        "seconds": 1.7066666666666668,
+        "rms": 0.08836510918843157,
+        "peak": 0.124969482421875,
+        "tones": [
+          {
+            "frequency": 440,
+            "amplitude": 0.000021225034797842272
+          },
+          {
+            "frequency": 660,
+            "amplitude": 0.00009452777454698869
+          },
+          {
+            "frequency": 880,
+            "amplitude": 0.12496237117272009
+          },
+          {
+            "frequency": 1100,
+            "amplitude": 0.00011208793386596611
+          }
+        ]
+      }
+    },
+    {
+      "label": "PGM-D-100",
+      "desired": 1100,
+      "startNs": 643566513149400,
+      "endNs": 643568213742700,
+      "program": "REPLAY D",
+      "mutes": [
+        {
+          "inputMuted": true
+        },
+        {
+          "inputMuted": true
+        },
+        {
+          "inputMuted": true
+        },
+        {
+          "inputMuted": false
+        }
+      ],
+      "left": {
+        "seconds": 1.7066666666666668,
+        "rms": 0.08836606062607576,
+        "peak": 0.124969482421875,
+        "tones": [
+          {
+            "frequency": 440,
+            "amplitude": 0.00002257014996779139
+          },
+          {
+            "frequency": 660,
+            "amplitude": 0.000020804205254037206
+          },
+          {
+            "frequency": 880,
+            "amplitude": 0.00009853976616668186
+          },
+          {
+            "frequency": 1100,
+            "amplitude": 0.12496394346683193
+          }
+        ]
+      },
+      "right": {
+        "seconds": 1.7066666666666668,
+        "rms": 0.08836606062607576,
+        "peak": 0.124969482421875,
+        "tones": [
+          {
+            "frequency": 440,
+            "amplitude": 0.00002257014996779139
+          },
+          {
+            "frequency": 660,
+            "amplitude": 0.000020804205254037206
+          },
+          {
+            "frequency": 880,
+            "amplitude": 0.00009853976616668186
+          },
+          {
+            "frequency": 1100,
+            "amplitude": 0.12496394346683193
+          }
+        ]
+      }
+    },
+    {
+      "label": "audio-disabled",
+      "desired": null,
+      "startNs": 643568873896200,
+      "endNs": 643570574870000,
+      "program": "REPLAY D",
+      "mutes": [
+        {
+          "inputMuted": true
+        },
+        {
+          "inputMuted": true
+        },
+        {
+          "inputMuted": true
+        },
+        {
+          "inputMuted": true
+        }
+      ],
+      "left": {
+        "seconds": 1.7066666666666668,
+        "rms": 0,
+        "peak": 0,
+        "tones": [
+          {
+            "frequency": 440,
+            "amplitude": 0
+          },
+          {
+            "frequency": 660,
+            "amplitude": 0
+          },
+          {
+            "frequency": 880,
+            "amplitude": 0
+          },
+          {
+            "frequency": 1100,
+            "amplitude": 0
+          }
+        ]
+      },
+      "right": {
+        "seconds": 1.7066666666666668,
+        "rms": 0,
+        "peak": 0,
+        "tones": [
+          {
+            "frequency": 440,
+            "amplitude": 0
+          },
+          {
+            "frequency": 660,
+            "amplitude": 0
+          },
+          {
+            "frequency": 880,
+            "amplitude": 0
+          },
+          {
+            "frequency": 1100,
+            "amplitude": 0
+          }
+        ]
+      }
+    },
+    {
+      "label": "off-air",
+      "desired": null,
+      "startNs": 643571233322600,
+      "endNs": 643572934618600,
+      "program": "QA",
+      "mutes": [
+        {
+          "inputMuted": true
+        },
+        {
+          "inputMuted": true
+        },
+        {
+          "inputMuted": true
+        },
+        {
+          "inputMuted": true
+        }
+      ],
+      "left": {
+        "seconds": 1.6853333333333333,
+        "rms": 0,
+        "peak": 0,
+        "tones": [
+          {
+            "frequency": 440,
+            "amplitude": 0
+          },
+          {
+            "frequency": 660,
+            "amplitude": 0
+          },
+          {
+            "frequency": 880,
+            "amplitude": 0
+          },
+          {
+            "frequency": 1100,
+            "amplitude": 0
+          }
+        ]
+      },
+      "right": {
+        "seconds": 1.6853333333333333,
+        "rms": 0,
+        "peak": 0,
+        "tones": [
+          {
+            "frequency": 440,
+            "amplitude": 0
+          },
+          {
+            "frequency": 660,
+            "amplitude": 0
+          },
+          {
+            "frequency": 880,
+            "amplitude": 0
+          },
+          {
+            "frequency": 1100,
+            "amplitude": 0
+          }
+        ]
+      }
+    }
+  ],
+  "wholeCadence": [
+    {
+      "kind": "ntsc",
+      "actualFullPtsIrregular": false,
+      "reportedVfr": false,
+      "cadence": {
+        "method": "finite-full-decoded-pts",
+        "status": "cfr",
+        "entireFile": true,
+        "frames": 900,
+        "firstPts": 0,
+        "lastPts": 29.997,
+        "minMs": 32.9999999999977,
+        "maxMs": 34.00000000000247,
+        "irregularIntervals": 0,
+        "identity": "826eb8b0946d98cfff91c19be3d8aee96b29c18785af7aad56c6eb5294cb13da"
+      }
+    },
+    {
+      "kind": "vfr",
+      "actualFullPtsIrregular": true,
+      "reportedVfr": true,
+      "cadence": {
+        "method": "finite-full-decoded-pts",
+        "status": "vfr",
+        "entireFile": true,
+        "frames": 540,
+        "firstPts": 0,
+        "lastPts": 29.933,
+        "minMs": 32.9999999999977,
+        "maxMs": 67.00000000000017,
+        "irregularIntervals": 359,
+        "identity": "27e77c9335db56548643f8f205517610007e58133ba06855f5e12fb3ad947fab"
+      }
+    },
+    {
+      "kind": "late-vfr",
+      "actualFullPtsIrregular": true,
+      "reportedVfr": true,
+      "cadence": {
+        "method": "finite-full-decoded-pts",
+        "status": "vfr",
+        "entireFile": true,
+        "frames": 885,
+        "firstPts": 0,
+        "lastPts": 29.967,
+        "minMs": 32.9999999999977,
+        "maxMs": 67.00000000000017,
+        "irregularIntervals": 15,
+        "identity": "a56468145c954f2f551e5cc7b40825de870dd443371bc118d8d738b31905f11b"
+      }
+    }
+  ],
+  "startedAt": "2026-10-10T13:20:05.215Z",
+  "pid": 151152,
+  "readiness": {
+    "deadlineMs": 120000,
+    "snapshots": [
+      {
+        "elapsedMs": 7,
+        "code": "ECONNREFUSED"
+      },
+      {
+        "elapsedMs": 258,
+        "code": "ECONNREFUSED"
+      },
+      {
+        "elapsedMs": 510,
+        "code": "ECONNREFUSED"
+      },
+      {
+        "elapsedMs": 762,
+        "code": "ECONNREFUSED"
+      },
+      {
+        "elapsedMs": 1013,
+        "code": "ECONNREFUSED"
+      },
+      {
+        "elapsedMs": 1264,
+        "code": "ECONNREFUSED"
+      },
+      {
+        "elapsedMs": 1516,
+        "code": "ECONNREFUSED"
+      },
+      {
+        "elapsedMs": 1767,
+        "code": "ECONNREFUSED"
+      },
+      {
+        "elapsedMs": 2019,
+        "code": "ECONNREFUSED"
+      },
+      {
+        "elapsedMs": 2270,
+        "code": "ECONNREFUSED"
+      },
+      {
+        "elapsedMs": 2521,
+        "code": "ECONNREFUSED"
+      },
+      {
+        "elapsedMs": 2772,
+        "code": "ECONNREFUSED"
+      },
+      {
+        "elapsedMs": 3024,
+        "code": "ECONNREFUSED"
+      },
+      {
+        "elapsedMs": 3275,
+        "code": "ECONNREFUSED"
+      },
+      {
+        "elapsedMs": 3526,
+        "code": "ECONNREFUSED"
+      },
+      {
+        "elapsedMs": 3777,
+        "code": "ECONNREFUSED"
+      },
+      {
+        "elapsedMs": 4028,
+        "code": "ECONNREFUSED"
+      },
+      {
+        "elapsedMs": 4280,
+        "code": "ECONNREFUSED"
+      },
+      {
+        "elapsedMs": 4532,
+        "code": "ECONNREFUSED"
+      },
+      {
+        "elapsedMs": 4783,
+        "code": "ECONNREFUSED"
+      },
+      {
+        "elapsedMs": 5034,
+        "code": "ECONNREFUSED"
+      },
+      {
+        "elapsedMs": 5285,
+        "code": "ECONNREFUSED"
+      },
+      {
+        "elapsedMs": 5536,
+        "code": "ECONNREFUSED"
+      },
+      {
+        "elapsedMs": 5787,
+        "code": "ECONNREFUSED"
+      }
+    ],
+    "truncated": 5
+  },
+  "ready": true,
+  "cfrCadence": {
+    "A": {
+      "method": "finite-full-decoded-pts",
+      "status": "cfr",
+      "entireFile": true,
+      "frames": 900,
+      "firstPts": 0,
+      "lastPts": 29.967,
+      "minMs": 32.9999999999977,
+      "maxMs": 34.00000000000247,
+      "irregularIntervals": 0,
+      "identity": "47417277eec131a8797aa57d2bb51d4a8c04ce112c115a8d23e03df626efa364"
+    },
+    "B": {
+      "method": "finite-full-decoded-pts",
+      "status": "cfr",
+      "entireFile": true,
+      "frames": 900,
+      "firstPts": 0,
+      "lastPts": 29.967,
+      "minMs": 32.9999999999977,
+      "maxMs": 34.00000000000247,
+      "irregularIntervals": 0,
+      "identity": "419d1746dec93941616b0e21162bf7ac0e1431b91ce7a4152d0229c094ebea47"
+    },
+    "C": {
+      "method": "finite-full-decoded-pts",
+      "status": "cfr",
+      "entireFile": true,
+      "frames": 900,
+      "firstPts": 0,
+      "lastPts": 29.967,
+      "minMs": 32.9999999999977,
+      "maxMs": 34.00000000000247,
+      "irregularIntervals": 0,
+      "identity": "6320c836dd3fe0fb030291685bd4376b9df43a2a408ad69353b7b69155a119f9"
+    },
+    "D": {
+      "method": "finite-full-decoded-pts",
+      "status": "cfr",
+      "entireFile": true,
+      "frames": 900,
+      "firstPts": 0,
+      "lastPts": 29.967,
+      "minMs": 32.9999999999977,
+      "maxMs": 34.00000000000247,
+      "irregularIntervals": 0,
+      "identity": "8232f51cc6cb63a11f87a8fc78c70d83da8f41e9a9d27ab9a4d1b0d6cb2b4434"
+    }
+  },
+  "captureStop": {
+    "overflow": false,
+    "packets": 1776,
+    "point": "audio_output_connect mix0: final digital Master/track1, after libobs source mixing/mute/volume; no hardware",
+    "sampleRate": 48000,
+    "samples": 1818624,
+    "success": true,
+    "wallNs": 643572935702100
+  },
+  "cadenceMetrics": {
+    "scans": 7,
+    "cacheHits": 3,
+    "coalesced": 0
+  },
+  "viewRelease": {
+    "success": true,
+    "wallNs": 643580301060400
+  },
+  "cleanup": {
+    "success": true,
+    "forced": false,
+    "shutdownRequested": true,
+    "shutdownAccepted": true,
+    "identityConfirmed": true,
+    "connectionClosed": true,
+    "preservedProcess": null,
+    "outputs": [
+      {
+        "outputActive": false,
+        "outputFlags": {
+          "OBS_OUTPUT_AUDIO": true,
+          "OBS_OUTPUT_ENCODED": true,
+          "OBS_OUTPUT_MULTI_TRACK": true,
+          "OBS_OUTPUT_SERVICE": false,
+          "OBS_OUTPUT_VIDEO": true
+        },
+        "outputHeight": 0,
+        "outputKind": "mp4_output",
+        "outputName": "simple_file_output",
+        "outputWidth": 0
+      },
+      {
+        "outputActive": false,
+        "outputFlags": {
+          "OBS_OUTPUT_AUDIO": false,
+          "OBS_OUTPUT_ENCODED": false,
+          "OBS_OUTPUT_MULTI_TRACK": false,
+          "OBS_OUTPUT_SERVICE": false,
+          "OBS_OUTPUT_VIDEO": true
+        },
+        "outputHeight": 360,
+        "outputKind": "virtualcam_output",
+        "outputName": "virtualcam_output",
+        "outputWidth": 640
+      }
+    ],
+    "shutdown": {
+      "success": true
+    },
+    "exit": {
+      "code": 0,
+      "signal": null
+    },
+    "connectionPending": false
+  },
+  "shutdown": {
+    "success": true
+  },
+  "exit": {
+    "code": 0,
+    "signal": null
+  },
+  "outputs": [
+    {
+      "outputActive": false,
+      "outputFlags": {
+        "OBS_OUTPUT_AUDIO": true,
+        "OBS_OUTPUT_ENCODED": true,
+        "OBS_OUTPUT_MULTI_TRACK": true,
+        "OBS_OUTPUT_SERVICE": false,
+        "OBS_OUTPUT_VIDEO": true
+      },
+      "outputHeight": 0,
+      "outputKind": "mp4_output",
+      "outputName": "simple_file_output",
+      "outputWidth": 0
+    },
+    {
+      "outputActive": false,
+      "outputFlags": {
+        "OBS_OUTPUT_AUDIO": false,
+        "OBS_OUTPUT_ENCODED": false,
+        "OBS_OUTPUT_MULTI_TRACK": false,
+        "OBS_OUTPUT_SERVICE": false,
+        "OBS_OUTPUT_VIDEO": true
+      },
+      "outputHeight": 360,
+      "outputKind": "virtualcam_output",
+      "outputName": "virtualcam_output",
+      "outputWidth": 640
+    }
+  ],
+  "preservedProcess": null,
+  "logSummary": {
+    "sha256": "14f01ce51c9b2f8995deae281eb7d250b41ab3a40bc499c19f36e22e79e26b6b",
+    "counts": [
+      0
+    ],
+    "crashMarkers": 0,
+    "rawLogCopied": false
+  },
+  "afterPins": {
+    "NativeSource": 2085,
+    "NativeDestination": 2085,
+    "QA": 65,
+    "runtimeBaselinePins": 29,
+    "contextSnapshots": 2,
+    "match": true
+  },
+  "finishedAt": "2026-10-10T13:21:15.104Z",
+  "limits": [
+    "Own synthetic media; no physical genlock/SSD endurance/production project",
+    "Same composed render screenshot vs separate cursor ACK; no synchronization proof from cursor alone",
+    "Current R2 whole-clip classification/cache required for finite fixtures; unknown/VFR never authorizes frame-step; no external/genlock guarantee",
+    "Master digital capture only, no physical audio hardware",
+    "No SourceRecord filters on players, no automatic mutation retries"
+  ]
+}

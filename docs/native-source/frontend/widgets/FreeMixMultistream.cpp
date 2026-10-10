@@ -27,6 +27,8 @@
 ******************************************************************************/
 
 #include "FreeMixMultistream.hpp"
+#include "FreeMixProjectPolicy.hpp"
+#include "FreeMixProjectInventory.hpp"
 #include "FreeMixOmtOutput.hpp"
 #include "FreeMixOmtHdrOutput.hpp"
 #include "FreeMixSrtHdrLifecycle.hpp"
@@ -1330,6 +1332,33 @@ void RequestControlDestination(obs_data_t *request, obs_data_t *response, void *
 
 /* The preset as a document (FreeMixPreset.cpp), for the Save button of the interface. Requests arrive on the
  * thread of the control server; the work is done on the interface thread. */
+void RequestProjectPolicy(obs_data_t *, obs_data_t *response, void *)
+{
+ auto *main = OBSBasic::Get();
+ if (!main || frontendClosing) { obs_data_set_bool(response, "success", false); return; }
+ auto work = [response]() {
+  if (frontendClosing) { obs_data_set_bool(response, "success", false); return; }
+  FreeMixReadProjectCreationPolicy(response);
+ };
+ if (QThread::currentThread() == main->thread()) work();
+ else QMetaObject::invokeMethod(main, work, Qt::BlockingQueuedConnection);
+}
+void RequestProjectInventory(obs_data_t *request, obs_data_t *response, void *)
+{
+ if (!obs_data_get_bool(request, "confirmDriverMetadataQuery")) {
+  obs_data_set_bool(response, "success", false);
+  obs_data_set_string(response, "error", "SCAN_CONSENT_REQUIRED"); return;
+ }
+ auto *main = OBSBasic::Get();
+ if (!main || frontendClosing) { obs_data_set_bool(response, "success", false); return; }
+ auto work = [response]() {
+  if (frontendClosing) { obs_data_set_bool(response, "success", false); return; }
+  FreeMixReadProjectDeviceInventory(response);
+ };
+ if (QThread::currentThread() == main->thread()) work();
+ else QMetaObject::invokeMethod(main, work, Qt::BlockingQueuedConnection);
+}
+
 void RequestSavePreset(obs_data_t *, obs_data_t *response, void *)
 {
 	QMetaObject::invokeMethod(OBSBasic::Get(), []() { OBSBasic::Get()->SavePresetAsDocument(); },
@@ -1756,6 +1785,8 @@ void RegisterVendor()
  obs_websocket_vendor_register_request(vendor,"sdi_output",RequestSdiOutput,nullptr);
  obs_websocket_vendor_register_request(vendor, "control_mix", RequestMix, nullptr);
  obs_websocket_vendor_register_request(vendor, "get_mixes", RequestMix, nullptr);
+	obs_websocket_vendor_register_request(vendor, "project_creation_policy", RequestProjectPolicy, nullptr);
+obs_websocket_vendor_register_request(vendor, "project_device_inventory", RequestProjectInventory, nullptr);
 	obs_websocket_vendor_register_request(vendor, "save_preset", RequestSavePreset, nullptr);
 	obs_websocket_vendor_register_request(vendor, "get_preset", RequestGetPreset, nullptr);
 	obs_websocket_vendor_register_request(vendor, "get_scope", RequestGetScope, nullptr);

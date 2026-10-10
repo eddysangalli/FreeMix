@@ -1,8 +1,8 @@
 {
   "status": "PASS",
   "base": "ba2f32bdf791005443988a4955e963663e16b1ed",
-  "head": "93d73e25b90bea7920e58dcd2af197aeb3e2bc1d",
-  "resultTree": "ad4f04b9048af61f3e84ee645d71b8e492446109",
+  "head": "877b214d197fd013a83f0f6c625bfa4767eed936",
+  "resultTree": "ba8a215dd968a09e85856dbbe221cd927afee78e",
   "submodules": [
     {
       "path": "deps/libdshowcapture/src",
@@ -24,9 +24,9 @@
       "path": "plugins/obs-websocket",
       "base": "1ef34bf48110c2a18184e50e41cd0b1a855e2147",
       "baseTree": "2fde926257e6c4a185089ec5c1a1eec281f9e013",
-      "head": "70e881a141e6533e34e56923f0da095cd87e7839",
-      "headTree": "5d2fd825e2adb298e82ae23bd3ed857f90a5bbe9",
-      "patches": 2
+      "head": "79a04cd36fc31998de888c05bea57a57cb8657ec",
+      "headTree": "1416ee7809d02369024a1006d7fcf700708af9d4",
+      "patches": 3
     }
   ],
   "sourceFiles": [
@@ -49,6 +49,11 @@
       "path": "plugins/obs-websocket/src/obs-websocket.cpp",
       "bytes": 9757,
       "sha256": "17efeeda34e01e15c6e23d91121addba7801b607a9234c6421314da278586f14"
+    },
+    {
+      "path": "plugins/obs-websocket/src/requesthandler/RequestHandler_MediaInputs.cpp",
+      "bytes": 7765,
+      "sha256": "43180abb22d2122bc6165733519fd0b91ae9b9766f4d27e68510a1448dc34b7e"
     },
     {
       "path": "plugins/obs-websocket/src/utils/Obs_VolumeMeter.cpp",
@@ -97,13 +102,13 @@
     },
     {
       "path": "frontend/OBSApp.cpp",
-      "bytes": 54144,
-      "sha256": "eed2015f408361d97a40ca22dbd08f2a0c21acb899175f43f507e41b8deb0e81"
+      "bytes": 54220,
+      "sha256": "c1d0b873690836f3e9f1a7ac3f32411c1295419fb530f6fd9c0663458aba78fe"
     },
     {
       "path": "frontend/cmake/ui-widgets.cmake",
-      "bytes": 2751,
-      "sha256": "0e39997dd64478835e265c3476ca59a641354e79dc0ab3cc871e4ee051b00d88"
+      "bytes": 2905,
+      "sha256": "13f254b089f7f04f2e369a5516293cde1496f5db3fe3973f4cd6bec19f51b5a6"
     },
     {
       "path": "frontend/cmake/windows/freemix.ico",
@@ -179,6 +184,16 @@
       "path": "frontend/obs-main.cpp",
       "bytes": 30498,
       "sha256": "304edf318d7272029293d30f14df7b19247720ce5b0fe29fc0be497c14c9abf8"
+    },
+    {
+      "path": "frontend/utility/AutoUpdateThread.cpp",
+      "bytes": 10643,
+      "sha256": "ec64d752dec150a95f49daa0c85fd32b3fcf6b32887913e8538669eed8a6921d"
+    },
+    {
+      "path": "frontend/utility/MacUpdateThread.cpp",
+      "bytes": 2117,
+      "sha256": "6b9d63fafb7c4daaea020eb1e027ee10c907a086b1b362e3d793a794ed0d48b8"
     },
     {
       "path": "frontend/widgets/FreeMixAsioOutput.cpp",
@@ -287,8 +302,8 @@
     },
     {
       "path": "frontend/widgets/FreeMixMultistream.cpp",
-      "bytes": 121459,
-      "sha256": "c56f7ecd8bd0c0838a71eacda3fb0cc4e5b77bace6bf54ad1d627176a2eb8af1"
+      "bytes": 122928,
+      "sha256": "efbf13bcfc35387f1ae53558a81d489a705ae7b67394a47dc3a9e4a05fe661ce"
     },
     {
       "path": "frontend/widgets/FreeMixMultistream.hpp",
@@ -331,6 +346,26 @@
       "sha256": "3fceb8cce696673de77e02ba726aea6608ba59e9fb60615042705df1e63915d3"
     },
     {
+      "path": "frontend/widgets/FreeMixProjectInventory.cpp",
+      "bytes": 5488,
+      "sha256": "ef483dfc81b7513c9814317a653920e57abfbe47d4baed27f951b591452a8d9f"
+    },
+    {
+      "path": "frontend/widgets/FreeMixProjectInventory.hpp",
+      "bytes": 275,
+      "sha256": "4ade19bb4aef18db58281b7037036bf9195c55a17d7bba9a214a50d0a4b009c7"
+    },
+    {
+      "path": "frontend/widgets/FreeMixProjectPolicy.cpp",
+      "bytes": 3179,
+      "sha256": "35b94c33bdb99bb43145b8be406d9a305896e2928ff9466b6b5e0c5450f33a86"
+    },
+    {
+      "path": "frontend/widgets/FreeMixProjectPolicy.hpp",
+      "bytes": 172,
+      "sha256": "bcf71cf9753492cdba4c6cfeb7a4d543a27e2624a169645dd071b13083fb0066"
+    },
+    {
       "path": "frontend/widgets/FreeMixSafeArea.cpp",
       "bytes": 6486,
       "sha256": "ca0661cd178bdd01d0179c80b74cbca430b56738e9c0e6c377db7463e840269d"
@@ -367,8 +402,8 @@
     },
     {
       "path": "frontend/widgets/OBSBasic.cpp",
-      "bytes": 77526,
-      "sha256": "6dde464a185683d0790982ef6e720f6306fc18699d9eb091ff770e7439707a54"
+      "bytes": 75444,
+      "sha256": "52c011f7cf4db45a58a281523d901e04fb55818da7d7b8fddece457b4bdf585e"
     },
     {
       "path": "frontend/widgets/OBSBasic.hpp",
@@ -387,8 +422,8 @@
     },
     {
       "path": "frontend/widgets/OBSBasic_MainControls.cpp",
-      "bytes": 18476,
-      "sha256": "29fa0ce56a332e3ce3180ec0b4a34dbe731cab2b21355984ed550c853da30a52"
+      "bytes": 18616,
+      "sha256": "1d67ccf9636e58bc2f798d8057108c046a0ae55551391a3b3fcfa67cb6edbd8a"
     },
     {
       "path": "frontend/widgets/OBSBasic_Preview.cpp",
@@ -429,6 +464,11 @@
       "path": "frontend/widgets/OBSBasic_Transitions.cpp",
       "bytes": 52151,
       "sha256": "f6cd2d64b94b1f2b70efb06c7074b1f73862351e87d86d583dc78bacb4ae99f1"
+    },
+    {
+      "path": "frontend/widgets/OBSBasic_Updater.cpp",
+      "bytes": 6615,
+      "sha256": "9073159193a58d54f368131a9a056ba35d6352bc2b1f60144509b8afcefcd28b"
     },
     {
       "path": "frontend/widgets/OBSProjector.cpp",
@@ -744,6 +784,36 @@
       "path": "plugins/downstream-keyer/version.h.in",
       "bytes": 223,
       "sha256": "7123cb83c849ce82685e39fbbf315eb865070b518b8b010737e65c37a6db27e9"
+    },
+    {
+      "path": "plugins/nv-filters/CMakeLists.txt",
+      "bytes": 1271,
+      "sha256": "66d01a9fe5db80c37b97d122a3c99e071781c4721128e2cc785bcce5566534f6"
+    },
+    {
+      "path": "plugins/nv-filters/FreeMixNvSdkPolicy.c",
+      "bytes": 7784,
+      "sha256": "08daefad928c11c77f3237642caa30ab38748639e24167c0e1a45dda134c03ad"
+    },
+    {
+      "path": "plugins/nv-filters/FreeMixNvSdkPolicy.h",
+      "bytes": 610,
+      "sha256": "c686ae9e8e6f14808f9c3501107e92fa0fc81dff4ce29774cf8de4f5f869357b"
+    },
+    {
+      "path": "plugins/nv-filters/nv-filters.c",
+      "bytes": 1628,
+      "sha256": "dea37e318d7cb1509fdb61359ea9dc89b2fd63c50108a0e5562baf0a3c53abd7"
+    },
+    {
+      "path": "plugins/nv-filters/nvafx-load.h",
+      "bytes": 11637,
+      "sha256": "cb5df596bc703b2f1fe45e9c9647441bd626b9419ddf11b3a92d520d164e585b"
+    },
+    {
+      "path": "plugins/nv-filters/nvvfx-load.h",
+      "bytes": 36772,
+      "sha256": "c92326d271fa2f2611a063178d0691650bd3d5b8e11db95fa864b94e483fcc80"
     },
     {
       "path": "plugins/obs-color-monitor/.clang-format",
@@ -1082,23 +1152,38 @@
     },
     {
       "path": "plugins/obs-ffmpeg/obs-ffmpeg-source.c",
-      "bytes": 25445,
-      "sha256": "43b3bbcdee729571ba871c2b4c82ca26d1d9744fbcfe686467b3a47d5e722f54"
+      "bytes": 28369,
+      "sha256": "f1b1892d56018b593d71883beb491eeacc33b029b2d5c7183f3f81745cae4190"
+    },
+    {
+      "path": "plugins/rtmp-services/rtmp-services-main.c",
+      "bytes": 3600,
+      "sha256": "dc6aee3247c7788f6869cf7f8d3855438ac840d85123e347b2f832b9a1b79f63"
+    },
+    {
+      "path": "plugins/win-capture/plugin-main.c",
+      "bytes": 4297,
+      "sha256": "e9569dbcf861d84fabb8d771f9e644f8ecd26c48e81c45c90753a97f8bc30937"
     },
     {
       "path": "shared/file-updater/file-updater/file-updater.c",
-      "bytes": 13555,
-      "sha256": "e9d386a06d130e2a27973fc548311e8b9c0dec56c4db9fd0cf2ea0eb67c23aa0"
+      "bytes": 14065,
+      "sha256": "2311fd58988efa31701e04497c529338b9a62ea9f80059508c6af4a5e8ada92e"
+    },
+    {
+      "path": "shared/media-playback/media-playback/media-playback.h",
+      "bytes": 2930,
+      "sha256": "313a964065d66b6f13e2c2a3d6535e5865684cb973f213f796c31d4d20125ef4"
     },
     {
       "path": "shared/media-playback/media-playback/media.c",
-      "bytes": 28012,
-      "sha256": "1771b2a94d82478fb72147b85d6a8aa16a3621c4e81e97992a808342a6f9ccaa"
+      "bytes": 29467,
+      "sha256": "226aa0e8e4a2253c1c313080a1ba839cebc6a2d80b63ab69a34c1ee7a8f8f992"
     },
     {
       "path": "shared/media-playback/media-playback/media.h",
-      "bytes": 3125,
-      "sha256": "249ea2b805cad5aa31ec497437453d0c1d794164696ebc02e45f88ef1887961c"
+      "bytes": 3294,
+      "sha256": "aa8115e21d54dce26d85db00181b528d7967f592efe899d1fc286b73a56f4ee6"
     }
   ],
   "networkStarted": false,

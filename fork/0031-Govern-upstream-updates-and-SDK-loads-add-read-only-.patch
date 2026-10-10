@@ -1,0 +1,1122 @@
+From 89b71f4b7e1663197b33abcc39a5fabb8ae1c9d0 Mon Sep 17 00:00:00 2001
+From: Eddy Sangalli <eddyrodrigues@outlook.com>
+Date: Sat, 10 Oct 2026 10:33:06 -0300
+Subject: [PATCH] Govern upstream updates and SDK loads; add read-only project
+ and media-clock queries
+
+---
+ frontend/OBSApp.cpp                           |   5 +-
+ frontend/cmake/ui-widgets.cmake               |   4 +
+ frontend/utility/AutoUpdateThread.cpp         |   1 +
+ frontend/utility/MacUpdateThread.cpp          |   1 +
+ frontend/widgets/FreeMixMultistream.cpp       |  31 ++++
+ frontend/widgets/FreeMixProjectInventory.cpp  |  88 ++++++++++
+ frontend/widgets/FreeMixProjectInventory.hpp  |   5 +
+ frontend/widgets/FreeMixProjectPolicy.cpp     |  49 ++++++
+ frontend/widgets/FreeMixProjectPolicy.hpp     |   4 +
+ frontend/widgets/OBSBasic.cpp                 |  71 +-------
+ frontend/widgets/OBSBasic_MainControls.cpp    |   5 +-
+ frontend/widgets/OBSBasic_Updater.cpp         |   2 +
+ plugins/nv-filters/CMakeLists.txt             |   4 +-
+ plugins/nv-filters/FreeMixNvSdkPolicy.c       | 161 ++++++++++++++++++
+ plugins/nv-filters/FreeMixNvSdkPolicy.h       |  19 +++
+ plugins/nv-filters/nv-filters.c               |  13 +-
+ plugins/nv-filters/nvafx-load.h               |  11 +-
+ plugins/nv-filters/nvvfx-load.h               |  23 ++-
+ plugins/obs-ffmpeg/obs-ffmpeg-source.c        |  67 +++++++-
+ plugins/obs-websocket                         |   2 +-
+ plugins/rtmp-services/rtmp-services-main.c    |   2 +
+ plugins/win-capture/plugin-main.c             |   2 +
+ .../file-updater/file-updater/file-updater.c  |  10 ++
+ .../media-playback/media-playback.h           |  11 ++
+ shared/media-playback/media-playback/media.c  |  40 ++++-
+ shared/media-playback/media-playback/media.h  |   4 +
+ 26 files changed, 548 insertions(+), 87 deletions(-)
+ create mode 100644 frontend/widgets/FreeMixProjectInventory.cpp
+ create mode 100644 frontend/widgets/FreeMixProjectInventory.hpp
+ create mode 100644 frontend/widgets/FreeMixProjectPolicy.cpp
+ create mode 100644 frontend/widgets/FreeMixProjectPolicy.hpp
+ create mode 100644 plugins/nv-filters/FreeMixNvSdkPolicy.c
+ create mode 100644 plugins/nv-filters/FreeMixNvSdkPolicy.h
+
+diff --git a/frontend/OBSApp.cpp b/frontend/OBSApp.cpp
+index c47fc1c..b7bfdc5 100644
+--- a/frontend/OBSApp.cpp
++++ b/frontend/OBSApp.cpp
+@@ -300,7 +300,7 @@ bool OBSApp::InitGlobalConfigDefaults()
+ 	config_set_default_uint(appConfig, "General", "MaxLogs", 10);
+ 	config_set_default_int(appConfig, "General", "InfoIncrement", -1);
+ 	config_set_default_string(appConfig, "General", "ProcessPriority", "Normal");
+-	config_set_default_bool(appConfig, "General", "EnableAutoUpdates", true);
++	config_set_default_bool(appConfig, "General", "EnableAutoUpdates", false);
+ 
+ #if _WIN32
+ 	config_set_default_string(appConfig, "Video", "Renderer", "Direct3D 11");
+@@ -1365,7 +1365,8 @@ bool OBSApp::IsPortableMode()
+ 
+ bool OBSApp::IsUpdaterDisabled()
+ {
+-	return opt_disable_updater;
++	/* FreeMix releases own the engine and plugins. CLI/config cannot enable OBS updates. */
++	return true;
+ }
+ 
+ bool OBSApp::IsMissingFilesCheckDisabled()
+diff --git a/frontend/cmake/ui-widgets.cmake b/frontend/cmake/ui-widgets.cmake
+index 84c623d..67ab3a5 100644
+--- a/frontend/cmake/ui-widgets.cmake
++++ b/frontend/cmake/ui-widgets.cmake
+@@ -30,6 +30,10 @@ target_sources(
+     widgets/FreeMixCenterColumn.hpp
+     widgets/FreeMixMultistream.cpp
+     widgets/FreeMixMultistream.hpp
++    widgets/FreeMixProjectPolicy.cpp
++    widgets/FreeMixProjectPolicy.hpp
++    widgets/FreeMixProjectInventory.cpp
++    widgets/FreeMixProjectInventory.hpp
+     widgets/FreeMixSrtHdrOutput.hpp
+     widgets/FreeMixSrtHdrLifecycle.hpp
+     widgets/FreeMixCallVideo.cpp
+diff --git a/frontend/utility/AutoUpdateThread.cpp b/frontend/utility/AutoUpdateThread.cpp
+index c666a20..65a56af 100644
+--- a/frontend/utility/AutoUpdateThread.cpp
++++ b/frontend/utility/AutoUpdateThread.cpp
+@@ -175,6 +175,7 @@ bool AutoUpdateThread::queryRepair()
+ 
+ void AutoUpdateThread::run()
+ try {
++	if (App()->IsUpdaterDisabled()) return;
+ 	string text;
+ 	string branch = WIN_DEFAULT_BRANCH;
+ 	string manifestUrl = WIN_MANIFEST_URL;
+diff --git a/frontend/utility/MacUpdateThread.cpp b/frontend/utility/MacUpdateThread.cpp
+index 3af5b8d..5a17d2a 100644
+--- a/frontend/utility/MacUpdateThread.cpp
++++ b/frontend/utility/MacUpdateThread.cpp
+@@ -49,6 +49,7 @@ void MacUpdateThread::info(const QString &title, const QString &text)
+ 
+ void MacUpdateThread::run()
+ try {
++	if (App()->IsUpdaterDisabled()) return;
+ 	std::string text;
+ 	std::string branch = MAC_DEFAULT_BRANCH;
+ 
+diff --git a/frontend/widgets/FreeMixMultistream.cpp b/frontend/widgets/FreeMixMultistream.cpp
+index 3786d22..5f55d3d 100644
+--- a/frontend/widgets/FreeMixMultistream.cpp
++++ b/frontend/widgets/FreeMixMultistream.cpp
+@@ -27,6 +27,8 @@
+ ******************************************************************************/
+ 
+ #include "FreeMixMultistream.hpp"
++#include "FreeMixProjectPolicy.hpp"
++#include "FreeMixProjectInventory.hpp"
+ #include "FreeMixOmtOutput.hpp"
+ #include "FreeMixOmtHdrOutput.hpp"
+ #include "FreeMixSrtHdrLifecycle.hpp"
+@@ -1330,6 +1332,33 @@ void RequestControlDestination(obs_data_t *request, obs_data_t *response, void *
+ 
+ /* The preset as a document (FreeMixPreset.cpp), for the Save button of the interface. Requests arrive on the
+  * thread of the control server; the work is done on the interface thread. */
++void RequestProjectPolicy(obs_data_t *, obs_data_t *response, void *)
++{
++ auto *main = OBSBasic::Get();
++ if (!main || frontendClosing) { obs_data_set_bool(response, "success", false); return; }
++ auto work = [response]() {
++  if (frontendClosing) { obs_data_set_bool(response, "success", false); return; }
++  FreeMixReadProjectCreationPolicy(response);
++ };
++ if (QThread::currentThread() == main->thread()) work();
++ else QMetaObject::invokeMethod(main, work, Qt::BlockingQueuedConnection);
++}
++void RequestProjectInventory(obs_data_t *request, obs_data_t *response, void *)
++{
++ if (!obs_data_get_bool(request, "confirmDriverMetadataQuery")) {
++  obs_data_set_bool(response, "success", false);
++  obs_data_set_string(response, "error", "SCAN_CONSENT_REQUIRED"); return;
++ }
++ auto *main = OBSBasic::Get();
++ if (!main || frontendClosing) { obs_data_set_bool(response, "success", false); return; }
++ auto work = [response]() {
++  if (frontendClosing) { obs_data_set_bool(response, "success", false); return; }
++  FreeMixReadProjectDeviceInventory(response);
++ };
++ if (QThread::currentThread() == main->thread()) work();
++ else QMetaObject::invokeMethod(main, work, Qt::BlockingQueuedConnection);
++}
++
+ void RequestSavePreset(obs_data_t *, obs_data_t *response, void *)
+ {
+ 	QMetaObject::invokeMethod(OBSBasic::Get(), []() { OBSBasic::Get()->SavePresetAsDocument(); },
+@@ -1756,6 +1785,8 @@ void RegisterVendor()
+  obs_websocket_vendor_register_request(vendor,"sdi_output",RequestSdiOutput,nullptr);
+  obs_websocket_vendor_register_request(vendor, "control_mix", RequestMix, nullptr);
+  obs_websocket_vendor_register_request(vendor, "get_mixes", RequestMix, nullptr);
++	obs_websocket_vendor_register_request(vendor, "project_creation_policy", RequestProjectPolicy, nullptr);
++obs_websocket_vendor_register_request(vendor, "project_device_inventory", RequestProjectInventory, nullptr);
+ 	obs_websocket_vendor_register_request(vendor, "save_preset", RequestSavePreset, nullptr);
+ 	obs_websocket_vendor_register_request(vendor, "get_preset", RequestGetPreset, nullptr);
+ 	obs_websocket_vendor_register_request(vendor, "get_scope", RequestGetScope, nullptr);
+diff --git a/frontend/widgets/FreeMixProjectInventory.cpp b/frontend/widgets/FreeMixProjectInventory.cpp
+new file mode 100644
+index 0000000..3e73db5
+--- /dev/null
++++ b/frontend/widgets/FreeMixProjectInventory.cpp
+@@ -0,0 +1,88 @@
++#include "FreeMixProjectInventory.hpp"
++#include <obs.hpp>
++#include <memory>
++#include <string>
++#include <vector>
++#include <cstdio>
++#include <stdexcept>
++
++namespace {
++using Properties = std::unique_ptr<obs_properties_t, decltype(&obs_properties_destroy)>;
++struct Item { std::string id, label; bool disabled; };
++std::vector<Item> Strings(obs_properties_t *props, const char *key, size_t bound)
++{
++ auto *p = props ? obs_properties_get(props, key) : nullptr;
++ if (!p || obs_property_get_type(p) != OBS_PROPERTY_LIST || obs_property_list_format(p) != OBS_COMBO_FORMAT_STRING) return {};
++ const size_t count = obs_property_list_item_count(p);
++ if (count > bound) throw std::runtime_error("PROPERTY_LIMIT");
++ std::vector<Item> rows;
++ for (size_t i = 0; i < count; ++i) {
++  const char *id = obs_property_list_item_string(p, i), *label = obs_property_list_item_name(p, i);
++  if (!id || !*id || std::string(id) == "default") continue;
++  if (std::string(id).size() > 4096 || !label || std::string(label).size() > 512) throw std::runtime_error("PROPERTY_STRING_LIMIT");
++  rows.push_back({id, label, obs_property_list_item_disabled(p, i)});
++ }
++ return rows; // Copy before any callback changes property storage.
++}
++void Cameras(obs_data_t *response)
++{
++ Properties props(obs_get_source_properties("dshow_input"), obs_properties_destroy);
++ OBSDataArrayAutoRelease cameras = obs_data_array_create();
++ for (const auto &device : Strings(props.get(), "video_device_id", 64)) {
++  OBSDataAutoRelease row = obs_data_create(); OBSDataArrayAutoRelease modes = obs_data_array_create();
++  obs_data_set_string(row, "kind", "dshow_input"); obs_data_set_string(row, "stableId", device.id.c_str());
++  obs_data_set_string(row, "label", device.label.c_str()); obs_data_set_bool(row, "disabled", device.disabled);
++  if (!device.disabled) {
++   OBSDataAutoRelease settings = obs_get_source_defaults("dshow_input");
++   if (!settings) throw std::runtime_error("DSHOW_DEFAULTS_UNAVAILABLE");
++   obs_data_set_bool(settings, "active", false); obs_data_set_int(settings, "res_type", 1);
++   obs_data_set_string(settings, "video_device_id", device.id.c_str());
++   obs_data_set_string(settings, "last_video_device_id", "");
++   obs_properties_apply_settings(props.get(), settings); // Applies only our owned defaults, never source context settings.
++   for (const auto &resolution : Strings(props.get(), "resolution", 256)) {
++    int width = 0, height = 0; char extra = 0;
++    if (resolution.disabled || std::sscanf(resolution.id.c_str(), "%dx%d%c", &width, &height, &extra) != 2 || width < 2 || height < 2 || width > 7680 || height > 7680) continue;
++    obs_data_set_string(settings, "resolution", resolution.id.c_str()); obs_data_set_int(settings, "frame_interval", 0);
++    obs_properties_apply_settings(props.get(), settings);
++    auto *fps = obs_properties_get(props.get(), "frame_interval");
++    if (!fps || obs_property_get_type(fps) != OBS_PROPERTY_LIST || obs_property_list_format(fps) != OBS_COMBO_FORMAT_INT) continue;
++    if (obs_property_list_item_count(fps) > 256) throw std::runtime_error("FPS_LIMIT");
++    for (size_t i = 0; i < obs_property_list_item_count(fps); ++i) {
++     const auto interval = obs_property_list_item_int(fps, i);
++     if (obs_property_list_item_disabled(fps, i) || interval < 41667 || interval > 10000000) continue; // No default/matching/highest pseudo-mode.
++     if (obs_data_array_count(modes) >= 256) throw std::runtime_error("MODE_LIMIT");
++     OBSDataAutoRelease mode = obs_data_create(); obs_data_set_int(mode, "width", width); obs_data_set_int(mode, "height", height);
++     obs_data_set_int(mode, "frameInterval", interval); obs_data_array_push_back(modes, mode);
++    }
++   }
++  }
++  obs_data_set_array(row, "modes", modes); obs_data_array_push_back(cameras, row);
++ }
++ obs_data_set_array(response, "cameras", cameras);
++}
++}
++bool FreeMixReadProjectDeviceInventory(obs_data_t *response)
++{
++ if (!response) return false;
++ obs_data_set_string(response, "contract", "freemix-project-device-inventory-v1");
++ obs_data_set_bool(response, "captureStarted", false); obs_data_set_bool(response, "existingSourceSettingsTouched", false);
++ obs_data_set_bool(response, "driverMetadataMayOpen", true); obs_data_set_bool(response, "success", false);
++ try {
++  Cameras(response);
++  Properties audioProps(obs_get_source_properties("wasapi_input_capture"), obs_properties_destroy);
++  OBSDataArrayAutoRelease audio = obs_data_array_create();
++  for (const auto &device : Strings(audioProps.get(), "device_id", 128)) {
++   OBSDataAutoRelease row = obs_data_create(); obs_data_set_string(row, "kind", "wasapi_input_capture");
++   obs_data_set_string(row, "stableId", device.id.c_str()); obs_data_set_string(row, "label", device.label.c_str());
++   obs_data_set_bool(row, "disabled", device.disabled); obs_data_array_push_back(audio, row);
++  }
++  obs_data_set_array(response, "audio", audio);
++  OBSDataArrayAutoRelease filters = obs_data_array_create(); const char *kind = nullptr;
++  for (size_t i = 0; obs_enum_filter_types(i, &kind); ++i) {
++   if (i >= 256) throw std::runtime_error("FILTER_LIMIT");
++   OBSDataAutoRelease row = obs_data_create(); obs_data_set_string(row, "id", kind); obs_data_array_push_back(filters, row);
++  }
++  obs_data_set_array(response, "filterKindsNative", filters); // Host maps rows to filterKinds strings, never infer Speex.
++  obs_data_set_bool(response, "success", true); return true;
++ } catch (const std::exception &error) { obs_data_set_string(response, "error", error.what()); return false; }
++}
+diff --git a/frontend/widgets/FreeMixProjectInventory.hpp b/frontend/widgets/FreeMixProjectInventory.hpp
+new file mode 100644
+index 0000000..43e21ae
+--- /dev/null
++++ b/frontend/widgets/FreeMixProjectInventory.hpp
+@@ -0,0 +1,5 @@
++#pragma once
++#include <obs.h>
++// OFFSIDE only; Root must register/serialize on the UI thread and require explicit scan consent.
++// Enumerates properties by source kind with owned defaults. No sources are created.
++bool FreeMixReadProjectDeviceInventory(obs_data_t *response);
+diff --git a/frontend/widgets/FreeMixProjectPolicy.cpp b/frontend/widgets/FreeMixProjectPolicy.cpp
+new file mode 100644
+index 0000000..7a6d19b
+--- /dev/null
++++ b/frontend/widgets/FreeMixProjectPolicy.cpp
+@@ -0,0 +1,49 @@
++#include "FreeMixProjectPolicy.hpp"
++#include "OBSApp.hpp"
++#include <obs-frontend-api.h>
++#include <obs.hpp>
++#include <util/config-file.h>
++#include <string>
++#include <set>
++namespace {
++struct ReloadState { bool safe = true; size_t count = 0; };
++void FilterFound(obs_source_t *, obs_source_t *, void *param) { static_cast<ReloadState *>(param)->safe = false; }
++bool InspectSource(void *param, obs_source_t *source)
++{
++ auto &state = *static_cast<ReloadState *>(param);
++ if (++state.count > 1000) { state.safe = false; return false; }
++ const char *raw = obs_source_get_id(source); if (!raw) { state.safe = false; return true; }
++ const std::string kind = raw;
++ const std::set<std::string> software = {"scene", "group", "color_source", "color_source_v2", "color_source_v3", "image_source", "text_gdiplus", "text_gdiplus_v2", "text_ft2_source", "text_ft2_source_v2", "mix-track-to-source", "freemix_audio_bus"};
++ if (!software.count(kind)) {
++  if (kind == "dshow_input") {
++   OBSDataAutoRelease settings = obs_source_get_settings(source); // Read only; never apply properties to existing context.
++   if (!settings || obs_data_get_bool(settings, "active")) state.safe = false;
++  } else state.safe = false; // WASAPI, capture/network/media/unknown require a separate reload contract.
++ }
++ obs_source_enum_filters(source, FilterFound, &state); // Even known sources with automation filters are not presumed safe.
++ return true;
++}
++}
++bool FreeMixReadProjectCreationPolicy(obs_data_t *response)
++{
++ if (!response || !App()) return false;
++ obs_data_set_string(response, "evidence", "native-creation-policy-read-only");
++ auto *user = App()->GetUserConfig(); auto *profile = obs_frontend_get_profile_config();
++ if (!user || !profile) { obs_data_set_bool(response, "success", false); return false; }
++ const bool firstRun = config_get_bool(user, "General", "FirstRun");
++ const auto sampleRate = config_get_uint(profile, "Audio", "SampleRate");
++ const char *channels = config_get_string(profile, "Audio", "ChannelSetup"), *monitor = config_get_string(profile, "Audio", "MonitoringDeviceId");
++ const char *runtimeMonitor = nullptr, *runtimeName = nullptr; obs_get_audio_monitoring_device(&runtimeName, &runtimeMonitor);
++ obs_audio_info audio{}; const bool runtimeAudio = obs_get_audio_info(&audio);
++ const bool audioCompatible = sampleRate == 48000 && channels && std::string(channels) == "Stereo" && runtimeAudio && audio.samples_per_sec == 48000 && audio.speakers == SPEAKERS_STEREO;
++ const bool monitorCompatible = monitor && std::string(monitor) == "default" && runtimeMonitor && std::string(runtimeMonitor) == "default";
++ ReloadState reload; obs_enum_sources(InspectSource, &reload);
++ obs_data_set_bool(response, "firstRunCompleted", firstRun);
++ obs_data_set_bool(response, "profileAudioDefaultsCompatible", audioCompatible);
++ obs_data_set_bool(response, "monitoringDefaultsCompatible", monitorCompatible);
++ obs_data_set_bool(response, "contextReloadSafe", reload.safe);
++ obs_data_set_int(response, "sourceCount", (long long)reload.count);
++ obs_data_set_bool(response, "success", true);
++ return true; // No source creation, settings writes, audio reset, hardware activation or profile activation.
++}
+diff --git a/frontend/widgets/FreeMixProjectPolicy.hpp b/frontend/widgets/FreeMixProjectPolicy.hpp
+new file mode 100644
+index 0000000..2393b2d
+--- /dev/null
++++ b/frontend/widgets/FreeMixProjectPolicy.hpp
+@@ -0,0 +1,4 @@
++#pragma once
++#include <obs.h>
++// OFFSIDE only. Root registers this finite read-only function on the UI thread.
++bool FreeMixReadProjectCreationPolicy(obs_data_t *response);
+diff --git a/frontend/widgets/OBSBasic.cpp b/frontend/widgets/OBSBasic.cpp
+index 1fbbcbc..c238aea 100644
+--- a/frontend/widgets/OBSBasic.cpp
++++ b/frontend/widgets/OBSBasic.cpp
+@@ -117,74 +117,9 @@ std::once_flag saveOnceFlag;
+ 
+ static void AddExtraModulePaths()
+ {
+-	string plugins_path, plugins_data_path;
+-	char *s;
+-
+-	s = getenv("OBS_PLUGINS_PATH");
+-	if (s) {
+-		plugins_path = s;
+-	}
+-
+-	s = getenv("OBS_PLUGINS_DATA_PATH");
+-	if (s) {
+-		plugins_data_path = s;
+-	}
+-
+-	if (!plugins_path.empty() && !plugins_data_path.empty()) {
+-#if defined(__APPLE__)
+-		plugins_path += "/%module%.plugin/Contents/MacOS";
+-		plugins_data_path += "/%module%.plugin/Contents/Resources";
+-		obs_add_module_path(plugins_path.c_str(), plugins_data_path.c_str());
+-#else
+-		string data_path_with_module_suffix;
+-		data_path_with_module_suffix += plugins_data_path;
+-		data_path_with_module_suffix += "/%module%";
+-		obs_add_module_path(plugins_path.c_str(), data_path_with_module_suffix.c_str());
+-#endif
+-	}
+-
+-	if (portable_mode) {
+-		return;
+-	}
+-
+-	char base_module_dir[512];
+-#if defined(_WIN32)
+-	int ret = GetProgramDataPath(base_module_dir, sizeof(base_module_dir), "obs-studio/plugins/%module%");
+-#elif defined(__APPLE__)
+-	int ret = GetAppConfigPath(base_module_dir, sizeof(base_module_dir), "obs-studio/plugins/%module%.plugin");
+-#else
+-	int ret = GetAppConfigPath(base_module_dir, sizeof(base_module_dir), "obs-studio/plugins/%module%");
+-#endif
+-
+-	if (ret <= 0) {
+-		return;
+-	}
+-
+-	string path = base_module_dir;
+-#if defined(__APPLE__)
+-	/* User Application Support Search Path */
+-	obs_add_module_path((path + "/Contents/MacOS").c_str(), (path + "/Contents/Resources").c_str());
+-
+-#ifndef __aarch64__
+-	/* Legacy System Library Search Path */
+-	char system_legacy_module_dir[PATH_MAX];
+-	GetProgramDataPath(system_legacy_module_dir, sizeof(system_legacy_module_dir), "obs-studio/plugins/%module%");
+-	std::string path_system_legacy = system_legacy_module_dir;
+-	obs_add_module_path((path_system_legacy + "/bin").c_str(), (path_system_legacy + "/data").c_str());
+-
+-	/* Legacy User Application Support Search Path */
+-	char user_legacy_module_dir[PATH_MAX];
+-	GetAppConfigPath(user_legacy_module_dir, sizeof(user_legacy_module_dir), "obs-studio/plugins/%module%");
+-	std::string path_user_legacy = user_legacy_module_dir;
+-	obs_add_module_path((path_user_legacy + "/bin").c_str(), (path_user_legacy + "/data").c_str());
+-#endif
+-#else
+-#if ARCH_BITS == 64
+-	obs_add_module_path((path + "/bin/64bit").c_str(), (path + "/data").c_str());
+-#else
+-	obs_add_module_path((path + "/bin/32bit").c_str(), (path + "/data").c_str());
+-#endif
+-#endif
++	// Customer fork: only module paths supplied by the packaged engine.
++	// Environment and user/global third-party folders cannot extend them.
++	blog(LOG_INFO, "[FreeMix] External plugin search paths disabled by release policy");
+ }
+ 
+ /* First-party modules considered to be potentially unsafe to load in Safe Mode
+diff --git a/frontend/widgets/OBSBasic_MainControls.cpp b/frontend/widgets/OBSBasic_MainControls.cpp
+index a8b3d1b..6332295 100644
+--- a/frontend/widgets/OBSBasic_MainControls.cpp
++++ b/frontend/widgets/OBSBasic_MainControls.cpp
+@@ -138,8 +138,8 @@ void OBSBasic::CreateFiltersWindow(obs_source_t *source)
+ 
+ void OBSBasic::updateCheckFinished()
+ {
+-	ui->actionCheckForUpdates->setEnabled(true);
+-	ui->actionRepair->setEnabled(true);
++	if (ui->actionCheckForUpdates) ui->actionCheckForUpdates->setEnabled(!App()->IsUpdaterDisabled());
++	if (ui->actionRepair) ui->actionRepair->setEnabled(!App()->IsUpdaterDisabled());
+ }
+ 
+ void OBSBasic::ResetUI()
+@@ -397,6 +397,7 @@ void OBSBasic::on_actionCheckForUpdates_triggered()
+ 
+ void OBSBasic::on_actionRepair_triggered()
+ {
++	if (App()->IsUpdaterDisabled()) return;
+ #if defined(_WIN32)
+ 	ui->actionCheckForUpdates->setEnabled(false);
+ 	ui->actionRepair->setEnabled(false);
+diff --git a/frontend/widgets/OBSBasic_Updater.cpp b/frontend/widgets/OBSBasic_Updater.cpp
+index 75dac42..c566c58 100644
+--- a/frontend/widgets/OBSBasic_Updater.cpp
++++ b/frontend/widgets/OBSBasic_Updater.cpp
+@@ -202,6 +202,7 @@ void OBSBasic::TimedCheckForUpdates()
+ 
+ void OBSBasic::CheckForUpdates(bool manualUpdate)
+ {
++	if (App()->IsUpdaterDisabled()) return;
+ #if _WIN32
+ 	ui->actionCheckForUpdates->setEnabled(false);
+ 	ui->actionRepair->setEnabled(false);
+@@ -229,6 +230,7 @@ void OBSBasic::CheckForUpdates(bool manualUpdate)
+ 
+ void OBSBasic::MacBranchesFetched(const QString &branch, bool manualUpdate)
+ {
++	if (App()->IsUpdaterDisabled()) return;
+ #ifdef ENABLE_SPARKLE_UPDATER
+ 	static OBSSparkle *updater;
+ 
+diff --git a/plugins/nv-filters/CMakeLists.txt b/plugins/nv-filters/CMakeLists.txt
+index 0547963..134ca5a 100644
+--- a/plugins/nv-filters/CMakeLists.txt
++++ b/plugins/nv-filters/CMakeLists.txt
+@@ -22,9 +22,9 @@ if(OS_WINDOWS)
+ 
+   configure_file(cmake/windows/obs-module.rc.in nv-filters.rc)
+   target_sources(nv-filters PRIVATE nv-filters.rc)
+-  target_sources(nv-filters PRIVATE nv-filters.c)
++  target_sources(nv-filters PRIVATE nv-filters.c FreeMixNvSdkPolicy.c FreeMixNvSdkPolicy.h)
+ 
+-  target_link_libraries(nv-filters PRIVATE OBS::libobs $<$<PLATFORM_ID:Windows>:OBS::w32-pthreads>)
++  target_link_libraries(nv-filters PRIVATE OBS::libobs bcrypt $<$<PLATFORM_ID:Windows>:OBS::w32-pthreads>)
+ 
+   set_target_properties_obs(nv-filters PROPERTIES FOLDER plugins PREFIX "")
+ endif()
+diff --git a/plugins/nv-filters/FreeMixNvSdkPolicy.c b/plugins/nv-filters/FreeMixNvSdkPolicy.c
+new file mode 100644
+index 0000000..3136b9a
+--- /dev/null
++++ b/plugins/nv-filters/FreeMixNvSdkPolicy.c
+@@ -0,0 +1,161 @@
++// Customer fork policy; no NVIDIA SDK payload is redistributed by this source.
++#include "FreeMixNvSdkPolicy.h"
++#include <obs-module.h>
++#include <bcrypt.h>
++#include <stdint.h>
++#include <string.h>
++#include <wchar.h>
++
++struct approved_file { const char *name; const char *sha256; };
++struct approved_family {
++ bool approved, complete_payload_approved;
++ const wchar_t *directory;
++ const struct approved_file *files;
++ size_t count;
++};
++// Observed fingerprints are NOT approval. Root must qualify the complete SDK,
++// dependencies/models, license and path before replacing this compile-time table.
++static const struct approved_file afx_files[] = {
++ {"NVAudioEffects.dll", "e2dc4e08ff36da454baa5f9e634a7a7d441ea3b746380fbc986ae8d5ee1d44e1"}
++};
++static const struct approved_file vfx_files[] = {
++ {"NVVideoEffects.dll", "2a78effae55e9e3791bbe66f312f0bd08a2ede2c94fd8f820933badfa0a6cd8c"},
++ {"NVCVImage.dll", "dac4321009470103fe4ba7257e7ed54100d371225d6919e25e1e89818f315373"}
++};
++static const struct approved_family policies[] = {
++ {false, false, L"", afx_files, 1}, {false, false, L"", vfx_files, 2}
++};
++enum policy_reason { NOT_APPROVED, PATH_UNCONFIRMED, FILE_UNCONFIRMED, HASH_UNCONFIRMED, VERIFIED };
++static volatile LONG reasons[] = {NOT_APPROVED, NOT_APPROVED};
++static bool known_family(enum freemix_nv_family family) { return family == FREEMIX_NV_AFX || family == FREEMIX_NV_VFX; }
++static void set_reason(enum freemix_nv_family family, enum policy_reason reason)
++{ if (known_family(family)) InterlockedExchange(&reasons[family], reason); }
++
++static bool sdk_policy_permits(bool approved, bool complete, bool absolute_directory)
++{ return approved && complete && absolute_directory; }
++
++static bool sdk_directory_shape(const wchar_t *path)
++{
++ return path && wcslen(path) >= 3 &&
++  ((path[0] >= L'A' && path[0] <= L'Z') || (path[0] >= L'a' && path[0] <= L'z')) &&
++  path[1] == L':' && path[2] == L'\\' && !wcsstr(path, L"..");
++}
++
++static bool sdk_hash_matches(const unsigned char *digest, const char *expected)
++{
++ if (!digest || !expected || strlen(expected) != 64) return false;
++ const char *hex = "0123456789abcdef";
++ for (size_t i = 0; i < 32; ++i)
++  if (expected[i * 2] != hex[digest[i] >> 4] || expected[i * 2 + 1] != hex[digest[i] & 15]) return false;
++ return true;
++}
++
++bool freemix_nv_sdk_enabled(enum freemix_nv_family family)
++{
++ if (!known_family(family)) return false;
++ const struct approved_family *policy = &policies[family];
++ if (!sdk_policy_permits(policy->approved, policy->complete_payload_approved, sdk_directory_shape(policy->directory))) {
++  set_reason(family, NOT_APPROVED); return false;
++ }
++ return true;
++}
++
++const char *freemix_nv_sdk_reason(enum freemix_nv_family family)
++{
++ if (!known_family(family)) return "Família NVIDIA desconhecida.";
++ switch (InterlockedCompareExchange(&reasons[family], 0, 0)) {
++ case PATH_UNCONFIRMED: return "SDK NVIDIA fora do caminho aprovado pelo FreeMix.";
++ case FILE_UNCONFIRMED: return "Arquivo do SDK NVIDIA não confirmado; recurso desativado.";
++ case HASH_UNCONFIRMED: return "SDK NVIDIA mudou; versão ainda não homologada pelo FreeMix.";
++ case VERIFIED: return "Hashes do SDK confirmados; isso não confirma funcionamento do efeito.";
++ default: return "SDK NVIDIA sem aprovação FreeMix; recurso desativado.";
++ }
++}
++
++static bool hash_file(HANDLE file, const char *expected)
++{
++ BCRYPT_ALG_HANDLE algorithm = NULL; BCRYPT_HASH_HANDLE hash = NULL;
++ unsigned char digest[32], buffer[65536]; DWORD count = 0; bool result = false;
++ if (!expected || strlen(expected) != 64) return false;
++ if (BCryptOpenAlgorithmProvider(&algorithm, BCRYPT_SHA256_ALGORITHM, NULL, 0) < 0) goto done;
++ if (BCryptCreateHash(algorithm, &hash, NULL, 0, NULL, 0, 0) < 0) goto done;
++ for (;;) {
++  if (!ReadFile(file, buffer, sizeof(buffer), &count, NULL)) goto done;
++  if (!count) break;
++  if (BCryptHashData(hash, buffer, count, 0) < 0) goto done;
++ }
++ if (BCryptFinishHash(hash, digest, sizeof(digest), 0) < 0) goto done;
++ result = sdk_hash_matches(digest, expected);
++done:
++ if (hash) BCryptDestroyHash(hash);
++ if (algorithm) BCryptCloseAlgorithmProvider(algorithm, 0);
++ return result;
++}
++
++void freemix_nv_sdk_end(struct freemix_nv_sdk_guard *guard)
++{
++ if (!guard) return;
++ if (guard->file && guard->file != INVALID_HANDLE_VALUE) CloseHandle(guard->file);
++ guard->file = NULL; guard->canonical_path[0] = 0;
++}
++
++bool freemix_nv_sdk_begin(enum freemix_nv_family family, const char *path,
++                         const char *file_name, struct freemix_nv_sdk_guard *guard)
++{
++ if (!guard) return false;
++ *guard = (struct freemix_nv_sdk_guard){0};
++ if (!freemix_nv_sdk_enabled(family)) return false; // Before path IO or LoadLibrary.
++ const struct approved_family *policy = &policies[family]; const char *expected = NULL;
++ for (size_t i = 0; i < policy->count; ++i)
++  if (file_name && strcmp(file_name, policy->files[i].name) == 0) expected = policy->files[i].sha256;
++ if (!expected || !path || !file_name) { set_reason(family, FILE_UNCONFIRMED); return false; }
++ wchar_t supplied[MAX_PATH], expected_path[MAX_PATH];
++ // Original SDK loaders use GetEnvironmentVariableA / ANSI paths; preserve encoding.
++ if (!MultiByteToWideChar(CP_ACP, MB_ERR_INVALID_CHARS, path, -1, supplied, MAX_PATH) ||
++     _snwprintf_s(expected_path, MAX_PATH, _TRUNCATE, L"%s\\%S", policy->directory, file_name) < 0 ||
++     supplied[0] == L'\\' || wcsstr(supplied, L"..") || _wcsicmp(supplied, expected_path) != 0) {
++  set_reason(family, PATH_UNCONFIRMED); return false;
++ }
++ // Keep the file handle open through LoadLibrary. No writer/delete sharing.
++ guard->file = CreateFileW(supplied, GENERIC_READ, FILE_SHARE_READ, NULL, OPEN_EXISTING,
++                           FILE_ATTRIBUTE_NORMAL | FILE_FLAG_OPEN_REPARSE_POINT, NULL);
++ if (guard->file == INVALID_HANDLE_VALUE) { guard->file = NULL; set_reason(family, FILE_UNCONFIRMED); return false; }
++ BY_HANDLE_FILE_INFORMATION info; DWORD length;
++ if (!GetFileInformationByHandle(guard->file, &info) ||
++     (info.dwFileAttributes & (FILE_ATTRIBUTE_REPARSE_POINT | FILE_ATTRIBUTE_DIRECTORY))) goto invalid_file;
++ length = GetFinalPathNameByHandleW(guard->file, guard->canonical_path, MAX_PATH, FILE_NAME_NORMALIZED | VOLUME_NAME_DOS);
++ if (length < 7 || length >= MAX_PATH || wcsncmp(guard->canonical_path, L"\\\\?\\", 4) != 0 ||
++     _wcsicmp(guard->canonical_path + 4, expected_path) != 0) {
++  set_reason(family, PATH_UNCONFIRMED); freemix_nv_sdk_end(guard); return false;
++ }
++ if (!hash_file(guard->file, expected)) {
++  set_reason(family, HASH_UNCONFIRMED); freemix_nv_sdk_end(guard); return false;
++ }
++ set_reason(family, VERIFIED); return true;
++invalid_file:
++ set_reason(family, FILE_UNCONFIRMED); freemix_nv_sdk_end(guard); return false;
++}
++
++// Read-only export: caller must already own/lifetime-pin the loaded module.
++// It does NOT load a DLL, enable approval, create a source, or promise media proof.
++MODULE_EXPORT const char *freemix_nvidia_policy_reason(const char *family)
++{
++ return freemix_nv_sdk_reason(family && strcmp(family, "afx") == 0 ? FREEMIX_NV_AFX :
++                             family && strcmp(family, "vfx") == 0 ? FREEMIX_NV_VFX : -1);
++}
++
++MODULE_EXPORT unsigned int freemix_nvidia_policy_contract_version(void)
++{
++ return 1;
++}
++
++// Approval is a release decision, never device availability or media proof.
++// This read does not mutate reasons or start a SDK load.
++MODULE_EXPORT bool freemix_nvidia_policy_approved(const char *family)
++{
++ enum freemix_nv_family id = family && strcmp(family, "afx") == 0 ? FREEMIX_NV_AFX :
++                            family && strcmp(family, "vfx") == 0 ? FREEMIX_NV_VFX : -1;
++ if (!known_family(id)) return false;
++ const struct approved_family *policy = &policies[id];
++ return sdk_policy_permits(policy->approved, policy->complete_payload_approved, sdk_directory_shape(policy->directory));
++}
+diff --git a/plugins/nv-filters/FreeMixNvSdkPolicy.h b/plugins/nv-filters/FreeMixNvSdkPolicy.h
+new file mode 100644
+index 0000000..e6ed9fb
+--- /dev/null
++++ b/plugins/nv-filters/FreeMixNvSdkPolicy.h
+@@ -0,0 +1,19 @@
++#pragma once
++#include <Windows.h>
++#include <stdbool.h>
++#ifdef __cplusplus
++extern "C" {
++#endif
++
++enum freemix_nv_family { FREEMIX_NV_AFX, FREEMIX_NV_VFX };
++struct freemix_nv_sdk_guard { HANDLE file; wchar_t canonical_path[MAX_PATH]; };
++
++bool freemix_nv_sdk_enabled(enum freemix_nv_family family);
++bool freemix_nv_sdk_begin(enum freemix_nv_family family, const char *path,
++                         const char *file_name, struct freemix_nv_sdk_guard *guard);
++void freemix_nv_sdk_end(struct freemix_nv_sdk_guard *guard);
++const char *freemix_nv_sdk_reason(enum freemix_nv_family family);
++#ifdef __cplusplus
++}
++#endif
++
+diff --git a/plugins/nv-filters/nv-filters.c b/plugins/nv-filters/nv-filters.c
+index 0a5fb44..96baeab 100644
+--- a/plugins/nv-filters/nv-filters.c
++++ b/plugins/nv-filters/nv-filters.c
+@@ -1,4 +1,5 @@
+ #include <obs-module.h>
++#include "FreeMixNvSdkPolicy.h"
+ 
+ OBS_DECLARE_MODULE()
+ OBS_MODULE_USE_DEFAULT_LOCALE("nv-filters", "en-US")
+@@ -24,18 +25,24 @@ bool obs_module_load(void)
+ {
+ #ifdef LIBNVAFX_ENABLED
+ 	/* load nvidia audio fx dll */
+-	if (load_nvidia_afx())
+-		obs_register_source(&nvidia_audiofx_filter);
++	if (freemix_nv_sdk_enabled(FREEMIX_NV_AFX)) {
++		if (load_nvidia_afx())
++			obs_register_source(&nvidia_audiofx_filter);
++	} else {
++		blog(LOG_INFO, "[FreeMix] %s", freemix_nv_sdk_reason(FREEMIX_NV_AFX));
++	}
+ #endif
+ #ifdef LIBNVVFX_ENABLED
+ 	obs_enter_graphics();
+ 	const bool direct3d = gs_get_device_type() == GS_DEVICE_DIRECT3D_11;
+ 	obs_leave_graphics();
+-	if (direct3d && load_nvidia_vfx()) {
++	if (direct3d && freemix_nv_sdk_enabled(FREEMIX_NV_VFX) && load_nvidia_vfx()) {
+ 		obs_register_source(&nvidia_greenscreen_filter_info);
+ 		obs_register_source(&nvidia_blur_filter_info);
+ 		obs_register_source(&nvidia_background_blur_filter_info);
+ 	}
++	if (!freemix_nv_sdk_enabled(FREEMIX_NV_VFX))
++		blog(LOG_INFO, "[FreeMix] %s", freemix_nv_sdk_reason(FREEMIX_NV_VFX));
+ #endif
+ 	return true;
+ }
+diff --git a/plugins/nv-filters/nvafx-load.h b/plugins/nv-filters/nvafx-load.h
+index fde85a0..f79ec71 100644
+--- a/plugins/nv-filters/nvafx-load.h
++++ b/plugins/nv-filters/nvafx-load.h
+@@ -7,6 +7,7 @@
+ #include <util/platform.h>
+ #include <util/windows/win-version.h>
+ #include "nv_sdk_versions.h"
++#include "FreeMixNvSdkPolicy.h"
+ 
+ #define NVAFX_API
+ 
+@@ -253,8 +254,14 @@ static inline bool load_lib()
+ 		return false;
+ 	}
+ 
+-	nv_audiofx =
+-		LoadLibraryExA(effectsPath, NULL, LOAD_LIBRARY_SEARCH_DLL_LOAD_DIR | LOAD_LIBRARY_SEARCH_DEFAULT_DIRS);
++	struct freemix_nv_sdk_guard verified = {0};
++	if (!freemix_nv_sdk_begin(FREEMIX_NV_AFX, effectsPath, "NVAudioEffects.dll", &verified)) {
++		blog(LOG_WARNING, "[FreeMix] %s", freemix_nv_sdk_reason(FREEMIX_NV_AFX));
++		return false;
++	}
++	nv_audiofx = LoadLibraryExW(verified.canonical_path, NULL,
++		LOAD_LIBRARY_SEARCH_DLL_LOAD_DIR | LOAD_LIBRARY_SEARCH_DEFAULT_DIRS);
++	freemix_nv_sdk_end(&verified);
+ 
+ 	return !!nv_audiofx;
+ }
+diff --git a/plugins/nv-filters/nvvfx-load.h b/plugins/nv-filters/nvvfx-load.h
+index e27ad1e..4e943b9 100644
+--- a/plugins/nv-filters/nvvfx-load.h
++++ b/plugins/nv-filters/nvvfx-load.h
+@@ -8,6 +8,7 @@
+ #include <dxgitype.h>
+ #include <util/windows/win-version.h>
+ #include "nv_sdk_versions.h"
++#include "FreeMixNvSdkPolicy.h"
+ 
+ #ifdef __cplusplus
+ extern "C" {
+@@ -706,11 +707,23 @@ static inline bool load_nv_vfx_libs()
+ 		return false;
+ 	}
+ 
+-	nv_videofx =
+-		LoadLibraryExA(effectsPath, NULL, LOAD_LIBRARY_SEARCH_DLL_LOAD_DIR | LOAD_LIBRARY_SEARCH_DEFAULT_DIRS);
+-
+-	nv_cvimage =
+-		LoadLibraryExA(imagePath, NULL, LOAD_LIBRARY_SEARCH_DLL_LOAD_DIR | LOAD_LIBRARY_SEARCH_DEFAULT_DIRS);
++	struct freemix_nv_sdk_guard effects_verified = {0}, image_verified = {0};
++	if (!freemix_nv_sdk_begin(FREEMIX_NV_VFX, effectsPath, "NVVideoEffects.dll", &effects_verified)) {
++		blog(LOG_WARNING, "[FreeMix] %s", freemix_nv_sdk_reason(FREEMIX_NV_VFX));
++		return false;
++	}
++	if (!freemix_nv_sdk_begin(FREEMIX_NV_VFX, imagePath, "NVCVImage.dll", &image_verified)) {
++		freemix_nv_sdk_end(&effects_verified);
++		blog(LOG_WARNING, "[FreeMix] %s", freemix_nv_sdk_reason(FREEMIX_NV_VFX));
++		return false;
++	}
++	// Both principal files are verified and pinned before either is loaded.
++	nv_videofx = LoadLibraryExW(effects_verified.canonical_path, NULL,
++		LOAD_LIBRARY_SEARCH_DLL_LOAD_DIR | LOAD_LIBRARY_SEARCH_DEFAULT_DIRS);
++	nv_cvimage = LoadLibraryExW(image_verified.canonical_path, NULL,
++		LOAD_LIBRARY_SEARCH_DLL_LOAD_DIR | LOAD_LIBRARY_SEARCH_DEFAULT_DIRS);
++	freemix_nv_sdk_end(&image_verified);
++	freemix_nv_sdk_end(&effects_verified);
+ 
+ 	return !!nv_videofx && !!nv_cvimage;
+ }
+diff --git a/plugins/obs-ffmpeg/obs-ffmpeg-source.c b/plugins/obs-ffmpeg/obs-ffmpeg-source.c
+index c92cc4b..bc1372f 100644
+--- a/plugins/obs-ffmpeg/obs-ffmpeg-source.c
++++ b/plugins/obs-ffmpeg/obs-ffmpeg-source.c
+@@ -31,6 +31,8 @@
+ struct ffmpeg_source {
+ 	media_playback_t *media;
+ 	bool destroy_media;
++	pthread_mutex_t clock_mutex;
++	struct mp_clock_snapshot clock;
+ 
+ 	enum video_range_type range;
+ 	bool is_linear_alpha;
+@@ -66,6 +68,53 @@ struct ffmpeg_source {
+ 	obs_hotkey_id stop_hotkey;
+ };
+ 
++static uint64_t prepare_source_clock(struct ffmpeg_source *s)
++{
++    pthread_mutex_lock(&s->clock_mutex);
++    const uint64_t generation = s->clock.generation + 1;
++    s->clock = (struct mp_clock_snapshot){.generation = generation};
++    pthread_mutex_unlock(&s->clock_mutex);
++    return generation;
++}
++
++static void update_source_clock(void *opaque, const struct mp_clock_snapshot *clock)
++{
++    struct ffmpeg_source *s = opaque;
++    pthread_mutex_lock(&s->clock_mutex);
++    if (clock->generation == s->clock.generation && clock->revision > s->clock.revision)
++        s->clock = *clock;
++    pthread_mutex_unlock(&s->clock_mutex);
++}
++
++static void source_clock_proc(void *opaque, calldata_t *cd)
++{
++    struct ffmpeg_source *s = opaque;
++    struct mp_clock_snapshot snapshot;
++    pthread_mutex_lock(&s->clock_mutex);
++    snapshot = s->clock;
++    pthread_mutex_unlock(&s->clock_mutex);
++    /* No decoder pointer or reconnect mutex is dereferenced by this getter. */
++    obs_data_t *data = obs_data_create();
++    obs_data_set_int(data, "contractVersion", 1);
++    obs_data_set_string(data, "sourceUuid", obs_source_get_uuid(s->source));
++    obs_data_set_bool(data, "supported", snapshot.supported);
++    obs_data_set_int(data, "generation", snapshot.generation);
++    obs_data_set_int(data, "revision", snapshot.revision);
++    obs_data_set_int(data, "epoch", snapshot.epoch);
++    obs_data_set_int(data, "requestedResets", snapshot.requested_resets);
++    obs_data_set_int(data, "completedResets", snapshot.completed_resets);
++    obs_data_set_bool(data, "presentedValid", snapshot.presented_valid);
++    obs_data_set_string(data, "timestampSource", !snapshot.supported ? "unavailable" :
++                        snapshot.presented_valid ? "submitted-source-pts" : "decoder-base-fallback");
++    obs_data_set_bool(data, "resetInProgress", snapshot.reset_in_progress);
++    obs_data_set_bool(data, "resetPending", snapshot.reset_pending);
++    obs_data_set_bool(data, "resetReady", snapshot.ready);
++    obs_data_set_double(data, "submittedCursorMs", snapshot.presented_pts_ns * (double)snapshot.speed / 100000000.0);
++    obs_data_set_string(data, "timestampDomain", "submitted-source-pts-before-wall-conversion");
++    calldata_set_string(cd, "clock", obs_data_get_json(data));
++    obs_data_release(data);
++}
++
+ // Used to safely cancel and join any active reconnect threads
+ // Use this to join any finished reconnect thread too!
+ static void stop_reconnect_thread(struct ffmpeg_source *s)
+@@ -301,6 +350,8 @@ static void ffmpeg_source_open(struct ffmpeg_source *s)
+ 			.v_seek_cb = seek_frame,
+ 			.a_cb = get_audio,
+ 			.stop_cb = media_stopped,
++			.clock_cb = update_source_clock,
++			.clock_generation = prepare_source_clock(s),
+ 			.path = s->input,
+ 			.format = s->input_format,
+ 			.buffering = s->buffering_mb * 1024 * 1024,
+@@ -361,6 +412,7 @@ static void ffmpeg_source_tick(void *data, float seconds)
+ 	struct ffmpeg_source *s = data;
+ 	if (s->destroy_media) {
+ 		if (s->media) {
++			prepare_source_clock(s);
+ 			media_playback_destroy(s->media);
+ 			s->media = NULL;
+ 		}
+@@ -485,6 +537,7 @@ static void ffmpeg_source_update(void *data, obs_data_t *settings)
+ 		s->speed_percent = 100;
+ 
+ 	if (s->media && should_restart_media) {
++		prepare_source_clock(s);
+ 		media_playback_destroy(s->media);
+ 		s->media = NULL;
+ 	}
+@@ -620,6 +673,14 @@ static void *ffmpeg_source_create(obs_data_t *settings, obs_source_t *source)
+ 		return NULL;
+ 	}
+ 
++    if (pthread_mutex_init(&s->clock_mutex, NULL)) {
++        FF_BLOG(LOG_ERROR, "Failed to initialize source clock mutex");
++        pthread_mutex_destroy(&s->reconnect_mutex);
++        os_event_destroy(s->reconnect_stop_event);
++        bfree(s);
++        return NULL;
++    }
++
+ 	s->hotkey = obs_hotkey_register_source(source, "MediaSource.Restart", obs_module_text("RestartMedia"),
+ 					       restart_hotkey, s);
+ 
+@@ -632,6 +693,7 @@ static void *ffmpeg_source_create(obs_data_t *settings, obs_source_t *source)
+ 						    ffmpeg_source_stop_hotkey, s);
+ 
+ 	proc_handler_t *ph = obs_source_get_proc_handler(source);
++	proc_handler_add(ph, "void freemix_media_clock(out string clock)", source_clock_proc, s);
+ 	proc_handler_add(ph, "void restart()", restart_proc, s);
+ 	proc_handler_add(ph, "void preload_first_frame()", preload_first_frame_proc, s);
+ 	proc_handler_add(ph, "void get_duration(out int duration)", get_duration, s);
+@@ -649,8 +711,11 @@ static void ffmpeg_source_destroy(void *data)
+ 
+ 	if (s->hotkey)
+ 		obs_hotkey_unregister(s->hotkey);
+-	if (s->media)
++	if (s->media) {
++		prepare_source_clock(s);
+ 		media_playback_destroy(s->media);
++	}
++	pthread_mutex_destroy(&s->clock_mutex);
+ 
+ 	pthread_mutex_destroy(&s->reconnect_mutex);
+ 	os_event_destroy(s->reconnect_stop_event);
+diff --git a/plugins/obs-websocket b/plugins/obs-websocket
+index 70e881a..79a04cd 160000
+--- a/plugins/obs-websocket
++++ b/plugins/obs-websocket
+@@ -1 +1 @@
+-Subproject commit 70e881a141e6533e34e56923f0da095cd87e7839
++Subproject commit 79a04cd36fc31998de888c05bea57a57cb8657ec
+diff --git a/plugins/rtmp-services/rtmp-services-main.c b/plugins/rtmp-services/rtmp-services-main.c
+index f86cd05..f07fb50 100644
+--- a/plugins/rtmp-services/rtmp-services-main.c
++++ b/plugins/rtmp-services/rtmp-services-main.c
+@@ -1,3 +1,4 @@
++#include <string.h>
+ #include <util/text-lookup.h>
+ #include <util/threading.h>
+ #include <util/platform.h>
+@@ -35,6 +36,7 @@ const char *get_module_name(void)
+ 
+ static bool confirm_service_file(void *param, struct file_download_data *file)
+ {
++	if (!file || !file->name || strcmp(file->name, "services.json") != 0) return false;
+ 	if (astrcmpi(file->name, "services.json") == 0) {
+ 		obs_data_t *data;
+ 		int format_version;
+diff --git a/plugins/win-capture/plugin-main.c b/plugins/win-capture/plugin-main.c
+index 98a38ef..044c526 100644
+--- a/plugins/win-capture/plugin-main.c
++++ b/plugins/win-capture/plugin-main.c
+@@ -1,3 +1,4 @@
++#include <string.h>
+ #include <windows.h>
+ #include <obs-module.h>
+ #include <util/dstr.h>
+@@ -77,6 +78,7 @@ void wait_for_hook_initialization(void)
+ 
+ static bool confirm_compat_file(void *param, struct file_download_data *file)
+ {
++	if (!file || !file->name || strcmp(file->name, "compatibility.json") != 0) return false;
+ 	if (astrcmpi(file->name, "compatibility.json") == 0) {
+ 		obs_data_t *data;
+ 		int format_version;
+diff --git a/shared/file-updater/file-updater/file-updater.c b/shared/file-updater/file-updater/file-updater.c
+index 6d00f64..0c7733e 100644
+--- a/shared/file-updater/file-updater/file-updater.c
++++ b/shared/file-updater/file-updater/file-updater.c
+@@ -208,8 +208,16 @@ static bool init_update(struct update_info *info)
+ 	return true;
+ }
+ 
++/* Resource updates never replace executable code in a FreeMix release. */
++static bool freemix_resource_file_allowed(const char *name)
++{
++	return name && (strcmp(name, "compatibility.json") == 0 || strcmp(name, "services.json") == 0);
++}
++
+ static void copy_local_to_cache(struct update_info *info, const char *file)
+ {
++	/* package.json is an internal fixed metadata path, not a remote file entry. */
++	if (!freemix_resource_file_allowed(file) && (!file || strcmp(file, "package.json") != 0)) return;
+ 	char *local_file_path = get_path(info->local, file);
+ 	char *cache_file_path = get_path(info->cache, file);
+ 	char *temp_file_path = get_path(info->temp, file);
+@@ -337,6 +345,8 @@ static bool update_remote_files(void *param, obs_data_t *remote_file)
+ {
+ 	struct update_info *info = param;
+ 
++	if (!freemix_resource_file_allowed(obs_data_get_string(remote_file, "name"))) return true;
++
+ 	struct file_update_data data = {.name = obs_data_get_string(remote_file, "name"),
+ 					.version = (int)obs_data_get_int(remote_file, "version")};
+ 
+diff --git a/shared/media-playback/media-playback/media-playback.h b/shared/media-playback/media-playback/media-playback.h
+index 812287b..e7d8f16 100644
+--- a/shared/media-playback/media-playback/media-playback.h
++++ b/shared/media-playback/media-playback/media-playback.h
+@@ -25,6 +25,15 @@ typedef void (*mp_video_cb)(void *opaque, struct obs_source_frame *frame);
+ typedef void (*mp_audio_cb)(void *opaque, struct obs_source_audio *audio);
+ typedef void (*mp_stop_cb)(void *opaque);
+ 
++/* Diagnostic observer only: submitted source PTS, not a rendered/displayed frame. */
++struct mp_clock_snapshot {
++    uint64_t generation, revision, epoch, requested_resets, completed_resets;
++    int64_t presented_pts_ns;
++    int speed;
++    bool supported, presented_valid, reset_in_progress, reset_pending, ready;
++};
++typedef void (*mp_clock_cb)(void *opaque, const struct mp_clock_snapshot *clock);
++
+ struct mp_media_info {
+ 	void *opaque;
+ 
+@@ -33,6 +42,8 @@ struct mp_media_info {
+ 	mp_video_cb v_seek_cb;
+ 	mp_audio_cb a_cb;
+ 	mp_stop_cb stop_cb;
++	mp_clock_cb clock_cb;
++	uint64_t clock_generation;
+ 
+ 	const char *path;
+ 	const char *format;
+diff --git a/shared/media-playback/media-playback/media.c b/shared/media-playback/media-playback/media.c
+index 4d70642..784958e 100644
+--- a/shared/media-playback/media-playback/media.c
++++ b/shared/media-playback/media-playback/media.c
+@@ -345,12 +345,33 @@ static inline bool mp_media_can_play_frame(mp_media_t *m, struct mp_decode *d)
+ 	return d->frame_ready && (d->frame_pts <= m->next_pts_ns || (d->frame_pts - m->next_pts_ns > MAX_TS_VAR));
+ }
+ 
++static void publish_clock(mp_media_t *m)
++{
++    if (!m->clock_cb) return;
++    struct mp_clock_snapshot snapshot;
++    pthread_mutex_lock(&m->mutex);
++    snapshot = (struct mp_clock_snapshot){
++        .generation = m->clock_generation, .revision = ++m->clock_revision,
++        .epoch = m->clock_epoch, .requested_resets = m->clock_requested_resets,
++        .completed_resets = m->clock_completed_resets,
++        .presented_pts_ns = m->presented_pts, .speed = m->speed,
++        .supported = true, .presented_valid = m->presented_valid,
++        .reset_in_progress = m->clock_reset_in_progress, .reset_pending = m->reset,
++        .ready = m->presented_valid && !m->reset && !m->clock_reset_in_progress &&
++                 m->clock_completed_resets == m->clock_requested_resets,
++    };
++    pthread_mutex_unlock(&m->mutex);
++    /* Never call an observer holding the decoder mutex. */
++    m->clock_cb(m->opaque, &snapshot);
++}
++
+ static void remember_presented_pts(mp_media_t *m, int64_t pts)
+ {
+ 	pthread_mutex_lock(&m->mutex);
+ 	m->presented_pts = pts;
+ 	m->presented_valid = pts >= 0;
+ 	pthread_mutex_unlock(&m->mutex);
++	publish_clock(m);
+ }
+ 
+ 
+@@ -611,7 +632,11 @@ bool mp_media_reset(mp_media_t *m)
+ {
+ 	pthread_mutex_lock(&m->mutex);
+ 	m->presented_valid = false;
++	m->clock_reset_in_progress = true;
++	++m->clock_epoch;
++	const uint64_t clock_request = m->clock_requested_resets;
+ 	pthread_mutex_unlock(&m->mutex);
++	publish_clock(m);
+ 	bool stopping;
+ 	bool active;
+ 
+@@ -650,6 +675,12 @@ bool mp_media_reset(mp_media_t *m)
+ 
+ 	m->pause = false;
+ 
++	pthread_mutex_lock(&m->mutex);
++	m->clock_completed_resets = clock_request;
++	m->clock_reset_in_progress = false;
++	pthread_mutex_unlock(&m->mutex);
++	publish_clock(m);
++
+ 	if (!active && m->is_local_file && m->v_preload_cb)
+ 		mp_media_next_video(m, true);
+ 	if (stopping && m->stop_cb)
+@@ -948,6 +979,8 @@ bool mp_media_init(mp_media_t *media, const struct mp_media_info *info)
+ 	media->v_cb = info->v_cb;
+ 	media->a_cb = info->a_cb;
+ 	media->stop_cb = info->stop_cb;
++	media->clock_cb = info->full_decode ? NULL : info->clock_cb;
++	media->clock_generation = info->clock_generation;
+ 	media->ffmpeg_options = info->ffmpeg_options;
+ 	media->v_seek_cb = info->v_seek_cb;
+ 	media->v_preload_cb = info->v_preload_cb;
+@@ -1019,8 +1052,10 @@ void mp_media_play(mp_media_t *m, bool loop, bool reconnecting)
+ {
+ 	pthread_mutex_lock(&m->mutex);
+ 
+-	if (m->active)
++	if (m->active) {
+ 		m->reset = true;
++		++m->clock_requested_resets;
++	}
+ 
+ 	m->looping = loop;
+ 	m->active = true;
+@@ -1028,6 +1063,7 @@ void mp_media_play(mp_media_t *m, bool loop, bool reconnecting)
+ 
+ 	pthread_mutex_unlock(&m->mutex);
+ 
++	publish_clock(m);
+ 	os_sem_post(m->sem);
+ }
+ 
+@@ -1058,11 +1094,13 @@ void mp_media_stop(mp_media_t *m)
+ 	pthread_mutex_lock(&m->mutex);
+ 	if (m->active) {
+ 		m->reset = true;
++		++m->clock_requested_resets;
+ 		m->active = false;
+ 		m->stopping = true;
+ 	}
+ 	pthread_mutex_unlock(&m->mutex);
+ 
++	publish_clock(m);
+ 	os_sem_post(m->sem);
+ }
+ 
+diff --git a/shared/media-playback/media-playback/media.h b/shared/media-playback/media-playback/media.h
+index 2f2a506..2a5391c 100644
+--- a/shared/media-playback/media-playback/media.h
++++ b/shared/media-playback/media-playback/media.h
+@@ -106,6 +106,10 @@ struct mp_media {
+ 	/* Source PTS of the video actually submitted, before wall-clock conversion. */
+ 	int64_t presented_pts;
+ 	bool presented_valid;
++	mp_clock_cb clock_cb;
++	uint64_t clock_generation, clock_revision, clock_epoch;
++	uint64_t clock_requested_resets, clock_completed_resets;
++	bool clock_reset_in_progress;
+ };
+ 
+ typedef struct mp_media mp_media_t;
+-- 
+2.56.0.windows.1
+

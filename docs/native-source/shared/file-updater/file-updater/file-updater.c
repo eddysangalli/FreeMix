@@ -208,8 +208,16 @@ static bool init_update(struct update_info *info)
 	return true;
 }
 
+/* Resource updates never replace executable code in a FreeMix release. */
+static bool freemix_resource_file_allowed(const char *name)
+{
+	return name && (strcmp(name, "compatibility.json") == 0 || strcmp(name, "services.json") == 0);
+}
+
 static void copy_local_to_cache(struct update_info *info, const char *file)
 {
+	/* package.json is an internal fixed metadata path, not a remote file entry. */
+	if (!freemix_resource_file_allowed(file) && (!file || strcmp(file, "package.json") != 0)) return;
 	char *local_file_path = get_path(info->local, file);
 	char *cache_file_path = get_path(info->cache, file);
 	char *temp_file_path = get_path(info->temp, file);
@@ -336,6 +344,8 @@ static inline void replace_file(const char *src_base_path, const char *dst_base_
 static bool update_remote_files(void *param, obs_data_t *remote_file)
 {
 	struct update_info *info = param;
+
+	if (!freemix_resource_file_allowed(obs_data_get_string(remote_file, "name"))) return true;
 
 	struct file_update_data data = {.name = obs_data_get_string(remote_file, "name"),
 					.version = (int)obs_data_get_int(remote_file, "version")};

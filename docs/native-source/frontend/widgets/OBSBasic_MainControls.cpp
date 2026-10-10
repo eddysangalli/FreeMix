@@ -138,8 +138,8 @@ void OBSBasic::CreateFiltersWindow(obs_source_t *source)
 
 void OBSBasic::updateCheckFinished()
 {
-	ui->actionCheckForUpdates->setEnabled(true);
-	ui->actionRepair->setEnabled(true);
+	if (ui->actionCheckForUpdates) ui->actionCheckForUpdates->setEnabled(!App()->IsUpdaterDisabled());
+	if (ui->actionRepair) ui->actionRepair->setEnabled(!App()->IsUpdaterDisabled());
 }
 
 void OBSBasic::ResetUI()
@@ -397,6 +397,7 @@ void OBSBasic::on_actionCheckForUpdates_triggered()
 
 void OBSBasic::on_actionRepair_triggered()
 {
+	if (App()->IsUpdaterDisabled()) return;
 #if defined(_WIN32)
 	ui->actionCheckForUpdates->setEnabled(false);
 	ui->actionRepair->setEnabled(false);

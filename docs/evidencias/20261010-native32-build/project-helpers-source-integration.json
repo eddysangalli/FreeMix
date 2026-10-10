@@ -1,0 +1,49 @@
+{
+  "status": "NATIVE_HELPERS_SOURCE_INTEGRATED_NOT_COMPILED",
+  "files": [
+    {
+      "path": "freemix-app/frontend/widgets/FreeMixMultistream.cpp",
+      "beforeSha256": "c56f7ecd8bd0c0838a71eacda3fb0cc4e5b77bace6bf54ad1d627176a2eb8af1",
+      "sha256": "efbf13bcfc35387f1ae53558a81d489a705ae7b67394a47dc3a9e4a05fe661ce"
+    },
+    {
+      "path": "freemix-app/frontend/cmake/ui-widgets.cmake",
+      "beforeSha256": "6b301fa573b0c01f286df859ca9a1505338eab1c844c363c4590fb079d34af62",
+      "sha256": "c5fa1327bf37616337765f39d70e563d61e699656332f0c81b546946c23b4247"
+    },
+    {
+      "path": "freemix-app/frontend/widgets/FreeMixProjectPolicy.cpp",
+      "beforeSha256": null,
+      "sha256": "35b94c33bdb99bb43145b8be406d9a305896e2928ff9466b6b5e0c5450f33a86"
+    },
+    {
+      "path": "freemix-app/frontend/widgets/FreeMixProjectPolicy.hpp",
+      "beforeSha256": null,
+      "sha256": "bcf71cf9753492cdba4c6cfeb7a4d543a27e2624a169645dd071b13083fb0066"
+    },
+    {
+      "path": "freemix-app/frontend/widgets/FreeMixProjectInventory.cpp",
+      "beforeSha256": null,
+      "sha256": "ef483dfc81b7513c9814317a653920e57abfbe47d4baed27f951b591452a8d9f"
+    },
+    {
+      "path": "freemix-app/frontend/widgets/FreeMixProjectInventory.hpp",
+      "beforeSha256": null,
+      "sha256": "4ade19bb4aef18db58281b7037036bf9195c55a17d7bba9a214a50d0a4b009c7"
+    }
+  ],
+  "registered": [
+    "project_creation_policy",
+    "project_device_inventory"
+  ],
+  "scanConsentRequired": true,
+  "NativeStarted": false,
+  "coverageQualified": false,
+  "nativeQueriesQualified": false,
+  "operatorTouched": false,
+  "limits": [
+    "Native compile/read-only own policy/metadata qualification pending",
+    "Scan may open driver metadata handles; no timeout cancellation",
+    "Node global host wiring is still offside, creation disabled"
+  ]
+}

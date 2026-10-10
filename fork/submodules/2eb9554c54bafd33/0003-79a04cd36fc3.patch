@@ -1,0 +1,40 @@
+From 79a04cd36fc31998de888c05bea57a57cb8657ec Mon Sep 17 00:00:00 2001
+From: Eddy Sangalli <eddyrodrigues@outlook.com>
+Date: Sat, 10 Oct 2026 10:33:06 -0300
+Subject: [PATCH] Expose read-only source clock diagnostics for FreeMix QA
+
+---
+ .../RequestHandler_MediaInputs.cpp              | 17 +++++++++++++++++
+ 1 file changed, 17 insertions(+)
+
+diff --git a/src/requesthandler/RequestHandler_MediaInputs.cpp b/src/requesthandler/RequestHandler_MediaInputs.cpp
+index 8919283..b3b9899 100644
+--- a/src/requesthandler/RequestHandler_MediaInputs.cpp
++++ b/src/requesthandler/RequestHandler_MediaInputs.cpp
+@@ -73,6 +73,23 @@ RequestResult RequestHandler::GetMediaInputStatus(const Request &request)
+ 		responseData["mediaCursor"] = nullptr;
+ 	}
+ 
++    calldata_t clockData;
++    calldata_init(&clockData);
++    const char *inputId = obs_source_get_unversioned_id(input);
++    const bool hasClock = inputId && std::string(inputId) == "ffmpeg_source" &&
++        proc_handler_call(obs_source_get_proc_handler(input), "freemix_media_clock", &clockData);
++    const char *clockText = nullptr;
++    std::string clockJson;
++    if (hasClock && calldata_get_string(&clockData, "clock", &clockText) && clockText)
++        clockJson = clockText;
++    calldata_free(&clockData);
++    if (!clockJson.empty()) {
++        json clock = json::parse(clockJson, nullptr, false);
++        if (clock.is_object() && clock.contains("contractVersion") &&
++            clock["contractVersion"].is_number_integer() && clock["contractVersion"] == 1)
++            responseData["mediaClock"] = std::move(clock);
++    }
++
+ 	return RequestResult::Success(responseData);
+ }
+ 
+-- 
+2.56.0.windows.1
+

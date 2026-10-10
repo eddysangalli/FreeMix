@@ -1,0 +1,8 @@
+{
+  "path": "ferramentas/efeitos-operacoes.mjs",
+  "before": "bound.getObs=()=>p.getObs()===c.obs?obs:p.getObs();",
+  "after": "bound.getObs=()=>{check();return obs;};",
+  "beforeSha256": "b1eb73cdb67b53bef94d42c4846e4849cbf3fde15d464ac3e6c89281499aaf3e",
+  "afterSha256": "03cf7f7729ee2e83af9e937d7169381a605131991fada22ff5aa685f8cc7da99",
+  "onlyThisReplacement": true
+}

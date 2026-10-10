@@ -1,0 +1,30 @@
+{
+  "status": "ROOT_OWN_PROCESS_CLOSED_NORMAL_USER_CONFIRMED",
+  "at": "2026-10-10T13:14:59.996Z",
+  "pid": 176324,
+  "pidPresent": false,
+  "normalShutdownAccepted": true,
+  "userAnsweredOwnQASaveExit": true,
+  "force": false,
+  "qaGuardBypassed": false,
+  "originalReplayStatus": "FAIL_HARNESS_SCOPE_NO_MEDIA_MEASURED",
+  "originalReplayResultSha256": "dee7bd192a5fdabed02aaa39e5ea4cf544c95fbd02851d026fcf9561adbbe1b3",
+  "originalResultUnchanged": true,
+  "logSha256": "babfc8e84e22ff986027193bf2728fe5c857512f3bbebf2d325fb002e195d72f",
+  "allocations": [
+    0
+  ],
+  "crashMarkers": 0,
+  "crashFiles": 0,
+  "warnings": 0,
+  "NativeSourcePins": 2085,
+  "NativeDestinationPins": 2085,
+  "originalAllowlistPins": 52,
+  "selectedPackagePins": 9582,
+  "selectedPackageUnchanged": true,
+  "operatorTouched": false,
+  "limits": [
+    "Observed process absence after user confirmation; child exit code unavailable in original receipt",
+    "Closure does not qualify replay sync or original failing harness"
+  ]
+}

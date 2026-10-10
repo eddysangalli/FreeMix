@@ -1,0 +1,8 @@
+import{readFile}from'node:fs/promises';import{join}from'node:path';import{createHash}from'node:crypto';
+export async function verifySDK(family,{policy=null,dirs=null}={}){
+ try{policy??=JSON.parse(await readFile(new URL('./qualidade-sdk-policy.json',import.meta.url),'utf8'));const required={vfx:['NVVideoEffects.dll','NVCVImage.dll'],afx:['NVAudioEffects.dll']};if(policy.schema!==1||!required[family]||!Array.isArray(policy[family]?.files)||!policy[family].version||policy[family].files.length!==required[family].length||required[family].some(n=>policy[family].files.filter(f=>f.name===n).length!==1))return{approved:false,reason:'Política SDK não confirmada.'};
+ const dir=dirs?.[family]||(family==='vfx'?process.env.NV_VIDEO_EFFECTS_PATH||join(process.env.ProgramFiles||'','NVIDIA Corporation/NVIDIA Video Effects'):process.env.NVAFX_SDK_DIR||join(process.env.ProgramFiles||'','NVIDIA Corporation/NVIDIA Audio Effects SDK'));
+ for(const f of policy[family].files){if(!/^[A-Za-z0-9_.-]+\.dll$/.test(f.name)||!/^[a-f0-9]{64}$/.test(f.sha256))return{approved:false,reason:'Política SDK não confirmada.'};const hash=createHash('sha256').update(await readFile(join(dir,f.name))).digest('hex');if(hash!==f.sha256)return{approved:false,match:false,reason:'SDK mudou; versão ainda não homologada.'};}
+ return{approved:policy.approved===true,match:true,version:policy[family].version,policyVersion:policy.version,reason:policy.approved===true?null:'SDK presente; versão ainda não homologada nesta política.'};
+ }catch{return{approved:false,match:false,reason:'SDK não confirmado no caminho utilizado pelo motor; nenhum download automático.'};}
+}

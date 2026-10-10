@@ -106,6 +106,10 @@ struct mp_media {
 	/* Source PTS of the video actually submitted, before wall-clock conversion. */
 	int64_t presented_pts;
 	bool presented_valid;
+	mp_clock_cb clock_cb;
+	uint64_t clock_generation, clock_revision, clock_epoch;
+	uint64_t clock_requested_resets, clock_completed_resets;
+	bool clock_reset_in_progress;
 };
 
 typedef struct mp_media mp_media_t;

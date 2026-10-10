@@ -1,0 +1,29 @@
+import fs from 'node:fs/promises';
+import path from 'node:path';
+import assert from 'node:assert/strict';
+import {createHash} from 'node:crypto';
+import {spawnSync} from 'node:child_process';
+const root=path.resolve(import.meta.dirname,'..'),r5=path.join(root,'qa-finalizacao/quality-controls-bound-connection-r5'),r6=path.join(root,'qa-finalizacao/quality-controls-tabs-r6');
+const hash=b=>createHash('sha256').update(b).digest('hex');
+async function frozen(dir,sha){const b=await fs.readFile(path.join(dir,'ALLOWLIST.json'));assert.equal(hash(b),sha);const a=JSON.parse(b);for(const f of a.files){const bytes=await fs.readFile(path.join(dir,f.path));assert.equal(hash(bytes),f.sha256);assert.equal(bytes.length,f.bytes);}return a;}
+const a5=await frozen(r5,'87ad2625bc1f621cc63416393e62aa3452fbf61e439b642a7a7cfb057d2bf134'),a6=await frozen(r6,'ef3408a92e23ffec851c2697c0359fc04749d8df4869483e667db7d17457d89b');
+const i5=JSON.parse(await fs.readFile(path.join(r5,'INTEGRATION-R5.json'))),i6=JSON.parse(await fs.readFile(path.join(r6,'INTEGRATION-R6.json')));
+for(const f of i5.externalPins)assert.equal(hash(await fs.readFile(path.join(root,f.path))),f.sha256);
+const products=new Map();
+for(const f of i5.product){const target=path.join(root,f.canonical);let before=null;try{before=await fs.readFile(target);}catch(e){assert.equal(e.code,'ENOENT');}assert.equal(before&&hash(before),f.baselineSha256);const bytes=await fs.readFile(path.join(r5,f.draft));assert.equal(hash(bytes),f.sha256);products.set(f.canonical,{...f,bytes,before});}
+for(const f of i6.product){const prior=products.get(f.canonical);if(prior)assert.equal(hash(prior.bytes),f.baselineSha256);else{await assert.rejects(fs.stat(path.join(root,f.canonical)),{code:'ENOENT'});}const bytes=await fs.readFile(path.join(r6,f.draft));assert.equal(hash(bytes),f.sha256);products.set(f.canonical,{...f,bytes,before:prior?.before??null});}
+assert.equal(products.size,11);
+assert.equal(hash(await fs.readFile(process.execPath)),'ba4e6d110e8c1592a1ecd390f6b05f3da124b13871a5be62b341a07a853c6c32');
+const checks=[];
+for(const [dir,name,changes,count]of [[r5,'test-r5.mjs',[['./prior-r4-foreign-binding-fail.json','./ROOT-prior-r4-fail.json'],['./r5-results.json','./ROOT-r5-results.json']],9],[r5,'origin-test-adapter-defaults-final-r3.mjs',[['own-sdk-fixture-defaults-final-r3','ROOT-own-sdk-fixture'],['adapter-defaults-final-r3-results.json','ROOT-adapter-results.json']],28],[r6,'test-tabs.mjs',[['./tabs-results.json','./ROOT-tabs-results.json']],8]]){let source=await fs.readFile(path.join(dir,name),'utf8');for(const [a,b]of changes){assert(source.includes(a));source=source.replaceAll(a,b);}const target=path.join(dir,'ROOT-'+name);await fs.writeFile(target,source,{flag:'wx'});const run=spawnSync(process.execPath,[target],{encoding:'utf8',timeout:45000});assert.equal(run.status,0,run.stderr||run.stdout);assert.equal(JSON.parse(run.stdout.trim()).cases,count);checks.push({test:name,cases:count,status:'PASS'});}
+const backup=path.join(root,'qa-finalizacao/quality-root-integrated-r5-r6');await fs.mkdir(backup,{recursive:false});
+for(const [canonical,f]of products){if(f.before){const old=path.join(backup,'before',canonical);await fs.mkdir(path.dirname(old),{recursive:true});await fs.writeFile(old,f.before,{flag:'wx'});}await fs.writeFile(path.join(root,canonical),f.bytes);assert.equal(hash(await fs.readFile(path.join(root,canonical))),f.sha256);if(/\.(mjs|js)$/.test(canonical)){const s=spawnSync(process.execPath,['--check',path.join(root,canonical)],{encoding:'utf8',timeout:15000});assert.equal(s.status,0,s.stderr);}}
+await frozen(r5,'87ad2625bc1f621cc63416393e62aa3452fbf61e439b642a7a7cfb057d2bf134');await frozen(r6,'ef3408a92e23ffec851c2697c0359fc04749d8df4869483e667db7d17457d89b');
+for(const f of i5.externalPins)assert.equal(hash(await fs.readFile(path.join(root,f.path))),f.sha256);
+const receipt={status:'SOURCE_INTEGRATED_R5_R6_ROOT_CHECKS_PASS',checks,files:[...products].map(([canonical,f])=>({canonical,beforeSha256:f.before&&hash(f.before),sha256:f.sha256})),frozenR5Pins:a5.files.length,frozenR6Pins:a6.files.length,externalPinsUnchanged:true,operatorTouched:false,NativeStarted:false,installedRuntimeChanged:false,SDKApproved:false,EnglishTranslationApproved:false,limits:['Mock-OBS adapter and DOM proofs; pixels/PCM/inference and rendered UI qualification pending','Native SDK preload governance not yet integrated','Source changes are not a new installed release']};
+await fs.writeFile(path.join(backup,'ROOT-RECEIPT.json'),JSON.stringify(receipt,null,2)+'\n',{flag:'wx'});
+const proof=path.join(root,'FreeMix/docs/evidencias/20261010-quality-r5-tabs-r6-root');await fs.mkdir(proof,{recursive:false});
+for(const[dir,source,name]of [[backup,'ROOT-RECEIPT.json','ROOT-RECEIPT.json'],[r5,'ROOT-r5-results.json','ROOT-r5-results.json'],[r5,'ROOT-prior-r4-fail.json','R4-FAIL.json'],[r5,'ROOT-adapter-results.json','ROOT-adapter-results.json'],[r5,'README-R5.md','DRAFT-R5.md'],[r5,'DELTA-R5.json','DELTA-R5.json'],[r6,'ROOT-tabs-results.json','ROOT-tabs-results.json'],[r6,'README-R6.md','DRAFT-R6.md']])await fs.writeFile(path.join(proof,name),await fs.readFile(path.join(dir,source)),{flag:'wx'});
+await fs.writeFile(path.join(proof,'ROOT-INTEGRATION.mjs'),await fs.readFile(import.meta.filename),{flag:'wx'});
+await fs.writeFile(path.join(proof,'ROOT-README.md'),'# Qualidade R5 e abas R6 — integração Root\n\nOnze fontes integradas após conferir todos os pins e repetir 9 casos de conexão, 28 do adaptador e 8 de abas. A falha R4 de conexão antiga foi preservada. Trocar abas não aplica ajustes nem muda os controles. SDK NVIDIA e tradução continuam desabilitados até homologação. Estes checks de software não são prova de imagem, áudio ou reconhecimento reais; a nova versão instalada e a revisão visual permanecem pendentes.\n',{flag:'wx'});
+console.log(JSON.stringify({status:receipt.status,files:products.size,checks:45}));
