@@ -1,0 +1,25 @@
+From c4b5af00ea4a4b744a3a19fef5ec861f693c9a69 Mon Sep 17 00:00:00 2001
+From: Eddy Sangalli <eddyrodrigues@outlook.com>
+Date: Sat, 10 Oct 2026 05:31:41 -0300
+Subject: [PATCH] Correct SDR Calls staging format before RGBA raw conversion
+
+---
+ frontend/widgets/FreeMixCallVideo.cpp | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/frontend/widgets/FreeMixCallVideo.cpp b/frontend/widgets/FreeMixCallVideo.cpp
+index 849cc6a..7a02180 100644
+--- a/frontend/widgets/FreeMixCallVideo.cpp
++++ b/frontend/widgets/FreeMixCallVideo.cpp
+@@ -121,7 +121,7 @@ std::string Build(Session &s,bool (*isPrivate)(obs_source_t *)){
+  auto *item=obs_scene_add(s.scene,s.source);if(!item)return "Could not frame video source";
+  vec2 size{},position{};vec2_set(&size,float(info.base_width),float(info.base_height));vec2_set(&position,size.x/2,size.y/2);
+  obs_sceneitem_set_alignment(item,OBS_ALIGN_CENTER);obs_sceneitem_set_pos(item,&position);obs_sceneitem_set_bounds_type(item,OBS_BOUNDS_SCALE_INNER);obs_sceneitem_set_bounds_alignment(item,OBS_ALIGN_CENTER);obs_sceneitem_set_bounds(item,&size);
+- info.output_width=Width;info.output_height=Height;info.output_format=VIDEO_FORMAT_RGBA;info.colorspace=VIDEO_CS_709;info.range=VIDEO_RANGE_FULL;info.gpu_conversion=false;
++ info.output_width=Width;info.output_height=Height;info.output_format=VIDEO_FORMAT_BGRA;info.colorspace=VIDEO_CS_709;info.range=VIDEO_RANGE_FULL;info.gpu_conversion=false;
+  s.view=obs_view_create();if(!s.view)return "Could not create AUX view";obs_view_set_source(s.view,0,obs_scene_get_source(s.scene));s.video=obs_view_add2(s.view,&info);if(!s.video)return "AUX video context unavailable";
+  creating=&s;s.output=obs_output_create("freemix_calls_return_video","FreeMix Calls auxiliary video",nullptr,nullptr);creating=nullptr;if(!s.output)return "Raw AUX output unavailable";
+  obs_output_set_media(s.output,s.video,nullptr);
+-- 
+2.56.0.windows.1
+

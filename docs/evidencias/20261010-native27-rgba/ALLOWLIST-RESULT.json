@@ -1,0 +1,139 @@
+{
+  "status": "FROZEN_PASS_NATIVE27_CALLS_EXACT_RGBA_TWO_SOURCES_FINITE",
+  "textOnlyFiles": [
+    {
+      "path": "runner.mjs",
+      "sha256": "100dd347f34c54915c19979fa3c4feea830c78e90bc9d18796f613a08631918f",
+      "bytes": 14698
+    },
+    {
+      "path": "scenarios.mjs",
+      "sha256": "098257f0402d022c6e66afae33ba4a7c8f0a2a4a893fbd2ecc58de79daa7264e",
+      "bytes": 8701
+    },
+    {
+      "path": "frame-codec.mjs",
+      "sha256": "3f1d87983bab5abeec5e96a292544df35022773f12c9b1f33b1b6bb43814f536",
+      "bytes": 5920
+    },
+    {
+      "path": "png-colour-readback.mjs",
+      "sha256": "c24fec518e26799d37ed6d45ecced0976f88f19e19d535f1cdf3a63a697d32ab",
+      "bytes": 2361
+    },
+    {
+      "path": "README.md",
+      "sha256": "a19636876e5a8c05b79d5aef3b96a98af8d5bed2d7617808d37e5fcbbd3912ea",
+      "bytes": 1238
+    },
+    {
+      "path": "PREPARATION.json",
+      "sha256": "2cbc7be39809181f0080eb66606e30c83c413fdb0a90c9a45f0163e47c1c3d30",
+      "bytes": 3960
+    },
+    {
+      "path": "root-command.json",
+      "sha256": "00d209dac926ae20bc96ba693f864234e958bcb33037018da922c487a58ec1e2",
+      "bytes": 1542
+    },
+    {
+      "path": "STATIC-CHECKS.json",
+      "sha256": "86d7fba58e4277ee1d4f9a7bf071856af8dbf7318bf89d57cdc23e1ebaf06aa8",
+      "bytes": 574
+    },
+    {
+      "path": "ALLOWLIST-PREPARATION.json",
+      "sha256": "2b7c753adca2506ad15cadaa2352d9969dfc9c3ba27c4c06bc40bba6d98da583",
+      "bytes": 1375
+    },
+    {
+      "path": "receipt.json",
+      "sha256": "3c3221ed236506fd1f5d75607f09d578bf95fb814e6bbe743edde96ca5069a6f",
+      "bytes": 29119
+    },
+    {
+      "path": "report.json",
+      "sha256": "3ddc542e69c03e80fdd6cf1cb2a73aa96ffd1fd55d599edfcde0bae0b360608a",
+      "bytes": 12818
+    },
+    {
+      "path": "freeze-result.mjs",
+      "sha256": "c57422d261036d85e7e7135ad14f000c6d3c666dc4ab717643e84371d1e8a277",
+      "bytes": 5866
+    },
+    {
+      "path": "../native25-calls-second-diagnostic-preparation-20261010/receipt.json",
+      "sha256": "b7ab93c6858b9612495f857f6e465c9c038e8336a59f9d42c42e60f4ea53224e",
+      "bytes": 27730
+    },
+    {
+      "path": "../native25-calls-second-diagnostic-preparation-20261010/ALLOWLIST-RESULT-FAIL.json",
+      "sha256": "63932fd53ca4092d70553a72d4c3803ea22e6c59a971ad727ac92cc08eae43ea",
+      "bytes": 2423
+    },
+    {
+      "path": "../native25-main-hotkey-review3-filecompletion-20261010/receipt.json",
+      "sha256": "0073c98e6cabf7d757f5a73982ac6091d58f77bbe3f3c528dc1ca305f8b2f6bd",
+      "bytes": 11765
+    }
+  ],
+  "ownSyntheticImageReferences": [
+    {
+      "path": "public-A-own-colour.png",
+      "sha256": "de6c19a7badd775bfb01bccf2c390eaf5b907014f2daf992b04cce21fde2f0cc",
+      "bytes": 696,
+      "width": 320,
+      "height": 180,
+      "centerRgba": [
+        120,
+        180,
+        35,
+        255
+      ],
+      "centralRgbaMin": [
+        120,
+        180,
+        35,
+        255
+      ],
+      "centralRgbaMax": [
+        120,
+        180,
+        35,
+        255
+      ],
+      "visuallyReviewedWithViewImage": true,
+      "capture": "Native public input GetSourceScreenshot",
+      "desktopCapture": false
+    },
+    {
+      "path": "public-B-own-colour.png",
+      "sha256": "4a56463b7ed5e70aa8d249ed6ac4068a83e76c4dae73d87bc2af4d4cc68cb324",
+      "bytes": 697,
+      "width": 320,
+      "height": 180,
+      "centerRgba": [
+        200,
+        51,
+        35,
+        255
+      ],
+      "centralRgbaMin": [
+        200,
+        51,
+        35,
+        255
+      ],
+      "centralRgbaMax": [
+        200,
+        51,
+        35,
+        255
+      ],
+      "visuallyReviewedWithViewImage": true,
+      "capture": "Native public input GetSourceScreenshot",
+      "desktopCapture": false
+    }
+  ],
+  "noCredentialsRawLogsOrRuntime": true
+}

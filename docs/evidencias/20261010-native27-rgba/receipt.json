@@ -1,0 +1,1213 @@
+{
+  "status": "PASS_OWN_REAL_NATIVE27_CALLS_EXACT_RGBA",
+  "started": "2026-10-10T08:37:07.367Z",
+  "operatorTouched": false,
+  "productChanged": false,
+  "qaCompositionOnly": true,
+  "nativeHead": "c4b5af00ea4a4b744a3a19fef5ec861f693c9a69",
+  "noApiStarted": true,
+  "noNativeUiAutomation": true,
+  "checks": [
+    {
+      "name": "Signed600 base and entire frozen Native25 pinned; own FPS configured before spawn",
+      "status": "PASS"
+    },
+    {
+      "name": "Both public PNG and wire exact RGBA <=1 match actual settings;2 slots/PTS/sequence and B continuation after A retirement",
+      "status": "PASS"
+    }
+  ],
+  "cases": [],
+  "requests": [],
+  "processObservations": [
+    {
+      "pid": 214948,
+      "helperUnknown": true,
+      "cimAbsent": true
+    }
+  ],
+  "pins": {
+    "candidate": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\candidate-release-060000.json",
+    "candidate-sha": "456696515dd7aabf87958e11a91bd324bab3f405fef68549c2cc16bf1e59647d",
+    "manifest-sha": "7107aa50b55dd2584be4fc30760af6ef1c85855c6995cd10758e65decc0a93b4",
+    "native-freeze": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\native-build-frozen-c4b5af0-configured.json",
+    "native-freeze-sha": "d7d7e623597b2eadef12a57b5f702bb3e20711f4e86e4b18c9a300cf947ac616",
+    "native-head": "c4b5af00ea4a4b744a3a19fef5ec861f693c9a69",
+    "preparation": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\native27-calls-exact-rgba-frozen-20261010\\PREPARATION.json",
+    "preparation-sha": "2cbc7be39809181f0080eb66606e30c83c413fdb0a90c9a45f0163e47c1c3d30",
+    "receipt": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\native27-calls-exact-rgba-frozen-20261010\\receipt.json",
+    "root-reviewed": "EXECUTE-OWN-REAL-NATIVE27-CALLS-EXACT-RGBA",
+    "main-fps": "30/1"
+  },
+  "root": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\own-temp-native25\\FreeMix-QA-NativeCallsExact-G7QeZO",
+  "installed": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\own-temp-native25\\FreeMix-QA-NativeCallsExact-G7QeZO\\FreeMix-QA-Calls Exact RGBA with spaces",
+  "mainFpsRequested": "30/1",
+  "sourceDraftOverlay": false,
+  "apiPortReservedNotStarted": 57282,
+  "wsPort": 57283,
+  "signedBaseFiles": 9582,
+  "fullNativeFilesPinned": 2085,
+  "ownProfileFpsEditedOnlyBeforeSpawn": true,
+  "nativePid": 214948,
+  "readinessObservations": [
+    {
+      "context": "startup",
+      "pid": 214948,
+      "elapsedMs": 7721,
+      "vendorOwnPidConfirmed": true,
+      "studioAndIdleConfirmed": true
+    },
+    {
+      "context": "cleanup",
+      "pid": 214948,
+      "elapsedMs": 40,
+      "vendorOwnPidConfirmed": true,
+      "studioAndIdleConfirmed": true
+    }
+  ],
+  "video": {
+    "baseWidth": 1920,
+    "baseHeight": 1080,
+    "fpsNumerator": 30,
+    "fpsDenominator": 1
+  },
+  "runtimeContextOwned": true,
+  "callsDiagnostic": {
+    "initial": {
+      "audioIncluded": false,
+      "autoStart": false,
+      "available": true,
+      "completed": [],
+      "contract": "rgba640x360-derived-fps-opaque-pts-v1",
+      "experimental": true,
+      "frameDivisor": 1,
+      "mainFpsCompatible": true,
+      "mainFpsDenominator": 1,
+      "mainFpsNumerator": 30,
+      "maxUniqueSources": 2,
+      "outputFpsDenominator": 1,
+      "outputFpsNumerator": 30,
+      "pending": false,
+      "registered": true,
+      "sessions": [],
+      "success": true
+    },
+    "inputs": [
+      {
+        "name": "QA Calls Diagnostic A",
+        "inputUuid": "ed3ab41e-7e1a-407c-9f8f-679d31122289",
+        "expectedColorSetting": 4280530040,
+        "actualSettings": {
+          "color": 4280530040,
+          "width": 640,
+          "height": 360
+        },
+        "expectedRgbaFromActualSetting": [
+          120,
+          180,
+          35,
+          255
+        ]
+      },
+      {
+        "name": "QA Calls Diagnostic B",
+        "inputUuid": "c6e32156-926b-4b5c-a69e-8719ed4dac7b",
+        "expectedColorSetting": 4280497096,
+        "actualSettings": {
+          "color": 4280497096,
+          "width": 640,
+          "height": 360
+        },
+        "expectedRgbaFromActualSetting": [
+          200,
+          51,
+          35,
+          255
+        ]
+      }
+    ],
+    "preStop": [
+      {
+        "inputUuid": "ed3ab41e-7e1a-407c-9f8f-679d31122289",
+        "slot": 0,
+        "generation": 1,
+        "frames": 601,
+        "firstPts": "626737325407996",
+        "lastPts": "626757325407796",
+        "firstSequence": "1",
+        "lastSequence": "601",
+        "receivedWindowMs": 19998.805899999978,
+        "opaqueFraction": 1,
+        "centralGreenFraction": 1,
+        "centralRedFraction": 0,
+        "centralBlueFraction": 0,
+        "centerRgbaMin": [
+          120,
+          180,
+          35,
+          255
+        ],
+        "centerRgbaMax": [
+          120,
+          180,
+          35,
+          255
+        ],
+        "centerRgbaSamples": [
+          {
+            "sequence": "1",
+            "pts": "626737325407996",
+            "rgba": [
+              120,
+              180,
+              35,
+              255
+            ]
+          },
+          {
+            "sequence": "62",
+            "pts": "626739358741309",
+            "rgba": [
+              120,
+              180,
+              35,
+              255
+            ]
+          },
+          {
+            "sequence": "123",
+            "pts": "626741392074622",
+            "rgba": [
+              120,
+              180,
+              35,
+              255
+            ]
+          },
+          {
+            "sequence": "184",
+            "pts": "626743425407935",
+            "rgba": [
+              120,
+              180,
+              35,
+              255
+            ]
+          },
+          {
+            "sequence": "244",
+            "pts": "626745425407915",
+            "rgba": [
+              120,
+              180,
+              35,
+              255
+            ]
+          },
+          {
+            "sequence": "305",
+            "pts": "626747458741228",
+            "rgba": [
+              120,
+              180,
+              35,
+              255
+            ]
+          },
+          {
+            "sequence": "366",
+            "pts": "626749492074541",
+            "rgba": [
+              120,
+              180,
+              35,
+              255
+            ]
+          },
+          {
+            "sequence": "426",
+            "pts": "626751492074521",
+            "rgba": [
+              120,
+              180,
+              35,
+              255
+            ]
+          }
+        ],
+        "decoderPayloadBytes": 921600
+      },
+      {
+        "inputUuid": "c6e32156-926b-4b5c-a69e-8719ed4dac7b",
+        "slot": 1,
+        "generation": 1,
+        "frames": 601,
+        "firstPts": "626737325407996",
+        "lastPts": "626757325407796",
+        "firstSequence": "1",
+        "lastSequence": "601",
+        "receivedWindowMs": 19996.95630000002,
+        "opaqueFraction": 1,
+        "centralGreenFraction": 0,
+        "centralRedFraction": 1,
+        "centralBlueFraction": 0,
+        "centerRgbaMin": [
+          200,
+          51,
+          35,
+          255
+        ],
+        "centerRgbaMax": [
+          200,
+          51,
+          35,
+          255
+        ],
+        "centerRgbaSamples": [
+          {
+            "sequence": "1",
+            "pts": "626737325407996",
+            "rgba": [
+              200,
+              51,
+              35,
+              255
+            ]
+          },
+          {
+            "sequence": "62",
+            "pts": "626739358741309",
+            "rgba": [
+              200,
+              51,
+              35,
+              255
+            ]
+          },
+          {
+            "sequence": "123",
+            "pts": "626741392074622",
+            "rgba": [
+              200,
+              51,
+              35,
+              255
+            ]
+          },
+          {
+            "sequence": "184",
+            "pts": "626743425407935",
+            "rgba": [
+              200,
+              51,
+              35,
+              255
+            ]
+          },
+          {
+            "sequence": "244",
+            "pts": "626745425407915",
+            "rgba": [
+              200,
+              51,
+              35,
+              255
+            ]
+          },
+          {
+            "sequence": "305",
+            "pts": "626747458741228",
+            "rgba": [
+              200,
+              51,
+              35,
+              255
+            ]
+          },
+          {
+            "sequence": "366",
+            "pts": "626749492074541",
+            "rgba": [
+              200,
+              51,
+              35,
+              255
+            ]
+          },
+          {
+            "sequence": "426",
+            "pts": "626751492074521",
+            "rgba": [
+              200,
+              51,
+              35,
+              255
+            ]
+          }
+        ],
+        "decoderPayloadBytes": 921600
+      }
+    ],
+    "afterFirstStop": [
+      {
+        "inputUuid": "ed3ab41e-7e1a-407c-9f8f-679d31122289",
+        "slot": 0,
+        "generation": 1,
+        "frames": 601,
+        "firstPts": "626737325407996",
+        "lastPts": "626757325407796",
+        "firstSequence": "1",
+        "lastSequence": "601",
+        "receivedWindowMs": 19998.805899999978,
+        "opaqueFraction": 1,
+        "centralGreenFraction": 1,
+        "centralRedFraction": 0,
+        "centralBlueFraction": 0,
+        "centerRgbaMin": [
+          120,
+          180,
+          35,
+          255
+        ],
+        "centerRgbaMax": [
+          120,
+          180,
+          35,
+          255
+        ],
+        "centerRgbaSamples": [
+          {
+            "sequence": "1",
+            "pts": "626737325407996",
+            "rgba": [
+              120,
+              180,
+              35,
+              255
+            ]
+          },
+          {
+            "sequence": "62",
+            "pts": "626739358741309",
+            "rgba": [
+              120,
+              180,
+              35,
+              255
+            ]
+          },
+          {
+            "sequence": "123",
+            "pts": "626741392074622",
+            "rgba": [
+              120,
+              180,
+              35,
+              255
+            ]
+          },
+          {
+            "sequence": "184",
+            "pts": "626743425407935",
+            "rgba": [
+              120,
+              180,
+              35,
+              255
+            ]
+          },
+          {
+            "sequence": "244",
+            "pts": "626745425407915",
+            "rgba": [
+              120,
+              180,
+              35,
+              255
+            ]
+          },
+          {
+            "sequence": "305",
+            "pts": "626747458741228",
+            "rgba": [
+              120,
+              180,
+              35,
+              255
+            ]
+          },
+          {
+            "sequence": "366",
+            "pts": "626749492074541",
+            "rgba": [
+              120,
+              180,
+              35,
+              255
+            ]
+          },
+          {
+            "sequence": "426",
+            "pts": "626751492074521",
+            "rgba": [
+              120,
+              180,
+              35,
+              255
+            ]
+          }
+        ],
+        "decoderPayloadBytes": 921600
+      },
+      {
+        "inputUuid": "c6e32156-926b-4b5c-a69e-8719ed4dac7b",
+        "slot": 1,
+        "generation": 1,
+        "frames": 604,
+        "firstPts": "626737325407996",
+        "lastPts": "626757425407795",
+        "firstSequence": "1",
+        "lastSequence": "604",
+        "receivedWindowMs": 20097.708400000003,
+        "opaqueFraction": 1,
+        "centralGreenFraction": 0,
+        "centralRedFraction": 1,
+        "centralBlueFraction": 0,
+        "centerRgbaMin": [
+          200,
+          51,
+          35,
+          255
+        ],
+        "centerRgbaMax": [
+          200,
+          51,
+          35,
+          255
+        ],
+        "centerRgbaSamples": [
+          {
+            "sequence": "1",
+            "pts": "626737325407996",
+            "rgba": [
+              200,
+              51,
+              35,
+              255
+            ]
+          },
+          {
+            "sequence": "62",
+            "pts": "626739358741309",
+            "rgba": [
+              200,
+              51,
+              35,
+              255
+            ]
+          },
+          {
+            "sequence": "123",
+            "pts": "626741392074622",
+            "rgba": [
+              200,
+              51,
+              35,
+              255
+            ]
+          },
+          {
+            "sequence": "184",
+            "pts": "626743425407935",
+            "rgba": [
+              200,
+              51,
+              35,
+              255
+            ]
+          },
+          {
+            "sequence": "244",
+            "pts": "626745425407915",
+            "rgba": [
+              200,
+              51,
+              35,
+              255
+            ]
+          },
+          {
+            "sequence": "305",
+            "pts": "626747458741228",
+            "rgba": [
+              200,
+              51,
+              35,
+              255
+            ]
+          },
+          {
+            "sequence": "366",
+            "pts": "626749492074541",
+            "rgba": [
+              200,
+              51,
+              35,
+              255
+            ]
+          },
+          {
+            "sequence": "426",
+            "pts": "626751492074521",
+            "rgba": [
+              200,
+              51,
+              35,
+              255
+            ]
+          }
+        ],
+        "decoderPayloadBytes": 921600
+      }
+    ],
+    "servicesAccepted": [
+      {
+        "sourceUuid": "ed3ab41e-7e1a-407c-9f8f-679d31122289",
+        "success": true,
+        "slot": 0,
+        "generation": 1
+      },
+      {
+        "sourceUuid": "c6e32156-926b-4b5c-a69e-8719ed4dac7b",
+        "success": true,
+        "slot": 1,
+        "generation": 1
+      }
+    ],
+    "partialFailureOriginalPreserved": true,
+    "publicInputs": [
+      {
+        "path": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\own-temp-native25\\FreeMix-QA-NativeCallsExact-G7QeZO\\FreeMix-QA-Calls Exact RGBA with spaces\\qa-public-A-colour.png",
+        "sha256": "de6c19a7badd775bfb01bccf2c390eaf5b907014f2daf992b04cce21fde2f0cc",
+        "width": 320,
+        "height": 180,
+        "centerRgba": [
+          120,
+          180,
+          35,
+          255
+        ],
+        "centralRgbaMin": [
+          120,
+          180,
+          35,
+          255
+        ],
+        "centralRgbaMax": [
+          120,
+          180,
+          35,
+          255
+        ],
+        "centralBlackFraction": 0,
+        "centralGreenFraction": 1,
+        "centralRedFraction": 0,
+        "centralBlueFraction": 0,
+        "validPublicInputUuid": "ed3ab41e-7e1a-407c-9f8f-679d31122289",
+        "expectedRgba": [
+          120,
+          180,
+          35,
+          255
+        ]
+      },
+      {
+        "path": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\own-temp-native25\\FreeMix-QA-NativeCallsExact-G7QeZO\\FreeMix-QA-Calls Exact RGBA with spaces\\qa-public-B-colour.png",
+        "sha256": "4a56463b7ed5e70aa8d249ed6ac4068a83e76c4dae73d87bc2af4d4cc68cb324",
+        "width": 320,
+        "height": 180,
+        "centerRgba": [
+          200,
+          51,
+          35,
+          255
+        ],
+        "centralRgbaMin": [
+          200,
+          51,
+          35,
+          255
+        ],
+        "centralRgbaMax": [
+          200,
+          51,
+          35,
+          255
+        ],
+        "centralBlackFraction": 0,
+        "centralGreenFraction": 0,
+        "centralRedFraction": 1,
+        "centralBlueFraction": 0,
+        "validPublicInputUuid": "c6e32156-926b-4b5c-a69e-8719ed4dac7b",
+        "expectedRgba": [
+          200,
+          51,
+          35,
+          255
+        ]
+      }
+    ],
+    "latestPulse": {
+      "A": true,
+      "B": true
+    },
+    "nativeBeforeFirstStop": {
+      "audioIncluded": false,
+      "autoStart": false,
+      "available": true,
+      "completed": [],
+      "contract": "rgba640x360-derived-fps-opaque-pts-v1",
+      "experimental": true,
+      "frameDivisor": 1,
+      "mainFpsCompatible": true,
+      "mainFpsDenominator": 1,
+      "mainFpsNumerator": 30,
+      "maxUniqueSources": 2,
+      "outputFpsDenominator": 1,
+      "outputFpsNumerator": 30,
+      "pending": true,
+      "registered": true,
+      "sessions": [
+        {
+          "captured": 601,
+          "dropped": 0,
+          "faultCode": 0,
+          "frameDivisor": 1,
+          "generation": 1,
+          "mainFpsDenominator": 1,
+          "mainFpsNumerator": 30,
+          "outputFpsDenominator": 1,
+          "outputFpsNumerator": 30,
+          "sent": 601,
+          "slot": 0,
+          "socketBackpressure": 0,
+          "sourceUuid": "ed3ab41e-7e1a-407c-9f8f-679d31122289",
+          "state": "capturing"
+        },
+        {
+          "captured": 601,
+          "dropped": 0,
+          "faultCode": 0,
+          "frameDivisor": 1,
+          "generation": 1,
+          "mainFpsDenominator": 1,
+          "mainFpsNumerator": 30,
+          "outputFpsDenominator": 1,
+          "outputFpsNumerator": 30,
+          "sent": 601,
+          "slot": 1,
+          "socketBackpressure": 0,
+          "sourceUuid": "c6e32156-926b-4b5c-a69e-8719ed4dac7b",
+          "state": "capturing"
+        }
+      ],
+      "success": true
+    },
+    "firstStopAck": {
+      "audioIncluded": false,
+      "autoStart": false,
+      "available": true,
+      "completed": [],
+      "contract": "rgba640x360-derived-fps-opaque-pts-v1",
+      "experimental": true,
+      "frameDivisor": 1,
+      "mainFpsCompatible": true,
+      "mainFpsDenominator": 1,
+      "mainFpsNumerator": 30,
+      "maxUniqueSources": 2,
+      "outputFpsDenominator": 1,
+      "outputFpsNumerator": 30,
+      "pending": true,
+      "registered": true,
+      "sessions": [
+        {
+          "captured": 601,
+          "dropped": 0,
+          "faultCode": 0,
+          "frameDivisor": 1,
+          "generation": 1,
+          "mainFpsDenominator": 1,
+          "mainFpsNumerator": 30,
+          "outputFpsDenominator": 1,
+          "outputFpsNumerator": 30,
+          "sent": 601,
+          "slot": 0,
+          "socketBackpressure": 0,
+          "sourceUuid": "ed3ab41e-7e1a-407c-9f8f-679d31122289",
+          "state": "stopping"
+        },
+        {
+          "captured": 601,
+          "dropped": 0,
+          "faultCode": 0,
+          "frameDivisor": 1,
+          "generation": 1,
+          "mainFpsDenominator": 1,
+          "mainFpsNumerator": 30,
+          "outputFpsDenominator": 1,
+          "outputFpsNumerator": 30,
+          "sent": 601,
+          "slot": 1,
+          "socketBackpressure": 0,
+          "sourceUuid": "c6e32156-926b-4b5c-a69e-8719ed4dac7b",
+          "state": "capturing"
+        }
+      ],
+      "success": true
+    },
+    "latestSecondPulse": {
+      "success": true
+    },
+    "secondAfterContinuation": {
+      "inputUuid": "c6e32156-926b-4b5c-a69e-8719ed4dac7b",
+      "slot": 1,
+      "generation": 1,
+      "frames": 754,
+      "firstPts": "626737325407996",
+      "lastPts": "626762425407745",
+      "firstSequence": "1",
+      "lastSequence": "754",
+      "receivedWindowMs": 25097.422700000025,
+      "opaqueFraction": 1,
+      "centralGreenFraction": 0,
+      "centralRedFraction": 1,
+      "centralBlueFraction": 0,
+      "centerRgbaMin": [
+        200,
+        51,
+        35,
+        255
+      ],
+      "centerRgbaMax": [
+        200,
+        51,
+        35,
+        255
+      ],
+      "centerRgbaSamples": [
+        {
+          "sequence": "1",
+          "pts": "626737325407996",
+          "rgba": [
+            200,
+            51,
+            35,
+            255
+          ]
+        },
+        {
+          "sequence": "62",
+          "pts": "626739358741309",
+          "rgba": [
+            200,
+            51,
+            35,
+            255
+          ]
+        },
+        {
+          "sequence": "123",
+          "pts": "626741392074622",
+          "rgba": [
+            200,
+            51,
+            35,
+            255
+          ]
+        },
+        {
+          "sequence": "184",
+          "pts": "626743425407935",
+          "rgba": [
+            200,
+            51,
+            35,
+            255
+          ]
+        },
+        {
+          "sequence": "244",
+          "pts": "626745425407915",
+          "rgba": [
+            200,
+            51,
+            35,
+            255
+          ]
+        },
+        {
+          "sequence": "305",
+          "pts": "626747458741228",
+          "rgba": [
+            200,
+            51,
+            35,
+            255
+          ]
+        },
+        {
+          "sequence": "366",
+          "pts": "626749492074541",
+          "rgba": [
+            200,
+            51,
+            35,
+            255
+          ]
+        },
+        {
+          "sequence": "426",
+          "pts": "626751492074521",
+          "rgba": [
+            200,
+            51,
+            35,
+            255
+          ]
+        }
+      ],
+      "decoderPayloadBytes": 921600
+    },
+    "secondStopAck": {
+      "audioIncluded": false,
+      "autoStart": false,
+      "available": true,
+      "completed": [
+        {
+          "captured": 601,
+          "faultCode": 0,
+          "generation": 1,
+          "sent": 601,
+          "slot": 0,
+          "stage": "retired"
+        }
+      ],
+      "contract": "rgba640x360-derived-fps-opaque-pts-v1",
+      "experimental": true,
+      "frameDivisor": 1,
+      "mainFpsCompatible": true,
+      "mainFpsDenominator": 1,
+      "mainFpsNumerator": 30,
+      "maxUniqueSources": 2,
+      "outputFpsDenominator": 1,
+      "outputFpsNumerator": 30,
+      "pending": true,
+      "registered": true,
+      "sessions": [
+        {
+          "captured": 754,
+          "dropped": 0,
+          "faultCode": 0,
+          "frameDivisor": 1,
+          "generation": 1,
+          "mainFpsDenominator": 1,
+          "mainFpsNumerator": 30,
+          "outputFpsDenominator": 1,
+          "outputFpsNumerator": 30,
+          "sent": 754,
+          "slot": 1,
+          "socketBackpressure": 0,
+          "sourceUuid": "c6e32156-926b-4b5c-a69e-8719ed4dac7b",
+          "state": "stopping"
+        }
+      ],
+      "success": true
+    },
+    "final": {
+      "audioIncluded": false,
+      "autoStart": false,
+      "available": true,
+      "completed": [
+        {
+          "captured": 601,
+          "faultCode": 0,
+          "generation": 1,
+          "sent": 601,
+          "slot": 0,
+          "stage": "retired"
+        },
+        {
+          "captured": 754,
+          "faultCode": 0,
+          "generation": 1,
+          "sent": 754,
+          "slot": 1,
+          "stage": "retired"
+        }
+      ],
+      "contract": "rgba640x360-derived-fps-opaque-pts-v1",
+      "experimental": true,
+      "frameDivisor": 1,
+      "mainFpsCompatible": true,
+      "mainFpsDenominator": 1,
+      "mainFpsNumerator": 30,
+      "maxUniqueSources": 2,
+      "outputFpsDenominator": 1,
+      "outputFpsNumerator": 30,
+      "pending": false,
+      "registered": true,
+      "sessions": [],
+      "success": true
+    },
+    "finalStats": [
+      {
+        "inputUuid": "ed3ab41e-7e1a-407c-9f8f-679d31122289",
+        "slot": 0,
+        "generation": 1,
+        "frames": 601,
+        "firstPts": "626737325407996",
+        "lastPts": "626757325407796",
+        "firstSequence": "1",
+        "lastSequence": "601",
+        "receivedWindowMs": 19998.805899999978,
+        "opaqueFraction": 1,
+        "centralGreenFraction": 1,
+        "centralRedFraction": 0,
+        "centralBlueFraction": 0,
+        "centerRgbaMin": [
+          120,
+          180,
+          35,
+          255
+        ],
+        "centerRgbaMax": [
+          120,
+          180,
+          35,
+          255
+        ],
+        "centerRgbaSamples": [
+          {
+            "sequence": "1",
+            "pts": "626737325407996",
+            "rgba": [
+              120,
+              180,
+              35,
+              255
+            ]
+          },
+          {
+            "sequence": "62",
+            "pts": "626739358741309",
+            "rgba": [
+              120,
+              180,
+              35,
+              255
+            ]
+          },
+          {
+            "sequence": "123",
+            "pts": "626741392074622",
+            "rgba": [
+              120,
+              180,
+              35,
+              255
+            ]
+          },
+          {
+            "sequence": "184",
+            "pts": "626743425407935",
+            "rgba": [
+              120,
+              180,
+              35,
+              255
+            ]
+          },
+          {
+            "sequence": "244",
+            "pts": "626745425407915",
+            "rgba": [
+              120,
+              180,
+              35,
+              255
+            ]
+          },
+          {
+            "sequence": "305",
+            "pts": "626747458741228",
+            "rgba": [
+              120,
+              180,
+              35,
+              255
+            ]
+          },
+          {
+            "sequence": "366",
+            "pts": "626749492074541",
+            "rgba": [
+              120,
+              180,
+              35,
+              255
+            ]
+          },
+          {
+            "sequence": "426",
+            "pts": "626751492074521",
+            "rgba": [
+              120,
+              180,
+              35,
+              255
+            ]
+          }
+        ],
+        "decoderPayloadBytes": 921600
+      },
+      {
+        "inputUuid": "c6e32156-926b-4b5c-a69e-8719ed4dac7b",
+        "slot": 1,
+        "generation": 1,
+        "frames": 754,
+        "firstPts": "626737325407996",
+        "lastPts": "626762425407745",
+        "firstSequence": "1",
+        "lastSequence": "754",
+        "receivedWindowMs": 25097.422700000025,
+        "opaqueFraction": 1,
+        "centralGreenFraction": 0,
+        "centralRedFraction": 1,
+        "centralBlueFraction": 0,
+        "centerRgbaMin": [
+          200,
+          51,
+          35,
+          255
+        ],
+        "centerRgbaMax": [
+          200,
+          51,
+          35,
+          255
+        ],
+        "centerRgbaSamples": [
+          {
+            "sequence": "1",
+            "pts": "626737325407996",
+            "rgba": [
+              200,
+              51,
+              35,
+              255
+            ]
+          },
+          {
+            "sequence": "62",
+            "pts": "626739358741309",
+            "rgba": [
+              200,
+              51,
+              35,
+              255
+            ]
+          },
+          {
+            "sequence": "123",
+            "pts": "626741392074622",
+            "rgba": [
+              200,
+              51,
+              35,
+              255
+            ]
+          },
+          {
+            "sequence": "184",
+            "pts": "626743425407935",
+            "rgba": [
+              200,
+              51,
+              35,
+              255
+            ]
+          },
+          {
+            "sequence": "244",
+            "pts": "626745425407915",
+            "rgba": [
+              200,
+              51,
+              35,
+              255
+            ]
+          },
+          {
+            "sequence": "305",
+            "pts": "626747458741228",
+            "rgba": [
+              200,
+              51,
+              35,
+              255
+            ]
+          },
+          {
+            "sequence": "366",
+            "pts": "626749492074541",
+            "rgba": [
+              200,
+              51,
+              35,
+              255
+            ]
+          },
+          {
+            "sequence": "426",
+            "pts": "626751492074521",
+            "rgba": [
+              200,
+              51,
+              35,
+              255
+            ]
+          }
+        ],
+        "decoderPayloadBytes": 921600
+      }
+    ],
+    "exactRgbaTolerance": 1
+  },
+  "shutdownAccepted": true,
+  "nativeClosed": true,
+  "logs": [
+    {
+      "sha256": "edc7148e60c636bc8c3a8109988fbd310a6ce3ac86eb376ddd04e474a0209936",
+      "vendorConfirmed": true,
+      "allocations": [
+        0
+      ],
+      "meterWarnings": 0,
+      "remainingObjects": 0,
+      "doubleDestroyWarnings": 0
+    }
+  ],
+  "crashArtifacts": 0,
+  "fullNative2085PostClosureVerified": true,
+  "finished": "2026-10-10T08:40:56.587Z",
+  "limits": [
+    "QA composition600+whole frozen Native27, not a new distribution release",
+    "Direct Native API; no HTTP controller implementation or browser Calls publisher exercised",
+    "Public A/B PNG and exact wire RGBA only, no FTB/Main/hotkey or desktop capture",
+    "One explicit Main FPS run; no unexecuted rational rates inferred",
+    "No retained-output-ref/callback-delay instrumentation, CEF/SDK/WAN/endurance/hardware claim",
+    "No PCM/Master/N-1 or fade audio verification; video fixtures only",
+    "Qt sourceEditors query does not confirm editor open/focus/z-order",
+    "Standard production resource updater may perform read-only HTTP requests; no QA URL guard inserted"
+  ]
+}

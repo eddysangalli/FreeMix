@@ -1,0 +1,534 @@
+{
+  "status": "FROZEN_PASS_NATIVE27_CALLS_EXACT_RGBA_TWO_SOURCES_FINITE",
+  "at": "2026-10-10T08:42:28.852Z",
+  "receipt": {
+    "path": "receipt.json",
+    "sha256": "3c3221ed236506fd1f5d75607f09d578bf95fb814e6bbe743edde96ca5069a6f",
+    "status": "PASS_OWN_REAL_NATIVE27_CALLS_EXACT_RGBA"
+  },
+  "nativeHead": "c4b5af00ea4a4b744a3a19fef5ec861f693c9a69",
+  "fullNative2085PreAndPostVerified": true,
+  "noApiStarted": true,
+  "noCanonicalOverlay": true,
+  "video": {
+    "baseWidth": 1920,
+    "baseHeight": 1080,
+    "fpsNumerator": 30,
+    "fpsDenominator": 1
+  },
+  "closure": {
+    "pid": 214948,
+    "accepted": true,
+    "closed": true,
+    "crashArtifacts": 0,
+    "logs": [
+      {
+        "sha256": "edc7148e60c636bc8c3a8109988fbd310a6ce3ac86eb376ddd04e474a0209936",
+        "vendorConfirmed": true,
+        "allocations": [
+          0
+        ],
+        "meterWarnings": 0,
+        "remainingObjects": 0,
+        "doubleDestroyWarnings": 0
+      }
+    ]
+  },
+  "observed": {
+    "inputs": [
+      {
+        "name": "QA Calls Diagnostic A",
+        "inputUuid": "ed3ab41e-7e1a-407c-9f8f-679d31122289",
+        "expectedColorSetting": 4280530040,
+        "actualSettings": {
+          "color": 4280530040,
+          "width": 640,
+          "height": 360
+        },
+        "expectedRgbaFromActualSetting": [
+          120,
+          180,
+          35,
+          255
+        ]
+      },
+      {
+        "name": "QA Calls Diagnostic B",
+        "inputUuid": "c6e32156-926b-4b5c-a69e-8719ed4dac7b",
+        "expectedColorSetting": 4280497096,
+        "actualSettings": {
+          "color": 4280497096,
+          "width": 640,
+          "height": 360
+        },
+        "expectedRgbaFromActualSetting": [
+          200,
+          51,
+          35,
+          255
+        ]
+      }
+    ],
+    "bothPreStop": [
+      {
+        "inputUuid": "ed3ab41e-7e1a-407c-9f8f-679d31122289",
+        "slot": 0,
+        "generation": 1,
+        "frames": 601,
+        "firstPts": "626737325407996",
+        "lastPts": "626757325407796",
+        "firstSequence": "1",
+        "lastSequence": "601",
+        "receivedWindowMs": 19998.805899999978,
+        "opaqueFraction": 1,
+        "centralGreenFraction": 1,
+        "centralRedFraction": 0,
+        "centralBlueFraction": 0,
+        "centerRgbaMin": [
+          120,
+          180,
+          35,
+          255
+        ],
+        "centerRgbaMax": [
+          120,
+          180,
+          35,
+          255
+        ],
+        "centerRgbaSamples": [
+          {
+            "sequence": "1",
+            "pts": "626737325407996",
+            "rgba": [
+              120,
+              180,
+              35,
+              255
+            ]
+          },
+          {
+            "sequence": "62",
+            "pts": "626739358741309",
+            "rgba": [
+              120,
+              180,
+              35,
+              255
+            ]
+          },
+          {
+            "sequence": "123",
+            "pts": "626741392074622",
+            "rgba": [
+              120,
+              180,
+              35,
+              255
+            ]
+          },
+          {
+            "sequence": "184",
+            "pts": "626743425407935",
+            "rgba": [
+              120,
+              180,
+              35,
+              255
+            ]
+          },
+          {
+            "sequence": "244",
+            "pts": "626745425407915",
+            "rgba": [
+              120,
+              180,
+              35,
+              255
+            ]
+          },
+          {
+            "sequence": "305",
+            "pts": "626747458741228",
+            "rgba": [
+              120,
+              180,
+              35,
+              255
+            ]
+          },
+          {
+            "sequence": "366",
+            "pts": "626749492074541",
+            "rgba": [
+              120,
+              180,
+              35,
+              255
+            ]
+          },
+          {
+            "sequence": "426",
+            "pts": "626751492074521",
+            "rgba": [
+              120,
+              180,
+              35,
+              255
+            ]
+          }
+        ],
+        "decoderPayloadBytes": 921600
+      },
+      {
+        "inputUuid": "c6e32156-926b-4b5c-a69e-8719ed4dac7b",
+        "slot": 1,
+        "generation": 1,
+        "frames": 601,
+        "firstPts": "626737325407996",
+        "lastPts": "626757325407796",
+        "firstSequence": "1",
+        "lastSequence": "601",
+        "receivedWindowMs": 19996.95630000002,
+        "opaqueFraction": 1,
+        "centralGreenFraction": 0,
+        "centralRedFraction": 1,
+        "centralBlueFraction": 0,
+        "centerRgbaMin": [
+          200,
+          51,
+          35,
+          255
+        ],
+        "centerRgbaMax": [
+          200,
+          51,
+          35,
+          255
+        ],
+        "centerRgbaSamples": [
+          {
+            "sequence": "1",
+            "pts": "626737325407996",
+            "rgba": [
+              200,
+              51,
+              35,
+              255
+            ]
+          },
+          {
+            "sequence": "62",
+            "pts": "626739358741309",
+            "rgba": [
+              200,
+              51,
+              35,
+              255
+            ]
+          },
+          {
+            "sequence": "123",
+            "pts": "626741392074622",
+            "rgba": [
+              200,
+              51,
+              35,
+              255
+            ]
+          },
+          {
+            "sequence": "184",
+            "pts": "626743425407935",
+            "rgba": [
+              200,
+              51,
+              35,
+              255
+            ]
+          },
+          {
+            "sequence": "244",
+            "pts": "626745425407915",
+            "rgba": [
+              200,
+              51,
+              35,
+              255
+            ]
+          },
+          {
+            "sequence": "305",
+            "pts": "626747458741228",
+            "rgba": [
+              200,
+              51,
+              35,
+              255
+            ]
+          },
+          {
+            "sequence": "366",
+            "pts": "626749492074541",
+            "rgba": [
+              200,
+              51,
+              35,
+              255
+            ]
+          },
+          {
+            "sequence": "426",
+            "pts": "626751492074521",
+            "rgba": [
+              200,
+              51,
+              35,
+              255
+            ]
+          }
+        ],
+        "decoderPayloadBytes": 921600
+      }
+    ],
+    "secondContinuedAfterFirstStop": {
+      "inputUuid": "c6e32156-926b-4b5c-a69e-8719ed4dac7b",
+      "slot": 1,
+      "generation": 1,
+      "frames": 754,
+      "firstPts": "626737325407996",
+      "lastPts": "626762425407745",
+      "firstSequence": "1",
+      "lastSequence": "754",
+      "receivedWindowMs": 25097.422700000025,
+      "opaqueFraction": 1,
+      "centralGreenFraction": 0,
+      "centralRedFraction": 1,
+      "centralBlueFraction": 0,
+      "centerRgbaMin": [
+        200,
+        51,
+        35,
+        255
+      ],
+      "centerRgbaMax": [
+        200,
+        51,
+        35,
+        255
+      ],
+      "centerRgbaSamples": [
+        {
+          "sequence": "1",
+          "pts": "626737325407996",
+          "rgba": [
+            200,
+            51,
+            35,
+            255
+          ]
+        },
+        {
+          "sequence": "62",
+          "pts": "626739358741309",
+          "rgba": [
+            200,
+            51,
+            35,
+            255
+          ]
+        },
+        {
+          "sequence": "123",
+          "pts": "626741392074622",
+          "rgba": [
+            200,
+            51,
+            35,
+            255
+          ]
+        },
+        {
+          "sequence": "184",
+          "pts": "626743425407935",
+          "rgba": [
+            200,
+            51,
+            35,
+            255
+          ]
+        },
+        {
+          "sequence": "244",
+          "pts": "626745425407915",
+          "rgba": [
+            200,
+            51,
+            35,
+            255
+          ]
+        },
+        {
+          "sequence": "305",
+          "pts": "626747458741228",
+          "rgba": [
+            200,
+            51,
+            35,
+            255
+          ]
+        },
+        {
+          "sequence": "366",
+          "pts": "626749492074541",
+          "rgba": [
+            200,
+            51,
+            35,
+            255
+          ]
+        },
+        {
+          "sequence": "426",
+          "pts": "626751492074521",
+          "rgba": [
+            200,
+            51,
+            35,
+            255
+          ]
+        }
+      ],
+      "decoderPayloadBytes": 921600
+    },
+    "final": {
+      "audioIncluded": false,
+      "autoStart": false,
+      "available": true,
+      "completed": [
+        {
+          "captured": 601,
+          "faultCode": 0,
+          "generation": 1,
+          "sent": 601,
+          "slot": 0,
+          "stage": "retired"
+        },
+        {
+          "captured": 754,
+          "faultCode": 0,
+          "generation": 1,
+          "sent": 754,
+          "slot": 1,
+          "stage": "retired"
+        }
+      ],
+      "contract": "rgba640x360-derived-fps-opaque-pts-v1",
+      "experimental": true,
+      "frameDivisor": 1,
+      "mainFpsCompatible": true,
+      "mainFpsDenominator": 1,
+      "mainFpsNumerator": 30,
+      "maxUniqueSources": 2,
+      "outputFpsDenominator": 1,
+      "outputFpsNumerator": 30,
+      "pending": false,
+      "registered": true,
+      "sessions": [],
+      "success": true
+    },
+    "images": [
+      {
+        "path": "public-A-own-colour.png",
+        "sha256": "de6c19a7badd775bfb01bccf2c390eaf5b907014f2daf992b04cce21fde2f0cc",
+        "bytes": 696,
+        "width": 320,
+        "height": 180,
+        "centerRgba": [
+          120,
+          180,
+          35,
+          255
+        ],
+        "centralRgbaMin": [
+          120,
+          180,
+          35,
+          255
+        ],
+        "centralRgbaMax": [
+          120,
+          180,
+          35,
+          255
+        ],
+        "visuallyReviewedWithViewImage": true,
+        "capture": "Native public input GetSourceScreenshot",
+        "desktopCapture": false
+      },
+      {
+        "path": "public-B-own-colour.png",
+        "sha256": "4a56463b7ed5e70aa8d249ed6ac4068a83e76c4dae73d87bc2af4d4cc68cb324",
+        "bytes": 697,
+        "width": 320,
+        "height": 180,
+        "centerRgba": [
+          200,
+          51,
+          35,
+          255
+        ],
+        "centralRgbaMin": [
+          200,
+          51,
+          35,
+          255
+        ],
+        "centralRgbaMax": [
+          200,
+          51,
+          35,
+          255
+        ],
+        "visuallyReviewedWithViewImage": true,
+        "capture": "Native public input GetSourceScreenshot",
+        "desktopCapture": false
+      }
+    ],
+    "allowedRgbaTolerance": 1,
+    "observedRgbaDifference": 0
+  },
+  "previousFailuresPreserved": [
+    {
+      "path": "../native25-calls-second-diagnostic-preparation-20261010/receipt.json",
+      "sha256": "b7ab93c6858b9612495f857f6e465c9c038e8336a59f9d42c42e60f4ea53224e"
+    },
+    {
+      "path": "../native25-calls-second-diagnostic-preparation-20261010/ALLOWLIST-RESULT-FAIL.json",
+      "sha256": "63932fd53ca4092d70553a72d4c3803ea22e6c59a971ad727ac92cc08eae43ea"
+    },
+    {
+      "path": "../native25-main-hotkey-review3-filecompletion-20261010/receipt.json",
+      "sha256": "0073c98e6cabf7d757f5a73982ac6091d58f77bbe3f3c528dc1ca305f8b2f6bd"
+    }
+  ],
+  "editorialInheritedCheck": {
+    "text": "Signed600 base and entire frozen Native25 pinned; own FPS configured before spawn",
+    "native25WordingOnly": true,
+    "actualNative27HeadPinned": true,
+    "actualVendor27ConfirmedInLog": true
+  },
+  "limits": [
+    "QA composition600+whole frozen Native27, not a new distribution release",
+    "Direct Native API; no HTTP controller implementation or browser Calls publisher exercised",
+    "Public A/B PNG and exact wire RGBA only, no FTB/Main/hotkey or desktop capture",
+    "One explicit Main FPS run; no unexecuted rational rates inferred",
+    "No retained-output-ref/callback-delay instrumentation, CEF/SDK/WAN/endurance/hardware claim",
+    "No PCM/Master/N-1 or fade audio verification; video fixtures only",
+    "Qt sourceEditors query does not confirm editor open/focus/z-order",
+    "Standard production resource updater may perform read-only HTTP requests; no QA URL guard inserted",
+    "Public Native PNGs visually inspected; wire RGBA parsed, no browser or CEF colour rendering proof",
+    "Two-source20s plus second5s continuation; no full60s faults/endurance/general rate matrix repeated",
+    "Exact RGBA correction proven in own Native27 video fixture; PCM/audio/hardware/SDK/WAN/consumer UI not exercised"
+  ]
+}

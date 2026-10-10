@@ -1,8 +1,8 @@
 {
   "status": "PASS",
   "base": "ba2f32bdf791005443988a4955e963663e16b1ed",
-  "head": "31a2139d084f8b9d014481d477e109d8827e0bcc",
-  "resultTree": "a1b39773946828f3d3953f13178e69a9aaa4f0f1",
+  "head": "c4b5af00ea4a4b744a3a19fef5ec861f693c9a69",
+  "resultTree": "ee8a93355681dd637f8bb8d74306e58704ea005b",
   "submodules": [
     {
       "path": "deps/libdshowcapture/src",
@@ -188,7 +188,7 @@
     {
       "path": "frontend/widgets/FreeMixCallVideo.cpp",
       "bytes": 16455,
-      "sha256": "fae46a71301e773f4ce35206c562adee554b1cd628398e413e8e5060a5143e5e"
+      "sha256": "7edc78d639c804903d81711e6d2db953266e46e93da4c64af6e267e80fa77d66"
     },
     {
       "path": "frontend/widgets/FreeMixCallVideo.hpp",

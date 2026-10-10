@@ -1,8 +1,8 @@
 {
   "upstream": "https://github.com/obsproject/obs-studio.git",
   "base": "ba2f32bdf791005443988a4955e963663e16b1ed",
-  "head": "31a2139d084f8b9d014481d477e109d8827e0bcc",
-  "version": "0.1.0-local.20261010080903",
+  "head": "c4b5af00ea4a4b744a3a19fef5ec861f693c9a69",
+  "version": "0.1.0-local.20261010083500",
   "patches": [
     {
       "path": "0001-feat-branding-replace-OBS-identity-with-FreeMix-Stud.patch",
@@ -107,11 +107,15 @@
     {
       "path": "0026-Add-opt-in-final-composition-gate-and-explicit-Progr.patch",
       "sha256": "7c4a8a5f3e4899a76a2e421c451df3346865328fbd5d340f81b635e007a7373e"
+    },
+    {
+      "path": "0027-Correct-SDR-Calls-staging-format-before-RGBA-raw-con.patch",
+      "sha256": "fbc45351ba9347982f8df39c69be85cb0e1dd9517d147d6380fd3c3fa98b7bc4"
     }
   ],
-  "sourceUpdatedAt": "2026-10-10T08:09:26.364Z",
+  "sourceUpdatedAt": "2026-10-10T08:35:25.264Z",
   "sourceSchema": 2,
-  "tree": "a1b39773946828f3d3953f13178e69a9aaa4f0f1",
+  "tree": "ee8a93355681dd637f8bb8d74306e58704ea005b",
   "submodules": [
     {
       "path": "deps/libdshowcapture/src",

@@ -1,0 +1,43 @@
+{
+  "status": "ROOT_VERIFIED_NATIVE27_EXACT_RGBA_FINITE",
+  "at": "2026-10-10T08:43:37.506Z",
+  "files": [
+    {
+      "path": "receipt.json",
+      "sha256": "3c3221ed236506fd1f5d75607f09d578bf95fb814e6bbe743edde96ca5069a6f",
+      "bytes": 29119
+    },
+    {
+      "path": "report.json",
+      "sha256": "3ddc542e69c03e80fdd6cf1cb2a73aa96ffd1fd55d599edfcde0bae0b360608a",
+      "bytes": 12818
+    },
+    {
+      "path": "ALLOWLIST-RESULT.json",
+      "sha256": "f333e98b62fed8086b0e8fa83a7f7b1edad8bb7e7899eeda7f9faf7cea9b90f9",
+      "bytes": 3783
+    },
+    {
+      "path": "public-A-own-colour.png",
+      "sha256": "de6c19a7badd775bfb01bccf2c390eaf5b907014f2daf992b04cce21fde2f0cc",
+      "bytes": 696
+    },
+    {
+      "path": "public-B-own-colour.png",
+      "sha256": "4a56463b7ed5e70aa8d249ed6ac4068a83e76c4dae73d87bc2af4d4cc68cb324",
+      "bytes": 697
+    },
+    {
+      "path": "native-build-frozen.json",
+      "sha256": "d7d7e623597b2eadef12a57b5f702bb3e20711f4e86e4b18c9a300cf947ac616",
+      "bytes": 373428
+    }
+  ],
+  "operatorTouched": false,
+  "selectedInstallerChanged": false,
+  "previousFailurePreserved": true,
+  "credentialsIncluded": false,
+  "rawLogsIncluded": false,
+  "browserRenderingQualified": false,
+  "audioQualified": false
+}
