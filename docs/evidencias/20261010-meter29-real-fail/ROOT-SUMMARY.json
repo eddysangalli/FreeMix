@@ -1,0 +1,62 @@
+{
+  "status": "FAIL",
+  "nativeHead": "759929948fc84ca29d4ad0b65bfdddf98dfbb06f",
+  "sourceReceiptSHA256": "1c201ac1388f2cd195a6d300ed4e91672d4a03c8d707d9dabebbd61a31efc19a",
+  "started": "2026-10-10T11:15:09.269Z",
+  "finished": "2026-10-10T11:18:46.465Z",
+  "error": "Meter lifecycle bounded observation failed: New same-name UUIDs delivered; previous UUIDs absent from both current frames",
+  "errorDetails": {
+    "name": "Error",
+    "code": "",
+    "callsite": [
+      {
+        "module": "scenarios.mjs",
+        "line": 11,
+        "column": 628
+      },
+      {
+        "module": "scenarios.mjs",
+        "line": 32,
+        "column": 2
+      },
+      {
+        "module": "runner.mjs",
+        "line": 27,
+        "column": 178
+      }
+    ]
+  },
+  "checks": [
+    {
+      "name": "Signed600 base and entire frozen Native29 pinned; own FPS configured before spawn",
+      "status": "PASS"
+    },
+    {
+      "name": "Two real65536 clients and three local ffmpeg audio meters observed",
+      "status": "PASS"
+    }
+  ],
+  "nativeClosed": true,
+  "shutdownAccepted": true,
+  "crashArtifacts": 0,
+  "fullNative2085PostClosureVerified": true,
+  "logs": [
+    {
+      "sha256": "b2a07304a290e1a786a4e338513fbb608d88985faa1219287c076b22319f5602",
+      "vendorConfirmed": true,
+      "allocations": [
+        0
+      ],
+      "meterWarnings": 0,
+      "remainingObjects": 0,
+      "doubleDestroyWarnings": 0
+    }
+  ],
+  "meterClientsActiveAtShutdown": 2,
+  "operatorTouched": false,
+  "limits": [
+    "Sticky event validation failure during collection/recreated UUIDs; invalid raw values not captured; no null tolerance relaxed",
+    "Final valid frames do not erase the prior failure",
+    "No hardware/Master/N-1/long-session or deterministic in-flight shutdown qualification"
+  ]
+}

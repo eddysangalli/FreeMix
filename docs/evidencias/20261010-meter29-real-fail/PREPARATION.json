@@ -1,0 +1,94 @@
+{
+  "status": "FROZEN_NATIVE29_METER_LIFECYCLE_ROOT_REVIEW_REQUIRED",
+  "head": "759929948fc84ca29d4ad0b65bfdddf98dfbb06f",
+  "nativeFreezePath": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\native-build-frozen-7599299-configured.json",
+  "nativeFreezeSha256": "5c72b43a8382d46eea9b2cf8bf56b8f94bb1024dc39b379664dcdb7c3571691d",
+  "nodeSha256": "ba4e6d110e8c1592a1ecd390f6b05f3da124b13871a5be62b341a07a853c6c32",
+  "runnerSha256": "831798d9ba83a6c21ef91bec9a6950357a73a7fce2dc1f7e1e21f3fc8c7d9ce9",
+  "modules": [
+    {
+      "path": "scenarios.mjs",
+      "sha256": "264304ec755e16ce49abe8bdb12fa89788815adc567deae1b9f88222e1d9bb32"
+    },
+    {
+      "path": "meter-contract.mjs",
+      "sha256": "c529af4bdbbbd33432ae8003297ded8f6acab50b5099a97a1b36817e44e31916"
+    },
+    {
+      "path": "candidate-context.mjs",
+      "sha256": "d911bf44d3f8bbf2f31783e6803391ad872c0f03a5ab56614e678547124e2130"
+    },
+    {
+      "path": "test-pure.mjs",
+      "sha256": "f2cafc0d3fcddf2c193c87503a05f339bfa7f636a8d7c4282e1a091129db0e8c"
+    },
+    {
+      "path": "sdk/EventSubscription.h",
+      "sha256": "0084f82ebda2ff9ddf559d0652a6a2b6df318a285263ab239515c7c80279ff2f"
+    },
+    {
+      "path": "sdk/Obs_VolumeMeter.cpp",
+      "sha256": "b7789fcc8be7be674282975243d124bfa05c2849c812ec33915c410ae1a8459a"
+    }
+  ],
+  "tools": [
+    {
+      "path": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\entregas\\FreeMix-Completo-0.1.0-local.20261010060000\\runtime\\node.exe",
+      "sha256": "ba4e6d110e8c1592a1ecd390f6b05f3da124b13871a5be62b341a07a853c6c32"
+    },
+    {
+      "path": "C:/Windows/System32/WindowsPowerShell/v1.0/powershell.exe",
+      "sha256": "8bb6fa8c283b4d92120b1ef249a9b311b0f804d4cabbe9981159976c8be76a5e"
+    }
+  ],
+  "sdk": [
+    {
+      "sourcePath": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\freemix-app\\plugins\\obs-websocket\\src\\eventhandler\\types\\EventSubscription.h",
+      "copiedPath": "sdk/EventSubscription.h",
+      "sha256": "0084f82ebda2ff9ddf559d0652a6a2b6df318a285263ab239515c7c80279ff2f"
+    },
+    {
+      "sourcePath": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\freemix-app\\plugins\\obs-websocket\\src\\utils\\Obs_VolumeMeter.cpp",
+      "copiedPath": "sdk/Obs_VolumeMeter.cpp",
+      "sha256": "b7789fcc8be7be674282975243d124bfa05c2849c812ec33915c410ae1a8459a"
+    }
+  ],
+  "base": {
+    "candidate": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\candidate-release-060000.json",
+    "candidateSha256": "456696515dd7aabf87958e11a91bd324bab3f405fef68549c2cc16bf1e59647d",
+    "manifestSha256": "7107aa50b55dd2584be4fc30760af6ef1c85855c6995cd10758e65decc0a93b4",
+    "version": "0.1.0-local.20261010060000"
+  },
+  "expected": {
+    "fullNative": 2085,
+    "meterClients": 2,
+    "controlSubscription": 0,
+    "meterSubscription": 65536,
+    "mediaSources": 3,
+    "frequencies": [
+      440,
+      660,
+      880
+    ],
+    "meterWarnings": 0,
+    "allocations": 0,
+    "crash": 0,
+    "remaining": 0,
+    "double": 0,
+    "noApi": true,
+    "noHardware": true,
+    "noOutputs": true
+  },
+  "boundaries": {
+    "inFlightDeterministic": false,
+    "publisherPauseInternalsObserved": false,
+    "softwareFixtureOnly": true,
+    "noExecuteWithoutNewRootReview": true,
+    "operatorTouched": false,
+    "oldReceiptsChanged": false
+  },
+  "pureReceipt": {
+    "path": "pure-receipt.json",
+    "sha256": "5322474de7dbf4d6d77df9f1b70bf205ed4bae47c21b383f9f8ced501aee57fd"
+  }
+}

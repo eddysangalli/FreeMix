@@ -62,3 +62,9 @@ CallsUI integrado após23 verificações e revisão Root: limite reportado pelo 
 O wrapper de caminhos longos passou instalação/desinstalação reais:9714 arquivos, dois imutáveis266/276 removidos, alterado/config/projeto/mídia400 preservados, HKCU próprio ausente, filhos encerrados. Sem repetir Native/API/migração/diagnóstico.093000 original conservaFAIL e600 selecionado; próximo pacote precisa incorporar fontes atuais. [Prova](evidencias/20261010-installer-long-paths-real/ROOT-README.md).
 
 Intervenção única de origem comum de timestamp A/V NÃO resolveu silêncioRTC: local145920 nonzero/peak0,35; receptorPCM0,1000 pacotes/0samples; vídeo598frames. Critérios intactos, AVinconclusivo, helper não integrado. HTTP/aba/recursos7 e pós-pins26+2 passaram. [Prova](evidencias/20261010-calls-av-page-origin/ROOT-README.md).
+
+## Checkpoint de10/10,11:35UTC
+
+Native29 foi executado com dois clientes de medidores e três fontes locais. O ensaio terminou FAIL na validação de evento durante troca de coleção/recriação de UUIDs; os valores inválidos não foram capturados, portanto ainda investigamos produto versus observação. Frames válidos posteriores não apagam a falha. Fechamento cooperativo, avisos0/alocações0/crash0 e2085 pós-pins PASS. [FAIL real preservado](evidencias/20261010-meter29-real-fail/ROOT-README.md).
+
+O novo ensaio Gate5 foi revisado e iniciou numa raiz e portas próprias: fixture240s sem loop, critérios de áudio originais,30/1 e30000/1001, Source independente e oitoDSKs. Ainda em execução; nenhuma aprovação geral de FTB ou nova entrega. O instalador corrigido e o diagnóstico AV foram publicados no GitHub em3c82037; entrega600 permanece selecionada.

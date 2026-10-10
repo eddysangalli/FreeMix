@@ -1,0 +1,13 @@
+{
+  "status": "PASS_PURE_ONLY_NATIVE_NOT_EXECUTED",
+  "tests": 5,
+  "modeledOnly": [
+    "WAV/schema/collector/UUID samples"
+  ],
+  "notProved": [
+    "Native event publication",
+    "publisher in-flight barrier",
+    "shutdownNative",
+    "PCM device"
+  ]
+}

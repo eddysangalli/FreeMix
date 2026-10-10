@@ -1,0 +1,22 @@
+{
+  "status": "ROOT_REVIEWED_ONE_EXCLUSIVE_REAL_NATIVE29_METER_RUN",
+  "at": "2026-10-10T11:14:57.049Z",
+  "allowlistFiles": 13,
+  "allowlistSha256": "303854b6968018f6e290be7efb5c4fb9e28bf6cd21070531e8c52c60fa4f6e58",
+  "fullRead": [
+    "runner.mjs",
+    "scenarios.mjs",
+    "meter-contract.mjs",
+    "candidate-context.mjs",
+    "README.md",
+    "PREPARATION.json",
+    "root-command.json"
+  ],
+  "sdk65536": true,
+  "originalWarningsPreserved": true,
+  "noDeterministicInFlightClaim": true,
+  "noOutputsHardwareOperatorApi": true,
+  "previousWrapperClosed": true,
+  "previousAVHttpClosed": true,
+  "automaticRetry": false
+}

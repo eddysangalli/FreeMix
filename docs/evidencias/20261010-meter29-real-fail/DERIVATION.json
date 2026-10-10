@@ -1,0 +1,88 @@
+{
+  "from": "qa-finalizacao/native27-calls-exact-rgba-frozen-20261010/runner.mjs",
+  "originalSha256": "100dd347f34c54915c19979fa3c4feea830c78e90bc9d18796f613a08631918f",
+  "newSha256": "831798d9ba83a6c21ef91bec9a6950357a73a7fce2dc1f7e1e21f3fc8c7d9ce9",
+  "substitutions": [
+    {
+      "anchor": "Native27",
+      "count": 1
+    },
+    {
+      "anchor": "NATIVE27",
+      "count": 3
+    },
+    {
+      "anchor": "c4b5af00ea4a4b744a3a19fef5ec861f693c9a69",
+      "count": 1
+    },
+    {
+      "anchor": "../../scripts/installer-windows/qa/candidate-context.mjs",
+      "count": 1
+    },
+    {
+      "anchor": "EXECUTE-OWN-REAL-NATIVE29-CALLS-EXACT-RGBA",
+      "count": 1
+    },
+    {
+      "anchor": "FROZEN_NATIVE29_EXACT_RGBA_ROOT_REVIEW_REQUIRED",
+      "count": 1
+    },
+    {
+      "anchor": "PASS_OWN_REAL_NATIVE29_CALLS_EXACT_RGBA",
+      "count": 1
+    },
+    {
+      "anchor": "newQaRoot('NativeCallsExact');installed=path.join(root,'FreeMix-QA-Calls Exact RGBA with spaces')",
+      "count": 1
+    },
+    {
+      "anchor": "Signed600 base and entire frozen Native25 pinned; own FPS configured before spawn",
+      "count": 1
+    },
+    {
+      "anchor": "s.includes('-27-gc4b5af0')",
+      "count": 1
+    },
+    {
+      "anchor": "&&!l.remainingObjects&&!l.doubleDestroyWarnings",
+      "count": 1
+    },
+    {
+      "anchor": "const ctx={obs,receipt,check,sleep,installed,secrets,services:[]};",
+      "count": 1
+    },
+    {
+      "anchor": "Calls-only cleanup removed; leaves meter subscriptions alive for shutdown",
+      "count": 1
+    },
+    {
+      "anchor": "obs.close();obs=null;",
+      "count": 1
+    },
+    {
+      "anchor": "}}}catch(e){receipt.cleanupError=safe(e);",
+      "count": 1
+    },
+    {
+      "anchor": "/Meter::~Meter.*Failed to get strong reference/g",
+      "count": 1
+    },
+    {
+      "anchor": "const prep=JSON.parse(await fs.readFile(args.preparation));",
+      "count": 1
+    },
+    {
+      "anchor": "const {installPortable}=await import(pathToFileURL(path.join(packageRoot,'ferramentas/instalar-portatil.mjs')));",
+      "count": 1
+    }
+  ],
+  "preservedOriginal": true,
+  "executed": false,
+  "generatedSha256": "d0ea0758b2ef476c8ba6d83a070274edbf9ff1240b25dfd4a5b7de07c34f005f",
+  "afterGenerationChanges": [
+    "Own helpers spawn readonly bounded5s, no force or retry after timeout",
+    "SDK enum/schema snapshots with original warning unchanged",
+    "Whole2085 origin+destination post-check, own modules post-check and capacity",
+    "Client subscriptions held through real shutdown, no callbacks-inflight barrier claimed"
+  ]
+}

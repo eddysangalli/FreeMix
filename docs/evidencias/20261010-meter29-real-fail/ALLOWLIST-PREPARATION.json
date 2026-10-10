@@ -1,0 +1,71 @@
+{
+  "status": "FROZEN_PREPARATION_NO_NATIVE_EXECUTION",
+  "textOnly": true,
+  "files": [
+    {
+      "path": "candidate-context.mjs",
+      "sha256": "d911bf44d3f8bbf2f31783e6803391ad872c0f03a5ab56614e678547124e2130",
+      "bytes": 2729
+    },
+    {
+      "path": "DERIVATION.json",
+      "sha256": "06cc3c864ec8e0ec37df874239456029739f3a4664f9588d98ad44d9ff26e60b",
+      "bytes": 2584
+    },
+    {
+      "path": "freeze-preparation.mjs",
+      "sha256": "6aefc84fd36fe6fe133f0c2108f9fe8e0ea656399f3eb2c6cc178af5d4465735",
+      "bytes": 7272
+    },
+    {
+      "path": "meter-contract.mjs",
+      "sha256": "c529af4bdbbbd33432ae8003297ded8f6acab50b5099a97a1b36817e44e31916",
+      "bytes": 2413
+    },
+    {
+      "path": "PREPARATION.json",
+      "sha256": "67960849124c124f6b3108714446d462b18adfaa4ae366b36006c65be1f4d006",
+      "bytes": 3420
+    },
+    {
+      "path": "pure-receipt.json",
+      "sha256": "5322474de7dbf4d6d77df9f1b70bf205ed4bae47c21b383f9f8ced501aee57fd",
+      "bytes": 259
+    },
+    {
+      "path": "README.md",
+      "sha256": "7cc72fb1923b0604902b26dac39be634b59974c3ce1256c8f37b5d7f80f21fa6",
+      "bytes": 3723
+    },
+    {
+      "path": "root-command.json",
+      "sha256": "c8cc642357b251a0b2ceec65d85d1874ed81611e5ed3cc0c14147d024d1a5f36",
+      "bytes": 1624
+    },
+    {
+      "path": "runner.mjs",
+      "sha256": "831798d9ba83a6c21ef91bec9a6950357a73a7fce2dc1f7e1e21f3fc8c7d9ce9",
+      "bytes": 17183
+    },
+    {
+      "path": "scenarios.mjs",
+      "sha256": "264304ec755e16ce49abe8bdb12fa89788815adc567deae1b9f88222e1d9bb32",
+      "bytes": 9099
+    },
+    {
+      "path": "sdk/EventSubscription.h",
+      "sha256": "0084f82ebda2ff9ddf559d0652a6a2b6df318a285263ab239515c7c80279ff2f",
+      "bytes": 5897
+    },
+    {
+      "path": "sdk/Obs_VolumeMeter.cpp",
+      "sha256": "b7789fcc8be7be674282975243d124bfa05c2849c812ec33915c410ae1a8459a",
+      "bytes": 13178
+    },
+    {
+      "path": "test-pure.mjs",
+      "sha256": "f2cafc0d3fcddf2c193c87503a05f339bfa7f636a8d7c4282e1a091129db0e8c",
+      "bytes": 2459
+    }
+  ]
+}
