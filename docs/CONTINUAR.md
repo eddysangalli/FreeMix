@@ -36,3 +36,7 @@ ENTREGA-ATUAL.md, INSTALACAO.md, PENDENCIAS-REAIS.md, PLANO-CONCLUSAO-20261013.m
 Seis fontes congelados: QR direto/grupos/aninhado, texto UTF-8 editável até512bytes, quadrado16–2048px, ECC M/quiet-zone4. Encoder offline qrcode1.5.4/dijkstrajs1.0.3 MIT, sem CDN/rede/node_modules em execução do título. Save/prepare recusam valores inválidos antes de persistir ou solicitar mudança Native.46 checks de navegador/decoder independente e28 de backend PASS; regressão Polygon/Path33PASS.4/4 QR presentes no inventário foram reconhecidos;743 hashes preservados e nenhum asset/texto proprietário copiado. CEF ainda aguarda ensaio instalado; não afirmar compatibilidade universal de atributos/transformações QR.
 
 Candidato0.1.0-local.20261010004000 será empacotado com mesma build Native21;000500 permanece o instalador selecionado até terminar assinatura/ZIP/Setup e QA própria. QR não está no payload000500 imutável. Provas: qa-finalizacao/gtzip-qr/ALLOWLIST.json e gtzip-direct-shapes-qr-regression/ALLOWLIST.json.
+
+## Candidato QR corrigido
+
+040000 foi rejeitado: preparação documental falhou e a assinatura avançou indevidamente. Payload imutável arquivado, sem instalação/ZIP/EXE/mesa. Novo candidato0.1.0-local.20261010004500 exige recibo presealPASS anterior à assinatura.000500 continua selecionado. Auditoria prepara ticker2D em rascunho isolado, sem alterar os seis fontes QR congelados desta versão.
