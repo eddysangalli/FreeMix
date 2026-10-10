@@ -1,0 +1,164 @@
+{
+  "status": "FROZEN_OFFSIDE_LONG_PATH_FIX_REVIEW6_WITH_OPTIONAL_PICKER_GUARD",
+  "files": [
+    {
+      "sourceAbsolute": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\installer-longpaths-offside-review6-20261010\\original\\Setup.cs",
+      "sourceRelative": "qa-finalizacao/installer-longpaths-offside-review6-20261010/original/Setup.cs",
+      "targetRelative": "docs/evidencias/20261010-installer-long-paths-review6/qa-finalizacao/installer-longpaths-offside-review6-20261010/original/Setup.cs",
+      "sha256": "7d29b1547f01f88810c860e3b3902aaffa0d1530e50e304b1a2ea7a424a7c67c",
+      "bytes": 33233
+    },
+    {
+      "sourceAbsolute": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\installer-longpaths-offside-review6-20261010\\original\\Uninstall.cs",
+      "sourceRelative": "qa-finalizacao/installer-longpaths-offside-review6-20261010/original/Uninstall.cs",
+      "targetRelative": "docs/evidencias/20261010-installer-long-paths-review6/qa-finalizacao/installer-longpaths-offside-review6-20261010/original/Uninstall.cs",
+      "sha256": "6971b9729c4d8d27021e106685007fabc51299187a2b1122d280e18e3b2e31dc",
+      "bytes": 12418
+    },
+    {
+      "sourceAbsolute": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\installer-longpaths-offside-review6-20261010\\patched\\Setup.cs",
+      "sourceRelative": "qa-finalizacao/installer-longpaths-offside-review6-20261010/patched/Setup.cs",
+      "targetRelative": "docs/evidencias/20261010-installer-long-paths-review6/qa-finalizacao/installer-longpaths-offside-review6-20261010/patched/Setup.cs",
+      "sha256": "dd17f512f0ba75e55595500cc16f858c50acdeb04992fa10643f15b52c30ee28",
+      "bytes": 34873
+    },
+    {
+      "sourceAbsolute": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\installer-longpaths-offside-review6-20261010\\patched\\Uninstall.cs",
+      "sourceRelative": "qa-finalizacao/installer-longpaths-offside-review6-20261010/patched/Uninstall.cs",
+      "targetRelative": "docs/evidencias/20261010-installer-long-paths-review6/qa-finalizacao/installer-longpaths-offside-review6-20261010/patched/Uninstall.cs",
+      "sha256": "ea5e0082e938d32382237333324f26a186d727f13a138836747d13f4e1e4eb30",
+      "bytes": 14054
+    },
+    {
+      "sourceAbsolute": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\installer-longpaths-offside-review6-20261010\\production.patch",
+      "sourceRelative": "qa-finalizacao/installer-longpaths-offside-review6-20261010/production.patch",
+      "targetRelative": "docs/evidencias/20261010-installer-long-paths-review6/qa-finalizacao/installer-longpaths-offside-review6-20261010/production.patch",
+      "sha256": "fb3b0c1e586b070eac05c8c6e2623c2944ba6cb888f96f1ed695198d72e784e1",
+      "bytes": 35472
+    },
+    {
+      "sourceAbsolute": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\installer-longpaths-offside-review6-20261010\\provenance.json",
+      "sourceRelative": "qa-finalizacao/installer-longpaths-offside-review6-20261010/provenance.json",
+      "targetRelative": "docs/evidencias/20261010-installer-long-paths-review6/qa-finalizacao/installer-longpaths-offside-review6-20261010/provenance.json",
+      "sha256": "e98def6c1f37acc1937b6b58174231139c385da892e03b799cb2c6f53e970afa",
+      "bytes": 964
+    },
+    {
+      "sourceAbsolute": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\installer-longpaths-offside-review6-20261010\\README.md",
+      "sourceRelative": "qa-finalizacao/installer-longpaths-offside-review6-20261010/README.md",
+      "targetRelative": "docs/evidencias/20261010-installer-long-paths-review6/qa-finalizacao/installer-longpaths-offside-review6-20261010/README.md",
+      "sha256": "b1e80cd6a6c52c6be02d1254b2d5a03e547b773996106391e76eac183ce881a1",
+      "bytes": 733
+    },
+    {
+      "sourceAbsolute": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\installer-longpaths-offside-review6-20261010\\test.mjs",
+      "sourceRelative": "qa-finalizacao/installer-longpaths-offside-review6-20261010/test.mjs",
+      "targetRelative": "docs/evidencias/20261010-installer-long-paths-review6/qa-finalizacao/installer-longpaths-offside-review6-20261010/test.mjs",
+      "sha256": "341d3a88bb2a4a8a71db610247210f693092db44f992256bee99188172577617",
+      "bytes": 9706
+    },
+    {
+      "sourceAbsolute": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\installer-longpaths-offside-review6-20261010\\test-extract.mjs",
+      "sourceRelative": "qa-finalizacao/installer-longpaths-offside-review6-20261010/test-extract.mjs",
+      "targetRelative": "docs/evidencias/20261010-installer-long-paths-review6/qa-finalizacao/installer-longpaths-offside-review6-20261010/test-extract.mjs",
+      "sha256": "fd78edc46387aae40f5a96d6f4f44ad2752cfe39e86ae89f2cfbb057f5eb9656",
+      "bytes": 4486
+    },
+    {
+      "sourceAbsolute": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\installer-longpaths-offside-review6-20261010\\test-deep-junction.mjs",
+      "sourceRelative": "qa-finalizacao/installer-longpaths-offside-review6-20261010/test-deep-junction.mjs",
+      "targetRelative": "docs/evidencias/20261010-installer-long-paths-review6/qa-finalizacao/installer-longpaths-offside-review6-20261010/test-deep-junction.mjs",
+      "sha256": "c2c3cae16bec5a2f097e36f7d57560effdf1f400eb63e984f6bf2d53712b2db9",
+      "bytes": 2764
+    },
+    {
+      "sourceAbsolute": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\installer-longpaths-offside-review6-20261010\\test-picker.mjs",
+      "sourceRelative": "qa-finalizacao/installer-longpaths-offside-review6-20261010/test-picker.mjs",
+      "targetRelative": "docs/evidencias/20261010-installer-long-paths-review6/qa-finalizacao/installer-longpaths-offside-review6-20261010/test-picker.mjs",
+      "sha256": "3056e091b8481bc877801052ffa9d8dc8cadce2b1189198ca2397942fca9bbb3",
+      "bytes": 3294
+    },
+    {
+      "sourceAbsolute": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\installer-longpaths-offside-review6-20261010\\test-receipt.json",
+      "sourceRelative": "qa-finalizacao/installer-longpaths-offside-review6-20261010/test-receipt.json",
+      "targetRelative": "docs/evidencias/20261010-installer-long-paths-review6/qa-finalizacao/installer-longpaths-offside-review6-20261010/test-receipt.json",
+      "sha256": "cbbca63cb8feccd57e9dcdf4b7ac0e82c6ba25a69e867d6d39c97cddb1a303f5",
+      "bytes": 2379
+    },
+    {
+      "sourceAbsolute": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\installer-longpaths-offside-review6-20261010\\test-extract-receipt.json",
+      "sourceRelative": "qa-finalizacao/installer-longpaths-offside-review6-20261010/test-extract-receipt.json",
+      "targetRelative": "docs/evidencias/20261010-installer-long-paths-review6/qa-finalizacao/installer-longpaths-offside-review6-20261010/test-extract-receipt.json",
+      "sha256": "09f5d979a6e77dfd9ba90b7469693625893927941ae67912ede842564bf1e256",
+      "bytes": 929
+    },
+    {
+      "sourceAbsolute": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\installer-longpaths-offside-review6-20261010\\test-deep-junction-receipt.json",
+      "sourceRelative": "qa-finalizacao/installer-longpaths-offside-review6-20261010/test-deep-junction-receipt.json",
+      "targetRelative": "docs/evidencias/20261010-installer-long-paths-review6/qa-finalizacao/installer-longpaths-offside-review6-20261010/test-deep-junction-receipt.json",
+      "sha256": "0fe5f9ea781f465c071e4d59f2fdc96f0c0dd5b9ba9b9acd40af63f8566c0017",
+      "bytes": 466
+    },
+    {
+      "sourceAbsolute": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\installer-longpaths-offside-review6-20261010\\test-picker-receipt.json",
+      "sourceRelative": "qa-finalizacao/installer-longpaths-offside-review6-20261010/test-picker-receipt.json",
+      "targetRelative": "docs/evidencias/20261010-installer-long-paths-review6/qa-finalizacao/installer-longpaths-offside-review6-20261010/test-picker-receipt.json",
+      "sha256": "518f6e8c46a262a5767b201865d0b69e7cd61f8a21578fdde0c91cbb4e535275",
+      "bytes": 598
+    },
+    {
+      "sourceAbsolute": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\installer-longpaths-offside-review6-20261010\\Probe.cs",
+      "sourceRelative": "qa-finalizacao/installer-longpaths-offside-review6-20261010/Probe.cs",
+      "targetRelative": "docs/evidencias/20261010-installer-long-paths-review6/qa-finalizacao/installer-longpaths-offside-review6-20261010/Probe.cs",
+      "sha256": "d8d78d7f27928bd7fff2179d7451309a487899c1c4d4a321d6212e2bdf843cca",
+      "bytes": 1534
+    },
+    {
+      "sourceAbsolute": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\installer-longpaths-offside-review6-20261010\\ExtractProbe.cs",
+      "sourceRelative": "qa-finalizacao/installer-longpaths-offside-review6-20261010/ExtractProbe.cs",
+      "targetRelative": "docs/evidencias/20261010-installer-long-paths-review6/qa-finalizacao/installer-longpaths-offside-review6-20261010/ExtractProbe.cs",
+      "sha256": "921c40c282af2e39c05c4f48a4b51bc5326e4ef44348184671d00286c2014a01",
+      "bytes": 1871
+    },
+    {
+      "sourceAbsolute": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\installer-longpaths-offside-review6-20261010\\PickerProbe.cs",
+      "sourceRelative": "qa-finalizacao/installer-longpaths-offside-review6-20261010/PickerProbe.cs",
+      "targetRelative": "docs/evidencias/20261010-installer-long-paths-review6/qa-finalizacao/installer-longpaths-offside-review6-20261010/PickerProbe.cs",
+      "sha256": "d44f8f847f756e2d54796090e926a665f20a1e4b289baf6e2d840db2db0f58ec",
+      "bytes": 1180
+    },
+    {
+      "sourceAbsolute": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\installer-longpaths-offside-review6-20261010\\PayloadInfo.cs",
+      "sourceRelative": "qa-finalizacao/installer-longpaths-offside-review6-20261010/PayloadInfo.cs",
+      "targetRelative": "docs/evidencias/20261010-installer-long-paths-review6/qa-finalizacao/installer-longpaths-offside-review6-20261010/PayloadInfo.cs",
+      "sha256": "9e3962b1ac6a0b9ff7e0806e3dbeb22c593418d3b9fd7256e690cc62f297a386",
+      "bytes": 270
+    },
+    {
+      "sourceAbsolute": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\installer-longpaths-offside-review6-20261010\\report.json",
+      "sourceRelative": "qa-finalizacao/installer-longpaths-offside-review6-20261010/report.json",
+      "targetRelative": "docs/evidencias/20261010-installer-long-paths-review6/qa-finalizacao/installer-longpaths-offside-review6-20261010/report.json",
+      "sha256": "915ec414a4ad08bf8973eb9fe0f6db6efeb60f5bb7cbc3574ef144ac25f6d8d1",
+      "bytes": 6304
+    }
+  ],
+  "productionOnly": [
+    {
+      "path": "scripts/installer-windows/Setup.cs",
+      "originalSha256": "7d29b1547f01f88810c860e3b3902aaffa0d1530e50e304b1a2ea7a424a7c67c",
+      "patchedSha256": "dd17f512f0ba75e55595500cc16f858c50acdeb04992fa10643f15b52c30ee28",
+      "originalNewlinesPreserved": "LF"
+    },
+    {
+      "path": "scripts/installer-windows/Uninstall.cs",
+      "originalSha256": "6971b9729c4d8d27021e106685007fabc51299187a2b1122d280e18e3b2e31dc",
+      "patchedSha256": "ea5e0082e938d32382237333324f26a186d727f13a138836747d13f4e1e4eb30",
+      "originalNewlinesPreserved": "LF"
+    }
+  ],
+  "rawLogsExported": false,
+  "executablesExported": false,
+  "fixturesTempExported": false,
+  "credentialsExported": false,
+  "canonicalTouched": false
+}
