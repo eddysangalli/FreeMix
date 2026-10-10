@@ -1,0 +1,483 @@
+{
+  "status": "FAIL_PRESERVED_DOMAIN_MISMATCH_UNQUALIFIED",
+  "nativeHead": "31a2139d084f8b9d014481d477e109d8827e0bcc",
+  "receiptSHA256": "04a28fccdef38f844b9279990dafce82339015172dc7093e382494e6e27ad967",
+  "started": "2026-10-10T09:32:49.338Z",
+  "finished": "2026-10-10T09:36:44.661Z",
+  "rootReviewedPlanSHA256": "6534ebf0580bd337f822a69322177250d98c090ad41e443b4e117aa1a11ee2f8",
+  "reruns": 0,
+  "caseFPS": {
+    "num": 30,
+    "den": 1
+  },
+  "passedChecks": [
+    {
+      "name": "Complete frozen Native26 hash verified",
+      "status": "PASS"
+    },
+    {
+      "name": "Own seed contains only scenes/color; no capture devices",
+      "status": "PASS"
+    },
+    {
+      "name": "Initial default OFF / zero REC / main-stream / destinations",
+      "status": "PASS"
+    },
+    {
+      "name": "SDK-loaded OWN keyers exactly1..8 at basechannel7",
+      "status": "PASS"
+    },
+    {
+      "name": "Main final-render screenshot contains eight real DSKs",
+      "status": "PASS"
+    }
+  ],
+  "actualDsk": [
+    {
+      "label": "1",
+      "channel": 7,
+      "scene": "OWN D DSK 1",
+      "marker": {
+        "x": 36,
+        "y": 112
+      },
+      "alpha": 255
+    },
+    {
+      "label": "2",
+      "channel": 8,
+      "scene": "OWN D DSK 2",
+      "marker": {
+        "x": 176,
+        "y": 112
+      },
+      "alpha": 255
+    },
+    {
+      "label": "3",
+      "channel": 9,
+      "scene": "OWN D DSK 3",
+      "marker": {
+        "x": 316,
+        "y": 112
+      },
+      "alpha": 255
+    },
+    {
+      "label": "4",
+      "channel": 10,
+      "scene": "OWN D DSK 4",
+      "marker": {
+        "x": 456,
+        "y": 112
+      },
+      "alpha": 255
+    },
+    {
+      "label": "5",
+      "channel": 11,
+      "scene": "OWN D DSK 5",
+      "marker": {
+        "x": 596,
+        "y": 112
+      },
+      "alpha": 255
+    },
+    {
+      "label": "6",
+      "channel": 12,
+      "scene": "OWN D DSK 6",
+      "marker": {
+        "x": 736,
+        "y": 112
+      },
+      "alpha": 255
+    },
+    {
+      "label": "7",
+      "channel": 13,
+      "scene": "OWN D DSK 7",
+      "marker": {
+        "x": 876,
+        "y": 112
+      },
+      "alpha": 255
+    },
+    {
+      "label": "8",
+      "channel": 14,
+      "scene": "OWN D DSK 8",
+      "marker": {
+        "x": 1016,
+        "y": 112
+      },
+      "alpha": 128
+    }
+  ],
+  "captures": [
+    {
+      "path": "baseline.png",
+      "sha256": "5066b4670b1d5a6a555df82b154e868633f4999e343e05622f42f08656342b75",
+      "bytes": 31436,
+      "width": 1280,
+      "height": 720,
+      "source": "OBSBasic.Screenshot -> obs_render_main_texture",
+      "pngComplete": true,
+      "hotkeyTriggers": 1,
+      "pngWaitMs": 175.0855000000156,
+      "agentVisuallyViewed": true
+    },
+    {
+      "path": "mid-ramp.png",
+      "sha256": "9e923e255b32ddfa76377d6e36dcac4f351f42b98f9ba910ae5f295bc355d149",
+      "bytes": 29860,
+      "width": 1280,
+      "height": 720,
+      "source": "OBSBasic.Screenshot -> obs_render_main_texture",
+      "pngComplete": true,
+      "hotkeyTriggers": 1,
+      "pngWaitMs": 155.7000999999873,
+      "agentVisuallyViewed": true
+    }
+  ],
+  "gray": {
+    "baseline": [
+      [
+        157,
+        159.00000000000006,
+        157.99999999999991
+      ],
+      [
+        172.99999999999994,
+        175,
+        175
+      ],
+      [
+        189.00000000000003,
+        190.9999999999999,
+        190.9999999999999
+      ]
+    ],
+    "mid": [
+      [
+        87,
+        89.00000000000003,
+        88
+      ],
+      [
+        96.00000000000006,
+        96.99999999999997,
+        96.99999999999997
+      ],
+      [
+        105.00000000000004,
+        105.99999999999997,
+        105.99999999999997
+      ]
+    ]
+  },
+  "markerSamples": {
+    "baseline": [
+      [
+        254.9999999999999,
+        0,
+        0
+      ],
+      [
+        0,
+        254.9999999999999,
+        0
+      ],
+      [
+        0,
+        0,
+        254.9999999999999
+      ],
+      [
+        254.9999999999999,
+        254.9999999999999,
+        0
+      ],
+      [
+        0,
+        254.9999999999999,
+        254.9999999999999
+      ],
+      [
+        254.9999999999999,
+        0,
+        254.9999999999999
+      ],
+      [
+        254.9999999999999,
+        254.9999999999999,
+        254.9999999999999
+      ],
+      [
+        203.99999999999994,
+        91,
+        91
+      ]
+    ],
+    "mid": [
+      [
+        142.00000000000009,
+        0,
+        0
+      ],
+      [
+        0,
+        142.00000000000009,
+        0
+      ],
+      [
+        0,
+        0,
+        142.00000000000009
+      ],
+      [
+        142.00000000000009,
+        142.00000000000009,
+        0
+      ],
+      [
+        0,
+        142.00000000000009,
+        142.00000000000009
+      ],
+      [
+        142.00000000000009,
+        0,
+        142.00000000000009
+      ],
+      [
+        142.00000000000009,
+        142.00000000000009,
+        142.00000000000009
+      ],
+      [
+        114.00000000000003,
+        50.999999999999986,
+        50.999999999999986
+      ]
+    ]
+  },
+  "gain": {
+    "bracket": {
+      "before": 0.5583333373069763,
+      "after": 0.5166666507720947
+    },
+    "mean": 0.5374999940395355,
+    "codedComparison": {
+      "ratios": [
+        0.554140127388535,
+        0.5549132947976884,
+        0.5555555555555557
+      ],
+      "mean": 0.5548696592472596,
+      "beforeDelta": [
+        -0.0041932099184412985,
+        -0.003420042509287957,
+        -0.002777781751420627
+      ],
+      "meanBracketDelta": [
+        0.016640133348999497,
+        0.01741330075815284,
+        0.01805556151602017
+      ],
+      "linearDoubleExpected": 0.2889062435925007
+    },
+    "linearRatios": [
+      0.2826742340430267,
+      0.2799110949838624,
+      0.2775957484604578
+    ],
+    "originalLinearAssertion": {
+      "mean": 0.28006035916244904,
+      "expected": 0.5374999940395355,
+      "tolerance": 0.09,
+      "pass": false,
+      "doubleGainDetected": true
+    }
+  },
+  "timing": {
+    "before": {
+      "frameSeq": 310,
+      "framePtsNs": 630093346915597
+    },
+    "after": {
+      "frameSeq": 315,
+      "framePtsNs": 630093513582262
+    },
+    "seqSpan": 5,
+    "pngWaitMs": 155.7000999999873,
+    "barcode": 194,
+    "exactCaptureFrameSeqKnown": false
+  },
+  "shutdown": {
+    "pid": 54060,
+    "accepted": true,
+    "closed": true,
+    "exit": {
+      "code": 0,
+      "signal": null
+    },
+    "receiverExits": [
+      {
+        "label": "program",
+        "pid": 116404,
+        "code": 0,
+        "signal": null,
+        "forceAttempted": false
+      },
+      {
+        "label": "source",
+        "pid": 118052,
+        "code": 0,
+        "signal": null,
+        "forceAttempted": false
+      }
+    ],
+    "cimOwnPidAbsent": true,
+    "forceAttempted": false,
+    "logs": [
+      {
+        "sha256": "756c91b394a1800892daf2dbad43f85753d49d6e0f09a6265fbf0d497ed9f86d",
+        "allocations": [
+          0
+        ],
+        "meterWarnings": 0,
+        "doubleDestroy": 0,
+        "remainingObjects": 0,
+        "nativeVersionConfirmed": true
+      }
+    ],
+    "crashes": 0
+  },
+  "postCleanupPins": {
+    "nativeFiles": 2085,
+    "candidateSignedFiles": 9582,
+    "candidate": true,
+    "frozen": true,
+    "manifest": true,
+    "signature": true,
+    "reviewPlan": true,
+    "runnerFiles": 5,
+    "independentFiles": true
+  },
+  "additionalFreezeChecks": [
+    {
+      "label": "Gate3",
+      "sha256": "1ce81bc486cdc3fbed70fa950a17687521bfd99ba53d37d27bf09659592e7c57",
+      "files": 19,
+      "allMatch": true
+    },
+    {
+      "label": "newLauncher",
+      "sha256": "d62b56043bd716ebed2fa54391f39994c33e70edde587537a9b6427826706abf",
+      "files": 11,
+      "allMatch": true
+    }
+  ],
+  "sourcePins": [
+    {
+      "path": "freemix-app/libobs/obs-final-gate-render.h",
+      "nativeHead": "31a2139d084f8b9d014481d477e109d8827e0bcc",
+      "gitBytesSHA256": "fdfe60af2320a81011e027d6d6d170e5ba91f804ddf0660a117489834fd64dee",
+      "worktreeBytesSHA256": "fdfe60af2320a81011e027d6d6d170e5ba91f804ddf0660a117489834fd64dee",
+      "logicalContentMatchesFrozenHead": true
+    },
+    {
+      "path": "freemix-app/libobs/obs-video.c",
+      "nativeHead": "31a2139d084f8b9d014481d477e109d8827e0bcc",
+      "gitBytesSHA256": "8ecbb8f53900b5e6da4f2b7d19d7299aacdf24bffe245f3322e366802d405f60",
+      "worktreeBytesSHA256": "8ecbb8f53900b5e6da4f2b7d19d7299aacdf24bffe245f3322e366802d405f60",
+      "logicalContentMatchesFrozenHead": true
+    },
+    {
+      "path": "freemix-app/libobs/obs.c",
+      "nativeHead": "31a2139d084f8b9d014481d477e109d8827e0bcc",
+      "gitBytesSHA256": "e5a112c9280e6a42add7b91b09af695fdf3e14138d6d702d4f096d764e1e95e3",
+      "worktreeBytesSHA256": "8476ed24c58734f08ad60b674d363e4d32a58f4d76ab9fc54f3a816f35719580",
+      "logicalContentMatchesFrozenHead": true
+    },
+    {
+      "path": "freemix-app/libobs/data/solid.effect",
+      "nativeHead": "31a2139d084f8b9d014481d477e109d8827e0bcc",
+      "gitBytesSHA256": "38eea358e6f67955d6b647797cedcde4bdd77e6f668b1ab251552c39dfe0d2b2",
+      "worktreeBytesSHA256": "8785767ddd87a2be6f7f29fb7c3c2fd71816b0cd120ce2535ceb0c3e575a49ab",
+      "logicalContentMatchesFrozenHead": true
+    },
+    {
+      "path": "freemix-app/libobs/data/default.effect",
+      "nativeHead": "31a2139d084f8b9d014481d477e109d8827e0bcc",
+      "gitBytesSHA256": "d4b4c1d3574fa08ac8f140cb25ddc1d1f2bcab6ce599abdc36ce36eebc579ef6",
+      "worktreeBytesSHA256": "707ef4c3b382bf55a250bcdf5b3a3a6e02979bd6e39b7f6db9dd85fd06cb0caf",
+      "logicalContentMatchesFrozenHead": true
+    },
+    {
+      "path": "freemix-app/libobs/data/color.effect",
+      "nativeHead": "31a2139d084f8b9d014481d477e109d8827e0bcc",
+      "gitBytesSHA256": "ef99b3e53d6931e6677c03b47df3bf5596de330a7f5f99d27d3527b67f12b528",
+      "worktreeBytesSHA256": "5fe89af99f707429bae0985b65b93473547513edc5f83c43738ca09ce3d0eebe",
+      "logicalContentMatchesFrozenHead": true
+    },
+    {
+      "path": "freemix-app/libobs/obs-source.c",
+      "nativeHead": "31a2139d084f8b9d014481d477e109d8827e0bcc",
+      "gitBytesSHA256": "67f65a476c52664e07d4b33f4d444a09c54acb7351db3c06546fe6a1618c9113",
+      "worktreeBytesSHA256": "0e4d0abdb410e30d3627b26375f0c575fc4eab9b12cd3a578e6f9ea89aec8e69",
+      "logicalContentMatchesFrozenHead": true
+    },
+    {
+      "path": "freemix-app/libobs-d3d11/d3d11-subsystem.cpp",
+      "nativeHead": "31a2139d084f8b9d014481d477e109d8827e0bcc",
+      "gitBytesSHA256": "d0e3266e71c395639de46080d86a02e4c2dec4f3e7534241dabeccb5ebafd2d0",
+      "worktreeBytesSHA256": "7a18d62bb1e89af549c9c5ffb42898fce230887bf14a0767f3b9790a00c954eb",
+      "logicalContentMatchesFrozenHead": true
+    },
+    {
+      "path": "freemix-app/libobs-d3d11/d3d11-subsystem.hpp",
+      "nativeHead": "31a2139d084f8b9d014481d477e109d8827e0bcc",
+      "gitBytesSHA256": "dd56e4582bf877d095c4fe1a4f1253b2fbc20e09f015d89ad34e5a34c1e2392b",
+      "worktreeBytesSHA256": "b48a77066546990c5b0131cdd95f818bddc66bb821aa20b2133a359997ff2088",
+      "logicalContentMatchesFrozenHead": true
+    },
+    {
+      "path": "freemix-app/libobs-d3d11/d3d11-texture2d.cpp",
+      "nativeHead": "31a2139d084f8b9d014481d477e109d8827e0bcc",
+      "gitBytesSHA256": "b5a09aa94cf8307aa5dab8a7e2c161f81a649b0b6f283884b1c24b71b6b78b35",
+      "worktreeBytesSHA256": "4241228eee3c2b1122075ee920baf798ef51f5cbd3fed554a0dec03a8b0a4cc6",
+      "logicalContentMatchesFrozenHead": true
+    },
+    {
+      "path": "freemix-app/frontend/utility/ScreenshotObj.cpp",
+      "nativeHead": "31a2139d084f8b9d014481d477e109d8827e0bcc",
+      "gitBytesSHA256": "f7482d959febb4f67eccb9fd8df2969d3b5215573a918ffea7ee2c243d3b215d",
+      "worktreeBytesSHA256": "785e7f6021128d0f79030904f72d51effad334b913622fafc1f542e78a0439d7",
+      "logicalContentMatchesFrozenHead": true
+    }
+  ],
+  "interpretation": [
+    "Actual Main screenshot attenuation follows encoded RGB ratio about0.555 inside gain bracket0.517..0.558",
+    "Original harness converts PNG samples to linear sRGB then compares against the same scalar; this domain assumption is not declared by Native contract",
+    "Black solid overlay blends directly into current render target; gate does not set/restore framebuffer-sRGB flag",
+    "D3D11 selects UNORM versus SRGB RTV by ambient flag; current screenshot agrees with UNORM/coded multiplication",
+    "No double gain demonstrated: apparent linear ratio near gain squared is an EOTF-domain artifact, not evidence of two gate applications",
+    "Exact screenshot capture frame not identified; before/after bracket spans5 frames and155.7ms"
+  ],
+  "notTested": [
+    "Full-black PNG",
+    "OFF restore + Preview changed while black",
+    "Independent Programme decode/single-gain/PTS and Source exclusion comparison",
+    "AAC decoded PCM/audio unchanged proof",
+    "NTSC30000/1001 case",
+    "Context reset after gate/second route/mix ordering"
+  ],
+  "limits": [
+    "Beta video qualification remains OFF and raw receipt remains FAIL",
+    "Do not label this a gamma-independent contract; HDR/16F/foreign rendered callbacks may change target/ambient flag",
+    "No public raw logs/config/TS/auth/context token",
+    "Read-only source audit/pixel postmortem, no Native/media process retry or source edits"
+  ]
+}

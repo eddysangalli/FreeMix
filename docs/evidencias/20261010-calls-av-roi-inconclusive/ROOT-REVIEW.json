@@ -1,0 +1,29 @@
+{
+  "status": "ROOT_APPROVED_ONE_SILENT_SYNTHETIC_AV_ROI_RUN",
+  "reviewedAt": "2026-10-10T09:44:56.363Z",
+  "allowlistSha256": "c19fdece2dffe1f038f9201af09780ddf9d01e258575470820e40e6571dae62b",
+  "textPins": 19,
+  "externalPins": 2,
+  "fullReads": [
+    "launch.mjs",
+    "runner.mjs",
+    "probe.html",
+    "root-command.json",
+    "PREPARATION.json",
+    "synthetic-media.mjs",
+    "tone-worklet.js",
+    "received-roi.mjs",
+    "av-clock.mjs"
+  ],
+  "native": false,
+  "microphone": false,
+  "audible": false,
+  "productModified": false,
+  "operatorTouched": false,
+  "avSyncProven": false,
+  "noConcurrentNativeQa": true,
+  "oneRunOnly": true,
+  "deadlineSeconds": 180,
+  "afterStartDeadlineSeconds": 45,
+  "priorFailuresPreserved": true
+}

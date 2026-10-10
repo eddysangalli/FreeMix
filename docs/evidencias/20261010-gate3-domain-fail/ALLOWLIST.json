@@ -1,0 +1,30 @@
+{
+  "status": "FROZEN_FAIL_ONLY_READONLY_DOMAIN_AUDIT",
+  "files": [
+    {
+      "path": "baseline.png",
+      "sha256": "5066b4670b1d5a6a555df82b154e868633f4999e343e05622f42f08656342b75",
+      "bytes": 31436
+    },
+    {
+      "path": "collect.mjs",
+      "sha256": "31fa67808e02d14934a4f2aedf34af1c12ca63ae6b43fda6b36c3bff3f0194a9",
+      "bytes": 6860
+    },
+    {
+      "path": "mid-ramp.png",
+      "sha256": "9e923e255b32ddfa76377d6e36dcac4f351f42b98f9ba910ae5f295bc355d149",
+      "bytes": 29860
+    },
+    {
+      "path": "README.md",
+      "sha256": "3801450d8b2b0eecb77c36a7e3d1d08f60c8afe27851b38ca8d8f83e5079f008",
+      "bytes": 5124
+    },
+    {
+      "path": "report.json",
+      "sha256": "3661e5e6b6ba200034ec47a1c207a6d6fbd788473bab876dc88c18e87439bb43",
+      "bytes": 13173
+    }
+  ]
+}

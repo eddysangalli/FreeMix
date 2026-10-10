@@ -13,3 +13,11 @@ Root integra/commita/publique somente fontes autorizadas. Installer prepara cand
 Preservar Corebe468/API503338/Callsbackend1e4/gate9342/mesa29d em cada ensaio. Core/gate/continuous experimental OFF; não promover FTB geral, vídeo30fps universal ou N-1/AV sem prova. NativeQA exclusivamente uma raiz por vez. TEMP/TMP próprios noD, full2085/pins/idle/UUID/vendorPID e cleanup cooperativo; nunca force/operador. InterfaceQt não prova ordem Windows.
 
 Preservar mesa/processos/REC/Call/mídia/configuração do operador e artefatos aprovados. Não repetir instalações600. Não publicar/upload externo; commit/push GitHub e pacote local autorizados. Alphawebaborto e betaNative separada. Não marcar objetivo completo pelo prazo. Remover automação somente ao concluir de verdade. [Histórico](historico/20261010-antes-menus-cef27/CONTINUAR.md).
+
+## Checkpoint de 10/10, 09:45 UTC
+
+Fontes e provas dos menus publicadas no GitHub no commit 408db53. Metadados do candidato local093000 agora correspondem ao Native27; o instalador selecionado600 continua intacto até o novo candidato passar.
+
+Gate3 executado uma vez: oito DSKs/eventos reais e baseline passaram; FAIL na comparação de ganho. O render atual mistura RGB codificado, enquanto o teste assumia luz linear. Ratios codificados0,554–0,556 cabem no bracket0,517–0,558; não há prova de ganho duplicado. Um contrato explícito linear-sRGB SDR8 com guardar/restaurar estado está sendo preparado antes de nova compilação/execução. Ainda não foram provados preto/OFF, decodificação SRT, NTSC ou áudio deste gate. Native e dois receptores fecharam com código0, sem crashes/Meter/alocações restantes; todos os pós-hashes passaram. [FAIL e análise preservados](evidencias/20261010-gate3-domain-fail/README.md).
+
+AV sintético executado uma vez:600 quadros/400 blocos escritos sem drops/faults e583 vídeos decodificados. Houve1000 pacotes de áudio recebidos, mas nenhuma amostra/tom decodificado para correlacionar: resultado inconclusivo, sincronismo não qualificado. Recursos e HTTP fechados,19+2 pós-pins iguais. Wrapper PCM/N-1 segue isolado e desativado; modelos não substituem áudio Native real. [Prova inconclusiva](evidencias/20261010-calls-av-roi-inconclusive/README.md).

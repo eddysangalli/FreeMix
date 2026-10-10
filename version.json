@@ -1,7 +1,5 @@
 {
-  "version": "0.1.0-local.20261009153453",
-  "createdAt": "2026-10-09T15:36:12.915Z",
-  "channel": "local-candidate",
-  "kind": "incremental-update",
-  "baseVersion": "0.1.0-local.20261009144437"
+  "version": "0.1.0-local.20261010093000",
+  "createdAt": "2026-10-10T09:46:48.350Z",
+  "channel": "local-candidate"
 }

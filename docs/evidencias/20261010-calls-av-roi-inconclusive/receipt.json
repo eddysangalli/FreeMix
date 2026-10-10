@@ -1,0 +1,45 @@
+{
+  "status": "FAIL",
+  "nativeStarted": false,
+  "operatorTouched": false,
+  "productModified": false,
+  "experimental": true,
+  "avSyncProven": false,
+  "externalServersUsed": false,
+  "startedAt": "2026-10-10T09:44:38.257Z",
+  "args": {
+    "root-reviewed": "EXECUTE-OWN-SYNTHETIC-BROWSER-AV-ROI-20S",
+    "preparation-sha": "23971c46a29de7adb3eb5c2288db7b840895803c96b58a7de3f1efb007858b13",
+    "allowlist-sha": "c19fdece2dffe1f038f9201af09780ddf9d01e258575470820e40e6571dae62b"
+  },
+  "checks": [],
+  "port": 53465,
+  "url": "http://127.0.0.1:53465/",
+  "browserReportSha256": "48ef6ed70012d971a6324dcdc42412f7dcce4eddc8feffaf435cd0eae774f780",
+  "error": "ERR_ASSERTION",
+  "browserStatus": "INCONCLUSIVE_INSUFFICIENT_RECEIVED_PAIRS",
+  "closed": {
+    "video": true,
+    "audio": true,
+    "send": true,
+    "receive": true,
+    "audioContext": true,
+    "clock": true
+  },
+  "httpClosed": true,
+  "afterPinChecks": {
+    "texts": 19,
+    "externalHelpers": 2,
+    "noLinks": true,
+    "hashesMatch": true,
+    "httpClosed": true
+  },
+  "finishedAt": "2026-10-10T09:45:31.479Z",
+  "limits": [
+    "Synthetic browser AudioData/VideoFrame generated source and local RTC only; no actual NativePCM, CEF, VDO SDK, WAN or microphone",
+    "A zero-gain AudioContext destination participates in browser output clock; no audible tone or physical device calibration claimed",
+    "Received edges use browser expectedDisplayTime and mapped silent audio context output time; frame/quantum/mapping/threshold uncertainty stated",
+    "PASS threshold is finite-run declared measurement resolution; avSyncProven remainsfalse for product",
+    "Native25 CEF prior proof was595decoded vs540callbacks; this audio experiment does not reinterpret those counts"
+  ]
+}
