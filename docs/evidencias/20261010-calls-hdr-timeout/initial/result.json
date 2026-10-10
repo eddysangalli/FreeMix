@@ -1,0 +1,73 @@
+{
+  "status": "PASS_REPRO_AND_ISOLATED_DRAFT",
+  "at": "2026-10-10T05:42:01.345Z",
+  "results": [
+    {
+      "name": "Baseline reproduces loss of unsaved return after blur and diagnostics refresh",
+      "status": "PASS",
+      "verdict": "CONFIRMED_PRODUCT_DEFECT",
+      "before": "own-cam",
+      "after": "program",
+      "writes": 0
+    },
+    {
+      "name": "Baseline removed saved video silently falls back to Program form value",
+      "status": "PASS",
+      "verdict": "CONFIRMED_PRODUCT_DEFECT",
+      "writes": 0
+    },
+    {
+      "name": "Draft keeps return video and gain after blur/diagnostic polling; opening writes nothing",
+      "status": "PASS",
+      "writes": 0
+    },
+    {
+      "name": "Draft keeps edits on failed Save and clears only confirmed Save",
+      "status": "PASS"
+    },
+    {
+      "name": "Draft removed saved video remains disabled and cannot Save fallback",
+      "status": "PASS"
+    },
+    {
+      "name": "Draft scoped guest UUID removed clears draft; same display name new UUID never inherits",
+      "status": "PASS"
+    },
+    {
+      "name": "baseline HDR stalled JSON body confirms indefinite busy guard",
+      "status": "PASS",
+      "verdict": "CONFIRMED_PRODUCT_DEFECT",
+      "ownHttpBodyPartial": true,
+      "nativeUsed": false,
+      "timeoutMs": 5000,
+      "automaticRetry": false
+    },
+    {
+      "name": "draft HDR stalled JSON body times out and releases busy with needsCheck/no retry",
+      "status": "PASS",
+      "verdict": "DRAFT_PASS",
+      "ownHttpBodyPartial": true,
+      "nativeUsed": false,
+      "timeoutMs": 5000,
+      "automaticRetry": false
+    }
+  ],
+  "syntax": [
+    {
+      "path": "draft/calls.js",
+      "sha256": "4ba5d7eaa317baaaac2d99589f929b407333de7af868d2b8c66e59c1d19c1666",
+      "status": "PASS"
+    },
+    {
+      "path": "draft/srt-hdr-ui.js",
+      "sha256": "10a5f1d086f2b2230ba716fe6688869f65066d427b9ce235526067ede79227c1",
+      "status": "PASS"
+    }
+  ],
+  "limits": [
+    "DOM/VM only plus own real HTTP stalled JSON body, no Native/CEF/hardware/operator",
+    "No common product edits; Source pins and patches separate",
+    "Calls draft literal values/UUID only; no guest link or secret stored in draft map",
+    "HDR abort does not cancel an already accepted engine action; read-only reconciliation required, never auto retry"
+  ]
+}

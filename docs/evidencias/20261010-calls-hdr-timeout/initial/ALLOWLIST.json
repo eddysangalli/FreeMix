@@ -1,0 +1,86 @@
+{
+  "status": "FROZEN_DRAFT_REPRO_ONLY_ROOT_REVIEW",
+  "at": "2026-10-10T05:43:51.744Z",
+  "files": [
+    {
+      "path": "prepare.mjs",
+      "bytes": 4780,
+      "sha256": "17718dcf486dbf6d2400d9ca9396ca11a5c499449f02f67f20f9bf8672be4d2d"
+    },
+    {
+      "path": "test.mjs",
+      "bytes": 9200,
+      "sha256": "fd11942e87de8f94280730cfb06f6fdc51e016fed366ad17b029583bbf92d106"
+    },
+    {
+      "path": "BASELINE.json",
+      "bytes": 2454,
+      "sha256": "c7ae0c86d4debf9c82bc187436b4bff409575904c005268e927577d9508a59aa"
+    },
+    {
+      "path": "result.json",
+      "bytes": 2345,
+      "sha256": "ee0394dede9ea80451c4f26af117c5f17518c09ceb9586a8a74a550d60bde981"
+    },
+    {
+      "path": "README.md",
+      "bytes": 5685,
+      "sha256": "dd79bbbee6d28228513b622899799ff9c7b571772bb9fd12d2d9ea892069e10c"
+    },
+    {
+      "path": "calls.js.patch",
+      "bytes": 11474,
+      "sha256": "87965d03d0bbc72454a23f034a014e0709b5e03a6b09e68cbd4699c8504cded7"
+    },
+    {
+      "path": "srt-hdr-ui.js.patch",
+      "bytes": 5471,
+      "sha256": "061d37f072c303a562c70200ecba213ead86dee3b666f654e0ac3a10e13eb7f1"
+    },
+    {
+      "path": "baseline/calls.js",
+      "bytes": 14569,
+      "sha256": "01673273c3ee071947fbe1018e4cf24a0f064e3aa3a26bb82abc39292b73ca62"
+    },
+    {
+      "path": "baseline/calls.html",
+      "bytes": 5092,
+      "sha256": "d84e42ff543bfe01abadc3cba7e60f97006cbad56b1dff6e5c998c434a7d161e"
+    },
+    {
+      "path": "baseline/srt-hdr-ui.js",
+      "bytes": 5866,
+      "sha256": "642b6a542e148d80fa86314135aa250ccfcc48bf940df3948cdacdf405c34efc"
+    },
+    {
+      "path": "baseline/srt-hdr.html",
+      "bytes": 3405,
+      "sha256": "6df48c099f98653b8c05ecbd32585c776e5579ee663772169faacf7e86e36c5f"
+    },
+    {
+      "path": "draft/calls.js",
+      "bytes": 15894,
+      "sha256": "4ba5d7eaa317baaaac2d99589f929b407333de7af868d2b8c66e59c1d19c1666"
+    },
+    {
+      "path": "draft/srt-hdr-ui.js",
+      "bytes": 5932,
+      "sha256": "10a5f1d086f2b2230ba716fe6688869f65066d427b9ce235526067ede79227c1"
+    }
+  ],
+  "productPathsToApply": [],
+  "proposedProductPaths": [
+    "FreeMix/painel/remoto/calls.js",
+    "FreeMix/painel/remoto/srt-hdr-ui.js"
+  ],
+  "productEdited": false,
+  "nativeRun": false,
+  "operatorTouched": false,
+  "sealedCandidate050500Changed": false,
+  "limits": [
+    "DOM/VM only plus own real HTTP stalled JSON body, no Native/CEF/hardware/operator",
+    "No common product edits; Source pins and patches separate",
+    "Calls draft literal values/UUID only; no guest link or secret stored in draft map",
+    "HDR abort does not cancel an already accepted engine action; read-only reconciliation required, never auto retry"
+  ]
+}

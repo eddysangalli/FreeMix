@@ -1,0 +1,83 @@
+diff --git a/baseline/calls.js b/draft/calls.js
+index 0dd2825..c54ee61 100644
+--- a/baseline/calls.js
++++ b/draft/calls.js
+@@ -3,6 +3,11 @@
+  const E=id=>document.getElementById(id),esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  let state={},scope='',selection=null,saving=false,selectionMessage='',selectionError=false,echo=null,guestFingerprint='',targetFingerprint='',selectionEpoch=0;
+  let held=false,starting=false,lease=null,timer=null,pinging=false,holdEpoch=0;
++ const guestDrafts=new Map(),pendingRoutes=new Map();let draftRevision=0;
++ const routeValues=v=>({video:v.video||'program',audio:v.audio||'program',gain:Number(v.gain??1),audioSources:v.audio==='custom'?[...new Set(v.audioSources||[])].sort():[]});
++ const routeSignature=v=>JSON.stringify(routeValues(v));
++ const allowedAudio=g=>(calls().audioChoices||[]).filter(a=>a.key!==g&&a.key!==calls().director?.key);
++ function reconcileDrafts(){for(const[key,d]of guestDrafts){if(d.phase!=='awaitEcho'&&d.phase!=='echoTimeout')continue;const saved=calls().returns?.find(r=>r.key===key);if(saved&&routeSignature(saved)===routeSignature(d)){guestDrafts.delete(key);guestFingerprint='';}else if(d.phase==='awaitEcho'&&Date.now()>d.until){d.phase='echoTimeout';guestFingerprint='';}}}
+  const signature=value=>JSON.stringify(value===null?null:[...(value||[])].sort());
+  const calls=()=>state.calls||{},guests=()=>calls().guests||[],targetKeys=()=>selection===null?guests().map(g=>g.key):selection||[];
+  async function request(action,data={}){
+@@ -74,7 +79,15 @@
+  E('talk').onkeydown=e=>{if([' ','Enter'].includes(e.key)){e.preventDefault();if(!e.repeat)start();}};E('talk').onkeyup=e=>{if([' ','Enter'].includes(e.key)){e.preventDefault();stop();}};
+  document.addEventListener('keydown',e=>{if(e.ctrlKey&&e.code==='Space'&&!e.repeat&&!/INPUT|SELECT|TEXTAREA|BUTTON/.test(e.target.tagName)){e.preventDefault();start();}});document.addEventListener('keyup',e=>{if(e.code==='Space')stop();});
+  window.addEventListener('blur',stop);window.addEventListener('pagehide',stop);document.addEventListener('visibilitychange',()=>{if(document.hidden)stop();});
+- async function act(button,action,data,success){stop();button.disabled=true;try{await request(action,data);message(success);guestFingerprint='';}catch(e){message(e.message,true);}finally{button.disabled=false;}}
++ async function act(button,action,data,success){
++  const ownScope=scope,key=action==='call_return_route'?data.key:null,oldDraft=key?guestDrafts.get(key):null,revision=oldDraft?.revision??0,operation=key?++draftRevision:null;
++  if(key&&pendingRoutes.has(key))return;if(key&&!guestDrafts.has(key)&&guestDrafts.size>=8){message('Há rascunhos para oito convidados. Resolva os atuais antes de salvar outro.',true);return;}if(key)pendingRoutes.set(key,operation);
++  stop();button.disabled=true;
++  try{await request(action,data);if(scope!==ownScope||key&&pendingRoutes.get(key)!==operation)return;
++   if(key){const latest=guestDrafts.get(key);if((latest?.revision??0)!==revision){message('Retorno salvo no motor. Há novas alterações não salvas.');}else{guestDrafts.set(key,{...routeValues(data),revision,phase:'awaitEcho',until:Date.now()+2500});message('Retorno salvo no motor. Aguardando atualização do estado…');}}else message(success);guestFingerprint='';
++  }catch(e){if(scope===ownScope&&(!key||pendingRoutes.get(key)===operation))message(e.message,true);}
++  finally{if(key&&pendingRoutes.get(key)===operation)pendingRoutes.delete(key);button.disabled=false;}
++ }
+  E('mic-open').onclick=()=>{E('mic-details').open=!E('mic-details').open;if(E('mic-details').open)E('mic').focus();};
+  E('prepare').onclick=()=>act(E('prepare'),'call_director',{input:E('mic').value},'Microfone privado preparado.');
+  E('create-mic').onclick=()=>act(E('create-mic'),'call_director_create',{},'Microfone privado padrão criado. Confira o dispositivo nas propriedades.');
+@@ -84,29 +97,43 @@
+  E('ice-import').onclick=()=>{E('ice-file').value='';E('ice-file').click();};E('ice-file').onchange=async()=>{try{const file=E('ice-file').files[0];if(!file)return;if(file.size>16384)throw Error('Arquivo ICE excede16KB');await request('call_ice_import',{document:JSON.parse(await file.text())});message('Configuração TURN salva. Prepare novamente os retornos.');}catch(e){message(e.message,true);}};
+  E('ice-reset').onclick=()=>act(E('ice-reset'),'call_ice_reset',{},'Rede automática restaurada. Prepare novamente os retornos.');
+  E('guests').addEventListener('click',e=>{
++  const remove=e.target.closest('button[data-remove-audio]');if(remove){const card=remove.closest('.call');remove.closest('label').remove();captureGuestDraft({target:card.querySelector('[data-audio]')});message('Fonte removida do rascunho. Clique Salvar retorno para aplicar.');return;}
+   const button=e.target.closest('button[data-route]');if(!button)return;const card=button.closest('.call'),key=button.dataset.route;
+   if(button.dataset.copy){navigator.clipboard.writeText(card.querySelector('[data-link]').value).then(()=>message('Link copiado.')).catch(()=>message('Selecione e copie o link do convidado.',true));return;}
+   if(button.dataset.reconnect){act(button,'call_reconnect',{key},'Reconexão solicitada.');return;}
++  const draft=guestDrafts.get(key);if(pendingRoutes.has(key)||['awaitEcho','echoTimeout'].includes(draft?.phase)){message('O retorno já foi confirmado. Aguarde ou confira o estado antes de salvar novamente.',true);return;}
++  if(card.querySelector('[data-audio]').value==='custom'&&[...card.querySelectorAll('[data-sources]:checked')].some(el=>!allowedAudio(key).some(a=>a.key===el.value))){message('Há fonte de áudio indisponível ou privada. Remova-a da seleção ou escolha outro modo antes de salvar.',true);return;}
++  if(card.querySelector('[data-video]').selectedOptions[0]?.disabled){message('A entrada de retorno não está disponível. Escolha outra antes de salvar.',true);return;}
+   act(button,'call_return_route',{key,video:card.querySelector('[data-video]').value,audio:card.querySelector('[data-audio]').value,gain:Number(card.querySelector('[data-gain]').value)/100,audioSources:[...card.querySelectorAll('[data-sources]:checked')].map(el=>el.value)},'Retorno salvo.');
+  });
+  E('guests').addEventListener('change',e=>{if(!e.target.matches('[data-audio]'))return;e.target.closest('.call').querySelector('[data-custom]').hidden=e.target.value!=='custom';});
++ function captureGuestDraft(e){
++  if(!e.target.matches('[data-video],[data-audio],[data-gain],[data-sources]'))return;
++  const card=e.target.closest('.call'),key=card?.querySelector('button[data-route]')?.dataset.route;if(!key)return;
++  if(!guestDrafts.has(key)&&guestDrafts.size>=8){message('Há rascunhos para oito convidados. Salve ou resolva os atuais antes de editar outro.',true);return;}
++  guestDrafts.set(key,{...routeValues({video:card.querySelector('[data-video]').value,audio:card.querySelector('[data-audio]').value,gain:Number(card.querySelector('[data-gain]').value)/100,audioSources:[...card.querySelectorAll('[data-sources]:checked')].map(el=>el.value)}),revision:++draftRevision,phase:'dirty'});
++ }
++ E('guests').addEventListener('input',captureGuestDraft);E('guests').addEventListener('change',captureGuestDraft);
+  function renderGuests(){
+-  const c=calls(),individual=c.capability==='individual-PCM-WebRTC';
++  reconcileDrafts();const c=calls(),individual=c.capability==='individual-PCM-WebRTC';
+   const hash=JSON.stringify([c.guests,c.returns,c.audioChoices,state.inputs?.map(i=>[i.key,i.name])]);
+   if(hash===guestFingerprint||E('guests').contains(document.activeElement)&&/INPUT|SELECT/.test(document.activeElement.tagName))return;guestFingerprint=hash;
+   const open=new Set([...E('guests').querySelectorAll('details[open]')].map(d=>d.dataset.key));
+   E('guests').innerHTML=guests().map(g=>{
+    const r=c.returns?.find(r=>r.key===g.key),d=r?.diagnostics,videoName=!r?.video||r.video==='program'?'Programa':state.inputs?.find(i=>i.key===r.video)?.name||'Entrada removida';
+-   const audioMode=r?.audio||'program',audioName=audioMode==='silent'?'Somente o diretor enquanto você fala':audioMode==='custom'?'Fontes escolhidas, sem a própria voz':'Programa sem a própria voz'+(c.conference!==false?' + outros convidados':'');
+-   const options=(state.inputs||[]).map(i=>'<option value="'+esc(i.key)+'"'+(r?.video===i.key?' selected':'')+'>'+esc(i.name)+'</option>').join('');
+-   const audio=(c.audioChoices||[]).filter(a=>a.key!==g.key&&a.key!==c.director?.key).map(a=>'<label><input type="checkbox" data-sources value="'+esc(a.key)+'"'+(r?.audioSources?.includes(a.key)?' checked':'')+'>'+esc(a.name)+'</label>').join('');
+-   return '<article class="call"><div class="call-heading"><strong>'+esc(g.person?.name||g.name)+'</strong><span class="badge">'+esc(r?.publisher==='publishing'?(r.peerConnectionVerified?'Retorno conectado':'Retorno pronto · aguarda convidado'):'Retorno não preparado')+'</span></div><p class="summary">O convidado vê: <strong>'+esc(videoName)+'</strong><br>O convidado ouve: <strong>'+esc(audioName)+'</strong></p><label>Link do convidado<div class="call-link"><input data-link readonly value="'+esc(g.guest)+'"><button data-route="'+esc(g.key)+'" data-copy="1">Copiar link</button></div></label><details data-key="'+esc(g.key)+'"'+(open.has(g.key)?' open':'')+'><summary>Ajustar o que este convidado vê e ouve</summary><div class="call-grid"><label>Vídeo<select data-video><option value="program">Programa</option>'+options+'</select></label><label>Áudio<select data-audio>'+['program','custom','silent'].map((v,i)=>'<option value="'+v+'"'+(audioMode===v?' selected':'')+'>'+['Programa sem a própria voz','Escolher fontes de áudio','Somente talkback'][i]+'</option>').join('')+'</select></label><div data-custom'+(audioMode!=='custom'?' hidden':'')+'>Fontes escolhidas<div class="sources">'+audio+'</div></div></div><button data-route="'+esc(g.key)+'">Salvar retorno</button> <button data-route="'+esc(g.key)+'" data-reconnect="1"'+(!individual?' disabled':'')+'>Reconectar</button><details data-key="'+esc(g.key)+'-advanced"'+(open.has(g.key+'-advanced')?' open':'')+'><summary>Nível e diagnóstico avançado</summary><label>Nível do retorno (%)<input data-gain type="number" min="0" max="200" step="5" value="'+Math.round((r?.gain??1)*100)+'"></label><p>'+esc(d?`${d.ice||'Sem ICE'} · ${d.transport||'Sem transporte'} · RTT ${d.rttMs===null?'—':Math.round(d.rttMs)+'ms'} · fila ${Math.round(d.queuedMs)}ms`:'Sem diagnóstico de retorno.')+'</p></details></details>'+(r?.error?'<p role="alert">'+esc(r.error)+'</p>':'')+'</article>';
++   const values=guestDrafts.get(g.key)||r,video=values?.video||'program',audioMode=values?.audio||'program',savedAudioMode=r?.audio||'program',audioName=savedAudioMode==='silent'?'Somente o diretor enquanto você fala':savedAudioMode==='custom'?'Fontes escolhidas, sem a própria voz':'Programa sem a própria voz'+(c.conference!==false?' + outros convidados':'');
++   const options=(state.inputs||[]).map(i=>'<option value="'+esc(i.key)+'"'+(video===i.key?' selected':'')+'>'+esc(i.name)+'</option>').join('')+(video!=='program'&&!(state.inputs||[]).some(i=>i.key===video)?'<option value="'+esc(video)+'" selected disabled>Entrada indisponível · escolha outra</option>':'');
++   const choices=allowedAudio(g.key),audio=choices.map(a=>'<label><input type="checkbox" data-sources value="'+esc(a.key)+'"'+(values?.audioSources?.includes(a.key)?' checked':'')+'>'+esc(a.name)+'</label>').join('')+(audioMode==='custom'?(values?.audioSources||[]).filter(key=>!choices.some(a=>a.key===key)).map(key=>'<label><input type="checkbox" data-sources checked disabled value="'+esc(key)+'">Fonte indisponível ou privada <button type="button" data-remove-audio="'+esc(key)+'">Remover da seleção</button></label>').join(''):'');
++   const draft=guestDrafts.get(g.key),draftNote=draft?.phase==='awaitEcho'?'Salvo no motor · aguardando atualização do estado…':draft?.phase==='echoTimeout'?'O estado ainda não refletiu o retorno confirmado. Confira o motor; não envie novamente.':draft?'Alterações não salvas.':'';
++   return '<article class="call"><div class="call-heading"><strong>'+esc(g.person?.name||g.name)+'</strong><span class="badge">'+esc(r?.publisher==='publishing'?(r.peerConnectionVerified?'Retorno conectado':'Retorno pronto · aguarda convidado'):'Retorno não preparado')+'</span></div><p class="summary">O convidado vê: <strong>'+esc(videoName)+'</strong><br>O convidado ouve: <strong>'+esc(audioName)+'</strong></p><label>Link do convidado<div class="call-link"><input data-link readonly value="'+esc(g.guest)+'"><button data-route="'+esc(g.key)+'" data-copy="1">Copiar link</button></div></label><details data-key="'+esc(g.key)+'"'+(open.has(g.key)?' open':'')+'><summary>Ajustar o que este convidado vê e ouve</summary><div class="call-grid"><label>Vídeo<select data-video><option value="program">Programa</option>'+options+'</select></label><label>Áudio<select data-audio>'+['program','custom','silent'].map((v,i)=>'<option value="'+v+'"'+(audioMode===v?' selected':'')+'>'+['Programa sem a própria voz','Escolher fontes de áudio','Somente talkback'][i]+'</option>').join('')+'</select></label><div data-custom'+(audioMode!=='custom'?' hidden':'')+'>Fontes escolhidas<div class="sources">'+audio+'</div></div></div><p role="status">'+esc(draftNote)+'</p><button data-route="'+esc(g.key)+'"'+(pendingRoutes.has(g.key)||['awaitEcho','echoTimeout'].includes(draft?.phase)?' disabled':'')+'>Salvar retorno</button> <button data-route="'+esc(g.key)+'" data-reconnect="1"'+(!individual?' disabled':'')+'>Reconectar</button><details data-key="'+esc(g.key)+'-advanced"'+(open.has(g.key+'-advanced')?' open':'')+'><summary>Nível e diagnóstico avançado</summary><label>Nível do retorno (%)<input data-gain type="number" min="0" max="200" step="5" value="'+Math.round((values?.gain??1)*100)+'"></label><p>'+esc(d?`${d.ice||'Sem ICE'} · ${d.transport||'Sem transporte'} · RTT ${d.rttMs===null?'—':Math.round(d.rttMs)+'ms'} · fila ${Math.round(d.queuedMs)}ms`:'Sem diagnóstico de retorno.')+'</p></details></details>'+(r?.error?'<p role="alert">'+esc(r.error)+'</p>':'')+'</article>';
+   }).join('')||'<p>Nenhuma entrada Call criada.</p>';
+  }
+  function refresh(){
+   state=window.FreeMixRemote?.getState()||{};const c=calls(),nextScope=state.preset||'';
+-  if(scope!==nextScope){stop();scope=nextScope;selection=c.rapidTargets??null;saving=false;selectionEpoch++;echo=null;selectionMessage='';selectionError=false;guestFingerprint='';targetFingerprint='';}
++  if(scope!==nextScope){stop();scope=nextScope;guestDrafts.clear();pendingRoutes.clear();selection=c.rapidTargets??null;saving=false;selectionEpoch++;echo=null;selectionMessage='';selectionError=false;guestFingerprint='';targetFingerprint='';}
+   if(!saving){const value=c.rapidTargets??null,sig=signature(value);if(echo&&sig===echo.expected)echo=null;if(!echo||sig!==echo.previous||Date.now()>echo.until){if(signature(selection)!==sig){stop();selection=value===null?null:[...value];selectionMessage='';selectionError=false;}echo=null;}}
++  const liveGuestKeys=new Set(guests().map(g=>g.key));for(const key of guestDrafts.keys())if(!liveGuestKeys.has(key)){guestDrafts.delete(key);pendingRoutes.delete(key);}
++  for(const key of pendingRoutes.keys())if(!liveGuestKeys.has(key))pendingRoutes.delete(key);
+   renderTargets();renderGuests();
+   E('conference').checked=c.conference!==false;
+   E('return-status').textContent=c.capability==='individual-PCM-WebRTC'?'Retornos separados: cada pessoa recebe o próprio retorno, sem ouvir a própria voz.':'Prepare os retornos individuais. O retorno B antigo é compartilhado e não garante seleção por convidado.';

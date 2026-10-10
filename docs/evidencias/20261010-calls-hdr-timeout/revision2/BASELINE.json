@@ -1,0 +1,64 @@
+{
+  "pins": [
+    {
+      "path": "FreeMix/painel/remoto/calls.js",
+      "sha256": "01673273c3ee071947fbe1018e4cf24a0f064e3aa3a26bb82abc39292b73ca62"
+    },
+    {
+      "path": "FreeMix/painel/remoto/calls.html",
+      "sha256": "d84e42ff543bfe01abadc3cba7e60f97006cbad56b1dff6e5c998c434a7d161e"
+    },
+    {
+      "path": "FreeMix/painel/remoto/srt-hdr-ui.js",
+      "sha256": "642b6a542e148d80fa86314135aa250ccfcc48bf940df3948cdacdf405c34efc"
+    },
+    {
+      "path": "FreeMix/painel/remoto/srt-hdr.html",
+      "sha256": "6df48c099f98653b8c05ecbd32585c776e5579ee663772169faacf7e86e36c5f"
+    },
+    {
+      "path": "FreeMix/painel/remoto/saidas.html",
+      "sha256": "74138d8d69ff08a8d62c5060e3e0be642c39f82c24f1596f7296cb22246c3a5c"
+    },
+    {
+      "path": "FreeMix/painel/remoto/saidas.js",
+      "sha256": "faf4cc8aa2645786aa0b100cb87112d402a496a81580158a8d2d8903b218e8e7"
+    },
+    {
+      "path": "FreeMix/painel/remoto/saidas-operacao-ui.js",
+      "sha256": "0c541c21a726f8be5857a797410719d4179d19dded337fadfa943e0ad1271836"
+    },
+    {
+      "path": "FreeMix/painel/remoto/saidas-contexto-ui.js",
+      "sha256": "3750982834862f137b64dd454ed408aa38b1079c48575f391ae756f8956a1569"
+    },
+    {
+      "path": "FreeMix/painel/remoto/saidas-external-ui.js",
+      "sha256": "c554d5b3091e9095dfb999a742016fa074c6922d31d59279deafb66d6e96a6bd"
+    },
+    {
+      "path": "FreeMix/ferramentas/calls-producao.mjs",
+      "sha256": "a8d3547f962ac88849296de348b6cf5dbefe3aafcdb49d857176a7186a77a164"
+    },
+    {
+      "path": "FreeMix/ferramentas/retornos-calls.mjs",
+      "sha256": "b2368a7b67df0ace491b7cf674e3bcae444f55e836914201cfb3a2a6f8a13a36"
+    }
+  ],
+  "patches": [
+    {
+      "path": "calls.js.patch",
+      "sha256": "7cee7f6793f4dc7b131a80349981920d67ed8ef9f1d562ec82a93a77abb81cbb",
+      "baselineSha256": "01673273c3ee071947fbe1018e4cf24a0f064e3aa3a26bb82abc39292b73ca62",
+      "draftSha256": "1c0e24c2fd65c12f7c65749f1b13a3107d144355e5f96daf28361765860b9bc0"
+    },
+    {
+      "path": "srt-hdr-ui.js.patch",
+      "sha256": "3aa001afbff802cd38754722d3858264521438efde605984b410c1da0c0c4617",
+      "baselineSha256": "642b6a542e148d80fa86314135aa250ccfcc48bf940df3948cdacdf405c34efc",
+      "draftSha256": "3b662ee624c66e2833d5dceb91e99debfa6e2cef8732f8f19097ce56e0059b9d"
+    }
+  ],
+  "preservedFirstAllowlistSha256": "dbf0319e59cf2dcc01e8ff299791f61e75ef4b185ea57d25914b864f43b444c1",
+  "productEdited": false
+}

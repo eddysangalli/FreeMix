@@ -2,7 +2,7 @@
 
 Código do FreeMix baseado no OBS Studio 32.2.2, com interface de mesa de produção, saídas independentes, composições, GC, Calls, replay, áudio e automação.
 
-Entrega local aprovada: **0.1.0-local.20261010035000**, selecionada em `entregas/INSTALADOR-ATUAL.json`. As fontes posteriores Native24/050500 estão integradas e aguardam o ensaio do novo instalador. Estado vigente: [docs/CONTINUAR.md](docs/CONTINUAR.md). Pendências e critérios: [docs/PENDENCIAS-REAIS.md](docs/PENDENCIAS-REAIS.md). Instalador: [docs/INSTALACAO.md](docs/INSTALACAO.md). Tarefa de auditoria: [docs/TAREFA-AUDITORIA-PENDENCIAS.md](docs/TAREFA-AUDITORIA-PENDENCIAS.md).
+Entrega local aprovada: **0.1.0-local.20261010035000**, selecionada em `entregas/INSTALADOR-ATUAL.json`. 060000/Native24 traz correções posteriores de Calls e HDR e aguarda novo pacote/ensaio instalado. 050500 preserva um FAIL do verificador e uma continuação separada de diagnóstico/desinstalação. Retorno custom das Calls permanece limitado a5fps; vídeo contínuo está em implementação isolada. Estado vigente: [docs/CONTINUAR.md](docs/CONTINUAR.md). Pendências e critérios: [docs/PENDENCIAS-REAIS.md](docs/PENDENCIAS-REAIS.md). Instalador: [docs/INSTALACAO.md](docs/INSTALACAO.md). Tarefa de auditoria: [docs/TAREFA-AUDITORIA-PENDENCIAS.md](docs/TAREFA-AUDITORIA-PENDENCIAS.md).
 
 Experimento [vídeo com alpha em uma entrada Web Browser](docs/VIDEO-ALPHA-UMA-ENTRADA.md): **abortado pelo operador após reprovação com vídeo real no vMix**. [Análise dos bridges e bonding](docs/referencias/ANALISE-BRIDGES-CHARGEXDEV.md).
 

@@ -1,0 +1,67 @@
+{
+  "status": "PASS_REVISION2_RACES_AND_GUARDS",
+  "at": "2026-10-10T05:47:34.975Z",
+  "results": [
+    {
+      "name": "Delayed Save ACK never erases a newer revision",
+      "status": "PASS"
+    },
+    {
+      "name": "Old scope Save ACK cannot clear or confirm same UUID draft in a new scope",
+      "status": "PASS"
+    },
+    {
+      "name": "Confirmed four values remain until state echo; bounded timeout blocks replay Save",
+      "status": "PASS"
+    },
+    {
+      "name": "Failed Save preserves draft values and never reports confirmed phase",
+      "status": "PASS"
+    },
+    {
+      "name": "Custom audio removed-own-audio remains checked unavailable and blocks Save until explicit removal",
+      "status": "PASS"
+    },
+    {
+      "name": "Custom audio director remains checked unavailable and blocks Save until explicit removal",
+      "status": "PASS"
+    },
+    {
+      "name": "Custom audio guest-a remains checked unavailable and blocks Save until explicit removal",
+      "status": "PASS"
+    },
+    {
+      "name": "Saved video UUID removed is not replaced by Program and blocks Save",
+      "status": "PASS"
+    },
+    {
+      "name": "Removed guest UUID clears its draft; recreation never inherits, opening/poll no mutation",
+      "status": "PASS"
+    },
+    {
+      "name": "HDR real stalled JSON5s releases busy, Portuguese uncertainty, no retry and GET reconcile",
+      "status": "PASS",
+      "httpOwnActualPartialBody": true,
+      "timeoutMs": 5000,
+      "nativeRun": false
+    }
+  ],
+  "syntax": [
+    {
+      "path": "draft/calls.js",
+      "sha256": "9a95bc691442da3932921fbbc37061ad26374fba7c6edc9d838387d5b32fe8ac",
+      "status": "PASS"
+    },
+    {
+      "path": "draft/srt-hdr-ui.js",
+      "sha256": "0e8656b709e5e89537feea02989d52cfef9491e1c9d87a8971c5c314d186e8e9",
+      "status": "PASS"
+    }
+  ],
+  "limits": [
+    "Own DOM/VM and HTTP partial-body only; no Native/CEF/operator",
+    "First freeze13 and8PASS preserved unchanged",
+    "Echo deadline advances own VM clock only; HTTP timeout5s uses real clock",
+    "UI timeout never claims engine operation cancelled or transmission failed"
+  ]
+}

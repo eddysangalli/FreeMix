@@ -1,0 +1,75 @@
+{
+  "status": "PASS_REVISION2_RACES_AND_GUARDS",
+  "at": "2026-10-10T05:49:05.123Z",
+  "results": [
+    {
+      "name": "Delayed Save ACK never erases a newer revision",
+      "status": "PASS"
+    },
+    {
+      "name": "Old scope Save ACK cannot clear or confirm same UUID draft in a new scope",
+      "status": "PASS"
+    },
+    {
+      "name": "Confirmed four values remain until state echo; bounded timeout blocks replay Save",
+      "status": "PASS"
+    },
+    {
+      "name": "Failed Save preserves draft values and never reports confirmed phase",
+      "status": "PASS"
+    },
+    {
+      "name": "Custom audio removed-own-audio remains checked unavailable and blocks Save until explicit removal",
+      "status": "PASS"
+    },
+    {
+      "name": "Custom audio director remains checked unavailable and blocks Save until explicit removal",
+      "status": "PASS"
+    },
+    {
+      "name": "Custom audio guest-a remains checked unavailable and blocks Save until explicit removal",
+      "status": "PASS"
+    },
+    {
+      "name": "Saved video UUID removed is not replaced by Program and blocks Save",
+      "status": "PASS"
+    },
+    {
+      "name": "Removed guest UUID clears its draft; recreation never inherits, opening/poll no mutation",
+      "status": "PASS"
+    },
+    {
+      "name": "Pending Save with no original draft removed UUID cannot confirm recreated row",
+      "status": "PASS"
+    },
+    {
+      "name": "Own draft map limit8 refuses ninth Save without dispatch",
+      "status": "PASS"
+    },
+    {
+      "name": "HDR real stalled JSON5s releases busy, Portuguese uncertainty, no retry and GET reconcile",
+      "status": "PASS",
+      "httpOwnActualPartialBody": true,
+      "timeoutMs": 5000,
+      "nativeRun": false
+    }
+  ],
+  "syntax": [
+    {
+      "path": "draft/calls.js",
+      "sha256": "1c0e24c2fd65c12f7c65749f1b13a3107d144355e5f96daf28361765860b9bc0",
+      "status": "PASS"
+    },
+    {
+      "path": "draft/srt-hdr-ui.js",
+      "sha256": "3b662ee624c66e2833d5dceb91e99debfa6e2cef8732f8f19097ce56e0059b9d",
+      "status": "PASS"
+    }
+  ],
+  "limits": [
+    "Own DOM/VM and HTTP partial-body only; no Native/CEF/operator",
+    "First freeze13 and8PASS preserved unchanged",
+    "Echo deadline advances own VM clock only; HTTP timeout5s uses real clock",
+    "UI timeout never claims engine operation cancelled or transmission failed"
+  ]
+}

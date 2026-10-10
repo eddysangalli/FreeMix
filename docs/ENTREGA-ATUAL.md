@@ -1,30 +1,15 @@
-# Entrega local selecionada —0.1.0-local.20261010035000
+# FreeMix — ENTREGA-ATUAL / fontes060000
 
-Use **INSTALAR-FREEMIX.cmd**, pasta nova/vazia e atalho FreeMix Studio. entregas/INSTALADOR-ATUAL.json está VERIFIED; operador não substituído/ativado.
+Estado em 10/10/2026: **035000 continua selecionado e aprovado no seu ensaio local.** 050500 foi selado e instalado, mas o verificador falhou ao observar a saída da API; esse FAIL foi preservado. Dois fechamentos Native24 tiveram contador zero/crash zero. Diagnóstico e desinstalação passaram numa continuação separada, que não transforma o ensaio completo em PASS.
 
-- Setup FreeMix-Studio-Setup-0.1.0-local.20261010035000.exe: SHA256 **155aa53e12ae4431f66d85fee7785ee158b343ffcda8ae41550025bab7a22c10**.
-- ZIP SHA256 **a37b5410feada677e9185118f1ffdc79f27f78e5ce427e07f4eb88401bd58e4a**.
-- Manifesto9568 arquivos: **c268a198e35ca5607acc8fb6a5a952aaabb66e8c978ca1fab968f44624e2bea5**.
-- Native23 **709f101d1aaeb25ccc6f6eab77a3e23e9364f3b0**; Git do payload82691c8b47f5c628bb8f491d0f278b4d6790d2a5.
+**060000/Native24/a047860 contém correções posteriores nas fontes; ainda aguarda novo pacote e QA instalada.** Foram reproduzidos bloqueio de HDR sem prazo, perda de edição do retorno Calls após blur/poll e fallback indevido para Programa quando uma fonte desaparece. As fontes corrigidas têm os mesmos bytes dos drafts que passaram12 testes de corridas, eco do estado, fontes ausentes e HTTP real com corpo incompleto. Abrir ou consultar estas telas não inicia transmissão. Nenhuma mesa do operador foi substituída.
 
-QA final instalada própria: duas aberturas/fechamentos cooperativos contador 0 / crash 0, Meter 3/0, reconexão API, diagnóstico sanitizado e uninstall conservador reais. Provas qa-finalizacao/setup-035000-qa-retry2/report.json e installer-selected-035000.json. FAILs anteriores preservados; uma instalação no ensaio final, não duas. Sem homologação Windows limpo/hardware/WAN/carga longa.
+A entrega selecionada permanece035000. Use INSTALAR-FREEMIX.cmd em pasta nova/vazia e depois o atalho FreeMix Studio. Não apresentar050500 ou060000 como aprovados por antecipação. COLETAR-LOGS.cmd e o botão Diagnósticos geram ZIP local sanitizado para envio manual por e-mail/WhatsApp. Nenhum upload automático foi habilitado.
 
-035000 contém SRT/MultiStream/Calls simplificados e revisão GO/Cut/ACK/exclusão. Properties/Filters aceito queued, aparência/foco/z-order não comprovados. Ed25519 interno, **sem Authenticode**. Diagnóstico ZIP local enviado manualmente.
+Retorno Calls de entrada/composição: **JPEG640×360 até5fps**, limite de software. Vídeo contínuo25/30fps por fonte ainda precisa implementação e medição; uma frente isolada investiga PTS, buffers limitados e sincronismo com N-1. Programa usa câmera virtual, sem garantia da taxa efetiva neste registro.
 
-**050500/Native24/a047860 é fonte posterior; ainda sem pacote/Setup instalado/aprovado neste registro.** NAV, ticker textual, menus55/input44 e SRT HDR local não pertencem ao payload035000. Root gera novo candidato após freeze/commit. Alpha WebBrowser abortado; ponte alpha beta separada; SRT HDR é opaco. Gates em PENDENCIAS-REAIS.md.
+Properties/Filters: handoff queued não comprova visibilidade, foco ou z-order desktop. NDI HDR depende de Advanced SDK/licença e implementação. Hardware ASIO/SDI/PTZ/controladores, convidados/TURN/WAN/VPS, receptor/monitorHDR, carga prolongada e Windows limpo continuam gates reais. GTZIP finito não implica suporte universal a templates, imagens, feeds ou3D. Não retomar alpha WebBrowser abortado; ponte nativa permanece beta separada. Assinatura interna Ed25519 não substitui Authenticode.
 
----
+Provas públicas: [correções e12testes](evidencias/20261010-calls-hdr-timeout/revision2/README.md); [050500 em duas fases](evidencias/20261010-setup050500-two-phase/qa-finalizacao/setup-050500-continuation/report.json). Os recibos antigos permanecem íntegros.
 
-## Histórico preservado — estados anteriores, não instruções atuais
-
-Registros abaixo mantêm textos/limites originais. Referências antigas a atual, pendente ou próximo valem para sua data; o estado vigente é o descrito acima.
-
-# Entrega local — 0.1.0-local.20261010031500
-
-Use **INSTALAR-FREEMIX.cmd**. O inicializador lê entregas/INSTALADOR-ATUAL.json e confere o hash do EXE aprovado031500. Instale em pasta nova/vazia e abra pelo atalho FreeMix Studio. A instalação do operador não foi substituída.
-
-Setup SHA256616a475d8baa9d317eaf68d7f7acade93bc3d308aa1c8830dd3bc09cc10f520f. ZIP2179ea72ef21bf0eab76423c578761e4b34a7c76311dac15840c6fbd7730a511.9565 arquivos de payload assinados; Native22/500ced5. Duas instalações reais, migração opt-in, credenciais novas, diagnóstico sem OAuth e desinstalação preservando dados passaram. Preset com QR/ticker/Body/mídia foi recuperado em coleção nova em ensaio composto; FAILs anteriores permanecem registrados. Assinatura interna Ed25519, sem certificado Authenticode.
-
-**Este instalador ainda não contém as novas telas simplificadas, a revisão de latência dos botões ou o Native23/input handoff.** Estão sendo integrados/testados nas fontes e serão empacotados em versão nova, preservando031500 imutável. Veja ATUALIZACAO-20261010.md.
-
-Ponte SRT→NDI alpha é beta separada; receptor WebBrowser alpha permanece abortado. Logs em ZIP local para envio manual. Hardware/WAN/licenças e Windows limpo continuam gates explícitos em PENDENCIAS-REAIS.md.
+Histórico anterior completo, preservado byte a byte: [arquivo histórico](historico/20261010-pre060000/ENTREGA-ATUAL.md). As instruções vigentes são as desta página.

@@ -2,7 +2,7 @@
   "upstream": "https://github.com/obsproject/obs-studio.git",
   "base": "ba2f32bdf791005443988a4955e963663e16b1ed",
   "head": "a04786090fcbe7ede495f18e5ad38ccaa9793478",
-  "version": "0.1.0-local.20261010050500",
+  "version": "0.1.0-local.20261010060000",
   "patches": [
     {
       "path": "0001-feat-branding-replace-OBS-identity-with-FreeMix-Stud.patch",

@@ -1,0 +1,310 @@
+{
+  "status": "EXPLICIT_ALLOWLIST_BYTES_COPIED",
+  "at": "2026-10-10T05:53:19.811Z",
+  "files": [
+    {
+      "path": "docs/evidencias/20261010-calls-hdr-timeout/initial/prepare.mjs",
+      "bytes": 4780,
+      "sha256": "17718dcf486dbf6d2400d9ca9396ca11a5c499449f02f67f20f9bf8672be4d2d"
+    },
+    {
+      "path": "docs/evidencias/20261010-calls-hdr-timeout/initial/test.mjs",
+      "bytes": 9200,
+      "sha256": "fd11942e87de8f94280730cfb06f6fdc51e016fed366ad17b029583bbf92d106"
+    },
+    {
+      "path": "docs/evidencias/20261010-calls-hdr-timeout/initial/BASELINE.json",
+      "bytes": 2454,
+      "sha256": "c7ae0c86d4debf9c82bc187436b4bff409575904c005268e927577d9508a59aa"
+    },
+    {
+      "path": "docs/evidencias/20261010-calls-hdr-timeout/initial/result.json",
+      "bytes": 2345,
+      "sha256": "ee0394dede9ea80451c4f26af117c5f17518c09ceb9586a8a74a550d60bde981"
+    },
+    {
+      "path": "docs/evidencias/20261010-calls-hdr-timeout/initial/README.md",
+      "bytes": 5685,
+      "sha256": "dd79bbbee6d28228513b622899799ff9c7b571772bb9fd12d2d9ea892069e10c"
+    },
+    {
+      "path": "docs/evidencias/20261010-calls-hdr-timeout/initial/calls.js.patch",
+      "bytes": 11474,
+      "sha256": "87965d03d0bbc72454a23f034a014e0709b5e03a6b09e68cbd4699c8504cded7"
+    },
+    {
+      "path": "docs/evidencias/20261010-calls-hdr-timeout/initial/srt-hdr-ui.js.patch",
+      "bytes": 5471,
+      "sha256": "061d37f072c303a562c70200ecba213ead86dee3b666f654e0ac3a10e13eb7f1"
+    },
+    {
+      "path": "docs/evidencias/20261010-calls-hdr-timeout/initial/baseline/calls.js",
+      "bytes": 14569,
+      "sha256": "01673273c3ee071947fbe1018e4cf24a0f064e3aa3a26bb82abc39292b73ca62"
+    },
+    {
+      "path": "docs/evidencias/20261010-calls-hdr-timeout/initial/baseline/calls.html",
+      "bytes": 5092,
+      "sha256": "d84e42ff543bfe01abadc3cba7e60f97006cbad56b1dff6e5c998c434a7d161e"
+    },
+    {
+      "path": "docs/evidencias/20261010-calls-hdr-timeout/initial/baseline/srt-hdr-ui.js",
+      "bytes": 5866,
+      "sha256": "642b6a542e148d80fa86314135aa250ccfcc48bf940df3948cdacdf405c34efc"
+    },
+    {
+      "path": "docs/evidencias/20261010-calls-hdr-timeout/initial/baseline/srt-hdr.html",
+      "bytes": 3405,
+      "sha256": "6df48c099f98653b8c05ecbd32585c776e5579ee663772169faacf7e86e36c5f"
+    },
+    {
+      "path": "docs/evidencias/20261010-calls-hdr-timeout/initial/draft/calls.js",
+      "bytes": 15894,
+      "sha256": "4ba5d7eaa317baaaac2d99589f929b407333de7af868d2b8c66e59c1d19c1666"
+    },
+    {
+      "path": "docs/evidencias/20261010-calls-hdr-timeout/initial/draft/srt-hdr-ui.js",
+      "bytes": 5932,
+      "sha256": "10a5f1d086f2b2230ba716fe6688869f65066d427b9ce235526067ede79227c1"
+    },
+    {
+      "path": "docs/evidencias/20261010-calls-hdr-timeout/initial/ALLOWLIST.json",
+      "bytes": 2702,
+      "sha256": "dbf0319e59cf2dcc01e8ff299791f61e75ef4b185ea57d25914b864f43b444c1"
+    },
+    {
+      "path": "docs/evidencias/20261010-calls-hdr-timeout/revision2/BASELINE.json",
+      "bytes": 2444,
+      "sha256": "fc34a96043065c2e949f8c5088122627700049d0b99b199a3dbb595dc004be9a"
+    },
+    {
+      "path": "docs/evidencias/20261010-calls-hdr-timeout/revision2/README.md",
+      "bytes": 3550,
+      "sha256": "aa0d0c4743506e8a36b91d711040f39107156f1ace333dffaceaf76f73ffa573"
+    },
+    {
+      "path": "docs/evidencias/20261010-calls-hdr-timeout/revision2/test.mjs",
+      "bytes": 12551,
+      "sha256": "13dcdf2bdb70b816c780a021471a1e16ef0a5f97b6c42b5d3c83fcd5914323ba"
+    },
+    {
+      "path": "docs/evidencias/20261010-calls-hdr-timeout/revision2/test-harness-initial-fail.mjs",
+      "bytes": 11088,
+      "sha256": "64ed635c087829241bc34ad7e5af5cfd16473503bf6f72d6f293126a8074c864"
+    },
+    {
+      "path": "docs/evidencias/20261010-calls-hdr-timeout/revision2/initial-harness-fail.json",
+      "bytes": 160,
+      "sha256": "65aecbe53b7143cc6b6679b9ba4282f45658c91f18932e3f0184b59b044d3180"
+    },
+    {
+      "path": "docs/evidencias/20261010-calls-hdr-timeout/revision2/result.json",
+      "bytes": 2146,
+      "sha256": "cbada45e4507b4352c38bd1469b58e92e4a0f73ad24c4f062e44246248f058a7"
+    },
+    {
+      "path": "docs/evidencias/20261010-calls-hdr-timeout/revision2/result-before-final-guards.json",
+      "bytes": 2146,
+      "sha256": "cbada45e4507b4352c38bd1469b58e92e4a0f73ad24c4f062e44246248f058a7"
+    },
+    {
+      "path": "docs/evidencias/20261010-calls-hdr-timeout/revision2/result-final.json",
+      "bytes": 2387,
+      "sha256": "1c62b032ba0d9be408187d35f472620b882a41a94f4b1d10496f3351c4cec57b"
+    },
+    {
+      "path": "docs/evidencias/20261010-calls-hdr-timeout/revision2/calls.js.patch",
+      "bytes": 15826,
+      "sha256": "7cee7f6793f4dc7b131a80349981920d67ed8ef9f1d562ec82a93a77abb81cbb"
+    },
+    {
+      "path": "docs/evidencias/20261010-calls-hdr-timeout/revision2/srt-hdr-ui.js.patch",
+      "bytes": 5749,
+      "sha256": "3aa001afbff802cd38754722d3858264521438efde605984b410c1da0c0c4617"
+    },
+    {
+      "path": "docs/evidencias/20261010-calls-hdr-timeout/revision2/baseline/calls.js",
+      "bytes": 14569,
+      "sha256": "01673273c3ee071947fbe1018e4cf24a0f064e3aa3a26bb82abc39292b73ca62"
+    },
+    {
+      "path": "docs/evidencias/20261010-calls-hdr-timeout/revision2/baseline/calls.html",
+      "bytes": 5092,
+      "sha256": "d84e42ff543bfe01abadc3cba7e60f97006cbad56b1dff6e5c998c434a7d161e"
+    },
+    {
+      "path": "docs/evidencias/20261010-calls-hdr-timeout/revision2/baseline/srt-hdr-ui.js",
+      "bytes": 5866,
+      "sha256": "642b6a542e148d80fa86314135aa250ccfcc48bf940df3948cdacdf405c34efc"
+    },
+    {
+      "path": "docs/evidencias/20261010-calls-hdr-timeout/revision2/baseline/srt-hdr.html",
+      "bytes": 3405,
+      "sha256": "6df48c099f98653b8c05ecbd32585c776e5579ee663772169faacf7e86e36c5f"
+    },
+    {
+      "path": "docs/evidencias/20261010-calls-hdr-timeout/revision2/draft/calls.js",
+      "bytes": 19438,
+      "sha256": "1c0e24c2fd65c12f7c65749f1b13a3107d144355e5f96daf28361765860b9bc0"
+    },
+    {
+      "path": "docs/evidencias/20261010-calls-hdr-timeout/revision2/draft/srt-hdr-ui.js",
+      "bytes": 6210,
+      "sha256": "3b662ee624c66e2833d5dceb91e99debfa6e2cef8732f8f19097ce56e0059b9d"
+    },
+    {
+      "path": "docs/evidencias/20261010-calls-hdr-timeout/revision2/ALLOWLIST.json",
+      "bytes": 3284,
+      "sha256": "1fc4563de34b17a608f84f34212037bc9cee4ecf56ce62e11a4519dc79eb7459"
+    },
+    {
+      "path": "docs/evidencias/20261010-setup050500-two-phase/qa-finalizacao/setup-050500-qa.mjs",
+      "bytes": 25354,
+      "sha256": "3a776b6b6b63ae86c7a1194bbcd361aa5b2bbe6ce56f063cffc576013819fa9e"
+    },
+    {
+      "path": "docs/evidencias/20261010-setup050500-two-phase/qa-finalizacao/prepare-setup-050500-qa.mjs",
+      "bytes": 9519,
+      "sha256": "64cf7403d1c135db62bc324a2d632ef755c4a9a37117b933a5a1624aa32d1e0b"
+    },
+    {
+      "path": "docs/evidencias/20261010-setup050500-two-phase/qa-finalizacao/setup-050500-qa/PREPARATION.json",
+      "bytes": 12205,
+      "sha256": "616a5316e1504ce19ea18e5647904393d4f6dc843ef1ce15c30428edacd3cadb"
+    },
+    {
+      "path": "docs/evidencias/20261010-setup050500-two-phase/qa-finalizacao/setup-050500-qa/README.md",
+      "bytes": 1772,
+      "sha256": "efc9eaf90515f5e7e88eab8b500bf15f66245ccfc42a4f7465e412e1d8d00012"
+    },
+    {
+      "path": "docs/evidencias/20261010-setup050500-two-phase/qa-finalizacao/setup-050500-qa/ALLOWLIST-PREPARATION.json",
+      "bytes": 1131,
+      "sha256": "0d2a0068509d1c0a0249747a25b1870a16a9a756d8ed167c2761e860459f5d2b"
+    },
+    {
+      "path": "docs/evidencias/20261010-setup050500-two-phase/qa-finalizacao/setup-050500-qa/receipt.json",
+      "bytes": 4630,
+      "sha256": "ec46ce714516df18f329102a1013555b1ee38cbe15b2347c8bed0a0b6364d612"
+    },
+    {
+      "path": "docs/evidencias/20261010-setup050500-two-phase/qa-finalizacao/setup-050500-qa/browser-context.json",
+      "bytes": 990,
+      "sha256": "f30741aaee6f0a8a9cec2b00712af564f9054ace13f5f5c9992311bf06c02656"
+    },
+    {
+      "path": "docs/evidencias/20261010-setup050500-two-phase/qa-finalizacao/setup-050500-qa/root-iab-proof.json",
+      "bytes": 2194,
+      "sha256": "b3d74b2e8ced633bb14dfcb5dc17173239a18d3f3635954f8e3dea5b40f1aeac"
+    },
+    {
+      "path": "docs/evidencias/20261010-setup050500-two-phase/qa-finalizacao/setup-050500-qa/PENDING-ROOT-REVIEW.json",
+      "bytes": 603,
+      "sha256": "49e3ba9475959645fd6957efd74e98ceaa6e340186245bbd107d7fd5d7c8da5f"
+    },
+    {
+      "path": "docs/evidencias/20261010-setup050500-two-phase/qa-finalizacao/audit-setup-050500-harness-failure.mjs",
+      "bytes": 5578,
+      "sha256": "ab25f0d7ef55197a6c40f6067afc8f50358d2f124e63e650e5fbcf7bfbc2c77f"
+    },
+    {
+      "path": "docs/evidencias/20261010-setup050500-two-phase/qa-finalizacao/setup-050500-continuation.mjs",
+      "bytes": 10498,
+      "sha256": "2c9fe200362c3de55da98b98da3295942aef0a8ad3634700d5bc1e3cc588b4e5"
+    },
+    {
+      "path": "docs/evidencias/20261010-setup050500-two-phase/qa-finalizacao/setup-050500-continuation/receipt.json",
+      "bytes": 2745,
+      "sha256": "73334e61460919ae68979c57974fe65bc058056257c0ba370a173100460cbb51"
+    },
+    {
+      "path": "docs/evidencias/20261010-setup050500-two-phase/qa-finalizacao/setup-050500-continuation/report.json",
+      "bytes": 7791,
+      "sha256": "993d83c8427c801757aa5705fcc117defb7df5bffed767d1fcd6dcb419ea365f"
+    },
+    {
+      "path": "docs/evidencias/20261010-setup050500-two-phase/qa-finalizacao/freeze-setup-050500-continuation.mjs",
+      "bytes": 6374,
+      "sha256": "254615a848d28575e98f10f19608fc312bda42e2cbfd07d1b46ed9a6d6dd7c56"
+    },
+    {
+      "path": "docs/evidencias/20261010-setup050500-two-phase/qa-finalizacao/setup-035000-qa-retry2/ALLOWLIST.json",
+      "bytes": 14065,
+      "sha256": "292e063349b62598ac65ac58d0ea3012cd5aad67d68d54a22b1f73e1ab395e35"
+    },
+    {
+      "path": "docs/evidencias/20261010-setup050500-two-phase/qa-finalizacao/setup-035000-qa/candidate-context.mjs",
+      "bytes": 2729,
+      "sha256": "d911bf44d3f8bbf2f31783e6803391ad872c0f03a5ab56614e678547124e2130"
+    },
+    {
+      "path": "docs/evidencias/20261010-setup050500-two-phase/qa-finalizacao/derive-freeze-setup-050500-qa.mjs",
+      "bytes": 4058,
+      "sha256": "65bff23b1919be32b19a1bbc9f487eaee0a466b8f525afbe2ef1fcc4755b8411"
+    },
+    {
+      "path": "docs/evidencias/20261010-setup050500-two-phase/qa-finalizacao/freeze-setup-050500-qa.mjs",
+      "bytes": 7623,
+      "sha256": "30a1c1acf64adf5b32017ddf34291275e8a2202efcac499e1065592b013f5e0e"
+    },
+    {
+      "path": "docs/evidencias/20261010-setup050500-two-phase/qa-finalizacao/setup-050500-qa/freeze-provenance.json",
+      "bytes": 5464,
+      "sha256": "d7f672c2d0b3d139446638293e1957d834e6c18c2e3a0fe6dba5800a8acbee0c"
+    },
+    {
+      "path": "docs/evidencias/20261010-setup050500-two-phase/qa-finalizacao/derive-freeze-setup-050500-qa-final.mjs",
+      "bytes": 3774,
+      "sha256": "9ed20695becd1d20fd526a21a83a998c37c1ae6c2259c6c239bee2082e1de8f8"
+    },
+    {
+      "path": "docs/evidencias/20261010-setup050500-two-phase/qa-finalizacao/freeze-setup-050500-qa-final.mjs",
+      "bytes": 8963,
+      "sha256": "ac28d10e3e68a75be2129f1a4738c1d248f710a5d5177c342f6d2db8710459b0"
+    },
+    {
+      "path": "docs/evidencias/20261010-setup050500-two-phase/qa-finalizacao/setup-050500-qa/freeze-final-provenance.json",
+      "bytes": 2718,
+      "sha256": "caf6c4c8e89faffc8c77e74da2f283f11539226d0c7e02c147f50301305007fd"
+    },
+    {
+      "path": "docs/evidencias/20261010-setup050500-two-phase/images/root-installed-mesa.jpg",
+      "bytes": 59122,
+      "sha256": "ff987189b663084d61d273148baece3a8c5b98c13ed3aa4a430d4a3d476f904b"
+    },
+    {
+      "path": "docs/evidencias/20261010-setup050500-two-phase/images/root-installed-srt.jpg",
+      "bytes": 91000,
+      "sha256": "c037e6bc37b0b9eae0c89cb1c42373a3616087e207cd6f5ef7912aec725677bf"
+    },
+    {
+      "path": "docs/evidencias/20261010-setup050500-two-phase/images/root-installed-calls.jpg",
+      "bytes": 85685,
+      "sha256": "eba64e70fd25c81f0d7520f09a110f0112f6ba4f43bb6f845a269fbb5b4831b8"
+    },
+    {
+      "path": "docs/evidencias/20261010-setup050500-two-phase/images/root-installed-replay-settings.jpg",
+      "bytes": 82111,
+      "sha256": "900e38f0fdc4d5b9bcfac1606ee95cbe6d8bbe9fd37dc28f43b0cca8aa28c04c"
+    },
+    {
+      "path": "docs/evidencias/20261010-setup050500-two-phase/images/root-installed-hdr.jpg",
+      "bytes": 99048,
+      "sha256": "5821e54b8cd7ff35226a937d1012f4c69f14a1397d03d790cfaf361c0f7d3349"
+    },
+    {
+      "path": "docs/evidencias/20261010-setup050500-two-phase/ALLOWLIST.json",
+      "bytes": 11322,
+      "sha256": "6bb83edbdb2d1c8a55a9df0f4fff9087a83310735cc92563e654f24d6214b895"
+    },
+    {
+      "path": "docs/evidencias/20261010-calls-hdr-timeout/root-integration.json",
+      "bytes": 973,
+      "sha256": "37e28aca97b214c79d5f677db3c81c8a70a4863603a8e6d300c6e4afb87feea1"
+    }
+  ],
+  "operatorTouched": false,
+  "rawLogsExported": false,
+  "credentialsExported": false,
+  "note": "Installed050500 original harness FAIL retained; separate diagnostic/uninstall continuation does not approve or select500. UI frozen tests match canonical source bytes; no duplicate VM execution claimed."
+}

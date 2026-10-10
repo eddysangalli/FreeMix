@@ -1,0 +1,104 @@
+{
+  "status": "FROZEN_REVISION2_DRAFT_ROOT_REVIEW_ONLY",
+  "at": "2026-10-10T05:50:25.854Z",
+  "files": [
+    {
+      "path": "BASELINE.json",
+      "bytes": 2444,
+      "sha256": "fc34a96043065c2e949f8c5088122627700049d0b99b199a3dbb595dc004be9a"
+    },
+    {
+      "path": "README.md",
+      "bytes": 3550,
+      "sha256": "aa0d0c4743506e8a36b91d711040f39107156f1ace333dffaceaf76f73ffa573"
+    },
+    {
+      "path": "test.mjs",
+      "bytes": 12551,
+      "sha256": "13dcdf2bdb70b816c780a021471a1e16ef0a5f97b6c42b5d3c83fcd5914323ba"
+    },
+    {
+      "path": "test-harness-initial-fail.mjs",
+      "bytes": 11088,
+      "sha256": "64ed635c087829241bc34ad7e5af5cfd16473503bf6f72d6f293126a8074c864"
+    },
+    {
+      "path": "initial-harness-fail.json",
+      "bytes": 160,
+      "sha256": "65aecbe53b7143cc6b6679b9ba4282f45658c91f18932e3f0184b59b044d3180"
+    },
+    {
+      "path": "result.json",
+      "bytes": 2146,
+      "sha256": "cbada45e4507b4352c38bd1469b58e92e4a0f73ad24c4f062e44246248f058a7"
+    },
+    {
+      "path": "result-before-final-guards.json",
+      "bytes": 2146,
+      "sha256": "cbada45e4507b4352c38bd1469b58e92e4a0f73ad24c4f062e44246248f058a7"
+    },
+    {
+      "path": "result-final.json",
+      "bytes": 2387,
+      "sha256": "1c62b032ba0d9be408187d35f472620b882a41a94f4b1d10496f3351c4cec57b"
+    },
+    {
+      "path": "calls.js.patch",
+      "bytes": 15826,
+      "sha256": "7cee7f6793f4dc7b131a80349981920d67ed8ef9f1d562ec82a93a77abb81cbb"
+    },
+    {
+      "path": "srt-hdr-ui.js.patch",
+      "bytes": 5749,
+      "sha256": "3aa001afbff802cd38754722d3858264521438efde605984b410c1da0c0c4617"
+    },
+    {
+      "path": "baseline/calls.js",
+      "bytes": 14569,
+      "sha256": "01673273c3ee071947fbe1018e4cf24a0f064e3aa3a26bb82abc39292b73ca62"
+    },
+    {
+      "path": "baseline/calls.html",
+      "bytes": 5092,
+      "sha256": "d84e42ff543bfe01abadc3cba7e60f97006cbad56b1dff6e5c998c434a7d161e"
+    },
+    {
+      "path": "baseline/srt-hdr-ui.js",
+      "bytes": 5866,
+      "sha256": "642b6a542e148d80fa86314135aa250ccfcc48bf940df3948cdacdf405c34efc"
+    },
+    {
+      "path": "baseline/srt-hdr.html",
+      "bytes": 3405,
+      "sha256": "6df48c099f98653b8c05ecbd32585c776e5579ee663772169faacf7e86e36c5f"
+    },
+    {
+      "path": "draft/calls.js",
+      "bytes": 19438,
+      "sha256": "1c0e24c2fd65c12f7c65749f1b13a3107d144355e5f96daf28361765860b9bc0"
+    },
+    {
+      "path": "draft/srt-hdr-ui.js",
+      "bytes": 6210,
+      "sha256": "3b662ee624c66e2833d5dceb91e99debfa6e2cef8732f8f19097ce56e0059b9d"
+    }
+  ],
+  "productPathsToApply": [],
+  "proposedProductPaths": [
+    "FreeMix/painel/remoto/calls.js",
+    "FreeMix/painel/remoto/srt-hdr-ui.js"
+  ],
+  "preservedFirstAllowlistSha256": "dbf0319e59cf2dcc01e8ff299791f61e75ef4b185ea57d25914b864f43b444c1",
+  "preservedFirstFilesVerified": 13,
+  "resultChecks": 12,
+  "productEdited": false,
+  "sealedCandidate050500Changed": false,
+  "operatorTouched": false,
+  "nativeUsed": false,
+  "limits": [
+    "Own DOM/VM and HTTP partial-body only; no Native/CEF/operator",
+    "First freeze13 and8PASS preserved unchanged",
+    "Echo deadline advances own VM clock only; HTTP timeout5s uses real clock",
+    "UI timeout never claims engine operation cancelled or transmission failed"
+  ]
+}

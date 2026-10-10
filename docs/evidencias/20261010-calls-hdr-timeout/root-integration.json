@@ -1,0 +1,23 @@
+{
+  "status": "ROOT_INTEGRATED_DRAFTS_CANONICAL_RETEST_PENDING",
+  "at": "2026-10-10T05:51:53.046Z",
+  "changed": [
+    {
+      "path": "FreeMix/painel/remoto/calls.js",
+      "beforeSha256": "01673273c3ee071947fbe1018e4cf24a0f064e3aa3a26bb82abc39292b73ca62",
+      "afterSha256": "1c0e24c2fd65c12f7c65749f1b13a3107d144355e5f96daf28361765860b9bc0"
+    },
+    {
+      "path": "FreeMix/painel/remoto/srt-hdr-ui.js",
+      "beforeSha256": "642b6a542e148d80fa86314135aa250ccfcc48bf940df3948cdacdf405c34efc",
+      "afterSha256": "3b662ee624c66e2833d5dceb91e99debfa6e2cef8732f8f19097ce56e0059b9d"
+    }
+  ],
+  "nativeUnchanged": "a04786090fcbe7ede495f18e5ad38ccaa9793478",
+  "nativePatchCount": 24,
+  "forkMetadataVersion": "0.1.0-local.20261010060000",
+  "forkNativeTreeUnchanged": "e67ece9930c4cea0548afa9f3d4f658e0f7814b7",
+  "operatorTouched": false,
+  "sealedPackagesTouched": false,
+  "sourceQaSha256": "1fc4563de34b17a608f84f34212037bc9cee4ecf56ce62e11a4519dc79eb7459"
+}

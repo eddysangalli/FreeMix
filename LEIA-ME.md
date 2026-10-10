@@ -6,6 +6,6 @@ Transmitir abre MultiStream. Externo reúne SRT/NDI/OMT/SDI. Calls permite escol
 
 Diagnósticos ou COLETAR-LOGS.cmd gera ZIP local sanitizado para envio manual por e-mail ou WhatsApp. Instalar não aplica firewall automaticamente nem substitui a mesa anterior. 035000 passou em instalação real própria, duas aberturas/fechamentos, diagnóstico e desinstalação conservadora.
 
-Fontes posteriores Native24/050500 incluem novos menus, ticker textual e SRT HDR opaco, com provas locais separadas; o novo instalador ainda aguarda geração e ensaio. Esse estado não altera o pacote035000 selado.
+Fontes Native24/060000 incluem novos menus, ticker textual, SRT HDR opaco e correções do prazo de resposta HDR e dos rascunhos/seleções de retorno das Calls. A candidata 050500 teve falha no verificador de encerramento; diagnóstico e desinstalação passaram separadamente, sem reclassificar essa falha. A 060000 ainda aguarda geração e instalação real: 035000 continua selecionada. O retorno de vídeo personalizado das Calls permanece limitado a 5 fps e exige uma nova implementação de vídeo contínuo.
 
 Leia docs/ENTREGA-ATUAL.md, docs/INSTALACAO.md e docs/PENDENCIAS-REAIS.md para o estado vigente e critérios de aceite. Hardware, WAN, Windows limpo e NDI HDR Advanced SDK/licença permanecem gates explícitos. O receptor alpha WebBrowser está abortado; a ponte nativa alpha é beta separada. Assinatura interna Ed25519; sem certificado Authenticode.
