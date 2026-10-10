@@ -1,0 +1,45 @@
+{
+  "status": "REJECTED_CANDIDATE_ARCHIVED_HASHES_PRESERVED",
+  "at": "2026-10-10T02:44:09.6964601Z",
+  "selectedVersion": "0.1.0-local.20261010000500",
+  "reason": "Installed recovery_backup includeMedia failed on internal QR bundle require; signed candidate never selected",
+  "operatorTouched": false,
+  "signedPayloadChanged": false,
+  "moves": [
+    {
+      "source": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\entregas\\FreeMix-Completo-0.1.0-local.20261010004500",
+      "target": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\archived\\candidato-rejeitado-20261010004500\\FreeMix-Completo-0.1.0-local.20261010004500",
+      "directory": true,
+      "proofRelative": "manifest.json",
+      "sha256": "91b399bd2323fdc529181cd731488734beb22bc9901dc4bd4540dcae832dddba"
+    },
+    {
+      "source": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\entregas\\FreeMix-Completo-0.1.0-local.20261010004500.zip",
+      "target": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\archived\\candidato-rejeitado-20261010004500\\FreeMix-Completo-0.1.0-local.20261010004500.zip",
+      "directory": false,
+      "proofRelative": "",
+      "sha256": "956746ec83fc85fe3db1a523a0901331d71e0a6cd5ea85f80dedb811b3f5e5a9"
+    },
+    {
+      "source": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\entregas\\FreeMix-Completo-0.1.0-local.20261010004500.zip.sha256",
+      "target": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\archived\\candidato-rejeitado-20261010004500\\FreeMix-Completo-0.1.0-local.20261010004500.zip.sha256",
+      "directory": false,
+      "proofRelative": "",
+      "sha256": "a550554b92f64cd353e3d628be7aab300050f27a5ca79c3f5af000379687db4a"
+    },
+    {
+      "source": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\entregas\\FreeMix-Studio-Setup-0.1.0-local.20261010004500.exe",
+      "target": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\archived\\candidato-rejeitado-20261010004500\\FreeMix-Studio-Setup-0.1.0-local.20261010004500.exe",
+      "directory": false,
+      "proofRelative": "",
+      "sha256": "fa291358e2d629a91cf287ac5b3a1c98d7c7d8e738a00c866268ddafcb3de7bd"
+    },
+    {
+      "source": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\entregas\\FreeMix-Studio-Setup-0.1.0-local.20261010004500.exe.build.json",
+      "target": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\archived\\candidato-rejeitado-20261010004500\\FreeMix-Studio-Setup-0.1.0-local.20261010004500.exe.build.json",
+      "directory": false,
+      "proofRelative": "",
+      "sha256": "c8f656abf5b88c22c0e7c4ebe71e5d27ace61a2b60881d23a5d43a8f46f63f58"
+    }
+  ]
+}

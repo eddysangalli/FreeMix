@@ -1,0 +1,221 @@
+{
+  "status": "CEF_AND_HTTPS_PROOFS_MIRRORED",
+  "at": "2026-10-10T02:52:18.398Z",
+  "files": [
+    {
+      "path": "qa-finalizacao/native-browser-firstactivation/baseline.json",
+      "sourceSha256": "185db269a82ba071330b5ce6d1381fd88cb3f1aabcd02f8c1942063294225ad7",
+      "outputSha256": "185db269a82ba071330b5ce6d1381fd88cb3f1aabcd02f8c1942063294225ad7"
+    },
+    {
+      "path": "qa-finalizacao/native-browser-firstactivation/browser-client.cpp.before",
+      "sourceSha256": "1527bd07735bc12adbb5dddce036e7604df30de02d1c084b253feedacf104f3b",
+      "outputSha256": "1527bd07735bc12adbb5dddce036e7604df30de02d1c084b253feedacf104f3b"
+    },
+    {
+      "path": "qa-finalizacao/native-browser-firstactivation/browser-client.cpp.after",
+      "sourceSha256": "c9f42444ae7c93556ccc8191ac97ab12572f92874d401d0cb95928c5e65b4a95",
+      "outputSha256": "c9f42444ae7c93556ccc8191ac97ab12572f92874d401d0cb95928c5e65b4a95"
+    },
+    {
+      "path": "qa-finalizacao/native-browser-firstactivation/obs-browser-firstactivation.patch",
+      "sourceSha256": "10703182eb7d9028f78ad4a810f63ca0e1a8c98b55fe51e3aef3c6a6edcde415",
+      "outputSha256": "10703182eb7d9028f78ad4a810f63ca0e1a8c98b55fe51e3aef3c6a6edcde415"
+    },
+    {
+      "path": "qa-finalizacao/native-browser-firstactivation/patch-receipt.json",
+      "sourceSha256": "41800fa89d18400fa9aa0b0fd11ea27d94718f97d38a2096f4542c8bb6b1ccc8",
+      "outputSha256": "41800fa89d18400fa9aa0b0fd11ea27d94718f97d38a2096f4542c8bb6b1ccc8"
+    },
+    {
+      "path": "qa-finalizacao/native-browser-firstactivation/prepare.mjs",
+      "sourceSha256": "d5431d954001beb97bb8b9e66aac969cb000339f46ad9739d2d671a7c3a29480",
+      "outputSha256": "d5431d954001beb97bb8b9e66aac969cb000339f46ad9739d2d671a7c3a29480"
+    },
+    {
+      "path": "qa-finalizacao/native-browser-firstactivation/prepare-build.ps1",
+      "sourceSha256": "142ec1bd36f991b0f1b434a9dbe3947446fcc34e4614394cab2d56cf9f1a0571",
+      "outputSha256": "142ec1bd36f991b0f1b434a9dbe3947446fcc34e4614394cab2d56cf9f1a0571"
+    },
+    {
+      "path": "qa-finalizacao/native-browser-firstactivation/run-build.mjs",
+      "sourceSha256": "001153ba000c103f4d0a198ca6611eccb86981c99c4062dceac7b9fce860bdd6",
+      "outputSha256": "001153ba000c103f4d0a198ca6611eccb86981c99c4062dceac7b9fce860bdd6"
+    },
+    {
+      "path": "qa-finalizacao/native-browser-firstactivation/build-recipe.json",
+      "sourceSha256": "b800489b6b6f0cdc22374dfff28747450a555f07d0f94d90232a6c055c6d8079",
+      "outputSha256": "b800489b6b6f0cdc22374dfff28747450a555f07d0f94d90232a6c055c6d8079"
+    },
+    {
+      "path": "qa-finalizacao/native-browser-firstactivation/reconcile-build.mjs",
+      "sourceSha256": "e499296b37b06d2c589f3c2cb5e2040f6b9304894811b99ea20f56e8e64e6e57",
+      "outputSha256": "e499296b37b06d2c589f3c2cb5e2040f6b9304894811b99ea20f56e8e64e6e57"
+    },
+    {
+      "path": "qa-finalizacao/native-browser-firstactivation/build-receipt.json",
+      "sourceSha256": "4342dad244a58b87a4bcc6dc766d4c3a8cbc42c6bfdfaf122d7692da48d52693",
+      "outputSha256": "4342dad244a58b87a4bcc6dc766d4c3a8cbc42c6bfdfaf122d7692da48d52693"
+    },
+    {
+      "path": "qa-finalizacao/native-browser-firstactivation/test-cef.mjs",
+      "sourceSha256": "f6a0127d34b029e9108595547766ce6c66cdd6584d03f717006e53a83ccee5f5",
+      "outputSha256": "f6a0127d34b029e9108595547766ce6c66cdd6584d03f717006e53a83ccee5f5"
+    },
+    {
+      "path": "qa-finalizacao/native-browser-firstactivation/cef-receipt.json",
+      "sourceSha256": "cb4de03b01a1ca41cb4e3e79f077438c07874ad1d45954d9b1bee1198d2d7faf",
+      "outputSha256": "cb4de03b01a1ca41cb4e3e79f077438c07874ad1d45954d9b1bee1198d2d7faf"
+    },
+    {
+      "path": "qa-finalizacao/native-browser-firstactivation/derive-test-retry1.mjs",
+      "sourceSha256": "ca48444f810ee20e28d746c5674893822cb1c44451dcbfa77c4006266fb756bc",
+      "outputSha256": "ca48444f810ee20e28d746c5674893822cb1c44451dcbfa77c4006266fb756bc"
+    },
+    {
+      "path": "qa-finalizacao/native-browser-firstactivation/test-cef-retry1.mjs",
+      "sourceSha256": "371ce23e5a102a8b7fc031566ffebedc35b63ef9a99482845e0d9c09c72462bc",
+      "outputSha256": "371ce23e5a102a8b7fc031566ffebedc35b63ef9a99482845e0d9c09c72462bc"
+    },
+    {
+      "path": "qa-finalizacao/native-browser-firstactivation/test-retry1-provenance.json",
+      "sourceSha256": "bd2a0a18ab578af7af5ddda9e6a1e9cceba60bc0a844130527a048c41d3e9cd0",
+      "outputSha256": "bd2a0a18ab578af7af5ddda9e6a1e9cceba60bc0a844130527a048c41d3e9cd0"
+    },
+    {
+      "path": "qa-finalizacao/native-browser-firstactivation/cef-receipt-retry1.json",
+      "sourceSha256": "745afd0d118e29e6a29ce9731dab8f3ac636cae49ad39cc32fc3de96a25a1ff1",
+      "outputSha256": "745afd0d118e29e6a29ce9731dab8f3ac636cae49ad39cc32fc3de96a25a1ff1"
+    },
+    {
+      "path": "qa-finalizacao/native-browser-firstactivation/inspect-alpha.py",
+      "sourceSha256": "d7ebf3d2d434cfee37c4ab65b9e63bb4f2700656817a706e1024c45a247a4fa4",
+      "outputSha256": "d7ebf3d2d434cfee37c4ab65b9e63bb4f2700656817a706e1024c45a247a4fa4"
+    },
+    {
+      "path": "qa-finalizacao/native-browser-firstactivation/probe-off-preview.mjs",
+      "sourceSha256": "51c54285ffa3b57e9e12f033c5d2a4e1c2b25895ee6328e0d084fd922d377345",
+      "outputSha256": "51c54285ffa3b57e9e12f033c5d2a4e1c2b25895ee6328e0d084fd922d377345"
+    },
+    {
+      "path": "qa-finalizacao/native-browser-firstactivation/cef-off-preview-probe.json",
+      "sourceSha256": "9551ee1e49f7a1197f342b1cd608826da77fb5700aa715f5d91dc4e6eb52fb87",
+      "outputSha256": "9551ee1e49f7a1197f342b1cd608826da77fb5700aa715f5d91dc4e6eb52fb87"
+    },
+    {
+      "path": "qa-finalizacao/native-browser-firstactivation/probe-off-preview-visible.mjs",
+      "sourceSha256": "e1b8da5f0b428de3d17d9570df78ff47e802eed6759cbb3f17d9ffef2887f923",
+      "outputSha256": "e1b8da5f0b428de3d17d9570df78ff47e802eed6759cbb3f17d9ffef2887f923"
+    },
+    {
+      "path": "qa-finalizacao/native-browser-firstactivation/off-preview-visible-provenance.json",
+      "sourceSha256": "2ce15d80970be645bc0e75664124a616d81258a352e23e4fdd5d1ae478f809df",
+      "outputSha256": "2ce15d80970be645bc0e75664124a616d81258a352e23e4fdd5d1ae478f809df"
+    },
+    {
+      "path": "qa-finalizacao/native-browser-firstactivation/cef-off-preview-visible-probe.json",
+      "sourceSha256": "d90bbbdf078629543005fa8908204575e94ed1ef603ee046437baaf399127b37",
+      "outputSha256": "d90bbbdf078629543005fa8908204575e94ed1ef603ee046437baaf399127b37"
+    },
+    {
+      "path": "qa-finalizacao/native-browser-firstactivation/freeze.mjs",
+      "sourceSha256": "a901743cdbcdf537d9c38b28d8da0ebceea41dda2887e24f3339a5eab1c9601b",
+      "outputSha256": "a901743cdbcdf537d9c38b28d8da0ebceea41dda2887e24f3339a5eab1c9601b"
+    },
+    {
+      "path": "qa-finalizacao/native-browser-firstactivation/final-report.json",
+      "sourceSha256": "9d51c94e498e9000c9e1f4d212d8f44defa02be9c2efa82182f304c664945862",
+      "outputSha256": "9d51c94e498e9000c9e1f4d212d8f44defa02be9c2efa82182f304c664945862"
+    },
+    {
+      "path": "qa-finalizacao/native-browser-firstactivation/ALLOWLIST.json",
+      "sourceSha256": "80f81c12b7d0d9045e15b7e61cd2384ef159df67c0ec5d96547cdba4d290efc0",
+      "outputSha256": "80f81c12b7d0d9045e15b7e61cd2384ef159df67c0ec5d96547cdba4d290efc0"
+    },
+    {
+      "path": "qa-finalizacao/update-https-local/test.mjs",
+      "sourceSha256": "37f0a8582c56d4b9f6dd324305c0845707b42db7738c3fbfac7a22f9fb00b284",
+      "outputSha256": "37f0a8582c56d4b9f6dd324305c0845707b42db7738c3fbfac7a22f9fb00b284"
+    },
+    {
+      "path": "qa-finalizacao/update-https-local/child.mjs",
+      "sourceSha256": "413ba5d093df514b5f919ab4a521fd930b11f0bfa087699ad1c70d06a083bc97",
+      "outputSha256": "413ba5d093df514b5f919ab4a521fd930b11f0bfa087699ad1c70d06a083bc97"
+    },
+    {
+      "path": "qa-finalizacao/update-https-local/freeze.mjs",
+      "sourceSha256": "97a08d179c661da131569215f0733506f7424776da9d44b9edbf38460741b912",
+      "outputSha256": "97a08d179c661da131569215f0733506f7424776da9d44b9edbf38460741b912"
+    },
+    {
+      "path": "qa-finalizacao/update-https-local/README.md",
+      "sourceSha256": "87132c93427c0a5a1b6fd3e54069a05a4a9c56b0f3923342d2a5a233ff76f584",
+      "outputSha256": "87132c93427c0a5a1b6fd3e54069a05a4a9c56b0f3923342d2a5a233ff76f584"
+    },
+    {
+      "path": "qa-finalizacao/update-https-local/resultado.json",
+      "sourceSha256": "f91cdc4aac440c78f093b84423daf5f7244e47533dbfb927556be8ba11ec8880",
+      "outputSha256": "f91cdc4aac440c78f093b84423daf5f7244e47533dbfb927556be8ba11ec8880"
+    },
+    {
+      "path": "qa-finalizacao/update-https-local/resultado-trusted.json",
+      "sourceSha256": "abf0d88ca25db2fa8a29d2fe0a83189f43dbbf3f71328322863ff5fab50cdfa5",
+      "outputSha256": "abf0d88ca25db2fa8a29d2fe0a83189f43dbbf3f71328322863ff5fab50cdfa5"
+    },
+    {
+      "path": "qa-finalizacao/update-https-local/resultado-untrusted.json",
+      "sourceSha256": "4c27185d3c00efa8c7b60f30cdc4bbe7ae634862a67c0ff288bee1dcf655476b",
+      "outputSha256": "4c27185d3c00efa8c7b60f30cdc4bbe7ae634862a67c0ff288bee1dcf655476b"
+    },
+    {
+      "path": "qa-finalizacao/update-https-local/ALLOWLIST.json",
+      "sourceSha256": "9e6987c588e4e8757b65129b47f1e10830072525cdcf4c22f6dda7f4e7cea89c",
+      "outputSha256": "9e6987c588e4e8757b65129b47f1e10830072525cdcf4c22f6dda7f4e7cea89c"
+    }
+  ],
+  "nativeHead": "500ced5ea0928453f9f27dc7d5649531e2671e28",
+  "browserHead": "dd26fda9cd8e507934f080be14f44038506c3b7e",
+  "httpsChecks": 50,
+  "installedIntegratedRecoveryValidated": false,
+  "buildIsolationGap": {
+    "fullyIsolatedLinkerOutputs": false,
+    "sharedOutputs": [
+      {
+        "path": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\freemix-app\\build_2026\\plugins\\obs-browser\\RelWithDebInfo\\obs-browser.lib",
+        "bytes": 4384,
+        "sha256": "0cf6e2d632088dafe1f47c7fd5f60807fbbb91972c349838315746240e7ddbfd",
+        "modified": "2026-10-07T19:52:54.532Z",
+        "linkerPathRetainedInQaProject": true,
+        "baselineHashAvailable": false,
+        "overwriteObservedByTimestamp": false,
+        "note": "Linker named shared import library; oldmtime indicates bytes possibly unchanged; no baseline hash to assert."
+      },
+      {
+        "path": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\freemix-app\\build_2026\\plugins\\obs-browser\\RelWithDebInfo\\obs-browser.exp",
+        "bytes": 2389,
+        "sha256": "08d9d48b8c8cbb7f14b127c3ffac7ee31abf4da687a2f359d016ddea7df7d856",
+        "modified": "2026-10-10T01:06:32.858Z",
+        "linkerPathRetainedInQaProject": true,
+        "baselineHashAvailable": false,
+        "overwriteObservedByTimestamp": true,
+        "note": "Shared linker output was written; not a runtime DLL."
+      },
+      {
+        "path": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\freemix-app\\build_2026\\plugins\\obs-browser\\RelWithDebInfo\\obs-browser.pdb",
+        "bytes": 38137856,
+        "sha256": "7af830b74cde0c8f2eedd52f5186bad6acf0be50ac9141f890f6e8eaba79f433",
+        "modified": "2026-10-10T01:06:32.998Z",
+        "linkerPathRetainedInQaProject": true,
+        "baselineHashAvailable": false,
+        "overwriteObservedByTimestamp": true,
+        "note": "Shared linker output was written; not a runtime DLL."
+      }
+    ],
+    "commonRuntimeDllsUnchanged": true,
+    "originalBuildRunnerExitCode": 1,
+    "msbuildExitCode": 0,
+    "buildNotRepeated": true,
+    "requiredFutureRecipeFix": "Rewrite Link.ImportLibrary and Link.ProgramDataBaseFile to own OUT before any future build. Do not rebuild this case."
+  },
+  "operatorTouched": false
+}
