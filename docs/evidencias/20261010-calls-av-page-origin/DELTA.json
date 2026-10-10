@@ -1,0 +1,30 @@
+{
+  "changes": [
+    {
+      "path": "probe.html",
+      "baselineSha256": "b116db4310a56e3fb23f0d7f18ecbe93b46fe09ba1db21566f668ca60c153b09",
+      "draftSha256": "c381b35ddeb54d0dad8d458adc030abda09dfd5a13f913b61dbd9287e420f068"
+    },
+    {
+      "path": "runner.mjs",
+      "baselineSha256": "1ee803069b77350ccdf2d6e61e01abd2d84ad463ad22ed938d217e7a72507bc9",
+      "draftSha256": "26539ad042abf5b39bb64d74dab8ce94c1a573588018e40d4652d122724deec0"
+    },
+    {
+      "path": "launch.mjs",
+      "baselineSha256": "f28aec4e2770d7f05fbc4998af88a73eea1b638ef69308cfcff78c1395d78c68",
+      "draftSha256": "06c96a8022d59bb472246e9f2523403433334400fd23d4c12cadc0ca22f863e1"
+    }
+  ],
+  "added": [
+    "page-timestamp-origin.mjs"
+  ],
+  "unchanged": [
+    "tone-worklet.js",
+    "synthetic-media.mjs",
+    "received-roi.mjs",
+    "audio-diagnostics.mjs"
+  ],
+  "intervention": "Common pagecaptureorigin added to both AudioData/VideoFrame timestamps, source PTS/bytes andlocaltapunchanged",
+  "executed": false
+}

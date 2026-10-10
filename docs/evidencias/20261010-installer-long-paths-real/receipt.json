@@ -1,0 +1,211 @@
+{
+  "status": "PASS_ONE_REAL_QA_WRAPPER_LONG_PATHS_ONLY_NOT_RELEASE",
+  "started": "2026-10-10T11:08:22.408Z",
+  "version": "0.1.0-local.20261010093000",
+  "checks": [
+    {
+      "name": "Root-pinned signed complete source and Setup/ZIP hashes verified",
+      "status": "PASS",
+      "files": 9714
+    },
+    {
+      "name": "Actual corrected Setup verify without application launch",
+      "status": "PASS"
+    },
+    {
+      "name": "One QA wrapper install root150; all9714 files and five generated semantics checked; no Native/API",
+      "status": "PASS"
+    },
+    {
+      "name": "Actual dry-run lists both immutable files266/276 and preserves separate altered file",
+      "status": "PASS",
+      "longImmutable": 2,
+      "plannedRemoval": 9575
+    },
+    {
+      "name": "Actual apply removes immutable long files, preserves changed/project/config/media and removes only own HKCU entry",
+      "status": "PASS"
+    }
+  ],
+  "children": [
+    {
+      "pid": 170212,
+      "executable": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\installer-longpaths-real-wrapper-preparation-20261010\\artifacts\\FreeMix-QA-Setup-longpaths-093000-review6.exe",
+      "mode": "--verify",
+      "started": "2026-10-10T11:08:48.350Z",
+      "signal": null,
+      "ms": 1176,
+      "exitCode": 0
+    },
+    {
+      "pid": 74960,
+      "executable": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\installer-longpaths-real-wrapper-preparation-20261010\\artifacts\\FreeMix-QA-Setup-longpaths-093000-review6.exe",
+      "mode": "--silent",
+      "started": "2026-10-10T11:08:49.530Z",
+      "signal": null,
+      "ms": 184036,
+      "exitCode": 0
+    },
+    {
+      "pid": 72592,
+      "executable": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\own-temp-qa-longpaths\\FreeMix-QA-LongPaths-JMZsAE\\FreeMix-QA-Installed Studio with spacesxxxxxxxxxxxx\\Desinstalar FreeMix.exe",
+      "mode": "--silent",
+      "started": "2026-10-10T11:12:00.209Z",
+      "signal": null,
+      "ms": 4436,
+      "exitCode": 0
+    },
+    {
+      "pid": 26432,
+      "executable": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\own-temp-qa-longpaths\\FreeMix-QA-LongPaths-JMZsAE\\FreeMix-QA-Installed Studio with spacesxxxxxxxxxxxx\\Desinstalar FreeMix.exe",
+      "mode": "--silent",
+      "started": "2026-10-10T11:12:04.511Z",
+      "signal": null,
+      "ms": 5821,
+      "exitCode": 0
+    },
+    {
+      "pid": 137448,
+      "executable": "C:/Windows/System32/reg.exe",
+      "mode": "query",
+      "started": "2026-10-10T11:12:11.170Z",
+      "signal": null,
+      "ms": 34,
+      "exitCode": 1
+    }
+  ],
+  "rawLogsExported": false,
+  "nativeStarted": false,
+  "apiStarted": false,
+  "shortcutsCreated": false,
+  "firewallApplied": false,
+  "operatorTouched": false,
+  "automaticRetry": false,
+  "artifactRole": "QA_WRAPPER_ONLY_NOT_RELEASE",
+  "originalSealedSetupUnchanged": true,
+  "candidate": {
+    "path": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\candidate-release-093000.json",
+    "sha256": "d868edb33de252768ed070ae83be34e3c6f0f711a850b8efe4dfda0b135e71ad"
+  },
+  "setup": {
+    "path": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\installer-longpaths-real-wrapper-preparation-20261010\\artifacts\\FreeMix-QA-Setup-longpaths-093000-review6.exe",
+    "sha256": "9f0df765e86c14110e9a1c33bb34372071c695afe48bb6e785d88468ee8729b8"
+  },
+  "zip": {
+    "path": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\entregas\\FreeMix-Completo-0.1.0-local.20261010093000.zip",
+    "sha256": "8a93312bdb1914265567d92ee6e22683c7d942c809e2f4f982e04404eaa7756b"
+  },
+  "packageRoot": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\entregas\\FreeMix-Completo-0.1.0-local.20261010093000",
+  "wrapperAttestation": {
+    "path": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\installer-longpaths-real-wrapper-preparation-20261010\\artifacts\\wrapper-attestation.json",
+    "sha256": "9ef4f9344cea8e53f0d9547af916193589f8dd5dd78571c2beccedcc50dfe7de"
+  },
+  "authenticodeSigned": false,
+  "qaRoot": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\own-temp-qa-longpaths\\FreeMix-QA-LongPaths-JMZsAE",
+  "installed": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\own-temp-qa-longpaths\\FreeMix-QA-LongPaths-JMZsAE\\FreeMix-QA-Installed Studio with spacesxxxxxxxxxxxx",
+  "installedRootLength": 150,
+  "ports": {
+    "api": 53531,
+    "ws": 53532
+  },
+  "capacity": {
+    "available": 100305907712,
+    "required": 5551207182
+  },
+  "independentFiles": {
+    "files": 9725,
+    "hardlinks": false,
+    "junctions": false
+  },
+  "generatedFiles": [
+    {
+      "path": "config/obs-studio/basic/profiles/Estudio/basic.ini",
+      "originalSha256": "25a0e4a6fb390d429f575529b629080d04c19a50d3c24591bd055e5a53d012a8",
+      "installedSha256": "c6a7603300a47637d05623fcd336fe5d3f359e20f18d24fd9227667b7891cb0b"
+    },
+    {
+      "path": "config/obs-studio/plugin_config/obs-websocket/config.json",
+      "originalSha256": "98464d66bce6ceef68a663c4ba57f03873f23018cdd3fb5344aaee01bc108a5a",
+      "installedSha256": "eab6a2dabdc89bb6c9025bde14eaae82147e23e778cc724e0c060cdecb49523d"
+    },
+    {
+      "path": "config/obs-studio/raiz.txt",
+      "originalSha256": "c2c1abe761a45c41f7ddba08750a333f62b6aa83a589e334a0a10b4cd61761cb",
+      "installedSha256": "5fadf467ce5808a8a27b243e1dba8b337d62c5eea81f1af231309d7cb66269d8"
+    },
+    {
+      "path": "config/obs-studio/user.ini",
+      "originalSha256": "fb302d2dd7c163197dd257ab731aadee691ad6dddd4ce4de42af16d54f78c38e",
+      "installedSha256": "9385e0913b56f76890d1963a5109e9471f5a98aff45ef3da4fba06222fe53c8a"
+    },
+    {
+      "path": "painel/local.js",
+      "originalSha256": "f62cd53eea27a85e8542aa6774bef19faa634abeff1824b79f3e3f0a168b5f8e",
+      "installedSha256": "462448d15c6b9c32ae135dc3fac7fdd3a1f37aa3b87e6a566e403b524a023f4f"
+    }
+  ],
+  "longOwnedFiles": [
+    {
+      "path": "data/obs-plugins/obs-shaderfilter/textures/TileableLinearSlotMaskTall15Wide9And4d5Horizontal9d14VerticalSpacing.png",
+      "size": 204254,
+      "sha256": "353cd2e76bb0451959cee6b4bda447d8c8bc2d3bb0b90b545f1f4c06cf4212ba",
+      "fullLength": 266
+    },
+    {
+      "path": "data/obs-plugins/obs-shaderfilter/textures/TileableLinearSlotMaskTall15Wide9And4d5Horizontal9d14VerticalSpacingResizeTo64.png",
+      "size": 6916,
+      "sha256": "ab655f312622d8247ad2038801c07eed07a99199bf239d7c3893bd667ea260af",
+      "fullLength": 276
+    }
+  ],
+  "preservationFixtures": {
+    "changed": {
+      "path": "painel/remoto/settings-help.js",
+      "sha256": "082523f6327f43e9c0ed55eb73bb78127ae8565b33ef18ba46a4980ec7069ea9",
+      "fullLength": 181
+    },
+    "unowned": [
+      {
+        "path": "projetos/own/uuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu/uuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu/uuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu/vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv.json",
+        "sha256": "2a045fe745262d03ec93faa9dd0a1208a786fba476c380d5b74fac4e7d5c30c5",
+        "length": 400
+      },
+      {
+        "path": "config/qa-own/uuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu/uuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu/uuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu/vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv.json",
+        "sha256": "a5d38d825b3687d9fd3352eacb00f423c4a8723de66c912971c6c3c5e1a309c8",
+        "length": 400
+      },
+      {
+        "path": "qa-own-media/uuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu/uuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu/uuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu/vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv.json",
+        "sha256": "bb8b10190b119a16b7bfc166afd36de507e7e1514590ec939b7b34c59930d686",
+        "length": 400
+      }
+    ]
+  },
+  "preservedExistingPreferences": {
+    "path": "config/obs-studio/user.ini",
+    "sha256": "9385e0913b56f76890d1963a5109e9471f5a98aff45ef3da4fba06222fe53c8a"
+  },
+  "uninstall": {
+    "status": "PASS",
+    "removed": 9575,
+    "preservedChanged": 1,
+    "longImmutableRemoved": 2,
+    "changedOwnFilePreserved": true,
+    "userPaths400Preserved": true,
+    "ownRegistryEntryAbsent": true
+  },
+  "signedSourceUnchanged": true,
+  "preparationSourcesUnchanged": true,
+  "finished": "2026-10-10T11:12:26.696Z",
+  "elapsedMs": 244288,
+  "unfinishedOwnChildren": [],
+  "cleanupMode": "No force/automatic retry; installation/user data preserved; timed-out child recorded for Root identity review",
+  "limits": [
+    "No Native/API/browser launch, startup/migration/diagnostic/QR/Calls/media repetition",
+    "No actual OS folder-picker visual/COM shortcut claim",
+    "WrapperQA only; sealed093000 remains failed at original uninstall; no corrected release/selection claim",
+    "No Native/API startup, migration or diagnosis repeated; LongPathsEnabled=0/older framework/Qt unproved",
+    "Tiny synthetic user preservation files only; raw log/config/credential/diagnostic ZIP excluded from export"
+  ]
+}

@@ -1,0 +1,114 @@
+{
+  "from": "qa-finalizacao/installer-longpaths-real-preparation-20261010/runner.mjs",
+  "originalDraftNotExecuted": true,
+  "originalSha256": "2b794797db75b0108904773c890c3a874246c43f790d426f9536ce69fc075f26",
+  "newSha256": "f4cf541be7f704ccc5f2c803b262b082ac96e15441cbf4040a2a77d390d294a3",
+  "substitutions": [
+    {
+      "anchor": "import {noQaLinks,fileHash,newQaRoot,assertOwnedQa,assertIndependentQaFiles} from './candidate-context.mjs';",
+      "count": 1
+    },
+    {
+      "anchor": "'qa-temp','execute']",
+      "count": 1
+    },
+    {
+      "anchor": "'ROOT-REVIEWED-REAL-SETUP-LONGPATHS-ONLY'",
+      "count": 1
+    },
+    {
+      "anchor": "['candidate','setup-exe','zip','receipt','qa-temp']",
+      "count": 1
+    },
+    {
+      "anchor": "out,'../own-temp-installer-longpaths-real'",
+      "count": 1
+    },
+    {
+      "anchor": "automaticRetry:false};",
+      "count": 1
+    },
+    {
+      "anchor": "Two path-building helpers replaced by pure tested contract",
+      "count": 1
+    },
+    {
+      "anchor": "assert.equal(installed.length,300)",
+      "count": 1
+    },
+    {
+      "anchor": "candidate=await read(args.candidate);assert.equal(candidate.status,'PACKAGE_VERIFIED');",
+      "count": 1
+    },
+    {
+      "anchor": "const build=await read(args['setup-exe']+'.build.json');",
+      "count": 1
+    },
+    {
+      "anchor": "newQaRoot('InstallerLongPaths');installed=installedName(root,300)",
+      "count": 1
+    },
+    {
+      "anchor": "One real clean install root300; all signed files and five generated semantics checked; no Native/API",
+      "count": 1
+    },
+    {
+      "anchor": "const longs=ownership.files.filter(f=>path.join(installed,f.path).length>260);assert(longs.length>=2);assert(longs.some(f=>path.join(installed,f.path).length>=400));r.longOwnedBounds={count:longs.length,min:Math.min(...longs.map(f=>path.join(installed,f.path).length)),max:Math.max(...longs.map(f=>path.join(installed,f.path).length))};",
+      "count": 1
+    },
+    {
+      "anchor": "const changed=longs.find(f=>/TileableLinearSlotMaskTall15Wide9And4d5Horizontal9d14VerticalSpacingResizeTo64\\.png$/.test(f.path));assert(changed&&changed.size<8*1024*1024);",
+      "count": 1
+    },
+    {
+      "anchor": "['projetos/own','config/qa-own','qa-own-media']",
+      "count": 1
+    },
+    {
+      "anchor": "await assertIndependentQaFiles(root,installed);await owned();\n t=await tool",
+      "count": 1
+    },
+    {
+      "anchor": "longs.filter(f=>f.path!==changed.path)",
+      "count": 1
+    },
+    {
+      "anchor": "Actual dry-run explicitly lists every immutable owned long path and preserves altered long file",
+      "count": 1
+    },
+    {
+      "anchor": "longImmutable:longs.length-1",
+      "count": 1
+    },
+    {
+      "anchor": "await owned();t=await tool(uninstall,['--silent','--apply']",
+      "count": 1
+    },
+    {
+      "anchor": "await fs.access(path.join(installed,'config/obs-studio/user.ini'));",
+      "count": 1
+    },
+    {
+      "anchor": "longImmutableRemoved:longs.length-1,changedLongPreserved:true",
+      "count": 1
+    },
+    {
+      "anchor": "PASS_ONE_REAL_CORRECTED_SETUP_LONG_ROOT_HASHES_DRYRUN_UNINSTALL_PRESERVATION_ONLY",
+      "count": 1
+    },
+    {
+      "anchor": "assert.equal(await sourceGuard(),candidate.files);r.signedSourceUnchanged=true;",
+      "count": 1
+    },
+    {
+      "anchor": "'Long-path install/uninstall only, not universal candidate selection/hardware/Qt compatibility'",
+      "count": 1
+    }
+  ],
+  "generatedSha256": "a34a176f94d1aa8681611986681d096f4af6c078604c9d3320c82bc4a07d50c8",
+  "afterGenerationEdits": [
+    "Pure contract imported with runtime Node/registry/originalSetup pins",
+    "No generated source or sealed input modified",
+    "Global budget/apply reserve tested without OS"
+  ]
+}

@@ -1,6 +1,6 @@
 # Plano de conclusão até 13/10/2026
 
-O instalador selecionado permanece **0.1.0-local.20261010060000, Native24/a047860**. As fontes atuais são **Native29/7599299**, com compilação completa e2085 arquivos congelados verificados. O candidato093000/Native27 falhou na desinstalação por caminhos longos e não foi promovido. A correção foi integrada; wrapper específico em QA. Provas históricas abaixo não representam aprovação da instalação atual.
+O instalador selecionado permanece **0.1.0-local.20261010060000, Native24/a047860**. As fontes atuais são **Native29/7599299**, com compilação completa e2085 arquivos congelados verificados. O candidato093000/Native27 falhou na desinstalação por caminhos longos e não foi promovido. A correção foi integrada e o wrapper específico passou instalação/desinstalação real; falta o próximo pacote. Provas históricas abaixo não representam aprovação da instalação atual.
 
 1. Encerrados sem repetir: Native27 build/export2085/27patches, duasCallsRGBA exato, CEF ROI real e IAB Preview/Cut/min/rest/tally, todos dentro dos limites. Meter3segueinvestigação; crash0 não prova todos os cenários.
 2. Root publicou fontesUI simplificadas após90checks/capturas e corrigiu handlerduplicado. Installer prepara novo candidato093000 com commit exato e fullmanifest/runtimeclosure; selar/selecionar somente após checks relevantes e startup próprio.600 permanece imutável.
@@ -45,3 +45,9 @@ Native29 integrou lifecycleMeter e compilou:2085 arquivos/214 snapshots/29 patch
 Gate4Native28 encerrouFAIL: ganho linear,8DSKs/preto/restauraçãoPASS. Program/Source PCM idêntico; saltos de fase correspondem quantitativamente ao paddingAAC no loop, sem causalidade provada. Critérios não alterados; NTSC/reconnect/reset pendentes. Todos os processos próprios fecharam0; contador/Meter/crash0 e hashes passaram. [FAIL/provas](evidencias/20261010-gate4-audio-fail/README.md).
 
 CallsUI integrado após23 verificações e revisão Root: limite reportado pelo motor, resumo de conferência e consulta somente leitura sem repetir comando. Capturas são fixtures sem backend; instalação/recepção real pendentes. [Guia](OPERAR-CALLS-E-SAIDAS.md). Wrapper do instalador corrigido está em compilação/QA própria, sem Native/API nem nova seleção. Replay: lacunaVFR fora das janelas de probe reproduzida em arquivo sintético com FFprobe; correção isolada em preparação. AVpage-origin ainda não executado; áudioRTC e sincronismo não qualificados.
+
+## Checkpoint de10/10,11:15UTC
+
+O wrapper de caminhos longos passou instalação/desinstalação reais:9714 arquivos, dois imutáveis266/276 removidos, alterado/config/projeto/mídia400 preservados, HKCU próprio ausente, filhos encerrados. Sem repetir Native/API/migração/diagnóstico.093000 original conservaFAIL e600 selecionado; próximo pacote precisa incorporar fontes atuais. [Prova](evidencias/20261010-installer-long-paths-real/ROOT-README.md).
+
+Intervenção única de origem comum de timestamp A/V NÃO resolveu silêncioRTC: local145920 nonzero/peak0,35; receptorPCM0,1000 pacotes/0samples; vídeo598frames. Critérios intactos, AVinconclusivo, helper não integrado. HTTP/aba/recursos7 e pós-pins26+2 passaram. [Prova](evidencias/20261010-calls-av-page-origin/ROOT-README.md).

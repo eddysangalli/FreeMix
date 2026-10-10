@@ -1,0 +1,20 @@
+{
+  "status": "ROOT_REVIEWED_BUILD_AND_ONE_INSTALL_ONLY",
+  "at": "2026-10-10T11:05:55.239Z",
+  "allowlistFiles": 17,
+  "allowlistSha256": "c333cfd5d6de65df90279a9a21c49affb1ca76c185c5fffdaff9ea83ecc469c8",
+  "canonicalSourceExact": true,
+  "fullRead": [
+    "runner.mjs",
+    "build-wrapper-reviewed.mjs",
+    "contract.mjs",
+    "candidate-context.mjs",
+    "README.md",
+    "PREPARATION.json",
+    "BOUNDARIES.json",
+    "ROOT-COMMAND-TEMPLATE.json"
+  ],
+  "noNativeApi": true,
+  "noAutomaticRetry": true,
+  "notRelease": true
+}

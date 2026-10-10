@@ -1,0 +1,36 @@
+{
+  "status": "TEMPLATE_NOT_AUTHORIZATION_PLACEHOLDERS_REFUSED",
+  "build": {
+    "executable": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\entregas\\FreeMix-Completo-0.1.0-local.20261010060000\\runtime\\node.exe",
+    "args": [
+      "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\installer-longpaths-real-wrapper-preparation-20261010\\build-wrapper-reviewed.mjs",
+      "--allowlist-sha=__ROOT_REVIEW_ACTUAL_ALLOWLIST_SHA__",
+      "--execute=ROOT-REVIEWED-BUILD-QA-WRAPPER-NOT-RELEASE"
+    ]
+  },
+  "run": {
+    "executable": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\entregas\\FreeMix-Completo-0.1.0-local.20261010060000\\runtime\\node.exe",
+    "args": [
+      "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\installer-longpaths-real-wrapper-preparation-20261010\\runner.mjs",
+      "--candidate=D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\candidate-release-093000.json",
+      "--candidate-sha=d868edb33de252768ed070ae83be34e3c6f0f711a850b8efe4dfda0b135e71ad",
+      "--setup-exe=D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\installer-longpaths-real-wrapper-preparation-20261010\\artifacts\\FreeMix-QA-Setup-longpaths-093000-review6.exe",
+      "--setup-sha=__ROOT_BUILT_WRAPPER_SHA__",
+      "--zip=D:\\DRIVE\\IA\\antigravity\\vmixtwste\\entregas\\FreeMix-Completo-0.1.0-local.20261010093000.zip",
+      "--zip-sha=8a93312bdb1914265567d92ee6e22683c7d942c809e2f4f982e04404eaa7756b",
+      "--manifest-sha=ad5a42792187e4c4bae75f55e8ab479623e6ef4e5db4dc0206a41a77abfcd26e",
+      "--uninstaller-sha=__ROOT_COMPILED_UNINSTALLER_SHA__",
+      "--version=0.1.0-local.20261010093000",
+      "--receipt=D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\installer-longpaths-real-wrapper-preparation-20261010\\receipt.json",
+      "--qa-temp=D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\own-temp-qa-longpaths",
+      "--wrapper-attestation=D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\installer-longpaths-real-wrapper-preparation-20261010\\artifacts\\wrapper-attestation.json",
+      "--execute=ROOT-REVIEWED-REAL-WRAPPER-LONGPATHS-ONLY"
+    ],
+    "childEnvOnly": {
+      "TEMP": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\own-temp-qa-longpaths",
+      "TMP": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\own-temp-qa-longpaths"
+    }
+  },
+  "requires": "Root full review, build authorization, actual build attestation, then separate install authorization",
+  "noSecrets": true
+}

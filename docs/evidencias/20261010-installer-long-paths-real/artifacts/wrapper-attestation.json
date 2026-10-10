@@ -1,0 +1,42 @@
+{
+  "status": "QA_WRAPPER_BUILT_VERIFIED_NOT_RELEASE",
+  "candidate": {
+    "path": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\candidate-release-093000.json",
+    "sha256": "d868edb33de252768ed070ae83be34e3c6f0f711a850b8efe4dfda0b135e71ad"
+  },
+  "payload": {
+    "path": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\entregas\\FreeMix-Completo-0.1.0-local.20261010093000.zip",
+    "sha256": "8a93312bdb1914265567d92ee6e22683c7d942c809e2f4f982e04404eaa7756b",
+    "bytes": 1377166327
+  },
+  "setup": {
+    "path": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\installer-longpaths-real-wrapper-preparation-20261010\\artifacts\\FreeMix-QA-Setup-longpaths-093000-review6.exe",
+    "sha256": "9f0df765e86c14110e9a1c33bb34372071c695afe48bb6e785d88468ee8729b8",
+    "bytes": 1377227851
+  },
+  "uninstaller": {
+    "path": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\installer-longpaths-real-wrapper-preparation-20261010\\wrapper\\build\\FreeMix-Uninstall.exe",
+    "sha256": "67f1ae10bd8335510a6c557ad31b10700157158f0ed1d714950bf32dabb5959a"
+  },
+  "sources": [
+    {
+      "path": "wrapper/build.mjs",
+      "sha256": "ea64ea8ed2f5fb28c0b3ea57b4f2bebca0cc58fe748d3807a4c69b3f8f43a836",
+      "bytes": 4413
+    },
+    {
+      "path": "wrapper/Setup.cs",
+      "sha256": "dd17f512f0ba75e55595500cc16f858c50acdeb04992fa10643f15b52c30ee28",
+      "bytes": 34873
+    },
+    {
+      "path": "wrapper/Uninstall.cs",
+      "sha256": "ea5e0082e938d32382237333324f26a186d727f13a138836747d13f4e1e4eb30",
+      "bytes": 14054
+    }
+  ],
+  "authenticodeSigned": false,
+  "originalSetupUnchanged": true,
+  "sourceVersion": "0.1.0-local.20261010093000",
+  "releaseCorrected": false
+}

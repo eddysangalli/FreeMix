@@ -1,0 +1,13 @@
+{
+  "status": "PASS_PURE_ONLY_NO_BUILD_INSTALL_OS",
+  "tests": 6,
+  "nativeStarted": false,
+  "apiStarted": false,
+  "compileStarted": false,
+  "installStarted": false,
+  "physicalPathLengths": [
+    266,
+    276
+  ],
+  "protectedSentinelLength": 400
+}

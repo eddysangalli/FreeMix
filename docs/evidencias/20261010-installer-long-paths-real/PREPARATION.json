@@ -1,0 +1,167 @@
+{
+  "status": "PREPARED_NOT_BUILT_NOT_EXECUTED_ROOT_REVIEW_PENDING",
+  "artifactRole": "QA_WRAPPER_ONLY_NOT_RELEASE",
+  "sources": [
+    {
+      "path": "runner.mjs",
+      "sha256": "f4cf541be7f704ccc5f2c803b262b082ac96e15441cbf4040a2a77d390d294a3",
+      "bytes": 18026
+    },
+    {
+      "path": "contract.mjs",
+      "sha256": "0f6269a6f0bb19299af5152a3cc539a650b85e8188e448663596473c6d02706e",
+      "bytes": 3229
+    },
+    {
+      "path": "candidate-context.mjs",
+      "sha256": "d911bf44d3f8bbf2f31783e6803391ad872c0f03a5ab56614e678547124e2130",
+      "bytes": 2729
+    },
+    {
+      "path": "build-wrapper-reviewed.mjs",
+      "sha256": "764abc9e2ca9ea7e65015bfa891f57deffca5f5522c912212b9058856da32882",
+      "bytes": 6382
+    },
+    {
+      "path": "test-pure.mjs",
+      "sha256": "71afc45c1cb5c7e3b42bd7fdad84052bd008183d614834a06ef30f15c1298dfa",
+      "bytes": 2543
+    },
+    {
+      "path": "freeze-preparation.mjs",
+      "sha256": "c3ffe3791ea14dd116f55f8ea8be81d938bb0b66de683fef8f808edb4ec90214",
+      "bytes": 7311
+    },
+    {
+      "path": "wrapper/build.mjs",
+      "sha256": "ea64ea8ed2f5fb28c0b3ea57b4f2bebca0cc58fe748d3807a4c69b3f8f43a836",
+      "bytes": 4413
+    },
+    {
+      "path": "wrapper/Setup.cs",
+      "sha256": "dd17f512f0ba75e55595500cc16f858c50acdeb04992fa10643f15b52c30ee28",
+      "bytes": 34873
+    },
+    {
+      "path": "wrapper/Uninstall.cs",
+      "sha256": "ea5e0082e938d32382237333324f26a186d727f13a138836747d13f4e1e4eb30",
+      "bytes": 14054
+    }
+  ],
+  "tools": [
+    {
+      "role": "Node600Pinned",
+      "path": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\entregas\\FreeMix-Completo-0.1.0-local.20261010060000\\runtime\\node.exe",
+      "sha256": "ba4e6d110e8c1592a1ecd390f6b05f3da124b13871a5be62b341a07a853c6c32",
+      "bytes": 93580104
+    },
+    {
+      "role": "FrameworkCompiler",
+      "path": "C:/Windows/Microsoft.NET/Framework64/v4.0.30319/csc.exe",
+      "sha256": "46809206887326d2d24db1eff1f3064de972c3451abe766b49111450a5e08e00",
+      "bytes": 2569832
+    },
+    {
+      "role": "OwnRegistryReadOnlyQuery",
+      "path": "C:/Windows/System32/reg.exe",
+      "sha256": "ef37663b44ac66920c6f33694deea01acb78ae3f3012884819373fa04c3eb5f0",
+      "bytes": 110592
+    }
+  ],
+  "input": {
+    "candidatePath": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\candidate-release-093000.json",
+    "candidateSha256": "d868edb33de252768ed070ae83be34e3c6f0f711a850b8efe4dfda0b135e71ad",
+    "zipPath": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\entregas\\FreeMix-Completo-0.1.0-local.20261010093000.zip",
+    "zipSha256": "8a93312bdb1914265567d92ee6e22683c7d942c809e2f4f982e04404eaa7756b",
+    "packageRoot": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\entregas\\FreeMix-Completo-0.1.0-local.20261010093000",
+    "manifestSha256": "ad5a42792187e4c4bae75f55e8ab479623e6ef4e5db4dc0206a41a77abfcd26e",
+    "originalSetupPath": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\entregas\\FreeMix-Studio-Setup-0.1.0-local.20261010093000.exe",
+    "originalSetupSha256": "abf8f955c280a2ecc79071a3bc81cd6c19f23a856bf3e1095b38f40f5f4e2e0f",
+    "githubCommit": "9ff0eea38c2ee41f8bf4a57243a69ba2827cd63b",
+    "nativeCommit": "c4b5af00ea4a4b744a3a19fef5ec861f693c9a69",
+    "files": 9714
+  },
+  "provenance": {
+    "integrationReceiptSha256": "09745242fbe7132249de2ac4c9675f88d5a2cf6441c8a2eae62a3fc7f9ea2ff8",
+    "integrationCanonicalRoot": "FreeMix/scripts/installer-windows",
+    "copiedSourcesRoot": "qa-finalizacao/installer-longpaths-offside-review6-20261010/patched",
+    "builderCopiedFrom": "scripts/installer-windows/build.mjs",
+    "canonicalSourcesNotCopiedOrModified": true,
+    "oldDraftPreserved": "qa-finalizacao/installer-longpaths-real-preparation-20261010",
+    "oldFailPreserved": [
+      {
+        "path": "qa-finalizacao/setup-093000-qa-review4/receipt.json",
+        "sha256": "41f194a8dbacd662483dabc3e5e1adcb78fd9054557b2c618d64f598f87a5547",
+        "preserved": true
+      },
+      {
+        "path": "qa-finalizacao/setup-093000-qa-review4/ALLOWLIST-TEXT.json",
+        "sha256": "677458b2231bbfbb779dbb289d3ad1e68d0dfd1bc4033e8661e50c7e7866c377",
+        "preserved": true
+      },
+      {
+        "path": "qa-finalizacao/installer-longpaths-offside-review6-20261010/ALLOWLIST-TEXT.json",
+        "sha256": "f2d3e762ec86c027691133d64da42ff756f60816b442599072d3edb68216f6e5",
+        "preserved": true
+      }
+    ]
+  },
+  "expectations": {
+    "installedLength": 150,
+    "immutableLongFiles": [
+      {
+        "path": "data/obs-plugins/obs-shaderfilter/textures/TileableLinearSlotMaskTall15Wide9And4d5Horizontal9d14VerticalSpacing.png",
+        "size": 204254,
+        "sha256": "353cd2e76bb0451959cee6b4bda447d8c8bc2d3bb0b90b545f1f4c06cf4212ba",
+        "fullLength": 266
+      },
+      {
+        "path": "data/obs-plugins/obs-shaderfilter/textures/TileableLinearSlotMaskTall15Wide9And4d5Horizontal9d14VerticalSpacingResizeTo64.png",
+        "size": 6916,
+        "sha256": "ab655f312622d8247ad2038801c07eed07a99199bf239d7c3893bd667ea260af",
+        "fullLength": 276
+      }
+    ],
+    "modifiedSeparateOwnFile": "painel/remoto/settings-help.js",
+    "protectedUserSentinels400": [
+      "projetos/own",
+      "config/qa-own",
+      "qa-own-media"
+    ],
+    "existingPreferences": "config/obs-studio/user.ini",
+    "allManifestFiles": 9714,
+    "generatedSemantics": 5,
+    "shortcuts": 0,
+    "nativeStarts": 0,
+    "apiStarts": 0,
+    "firewallChanges": 0,
+    "installs": 1,
+    "uninstallDryRuns": 1,
+    "uninstallApply": 1
+  },
+  "budget": {
+    "runnerTotalMs": 1800000,
+    "buildMs": 600000,
+    "verifyMs": 180000,
+    "installMs": 900000,
+    "dryRunMs": 240000,
+    "applyMs": 300000,
+    "applyReserveMs": 120000,
+    "noForce": true,
+    "noAutomaticRetry": true
+  },
+  "capacity": {
+    "buildRequired": 1914037239,
+    "installRequired": 5551207182
+  },
+  "pureReceipt": {
+    "path": "pure-receipt.json",
+    "sha256": "0227e403ee2a243e970ec54099d89793de7304ce0e804a59eb135d8c750c286b"
+  },
+  "futureBuildRequiresRootReview": true,
+  "futureRunRequiresActualWrapperAndUninstallerHashes": true,
+  "selected600Unchanged": true,
+  "sealed093000Unchanged": true,
+  "original093000FailureNotReclassified": true,
+  "operatorTouched": false
+}

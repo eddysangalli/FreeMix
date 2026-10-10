@@ -1,0 +1,36 @@
+{
+  "status": "QA_ONLY",
+  "sealedInputsUnchanged": [
+    "candidate093000",
+    "ZIP093000",
+    "payload093000",
+    "originalSetup093000",
+    "selected600"
+  ],
+  "publicExportAllowed": [
+    "sourceCode",
+    "sanitizedPreparation",
+    "sanitizedFutureReceipt/report"
+  ],
+  "publicExportExcluded": [
+    "own-installation",
+    "config",
+    "credentials",
+    "rawLogs",
+    "diagZIP",
+    "compiledExecutables"
+  ],
+  "coverage": "Actual corrected wrapper extraction/hash/uninstall266/276 with data400 preservation only",
+  "noClaim": [
+    "Corrected093000 release",
+    "Native startup repeated",
+    "Migration repeated",
+    "Diagnostics repeated",
+    "Hardware",
+    "OS picker visual",
+    "COM shortcuts",
+    "Windows LongPathsEnabled=0",
+    "Framework older compatibility",
+    "Immutables400 deleted by this realpayload test"
+  ]
+}

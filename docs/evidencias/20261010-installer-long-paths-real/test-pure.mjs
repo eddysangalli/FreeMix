@@ -1,0 +1,12 @@
+import assert from 'node:assert/strict';import path from 'node:path';import fs from 'node:fs/promises';
+import {pins,expectedLongs,installedName,userPathFor,executionBound,assertApplyBudget,validatePayloadPins} from './contract.mjs';
+let tests=0;function test(name,fn){fn();tests++;console.log('PASS '+name);}
+const own='D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\own-temp-qa-longpaths\\FreeMix-QA-LongPaths-ABC123',installed=installedName(own);
+test('Exact root150 and physical immutable paths266/276',()=>{assert.equal(installed.length,150);for(const f of expectedLongs)assert.equal(path.win32.join(installed,f.path).length,f.fullLength);});
+test('Only three protected sentinels use contained long paths400',()=>{for(const p of ['projetos/own','config/qa-own','qa-own-media']){const rel=userPathFor(installed,p);assert.equal(path.win32.join(installed,rel).length,400);assert(!path.win32.relative(installed,path.win32.join(installed,rel)).startsWith('..'));}assert.throws(()=>userPathFor(installed,'../operator'));});
+test('Overlong TEMP prefix is refused before any real install',()=>assert.throws(()=>installedName(own+'x'.repeat(80))));
+test('Global deadline/tool cap fractional monotonic times; no OS execution',()=>{assert.equal(executionBound(1200.25,900000),1200.25);assert.equal(executionBound(900000.25,180000),180000);assert.throws(()=>executionBound(1000,300000));assert.throws(()=>executionBound(NaN,1));});
+test('Destructive phase refuses insufficient reserve',()=>{assertApplyBudget(420000);assert.throws(()=>assertApplyBudget(419999.9));});
+const a={'candidate-sha':pins.candidate,'zip-sha':pins.zip,'manifest-sha':pins.manifest,version:pins.version,zip:'D:\\own\\FreeMix-Completo-'+pins.version+'.zip'},c={githubCommit:pins.githubCommit,nativeCommit:pins.nativeCommit,files:pins.files,packageRoot:'D:\\own\\FreeMix-Completo-'+pins.version,zip:{sha256:pins.zip}};
+test('Immutable old payload explicit, wrong code/version/hash/count refused',()=>{validatePayloadPins(a,c);for(const k of ['candidate-sha','zip-sha','manifest-sha','version'])assert.throws(()=>validatePayloadPins({...a,[k]:'wrong'},c));for(const k of ['githubCommit','nativeCommit','files'])assert.throws(()=>validatePayloadPins(a,{...c,[k]:'wrong'}));});
+await fs.writeFile(new URL('pure-receipt.json',import.meta.url),JSON.stringify({status:'PASS_PURE_ONLY_NO_BUILD_INSTALL_OS',tests,nativeStarted:false,apiStarted:false,compileStarted:false,installStarted:false,physicalPathLengths:[266,276],protectedSentinelLength:400},null,2)+'\n',{flag:'wx'});

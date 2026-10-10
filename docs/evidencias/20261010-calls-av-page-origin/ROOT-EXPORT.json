@@ -1,0 +1,51 @@
+{
+  "status": "EXACT_OWN_SYNTHETIC_PROOFS_NO_RAW_LOG_CONFIG_MEDIA",
+  "at": "2026-10-10T11:14:06.376Z",
+  "files": [
+    {
+      "path": "ROOT-REVIEW.json",
+      "bytes": 526,
+      "sha256": "d230a92b4a05f68d1c4d9ff0cffc388bc84053a206c1969ec0989a53a9b6ad85"
+    },
+    {
+      "path": "receipt.json",
+      "bytes": 3583,
+      "sha256": "dccd968a9a8253ca7631fd6fbc012fdcaae56751c535f665643cc1dee1941b5c"
+    },
+    {
+      "path": "browser-report.json",
+      "bytes": 175155,
+      "sha256": "6d5afbc07406fd4dcdbf8fbcd9dee56780aff0c1ebf26d6cdce457996f9ed65f"
+    },
+    {
+      "path": "root-result.jpg",
+      "bytes": 83230,
+      "sha256": "27d7afbe8bd73cf5463b3c53fecf8f81564cc1e65ed157bf28a666bb6100708f"
+    },
+    {
+      "path": "PREPARATION.json",
+      "bytes": 2802,
+      "sha256": "0b9181b0a69d1ec3e102d6e748288c2d90bd70e6fca5246ea499f223149727dc"
+    },
+    {
+      "path": "ALLOWLIST-PREPARATION.json",
+      "bytes": 4120,
+      "sha256": "b3cf458f394b52e5164d3a4878cb972f3752875b07979469d5bdf1a0d6ea79ff"
+    },
+    {
+      "path": "DELTA.json",
+      "bytes": 1011,
+      "sha256": "61b1415003831ad4800bc99a977af821563defa36f883198c60dd74597f05840"
+    },
+    {
+      "path": "READINESS.md",
+      "bytes": 3347,
+      "sha256": "abc9eee151fe386878c24f6b80d197d7dd930e61307ad3d82c4ecc18cbb7c817"
+    },
+    {
+      "path": "page-timestamp-origin.mjs",
+      "bytes": 1766,
+      "sha256": "6a41ef0ae7d1377e49f17a3e9dfdb7c92f40f03e6a9e41437b377c558c1ca9d6"
+    }
+  ]
+}

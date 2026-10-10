@@ -1,0 +1,22 @@
+{
+  "status": "ROOT_REVIEWED_ONE_SYNTHETIC_SILENT_PAGE_ORIGIN_INTERVENTION",
+  "at": "2026-10-10T11:09:38.639Z",
+  "files": 26,
+  "helpers": 2,
+  "originalAcceptancePreserved": true,
+  "models": 10,
+  "localTapKept": true,
+  "noNativeApiMicVdoExternal": true,
+  "productModified": false,
+  "automaticRetry": false,
+  "fullRead": [
+    "probe.html",
+    "runner.mjs",
+    "launch.mjs",
+    "page-timestamp-origin.mjs",
+    "READINESS.md",
+    "PREPARATION.json",
+    "root-command.json"
+  ],
+  "hypothesisNotCausality": true
+}

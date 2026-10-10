@@ -1,0 +1,30 @@
+{
+  "status": "PREPARATION_ONLY_NO_BUILD_NO_INSTALL",
+  "copied": [
+    {
+      "source": "scripts/installer-windows/build.mjs",
+      "path": "wrapper/build.mjs",
+      "sha256": "ea64ea8ed2f5fb28c0b3ea57b4f2bebca0cc58fe748d3807a4c69b3f8f43a836",
+      "copiedExactBytes": true
+    },
+    {
+      "source": "qa-finalizacao/installer-longpaths-offside-review6-20261010/patched/Setup.cs",
+      "path": "wrapper/Setup.cs",
+      "sha256": "dd17f512f0ba75e55595500cc16f858c50acdeb04992fa10643f15b52c30ee28",
+      "copiedExactBytes": true
+    },
+    {
+      "source": "qa-finalizacao/installer-longpaths-offside-review6-20261010/patched/Uninstall.cs",
+      "path": "wrapper/Uninstall.cs",
+      "sha256": "ea5e0082e938d32382237333324f26a186d727f13a138836747d13f4e1e4eb30",
+      "copiedExactBytes": true
+    },
+    {
+      "source": "qa-finalizacao/installer-longpaths-real-preparation-20261010/candidate-context.mjs",
+      "path": "candidate-context.mjs",
+      "sha256": "d911bf44d3f8bbf2f31783e6803391ad872c0f03a5ab56614e678547124e2130",
+      "copiedExactBytes": true
+    }
+  ],
+  "canonicalFilesNotModified": true
+}

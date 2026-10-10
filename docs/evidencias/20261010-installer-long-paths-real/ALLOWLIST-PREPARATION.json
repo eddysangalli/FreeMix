@@ -1,0 +1,92 @@
+{
+  "status": "FROZEN_PREPARATION_ONLY_NO_BUILD_NO_INSTALL",
+  "files": [
+    {
+      "path": "BOUNDARIES.json",
+      "sha256": "1f5e6b4859c6ee22a5cd57f6f8e6e23fff1ee675c775dfa321b83d0ef7463ac4",
+      "bytes": 853
+    },
+    {
+      "path": "build-wrapper-reviewed.mjs",
+      "sha256": "764abc9e2ca9ea7e65015bfa891f57deffca5f5522c912212b9058856da32882",
+      "bytes": 6382
+    },
+    {
+      "path": "candidate-context.mjs",
+      "sha256": "d911bf44d3f8bbf2f31783e6803391ad872c0f03a5ab56614e678547124e2130",
+      "bytes": 2729
+    },
+    {
+      "path": "contract.mjs",
+      "sha256": "0f6269a6f0bb19299af5152a3cc539a650b85e8188e448663596473c6d02706e",
+      "bytes": 3229
+    },
+    {
+      "path": "DERIVATION.json",
+      "sha256": "edb91f51bd56a20925a47d127db966bdc8501c7049aac06aa631e73dce79c4e7",
+      "bytes": 3790
+    },
+    {
+      "path": "freeze-preparation.mjs",
+      "sha256": "c3ffe3791ea14dd116f55f8ea8be81d938bb0b66de683fef8f808edb4ec90214",
+      "bytes": 7311
+    },
+    {
+      "path": "PREPARATION.json",
+      "sha256": "bac650abe4b97f096e4733421bcc4ba9576417aadd8c238db211f7e572bf8f19",
+      "bytes": 6231
+    },
+    {
+      "path": "pure-receipt.json",
+      "sha256": "0227e403ee2a243e970ec54099d89793de7304ce0e804a59eb135d8c750c286b",
+      "bytes": 253
+    },
+    {
+      "path": "README.md",
+      "sha256": "d3eaeabab9b3f2d1fc9e038f833ddb8c408961453098f2f29071750374447446",
+      "bytes": 4548
+    },
+    {
+      "path": "ROOT-COMMAND-TEMPLATE.json",
+      "sha256": "d91df218f85ad112d0478430429068d5cbdf11ce14307ab388c8827e4f844505",
+      "bytes": 2458
+    },
+    {
+      "path": "root-integration-receipt.json",
+      "sha256": "09745242fbe7132249de2ac4c9675f88d5a2cf6441c8a2eae62a3fc7f9ea2ff8",
+      "bytes": 1077
+    },
+    {
+      "path": "runner.mjs",
+      "sha256": "f4cf541be7f704ccc5f2c803b262b082ac96e15441cbf4040a2a77d390d294a3",
+      "bytes": 18026
+    },
+    {
+      "path": "snapshot-provenance.json",
+      "sha256": "b1f72b0d47791feec785ea93d45257e5abfa685ff89123dbb64e3fb1730ae6b0",
+      "bytes": 1121
+    },
+    {
+      "path": "test-pure.mjs",
+      "sha256": "71afc45c1cb5c7e3b42bd7fdad84052bd008183d614834a06ef30f15c1298dfa",
+      "bytes": 2543
+    },
+    {
+      "path": "wrapper/build.mjs",
+      "sha256": "ea64ea8ed2f5fb28c0b3ea57b4f2bebca0cc58fe748d3807a4c69b3f8f43a836",
+      "bytes": 4413
+    },
+    {
+      "path": "wrapper/Setup.cs",
+      "sha256": "dd17f512f0ba75e55595500cc16f858c50acdeb04992fa10643f15b52c30ee28",
+      "bytes": 34873
+    },
+    {
+      "path": "wrapper/Uninstall.cs",
+      "sha256": "ea5e0082e938d32382237333324f26a186d727f13a138836747d13f4e1e4eb30",
+      "bytes": 14054
+    }
+  ],
+  "textOnly": true,
+  "noLogsNoCredentialsNoBinary": true
+}
