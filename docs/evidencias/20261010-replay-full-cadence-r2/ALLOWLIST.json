@@ -1,0 +1,133 @@
+{
+  "status": "R2_FROZEN_MODELS_PASS26_ONLY_NO_EXEC_MEDIA",
+  "files": [
+    {
+      "path": "BASELINES.json",
+      "bytes": 1114,
+      "sha256": "9e373c1600e7669b72bb42c580e4a3bc1d111a1474ec61ebeb6d79bb3526ea32"
+    },
+    {
+      "path": "INTEGRATION.json",
+      "bytes": 1574,
+      "sha256": "5be6dacfcb2d050edbbf4738d1a4d5cca27698944cf3683b417f5528b194601a"
+    },
+    {
+      "path": "README.md",
+      "bytes": 4633,
+      "sha256": "d6bc0ba9d3ca934e81bf247d276506ec5d965f3b3f9c8d8eb01dfd1b46266093"
+    },
+    {
+      "path": "combined-from-canonical.patch",
+      "bytes": 21280,
+      "sha256": "b145f2f748497bf2daf9c8d92ce393c519b36798240fb08612e5dae44e888e20"
+    },
+    {
+      "path": "delta-r2.patch",
+      "bytes": 9688,
+      "sha256": "6e3b20cc68fed0a901dac5bbbaf51fa9615c9cff89bea6cb5a0beca242b3a9f1"
+    },
+    {
+      "path": "draft/replay-cadence.mjs",
+      "bytes": 7929,
+      "sha256": "1061d8cbe1323aae306093a621e4e327bba743d5151b851306c3a78af5b653bc"
+    },
+    {
+      "path": "draft/replay-disco.mjs",
+      "bytes": 75146,
+      "sha256": "9c0b476aa321cf628f35064542b3c0bf879cca9111e5904791988bc197bef1c7"
+    },
+    {
+      "path": "draft/replay-preview.mjs",
+      "bytes": 6991,
+      "sha256": "6fadf72f276c46de7b9640331e989a539863275a698df1316559de7da744a4af"
+    },
+    {
+      "path": "draft/replay-sincronia.mjs",
+      "bytes": 6297,
+      "sha256": "177e30efa904567147efec16785ac6603f263ea13009ee5df319749a13e73a98"
+    },
+    {
+      "path": "freeze.mjs",
+      "bytes": 2737,
+      "sha256": "ac325c32ca816f0cb32532472545479c72c44fbfb383482cde5d79edba425337"
+    },
+    {
+      "path": "make-patches.py",
+      "bytes": 920,
+      "sha256": "39869bc95b5a2111d2b697cb836ec12199f108f6749608ecff020700bc2d7c01"
+    },
+    {
+      "path": "model-final-r2-result.json",
+      "bytes": 3588,
+      "sha256": "f8b624f5b15447a4541367ba165f56d04ed35b0a9d14cfe47317ea39c1f522f4"
+    },
+    {
+      "path": "model-final-result.json",
+      "bytes": 3327,
+      "sha256": "23012518651e463d56f2145ac9487fbb97254f0b6831582526aaacfa22eba67e"
+    },
+    {
+      "path": "model-result.json",
+      "bytes": 2996,
+      "sha256": "c4b0ad63664f83ec27f0db4298358af09701c22ae874b563f7ec0a2e7f9acb34"
+    },
+    {
+      "path": "model-stage1-json-infinity-fail.json",
+      "bytes": 2996,
+      "sha256": "c4b0ad63664f83ec27f0db4298358af09701c22ae874b563f7ec0a2e7f9acb34"
+    },
+    {
+      "path": "prepare.mjs",
+      "bytes": 1367,
+      "sha256": "9748e552dbbf5bbacde798e5945a0a8961635df97ae3fc6b9c0afbd1b69f7e9d"
+    },
+    {
+      "path": "test-r2-stage1-json-infinity-fail.mjs",
+      "bytes": 14628,
+      "sha256": "d2e38789ec61446918d6da42e1aadb3d84cc88accd02b902b34498bd0f51b492"
+    },
+    {
+      "path": "test-r2-stage2-pass.mjs",
+      "bytes": 14643,
+      "sha256": "102cd5824b4ed94171388c9ebf44394e1bdeb9686642451f3f41b21221124054"
+    },
+    {
+      "path": "test-r2.mjs",
+      "bytes": 15659,
+      "sha256": "c03286c0f1b74513b3cf5fdc8ce5569fdbb17c0151909164eebfdbb2bdc7aa7c"
+    }
+  ],
+  "integration": [
+    {
+      "path": "ferramentas/replay-disco.mjs",
+      "draft": "draft/replay-disco.mjs",
+      "sha256": "9c0b476aa321cf628f35064542b3c0bf879cca9111e5904791988bc197bef1c7",
+      "r1Sha256": "0bfb006b875c50854bbfff5d7b2728cfaacc32dd6667625b0078f5035bf8ffab",
+      "changedInR2": true
+    },
+    {
+      "path": "ferramentas/replay-sincronia.mjs",
+      "draft": "draft/replay-sincronia.mjs",
+      "sha256": "177e30efa904567147efec16785ac6603f263ea13009ee5df319749a13e73a98",
+      "r1Sha256": "177e30efa904567147efec16785ac6603f263ea13009ee5df319749a13e73a98",
+      "changedInR2": false
+    },
+    {
+      "path": "ferramentas/replay-cadence.mjs",
+      "draft": "draft/replay-cadence.mjs",
+      "sha256": "1061d8cbe1323aae306093a621e4e327bba743d5151b851306c3a78af5b653bc",
+      "r1Sha256": "677b68a01e1a39e77b3d225f41499681b7ea4ed846a73737a4957babeca875ed",
+      "changedInR2": true
+    }
+  ],
+  "priorAllowlist": {
+    "files": 27,
+    "sha256": "9e4819e849c77d06bfcab97db30b6f91c2dbf8c0e4aa3635f22a3cf59e2c6a4b",
+    "afterMatch": true
+  },
+  "canonicalEdited": false,
+  "NativeExecuted": false,
+  "APIExecuted": false,
+  "ffprobeExecuted": false,
+  "audioExecuted": false
+}

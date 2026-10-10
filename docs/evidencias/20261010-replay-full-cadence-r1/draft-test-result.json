@@ -1,0 +1,117 @@
+{
+  "status": "FAIL_DRAFT_TESTS",
+  "cases": 9,
+  "tests": [
+    {
+      "name": "Frozen AL31 and source baselines preserved before test",
+      "pass": true,
+      "elapsedMs": 8.7106
+    },
+    {
+      "name": "Real whole-file FFprobe sees CFR900, lateVFR885, VFR540 and refuses only unsafe step",
+      "pass": true,
+      "elapsedMs": 441.62919999999997
+    },
+    {
+      "name": "Metadata-only live/history probe does not construct whole-clip scanner",
+      "pass": true,
+      "elapsedMs": 38.71449999999993
+    },
+    {
+      "name": "Actual hydrate upgrades old sampled metadata once; repeated seeks do not rescan",
+      "pass": true,
+      "elapsedMs": 156.85559999999998
+    },
+    {
+      "name": "Real repeated saved-file certification uses compact cache, measured cold/warm",
+      "pass": true,
+      "elapsedMs": 112.42180000000008
+    },
+    {
+      "name": "Actual FFprobe stdout budget terminates own process and keeps step unsafe",
+      "pass": true,
+      "elapsedMs": 36.739599999999996
+    },
+    {
+      "name": "Actual FFprobe 1ms deadline rejects certification; job is reaped",
+      "pass": true,
+      "elapsedMs": 4.782800000000066
+    },
+    {
+      "name": "Actual close during own FFprobe scan cancels and clears cache/jobs",
+      "pass": true,
+      "elapsedMs": 3.8824999999999363
+    },
+    {
+      "name": "Missing file is unknown; no certification and no spawned job",
+      "pass": true,
+      "elapsedMs": 0.4028000000000702
+    }
+  ],
+  "real": [
+    {
+      "kind": "cfr",
+      "prepareMs": 159.8857,
+      "frames": 900,
+      "status": "cfr",
+      "minMs": 32.9999999999977,
+      "maxMs": 34.00000000000247,
+      "irregularIntervals": 0,
+      "seekMode": "frame",
+      "stepAllowed": true
+    },
+    {
+      "kind": "late-vfr",
+      "prepareMs": 154.93099999999993,
+      "frames": 885,
+      "status": "vfr",
+      "minMs": 32.9999999999977,
+      "maxMs": 67.00000000000017,
+      "irregularIntervals": 15,
+      "seekMode": "time",
+      "stepAllowed": false
+    },
+    {
+      "kind": "vfr",
+      "prepareMs": 125.67920000000004,
+      "frames": 540,
+      "status": "vfr",
+      "minMs": 32.9999999999977,
+      "maxMs": 67.00000000000017,
+      "irregularIntervals": 359,
+      "seekMode": "time",
+      "stepAllowed": false
+    }
+  ],
+  "models": [
+    {
+      "name": "real-cache",
+      "coldMs": 112.22079999999994,
+      "warmMs": 0.07359999999994216
+    }
+  ],
+  "limits": {
+    "maxSeconds": 120.5,
+    "maxFrames": 29000,
+    "maxOutputBytes": 4194304,
+    "deadlineMs": 8000,
+    "maxEntries": 32,
+    "maxOutstanding": 1
+  },
+  "resources": {
+    "helpersQuiescent": false
+  },
+  "priorAllowlist": {
+    "files": 31,
+    "sha256": "f0bf56b9934918d253396df09e180a19138196e11a4960dcf7aa3e517b9b7749",
+    "afterMatch": true
+  },
+  "NativeExecuted": false,
+  "APIExecuted": false,
+  "GPUUsed": false,
+  "operatorTouched": false,
+  "renderedFramesProven": false,
+  "audioCaptured": false,
+  "canonicalEdited": false,
+  "error": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n\n1 !== 0\n\n    at file:///D:/DRIVE/IA/antigravity/vmixtwste/qa-finalizacao/replay-vfr-gap-real-20261010/test-draft.mjs:92:58\n    at async check (file:///D:/DRIVE/IA/antigravity/vmixtwste/qa-finalizacao/replay-vfr-gap-real-20261010/test-draft.mjs:23:62)\n    at async file:///D:/DRIVE/IA/antigravity/vmixtwste/qa-finalizacao/replay-vfr-gap-real-20261010/test-draft.mjs:90:3"
+}

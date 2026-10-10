@@ -1,0 +1,258 @@
+--- a/ferramentas/replay-disco.mjs
++++ b/ferramentas/replay-disco.mjs
+@@ -6,6 +6,7 @@
+ import { mkdir, readFile, writeFile, rename, stat, unlink, readdir, lstat } from "node:fs/promises";
+ import { join, resolve, relative } from "node:path";
+ import { frameRate, replayCameraOptions, frameTargets, seekTargets, estimateAudioOffset } from './replay-sincronia.mjs';
++import {ReplayCadence} from './replay-cadence.mjs';
+ import {ReplayPreview,PREVIEW_SECONDS} from './replay-preview.mjs';
+ 
+ const isoDefaults = () => ({format:'mpegts',directory:'',prefix:'cam',encoder:'default',crf:23,audio:'input',audioSourceUUID:'',splitSeconds:0,width:0,height:0,fpsDivisor:1,bitrate:0,perInput:{}});
+@@ -117,6 +118,7 @@
+     this.file = join(this.root, "config", "obs-studio", "plugin_config", this.namespace, `${id}.json`);
+     try { this.state = { ...empty(), ...JSON.parse(await readFile(this.file, "utf8")) }; }
+     catch (e) { if (e.code !== "ENOENT") throw e; this.state = empty(); }
++    await this.cadenceProbe?.close();this.cadenceProbe=null;
+     this.scope = currentSceneCollectionName;
+     this.programScene = null;
+     this.internalProgramTarget = null;
+@@ -220,19 +222,12 @@
+     let rate=null,variableFrameRate=false;try{rate=frameRate(video?.avg_frame_rate);const nominal=frameRate(video?.r_frame_rate);variableFrameRate=Math.abs(rate.fps-nominal.fps)>.001;}catch{}
+     let cadence = null;
+     // Container rates alone can both say 30/1 for irregular frame timestamps.
+-    // Only player loads need this bounded decode; live history/proxy probing
+-    // retains its inexpensive metadata-only path. Samples cover beginning,
+-    // middle and end and never decode the entire recording on each seek.
+-    if(verifyCadence&&video&&rate){
+-      const samples=[];
+-      for(const start of [...new Set([0,Math.max(0,duration/2-2),Math.max(0,duration-4)])]){
+-        const decoded=JSON.parse(await execute(this.ffprobe,['-v','error','-threads','1','-select_streams','v:0','-read_intervals',`${start}%+#128`,'-show_entries','frame=best_effort_timestamp_time','-of','json',file],15000));
+-        const pts=(decoded.frames||[]).map(f=>Number(f.best_effort_timestamp_time)).filter(Number.isFinite);
+-        const intervals=pts.slice(1).map((p,i)=>(p-pts[i])*1000);
+-        samples.push({start,frames:pts.length,minMs:intervals.length?Math.min(...intervals):null,maxMs:intervals.length?Math.max(...intervals):null});
+-        if(intervals.some(ms=>Math.abs(ms-rate.frameMs)>Math.max(1.5,rate.frameMs*.005)))variableFrameRate=true;
+-      }
+-      cadence={method:'bounded-decoded-pts',samples,entireFile:false};
++    // Only saved-player loads need a finite whole-clip decode. Live history
++    // and proxy probing keep their metadata-only path; seeks reuse identity.
++    if(verifyCadence){
++      this.cadenceProbe??=new ReplayCadence({ffprobe:this.ffprobe});
++      cadence=await this.cadenceProbe.probe(file,{duration,frameMs:rate?.frameMs,videoStart:Number(video?.start_time||0)});
++      variableFrameRate||=cadence.status==='vfr';
+     }
+     return { duration, streams: result.streams, videoStart: Number(video?.start_time || 0), containerStart: Number(result.format?.start_time || 0), frameRate:rate?`${rate.numerator}/${rate.denominator}`:null, variableFrameRate, cadence, hasVideo:result.streams.some(s=>s.codec_type==='video'),audio:result.streams.some(s=>s.codec_type==='audio') };
+   }
+@@ -460,7 +455,7 @@
+     return {...await this.status(),history,historyPreview};
+   }
+   previewFile(token){return this.preview.file(token);}
+-  dispose(){return this.preview.close();}
++  dispose(){return Promise.all([this.preview.close(),this.cadenceProbe?.close()]);}
+   async pinHistory(d){
+     if(d.clear===true){this.historyPin=null;return;}
+     const history=await this.history(),start=Number(d.start),end=Number(d.end??Math.min(start+120,history?.end));
+@@ -819,7 +814,7 @@
+   }
+ 
+   async hydratePlayers(){
+-    for(const p of Object.values(this.state.players))if(!p.metadataProbed||!p.cadenceChecked){const media=await this.probe(p.file,true);Object.assign(p,{metadataProbed:true,cadenceChecked:true,cadence:media.cadence,hasVideo:media.hasVideo,duration:media.duration,frameRate:media.frameRate,variableFrameRate:media.variableFrameRate,audio:media.audio,offsetFrames:replayCameraOptions(this.state.cameraOptions?.[p.cam]).offsetFrames});}
++    for(const p of Object.values(this.state.players))if(!p.metadataProbed||!p.cadenceChecked||p.cadence?.method!=='finite-full-decoded-pts'||!(await (this.cadenceProbe??=new ReplayCadence({ffprobe:this.ffprobe})).matches(p.file,p.cadence?.identity))){const media=await this.probe(p.file,true);Object.assign(p,{metadataProbed:true,cadenceChecked:true,cadence:media.cadence,hasVideo:media.hasVideo,duration:media.duration,frameRate:media.frameRate,variableFrameRate:media.variableFrameRate,audio:media.audio,offsetFrames:replayCameraOptions(this.state.cameraOptions?.[p.cam]).offsetFrames});}
+   }
+ 
+   async speed(value) {
+--- a/ferramentas/replay-sincronia.mjs
++++ b/ferramentas/replay-sincronia.mjs
+@@ -14,11 +14,13 @@
+   if (!Number.isInteger(delta) || Math.abs(delta) > 300) throw Error('Passo de quadro inválido');
+   const reference = players[anchor]; if (!reference) throw Error('Carregue o player');
+   const rate = frameRate(reference.frameRate);
++  if(reference.cadence?.method!=='finite-full-decoded-pts'||!reference.cadence?.entireFile||reference.cadence?.status!=='cfr')throw Error('Passo de quadro requer cadência constante confirmada no clipe inteiro; use busca por tempo ou carregue novamente');
+   if (reference.variableFrameRate) throw Error('Passo de quadro requer vídeo com taxa constante');
+   let globalFrame = Math.round(cursor / rate.frameMs) - (reference.offsetFrames || 0) + delta;
+   let first = -Infinity, last = Infinity;
+   for (const p of Object.values(players)) {
+     const own = frameRate(p.frameRate);
++    if(p.cadence?.method!=='finite-full-decoded-pts'||!p.cadence?.entireFile||p.cadence?.status!=='cfr')throw Error('Passo de quadro requer cadência constante confirmada no clipe inteiro; use busca por tempo ou carregue novamente');
+     if (p.variableFrameRate || Math.abs(own.fps - rate.fps) > .001) throw Error('Para vincular por quadro, use ângulos com a mesma taxa constante');
+     first = Math.max(first, -(p.offsetFrames || 0));
+     last = Math.min(last, Math.max(0, Math.ceil(p.duration * own.fps - .001) - 1) - (p.offsetFrames || 0));
+@@ -37,13 +39,13 @@
+  if(!players[anchor]||!Number.isFinite(cursor)||cursor<0)throw Error('Player ou cursor inválido');
+  const offset=p=>{const frames=p.offsetFrames||0;if(!Number.isInteger(frames))throw Error('Offset de câmera inválido');if(!frames)return 0;return frames*frameRate(p.frameRate).frameMs;};
+  const offsets=Object.fromEntries(Object.entries(players).map(([id,p])=>[id,offset(p)]));let first=-Infinity,last=Infinity;
+- for(const[id,p]of Object.entries(players)){if(!Number.isFinite(p.duration)||p.duration<=0)throw Error('Duração de mídia não confirmada');first=Math.max(first,-offsets[id]);let end=p.duration*1000-1;if(p.frameRate&&!p.variableFrameRate)end=Math.floor((Math.ceil(p.duration*frameRate(p.frameRate).fps-.001)-1)*frameRate(p.frameRate).frameMs);last=Math.min(last,end-offsets[id]);}
++ for(const[id,p]of Object.entries(players)){if(!Number.isFinite(p.duration)||p.duration<=0)throw Error('Duração de mídia não confirmada');first=Math.max(first,-offsets[id]);let end=p.duration*1000-1;if(p.frameRate&&!p.variableFrameRate&&p.cadence?.status==='cfr'&&p.cadence?.entireFile)end=Math.floor((Math.ceil(p.duration*frameRate(p.frameRate).fps-.001)-1)*frameRate(p.frameRate).frameMs);last=Math.min(last,end-offsets[id]);}
+  if(last<first)throw Error('Os offsets não deixam um intervalo comum entre os ângulos');
+  const globalTime=Math.max(first,Math.min(last,cursor-offsets[anchor]));
+  return {targets:Object.fromEntries(Object.keys(players).map(id=>[id,{cursor:Math.max(0,Math.floor(globalTime+offsets[id]+1e-7))}])),globalTime,first,last,mode:'time',toleranceMs:100};
+ }
+ export function seekTargets(players,anchor,cursor){
+- const values=Object.values(players);if(values.every(p=>p.frameRate&&!p.variableFrameRate)&&values.every(p=>Math.abs(frameRate(p.frameRate).fps-frameRate(values[0].frameRate).fps)<.001))return {...frameTargets(players,anchor,cursor),mode:'frame',toleranceMs:Math.max(2,frameRate(players[anchor].frameRate).frameMs/2)};
++ const values=Object.values(players);if(values.length&&values.every(p=>p.frameRate&&!p.variableFrameRate&&p.cadence?.method==='finite-full-decoded-pts'&&p.cadence?.status==='cfr'&&p.cadence?.entireFile)&&values.every(p=>Math.abs(frameRate(p.frameRate).fps-frameRate(values[0].frameRate).fps)<.001))return {...frameTargets(players,anchor,cursor),mode:'frame',toleranceMs:Math.max(2,frameRate(players[anchor].frameRate).frameMs/2)};
+  return timeTargets(players,anchor,cursor);
+ }
+ 
+--- /dev/null
++++ b/ferramentas/replay-cadence.mjs
+@@ -0,0 +1,161 @@
++// Saved clips only. No full scan of live recordings; no Native/decoder seek.
++import {spawn} from 'node:child_process';
++import {stat} from 'node:fs/promises';
++import {resolve} from 'node:path';
++import {createHash} from 'node:crypto';
++
++export const CADENCE_LIMITS = Object.freeze({
++  maxSeconds:120.5, maxFrames:29000, maxOutputBytes:4*1024*1024,
++  deadlineMs:8000, maxEntries:32, maxOutstanding:1,
++});
++const unknown = (reason,identity=null) => ({
++  method:'finite-full-decoded-pts',status:'unknown',entireFile:false,reason,identity,
++});
++
++export function classifyClipPts(pts,{duration,frameMs,videoStart=0,maxFrames=CADENCE_LIMITS.maxFrames}={}) {
++  if(!Array.isArray(pts)||pts.length<2||pts.length>maxFrames||
++     !Number.isFinite(duration)||duration<=0||!Number.isFinite(frameMs)||
++     frameMs<1000/240||frameMs>1000)return unknown('invalid-or-incomplete-pts');
++  if(pts.some(n=>!Number.isFinite(n)))return unknown('missing-or-invalid-pts');
++  if(!Number.isFinite(videoStart)||Math.abs((pts[0]-videoStart)*1000)>1.5)
++    return unknown('decoded-start-does-not-match-stream');
++  let minMs=Infinity,maxMs=-Infinity,irregular=0;
++  for(let i=1;i<pts.length;i++) {
++    const ms=(pts[i]-pts[i-1])*1000;
++    if(ms<=0)return unknown('non-increasing-pts');
++    minMs=Math.min(minMs,ms);maxMs=Math.max(maxMs,ms);
++    // Same tolerance as the previous sampled classifier; not expanded for QA.
++    if(Math.abs(ms-frameMs)>Math.max(1.5,frameMs*.005))irregular++;
++  }
++  const spanMs=(pts.at(-1)-pts[0])*1000;
++  // A clean exit can still follow a damaged stream which silently ends early.
++  if(Math.abs(spanMs+frameMs-duration*1000)>Math.max(50,2*frameMs))
++    return unknown('decoded-span-does-not-cover-clip');
++  return {method:'finite-full-decoded-pts',status:irregular?'vfr':'cfr',entireFile:true,
++    frames:pts.length,firstPts:pts[0],lastPts:pts.at(-1),minMs,maxMs,irregularIntervals:irregular};
++}
++
++async function fileIdentity(file) {
++  const s=await stat(file);if(!s.isFile())throw Error('CADENCE_NOT_FILE');
++  // Invalidation identity, not cryptographic certification of file contents.
++  return createHash('sha256').update(JSON.stringify([
++    resolve(file),s.dev,s.ino,s.size,s.mtimeMs,s.ctimeMs,
++  ])).digest('hex');
++}
++
++function scan(tool,file,limits,jobs) {
++  return new Promise((resolveResult,reject)=>{
++    let bytes=0,error=null,settled=false,exited=false,reap;
++    const chunks=[],child=spawn(tool,[
++      '-v','error','-threads','1','-select_streams','v:0',
++      '-show_entries','frame=best_effort_timestamp_time','-of','json',file,
++    ],{windowsHide:true,stdio:['ignore','pipe','pipe']});
++    const job={child,cancel:()=>stop('CADENCE_CANCELLED')};jobs.add(job);
++    function settle(e,output) {
++      if(settled)return;settled=true;
++      if(e)reject(e);else resolveResult(output);
++    }
++    function stop(code) {
++      if(error||exited)return;error=Error(code);chunks.length=0;
++      child.kill();
++      // Bound the caller even if the OS fails to reap. Keep the job registered
++      // until actual close: callers can observe quiescent=false and fail closed.
++      reap=setTimeout(()=>settle(Error('CADENCE_CHILD_NOT_REAPED')),2000);
++    }
++    const timer=setTimeout(()=>stop('CADENCE_DEADLINE'),limits.deadlineMs);
++    child.stdout.on('data',b=>{
++      if(error)return;bytes+=b.length;
++      if(bytes>limits.maxOutputBytes){stop('CADENCE_OUTPUT_BUDGET');return;}
++      chunks.push(b);
++    });
++    child.stderr.on('data',()=>{});
++    child.once('error',e=>{
++      clearTimeout(timer);
++      // spawn failure has no process to reap. Do not leave a phantom owner job.
++      if(!child.pid){exited=true;jobs.delete(job);}
++      else stop('CADENCE_PROCESS_ERROR');
++      settle(e);
++    });
++    child.once('close',code=>{
++      exited=true;clearTimeout(timer);clearTimeout(reap);jobs.delete(job);
++      settle(error||(code!==0?Error('CADENCE_DECODE_FAILED'):null),
++        Buffer.concat(chunks).toString('utf8'));
++    });
++  });
++}
++
++export class ReplayCadence {
++  constructor({ffprobe,limits={},decode=scan,identity=fileIdentity}={}) {
++    this.ffprobe=ffprobe;this.limits={...CADENCE_LIMITS,...limits};
++    if(typeof ffprobe!=='string'||!ffprobe||typeof decode!=='function'||typeof identity!=='function')
++      throw Error('CADENCE_CONFIG');
++    for(const k of Object.keys(CADENCE_LIMITS)) {
++      if(!Number.isFinite(this.limits[k])||this.limits[k]<=0||this.limits[k]>CADENCE_LIMITS[k]||
++         (k!=='maxSeconds'&&!Number.isInteger(this.limits[k])))throw Error('CADENCE_BUDGET');
++    }
++    this.decode=decode;this.identity=identity;this.cache=new Map();this.pending=new Map();
++    this.jobs=new Set();this.closed=false;this.generation=0;this.closePromise=null;
++    this.metrics={scans:0,cacheHits:0,coalesced:0};
++  }
++  async matches(file,id) {
++    if(this.closed||typeof id!=='string')return false;
++    try{return await this.identity(file)===id;}catch{return false;}
++  }
++  async probe(file,{duration,frameMs,videoStart=0}={}) {
++    if(this.closed)return unknown('owner-closed');
++    let id;try{id=await this.identity(file);}catch{return unknown('file-unavailable');}
++    if(this.closed)return unknown('owner-closed');
++    if(!Number.isFinite(duration)||duration<=0||duration>this.limits.maxSeconds)
++      return unknown('clip-duration-budget',id);
++    if(!Number.isFinite(frameMs)||frameMs<1000/240||frameMs>1000)
++      return unknown('frame-rate-unconfirmed',id);
++    if(!Number.isFinite(videoStart))return unknown('stream-start-unconfirmed',id);
++    const key=JSON.stringify([id,duration,frameMs,videoStart,this.ffprobe]);
++    if(this.cache.has(key)) {
++      const data=this.cache.get(key);this.cache.delete(key);this.cache.set(key,data);
++      this.metrics.cacheHits++;return structuredClone(data);
++    }
++    if(this.pending.has(key)) {
++      this.metrics.coalesced++;return structuredClone(await this.pending.get(key));
++    }
++    if(this.pending.size>=this.limits.maxOutstanding||this.jobs.size>=this.limits.maxOutstanding)
++      return unknown('scan-busy',id);
++    const generation=this.generation;
++    const task=(async()=>{
++      let result;
++      try {
++        this.metrics.scans++;
++        const raw=await this.decode(this.ffprobe,file,this.limits,this.jobs);
++        if(Buffer.byteLength(raw)>this.limits.maxOutputBytes)return unknown('output-budget',id);
++        const frames=JSON.parse(raw).frames;
++        if(!Array.isArray(frames)||frames.length>this.limits.maxFrames)
++          return unknown('frame-count-budget',id);
++        const pts=frames.map(f=>typeof f?.best_effort_timestamp_time==='string'&&
++          f.best_effort_timestamp_time.trim()?Number(f.best_effort_timestamp_time):NaN);
++        result=classifyClipPts(pts,{duration,frameMs,videoStart,maxFrames:this.limits.maxFrames});
++      }catch{return unknown(this.closed?'owner-closed':'scan-failed-or-budget',id);}
++      if(this.closed||generation!==this.generation)return unknown('owner-changed',id);
++      if(!await this.matches(file,id))return unknown('file-changed-during-scan',id);
++      if(this.closed||generation!==this.generation)return unknown('owner-changed',id);
++      result.identity=id;
++      if(result.status!=='unknown') {
++        while(this.cache.size>=this.limits.maxEntries)this.cache.delete(this.cache.keys().next().value);
++        this.cache.set(key,structuredClone(result));
++      }
++      return result;
++    })();
++    this.pending.set(key,task);
++    try{return structuredClone(await task);}
++    finally{if(this.pending.get(key)===task)this.pending.delete(key);}
++  }
++  close() {
++    if(this.closePromise)return this.closePromise;
++    this.closed=true;this.generation++;this.cache.clear();
++    for(const job of this.jobs)job.cancel();
++    this.closePromise=(async()=>{
++      await Promise.allSettled([...this.pending.values()]);this.pending.clear();
++      return {quiescent:this.jobs.size===0,jobs:this.jobs.size};
++    })();
++    return this.closePromise;
++  }
++}

@@ -62,8 +62,14 @@ O wrapper de caminhos longos passou instalação/desinstalação reais:9714 arqu
 
 Intervenção única de origem comum de timestamp A/V NÃO resolveu silêncioRTC: local145920 nonzero/peak0,35; receptorPCM0,1000 pacotes/0samples; vídeo598frames. Critérios intactos, AVinconclusivo, helper não integrado. HTTP/aba/recursos7 e pós-pins26+2 passaram. [Prova](evidencias/20261010-calls-av-page-origin/ROOT-README.md).
 
-## Checkpoint de10/10,11:35UTC
+## Checkpoint de10/10,11:25UTC
 
 Native29 foi executado com dois clientes de medidores e três fontes locais. O ensaio terminou FAIL na validação de evento durante troca de coleção/recriação de UUIDs; os valores inválidos não foram capturados, portanto ainda investigamos produto versus observação. Frames válidos posteriores não apagam a falha. Fechamento cooperativo, avisos0/alocações0/crash0 e2085 pós-pins PASS. [FAIL real preservado](evidencias/20261010-meter29-real-fail/ROOT-README.md).
 
 O novo ensaio Gate5 foi revisado e iniciou numa raiz e portas próprias: fixture240s sem loop, critérios de áudio originais,30/1 e30000/1001, Source independente e oitoDSKs. Ainda em execução; nenhuma aprovação geral de FTB ou nova entrega. O instalador corrigido e o diagnóstico AV foram publicados no GitHub em3c82037; entrega600 permanece selecionada.
+
+## Checkpoint de10/10,11:40UTC
+
+Replay e saídas integrados em fontes, sem reiniciar o operador:3 fontes ReplayR2,26 modelos e FFprobe real em CFR900/lateVFR885/VFR540;6 fontes Saídas,21 casos de GET/timeout/ACK/rascunhos. [Replay](evidencias/20261010-replay-full-cadence-r2/ROOT-README.md) · [Saídas](evidencias/20261010-outputs-read-ack/ROOT-README.md). Falha de readiness do primeiro modelo Root preservada; barreira limitada de2s corrigiu apenas o teste. NativeA/B, UI instalada e benchmark ainda pendentes.
+
+Gate5 terminouFAIL na confirmação de cursor após restart; análise offline dos dois SRT passou no contrato de áudio original, sem apagarFAIL. Native+receptores fecharam0, avisos/alocações/crash0,2085+9582pinsPASS. [Prova](evidencias/20261010-gate5-cursor-fail/ROOT-README.md). Defeitos concretos do Meter (histórico/mute sem inicialização, leitura fora do mutex, divisão por frames0) estão em revisão isolada antes Native30; sem atribuir causa única doFAIL29. AVCalls ainda sem áudio remoto decodificado. Instalador600 permanece selecionado, próximo pacote pendente.

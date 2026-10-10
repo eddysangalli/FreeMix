@@ -1,0 +1,10 @@
+{
+  "status": "PRESERVED_RECEIPT_OVERWRITE_REFUSAL",
+  "test": "test-keyers.mjs",
+  "cause": "Second invocation completed checks but refused overwriting immutable first PASS receipt through wx",
+  "code": "EEXIST",
+  "firstPassReceipt": "keyer-test-result.json",
+  "nativeExecuted": false,
+  "sourcePinsUnchanged": true,
+  "repair": "No overwrite or repeated test; first twelve SDK checks receipt preserved"
+}

@@ -1,0 +1,55 @@
+{
+  "status": "ROOT_REVIEW_PENDING_DO_NOT_EXECUTE",
+  "nativeHead": "759929948fc84ca29d4ad0b65bfdddf98dfbb06f",
+  "freezeSha256": "5c72b43a8382d46eea9b2cf8bf56b8f94bb1024dc39b379664dcdb7c3571691d",
+  "candidateSha256": "456696515dd7aabf87958e11a91bd324bab3f405fef68549c2cc16bf1e59647d",
+  "runnerSha256": "3ff09812a62b32d8c5b2241ed9a35789eb482bbd224b857a01c82c14aaf42827",
+  "runnerFiles": [
+    {
+      "path": "audio-contract.mjs",
+      "sha256": "cae085195a3962f3ecf31a8a11a7a829fcef0048380eb987c44e23b9ab7d0884"
+    },
+    {
+      "path": "candidate-context.mjs",
+      "sha256": "d911bf44d3f8bbf2f31783e6803391ad872c0f03a5ab56614e678547124e2130"
+    },
+    {
+      "path": "guards.mjs",
+      "sha256": "c4469cc42c93b1061fc7dc26c5b25f3c23d01d07303401d9e70a2fbf591d479b"
+    },
+    {
+      "path": "png.mjs",
+      "sha256": "9a53a3a8b29339874c1e48b72752a25083c92636d5c348b41b2a74bc6a19e5eb"
+    },
+    {
+      "path": "run.mjs",
+      "sha256": "3ff09812a62b32d8c5b2241ed9a35789eb482bbd224b857a01c82c14aaf42827"
+    },
+    {
+      "path": "scenario.mjs",
+      "sha256": "d4cbfd87e5929526681844b05f7ae68c6452228aba50d2489a3f258f8523af67"
+    }
+  ],
+  "contractVersion": 2,
+  "gainDomain": "linear-sRGB",
+  "renderTargetContract": "sRGB-SDR8",
+  "qualification": false,
+  "fixtureContract": "long-nonloop-restart-interior-v1",
+  "fixtureSeconds": 240,
+  "captureMarginMs": 1000,
+  "fps": [
+    {
+      "num": 30,
+      "den": 1
+    },
+    {
+      "num": 30000,
+      "den": 1001
+    }
+  ],
+  "operatorTouched": false,
+  "startupNotAuthorized": true,
+  "newOwnLauncherRequired": true,
+  "ownedTempOnly": "Future invocation D parent marker/TEMP/TMP, no global variables changed",
+  "sdkSourcePinsSHA": "a228945d09e94cf11a50a87f5ba7fe0a36f58ac6009c43cad482c5d517c6d3bd"
+}

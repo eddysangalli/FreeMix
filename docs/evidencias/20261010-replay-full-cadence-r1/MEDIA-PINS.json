@@ -1,0 +1,23 @@
+{
+  "files": [
+    {
+      "path": "fixture/cfr.mkv",
+      "sha256": "34bea8debb6686553fa71b563709826ecfc1e44d67779a281903337854332a22",
+      "bytes": 3322164,
+      "ownSynthetic": true
+    },
+    {
+      "path": "fixture/late-vfr.mkv",
+      "sha256": "170a02be47dfdfc21a2fdc6c2c40d07d1b850f8aefecc6a738afc232ee67151c",
+      "bytes": 3314940,
+      "ownSynthetic": true
+    },
+    {
+      "path": "fixture/vfr.mkv",
+      "sha256": "daa8d4328fb8f333bc300b83d4b0420a9b51ea01706dfd9dcd50c18d043ca7ae",
+      "bytes": 3149337,
+      "ownSynthetic": true
+    }
+  ],
+  "doNotPublishRaw": true
+}

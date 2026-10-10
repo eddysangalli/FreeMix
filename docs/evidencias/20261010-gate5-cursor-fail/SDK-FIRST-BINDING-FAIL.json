@@ -1,0 +1,8 @@
+{
+  "status": "PRESERVED_PREPARATION_TEST_FAIL",
+  "nativeExecuted": false,
+  "cause": "Copied historical Gate4 CONTRACT-PINS retained old obs-websocket.cpp hash; Native29 Meter lifecycle changes legitimately changed that source.",
+  "expectedHistoricalSHA": "ec6a0293af56e9cd59163bb1d88926010626dca7861b9d64219859e9326a25f7",
+  "actualNative29SHA": "d3839e64b825ac89c5d4428cbf3cfd41cb1e1de33301fdc0c40a13641bb8a5bc",
+  "repair": "Regenerate this new draft contract pins from current full raw SDK copies bound to Native29; test frozen own SDK copies rather than mutable canonical source. Old Gate4 pins/FAIL remain unchanged."
+}

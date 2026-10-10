@@ -1,0 +1,62 @@
+{
+  "status": "PASS_REAL_FFPROBE_R2_CFR_VFR_AND_CACHE",
+  "results": [
+    {
+      "kind": "cfr",
+      "sha256": "34bea8debb6686553fa71b563709826ecfc1e44d67779a281903337854332a22",
+      "elapsedMs": 877.3361000000001,
+      "cadence": {
+        "method": "finite-full-decoded-pts",
+        "status": "cfr",
+        "entireFile": true,
+        "frames": 900,
+        "firstPts": 0,
+        "lastPts": 29.967,
+        "minMs": 32.9999999999977,
+        "maxMs": 34.00000000000247,
+        "irregularIntervals": 0,
+        "identity": "f2e9cf59ed4400a5336574d241367071bdc61926721750828250e5f061b713cf"
+      },
+      "repeatUsedCache": true
+    },
+    {
+      "kind": "late-vfr",
+      "sha256": "170a02be47dfdfc21a2fdc6c2c40d07d1b850f8aefecc6a738afc232ee67151c",
+      "elapsedMs": 147.06549999999993,
+      "cadence": {
+        "method": "finite-full-decoded-pts",
+        "status": "vfr",
+        "entireFile": true,
+        "frames": 885,
+        "firstPts": 0,
+        "lastPts": 29.967,
+        "minMs": 32.9999999999977,
+        "maxMs": 67.00000000000017,
+        "irregularIntervals": 15,
+        "identity": "79f0276c03b6a4186e05c36080a590199ded74512f9d8720fdc3f06f108d8420"
+      },
+      "repeatUsedCache": true
+    },
+    {
+      "kind": "vfr",
+      "sha256": "daa8d4328fb8f333bc300b83d4b0420a9b51ea01706dfd9dcd50c18d043ca7ae",
+      "elapsedMs": 117.45659999999998,
+      "cadence": {
+        "method": "finite-full-decoded-pts",
+        "status": "vfr",
+        "entireFile": true,
+        "frames": 540,
+        "firstPts": 0,
+        "lastPts": 29.933,
+        "minMs": 32.9999999999977,
+        "maxMs": 67.00000000000017,
+        "irregularIntervals": 359,
+        "identity": "71f0ff90bb3aec4d3bfb0d59cabcba6fc777ac896a1aabd606d6cb278f38630c"
+      },
+      "repeatUsedCache": true
+    }
+  ],
+  "nativeExecuted": false,
+  "apiExecuted": false,
+  "operatorTouched": false
+}

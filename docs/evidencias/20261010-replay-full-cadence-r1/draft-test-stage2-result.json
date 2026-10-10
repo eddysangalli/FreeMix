@@ -1,0 +1,212 @@
+{
+  "status": "FAIL_DRAFT_TESTS",
+  "cases": 28,
+  "tests": [
+    {
+      "name": "Frozen AL31 and source baselines preserved before test",
+      "pass": true,
+      "elapsedMs": 8.612500000000011
+    },
+    {
+      "name": "Real whole-file FFprobe sees CFR900, lateVFR885, VFR540 and refuses only unsafe step",
+      "pass": true,
+      "elapsedMs": 433.7823
+    },
+    {
+      "name": "Metadata-only live/history probe does not construct whole-clip scanner",
+      "pass": true,
+      "elapsedMs": 36.55309999999997
+    },
+    {
+      "name": "Actual hydrate upgrades old sampled metadata once; repeated seeks do not rescan",
+      "pass": true,
+      "elapsedMs": 149.961
+    },
+    {
+      "name": "Real repeated saved-file certification uses compact cache, measured cold/warm",
+      "pass": true,
+      "elapsedMs": 115.06470000000002
+    },
+    {
+      "name": "Actual FFprobe stdout budget terminates own process and keeps step unsafe",
+      "pass": true,
+      "elapsedMs": 36.80370000000005
+    },
+    {
+      "name": "Actual FFprobe 1ms deadline rejects certification; job is reaped",
+      "pass": true,
+      "elapsedMs": 8.52800000000002
+    },
+    {
+      "name": "Actual close during own FFprobe scan cancels and clears cache/jobs",
+      "pass": true,
+      "elapsedMs": 5.146900000000073
+    },
+    {
+      "name": "Missing file is unknown; no certification and no spawned job",
+      "pass": true,
+      "elapsedMs": 0.5423000000000684
+    },
+    {
+      "name": "Missing executable rejects scan without leaked jobs",
+      "pass": true,
+      "elapsedMs": 1.2212000000000671
+    },
+    {
+      "name": "Duration >120.5sec refuses before decode; imported long clip remains time-seekable",
+      "pass": true,
+      "elapsedMs": 0.15550000000007458
+    },
+    {
+      "name": "Unknown/nonfinite rate and audio-only remain time seek, no certification",
+      "pass": true,
+      "elapsedMs": 0.12740000000007967
+    },
+    {
+      "name": "Legacy sampled/null cadence can never authorize frame stepping",
+      "pass": true,
+      "elapsedMs": 0.11630000000002383
+    },
+    {
+      "name": "Linked unknown follower blocks step even with CFR anchor",
+      "pass": true,
+      "elapsedMs": 0.06399999999996453
+    },
+    {
+      "name": "Actual step refusal issues no player mutation in response model",
+      "pass": true,
+      "elapsedMs": 0.649599999999964
+    },
+    {
+      "name": "NTSC rational CFR remains floor1034ms; calibrated offsets and EOF clamp unchanged",
+      "pass": true,
+      "elapsedMs": 0.22259999999994307
+    },
+    {
+      "name": "PAL/CFR24,25,50,59.94,60,120,240 retain rational classifications",
+      "pass": true,
+      "elapsedMs": 0.22870000000000346
+    },
+    {
+      "name": "Missing/nonfinite/duplicate/regressing PTS fail closed",
+      "pass": true,
+      "elapsedMs": 0.04169999999999163
+    },
+    {
+      "name": "Unchanged 1.5ms tolerance detects real67ms gap and tolerates Matroska millisecond rounding",
+      "pass": true,
+      "elapsedMs": 0.5994000000000597
+    },
+    {
+      "name": "Decoder malformed JSON/missing frames/empty timestamp fail closed and never cache",
+      "pass": true,
+      "elapsedMs": 0.35789999999997235
+    },
+    {
+      "name": "Frame count and postdecode output budgets fail closed",
+      "pass": true,
+      "elapsedMs": 1.0131000000000085
+    },
+    {
+      "name": "Same identity concurrent requests coalesce; different identity refuses instead of queuing",
+      "pass": true,
+      "elapsedMs": 0.7157999999999447
+    },
+    {
+      "name": "Identity replacement during decode discards old result, no cache",
+      "pass": true,
+      "elapsedMs": 0.6294999999998936
+    },
+    {
+      "name": "Owner close while pending discards late success and retires its own generation",
+      "pass": true,
+      "elapsedMs": 0.13759999999990669
+    },
+    {
+      "name": "Real stat identity change invalidates summary without reading file content for cache lookup",
+      "pass": true,
+      "elapsedMs": 4.372199999999907
+    },
+    {
+      "name": "LRU <=32 compact summaries; defensive clones prevent caller tampering",
+      "pass": true,
+      "elapsedMs": 14.830799999999954
+    },
+    {
+      "name": "Collection change closes cadence owner/cache; dispose closes preview plus cadence",
+      "pass": true,
+      "elapsedMs": 0.9583000000000084
+    },
+    {
+      "name": "Unknown time endpoint uses duration1ms rather than nominal CFR EOF guess",
+      "pass": true,
+      "elapsedMs": 0.13619999999991705
+    }
+  ],
+  "real": [
+    {
+      "kind": "cfr",
+      "prepareMs": 159.78470000000002,
+      "frames": 900,
+      "status": "cfr",
+      "minMs": 32.9999999999977,
+      "maxMs": 34.00000000000247,
+      "irregularIntervals": 0,
+      "seekMode": "frame",
+      "stepAllowed": true
+    },
+    {
+      "kind": "late-vfr",
+      "prepareMs": 151.29299999999995,
+      "frames": 885,
+      "status": "vfr",
+      "minMs": 32.9999999999977,
+      "maxMs": 67.00000000000017,
+      "irregularIntervals": 15,
+      "seekMode": "time",
+      "stepAllowed": false
+    },
+    {
+      "kind": "vfr",
+      "prepareMs": 121.40359999999998,
+      "frames": 540,
+      "status": "vfr",
+      "minMs": 32.9999999999977,
+      "maxMs": 67.00000000000017,
+      "irregularIntervals": 359,
+      "seekMode": "time",
+      "stepAllowed": false
+    }
+  ],
+  "models": [
+    {
+      "name": "real-cache",
+      "coldMs": 114.79290000000003,
+      "warmMs": 0.15379999999993288
+    }
+  ],
+  "limits": {
+    "maxSeconds": 120.5,
+    "maxFrames": 29000,
+    "maxOutputBytes": 4194304,
+    "deadlineMs": 8000,
+    "maxEntries": 32,
+    "maxOutstanding": 1
+  },
+  "resources": {
+    "helpersQuiescent": true
+  },
+  "priorAllowlist": {
+    "files": 31,
+    "sha256": "f0bf56b9934918d253396df09e180a19138196e11a4960dcf7aa3e517b9b7749",
+    "afterMatch": true
+  },
+  "NativeExecuted": false,
+  "APIExecuted": false,
+  "GPUUsed": false,
+  "operatorTouched": false,
+  "renderedFramesProven": false,
+  "audioCaptured": false,
+  "canonicalEdited": false,
+  "error": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n+ actual - expected ... Lines skipped\n\n  '  async align(force) {\\n' +\n    '    await this.hydratePlayers();\\n' +\n...\n    \"    if(this.recordingFolder!=='replay')throw Error('Passo disponível no Replay');\\n\" +\n    '    const player=d.player||this.state.activePlayer,delta=Number(d.delta);\\n' +\n+   '    if(!REPLAY_PLAYERS.includes(player)||!thi'... 3316 more characters\n-   '    if(!REPLAY_PLAYERS.includes(player)||!thi'... 3159 more characters\n    at file:///D:/DRIVE/IA/antigravity/vmixtwste/qa-finalizacao/replay-vfr-gap-real-20261010/test-draft.mjs:190:33\n    at async check (file:///D:/DRIVE/IA/antigravity/vmixtwste/qa-finalizacao/replay-vfr-gap-real-20261010/test-draft.mjs:23:62)\n    at async file:///D:/DRIVE/IA/antigravity/vmixtwste/qa-finalizacao/replay-vfr-gap-real-20261010/test-draft.mjs:186:3"
+}

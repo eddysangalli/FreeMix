@@ -1,0 +1,27 @@
+{
+  "status": "DRAFT_ONLY_ROOT_REVIEW_PENDING",
+  "sources": [
+    {
+      "path": "FreeMix/painel/remoto/saidas.html",
+      "sha256": "74138d8d69ff08a8d62c5060e3e0be642c39f82c24f1596f7296cb22246c3a5c",
+      "bytes": 20415
+    },
+    {
+      "path": "FreeMix/painel/remoto/saidas.js",
+      "sha256": "faf4cc8aa2645786aa0b100cb87112d402a496a81580158a8d2d8903b218e8e7",
+      "bytes": 16672
+    },
+    {
+      "path": "FreeMix/painel/remoto/saidas-external-ui.js",
+      "sha256": "c554d5b3091e9095dfb999a742016fa074c6922d31d59279deafb66d6e96a6bd",
+      "bytes": 14277
+    },
+    {
+      "path": "FreeMix/ferramentas/servidor-api.mjs",
+      "sha256": "503338175f0d63e2d2d806e65a78eaaa2e2ef18d2bcde88e185a076af9a53ec2",
+      "bytes": 30201
+    }
+  ],
+  "nativeExecuted": false,
+  "canonicalEdited": false
+}

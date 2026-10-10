@@ -1,0 +1,170 @@
+{
+  "schema": 1,
+  "status": "FROZEN_OFFSIDE_PREPARATION_ONLY",
+  "files": [
+    {
+      "path": "prepare.mjs",
+      "bytes": 7527,
+      "sha256": "a48e17e82b472177c93c7ee6b570a7b7168a959593082ff0462c44d502224d9d"
+    },
+    {
+      "path": "run.mjs",
+      "bytes": 34015,
+      "sha256": "3ff09812a62b32d8c5b2241ed9a35789eb482bbd224b857a01c82c14aaf42827"
+    },
+    {
+      "path": "guards.mjs",
+      "bytes": 5904,
+      "sha256": "c4469cc42c93b1061fc7dc26c5b25f3c23d01d07303401d9e70a2fbf591d479b"
+    },
+    {
+      "path": "scenario.mjs",
+      "bytes": 4558,
+      "sha256": "d4cbfd87e5929526681844b05f7ae68c6452228aba50d2489a3f258f8523af67"
+    },
+    {
+      "path": "audio-contract.mjs",
+      "bytes": 1719,
+      "sha256": "cae085195a3962f3ecf31a8a11a7a829fcef0048380eb987c44e23b9ab7d0884"
+    },
+    {
+      "path": "candidate-context.mjs",
+      "bytes": 2729,
+      "sha256": "d911bf44d3f8bbf2f31783e6803391ad872c0f03a5ab56614e678547124e2130"
+    },
+    {
+      "path": "png.mjs",
+      "bytes": 2499,
+      "sha256": "9a53a3a8b29339874c1e48b72752a25083c92636d5c348b41b2a74bc6a19e5eb"
+    },
+    {
+      "path": "test.mjs",
+      "bytes": 11838,
+      "sha256": "e2541922071178e5710c57ba6829c9d07724c3deb9b224304dac8c3e20ba6dfd"
+    },
+    {
+      "path": "test-keyers.mjs",
+      "bytes": 7026,
+      "sha256": "b211db118d27230c3466212079516bfa291d57cb7e91336cbeb663218b7caf86"
+    },
+    {
+      "path": "test-audio.mjs",
+      "bytes": 5075,
+      "sha256": "51bd13ec3fc8f88bed01fce98d27d2cb6d3b677c87e1e2210e759126152a78ee"
+    },
+    {
+      "path": "test-result.json",
+      "bytes": 4071,
+      "sha256": "d59daa4a43cb8bede901f495b0fec917f294a8c560008988736f71873906df65"
+    },
+    {
+      "path": "keyer-test-result.json",
+      "bytes": 3371,
+      "sha256": "5d2f27e8cd570e73e6742952fc9fb977a27ce2ba28e4d84c37d317dd3f2ba15c"
+    },
+    {
+      "path": "test-audio-result.json",
+      "bytes": 2654,
+      "sha256": "adfa88b112dd15c840286abb2a7d10ba05f5c74b313189fb705d8cbf543f77cb"
+    },
+    {
+      "path": "CONTRACT-PINS.json",
+      "bytes": 1539,
+      "sha256": "4631470fdbaa753b163050a52d7ac9e67da701735d4401af2f6f5bc4f65ff17d"
+    },
+    {
+      "path": "SOURCE-PINS.json",
+      "bytes": 3070,
+      "sha256": "a228945d09e94cf11a50a87f5ba7fe0a36f58ac6009c43cad482c5d517c6d3bd"
+    },
+    {
+      "path": "BINDING.json",
+      "bytes": 1422,
+      "sha256": "94f6402d0fb74035e145255d584a66c4254072799c7d3432d485aa69ed25f6e4"
+    },
+    {
+      "path": "ROOT-REVIEW-PROPOSAL.json",
+      "bytes": 1829,
+      "sha256": "5813fd5ee0ca8593706c3b8fe22685f78cfbd70bfa9488d198da0117f8c076c3"
+    },
+    {
+      "path": "SDK-FIRST-BINDING-FAIL.json",
+      "bytes": 629,
+      "sha256": "3d289c366e43a9fba05c4345888bbaaa65ec9023d16d4ee0e793e095d10d596f"
+    },
+    {
+      "path": "SDK-RECEIPT-OVERWRITE-REFUSAL.json",
+      "bytes": 420,
+      "sha256": "da4d00e1a47f5bad571a8ceb31cd77a60b1539d9ecd17b68c2f44032e5196b2f"
+    },
+    {
+      "path": "README.md",
+      "bytes": 3678,
+      "sha256": "5b2609d7ce8ce309a07920ae99c028bd391874cdc1cf5221a6f7494927fcc90c"
+    },
+    {
+      "path": "sdk/0-downstream-keyer-dock.cpp",
+      "bytes": 39105,
+      "sha256": "1cacd05440367a63ac8a8266d522d8dcb34a7531208a10c7eff5a5b4e98ee0be"
+    },
+    {
+      "path": "sdk/1-downstream-keyer.cpp",
+      "bytes": 34200,
+      "sha256": "dc5d9ceed8c7fdf73b2574ca9c52ebea404f5fb889b09629f947e4fb8949ce88"
+    },
+    {
+      "path": "sdk/10-RequestHandler_MediaInputs.cpp",
+      "bytes": 7141,
+      "sha256": "fc8981d15deec3f392f1532c9120915eaebd8c6db430a98a1183320e144e61d5"
+    },
+    {
+      "path": "sdk/2-EventSubscription.h",
+      "bytes": 5897,
+      "sha256": "0084f82ebda2ff9ddf559d0652a6a2b6df318a285263ab239515c7c80279ff2f"
+    },
+    {
+      "path": "sdk/3-obs-websocket.cpp",
+      "bytes": 10064,
+      "sha256": "d3839e64b825ac89c5d4428cbf3cfd41cb1e1de33301fdc0c40a13641bb8a5bc"
+    },
+    {
+      "path": "sdk/4-obsws.mjs",
+      "bytes": 3188,
+      "sha256": "735a395d1fdd4774b0e44ba8c65926b3601aa5035bf17a8dcb53ca9b907c9cdc"
+    },
+    {
+      "path": "sdk/5-FreeMixFinalProgramGate.hpp",
+      "bytes": 9214,
+      "sha256": "8205c2664dec15b821d7d57d40c4e8f1374c4deb056b02a101571796063eea13"
+    },
+    {
+      "path": "sdk/6-obs-final-gate.h",
+      "bytes": 1198,
+      "sha256": "eec4d4963f7eaccbb627efca7471400aedbb2d7da0efa3abf1ab70ba67b8b439"
+    },
+    {
+      "path": "sdk/7-obs-final-gate-internal.h",
+      "bytes": 1095,
+      "sha256": "45b739584de6d210bffa1e95af25ed2a4bca17906fa4a9ce21ae6ae414e714f6"
+    },
+    {
+      "path": "sdk/8-obs-final-gate-render.h",
+      "bytes": 1972,
+      "sha256": "e0a04934974968789f23de2173bf5b779ecd7f71b662d1832765726cf3bda4ef"
+    },
+    {
+      "path": "sdk/9-obs-master-final-gate.c",
+      "bytes": 8943,
+      "sha256": "319d8822e0e0850ab08607a2db25e43c74cd2dec9f8b746faa5bbd4276f88d2b"
+    }
+  ],
+  "modelsAndContracts": 77,
+  "nativeRuns": 0,
+  "receiverRuns": 0,
+  "fixtureGeneration": 0,
+  "gpuExecution": 0,
+  "fullNativeVerified": 2085,
+  "qualification": false,
+  "approvalCreated": false,
+  "originalFailPreserved": true
+}

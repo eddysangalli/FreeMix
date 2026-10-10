@@ -1,0 +1,74 @@
+{
+  "status": "ROOT_REVIEW_MODELS_PASS_INTEGRATION_PENDING",
+  "pins": [
+    {
+      "folder": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\replay-vfr-gap-reap-r2",
+      "allowlist": "329a0ffc97769b6bf44cc976f439ccbb4298778a9b4be9f6eb29b392b28a3163",
+      "files": 19
+    },
+    {
+      "folder": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\saidas-readonly-deadline-draft",
+      "allowlist": "e42f4d0f4e4b6cbf948c552d4989e4501c962ad5eed6b5f3004a13fe9105d61f",
+      "files": 25
+    }
+  ],
+  "targets": [
+    {
+      "target": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\FreeMix\\ferramentas\\replay-disco.mjs",
+      "draft": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\replay-vfr-gap-reap-r2\\draft\\replay-disco.mjs",
+      "before": "0abfbd5dcc31836246caee17c0015bacc73f1a75a26f3a6ef14c71a82a2be9bd",
+      "after": "9c0b476aa321cf628f35064542b3c0bf879cca9111e5904791988bc197bef1c7"
+    },
+    {
+      "target": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\FreeMix\\ferramentas\\replay-sincronia.mjs",
+      "draft": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\replay-vfr-gap-reap-r2\\draft\\replay-sincronia.mjs",
+      "before": "dafbd121ada9fc6ea60cb38daf35378ee14a24cd616ab138b409cda10df60377",
+      "after": "177e30efa904567147efec16785ac6603f263ea13009ee5df319749a13e73a98"
+    },
+    {
+      "target": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\FreeMix\\ferramentas\\replay-cadence.mjs",
+      "draft": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\replay-vfr-gap-reap-r2\\draft\\replay-cadence.mjs",
+      "before": null,
+      "after": "1061d8cbe1323aae306093a621e4e327bba743d5151b851306c3a78af5b653bc"
+    },
+    {
+      "target": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\FreeMix\\painel\\remoto\\saidas.html",
+      "draft": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\saidas-readonly-deadline-draft\\draft\\saidas.html",
+      "before": "74138d8d69ff08a8d62c5060e3e0be642c39f82c24f1596f7296cb22246c3a5c",
+      "after": "e7574b296205e48e40ef255b92cfcbac8c5c4b570e5862d1ad9244bf050ce281"
+    },
+    {
+      "target": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\FreeMix\\painel\\remoto\\saidas.js",
+      "draft": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\saidas-readonly-deadline-draft\\draft\\saidas.js",
+      "before": "faf4cc8aa2645786aa0b100cb87112d402a496a81580158a8d2d8903b218e8e7",
+      "after": "0d32bbf483c19c193e66d4eaf2df866498ce3a49b36e1ae6e8d8dfbd8132c246"
+    },
+    {
+      "target": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\FreeMix\\painel\\remoto\\saidas-external-ui.js",
+      "draft": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\saidas-readonly-deadline-draft\\draft\\saidas-external-ui.js",
+      "before": "c554d5b3091e9095dfb999a742016fa074c6922d31d59279deafb66d6e96a6bd",
+      "after": "fd4bf227589b7b543cef1bc3ba825d58168ae5b13f1ca995b1b3108b26c524e1"
+    },
+    {
+      "target": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\FreeMix\\ferramentas\\servidor-api.mjs",
+      "draft": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\saidas-readonly-deadline-draft\\draft\\servidor-api.mjs",
+      "before": "503338175f0d63e2d2d806e65a78eaaa2e2ef18d2bcde88e185a076af9a53ec2",
+      "after": "89d110add5d7af81b651531d77d8d0ed7ea68e2b3a1117858e3feb5e64869017"
+    },
+    {
+      "target": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\FreeMix\\ferramentas\\read-outputs-snapshot.mjs",
+      "draft": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\saidas-readonly-deadline-draft\\draft\\read-outputs-snapshot.mjs",
+      "before": null,
+      "after": "be863cd29582d53f9bb1f621683c1857a6b4428eaa98fffa8893d63831fb4263"
+    },
+    {
+      "target": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\FreeMix\\painel\\remoto\\saidas-readonly-ui.js",
+      "draft": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\saidas-readonly-deadline-draft\\draft\\saidas-readonly-ui.js",
+      "before": null,
+      "after": "eccca62623370952e855248cd5250a72fd861c94da590f6147d60aca42d1c6ac"
+    }
+  ],
+  "nativeExecuted": false,
+  "apiExecuted": false,
+  "operatorTouched": false
+}

@@ -1,0 +1,22 @@
+{
+  "pins": [
+    {
+      "path": "replay-disco.mjs",
+      "sha256": "0abfbd5dcc31836246caee17c0015bacc73f1a75a26f3a6ef14c71a82a2be9bd",
+      "bytes": 73172
+    },
+    {
+      "path": "replay-sincronia.mjs",
+      "sha256": "dafbd121ada9fc6ea60cb38daf35378ee14a24cd616ab138b409cda10df60377",
+      "bytes": 5645
+    },
+    {
+      "path": "replay-preview.mjs",
+      "sha256": "6fadf72f276c46de7b9640331e989a539863275a698df1316559de7da744a4af",
+      "bytes": 6991
+    }
+  ],
+  "canonicalEdited": false,
+  "scope": "Draft cadence/step only",
+  "newModule": "replay-cadence.mjs"
+}

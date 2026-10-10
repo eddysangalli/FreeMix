@@ -1,0 +1,176 @@
+--- a/ferramentas/replay-disco.mjs
++++ b/ferramentas/replay-disco.mjs
+@@ -65,6 +65,35 @@
+     this.preview = new ReplayPreview({root,ffmpeg:this.ffmpeg,probe:file=>this.probe(file),session:()=>this.state.session});
+     this.historyPin=null;
+     this.previewRequests=new Map();
++    this.disposing=false;
++    this.disposed=false;
++    this.disposePromise=null;
++    this.cadenceFault=null;
++    this.cadenceRetiring=null;
++  }
++
++  assertReplayOpen(){
++    if(this.disposing||this.disposed){const error=Error('Replay está encerrando; nenhuma nova preparação será iniciada');error.code='REPLAY_LIFECYCLE_CLOSED';throw error;}
++  }
++
++  cadenceScanner(){
++    this.assertReplayOpen();
++    if(this.cadenceRetiring||this.cadenceProbe?.closed){const error=Error('Verificação de cadência anterior ainda não foi retirada; confira o encerramento');error.code='REPLAY_CADENCE_RETIRED';throw error;}
++    return this.cadenceProbe??=new ReplayCadence({ffprobe:this.ffprobe});
++  }
++
++  async retireCadence(){
++    const owner=this.cadenceProbe;if(!owner)return;
++    this.cadenceRetiring=owner;
++    let result;try{result=await owner.close();}catch{}
++    if(result?.quiescent!==true||result?.jobs!==0||owner.jobs?.size>0||this.cadenceProbe&&this.cadenceProbe!==owner){
++      this.cadenceFault={code:'REPLAY_CADENCE_NOT_QUIESCENT',jobs:owner.jobs?.size??result?.jobs??null};
++      const error=Error('FFprobe anterior não confirmou encerramento; a referência foi preservada e nenhuma nova verificação será iniciada');
++      Object.assign(error,this.cadenceFault);throw error;
++    }
++    if(this.cadenceProbe===owner)this.cadenceProbe=null;
++    if(this.cadenceRetiring===owner)this.cadenceRetiring=null;
++    this.cadenceFault=null;
+   }
+ 
+   async req(type, data) {
+@@ -112,13 +141,19 @@
+   }
+ 
+   async scopeState() {
++    this.assertReplayOpen();
+     const { currentSceneCollectionName } = await this.req("GetSceneCollectionList");
++    this.assertReplayOpen();
+     if (this.scope === currentSceneCollectionName) return;
+     const id = createHash("sha256").update(currentSceneCollectionName).digest("hex").slice(0, 24);
+-    this.file = join(this.root, "config", "obs-studio", "plugin_config", this.namespace, `${id}.json`);
+-    try { this.state = { ...empty(), ...JSON.parse(await readFile(this.file, "utf8")) }; }
+-    catch (e) { if (e.code !== "ENOENT") throw e; this.state = empty(); }
+-    await this.cadenceProbe?.close();this.cadenceProbe=null;
++    const file = join(this.root, "config", "obs-studio", "plugin_config", this.namespace, `${id}.json`);
++    let nextState;
++    try { nextState = { ...empty(), ...JSON.parse(await readFile(file, "utf8")) }; }
++    catch (e) { if (e.code !== "ENOENT") throw e; nextState = empty(); }
++    await this.retireCadence();
++    this.assertReplayOpen();
++    this.file=file;
++    this.state=nextState;
+     this.scope = currentSceneCollectionName;
+     this.programScene = null;
+     this.internalProgramTarget = null;
+@@ -133,9 +168,11 @@
+   }
+ 
+   command(action, data = {}) {
++    try{this.assertReplayOpen();}catch(e){return Promise.reject(e);}
+     // Proxy encoding must never hold the recording/transport mutation queue.
+     if(action==='history-preview')return this.historyPreview(data);
+     const work = this.queue.then(async () => {
++      this.assertReplayOpen();
+       await this.scopeState();
+       switch (action) {
+         case "status": return this.status();
+@@ -212,7 +249,9 @@
+   }
+ 
+   async probe(file, verifyCadence = false) {
++    this.assertReplayOpen();
+     const result = JSON.parse(await execute(this.ffprobe, ["-v", "error", "-show_entries", "format=duration,start_time:stream=codec_type,codec_name,width,height,duration,start_time,avg_frame_rate,r_frame_rate,nb_frames,time_base", "-of", "json", file], 15000));
++    this.assertReplayOpen();
+     const video = result.streams?.find((s) => s.codec_type === "video");
+     const audio = result.streams?.find((s) => s.codec_type === "audio");
+     const duration = Number(video?.duration || result.format?.duration) + Number(video?.start_time || 0) - Number(result.format?.start_time || 0);
+@@ -225,8 +264,10 @@
+     // Only saved-player loads need a finite whole-clip decode. Live history
+     // and proxy probing keep their metadata-only path; seeks reuse identity.
+     if(verifyCadence){
+-      this.cadenceProbe??=new ReplayCadence({ffprobe:this.ffprobe});
+-      cadence=await this.cadenceProbe.probe(file,{duration,frameMs:rate?.frameMs,videoStart:Number(video?.start_time||0)});
++      const start=video?.start_time;
++      const videoStart=typeof start==='string'&&start.trim()!==''?Number(start):typeof start==='number'?start:NaN;
++      cadence=await this.cadenceScanner().probe(file,{duration,frameMs:rate?.frameMs,videoStart});
++      this.assertReplayOpen();
+       variableFrameRate||=cadence.status==='vfr';
+     }
+     return { duration, streams: result.streams, videoStart: Number(video?.start_time || 0), containerStart: Number(result.format?.start_time || 0), frameRate:rate?`${rate.numerator}/${rate.denominator}`:null, variableFrameRate, cadence, hasVideo:result.streams.some(s=>s.codec_type==='video'),audio:result.streams.some(s=>s.codec_type==='audio') };
+@@ -455,7 +496,21 @@
+     return {...await this.status(),history,historyPreview};
+   }
+   previewFile(token){return this.preview.file(token);}
+-  dispose(){return Promise.all([this.preview.close(),this.cadenceProbe?.close()]);}
++  dispose(){
++    this.disposing=true;
++    if(this.disposePromise)return this.disposePromise;
++    // Both closures run even if one fails. The API's existing catch sees failure.
++    const work=(async()=>{
++      const outcomes=await Promise.allSettled([Promise.resolve().then(()=>this.preview.close()),this.retireCadence()]);
++      const failure=outcomes.find(result=>result.status==='rejected');
++      if(failure)throw failure.reason;
++      this.disposed=true;
++      return {disposed:true,cadenceQuiescent:true};
++    })();
++    this.disposePromise=work;
++    work.finally(()=>{if(this.disposePromise===work)this.disposePromise=null;}).catch(()=>{});
++    return work;
++  }
+   async pinHistory(d){
+     if(d.clear===true){this.historyPin=null;return;}
+     const history=await this.history(),start=Number(d.start),end=Number(d.end??Math.min(start+120,history?.end));
+@@ -814,7 +869,8 @@
+   }
+ 
+   async hydratePlayers(){
+-    for(const p of Object.values(this.state.players))if(!p.metadataProbed||!p.cadenceChecked||p.cadence?.method!=='finite-full-decoded-pts'||!(await (this.cadenceProbe??=new ReplayCadence({ffprobe:this.ffprobe})).matches(p.file,p.cadence?.identity))){const media=await this.probe(p.file,true);Object.assign(p,{metadataProbed:true,cadenceChecked:true,cadence:media.cadence,hasVideo:media.hasVideo,duration:media.duration,frameRate:media.frameRate,variableFrameRate:media.variableFrameRate,audio:media.audio,offsetFrames:replayCameraOptions(this.state.cameraOptions?.[p.cam]).offsetFrames});}
++    this.assertReplayOpen();
++    for(const p of Object.values(this.state.players))if(!p.metadataProbed||!p.cadenceChecked||p.cadence?.method!=='finite-full-decoded-pts'||!(await this.cadenceScanner().matches(p.file,p.cadence?.identity))){const media=await this.probe(p.file,true);Object.assign(p,{metadataProbed:true,cadenceChecked:true,cadence:media.cadence,hasVideo:media.hasVideo,duration:media.duration,frameRate:media.frameRate,variableFrameRate:media.variableFrameRate,audio:media.audio,offsetFrames:replayCameraOptions(this.state.cameraOptions?.[p.cam]).offsetFrames});}
+   }
+ 
+   async speed(value) {
+--- a/ferramentas/replay-cadence.mjs
++++ b/ferramentas/replay-cadence.mjs
+@@ -12,7 +12,7 @@
+   method:'finite-full-decoded-pts',status:'unknown',entireFile:false,reason,identity,
+ });
+ 
+-export function classifyClipPts(pts,{duration,frameMs,videoStart=0,maxFrames=CADENCE_LIMITS.maxFrames}={}) {
++export function classifyClipPts(pts,{duration,frameMs,videoStart,maxFrames=CADENCE_LIMITS.maxFrames}={}) {
+   if(!Array.isArray(pts)||pts.length<2||pts.length>maxFrames||
+      !Number.isFinite(duration)||duration<=0||!Number.isFinite(frameMs)||
+      frameMs<1000/240||frameMs>1000)return unknown('invalid-or-incomplete-pts');
+@@ -101,7 +101,7 @@
+     if(this.closed||typeof id!=='string')return false;
+     try{return await this.identity(file)===id;}catch{return false;}
+   }
+-  async probe(file,{duration,frameMs,videoStart=0}={}) {
++  async probe(file,{duration,frameMs,videoStart}={}) {
+     if(this.closed)return unknown('owner-closed');
+     let id;try{id=await this.identity(file);}catch{return unknown('file-unavailable');}
+     if(this.closed)return unknown('owner-closed');
+@@ -148,14 +148,16 @@
+     try{return structuredClone(await task);}
+     finally{if(this.pending.get(key)===task)this.pending.delete(key);}
+   }
+-  close() {
+-    if(this.closePromise)return this.closePromise;
+-    this.closed=true;this.generation++;this.cache.clear();
+-    for(const job of this.jobs)job.cancel();
+-    this.closePromise=(async()=>{
+-      await Promise.allSettled([...this.pending.values()]);this.pending.clear();
+-      return {quiescent:this.jobs.size===0,jobs:this.jobs.size};
+-    })();
+-    return this.closePromise;
++  async close() {
++    if(!this.closePromise) {
++      this.closed=true;this.generation++;this.cache.clear();
++      for(const job of this.jobs)job.cancel();
++      this.closePromise=(async()=>{
++        await Promise.allSettled([...this.pending.values()]);this.pending.clear();
++      })();
++    }
++    await this.closePromise;
++    // A failed reap is retained, and a later actual close can be observed.
++    return {quiescent:this.jobs.size===0,jobs:this.jobs.size};
+   }
+ }

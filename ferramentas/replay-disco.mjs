@@ -6,6 +6,7 @@ import { createHash, randomUUID } from "node:crypto";
 import { mkdir, readFile, writeFile, rename, stat, unlink, readdir, lstat } from "node:fs/promises";
 import { join, resolve, relative } from "node:path";
 import { frameRate, replayCameraOptions, frameTargets, seekTargets, estimateAudioOffset } from './replay-sincronia.mjs';
+import {ReplayCadence} from './replay-cadence.mjs';
 import {ReplayPreview,PREVIEW_SECONDS} from './replay-preview.mjs';
 
 const isoDefaults = () => ({format:'mpegts',directory:'',prefix:'cam',encoder:'default',crf:23,audio:'input',audioSourceUUID:'',splitSeconds:0,width:0,height:0,fpsDivisor:1,bitrate:0,perInput:{}});
@@ -64,6 +65,35 @@ export class DiskReplay {
     this.preview = new ReplayPreview({root,ffmpeg:this.ffmpeg,probe:file=>this.probe(file),session:()=>this.state.session});
     this.historyPin=null;
     this.previewRequests=new Map();
+    this.disposing=false;
+    this.disposed=false;
+    this.disposePromise=null;
+    this.cadenceFault=null;
+    this.cadenceRetiring=null;
+  }
+
+  assertReplayOpen(){
+    if(this.disposing||this.disposed){const error=Error('Replay está encerrando; nenhuma nova preparação será iniciada');error.code='REPLAY_LIFECYCLE_CLOSED';throw error;}
+  }
+
+  cadenceScanner(){
+    this.assertReplayOpen();
+    if(this.cadenceRetiring||this.cadenceProbe?.closed){const error=Error('Verificação de cadência anterior ainda não foi retirada; confira o encerramento');error.code='REPLAY_CADENCE_RETIRED';throw error;}
+    return this.cadenceProbe??=new ReplayCadence({ffprobe:this.ffprobe});
+  }
+
+  async retireCadence(){
+    const owner=this.cadenceProbe;if(!owner)return;
+    this.cadenceRetiring=owner;
+    let result;try{result=await owner.close();}catch{}
+    if(result?.quiescent!==true||result?.jobs!==0||owner.jobs?.size>0||this.cadenceProbe&&this.cadenceProbe!==owner){
+      this.cadenceFault={code:'REPLAY_CADENCE_NOT_QUIESCENT',jobs:owner.jobs?.size??result?.jobs??null};
+      const error=Error('FFprobe anterior não confirmou encerramento; a referência foi preservada e nenhuma nova verificação será iniciada');
+      Object.assign(error,this.cadenceFault);throw error;
+    }
+    if(this.cadenceProbe===owner)this.cadenceProbe=null;
+    if(this.cadenceRetiring===owner)this.cadenceRetiring=null;
+    this.cadenceFault=null;
   }
 
   async req(type, data) {
@@ -111,12 +141,19 @@ export class DiskReplay {
   }
 
   async scopeState() {
+    this.assertReplayOpen();
     const { currentSceneCollectionName } = await this.req("GetSceneCollectionList");
+    this.assertReplayOpen();
     if (this.scope === currentSceneCollectionName) return;
     const id = createHash("sha256").update(currentSceneCollectionName).digest("hex").slice(0, 24);
-    this.file = join(this.root, "config", "obs-studio", "plugin_config", this.namespace, `${id}.json`);
-    try { this.state = { ...empty(), ...JSON.parse(await readFile(this.file, "utf8")) }; }
-    catch (e) { if (e.code !== "ENOENT") throw e; this.state = empty(); }
+    const file = join(this.root, "config", "obs-studio", "plugin_config", this.namespace, `${id}.json`);
+    let nextState;
+    try { nextState = { ...empty(), ...JSON.parse(await readFile(file, "utf8")) }; }
+    catch (e) { if (e.code !== "ENOENT") throw e; nextState = empty(); }
+    await this.retireCadence();
+    this.assertReplayOpen();
+    this.file=file;
+    this.state=nextState;
     this.scope = currentSceneCollectionName;
     this.programScene = null;
     this.internalProgramTarget = null;
@@ -131,9 +168,11 @@ export class DiskReplay {
   }
 
   command(action, data = {}) {
+    try{this.assertReplayOpen();}catch(e){return Promise.reject(e);}
     // Proxy encoding must never hold the recording/transport mutation queue.
     if(action==='history-preview')return this.historyPreview(data);
     const work = this.queue.then(async () => {
+      this.assertReplayOpen();
       await this.scopeState();
       switch (action) {
         case "status": return this.status();
@@ -210,7 +249,9 @@ export class DiskReplay {
   }
 
   async probe(file, verifyCadence = false) {
+    this.assertReplayOpen();
     const result = JSON.parse(await execute(this.ffprobe, ["-v", "error", "-show_entries", "format=duration,start_time:stream=codec_type,codec_name,width,height,duration,start_time,avg_frame_rate,r_frame_rate,nb_frames,time_base", "-of", "json", file], 15000));
+    this.assertReplayOpen();
     const video = result.streams?.find((s) => s.codec_type === "video");
     const audio = result.streams?.find((s) => s.codec_type === "audio");
     const duration = Number(video?.duration || result.format?.duration) + Number(video?.start_time || 0) - Number(result.format?.start_time || 0);
@@ -220,19 +261,14 @@ export class DiskReplay {
     let rate=null,variableFrameRate=false;try{rate=frameRate(video?.avg_frame_rate);const nominal=frameRate(video?.r_frame_rate);variableFrameRate=Math.abs(rate.fps-nominal.fps)>.001;}catch{}
     let cadence = null;
     // Container rates alone can both say 30/1 for irregular frame timestamps.
-    // Only player loads need this bounded decode; live history/proxy probing
-    // retains its inexpensive metadata-only path. Samples cover beginning,
-    // middle and end and never decode the entire recording on each seek.
-    if(verifyCadence&&video&&rate){
-      const samples=[];
-      for(const start of [...new Set([0,Math.max(0,duration/2-2),Math.max(0,duration-4)])]){
-        const decoded=JSON.parse(await execute(this.ffprobe,['-v','error','-threads','1','-select_streams','v:0','-read_intervals',`${start}%+#128`,'-show_entries','frame=best_effort_timestamp_time','-of','json',file],15000));
-        const pts=(decoded.frames||[]).map(f=>Number(f.best_effort_timestamp_time)).filter(Number.isFinite);
-        const intervals=pts.slice(1).map((p,i)=>(p-pts[i])*1000);
-        samples.push({start,frames:pts.length,minMs:intervals.length?Math.min(...intervals):null,maxMs:intervals.length?Math.max(...intervals):null});
-        if(intervals.some(ms=>Math.abs(ms-rate.frameMs)>Math.max(1.5,rate.frameMs*.005)))variableFrameRate=true;
-      }
-      cadence={method:'bounded-decoded-pts',samples,entireFile:false};
+    // Only saved-player loads need a finite whole-clip decode. Live history
+    // and proxy probing keep their metadata-only path; seeks reuse identity.
+    if(verifyCadence){
+      const start=video?.start_time;
+      const videoStart=typeof start==='string'&&start.trim()!==''?Number(start):typeof start==='number'?start:NaN;
+      cadence=await this.cadenceScanner().probe(file,{duration,frameMs:rate?.frameMs,videoStart});
+      this.assertReplayOpen();
+      variableFrameRate||=cadence.status==='vfr';
     }
     return { duration, streams: result.streams, videoStart: Number(video?.start_time || 0), containerStart: Number(result.format?.start_time || 0), frameRate:rate?`${rate.numerator}/${rate.denominator}`:null, variableFrameRate, cadence, hasVideo:result.streams.some(s=>s.codec_type==='video'),audio:result.streams.some(s=>s.codec_type==='audio') };
   }
@@ -460,7 +496,21 @@ export class DiskReplay {
     return {...await this.status(),history,historyPreview};
   }
   previewFile(token){return this.preview.file(token);}
-  dispose(){return this.preview.close();}
+  dispose(){
+    this.disposing=true;
+    if(this.disposePromise)return this.disposePromise;
+    // Both closures run even if one fails. The API's existing catch sees failure.
+    const work=(async()=>{
+      const outcomes=await Promise.allSettled([Promise.resolve().then(()=>this.preview.close()),this.retireCadence()]);
+      const failure=outcomes.find(result=>result.status==='rejected');
+      if(failure)throw failure.reason;
+      this.disposed=true;
+      return {disposed:true,cadenceQuiescent:true};
+    })();
+    this.disposePromise=work;
+    work.finally(()=>{if(this.disposePromise===work)this.disposePromise=null;}).catch(()=>{});
+    return work;
+  }
   async pinHistory(d){
     if(d.clear===true){this.historyPin=null;return;}
     const history=await this.history(),start=Number(d.start),end=Number(d.end??Math.min(start+120,history?.end));
@@ -819,7 +869,8 @@ export class DiskReplay {
   }
 
   async hydratePlayers(){
-    for(const p of Object.values(this.state.players))if(!p.metadataProbed||!p.cadenceChecked){const media=await this.probe(p.file,true);Object.assign(p,{metadataProbed:true,cadenceChecked:true,cadence:media.cadence,hasVideo:media.hasVideo,duration:media.duration,frameRate:media.frameRate,variableFrameRate:media.variableFrameRate,audio:media.audio,offsetFrames:replayCameraOptions(this.state.cameraOptions?.[p.cam]).offsetFrames});}
+    this.assertReplayOpen();
+    for(const p of Object.values(this.state.players))if(!p.metadataProbed||!p.cadenceChecked||p.cadence?.method!=='finite-full-decoded-pts'||!(await this.cadenceScanner().matches(p.file,p.cadence?.identity))){const media=await this.probe(p.file,true);Object.assign(p,{metadataProbed:true,cadenceChecked:true,cadence:media.cadence,hasVideo:media.hasVideo,duration:media.duration,frameRate:media.frameRate,variableFrameRate:media.variableFrameRate,audio:media.audio,offsetFrames:replayCameraOptions(this.state.cameraOptions?.[p.cam]).offsetFrames});}
   }
 
   async speed(value) {

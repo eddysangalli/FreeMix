@@ -1,0 +1,96 @@
+{
+  "status": "PASS_DRAFT_MODELS_ONLY",
+  "checks": 21,
+  "cases": [
+    {
+      "name": "poll singleflight coalesces exact promise",
+      "pass": true
+    },
+    {
+      "name": "read uses GET endpoint/cache no configuration or POST",
+      "pass": true
+    },
+    {
+      "name": "completed read releases flight and updates observation without command",
+      "pass": true
+    },
+    {
+      "name": "JSON body hang deadline releases flight and retains stale previous observation",
+      "pass": true
+    },
+    {
+      "name": "cross-preset snapshot refused",
+      "pass": true
+    },
+    {
+      "name": "pending command locks content and prohibits duplicate dispatch",
+      "pass": true
+    },
+    {
+      "name": "timeout uncertain never claims cancellation or retries",
+      "pass": true
+    },
+    {
+      "name": "manual read during pending command cannot unlock uncertainty",
+      "pass": true
+    },
+    {
+      "name": "late ACK does not clear needsCheck or apply new command",
+      "pass": true
+    },
+    {
+      "name": "automatic poll does not release uncertain mutation gate",
+      "pass": true
+    },
+    {
+      "name": "explicit read after settled command frees editor via current-state confirmation only",
+      "pass": true
+    },
+    {
+      "name": "scope change while ACK awaits creates uncertainty",
+      "pass": true
+    },
+    {
+      "name": "disconnect labels old data stale and prevents dispatch",
+      "pass": true
+    },
+    {
+      "name": "backend helper reads output engine without tail/run/refresh/journal",
+      "pass": true
+    },
+    {
+      "name": "backend connection object changed during read rejected",
+      "pass": true
+    },
+    {
+      "name": "backend disconnected read rejected before getter",
+      "pass": true
+    },
+    {
+      "name": "REAL OutputEngine.read dependency graph issues only getter/state requests and strips keys",
+      "pass": true
+    },
+    {
+      "name": "captured sender dispatch+lock keeps new sender draft on old ACK",
+      "pass": true
+    },
+    {
+      "name": "revision/signature preserves newer same-slot draft on ACK",
+      "pass": true
+    },
+    {
+      "name": "GET route remains inside existing authenticated block/local guard/no payload",
+      "pass": true
+    },
+    {
+      "name": "Portuguese deadline wins synchronous browser AbortError race",
+      "pass": true
+    }
+  ],
+  "syntaxChecks": 7,
+  "canonicalPinsVerified": 4,
+  "nativeExecuted": false,
+  "apiStarted": false,
+  "portsOpened": false,
+  "operatorTouched": false
+}

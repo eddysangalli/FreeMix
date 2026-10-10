@@ -1,0 +1,91 @@
+{
+  "status": "FAIL_R2_MODELS",
+  "cases": 18,
+  "tests": [
+    {
+      "name": "Prior AL27 text/media references immutable",
+      "pass": true
+    },
+    {
+      "name": "Unknown reap retains jobs; later true close refreshes quiescence without reopening",
+      "pass": true
+    },
+    {
+      "name": "Scope rejection preserves state/file/scope and old owner; factory cannot spawn replacement",
+      "pass": true
+    },
+    {
+      "name": "Scope can commit only after old child close really observed",
+      "pass": true
+    },
+    {
+      "name": "Throwing close stays referenced and blocks even if faulty owner never marked closed",
+      "pass": true
+    },
+    {
+      "name": "Indeterminate close result is fail-closed, not inferred from jobs empty",
+      "pass": true
+    },
+    {
+      "name": "Pending close blocks factory; failed result leaves scope fully unchanged",
+      "pass": true
+    },
+    {
+      "name": "Dispose rejects explicit reap fault for existing API catch and closes preview anyway",
+      "pass": true
+    },
+    {
+      "name": "Repeated dispose observes actual late reap and releases only then",
+      "pass": true
+    },
+    {
+      "name": "Concurrent disposal shares work; both see same explicit rejection",
+      "pass": true
+    },
+    {
+      "name": "Preview rejection is preserved while successful cadence cleanup still completes",
+      "pass": true
+    },
+    {
+      "name": "Disposal during scope read/close never commits new state afterward",
+      "pass": true
+    },
+    {
+      "name": "Commands queued before disposal are refused without OBS query or mutation",
+      "pass": true
+    },
+    {
+      "name": "Hydration after disposal is rejected before lookup or new scanner",
+      "pass": true
+    },
+    {
+      "name": "Scope read failure cannot alter previous owner or route/state",
+      "pass": true
+    },
+    {
+      "name": "Probe helper/classifier missing stream start never default to PTS zero",
+      "pass": true
+    },
+    {
+      "name": "Actual probe method: absent/null/empty/whitespace/bool start => unknown, no full decode",
+      "pass": true
+    },
+    {
+      "name": "Actual probe method: explicit numeric/string zero certifies normally",
+      "pass": true
+    }
+  ],
+  "priorPinsAfter": {
+    "files": 27,
+    "sha256": "9e4819e849c77d06bfcab97db30b6f91c2dbf8c0e4aa3635f22a3cf59e2c6a4b",
+    "match": true
+  },
+  "NativeExecuted": false,
+  "APIExecuted": false,
+  "ffprobeExecuted": false,
+  "ffmpegExecuted": false,
+  "browserExecuted": false,
+  "audioExecuted": false,
+  "canonicalEdited": false,
+  "error": "AssertionError [ERR_ASSERTION]: Missing expected rejection.\n    at async file:///D:/DRIVE/IA/antigravity/vmixtwste/qa-finalizacao/replay-vfr-gap-reap-r2/test-r2.mjs:35:163\n    at async check (file:///D:/DRIVE/IA/antigravity/vmixtwste/qa-finalizacao/replay-vfr-gap-reap-r2/test-r2.mjs:6:39)\n    at async file:///D:/DRIVE/IA/antigravity/vmixtwste/qa-finalizacao/replay-vfr-gap-reap-r2/test-r2.mjs:35:2"
+}

@@ -1,0 +1,134 @@
+{
+  "format": 1,
+  "nativeExecuted": false,
+  "files": [
+    {
+      "path": "BASELINE-PINS.json",
+      "sha256": "77f12be4b1e629287f09ad5618c6007bda3d7085ed178aabb0066ac761ccec76",
+      "bytes": 810
+    },
+    {
+      "path": "baseline/saidas-external-ui.js",
+      "sha256": "c554d5b3091e9095dfb999a742016fa074c6922d31d59279deafb66d6e96a6bd",
+      "bytes": 14277
+    },
+    {
+      "path": "baseline/saidas.html",
+      "sha256": "74138d8d69ff08a8d62c5060e3e0be642c39f82c24f1596f7296cb22246c3a5c",
+      "bytes": 20415
+    },
+    {
+      "path": "baseline/saidas.js",
+      "sha256": "faf4cc8aa2645786aa0b100cb87112d402a496a81580158a8d2d8903b218e8e7",
+      "bytes": 16672
+    },
+    {
+      "path": "baseline/servidor-api.mjs",
+      "sha256": "503338175f0d63e2d2d806e65a78eaaa2e2ef18d2bcde88e185a076af9a53ec2",
+      "bytes": 30201
+    },
+    {
+      "path": "build-review.mjs",
+      "sha256": "7618bb336e3008c156ed36d15111babeed6e1f6a52b00dcd347a86f2e3396fb7",
+      "bytes": 2436
+    },
+    {
+      "path": "draft/read-outputs-snapshot.mjs",
+      "sha256": "be863cd29582d53f9bb1f621683c1857a6b4428eaa98fffa8893d63831fb4263",
+      "bytes": 711
+    },
+    {
+      "path": "draft/saidas-external-ui.js",
+      "sha256": "fd4bf227589b7b543cef1bc3ba825d58168ae5b13f1ca995b1b3108b26c524e1",
+      "bytes": 14900
+    },
+    {
+      "path": "draft/saidas-readonly-ui.js",
+      "sha256": "eccca62623370952e855248cd5250a72fd861c94da590f6147d60aca42d1c6ac",
+      "bytes": 3978
+    },
+    {
+      "path": "draft/saidas.html",
+      "sha256": "e7574b296205e48e40ef255b92cfcbac8c5c4b570e5862d1ad9244bf050ce281",
+      "bytes": 20460
+    },
+    {
+      "path": "draft/saidas.js",
+      "sha256": "0d32bbf483c19c193e66d4eaf2df866498ce3a49b36e1ae6e8d8dfbd8132c246",
+      "bytes": 17057
+    },
+    {
+      "path": "draft/servidor-api.mjs",
+      "sha256": "89d110add5d7af81b651531d77d8d0ed7ea68e2b3a1117858e3feb5e64869017",
+      "bytes": 30753
+    },
+    {
+      "path": "INTEGRATION.json",
+      "sha256": "503f5e93a6199166edd36006e4de9fc9f2fbf60677ce32fe82276c8534e21901",
+      "bytes": 3363
+    },
+    {
+      "path": "patches/saidas-external-ui.js.patch",
+      "sha256": "618b77ca790e5aa30b30fbe697e11c8a5b7b98b9de24424aa39c2e6e847344e8",
+      "bytes": 13315
+    },
+    {
+      "path": "patches/saidas.html.patch",
+      "sha256": "e517fa33d804653ce85c3d2e706b8306760e86e3549751ef6a3de111959e741b",
+      "bytes": 41080
+    },
+    {
+      "path": "patches/saidas.js.patch",
+      "sha256": "8f936194749b1f0ab187d73c77b28ea89c36dc6970fe8353d13fd1479cc2e7d1",
+      "bytes": 12640
+    },
+    {
+      "path": "patches/servidor-api.mjs.patch",
+      "sha256": "6f50f805c027b651fd55c566f47f9abacda3a59e3b810defd70022d6d42c5a4c",
+      "bytes": 2267
+    },
+    {
+      "path": "prepare.mjs",
+      "sha256": "bc28fae192e03d5bff41540f56a77dc84261190ccec9fe77115ae8159ebad8e0",
+      "bytes": 6227
+    },
+    {
+      "path": "read-outputs-snapshot.mjs",
+      "sha256": "be863cd29582d53f9bb1f621683c1857a6b4428eaa98fffa8893d63831fb4263",
+      "bytes": 711
+    },
+    {
+      "path": "README.md",
+      "sha256": "28396487c2a7ad507cba9ca84d1fd196914513036c461901b34848d9c9b65101",
+      "bytes": 4695
+    },
+    {
+      "path": "saidas-readonly-ui.js",
+      "sha256": "eccca62623370952e855248cd5250a72fd861c94da590f6147d60aca42d1c6ac",
+      "bytes": 3978
+    },
+    {
+      "path": "test-r2.mjs",
+      "sha256": "f4d287d1804f759dda327243c509be60ac2703960a165ca9382dad2076aef3d0",
+      "bytes": 10218
+    },
+    {
+      "path": "TEST-RESULT-R2.json",
+      "sha256": "7fa4486bf47a8308d3eb8968ed2e194bf214ff1b130a570d0bbf40dce197188a",
+      "bytes": 2535
+    },
+    {
+      "path": "TEST-RESULT.json",
+      "sha256": "b961734373f76ef6abd3e30fe0fd894c9a3675bf0981052a401b7280f9d194a1",
+      "bytes": 2425
+    },
+    {
+      "path": "test.mjs",
+      "sha256": "8318dae8ab8779d790fd5def316d739d9e9e4afd975c5feede1a7393852ee765",
+      "bytes": 9825
+    }
+  ],
+  "apiStarted": false,
+  "status": "OFFSIDE_FROZEN_ROOT_REVIEW_PENDING",
+  "canonicalEdited": false
+}

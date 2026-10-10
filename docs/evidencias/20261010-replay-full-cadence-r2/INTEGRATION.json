@@ -1,0 +1,45 @@
+{
+  "applied": false,
+  "integration": [
+    {
+      "path": "ferramentas/replay-disco.mjs",
+      "draft": "draft/replay-disco.mjs",
+      "sha256": "9c0b476aa321cf628f35064542b3c0bf879cca9111e5904791988bc197bef1c7",
+      "r1Sha256": "0bfb006b875c50854bbfff5d7b2728cfaacc32dd6667625b0078f5035bf8ffab",
+      "changedInR2": true
+    },
+    {
+      "path": "ferramentas/replay-sincronia.mjs",
+      "draft": "draft/replay-sincronia.mjs",
+      "sha256": "177e30efa904567147efec16785ac6603f263ea13009ee5df319749a13e73a98",
+      "r1Sha256": "177e30efa904567147efec16785ac6603f263ea13009ee5df319749a13e73a98",
+      "changedInR2": false
+    },
+    {
+      "path": "ferramentas/replay-cadence.mjs",
+      "draft": "draft/replay-cadence.mjs",
+      "sha256": "1061d8cbe1323aae306093a621e4e327bba743d5151b851306c3a78af5b653bc",
+      "r1Sha256": "677b68a01e1a39e77b3d225f41499681b7ea4ed846a73737a4957babeca875ed",
+      "changedInR2": true
+    }
+  ],
+  "rootCallerNoChanges": [
+    {
+      "path": "FreeMix/ferramentas/servidor-api.mjs",
+      "sha256": "503338175f0d63e2d2d806e65a78eaaa2e2ef18d2bcde88e185a076af9a53ec2"
+    },
+    {
+      "path": "FreeMix/ferramentas/replay-disco.mjs",
+      "sha256": "0abfbd5dcc31836246caee17c0015bacc73f1a75a26f3a6ef14c71a82a2be9bd"
+    },
+    {
+      "path": "FreeMix/ferramentas/replay-preview.mjs",
+      "sha256": "6fadf72f276c46de7b9640331e989a539863275a698df1316559de7da744a4af"
+    }
+  ],
+  "priorAllowlist": {
+    "files": 27,
+    "sha256": "9e4819e849c77d06bfcab97db30b6f91c2dbf8c0e4aa3635f22a3cf59e2c6a4b",
+    "match": true
+  }
+}

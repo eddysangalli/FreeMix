@@ -1,0 +1,80 @@
+{
+  "status": "OFFLINE_DIAGNOSTIC_OF_FAILED_GATE5_NOT_QUALIFICATION",
+  "receiptSHA256": "8b130df3729af75a48f0d2fc37d12852403c0e18ccc921442d9225db17c61335",
+  "nativeStarted": false,
+  "operatorTouched": false,
+  "sourceMediaUnmodified": true,
+  "captureStart": {
+    "clockMs": 210369.7139,
+    "mediaCursor": 2733,
+    "mediaDuration": 240000,
+    "mediaState": "OBS_MEDIA_STATE_PLAYING"
+  },
+  "captureEnd": {
+    "clockMs": 234810.0326,
+    "mediaCursor": 24366,
+    "mediaDuration": 240000,
+    "mediaState": "OBS_MEDIA_STATE_PLAYING"
+  },
+  "wallDurationMs": 24440.318700000003,
+  "cursorAdvanceMs": 21633,
+  "restartAckToStartObservationMs": 0.4122999999963213,
+  "possibleStalePostRestartCursor": true,
+  "causeProven": false,
+  "audio": [
+    {
+      "label": "program",
+      "sourceSHA256": "8d9d64f308f6c01e30b6c2086edf7c0eb2e28bcfee834cb4d2738139016519e5",
+      "pcmSHA256": "459a6fc394421b077ba9d8a28f064b262af021eb6eb9670eee923b01d9905b3f",
+      "stats": {
+        "frames": 1152000,
+        "channels": 2,
+        "rate": 48000,
+        "channelsStats": [
+          {
+            "rms": 0.10597791668420467,
+            "peak": 0.19368621706962585,
+            "frequency": 440,
+            "toneEnergyRatio": 0.9989115756178769
+          },
+          {
+            "rms": 0.10592966838944225,
+            "peak": 0.1638731062412262,
+            "frequency": 880,
+            "toneEnergyRatio": 0.999013775661904
+          }
+        ]
+      },
+      "originalAudioContractPassed": true,
+      "error": null
+    },
+    {
+      "label": "source",
+      "sourceSHA256": "3b23a2753ee94ecccb810ad70bbb3f2b44f639b63f7374730953301d0a25b7d9",
+      "pcmSHA256": "459a6fc394421b077ba9d8a28f064b262af021eb6eb9670eee923b01d9905b3f",
+      "stats": {
+        "frames": 1152000,
+        "channels": 2,
+        "rate": 48000,
+        "channelsStats": [
+          {
+            "rms": 0.10597791668420467,
+            "peak": 0.19368621706962585,
+            "frequency": 440,
+            "toneEnergyRatio": 0.9989115756178769
+          },
+          {
+            "rms": 0.10592966838944225,
+            "peak": 0.1638731062412262,
+            "frequency": 880,
+            "toneEnergyRatio": 0.999013775661904
+          }
+        ]
+      },
+      "originalAudioContractPassed": true,
+      "error": null
+    }
+  ],
+  "originalGateStatus": "FAIL",
+  "qualification": false
+}

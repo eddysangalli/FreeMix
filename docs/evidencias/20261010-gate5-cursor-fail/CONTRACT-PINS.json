@@ -1,0 +1,41 @@
+{
+  "head": "759929948fc84ca29d4ad0b65bfdddf98dfbb06f",
+  "sources": [
+    {
+      "path": "freemix-app/plugins/downstream-keyer/downstream-keyer-dock.cpp",
+      "copy": "sdk/0-downstream-keyer-dock.cpp",
+      "sha256": "1cacd05440367a63ac8a8266d522d8dcb34a7531208a10c7eff5a5b4e98ee0be",
+      "bytes": 39105,
+      "completeSource": true
+    },
+    {
+      "path": "freemix-app/plugins/downstream-keyer/downstream-keyer.cpp",
+      "copy": "sdk/1-downstream-keyer.cpp",
+      "sha256": "dc5d9ceed8c7fdf73b2574ca9c52ebea404f5fb889b09629f947e4fb8949ce88",
+      "bytes": 34200,
+      "completeSource": true
+    },
+    {
+      "path": "freemix-app/plugins/obs-websocket/src/eventhandler/types/EventSubscription.h",
+      "copy": "sdk/2-EventSubscription.h",
+      "sha256": "0084f82ebda2ff9ddf559d0652a6a2b6df318a285263ab239515c7c80279ff2f",
+      "bytes": 5897,
+      "completeSource": true
+    },
+    {
+      "path": "freemix-app/plugins/obs-websocket/src/obs-websocket.cpp",
+      "copy": "sdk/3-obs-websocket.cpp",
+      "sha256": "d3839e64b825ac89c5d4428cbf3cfd41cb1e1de33301fdc0c40a13641bb8a5bc",
+      "bytes": 10064,
+      "completeSource": true
+    },
+    {
+      "path": "entregas/FreeMix-Completo-0.1.0-local.20261010060000/ferramentas/obsws.mjs",
+      "copy": "sdk/4-obsws.mjs",
+      "sha256": "735a395d1fdd4774b0e44ba8c65926b3601aa5035bf17a8dcb53ca9b907c9cdc",
+      "bytes": 3188,
+      "completeSource": true
+    }
+  ],
+  "historicalGate4AllowlistSHA": "aa698a43a0b5b99496dfd7e8a2880ab15f1cebe351c1f3ae2119e8d69ab6dd86"
+}

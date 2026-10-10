@@ -1,0 +1,6 @@
+import fs from 'node:fs/promises';import path from 'node:path';import{createHash}from'node:crypto';import assert from 'node:assert/strict';
+const here=import.meta.dirname,prior=path.resolve(here,'../replay-vfr-gap-real-20261010'),sha=async p=>createHash('sha256').update(await fs.readFile(p)).digest('hex');
+const alPath=path.join(prior,'ALLOWLIST.json');assert.equal(await sha(alPath),'9e4819e849c77d06bfcab97db30b6f91c2dbf8c0e4aa3635f22a3cf59e2c6a4b');const al=JSON.parse(await fs.readFile(alPath,'utf8'));for(const f of al.files)assert.equal(await sha(path.join(prior,f.path)),f.sha256);
+await fs.mkdir(path.join(here,'draft'));const copies=[];for(const name of ['replay-cadence.mjs','replay-disco.mjs','replay-sincronia.mjs','replay-preview.mjs']){const file=path.join(prior,'draft',name);await fs.copyFile(file,path.join(here,'draft',name),fs.constants.COPYFILE_EXCL);copies.push({path:name,sha256:await sha(file)});}
+const root=path.resolve(here,'../..'),callers=[];for(const name of ['servidor-api.mjs','replay-disco.mjs','replay-preview.mjs']){const file=path.join(root,'FreeMix/ferramentas',name);callers.push({path:'FreeMix/ferramentas/'+name,sha256:await sha(file)});}
+await fs.writeFile(path.join(here,'BASELINES.json'),JSON.stringify({priorAllowlistSha256:await sha(alPath),copies,callers},null,2)+'\n',{flag:'wx'});console.log('PREPARED_R2_COPY_ONLY');

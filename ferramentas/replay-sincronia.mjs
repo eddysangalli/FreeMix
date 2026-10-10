@@ -14,11 +14,13 @@ export function frameTargets(players, anchor, cursor, delta = 0) {
   if (!Number.isInteger(delta) || Math.abs(delta) > 300) throw Error('Passo de quadro inválido');
   const reference = players[anchor]; if (!reference) throw Error('Carregue o player');
   const rate = frameRate(reference.frameRate);
+  if(reference.cadence?.method!=='finite-full-decoded-pts'||!reference.cadence?.entireFile||reference.cadence?.status!=='cfr')throw Error('Passo de quadro requer cadência constante confirmada no clipe inteiro; use busca por tempo ou carregue novamente');
   if (reference.variableFrameRate) throw Error('Passo de quadro requer vídeo com taxa constante');
   let globalFrame = Math.round(cursor / rate.frameMs) - (reference.offsetFrames || 0) + delta;
   let first = -Infinity, last = Infinity;
   for (const p of Object.values(players)) {
     const own = frameRate(p.frameRate);
+    if(p.cadence?.method!=='finite-full-decoded-pts'||!p.cadence?.entireFile||p.cadence?.status!=='cfr')throw Error('Passo de quadro requer cadência constante confirmada no clipe inteiro; use busca por tempo ou carregue novamente');
     if (p.variableFrameRate || Math.abs(own.fps - rate.fps) > .001) throw Error('Para vincular por quadro, use ângulos com a mesma taxa constante');
     first = Math.max(first, -(p.offsetFrames || 0));
     last = Math.min(last, Math.max(0, Math.ceil(p.duration * own.fps - .001) - 1) - (p.offsetFrames || 0));
@@ -37,13 +39,13 @@ export function timeTargets(players,anchor,cursor){
  if(!players[anchor]||!Number.isFinite(cursor)||cursor<0)throw Error('Player ou cursor inválido');
  const offset=p=>{const frames=p.offsetFrames||0;if(!Number.isInteger(frames))throw Error('Offset de câmera inválido');if(!frames)return 0;return frames*frameRate(p.frameRate).frameMs;};
  const offsets=Object.fromEntries(Object.entries(players).map(([id,p])=>[id,offset(p)]));let first=-Infinity,last=Infinity;
- for(const[id,p]of Object.entries(players)){if(!Number.isFinite(p.duration)||p.duration<=0)throw Error('Duração de mídia não confirmada');first=Math.max(first,-offsets[id]);let end=p.duration*1000-1;if(p.frameRate&&!p.variableFrameRate)end=Math.floor((Math.ceil(p.duration*frameRate(p.frameRate).fps-.001)-1)*frameRate(p.frameRate).frameMs);last=Math.min(last,end-offsets[id]);}
+ for(const[id,p]of Object.entries(players)){if(!Number.isFinite(p.duration)||p.duration<=0)throw Error('Duração de mídia não confirmada');first=Math.max(first,-offsets[id]);let end=p.duration*1000-1;if(p.frameRate&&!p.variableFrameRate&&p.cadence?.status==='cfr'&&p.cadence?.entireFile)end=Math.floor((Math.ceil(p.duration*frameRate(p.frameRate).fps-.001)-1)*frameRate(p.frameRate).frameMs);last=Math.min(last,end-offsets[id]);}
  if(last<first)throw Error('Os offsets não deixam um intervalo comum entre os ângulos');
  const globalTime=Math.max(first,Math.min(last,cursor-offsets[anchor]));
  return {targets:Object.fromEntries(Object.keys(players).map(id=>[id,{cursor:Math.max(0,Math.floor(globalTime+offsets[id]+1e-7))}])),globalTime,first,last,mode:'time',toleranceMs:100};
 }
 export function seekTargets(players,anchor,cursor){
- const values=Object.values(players);if(values.every(p=>p.frameRate&&!p.variableFrameRate)&&values.every(p=>Math.abs(frameRate(p.frameRate).fps-frameRate(values[0].frameRate).fps)<.001))return {...frameTargets(players,anchor,cursor),mode:'frame',toleranceMs:Math.max(2,frameRate(players[anchor].frameRate).frameMs/2)};
+ const values=Object.values(players);if(values.length&&values.every(p=>p.frameRate&&!p.variableFrameRate&&p.cadence?.method==='finite-full-decoded-pts'&&p.cadence?.status==='cfr'&&p.cadence?.entireFile)&&values.every(p=>Math.abs(frameRate(p.frameRate).fps-frameRate(values[0].frameRate).fps)<.001))return {...frameTargets(players,anchor,cursor),mode:'frame',toleranceMs:Math.max(2,frameRate(players[anchor].frameRate).frameMs/2)};
  return timeTargets(players,anchor,cursor);
 }
 

@@ -1,0 +1,33 @@
+{
+  "status": "PREPARED_ROOT_REVIEW_PENDING_DO_NOT_EXECUTE",
+  "head": "759929948fc84ca29d4ad0b65bfdddf98dfbb06f",
+  "manifest": "qa-finalizacao/native-build-frozen-7599299-configured.json",
+  "freezeSHA": "5c72b43a8382d46eea9b2cf8bf56b8f94bb1024dc39b379664dcdb7c3571691d",
+  "fullRuntimeVerified": 2085,
+  "pins": {
+    "bin/64bit/FreeMix.exe": "7f1f0e724624ee0d03b85d726ae5463b633441a17dced878efce2f9f77646fa9",
+    "bin/64bit/obs.dll": "4fb1c09d9b98baa7bf48db4d386975a23bbe95d148428308695334e231f1f7a7",
+    "bin/64bit/obs-frontend-api.dll": "47b7d1ca197961425dbc12c9028d458b01beab587c6f7cd64ceda2d68db321dc",
+    "obs-plugins/64bit/decklink.dll": "f3a51dab52ba8548ab139e44bb4b9c706685996114bed4ad7576d81537fa9cad",
+    "obs-plugins/64bit/obs-ffmpeg.dll": "64bdecba1502add444009ab186e1aab4375188d638c0eb91b5cad3401570b3ac",
+    "obs-plugins/64bit/rtmp-services.dll": "4a5f7fc0f8a2710fff9cfaddba3ade8ea0feedaf9d581928c8315311b9377a33"
+  },
+  "baseGate4AL": "aa698a43a0b5b99496dfd7e8a2880ab15f1cebe351c1f3ae2119e8d69ab6dd86",
+  "originalGate4ReceiptSHA": "f1efd69866cef088aadae9ddd38d63ca5ce1f88da0f51bbe19d1a4641b4d414f",
+  "fixtureContract": "long-nonloop-restart-interior-v1",
+  "fixtureSeconds": 240,
+  "captureMarginMs": 1000,
+  "fps": [
+    {
+      "num": 30,
+      "den": 1
+    },
+    {
+      "num": 30000,
+      "den": 1001
+    }
+  ],
+  "audioPolicy": "unchanged",
+  "executed": false,
+  "qualification": false
+}

@@ -1,0 +1,91 @@
+{
+  "status": "OFFSIDE_ROOT_REVIEW_PENDING_DO_NOT_APPLY_AUTOMATICALLY",
+  "files": [
+    {
+      "target": "FreeMix/painel/remoto/saidas.html",
+      "draft": "draft/saidas.html",
+      "baseSHA256": "74138d8d69ff08a8d62c5060e3e0be642c39f82c24f1596f7296cb22246c3a5c",
+      "sha256": "e7574b296205e48e40ef255b92cfcbac8c5c4b570e5862d1ad9244bf050ce281",
+      "bytes": 20460,
+      "patch": "patches/saidas.html.patch"
+    },
+    {
+      "target": "FreeMix/painel/remoto/saidas.js",
+      "draft": "draft/saidas.js",
+      "baseSHA256": "faf4cc8aa2645786aa0b100cb87112d402a496a81580158a8d2d8903b218e8e7",
+      "sha256": "0d32bbf483c19c193e66d4eaf2df866498ce3a49b36e1ae6e8d8dfbd8132c246",
+      "bytes": 17057,
+      "patch": "patches/saidas.js.patch"
+    },
+    {
+      "target": "FreeMix/painel/remoto/saidas-external-ui.js",
+      "draft": "draft/saidas-external-ui.js",
+      "baseSHA256": "c554d5b3091e9095dfb999a742016fa074c6922d31d59279deafb66d6e96a6bd",
+      "sha256": "fd4bf227589b7b543cef1bc3ba825d58168ae5b13f1ca995b1b3108b26c524e1",
+      "bytes": 14900,
+      "patch": "patches/saidas-external-ui.js.patch"
+    },
+    {
+      "target": "FreeMix/ferramentas/servidor-api.mjs",
+      "draft": "draft/servidor-api.mjs",
+      "baseSHA256": "503338175f0d63e2d2d806e65a78eaaa2e2ef18d2bcde88e185a076af9a53ec2",
+      "sha256": "89d110add5d7af81b651531d77d8d0ed7ea68e2b3a1117858e3feb5e64869017",
+      "bytes": 30753,
+      "patch": "patches/servidor-api.mjs.patch"
+    },
+    {
+      "target": "FreeMix/ferramentas/read-outputs-snapshot.mjs",
+      "draft": "draft/read-outputs-snapshot.mjs",
+      "base": "MUST_NOT_EXIST",
+      "sha256": "be863cd29582d53f9bb1f621683c1857a6b4428eaa98fffa8893d63831fb4263",
+      "bytes": 711
+    },
+    {
+      "target": "FreeMix/painel/remoto/saidas-readonly-ui.js",
+      "draft": "draft/saidas-readonly-ui.js",
+      "base": "MUST_NOT_EXIST",
+      "sha256": "eccca62623370952e855248cd5250a72fd861c94da590f6147d60aca42d1c6ac",
+      "bytes": 3978
+    }
+  ],
+  "readDependencies": [
+    {
+      "path": "FreeMix/ferramentas/saidas-producao.mjs",
+      "sha256": "4014d7d5fabd30e2851852f0e8cf6d599aaec9c454fc1c73b05d9d0a355452f3",
+      "bytes": 13780
+    },
+    {
+      "path": "FreeMix/ferramentas/ndi-producao.mjs",
+      "sha256": "9a4e132c468a0c8da4eaf5c97f4d6b919ec82a74f120d8b2f3068bf3026ed085",
+      "bytes": 8031
+    },
+    {
+      "path": "FreeMix/ferramentas/omt-producao.mjs",
+      "sha256": "15a632b6d1c80c9926710066e345931a76a7fe5cebd45b33221175b52aa98c5c",
+      "bytes": 6130
+    },
+    {
+      "path": "FreeMix/ferramentas/omt-hdr-producao.mjs",
+      "sha256": "7b77bfc66e6db3d6dc143a337b74b517c0e1679bd50103f22fec652c4f60e8e5",
+      "bytes": 1993
+    },
+    {
+      "path": "freemix-app/frontend/widgets/FreeMixMultistream.cpp",
+      "sha256": "c56f7ecd8bd0c0838a71eacda3fb0cc4e5b77bace6bf54ad1d627176a2eb8af1",
+      "bytes": 121459
+    },
+    {
+      "path": "freemix-app/frontend/widgets/FreeMixSdiOutput.hpp",
+      "sha256": "41c519b334ba53d0e6c92a15fcb44a9ffbca79a27db20b5bd552db0567e008f6",
+      "bytes": 10570
+    },
+    {
+      "path": "freemix-app/frontend/widgets/FreeMixOmtHdrOutput.hpp",
+      "sha256": "4c38b2f93970b4970fea91c33fc85cf66e1b54e966249b9034aa3ce829c0d99a",
+      "bytes": 13782
+    }
+  ],
+  "canonicalEdited": false,
+  "nativeExecuted": false,
+  "apiStarted": false
+}
