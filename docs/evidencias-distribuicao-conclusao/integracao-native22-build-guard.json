@@ -1,0 +1,32 @@
+{
+  "status": "NATIVE22_BUILD_AND_PACKAGE_GUARD_MIRRORED",
+  "at": "2026-10-10T02:57:12.162Z",
+  "nativeHead": "500ced5ea0928453f9f27dc7d5649531e2671e28",
+  "buildPassed": true,
+  "frozenFiles": 2085,
+  "negativeGuardChecks": 3,
+  "files": [
+    {
+      "path": "docs/evidencias-distribuicao-conclusao/native22-build-configured.json",
+      "sourceSha256": "d875614e1475a68ff2a65d8db394b63cb45c2d1b62fd6989d2c25374a6050d60",
+      "outputSha256": "d875614e1475a68ff2a65d8db394b63cb45c2d1b62fd6989d2c25374a6050d60"
+    },
+    {
+      "path": "qa-finalizacao/test-package-submodule-guard.mjs",
+      "sourceSha256": "a4d3ecd0a23b7a796b856060d1ef2352543387ac08c2fbe2fdd9958639c18b4a",
+      "outputSha256": "a4d3ecd0a23b7a796b856060d1ef2352543387ac08c2fbe2fdd9958639c18b4a"
+    },
+    {
+      "path": "qa-finalizacao/package-submodule-guard.json",
+      "sourceSha256": "62148af0d826047b2ec59e104ffbc77d34225207dc1ae9051f056937c330b0ed",
+      "outputSha256": "62148af0d826047b2ec59e104ffbc77d34225207dc1ae9051f056937c330b0ed"
+    },
+    {
+      "path": "ferramentas/empacotar-limpo.mjs",
+      "sourceSha256": "bc7844a1d27f940a3312d02812bb10db0253f0c567409ecf330bd06cf0ea66bb",
+      "outputSha256": "bc7844a1d27f940a3312d02812bb10db0253f0c567409ecf330bd06cf0ea66bb"
+    }
+  ],
+  "installedIntegratedRecoveryValidated": false,
+  "operatorTouched": false
+}

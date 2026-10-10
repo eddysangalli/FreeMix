@@ -1,13 +1,40 @@
 {
   "status": "PASS",
-  "at": "2026-10-10T00:53:10.558Z",
   "base": "ba2f32bdf791005443988a4955e963663e16b1ed",
-  "head": "4793d1a40f56ea9b6e887eb49189d937758e3b7f",
-  "version": "0.1.0-local.20261010010000",
-  "patches": 21,
-  "resultTree": "7604633e921339aa65f40015dcc3175e26accfc7",
-  "expectedTree": "7604633e921339aa65f40015dcc3175e26accfc7",
+  "head": "500ced5ea0928453f9f27dc7d5649531e2671e28",
+  "resultTree": "5e0da1554f23fe64c2cd3a2b30e0a7b4e41ac00b",
+  "submodules": [
+    {
+      "path": "deps/libdshowcapture/src",
+      "base": "8878638324393815512f802640b0d5ce940161f1",
+      "baseTree": "b48317e9921aed76ca59d97ba414899f55e65109",
+      "head": "8878638324393815512f802640b0d5ce940161f1",
+      "headTree": "b48317e9921aed76ca59d97ba414899f55e65109",
+      "patches": 0
+    },
+    {
+      "path": "plugins/obs-browser",
+      "base": "3f0a2cdf378939ebe3c6f9ab36d4ea100c25aac2",
+      "baseTree": "c28c9249becf1dcdb730bc3150bb05f92953a81d",
+      "head": "dd26fda9cd8e507934f080be14f44038506c3b7e",
+      "headTree": "c4be2403bdd7ab64dc18dc3e005f804a40e94563",
+      "patches": 1
+    },
+    {
+      "path": "plugins/obs-websocket",
+      "base": "1ef34bf48110c2a18184e50e41cd0b1a855e2147",
+      "baseTree": "2fde926257e6c4a185089ec5c1a1eec281f9e013",
+      "head": "1ef34bf48110c2a18184e50e41cd0b1a855e2147",
+      "headTree": "2fde926257e6c4a185089ec5c1a1eec281f9e013",
+      "patches": 0
+    }
+  ],
   "sourceFiles": [
+    {
+      "path": "plugins/obs-browser/browser-client.cpp",
+      "bytes": 19623,
+      "sha256": "ada13b266e6f9431287997fad482ee0c2cda9fb1873c8b590898c00783a7cab1"
+    },
     {
       "path": "deps/asio-sdk/FREEMIX-PROVENANCE.md",
       "bytes": 770,
@@ -944,8 +971,7 @@
       "sha256": "249ea2b805cad5aa31ec497437453d0c1d794164696ebc02e45f88ef1887961c"
     }
   ],
-  "operatorTouched": false,
+  "networkStarted": false,
   "nativeWorktreeTouched": false,
-  "nativeIndexTouched": false,
-  "networkStarted": false
+  "nativeIndexTouched": false
 }

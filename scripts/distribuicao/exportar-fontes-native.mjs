@@ -1,67 +1,39 @@
+// DRAFT ONLY: parent patch export plus exact, locally reconstructible submodule commits.
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import os from 'node:os';
 import {execFileSync} from 'node:child_process';
 import {createHash} from 'node:crypto';
-
-const args = Object.fromEntries(process.argv.slice(2).map(arg => {
-  const match = /^--(native|product|head|version)=(.+)$/.exec(arg);
-  if (!match) throw Error('Use --native=REPO --product=REPO --head=COMMIT --version=VERSAO');
-  return [match[1], match[2]];
-}));
-for (const field of ['native', 'product', 'head', 'version']) if (!args[field]) throw Error('Falta --' + field);
-if (!/^[0-9a-f]{40}$/.test(args.head) || !/^0\.1\.0-local\.\d{14}$/.test(args.version)) throw Error('Commit/versão inválidos');
-const native = await fs.realpath(args.native), product = await fs.realpath(args.product);
-if (native.toLowerCase() === product.toLowerCase()) throw Error('Repos distintos obrigatórios');
-const git = (repo, argv, env) => execFileSync('git', ['-C', repo, ...argv], {env: {...process.env, ...env}, windowsHide: true, maxBuffer: 64 * 1024 * 1024});
-for (const repo of [native, product]) {
-  const top = await fs.realpath(git(repo, ['rev-parse', '--show-toplevel']).toString().trim());
-  if (top.toLowerCase() !== repo.toLowerCase()) throw Error('Informe a raiz do repositório');
-}
-if (git(native, ['status', '--porcelain', '--untracked-files=no']).toString().trim()) throw Error('Native tem alterações rastreadas não commitadas');
-if (git(native, ['rev-parse', 'HEAD']).toString().trim() !== args.head) throw Error('HEAD mudou');
-const fork = path.join(product, 'fork'), manifestPath = path.join(fork, 'manifest.json');
-const old = JSON.parse(await fs.readFile(manifestPath, 'utf8'));
-if (!/^[0-9a-f]{40}$/.test(old.base)) throw Error('Base inválida');
-git(native, ['merge-base', '--is-ancestor', old.base, args.head]);
-const commits = git(native, ['rev-list', '--reverse', '--first-parent', old.base + '..' + args.head]).toString().trim().split(/\r?\n/).filter(Boolean);
-if (commits.length < old.patches.length) throw Error('Histórico menor que a série existente');
-const hash = data => createHash('sha256').update(data).digest('hex');
-const patches = [];
-for (let i = 0; i < old.patches.length; i++) {
-  const item = old.patches[i];
-  if (path.basename(item.path) !== item.path || !item.path.endsWith('.patch')) throw Error('Caminho de patch inválido');
-  const data = await fs.readFile(path.join(fork, item.path));
-  if (hash(data) !== item.sha256 || !data.toString().startsWith('From ' + commits[i] + ' ')) throw Error('Patch antigo/hash/commit divergente: ' + item.path);
-  patches.push({...item, file: path.join(fork, item.path)});
-}
-const temp = await fs.mkdtemp(path.join(os.tmpdir(), 'FreeMix-QA-NativeExport-'));
-for (let i = old.patches.length; i < commits.length; i++) {
-  const generated = git(native, ['format-patch', '-1', '--start-number=' + (i + 1), '--output-directory=' + temp, commits[i]]).toString().trim();
-  const data = await fs.readFile(generated);
-  patches.push({path: path.basename(generated), sha256: hash(data), file: generated});
-}
-const env = {GIT_INDEX_FILE: path.join(temp, 'verification.index')};
-git(native, ['read-tree', old.base], env);
-for (const item of patches) git(native, ['apply', '--cached', '--whitespace=nowarn', item.file], env);
-const tree = git(native, ['write-tree'], env).toString().trim();
-if (tree !== git(native, ['rev-parse', args.head + '^{tree}']).toString().trim()) throw Error('Árvore de patches não corresponde ao HEAD');
-const changed = git(native, ['diff', '--name-only', '-z', old.base, args.head]).toString().split('\0').filter(Boolean);
-const files = [];
-for (const name of changed) {
-  if (name.includes('..') || path.isAbsolute(name)) throw Error('Caminho de fonte inválido');
-  const dest = path.join(product, 'docs/native-source', name);
-  let data;
-  try { data = git(native, ['show', args.head + ':' + name]); }
-  catch { throw Error('Remoção de fonte exige revisão explícita: ' + name); }
-  files.push({path: name, bytes: data.length, sha256: hash(data), data, dest});
-}
-// Only write the editable source repository after the complete patch series is verified.
-for (const item of patches.slice(old.patches.length)) await fs.copyFile(item.file, path.join(fork, item.path), 1);
-for (const file of files) { await fs.mkdir(path.dirname(file.dest), {recursive: true}); await fs.writeFile(file.dest, file.data); }
-const updated = {...old, head: args.head, version: args.version, patches: patches.map(({path, sha256}) => ({path, sha256})), sourceUpdatedAt: new Date().toISOString()};
-await fs.writeFile(manifestPath, JSON.stringify(updated, null, 2) + '\n');
-const result = {status: 'PASS', at: updated.sourceUpdatedAt, base: old.base, head: args.head, version: args.version, patches: patches.length, resultTree: tree, expectedTree: tree, sourceFiles: files.map(({path, bytes, sha256}) => ({path, bytes, sha256})), operatorTouched: false, nativeWorktreeTouched: false, nativeIndexTouched: false, networkStarted: false};
-await fs.writeFile(path.join(temp, 'result.json'), JSON.stringify(result, null, 2) + '\n');
-await fs.writeFile(path.join(fork, 'source-verification.json'), JSON.stringify(result, null, 2) + '\n');
-console.log(JSON.stringify({status: result.status, head: result.head, patches: result.patches, sourceFiles: files.length, resultTree: tree, receipt: path.join(temp, 'result.json')}));
+const args={};for(const arg of process.argv.slice(2)){const m=/^--(native|product|head|version)=(.+)$/.exec(arg);if(!m||args[m[1]])throw Error('Explicit unique --native --product --head --version required');args[m[1]]=m[2];}
+for(const k of ['native','product','head','version'])if(!args[k])throw Error('Missing '+k);if(!/^[0-9a-f]{40}$/.test(args.head)||!/^0\.1\.0-local\.\d{14}$/.test(args.version))throw Error('Invalid head/version');
+const native=await fs.realpath(args.native),product=await fs.realpath(args.product);if(native.toLowerCase()===product.toLowerCase())throw Error('Distinct repositories required');
+const git=(repo,argv,env={},input)=>execFileSync('git',['-C',repo,...argv],{env:{...process.env,GIT_TERMINAL_PROMPT:'0',...env},input,windowsHide:true,maxBuffer:64*1024*1024});
+const str=(repo,argv)=>git(repo,argv).toString().trim(),hash=b=>createHash('sha256').update(b).digest('hex');
+const safe=name=>{if(typeof name!=='string'||!name||path.isAbsolute(name)||name.includes('\\')||name.split('/').some(p=>!p||p==='.'||p==='..'||p.toLowerCase()==='.git'||/[<>:"|?*\x00-\x1f]/.test(p)))throw Error('Unsafe source path');return name;};
+for(const r of [native,product])if((await fs.realpath(str(r,['rev-parse','--show-toplevel']))).toLowerCase()!==r.toLowerCase())throw Error('Repository root required');
+if(str(native,['status','--porcelain','--untracked-files=no'])||str(native,['rev-parse','HEAD'])!==args.head)throw Error('Native must be clean at explicit HEAD');
+const fork=path.join(product,'fork'),old=JSON.parse(await fs.readFile(path.join(fork,'manifest.json'),'utf8'));if(!/^[0-9a-f]{40}$/.test(old.base))throw Error('Invalid base');git(native,['merge-base','--is-ancestor',old.base,args.head]);
+const temp=await fs.mkdtemp(path.join(os.tmpdir(),'FreeMix-QA-SubmoduleExport-')),writes=[],files=[];
+const commits=(repo,base,head)=>str(repo,['rev-list','--reverse','--first-parent',base+'..'+head]).split(/\r?\n/).filter(Boolean);
+const rootCommits=commits(native,old.base,args.head);if(rootCommits.length<old.patches.length)throw Error('Parent history shrank');
+async function parentPatch(i,commit){if(i<old.patches.length){const p=old.patches[i];if(path.basename(p.path)!==p.path||!/^\d+-[\w.-]+\.patch$/.test(p.path))throw Error('Invalid parent patch');const b=await fs.readFile(path.join(fork,p.path));if(hash(b)!==p.sha256||!b.toString().startsWith('From '+commit+' '))throw Error('Previous parent patch mismatch');return {...p,file:path.join(fork,p.path)};}const file=str(native,['format-patch','-1','--binary','--start-number='+(i+1),'--output-directory='+temp,commit]),b=await fs.readFile(file),p={path:path.basename(file),sha256:hash(b),file};writes.push({file,dest:path.join(fork,p.path)});return p;}
+const parentPatches=[];for(let i=0;i<rootCommits.length;i++)parentPatches.push(await parentPatch(i,rootCommits[i]));
+const rootEnv={GIT_INDEX_FILE:path.join(temp,'parent.index')};git(native,['read-tree',old.base],rootEnv);for(const p of parentPatches)git(native,['apply','--cached','--whitespace=nowarn',p.file],rootEnv);const tree=git(native,['write-tree'],rootEnv).toString().trim();if(tree!==str(native,['rev-parse',args.head+'^{tree}']))throw Error('Parent tree mismatch');
+const entries=(repo,revision)=>new Map(git(repo,['ls-tree','-r','-z',revision]).toString().split('\0').filter(Boolean).map(line=>{const m=/^(\d+) (\w+) ([0-9a-f]{40})\t(.+)$/.exec(line);if(!m)throw Error('Invalid tree entry');return [m[4],{mode:m[1],type:m[2],oid:m[3]}];}));
+const baseEntries=entries(native,old.base),headEntries=entries(native,args.head),baseLinks=[...baseEntries].filter(([,e])=>e.mode==='160000'),headLinks=[...headEntries].filter(([,e])=>e.mode==='160000');if(JSON.stringify(baseLinks.map(([p])=>p))!==JSON.stringify(headLinks.map(([p])=>p)))throw Error('Submodule additions/removals need explicit review');
+function moduleNames(revision){const out=git(native,['config','--blob',revision+':.gitmodules','-z','--get-regexp','^submodule\\..*\\.path$']).toString();return new Map(out.split('\0').filter(Boolean).map(line=>{const split=line.indexOf('\n');if(split<0)throw Error('Invalid gitmodules contract');return [line.slice(split+1),line.slice(0,split).slice('submodule.'.length,-'.path'.length)];}));}
+const names=baseLinks.length?moduleNames(old.base):new Map(),headNames=headLinks.length?moduleNames(args.head):new Map(),submodules=[];
+async function copySource(repo,revision,name,destName){safe(name);safe(destName);const e=entries(repo,revision).get(name);if(!e||e.type!=='blob'||!['100644','100755'].includes(e.mode))throw Error('Removal/link source requires review: '+name);const data=git(repo,['show',revision+':'+name]);files.push({path:destName,bytes:data.length,sha256:hash(data),data,dest:path.join(product,'docs/native-source',destName)});}
+for(const [modulePath,b]of baseLinks){safe(modulePath);const h=headEntries.get(modulePath),name=names.get(modulePath);if(!name||headNames.get(modulePath)!==name)throw Error('Submodule identity changed');const upstream=str(native,['config','--blob',old.base+':.gitmodules','--get','submodule.'+name+'.url']);if(upstream!==str(native,['config','--blob',args.head+':.gitmodules','--get','submodule.'+name+'.url']))throw Error('Submodule upstream changed');const repo=path.join(native,modulePath);if(str(repo,['rev-parse','HEAD'])!==h.oid||str(repo,['status','--porcelain','--untracked-files=no']))throw Error('Submodule must be initialized/clean at pinned parent gitlink: '+modulePath);git(repo,['merge-base','--is-ancestor',b.oid,h.oid]);const baseTree=str(repo,['rev-parse',b.oid+'^{tree}']),headTree=str(repo,['rev-parse',h.oid+'^{tree}']),list=commits(repo,b.oid,h.oid),prefix='submodules/'+hash(modulePath).slice(0,16),previous=old.submodules?.find(s=>s.path===modulePath),patches=[];
+if(previous&&(previous.base!==b.oid||previous.patches.length>list.length))throw Error('Submodule history changed');
+let parent=b.oid;for(let i=0;i<list.length;i++){const commit=list[i],raw=git(repo,['cat-file','commit',commit]),header=raw.toString().split('\n\n')[0],parents=[...header.matchAll(/^parent ([0-9a-f]{40})$/gm)].map(m=>m[1]),commitTree=str(repo,['rev-parse',commit+'^{tree}']);if(parents.length!==1||parents[0]!==parent||!header.startsWith('tree '+commitTree+'\n'))throw Error('Linear submodule commits required');if(git(repo,['hash-object','-t','commit','--stdin'],{},raw).toString().trim()!==commit)throw Error('Raw commit mismatch');const patchPath=prefix+'/'+String(i+1).padStart(4,'0')+'-'+commit.slice(0,12)+'.patch',rawPath=prefix+'/'+String(i+1).padStart(4,'0')+'-'+commit.slice(0,12)+'.commit.txt';let patchData=git(repo,['format-patch','-1','--stdout','--binary',commit]);
+if(previous?.patches[i]){const p=previous.patches[i];if(p.commit!==commit||p.path!==patchPath||p.rawCommitPath!==rawPath)throw Error('Previous submodule patch identity changed');patchData=await fs.readFile(path.join(fork,p.path));if(hash(patchData)!==p.sha256||hash(raw)!==p.rawCommitSha256||(await fs.readFile(path.join(fork,p.rawCommitPath))).compare(raw)!==0)throw Error('Previous submodule patch changed');}else{const patchFile=path.join(temp,hash(patchPath)+'.patch'),rawFile=path.join(temp,hash(rawPath)+'.commit.txt');await fs.writeFile(patchFile,patchData,{flag:'wx'});await fs.writeFile(rawFile,raw,{flag:'wx'});writes.push({file:patchFile,dest:path.join(fork,patchPath)},{file:rawFile,dest:path.join(fork,rawPath)});}patches.push({path:patchPath,sha256:hash(patchData),commit,parent,tree:commitTree,rawCommitPath:rawPath,rawCommitSha256:hash(raw)});parent=commit;}
+const env={GIT_INDEX_FILE:path.join(temp,hash(modulePath)+'.index')};git(repo,['read-tree',b.oid],env);for(const p of patches){const oldFile=path.join(fork,p.path),staged=writes.find(w=>w.dest===oldFile);git(repo,['apply','--cached','--whitespace=nowarn',staged?.file||oldFile],env);}if(git(repo,['write-tree'],env).toString().trim()!==headTree)throw Error('Submodule patch tree mismatch');
+const changed=git(repo,['diff','--name-only','-z',b.oid,h.oid]).toString().split('\0').filter(Boolean),sourceFiles=[];for(const file of changed){await copySource(repo,h.oid,file,modulePath+'/'+file);sourceFiles.push({path:modulePath+'/'+file,bytes:files.at(-1).bytes,sha256:files.at(-1).sha256});}submodules.push({path:modulePath,upstream,base:b.oid,baseTree,head:h.oid,headTree,patches,sourceFiles});}
+for(const name of git(native,['diff','--name-only','-z',old.base,args.head]).toString().split('\0').filter(Boolean)){if(headEntries.get(name)?.mode==='160000')continue;await copySource(native,args.head,name,name);}
+// Refuse a legacy gitlink placeholder or a symlink ancestor before any product write.
+async function writableFile(dest){const relative=path.relative(product,dest);if(relative.startsWith('..')||path.isAbsolute(relative))throw Error('Output outside product');let current=product;const parts=relative.split(path.sep);for(let i=0;i<parts.length;i++){current=path.join(current,parts[i]);try{const st=await fs.lstat(current);if(st.isSymbolicLink()||(i<parts.length-1&&!st.isDirectory())||(i===parts.length-1&&!st.isFile()))throw Error('Output ancestor/type requires explicit cleanup: '+relative);}catch(e){if(e.code!=='ENOENT')throw e;}}}
+for(const w of writes)await writableFile(w.dest);for(const f of files)await writableFile(f.dest);await writableFile(path.join(fork,'manifest.json'));await writableFile(path.join(fork,'source-verification.json'));
+// Everything verified before writing the editable product checkout. No network or real build.
+for(const w of writes){await fs.mkdir(path.dirname(w.dest),{recursive:true});await fs.copyFile(w.file,w.dest,1);}for(const f of files){await fs.mkdir(path.dirname(f.dest),{recursive:true});await fs.writeFile(f.dest,f.data);}
+const updated={...old,sourceSchema:2,head:args.head,tree,version:args.version,patches:parentPatches.map(({path,sha256})=>({path,sha256})),submodules,sourceUpdatedAt:new Date().toISOString()};await fs.writeFile(path.join(fork,'manifest.json'),JSON.stringify(updated,null,2)+'\n');const receipt={status:'PASS',base:old.base,head:args.head,resultTree:tree,submodules:submodules.map(({path,base,baseTree,head,headTree,patches})=>({path,base,baseTree,head,headTree,patches:patches.length})),sourceFiles:files.map(({path,bytes,sha256})=>({path,bytes,sha256})),networkStarted:false,nativeWorktreeTouched:false,nativeIndexTouched:false};await fs.writeFile(path.join(fork,'source-verification.json'),JSON.stringify(receipt,null,2)+'\n');console.log(JSON.stringify(receipt));

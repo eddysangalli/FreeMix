@@ -101,3 +101,13 @@ docs/RELATORIO-INSTALADOR-QR-004500-20261010.md -text -whitespace
 qa-finalizacao/native-browser-firstactivation/** -text -whitespace
 
 qa-finalizacao/update-https-local/** -text -whitespace
+
+qa-finalizacao/test-package-submodule-guard.mjs -text -whitespace
+qa-finalizacao/package-submodule-guard.json -text
+docs/evidencias-distribuicao-conclusao/native22-build-configured.json -text
+
+qa-finalizacao/native-submodule-draft/** -text -whitespace
+qa-finalizacao/native-submodule-applied-031500/** -text -whitespace
+fork/submodules/** -text -whitespace
+scripts/distribuicao/exportar-fontes-native.mjs -text
+scripts/reconstruir-motor.mjs -text

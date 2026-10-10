@@ -1,8 +1,8 @@
 {
   "upstream": "https://github.com/obsproject/obs-studio.git",
   "base": "ba2f32bdf791005443988a4955e963663e16b1ed",
-  "head": "4793d1a40f56ea9b6e887eb49189d937758e3b7f",
-  "version": "0.1.0-local.20261010010000",
+  "head": "500ced5ea0928453f9f27dc7d5649531e2671e28",
+  "version": "0.1.0-local.20261010031500",
   "patches": [
     {
       "path": "0001-feat-branding-replace-OBS-identity-with-FreeMix-Stud.patch",
@@ -87,7 +87,61 @@
     {
       "path": "0021-Complete-FreeMix-operator-branding-and-redact-OAuth-.patch",
       "sha256": "e789057efa41dbfd6eb0c82578e1b32cb968091a05ae62aaaa095c84d3068ef7"
+    },
+    {
+      "path": "0022-Include-browser-activation-fix-verified-through-Nati.patch",
+      "sha256": "52c225b07b7caf7079bc4c69aa738cb2ad27b899ef6357f58f27b60a600cf371"
     }
   ],
-  "sourceUpdatedAt": "2026-10-10T00:53:10.558Z"
+  "sourceUpdatedAt": "2026-10-10T02:52:38.553Z",
+  "sourceSchema": 2,
+  "tree": "5e0da1554f23fe64c2cd3a2b30e0a7b4e41ac00b",
+  "submodules": [
+    {
+      "path": "deps/libdshowcapture/src",
+      "upstream": "https://github.com/obsproject/libdshowcapture.git",
+      "base": "8878638324393815512f802640b0d5ce940161f1",
+      "baseTree": "b48317e9921aed76ca59d97ba414899f55e65109",
+      "head": "8878638324393815512f802640b0d5ce940161f1",
+      "headTree": "b48317e9921aed76ca59d97ba414899f55e65109",
+      "patches": [],
+      "sourceFiles": []
+    },
+    {
+      "path": "plugins/obs-browser",
+      "upstream": "https://github.com/obsproject/obs-browser.git",
+      "base": "3f0a2cdf378939ebe3c6f9ab36d4ea100c25aac2",
+      "baseTree": "c28c9249becf1dcdb730bc3150bb05f92953a81d",
+      "head": "dd26fda9cd8e507934f080be14f44038506c3b7e",
+      "headTree": "c4be2403bdd7ab64dc18dc3e005f804a40e94563",
+      "patches": [
+        {
+          "path": "submodules/d9ec8ae3e96f7809/0001-dd26fda9cd8e.patch",
+          "sha256": "60c1257010fadcc56b63dd6759f5affd885445f56fd620436b790e9e47619467",
+          "commit": "dd26fda9cd8e507934f080be14f44038506c3b7e",
+          "parent": "3f0a2cdf378939ebe3c6f9ab36d4ea100c25aac2",
+          "tree": "c4be2403bdd7ab64dc18dc3e005f804a40e94563",
+          "rawCommitPath": "submodules/d9ec8ae3e96f7809/0001-dd26fda9cd8e.commit.txt",
+          "rawCommitSha256": "94b66bf19b7bab79c04f9d5be5f0a67cf162e0598944196f5e195103e837fae6"
+        }
+      ],
+      "sourceFiles": [
+        {
+          "path": "plugins/obs-browser/browser-client.cpp",
+          "bytes": 19623,
+          "sha256": "ada13b266e6f9431287997fad482ee0c2cda9fb1873c8b590898c00783a7cab1"
+        }
+      ]
+    },
+    {
+      "path": "plugins/obs-websocket",
+      "upstream": "https://github.com/obsproject/obs-websocket.git",
+      "base": "1ef34bf48110c2a18184e50e41cd0b1a855e2147",
+      "baseTree": "2fde926257e6c4a185089ec5c1a1eec281f9e013",
+      "head": "1ef34bf48110c2a18184e50e41cd0b1a855e2147",
+      "headTree": "2fde926257e6c4a185089ec5c1a1eec281f9e013",
+      "patches": [],
+      "sourceFiles": []
+    }
+  ]
 }

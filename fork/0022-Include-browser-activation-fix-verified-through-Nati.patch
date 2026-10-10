@@ -1,0 +1,19 @@
+From 500ced5ea0928453f9f27dc7d5649531e2671e28 Mon Sep 17 00:00:00 2001
+From: Eddy Sangalli <eddyrodrigues@outlook.com>
+Date: Fri, 9 Oct 2026 23:50:33 -0300
+Subject: [PATCH] Include browser activation fix verified through Native CEF
+
+---
+ plugins/obs-browser | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/plugins/obs-browser b/plugins/obs-browser
+index 3f0a2cd..dd26fda 160000
+--- a/plugins/obs-browser
++++ b/plugins/obs-browser
+@@ -1 +1 @@
+-Subproject commit 3f0a2cdf378939ebe3c6f9ab36d4ea100c25aac2
++Subproject commit dd26fda9cd8e507934f080be14f44038506c3b7e
+-- 
+2.56.0.windows.1
+

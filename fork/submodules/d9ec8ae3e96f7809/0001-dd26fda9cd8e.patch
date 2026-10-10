@@ -1,0 +1,28 @@
+From dd26fda9cd8e507934f080be14f44038506c3b7e Mon Sep 17 00:00:00 2001
+From: Eddy Sangalli <eddyrodrigues@outlook.com>
+Date: Fri, 9 Oct 2026 23:50:31 -0300
+Subject: [PATCH] Reannounce actual source activation when the main browser
+ frame finishes loading
+
+---
+ browser-client.cpp | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/browser-client.cpp b/browser-client.cpp
+index bf7baad..d2ff8ec 100644
+--- a/browser-client.cpp
++++ b/browser-client.cpp
+@@ -624,6 +624,10 @@ void BrowserClient::OnLoadEnd(CefRefPtr<CefBrowser>, CefRefPtr<CefFrame> frame,
+ 
+ 		frame->ExecuteJavaScript(script, "", 0);
+ 	}
++
++	/* Activation can arrive before the page installs its event listeners. */
++	if (frame->IsMain())
++		bs->SetActive(obs_source_active(bs->source));
+ }
+ 
+ bool BrowserClient::OnConsoleMessage(CefRefPtr<CefBrowser>, cef_log_severity_t level, const CefString &message,
+-- 
+2.56.0.windows.1
+

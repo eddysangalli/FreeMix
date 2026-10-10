@@ -1,0 +1,6 @@
+tree c4be2403bdd7ab64dc18dc3e005f804a40e94563
+parent 3f0a2cdf378939ebe3c6f9ab36d4ea100c25aac2
+author Eddy Sangalli <eddyrodrigues@outlook.com> 1791600631 -0300
+committer Eddy Sangalli <eddyrodrigues@outlook.com> 1791600631 -0300
+
+Reannounce actual source activation when the main browser frame finishes loading

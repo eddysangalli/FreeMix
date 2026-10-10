@@ -9,10 +9,12 @@ Com Git e Node.js 20+:
 ```text
 npm ci
 node scripts/reconstruir-motor.mjs --check
-node scripts/reconstruir-motor.mjs
+node scripts/reconstruir-motor.mjs --dest PASTA_NOVA
 ```
 
-O segundo comando confere hashes sem rede. O terceiro clona a base oficial para uma pasta nova `native/obs-studio`, aplica a série e busca submódulos. Recusa sobrescrever destino existente. O Git precisa de nome/e-mail configurados para aplicar os commits. Também é possível usar `--dest PASTA_NOVA`.
+O segundo comando confere hashes sem rede. O terceiro exige um destino explícito e novo, clona a base oficial e inicializa seus submódulos antes de aplicar os patches do FreeMix. Em seguida aplica os patches locais dos plugins e valida suas árvores e commits. Não tenta buscar no upstream um commit local do plugin nem sobrescreve destino existente. Também aceita `--dest=PASTA_NOVA`.
+
+O manifesto `sourceSchema: 2` registra base/head/árvore de cada submódulo, patches e fontes de consulta com SHA256, além do objeto textual do commit local. Esse objeto é conferido pelo hash Git e restaura a identidade exata exigida pelo gitlink do pai. A árvore do pai reconstruído coincide com a exportada; seus metadados de committer podem diferir. Mudanças de URL/caminho, merges de plugins e remoções de fontes exigem revisão explícita. Esta receita não compila automaticamente nem comprova execução num Windows limpo.
 
 Compile no diretório do motor com o preset Windows x64 do OBS e as dependências de desenvolvimento correspondentes. A build local entregue usou Visual Studio 2026, desktop C++, ATL e `RelWithDebInfo`:
 
