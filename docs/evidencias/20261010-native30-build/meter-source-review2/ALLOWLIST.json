@@ -1,0 +1,119 @@
+{
+  "status": "FROZEN_OFFSIDE_REVIEW2_TWO_NATIVE_SOURCES_ROOT_FULL_REVIEW_REQUIRED",
+  "textOnly": true,
+  "files": [
+    {
+      "path": "prepare.mjs",
+      "sha256": "3667ce0a8d024837886a7d8c470204204b018b90c4695f592b641a99fe8b4780",
+      "bytes": 8478
+    },
+    {
+      "path": "compile-offside.ps1",
+      "sha256": "a9dc4c0b5e3a1d33e107456db704f70416862c410fc43ebbb1eb5ebd48e338e7",
+      "bytes": 2487
+    },
+    {
+      "path": "README.md",
+      "sha256": "1907adf203affdfb88162c7a3816ec33a3a559ada6b8c11735aec60b580a5b6f",
+      "bytes": 1523
+    },
+    {
+      "path": "DERIVATION.json",
+      "sha256": "90eddb131357f782575b9b90bd472aeb603549059aa8d4ca9c5031100ecc45e5",
+      "bytes": 2913
+    },
+    {
+      "path": "production.patch",
+      "sha256": "f3568f1f1e2fc4fa528430d03616e9abc3431375d2c976306e0b3cd424240df3",
+      "bytes": 2299
+    },
+    {
+      "path": "CPP-RECEIPT.json",
+      "sha256": "fa4ff8cc81a85385b1fd7c8f27ebc764f547dc92c62bb1a2e5b7dc2bc836eae4",
+      "bytes": 1049
+    },
+    {
+      "path": "SOURCE-CLOSURE.json",
+      "sha256": "a5ba71f35cd26c64e780d97bd5b6b84739a699b64b8dc8003f76f1d66d842dc2",
+      "bytes": 1763
+    },
+    {
+      "path": "freeze.mjs",
+      "sha256": "9b5e83f91ac26b72b6b9e4aedda3a4840d7c463924c5e38b8004fdbbf8557277",
+      "bytes": 3346
+    },
+    {
+      "path": "baseline/src/utils/Obs_VolumeMeter.cpp",
+      "sha256": "b7789fcc8be7be674282975243d124bfa05c2849c812ec33915c410ae1a8459a",
+      "bytes": 13178
+    },
+    {
+      "path": "baseline/src/utils/Obs_VolumeMeter.h",
+      "sha256": "2a122610e826f8921c0810d8bfd0647804a0eebbd211649d1420c6e5870ae97f",
+      "bytes": 3309
+    },
+    {
+      "path": "baseline/src/utils/Obs_VolumeMeter_Helpers.h",
+      "sha256": "1990c150e62c29a20835f8fdb4710fcf07dd4ce2d76f6d6b4c15dd2a0c1205ae",
+      "bytes": 3962
+    },
+    {
+      "path": "draft/src/utils/Obs_VolumeMeter.cpp",
+      "sha256": "7c3bf7985c726f15ce256ee6e8e0d47d41c01537817e51b05df5217bb9d632ea",
+      "bytes": 13362
+    },
+    {
+      "path": "draft/src/utils/Obs_VolumeMeter.h",
+      "sha256": "973ff4c51db2bbca9c780d589a92d1777e51f97e77f5b4a2b4b4e2d61937d7f8",
+      "bytes": 3332
+    },
+    {
+      "path": "draft/src/utils/Obs_VolumeMeter_Helpers.h",
+      "sha256": "1990c150e62c29a20835f8fdb4710fcf07dd4ce2d76f6d6b4c15dd2a0c1205ae",
+      "bytes": 3962
+    },
+    {
+      "path": "model/model.cpp",
+      "sha256": "128d6013404b81c8f7cbb6c523092f1fe01bce1186273f3745448aac399306a6",
+      "bytes": 14859
+    },
+    {
+      "path": "model/helpers.h",
+      "sha256": "1990c150e62c29a20835f8fdb4710fcf07dd4ce2d76f6d6b4c15dd2a0c1205ae",
+      "bytes": 3962
+    },
+    {
+      "path": "model/tests.inc",
+      "sha256": "544f6c827b671ac8ac70e6ddc46881e83bd26125115b7ac28d73f672bf57022b",
+      "bytes": 4302
+    },
+    {
+      "path": "model/tests-original.inc",
+      "sha256": "7d8430c0164ce8cf4f3fc4f42cbf6e0eb545c970d19c3a25b3ddf2acbde06489",
+      "bytes": 3083
+    }
+  ],
+  "productionChangedSources": [
+    {
+      "path": "src/utils/Obs_VolumeMeter.cpp",
+      "beforeSha256": "b7789fcc8be7be674282975243d124bfa05c2849c812ec33915c410ae1a8459a",
+      "draftSha256": "7c3bf7985c726f15ce256ee6e8e0d47d41c01537817e51b05df5217bb9d632ea",
+      "crlfPreserved": true
+    },
+    {
+      "path": "src/utils/Obs_VolumeMeter.h",
+      "beforeSha256": "2a122610e826f8921c0810d8bfd0647804a0eebbd211649d1420c6e5870ae97f",
+      "draftSha256": "973ff4c51db2bbca9c780d589a92d1777e51f97e77f5b4a2b4b4e2d61937d7f8",
+      "crlfPreserved": true
+    }
+  ],
+  "patchSha256": "f3568f1f1e2fc4fa528430d03616e9abc3431375d2c976306e0b3cd424240df3",
+  "excluded": [
+    "CPU executables/objects/PDBs/model-build",
+    "Native raw logs/configs/credentials",
+    "installations/operator data"
+  ],
+  "nativeStarted": false,
+  "SDKChangedByAgent": false,
+  "canonicalChangedByAgent": false
+}

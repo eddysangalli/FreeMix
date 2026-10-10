@@ -1,0 +1,13 @@
+{
+  "status": "PREPARED_ONLY_NO_EXECUTION",
+  "executable": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\entregas\\FreeMix-Completo-0.1.0-local.20261010060000\\runtime\\node.exe",
+  "runner": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\calls-av-muted-consumer-preparation\\runner.mjs",
+  "args": [
+    "--root-reviewed=EXECUTE-OWN-SYNTHETIC-BROWSER-AV-MUTED-CONSUMER-20S",
+    "--preparation-sha=907680e9c57ff782d862aec3b2ee2d8af84389dcedfe1410ffc2f88fe418210a"
+  ],
+  "appendVerifiedAllowlistArg": "--allowlist-sha=<Root-reviewed AL SHA>",
+  "launch": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\calls-av-muted-consumer-preparation\\launch.mjs",
+  "launchMarker": "EXECUTE-ROOT-APPROVED-AV-MUTED-CONSUMER-20S",
+  "requires": "Root FULL review + explicit exclusive permission; ownloopback IAB manualbutton; no Native/mic"
+}

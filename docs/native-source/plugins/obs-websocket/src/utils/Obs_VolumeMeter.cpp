@@ -75,9 +75,8 @@ json Utils::Obs::VolumeMeter::Meter::GetMeterData()
 	}
 
 	std::vector<std::vector<float>> levels;
-	const float volume = _muted ? 0.0f : _volume.load();
-
 	std::unique_lock<std::mutex> l(_mutex);
+	const float volume = _muted ? 0.0f : _volume.load();
 
 	if (_lastUpdate != 0 && (os_gettime_ns() - _lastUpdate) * 0.000000001 > 0.3)
 		ResetAudioLevels();
@@ -106,6 +105,7 @@ void Utils::Obs::VolumeMeter::Meter::ResetAudioLevels()
 	for (int channelNumber = 0; channelNumber < MAX_AUDIO_CHANNELS; channelNumber++) {
 		_magnitude[channelNumber] = 0;
 		_peak[channelNumber] = 0;
+		std::fill_n(_previousSamples[channelNumber], 4, 0.0f);
 	}
 }
 
@@ -129,6 +129,10 @@ void Utils::Obs::VolumeMeter::Meter::ProcessAudioChannels(const struct audio_dat
 void Utils::Obs::VolumeMeter::Meter::ProcessPeak(const struct audio_data *data)
 {
 	size_t sampleCount = data->frames;
+	if (sampleCount == 0) {
+		ResetAudioLevels();
+		return;
+	}
 	int channelNumber = 0;
 
 	for (int planeNumber = 0; channelNumber < _channels; planeNumber++) {
@@ -196,6 +200,10 @@ void Utils::Obs::VolumeMeter::Meter::ProcessPeak(const struct audio_data *data)
 void Utils::Obs::VolumeMeter::Meter::ProcessMagnitude(const struct audio_data *data)
 {
 	size_t sampleCount = data->frames;
+	if (sampleCount == 0) {
+		ResetAudioLevels();
+		return;
+	}
 
 	int channelNumber = 0;
 	for (int planeNumber = 0; channelNumber < _channels; planeNumber++) {

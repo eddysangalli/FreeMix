@@ -187,3 +187,7 @@ docs/evidencias/20261010-replay-full-cadence-r1/** -text -whitespace
 docs/evidencias/20261010-replay-full-cadence-r2/** -text -whitespace
 docs/evidencias/20261010-outputs-read-ack/** -text -whitespace
 docs/evidencias/20261010-gate5-cursor-fail/** -text -whitespace
+
+docs/evidencias/20261010-calls-av-muted-consumer/** -text -whitespace
+
+docs/evidencias/20261010-native30-build/** -text -whitespace

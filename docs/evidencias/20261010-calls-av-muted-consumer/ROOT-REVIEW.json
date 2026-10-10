@@ -1,0 +1,11 @@
+{
+  "status": "ROOT_FULL_REVIEW_ONE_SYNTHETIC_MUTED_AUDIO_CONSUMER_APPROVED",
+  "at": "2026-10-10T11:45:32.883Z",
+  "allowlist": "e192312a10f4e6b210b7f059c34e132e66e37006df153dfefed248dd65734d35",
+  "files": 31,
+  "originalAvBlockExact": true,
+  "probeDeltaReversible": true,
+  "noNativeSessionActive": true,
+  "productQualification": false,
+  "operatorTouched": false
+}

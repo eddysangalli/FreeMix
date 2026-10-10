@@ -1,0 +1,43 @@
+{
+  "status": "PASS_ATTACHMENT_MODEL_ONLY_NOT_CHROMIUM_PROOF",
+  "cases": 8,
+  "tests": [
+    {
+      "name": "Default OFF performs no attachment or media mutation",
+      "pass": true
+    },
+    {
+      "name": "Enabled attachment uses exact remote track; no clone/mute/stop/sample changes",
+      "pass": true
+    },
+    {
+      "name": "Audio-before-video keeps one pending reference then attaches once",
+      "pass": true
+    },
+    {
+      "name": "Unexpected second audio track/foreign stream is rejected without mutation",
+      "pass": true
+    },
+    {
+      "name": "Mute safety remains strict, never falls back to audible element",
+      "pass": true
+    },
+    {
+      "name": "Foreign preexisting audio is rejected and never detached",
+      "pass": true
+    },
+    {
+      "name": "Existing same audio is observed but cleanup does not remove an unowned attachment",
+      "pass": true
+    },
+    {
+      "name": "Close is idempotent and refuses late ontrack callbacks",
+      "pass": true
+    }
+  ],
+  "browserExecuted": false,
+  "NativeExecuted": false,
+  "APIExecuted": false,
+  "audioExecuted": false,
+  "causeProven": false
+}

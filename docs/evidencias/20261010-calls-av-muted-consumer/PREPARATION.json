@@ -1,0 +1,67 @@
+{
+  "status": "PREPARED_ONLY_WAIT_ROOT_REVIEW_NO_AUDIO_NATIVE_EXECUTION",
+  "nativeStarted": false,
+  "browserExecuted": false,
+  "audioContextStarted": false,
+  "productModified": false,
+  "operatorTouched": false,
+  "avSyncProven": false,
+  "experimental": true,
+  "source": "Own synthetic browser VideoFrame+AudioData, common PTS origin, no microphone",
+  "nodeExecutable": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\entregas\\FreeMix-Completo-0.1.0-local.20261010060000\\runtime\\node.exe",
+  "nodeExecutableSha256": "ba4e6d110e8c1592a1ecd390f6b05f3da124b13871a5be62b341a07a853c6c32",
+  "externalModules": [
+    {
+      "path": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\calls-av-clock-draft\\av-clock.mjs",
+      "sha256": "fc62226734add8195d9bc1b1907370c82042c9746cc30db1b3de6b8607d7701d",
+      "route": "/av-clock.mjs"
+    },
+    {
+      "path": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\calls-continuous-node-browser-draft\\draft\\painel\\remoto\\call-video-track.js",
+      "sha256": "362ba2ca00fe063d83dea8d2878e659ffc0efcca798dd78e38699275dddc2620",
+      "route": "/call-video-track.js"
+    }
+  ],
+  "avDraftAllowlistSha256": "305ada54659d019ce452d03dedc8f639b0f5a6bc2299b820bf9664b19bcf85dd",
+  "nativeCefVideoProof": {
+    "path": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\calls-continuous-native-cef-qa-preparation\\ALLOWLIST-FINAL.json",
+    "sha256": "b871468ac99760d9306fb868d6d1aa4ff4a8ec13a513c18de9e55dc0abca0118",
+    "decoded": 595,
+    "callbacks": 540,
+    "audioIncluded": false
+  },
+  "futureRequiresRootReviewAndNoConcurrentNativeOrAudioCapture": true,
+  "derivation": {
+    "sourceAllowlistSha256": "b3cf458f394b52e5164d3a4878cb972f3752875b07979469d5bdf1a0d6ea79ff",
+    "status": "PREPARED_ONLY_ONE_MUTED_RECEIVER_CONSUMER",
+    "originalAvStillInconclusive": true,
+    "keepPageOriginUnchanged": true,
+    "keepLocalTapTrue": true,
+    "keepPulseRelativePTSBytesGain0Criteria": true
+  },
+  "diagnostic": {
+    "instrumentationOnly": true,
+    "localSyntheticTapEnabled": true,
+    "keepGainZero": true,
+    "keepSilentWorklet": true,
+    "originalThresholdsUnchanged": true,
+    "AVAcceptanceIndependentOfDiagnosticCollection": true
+  },
+  "timestampIntervention": {
+    "enabled": true,
+    "domain": "PAGE_RELATIVE_CAPTURE_TIME_HYPOTHESIS",
+    "source": "Math.floor((AVClock.wall-latencyMs)*1000)",
+    "oneOriginForAudioAndVideo": true,
+    "AudioContextCurrentTimeNotUsed": true,
+    "sourcePtsUnchanged": true,
+    "NativeClockCertified": false
+  },
+  "mutedConsumer": {
+    "enabledInOwnQAOnly": true,
+    "helperDefault": false,
+    "sameRemoteTrack": true,
+    "originalVideoElementMuted": true,
+    "noClockSenderGainDetectorChanges": true,
+    "NativePCMAVCertified": false
+  }
+}

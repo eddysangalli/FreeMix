@@ -1,0 +1,753 @@
+{
+  "status": "OBSERVED_SYNTHETIC_AV_CONSUMER_DIAGNOSTIC_NO_PRODUCT_AV_APPROVAL",
+  "nativeStarted": false,
+  "operatorTouched": false,
+  "productModified": false,
+  "experimental": true,
+  "avSyncProven": false,
+  "externalServersUsed": false,
+  "startedAt": "2026-10-10T11:45:38.393Z",
+  "args": {
+    "root-reviewed": "EXECUTE-OWN-SYNTHETIC-BROWSER-AV-MUTED-CONSUMER-20S",
+    "preparation-sha": "907680e9c57ff782d862aec3b2ee2d8af84389dcedfe1410ffc2f88fe418210a",
+    "allowlist-sha": "e192312a10f4e6b210b7f059c34e132e66e37006df153dfefed248dd65734d35"
+  },
+  "checks": [],
+  "port": 60779,
+  "url": "http://127.0.0.1:60779/",
+  "browserReportSha256": "b97f28bb0a6ac22a5d9c7bdfc9da80e49906bc27bd7a965140d0f1486491cb49",
+  "receivedAnalysis": {
+    "pairs": [
+      {
+        "id": 1,
+        "videoReceivedWallMs": 5853.3,
+        "audioReceivedWallMs": 5931.383166618983,
+        "rawOffsetMs": -78.08316661898243,
+        "sourceOffsetMs": 1,
+        "offsetMs": -79.08316661898243,
+        "frequencyHz": 750
+      },
+      {
+        "id": 2,
+        "videoReceivedWallMs": 6856.8,
+        "audioReceivedWallMs": 6931.291833261807,
+        "rawOffsetMs": -74.49183326180719,
+        "sourceOffsetMs": 2,
+        "offsetMs": -76.49183326180719,
+        "frequencyHz": 916.6666666666666
+      },
+      {
+        "id": 3,
+        "videoReceivedWallMs": 7855.9,
+        "audioReceivedWallMs": 7931.35483328565,
+        "rawOffsetMs": -75.45483328565024,
+        "sourceOffsetMs": 3,
+        "offsetMs": -78.45483328565024,
+        "frequencyHz": 1050
+      },
+      {
+        "id": 4,
+        "videoReceivedWallMs": 8872.4,
+        "audioReceivedWallMs": 8931.307999976158,
+        "rawOffsetMs": -58.90799997615795,
+        "sourceOffsetMs": 4,
+        "offsetMs": -62.90799997615795,
+        "frequencyHz": 1233.3333333333333
+      },
+      {
+        "id": 5,
+        "videoReceivedWallMs": 9876.3,
+        "audioReceivedWallMs": 9931.401,
+        "rawOffsetMs": -55.10100000000057,
+        "sourceOffsetMs": 5,
+        "offsetMs": -60.10100000000057,
+        "frequencyHz": 1400
+      },
+      {
+        "id": 6,
+        "videoReceivedWallMs": 10878.3,
+        "audioReceivedWallMs": 10931.207999928474,
+        "rawOffsetMs": -52.907999928474965,
+        "sourceOffsetMs": 6,
+        "offsetMs": -58.907999928474965,
+        "frequencyHz": 1550
+      },
+      {
+        "id": 7,
+        "videoReceivedWallMs": 11882.9,
+        "audioReceivedWallMs": 11931.161000023842,
+        "rawOffsetMs": -48.261000023841916,
+        "sourceOffsetMs": 7,
+        "offsetMs": -55.261000023841916,
+        "frequencyHz": 1716.6666666666667
+      },
+      {
+        "id": 8,
+        "videoReceivedWallMs": 12881,
+        "audioReceivedWallMs": 12931.303999952315,
+        "rawOffsetMs": -50.30399995231528,
+        "sourceOffsetMs": 8,
+        "offsetMs": -58.30399995231528,
+        "frequencyHz": 1866.6666666666667
+      },
+      {
+        "id": 9,
+        "videoReceivedWallMs": 13857.4,
+        "audioReceivedWallMs": 13931.307999952318,
+        "rawOffsetMs": -73.90799995231828,
+        "sourceOffsetMs": 9,
+        "offsetMs": -82.90799995231828,
+        "frequencyHz": 2033.3333333333333
+      },
+      {
+        "id": 10,
+        "videoReceivedWallMs": 14886.1,
+        "audioReceivedWallMs": 14931.345999952318,
+        "rawOffsetMs": -45.245999952318016,
+        "sourceOffsetMs": 10,
+        "offsetMs": -55.245999952318016,
+        "frequencyHz": 2183.3333333333335
+      },
+      {
+        "id": 11,
+        "videoReceivedWallMs": 15911.2,
+        "audioReceivedWallMs": 15931.166999928475,
+        "rawOffsetMs": -19.96699992847425,
+        "sourceOffsetMs": 11,
+        "offsetMs": -30.96699992847425,
+        "frequencyHz": 2350
+      },
+      {
+        "id": 12,
+        "videoReceivedWallMs": 16927,
+        "audioReceivedWallMs": 16931.341166642826,
+        "rawOffsetMs": -4.341166642825556,
+        "sourceOffsetMs": 12,
+        "offsetMs": -16.341166642825556,
+        "frequencyHz": 2516.6666666666665
+      },
+      {
+        "id": 13,
+        "videoReceivedWallMs": 17942.6,
+        "audioReceivedWallMs": 17931.224166595144,
+        "rawOffsetMs": 11.375833404854347,
+        "sourceOffsetMs": 13,
+        "offsetMs": -1.6241665951456525,
+        "frequencyHz": 2666.6666666666665
+      },
+      {
+        "id": 14,
+        "videoReceivedWallMs": 18965.8,
+        "audioReceivedWallMs": 18931.153166618984,
+        "rawOffsetMs": 34.64683338101531,
+        "sourceOffsetMs": 14,
+        "offsetMs": 20.646833381015313,
+        "frequencyHz": 2833.3333333333335
+      },
+      {
+        "id": 15,
+        "videoReceivedWallMs": 19977.1,
+        "audioReceivedWallMs": 19931.19016659514,
+        "rawOffsetMs": 45.909833404857636,
+        "sourceOffsetMs": 15,
+        "offsetMs": 30.909833404857636,
+        "frequencyHz": 3000
+      },
+      {
+        "id": 16,
+        "videoReceivedWallMs": 20995.8,
+        "audioReceivedWallMs": 20931.29916661898,
+        "rawOffsetMs": 64.50083338101831,
+        "sourceOffsetMs": 16,
+        "offsetMs": 48.50083338101831,
+        "frequencyHz": 3150
+      },
+      {
+        "id": 17,
+        "videoReceivedWallMs": 21994.3,
+        "audioReceivedWallMs": 21931.353166642828,
+        "rawOffsetMs": 62.94683335717127,
+        "sourceOffsetMs": 17,
+        "offsetMs": 45.94683335717127,
+        "frequencyHz": 3316.6666666666665
+      },
+      {
+        "id": 18,
+        "videoReceivedWallMs": 23017.1,
+        "audioReceivedWallMs": 22931.36816659514,
+        "rawOffsetMs": 85.73183340485775,
+        "sourceOffsetMs": 18,
+        "offsetMs": 67.73183340485775,
+        "frequencyHz": 3466.6666666666665
+      },
+      {
+        "id": 19,
+        "videoReceivedWallMs": 24032.9,
+        "audioReceivedWallMs": 23931.311166618983,
+        "rawOffsetMs": 101.58883338101805,
+        "sourceOffsetMs": 19,
+        "offsetMs": 82.58883338101805,
+        "frequencyHz": 3633.3333333333335
+      }
+    ],
+    "steadyPairs": 16,
+    "skewMs": -21.70543745678765,
+    "driftMsPerSecond": 9.778863237432752,
+    "driftIntervalMs": 146.6829485614913,
+    "maxAbsOffsetMs": 82.90799995231828,
+    "measurementUncertaintyMs": 43.379040617143374,
+    "uncertaintyComponents": {
+      "frameMs": 33.36666666666667,
+      "audioQuantumMs": 2.6666666666666665,
+      "clockMappingResidualMs": 0.24570728380786022,
+      "callbackLatenessMs": 2.100000000002183,
+      "codecThresholdAllowanceMs": 5
+    },
+    "withinMeasuredBound": false,
+    "limit": "Bound is measurement-resolution estimate, not physical sync/genlock acceptance"
+  },
+  "originalAvAcceptance": {
+    "pass": false,
+    "error": "ERR_ASSERTION",
+    "browserStatus": "OBSERVED_BROWSER_SYNTHETIC_AV_RECEIVER"
+  },
+  "mutedConsumer": {
+    "enabled": true,
+    "singleVariable": "SAME_REMOTE_AUDIO_TRACK_IN_EXISTING_MUTED_VIDEO_STREAM",
+    "causeProven": false,
+    "snapshots": [
+      {
+        "event": "video-track",
+        "atMs": 4517.5,
+        "muted": true,
+        "paused": true,
+        "readyState": 0,
+        "networkState": 3,
+        "currentTime": 0,
+        "videoTracks": 1,
+        "audioTracks": 0,
+        "sameReceivedTrack": false,
+        "metrics": {
+          "attempts": 0,
+          "attached": 0,
+          "duplicates": 0,
+          "detached": 0
+        }
+      },
+      {
+        "event": "audio-track",
+        "atMs": 4524.799999952316,
+        "muted": true,
+        "paused": false,
+        "readyState": 0,
+        "networkState": 3,
+        "currentTime": 0,
+        "videoTracks": 1,
+        "audioTracks": 1,
+        "sameReceivedTrack": true,
+        "metrics": {
+          "attempts": 1,
+          "attached": 1,
+          "duplicates": 0,
+          "detached": 0
+        }
+      },
+      {
+        "event": "rtp-tick",
+        "atMs": 5677.199999928474,
+        "muted": true,
+        "paused": false,
+        "readyState": 4,
+        "networkState": 2,
+        "currentTime": 0.811748,
+        "videoTracks": 1,
+        "audioTracks": 1,
+        "sameReceivedTrack": true,
+        "metrics": {
+          "attempts": 1,
+          "attached": 1,
+          "duplicates": 0,
+          "detached": 0
+        }
+      },
+      {
+        "event": "rtp-tick",
+        "atMs": 6676.600000023842,
+        "muted": true,
+        "paused": false,
+        "readyState": 4,
+        "networkState": 2,
+        "currentTime": 1.811077,
+        "videoTracks": 1,
+        "audioTracks": 1,
+        "sameReceivedTrack": true,
+        "metrics": {
+          "attempts": 1,
+          "attached": 1,
+          "duplicates": 0,
+          "detached": 0
+        }
+      },
+      {
+        "event": "rtp-tick",
+        "atMs": 7665.399999976158,
+        "muted": true,
+        "paused": false,
+        "readyState": 4,
+        "networkState": 2,
+        "currentTime": 2.79995,
+        "videoTracks": 1,
+        "audioTracks": 1,
+        "sameReceivedTrack": true,
+        "metrics": {
+          "attempts": 1,
+          "attached": 1,
+          "duplicates": 0,
+          "detached": 0
+        }
+      },
+      {
+        "event": "rtp-tick",
+        "atMs": 8676.100000023842,
+        "muted": true,
+        "paused": false,
+        "readyState": 4,
+        "networkState": 2,
+        "currentTime": 3.810635,
+        "videoTracks": 1,
+        "audioTracks": 1,
+        "sameReceivedTrack": true,
+        "metrics": {
+          "attempts": 1,
+          "attached": 1,
+          "duplicates": 0,
+          "detached": 0
+        }
+      },
+      {
+        "event": "rtp-tick",
+        "atMs": 9678.600000023842,
+        "muted": true,
+        "paused": false,
+        "readyState": 4,
+        "networkState": 2,
+        "currentTime": 4.813117,
+        "videoTracks": 1,
+        "audioTracks": 1,
+        "sameReceivedTrack": true,
+        "metrics": {
+          "attempts": 1,
+          "attached": 1,
+          "duplicates": 0,
+          "detached": 0
+        }
+      },
+      {
+        "event": "rtp-tick",
+        "atMs": 10673.600000023842,
+        "muted": true,
+        "paused": false,
+        "readyState": 4,
+        "networkState": 2,
+        "currentTime": 5.808057,
+        "videoTracks": 1,
+        "audioTracks": 1,
+        "sameReceivedTrack": true,
+        "metrics": {
+          "attempts": 1,
+          "attached": 1,
+          "duplicates": 0,
+          "detached": 0
+        }
+      },
+      {
+        "event": "rtp-tick",
+        "atMs": 11669.5,
+        "muted": true,
+        "paused": false,
+        "readyState": 4,
+        "networkState": 2,
+        "currentTime": 6.804077,
+        "videoTracks": 1,
+        "audioTracks": 1,
+        "sameReceivedTrack": true,
+        "metrics": {
+          "attempts": 1,
+          "attached": 1,
+          "duplicates": 0,
+          "detached": 0
+        }
+      },
+      {
+        "event": "rtp-tick",
+        "atMs": 12664.799999952316,
+        "muted": true,
+        "paused": false,
+        "readyState": 4,
+        "networkState": 2,
+        "currentTime": 7.799266,
+        "videoTracks": 1,
+        "audioTracks": 1,
+        "sameReceivedTrack": true,
+        "metrics": {
+          "attempts": 1,
+          "attached": 1,
+          "duplicates": 0,
+          "detached": 0
+        }
+      },
+      {
+        "event": "rtp-tick",
+        "atMs": 13677.100000023842,
+        "muted": true,
+        "paused": false,
+        "readyState": 4,
+        "networkState": 2,
+        "currentTime": 8.811633,
+        "videoTracks": 1,
+        "audioTracks": 1,
+        "sameReceivedTrack": true,
+        "metrics": {
+          "attempts": 1,
+          "attached": 1,
+          "duplicates": 0,
+          "detached": 0
+        }
+      },
+      {
+        "event": "rtp-tick",
+        "atMs": 14669.799999952316,
+        "muted": true,
+        "paused": false,
+        "readyState": 4,
+        "networkState": 2,
+        "currentTime": 9.804297,
+        "videoTracks": 1,
+        "audioTracks": 1,
+        "sameReceivedTrack": true,
+        "metrics": {
+          "attempts": 1,
+          "attached": 1,
+          "duplicates": 0,
+          "detached": 0
+        }
+      },
+      {
+        "event": "rtp-tick",
+        "atMs": 15677.799999952316,
+        "muted": true,
+        "paused": false,
+        "readyState": 4,
+        "networkState": 2,
+        "currentTime": 10.81232,
+        "videoTracks": 1,
+        "audioTracks": 1,
+        "sameReceivedTrack": true,
+        "metrics": {
+          "attempts": 1,
+          "attached": 1,
+          "duplicates": 0,
+          "detached": 0
+        }
+      },
+      {
+        "event": "rtp-tick",
+        "atMs": 16669.5,
+        "muted": true,
+        "paused": false,
+        "readyState": 4,
+        "networkState": 2,
+        "currentTime": 11.803991,
+        "videoTracks": 1,
+        "audioTracks": 1,
+        "sameReceivedTrack": true,
+        "metrics": {
+          "attempts": 1,
+          "attached": 1,
+          "duplicates": 0,
+          "detached": 0
+        }
+      },
+      {
+        "event": "rtp-tick",
+        "atMs": 17677.600000023842,
+        "muted": true,
+        "paused": false,
+        "readyState": 4,
+        "networkState": 2,
+        "currentTime": 12.8121,
+        "videoTracks": 1,
+        "audioTracks": 1,
+        "sameReceivedTrack": true,
+        "metrics": {
+          "attempts": 1,
+          "attached": 1,
+          "duplicates": 0,
+          "detached": 0
+        }
+      },
+      {
+        "event": "rtp-tick",
+        "atMs": 18676.699999928474,
+        "muted": true,
+        "paused": false,
+        "readyState": 4,
+        "networkState": 2,
+        "currentTime": 13.811184,
+        "videoTracks": 1,
+        "audioTracks": 1,
+        "sameReceivedTrack": true,
+        "metrics": {
+          "attempts": 1,
+          "attached": 1,
+          "duplicates": 0,
+          "detached": 0
+        }
+      },
+      {
+        "event": "rtp-tick",
+        "atMs": 19672.299999952316,
+        "muted": true,
+        "paused": false,
+        "readyState": 4,
+        "networkState": 2,
+        "currentTime": 14.806817,
+        "videoTracks": 1,
+        "audioTracks": 1,
+        "sameReceivedTrack": true,
+        "metrics": {
+          "attempts": 1,
+          "attached": 1,
+          "duplicates": 0,
+          "detached": 0
+        }
+      },
+      {
+        "event": "rtp-tick",
+        "atMs": 20672.799999952316,
+        "muted": true,
+        "paused": false,
+        "readyState": 4,
+        "networkState": 2,
+        "currentTime": 15.807289,
+        "videoTracks": 1,
+        "audioTracks": 1,
+        "sameReceivedTrack": true,
+        "metrics": {
+          "attempts": 1,
+          "attached": 1,
+          "duplicates": 0,
+          "detached": 0
+        }
+      },
+      {
+        "event": "rtp-tick",
+        "atMs": 21676,
+        "muted": true,
+        "paused": false,
+        "readyState": 4,
+        "networkState": 2,
+        "currentTime": 16.810476,
+        "videoTracks": 1,
+        "audioTracks": 1,
+        "sameReceivedTrack": true,
+        "metrics": {
+          "attempts": 1,
+          "attached": 1,
+          "duplicates": 0,
+          "detached": 0
+        }
+      },
+      {
+        "event": "rtp-tick",
+        "atMs": 22679.100000023842,
+        "muted": true,
+        "paused": false,
+        "readyState": 4,
+        "networkState": 2,
+        "currentTime": 17.813641,
+        "videoTracks": 1,
+        "audioTracks": 1,
+        "sameReceivedTrack": true,
+        "metrics": {
+          "attempts": 1,
+          "attached": 1,
+          "duplicates": 0,
+          "detached": 0
+        }
+      },
+      {
+        "event": "rtp-tick",
+        "atMs": 23679.399999976158,
+        "muted": true,
+        "paused": false,
+        "readyState": 4,
+        "networkState": 2,
+        "currentTime": 18.813852,
+        "videoTracks": 1,
+        "audioTracks": 1,
+        "sameReceivedTrack": true,
+        "metrics": {
+          "attempts": 1,
+          "attached": 1,
+          "duplicates": 0,
+          "detached": 0
+        }
+      },
+      {
+        "event": "rtp-tick",
+        "atMs": 24678.199999928474,
+        "muted": true,
+        "paused": false,
+        "readyState": 4,
+        "networkState": 2,
+        "currentTime": 19.81277,
+        "videoTracks": 1,
+        "audioTracks": 1,
+        "sameReceivedTrack": true,
+        "metrics": {
+          "attempts": 1,
+          "attached": 1,
+          "duplicates": 0,
+          "detached": 0
+        }
+      },
+      {
+        "event": "before-close",
+        "atMs": 25354.399999976158,
+        "muted": true,
+        "paused": false,
+        "readyState": 4,
+        "networkState": 2,
+        "currentTime": 20.488936,
+        "videoTracks": 1,
+        "audioTracks": 1,
+        "sameReceivedTrack": true,
+        "metrics": {
+          "attempts": 1,
+          "attached": 1,
+          "duplicates": 0,
+          "detached": 0
+        }
+      },
+      {
+        "event": "after-close",
+        "atMs": 25354.899999976158,
+        "muted": true,
+        "paused": false,
+        "readyState": 4,
+        "networkState": 2,
+        "currentTime": 20.488936,
+        "videoTracks": 1,
+        "audioTracks": 0,
+        "sameReceivedTrack": false,
+        "metrics": {
+          "attempts": 1,
+          "attached": 1,
+          "duplicates": 0,
+          "detached": 1
+        }
+      }
+    ],
+    "truncated": 0,
+    "faults": [],
+    "closed": true
+  },
+  "receiverDemandHypothesis": {
+    "causeProven": false,
+    "originalAvAcceptance": {
+      "pass": false,
+      "error": "ERR_ASSERTION",
+      "browserStatus": "OBSERVED_BROWSER_SYNTHETIC_AV_RECEIVER"
+    },
+    "observedOnly": true
+  },
+  "timestampIntervention": {
+    "enabled": true,
+    "domain": "PAGE_RELATIVE_CAPTURE_TIME_HYPOTHESIS",
+    "pageCaptureOriginUs": 4673100,
+    "baseNs": "3000000000000",
+    "lanes": {
+      "audio": {
+        "frames": 400,
+        "firstUs": 4673100,
+        "lastUs": 24623100
+      },
+      "video": {
+        "frames": 600,
+        "firstUs": 4673100,
+        "lastUs": 24659733
+      }
+    },
+    "sourcePtsUnchanged": true,
+    "PCMUnchanged": true,
+    "causeProven": false
+  },
+  "diagnostic": {
+    "localTapEnabled": true,
+    "localHeartbeatMessages": 103,
+    "lastLocalHeartbeat": {
+      "type": "audio-diagnostic",
+      "role": "synthetic-local",
+      "processCalls": 7651,
+      "emptyCalls": 0,
+      "inputFrames": 979328,
+      "inputSamples": 1958656,
+      "nonzeroSamples": 145920,
+      "aboveToneThreshold": 119278,
+      "nonfiniteSamples": 0,
+      "maxInputChannels": 2,
+      "maxInputFrames": 128,
+      "peak": 0.3499999940395355,
+      "emitted": 103,
+      "rms": 0.06754669910364977,
+      "frame": 979200,
+      "contextTime": 20.4,
+      "sampleRate": 48000
+    },
+    "receiverHeartbeatMessages": 103,
+    "lastReceiverHeartbeat": {
+      "type": "audio-diagnostic",
+      "role": "receiver",
+      "processCalls": 7651,
+      "emptyCalls": 0,
+      "inputFrames": 979328,
+      "inputSamples": 1958656,
+      "nonzeroSamples": 197368,
+      "aboveToneThreshold": 119340,
+      "nonfiniteSamples": 0,
+      "maxInputChannels": 2,
+      "maxInputFrames": 128,
+      "peak": 0.4500259459018707,
+      "emitted": 103,
+      "rms": 0.06740442440155191,
+      "frame": 979200,
+      "contextTime": 20.4,
+      "sampleRate": 48000
+    },
+    "beforeGeneratorBlocks": 400,
+    "beforeGeneratorPeak": 0.3499999940395355,
+    "constructedAudioDataPeak": 0.3499999940395355,
+    "processorErrors": 0,
+    "rtpSamples": 20,
+    "causeProven": false
+  },
+  "httpClosed": true,
+  "afterPinChecks": {
+    "texts": 31,
+    "externalHelpers": 2,
+    "originFiles": 45,
+    "nodePin": true,
+    "noLinks": true,
+    "hashesMatch": true,
+    "httpClosed": true
+  },
+  "finishedAt": "2026-10-10T11:46:17.674Z",
+  "limits": [
+    "Synthetic browser AudioData/VideoFrame generated source and local RTC only; no actual NativePCM, CEF, VDO SDK, WAN or microphone",
+    "A zero-gain AudioContext destination participates in browser output clock; no audible tone or physical device calibration claimed",
+    "Received edges use browser expectedDisplayTime and mapped silent audio context output time; frame/quantum/mapping/threshold uncertainty stated",
+    "PASS threshold is finite-run declared measurement resolution; avSyncProven remainsfalse for product",
+    "Native25 CEF prior proof was595decoded vs540callbacks; this audio experiment does not reinterpret those counts"
+  ]
+}

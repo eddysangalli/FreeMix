@@ -1,0 +1,24 @@
+{
+  "status": "PREPARED_ONLY_MODELS19_PASS_WAIT_ROOT_REVIEW",
+  "models": 19,
+  "preparationSha256": "907680e9c57ff782d862aec3b2ee2d8af84389dcedfe1410ffc2f88fe418210a",
+  "sources": [
+    {
+      "root": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\calls-av-page-origin-preparation",
+      "pins": 29
+    },
+    {
+      "root": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\calls-av-playout-source-review",
+      "pins": 16
+    }
+  ],
+  "helperDefaultOFF": true,
+  "NativeExecuted": false,
+  "browserExecuted": false,
+  "audioExecuted": false,
+  "APIExecuted": false,
+  "serverStarted": false,
+  "canonicalEdited": false,
+  "causeProven": false,
+  "avSyncProven": false
+}

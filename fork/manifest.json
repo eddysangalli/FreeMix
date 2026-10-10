@@ -1,8 +1,8 @@
 {
   "upstream": "https://github.com/obsproject/obs-studio.git",
   "base": "ba2f32bdf791005443988a4955e963663e16b1ed",
-  "head": "759929948fc84ca29d4ad0b65bfdddf98dfbb06f",
-  "version": "0.1.0-local.20261010110000",
+  "head": "93d73e25b90bea7920e58dcd2af197aeb3e2bc1d",
+  "version": "0.1.0-local.20261010120000",
   "patches": [
     {
       "path": "0001-feat-branding-replace-OBS-identity-with-FreeMix-Stud.patch",
@@ -119,11 +119,15 @@
     {
       "path": "0029-Update-websocket-meter-lifecycle-teardown-and-collec.patch",
       "sha256": "5b7301f08883347d8d20a0e28f680cc85ca4ecacdb6ed60282328993ff9c8561"
+    },
+    {
+      "path": "0030-Fix-finite-meter-state-and-audio-callback-read-synch.patch",
+      "sha256": "c8110c5a1502b124986546af59defc82313f2d7aa870cd73ed5bf998e38f36a2"
     }
   ],
-  "sourceUpdatedAt": "2026-10-10T10:57:50.701Z",
+  "sourceUpdatedAt": "2026-10-10T11:54:09.096Z",
   "sourceSchema": 2,
-  "tree": "def0bf18bac27c9f35571bc30fa9187bd129892a",
+  "tree": "ad4f04b9048af61f3e84ee645d71b8e492446109",
   "submodules": [
     {
       "path": "deps/libdshowcapture/src",
@@ -166,8 +170,8 @@
       "upstream": "https://github.com/obsproject/obs-websocket.git",
       "base": "1ef34bf48110c2a18184e50e41cd0b1a855e2147",
       "baseTree": "2fde926257e6c4a185089ec5c1a1eec281f9e013",
-      "head": "0fd6953df6ac1272ab905546a5f524b461ea079e",
-      "headTree": "91fda554cba6536921f6658da67c4f0960a4f3cd",
+      "head": "70e881a141e6533e34e56923f0da095cd87e7839",
+      "headTree": "5d2fd825e2adb298e82ae23bd3ed857f90a5bbe9",
       "patches": [
         {
           "path": "submodules/2eb9554c54bafd33/0001-0fd6953df6ac.patch",
@@ -177,6 +181,15 @@
           "tree": "91fda554cba6536921f6658da67c4f0960a4f3cd",
           "rawCommitPath": "submodules/2eb9554c54bafd33/0001-0fd6953df6ac.commit.txt",
           "rawCommitSha256": "16977801a0ec9e7fad54aa06b3c61576bc888cddf870d064dd64d80e1150b182"
+        },
+        {
+          "path": "submodules/2eb9554c54bafd33/0002-70e881a141e6.patch",
+          "sha256": "2a88745b819b48094f385d8846449c54368ef388b4c78588e7c9397d4e2de29c",
+          "commit": "70e881a141e6533e34e56923f0da095cd87e7839",
+          "parent": "0fd6953df6ac1272ab905546a5f524b461ea079e",
+          "tree": "5d2fd825e2adb298e82ae23bd3ed857f90a5bbe9",
+          "rawCommitPath": "submodules/2eb9554c54bafd33/0002-70e881a141e6.commit.txt",
+          "rawCommitSha256": "6d78d05678256baf878da4310020ec334edba6d7ae79fa0ac0c50287296e54b9"
         }
       ],
       "sourceFiles": [
@@ -197,13 +210,13 @@
         },
         {
           "path": "plugins/obs-websocket/src/utils/Obs_VolumeMeter.cpp",
-          "bytes": 12761,
-          "sha256": "c2a0740e0f0bb5da3d504f9e2ff7f45ae6ff9968d44af022e9eda671166e445b"
+          "bytes": 12937,
+          "sha256": "c91caa6c5e1b07ecc392eff5f33ed31b5bad29f1017c3f2677edde4be8cd758c"
         },
         {
           "path": "plugins/obs-websocket/src/utils/Obs_VolumeMeter.h",
-          "bytes": 3202,
-          "sha256": "3787f5900ea9fa0717f55ad44ade5f1aa7cd535dee40a41ef3bfcf6ce684516e"
+          "bytes": 3225,
+          "sha256": "01058a14ae9fcd2778d01564a4a83f85aa6f908e2b46888fa6ae411fff96d805"
         }
       ]
     }

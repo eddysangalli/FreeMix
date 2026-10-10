@@ -1,5 +1,3 @@
 # Motor nativo do FreeMix
 
-Série29 patches/3 submódulos; HEAD759929948fc84ca29d4ad0b65bfdddf98dfbb06f, árvoredef0bf18bac27c9f35571bc30fa9187bd129892a. [Manifesto](manifest.json), [verificação](source-verification.json). `node scripts/reconstruir-motor.mjs --check` verifica a série e snapshots localmente.
-
-BuildNative29 completo passou; lifecycleMeter integrado, QAreal pendente. Gate4 possui provas de ganho/preto/restauração mas FAILAAC preservado. ContínuoCalls e FTBgeralOFF.600 selecionado;093000 não promovido. [Build](../docs/evidencias/20261010-native29-build/README.md) · [pendências](../docs/PENDENCIAS-REAIS.md).
+30 patches/3 submódulos, HEAD 93d73e25b90bea7920e58dcd2af197aeb3e2bc1d. [Manifesto](manifest.json) · [verificação](source-verification.json). `node scripts/reconstruir-motor.mjs --check` verifica localmente a série. BuildNative30 completo passou; QA real de Meter/Replay/saídas pendente.600 permanece selecionado;093000 original conservaFAIL. [Build](../docs/evidencias/20261010-native30-build/ROOT-README.md).

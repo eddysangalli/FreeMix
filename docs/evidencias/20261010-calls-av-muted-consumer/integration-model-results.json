@@ -1,0 +1,56 @@
+{
+  "status": "PASS_PURE_VM_SYNTAX_ONLY_NO_AV_EXECUTION",
+  "cases": 11,
+  "tests": [
+    {
+      "name": "Page-origin observed FAIL and source-review frozen trees exact with no mutation",
+      "pass": true
+    },
+    {
+      "name": "Payload/detector/worklet/ROI/PageOrigin all byteexact",
+      "pass": true
+    },
+    {
+      "name": "Reversing only declared consumer/observability edits reproduces baseline probe byteexact",
+      "pass": true
+    },
+    {
+      "name": "Original AV acceptance block remains byteexact and no weaker criteria",
+      "pass": true
+    },
+    {
+      "name": "Node/helper pins unchanged; no microphone/media external/stun targets added",
+      "pass": true
+    },
+    {
+      "name": "Actual ontrack handler video-first attaches exact audio, one video play",
+      "pass": true
+    },
+    {
+      "name": "Actual ontrack audio-first waits then attaches same audio after video, without replacing track",
+      "pass": true
+    },
+    {
+      "name": "Actual handler mute safety records controlled fault without attachment/unmute",
+      "pass": true
+    },
+    {
+      "name": "Diagnostic snapshots bounded32 and cleanup never stops probe-owned track",
+      "pass": true
+    },
+    {
+      "name": "Runtime verifies all origin/proof/source pins before listen and after closure",
+      "pass": true
+    },
+    {
+      "name": "Actual inline module + runner/launcher/helper syntax only",
+      "pass": true
+    }
+  ],
+  "NativeExecuted": false,
+  "browserExecuted": false,
+  "audioExecuted": false,
+  "APIExecuted": false,
+  "serverStarted": false,
+  "causeProven": false
+}

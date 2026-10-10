@@ -1,0 +1,29 @@
+{
+  "status": "PASS_CPU_MODEL_AND_MSVC_ASAN_ONLY",
+  "compiler": "C:/Program Files/Microsoft Visual Studio/18/Community/VC/Tools/MSVC/14.51.36231/bin/Hostx64/x64/cl.exe",
+  "compilerSha256": "b0a1818ebae6da7f18230a84e76ce839212584ac4c2ab55b97a0d5268085da57",
+  "normal": {
+    "status": "PASS_CPP_EXTRACTED_METHOD_MODEL_ONLY",
+    "checks": 21,
+    "concurrentReadbacks": 20000,
+    "nativeStarted": false,
+    "callbacksObserved": false,
+    "causeOriginalFailProven": false
+  },
+  "asan": {
+    "status": "PASS_CPP_EXTRACTED_METHOD_MODEL_ONLY",
+    "checks": 21,
+    "concurrentReadbacks": 20000,
+    "nativeStarted": false,
+    "callbacksObserved": false,
+    "causeOriginalFailProven": false
+  },
+  "nativeStarted": false,
+  "canonicalChanged": false,
+  "limits": [
+    "ASan checks bounds, not uninitialized float values",
+    "No MemorySanitizer/UndefinedBehaviorSanitizer tool available on PATH",
+    "Models never execute indeterminate reads",
+    "No audio/GPU/callback/lifecycle or causal qualification"
+  ]
+}

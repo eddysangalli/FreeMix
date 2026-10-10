@@ -1,0 +1,6 @@
+tree 5d2fd825e2adb298e82ae23bd3ed857f90a5bbe9
+parent 0fd6953df6ac1272ab905546a5f524b461ea079e
+author Eddy Sangalli <eddyrodrigues@outlook.com> 1791632878 -0300
+committer Eddy Sangalli <eddyrodrigues@outlook.com> 1791632878 -0300
+
+Initialize meter state and serialize mute reads with captured levels

@@ -51,11 +51,11 @@ namespace Utils {
 
 				// All values in mul
 				std::mutex _mutex;
-				bool _muted;
+				bool _muted = false;
 				int _channels;
-				float _magnitude[MAX_AUDIO_CHANNELS];
-				float _peak[MAX_AUDIO_CHANNELS];
-				float _previousSamples[MAX_AUDIO_CHANNELS][4];
+				float _magnitude[MAX_AUDIO_CHANNELS] = {};
+				float _peak[MAX_AUDIO_CHANNELS] = {};
+				float _previousSamples[MAX_AUDIO_CHANNELS][4] = {};
 
 				std::atomic<uint64_t> _lastUpdate;
 				std::atomic<float> _volume;

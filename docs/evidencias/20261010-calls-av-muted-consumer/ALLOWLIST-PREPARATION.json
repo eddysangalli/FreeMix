@@ -1,0 +1,164 @@
+{
+  "schema": 1,
+  "status": "PREPARED_ONLY_ONE_MUTED_CONSUMER_NO_EXECUTION",
+  "files": [
+    {
+      "path": "audio-diagnostics.mjs",
+      "bytes": 2797,
+      "sha256": "852fb5a62127af06b1636289176b55fef39ec1c3a794c6479a6b48f4d2a89808"
+    },
+    {
+      "path": "baseline/audio-diagnostics.mjs",
+      "bytes": 2797,
+      "sha256": "852fb5a62127af06b1636289176b55fef39ec1c3a794c6479a6b48f4d2a89808"
+    },
+    {
+      "path": "baseline/launch.mjs",
+      "bytes": 1384,
+      "sha256": "06c96a8022d59bb472246e9f2523403433334400fd23d4c12cadc0ca22f863e1"
+    },
+    {
+      "path": "baseline/page-timestamp-origin.mjs",
+      "bytes": 1766,
+      "sha256": "6a41ef0ae7d1377e49f17a3e9dfdb7c92f40f03e6a9e41437b377c558c1ca9d6"
+    },
+    {
+      "path": "baseline/probe.html",
+      "bytes": 18639,
+      "sha256": "c381b35ddeb54d0dad8d458adc030abda09dfd5a13f913b61dbd9287e420f068"
+    },
+    {
+      "path": "baseline/received-roi.mjs",
+      "bytes": 940,
+      "sha256": "f00e77c1e49e26e1d4f35191a267c0f54eeb4c5a9b5781e39ec462fd222091f3"
+    },
+    {
+      "path": "baseline/runner.mjs",
+      "bytes": 12088,
+      "sha256": "26539ad042abf5b39bb64d74dab8ce94c1a573588018e40d4652d122724deec0"
+    },
+    {
+      "path": "baseline/synthetic-media.mjs",
+      "bytes": 3398,
+      "sha256": "31bc51e19f17612a6e4b8a63a60bc4f522a3dee56548914ea82f89fee2b12171"
+    },
+    {
+      "path": "baseline/tone-worklet.js",
+      "bytes": 2766,
+      "sha256": "2c28817d752a04741bb5f17472ceaa21dcf0f69974ad868973df42986d09cefa"
+    },
+    {
+      "path": "DELTA.json",
+      "bytes": 1143,
+      "sha256": "f06e77dedf909e9bd0c50a878ea08b02f6c0412ab3353a84daa7a598a0a70288"
+    },
+    {
+      "path": "DERIVATION.json",
+      "bytes": 11687,
+      "sha256": "e0a89108b5148ccc1a37bdfb6421a3a71261f37f900e72a2b8d899b33e700bbe"
+    },
+    {
+      "path": "derive.mjs",
+      "bytes": 8558,
+      "sha256": "802f113719e6b549bd09d30079269576ac9e7d3d92e05406658e10d399db6246"
+    },
+    {
+      "path": "FREEZE.json",
+      "bytes": 693,
+      "sha256": "6fa5919d0f5068a4b4a39ff0464c87a560816bf87c971f428a42e263667858fe"
+    },
+    {
+      "path": "freeze.mjs",
+      "bytes": 3553,
+      "sha256": "2e1c758867d9eda8c7e8676554651b282338d19da6fe676da6872ca63570e208"
+    },
+    {
+      "path": "integration-model-results.json",
+      "bytes": 1608,
+      "sha256": "2ff6d2a210b094ec615f8af83493459229f7c76c5a25116986d4c03e407dfe80"
+    },
+    {
+      "path": "launch.mjs",
+      "bytes": 1630,
+      "sha256": "e39e2b058c6d284448c4df513f27bf55801fe0f66aa16dcc93c0d820a8c52cd6"
+    },
+    {
+      "path": "model-result.json",
+      "bytes": 1145,
+      "sha256": "a9f0755b47cebc865612b6a23270e20940f9679db9395f0a96f2c0180bfb4c49"
+    },
+    {
+      "path": "muted-consumer-vs-pageorigin.diff",
+      "bytes": 67687,
+      "sha256": "2727219c8fcd5ac3db17ae9e94778a70013a18f59cb3389008b5ef79784c2772"
+    },
+    {
+      "path": "muted-receiver-attachment.mjs",
+      "bytes": 2065,
+      "sha256": "85ac510fc00c47d33c99bfd599c6cf55d577812e60c1f66a4cc20bac516326fc"
+    },
+    {
+      "path": "page-timestamp-origin.mjs",
+      "bytes": 1766,
+      "sha256": "6a41ef0ae7d1377e49f17a3e9dfdb7c92f40f03e6a9e41437b377c558c1ca9d6"
+    },
+    {
+      "path": "PREPARATION.json",
+      "bytes": 2761,
+      "sha256": "907680e9c57ff782d862aec3b2ee2d8af84389dcedfe1410ffc2f88fe418210a"
+    },
+    {
+      "path": "prepare-tests.mjs",
+      "bytes": 1303,
+      "sha256": "227787128f9fcff99a61426cbb5daf6f0c5c2e34111d05098d9d95795848d46c"
+    },
+    {
+      "path": "probe.html",
+      "bytes": 20290,
+      "sha256": "5545987a169f84220257c04ca337a0438cbcccdee96c1a91266456d1dff3c239"
+    },
+    {
+      "path": "READINESS.md",
+      "bytes": 2972,
+      "sha256": "db973e427c9796dda7c6968328344fc1963689947019ca5de2263adc157d9c44"
+    },
+    {
+      "path": "received-roi.mjs",
+      "bytes": 940,
+      "sha256": "f00e77c1e49e26e1d4f35191a267c0f54eeb4c5a9b5781e39ec462fd222091f3"
+    },
+    {
+      "path": "root-command.json",
+      "bytes": 843,
+      "sha256": "6df2e7e340b8c82aa89a1841d065de81324f6f27e17686537cdd8829a8c80ddb"
+    },
+    {
+      "path": "runner.mjs",
+      "bytes": 13427,
+      "sha256": "4b25c36dd9d660ddef19e4c0f17d7d23400e6b6b1697dbc9f19a8ccf44028306"
+    },
+    {
+      "path": "synthetic-media.mjs",
+      "bytes": 3398,
+      "sha256": "31bc51e19f17612a6e4b8a63a60bc4f522a3dee56548914ea82f89fee2b12171"
+    },
+    {
+      "path": "test-helper.mjs",
+      "bytes": 3563,
+      "sha256": "d8b8b2268cafa66c72b4ad85817940afce89ab78d3550e16d9b105c01c843b3c"
+    },
+    {
+      "path": "test-integration.mjs",
+      "bytes": 6697,
+      "sha256": "18026d381b56231230fc06092977b8964e78517e65654e2126f16926fa0874d1"
+    },
+    {
+      "path": "tone-worklet.js",
+      "bytes": 2766,
+      "sha256": "2c28817d752a04741bb5f17472ceaa21dcf0f69974ad868973df42986d09cefa"
+    }
+  ],
+  "NativeExecuted": false,
+  "browserExecuted": false,
+  "audioExecuted": false
+}

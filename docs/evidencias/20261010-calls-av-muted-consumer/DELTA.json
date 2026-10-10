@@ -1,0 +1,32 @@
+{
+  "files": [
+    {
+      "path": "probe.html",
+      "baselineSha256": "c381b35ddeb54d0dad8d458adc030abda09dfd5a13f913b61dbd9287e420f068",
+      "draftSha256": "5545987a169f84220257c04ca337a0438cbcccdee96c1a91266456d1dff3c239"
+    },
+    {
+      "path": "runner.mjs",
+      "baselineSha256": "26539ad042abf5b39bb64d74dab8ce94c1a573588018e40d4652d122724deec0",
+      "draftSha256": "4b25c36dd9d660ddef19e4c0f17d7d23400e6b6b1697dbc9f19a8ccf44028306"
+    },
+    {
+      "path": "launch.mjs",
+      "baselineSha256": "06c96a8022d59bb472246e9f2523403433334400fd23d4c12cadc0ca22f863e1",
+      "draftSha256": "e39e2b058c6d284448c4df513f27bf55801fe0f66aa16dcc93c0d820a8c52cd6"
+    }
+  ],
+  "newHelper": "muted-receiver-attachment.mjs",
+  "helperSha256": "85ac510fc00c47d33c99bfd599c6cf55d577812e60c1f66a4cc20bac516326fc",
+  "unchanged": [
+    "tone-worklet.js",
+    "synthetic-media.mjs",
+    "received-roi.mjs",
+    "audio-diagnostics.mjs",
+    "page-timestamp-origin.mjs"
+  ],
+  "oneFunctionalVariable": "same received audio track attached to existing muted video stream",
+  "boundedObservabilityOnly": true,
+  "models": 19,
+  "executed": false
+}

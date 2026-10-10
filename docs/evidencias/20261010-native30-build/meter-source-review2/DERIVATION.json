@@ -1,0 +1,83 @@
+{
+  "status": "OFFSIDE_REVIEW2_DRAFT_ONLY_CPP_MODEL_PENDING",
+  "nativeHead": "759929948fc84ca29d4ad0b65bfdddf98dfbb06f",
+  "sourceRoot": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\native29-meter-finite-levels-draft-20261010\\baseline",
+  "preservedPreviousAL16Sha256": "1b08fd1baf4201fb29a70a4629a53a5907b5a1f7e6c3f2ec2f833e9b14a570ec",
+  "changedSources": [
+    {
+      "path": "src/utils/Obs_VolumeMeter.cpp",
+      "beforeSha256": "b7789fcc8be7be674282975243d124bfa05c2849c812ec33915c410ae1a8459a",
+      "draftSha256": "7c3bf7985c726f15ce256ee6e8e0d47d41c01537817e51b05df5217bb9d632ea",
+      "crlfPreserved": true
+    },
+    {
+      "path": "src/utils/Obs_VolumeMeter.h",
+      "beforeSha256": "2a122610e826f8921c0810d8bfd0647804a0eebbd211649d1420c6e5870ae97f",
+      "draftSha256": "973ff4c51db2bbca9c780d589a92d1777e51f97e77f5b4a2b4b4e2d61937d7f8",
+      "crlfPreserved": true
+    }
+  ],
+  "helperUnchangedSha256": "1990c150e62c29a20835f8fdb4710fcf07dd4ce2d76f6d6b4c15dd2a0c1205ae",
+  "changes": [
+    {
+      "file": "Obs_VolumeMeter.h",
+      "label": "Initialize previous samples before capture callback registration",
+      "count": 1
+    },
+    {
+      "file": "Obs_VolumeMeter.h",
+      "label": "Initialize muted before first callback/read",
+      "count": 1
+    },
+    {
+      "file": "Obs_VolumeMeter.h",
+      "label": "Initialize magnitude levels",
+      "count": 1
+    },
+    {
+      "file": "Obs_VolumeMeter.h",
+      "label": "Initialize peak levels",
+      "count": 1
+    },
+    {
+      "file": "Obs_VolumeMeter.cpp",
+      "label": "Read callback-owned muted only under same mutex",
+      "count": 1
+    },
+    {
+      "file": "Obs_VolumeMeter.cpp",
+      "label": "Reset previous samples with levels/channel reset",
+      "count": 1
+    },
+    {
+      "file": "Obs_VolumeMeter.cpp",
+      "label": "Empty peak clears history/levels before any load",
+      "count": 1
+    },
+    {
+      "file": "Obs_VolumeMeter.cpp",
+      "label": "Empty RMS clears levels instead of dividing by zero",
+      "count": 1
+    }
+  ],
+  "patchSha256": "f3568f1f1e2fc4fa528430d03616e9abc3431375d2c976306e0b3cd424240df3",
+  "patchCheckOwnBaselinePassed": true,
+  "methodExtractionExact": true,
+  "extractedFunctions": [
+    "GetMeterData",
+    "ResetAudioLevels",
+    "ProcessAudioChannels",
+    "ProcessPeak",
+    "ProcessMagnitude"
+  ],
+  "modelLimits": [
+    "No Native/OBS audio callbacks/SDK/runtime execution",
+    "Baseline arrays and muted explicitly initialized to avoid intentional undefined reads",
+    "Weak-source/time/name/UUID APIs are CPU harness stubs",
+    "Fixed GetMeterData concurrency model uses mutex writer/read, not Native callback timing",
+    "Seeded previous peak and zero-frame arithmetic are models; original failed values unknown",
+    "ASan is not ThreadSanitizer/MemorySanitizer",
+    "No timing/barrier/lifecycle qualification"
+  ],
+  "canonicalChanged": false
+}

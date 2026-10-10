@@ -1,7 +1,5 @@
 # Fontes do FreeMix
 
-Entrega selecionada600/Native24 preservada.093000/Native27 mantém FAIL de desinstalação; correção integrada, wrapper específico em QA. [Entrega](docs/ENTREGA-ATUAL.md).
+Instalador selecionado600/Native24 preservado. Fonte atual Native30 **93d73e25b90bea7920e58dcd2af197aeb3e2bc1d**, árvore **ad4f04b9048af61f3e84ee645d71b8e492446109**,30 patches/3 submódulos/214 snapshots. Versão 0.1.0-local.20261010120000 é desenvolvimento, ainda sem novo instalador aprovado. [Build](docs/evidencias/20261010-native30-build/ROOT-README.md) · [reconstrução](docs/BUILD-FROM-SOURCE.md) · [pendências reais](docs/PENDENCIAS-REAIS.md).
 
-Fontes Native29 **759929948fc84ca29d4ad0b65bfdddf98dfbb06f**, árvore **def0bf18bac27c9f35571bc30fa9187bd129892a**:29 patches/3 submódulos/214 snapshots e2085 arquivos Native conferidos. [Build](docs/evidencias/20261010-native29-build/README.md). Versão 0.1.0-local.20261010110000 é desenvolvimento, não novo instalador selecionado. [Manifesto](fork/manifest.json), [verificação](fork/source-verification.json), [reconstrução](docs/BUILD-FROM-SOURCE.md).
-
-LifecycleMeter, caminhos longos do instalador e CallsUI integrados. [Gate4](docs/evidencias/20261010-gate4-audio-fail/README.md) tem provas parciais e FAIL preservado; AV continua inconclusivo/defaultOFF. [Pendências](docs/PENDENCIAS-REAIS.md). Créditos/licenças upstream mantidos; chave privada fora do Git/pacote.
+ReplayR2 e consultas/ACK das saídas integrados; medidores compilados, regressão real pendente. Calls recebeu áudio no ensaio sintético, mas sincronismoFAIL. FTB geral e CallscontínuoOFF. Créditos e licenças upstream preservados; chave privada fora do Git/pacote.

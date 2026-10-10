@@ -1,8 +1,8 @@
 {
   "status": "PASS",
   "base": "ba2f32bdf791005443988a4955e963663e16b1ed",
-  "head": "759929948fc84ca29d4ad0b65bfdddf98dfbb06f",
-  "resultTree": "def0bf18bac27c9f35571bc30fa9187bd129892a",
+  "head": "93d73e25b90bea7920e58dcd2af197aeb3e2bc1d",
+  "resultTree": "ad4f04b9048af61f3e84ee645d71b8e492446109",
   "submodules": [
     {
       "path": "deps/libdshowcapture/src",
@@ -24,9 +24,9 @@
       "path": "plugins/obs-websocket",
       "base": "1ef34bf48110c2a18184e50e41cd0b1a855e2147",
       "baseTree": "2fde926257e6c4a185089ec5c1a1eec281f9e013",
-      "head": "0fd6953df6ac1272ab905546a5f524b461ea079e",
-      "headTree": "91fda554cba6536921f6658da67c4f0960a4f3cd",
-      "patches": 1
+      "head": "70e881a141e6533e34e56923f0da095cd87e7839",
+      "headTree": "5d2fd825e2adb298e82ae23bd3ed857f90a5bbe9",
+      "patches": 2
     }
   ],
   "sourceFiles": [
@@ -52,13 +52,13 @@
     },
     {
       "path": "plugins/obs-websocket/src/utils/Obs_VolumeMeter.cpp",
-      "bytes": 12761,
-      "sha256": "c2a0740e0f0bb5da3d504f9e2ff7f45ae6ff9968d44af022e9eda671166e445b"
+      "bytes": 12937,
+      "sha256": "c91caa6c5e1b07ecc392eff5f33ed31b5bad29f1017c3f2677edde4be8cd758c"
     },
     {
       "path": "plugins/obs-websocket/src/utils/Obs_VolumeMeter.h",
-      "bytes": 3202,
-      "sha256": "3787f5900ea9fa0717f55ad44ade5f1aa7cd535dee40a41ef3bfcf6ce684516e"
+      "bytes": 3225,
+      "sha256": "01058a14ae9fcd2778d01564a4a83f85aa6f908e2b46888fa6ae411fff96d805"
     },
     {
       "path": "deps/asio-sdk/FREEMIX-PROVENANCE.md",

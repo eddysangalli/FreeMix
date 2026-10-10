@@ -1,6 +1,6 @@
 # Plano de conclusão até 13/10/2026
 
-O instalador selecionado permanece **0.1.0-local.20261010060000, Native24/a047860**. As fontes atuais são **Native29/7599299**, com compilação completa e2085 arquivos congelados verificados. O candidato093000/Native27 falhou na desinstalação por caminhos longos e não foi promovido. A correção foi integrada e o wrapper específico passou instalação/desinstalação real; falta o próximo pacote. Provas históricas abaixo não representam aprovação da instalação atual.
+O instalador selecionado permanece **0.1.0-local.20261010060000, Native24/a047860**. As fontes atuais são **Native30/93d73e2**, com compilação completa e2085 arquivos congelados verificados. O candidato093000/Native27 falhou na desinstalação por caminhos longos e não foi promovido. A correção foi integrada e o wrapper específico passou instalação/desinstalação real; falta o próximo pacote. Provas históricas abaixo não representam aprovação da instalação atual.
 
 1. Encerrados sem repetir: Native27 build/export2085/27patches, duasCallsRGBA exato, CEF ROI real e IAB Preview/Cut/min/rest/tally, todos dentro dos limites. Meter3segueinvestigação; crash0 não prova todos os cenários.
 2. Root publicou fontesUI simplificadas após90checks/capturas e corrigiu handlerduplicado. Installer prepara novo candidato093000 com commit exato e fullmanifest/runtimeclosure; selar/selecionar somente após checks relevantes e startup próprio.600 permanece imutável.
@@ -63,3 +63,13 @@ O novo ensaio Gate5 foi revisado e iniciou numa raiz e portas próprias: fixture
 Replay e saídas integrados em fontes, sem reiniciar o operador:3 fontes ReplayR2,26 modelos e FFprobe real em CFR900/lateVFR885/VFR540;6 fontes Saídas,21 casos de GET/timeout/ACK/rascunhos. [Replay](evidencias/20261010-replay-full-cadence-r2/ROOT-README.md) · [Saídas](evidencias/20261010-outputs-read-ack/ROOT-README.md). Falha de readiness do primeiro modelo Root preservada; barreira limitada de2s corrigiu apenas o teste. NativeA/B, UI instalada e benchmark ainda pendentes.
 
 Gate5 terminouFAIL na confirmação de cursor após restart; análise offline dos dois SRT passou no contrato de áudio original, sem apagarFAIL. Native+receptores fecharam0, avisos/alocações/crash0,2085+9582pinsPASS. [Prova](evidencias/20261010-gate5-cursor-fail/ROOT-README.md). Defeitos concretos do Meter (histórico/mute sem inicialização, leitura fora do mutex, divisão por frames0) estão em revisão isolada antes Native30; sem atribuir causa única doFAIL29. AVCalls ainda sem áudio remoto decodificado. Instalador600 permanece selecionado, próximo pacote pendente.
+
+## Checkpoint de10/10,11:55UTC
+
+MeterR2 integrado no SDK Native30/93d73e2: campos inicializados, histórico limpo, frames0 protegidos e leitura de mute sob mutex.21 verificações normais+21ASan passaram no draft; compilação Native completa está em andamento. Não atribuímos causa única ao FAIL29 nem qualificamos o fechamento antes do novo teste real com captura do primeiro valor inválido.
+
+Calls: anexar a mesma track remota ao player silenciado fez aparecer19 tons/197368 amostras não zero. O sincronismo ainda terminouFAIL: drift9,77886ms/s e desvio máximo82,908ms. Critérios intactos; helper somente QA e contínuoOFF. [Prova](evidencias/20261010-calls-av-muted-consumer/ROOT-README.md).600 continua selecionado; Replay, Saídas e Meter atuais aguardam regressão Native/HTTP isolada antes novo pacote.
+
+## Checkpoint de10/10,11:56UTC
+
+Native30/93d73e2 compilado e congelado:2085 arquivos, 214 snapshots,30 patches/3 submódulos; reconstrução local--checkPASS. [Build e correção dos medidores](evidencias/20261010-native30-build/ROOT-README.md). Novos testes reais de Meter, Replay e saídas estão preparados em raízes/portas próprias; não executamos o operador. Instalador600 segue selecionado; pacote novo depende desses checks.

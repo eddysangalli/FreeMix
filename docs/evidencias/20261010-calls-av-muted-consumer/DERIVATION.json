@@ -1,0 +1,287 @@
+{
+  "sources": [
+    {
+      "root": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\calls-av-page-origin-preparation",
+      "files": [
+        {
+          "path": "ALLOWLIST-PREPARATION.json",
+          "sha256": "b3cf458f394b52e5164d3a4878cb972f3752875b07979469d5bdf1a0d6ea79ff"
+        },
+        {
+          "path": "audio-diagnostics.mjs",
+          "bytes": 2797,
+          "sha256": "852fb5a62127af06b1636289176b55fef39ec1c3a794c6479a6b48f4d2a89808"
+        },
+        {
+          "path": "baseline/audio-diagnostics.mjs",
+          "bytes": 2797,
+          "sha256": "852fb5a62127af06b1636289176b55fef39ec1c3a794c6479a6b48f4d2a89808"
+        },
+        {
+          "path": "baseline/launch.mjs",
+          "bytes": 1385,
+          "sha256": "f28aec4e2770d7f05fbc4998af88a73eea1b638ef69308cfcff78c1395d78c68"
+        },
+        {
+          "path": "baseline/probe.html",
+          "bytes": 17320,
+          "sha256": "b116db4310a56e3fb23f0d7f18ecbe93b46fe09ba1db21566f668ca60c153b09"
+        },
+        {
+          "path": "baseline/received-roi.mjs",
+          "bytes": 940,
+          "sha256": "f00e77c1e49e26e1d4f35191a267c0f54eeb4c5a9b5781e39ec462fd222091f3"
+        },
+        {
+          "path": "baseline/runner.mjs",
+          "bytes": 11407,
+          "sha256": "1ee803069b77350ccdf2d6e61e01abd2d84ad463ad22ed938d217e7a72507bc9"
+        },
+        {
+          "path": "baseline/synthetic-media.mjs",
+          "bytes": 3398,
+          "sha256": "31bc51e19f17612a6e4b8a63a60bc4f522a3dee56548914ea82f89fee2b12171"
+        },
+        {
+          "path": "baseline/tone-worklet.js",
+          "bytes": 2766,
+          "sha256": "2c28817d752a04741bb5f17472ceaa21dcf0f69974ad868973df42986d09cefa"
+        },
+        {
+          "path": "DELTA.json",
+          "bytes": 1011,
+          "sha256": "61b1415003831ad4800bc99a977af821563defa36f883198c60dd74597f05840"
+        },
+        {
+          "path": "DERIVATION.json",
+          "bytes": 2036,
+          "sha256": "1d46a7cf0d433a68253513d989b4d458a459176463819b34cbabe651a9e7516b"
+        },
+        {
+          "path": "derive.mjs",
+          "bytes": 6459,
+          "sha256": "d679897b6e54784209817b97f30411b840a465a41c0ad8939368b437e3d2988d"
+        },
+        {
+          "path": "FREEZE.json",
+          "bytes": 683,
+          "sha256": "c963453c3476b34c907dafa49ffa144ce7c175cc57e76ca53c103fa1befd7735"
+        },
+        {
+          "path": "freeze.mjs",
+          "bytes": 3384,
+          "sha256": "c104a1dfad8174646afed81ed184e667a90930d769b2dbd4fa887073529d5f45"
+        },
+        {
+          "path": "launch.mjs",
+          "bytes": 1384,
+          "sha256": "06c96a8022d59bb472246e9f2523403433334400fd23d4c12cadc0ca22f863e1"
+        },
+        {
+          "path": "model-results.json",
+          "bytes": 1878,
+          "sha256": "46a571b24ead2323c82e16b46fe6d0c4b05a8d64fe9b0e79e7ef2baa412e033f"
+        },
+        {
+          "path": "page-timestamp-origin.mjs",
+          "bytes": 1766,
+          "sha256": "6a41ef0ae7d1377e49f17a3e9dfdb7c92f40f03e6a9e41437b377c558c1ca9d6"
+        },
+        {
+          "path": "pageorigin-vs-localtap.diff",
+          "bytes": 62428,
+          "sha256": "c6e370133b30cd90f81a45adcb1046606fa0aad3f0c4872965da549702fcb65d"
+        },
+        {
+          "path": "PREPARATION.json",
+          "bytes": 2802,
+          "sha256": "0b9181b0a69d1ec3e102d6e748288c2d90bd70e6fca5246ea499f223149727dc"
+        },
+        {
+          "path": "probe.html",
+          "bytes": 18639,
+          "sha256": "c381b35ddeb54d0dad8d458adc030abda09dfd5a13f913b61dbd9287e420f068"
+        },
+        {
+          "path": "READINESS.md",
+          "bytes": 3347,
+          "sha256": "abc9eee151fe386878c24f6b80d197d7dd930e61307ad3d82c4ecc18cbb7c817"
+        },
+        {
+          "path": "received-roi.mjs",
+          "bytes": 940,
+          "sha256": "f00e77c1e49e26e1d4f35191a267c0f54eeb4c5a9b5781e39ec462fd222091f3"
+        },
+        {
+          "path": "root-command.json",
+          "bytes": 839,
+          "sha256": "336d78c46c815804f15afe97309e4cdfcb309f4281ff08cb3aa8a1d03781ded1"
+        },
+        {
+          "path": "runner.mjs",
+          "bytes": 12088,
+          "sha256": "26539ad042abf5b39bb64d74dab8ce94c1a573588018e40d4652d122724deec0"
+        },
+        {
+          "path": "synthetic-media.mjs",
+          "bytes": 3398,
+          "sha256": "31bc51e19f17612a6e4b8a63a60bc4f522a3dee56548914ea82f89fee2b12171"
+        },
+        {
+          "path": "test-models.mjs",
+          "bytes": 8674,
+          "sha256": "9d9f76bf9d2185b71d0b068a681b94f2bf5ce99259e89ce7894d41f89dbe7d0b"
+        },
+        {
+          "path": "tone-worklet.js",
+          "bytes": 2766,
+          "sha256": "2c28817d752a04741bb5f17472ceaa21dcf0f69974ad868973df42986d09cefa"
+        },
+        {
+          "path": "browser-report.json",
+          "sha256": "6d5afbc07406fd4dcdbf8fbcd9dee56780aff0c1ebf26d6cdce457996f9ed65f"
+        },
+        {
+          "path": "receipt.json",
+          "sha256": "dccd968a9a8253ca7631fd6fbc012fdcaae56751c535f665643cc1dee1941b5c"
+        }
+      ]
+    },
+    {
+      "root": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\calls-av-playout-source-review",
+      "files": [
+        {
+          "path": "ALLOWLIST.json",
+          "sha256": "6d11fc57699fed1093760a9aab97157bf264fe8e2922453c556bb34dae12ea4b"
+        },
+        {
+          "path": "ANALYSIS.md",
+          "bytes": 5815,
+          "sha256": "29303c908288ea62e510c33f304207ef41436c0204f5afab37e6e87ce6eb3572"
+        },
+        {
+          "path": "OBSERVED-ORIGINS.json",
+          "bytes": 1191,
+          "sha256": "ec84733ac09935774c2cf6bb71c80a3b153478c01e64837f7653b4c3f160dc59"
+        },
+        {
+          "path": "PRIMARY-SOURCES.json",
+          "bytes": 3284,
+          "sha256": "d0f833a825d2cd59e5b177b1cdca1094e8e2b30200ecc023d9c312880343beec"
+        },
+        {
+          "path": "freeze.mjs",
+          "bytes": 2036,
+          "sha256": "0781b831f7d4897bd3d6b7ac0b696efb1a619b040eedc4b6fffac623730d1cfc"
+        },
+        {
+          "path": "model-result.json",
+          "bytes": 1171,
+          "sha256": "85e72b010f05b1651347d42fd122f3983231475903a429e9dec0733026c7c707"
+        },
+        {
+          "path": "model-tests.mjs",
+          "bytes": 3820,
+          "sha256": "d9816dfcb6fa25aecda82552c22ab2e827ed534fcb19a73aa38aa315fcd2f597"
+        },
+        {
+          "path": "muted-receiver-attachment.mjs",
+          "bytes": 2065,
+          "sha256": "85ac510fc00c47d33c99bfd599c6cf55d577812e60c1f66a4cc20bac516326fc"
+        },
+        {
+          "path": "read-primary.mjs",
+          "bytes": 1602,
+          "sha256": "e80297fe84d048f16897bc8baf108a3191e48a6dac046ccb5111127b476ead63"
+        },
+        {
+          "path": "references/chromium-LICENSE",
+          "bytes": 1536,
+          "sha256": "368cca1106be99d39ecd32a38d8305585d802a475effb66380b91ffc9bcf709b"
+        },
+        {
+          "path": "references/media_stream_audio_source_handler.cc",
+          "bytes": 4777,
+          "sha256": "e9227c97c6377e9b27acc7b43a445259296acc7f27c952c5d7ea124d0d8a3c68"
+        },
+        {
+          "path": "references/media_stream_renderer_factory.cc",
+          "bytes": 8373,
+          "sha256": "0899983a960be887968f86066ef7925ebbbc1cf9c2bcf4e63780aab1b093defd"
+        },
+        {
+          "path": "references/peer_connection_remote_audio_source.cc",
+          "bytes": 7875,
+          "sha256": "3d62629782df242aa1fb7e0dfe9143fcb9de16e56dad4a3966c4cfb04903f395"
+        },
+        {
+          "path": "references/webaudio_media_stream_audio_sink.cc",
+          "bytes": 9794,
+          "sha256": "c18aa11188d8a27f0425e473a9cd2feef9e6ab456315a36c6a37a98e261c57d6"
+        },
+        {
+          "path": "references/webrtc_audio_device_impl.cc",
+          "bytes": 17677,
+          "sha256": "f5b04e90396dd8812d7c9ea70667c08d343e43b3cd2dca1802d737531eb4f2d8"
+        },
+        {
+          "path": "references/webrtc_audio_renderer.cc",
+          "bytes": 34887,
+          "sha256": "bc6605fa2aa7b1853046b8abdf9a82b75bef8beb92e9f106caaa3aa33d30d6e0"
+        }
+      ]
+    }
+  ],
+  "probeEdits": [
+    {
+      "before": "import{PageTimestampOrigin}from'./page-timestamp-origin.mjs';",
+      "after": "import{MutedReceiverAttachment}from'./muted-receiver-attachment.mjs';\nimport{PageTimestampOrigin}from'./page-timestamp-origin.mjs';"
+    },
+    {
+      "before": "let statsTimer,statsPending=false,statsTask=null,localMeter,localSource,localGain;const trackCleanups=[];",
+      "after": "let statsTimer,statsPending=false,statsTask=null,localMeter,localSource,localGain;const trackCleanups=[];\n const attachment=new MutedReceiverAttachment({element:el('video'),enabled:true});report.mutedConsumer={enabled:true,singleVariable:'SAME_REMOTE_AUDIO_TRACK_IN_EXISTING_MUTED_VIDEO_STREAM',causeProven:false,snapshots:[],truncated:0,faults:[],closed:false};\n const attachmentSnapshot=event=>{const v=el('video'),s=v.srcObject,a=s?.getAudioTracks?.()||[],row={event,atMs:performance.now(),muted:v.muted,paused:v.paused,readyState:v.readyState,networkState:v.networkState,currentTime:Number.isFinite(v.currentTime)?v.currentTime:null,videoTracks:s?.getVideoTracks?.().length||0,audioTracks:a.length,sameReceivedTrack:!!firstAudioTrack&&a.length===1&&a[0]===firstAudioTrack,metrics:{...attachment.metrics}};if(report.mutedConsumer.snapshots.length<32)report.mutedConsumer.snapshots.push(row);else report.mutedConsumer.truncated++;if(v.muted!==true)throw Error('OWN_ELEMENT_MUST_STAY_MUTED');};\n const attachObserved=event=>{try{if(event==='video-track')attachment.videoReady();else attachment.audio(firstAudioTrack);attachmentSnapshot(event);}catch(e){if(report.mutedConsumer.faults.length<8)report.mutedConsumer.faults.push({event,code:String(e.message).slice(0,100)});fault='MUTED_CONSUMER_ATTACHMENT_FAILED';}};"
+    },
+    {
+      "before": "ctx=new AudioContext({sampleRate:RATE,latencyHint:",
+      "after": "live={attachment};ctx=new AudioContext({sampleRate:RATE,latencyHint:"
+    },
+    {
+      "before": "live={ctx};",
+      "after": "live={ctx,attachment};"
+    },
+    {
+      "before": "el('video').srcObject=new MediaStream([e.track]);el('video').play()",
+      "after": "el('video').srcObject=new MediaStream([e.track]);attachObserved('video-track');el('video').play()"
+    },
+    {
+      "before": "firstAudioTrack=e.track;watchTrack('received-audio',e.track);",
+      "after": "firstAudioTrack=e.track;attachObserved('audio-track');watchTrack('received-audio',e.track);"
+    },
+    {
+      "before": "statsPending=true;try{const out=",
+      "after": "statsPending=true;try{attachmentSnapshot('rtp-tick');const out="
+    },
+    {
+      "before": "clock?.close();timestampOrigin?.close();videoSink?.close();",
+      "after": "try{attachmentSnapshot('before-close');}catch{fault='MUTED_CONSUMER_MUTE_GUARD';}attachment.close();report.mutedConsumer.closed=attachment.closed;try{attachmentSnapshot('after-close');}catch{}clock?.close();timestampOrigin?.close();videoSink?.close();"
+    },
+    {
+      "before": "pageTimestampOrigin:!timestampOrigin||timestampOrigin.closed};",
+      "after": "pageTimestampOrigin:!timestampOrigin||timestampOrigin.closed,mutedConsumer:attachment.closed};"
+    },
+    {
+      "before": "window.addEventListener('pagehide',()=>{live?.clock?.close();",
+      "after": "window.addEventListener('pagehide',()=>{live?.attachment?.close();live?.clock?.close();"
+    }
+  ],
+  "unchanged": [
+    "tone-worklet.js",
+    "synthetic-media.mjs",
+    "received-roi.mjs",
+    "audio-diagnostics.mjs",
+    "page-timestamp-origin.mjs"
+  ],
+  "priorAcceptance": false,
+  "canonicalEdited": false,
+  "executed": false
+}

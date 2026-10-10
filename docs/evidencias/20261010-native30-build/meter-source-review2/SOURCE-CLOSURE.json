@@ -1,0 +1,49 @@
+{
+  "status": "OFFSIDE_REVIEW2_FROZEN_ROOT_INTEGRATION_PENDING",
+  "previousAL16Sha256": "1b08fd1baf4201fb29a70a4629a53a5907b5a1f7e6c3f2ec2f833e9b14a570ec",
+  "previousAL16FullyVerified": true,
+  "productionChangedSources": [
+    {
+      "path": "src/utils/Obs_VolumeMeter.cpp",
+      "beforeSha256": "b7789fcc8be7be674282975243d124bfa05c2849c812ec33915c410ae1a8459a",
+      "draftSha256": "7c3bf7985c726f15ce256ee6e8e0d47d41c01537817e51b05df5217bb9d632ea",
+      "crlfPreserved": true
+    },
+    {
+      "path": "src/utils/Obs_VolumeMeter.h",
+      "beforeSha256": "2a122610e826f8921c0810d8bfd0647804a0eebbd211649d1420c6e5870ae97f",
+      "draftSha256": "973ff4c51db2bbca9c780d589a92d1777e51f97e77f5b4a2b4b4e2d61937d7f8",
+      "crlfPreserved": true
+    }
+  ],
+  "patchSha256": "f3568f1f1e2fc4fa528430d03616e9abc3431375d2c976306e0b3cd424240df3",
+  "compiledOwnCpuModelOnly": true,
+  "models": {
+    "normalChecks": 21,
+    "asanChecks": 21,
+    "coherentReadbacksPerMode": 20000
+  },
+  "cppMethodExtraction": [
+    "GetMeterData",
+    "ResetAudioLevels",
+    "ProcessAudioChannels",
+    "ProcessPeak",
+    "ProcessMagnitude"
+  ],
+  "toolPins": [
+    {
+      "path": "C:/Program Files/Microsoft Visual Studio/18/Community/VC/Tools/MSVC/14.51.36231/bin/Hostx64/x64/cl.exe",
+      "sha256": "b0a1818ebae6da7f18230a84e76ce839212584ac4c2ab55b97a0d5268085da57"
+    }
+  ],
+  "nativeStarted": false,
+  "SDKChangedByAgent": false,
+  "canonicalChangedByAgent": false,
+  "originalFailureCauseProven": false,
+  "limits": [
+    "Weak-source/time/name/UUID/logger are CPU stubs",
+    "Baseline fields deliberately initialized: no intentional indeterminate reads",
+    "ASan not ThreadSanitizer/MemorySanitizer",
+    "Runtime qualification must use Root Native30 freeze"
+  ]
+}

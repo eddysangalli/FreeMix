@@ -1,0 +1,26 @@
+{
+  "status": "ROOT_TWO_METER_SOURCES_INTEGRATED_BUILD_PENDING",
+  "at": "2026-10-10T11:47:58.723Z",
+  "head": "93d73e25b90bea7920e58dcd2af197aeb3e2bc1d",
+  "subHead": "70e881a141e6533e34e56923f0da095cd87e7839",
+  "files": [
+    {
+      "path": "src/utils/Obs_VolumeMeter.cpp",
+      "beforeSha256": "b7789fcc8be7be674282975243d124bfa05c2849c812ec33915c410ae1a8459a",
+      "draftSha256": "7c3bf7985c726f15ce256ee6e8e0d47d41c01537817e51b05df5217bb9d632ea",
+      "crlfPreserved": true
+    },
+    {
+      "path": "src/utils/Obs_VolumeMeter.h",
+      "beforeSha256": "2a122610e826f8921c0810d8bfd0647804a0eebbd211649d1420c6e5870ae97f",
+      "draftSha256": "973ff4c51db2bbca9c780d589a92d1777e51f97e77f5b4a2b4b4e2d61937d7f8",
+      "crlfPreserved": true
+    }
+  ],
+  "oldFailPreserved": true,
+  "causeProven": false,
+  "modelChecks": 21,
+  "asanChecks": 21,
+  "operatorTouched": false,
+  "nativeBuilt": false
+}
