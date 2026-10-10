@@ -86,3 +86,7 @@ qa-finalizacao/gtzip-direct-shapes-qr-regression/** -text whitespace=blank-at-eo
 qa-finalizacao/gtzip-ticker-template/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
 qa-finalizacao/gtzip-ticker-template/draft/gt_utils.mjs -text whitespace=blank-at-eol,-blank-at-eof,space-before-tab,cr-at-eol
 qa-finalizacao/gtzip-ticker-template/gt_utils.mjs.baseline -text whitespace=blank-at-eol,-blank-at-eof,space-before-tab,cr-at-eol
+
+qa-finalizacao/native21-qr045000-retry3/** -text -whitespace
+qa-finalizacao/package-native-startup-045000-qr-retry3.json -text -whitespace
+qa-finalizacao/package-native-startup-045000-qr-fail-allowlist.json -text -whitespace

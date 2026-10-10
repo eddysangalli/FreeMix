@@ -1,0 +1,50 @@
+{
+  "status": "FAILED_CANDIDATE_EVIDENCE_MIRRORED",
+  "at": "2026-10-10T01:04:55.270Z",
+  "candidate": "0.1.0-local.20261010004500",
+  "selectedRelease": false,
+  "operatorTouched": false,
+  "rawLogsIncluded": false,
+  "files": [
+    {
+      "path": "qa-finalizacao/package-native-startup-045000-qr-retry3.json",
+      "sha256": "35aef03628139df50cb988cb7b9d0fa50e540aaa1a9baedbcb3eb26a03cef382",
+      "bytes": 2310
+    },
+    {
+      "path": "qa-finalizacao/native21-qr045000-retry3/derive.mjs",
+      "sha256": "4527b2423fb7c9a2d7045eb6c05b8f008aaeac58300c823b235a7069c5ff4ad8",
+      "bytes": 3250
+    },
+    {
+      "path": "qa-finalizacao/native21-qr045000-retry3/installed-qr.mjs",
+      "sha256": "d979534936373fba5fc705666d377647512617b09085bda2aba88809b417ba1b",
+      "bytes": 8514
+    },
+    {
+      "path": "qa-finalizacao/native21-qr045000-retry3/preparation-receipt.json",
+      "sha256": "8c02693b5824ca4bbbd0483f055439c5beab3f17389d5d4d5fcddb83e9328b8b",
+      "bytes": 6434
+    },
+    {
+      "path": "qa-finalizacao/native21-qr045000-retry3/failure-report.mjs",
+      "sha256": "99cea91ac06b36315e3fd3897d14338b5ed082394b157c80f2106ea34e9fa730",
+      "bytes": 5210
+    },
+    {
+      "path": "qa-finalizacao/native21-qr045000-retry3/failure-report.json",
+      "sha256": "3bfd525d243b14791f6afafe72fbbbdfc952714b0cda27986e7a4e53a0eed3f1",
+      "bytes": 3195
+    },
+    {
+      "path": "qa-finalizacao/native21-qr045000-retry3/installed-qr-fail-receipt.json",
+      "sha256": "5cdde5f6a057f59198b4ef676e22b48dab63c02ed394f89b3fc7f09c3842b950",
+      "bytes": 2749
+    },
+    {
+      "path": "qa-finalizacao/package-native-startup-045000-qr-fail-allowlist.json",
+      "sha256": "44c1bab3a09727b47e3dbd27b5a84a535200d8925442d8218e560611911973df",
+      "bytes": 2121
+    }
+  ]
+}

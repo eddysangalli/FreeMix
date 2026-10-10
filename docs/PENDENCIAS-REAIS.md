@@ -1,5 +1,18 @@
 # Pendências reais e critérios de conclusão
 
+## Estado ativo após o ensaio instalado QR45
+
+O instalador selecionado continua000500. QR45 NÃO foi aprovado: importação e preparação passaram; QR inicial e atualização UTF-8 foram decodificados no CEF real após esperar a carga antes de ativar. A recuperação com mídia falhou porque o scanner interpreta require(./utils) interno ao encoder autocontido como arquivo externo. Não chegou ao restore. As falhas anteriores de ativação imediata e os recibos permanecem preservados; nenhuma mesa foi substituída.
+
+Auditoria corrige apenas o scanner de dependências, com integridade estrita do encoder/manifesto/licença e testes negativos. Installer verifica/corrige a primeira ativação no obs-browser Native em raízes próprias. Transportes encerra a prova de distribuição/Node instalada45 e prepara o suporte de fontes/reconstrução do submódulo modificado. Root integra em série, compila/freeza Native e gera outra versão somente depois dessas provas.010000 recebeu apenas preflight sem criar pacote; não é uma entrega.
+
+Ticker2D está no Git f2683e2f603ecf26fcc650da157ed385a4f47a54, com30checks próprios/46QR/33formas; API/CEF/recuperação instalada do ticker ainda faltam. TypeAdd/fila/unidadeSpeed permanecem limitações explícitas. QR45 encerrou Native/API próprios cooperativamente com contador[0] e zero crash, sem alterar seu conteúdo selado. Referências: package-native-startup-045000-qr-fail-allowlist.json e native21-qr045000-retry3/failure-report.json em qa-finalizacao.
+
+---
+
+Registros anteriores, com seus limites e datas:
+
+
 Estado em 2026-10-10T00:31:16.414Z.
 
 Instalador atual: **0.1.0-local.20261010000500**, selecionado em entregas/INSTALADOR-ATUAL.json. Use **INSTALAR-FREEMIX.cmd**, escolha uma pasta nova/vazia e depois abra pelo atalho FreeMix Studio. Duas instalações/importações/diagnósticos/desinstalações reais e startup passaram. Native **4793d1a40f56ea9b6e887eb49189d937758e3b7f**, 21 patches/187 snapshots com reconstrução de árvore verificada. Fechamento cooperativo em 773 ms, contador de alocações zero e nenhum crash novo no ensaio instalado.
