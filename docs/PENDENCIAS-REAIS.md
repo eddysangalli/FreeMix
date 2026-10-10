@@ -71,3 +71,7 @@ Candidato0.1.0-local.20261010004000 será empacotado com mesma build Native21;00
 Três fontes aplicados por cópia byteidêntica ao draft verificado: template finito com dois textos e uma imagem, campos editáveis,geometria2D preservada e Shrink limitado a10passos.30checks Edge/parser/conversão/edição PASS,46regressões QR e33formas PASS; sem cópia de modelo proprietário. TypeAdd/fila e unidadeSpeed exata continuam avisos explícitos; movimento local aproximado de um item. Sequências examinadas não possuem alvo/frames/tempo utilizáveis e não foram inventadas.
 
 Root prepara candidato0.1.0-local.20261010010000 com mesmoNative21; ticker ainda não recebeu QAAPI/CEF/recuperação instalada.000500 segue selecionado enquanto QR45 terminaQA. Provas em qa-finalizacao/gtzip-ticker-template/ALLOWLIST-APPLIED.json; não transferir PASS do draft para CEF.
+
+## Correção de recuperação QR integrada, aguardando pacote novo
+
+O scanner agora reconhece o encoder autocontido somente quando conteúdo/tamanho/manifesto GTZIP/campo QR/licença MIT correspondem exatamente ao helper local aprovado. Não interpreta os requires internos como arquivos externos. Scripts arbitrários, traversal e adulterações continuam recusados.33 verificações locais passaram, incluindo backup .fmx real, restauração sem originais e QR decodificado em Edge/ZXing. Native/API eram mocks neste teste; recuperação pela API/CEF instalada ainda precisa do candidato seguinte. Nenhum pacote selado foi alterado. A primeira ativação está em QA separada no obs-browser.

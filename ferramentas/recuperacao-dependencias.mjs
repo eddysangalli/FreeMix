@@ -1,9 +1,32 @@
 import {readFile,readdir,lstat} from 'node:fs/promises';
-import {resolve,join,dirname,relative,isAbsolute,extname} from 'node:path';
+import {resolve,join,dirname,relative,isAbsolute,extname,basename} from 'node:path';
 import {fileURLToPath} from 'node:url';
+import {createHash} from 'node:crypto';
+import {GT_QR_RUNTIME_SCRIPT,GT_QR_LICENSE} from './gtzip-qr.mjs';
+const hash=bytes=>createHash('sha256').update(bytes).digest('hex');
+const qrRuntime=Buffer.from(GT_QR_RUNTIME_SCRIPT),qrLicense=Buffer.from(GT_QR_LICENSE);
 const inside=(root,path)=>{const r=relative(root,path);return !r||(!r.startsWith('..')&&!isAbsolute(r));};
 function withoutJSComments(source){let result='',quote=null;for(let i=0;i<source.length;i++){const c=source[i],next=source[i+1];if(quote){result+=c;if(c==='\\'){result+=source[++i]||'';}else if(c===quote)quote=null;continue;}if(['"',"'",'`'].includes(c)){quote=c;result+=c;continue;}if(c==='/'&&next==='/'){while(i<source.length&&source[i]!=='\n')i++;result+='\n';continue;}if(c==='/'&&next==='*'){i+=2;while(i<source.length&&!(source[i]==='*'&&source[i+1]==='/'))i++;i++;result+=' ';continue;}result+=c;}return result;}
 async function noLinks(root,path){for(let p=path;;p=dirname(p)){if((await lstat(p)).isSymbolicLink())throw Error('Link não permitido: '+p);if(p===root)break;if(dirname(p)===p)throw Error('Dependência fora da pasta permitida');}}
+// Only the byte-exact converter-owned encoder has internal Browserify requires.
+// A filename or a user-authored manifest alone must never bypass dependency checks.
+async function verifiedQrBundle(item,bytes){
+ if(basename(item.path)!=='gt-qr.js')return false;
+ const manifestPath=join(dirname(item.path),'manifest.json');let info;
+ try{info=await lstat(manifestPath);}catch(e){if(e.code==='ENOENT')return false;throw e;}
+ await noLinks(item.root,manifestPath);if(!info.isFile()||info.size>8*1024**2)throw Error('Manifesto GTZIP inválido na cópia de dependências');
+ const manifest=JSON.parse(await readFile(manifestPath,'utf8'));
+ if(manifest.sourceFormat!=='GTZIP')return false;
+ if(manifest.format!==2||!Array.isArray(manifest.files)||manifest.files.length>4096||!Array.isArray(manifest.fields)||!manifest.fields.some(f=>f.type==='QRCode'))throw Error('Contrato QR GTZIP inválido na cópia de dependências');
+ for(const [name,expected,actual]of [['gt-qr.js',qrRuntime,bytes],['QR-LICENSE.txt',qrLicense,null]]){
+  const entries=manifest.files.filter(f=>f.path===name);
+  if(entries.length!==1||entries[0].size!==expected.length||entries[0].sha256!==hash(expected))throw Error('Registro QR GTZIP não corresponde ao encoder local: '+name);
+  const path=join(dirname(item.path),name);await noLinks(item.root,path);const stat=await lstat(path);
+  if(!stat.isFile()||stat.size!==expected.length)throw Error('Arquivo QR GTZIP alterado: '+name);
+  if(hash(actual||await readFile(path))!==hash(expected))throw Error('Arquivo QR GTZIP alterado: '+name);
+ }
+ return true;
+}
 export function staticReferences(source,extension){
  if(/\.[cm]?js$/.test(extension))source=withoutJSComments(source);
  const refs=[];const add=(value,kind)=>{if(value)refs.push({value,kind});};
@@ -27,7 +50,8 @@ export async function collectStaticDependencies(dependencies,{installationRoot,m
  for(const d of dependencies.filter(d=>d.status==='external-file')){const path=resolve(d.path),root=installationRoot&&inside(resolve(installationRoot),path)?resolve(installationRoot):dirname(path);await add(path,root);}
  for(let round=0;round<24;round++){
   const pending=[...found.values()].filter(f=>/\.(?:html?|css|[cm]?js)$/i.test(f.path)&&!scanned.has(f.path));if(!pending.length)break;
-  for(const item of pending){scanned.add(item.path);if(item.size>2*1024**2)throw Error('Código estático maior que 2 MB: '+item.path);const source=await readFile(item.path,'utf8'),extension=extname(item.path).toLowerCase();
+  for(const item of pending){scanned.add(item.path);if(item.size>2*1024**2)throw Error('Código estático maior que 2 MB: '+item.path);const code=await readFile(item.path),source=code.toString('utf8'),extension=extname(item.path).toLowerCase();
+   if(await verifiedQrBundle(item,code)){await add(join(dirname(item.path),'manifest.json'),item.root);await add(join(dirname(item.path),'QR-LICENSE.txt'),item.root);diagnostics.push({path:item.path,status:'verified-offline-qr-bundle',detail:'Encoder GTZIP local byte-idêntico; SHA/tamanho/manifesto/licença conferidos. Requires internos não são arquivos externos.'});continue;}
    if(/\b(?:import|require|fetch)\s*\(\s*(?![\s"'])[^)]/.test(source))diagnostics.push({path:item.path,status:'dynamic-reference',detail:'Expressão dinâmica exige diagnóstico em execução; não foi copiada por suposição'});
    let base=dirname(item.path);const baseHref=/\.html?$/.test(extension)?source.match(/<base\b[^>]*href\s*=\s*["']([^"']+)["']/i)?.[1]:null;
    if(baseHref){if(/^[a-z][a-z0-9+.-]*:|^\/\//i.test(baseHref)){diagnostics.push({path:item.path,status:'remote-base',detail:baseHref});continue;}base=resolve(base,baseHref);if(!inside(item.root,base))throw Error('Base HTML sai da pasta permitida');}
