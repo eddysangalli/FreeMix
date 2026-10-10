@@ -1,0 +1,65 @@
+{
+  "status": "FAIL",
+  "started": "2026-10-10T04:36:44.634Z",
+  "root": "C:\\Users\\eddyr\\AppData\\Local\\Temp\\FreeMix-QA-TickerNative23-ZLT5Bj",
+  "baseCandidateSha256": "f0457a3f5afed47b62eb8e1ef943b0b15b32441d0c51cf1d2f14b3048cc06bba",
+  "nativeFreezeSha256": "3cb8f18d3fe021d931fc3f980f8f573b9008b3fce519bef6c897be42a65f7528",
+  "nativeHead": "709f101d1aaeb25ccc6f6eab77a3e23e9364f3b0",
+  "draftAllowlistSha256": "6a2d98c172cc850fc40e41d82178a14343620a347a58be23bd9ef43581c564dc",
+  "operatorTouched": false,
+  "phases": [],
+  "apiPort": 53442,
+  "wsPort": 53443,
+  "nativeFilesCopied": 2085,
+  "overlay": [
+    {
+      "path": "ferramentas/gtzip-xml.mjs",
+      "sha256": "2738f124d729684882c9a58f749310f7683bb70bdd4bdb1d14e54783e76cfa64"
+    },
+    {
+      "path": "ferramentas/gtzip-render.mjs",
+      "sha256": "552a6b9d891cfb3bcd1dad5b8e9b4b293ceb1646924664bf80a18bdeb4229e50"
+    },
+    {
+      "path": "ferramentas/gtzip_converter.mjs",
+      "sha256": "4ab80efd023fafffe141c32c701c8ef54edbc7cb72aa3b469131dbad29a7889d"
+    },
+    {
+      "path": "ferramentas/gtzip-runtime.mjs",
+      "sha256": "65ad2c8e1cc4d20a0800a79bc85b1048f6824a40b73599a6d7a9b003c4152c3c"
+    },
+    {
+      "path": "ferramentas/gc-gtzip.mjs",
+      "sha256": "e0efc4580874a3ae40fde5028e17306298c07606f5e7a7fa236ef4a6c63c5afe"
+    },
+    {
+      "path": "ferramentas/servidor-api.mjs",
+      "sha256": "dc89122e555c407a0fab23dfaab562fcf99e02b70b586351073376c134bc05d1"
+    },
+    {
+      "path": "ferramentas/controle-producao.mjs",
+      "sha256": "46e18809a91a8ee8664c4e1c1bc8366100a71c4abc0d5809392380b3488e5cb5"
+    },
+    {
+      "path": "painel/remoto/gc-gtzip.js",
+      "sha256": "4776e48506fe61a9c33373d6c7736b7bb1c68da8207248fb5068deb8b81094fa"
+    },
+    {
+      "path": "ferramentas/gtzip-ticker.mjs",
+      "sha256": "5efee366a7d82b01bae3df12b50b6e0ec1da626ceea6bfbe406cd2e98331b40e"
+    },
+    {
+      "path": "ferramentas/gtzip-ticker-ack.mjs",
+      "sha256": "18cb107ca7df7d444c017850ddeb92294ebab299d55aec64a8d2f571a522cc59"
+    }
+  ],
+  "error": "Base dependency differs ferramentas/gtzip-qr-bundle.mjs\n+ actual - expected\n\n+ 'ec6531b00b22db7c70024fa19e83739469290e8c28aff2cedecca0b49976ceb7'\n- '422f54b25660a373f9aca81da3f5021f1bb1b002f392cce412619756c0d208cc'",
+  "logs": [],
+  "crashArtifacts": 0,
+  "finished": "2026-10-10T04:38:31.366Z",
+  "limits": [
+    "Isolated Native23/CEF real + own drafts. No operator/hardware/REC/stream or release edits",
+    "Initial exact-runtime phase only; instrumentation/delayed-ACK phase separate",
+    "No physical broadcast/frame latency homologation"
+  ]
+}

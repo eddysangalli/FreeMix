@@ -1,3 +1,4 @@
+import {tickerContract} from './gtzip-ticker.mjs';
 import {parseAttributes,convertColor} from './gt_utils.mjs';
 import {validateGtQr,validateGtQrField} from './gtzip-qr.mjs';
 export function parseGtTree(xml){
@@ -27,11 +28,12 @@ export function parseGtXml(xml){
   if(node.tag==='Rectangle'){const r=vector(a.Radius,[0,0]);el.radiusX=r[0];el.radiusY=r[1];}
   if(['Triangle','RightTriangle','Polygon','Path'].includes(node.tag)){el.geometry=node.tag==='Triangle'?`${el.width/2},0 ${el.width},${el.height} 0,${el.height}`:node.tag==='RightTriangle'?`0,0 ${el.width},${el.height} 0,${el.height}`:a.Points||a.Data||'';if(node.tag==='Polygon'&&!/^[\d.,eE+\-\s]+$/.test(el.geometry)||node.tag==='Path'&&(!el.geometry||!/^[MLCQAZHTVSmlcqazhtvs\d.,eE+\-\s]+$/.test(el.geometry)))warn(node,'Geometria SVG ausente ou incompatível');}
   if(['TextBlock','Ticker'].includes(node.tag)){const tb=node.tag==='Ticker'?descendant(child(node,'Ticker.Template')||node,'TextBlock'):null,ta=tb?.attrs||{};Object.assign(el,{text:a.Text??ta.Text??'',fontFamily:a.FontFamily||ta.FontFamily||'Arial',fontSize:number(a.FontSize||ta.FontSize,36,1,1000),fontWeight:/^(?:bold|semibold|heavy)$/i.test(a.FontWeight||ta.FontWeight||'')?'bold':'normal',fontStyle:/^(?:italic|oblique)$/i.test(a.FontStyle||ta.FontStyle||'')?'italic':'normal',textAlign:(a.TextAlign||ta.TextAlign||'Left').toLowerCase(),verticalAlign:(a.VerticalAlign||ta.VerticalAlign||'Center').toLowerCase(),wordWrap:(a.TextWordWrapping||ta.TextWordWrapping)==='Wrap',speed:number(a.Speed,4,.01,100),direction:a.Direction||'Left'});}
+  if(node.tag==='Ticker'){el.ticker=tickerContract(a,!!child(node,'Ticker.Template')&&[...walkGtTree(child(node,'Ticker.Template'))].some(n=>['Layer','Group','Image'].includes(n.tag)));if(!el.ticker.supported)warn(node,el.ticker.reason+'; ticker texto/fila não habilitados');}
   if(node.tag==='Ticker'&&child(node,'Ticker.Template')&&[...walkGtTree(child(node,'Ticker.Template'))].some(n=>['Layer','Group','Image'].includes(n.tag))){
    const wrapper=child(node,'Ticker.Template'),layer=wrapper.children[0],content=layer&&child(layer,'Layer.Composition'),composition=content?.children[0];
    const supported=wrapper.children.length===1&&layer?.tag==='Layer'&&content?.children.length===1&&composition?.tag==='Composition'&&composition.children.length===3&&composition.children.filter(n=>n.tag==='TextBlock').length===2&&composition.children.filter(n=>n.tag==='Image').length===1&&[...walkGtTree(wrapper)].every(n=>['Ticker.Template','Layer','Layer.Composition','Composition','TextBlock','TextBlock.Fill','TextBlock.Stroke','TextBlock.Transform','TextBlock.Crop','Image','Image.Bitmap','Image.Transform','Image.Crop','Bitmap','Brush','Transform','Crop'].includes(n.tag));
    if(supported){el.template=group(layer);for(const item of el.template.elements)if(item.type==='TextBlock'){const original=composition.children.find(n=>n.path===item.path);item.templateAutoSize=original?.attrs.AutoSize==='Shrink'?'Shrink':'None';if(original?.attrs.AutoSize&&!['Shrink','None'].includes(original.attrs.AutoSize))warn(original,'Ticker.Template AutoSize não convertido: '+original.attrs.AutoSize);}
-    warn(node,'Ticker.Template 2D convertido como um item; Type Add/fila não implementados, unidade de Speed desconhecida e rolagem aproximada (60/Speed segundos)');
+    warn(node,'Ticker.Template 2D convertido como um item; Type Add/fila de template não implementados; Speed é pixels/frame, esta rota visual de template mantém duração aproximada (60/Speed segundos)');
    }else warn(node,'Ticker.Template fora do contrato 2D (um Layer com dois TextBlock e Image); somente texto com rolagem aproximada');
   }
   if(node.tag==='QRCode'){

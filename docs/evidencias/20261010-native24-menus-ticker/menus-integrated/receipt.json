@@ -1,0 +1,42 @@
+{
+  "status": "PASS_FROZEN_UI_INTEGRATED",
+  "at": "2026-10-10T04:55:37.121Z",
+  "allowlistSha256": "a9717b231086643761b0cf953f421c4ebffc7c4846f52ade41b99cc05d0cca97",
+  "files": [
+    {
+      "target": "FreeMix/painel/remoto/audio.html",
+      "beforeSha256": "475525ead68674cce0349f02791898fe57ba05a7ebc7dbba0a53548812092b27",
+      "afterSha256": "fbba48c83e9d3eeb6b0d9d277b1345df257075d8befe24a8905e8c471996f554",
+      "newFile": false
+    },
+    {
+      "target": "FreeMix/painel/remoto/replay.html",
+      "beforeSha256": "6f8db2fd2ed32dbeb0873e529ba7cfaa302cbad0384ecf9e1da93d67d8bebb45",
+      "afterSha256": "98368b5855271fe7ed6f0175e7fe347ac5e002c3c3ac09b442f1a3f80549d0a9",
+      "newFile": false
+    },
+    {
+      "target": "FreeMix/painel/remoto/settings.html",
+      "beforeSha256": "22a4332c74dd45838bb03cdac24b1fb84dabd6eefda38dc837bf2d6ae17a95f0",
+      "afterSha256": "ef48e199bedf7acaf348008f137273bb5fd0d30c9dfd4da0b725811d709b0404",
+      "newFile": false
+    },
+    {
+      "target": "FreeMix/painel/remoto/menus-tarefas-ui.js",
+      "beforeSha256": null,
+      "afterSha256": "7b5000db82d56b6cb32b9db908f5e3da04f24604e1c145a1ff9b9d17821e6f7f",
+      "newFile": true
+    },
+    {
+      "target": "FreeMix/painel/remoto/menus-tarefas-ui.css",
+      "beforeSha256": null,
+      "afterSha256": "443b69db2ccc16559244468062d408d31489459f8c6750ec0d2e1810a500727b",
+      "newFile": true
+    }
+  ],
+  "operatorTouched": false,
+  "sealedPackagesTouched": false,
+  "limits": [
+    "DOM/VM and actual IAB draft screenshots; no new Native or physical audio claim"
+  ]
+}

@@ -1,3 +1,39 @@
+# Atualização do FreeMix —10/10/2026
+
+## Selecionado035000;fonte posterior 050500
+
+entregas/INSTALADOR-ATUAL.json VERIFIED: **0.1.0-local.20261010035000**, Native23/709f101, Setup SHA **155aa53e12ae4431f66d85fee7785ee158b343ffcda8ae41550025bab7a22c10**. QA final: instalação própria e duas aberturas/fechamentos contador 0 / crash 0,Meter 3/0,API reconectada,diagnóstico sanitizado/uninstall reais;operador não ativado. Provas qa-finalizacao/setup-035000-qa-retry2/report.json,installer-selected-035000.json,candidate-release-035000.json. A antiga nota QA pendente do candidate-release é cronológica e foi supersedida pelo report final.
+
+FAILs035000 preservados: pin de error.html antes da transformação branding assinada; depois guard do nome da pasta QA incompatível com shutdown_idle, sem provar hang Native. Retry2 usa nova instalação FreeMix-QA-,não renomeia/reutiliza JR. EOL no primeirotickerNative23 é FAIL separado de preparação;normalização só na QA própria. Não apagar/mesclar essas provas.
+
+Fonte **0.1.0-local.20261010050500**,Native24 **a04786090fcbe7ede495f18e5ad38ccaa9793478**: FreeMix/fork/manifest.json24 patches;source-verification.jsonPASS/192 snapshots/tree **e67ece9930c4cea0548afa9f3d4f658e0f7814b7**. Export/build não é instalação;050500 ainda sem pacote/Setup aprovado neste registro.
+
+### Integrações posteriores ao035000
+
+- NAV: Externo/câmera virtual/Calls por ação própria, duplicações retiradas. qa-finalizacao/mesa-navigation-cleanup-20261010/receipt.json.
+- Áudio/Replay/Settings55 checks,config distinta de operar,links legíveis/NO AR vazio desabilitado: menus-restantes-root-integration-20261010/receipt.json e ux-menus-restantes-20261010/ALLOWLIST.json;IAB próprio revisado.
+- Input44 checks,básico/fontes/avançado mantendoUUID/ações/guards:input-menu-root-integration-20261010/receipt.json e ux-input-menu-20261010/ALLOWLIST.json;capturas 17/18 revisadas,clipping 15/16 do harness preservadoFAIL.
+- Ticker textual Add/Replace, fila de 32 itens, direções e Speed×FPS racional,Update separado de Save; ACK fora da fila operacional: ticker-root-integration-2026-10-10T04-47-31-404Z/receipt.json. gtzip-ticker-native23-20261010/ALLOWLIST.json separa CEF/runtime exato da instrumentação;ACK/movimento/Cut antes do callback tardio. Não é suporte universalGTZIP / 3D / templates / feeds.
+- Operações atuais70PASS:mesa-operations-native24-final-retry1-20261010/CANONICAL-COMBINED-PASS.json;guard de ações byte a byte antigo falhouNAV intencional,FAILpreservado e baseline revisado. Native23 operacional: 12prova separada,não performance completa instalada24.
+
+### SRT HDR opaco real
+
+srt-hdr-native24-real-20261010/{README.md,ALLOWLIST.json,retry1-receipt.json,lifecycle-receipt.json}:Native24TEMP,obs_nvenc_hevc_tex; HEVC Main10/P010/PQ/BT.2020 limited e AAC48k estéreo;4 slots1024×240/30fps,863 níveis decodificados e bandas 300/1000 nits distintas,VUI 9/16/9, PTS/PCM, reconnect/stop/contexto. Precisão além de 8 bits nesta rota,sem relabel SDR/alpha. Três execuçõescontador 0 / crash 0,Meter 4/1/4preservados. FAIL maxBuffer de trace_headers preservado;retry filtra VPS/SPS/PPS reais sem alterar encoder.
+
+srt-hdr-api-ux-native24-20261010/http-receipt.json:7 HTTP PASS,GET sem escritas/início,configure/preflight do slot escolhido,start aceito → live confirmado,stop → pendingfalse confirmado;Native/API cooperativo contador 0 / crash 0/Meter 1. Não repete decode. Dois últimos guards UI áudio salvo indisponível/mudança de sender PASS em VM, pin642b6a542e148d80fa86314135aa250ccfcc48bf940df3948cdacdf405c34efc. Freeze de 25 arquivos ALLOWLISTSHA **a18968e931b97588373ae083419474658dd635774a9884d98c2f00fba0fc7af3**. IAB/HTTP usaramUI anterior aos2 guards;proveniência explícita, não nova aprovação visual. Pacote/receptor HDR / WAN / UHD/60fps/outrosencoders/endurance pendentes. Áudio Master é escolha explícita, não segue UUID de vídeo automaticamente.
+
+### Gates preservados
+
+HTTPS local50 PASS/TLS 1.3/52 requests:qa-finalizacao/update-https-local/{README.md,resultado.json,ALLOWLIST.json};CA apenas no subprocesso QA,assinatura/hash/download/redirect/negativas,sem desativar SSL do produto. Domínio/feed público/TURN/WAN externos.
+
+Properties/Filters handoff queued,sem evidência visible/focus/z-order. native-editor-observability-20261010 draft34source/model,**não aplicado/compilado/não recurso entregue**. Hardware ASIO/SDI/PTZ/controladores, NDI HDR Advanced SDK/licença+implementação,Calls externas/câmeras/endurance/Windows limpo conforme PENDENCIAS-REAIS.md. Sem Authenticode/coleta automática/homologação geral. Alpha WebBrowser abortado; ponte alpha beta separada;operador preservado.
+
+---
+
+## Histórico preservado — estados anteriores, não instruções atuais
+
+Registros abaixo mantêm textos/limites originais. Referências antigas a atual, pendente ou próximo valem para sua data; o estado vigente é o descrito acima.
+
 # Atualização do FreeMix — 10/10/2026
 
 ## Estado atual — instalador031500 aprovado; revisão operacional em andamento

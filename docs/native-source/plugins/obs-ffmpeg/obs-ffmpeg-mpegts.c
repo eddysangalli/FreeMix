@@ -701,6 +701,7 @@ static inline bool active(void *data)
 static void ffmpeg_mpegts_full_stop(void *data);
 static void ffmpeg_mpegts_deactivate(struct ffmpeg_output *stream);
 static void ffmpeg_mpegts_stop(void *data, uint64_t ts);
+static void ffmpeg_mpegts_stop_internal(void *data, uint64_t ts, bool signal);
 
 static void ffmpeg_mpegts_destroy(void *data)
 {
@@ -708,7 +709,7 @@ static void ffmpeg_mpegts_destroy(void *data)
 
 	if (stream) {
 		/* immediately stop without draining packets */
-		ffmpeg_mpegts_stop(data, 0);
+		ffmpeg_mpegts_stop_internal(data, 0, false);
 
 		/* Now wait for that stop to finish */
 		pthread_mutex_lock(&stream->start_stop_mutex);
@@ -799,7 +800,6 @@ end:
 	return ret;
 }
 
-static void ffmpeg_mpegts_stop_internal(void *data, uint64_t ts, bool signal);
 static void *write_thread(void *data)
 {
 	struct ffmpeg_output *stream = data;
@@ -889,8 +889,15 @@ static bool setup_video_settings(struct ffmpeg_output *stream, struct ffmpeg_cfg
 	config->video_encoder = obs_encoder_get_codec(vencoder);
 	if (strcmp(config->video_encoder, "h264") == 0)
 		config->video_encoder_id = AV_CODEC_ID_H264;
-	else
+	else if (strcmp(config->video_encoder, "hevc") == 0)
+		config->video_encoder_id = AV_CODEC_ID_HEVC;
+	else if (strcmp(config->video_encoder, "av1") == 0)
 		config->video_encoder_id = AV_CODEC_ID_AV1;
+	else {
+		blog(LOG_WARNING, "Unsupported video codec used for mpegts output");
+		*code = OBS_OUTPUT_ERROR;
+		return false;
+	}
 
 	/* c) set video format from OBS to FFmpeg */
 	video_t *video = obs_encoder_video(vencoder);
@@ -1101,7 +1108,10 @@ static void stop(void *data, bool signal, uint64_t ts)
 	 * We only clear bool 'running' if this is a user-requested stop, not a reconnect-triggered stop.
 	 */
 
-	if (os_atomic_load_bool(&stream->running) && signal) {
+	/* An explicit stop also completes a failed/inactive startup generation.
+	 * libobs force_stop resets stopping_event; never skip its completion signal.
+	 * Destroy passes signal=false and must not produce duplicate terminal events. */
+	if (signal) {
 		obs_output_signal_stop(stream->output, OBS_OUTPUT_SUCCESS);
 		os_atomic_set_bool(&stream->running, false);
 	}

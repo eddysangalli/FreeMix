@@ -1,0 +1,198 @@
+{
+  "status": "PASS_EXACT_NATIVE23_CEF_ACK",
+  "started": "2026-10-10T04:40:23.561Z",
+  "root": "C:\\Users\\eddyr\\AppData\\Local\\Temp\\FreeMix-QA-TickerNative23-ZLT5Bj",
+  "baseCandidateSha256": "f0457a3f5afed47b62eb8e1ef943b0b15b32441d0c51cf1d2f14b3048cc06bba",
+  "nativeFreezeSha256": "3cb8f18d3fe021d931fc3f980f8f573b9008b3fce519bef6c897be42a65f7528",
+  "nativeHead": "709f101d1aaeb25ccc6f6eab77a3e23e9364f3b0",
+  "draftAllowlistSha256": "6a2d98c172cc850fc40e41d82178a14343620a347a58be23bd9ef43581c564dc",
+  "operatorTouched": false,
+  "phases": [
+    {
+      "status": "PASS_EXACT_NATIVE23_CEF_ACK",
+      "runtimeByteExact": true,
+      "jsInjection": false,
+      "checks": [
+        {
+          "name": "Prepare real pins project rational FPS and own source",
+          "status": "PASS"
+        },
+        {
+          "name": "Exact frozen CEF emit_event receives real POSTACK Add queued2",
+          "status": "PASS"
+        },
+        {
+          "name": "Exact frozen CEF Replace confirmed one item",
+          "status": "PASS"
+        },
+        {
+          "name": "Exact frozen real CEF queue32 preserved and queue33 refused",
+          "status": "PASS"
+        },
+        {
+          "name": "Live updates do not change browser URL/settings",
+          "status": "PASS"
+        },
+        {
+          "name": "Save real remains persistence without browser reconfiguration",
+          "status": "PASS"
+        }
+      ],
+      "updates": [
+        {
+          "id": "199845bd-1cc3-4ab4-80ca-2c9f1b3499f0",
+          "sent": true,
+          "rendererConfirmed": true,
+          "status": "ACCEPTED",
+          "requestId": "7b9c9775-d34a-43aa-8f85-e51a16dc2836",
+          "valuesSaved": false,
+          "outputsStarted": false,
+          "fields": [
+            {
+              "field": "OwnAdd",
+              "queued": 2
+            }
+          ]
+        },
+        {
+          "id": "199845bd-1cc3-4ab4-80ca-2c9f1b3499f0",
+          "sent": true,
+          "rendererConfirmed": true,
+          "status": "ACCEPTED",
+          "requestId": "5870c658-7da4-4413-aca9-4946c00d850b",
+          "valuesSaved": false,
+          "outputsStarted": false,
+          "fields": [
+            {
+              "field": "OwnReplace",
+              "queued": 1
+            }
+          ]
+        },
+        {
+          "id": "199845bd-1cc3-4ab4-80ca-2c9f1b3499f0",
+          "sent": true,
+          "rendererConfirmed": true,
+          "status": "REFUSED",
+          "requestId": "5bb8ef86-5d03-4022-aaaa-e30d519abf14",
+          "valuesSaved": false,
+          "outputsStarted": false,
+          "fields": [],
+          "code": "QUEUE_FULL"
+        }
+      ],
+      "prepared": {
+        "prepared": true,
+        "id": "199845bd-1cc3-4ab4-80ca-2c9f1b3499f0",
+        "scene": "FreeMix GT 199845bd-1cc3-4ab4-80ca-2c9f1b3499f0",
+        "input": "FreeMix GT 199845bd-1cc3-4ab4-80ca-2c9f1b3499f0 HTML",
+        "width": 800,
+        "height": 400,
+        "outputsStarted": false
+      },
+      "fps": {
+        "numerator": 30,
+        "denominator": 1
+      },
+      "sourceUuid": "c6f9de3f-f18a-4219-8999-d63f54b9e702",
+      "initialCapture": {
+        "file": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\gtzip-ticker-native23-20261010\\phase1-exact-initial.png",
+        "sha256": "d9df07c73b20d082a8a2fe1ccd531c8212169d446e654082b54101bf4b9e69bd",
+        "bytes": 4079
+      }
+    }
+  ],
+  "apiPort": 61628,
+  "wsPort": 61629,
+  "nativeFilesCopied": 2085,
+  "overlay": [
+    {
+      "path": "ferramentas/gtzip-xml.mjs",
+      "sha256": "2738f124d729684882c9a58f749310f7683bb70bdd4bdb1d14e54783e76cfa64"
+    },
+    {
+      "path": "ferramentas/gtzip-render.mjs",
+      "sha256": "552a6b9d891cfb3bcd1dad5b8e9b4b293ceb1646924664bf80a18bdeb4229e50"
+    },
+    {
+      "path": "ferramentas/gtzip_converter.mjs",
+      "sha256": "4ab80efd023fafffe141c32c701c8ef54edbc7cb72aa3b469131dbad29a7889d"
+    },
+    {
+      "path": "ferramentas/gtzip-runtime.mjs",
+      "sha256": "65ad2c8e1cc4d20a0800a79bc85b1048f6824a40b73599a6d7a9b003c4152c3c"
+    },
+    {
+      "path": "ferramentas/gc-gtzip.mjs",
+      "sha256": "e0efc4580874a3ae40fde5028e17306298c07606f5e7a7fa236ef4a6c63c5afe"
+    },
+    {
+      "path": "ferramentas/servidor-api.mjs",
+      "sha256": "dc89122e555c407a0fab23dfaab562fcf99e02b70b586351073376c134bc05d1"
+    },
+    {
+      "path": "ferramentas/controle-producao.mjs",
+      "sha256": "46e18809a91a8ee8664c4e1c1bc8366100a71c4abc0d5809392380b3488e5cb5"
+    },
+    {
+      "path": "painel/remoto/gc-gtzip.js",
+      "sha256": "4776e48506fe61a9c33373d6c7736b7bb1c68da8207248fb5068deb8b81094fa"
+    },
+    {
+      "path": "ferramentas/gtzip-archive.mjs",
+      "sha256": "b2107d921137e48b0a7d8ec6b62e7b2e7509a47c3992bf947da7aad6e85725be"
+    },
+    {
+      "path": "ferramentas/gtzip-fonts.mjs",
+      "sha256": "8f0636142c0c85309e872fc74c5411a7584282afe9b48da5765299ac693a7464"
+    },
+    {
+      "path": "ferramentas/gtzip-qr.mjs",
+      "sha256": "0088ca623686d6cfc9df13de3859bb2b42cd8af2b07057f8ee5c4013b2a0834b"
+    },
+    {
+      "path": "ferramentas/gtzip-qr-bundle.mjs",
+      "sha256": "422f54b25660a373f9aca81da3f5021f1bb1b002f392cce412619756c0d208cc"
+    },
+    {
+      "path": "ferramentas/gt_utils.mjs",
+      "sha256": "b3ce86ea78f4808abcedf7d363ff743279d2fcd817c5a1abf36fbdec39437c0e"
+    },
+    {
+      "path": "ferramentas/gc-assets.mjs",
+      "sha256": "3623340909e6abf0bc9cae622f1657e41968862b026455b4f9456eaea99a633c"
+    },
+    {
+      "path": "ferramentas/gtzip-ticker.mjs",
+      "sha256": "5efee366a7d82b01bae3df12b50b6e0ec1da626ceea6bfbe406cd2e98331b40e"
+    },
+    {
+      "path": "ferramentas/gtzip-ticker-ack.mjs",
+      "sha256": "18cb107ca7df7d444c017850ddeb92294ebab299d55aec64a8d2f571a522cc59"
+    }
+  ],
+  "nativePid": 210612,
+  "apiPid": 155864,
+  "shutdownAccepted": true,
+  "nativeClosed": true,
+  "apiClosed": true,
+  "logs": [
+    {
+      "sha256": "1a2a5513d401c54030b45e49a4651e0939dd7a3010298c8ef6f19baeb0b1c341",
+      "nativeVersionConfirmed": true,
+      "allocations": [
+        0
+      ],
+      "meterWarnings": 4,
+      "doubleDestroyWarnings": 0,
+      "remainingObjectWarnings": 0
+    }
+  ],
+  "crashArtifacts": 0,
+  "finished": "2026-10-10T04:40:59.441Z",
+  "limits": [
+    "Isolated Native23/CEF real + own drafts. No operator/hardware/REC/stream or release edits",
+    "Initial exact-runtime phase only; instrumentation/delayed-ACK phase separate",
+    "No physical broadcast/frame latency homologation"
+  ]
+}

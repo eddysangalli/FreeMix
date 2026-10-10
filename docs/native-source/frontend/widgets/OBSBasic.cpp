@@ -1767,11 +1767,16 @@ void OBSBasic::closeEvent(QCloseEvent *event)
 		if (!isClosePromptOpen()) {
 			bool shouldClose = promptToClose();
 
-			if (shouldClose) {
+			if (shouldClose && FreeMixMultistreamDrainSrtHdr()) {
 				closeWindow();
 			}
 		}
 
+		return;
+	}
+
+	if (!FreeMixMultistreamDrainSrtHdr()) {
+		event->ignore();
 		return;
 	}
 
@@ -2026,6 +2031,8 @@ void OBSBasic::closeWindow()
 	if (isClosing()) {
 		return;
 	}
+	// Also covers direct Windows WM_ENDSESSION calls that bypass closeEvent.
+	if (!FreeMixMultistreamDrainSrtHdr()) return;
 
 	blog(LOG_INFO, SHUTDOWN_SEPARATOR);
 

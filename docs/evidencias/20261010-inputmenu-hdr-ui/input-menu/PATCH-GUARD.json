@@ -1,0 +1,9 @@
+{
+  "baselineSha256": "a436f64e0e558cbcfe13af30c789f9a3a97151ce9075c71aca6b660ed4266a5c",
+  "draftSha256": "91c66d7b4a64514de9b178d89bcbe5c65952bfce9b85fbac1ea762e3154564e8",
+  "changes": [
+    "One local CSS include before head close",
+    "One local helper include after existing engine scripts before body close"
+  ],
+  "unchangedAfterRemovingIncludes": true
+}

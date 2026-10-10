@@ -1,3 +1,23 @@
+# FreeMix — continuidade do trabalho
+
+## Estado vigente em 10/10/2026
+
+**Selecionado: 0.1.0-local.20261010035000 (035000), Native23/709f101.** entregas/INSTALADOR-ATUAL.json está VERIFIED; Setup SHA155aa53e12ae4431f66d85fee7785ee158b343ffcda8ae41550025bab7a22c10. Use INSTALAR-FREEMIX.cmd em pasta nova/vazia. Operador não foi substituído/ativado.
+
+QA final035000: instalação própria real e duas aberturas/fechamentos cooperativos contador 0 / crash 0, Meter 3/0, API reconectada, diagnóstico sanitizado e uninstall reais. Não confundir dois ciclos com duas instalações. FAILs anteriores permanecem. Ver ENTREGA-ATUAL.md e qa-finalizacao/setup-035000-qa-retry2/report.json.
+
+**Fonte posterior 050500/Native24/a047860 ainda não é pacote/Setup instalado ou aprovado neste registro.** NAV, ticker textual Add/Replace, menus Áudio/Replay/Settings55 e Input44 foram integrados no canonical FreeMix. Operações atuais70 contratos PASS; Native23 operacional: 12 é prova separada. Novo SRT HDR opaco tem mídia real local NVENC/Main10/P010/PQ/BT.2020 limited/AAC,4 slots simultâneos e HTTP: 7 PASS/fechamento contador 0 / crash 0. Dois guards UI finais PASS VM; IAB/HTTP anterior a esses guards. Sem aceite WAN/monitorHDR/UHD/60fps/outrosencoders.
+
+Próximos passos: Root fixa fontes/closure/pins, gera/sela050500 e testa instalação/startup/ações/stop/diagnóstico/uninstall; só então altera seletor. Conferir integração instalada dos novos menus/ticker/HDR, sem reutilizar aprovação035000. Properties/Filters queued não comprova janela visível/focada ou z-order; observabilidade-editor é draft não aplicado/compilado. Hardware/WAN/SDK/Windows limpo e estimativas condicionais em PENDENCIAS-REAIS.md.
+
+HTTPS local do atualizador50 PASS já concluído; domínio/feed público/TURN são gates externos distintos. Preservar processos/configurações/portas/mídia do operador. Não retomar alpha WebBrowser abortado; ponte nativa alpha é beta separada. Prazo13/10 condicionado a recursos/falhas; nenhuma homologação geral declarada.
+
+---
+
+## Histórico preservado — estados anteriores, não instruções atuais
+
+Registros abaixo mantêm textos/limites originais. Referências antigas a atual, pendente ou próximo valem para sua data; o estado vigente é o descrito acima.
+
 # Continuidade do FreeMix
 
 ## Estado atual — instalador031500 aprovado; revisão operacional em andamento

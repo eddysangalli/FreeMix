@@ -1,3 +1,4 @@
+import {TickerAckBroker,readTickerAckRequest} from './gtzip-ticker-ack.mjs';
 // FreeMix control bridge. Commands use confirmed production operations.
 import { createServer } from 'node:http';
 import { readFile,mkdir,writeFile } from 'node:fs/promises';
@@ -32,6 +33,7 @@ function scheduleConnection(){if(!stopping&&!reconnectTimer)reconnectTimer=setTi
 const clients=new Set();
 const broadcast=msg=>{const s=JSON.stringify(msg);for(const c of clients)if(c.readyState===WebSocket.OPEN)c.send(s);};
 const production=new Production({root:ROOT,panel:PANEL,getObs:()=>obs,publish:data=>broadcast({type:'state',data:clean(data)})});
+production.gtTickerAck=new TickerAckBroker({endpoint:'http://127.0.0.1:'+PORT+'/api/ticker-ack'});
 const onlineUpdate=new OnlineUpdateEngine(ROOT);
 const diagnostics=new DiagnosticCollector(ROOT);
 const replay=new DiskReplay({root:ROOT,getObs:()=>obs,onChange:data=>broadcast({type:'replay_state',data})});
@@ -91,7 +93,7 @@ async function vmix(fn,p){
   }else throw new Error('Comando não implementado: '+fn);
   await production.run(action,data);
 }
-const routes={'/':'hub','/hub':'hub','/corte':'corte','/playout':'playout','/gc-html':'gc-html','/gc':'gc','/audio':'audio','/replay':'replay','/iso':'iso','/dados':'dados','/compor':'compor','/settings':'settings','/calls':'calls','/macros':'macros','/recuperacao':'recuperacao','/saidas':'saidas','/rede':'rede','/atalhos':'atalhos','/efeitos':'efeitos','/sinais':'sinais','/atualizacao':'atualizacao','/diagnosticos':'diagnosticos'};
+const routes={'/':'hub','/hub':'hub','/corte':'corte','/playout':'playout','/gc-html':'gc-html','/gc':'gc','/audio':'audio','/replay':'replay','/iso':'iso','/dados':'dados','/compor':'compor','/settings':'settings','/calls':'calls','/macros':'macros','/recuperacao':'recuperacao','/saidas':'saidas','/srt-hdr':'srt-hdr','/rede':'rede','/atalhos':'atalhos','/efeitos':'efeitos','/sinais':'sinais','/atualizacao':'atualizacao','/diagnosticos':'diagnosticos'};
 const mime={'.html':'text/html; charset=utf-8','.js':'text/javascript; charset=utf-8','.css':'text/css; charset=utf-8','.svg':'image/svg+xml','.png':'image/png','.gif':'image/gif','.jpg':'image/jpeg','.webp':'image/webp','.bmp':'image/bmp','.woff2':'font/woff2','.woff':'font/woff','.ttf':'font/ttf','.otf':'font/otf','.json':'application/json'};
 
 function controlReceipt(request){
@@ -137,6 +139,7 @@ const server=createServer(async(req,res)=>{
         try{lease=await replay.previewFile(previewToken);}catch{return json(res,404,{success:false,error:'Prévia expirada; atualize o histórico'});}
         return await servePreviewMedia(req,res,lease);
       }
+      if(path==='/api/ticker-ack'){if(req.method!=='POST'||!local(req)||!originAllowed(req))return json(res,403,{success:false});const data=await readTickerAckRequest(req);const accepted=production.gtTickerAck.accept(data);return json(res,accepted?200:409,{success:accepted});}
       if(path.startsWith('/api/diagnostics')){
         if(!local(req))return json(res,403,{success:false,error:'Diagnóstico disponível somente neste computador'});
         if(path==='/api/diagnostics'&&req.method==='POST'){const data=await body(req);if(typeof data.note!=='undefined'&&typeof data.note!=='string'||typeof data.machineName!=='undefined'&&typeof data.machineName!=='string')throw Error('Dados inválidos');await diagnostics.generate({note:data.note,machineName:data.machineName});return json(res,200,diagnostics.summary());}
@@ -166,6 +169,7 @@ const server=createServer(async(req,res)=>{
       }
       if(path==='/api/effects'&&req.method==='GET'){if(!local(req))return json(res,403,{success:false,error:'Efeitos disponíveis somente neste computador'});return json(res,200,{success:true,effects:await production.effectsEngine.summary(u.searchParams.get('key')||undefined)});}
       if(path==='/api/audio-routing'&&req.method==='GET'){if(!local(req))return json(res,403,{success:false,error:'Áudio disponível somente neste computador'});return json(res,200,{success:true,audioRouting:await production.audioRoutingEngine.read(u.searchParams.get('key')||undefined)});}
+      if(path==='/api/srt-hdr'){if(req.method!=='GET')return json(res,405,{success:false});if(!local(req))return json(res,403,{success:false,error:'Consulta HDR disponível somente neste computador'});const id=u.searchParams.get('senderId')??'0';if(!/^[0-3]$/.test(id))throw Error('Envio HDR inválido');return json(res,200,{success:true,outputs:await production.outputEngine.readSrtHdr(Number(id))});}
       if(path==='/api/network'&&req.method==='GET'){if(!local(req))return json(res,403,{success:false,error:'Rede disponível somente neste computador'});return json(res,200,await production.networkEngine.read());}
       if(path==='/api/gc-compatible'&&req.method==='GET'){if(!local(req))return json(res,403,{success:false,error:'Editor HTML apenas local'});return json(res,200,{success:true,gcCompatible:await production.gcCompatible.summary()});}
       if((path==='/gc-html'||path==='/gc-html.html')&&!local(req))return json(res,403,{success:false,error:'Editor HTML apenas local'});
@@ -208,5 +212,5 @@ const ticker=setInterval(async()=>{if(!obs||connecting||pollingGeneration!==null
  finally{if(pollingGeneration===generation)pollingGeneration=null;}
 },1000);
 server.listen(PORT,process.env.FREEMIX_API_HOST||'127.0.0.1',()=>{console.log(`FreeMix: API e consoles na porta ${PORT}.`);startConnection();});
-function stop(){if(stopping)return;stopping=true;connectionGeneration++;connectionReady=false;production.sessionRecovery.finish('api-restart').catch(()=>{});clearInterval(ticker);clearTimeout(reconnectTimer);for(const c of clients)c.close();production.callEngine.returns.stop().catch(()=>{});production.networkEngine.stop().catch(()=>{});replay.dispose().catch(e=>connectionError('replay-preview-close',e));iso.dispose().catch(e=>connectionError('iso-preview-close',e));obs?.close();wss.close();callWss.close();server.close();}
+function stop(){if(stopping)return;stopping=true;production.gtTickerAck.dispose();connectionGeneration++;connectionReady=false;production.sessionRecovery.finish('api-restart').catch(()=>{});clearInterval(ticker);clearTimeout(reconnectTimer);for(const c of clients)c.close();production.callEngine.returns.stop().catch(()=>{});production.networkEngine.stop().catch(()=>{});replay.dispose().catch(e=>connectionError('replay-preview-close',e));iso.dispose().catch(e=>connectionError('iso-preview-close',e));obs?.close();wss.close();callWss.close();server.close();}
 process.on('SIGTERM',stop);process.on('SIGINT',stop);

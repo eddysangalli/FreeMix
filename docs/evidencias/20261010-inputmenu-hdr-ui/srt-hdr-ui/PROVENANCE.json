@@ -1,0 +1,84 @@
+{
+  "status": "PASS_FOCUSED_VM_HTTP_NATIVE24_FINAL_UI",
+  "initialChecks": 15,
+  "initialFailures": [
+    "State read connection failure also requires check, not stale start permission",
+    "Removed persisted source remains unavailable, never selects another implicitly",
+    "Removed dirty draft source remains unavailable without silent fallback",
+    "Removed persisted encoder remains unavailable, requires explicit new choice",
+    "Helper rejects malformed numeric IPv4 without vendor dispatch"
+  ],
+  "revisionChecks": 8,
+  "audioUiFailPreserved": true,
+  "finalUiChecks": 2,
+  "httpChecks": 7,
+  "selectedSender": 2,
+  "nativeUnchanged": true,
+  "nativeHead": "a04786090fcbe7ede495f18e5ad38ccaa9793478",
+  "nativeFreezeSha256": "cacd7dc42290a9b396b5847ed8cb2f5e27a911adbc31c64fdacdeb44dd0fd087",
+  "scope": "own loopback only; manual opaque PQ; no WAN/physical receiver approval",
+  "readOnlySnapshots": {
+    "before": {
+      "config": {
+        "freemix-srt-hdr-0.json": "2de9248db7b490b4d84cb31d99c7a9998cc8b8ef74628a97f0679d5c7e60456c",
+        "freemix-srt-hdr-1.json": "6140beb86ed4902f815a696f6dcbdd8c09749233dc89881d664619a510099102",
+        "freemix-srt-hdr-2.json": "79962e11899963b56d8f021020b9862aec39248996c48f732148ac95ce19eaf7",
+        "freemix-srt-hdr-3.json": "086aa42145d278c49b98599bdc643bed2f246b7aa4693ddd26f5653c8f39a18c"
+      },
+      "journalSha256": "ade0c51ce35f95032135d340b447b0573f488dda2c27ac0830ed028c6b064fb6",
+      "journalBytes": 1387
+    },
+    "after": {
+      "config": {
+        "freemix-srt-hdr-0.json": "2de9248db7b490b4d84cb31d99c7a9998cc8b8ef74628a97f0679d5c7e60456c",
+        "freemix-srt-hdr-1.json": "6140beb86ed4902f815a696f6dcbdd8c09749233dc89881d664619a510099102",
+        "freemix-srt-hdr-2.json": "79962e11899963b56d8f021020b9862aec39248996c48f732148ac95ce19eaf7",
+        "freemix-srt-hdr-3.json": "086aa42145d278c49b98599bdc643bed2f246b7aa4693ddd26f5653c8f39a18c"
+      },
+      "journalSha256": "ade0c51ce35f95032135d340b447b0573f488dda2c27ac0830ed028c6b064fb6",
+      "journalBytes": 1387
+    }
+  },
+  "startAcceptance": {
+    "state": "starting",
+    "active": false,
+    "pending": true
+  },
+  "stopAcceptance": {
+    "state": "stopping",
+    "active": false,
+    "pending": true
+  },
+  "newLogs": [
+    {
+      "sha256": "b1c8ee14303a950e4abed9e218b1d55ce7669164876982cf65b5220c3da2dec6",
+      "nativeVersionConfirmed": true,
+      "allocations": [
+        0
+      ],
+      "meterWarnings": 1,
+      "doubleDestroyWarnings": 0,
+      "remainingObjectWarnings": 0
+    }
+  ],
+  "nativeClosed": true,
+  "apiClosed": true,
+  "operatorTouched": false,
+  "productModifiedByThisAgent": false,
+  "sourceOverlayFiles": 259,
+  "decodeRepeated": false,
+  "screenshot": {
+    "path": "root-hdr-native24.jpg",
+    "sha256": "fbe1a1008ffd71f2855009506d8b51ed65e168721704b5d0f00e7919f28cc9f9",
+    "visualReview": "Root IAB and agent image inspection",
+    "uiSha256": "a79c20574cfaa290fac002c17355540dbcb9d81d52eedf24af600273d7048d0b",
+    "finalUiVisualRetest": false
+  },
+  "limits": [
+    "Final UI fixes proved by two actual-byte DOM/VM tests only; JPEG and NativeHTTP used preceding UI bytes",
+    "Original unavailable audio UI guard FAIL and old-slot option clutter preserved; Root corrected both after shutdown",
+    "No sealed candidate/Setup/WAN/UHD/physical receiver approval or performance/z-order benchmark",
+    "Three prior Native logs retained; newLogs isolates this HTTP execution",
+    "ReceiverEOF after explicit stop is expected interruption, not decodePASS"
+  ]
+}

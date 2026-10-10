@@ -1,3 +1,4 @@
+import {dispatchGtTickerUpdate} from './gc-gtzip.mjs';
 // Shared production operations. Success means the engine accepted and confirmed the operation.
 import { DataSources } from './fontes-dados.mjs';
 import { InputEngine } from './entradas-producao.mjs';
@@ -47,7 +48,13 @@ export class Production {
   req(type,data={}) { const obs=this.getObs(); if(!obs) throw new Error('Sem conexão com o motor FreeMix'); return obs.req(type,data); }
   async optional(type,data) { try { return await this.req(type,data); } catch { return null; } }
   async vendor(type,data={},name='downstream-keyer') { const r=await this.req('CallVendorRequest',{vendorName:name,requestType:type,requestData:data}); if(r.responseData?.success===false) throw new Error(`O motor recusou ${type}${r.responseData.error?': '+r.responseData.error:''}`); return r.responseData; }
-  run(action,data={}) { if(['preview','active','cut','fade','transition','input_remove'].includes(action))return this.runRealtime(action,data);if(action==='macro_cancel')this.macroEngine.cancel();const p=this.tail.then(async()=>{this.sessionRecovery.beginMutation();try{await this.refresh(); await this.routeLegacyAudio(); await this.execute(action,data); this.macroEngine.recordAction?.(action,data); await this.sessionRecovery.journal(action,data); await this.refresh(); return this.state;}finally{this.sessionRecovery.endMutation();}}); this.tail=p.catch(()=>{}); return p; }
+  run(action,data={}) { if(action==='gc_library_import'&&data.payload?.kind==='freemix-gtzip-import'&&data.payload.operation==='update'){if(data.payload.format!==1)return Promise.reject(Error('Formato de importação GTZIP inválido'));return this.runTickerUpdate(data);} if(['preview','active','cut','fade','transition','input_remove'].includes(action))return this.runRealtime(action,data);if(action==='macro_cancel')this.macroEngine.cancel();const p=this.tail.then(async()=>{this.sessionRecovery.beginMutation();try{await this.refresh(); await this.routeLegacyAudio(); await this.execute(action,data); this.macroEngine.recordAction?.(action,data); await this.sessionRecovery.journal(action,data); await this.refresh(); return this.state;}finally{this.sessionRecovery.endMutation();}}); this.tail=p.catch(()=>{}); return p; }
+
+  runTickerUpdate(data) {
+    const queued=this.tail.then(async()=>{this.sessionRecovery.beginMutation();try{await this.refresh();const scope=this.scope,connection=this.getObs(),assertContext=()=>{if(this.scope!==scope||this.getObs()!==connection)throw Error('Projeto ou conexão mudou; atualização de ticker não enviada');};const dispatched=await dispatchGtTickerUpdate(this.gcLibrary,data.payload,{assertContext});this.gcLibrary.last=dispatched.receipt;this.state={...this.state,gcLibrary:this.gcLibrary.summary()};return {scope,connection,dispatched};}finally{this.sessionRecovery.endMutation();}});
+    this.tail=queued.then(()=>{},()=>{});
+    return queued.then(async({scope,connection,dispatched})=>{const ack=await dispatched.wait(),same=this.scope===scope&&this.getObs()===connection,receipt=same?ack:{...ack,rendererConfirmed:false,status:'UNCONFIRMED',contextChanged:true};if(same&&this.gcLibrary.last?.requestId===receipt.requestId){this.gcLibrary.last=receipt;this.state={...this.state,gcLibrary:this.gcLibrary.summary()};}return {...this.state,gcLibrary:{...this.gcLibrary.summary(),last:receipt}};});
+  }
 
   runRealtime(action,data={}) {
     const receivedAt=Date.now(),connection=this.getObs(),id=data.operationId;

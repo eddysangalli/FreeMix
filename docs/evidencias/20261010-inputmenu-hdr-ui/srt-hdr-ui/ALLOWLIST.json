@@ -1,0 +1,144 @@
+{
+  "status": "FROZEN_QA_ONLY_ROOT_REVIEW",
+  "at": "2026-10-10T05:17:41.777Z",
+  "files": [
+    {
+      "path": "test.mjs",
+      "bytes": 9452,
+      "sha256": "191640e58e6016ef3f1dd2ade14f2fdfd04a19f212002a656aa61b4b1f9b82f5"
+    },
+    {
+      "path": "result-initial.json",
+      "bytes": 3607,
+      "sha256": "28dcaa379fbf58ea34d6d8c2c7f668f07d264de46b00a04fbd8ed80dd719bd4c"
+    },
+    {
+      "path": "read-journal-proof.mjs",
+      "bytes": 2266,
+      "sha256": "e2d2387045e8b568b04f85d0e688d1e2ab78acd8c1c42ca76df928e0441039fb"
+    },
+    {
+      "path": "read-journal-initial.json",
+      "bytes": 788,
+      "sha256": "e16072fe09e06e41b116a7b6b628e183afad59ff152b8036fdce59da34c83f12"
+    },
+    {
+      "path": "prepare-revision.mjs",
+      "bytes": 2740,
+      "sha256": "087db3002bf815db1f7ef15c9a972b890452071f7a7f8bf49956fa10fa98099d"
+    },
+    {
+      "path": "test-revision.mjs",
+      "bytes": 6257,
+      "sha256": "a5ef376832a29ad63b9627ad91eb765fa1572bd66286918a399924dc7f35febb"
+    },
+    {
+      "path": "result-revision.json",
+      "bytes": 2239,
+      "sha256": "5db6b36e6242014e80a88a5a4c0603af5ae8b4c870f045a653c9af77943471b4"
+    },
+    {
+      "path": "prepare-http.mjs",
+      "bytes": 6959,
+      "sha256": "115f1f0e5220372344e9db67269957bf04bf9b57654c4b94a7514ca1c8d62966"
+    },
+    {
+      "path": "run-http.mjs",
+      "bytes": 21440,
+      "sha256": "b345b92ea66c8053ebe0146f4396de5ca633943dd0b26f0e200b68c9bb9ebc90"
+    },
+    {
+      "path": "http-receipt.json",
+      "bytes": 50603,
+      "sha256": "35733b3383986edb4210193bb453b2b5f930ad02331edd1a04b1ca60f892573c"
+    },
+    {
+      "path": "preview-ready.json",
+      "bytes": 37817,
+      "sha256": "96504d1f23d6868ade34c4efe13397953298e431c32c3a4a06738bee8ae473ad"
+    },
+    {
+      "path": "preview-release.json",
+      "bytes": 28,
+      "sha256": "238cf31787ce4b105b1c1838f8211538c65769822c540560480c38db7e83041b"
+    },
+    {
+      "path": "README.md",
+      "bytes": 4885,
+      "sha256": "48b73f7aaf66632fe0f3a90ad8b8875c47fe2c92436ff3912c666c794bb55742"
+    },
+    {
+      "path": "SOURCE-PINS.json",
+      "bytes": 39584,
+      "sha256": "51a09a2978f94903e336644384e98227d83718e4b595555aeb675123e66ea8c9"
+    },
+    {
+      "path": "PROVENANCE.json",
+      "bytes": 3543,
+      "sha256": "53dfc60d5ade7312e77027ae29efa26c186d4efaf0413e1a26a409fa4409d1e5"
+    },
+    {
+      "path": "freeze.mjs",
+      "bytes": 3724,
+      "sha256": "58bb8e701ab8493fd3f1b929048bf76a086003e2e8bef0804b491eb41983f60a"
+    },
+    {
+      "path": "test-audio-unavailable.mjs",
+      "bytes": 1100,
+      "sha256": "f75352fd4606f153bb232d9b2c0c950bc49ccf5fc1a6e6c7a0a11d80bb862295"
+    },
+    {
+      "path": "run-audio-unavailable.mjs",
+      "bytes": 3715,
+      "sha256": "5de0cd75e793ffd5b53ce889cd7a53c4d84d8963283e559b460376f8d347de55"
+    },
+    {
+      "path": "result-audio-unavailable.json",
+      "bytes": 1341,
+      "sha256": "d9305e1233cf769db5b78e99fd875698fd126d0fe62df8efab0200bace47e401"
+    },
+    {
+      "path": "prepare-final-ui.mjs",
+      "bytes": 2169,
+      "sha256": "2535be13dbea3fa5b1996b08cd29bff8fc06e7f95d5a4982db98e064b80ab181"
+    },
+    {
+      "path": "test-final-ui.mjs",
+      "bytes": 4873,
+      "sha256": "5c3496bc90b59567bc83b5d84218cca4a19d3aacc756d6a4b4245a7777fd2bb0"
+    },
+    {
+      "path": "result-final-ui.json",
+      "bytes": 1568,
+      "sha256": "767f5aa60e82e86c464574106de46b93f7c9ce5b6eca6ae37a46ac4713cc6395"
+    },
+    {
+      "path": "syntax-final.json",
+      "bytes": 652,
+      "sha256": "aadb2b88dc3652004f8debd774320b87a2d9ddedfc9386cf84669d0ae97a868e"
+    },
+    {
+      "path": "root-hdr-native24.jpg",
+      "bytes": 100463,
+      "sha256": "fbe1a1008ffd71f2855009506d8b51ed65e168721704b5d0f00e7919f28cc9f9"
+    },
+    {
+      "path": "freeze-final.mjs",
+      "bytes": 6141,
+      "sha256": "21cce6de5d2b33e23ae2e29846a000236dd4364c9f2c541dd1d2b43e7c7eb8b9"
+    }
+  ],
+  "productPathsToApply": [],
+  "priorNativeMediaAllowlist": {
+    "path": "qa-finalizacao/srt-hdr-native24-real-20261010/ALLOWLIST.json",
+    "sha256": "ce5c315a2f036e8c6fc5ada56719b81d0dfab84e8366fe641608b8ec650ae871"
+  },
+  "excluded": [
+    "own config/credentials",
+    "raw logs",
+    "TS/media",
+    "Native binaries",
+    "operator state",
+    "product sources"
+  ]
+}

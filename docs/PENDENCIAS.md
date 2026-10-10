@@ -1,5 +1,31 @@
 # Pendências da integração atual
 
+## Estado vigente —035000 entregue; fonte050500 em preparação
+
+Selecionado035000/Native23, Setup SHA155aa53e12ae4431f66d85fee7785ee158b343ffcda8ae41550025bab7a22c10. QA final instalada: duas aberturas/fechamentos contador 0 / crash 0/Meter 3/0, diagnóstico/uninstall reais. Operador preservado; hashes/provas em ENTREGA-ATUAL.md.
+
+### Software/integração por encerrar
+
+- Gerar/selar/instalar050500 e executar regressão integrada correspondente; ainda não pacote/Setup aprovado. Fonte Native24/a047860 exportada24 patches/192 snapshots/árvore PASS. NAV/ticker textual/menus55/input44 já implementados/integrados, não código por fazer.
+- Conferir versão instalada das operações/menu/ticker/HDR.70 contratos atuais PASS; HTTP HDR: 7 PASS e dois guards finais UI VM PASS. IAB/HTTP antecede os guards finais; draft/overlay não aprova Setup.
+- Properties/Filters: queued comprovado, janela visível/focada/z-order sem evidência desktop. Draft observabilidade não aplicado/compilado; não é recurso entregue.
+- NDI HDR requer Advanced SDK/licença e implementação específica de API/renderer, ainda faltante; não apenas homologação física.
+- GTZIP fora dos subconjuntos conhecidos requer contrato/exemplos/frames/tempos. QR offline, formas diretas e ticker2D/textual finitos têm provas; não são suporte universal/3D/fila de templates.
+
+### Gates de recursos externos
+
+ASIO/SDI/HDR/PTZ/controladores físicos, Calls externas/TURN, bonding WAN/VPS/duas conexões, receptor/monitorHDR, Windows limpo e sessões longas. HTTPS local50 PASS já concluiu teste finito TLS/assinatura/hash/download; domínio/feed público/TURN não publicados. Authenticode depende certificado/decisão.
+
+Critérios/faixas condicionais em PENDENCIAS-REAIS.md; plano13/10 em PLANO-CONCLUSAO-20261013.md. Sem aprovação geral, restart operador ou retomada do alpha WebBrowser abortado.
+
+---
+
+## Histórico preservado — estados anteriores, não instruções atuais
+
+Registros abaixo mantêm textos/limites originais. Referências antigas a atual, pendente ou próximo valem para sua data; o estado vigente é o descrito acima.
+
+# Pendências da integração atual
+
 ## Estado atual — instalador031500 aprovado; revisão operacional em andamento
 
 Atualizado em 2026-10-10T04:22:12.902Z. O instalador aprovado e selecionado é **0.1.0-local.20261010031500**. Duas instalações reais, migração opt-in, diagnóstico sanitizado, credenciais novas e desinstalação conservadora passaram. QR/ticker/recuperação passaram em ensaio instalado composto; as falhas anteriores estão preservadas. Setup SHA256616a475d8baa9d317eaf68d7f7acade93bc3d308aa1c8830dd3bc09cc10f520f; ZIP2179ea72ef21bf0eab76423c578761e4b34a7c76311dac15840c6fbd7730a511. Contém Native22/500ced5. Nenhuma mesa do operador foi substituída.

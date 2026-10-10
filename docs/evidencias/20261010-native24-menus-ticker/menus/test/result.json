@@ -1,0 +1,188 @@
+{
+  "status": "PASS",
+  "cases": 45,
+  "results": [
+    {
+      "name": "audio.html keeps all existing IDs exactly once",
+      "pass": true
+    },
+    {
+      "name": "audio.html retains original scripts",
+      "pass": true
+    },
+    {
+      "name": "audio.html keeps original control handlers",
+      "pass": true
+    },
+    {
+      "name": "replay.html keeps all existing IDs exactly once",
+      "pass": true
+    },
+    {
+      "name": "replay.html retains original scripts",
+      "pass": true
+    },
+    {
+      "name": "replay.html keeps original control handlers",
+      "pass": true
+    },
+    {
+      "name": "settings.html keeps all existing IDs exactly once",
+      "pass": true
+    },
+    {
+      "name": "settings.html retains original scripts",
+      "pass": true
+    },
+    {
+      "name": "settings.html keeps original control handlers",
+      "pass": true
+    },
+    {
+      "name": "settings uses explicit distinct mode",
+      "pass": true
+    },
+    {
+      "name": "operation uses explicit distinct mode",
+      "pass": true
+    },
+    {
+      "name": "settings removes initial middle-page camera anchor",
+      "pass": true
+    },
+    {
+      "name": "settings starts top of page",
+      "pass": true
+    },
+    {
+      "name": "settings opens camera configuration",
+      "pass": true
+    },
+    {
+      "name": "settings opens audio configuration",
+      "pass": true
+    },
+    {
+      "name": "configuration excludes all dangerous operation panels by ancestry",
+      "pass": true
+    },
+    {
+      "name": "configuration retention contains no playback controls",
+      "pass": true
+    },
+    {
+      "name": "existing operation handlers still refer to same IDs after move",
+      "pass": true
+    },
+    {
+      "name": "operation order follows preparation/history/capture/events/players",
+      "pass": true
+    },
+    {
+      "name": "keyboard-native player buttons select A/B/C/D without API",
+      "pass": true
+    },
+    {
+      "name": "audio advanced closed initially",
+      "pass": true
+    },
+    {
+      "name": "audio advanced navigation opens existing details without API",
+      "pass": true
+    },
+    {
+      "name": "audio advanced deep link opens details without API",
+      "pass": true
+    },
+    {
+      "name": "AFV/manual remains above processing details",
+      "pass": true
+    },
+    {
+      "name": "audio destination form IDs stay under advanced only",
+      "pass": true
+    },
+    {
+      "name": "settings links hidden for ordinary categories",
+      "pass": true
+    },
+    {
+      "name": "settings native audio links react to rendered category",
+      "pass": true
+    },
+    {
+      "name": "settings links hide when leaving audio category",
+      "pass": true
+    },
+    {
+      "name": "all linked page destinations are registered server routes",
+      "pass": true
+    },
+    {
+      "name": "NO AR disabled on initial unknown/empty snapshot",
+      "pass": true
+    },
+    {
+      "name": "unknown Program does not falsely disable return to live",
+      "pass": true
+    },
+    {
+      "name": "empty player known off-replay disables both actions",
+      "pass": true
+    },
+    {
+      "name": "loaded probed video enables selected player only",
+      "pass": true
+    },
+    {
+      "name": "changing selection to empty player disables air without command",
+      "pass": true
+    },
+    {
+      "name": "unprobed/invalid player cannot claim ready",
+      "pass": true
+    },
+    {
+      "name": "no video cannot claim ready",
+      "pass": true
+    },
+    {
+      "name": "metadata-ready still says command requests Program, not confirmed already on air",
+      "pass": true
+    },
+    {
+      "name": "settings helper does not overwrite original air onclick command",
+      "pass": true
+    },
+    {
+      "name": "task link normal palette exceeds 4.5:1",
+      "pass": true
+    },
+    {
+      "name": "task link hover/focus palette exceeds 4.5:1",
+      "pass": true
+    },
+    {
+      "name": "audio.js byte-identical served engine",
+      "pass": true
+    },
+    {
+      "name": "audio-buses.js byte-identical served engine",
+      "pass": true
+    },
+    {
+      "name": "settings.js byte-identical served engine",
+      "pass": true
+    },
+    {
+      "name": "settings-help.js byte-identical served engine",
+      "pass": true
+    },
+    {
+      "name": "replay.js byte-identical served engine",
+      "pass": true
+    }
+  ],
+  "scope": "Finite DOM/VM actual helper; unchanged engine bytes. No CSS/layout/Native/audio validation.",
+  "operatorTouched": false
+}

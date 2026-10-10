@@ -1,0 +1,10 @@
+{
+  "status": "PASS_PUBLIC_SUCCESS_METADATA_PROJECTION_VM",
+  "cases": 8,
+  "baselineDraftSha256": "c3929632f01aeaa7fb9f2fb6be473e20453a54b610326d145a5d05333a02a3c6",
+  "publicDraftSha256": "c3929632f01aeaa7fb9f2fb6be473e20453a54b610326d145a5d05333a02a3c6",
+  "limits": [
+    "Actual clean/publicOperation source extracted into VM; no HTTP server or Native started.",
+    "Other production fields preserve prior spread behavior; scope is only operation and operationReceipts."
+  ]
+}

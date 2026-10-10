@@ -1,0 +1,17 @@
+--- a/FreeMix/painel/mesa.html
++++ b/FreeMix/painel/mesa.html
+@@ -444,6 +444,7 @@
+ @media(max-width:760px){body.popup-mode #pop > .add { grid-template-columns:145px minmax(0,1fr); }body.popup-mode #pop[data-panel="add"] .gc-grid { grid-template-columns:repeat(auto-fill,minmax(140px,1fr)); max-height:35dvh; }}
+ @media(max-width:480px){body.popup-mode #pop > .add { grid-template-columns:minmax(0,1fr); grid-template-rows:auto minmax(0,1fr); }body.popup-mode #pop[data-panel="add"] .add .types { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); max-height:22dvh; }body.popup-mode #pop > .row.end .b { min-width:80px; }}
+ </style>
++<link rel="stylesheet" href="remoto/input-menu-ui.css">
+ </head>
+ <body>
+   <div class="media-row" id="media-row">
+@@ -2677,5 +2678,6 @@
+ </script>
+ <script src="remoto/midi-feedback.js"></script>
+ <script src="remoto/atalhos-engine.js"></script>
++<script src="remoto/input-menu-ui.js"></script>
+ </body>
+ </html>

@@ -1,8 +1,8 @@
 {
   "upstream": "https://github.com/obsproject/obs-studio.git",
   "base": "ba2f32bdf791005443988a4955e963663e16b1ed",
-  "head": "709f101d1aaeb25ccc6f6eab77a3e23e9364f3b0",
-  "version": "0.1.0-local.20261010035000",
+  "head": "a04786090fcbe7ede495f18e5ad38ccaa9793478",
+  "version": "0.1.0-local.20261010050500",
   "patches": [
     {
       "path": "0001-feat-branding-replace-OBS-identity-with-FreeMix-Stud.patch",
@@ -95,11 +95,15 @@
     {
       "path": "0023-Fix-input-panel-handoff-and-raise-source-dialogs.patch",
       "sha256": "cd769d23ceb7012850859f3a91f5d867e23ad164a95961f53c367f0a710d6297"
+    },
+    {
+      "path": "0024-Add-isolated-manual-SRT-HDR-output-with-bounded-shut.patch",
+      "sha256": "8c9d028026dc9767f2688188eaf0dd19466f117ef86a5d5f916b591ae1223e12"
     }
   ],
-  "sourceUpdatedAt": "2026-10-10T03:45:15.029Z",
+  "sourceUpdatedAt": "2026-10-10T05:00:34.585Z",
   "sourceSchema": 2,
-  "tree": "7fb77437f56f19ec9266e9f8f002923eb26ade9f",
+  "tree": "e67ece9930c4cea0548afa9f3d4f658e0f7814b7",
   "submodules": [
     {
       "path": "deps/libdshowcapture/src",

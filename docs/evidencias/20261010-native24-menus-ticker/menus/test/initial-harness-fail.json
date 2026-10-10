@@ -1,0 +1,1 @@
+{"status":"HARNESS_FAIL_PRESERVED","reason":"Route assertion mistakenly included stylesheet links as page routes and omitted the existing /hub page. Corrected to inspect anchors and include the registered /hub route; this is not a product failure.","nativeConnected":false}

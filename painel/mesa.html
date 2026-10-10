@@ -444,6 +444,7 @@ body.popup-mode #pop[data-panel="add"] .add .types { display:flex; flex-directio
 @media(max-width:760px){body.popup-mode #pop > .add { grid-template-columns:145px minmax(0,1fr); }body.popup-mode #pop[data-panel="add"] .gc-grid { grid-template-columns:repeat(auto-fill,minmax(140px,1fr)); max-height:35dvh; }}
 @media(max-width:480px){body.popup-mode #pop > .add { grid-template-columns:minmax(0,1fr); grid-template-rows:auto minmax(0,1fr); }body.popup-mode #pop[data-panel="add"] .add .types { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); max-height:22dvh; }body.popup-mode #pop > .row.end .b { min-width:80px; }}
 </style>
+<link rel="stylesheet" href="remoto/input-menu-ui.css">
 </head>
 <body>
   <div class="media-row" id="media-row">
@@ -1371,7 +1372,7 @@ body.popup-mode #pop[data-panel="add"] .add .types { display:flex; flex-directio
     retornooff: () => (st.locked ? A.lockmsg() : run((async () => {
       await tryReq("RemoveInput", { inputName: RET_SRC });
       await tryReq("RemoveSourceFilter", { sourceName: RET_BUS, filterName: RET_FILTER });
-      await sleep(300); await syncRet(); toast("Retorno desligado. A câmera virtual continua como estava (botão Externo).");
+      await sleep(300); await syncRet(); toast("Retorno desligado. A câmera virtual continua como estava (central Externo).");
     })())),
     desttab: (d) => { A.cfggrab(); st.destTab = +d.v; renderPop(); },
     destsave: () => run((async () => {
@@ -1431,7 +1432,8 @@ body.popup-mode #pop[data-panel="add"] .add .types { display:flex; flex-directio
       await req("SetSourceFilterEnabled", { sourceName: s.name, filterName: fx.n, filterEnabled: on }); s[key].filterEnabled = on;
     }),
     record: () => (st.locked && st.rec ? A.lockmsg() : run(req("ToggleRecord"))),
-    external: () => (st.locked && st.vcam ? A.lockmsg() : run(req("ToggleVirtualCam"))),
+    external: () => run(launchPanel("ext")),
+    virtualcam: () => (st.locked && st.vcam ? A.lockmsg() : run(req("ToggleVirtualCam"))),
     stream: () => run(launchPanel("streamset")),
     streamstop: () => (st.locked ? A.lockmsg() : run(req("StopStream"))),
     streamgo: () => { closePop(); run(req("StartStream")); },
@@ -1566,7 +1568,7 @@ body.popup-mode #pop[data-panel="add"] .add .types { display:flex; flex-directio
     calllink: (d) => run((async () => {
       const id = callIdFromUrl((await req("GetInputSettings", { inputName: d.v })).inputSettings?.url);
       if (!id) return toast("Esta fonte não é uma chamada FreeMix Call", true);
-      openPop("call", id);
+      closePop(); await launchPanel("calls");
     })()),
     copy: (d) => {
       const el = $(d.v); if (!el) return;
@@ -2030,7 +2032,7 @@ body.popup-mode #pop[data-panel="add"] .add .types { display:flex; flex-directio
     const ib = (act, on, tip, icon, dis) => `<button class="b ib${on ? " on" : ""}" data-a="${act}"${dis ? off : ""} title="${tip}"><svg viewBox="0 0 24 24"><path d="${icon}"/></svg></button>`;
     $("bot").innerHTML = `<div class="g l"><button class="b" data-a="pop" data-v="add"${off}>Adicionar Entrada</button><button class="b dd" data-a="pop" data-v="addquick"${off} title="Entrada rápida">▲</button>
         <span class="pair">${cg("recset", "Configurar a gravação")}<button class="b${st.rec ? " live" : ""}" data-a="record"${off}>Gravar</button>${tc(st.rec, st.recTc)}</span>
-        <span class="pair">${cg("ext", "Central de saídas")}<button class="b${st.vcam ? " on" : ""}" data-a="external"${off} title="Inicia ou para a saída externa (câmera virtual)">Externo</button></span>
+        <span class="pair">${cg("ext", "Central de saídas")}<button class="b" data-a="external"${off} title="Abrir saídas externas: SRT, NDI, OMT, monitores e câmera virtual">Externo</button></span>
         <span class="pair">${cg("streamset", "Configurar a transmissão")}<button class="b${st.stream ? " live" : ""}" data-a="stream"${off}>Transmitir</button><button class="b dd" data-a="pop" data-v="streammenu"${off} title="Transmissão">▲</button>${tc(st.stream, st.streamTc)}</span>
         ${st.hasIso ? `<span class="pair">${cg("iso", "Escolher as entradas da gravação isolada")}<button class="b${[...st.iso.values()].some(Boolean) ? " live" : ""}" data-a="multicorder"${off} title="Grava cada entrada marcada no seu próprio arquivo">MultiGravação</button></span>` : ""}
         <span class="pair">${cg("playlist", "Lista de reprodução")}<button class="b" data-a="plstart"${off} title="Inicia ou pausa a lista de reprodução">Playlist</button></span></div>
@@ -2195,7 +2197,7 @@ body.popup-mode #pop[data-panel="add"] .add .types { display:flex; flex-directio
       p.innerHTML = `<h3>Central de Saídas</h3><div class="outs"><table><tr><th>Nome / tipo</th><th>Origem</th><th>Destino</th><th>Vídeo</th><th>Estado</th><th>Ações</th></tr>`
         + proj("s1", "Saída 1 (Telão / Monitor)", "PROGRAM") + proj("s2", "Saída 2 (Retorno / AUX)", "PREVIEW")
         + `<tr><td><b>Clean Feed</b><small>PROJETOR</small></td><td title="Abre a entrada que está no ar agora, sem os overlays. Não acompanha os cortes seguintes.">Entrada no ar, sem overlays</td><td>${pick("cf", "dst", dsts, "-1")}</td><td>${res.split(" @")[0]}</td><td>${demand}</td><td><button class="b on" data-a="outopen" data-v="cf">Abrir</button></td></tr>`
-        + live("Câmera Virtual", "VCAM", "Câmera virtual do sistema", st.vcam, "external", "", "")
+        + live("Câmera Virtual", "VCAM", "Câmera virtual do sistema", st.vcam, "virtualcam", "", "")
         + live("Transmissão Principal", "STREAM", st.outHost || "não configurado", st.stream, "stream", "streamset", "")
         + live("Gravação", "ARQUIVO", st.outDir || "", st.rec, "record", "recset", "GRAVANDO")
         + ext("DeckLink / SDI", "DECKLINK", "Placa Blackmagic", /decklink/, "Driver Blackmagic não encontrado nesta máquina", "Ferramentas › Saída Decklink")
@@ -2206,7 +2208,7 @@ body.popup-mode #pop[data-panel="add"] .add .types { display:flex; flex-directio
     else if (st.pop === "saveas") p.innerHTML = `<h3>Salvar como</h3><p>Grava uma cópia da produção em uso com outro nome e passa a trabalhar nela.</p><label>Nome do novo preset<input id="sa-name" maxlength="40" value="${esc((st.preset || "Produção") + " 2")}"></label><div class="row"><button class="b on" data-a="saveasgo">Salvar</button><button class="b" data-a="close">Cancelar</button></div>`;
     else if (st.pop === "calls") {p.innerHTML=`<h3>Calls e talkback</h3><iframe title="Calls" src="${esc(replayUrl.replace(/\/api\/replay$/, "/calls"))}" style="width:100%;height:65vh;border:0"></iframe><button class="b" data-a="close">Fechar</button>`;p.style.width="min(1100px,95vw)";}
     else if (st.pop === "settings") {p.innerHTML=`<h3>Configurações FreeMix</h3><iframe title="Configurações" src="${esc(replayUrl.replace(/\/api\/replay$/, "/settings"))}" style="width:100%;height:65vh;border:0"></iframe><button class="b" data-a="close">Fechar</button>`;p.style.width="min(1100px,95vw)";}
-    else if (st.pop === "cfgmenu") p.innerHTML = `<h3>Configurar</h3><div class="menu"><button data-a="pop" data-v="settings"><b>Configurações FreeMix…</b></button><button data-a="pop" data-v="compositions">Criar composição…</button><button data-a="pop" data-v="ext">Saídas de monitor…</button><button data-a="pop" data-v="saidas">Saídas horizontal / vertical…</button><button data-a="pop" data-v="overlay">Overlays…</button><button data-a="pop" data-v="iso">MultiGravação…</button><button data-a="pop" data-v="macros">Macros…</button><button data-a="pop" data-v="recuperacao">Recuperação de projetos…</button><button data-a="pop" data-v="diagnosticos">Gerar ZIP de diagnóstico…</button><button data-a="pop" data-v="gear">Painel…</button><button data-a="nativecfg">Editor avançado do motor…</button></div><div class="row" style="margin-top:8px"><button class="b" data-a="close">Fechar</button></div>`;
+    else if (st.pop === "cfgmenu") p.innerHTML = `<h3>Configurar</h3><div class="menu"><button data-a="pop" data-v="settings"><b>Configurações FreeMix…</b></button><button data-a="pop" data-v="compositions">Criar composição…</button><button data-a="pop" data-v="overlay">Overlays…</button><button data-a="pop" data-v="macros">Macros…</button><button data-a="pop" data-v="recuperacao">Recuperação de projetos…</button><button data-a="pop" data-v="diagnosticos">Gerar ZIP de diagnóstico…</button><button data-a="pop" data-v="gear">Painel…</button><button data-a="nativecfg">Editor avançado do motor…</button></div><div class="row" style="margin-top:8px"><button class="b" data-a="close">Fechar</button></div>`;
     else if (st.pop === "help") p.innerHTML = `<h3>Ajuda</h3><table><tr><td><b>Clique na miniatura</b></td><td>manda a entrada para o Preview</td></tr><tr><td><b>GO / Cut</b></td><td>leva ao ar com a transição atual / em corte seco</td></tr><tr><td><b>1 a 8</b></td><td>liga e desliga a entrada como overlay naquele canal</td></tr><tr><td><b>Engrenagens</b></td><td>abrem a configuração do botão ao lado</td></tr><tr><td><b>Clique direito na entrada</b></td><td>propriedades, filtros, renomear, cor, fechar</td></tr><tr><td><b>Alt + letra</b></td><td>abre os menus do motor (clique antes no Preview)</td></tr></table><div class="row" style="margin-top:8px"><button class="b" data-a="close">Fechar</button></div>`;
     else if (st.pop === "addquick") p.innerHTML = `<h3>Adicionar Entrada</h3><div class="menu">${[["blank", "Blank"], ["colour", "Colour"], ["video", "Video"], ["title", "Title"], ["list", "List"], ["image", "Image"], ["photos", "Photos"], ["audio", "Audio"], ["camera", "Camera"], ["web", "Web Browser"]].map(([id, label]) => `<button data-a="addquickgo" data-v="${id}">${label}</button>`).join("")}<button data-a="addquickgo" data-v="camera"><b>Mais…</b></button></div>`;
     else if (st.pop === "streammenu") p.innerHTML = `<h3>Transmissão</h3><div class="menu"><button data-a="${st.stream ? 'streamstop' : 'stream'}">${st.stream ? "Parar a transmissão principal" : "Abrir MultiStream…"}</button><button data-a="pop" data-v="streamset">Configurações de transmissão…</button></div><div class="row" style="margin-top:8px"><button class="b" data-a="close">Fechar</button></div>`;
@@ -2676,5 +2678,6 @@ body.popup-mode #pop[data-panel="add"] .add .types { display:flex; flex-directio
 </script>
 <script src="remoto/midi-feedback.js"></script>
 <script src="remoto/atalhos-engine.js"></script>
+<script src="remoto/input-menu-ui.js"></script>
 </body>
 </html>

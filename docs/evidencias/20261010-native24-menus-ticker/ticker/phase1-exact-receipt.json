@@ -1,0 +1,93 @@
+{
+  "status": "PASS_EXACT_NATIVE23_CEF_ACK",
+  "runtimeByteExact": true,
+  "jsInjection": false,
+  "checks": [
+    {
+      "name": "Prepare real pins project rational FPS and own source",
+      "status": "PASS"
+    },
+    {
+      "name": "Exact frozen CEF emit_event receives real POSTACK Add queued2",
+      "status": "PASS"
+    },
+    {
+      "name": "Exact frozen CEF Replace confirmed one item",
+      "status": "PASS"
+    },
+    {
+      "name": "Exact frozen real CEF queue32 preserved and queue33 refused",
+      "status": "PASS"
+    },
+    {
+      "name": "Live updates do not change browser URL/settings",
+      "status": "PASS"
+    },
+    {
+      "name": "Save real remains persistence without browser reconfiguration",
+      "status": "PASS"
+    }
+  ],
+  "updates": [
+    {
+      "id": "199845bd-1cc3-4ab4-80ca-2c9f1b3499f0",
+      "sent": true,
+      "rendererConfirmed": true,
+      "status": "ACCEPTED",
+      "requestId": "7b9c9775-d34a-43aa-8f85-e51a16dc2836",
+      "valuesSaved": false,
+      "outputsStarted": false,
+      "fields": [
+        {
+          "field": "OwnAdd",
+          "queued": 2
+        }
+      ]
+    },
+    {
+      "id": "199845bd-1cc3-4ab4-80ca-2c9f1b3499f0",
+      "sent": true,
+      "rendererConfirmed": true,
+      "status": "ACCEPTED",
+      "requestId": "5870c658-7da4-4413-aca9-4946c00d850b",
+      "valuesSaved": false,
+      "outputsStarted": false,
+      "fields": [
+        {
+          "field": "OwnReplace",
+          "queued": 1
+        }
+      ]
+    },
+    {
+      "id": "199845bd-1cc3-4ab4-80ca-2c9f1b3499f0",
+      "sent": true,
+      "rendererConfirmed": true,
+      "status": "REFUSED",
+      "requestId": "5bb8ef86-5d03-4022-aaaa-e30d519abf14",
+      "valuesSaved": false,
+      "outputsStarted": false,
+      "fields": [],
+      "code": "QUEUE_FULL"
+    }
+  ],
+  "prepared": {
+    "prepared": true,
+    "id": "199845bd-1cc3-4ab4-80ca-2c9f1b3499f0",
+    "scene": "FreeMix GT 199845bd-1cc3-4ab4-80ca-2c9f1b3499f0",
+    "input": "FreeMix GT 199845bd-1cc3-4ab4-80ca-2c9f1b3499f0 HTML",
+    "width": 800,
+    "height": 400,
+    "outputsStarted": false
+  },
+  "fps": {
+    "numerator": 30,
+    "denominator": 1
+  },
+  "sourceUuid": "c6f9de3f-f18a-4219-8999-d63f54b9e702",
+  "initialCapture": {
+    "file": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\gtzip-ticker-native23-20261010\\phase1-exact-initial.png",
+    "sha256": "d9df07c73b20d082a8a2fe1ccd531c8212169d446e654082b54101bf4b9e69bd",
+    "bytes": 4079
+  }
+}

@@ -1,0 +1,125 @@
+{
+  "status": "DRAFT_UI_REVIEWED_LOCAL_CAPTURE",
+  "canonicalChanged": false,
+  "nativeTested": false,
+  "operatorTouched": false,
+  "product": [
+    {
+      "target": "FreeMix/painel/remoto/input-menu-ui.js",
+      "draft": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\ux-input-menu-20261010\\draft\\input-menu-ui.js",
+      "newFile": true,
+      "sha256": "31fea09b02593be5eee2954bba8a85725386912ff93e6a9545ef0714d4fdd1e0"
+    },
+    {
+      "target": "FreeMix/painel/remoto/input-menu-ui.css",
+      "draft": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\ux-input-menu-20261010\\draft\\input-menu-ui.css",
+      "newFile": true,
+      "sha256": "7c0b47341b57f5e9e53416ffb15b20c4631aae72ae38f73954015e3a09986557"
+    }
+  ],
+  "centralPatch": {
+    "path": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\ux-input-menu-20261010\\mesa-includes.patch",
+    "sha256": "c5e79bf82ea85a8b95cbb006c0762f4e137667b1a13b60e45cc2af73cdb44867",
+    "target": "FreeMix/painel/mesa.html",
+    "beforeSha256": "a436f64e0e558cbcfe13af30c789f9a3a97151ce9075c71aca6b660ed4266a5c",
+    "afterSha256": "91c66d7b4a64514de9b178d89bcbe5c65952bfce9b85fbac1ea762e3154564e8",
+    "unchangedAfterRemovingIncludes": true
+  },
+  "tests": {
+    "status": "PASS",
+    "cases": 44,
+    "kind": "Real menu markup and helper; finite DOM/VM; no Native execution"
+  },
+  "files": [
+    {
+      "path": "baseline/menu-handler.js",
+      "sha256": "b9d0c7ae683b7a011819f339e957c2e3c121a20a601527e472a3d663d01060af"
+    },
+    {
+      "path": "baseline/mesa.css",
+      "sha256": "7187b11a19f99f1b50679c271b280605aa324424b7c23878d5cf5d8b17b5844e"
+    },
+    {
+      "path": "baseline/mesa.html",
+      "sha256": "a436f64e0e558cbcfe13af30c789f9a3a97151ce9075c71aca6b660ed4266a5c"
+    },
+    {
+      "path": "BASELINE.json",
+      "sha256": "dbc2590bbc312353b6fa4acbf8aab43b4b5984b9b81d127321768a9569160899"
+    },
+    {
+      "path": "build-preview.mjs",
+      "sha256": "8e45d4ba048e41e706e873e28ecb7b62800da228de0f87ef27743d9d1616e835"
+    },
+    {
+      "path": "capturas/14-input-menu-baseline-multi.jpg",
+      "sha256": "18835155ca98b2aa06b84d024eba83d2651f471721f337f9d9ea604d86663f7a"
+    },
+    {
+      "path": "capturas/15-input-menu-draft-multi.jpg",
+      "sha256": "62619e7cfdcbc139b7949a2d01823867c33ac7120e369c751301b6a1a2681eb4"
+    },
+    {
+      "path": "capturas/16-input-menu-draft-expanded.jpg",
+      "sha256": "6fc22727edb2bd44c8d3c5a4290f7b6d4d0dfc76a8325d063f52d5a12897b46a"
+    },
+    {
+      "path": "capturas/17-input-menu-draft-fixed.jpg",
+      "sha256": "77660a984b9c3828ce92d1e959e508ccbaaa6d76fbf39f9e9f3b66e106917fad"
+    },
+    {
+      "path": "capturas/18-input-menu-draft-fixed-expanded.jpg",
+      "sha256": "07cd2ab536b0412205e0ee5960982756991e8243f46e83f5564ba71824481333"
+    },
+    {
+      "path": "draft/input-menu-ui.css",
+      "sha256": "7c0b47341b57f5e9e53416ffb15b20c4631aae72ae38f73954015e3a09986557"
+    },
+    {
+      "path": "draft/input-menu-ui.js",
+      "sha256": "31fea09b02593be5eee2954bba8a85725386912ff93e6a9545ef0714d4fdd1e0"
+    },
+    {
+      "path": "draft/mesa.html",
+      "sha256": "91c66d7b4a64514de9b178d89bcbe5c65952bfce9b85fbac1ea762e3154564e8"
+    },
+    {
+      "path": "freeze.mjs",
+      "sha256": "af64ad16d492c32a2c8b91a1e7fafed0dceb92aed9331d227a35bb1eebc3601c"
+    },
+    {
+      "path": "mesa-includes.patch",
+      "sha256": "c5e79bf82ea85a8b95cbb006c0762f4e137667b1a13b60e45cc2af73cdb44867"
+    },
+    {
+      "path": "PATCH-GUARD.json",
+      "sha256": "56cc2a95704bd726d356b9a7ebd59d5642395733b9822e33a48cc7508e278d6c"
+    },
+    {
+      "path": "preview.mjs",
+      "sha256": "7b25f5c2fadadf611b085a6a9de097c4dfde422d6afca6c2279385c6dfdc60d7"
+    },
+    {
+      "path": "README.md",
+      "sha256": "2e8c3cec8d7d5d46867ed0912ee007c3555a4a3ea552cb408b9479db7ef8a645"
+    },
+    {
+      "path": "test/contracts.mjs",
+      "sha256": "4945ccf493296cd2a5322602467d003f4fbd250ceaf566bda0063b6d15e7bc3e"
+    },
+    {
+      "path": "test/dom.mjs",
+      "sha256": "65c1a9abeb2d68f0cc7e30203fcf56f9f1f28f37d415e53a0d69f6da8184fc2c"
+    },
+    {
+      "path": "test/result.json",
+      "sha256": "52e3b3ae3e947f9a3ca499fbcd8783b28d2d13c9b3166f31c641198fd59e88f7"
+    }
+  ],
+  "limits": [
+    "15/16 FAIL harness layout preserved,17/18 corrected visual verified",
+    "Existing Native operational70/12 evidence referenced without repeat",
+    "No Native editor focus/z-order confirmation; sources and outputs synthetic",
+    "placePop forwarding proven in VM; fixed-popover installed capture pending"
+  ]
+}

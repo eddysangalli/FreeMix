@@ -136,3 +136,9 @@ qa-finalizacao/canonical-payload-overlay-contract.json -text -whitespace
 
 docs/evidencias/20261010-native23-operational/** -text -whitespace
 qa-finalizacao/talkback-format-only-20261010.json -text -whitespace
+
+docs/evidencias/20261010-native24-menus-ticker/** -text -whitespace
+docs/evidencias/20261010-setup035000-retry2/** -text -whitespace
+docs/evidencias/20261010-inputmenu-hdr-ui/** -text -whitespace
+
+docs/evidencias/20261010-native24-final-operations/** -text -whitespace

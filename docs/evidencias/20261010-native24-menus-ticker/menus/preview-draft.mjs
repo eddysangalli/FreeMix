@@ -1,0 +1,24 @@
+// Read-only source snapshot; all API responses below are synthetic. No Native client.
+import {createServer} from 'node:http';
+import {readFile,writeFile,mkdir,cp} from 'node:fs/promises';
+import {resolve,join,extname,relative} from 'node:path';
+import {createHash} from 'node:crypto';
+import {createRequire} from 'node:module';
+const require=createRequire(new URL('../../FreeMix/package.json',import.meta.url));
+const {WebSocketServer}=require('ws');
+const root=resolve('qa-finalizacao/ux-menus-restantes-20261010'),panel=join(root,'panel');
+
+const sources=[{key:'cam1',name:'Câmera 1',afv:true,muted:false,onAir:true},{key:'music',name:'Música',afv:false,muted:true,onAir:false},{key:'director',name:'Microfone do diretor',protected:true,muted:true}];
+const audio={sources,details:{key:'cam1',delayMs:0,filterOrder:[],filters:Object.fromEntries(['gain','gate','compressor','limiter'].map(n=>[n,{supported:true,exists:false,enabled:false,settings:{db:0,open_threshold:-26,close_threshold:-32,attack_time:10,hold_time:200,release_time:100,ratio:4,threshold:-18,output_gain:0}}]))},routing:{sources:sources.filter(s=>!s.protected),buses:[],directOut:[],capabilities:{independentBuses:true,directOut:true,renderDevices:[{id:'qa-device',name:'Fone · dispositivo simulado'}],asio:false,asioDrivers:[]},asioOutput:{running:false,configured:false,drivers:[],routes:[],sampleRate:48000,bufferFrames:0}}};
+const fields=[{category:'audio',name:'sampleRate',label:'Taxa de amostragem',type:'string',choices:'44100|48000',value:'48000'},{category:'audio',name:'monitoringDeviceName',label:'Dispositivo de monitoração',type:'text',value:'Padrão'},{category:'general',name:'confirmExit',label:'Confirmar ao sair',type:'bool',value:true},{category:'advanced',name:'colorFormat',label:'Formato de cor',type:'string',choices:'NV12|P010',value:'NV12'}];
+const settings={mode:'Simple',video:{baseWidth:1920,baseHeight:1080,outputWidth:1920,outputHeight:1080,fpsNumerator:30000,fpsDenominator:1001},values:{},nativePreferences:{fields},capabilities:{simpleEncoders:[],protocols:[]},stats:{cpuUsage:4,memoryUsage:400,activeFps:29.97,renderSkippedFrames:0,outputSkippedFrames:0}};
+const replay={rec:false,historySupported:true,historyPlaybackSupported:true,events:[],players:{},availableCams:['Câmera 1','Câmera 2'],cameraOptions:{},retention:{enabled:false,minutes:30},linked:false,audioEnabled:true,speed:50,program:'Câmera 1'};
+const state={connected:true,inputs:sources.map((s,i)=>({...s,number:i+1})),scenes:['Câmera 1','Câmera 2','Música'],program:'Câmera 1',preview:'Câmera 2',recording:false,streaming:false,replay,audioInputs:[]};
+const events=[],json=(res,v,code=200)=>{res.writeHead(code,{'Content-Type':'application/json; charset=utf-8','Cache-Control':'no-store'});res.end(JSON.stringify(v));};
+const server=createServer(async(req,res)=>{try{const u=new URL(req.url,'http://localhost');if(u.pathname==='/__qa/proof')return json(res,{fixture:true,nativeConnected:false,operatorTouched:false,events});if(u.pathname==='/api/json')return json(res,state);if(u.pathname==='/api/health')return json(res,{success:true,connected:true});if(u.pathname==='/api/audio-routing')return json(res,{success:true,audioRouting:audio});if(u.pathname==='/api/replay')return json(res,{success:true,replay});
+if(u.pathname==='/api/control'){let raw='';for await(const b of req)raw+=b;if(raw.length>65536)throw Error('Too large');const d=JSON.parse(raw||'{}');events.push({action:d.action,at:Date.now()});if(d.action==='settings_get')return json(res,{success:true,settings});if(d.action==='plugin_tools')return json(res,{success:true,tools:[]});return json(res,{success:false,error:'Prévia de navegação: alterações do motor não são executadas.'},409);}
+const routes={'/':'hub.html','/settings':'settings.html','/audio':'audio.html','/replay':'replay.html','/atalhos':'atalhos.html','/macros':'macros.html','/recuperacao':'recuperacao.html','/saidas':'saidas.html','/iso':'iso.html','/calls':'calls.html'};const name=routes[u.pathname]||decodeURIComponent(u.pathname).replace(/^\/+/,''),file=resolve(panel,name);if(!name||relative(panel,file).startsWith('..')||name.includes('\\'))return json(res,{error:'invalid'},404);const data=await readFile(file);res.writeHead(200,{'Content-Type':({'.html':'text/html','.js':'text/javascript','.css':'text/css','.png':'image/png'}[extname(file)]||'application/octet-stream'),'Cache-Control':'no-store'});res.end(data);
+}catch(e){json(res,{error:e.message},404);}});
+const wss=new WebSocketServer({server,path:'/ws'});wss.on('connection',ws=>{ws.send(JSON.stringify({type:'init',data:state}));});
+server.listen(0,'127.0.0.1',async()=>{const record={port:server.address().port,pid:process.pid,root,fixture:true,nativeConnected:false};await writeFile(join(root,'preview-draft-runtime.json'),JSON.stringify(record,null,2));console.log(JSON.stringify(record));});
+process.on('SIGINT',()=>{wss.clients.forEach(w=>w.close());wss.close();server.close();});

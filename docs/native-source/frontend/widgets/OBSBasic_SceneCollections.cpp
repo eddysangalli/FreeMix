@@ -16,6 +16,8 @@
 ******************************************************************************/
 
 #include "OBSBasic.hpp"
+#include "FreeMixMultistream.hpp"
+#include <QMessageBox>
 
 #include <dialogs/OBSMissingFiles.hpp>
 #include <importer/OBSImporter.hpp>
@@ -769,6 +771,10 @@ void OBSBasic::on_actionRemigrateSceneCollection_triggered()
 
 void OBSBasic::ActivateSceneCollection(SceneCollection &collection)
 {
+	if (!FreeMixMultistreamDrainSrtHdr()) {
+		QMessageBox::warning(this, "FreeMix SRT HDR", "A saída HDR ainda está parando. A alteração foi recusada. Aguarde a parada e tente novamente.");
+		return;
+	}
 	const std::string currentCollectionName{config_get_string(App()->GetUserConfig(), "Basic", "SceneCollection")};
 
 	if (auto foundCollection = GetSceneCollectionByName(currentCollectionName)) {
@@ -1035,6 +1041,10 @@ static void LoadAudioDevice(const char *name, int channel, obs_data_t *parent)
 
 void OBSBasic::CreateDefaultScene(bool firstStart)
 {
+	if (!FreeMixMultistreamDrainSrtHdr()) {
+		QMessageBox::warning(this, "FreeMix SRT HDR", "A saída HDR ainda está parando. A coleção atual foi preservada.");
+		return;
+	}
 	disableSaving++;
 
 	ClearSceneData();
@@ -1197,6 +1207,10 @@ void addMissingFiles(void *data, obs_source_t *source)
 
 void OBSBasic::LoadData(obs_data_t *data, SceneCollection &collection)
 {
+	if (!FreeMixMultistreamDrainSrtHdr()) {
+		QMessageBox::warning(this, "FreeMix SRT HDR", "A saída HDR ainda está parando. A coleção atual foi preservada.");
+		return;
+	}
 	ClearSceneData();
 	ClearContextBar();
 

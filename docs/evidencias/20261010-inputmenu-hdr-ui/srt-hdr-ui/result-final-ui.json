@@ -1,0 +1,45 @@
+{
+  "status": "PASS_FINAL_TWO_UI_REGRESSIONS",
+  "at": "2026-10-10T05:16:35.461Z",
+  "pins": [
+    {
+      "path": "FreeMix/ferramentas/srt-hdr-producao.mjs",
+      "sha256": "f25ecf5fcc17cdcfe7762eb0ea4ed8903160636696ccaf9631d19e48a957869b"
+    },
+    {
+      "path": "FreeMix/ferramentas/saidas-producao.mjs",
+      "sha256": "4014d7d5fabd30e2851852f0e8cf6d599aaec9c454fc1c73b05d9d0a355452f3"
+    },
+    {
+      "path": "FreeMix/ferramentas/servidor-api.mjs",
+      "sha256": "c3929632f01aeaa7fb9f2fb6be473e20453a54b610326d145a5d05333a02a3c6"
+    },
+    {
+      "path": "FreeMix/painel/remoto/srt-hdr.html",
+      "sha256": "6df48c099f98653b8c05ecbd32585c776e5579ee663772169faacf7e86e36c5f"
+    },
+    {
+      "path": "FreeMix/painel/remoto/srt-hdr-ui.js",
+      "sha256": "642b6a542e148d80fa86314135aa250ccfcc48bf940df3948cdacdf405c34efc"
+    },
+    {
+      "path": "FreeMix/painel/remoto/saidas-srt-hdr-access-ui.js",
+      "sha256": "85e8937d3545e5dfac09065f7c7ff58401cdd1bd2b3a49da3bc1e5ef165c6849"
+    }
+  ],
+  "cases": [
+    {
+      "name": "Unavailable saved independent audio bus disables configure/start",
+      "status": "PASS"
+    },
+    {
+      "name": "Explicit sender change removes obsolete unavailable options and reads valid slot",
+      "status": "PASS"
+    }
+  ],
+  "limits": [
+    "Actual final canonical JS in own DOM/VM; no final-byte CEF visual review",
+    "Native HTTP proof and RootJPEG used preceding UI bytes; Native/helper/API unchanged",
+    "Prior unavailable-audio FAIL preserved; no dispatch or output mutation in this retest"
+  ]
+}

@@ -1,0 +1,166 @@
+{
+  "status": "REAL_NATIVE24_VENDOR_CONTRACT_OBSERVED",
+  "request": {
+    "vendorName": "freemix",
+    "requestType": "srt_hdr_output",
+    "requestData": {
+      "action": "configure",
+      "senderId": 0,
+      "config": {
+        "contract": "pq-bt2020-p010-main10",
+        "sourceUuid": "fe37117a-9905-4bab-975a-d4b7913419f6",
+        "host": "127.0.0.1",
+        "port": 55025,
+        "latencyMs": 120,
+        "encoder": "obs_nvenc_hevc_tex",
+        "bitrateKbps": 16000,
+        "audioTrack": 0,
+        "audioSourceUuid": "",
+        "alpha": false,
+        "fillKey": false,
+        "autoStart": false
+      }
+    }
+  },
+  "response": {
+    "active": true,
+    "autoStart": false,
+    "available": true,
+    "bytes": 4712335,
+    "config": {
+      "alpha": false,
+      "audioSourceUuid": "",
+      "audioTrack": 0,
+      "autoStart": false,
+      "bitrateKbps": 16000,
+      "contract": "pq-bt2020-p010-main10",
+      "encoder": "obs_nvenc_hevc_tex",
+      "fillKey": false,
+      "host": "127.0.0.1",
+      "latencyMs": 120,
+      "port": 50497,
+      "sourceUuid": "ab3d75bd-7b02-400a-bde3-8dc6092a18d3"
+    },
+    "contract": "pq-bt2020-p010-main10",
+    "droppedFrames": 0,
+    "encoders": [
+      {
+        "id": "obs_nvenc_hevc_tex",
+        "runtimeValidationRequired": true
+      },
+      {
+        "id": "obs_nvenc_hevc_soft",
+        "runtimeValidationRequired": true
+      },
+      {
+        "id": "jim_hevc_nvenc",
+        "runtimeValidationRequired": true
+      },
+      {
+        "id": "obs_nvenc_hevc_cuda",
+        "runtimeValidationRequired": true
+      },
+      {
+        "id": "ffmpeg_hevc_nvenc",
+        "runtimeValidationRequired": true
+      },
+      {
+        "id": "obs_qsv11_hevc",
+        "runtimeValidationRequired": true
+      },
+      {
+        "id": "obs_qsv11_hevc_soft",
+        "runtimeValidationRequired": true
+      }
+    ],
+    "frames": 71,
+    "hdrAlphaSupported": false,
+    "hdrSources": [
+      {
+        "height": 240,
+        "name": "OWN Native24 SRT HDR PQ10",
+        "uuid": "d389de09-b661-4047-9881-516dac0922e2",
+        "width": 1024
+      },
+      {
+        "height": 240,
+        "name": "OWN Native24 SRT HDR 1791608060110 PQ10",
+        "uuid": "ab3d75bd-7b02-400a-bde3-8dc6092a18d3",
+        "width": 1024
+      }
+    ],
+    "pending": true,
+    "runtimeValidationRequired": true,
+    "senderId": 0,
+    "state": "reconnecting",
+    "success": true
+  },
+  "loadedEncoders": [
+    {
+      "id": "obs_nvenc_hevc_tex",
+      "runtimeValidationRequired": true
+    },
+    {
+      "id": "obs_nvenc_hevc_soft",
+      "runtimeValidationRequired": true
+    },
+    {
+      "id": "jim_hevc_nvenc",
+      "runtimeValidationRequired": true
+    },
+    {
+      "id": "obs_nvenc_hevc_cuda",
+      "runtimeValidationRequired": true
+    },
+    {
+      "id": "ffmpeg_hevc_nvenc",
+      "runtimeValidationRequired": true
+    },
+    {
+      "id": "obs_qsv11_hevc",
+      "runtimeValidationRequired": true
+    },
+    {
+      "id": "obs_qsv11_hevc_soft",
+      "runtimeValidationRequired": true
+    }
+  ],
+  "actuallyMediaTestedEncoder": "obs_nvenc_hevc_tex",
+  "actuallyMediaTestedSenderIds": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "configWhitelist": [
+    "contract",
+    "sourceUuid",
+    "host",
+    "port",
+    "latencyMs",
+    "encoder",
+    "bitrateKbps",
+    "audioTrack",
+    "audioSourceUuid",
+    "alpha",
+    "fillKey",
+    "autoStart"
+  ],
+  "commands": [
+    "state",
+    "preflight",
+    "configure",
+    "start",
+    "stop"
+  ],
+  "sourceFixture": {
+    "kind": "ffmpeg_source",
+    "sha256": "3b37393f71045d94c34109ac6a5b981dd0bcf866428733fd913b8a2f796c2240",
+    "publicOwnSynthetic": true,
+    "sourceLevels": 877
+  },
+  "audioRoute": "audioTrack0 Master, source enabled in own PGM scene; sourceUuid does not imply audio route",
+  "stateSemantics": "Request success is not LIVE. Poll state/active/pending/error; wait pendingfalse for stop. Terminalerror may remain after resources drained.",
+  "limits": "Loaded encoder lists alone do not verify GPU support. No alpha/HLG/fallback/autostart.",
+  "tokensPresent": false
+}

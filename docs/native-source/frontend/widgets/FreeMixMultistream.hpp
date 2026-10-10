@@ -24,3 +24,5 @@ void FreeMixMultistreamInit();
 void FreeMixMultistreamBeginClose();
 // Defer main-window close until a CEF panel destructor has returned.
 bool FreeMixMultistreamDeferClose();
+// Check before source/video/config clearing; false refuses close/context change.
+bool FreeMixMultistreamDrainSrtHdr(unsigned timeoutMs=10000);

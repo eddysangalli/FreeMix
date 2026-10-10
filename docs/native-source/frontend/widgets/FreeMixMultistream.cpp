@@ -29,6 +29,7 @@
 #include "FreeMixMultistream.hpp"
 #include "FreeMixOmtOutput.hpp"
 #include "FreeMixOmtHdrOutput.hpp"
+#include "FreeMixSrtHdrLifecycle.hpp"
 #include "FreeMixNdiOutput.hpp"
 #include "FreeMixSdiOutput.hpp"
 #include "FreeMixSrtAlpha.hpp"
@@ -104,6 +105,7 @@ void RegisterHlsService(){
 	obs_register_service(&info);
 }
 std::atomic<bool> frontendClosing = false;
+QTimer *srtHdrTimer = nullptr;
 bool IsPrivateSource(obs_source_t *source);
 struct NetworkMedia {
  obs_view_t *view=nullptr;
@@ -120,11 +122,17 @@ std::map<std::string,std::unique_ptr<NetworkMedia>> networkMedia;
 void StopNetworkOutputs()
 {
  freemix_omt_hdr::StopAll();
+ freemix_srt_hdr::StopAll();
  // Force stop/join the raw plugin callbacks before destroying their video view.
  for(auto &entry:networkOutputs)if(entry.second&&obs_output_active(entry.second))obs_output_force_stop(entry.second);
  networkOutputs.clear();networkMedia.clear();freemix_sdi::Stop();
 }
 void RequestSdiOutput(obs_data_t *request,obs_data_t *response,void *){QMetaObject::invokeMethod(OBSBasic::Get(),[=](){if(frontendClosing){obs_data_set_bool(response,"success",false);return;}freemix_sdi::Request(request,response,IsPrivateSource);},Qt::BlockingQueuedConnection);}
+void RequestSrtHdrOutput(obs_data_t *request,obs_data_t *response,void *){
+ auto *main=OBSBasic::Get();if(!main){obs_data_set_bool(response,"success",false);return;}
+ const auto work=[=](){if(frontendClosing){obs_data_set_bool(response,"success",false);obs_data_set_string(response,"error","frontend is closing or changing context");return;}freemix_srt_hdr::Request(request,response,IsPrivateSource);};
+ if(QThread::currentThread()==main->thread())work();else QMetaObject::invokeMethod(main,work,Qt::BlockingQueuedConnection);
+}
 void RequestOmtHdrOutput(obs_data_t *request,obs_data_t *response,void *){QMetaObject::invokeMethod(OBSBasic::Get(),[=](){if(frontendClosing){obs_data_set_bool(response,"success",false);return;}freemix_omt_hdr::Request(request,response,IsPrivateSource);},Qt::BlockingQueuedConnection);}
 void RequestNetworkOutput(obs_data_t *request, obs_data_t *response, void *)
 {
@@ -1612,7 +1620,7 @@ void RequestShutdownIdle(obs_data_t *request, obs_data_t *response, void *)
    if (obs_output_active(output)) *static_cast<bool *>(param) = true;
    return true;
   }, &active);
-  if (active) { obs_data_set_bool(response, "success", false); return; }
+  if (active||freemix_srt_hdr::Pending()) { obs_data_set_bool(response, "success", false); return; }
   if(qaClose){QDir root(QCoreApplication::applicationDirPath());root.cdUp();root.cdUp();if(!QFileInfo(root.absolutePath()).fileName().startsWith("FreeMix-QA-")){obs_data_set_bool(response,"success",false);obs_data_set_string(response,"error","qaClose requires an isolated QA root");return;}}
   talkLease.clear(); ApplyTalkback(false);
   OBSBasic::Get()->SavePresetAsDocument();
@@ -1676,6 +1684,7 @@ void RegisterVendor()
 	obs_websocket_vendor_register_request(vendor, "control_destination", RequestControlDestination, nullptr);
  obs_websocket_vendor_register_request(vendor, "network_output", RequestNetworkOutput, nullptr);
  obs_websocket_vendor_register_request(vendor, "omt_hdr_output", RequestOmtHdrOutput, nullptr);
+ obs_websocket_vendor_register_request(vendor,"srt_hdr_output",RequestSrtHdrOutput,nullptr);
  obs_websocket_vendor_register_request(vendor,"sdi_output",RequestSdiOutput,nullptr);
  obs_websocket_vendor_register_request(vendor, "control_mix", RequestMix, nullptr);
  obs_websocket_vendor_register_request(vendor, "get_mixes", RequestMix, nullptr);
@@ -1711,6 +1720,9 @@ void RegisterVendor()
   if (!directorUuid.empty()) ApplyTalkback(on);
  });
  talkTimer->start(100);
+ srtHdrTimer=new QTimer(OBSBasic::Get());
+ QObject::connect(srtHdrTimer,&QTimer::timeout,OBSBasic::Get(),[](){freemix_srt_hdr::Tick(IsPrivateSource);});
+ srtHdrTimer->start(100);
 }
 
 void RestorePrivateDirector()
@@ -1792,6 +1804,17 @@ void OnFrontendEvent(enum obs_frontend_event event, void *)
 }
 
 } // namespace
+
+bool FreeMixMultistreamDrainSrtHdr(unsigned timeoutMs)
+{
+ if(!freemix_srt_hdr::Pending())return true;
+ auto *main=OBSBasic::Get();if(!main||QThread::currentThread()!=main->thread())return false;
+ const bool wasClosing=frontendClosing.exchange(true);
+ const bool completed=freemix_srt_hdr::Drain(timeoutMs);
+ frontendClosing=wasClosing;
+ if(!completed){if(!wasClosing&&talkTimer)talkTimer->start(100);blog(LOG_WARNING,"FreeMix SRT HDR drain timed out: resources retained; context change/close refused");}
+ return completed;
+}
 
 bool FreeMixMultistreamDeferClose()
 {

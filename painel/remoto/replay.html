@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>FreeMix - Console de Instant Replay</title>
   <style>
     :root {
@@ -210,7 +210,7 @@
     }
     .timeline{width:100%;accent-color:#58a6ff}.timeline-label{font-variant-numeric:tabular-nums;font-size:12px}.import-grid{display:grid;grid-template-columns:2fr 1fr 1fr auto;gap:8px;align-items:end}.import-grid label{display:grid;font-size:13px;gap:4px}.import-grid input{padding:8px;min-width:0;user-select:text}.extras{padding:10px 0;display:grid;gap:8px}.interruption{padding:10px;background:#3a3020;border:1px solid #a3792b}.ev-item.drag-over{outline:2px solid #58a6ff}.ev-item select{max-width:190px}.ev-item[draggable]{cursor:grab}.ev-order{display:flex;gap:4px}button:disabled{opacity:.5;cursor:default}@media(max-width:900px){.import-grid{grid-template-columns:1fr 1fr}.ev-item{flex-wrap:wrap;gap:8px}}
   </style>
-</head>
+<link rel="stylesheet" href="menus-tarefas-ui.css"></head>
 <body data-page="replay">
 
   <header>
@@ -223,12 +223,9 @@
     <span id="connection"></span>
   </header>
 
-  <nav aria-label="Configurações do Replay" style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px">
-    <a class="back-btn" href="#replay-config">Câmeras / Gravação</a>
-    <a class="back-btn" href="#replay-retention">Retenção no disco</a>
-    <a class="back-btn" href="#replay-camera-audio" onclick="document.getElementById('replay-camera-audio').open=true">Áudio / Sincronismo</a>
-  </nav>
-  <div class="deck-top">
+  <nav class="task-nav" aria-label="Replay"><a href="/replay">Operar Replay</a><a href="/replay?view=settings#replay-config">Configurar câmeras e gravação</a></nav>
+  <p id="replay-view-help" class="task-intro"></p>
+  <div data-replay-operacao id="replay-players"><h2>4. Reproduzir um lance</h2><p>Carregue o lance em A, B, C ou D. Escolher o player não coloca o vídeo no ar.</p><div class="deck-top">
     <div class="deck-cam active" onclick="selectDeck('A', this)">
       <div class="deck-cam-title" style="color:#58a6ff">PLAYER A</div>
       <div style="font-size: 12px; color: var(--text-muted);"><span id="player-A">Nenhum lance carregado</span></div>
@@ -253,12 +250,12 @@
     </div>
   </div>
 
-  <section style="padding:12px;border:1px solid var(--border);margin-bottom:12px" aria-label="Timeline da gravação">
-    <h2 style="font-size:16px">Timeline da gravação</h2>
+  </div><section data-replay-operacao id="replay-history" style="padding:12px;border:1px solid var(--border);margin-bottom:12px" aria-label="Timeline da gravação">
+    <h2 style="font-size:16px">2. Buscar no histórico</h2>
     <p>Volte no histórico, confira o quadro e marque os pontos do lance. A gravação continua; esta prévia fica fora do Programa. Atualizar histórico inclui o vídeo gravado desde a última consulta. Cada lance pode ter de 0,2 a 120 segundos.</p>
     <button id="history-refresh" onclick="refreshHistory()">Atualizar histórico</button>
     <label>Câmera <select id="history-camera" onchange="previewHistory()"></select></label>
-    <p id="history-status" role="status">Inicie REC SSD e atualize o histórico para navegar.</p>
+    <p id="history-status" role="status">Inicie a gravação do Replay para navegar no histórico.</p>
     <img id="history-image" alt="Quadro escolhido na gravação" hidden style="width:100%;max-width:640px;aspect-ratio:16/9;object-fit:contain;background:#000">
     <video id="history-video" hidden muted playsinline preload="auto" style="width:100%;max-width:640px;aspect-ratio:16/9;object-fit:contain;background:#000"></video>
     <div class="mark-row">
@@ -275,7 +272,7 @@
     <p id="history-range">IN: — · OUT: —</p>
     <button id="history-save" disabled onclick="saveHistoryRange()">Salvar lance de IN até OUT</button>
   </section>
-  <div id="replay-config" style="padding:12px"><h2 style="font-size:16px;margin-bottom:8px">Câmeras e gravação do Replay</h2><p>Selecione até oito entradas com REC parado. Iniciar gravação SSD grava os ângulos; não coloca o Replay no ar. Os arquivos usam a pasta de gravações configurada no FreeMix, numa subpasta replay.</p><div id="cam-select"></div><button id="record-btn" class="btn-quick" onclick="toggleRecording()">Iniciar gravação SSD</button><p id="message" role="status"></p></div><div class="clip-quick-row">
+  <details id="replay-preparation" class="task-details" open><summary>1. Câmeras e gravação</summary><div id="replay-config" style="padding:12px"><h2 style="font-size:16px;margin-bottom:8px">Câmeras e gravação do Replay</h2><p>Selecione até oito entradas com REC parado. Iniciar gravação SSD grava os ângulos; não coloca o Replay no ar. Os arquivos usam a pasta de gravações configurada no FreeMix, numa subpasta replay.</p><div id="cam-select"></div><button id="record-btn" class="btn-quick" onclick="toggleRecording()">Iniciar gravação SSD</button><p id="message" role="status"></p></div></details><div data-replay-operacao id="replay-capture"><h2>3. Salvar um lance recente</h2><p>Capture os últimos segundos, ou marque IN e depois OUT durante a gravação. Os pontos escolhidos no histórico são separados.</p><div class="clip-quick-row">
     <button class="btn-quick" onclick="quickClip(5)">-5s</button>
     <button class="btn-quick" onclick="quickClip(10)">-10s</button>
     <button class="btn-quick" onclick="quickClip(20)">-20s</button>
@@ -286,7 +283,7 @@
     <button class="btn-mark btn-out" onclick="markOut()">[ MARK OUT ]</button>
   </div>
 
-  <div class="speed-tbar-box">
+  </div><div data-replay-operacao class="speed-tbar-box" id="replay-speed">
     <div class="st-header">
       <span>VELOCIDADE DE SLOW-MOTION:</span>
       <span id="speed-lbl" style="color:#e3b341">50%</span>
@@ -294,12 +291,12 @@
     <input type="range" class="st-slider" min="10" max="100" value="50" oninput="document.getElementById('speed-lbl').textContent=this.value+'%'" onchange="setSpeed(this.value)">
   </div>
 
-  <div id="replay-retention" style="padding:12px"><h2 style="font-size:16px;margin-bottom:8px">Retenção no disco</h2><label><input id="retention-enabled" type="checkbox" oninput="retentionDirty=true"> Retenção circular dos segmentos</label> <label>Minutos <input id="retention-minutes" type="number" min="2" max="1440" value="30" oninput="retentionDirty=true" style="width:70px"></label> <button id="retention-save" onclick="saveRetention()">Aplicar com REC parado</button><p>Os clipes salvos permanecem no disco. Segmentos que contêm um IN ainda aberto são protegidos.</p><button id="link-players" onclick="request('link',{enabled:!replay?.linked})">Vincular players</button> <button onclick="request('transport',{command:'PAUSE',player:deck})">Pausar</button> <button onclick="request('transport',{command:'PLAY',player:deck})">Reproduzir</button><p>Vincule o mesmo lance em dois a quatro players com a mesma taxa constante. O passo pausa os players e avança um quadro, respeitando os offsets. Em reprodução, o desvio é corrigido periodicamente em uma grade de quadros; use a calibração visual para compensar atrasos das câmeras.</p></div>
-  <div class="extras"><details><summary>Importar clipe para Replay</summary><div class="import-grid"><label>Arquivo de vídeo neste computador<input id="import-file" placeholder="D:\Videos\lance.mp4" maxlength="1000"></label><label>Nome do lance<input id="import-name" maxlength="120" placeholder="Lance importado"></label><label>Nome do ângulo<input id="import-cam" maxlength="120" placeholder="Importado"></label><button id="import-btn" onclick="importClip()">Importar</button><button onclick="request('repair',{file:document.getElementById('import-file').value.trim(),name:document.getElementById('import-name').value.trim()})">Recuperar arquivo danificado</button></div><p>O original é preservado. Na importação, uma cópia é convertida para slow-motion; vídeo com até uma hora. A recuperação de arquivo danificado cria uma nova cópia de até 120 segundos, validada por decodificação; pacotes perdidos podem faltar. Aguarde o término.</p></details><div id="interruption" class="interruption" hidden><span id="interruption-text"></span> <button id="recover-in" onclick="request('recover-in')">Recuperar lance desde IN</button></div><p id="events-total"></p><p>Arraste os lances para mudar a ordem ou use ↑/↓. A ordem fica salva neste projeto.</p></div>
+  <div data-replay-configuracao id="replay-retention" style="padding:12px"><h2 style="font-size:16px;margin-bottom:8px">Retenção no disco</h2><label><input id="retention-enabled" type="checkbox" oninput="retentionDirty=true"> Retenção circular dos segmentos</label> <label>Minutos <input id="retention-minutes" type="number" min="2" max="1440" value="30" oninput="retentionDirty=true" style="width:70px"></label> <button id="retention-save" onclick="saveRetention()">Aplicar com REC parado</button><p>Os clipes salvos permanecem no disco. Segmentos que contêm um IN ainda aberto são protegidos.</p></div><div data-replay-operacao id="replay-transport"><h3>Controles dos players</h3><button id="link-players" onclick="request('link',{enabled:!replay?.linked})">Vincular players</button> <button onclick="request('transport',{command:'PAUSE',player:deck})">Pausar</button> <button onclick="request('transport',{command:'PLAY',player:deck})">Reproduzir</button><p>Vincule o mesmo lance em dois a quatro players com a mesma taxa constante. O passo pausa os players e avança um quadro, respeitando os offsets. Em reprodução, o desvio é corrigido periodicamente em uma grade de quadros; use a calibração visual para compensar atrasos das câmeras.</p></div>
+  <div data-replay-operacao id="replay-events"><h2>Lances salvos</h2><div class="extras"><details><summary>Importar clipe para Replay</summary><div class="import-grid"><label>Arquivo de vídeo neste computador<input id="import-file" placeholder="D:\Videos\lance.mp4" maxlength="1000"></label><label>Nome do lance<input id="import-name" maxlength="120" placeholder="Lance importado"></label><label>Nome do ângulo<input id="import-cam" maxlength="120" placeholder="Importado"></label><button id="import-btn" onclick="importClip()">Importar</button><button onclick="request('repair',{file:document.getElementById('import-file').value.trim(),name:document.getElementById('import-name').value.trim()})">Recuperar arquivo danificado</button></div><p>O original é preservado. Na importação, uma cópia é convertida para slow-motion; vídeo com até uma hora. A recuperação de arquivo danificado cria uma nova cópia de até 120 segundos, validada por decodificação; pacotes perdidos podem faltar. Aguarde o término.</p></details><div id="interruption" class="interruption" hidden><span id="interruption-text"></span> <button id="recover-in" onclick="request('recover-in')">Recuperar lance desde IN</button></div><p id="events-total"></p><p>Arraste os lances para mudar a ordem ou use ↑/↓. A ordem fica salva neste projeto.</p></div>
   <div class="events-box" id="events-list">Nenhum lance gravado.</div>
-  <div class="extras"><details id="replay-camera-audio"><summary>Áudio por câmera e sincronismo</summary><label>Câmera <select id="audio-cam" onchange="showCameraOptions()"></select></label> <label>Áudio gravado <select id="audio-record"><option value="input">Desta entrada</option><option value="master">Master</option><option value="bus-a">Bus A</option><option value="bus-b">Bus B</option></select></label> <label>Volume (dB) <input id="audio-gain" type="number" min="-60" max="12" step="1" value="0"></label> <label><input id="audio-muted" type="checkbox"> Silenciar esta câmera</label> <label>Offset (quadros) <input id="camera-offset" type="number" min="-3600" max="3600" step="1" value="0"></label> <button onclick="saveCameraOptions()">Aplicar câmera</button> <button id="replay-audio" onclick="request('audio',{enabled:!replay?.audioEnabled})">Áudio ligado</button><p>O áudio acompanha o ângulo no Programa. Players fora do ar ficam silenciosos. A seleção do áudio gravado exige REC parado; volume e silêncio valem para reprodução. Offset positivo usa um quadro mais adiante nesta câmera. Calibre com um evento visual comum.</p><button onclick="request('auto-align',{player:deck})">Alinhar pelo áudio comum</button><p>Use ângulos com o mesmo áudio gravado. A correlação só aplica offsets com correspondência confiável; não cria genlock físico.</p><p id="sync-status"></p></details></div>
+  </div><div data-replay-configuracao class="extras"><details id="replay-camera-audio"><summary>Áudio por câmera e sincronismo</summary><label>Câmera <select id="audio-cam" onchange="showCameraOptions()"></select></label> <label>Áudio gravado <select id="audio-record"><option value="input">Desta entrada</option><option value="master">Master</option><option value="bus-a">Bus A</option><option value="bus-b">Bus B</option></select></label> <label>Volume (dB) <input id="audio-gain" type="number" min="-60" max="12" step="1" value="0"></label> <label><input id="audio-muted" type="checkbox"> Silenciar esta câmera</label> <label>Offset (quadros) <input id="camera-offset" type="number" min="-3600" max="3600" step="1" value="0"></label> <button onclick="saveCameraOptions()">Aplicar câmera</button> <button id="replay-audio" onclick="request('audio',{enabled:!replay?.audioEnabled})">Áudio ligado</button><p>O áudio acompanha o ângulo no Programa. Players fora do ar ficam silenciosos. A seleção do áudio gravado exige REC parado; volume e silêncio valem para reprodução. Offset positivo usa um quadro mais adiante nesta câmera. Calibre com um evento visual comum.</p><button onclick="request('auto-align',{player:deck})">Alinhar pelo áudio comum</button><p>Use ângulos com o mesmo áudio gravado. A correlação só aplica offsets com correspondência confiável; não cria genlock físico.</p><p id="sync-status"></p></details></div>
 
-  <div class="bottom-air">
+  <div data-replay-operacao class="bottom-air">
     <button class="btn-air live" onclick="takeReplayAir()">🔴 REPLAY NO AR</button>
     <button class="btn-air back" onclick="backToLive()">VOLTAR AO VIVO</button>
   </div>
@@ -307,5 +304,5 @@
   <script src="replay.js"></script>
 <link rel="stylesheet" href="/controle.css">
 <script src="/controle.js"></script>
-</body>
+<script src="menus-tarefas-ui.js"></script></body>
 </html>

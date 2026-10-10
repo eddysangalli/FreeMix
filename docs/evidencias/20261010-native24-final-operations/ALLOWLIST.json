@@ -1,0 +1,44 @@
+{
+  "status": "PASS_70_CANONICAL_VM_WITH_APPROVED_NAVIGATION_BASELINE",
+  "files": [
+    {
+      "path": "api-public.mjs",
+      "sha256": "4b686beeb60778b5e3cf77e0285b4d34cb5d1f943b53939356cf7c78d3c806f4"
+    },
+    {
+      "path": "operations.mjs",
+      "sha256": "96998f36422dd5b10d28a8e3d7afe3d62b520b7b017b1034e3717b94eb8b2595"
+    },
+    {
+      "path": "preview-key.mjs",
+      "sha256": "670dd1ad5047f520d5fe7fd59c82ef9d63def744bad1acdb21642291c14725a2"
+    },
+    {
+      "path": "preview.mjs",
+      "sha256": "eb6c9bcb7c79af7d5daeaf6a2230f21af39d83be930c650f2cebdc7e1dac6b28"
+    },
+    {
+      "path": "render.mjs",
+      "sha256": "1d6324840df822525edeb27ecafdc9dbf35d1a0048a340cc8a5dbb357883ac7b"
+    },
+    {
+      "path": "CANONICAL-COMBINED-PASS.json",
+      "sha256": "701dc5e3cb0ca3578e59c116511c9036c747cf279fa49352f1845dce39715c3a"
+    },
+    {
+      "path": "result.json",
+      "sha256": "0b01662dad4ed08690b321333965c0baba379727ad28c9916bde09d5b1d31232"
+    },
+    {
+      "path": "preview-result.json",
+      "sha256": "f6a197c0415a87378d410a732ee6048e786c0f839f898d589b7ffb51e1b8e28b"
+    },
+    {
+      "path": "preview-key-result.json",
+      "sha256": "75b2721f56fe2e7276efc12a9205d89cb89cab597f31c78b29c9f02cf3b1c5ef"
+    }
+  ],
+  "earlierFailPreserved": "../mesa-operations-native24-final-20261010/FAIL-*.json",
+  "baselineExplanation": "Old byte-identical action guard intentionally failed after approved Externo/camera/Call navigation split. Retry uses exact SHA pinned approved NAV baseline; key/actions preservation plus operational VM tests pass. No Native or latency claim.",
+  "operatorTouched": false
+}

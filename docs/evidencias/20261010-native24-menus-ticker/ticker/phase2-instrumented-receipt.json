@@ -1,0 +1,812 @@
+{
+  "status": "PASS_INSTRUMENTED_NATIVE23_PHASE_AND_CUT",
+  "runtimeByteExact": false,
+  "jsInjection": true,
+  "instrumentationDeclared": true,
+  "checks": [
+    {
+      "name": "Prepare real pins project rational FPS and own source",
+      "status": "PASS"
+    },
+    {
+      "name": "Instrumented CEF actual Origin:null ACK clock/FPS/pageLoad",
+      "status": "PASS"
+    },
+    {
+      "name": "Real Add preserves current queue phase/text while paused",
+      "status": "PASS"
+    },
+    {
+      "name": "Real Replace resets phase and keeps one item",
+      "status": "PASS"
+    },
+    {
+      "name": "Save real produces no renderer update/ACK",
+      "status": "PASS"
+    },
+    {
+      "name": "Actual CEF queue clock follows project rational pixel/frame rate",
+      "status": "PASS",
+      "elapsedSeconds": 0.4365,
+      "expectedPx": 52.38,
+      "observedPx": 52.007999999999974,
+      "tolerancePx": 12
+    },
+    {
+      "name": "Real Native Cut completes before the real2s delayed renderer POSTACK",
+      "status": "PASS",
+      "updateStart": 1791607335284,
+      "cutStart": 1791607335400,
+      "cutFinished": 1791607335924,
+      "ackReceivedAt": 1791607337386,
+      "cutRoundTripMs": 524,
+      "delayMs": 2000,
+      "realProgramUuid": "9ce6cdef-cf32-4346-a1eb-729721ae5761",
+      "operation": {
+        "id": "qa_ticker_cut_delayed_ack",
+        "action": "cut",
+        "scope": "FreeMix",
+        "targetKey": "9ce6cdef-cf32-4346-a1eb-729721ae5761",
+        "targetName": "OWN Cut Target",
+        "receivedAt": 1791607335403,
+        "startedAt": 1791607335403,
+        "engineConfirmedAt": 1791607335862,
+        "finishedAt": 1791607335903,
+        "stage": "confirmed"
+      }
+    },
+    {
+      "name": "PageLoad ID and browser settings stable: no renderer reload",
+      "status": "PASS"
+    }
+  ],
+  "updates": [
+    {
+      "r": {
+        "id": "7749e559-9d26-4fbf-acb2-15ace9e12b4a",
+        "sent": true,
+        "rendererConfirmed": true,
+        "status": "ACCEPTED",
+        "requestId": "7f72e18b-f212-44fc-80d9-ca38419a1883",
+        "valuesSaved": false,
+        "outputsStarted": false,
+        "fields": [
+          {
+            "field": "OwnAdd",
+            "queued": 2
+          }
+        ]
+      },
+      "sample": {
+        "requestId": "7f72e18b-f212-44fc-80d9-ca38419a1883",
+        "status": "accepted",
+        "origin": "null",
+        "receivedAt": 1791607333406,
+        "qa": {
+          "pageLoad": "mv1wqxde-2diog6h8qd9",
+          "clock": 715.3999999761581,
+          "fps": {
+            "denominator": 1,
+            "numerator": 30
+          },
+          "fields": [
+            {
+              "field": "OwnAdd",
+              "type": "Add",
+              "queued": 2,
+              "distance": 36.00000000000001,
+              "pixelsPerSecond": 120,
+              "items": [
+                {
+                  "text": "OWN initial",
+                  "position": 604,
+                  "extent": 120,
+                  "axis": "X"
+                },
+                {
+                  "text": "OWN Add phase first",
+                  "position": 724,
+                  "extent": 224,
+                  "axis": "X"
+                }
+              ]
+            },
+            {
+              "field": "OwnReplace",
+              "type": "Replace",
+              "queued": 1,
+              "distance": 27.000000000000004,
+              "pixelsPerSecond": 90,
+              "items": [
+                {
+                  "text": "OWN replace",
+                  "position": -117,
+                  "extent": 144,
+                  "axis": "X"
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "r": {
+        "id": "7749e559-9d26-4fbf-acb2-15ace9e12b4a",
+        "sent": true,
+        "rendererConfirmed": true,
+        "status": "ACCEPTED",
+        "requestId": "cfeb1c55-c8ec-48c3-95ee-b8c1f77bd240",
+        "valuesSaved": false,
+        "outputsStarted": false,
+        "fields": [
+          {
+            "field": "OwnAdd",
+            "queued": 3
+          }
+        ]
+      },
+      "sample": {
+        "requestId": "cfeb1c55-c8ec-48c3-95ee-b8c1f77bd240",
+        "status": "accepted",
+        "origin": "null",
+        "receivedAt": 1791607333568,
+        "qa": {
+          "pageLoad": "mv1wqxde-2diog6h8qd9",
+          "clock": 878.6999999284744,
+          "fps": {
+            "denominator": 1,
+            "numerator": 30
+          },
+          "fields": [
+            {
+              "field": "OwnAdd",
+              "type": "Add",
+              "queued": 3,
+              "distance": 36.00000000000001,
+              "pixelsPerSecond": 120,
+              "items": [
+                {
+                  "text": "OWN initial",
+                  "position": 604,
+                  "extent": 120,
+                  "axis": "X"
+                },
+                {
+                  "text": "OWN Add phase first",
+                  "position": 724,
+                  "extent": 224,
+                  "axis": "X"
+                },
+                {
+                  "text": "OWN Add phase second",
+                  "position": 948,
+                  "extent": 263,
+                  "axis": "X"
+                }
+              ]
+            },
+            {
+              "field": "OwnReplace",
+              "type": "Replace",
+              "queued": 1,
+              "distance": 27.000000000000004,
+              "pixelsPerSecond": 90,
+              "items": [
+                {
+                  "text": "OWN replace",
+                  "position": -117,
+                  "extent": 144,
+                  "axis": "X"
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "r": {
+        "id": "7749e559-9d26-4fbf-acb2-15ace9e12b4a",
+        "sent": true,
+        "rendererConfirmed": true,
+        "status": "ACCEPTED",
+        "requestId": "9033f655-4941-45a2-9996-fc22345fdf4e",
+        "valuesSaved": false,
+        "outputsStarted": false,
+        "fields": [
+          {
+            "field": "OwnAdd",
+            "queued": 4
+          }
+        ]
+      },
+      "sample": {
+        "requestId": "9033f655-4941-45a2-9996-fc22345fdf4e",
+        "status": "accepted",
+        "origin": "null",
+        "receivedAt": 1791607333669,
+        "qa": {
+          "pageLoad": "mv1wqxde-2diog6h8qd9",
+          "clock": 980.2999999523163,
+          "fps": {
+            "denominator": 1,
+            "numerator": 30
+          },
+          "fields": [
+            {
+              "field": "OwnAdd",
+              "type": "Add",
+              "queued": 4,
+              "distance": 36.00000000000001,
+              "pixelsPerSecond": 120,
+              "items": [
+                {
+                  "text": "OWN initial",
+                  "position": 604,
+                  "extent": 120,
+                  "axis": "X"
+                },
+                {
+                  "text": "OWN Add phase first",
+                  "position": 724,
+                  "extent": 224,
+                  "axis": "X"
+                },
+                {
+                  "text": "OWN Add phase third",
+                  "position": 1211,
+                  "extent": 232,
+                  "axis": "X"
+                }
+              ]
+            },
+            {
+              "field": "OwnReplace",
+              "type": "Replace",
+              "queued": 1,
+              "distance": 27.000000000000004,
+              "pixelsPerSecond": 90,
+              "items": [
+                {
+                  "text": "OWN replace",
+                  "position": -117,
+                  "extent": 144,
+                  "axis": "X"
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "r": {
+        "id": "7749e559-9d26-4fbf-acb2-15ace9e12b4a",
+        "sent": true,
+        "rendererConfirmed": true,
+        "status": "ACCEPTED",
+        "requestId": "c948f98f-a2ba-4d9d-b8a9-0b0bacab41d8",
+        "valuesSaved": false,
+        "outputsStarted": false,
+        "fields": [
+          {
+            "field": "OwnReplace",
+            "queued": 1
+          }
+        ]
+      },
+      "sample": {
+        "requestId": "c948f98f-a2ba-4d9d-b8a9-0b0bacab41d8",
+        "status": "accepted",
+        "origin": "null",
+        "receivedAt": 1791607333735,
+        "qa": {
+          "pageLoad": "mv1wqxde-2diog6h8qd9",
+          "clock": 1042.3999999761581,
+          "fps": {
+            "denominator": 1,
+            "numerator": 30
+          },
+          "fields": [
+            {
+              "field": "OwnAdd",
+              "type": "Add",
+              "queued": 4,
+              "distance": 36.00000000000001,
+              "pixelsPerSecond": 120,
+              "items": [
+                {
+                  "text": "OWN initial",
+                  "position": 604,
+                  "extent": 120,
+                  "axis": "X"
+                },
+                {
+                  "text": "OWN Add phase first",
+                  "position": 724,
+                  "extent": 224,
+                  "axis": "X"
+                },
+                {
+                  "text": "OWN Add phase third",
+                  "position": 1211,
+                  "extent": 232,
+                  "axis": "X"
+                }
+              ]
+            },
+            {
+              "field": "OwnReplace",
+              "type": "Replace",
+              "queued": 1,
+              "distance": 0,
+              "pixelsPerSecond": 90,
+              "items": [
+                {
+                  "text": "OWN Replace phase reset",
+                  "position": -285,
+                  "extent": 285,
+                  "axis": "X"
+                }
+              ]
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "prepared": {
+    "prepared": true,
+    "id": "7749e559-9d26-4fbf-acb2-15ace9e12b4a",
+    "scene": "FreeMix GT 7749e559-9d26-4fbf-acb2-15ace9e12b4a",
+    "input": "FreeMix GT 7749e559-9d26-4fbf-acb2-15ace9e12b4a HTML",
+    "width": 800,
+    "height": 400,
+    "outputsStarted": false
+  },
+  "fps": {
+    "numerator": 30,
+    "denominator": 1
+  },
+  "sourceUuid": "9f24c8a2-950d-40be-9556-1ee240aa5887",
+  "initialCapture": {
+    "file": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\gtzip-ticker-native23-20261010\\phase2-instrumented-initial.png",
+    "sha256": "d9df07c73b20d082a8a2fe1ccd531c8212169d446e654082b54101bf4b9e69bd",
+    "bytes": 4079
+  },
+  "displacement": {
+    "elapsedSeconds": 0.4365,
+    "expectedPx": 52.38,
+    "observedPx": 52.007999999999974,
+    "tolerancePx": 12
+  },
+  "motionCapture": {
+    "file": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\gtzip-ticker-native23-20261010\\phase2-instrumented-motion.png",
+    "sha256": "23aafa2ac75416d2a862991458bdf7d458928eec1b498bb316c0ad30f52edd04",
+    "bytes": 7440
+  },
+  "cutDuringDelayedAck": {
+    "updateStart": 1791607335284,
+    "cutStart": 1791607335400,
+    "cutFinished": 1791607335924,
+    "ackReceivedAt": 1791607337386,
+    "cutRoundTripMs": 524,
+    "delayMs": 2000,
+    "realProgramUuid": "9ce6cdef-cf32-4346-a1eb-729721ae5761",
+    "operation": {
+      "id": "qa_ticker_cut_delayed_ack",
+      "action": "cut",
+      "scope": "FreeMix",
+      "targetKey": "9ce6cdef-cf32-4346-a1eb-729721ae5761",
+      "targetName": "OWN Cut Target",
+      "receivedAt": 1791607335403,
+      "startedAt": 1791607335403,
+      "engineConfirmedAt": 1791607335862,
+      "finishedAt": 1791607335903,
+      "stage": "confirmed"
+    }
+  },
+  "samples": [
+    {
+      "requestId": "7f72e18b-f212-44fc-80d9-ca38419a1883",
+      "status": "accepted",
+      "origin": "null",
+      "receivedAt": 1791607333406,
+      "qa": {
+        "pageLoad": "mv1wqxde-2diog6h8qd9",
+        "clock": 715.3999999761581,
+        "fps": {
+          "denominator": 1,
+          "numerator": 30
+        },
+        "fields": [
+          {
+            "field": "OwnAdd",
+            "type": "Add",
+            "queued": 2,
+            "distance": 36.00000000000001,
+            "pixelsPerSecond": 120,
+            "items": [
+              {
+                "text": "OWN initial",
+                "position": 604,
+                "extent": 120,
+                "axis": "X"
+              },
+              {
+                "text": "OWN Add phase first",
+                "position": 724,
+                "extent": 224,
+                "axis": "X"
+              }
+            ]
+          },
+          {
+            "field": "OwnReplace",
+            "type": "Replace",
+            "queued": 1,
+            "distance": 27.000000000000004,
+            "pixelsPerSecond": 90,
+            "items": [
+              {
+                "text": "OWN replace",
+                "position": -117,
+                "extent": 144,
+                "axis": "X"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "requestId": "cfeb1c55-c8ec-48c3-95ee-b8c1f77bd240",
+      "status": "accepted",
+      "origin": "null",
+      "receivedAt": 1791607333568,
+      "qa": {
+        "pageLoad": "mv1wqxde-2diog6h8qd9",
+        "clock": 878.6999999284744,
+        "fps": {
+          "denominator": 1,
+          "numerator": 30
+        },
+        "fields": [
+          {
+            "field": "OwnAdd",
+            "type": "Add",
+            "queued": 3,
+            "distance": 36.00000000000001,
+            "pixelsPerSecond": 120,
+            "items": [
+              {
+                "text": "OWN initial",
+                "position": 604,
+                "extent": 120,
+                "axis": "X"
+              },
+              {
+                "text": "OWN Add phase first",
+                "position": 724,
+                "extent": 224,
+                "axis": "X"
+              },
+              {
+                "text": "OWN Add phase second",
+                "position": 948,
+                "extent": 263,
+                "axis": "X"
+              }
+            ]
+          },
+          {
+            "field": "OwnReplace",
+            "type": "Replace",
+            "queued": 1,
+            "distance": 27.000000000000004,
+            "pixelsPerSecond": 90,
+            "items": [
+              {
+                "text": "OWN replace",
+                "position": -117,
+                "extent": 144,
+                "axis": "X"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "requestId": "9033f655-4941-45a2-9996-fc22345fdf4e",
+      "status": "accepted",
+      "origin": "null",
+      "receivedAt": 1791607333669,
+      "qa": {
+        "pageLoad": "mv1wqxde-2diog6h8qd9",
+        "clock": 980.2999999523163,
+        "fps": {
+          "denominator": 1,
+          "numerator": 30
+        },
+        "fields": [
+          {
+            "field": "OwnAdd",
+            "type": "Add",
+            "queued": 4,
+            "distance": 36.00000000000001,
+            "pixelsPerSecond": 120,
+            "items": [
+              {
+                "text": "OWN initial",
+                "position": 604,
+                "extent": 120,
+                "axis": "X"
+              },
+              {
+                "text": "OWN Add phase first",
+                "position": 724,
+                "extent": 224,
+                "axis": "X"
+              },
+              {
+                "text": "OWN Add phase third",
+                "position": 1211,
+                "extent": 232,
+                "axis": "X"
+              }
+            ]
+          },
+          {
+            "field": "OwnReplace",
+            "type": "Replace",
+            "queued": 1,
+            "distance": 27.000000000000004,
+            "pixelsPerSecond": 90,
+            "items": [
+              {
+                "text": "OWN replace",
+                "position": -117,
+                "extent": 144,
+                "axis": "X"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "requestId": "c948f98f-a2ba-4d9d-b8a9-0b0bacab41d8",
+      "status": "accepted",
+      "origin": "null",
+      "receivedAt": 1791607333735,
+      "qa": {
+        "pageLoad": "mv1wqxde-2diog6h8qd9",
+        "clock": 1042.3999999761581,
+        "fps": {
+          "denominator": 1,
+          "numerator": 30
+        },
+        "fields": [
+          {
+            "field": "OwnAdd",
+            "type": "Add",
+            "queued": 4,
+            "distance": 36.00000000000001,
+            "pixelsPerSecond": 120,
+            "items": [
+              {
+                "text": "OWN initial",
+                "position": 604,
+                "extent": 120,
+                "axis": "X"
+              },
+              {
+                "text": "OWN Add phase first",
+                "position": 724,
+                "extent": 224,
+                "axis": "X"
+              },
+              {
+                "text": "OWN Add phase third",
+                "position": 1211,
+                "extent": 232,
+                "axis": "X"
+              }
+            ]
+          },
+          {
+            "field": "OwnReplace",
+            "type": "Replace",
+            "queued": 1,
+            "distance": 0,
+            "pixelsPerSecond": 90,
+            "items": [
+              {
+                "text": "OWN Replace phase reset",
+                "position": -285,
+                "extent": 285,
+                "axis": "X"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "requestId": "c7f9c395-bf15-4f08-ba4f-8d1d6cfa52cc",
+      "status": "accepted",
+      "origin": "null",
+      "receivedAt": 1791607334589,
+      "qa": {
+        "pageLoad": "mv1wqxde-2diog6h8qd9",
+        "clock": 1898.6000000238419,
+        "fps": {
+          "denominator": 1,
+          "numerator": 30
+        },
+        "fields": [
+          {
+            "field": "OwnAdd",
+            "type": "Add",
+            "queued": 5,
+            "distance": 59.98799999999999,
+            "pixelsPerSecond": 120,
+            "items": [
+              {
+                "text": "OWN initial",
+                "position": 580.0120000000001,
+                "extent": 120,
+                "axis": "X"
+              },
+              {
+                "text": "OWN Add phase first",
+                "position": 700.0120000000001,
+                "extent": 224,
+                "axis": "X"
+              },
+              {
+                "text": "OWN clock A",
+                "position": 1419.0120000000002,
+                "extent": 141,
+                "axis": "X"
+              }
+            ]
+          },
+          {
+            "field": "OwnReplace",
+            "type": "Replace",
+            "queued": 1,
+            "distance": 17.99099999999999,
+            "pixelsPerSecond": 90,
+            "items": [
+              {
+                "text": "OWN Replace phase reset",
+                "position": -267.009,
+                "extent": 285,
+                "axis": "X"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "requestId": "29349b35-60a3-4365-a033-67d978e6a4ab",
+      "status": "accepted",
+      "origin": "null",
+      "receivedAt": 1791607335024,
+      "qa": {
+        "pageLoad": "mv1wqxde-2diog6h8qd9",
+        "clock": 2335.100000023842,
+        "fps": {
+          "denominator": 1,
+          "numerator": 30
+        },
+        "fields": [
+          {
+            "field": "OwnAdd",
+            "type": "Add",
+            "queued": 6,
+            "distance": 111.99599999999997,
+            "pixelsPerSecond": 120,
+            "items": [
+              {
+                "text": "OWN initial",
+                "position": 528.004,
+                "extent": 120,
+                "axis": "X"
+              },
+              {
+                "text": "OWN Add phase first",
+                "position": 648.004,
+                "extent": 224,
+                "axis": "X"
+              },
+              {
+                "text": "OWN clock B",
+                "position": 1508.004,
+                "extent": 143,
+                "axis": "X"
+              }
+            ]
+          },
+          {
+            "field": "OwnReplace",
+            "type": "Replace",
+            "queued": 1,
+            "distance": 56.99699999999997,
+            "pixelsPerSecond": 90,
+            "items": [
+              {
+                "text": "OWN Replace phase reset",
+                "position": -228.00300000000004,
+                "extent": 285,
+                "axis": "X"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "requestId": "136e53d2-14ed-405e-ac42-8e9adac33a8d",
+      "status": "accepted",
+      "origin": "null",
+      "receivedAt": 1791607337386,
+      "qa": {
+        "pageLoad": "mv1wqxde-2diog6h8qd9",
+        "clock": 2695.6999999284744,
+        "fps": {
+          "denominator": 1,
+          "numerator": 30
+        },
+        "fields": [
+          {
+            "field": "OwnAdd",
+            "type": "Add",
+            "queued": 6,
+            "distance": 155.988,
+            "pixelsPerSecond": 120,
+            "items": [
+              {
+                "text": "OWN initial",
+                "position": 484.012,
+                "extent": 120,
+                "axis": "X"
+              },
+              {
+                "text": "OWN Add phase first",
+                "position": 604.012,
+                "extent": 224,
+                "axis": "X"
+              },
+              {
+                "text": "OWN clock B",
+                "position": 1464.012,
+                "extent": 143,
+                "axis": "X"
+              }
+            ]
+          },
+          {
+            "field": "OwnReplace",
+            "type": "Replace",
+            "queued": 1,
+            "distance": 0,
+            "pixelsPerSecond": 90,
+            "items": [
+              {
+                "text": "OWN delayed ACK",
+                "position": -204,
+                "extent": 204,
+                "axis": "X"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}

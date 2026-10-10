@@ -1,8 +1,8 @@
 {
   "status": "PASS",
   "base": "ba2f32bdf791005443988a4955e963663e16b1ed",
-  "head": "709f101d1aaeb25ccc6f6eab77a3e23e9364f3b0",
-  "resultTree": "7fb77437f56f19ec9266e9f8f002923eb26ade9f",
+  "head": "a04786090fcbe7ede495f18e5ad38ccaa9793478",
+  "resultTree": "e67ece9930c4cea0548afa9f3d4f658e0f7814b7",
   "submodules": [
     {
       "path": "deps/libdshowcapture/src",
@@ -77,8 +77,8 @@
     },
     {
       "path": "frontend/cmake/ui-widgets.cmake",
-      "bytes": 2498,
-      "sha256": "37caeb0379a1ac40bcdb9792f4b7aa4069dc49abca1c255bbe1d4c04ccb8a7d3"
+      "bytes": 2573,
+      "sha256": "4f0e1a91caa21243afa619c7cc28270a728922fe0cbe967beadf0a7180239c56"
     },
     {
       "path": "frontend/cmake/windows/freemix.ico",
@@ -217,13 +217,13 @@
     },
     {
       "path": "frontend/widgets/FreeMixMultistream.cpp",
-      "bytes": 114613,
-      "sha256": "5f81838311985ccb50dc9eb406986414fe206ce6a2243acabcb81627f03a0316"
+      "bytes": 116066,
+      "sha256": "694589919242f7d9a8c45292f2bc8c8407aa4bccf0abbf300f26cee01645cbc4"
     },
     {
       "path": "frontend/widgets/FreeMixMultistream.hpp",
-      "bytes": 1304,
-      "sha256": "5290dc2b7d2a8f9a2b1d288109b1e8d823f39f598691598668f79a39e74083d6"
+      "bytes": 1448,
+      "sha256": "4da4fc1da593d6f993de11afa2e129fae2cc4b92b68d320b41990491e99ab432"
     },
     {
       "path": "frontend/widgets/FreeMixNdiOutput.hpp",
@@ -281,14 +281,24 @@
       "sha256": "0818591c8d8b78a12c812aeae4adaa86f7d2fb4c0bad67bfebe609a375432c7f"
     },
     {
+      "path": "frontend/widgets/FreeMixSrtHdrLifecycle.hpp",
+      "bytes": 1117,
+      "sha256": "0c99f8150825c397409b698afb604527ea495725fc7300009704fd761fef57ee"
+    },
+    {
+      "path": "frontend/widgets/FreeMixSrtHdrOutput.hpp",
+      "bytes": 17922,
+      "sha256": "1934c6b8f8cb57fca2b7f30a4f4c376782b05bdcef6fda827551d15819af5e02"
+    },
+    {
       "path": "frontend/widgets/FreeMixVideoTransports.hpp",
       "bytes": 3592,
       "sha256": "54c8633951bc1091892d7cb4127bc3b7bd58ac0561af51c48fe27bb290fca52a"
     },
     {
       "path": "frontend/widgets/OBSBasic.cpp",
-      "bytes": 77295,
-      "sha256": "65c1071ccf7c4ae0b96ad35915dbf73269b370e46d2a7d657a63d05c87df893e"
+      "bytes": 77526,
+      "sha256": "6dde464a185683d0790982ef6e720f6306fc18699d9eb091ff770e7439707a54"
     },
     {
       "path": "frontend/widgets/OBSBasic.hpp",
@@ -316,14 +326,19 @@
       "sha256": "ea230026a56fe85d00c0ce7af0d278961973148a24a168ac8d0f930708df8fb6"
     },
     {
+      "path": "frontend/widgets/OBSBasic_Profiles.cpp",
+      "bytes": 27227,
+      "sha256": "28daf474c389d339ceb676448cbd50459e042bccb839929c564c71956e4eb29f"
+    },
+    {
       "path": "frontend/widgets/OBSBasic_Recording.cpp",
       "bytes": 11319,
       "sha256": "4d4106dc1b8f21d1fd88eb22260d22c91f4552bfd8380c201c63b3f454d0bb6a"
     },
     {
       "path": "frontend/widgets/OBSBasic_SceneCollections.cpp",
-      "bytes": 53390,
-      "sha256": "c7da9ceec5aacb551e3b6a6bb0b40271844e67803b47c07259b3bbc1c16e5b6e"
+      "bytes": 53999,
+      "sha256": "24fac0d02c14dc0cdf5873443f8763abd42b142aa53162c5c19caf4cf7e995c6"
     },
     {
       "path": "frontend/widgets/OBSBasic_Scenes.cpp",
@@ -947,8 +962,8 @@
     },
     {
       "path": "plugins/obs-ffmpeg/obs-ffmpeg-mpegts.c",
-      "bytes": 43356,
-      "sha256": "bae89a79bef38c5d1b54b3ee9648536956cfbcc683e874f8feaefe33790dabf0"
+      "bytes": 43841,
+      "sha256": "2843fd24f19fa85d81afc268057db1f9884c7ea6d4d5c1f7aca82459dac6ca3f"
     },
     {
       "path": "plugins/obs-ffmpeg/obs-ffmpeg-mux.c",

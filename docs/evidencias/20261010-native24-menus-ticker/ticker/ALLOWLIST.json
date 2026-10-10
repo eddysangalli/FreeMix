@@ -1,0 +1,132 @@
+{
+  "schema": 1,
+  "status": "FROZEN_REAL_NATIVE23_CEF_EXACT_AND_INSTRUMENTED_QA",
+  "created": "2026-10-10T04:46:05.726Z",
+  "scope": "Own TEMP Native23+base031500+frozen ticker draft. No canonical, operator, Git, installer035000/package modifications.",
+  "nativeHead": "709f101d1aaeb25ccc6f6eab77a3e23e9364f3b0",
+  "draftAllowlistSha256": "6a2d98c172cc850fc40e41d82178a14343620a347a58be23bd9ef43581c564dc",
+  "realProjectFps": {
+    "numerator": 30,
+    "denominator": 1
+  },
+  "exactPhase": "retry1-receipt.json",
+  "instrumentedPhase": "phase2-receipt.json",
+  "instrumentationIsNotProductSource": true,
+  "integrationHelperExecuted": false,
+  "excluded": [
+    "Own installation credentials/config/runtime binaries/raw Native logs/converted titles/browser cache",
+    "Any capability tokens, raw request payloads, external/operator data"
+  ],
+  "files": [
+    {
+      "path": "integrar-root.mjs",
+      "sha256": "21fdaffea17202f5314e89496084b904763e2336efe12ca00afb84054e87c1f5",
+      "bytes": 4180
+    },
+    {
+      "path": "own-root.json",
+      "sha256": "75e16d83ed01632f2d9256bb4e884b59eade5b7201729531d972b2732f15219a",
+      "bytes": 88
+    },
+    {
+      "path": "phase1-exact-initial.png",
+      "sha256": "d9df07c73b20d082a8a2fe1ccd531c8212169d446e654082b54101bf4b9e69bd",
+      "bytes": 4079
+    },
+    {
+      "path": "phase1-exact-receipt.json",
+      "sha256": "15b19ee7cf9dd532a8a52fa70231dee9b71c396a9b653521ced6c868ff4021ee",
+      "bytes": 2477
+    },
+    {
+      "path": "phase2-gtzip-runtime.mjs.after.txt",
+      "sha256": "4e2fd724b94fc40dea531541d8e13f086257e8a00bed2ad618828abaa988f37e",
+      "bytes": 3097
+    },
+    {
+      "path": "phase2-gtzip-runtime.mjs.before.txt",
+      "sha256": "65ad2c8e1cc4d20a0800a79bc85b1048f6824a40b73599a6d7a9b003c4152c3c",
+      "bytes": 2369
+    },
+    {
+      "path": "phase2-instrumented-initial.png",
+      "sha256": "d9df07c73b20d082a8a2fe1ccd531c8212169d446e654082b54101bf4b9e69bd",
+      "bytes": 4079
+    },
+    {
+      "path": "phase2-instrumented-motion.png",
+      "sha256": "23aafa2ac75416d2a862991458bdf7d458928eec1b498bb316c0ad30f52edd04",
+      "bytes": 7440
+    },
+    {
+      "path": "phase2-instrumented-receipt.json",
+      "sha256": "65af737286836565d1517c2b7429149a1ec9bc585436bede74f5184163130b75",
+      "bytes": 21935
+    },
+    {
+      "path": "phase2-receipt.json",
+      "sha256": "25df19814dd53a7c228edf02cc2fa242363696187999936974fe755f6f0facce",
+      "bytes": 27740
+    },
+    {
+      "path": "phase2-servidor-api.mjs.after.txt",
+      "sha256": "52b2aa9060149b2cb0a85b0da14c189dfc47958b535de31605a1f219af2ee33c",
+      "bytes": 28669
+    },
+    {
+      "path": "phase2-servidor-api.mjs.before.txt",
+      "sha256": "dc89122e555c407a0fab23dfaab562fcf99e02b70b586351073376c134bc05d1",
+      "bytes": 28390
+    },
+    {
+      "path": "preparation.json",
+      "sha256": "10bcd6982e94da9aacdc2c27ffbfd8abe4691340370cde17b8748cede29636f4",
+      "bytes": 2889
+    },
+    {
+      "path": "PROVENANCE.json",
+      "sha256": "0c5af026e1f696e179b88d9385a51622140303b28ba50241a9e0e2ce2a1c1aba",
+      "bytes": 2796
+    },
+    {
+      "path": "QA-ONLY-gtzip-runtime.mjs.patch",
+      "sha256": "a22fc15212a3dc0dc3a0f3650669116417367a8b56460f0e07c400d0304eac3a",
+      "bytes": 4635
+    },
+    {
+      "path": "QA-ONLY-servidor-api.mjs.patch",
+      "sha256": "e86289ede506a69a076377d198b343c89260db3d5cf1f14fd1fc37c41477cfb8",
+      "bytes": 2436
+    },
+    {
+      "path": "README.md",
+      "sha256": "0e6662ea697c5e96332fe0f5fbccd8ab0ba9062826a06a53a19a3759097e5ad9",
+      "bytes": 3755
+    },
+    {
+      "path": "receipt.json",
+      "sha256": "bdd3562d0e5cf9725eb5a7cce5d64a92138bb2eaefa5cf3304b333330fa4a925",
+      "bytes": 2609
+    },
+    {
+      "path": "retry1-receipt.json",
+      "sha256": "5afd7552cd776f05a5472c241ed7fc5bc91f04ccec5c610671921d9f106fbe41",
+      "bytes": 6486
+    },
+    {
+      "path": "run-phase2.mjs",
+      "sha256": "950aa3ac6d34fccb27b618db49ea4d06bb00540595ba6c9fcbd8e23be2702728",
+      "bytes": 18611
+    },
+    {
+      "path": "run-retry1.mjs",
+      "sha256": "0e3d4cb2df05aca42883a98a804f9eb4d8f4e255d60ddc2a0addd298e8d9ccda",
+      "bytes": 13370
+    },
+    {
+      "path": "run.mjs",
+      "sha256": "07b7e6967c2319a8dbe1f5f7b381d9f964b264f896831a743d029561d13403ce",
+      "bytes": 13396
+    }
+  ]
+}

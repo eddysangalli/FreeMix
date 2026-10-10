@@ -1,9 +1,11 @@
-# FreeMix Studio — entrega verificada 0.1.0-local.20261010000500
+# FreeMix Studio — entrega selecionada 0.1.0-local.20261010035000
 
-Na raiz do workspace abra INSTALAR-FREEMIX.cmd, ou execute FreeMix-Studio-Setup-0.1.0-local.20261010000500.exe. Escolha pasta nova/vazia. Depois abra o atalho FreeMix Studio ou FreeMix Studio.cmd: motor e controle iniciam juntos. Node, FFmpeg e NDI6.3.2 acompanham o pacote; drivers físicos continuam sendo os do fabricante.
+Abra INSTALAR-FREEMIX.cmd na raiz do workspace, escolha pasta nova/vazia e use o atalho FreeMix Studio criado pelo Setup. O seletor confere o hash da versão aprovada. Motor, controle, Node, FFmpeg e NDI Runtime acompanham o pacote. Drivers físicos continuam sendo os do fabricante.
 
-Transmitir abre MultiStream. Externo reúne SRT/NDI/OMT/SDI. Configurações de gravação, MultiGravação e Replay ficam nos módulos. Replay oferece timeline contínua durante REC, reprodução/busca e marcação IN/OUT; players têm autoplay no ar e áudio opt-in. Importação .fmx é explícita, conserva a origem, cria credenciais e não inicia saídas.
+Transmitir abre MultiStream. Externo reúne SRT/NDI/OMT/SDI. Calls permite escolher o retorno e quem recebe o talkback; configurações de gravação, MultiGravação e Replay ficam nos próprios módulos. Replay mantém timeline contínua, IN/OUT e autoplay no ar. A importação .fmx é explícita, conserva a origem, cria credenciais e não inicia saídas.
 
-Diagnósticos ou COLETAR-LOGS.cmd gera ZIP local sanitizado para envio manual. Instalar não aplica firewall automaticamente nem substitui a mesa anterior. Duas instalações/importações/diagnósticos/desinstalações e startup passaram; Native21 fechou em773ms, contador zero e sem crash no ensaio.
+Diagnósticos ou COLETAR-LOGS.cmd gera ZIP local sanitizado para envio manual por e-mail ou WhatsApp. Instalar não aplica firewall automaticamente nem substitui a mesa anterior. 035000 passou em instalação real própria, duas aberturas/fechamentos, diagnóstico e desinstalação conservadora.
 
-Leia docs/ENTREGA-ATUAL.md, docs/INSTALACAO.md e docs/PENDENCIAS-REAIS.md. QR GTZIP está em desenvolvimento após esta versão. Hardware/WAN/Windows limpo ainda precisam de ensaio. O receptor alpha WebBrowser permanece abortado; ponte nativa SRT→NDI é beta separada.
+Fontes posteriores Native24/050500 incluem novos menus, ticker textual e SRT HDR opaco, com provas locais separadas; o novo instalador ainda aguarda geração e ensaio. Esse estado não altera o pacote035000 selado.
+
+Leia docs/ENTREGA-ATUAL.md, docs/INSTALACAO.md e docs/PENDENCIAS-REAIS.md para o estado vigente e critérios de aceite. Hardware, WAN, Windows limpo e NDI HDR Advanced SDK/licença permanecem gates explícitos. O receptor alpha WebBrowser está abortado; a ponte nativa alpha é beta separada. Assinatura interna Ed25519; sem certificado Authenticode.

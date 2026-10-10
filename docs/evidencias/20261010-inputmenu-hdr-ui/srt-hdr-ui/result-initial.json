@@ -1,0 +1,102 @@
+{
+  "status": "FAIL_CONTRACT",
+  "at": "2026-10-10T05:02:41.946Z",
+  "pins": [
+    {
+      "path": "FreeMix/ferramentas/srt-hdr-producao.mjs",
+      "sha256": "f41d549a8240036f1ed76f820887433fce18428bc750cb059041ce54d15f9571"
+    },
+    {
+      "path": "FreeMix/ferramentas/saidas-producao.mjs",
+      "sha256": "edec9f0cb154d479227a202dbbfdaab24b6baa41ad2630a2c9a67d8425bf693c"
+    },
+    {
+      "path": "FreeMix/ferramentas/servidor-api.mjs",
+      "sha256": "074780baa4015d705164a3afa27521922ebd6f2d86534f10eaa17f996fa28ad9"
+    },
+    {
+      "path": "FreeMix/painel/remoto/srt-hdr.html",
+      "sha256": "6df48c099f98653b8c05ecbd32585c776e5579ee663772169faacf7e86e36c5f"
+    },
+    {
+      "path": "FreeMix/painel/remoto/srt-hdr-ui.js",
+      "sha256": "2188480a42abb19dd907d67be7841c3afd58ba88c58a0af5d6ef180215d68da4"
+    },
+    {
+      "path": "FreeMix/painel/remoto/saidas-srt-hdr-access-ui.js",
+      "sha256": "85e8937d3545e5dfac09065f7c7ff58401cdd1bd2b3a49da3bc1e5ef165c6849"
+    }
+  ],
+  "cases": [
+    {
+      "name": "Opening and polling perform state only, no configure/start",
+      "status": "PASS"
+    },
+    {
+      "name": "Dirty draft preserves host and blocks sender/start without implicit save",
+      "status": "PASS"
+    },
+    {
+      "name": "Configure explicit does not start and restores clean draft",
+      "status": "PASS"
+    },
+    {
+      "name": "Pending configure locks fields/actions and duplicate click emits once",
+      "status": "PASS"
+    },
+    {
+      "name": "Uncertain start never retries and requires successful state check",
+      "status": "PASS"
+    },
+    {
+      "name": "State read connection failure also requires check, not stale start permission",
+      "status": "FAIL",
+      "error": "Expected values to be strictly equal:\n\nfalse !== true\n"
+    },
+    {
+      "name": "Removed persisted source remains unavailable, never selects another implicitly",
+      "status": "FAIL",
+      "error": "Expected values to be strictly equal:\n+ actual - expected\n\n+ ''\n- 'aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa'"
+    },
+    {
+      "name": "Removed dirty draft source remains unavailable without silent fallback",
+      "status": "FAIL",
+      "error": "Expected values to be strictly equal:\n+ actual - expected\n\n+ ''\n- 'aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa'"
+    },
+    {
+      "name": "Removed persisted encoder remains unavailable, requires explicit new choice",
+      "status": "FAIL",
+      "error": "Expected values to be strictly equal:\n+ actual - expected\n\n+ 'obs_nvenc_hevc_soft'\n- 'obs_nvenc_hevc_tex'\n                  ^"
+    },
+    {
+      "name": "Active/reconnecting state locks configuration; stop permitted",
+      "status": "PASS"
+    },
+    {
+      "name": "Helper rejects malformed numeric IPv4 without vendor dispatch",
+      "status": "FAIL",
+      "error": "Missing expected exception."
+    },
+    {
+      "name": "Helper strict whitelist and no HDRalpha/autostart/HLG/invalid sender",
+      "status": "PASS"
+    },
+    {
+      "name": "Helper preserves asynchronous start response; no retry/fallback",
+      "status": "PASS"
+    },
+    {
+      "name": "OutputEngine state/select sender calls only reads, no config mutation",
+      "status": "PASS"
+    },
+    {
+      "name": "OutputEngine independent audio rejects unavailable bus before configure",
+      "status": "PASS"
+    }
+  ],
+  "limits": [
+    "Own DOM/VM actual productJS and HTML, no browser layout/CEF/Native receipt from VM",
+    "Backend mocks limited to helper/OutputEngine; realHTTP/Native proof separate",
+    "No product edits; findings sent to Root"
+  ]
+}

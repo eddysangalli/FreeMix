@@ -1,0 +1,47 @@
+{
+  "status": "PASS",
+  "cases": 10,
+  "results": [
+    {
+      "name": "native audio keeps real choice options and free-text monitoring",
+      "pass": true
+    },
+    {
+      "name": "display fractional FPS remains selected",
+      "pass": true
+    },
+    {
+      "name": "defaults only stage a dirty draft without apply",
+      "pass": true
+    },
+    {
+      "name": "category change refuses to discard a dirty field without confirmation",
+      "pass": true
+    },
+    {
+      "name": "search targets real categories and field labels",
+      "pass": true
+    },
+    {
+      "name": "wrong-category import rejects before any import command",
+      "pass": true
+    },
+    {
+      "name": "valid import stages values without applying",
+      "pass": true
+    },
+    {
+      "name": "cancel restores actual synthetic profile after staging",
+      "pass": true
+    },
+    {
+      "name": "apply sends only changed supported preference",
+      "pass": true
+    },
+    {
+      "name": "unsupported category disables apply and does not invent fields",
+      "pass": true
+    }
+  ],
+  "scope": "Existing settings.js finite DOM/VM synthetic responses; defaults/search/dirty/import/cancel/choices/apply subset. No layout or Native preference acceptance."
+}

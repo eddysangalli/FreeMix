@@ -1,3 +1,27 @@
+# FreeMix — plano autorizado até terça-feira,13/10/2026
+
+## Plano vigente em 10/10
+
+035000/Native23 selecionado: QA final instalada, duas aberturas/fechamentos contador 0 / crash 0, diagnóstico/uninstall reais; operador intacto.050500/Native24/a047860 fonte exportada24 patches/192 snapshots/árvore PASS, **ainda sem pacote/Setup aprovado neste registro**.
+
+1. Root conclui freeze/commit/closure canonical com NAV/ticker/menus55/input44/HDR, gera/sela candidato050500 e valida instalação/startup/ações/stop/diagnóstico/uninstall. Seletor muda somente depois de prova;035000 imutável segue opção atual.
+2. Conferir integração instalada: Preview/Take/delete, ticker/update/recuperação, menus/inputs, HDRmanual/start/stop/fechamento.70 contratos atuais,HTTP HDR: 7 PASS/2 guardsUIVM já existem; não transferir PASS do overlay para Setup.
+3. Properties/Filters ainda exige observação desktop: queued não prova visible/focus/z-order. Draft de observabilidade não aplicado/compilado;Root decide etapa futura.
+
+Faixa inicial itens1–2:2–4h após freeze/recursosQA, assumindo ausência de falha nova. Medida de trabalho, não garantia; falha preservada abre diagnóstico/novo candidato.
+
+Agendar ASIO/DeckLink/SDI/HDR/receptor/monitor, câmeras/SSD/GPU, controladores/PTZ, convidados/TURN, VPS2 conexões WAN e Windows limpo. Critérios/faixas em PENDENCIAS-REAIS.md. NDI HDR precisa Advanced SDK/licença+implementação; GTZIP fora do contrato precisa exemplos/frames/tempos, sem prazo por adivinhação.
+
+HTTPS local50 PASS já encerrou lacuna finita TLS/assinatura/hash/download/negativas. Domínio/feed público/TURN/WAN externos. SRT HDR opaco localNVENC10bit/PQ/AAC/4 slots aprovado apenas na matriz delimitada; WAN/UHD/60fps/encoders alternativos/endurance separados.
+
+Não repetir mídia90s já aprovada sem mudança/falha, não publicar/login/reiniciar operador fora do escopo. Browser alpha abortado; não prometer genlock físico/GTZIP universal/estabilidade universal. Conclusão13/10 depende recursos e resultados reais.
+
+---
+
+## Histórico preservado — estados anteriores, não instruções atuais
+
+Registros abaixo mantêm textos/limites originais. Referências antigas a atual, pendente ou próximo valem para sua data; o estado vigente é o descrito acima.
+
 # FreeMix — execução autorizada até terça-feira, 13/10/2026
 
 ## Estado atual — instalador031500 aprovado; revisão operacional em andamento

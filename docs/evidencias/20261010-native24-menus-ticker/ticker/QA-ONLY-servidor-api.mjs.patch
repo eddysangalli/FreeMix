@@ -1,0 +1,21 @@
+diff --git a/phase2-servidor-api.mjs.before.txt b/phase2-servidor-api.mjs.after.txt
+index 53c021a..6198f8d 100644
+--- a/phase2-servidor-api.mjs.before.txt
++++ b/phase2-servidor-api.mjs.after.txt
+@@ -33,6 +33,7 @@ function scheduleConnection(){if(!stopping&&!reconnectTimer)reconnectTimer=setTi
+ const clients=new Set();
+ const broadcast=msg=>{const s=JSON.stringify(msg);for(const c of clients)if(c.readyState===WebSocket.OPEN)c.send(s);};
+ const production=new Production({root:ROOT,panel:PANEL,getObs:()=>obs,publish:data=>broadcast({type:'state',data:clean(data)})});
++const qaSamples=[];
+ production.gtTickerAck=new TickerAckBroker({endpoint:'http://127.0.0.1:'+PORT+'/api/ticker-ack'});
+ const onlineUpdate=new OnlineUpdateEngine(ROOT);
+ const diagnostics=new DiagnosticCollector(ROOT);
+@@ -139,7 +140,7 @@ const server=createServer(async(req,res)=>{
+         try{lease=await replay.previewFile(previewToken);}catch{return json(res,404,{success:false,error:'Prévia expirada; atualize o histórico'});}
+         return await servePreviewMedia(req,res,lease);
+       }
+-      if(path==='/api/ticker-ack'){if(req.method!=='POST'||!local(req)||!originAllowed(req))return json(res,403,{success:false});const data=await readTickerAckRequest(req);const accepted=production.gtTickerAck.accept(data);return json(res,accepted?200:409,{success:accepted});}
++      if(path==='/api/ticker-ack'){if(req.method!=='POST'||!local(req)||!originAllowed(req))return json(res,403,{success:false});const data=await readTickerAckRequest(req);const accepted=production.gtTickerAck.accept(data);if(accepted&&data.qa&&qaSamples.length<128){qaSamples.push({requestId:data.requestId,status:data.status,origin:req.headers.origin||'absent',receivedAt:Date.now(),qa:data.qa});await writeFile(join(ROOT,'qa-ticker-ack-samples.json'),JSON.stringify(qaSamples));}return json(res,accepted?200:409,{success:accepted});}
+       if(path.startsWith('/api/diagnostics')){
+         if(!local(req))return json(res,403,{success:false,error:'Diagnóstico disponível somente neste computador'});
+         if(path==='/api/diagnostics'&&req.method==='POST'){const data=await body(req);if(typeof data.note!=='undefined'&&typeof data.note!=='string'||typeof data.machineName!=='undefined'&&typeof data.machineName!=='string')throw Error('Dados inválidos');await diagnostics.generate({note:data.note,machineName:data.machineName});return json(res,200,diagnostics.summary());}

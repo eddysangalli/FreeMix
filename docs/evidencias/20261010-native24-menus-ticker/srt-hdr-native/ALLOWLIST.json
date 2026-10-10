@@ -1,0 +1,112 @@
+{
+  "status": "FROZEN_QA_ONLY_ROOT_REVIEW",
+  "nativeHead": "a04786090fcbe7ede495f18e5ad38ccaa9793478",
+  "at": "2026-10-10T04:59:19.737Z",
+  "files": [
+    {
+      "path": "run.mjs",
+      "bytes": 19287,
+      "sha256": "aff41cbc4152966211de7db28c254457667630e262b3267cf8f619636bf3f656"
+    },
+    {
+      "path": "prepare-retry.mjs",
+      "bytes": 2397,
+      "sha256": "f727c29272ba13042c27e2c6d31c4fe424e65f536192347456758615e62c1e69"
+    },
+    {
+      "path": "run-retry1.mjs",
+      "bytes": 19530,
+      "sha256": "8b5e3532e6912757737a4a4f49d9212759c73679efcf6fbc33295410a094ba09"
+    },
+    {
+      "path": "prepare-lifecycle.mjs",
+      "bytes": 3516,
+      "sha256": "24bcf1fb520c091c26fae5417cb9fc744a949817ccd13c99a095aba18301afd4"
+    },
+    {
+      "path": "run-lifecycle.mjs",
+      "bytes": 18383,
+      "sha256": "355428ebc92d0e7cbdaee5627c8c9661a219731ac80e22ec49e41dabc141bb60"
+    },
+    {
+      "path": "receipt.json",
+      "bytes": 5854,
+      "sha256": "a73ff06c39cb64c0e2de3e15dfd7e2a6b59a8551e9b1d359a695f72902d2e173"
+    },
+    {
+      "path": "retry1-receipt.json",
+      "bytes": 26201,
+      "sha256": "83a0687f675f5d340817afb68fb32ce63f9af37944d36681b620e85fc94a6ec2"
+    },
+    {
+      "path": "lifecycle-receipt.json",
+      "bytes": 12197,
+      "sha256": "7852d362225b2be9cf7715fb7d7d0e5c44270323ecfbd56183625bacd61224e1"
+    },
+    {
+      "path": "own-root.json",
+      "bytes": 88,
+      "sha256": "bdcb8e33d3914abde7523abfb9289e7af7d78cd194ee508b5c42ddec95fd5db0"
+    },
+    {
+      "path": "README.md",
+      "bytes": 5930,
+      "sha256": "2a74f1fc651e7f794a7ffabe9e15660c5a06e78f33aa912f0ed9160826e0ecdc"
+    },
+    {
+      "path": "PROVENANCE.json",
+      "bytes": 3732,
+      "sha256": "737b54df987c2c4340a758fe4c667d0d932a22375fa37dd1669ad08cfea08ee9"
+    },
+    {
+      "path": "API-NATIVE-CONTRACT.json",
+      "bytes": 4084,
+      "sha256": "95ec34d35041a73f5342d058bb185e4fb3cff2d5fce605a2ba299a208886430f"
+    },
+    {
+      "path": "freeze.mjs",
+      "bytes": 5153,
+      "sha256": "a5bb1bc986f8304f4e95f653abad6c581d64d89b7558b79cd44dff1b9b93bc87"
+    }
+  ],
+  "readOnlySourceProvenance": [
+    {
+      "path": "freemix-app/frontend/widgets/FreeMixSrtHdrOutput.hpp",
+      "readOnlySha256": "78b9aaed3da6864eea100485132381a6546ee9e1e0ccfb5c5be825af73aa241d"
+    },
+    {
+      "path": "freemix-app/frontend/widgets/FreeMixSrtHdrLifecycle.hpp",
+      "readOnlySha256": "0c99f8150825c397409b698afb604527ea495725fc7300009704fd761fef57ee"
+    },
+    {
+      "path": "freemix-app/frontend/widgets/FreeMixMultistream.cpp",
+      "readOnlySha256": "7c2fa3f2b4c120d1221f7ee6a7cfc3133fbd8f0fedb930736fc6a05876868e71"
+    },
+    {
+      "path": "freemix-app/plugins/obs-ffmpeg/obs-ffmpeg-mpegts.c",
+      "readOnlySha256": "58ab04ae720c9b3e98e88b26b81c23278a825fb5fd6307852bfcd65cf4a0e036"
+    },
+    {
+      "path": "qa-finalizacao/srt-hdr-native23-review/INTEGRACAO-REVISADA.md",
+      "readOnlySha256": "7b11f7965bc066ee8e4812b3cd51735039857da42e2a33b3a4630df6c7d06734"
+    }
+  ],
+  "productPathsToApply": [],
+  "excluded": [
+    "Native/runtime binaries",
+    "ownTEMP config/credentials",
+    "raw logs",
+    "TS/media files",
+    "sealed packages",
+    "operator state"
+  ],
+  "limits": [
+    "Native24 loopback only; no WAN/physical vMix homologation",
+    "Fixture static10bit bands/ramp, actual output quantization verified; no subjective HDR display assessment",
+    "Master audio explicit from active own scene; unrelated private audio not injected",
+    "This QA uses signed031500 loader plus exact fullNative24; not a sealed candidate release",
+    "No clean Setup/newcandidate/WAN/display latency/WM_CLOSE-logoff/hardware validation",
+    "Model/drain source proofs are distinct from real finite runtime cases",
+    "No general4-session or UHD capability claim"
+  ]
+}

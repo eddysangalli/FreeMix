@@ -1,0 +1,224 @@
+{
+  "status": "FAIL",
+  "started": "2026-10-10T04:51:02.595Z",
+  "root": "C:\\Users\\eddyr\\AppData\\Local\\Temp\\FreeMix-QA-SrtHdrNative24-svjPHW",
+  "nativeHead": "a04786090fcbe7ede495f18e5ad38ccaa9793478",
+  "nativeFreezeSha256": "cacd7dc42290a9b396b5847ed8cb2f5e27a911adbc31c64fdacdeb44dd0fd087",
+  "baseCandidateSha256": "f0457a3f5afed47b62eb8e1ef943b0b15b32441d0c51cf1d2f14b3048cc06bba",
+  "fixture": {
+    "sha256": "3b37393f71045d94c34109ac6a5b981dd0bcf866428733fd913b8a2f796c2240",
+    "sourceLevels": 877,
+    "bandsY10": [
+      64,
+      509,
+      573,
+      609,
+      657,
+      723
+    ]
+  },
+  "operatorTouched": false,
+  "productModified": false,
+  "scope": "own loopback only; manual opaque PQ; no WAN/physical receiver approval",
+  "checks": [
+    {
+      "name": "Initial4 idle no autostart/REC/stream",
+      "status": "PASS"
+    },
+    {
+      "name": "Preflight rejects SDR source",
+      "status": "PASS",
+      "error": "Source does not declare HDR/float HDR; SDR must not be relabeled PQ. Wait for media to load"
+    },
+    {
+      "name": "Preflight rejects alpha",
+      "status": "PASS",
+      "error": "Only manual opaque HEVC Main10/P010/PQ BT.2020 is supported"
+    },
+    {
+      "name": "Preflight rejects autostart",
+      "status": "PASS",
+      "error": "Only manual opaque HEVC Main10/P010/PQ BT.2020 is supported"
+    },
+    {
+      "name": "Preflight rejects wildcard host",
+      "status": "PASS",
+      "error": "Valid receiver host, port1..65535 and latency20..8000ms required"
+    },
+    {
+      "name": "Configure does not start",
+      "status": "PASS"
+    },
+    {
+      "name": "Configure while resources active refused",
+      "status": "PASS"
+    }
+  ],
+  "captures": [],
+  "states": [
+    {
+      "label": "HDR source loaded",
+      "senderId": 0,
+      "elapsedMs": 115,
+      "state": "idle",
+      "active": false,
+      "pending": false,
+      "frames": 0
+    },
+    {
+      "label": "HDR live",
+      "senderId": 0,
+      "elapsedMs": 104,
+      "state": "live",
+      "active": true,
+      "pending": true,
+      "frames": 0
+    },
+    {
+      "label": "stop drained",
+      "senderId": 0,
+      "elapsedMs": 102,
+      "state": "idle",
+      "active": false,
+      "pending": false,
+      "frames": 0
+    },
+    {
+      "label": "stop drained",
+      "senderId": 1,
+      "elapsedMs": 0,
+      "state": "idle",
+      "active": false,
+      "pending": false,
+      "frames": 0
+    },
+    {
+      "label": "stop drained",
+      "senderId": 2,
+      "elapsedMs": 0,
+      "state": "idle",
+      "active": false,
+      "pending": false,
+      "frames": 0
+    },
+    {
+      "label": "stop drained",
+      "senderId": 3,
+      "elapsedMs": 0,
+      "state": "idle",
+      "active": false,
+      "pending": false,
+      "frames": 0
+    }
+  ],
+  "apiPort": 51648,
+  "wsPort": 51649,
+  "nativeFilesCopied": 2085,
+  "pins": {
+    "bin/64bit/FreeMix.exe": "385d6d14679432b1ebc96c292aa70605bc04a367008c99481b04370fc2f43b11",
+    "bin/64bit/obs.dll": "1c1d604bf7d2df9e32a879acce63c0bfc1a10c093efc2a52fab7a5f24c8fb7a3",
+    "bin/64bit/obs-frontend-api.dll": "bd76bf520d8bab1445cacdc8898f96e3d247866773da9aa6c658f22496c642a9",
+    "obs-plugins/64bit/decklink.dll": "afd47d501df16f76d53c4f9de2ada9c5450873c1b1366ee1a3cd9abbc1e1bfeb",
+    "obs-plugins/64bit/obs-ffmpeg.dll": "64b7fc5109131d38e4845ee03891f283acdb9519740616ebf23dd7e778b7a6df",
+    "obs-plugins/64bit/rtmp-services.dll": "5a59d21f997e941bef9b0231dd2c21b30b4903f363cd47d5f61b18609481083a"
+  },
+  "nativePid": 190368,
+  "apiPid": 107612,
+  "initialVideoSettings": {
+    "baseHeight": 1080,
+    "baseWidth": 1920,
+    "fpsDenominator": 1,
+    "fpsNumerator": 30,
+    "outputHeight": 720,
+    "outputWidth": 1280
+  },
+  "encoders": [
+    {
+      "id": "obs_nvenc_hevc_tex",
+      "runtimeValidationRequired": true
+    },
+    {
+      "id": "obs_nvenc_hevc_soft",
+      "runtimeValidationRequired": true
+    },
+    {
+      "id": "jim_hevc_nvenc",
+      "runtimeValidationRequired": true
+    },
+    {
+      "id": "obs_nvenc_hevc_cuda",
+      "runtimeValidationRequired": true
+    },
+    {
+      "id": "ffmpeg_hevc_nvenc",
+      "runtimeValidationRequired": true
+    },
+    {
+      "id": "obs_qsv11_hevc",
+      "runtimeValidationRequired": true
+    },
+    {
+      "id": "obs_qsv11_hevc_soft",
+      "runtimeValidationRequired": true
+    }
+  ],
+  "source": {
+    "uuid": "d389de09-b661-4047-9881-516dac0922e2",
+    "active": {
+      "videoActive": true,
+      "videoShowing": true
+    },
+    "settings": {
+      "inputAudioTracks": {
+        "1": true,
+        "2": false,
+        "3": false,
+        "4": false,
+        "5": false,
+        "6": false
+      }
+    },
+    "route": "Master; fixture enabled in own PGM scene"
+  },
+  "selectedEncoder": "obs_nvenc_hevc_tex",
+  "srtPorts": [
+    51835,
+    51836,
+    51837,
+    51838
+  ],
+  "error": "stderr maxBuffer length exceeded",
+  "receiverExits": [
+    {
+      "label": "hdr-first",
+      "exit": {
+        "code": 0,
+        "signal": null
+      },
+      "forcedOwnCleanup": false
+    }
+  ],
+  "shutdownAccepted": true,
+  "nativeClosed": true,
+  "apiClosed": true,
+  "logs": [
+    {
+      "sha256": "4e59e4edbf94f3044648674da8d47c5349bb19145531507588ba143e9f07f91b",
+      "nativeVersionConfirmed": true,
+      "allocations": [
+        0
+      ],
+      "meterWarnings": 4,
+      "doubleDestroyWarnings": 0,
+      "remainingObjectWarnings": 0
+    }
+  ],
+  "crashArtifacts": 0,
+  "finished": "2026-10-10T04:53:16.932Z",
+  "limits": [
+    "Native24 loopback only; no WAN/physical vMix homologation",
+    "Fixture static10bit bands/ramp, actual output quantization verified; no subjective HDR display assessment",
+    "Master audio explicit from active own scene; unrelated private audio not injected",
+    "This QA uses signed031500 loader plus exact fullNative24; not a sealed candidate release"
+  ]
+}

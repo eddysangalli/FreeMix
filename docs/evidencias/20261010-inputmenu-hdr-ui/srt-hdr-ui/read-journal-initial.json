@@ -1,0 +1,16 @@
+{
+  "status": "CONFIRMED_GENERIC_RUN_JOURNALS_HDR_READ",
+  "root": "C:\\Users\\eddyr\\AppData\\Local\\Temp\\FreeMix-QA-HdrReadJournal-u6QoeP",
+  "controlSourceSha256": "46e18809a91a8ee8664c4e1c1bc8366100a71c4abc0d5809392380b3488e5cb5",
+  "journalSourceSha256": "a57f19cbb5ff68f76c1acbf4f5c04ebd2a12f59ba667552754243a5c3d472486",
+  "entries": 1,
+  "entryAction": "outputs_srt_hdr",
+  "commandAbsentFromJournal": true,
+  "operationalStep": false,
+  "stateSnapshot": false,
+  "limits": [
+    "Actual Production.run and SessionRecovery.journal methods; Own filesystem persisted JSONL",
+    "Native/refresh/execute mocked no-op; realHTTP proof separate",
+    "harmless classifier lacks outputs_srt_hdr; recovery plans cannot distinguish state from mutation because command not retained"
+  ]
+}

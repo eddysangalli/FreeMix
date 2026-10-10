@@ -1,0 +1,64 @@
+{
+  "status": "PASS_CANONICAL_COMBINED_CONTRACTS_NATIVE_PENDING",
+  "at": "2026-10-10T05:17:30.615Z",
+  "pins": [
+    {
+      "path": "painel/mesa.html",
+      "sha256": "91c66d7b4a64514de9b178d89bcbe5c65952bfce9b85fbac1ea762e3154564e8",
+      "bytes": 249288
+    },
+    {
+      "path": "ferramentas/controle-producao.mjs",
+      "sha256": "46e18809a91a8ee8664c4e1c1bc8366100a71c4abc0d5809392380b3488e5cb5",
+      "bytes": 45920
+    },
+    {
+      "path": "ferramentas/servidor-api.mjs",
+      "sha256": "c3929632f01aeaa7fb9f2fb6be473e20453a54b610326d145a5d05333a02a3c6",
+      "bytes": 28814
+    }
+  ],
+  "results": [
+    {
+      "name": "operations",
+      "exit": 0,
+      "output": "{\"status\":\"PASS_DRAFT_REAL_HANDLERS_MOCK_ENGINES_NO_NATIVE\",\"cases\":31}",
+      "error": ""
+    },
+    {
+      "name": "preview",
+      "exit": 0,
+      "output": "PASS_CANONICAL_PREVIEW_9",
+      "error": ""
+    },
+    {
+      "name": "preview-key",
+      "exit": 0,
+      "output": "PASS_CANONICAL_UUID_3",
+      "error": ""
+    },
+    {
+      "name": "render",
+      "exit": 0,
+      "output": "{\"status\":\"PASS_DRAFT_CONTRACT_NO_NATIVE\",\"checks\":19,\"failures\":[]}",
+      "error": ""
+    },
+    {
+      "name": "api-public",
+      "exit": 0,
+      "output": "PASS_PUBLIC_PROJECTION_8",
+      "error": ""
+    }
+  ],
+  "checks": {
+    "operations": 31,
+    "preview": 9,
+    "previewUUID": 3,
+    "renderWs": 19,
+    "publicAPI": 8
+  },
+  "limits": [
+    "Actual canonical extracted handlers in own VM/mocks; not a Native, CEF, media performance or physical audio proof.",
+    "External Native clients may race; FTB remains legacy outside this gate."
+  ]
+}

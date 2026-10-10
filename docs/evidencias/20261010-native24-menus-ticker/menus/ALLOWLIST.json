@@ -1,0 +1,215 @@
+{
+  "status": "DRAFT_ONLY_REVIEWED_CAPTURE",
+  "product": [
+    {
+      "target": "FreeMix/painel/remoto/audio.html",
+      "draft": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\ux-menus-restantes-20261010\\draft\\audio.html",
+      "beforeSha256": "475525ead68674cce0349f02791898fe57ba05a7ebc7dbba0a53548812092b27",
+      "afterSha256": "fbba48c83e9d3eeb6b0d9d277b1345df257075d8befe24a8905e8c471996f554",
+      "newFile": false
+    },
+    {
+      "target": "FreeMix/painel/remoto/replay.html",
+      "draft": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\ux-menus-restantes-20261010\\draft\\replay.html",
+      "beforeSha256": "6f8db2fd2ed32dbeb0873e529ba7cfaa302cbad0384ecf9e1da93d67d8bebb45",
+      "afterSha256": "98368b5855271fe7ed6f0175e7fe347ac5e002c3c3ac09b442f1a3f80549d0a9",
+      "newFile": false
+    },
+    {
+      "target": "FreeMix/painel/remoto/settings.html",
+      "draft": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\ux-menus-restantes-20261010\\draft\\settings.html",
+      "beforeSha256": "22a4332c74dd45838bb03cdac24b1fb84dabd6eefda38dc837bf2d6ae17a95f0",
+      "afterSha256": "ef48e199bedf7acaf348008f137273bb5fd0d30c9dfd4da0b725811d709b0404",
+      "newFile": false
+    },
+    {
+      "target": "FreeMix/painel/remoto/menus-tarefas-ui.js",
+      "draft": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\ux-menus-restantes-20261010\\draft\\menus-tarefas-ui.js",
+      "beforeSha256": null,
+      "afterSha256": "7b5000db82d56b6cb32b9db908f5e3da04f24604e1c145a1ff9b9d17821e6f7f",
+      "newFile": true
+    },
+    {
+      "target": "FreeMix/painel/remoto/menus-tarefas-ui.css",
+      "draft": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\ux-menus-restantes-20261010\\draft\\menus-tarefas-ui.css",
+      "beforeSha256": null,
+      "afterSha256": "443b69db2ccc16559244468062d408d31489459f8c6750ec0d2e1810a500727b",
+      "newFile": true
+    }
+  ],
+  "files": [
+    {
+      "path": "AUDITORIA-E-PROPOSTA.md",
+      "size": 12345,
+      "sha256": "70f661f0195d87cfd796a12b5c226d9d27bee8e36222cc52bbfa835e0f6fbfa2"
+    },
+    {
+      "path": "BASELINE.json",
+      "size": 848,
+      "sha256": "be67ad56186051e93b18afe53e3f9ac549110fd14f0399d49bedf2e2aa2822a9"
+    },
+    {
+      "path": "build-draft.mjs",
+      "size": 5833,
+      "sha256": "818fae036d9722bb44f128f6ede91c3fe8fb3602eb008247bf0001e294e2ec37"
+    },
+    {
+      "path": "preview.mjs",
+      "size": 5427,
+      "sha256": "068eb264894517bacc2da3b0c8cb14872dcf01f4f36400313bbcf47e5778d3e8"
+    },
+    {
+      "path": "preview-draft.mjs",
+      "size": 4975,
+      "sha256": "e8df4e3ddef984aa47c497ab46d74c16609e23b579b5d93accb501da344fe30f"
+    },
+    {
+      "path": "freeze.mjs",
+      "size": 2331,
+      "sha256": "531d860a9c9c1e02e685df724a2af9c292f90ab4d59daaebb9002baee86aa52b"
+    },
+    {
+      "path": "draft/audio.html",
+      "size": 7230,
+      "sha256": "fbba48c83e9d3eeb6b0d9d277b1345df257075d8befe24a8905e8c471996f554"
+    },
+    {
+      "path": "draft/menus-tarefas-ui.css",
+      "size": 2057,
+      "sha256": "443b69db2ccc16559244468062d408d31489459f8c6750ec0d2e1810a500727b"
+    },
+    {
+      "path": "draft/menus-tarefas-ui.js",
+      "size": 4431,
+      "sha256": "7b5000db82d56b6cb32b9db908f5e3da04f24604e1c145a1ff9b9d17821e6f7f"
+    },
+    {
+      "path": "draft/replay.html",
+      "size": 17916,
+      "sha256": "98368b5855271fe7ed6f0175e7fe347ac5e002c3c3ac09b442f1a3f80549d0a9"
+    },
+    {
+      "path": "draft/settings.html",
+      "size": 2699,
+      "sha256": "ef48e199bedf7acaf348008f137273bb5fd0d30c9dfd4da0b725811d709b0404"
+    },
+    {
+      "path": "test/contracts.mjs",
+      "size": 9750,
+      "sha256": "c968eedf482a77199e10957ebf4915bdc4d57aad94b9275c00fbfe6691b2486f"
+    },
+    {
+      "path": "test/dom.mjs",
+      "size": 7249,
+      "sha256": "b036cb8a8bb6f3bd858ccd584535140ce7352e0c74ea025cfb8e0cda8b1c3522"
+    },
+    {
+      "path": "test/initial-harness-fail.json",
+      "size": 274,
+      "sha256": "9c5cb4dcd687a5caf0983a64c3667a98bba2778ab08ec6b609bd2106d2194b48"
+    },
+    {
+      "path": "test/result.json",
+      "size": 4542,
+      "sha256": "574e6867ac8094331da834ce6464412ae11279c0ae628e939e1bc3417ef3614d"
+    },
+    {
+      "path": "test/settings-harness-fail.json",
+      "size": 294,
+      "sha256": "c65828517794a26d6f03211a6a4cdf4b21661e5bcba31cef9eec6a18265501aa"
+    },
+    {
+      "path": "test/settings-result.json",
+      "size": 1251,
+      "sha256": "3afd809405722af18b1dd97eed8eae483c76165583062bd2bf3f1177f92fb65d"
+    },
+    {
+      "path": "test/settings-vm.mjs",
+      "size": 5904,
+      "sha256": "5a2bc403273a4f9652087866c1009777c2caffac2d622e0c23a1e670286481b4"
+    },
+    {
+      "path": "capturas/01-settings.jpg",
+      "size": 110485,
+      "sha256": "6dcf8436cb8e514f855ad42f23ab4adb9c2dd3a350720149350dd38abab548b4"
+    },
+    {
+      "path": "capturas/02-audio.jpg",
+      "size": 61359,
+      "sha256": "c933e0f9c3d178a30258933662bec70eb3163e78e4d6730a55f06250d53d95ec"
+    },
+    {
+      "path": "capturas/03-replay.jpg",
+      "size": 92831,
+      "sha256": "a3a9453f15ebfd535e898943014a30ade1b722ab4bdbcca6e04b1fa2e09c7eae"
+    },
+    {
+      "path": "capturas/04-settings-audio.jpg",
+      "size": 81199,
+      "sha256": "1206243fcaec67f56525cd2444a1b23c4ca4a2b2815e330ef7eea049414be3a8"
+    },
+    {
+      "path": "capturas/05-replay-config.jpg",
+      "size": 77705,
+      "sha256": "d8207d186770764c4c1dd5d4b478d620cf8f18efa95641b4251eb9f57b59fb8d"
+    },
+    {
+      "path": "capturas/06-draft-audio.jpg",
+      "size": 63199,
+      "sha256": "b7b8f6b56f72204c671b78e9502e8e469f9a7f91d6486ff93bc2196b3f230594"
+    },
+    {
+      "path": "capturas/07-draft-replay-settings.jpg",
+      "size": 77256,
+      "sha256": "72a6558c1d7340ff37620909eb0245019ead840dd3bf21b6c273c86ce7b10f48"
+    },
+    {
+      "path": "capturas/08-final-replay-settings.jpg",
+      "size": 80353,
+      "sha256": "f5c144833d2c3b9201030594f9bd19fa5cd8eedcdc4b388d266f26d964d8f7ff"
+    },
+    {
+      "path": "capturas/09-final-replay-operacao.jpg",
+      "size": 90720,
+      "sha256": "e6e48d603f5ea8f127196352f7d6e817701198bc5f478ba3ea24f338280819bf"
+    },
+    {
+      "path": "capturas/10-final-replay-readiness.jpg",
+      "size": 88391,
+      "sha256": "42ad5e0f648ae906d10709ec2acd57726e5709b474d76ef92ad53f7a85aaf620"
+    },
+    {
+      "path": "capturas/11-final-settings-audio.jpg",
+      "size": 82532,
+      "sha256": "c08714f26f8b5debbcbeff0142637c650eefe80037dcb8964740c58dae3fca80"
+    },
+    {
+      "path": "capturas/12-final-replay-settings-readiness.jpg",
+      "size": 80353,
+      "sha256": "f5c144833d2c3b9201030594f9bd19fa5cd8eedcdc4b388d266f26d964d8f7ff"
+    },
+    {
+      "path": "capturas/13-final-settings-audio-contrast.jpg",
+      "size": 84591,
+      "sha256": "00af92b370e73c34a1744f165544445fdf7c3a72183e120067e3ff400699c00e"
+    }
+  ],
+  "tests": {
+    "navigationDOMVM": 45,
+    "settingsActualJSVM": 10,
+    "status": "PASS"
+  },
+  "nativeTested": false,
+  "operatorTouched": false,
+  "canonicalChanged": false,
+  "preview": {
+    "baseline": 57223,
+    "draft": 56649
+  },
+  "limitations": [
+    "Synthetic data; browser screenshots captured by root in current audit run",
+    "No Native/media/device runtime or full accessibility acceptance",
+    "Five existing engine JS sources unchanged",
+    "Root integration and installed QA pending"
+  ]
+}

@@ -2,13 +2,13 @@
 
 Código do FreeMix baseado no OBS Studio 32.2.2, com interface de mesa de produção, saídas independentes, composições, GC, Calls, replay, áudio e automação.
 
-Entrega local de referência: **0.1.0-local.20261009153453**. As funcionalidades e seus limites estão em [docs/CONTINUAR.md](docs/CONTINUAR.md). Pendências e critérios: [docs/PENDENCIAS-REAIS.md](docs/PENDENCIAS-REAIS.md). Instalador: [docs/INSTALACAO.md](docs/INSTALACAO.md). Tarefa de auditoria: [docs/TAREFA-AUDITORIA-PENDENCIAS.md](docs/TAREFA-AUDITORIA-PENDENCIAS.md).
+Entrega local aprovada: **0.1.0-local.20261010035000**, selecionada em `entregas/INSTALADOR-ATUAL.json`. As fontes posteriores Native24/050500 estão integradas e aguardam o ensaio do novo instalador. Estado vigente: [docs/CONTINUAR.md](docs/CONTINUAR.md). Pendências e critérios: [docs/PENDENCIAS-REAIS.md](docs/PENDENCIAS-REAIS.md). Instalador: [docs/INSTALACAO.md](docs/INSTALACAO.md). Tarefa de auditoria: [docs/TAREFA-AUDITORIA-PENDENCIAS.md](docs/TAREFA-AUDITORIA-PENDENCIAS.md).
 
 Experimento [vídeo com alpha em uma entrada Web Browser](docs/VIDEO-ALPHA-UMA-ENTRADA.md): **abortado pelo operador após reprovação com vídeo real no vMix**. [Análise dos bridges e bonding](docs/referencias/ANALISE-BRIDGES-CHARGEXDEV.md).
 
 ## Código incluído
 
-- `fork/`: série completa de catorze patches sobre um commit upstream fixado, incluindo todas as alterações nativas da entrega.
+- `fork/`: série completa de 24 patches sobre um commit upstream fixado, incluindo todas as alterações nativas da entrega.
 - `ferramentas/`: API local, controle, áudio, saídas, Calls, bonding, recuperação, instalador, atualização e ZIP de diagnóstico.
 - `painel/`: mesa, configuração, 156 presets de composição e biblioteca de títulos.
 - `servidor/`: kit Linux para feed HTTPS, TURN e receptor, preparado para implantação explícita.

@@ -1,0 +1,1 @@
+{"status":"HARNESS_FAIL_PRESERVED","reason":"Finite DOM model did not reflect assignments to element.dataset as data-* attributes, so [data-dirty] could not see the synthetic edit. Browser DOM does reflect dataset. Own model corrected before rerun; no product change.","nativeConnected":false}

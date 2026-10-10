@@ -1,0 +1,40 @@
+{
+  "status": "FAIL_UI_GUARD",
+  "pins": [
+    {
+      "path": "FreeMix/ferramentas/srt-hdr-producao.mjs",
+      "sha256": "f25ecf5fcc17cdcfe7762eb0ea4ed8903160636696ccaf9631d19e48a957869b"
+    },
+    {
+      "path": "FreeMix/ferramentas/saidas-producao.mjs",
+      "sha256": "4014d7d5fabd30e2851852f0e8cf6d599aaec9c454fc1c73b05d9d0a355452f3"
+    },
+    {
+      "path": "FreeMix/ferramentas/servidor-api.mjs",
+      "sha256": "c3929632f01aeaa7fb9f2fb6be473e20453a54b610326d145a5d05333a02a3c6"
+    },
+    {
+      "path": "FreeMix/painel/remoto/srt-hdr.html",
+      "sha256": "6df48c099f98653b8c05ecbd32585c776e5579ee663772169faacf7e86e36c5f"
+    },
+    {
+      "path": "FreeMix/painel/remoto/srt-hdr-ui.js",
+      "sha256": "a79c20574cfaa290fac002c17355540dbcb9d81d52eedf24af600273d7048d0b"
+    },
+    {
+      "path": "FreeMix/painel/remoto/saidas-srt-hdr-access-ui.js",
+      "sha256": "85e8937d3545e5dfac09065f7c7ff58401cdd1bd2b3a49da3bc1e5ef165c6849"
+    }
+  ],
+  "cases": [
+    {
+      "name": "Unavailable persisted independent audio bus blocks configure/start in UI",
+      "status": "FAIL",
+      "error": "Expected values to be strictly equal:\n\nfalse !== true\n"
+    }
+  ],
+  "limits": [
+    "Own actualJS DOM/VM only; Native already refuses absent/private/non-independent bus",
+    "No product edits or real output commands"
+  ]
+}

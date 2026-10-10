@@ -1,0 +1,72 @@
+{
+  "status": "PUBLIC_VM_PROOF_NO_NATIVE_OR_LATENCY_CLAIM",
+  "files": [
+    {
+      "path": "operations.mjs",
+      "bytes": 19207,
+      "sha256": "96998f36422dd5b10d28a8e3d7afe3d62b520b7b017b1034e3717b94eb8b2595"
+    },
+    {
+      "path": "render.mjs",
+      "bytes": 14570,
+      "sha256": "1d6324840df822525edeb27ecafdc9dbf35d1a0048a340cc8a5dbb357883ac7b"
+    },
+    {
+      "path": "preview.mjs",
+      "bytes": 3307,
+      "sha256": "eb6c9bcb7c79af7d5daeaf6a2230f21af39d83be930c650f2cebdc7e1dac6b28"
+    },
+    {
+      "path": "preview-key.mjs",
+      "bytes": 806,
+      "sha256": "670dd1ad5047f520d5fe7fd59c82ef9d63def744bad1acdb21642291c14725a2"
+    },
+    {
+      "path": "api-public.mjs",
+      "bytes": 1817,
+      "sha256": "4b686beeb60778b5e3cf77e0285b4d34cb5d1f943b53939356cf7c78d3c806f4"
+    },
+    {
+      "path": "preview-full-result.json",
+      "bytes": 4300,
+      "sha256": "e10bf47a9be371a2420ef6f3fac131506a8f1e28d3a382e80ba04f96e8b75191"
+    },
+    {
+      "path": "preview-result.json",
+      "bytes": 865,
+      "sha256": "f6a197c0415a87378d410a732ee6048e786c0f839f898d589b7ffb51e1b8e28b"
+    },
+    {
+      "path": "preview-key-result.json",
+      "bytes": 64,
+      "sha256": "75b2721f56fe2e7276efc12a9205d89cb89cab597f31c78b29c9f02cf3b1c5ef"
+    },
+    {
+      "path": "api-public-result.json",
+      "bytes": 483,
+      "sha256": "3c488f7811246a30ba0fdde91e2d1887cc6718acf7eb160254811eb654d6dc61"
+    },
+    {
+      "path": "result.json",
+      "bytes": 3491,
+      "sha256": "0b01662dad4ed08690b321333965c0baba379727ad28c9916bde09d5b1d31232"
+    },
+    {
+      "path": "CANONICAL-COMBINED-PASS.json",
+      "bytes": 1659,
+      "sha256": "701dc5e3cb0ca3578e59c116511c9036c747cf279fa49352f1845dce39715c3a"
+    },
+    {
+      "path": "ALLOWLIST.json",
+      "bytes": 1685,
+      "sha256": "8018e784a1f6794744f6884d0a6483d1c6b6241c09fcebd4062784dbf8c4a992"
+    },
+    {
+      "path": "initial-navigation-baseline-fail.json",
+      "bytes": 2010,
+      "sha256": "176389ca3b1eac7454f82a777c3ce948d7796dc74b8934e39a803061070289f9"
+    }
+  ],
+  "operatorTouched": false,
+  "baselineExplanation": "Approved Externo/VirtualCam/Call navigation actions intentionally changed; first guard compared against the old baseline and failed. Retry compared against exact pinned approved navigation baseline; all 70 VM checks passed. Initial failure preserved."
+}

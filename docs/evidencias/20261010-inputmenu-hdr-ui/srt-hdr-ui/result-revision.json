@@ -1,0 +1,69 @@
+{
+  "status": "PASS_FOCUSED_REVISION",
+  "at": "2026-10-10T05:05:45.380Z",
+  "pins": [
+    {
+      "path": "FreeMix/ferramentas/srt-hdr-producao.mjs",
+      "sha256": "f25ecf5fcc17cdcfe7762eb0ea4ed8903160636696ccaf9631d19e48a957869b"
+    },
+    {
+      "path": "FreeMix/ferramentas/saidas-producao.mjs",
+      "sha256": "4014d7d5fabd30e2851852f0e8cf6d599aaec9c454fc1c73b05d9d0a355452f3"
+    },
+    {
+      "path": "FreeMix/ferramentas/servidor-api.mjs",
+      "sha256": "c3929632f01aeaa7fb9f2fb6be473e20453a54b610326d145a5d05333a02a3c6"
+    },
+    {
+      "path": "FreeMix/painel/remoto/srt-hdr.html",
+      "sha256": "6df48c099f98653b8c05ecbd32585c776e5579ee663772169faacf7e86e36c5f"
+    },
+    {
+      "path": "FreeMix/painel/remoto/srt-hdr-ui.js",
+      "sha256": "a79c20574cfaa290fac002c17355540dbcb9d81d52eedf24af600273d7048d0b"
+    },
+    {
+      "path": "FreeMix/painel/remoto/saidas-srt-hdr-access-ui.js",
+      "sha256": "85e8937d3545e5dfac09065f7c7ff58401cdd1bd2b3a49da3bc1e5ef165c6849"
+    }
+  ],
+  "cases": [
+    {
+      "name": "State read connection failure also requires check, not stale start permission",
+      "status": "PASS"
+    },
+    {
+      "name": "Removed persisted source remains unavailable, never selects another implicitly",
+      "status": "PASS"
+    },
+    {
+      "name": "Removed dirty draft source remains unavailable without silent fallback",
+      "status": "PASS"
+    },
+    {
+      "name": "Removed persisted encoder remains unavailable, requires explicit new choice",
+      "status": "PASS"
+    },
+    {
+      "name": "Helper rejects malformed numeric IPv4 without vendor dispatch",
+      "status": "PASS"
+    },
+    {
+      "name": "New opening/poll uses GET only, no control POST",
+      "status": "PASS"
+    },
+    {
+      "name": "Discard dirty draft re-reads explicit saved configuration",
+      "status": "PASS"
+    },
+    {
+      "name": "OutputEngine readSrtHdr only reads and POSTstate refuses old route",
+      "status": "PASS"
+    }
+  ],
+  "limits": [
+    "Own actual-source DOM/VM/helper; no browser layout or Native proof",
+    "Five previously failing cases only plus new GET/discard/read backend contracts",
+    "Original15caseFAIL and real generic journal-write proof retained"
+  ]
+}

@@ -2,6 +2,7 @@ import {join} from 'node:path';import {mkdir,readFile,writeFile,rename} from 'no
 import {ndiRead,ndiStart,ndiStop,ndiCreateInput} from './ndi-producao.mjs';
 import {omtRead,omtStart,omtStop,omtCreateInput} from './omt-producao.mjs';
 import {omtHdrRead,omtHdrExecute} from './omt-hdr-producao.mjs';
+import {srtHdrRead,srtHdrExecute} from './srt-hdr-producao.mjs';
 import {srtDestinationOptions} from './saidas-srt.mjs';
 import {sdiConfig} from './saidas-sdi.mjs';
 import {assertSdrOutputRequest,outputHdrContracts} from './saidas-hdr.mjs';
@@ -9,12 +10,26 @@ import {MultiRTMPAdapter} from './multi-rtmp-adapter.mjs';
 const fields=['chroma','alphaMode','protocol','enhancedRtmp','name','server','key','enabled','mode','sourceUuid','width','height','bitrate','audioTrack','audioSourceUuid','mixId','stingerAudio','autoStart','fill','encoder','fpsDivisor','overlaysMask','overlayChannels'];
 export class OutputEngine {
  constructor(p){this.p=p;this.last=null;this.obs={req:(type,data)=>p.req(type,data),tryReq:(type,data)=>p.optional(type,data)};this.external=new MultiRTMPAdapter((type,data)=>p.req(type,data));}
+ async readSrtHdr(senderId=0){const srtHdr=await srtHdrRead(this.obs,{senderId});const native=await this.p.vendor('get_destinations',{},'freemix');return {srtHdr,audioSources:native.audioSources||[]};}
  async audioUuid(value){const uuid=String(value||'');if(!uuid)return '';if(!/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(uuid))throw Error('Selecione áudio por UUID');const native=await this.p.vendor('get_destinations',{},'freemix');if(!native.audioSourceSelectable||!native.audioSources?.some(s=>s.uuid===uuid))throw Error('Barramento ausente, privado ou com trilhas globais habilitadas');return uuid;}
  async overlayChannels(){const list=await this.p.vendor('get_downstream_keyers'),base=Number(list.downstream_keyers_channel||7);return Array.from({length:8},(_,i)=>{const index=(list.downstream_keyers||[]).findIndex(k=>k.name===String(i+1));return {channel:index<0?0:base+index};});}
  async profiles(){const {currentSceneCollectionName}=await this.p.req('GetSceneCollectionList');const id=createHash('sha256').update(currentSceneCollectionName).digest('hex').slice(0,24),folder=join(this.p.root,'config/obs-studio/plugin_config/freemix-output-profiles'),file=join(folder,id+'.json');let data={};try{data=JSON.parse(await readFile(file,'utf8'));}catch(e){if(e.code!=='ENOENT')throw e;}return {data,folder,file};}
  async read(){const [native,ndi,omt,mix,profiles,sdi,omtHdrSenders]=await Promise.all([this.p.vendor('get_destinations',{},'freemix'),ndiRead(this.obs,{root:this.p.root}),omtRead(this.obs),this.p.vendor('get_mixes',{},'freemix'),this.profiles(),this.p.vendor('sdi_output',{action:'state'},'freemix').catch(()=>({available:false,active:false,requiresUpdate:true})),Promise.all([0,1,2,3].map(senderId=>omtHdrRead(this.obs,{senderId})))]);return {...native,sdi,omtHdr:omtHdrSenders[0],omtHdrSenders,hdrContracts:outputHdrContracts,protocols:(native.protocols||[]).map(p=>({...p,videoCodecs:String(p.videoCodecs||'').split(';').filter(Boolean),audioCodecs:String(p.audioCodecs||'').split(';').filter(Boolean)})),ndi,omt,mix,external:this.external.summary(),profiles:Object.keys(profiles.data).sort(),destinations:native.destinations.map(({key,...d},index)=>({...d,index,hasKey:!!key}))};}
  async execute(action,d){const index=Number(d.index);if(action==='outputs_get'){this.last=await this.read();return;}
   if(action==='outputs_external_read'){await this.external.read({id:d.id});this.last=await this.read();return;}
+  if(action==='outputs_srt_hdr'){
+   const {action:_action,command,senderId=0,...options}=d;
+   let srtHdr;
+   if(command==='state'){
+    if(Object.keys(options).length)throw Error('Consulta HDR não recebe configuração');
+    throw Error('Consulta HDR usa GET /api/srt-hdr');
+   }else{
+    if(['configure','preflight'].includes(command))options.audioSourceUuid=await this.audioUuid(options.audioSourceUuid);
+    srtHdr=await srtHdrExecute(this.obs,{command,senderId,...options});
+   }
+   const native=await this.p.vendor('get_destinations',{},'freemix');
+   this.last={...this.last,srtHdr,audioSources:native.audioSources||[]};return;
+  }
   if(action==='outputs_omt_hdr'){
    const data={...d};if(['configure','preflight'].includes(d.command)){data.sourceUuid=d.sourceUuid?String(d.sourceUuid):this.p.scene(d.input).key;data.audioSourceUuid=await this.audioUuid(d.audioSourceUuid);}
    const omtHdr=await omtHdrExecute(this.obs,data);this.last={...await this.read(),omtHdr};return;

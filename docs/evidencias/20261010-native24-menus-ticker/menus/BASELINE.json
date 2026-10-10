@@ -1,0 +1,14 @@
+{
+  "source": "FreeMix/painel/remoto",
+  "pins": {
+    "settings.html": "22a4332c74dd45838bb03cdac24b1fb84dabd6eefda38dc837bf2d6ae17a95f0",
+    "settings.js": "9119cf4e5d01f3156118f825517aa842243031d7ffe204c93cc267fb9418321b",
+    "settings-help.js": "d6ad5acd0979b85b5004bc5b356b43ff8ef72ba29fed81957e5af1b2046ea3a7",
+    "studio-dialog.css": "addb0c8279e4f51ebced8517d50cb526eb590ec30c5efdcfd5a08ab84d6c0332",
+    "audio.html": "475525ead68674cce0349f02791898fe57ba05a7ebc7dbba0a53548812092b27",
+    "audio.js": "d84978e92747d7d9b520e4093b20b5ca4857db7e4a76e7d076419250e58e1f6f",
+    "audio-buses.js": "bb5aca29b52fe55f66ac892547da61f5c4c2ef08c76886ead324198736ad3f8f",
+    "replay.html": "6f8db2fd2ed32dbeb0873e529ba7cfaa302cbad0384ecf9e1da93d67d8bebb45",
+    "replay.js": "d48eefda6780dd3e5f9b541e5485ab50bba5e6454b4958c237921031652fb9bd"
+  }
+}

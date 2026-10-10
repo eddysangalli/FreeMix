@@ -1,0 +1,186 @@
+{
+  "status": "PASS",
+  "cases": 44,
+  "results": [
+    {
+      "name": "single media preserves every button node once",
+      "pass": true
+    },
+    {
+      "name": "single media preserves action and target data",
+      "pass": true
+    },
+    {
+      "name": "single media defaults advanced closed",
+      "pass": true
+    },
+    {
+      "name": "single media repeats without duplicated controls",
+      "pass": true
+    },
+    {
+      "name": "three sources preserves every button node once",
+      "pass": true
+    },
+    {
+      "name": "three sources preserves action and target data",
+      "pass": true
+    },
+    {
+      "name": "three sources defaults advanced closed",
+      "pass": true
+    },
+    {
+      "name": "three sources repeats without duplicated controls",
+      "pass": true
+    },
+    {
+      "name": "empty preserves every button node once",
+      "pass": true
+    },
+    {
+      "name": "empty preserves action and target data",
+      "pass": true
+    },
+    {
+      "name": "empty defaults advanced closed",
+      "pass": true
+    },
+    {
+      "name": "empty repeats without duplicated controls",
+      "pass": true
+    },
+    {
+      "name": "direct on-air preserves every button node once",
+      "pass": true
+    },
+    {
+      "name": "direct on-air preserves action and target data",
+      "pass": true
+    },
+    {
+      "name": "direct on-air defaults advanced closed",
+      "pass": true
+    },
+    {
+      "name": "direct on-air repeats without duplicated controls",
+      "pass": true
+    },
+    {
+      "name": "recursive on-air preserves every button node once",
+      "pass": true
+    },
+    {
+      "name": "recursive on-air preserves action and target data",
+      "pass": true
+    },
+    {
+      "name": "recursive on-air defaults advanced closed",
+      "pass": true
+    },
+    {
+      "name": "recursive on-air repeats without duplicated controls",
+      "pass": true
+    },
+    {
+      "name": "escaped full names preserves every button node once",
+      "pass": true
+    },
+    {
+      "name": "escaped full names preserves action and target data",
+      "pass": true
+    },
+    {
+      "name": "escaped full names defaults advanced closed",
+      "pass": true
+    },
+    {
+      "name": "escaped full names repeats without duplicated controls",
+      "pass": true
+    },
+    {
+      "name": "unknown kind preserves every button node once",
+      "pass": true
+    },
+    {
+      "name": "unknown kind preserves action and target data",
+      "pass": true
+    },
+    {
+      "name": "unknown kind defaults advanced closed",
+      "pass": true
+    },
+    {
+      "name": "unknown kind repeats without duplicated controls",
+      "pass": true
+    },
+    {
+      "name": "multi sources have three full source headings",
+      "pass": true
+    },
+    {
+      "name": "title remains basic and distinct from source configuration",
+      "pass": true
+    },
+    {
+      "name": "Calls never asserts Browser is guest",
+      "pass": true
+    },
+    {
+      "name": "empty has actual content instructions",
+      "pass": true
+    },
+    {
+      "name": "direct Program still lacks destructive button",
+      "pass": true
+    },
+    {
+      "name": "recursive state displays on-air protection while retaining backend path",
+      "pass": true
+    },
+    {
+      "name": "full name is text not injected markup",
+      "pass": true
+    },
+    {
+      "name": "single props stays basic",
+      "pass": true
+    },
+    {
+      "name": "minimize action retains expand state label",
+      "pass": true
+    },
+    {
+      "name": "speed action retains current state label",
+      "pass": true
+    },
+    {
+      "name": "other popup clears only scoped class",
+      "pass": true
+    },
+    {
+      "name": "uses existing placePop after grouped layout",
+      "pass": true
+    },
+    {
+      "name": "details opening uses same bounded existing placement",
+      "pass": true
+    },
+    {
+      "name": "stale details event never repositions another popup",
+      "pass": true
+    },
+    {
+      "name": "helper contains no command/fetch/storage/Native operation",
+      "pass": true
+    },
+    {
+      "name": "keyboard focus and readable long targets scoped",
+      "pass": true
+    }
+  ],
+  "limits": [
+    "Finite DOM/VM; no Native/device/visual acceptance inferred",
+    "Original render menu and presentation helper executed; buttons moved, not handlers"
+  ]
+}

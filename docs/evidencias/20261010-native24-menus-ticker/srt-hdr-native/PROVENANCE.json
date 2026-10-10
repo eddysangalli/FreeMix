@@ -1,0 +1,111 @@
+{
+  "status": "FROZEN_REAL_LOOPBACK_MEDIA_AND_CONTEXT_GUARDS",
+  "nativeHead": "a04786090fcbe7ede495f18e5ad38ccaa9793478",
+  "nativeFreezeSha256": "cacd7dc42290a9b396b5847ed8cb2f5e27a911adbc31c64fdacdeb44dd0fd087",
+  "wholeFilesCopiedAndVerified": 2085,
+  "pins": {
+    "bin/64bit/FreeMix.exe": "385d6d14679432b1ebc96c292aa70605bc04a367008c99481b04370fc2f43b11",
+    "bin/64bit/obs.dll": "1c1d604bf7d2df9e32a879acce63c0bfc1a10c093efc2a52fab7a5f24c8fb7a3",
+    "bin/64bit/obs-frontend-api.dll": "bd76bf520d8bab1445cacdc8898f96e3d247866773da9aa6c658f22496c642a9",
+    "obs-plugins/64bit/decklink.dll": "afd47d501df16f76d53c4f9de2ada9c5450873c1b1366ee1a3cd9abbc1e1bfeb",
+    "obs-plugins/64bit/obs-ffmpeg.dll": "64b7fc5109131d38e4845ee03891f283acdb9519740616ebf23dd7e778b7a6df",
+    "obs-plugins/64bit/rtmp-services.dll": "5a59d21f997e941bef9b0231dd2c21b30b4903f363cd47d5f61b18609481083a"
+  },
+  "sourceFixture": {
+    "sha256": "3b37393f71045d94c34109ac6a5b981dd0bcf866428733fd913b8a2f796c2240",
+    "sourceLevels": 877,
+    "bandsY10": [
+      64,
+      509,
+      573,
+      609,
+      657,
+      723
+    ]
+  },
+  "phases": [
+    {
+      "name": "original harness FAIL",
+      "receipt": "receipt.json",
+      "sha256": "a73ff06c39cb64c0e2de3e15dfd7e2a6b59a8551e9b1d359a695f72902d2e173",
+      "newLogs": [
+        {
+          "sha256": "4e59e4edbf94f3044648674da8d47c5349bb19145531507588ba143e9f07f91b",
+          "nativeVersionConfirmed": true,
+          "allocations": [
+            0
+          ],
+          "meterWarnings": 4,
+          "doubleDestroyWarnings": 0,
+          "remainingObjectWarnings": 0
+        }
+      ]
+    },
+    {
+      "name": "main corrected media matrix PASS",
+      "receipt": "retry1-receipt.json",
+      "sha256": "83a0687f675f5d340817afb68fb32ce63f9af37944d36681b620e85fc94a6ec2",
+      "newLogs": [
+        {
+          "sha256": "1f1a96ce7bb4ba01d7701940ba6b58921b0e6034e1461329027eeccb833e09fc",
+          "nativeVersionConfirmed": true,
+          "allocations": [
+            0
+          ],
+          "meterWarnings": 1,
+          "doubleDestroyWarnings": 0,
+          "remainingObjectWarnings": 0
+        }
+      ]
+    },
+    {
+      "name": "additional real context guards PASS",
+      "receipt": "lifecycle-receipt.json",
+      "sha256": "7852d362225b2be9cf7715fb7d7d0e5c44270323ecfbd56183625bacd61224e1",
+      "newLogs": [
+        {
+          "sha256": "4fc029056fe3deaa4170676a2f1e536aa5bafe3d9b501c539c1f491d092fdf75",
+          "nativeVersionConfirmed": true,
+          "allocations": [
+            0
+          ],
+          "meterWarnings": 4,
+          "doubleDestroyWarnings": 0,
+          "remainingObjectWarnings": 0
+        }
+      ]
+    }
+  ],
+  "hdrCaptures": 8,
+  "sdrCaptures": 2,
+  "fourRealSenders": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "decoded10bitDistinctLevels": 863,
+  "vui": {
+    "primaries": 9,
+    "transfer": 16,
+    "matrix": 9
+  },
+  "fps": "30/1",
+  "dimensions": "1024x240",
+  "productModified": false,
+  "operatorTouched": false,
+  "compiled": false,
+  "sourceModified": false,
+  "rawLogsExcluded": true,
+  "credentialsExcluded": true,
+  "tsMediaExcluded": true,
+  "limits": [
+    "Native24 loopback only; no WAN/physical vMix homologation",
+    "Fixture static10bit bands/ramp, actual output quantization verified; no subjective HDR display assessment",
+    "Master audio explicit from active own scene; unrelated private audio not injected",
+    "This QA uses signed031500 loader plus exact fullNative24; not a sealed candidate release",
+    "No clean Setup/newcandidate/WAN/display latency/WM_CLOSE-logoff/hardware validation",
+    "Model/drain source proofs are distinct from real finite runtime cases",
+    "No general4-session or UHD capability claim"
+  ]
+}

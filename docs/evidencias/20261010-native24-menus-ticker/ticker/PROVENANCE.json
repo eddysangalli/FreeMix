@@ -1,0 +1,62 @@
+{
+  "nativeHead": "709f101d1aaeb25ccc6f6eab77a3e23e9364f3b0",
+  "baseCandidateSha256": "f0457a3f5afed47b62eb8e1ef943b0b15b32441d0c51cf1d2f14b3048cc06bba",
+  "draftAllowlistSha256": "6a2d98c172cc850fc40e41d82178a14343620a347a58be23bd9ef43581c564dc",
+  "phase1ReceiptSha256": "5afd7552cd776f05a5472c241ed7fc5bc91f04ccec5c610671921d9f106fbe41",
+  "phase2ReceiptSha256": "25df19814dd53a7c228edf02cc2fa242363696187999936974fe755f6f0facce",
+  "initialPreparationFailurePreserved": true,
+  "repair": {
+    "scope": "Own raw dependency byte alignment only before any process launch",
+    "qrBundleRawPackageSha256": "ec6531b00b22db7c70024fa19e83739469290e8c28aff2cedecca0b49976ceb7",
+    "frozenSha256": "422f54b25660a373f9aca81da3f5021f1bb1b002f392cce412619756c0d208cc",
+    "equalAfterNormalizingEol": true
+  },
+  "ports": {
+    "phase1RequestedWsPortMetadataOnly": 61629,
+    "actualConfiguredWsPort": 53443,
+    "apiPort": 61628,
+    "explanation": "preparePortable reuses existing own WS config; requested retry metadata differed, actual connect/Native PID verified own installation. No operator port used."
+  },
+  "actualFps": {
+    "numerator": 30,
+    "denominator": 1
+  },
+  "cutTiming": {
+    "updateStart": 1791607335284,
+    "cutStart": 1791607335400,
+    "cutFinished": 1791607335924,
+    "ackReceivedAt": 1791607337386,
+    "cutRoundTripMs": 524,
+    "delayMs": 2000,
+    "realProgramUuid": "9ce6cdef-cf32-4346-a1eb-729721ae5761",
+    "operation": {
+      "id": "qa_ticker_cut_delayed_ack",
+      "action": "cut",
+      "scope": "FreeMix",
+      "targetKey": "9ce6cdef-cf32-4346-a1eb-729721ae5761",
+      "targetName": "OWN Cut Target",
+      "receivedAt": 1791607335403,
+      "startedAt": 1791607335403,
+      "engineConfirmedAt": 1791607335862,
+      "finishedAt": 1791607335903,
+      "stage": "confirmed"
+    }
+  },
+  "visualInspection": {
+    "method": "Official GetSourceScreenshot source-owned PNG then view_image",
+    "file": "phase2-instrumented-motion.png",
+    "observed": "White ticker glyphs in two lanes and generated QR visible; partial clipping at ticker boundaries expected at captured phase",
+    "pixelExactVisualApproval": false
+  },
+  "saveEvidence": {
+    "queueBeforeSave": 4,
+    "queueAtFirstUpdateAfterSave": 5,
+    "interpretation": "Subsequent Add increases count by one; Save did not append its changed value or emit ACK"
+  },
+  "limits": [
+    "Native project30/1 tested; fractional30000/1001 remains prior Edge/deterministic proof, not this Native profile",
+    "Cut524ms wall-clock while instrumented ACK delayed2s proves ordering only; no released performance approval",
+    "Counters0/crash0, Meter warnings4+3 preserved; no physical hardware/WAN/vMix/cleanVM gate covered",
+    "Root integration helper prepared/syntax-checked only, not executed"
+  ]
+}

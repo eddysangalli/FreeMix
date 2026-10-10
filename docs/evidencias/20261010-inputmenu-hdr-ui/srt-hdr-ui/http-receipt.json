@@ -1,0 +1,1536 @@
+{
+  "status": "PASS_HTTP_NATIVE24_HDR_FOCUSED",
+  "started": "2026-10-10T05:07:17.290Z",
+  "root": "C:\\Users\\eddyr\\AppData\\Local\\Temp\\FreeMix-QA-SrtHdrNative24-svjPHW",
+  "nativeHead": "a04786090fcbe7ede495f18e5ad38ccaa9793478",
+  "nativeFreezeSha256": "cacd7dc42290a9b396b5847ed8cb2f5e27a911adbc31c64fdacdeb44dd0fd087",
+  "baseCandidateSha256": "f0457a3f5afed47b62eb8e1ef943b0b15b32441d0c51cf1d2f14b3048cc06bba",
+  "fixture": {
+    "sha256": "3b37393f71045d94c34109ac6a5b981dd0bcf866428733fd913b8a2f796c2240",
+    "sourceLevels": 877,
+    "bandsY10": [
+      64,
+      509,
+      573,
+      609,
+      657,
+      723
+    ]
+  },
+  "operatorTouched": false,
+  "productModified": false,
+  "scope": "own loopback only; manual opaque PQ; no WAN/physical receiver approval",
+  "checks": [
+    {
+      "name": "Initial4 idle no autostart/REC/stream",
+      "status": "PASS"
+    },
+    {
+      "name": "Real HTTP GET page/state3 times: no config/journal writes, zero starts",
+      "status": "PASS"
+    },
+    {
+      "name": "Real HTTP invalid sender/origin/method refused",
+      "status": "PASS"
+    },
+    {
+      "name": "Real HTTP whitelist configure/preflight selectedsender only; no start",
+      "status": "PASS"
+    },
+    {
+      "name": "Real HTTP start selectedsender async acceptance then live bytes; other3 idle",
+      "status": "PASS"
+    },
+    {
+      "name": "HTTP configure whileactive refused without stopping",
+      "status": "PASS"
+    },
+    {
+      "name": "Real HTTP stop confirms pendingfalse before idle",
+      "status": "PASS"
+    }
+  ],
+  "captures": [],
+  "states": [
+    {
+      "label": "HDR source loaded",
+      "senderId": 0,
+      "elapsedMs": 114,
+      "state": "idle",
+      "active": false,
+      "pending": false,
+      "frames": 0
+    },
+    {
+      "label": "HTTP selectedsender live actual bytes",
+      "senderId": 2,
+      "elapsedMs": 511,
+      "state": "live",
+      "active": true,
+      "pending": true,
+      "frames": 1
+    },
+    {
+      "label": "HTTP selectedsender stop drained",
+      "senderId": 2,
+      "elapsedMs": 206,
+      "state": "idle",
+      "active": false,
+      "pending": false,
+      "frames": 0
+    },
+    {
+      "label": "stop drained",
+      "senderId": 0,
+      "elapsedMs": 1,
+      "state": "idle",
+      "active": false,
+      "pending": false,
+      "frames": 0
+    },
+    {
+      "label": "stop drained",
+      "senderId": 1,
+      "elapsedMs": 1,
+      "state": "idle",
+      "active": false,
+      "pending": false,
+      "frames": 0
+    },
+    {
+      "label": "stop drained",
+      "senderId": 2,
+      "elapsedMs": 1,
+      "state": "idle",
+      "active": false,
+      "pending": false,
+      "frames": 0
+    },
+    {
+      "label": "stop drained",
+      "senderId": 3,
+      "elapsedMs": 2,
+      "state": "idle",
+      "active": false,
+      "pending": false,
+      "frames": 0
+    }
+  ],
+  "reusesClosedOwnInstallation": true,
+  "apiPort": 64546,
+  "wsPort": 64547,
+  "nativeFilesCopied": 2085,
+  "pins": {
+    "bin/64bit/FreeMix.exe": "385d6d14679432b1ebc96c292aa70605bc04a367008c99481b04370fc2f43b11",
+    "bin/64bit/obs.dll": "1c1d604bf7d2df9e32a879acce63c0bfc1a10c093efc2a52fab7a5f24c8fb7a3",
+    "bin/64bit/obs-frontend-api.dll": "bd76bf520d8bab1445cacdc8898f96e3d247866773da9aa6c658f22496c642a9",
+    "obs-plugins/64bit/decklink.dll": "afd47d501df16f76d53c4f9de2ada9c5450873c1b1366ee1a3cd9abbc1e1bfeb",
+    "obs-plugins/64bit/obs-ffmpeg.dll": "64b7fc5109131d38e4845ee03891f283acdb9519740616ebf23dd7e778b7a6df",
+    "obs-plugins/64bit/rtmp-services.dll": "5a59d21f997e941bef9b0231dd2c21b30b4903f363cd47d5f61b18609481083a"
+  },
+  "sourceOverlay": [
+    {
+      "path": "ferramentas/abrir-janela.mjs",
+      "sha256": "97df93255be2ac97176ab95646da75b912c3efc9d6480d991885dfff083bfde0"
+    },
+    {
+      "path": "ferramentas/alpha-bridge-nativo.mjs",
+      "sha256": "860ece1c31d2970d880bd8fae6eb682d139ea6ec9cef1fa358528644cbd12ec3"
+    },
+    {
+      "path": "ferramentas/alpha-web-receptor.mjs",
+      "sha256": "2194c1febde4b84d79c82dd8fc10b8741b82dfe417e6c7579fb9f7b94dc53ba7"
+    },
+    {
+      "path": "ferramentas/api-porta-local.mjs",
+      "sha256": "ec6af8dbdc5732553c63afdc20bbf4690e57a992f244949a96ad1fb0cc2c5abd"
+    },
+    {
+      "path": "ferramentas/atalhos-globais.mjs",
+      "sha256": "ad10b63c3ceec63f98b924fb36b45cc6c61be7ea97e0ffe34c179f450d0ca46b"
+    },
+    {
+      "path": "ferramentas/atualizacao-online.mjs",
+      "sha256": "5a99c18ab979bb9825527f17eaf101e8055d4bb1a2acdb9bf72cde5d3fa016da"
+    },
+    {
+      "path": "ferramentas/atualizar-freemix.mjs",
+      "sha256": "8f0855db94750bac67b1a536c950f0fdf7942393dc434a80b9f7f403695c2d98"
+    },
+    {
+      "path": "ferramentas/audio-buses-producao.mjs",
+      "sha256": "1e2897859efa25c9699e1e64cf628d9a9e2c9f9f50a30a7bb17cc7e7bf40cbd5"
+    },
+    {
+      "path": "ferramentas/audio-routing-producao.mjs",
+      "sha256": "4cff9f1d960738035f54ee90ef9a167ca7f4b43430ca17814124845c55c1bb4b"
+    },
+    {
+      "path": "ferramentas/audio.snippet.js",
+      "sha256": "48478b9afccc019e968820cd5780ef0db2b810d25d6354a9f1697a24da4a4a7f"
+    },
+    {
+      "path": "ferramentas/automacao-operacional.mjs",
+      "sha256": "200104690e4a7c21f78d51911ebfa0f03a98de55f2b6dbc2921e2da618f3a51c"
+    },
+    {
+      "path": "ferramentas/barra-de-baixo.snippet.js",
+      "sha256": "e16eea3450905871838cd37084efd39ce4cc5a7546a8149936514adfcdfb2f92"
+    },
+    {
+      "path": "ferramentas/barramentos.snippet.js",
+      "sha256": "436dcc62f2ce6f503a94f7f819d2a304fb38d16605703b4914175022550f6ada"
+    },
+    {
+      "path": "ferramentas/bonding-medicoes.mjs",
+      "sha256": "33a6baf2d2f5455cd99a0195124b6d5583ac19b4803308fb1c7f849961bec7d7"
+    },
+    {
+      "path": "ferramentas/bonding-producao.mjs",
+      "sha256": "7211d8821c5372ef245db727e55d9a6e68ae58b604cb4e4d4c08af39853b071e"
+    },
+    {
+      "path": "ferramentas/bonding-receptor-portatil.mjs",
+      "sha256": "13af99ea67eb0a46502cf706376d9f60b27cf7d0ede7f6b880d56aaee4977022"
+    },
+    {
+      "path": "ferramentas/build-demo.mjs",
+      "sha256": "818f6aefd4f3af6c81d3f8ebbd1706140b5fd19c69455483b0b15793828ccfa7"
+    },
+    {
+      "path": "ferramentas/build-freemix-full-ui.mjs",
+      "sha256": "c99f7e9c02ad3dd4770bd12099c318dd83470a4be55ea041852e4ec39deffbd3"
+    },
+    {
+      "path": "ferramentas/calls-ice.mjs",
+      "sha256": "13ded46fb5ca3689791dcfd3325d3d69ca20e81c3964ff58d613d6097b288800"
+    },
+    {
+      "path": "ferramentas/calls-producao.mjs",
+      "sha256": "a8d3547f962ac88849296de348b6cf5dbefe3aafcdb49d857176a7186a77a164"
+    },
+    {
+      "path": "ferramentas/camadas.snippet.js",
+      "sha256": "5e225adbde3fbe531b77b0d326a93bc5261fae4aec1ff936e14a6be2741128d4"
+    },
+    {
+      "path": "ferramentas/capacidades-motor.mjs",
+      "sha256": "bdf7e7cc47a390c0c79b0a757070dba1f32b620fb640879cafbb6da1e2a35f3d"
+    },
+    {
+      "path": "ferramentas/categorias.snippet.js",
+      "sha256": "eb3e05324aaec3ee9dbf0acf8c2a8b40fd2cc28437bb06a1f5d7d3076ba9bf07"
+    },
+    {
+      "path": "ferramentas/checar-sintaxe.mjs",
+      "sha256": "e49578a33997f925d55ac969d2938c457cc94d8b0b0b1fa58fa3fa5a53eae02b"
+    },
+    {
+      "path": "ferramentas/clonar-preset.mjs",
+      "sha256": "fa91836d87efd17fbf15978305b9761282726514cbc93e17fd0d068b5a5437f5"
+    },
+    {
+      "path": "ferramentas/coletar-diagnostico.mjs",
+      "sha256": "99bd19491c677989008107b44346734f1e70559e241e3761ffe7401aaced5215"
+    },
+    {
+      "path": "ferramentas/composicao-advanced-masks.mjs",
+      "sha256": "ee752d8240cb888db2b5f05031536d1090750297565b712154398392376abf7e"
+    },
+    {
+      "path": "ferramentas/composicao-estilos.mjs",
+      "sha256": "69163ebef97ef9ac3fa3dc554dfc274cd4df23a7494f25e9e7b9efd2f8307e85"
+    },
+    {
+      "path": "ferramentas/composicao-fundo.mjs",
+      "sha256": "c05b0f85d1b5273e58774dd6037b536b7be44975b1b21e446f9dcd748ec9eb82"
+    },
+    {
+      "path": "ferramentas/composicao-locutor.mjs",
+      "sha256": "d7de29a40e80f369f252a0705dca94f01a0e151b50da0ca33cbfa212a7aeba06"
+    },
+    {
+      "path": "ferramentas/composicao-presets.mjs",
+      "sha256": "db0fd73285533417c06f278d13773d9582e1df864eda2a785dd0d78dd132cda6"
+    },
+    {
+      "path": "ferramentas/configuracoes-producao.mjs",
+      "sha256": "8912782596393e5b72a1bc5f65ba2c5e7b5bf42b5699e2d34b120b40c9e5b973"
+    },
+    {
+      "path": "ferramentas/controlador-producao.mjs",
+      "sha256": "46ca77aad10a1fb227ff9acd9678941463fc634fbc3d08b9e9b23afa7649bbad"
+    },
+    {
+      "path": "ferramentas/controle-producao.mjs",
+      "sha256": "46e18809a91a8ee8664c4e1c1bc8366100a71c4abc0d5809392380b3488e5cb5"
+    },
+    {
+      "path": "ferramentas/controller-osc.mjs",
+      "sha256": "8c169a300afae0aea805298d5d02c5020593382433b61f4955d134a09713bcfa"
+    },
+    {
+      "path": "ferramentas/corrige-botoes.snippet.js",
+      "sha256": "2b1dcde5713f535f94e886d4c1cadd7cbb665d4808487d1e61b9104d18b4c820"
+    },
+    {
+      "path": "ferramentas/diagnostico-producao.mjs",
+      "sha256": "545f59e83595cb6dfb7277e06994bde6b691acd768cfc1fd48c21bb87cba7a59"
+    },
+    {
+      "path": "ferramentas/diagnostico-zip.mjs",
+      "sha256": "0f3afc0e511bc48d1641746e4926ad571870ca1587beb4e397e2c93550474ad8"
+    },
+    {
+      "path": "ferramentas/efeitos-producao.mjs",
+      "sha256": "49f97a6f8bcf9a014e25fbb5584dbb8b33852ce415547c2f6f9672c7eed1f930"
+    },
+    {
+      "path": "ferramentas/efeitos-ptz.mjs",
+      "sha256": "7f53ca19e10f854d0b2b278d803cea3a83c672b0557625ea98847df974148244"
+    },
+    {
+      "path": "ferramentas/empacotar-limpo.mjs",
+      "sha256": "bc7844a1d27f940a3312d02812bb10db0253f0c567409ecf330bd06cf0ea66bb"
+    },
+    {
+      "path": "ferramentas/entradas-producao.mjs",
+      "sha256": "4ba37e9d2deb07d71ddc65a6e4e2974b914669f6a8a7a01788a8d70e7149f615"
+    },
+    {
+      "path": "ferramentas/feed-servidor.mjs",
+      "sha256": "083c18cc81901045fb35e7796a24b6bf99b5e1416d03dbff2ba47ab9e8031387"
+    },
+    {
+      "path": "ferramentas/fila-producao.mjs",
+      "sha256": "4a8a15966d67fd117f6a473fe583ff965e36fd9df68edc09141d04fc5210f04d"
+    },
+    {
+      "path": "ferramentas/fontes-dados.mjs",
+      "sha256": "fd4b9f291fdd0f40f364ad8df123d9b23aead702dcbd27ceee1e89092be53238"
+    },
+    {
+      "path": "ferramentas/freemix-bonding-relay.mjs",
+      "sha256": "9926ee9ea7a2148e1b8453e884f24b8bdb3e4f79a8928e81ab78fbf9f55523de"
+    },
+    {
+      "path": "ferramentas/gc-assets.mjs",
+      "sha256": "3623340909e6abf0bc9cae622f1657e41968862b026455b4f9456eaea99a633c"
+    },
+    {
+      "path": "ferramentas/gc-biblioteca-producao.mjs",
+      "sha256": "33a6def6bacd5902b24d93549dbc9e88e5e8b4810cd4b82c57505b830bf17de9"
+    },
+    {
+      "path": "ferramentas/gc-gtzip.mjs",
+      "sha256": "e0efc4580874a3ae40fde5028e17306298c07606f5e7a7fa236ef4a6c63c5afe"
+    },
+    {
+      "path": "ferramentas/gc-html-producao.mjs",
+      "sha256": "90240d37510ad84986be2446f7b5f4f083f0e208a95b722b5c7275badd4358d3"
+    },
+    {
+      "path": "ferramentas/gc.snippet.js",
+      "sha256": "db1fbcf05a62950a7b1dcacc5ac220811022ccdafbd64bf11a30fce271c08ddc"
+    },
+    {
+      "path": "ferramentas/gerar-biblioteca-gc.mjs",
+      "sha256": "cc45bc6155d2368ed521bffb80452c2b33f1e8752ee6943b5f0ec80e71011a3e"
+    },
+    {
+      "path": "ferramentas/gerar-catalogo-gc.mjs",
+      "sha256": "a2e203ddf2d4dcb5e2cb4d32f863d573df045af8db3596ed5cbbbb3749c770eb"
+    },
+    {
+      "path": "ferramentas/gerar-consoles.mjs",
+      "sha256": "94180e90073d594dd1049423c42b0c3c41cdf98e6378372538a53b536a5638a1"
+    },
+    {
+      "path": "ferramentas/gtzip-archive.mjs",
+      "sha256": "b2107d921137e48b0a7d8ec6b62e7b2e7509a47c3992bf947da7aad6e85725be"
+    },
+    {
+      "path": "ferramentas/gtzip-fonts.mjs",
+      "sha256": "8f0636142c0c85309e872fc74c5411a7584282afe9b48da5765299ac693a7464"
+    },
+    {
+      "path": "ferramentas/gtzip-qr-bundle.mjs",
+      "sha256": "422f54b25660a373f9aca81da3f5021f1bb1b002f392cce412619756c0d208cc"
+    },
+    {
+      "path": "ferramentas/gtzip-qr.mjs",
+      "sha256": "0088ca623686d6cfc9df13de3859bb2b42cd8af2b07057f8ee5c4013b2a0834b"
+    },
+    {
+      "path": "ferramentas/gtzip-render.mjs",
+      "sha256": "552a6b9d891cfb3bcd1dad5b8e9b4b293ceb1646924664bf80a18bdeb4229e50"
+    },
+    {
+      "path": "ferramentas/gtzip-runtime.mjs",
+      "sha256": "65ad2c8e1cc4d20a0800a79bc85b1048f6824a40b73599a6d7a9b003c4152c3c"
+    },
+    {
+      "path": "ferramentas/gtzip-ticker-ack.mjs",
+      "sha256": "18cb107ca7df7d444c017850ddeb92294ebab299d55aec64a8d2f571a522cc59"
+    },
+    {
+      "path": "ferramentas/gtzip-ticker.mjs",
+      "sha256": "5efee366a7d82b01bae3df12b50b6e0ec1da626ceea6bfbe406cd2e98331b40e"
+    },
+    {
+      "path": "ferramentas/gtzip-xml.mjs",
+      "sha256": "2738f124d729684882c9a58f749310f7683bb70bdd4bdb1d14e54783e76cfa64"
+    },
+    {
+      "path": "ferramentas/gtzip_converter.mjs",
+      "sha256": "4ab80efd023fafffe141c32c701c8ef54edbc7cb72aa3b469131dbad29a7889d"
+    },
+    {
+      "path": "ferramentas/gt_utils.mjs",
+      "sha256": "b3ce86ea78f4808abcedf7d363ff743279d2fcd817c5a1abf36fbdec39437c0e"
+    },
+    {
+      "path": "ferramentas/importar-gt-packs.mjs",
+      "sha256": "3f266942e5358080961c838e47c876ffb33b7e92054d5ef332a4870731f21317"
+    },
+    {
+      "path": "ferramentas/iniciar-api.mjs",
+      "sha256": "eb31a33bc62caaceaca763cba2bccec7065ff259fdd7ff7ff06d00147baf318a"
+    },
+    {
+      "path": "ferramentas/iniciar-freemix.mjs",
+      "sha256": "bcaeb9d14cbde8cfaa15d46f1f237a242313cfadca393c32d30e829f6382ffe4"
+    },
+    {
+      "path": "ferramentas/inspect_gtzip.mjs",
+      "sha256": "0d85d980a1ad5d0e54dc8ba21da51ebd931d00835f96545a6833ce75a7b50ecb"
+    },
+    {
+      "path": "ferramentas/inspect_more_gtzip.mjs",
+      "sha256": "8d95e38865c96f58d81eddf6828f7c172dc79740ffc987ab980eae62c892d95c"
+    },
+    {
+      "path": "ferramentas/inspect_score.mjs",
+      "sha256": "4165874ad72e48c3b9e37ce78b7ef0aeeca04c8f92bb2aa11f7bc24e10846faf"
+    },
+    {
+      "path": "ferramentas/instalar-portatil.mjs",
+      "sha256": "ea0e62985c7a39470ffb3464e4c32fdd98264948e200b3bf5553c8f85e3c055d"
+    },
+    {
+      "path": "ferramentas/janelas-config.snippet.js",
+      "sha256": "f266de419f92d9d94a3006bfeff9041793922a0d0bdd0d29e6fef612c9f115b5"
+    },
+    {
+      "path": "ferramentas/macros-producao.mjs",
+      "sha256": "2c9a0b57e2c639a9ce89271219579b3a1fa76d27dcd566eb36faf6de53f9b048"
+    },
+    {
+      "path": "ferramentas/medir-janela.mjs",
+      "sha256": "44e070dd15cd6c3b2e2f6d9f10740e16c03c9431447a445f41c21e2d0a89613a"
+    },
+    {
+      "path": "ferramentas/midia-preview-http.mjs",
+      "sha256": "9f37d5806d62eb3c5e1d0775a197858ccc783da57567b079650a786011f2ff0b"
+    },
+    {
+      "path": "ferramentas/mixer2.snippet.js",
+      "sha256": "cd5d13db0edab71be1c6de25f0b47d7f44eee6f19f6ab265997f4d1c9e29cb08"
+    },
+    {
+      "path": "ferramentas/multi-rtmp-adapter.mjs",
+      "sha256": "6c5070f7e9e7a484e930e37815b360b018d3e8fdb5ebef19bdef3619ce0a0084"
+    },
+    {
+      "path": "ferramentas/multistream.snippet.js",
+      "sha256": "f46349945dbcdfe76844e5c52f509a36df17b76afad074549f5d6b5ba3de0775"
+    },
+    {
+      "path": "ferramentas/ndi-producao.mjs",
+      "sha256": "9a4e132c468a0c8da4eaf5c97f4d6b919ec82a74f120d8b2f3068bf3026ed085"
+    },
+    {
+      "path": "ferramentas/ndi-runtime.mjs",
+      "sha256": "ecec7a08f6a999d84f71f2ab7cad23f842a5065028ba05facaf0ed41ab1fb44f"
+    },
+    {
+      "path": "ferramentas/obsws.mjs",
+      "sha256": "735a395d1fdd4774b0e44ba8c65926b3601aa5035bf17a8dcb53ca9b907c9cdc"
+    },
+    {
+      "path": "ferramentas/omt-hdr-producao.mjs",
+      "sha256": "7b77bfc66e6db3d6dc143a337b74b517c0e1679bd50103f22fec652c4f60e8e5"
+    },
+    {
+      "path": "ferramentas/omt-producao.mjs",
+      "sha256": "15a632b6d1c80c9926710066e345931a76a7fe5cebd45b33221175b52aa98c5c"
+    },
+    {
+      "path": "ferramentas/pacote-componentes.mjs",
+      "sha256": "9852b6ca6b514ebfd3862c1d9c2b1cf1129cdbb96e14cd0f80a0fdffd241866c"
+    },
+    {
+      "path": "ferramentas/pacote-dependencias.mjs",
+      "sha256": "6c2e16166cdd8f58b70887605a93bfd050f9eccba00dcae0d428ac5b73b582a4"
+    },
+    {
+      "path": "ferramentas/patch-audio.mjs",
+      "sha256": "758c4e3b3832ae33026c7c3ad374fc3d038b6a99e4d60d936e4f10c887e5f119"
+    },
+    {
+      "path": "ferramentas/patch-barra-de-baixo.mjs",
+      "sha256": "15ae46162efffa1ab32c6138f3130808c795b19fe4a60a55663c34da19b1d74c"
+    },
+    {
+      "path": "ferramentas/patch-barra.mjs",
+      "sha256": "5f4c2629bde03c1d180de418f4b8eb4d169ca8d1b47674a6e6245b753a2f62d0"
+    },
+    {
+      "path": "ferramentas/patch-barramentos.mjs",
+      "sha256": "9dad3476a28538028972fead627e84c5d137d8ffa7f236539fa6e5103acf15f6"
+    },
+    {
+      "path": "ferramentas/patch-camadas.mjs",
+      "sha256": "82da2b6729e720b5f853c48140137810d6e1c08fa4b98b1d4bb7c310a22086e6"
+    },
+    {
+      "path": "ferramentas/patch-categorias.mjs",
+      "sha256": "4dfc3079e34b895136fc64e44d79134604b33fe48aa86135d0bd8f879fcaba41"
+    },
+    {
+      "path": "ferramentas/patch-config.mjs",
+      "sha256": "92dc33c6a9597c80dc0d183baf418d50435ef98cd13f1626931d9a2b0a021b65"
+    },
+    {
+      "path": "ferramentas/patch-configurar.mjs",
+      "sha256": "9f0a7a419bfcedd60977802e36392b5f9f52e87151966328f0034dd768e60a60"
+    },
+    {
+      "path": "ferramentas/patch-corrige-botoes.mjs",
+      "sha256": "087ce268d69e1854f9ff3a6f46fb0b6207a9f1e2faa2a92747870e90997ad9d0"
+    },
+    {
+      "path": "ferramentas/patch-fidelidade.mjs",
+      "sha256": "bb84db7e4f4982182ef6cc88c07179988065dd18336b0e449a889046d0046132"
+    },
+    {
+      "path": "ferramentas/patch-gc.mjs",
+      "sha256": "bc18e0c60a7cad957d701f3e7eaea66fa2a8b2abf2a1c148e91191477a5eb062"
+    },
+    {
+      "path": "ferramentas/patch-inputs.mjs",
+      "sha256": "3e33cbbe827e02f43307bd06593b4b231f903653735c42653554fd52f7afc423"
+    },
+    {
+      "path": "ferramentas/patch-janelas-config.mjs",
+      "sha256": "59e77bf22f43fb58b6f388f99f5af8a146cae04c618280045cafbb162cf4de62"
+    },
+    {
+      "path": "ferramentas/patch-locale.mjs",
+      "sha256": "5da34f9f7753347cad62006355e9e9451e16224aeef89c73a8da8ec768cfc866"
+    },
+    {
+      "path": "ferramentas/patch-menus.mjs",
+      "sha256": "c99e2de63f0b65113459f911f95a5c4a671278df4687f10a11d14dcdfaac0d4d"
+    },
+    {
+      "path": "ferramentas/patch-mesa-broadcast.mjs",
+      "sha256": "512402f2d2f7744022583cc4c17a574b9a4538e72b42320f455f15b454d2e476"
+    },
+    {
+      "path": "ferramentas/patch-midia-vmix29.mjs",
+      "sha256": "d882b57b048702d38d1b80943e8f11587a4c8f3efe6dd4adba12e1355a51b5c2"
+    },
+    {
+      "path": "ferramentas/patch-midia.mjs",
+      "sha256": "c5e41339395f56e1d4ab4a6aa42cad5d769a0c43d1297fcc4eebfb3cdf04b0df"
+    },
+    {
+      "path": "ferramentas/patch-mixer2.mjs",
+      "sha256": "5ef03c6301d9f100b579fc6b54d26883cdf9d7dd183c279055d14807c5f92896"
+    },
+    {
+      "path": "ferramentas/patch-multistream.mjs",
+      "sha256": "2725540d91fe25beedb43b5fd0c0656ee0f5521ebd8a8370c5069d28e7395886"
+    },
+    {
+      "path": "ferramentas/patch-plugins.mjs",
+      "sha256": "7ae3e43e2e0394c1183a514f5a068620347890cd44366ee3911465a056482ba7"
+    },
+    {
+      "path": "ferramentas/patch-relogios.mjs",
+      "sha256": "c4748a5d513a8ef957466bd56cdfdaf1edbc57f945feb14a16a26012a5b67802"
+    },
+    {
+      "path": "ferramentas/patch-replay-memoria.mjs",
+      "sha256": "210a119646596ba4118bf03cd3216cec4ea95aa7e9e126247d903d3465bddb33"
+    },
+    {
+      "path": "ferramentas/patch-replay.mjs",
+      "sha256": "658c748d873ec0a78c76cbf024d403b1ec85cf221e96fc6c22f29f92281c6cb5"
+    },
+    {
+      "path": "ferramentas/patch-retorno.mjs",
+      "sha256": "86fed8008d74a44552214902a59f03e3e22c605f99bed4c4173a066bee6ee206"
+    },
+    {
+      "path": "ferramentas/patch-saidas-largura.mjs",
+      "sha256": "ff136e9962d0e799bdb3ab13fe7631d7287ea18219089f0913543e0973cbf971"
+    },
+    {
+      "path": "ferramentas/patch-saidas.mjs",
+      "sha256": "f094ba3ee27d0629cdd8fa28ad63ad0c999d09e9e341203c993fdbee6b01a3fb"
+    },
+    {
+      "path": "ferramentas/patch-salvar-como.mjs",
+      "sha256": "599bc8fc18e18a27398de450a2eb104e8cf88c68614f7ece5b79307894fd7432"
+    },
+    {
+      "path": "ferramentas/pedir-configuracoes.mjs",
+      "sha256": "4120055a64d8b10c3c812f3bc054e4834e20bc1e85c87649011b661499e63ee6"
+    },
+    {
+      "path": "ferramentas/plugins-defaults.mjs",
+      "sha256": "48f0d68face1a9a15f2f0eca8d5a645499cc3f13f290f989cfd6a0dbf44a7650"
+    },
+    {
+      "path": "ferramentas/preferencias-producao.mjs",
+      "sha256": "2a584331ffa70af68009ed27657a25c4b52b7dd0258bf4ccd2c7a0f282a42613"
+    },
+    {
+      "path": "ferramentas/preparar-kit-servidor.mjs",
+      "sha256": "09c7db0bac246844b6f1da08bc9ce986b8ea6afb8f430776b634d33fc321a2e8"
+    },
+    {
+      "path": "ferramentas/preparar-portatil.mjs",
+      "sha256": "967d9bad9a8e93322809afe8c8ab65bdcbb7cce737b9937d17dbb775d8997573"
+    },
+    {
+      "path": "ferramentas/preset-teste.mjs",
+      "sha256": "d2df414ed013815abdfe308e02a9b8cec7506b5bfe807987576e61b4a8a35170"
+    },
+    {
+      "path": "ferramentas/recuperacao-dependencias.mjs",
+      "sha256": "1d40b99de88332e05dd20cba714bd1e158c3013f3bbc91db78a234c1452a42bf"
+    },
+    {
+      "path": "ferramentas/recuperacao-estados.mjs",
+      "sha256": "c794abbe5d00da1f392bfdaedc1aeddb98e420f801809fb652d3f89f2e7b4c92"
+    },
+    {
+      "path": "ferramentas/recuperacao-eventos.mjs",
+      "sha256": "9f0b867a3561ed646122a0c7819cadd2fcdf39ed0f384fdf4fd87d328fba2be8"
+    },
+    {
+      "path": "ferramentas/recuperacao-gtzip.mjs",
+      "sha256": "edde6000a71f42ed1588c1ce2929ede65e536264ae954a7ee4b6355a24ec22c5"
+    },
+    {
+      "path": "ferramentas/recuperacao-importacao.mjs",
+      "sha256": "d92c40c038105176b4f1faf6fe4116f5979dd375c1eec5560cfd2ab7cf5cdfd4"
+    },
+    {
+      "path": "ferramentas/recuperacao-inicializacao.mjs",
+      "sha256": "311996c89f871225027f2a2a0795c11d418b1deba48d44b5d3d1cb382535010d"
+    },
+    {
+      "path": "ferramentas/recuperacao-instalabilidade.mjs",
+      "sha256": "a418dbd39f662b823f71a8cfacec8dc95350f3ba770e6a346330f0e2b0217720"
+    },
+    {
+      "path": "ferramentas/recuperacao-inventario.mjs",
+      "sha256": "8db5a5808c8916ca82afb11c19bc2b33fc512d50bab85cfd577c46e1cf184a56"
+    },
+    {
+      "path": "ferramentas/recuperacao-producao.mjs",
+      "sha256": "6abb2a3f23ccb376e3b6ed9fbc92beed1be51d36b14a6a884503454940291ac0"
+    },
+    {
+      "path": "ferramentas/recuperacao-remota.mjs",
+      "sha256": "705231166d8f981ea2085096d3e3e453f9cc3e998671bb55ead9291d45b75153"
+    },
+    {
+      "path": "ferramentas/recuperacao-saidas.mjs",
+      "sha256": "d339a1055021bf13e1335a123ea909630bf5ce5b2b3740291e44c813842b1939"
+    },
+    {
+      "path": "ferramentas/relogios.snippet.js",
+      "sha256": "70652ef58afc442757859f5883f04f0c3c887c47faf86a4bfbdab12fa1578c68"
+    },
+    {
+      "path": "ferramentas/replay-diag.mjs",
+      "sha256": "a386231c2f0bf14ad964837c453735d0cd19e6ef5b17921d7ba1e71272d5a348"
+    },
+    {
+      "path": "ferramentas/replay-disco.mjs",
+      "sha256": "0abfbd5dcc31836246caee17c0015bacc73f1a75a26f3a6ef14c71a82a2be9bd"
+    },
+    {
+      "path": "ferramentas/replay-preview.mjs",
+      "sha256": "6fadf72f276c46de7b9640331e989a539863275a698df1316559de7da744a4af"
+    },
+    {
+      "path": "ferramentas/replay-sincronia.mjs",
+      "sha256": "dafbd121ada9fc6ea60cb38daf35378ee14a24cd616ab138b409cda10df60377"
+    },
+    {
+      "path": "ferramentas/retorno.snippet.js",
+      "sha256": "72038ff9a680c2cda9eb1a5761023011174bc586d3d2d4095ef889437d270bee"
+    },
+    {
+      "path": "ferramentas/retornos-calls.mjs",
+      "sha256": "b2368a7b67df0ace491b7cf674e3bcae444f55e836914201cfb3a2a6f8a13a36"
+    },
+    {
+      "path": "ferramentas/rtmp-teste.mjs",
+      "sha256": "99b20ecbcd97c1a4d5517f6847761b084893ef500288ba9b3b6c3ccd3d2b7313"
+    },
+    {
+      "path": "ferramentas/saidas-hdr.mjs",
+      "sha256": "d9d24d2ea4de1ad2e1e1cbb6cfa41d9b80b486ee59a91529b4453fc6bd63b8b9"
+    },
+    {
+      "path": "ferramentas/saidas-producao.mjs",
+      "sha256": "4014d7d5fabd30e2851852f0e8cf6d599aaec9c454fc1c73b05d9d0a355452f3"
+    },
+    {
+      "path": "ferramentas/saidas-sdi.mjs",
+      "sha256": "93b550696f2b50e7bd69139868a70173c96e5450b890542a0e8d13e928f6dc70"
+    },
+    {
+      "path": "ferramentas/saidas-srt.mjs",
+      "sha256": "3f3f6118c1a4f0d0f99f9bdf317c850c9f29709bd16ef8048a76d77c5e5e358f"
+    },
+    {
+      "path": "ferramentas/seed-config.mjs",
+      "sha256": "acb89fa8c9cea7b31d30a57e9147dcc74b0721d40112cf873d2d29f675dcea63"
+    },
+    {
+      "path": "ferramentas/servidor-api.mjs",
+      "sha256": "c3929632f01aeaa7fb9f2fb6be473e20453a54b610326d145a5d05333a02a3c6"
+    },
+    {
+      "path": "ferramentas/servidor-kit.mjs",
+      "sha256": "ad4b2ff94cd6ddc363222458619fc373aaea5c47b1b9238565709c98c2e9c5e3"
+    },
+    {
+      "path": "ferramentas/servir-painel.mjs",
+      "sha256": "70f4a2ff4c7275b382bd2fca24af2252bce62ff85cd5173b7f0e92c9f6cba42e"
+    },
+    {
+      "path": "ferramentas/sessao-producao.mjs",
+      "sha256": "a57f19cbb5ff68f76c1acbf4f5c04ebd2a12f59ba667552754243a5c3d472486"
+    },
+    {
+      "path": "ferramentas/show-call-modal.mjs",
+      "sha256": "d1f45f30111d9491466b78912408721931892844acaa7781a85a6d1c684e18aa"
+    },
+    {
+      "path": "ferramentas/sinais-producao.mjs",
+      "sha256": "69e2443957453bfae6eb380774ba68566e2b04eaf4dfc23be174dcf67218b157"
+    },
+    {
+      "path": "ferramentas/srt-hdr-producao.mjs",
+      "sha256": "f25ecf5fcc17cdcfe7762eb0ea4ed8903160636696ccaf9631d19e48a957869b"
+    },
+    {
+      "path": "ferramentas/test-audio-buses.mjs",
+      "sha256": "846910f9173f2c89f2b6d3ebed4551732bd4a953ebbf3f14d7244089b617c1cc"
+    },
+    {
+      "path": "ferramentas/test-audio.mjs",
+      "sha256": "afae06c53ef94c58b672929d5122a87f1cec7fd1782726cc4175eb1cebe54056"
+    },
+    {
+      "path": "ferramentas/test-barra-de-baixo.mjs",
+      "sha256": "cc47715f87ee9ba9eb430feaa6163189317a9df856f62b93f2b56142cc044c8d"
+    },
+    {
+      "path": "ferramentas/test-barra.mjs",
+      "sha256": "e91770028598021ca313f5c29b0dd744b82b67749bd4330d41c7631c4a40f188"
+    },
+    {
+      "path": "ferramentas/test-barramentos-reinicio.mjs",
+      "sha256": "812c6874ab5dac35b4121d9b9aa9de5ef6fc2d2de07a11a82bd4ee0b0dd77702"
+    },
+    {
+      "path": "ferramentas/test-bonding-and-graphics.mjs",
+      "sha256": "f9ef96813ff137b285876e765fa6bdce8cf8420414ef982464fd89f35b1cc7ae"
+    },
+    {
+      "path": "ferramentas/test-camadas.mjs",
+      "sha256": "541ba902db9df700328154b730e20fe304ae13af716a52751164ce8170c8bda0"
+    },
+    {
+      "path": "ferramentas/test-categorias.mjs",
+      "sha256": "7da2f4f715a5fd9209fabeef8c87dda85fced0a44bd595ba8e347b8664042dd9"
+    },
+    {
+      "path": "ferramentas/test-coluna-do-meio.mjs",
+      "sha256": "95d4a03d530edac34c458bb94415237a2c40b58caa33a434b62e5e9dd6038b6d"
+    },
+    {
+      "path": "ferramentas/test-compilado.mjs",
+      "sha256": "e9e96cfb5f7114d50f9f36d20f25efb723a70192aacd2d5b85ad57c251cd5bec"
+    },
+    {
+      "path": "ferramentas/test-complete-suite.mjs",
+      "sha256": "d91cc3df9ba336f25863e50f766248fa7a11273986ad618c7cd1bbd037e63830"
+    },
+    {
+      "path": "ferramentas/test-conversor.mjs",
+      "sha256": "af1a204a9ed75d1deff91276c701d95b381a33d63d1511bfb6084782eac2ebf6"
+    },
+    {
+      "path": "ferramentas/test-correcoes.mjs",
+      "sha256": "fc89b0d69599bdb160bc6b8018886037d5214cb1034fcae1a6f8b52d1aafb4a6"
+    },
+    {
+      "path": "ferramentas/test-gc.mjs",
+      "sha256": "71706272318d9d594f3de60a98afb28ebff961dd36cc15453d0a4fe456dc4597"
+    },
+    {
+      "path": "ferramentas/test-inputs.mjs",
+      "sha256": "687c472c6948c4e33a3024a12534ebdf17e5d1cae35f44133c2acbf9a7ccc672"
+    },
+    {
+      "path": "ferramentas/test-janelas.mjs",
+      "sha256": "2166c6f1725b7b445e3420fafbb1d4ebf95e6373655eb758f9c88caa59c34429"
+    },
+    {
+      "path": "ferramentas/test-mesa.mjs",
+      "sha256": "2ab23ed1f45587ac1b018e05bc92daa5780f920c375560308e3aaf437e62b6ad"
+    },
+    {
+      "path": "ferramentas/test-midia.mjs",
+      "sha256": "b031b5a996fd50ff7957cad9883e63bd59ba9de99029d6979a98c8f020ec3e3a"
+    },
+    {
+      "path": "ferramentas/test-multistream.mjs",
+      "sha256": "d1bca7b8086a5e7a45eda8c00db805871d139d50024b32ba828a675060c44cf8"
+    },
+    {
+      "path": "ferramentas/test-outputs.mjs",
+      "sha256": "52bd9a80a75dd72eb20d3a16f31509f3f69f7395a9572363305a863bc4e90e8d"
+    },
+    {
+      "path": "ferramentas/test-ov.mjs",
+      "sha256": "7fe8b076a1b08f1824966ed1e75a80d278b454131a667b1519343b6c67ab2b68"
+    },
+    {
+      "path": "ferramentas/test-placar-render.mjs",
+      "sha256": "eae4a8b995b64f5a69909d6f5f5d75dcfadc667134d98f452ba3f1ab9fe67d11"
+    },
+    {
+      "path": "ferramentas/test-plugins-health.mjs",
+      "sha256": "46319e3a14b1038be30e5d5a99397a6eb6cad10c14987e023340e275daae3b31"
+    },
+    {
+      "path": "ferramentas/test-plugins.mjs",
+      "sha256": "1b8e502d4b99b3634e638b5079f6e024f0a37f11b445e356f6fe8d468cd85311"
+    },
+    {
+      "path": "ferramentas/test-project-format.mjs",
+      "sha256": "824cbecd1ba8ac6840dfefd344d2150a1946c1794d04c6fa70a877f8e4f04c64"
+    },
+    {
+      "path": "ferramentas/test-relogios.mjs",
+      "sha256": "7683e66485c614ae81f29111afa4e568c25acefcb9da8aa69ac216c147caf586"
+    },
+    {
+      "path": "ferramentas/test-replay-disco.mjs",
+      "sha256": "996b4887f24d2aedd2154093715ea313e48c216b4d3293f83e48684df98871b8"
+    },
+    {
+      "path": "ferramentas/test-replay-memoria.mjs",
+      "sha256": "8edd9663a2f99f86213da1419d64cbc94d18abbd3efe956bd3420454be2820f7"
+    },
+    {
+      "path": "ferramentas/test-replay-real.mjs",
+      "sha256": "11f9f3050ba93599f9efba7aff810b2d03784070e464e4830c8448643ea575ad"
+    },
+    {
+      "path": "ferramentas/test-replay.mjs",
+      "sha256": "b80527f32b37d4c9809ec22430f0c1be61aae84f0a47900190814044197280a4"
+    },
+    {
+      "path": "ferramentas/test-retorno.mjs",
+      "sha256": "e5d178e1206b2e4b95339ebf97ac1f02868b147c098b5102c30a73af9c0cf530"
+    },
+    {
+      "path": "ferramentas/test-saidas.mjs",
+      "sha256": "a0ecbe442ca57db4b1fc95934efced0b1839c14e13a8442a585b5cfd6ecb2b30"
+    },
+    {
+      "path": "ferramentas/test-shortcuts.mjs",
+      "sha256": "51ed18047a2a9716d349489114dc93e415a12b3f06e9177785725b0054e1ee14"
+    },
+    {
+      "path": "ferramentas/test-topo.mjs",
+      "sha256": "0f0f372f2e8ef5c4cba3822c29f7a79832d0cf8a8e2cbb858e0dfdba1e2663b6"
+    },
+    {
+      "path": "ferramentas/test_convert_batch.mjs",
+      "sha256": "9ee245e115f6a3f8dd621cdb7be44bcb0a7d8bd04f401d7887bb8b64bd0dae57"
+    },
+    {
+      "path": "ferramentas/textos-freemix.mjs",
+      "sha256": "b3a9f0283378705c22d8401afc238bff383a10049080b2b85ea030214dbf6bfd"
+    },
+    {
+      "path": "ferramentas/verificar-atualizacoes.mjs",
+      "sha256": "a4b7372e37b022200138a09495bb0e67df715c5227a6e38655c23c5e33d51715"
+    },
+    {
+      "path": "ferramentas/_sa.mjs",
+      "sha256": "c7809cf90bd2ba4a215bcd943208b9aa4ddada5852252df4785bc3d85e3bd486"
+    },
+    {
+      "path": "painel/remoto/atalhos-engine.js",
+      "sha256": "1ae55efc4b0d25032199092cbf7fd8d4cc051d7a1798e7b52ea8d9d4536d23e9"
+    },
+    {
+      "path": "painel/remoto/atalhos.html",
+      "sha256": "9ff6a43ec2d71aabf116a6ca75a63507a6057c8832e65ca4bdee15c38a659c63"
+    },
+    {
+      "path": "painel/remoto/atalhos.js",
+      "sha256": "969f20e417e7aaf91b51345ec352c68cb90c5e55fc701cbb9dc60bc0c25af41d"
+    },
+    {
+      "path": "painel/remoto/atualizacao.html",
+      "sha256": "e5d4cd02655f15ea0e52f3721e0e582a3a6ea0e32c2a411b553693041f7c4fa7"
+    },
+    {
+      "path": "painel/remoto/atualizacao.js",
+      "sha256": "6c38aaeb7ec5d6cfeac30a91c84caada5f9133c50ad2fba8b0797d489479e692"
+    },
+    {
+      "path": "painel/remoto/audio-buses.js",
+      "sha256": "bb5aca29b52fe55f66ac892547da61f5c4c2ef08c76886ead324198736ad3f8f"
+    },
+    {
+      "path": "painel/remoto/audio.html",
+      "sha256": "fbba48c83e9d3eeb6b0d9d277b1345df257075d8befe24a8905e8c471996f554"
+    },
+    {
+      "path": "painel/remoto/audio.js",
+      "sha256": "d84978e92747d7d9b520e4093b20b5ca4857db7e4a76e7d076419250e58e1f6f"
+    },
+    {
+      "path": "painel/remoto/call-pcm-worklet.js",
+      "sha256": "f919ee724d3144c852c7224a07e1bff8370c958feba92cb204e22e1c44d7016a"
+    },
+    {
+      "path": "painel/remoto/call-publisher.html",
+      "sha256": "5c97711a0b4d8a35868f9b7c4da79c53fd2a8205bba11fbb3dff985cb9c55613"
+    },
+    {
+      "path": "painel/remoto/call-publisher.js",
+      "sha256": "eb59952d3568bb79c9a611e9f91e2d63c8d8b80b001b81668f05354e0db6de16"
+    },
+    {
+      "path": "painel/remoto/calls.html",
+      "sha256": "d84e42ff543bfe01abadc3cba7e60f97006cbad56b1dff6e5c998c434a7d161e"
+    },
+    {
+      "path": "painel/remoto/calls.js",
+      "sha256": "01673273c3ee071947fbe1018e4cf24a0f064e3aa3a26bb82abc39292b73ca62"
+    },
+    {
+      "path": "painel/remoto/codecs-mesa.js",
+      "sha256": "99f3629606d79f510636d1ac488e7517aeeff6d9ccbd1e172961105c467a6015"
+    },
+    {
+      "path": "painel/remoto/compor-avancado.js",
+      "sha256": "c3b8104ddb851a271889f3dac652a4824d2d6c548fd4ff40193755df307b8fb9"
+    },
+    {
+      "path": "painel/remoto/compor-galeria.js",
+      "sha256": "951981c2c6b1115cc1d153f48dbc46ff7651cf602a688b9ec832719ebd1d61eb"
+    },
+    {
+      "path": "painel/remoto/compor.css",
+      "sha256": "3002f1f8119752733cbd4906cf8cae6c4353bc15c56abcb585f841807e09a79f"
+    },
+    {
+      "path": "painel/remoto/compor.html",
+      "sha256": "f46a63240ef5aabea39c941d5ad2a40f6790b4384572f093aa84bf7e576592ee"
+    },
+    {
+      "path": "painel/remoto/compor.js",
+      "sha256": "9a805611ce26123f3455794f0e147742ceaaed2c62112e1d3ea663e21db13d38"
+    },
+    {
+      "path": "painel/remoto/controle.css",
+      "sha256": "6a3cd495995a5af4118c38f328e0d6732c451d2c29815c99639092407f967f37"
+    },
+    {
+      "path": "painel/remoto/controle.js",
+      "sha256": "12827c3b1ce1b274f25a7ffc484c1708f74bdd02674b81cdee38e5b790383436"
+    },
+    {
+      "path": "painel/remoto/corte.html",
+      "sha256": "16f76444bad6cf2fc3a924ecac2eb93290ffcfc919f3caf317e907b035870eb7"
+    },
+    {
+      "path": "painel/remoto/dados.html",
+      "sha256": "18531d9d3c2caa361e52de9ab4cc2cbc1790cdb7312168b8e51b1c49764e363b"
+    },
+    {
+      "path": "painel/remoto/dados.js",
+      "sha256": "4e463555b2e3e3afd6bb9dc73b0364084eb8de51b4f498a9492a803af32f1b4a"
+    },
+    {
+      "path": "painel/remoto/diagnosticos.html",
+      "sha256": "9530349bedf900cb40b747e0fcd944620a8190494be1cc32d28044c696c4a720"
+    },
+    {
+      "path": "painel/remoto/diagnosticos.js",
+      "sha256": "33341127a9eaea6c1b0cde9fe4d5d2a5c6cc16de8e60666e246d56683dcd286c"
+    },
+    {
+      "path": "painel/remoto/efeitos.html",
+      "sha256": "3348c01431ab8965f24e2791a5a0d5b75e1ec2d6ab5a4db4ae6209890a5ef9d6"
+    },
+    {
+      "path": "painel/remoto/efeitos.js",
+      "sha256": "1a63a191d382bb561065744f96c45565860b09b7d660082a3ee46ad4092e3a4d"
+    },
+    {
+      "path": "painel/remoto/fila.js",
+      "sha256": "0a8c2b86b77d41998f8c548637bde49912e86f9ee22d6a4667e22db8e2afdbd9"
+    },
+    {
+      "path": "painel/remoto/gc-gtzip.js",
+      "sha256": "4776e48506fe61a9c33373d6c7736b7bb1c68da8207248fb5068deb8b81094fa"
+    },
+    {
+      "path": "painel/remoto/gc-html.html",
+      "sha256": "8b335aba314ff946901a9c6cbc2bf68a4ed299b1f2742323389feab5ae879da8"
+    },
+    {
+      "path": "painel/remoto/gc-html.js",
+      "sha256": "d61f9060f3463d9f4d708221f7d3b25b368456ac7714d3d82d96f6c092ddb556"
+    },
+    {
+      "path": "painel/remoto/gc.html",
+      "sha256": "58884d4deef51830650a305fd879fb2d9c3da80f248c5757cec5a4382547de74"
+    },
+    {
+      "path": "painel/remoto/gc.js",
+      "sha256": "60b337e051fd9b18504f355d7950186802b61bf4bc6d9f54d69cb35940a7b6f1"
+    },
+    {
+      "path": "painel/remoto/hub.html",
+      "sha256": "7add6a2866fb3baf0300639b79df3a75674313f133490d717a43fea099272de9"
+    },
+    {
+      "path": "painel/remoto/iso-avancado.js",
+      "sha256": "6ad62c62a8e7824e2ebbfbcf030b66670ddf72f08ead34ab99c930fc01ff23d9"
+    },
+    {
+      "path": "painel/remoto/iso.html",
+      "sha256": "d62e2e3c35446432ea144436072255eb87952e199ff2fbbd37b5278877f5f895"
+    },
+    {
+      "path": "painel/remoto/macros.html",
+      "sha256": "6cfb25b93f9691d53707cc8d79c7cdbc19a49e4093f00d744c497de7ae613350"
+    },
+    {
+      "path": "painel/remoto/macros.js",
+      "sha256": "011fc3eae4f03f9e16639bd7a04710c8e51f4a4b8524575532d32d2273e3867f"
+    },
+    {
+      "path": "painel/remoto/menus-tarefas-ui.css",
+      "sha256": "443b69db2ccc16559244468062d408d31489459f8c6750ec0d2e1810a500727b"
+    },
+    {
+      "path": "painel/remoto/menus-tarefas-ui.js",
+      "sha256": "7b5000db82d56b6cb32b9db908f5e3da04f24604e1c145a1ff9b9d17821e6f7f"
+    },
+    {
+      "path": "painel/remoto/midi-feedback.js",
+      "sha256": "1e0339ff763a90660878a06d2ea1760b0ed28b049465dfdfd2aac8e34f2d9816"
+    },
+    {
+      "path": "painel/remoto/operacao.css",
+      "sha256": "21269beb83c39c32665a48b2e7cd96ed83b3ea99bce7f04a1d4989ce132a3f34"
+    },
+    {
+      "path": "painel/remoto/playout.html",
+      "sha256": "c4432133fac4b488d2a9a3caeff47ef096ca1ae7879779e72724ba322148a4b0"
+    },
+    {
+      "path": "painel/remoto/recuperacao.html",
+      "sha256": "9d4a50e2bf90df3d9f94bd552777b238e6ba4ac4297211c366dc223f9883b733"
+    },
+    {
+      "path": "painel/remoto/recuperacao.js",
+      "sha256": "95b59a9ed212bda692059ba61e7f616251d0bc568b420842e93f6cc33c8a9fff"
+    },
+    {
+      "path": "painel/remoto/rede.html",
+      "sha256": "080e70ab21cd24096002859b7ac14365b6619f75940f4a258f3a17b1b942335e"
+    },
+    {
+      "path": "painel/remoto/rede.js",
+      "sha256": "423a570143791c527f9551d015878a1b612a96cd8e5475a2ad163012dbef0121"
+    },
+    {
+      "path": "painel/remoto/replay.html",
+      "sha256": "98368b5855271fe7ed6f0175e7fe347ac5e002c3c3ac09b442f1a3f80549d0a9"
+    },
+    {
+      "path": "painel/remoto/replay.js",
+      "sha256": "d48eefda6780dd3e5f9b541e5485ab50bba5e6454b4958c237921031652fb9bd"
+    },
+    {
+      "path": "painel/remoto/saidas-contexto-ui.js",
+      "sha256": "3750982834862f137b64dd454ed408aa38b1079c48575f391ae756f8956a1569"
+    },
+    {
+      "path": "painel/remoto/saidas-external-ui.js",
+      "sha256": "c554d5b3091e9095dfb999a742016fa074c6922d31d59279deafb66d6e96a6bd"
+    },
+    {
+      "path": "painel/remoto/saidas-omt-hdr-ui.js",
+      "sha256": "be3961c73d9d12dcdcf69b19366d579953d9ec8f1bf36eca186f05227dc628d0"
+    },
+    {
+      "path": "painel/remoto/saidas-operacao-ui.js",
+      "sha256": "0c541c21a726f8be5857a797410719d4179d19dded337fadfa943e0ad1271836"
+    },
+    {
+      "path": "painel/remoto/saidas-sdi-hdr-ui.js",
+      "sha256": "4033a009da2d8b443e7ac84c82c766bf9bfa64eb9cf2a40f038362921bbc1c78"
+    },
+    {
+      "path": "painel/remoto/saidas-srt-conexao-ui.js",
+      "sha256": "1213a2debada1292c476d6554591c6c437637bc008ae4f0d1369f592e0cc46c7"
+    },
+    {
+      "path": "painel/remoto/saidas-srt-hdr-access-ui.js",
+      "sha256": "85e8937d3545e5dfac09065f7c7ff58401cdd1bd2b3a49da3bc1e5ef165c6849"
+    },
+    {
+      "path": "painel/remoto/saidas-srt-simples-ui.js",
+      "sha256": "15361b23abf0ec72357a0645c4dd85ebcdaf3f51573946f37107b0e3df7cc697"
+    },
+    {
+      "path": "painel/remoto/saidas-srt-ui.js",
+      "sha256": "dc48b0f84cff58a879c28ca4c8e14cae914cd560d08589767f1b364a7676a1a5"
+    },
+    {
+      "path": "painel/remoto/saidas.html",
+      "sha256": "74138d8d69ff08a8d62c5060e3e0be642c39f82c24f1596f7296cb22246c3a5c"
+    },
+    {
+      "path": "painel/remoto/saidas.js",
+      "sha256": "faf4cc8aa2645786aa0b100cb87112d402a496a81580158a8d2d8903b218e8e7"
+    },
+    {
+      "path": "painel/remoto/settings-encoders.js",
+      "sha256": "1ab63815501a715a96e4ce4f8d53624578ad1ce6229f4217e88884fd5d629273"
+    },
+    {
+      "path": "painel/remoto/settings-help.js",
+      "sha256": "d6ad5acd0979b85b5004bc5b356b43ff8ef72ba29fed81957e5af1b2046ea3a7"
+    },
+    {
+      "path": "painel/remoto/settings.html",
+      "sha256": "ef48e199bedf7acaf348008f137273bb5fd0d30c9dfd4da0b725811d709b0404"
+    },
+    {
+      "path": "painel/remoto/settings.js",
+      "sha256": "9119cf4e5d01f3156118f825517aa842243031d7ffe204c93cc267fb9418321b"
+    },
+    {
+      "path": "painel/remoto/sinais.html",
+      "sha256": "5abd67aff080b9b4dbb16d79d76c9093a222db346841ddd1111eb319c4feb528"
+    },
+    {
+      "path": "painel/remoto/sinais.js",
+      "sha256": "18a009640fa47dd82abd8eaee43cc51cca002164d63461abab01726f40b17c90"
+    },
+    {
+      "path": "painel/remoto/srt-hdr-ui.js",
+      "sha256": "a79c20574cfaa290fac002c17355540dbcb9d81d52eedf24af600273d7048d0b"
+    },
+    {
+      "path": "painel/remoto/srt-hdr.html",
+      "sha256": "6df48c099f98653b8c05ecbd32585c776e5579ee663772169faacf7e86e36c5f"
+    },
+    {
+      "path": "painel/remoto/studio-dialog.css",
+      "sha256": "addb0c8279e4f51ebced8517d50cb526eb590ec30c5efdcfd5a08ab84d6c0332"
+    }
+  ],
+  "nativePid": 9616,
+  "apiPid": 194776,
+  "initialVideoSettings": {
+    "baseHeight": 1080,
+    "baseWidth": 1920,
+    "fpsDenominator": 1,
+    "fpsNumerator": 30,
+    "outputHeight": 720,
+    "outputWidth": 1280
+  },
+  "encoders": [
+    {
+      "id": "obs_nvenc_hevc_tex",
+      "runtimeValidationRequired": true
+    },
+    {
+      "id": "obs_nvenc_hevc_soft",
+      "runtimeValidationRequired": true
+    },
+    {
+      "id": "jim_hevc_nvenc",
+      "runtimeValidationRequired": true
+    },
+    {
+      "id": "obs_nvenc_hevc_cuda",
+      "runtimeValidationRequired": true
+    },
+    {
+      "id": "ffmpeg_hevc_nvenc",
+      "runtimeValidationRequired": true
+    },
+    {
+      "id": "obs_qsv11_hevc",
+      "runtimeValidationRequired": true
+    },
+    {
+      "id": "obs_qsv11_hevc_soft",
+      "runtimeValidationRequired": true
+    }
+  ],
+  "source": {
+    "uuid": "c85ba097-27d6-4e57-b691-add4855b5bcf",
+    "active": {
+      "videoActive": true,
+      "videoShowing": true
+    },
+    "settings": {
+      "inputAudioTracks": {
+        "1": true,
+        "2": false,
+        "3": false,
+        "4": false,
+        "5": false,
+        "6": false
+      }
+    },
+    "route": "Master; fixture enabled in own PGM scene"
+  },
+  "selectedEncoder": "obs_nvenc_hevc_tex",
+  "srtPorts": [
+    60085,
+    60086,
+    60087,
+    60088
+  ],
+  "selectedSender": 2,
+  "httpReadInitial": {
+    "active": false,
+    "autoStart": false,
+    "available": true,
+    "bytes": 0,
+    "config": {
+      "alpha": false,
+      "audioSourceUuid": "",
+      "audioTrack": 0,
+      "autoStart": false,
+      "bitrateKbps": 16000,
+      "contract": "pq-bt2020-p010-main10",
+      "encoder": "obs_nvenc_hevc_tex",
+      "fillKey": false,
+      "host": "127.0.0.1",
+      "latencyMs": 120,
+      "port": 50499,
+      "sourceUuid": "ab3d75bd-7b02-400a-bde3-8dc6092a18d3"
+    },
+    "contract": "pq-bt2020-p010-main10",
+    "droppedFrames": 0,
+    "encoders": [
+      {
+        "id": "obs_nvenc_hevc_tex",
+        "runtimeValidationRequired": true
+      },
+      {
+        "id": "obs_nvenc_hevc_soft",
+        "runtimeValidationRequired": true
+      },
+      {
+        "id": "jim_hevc_nvenc",
+        "runtimeValidationRequired": true
+      },
+      {
+        "id": "obs_nvenc_hevc_cuda",
+        "runtimeValidationRequired": true
+      },
+      {
+        "id": "ffmpeg_hevc_nvenc",
+        "runtimeValidationRequired": true
+      },
+      {
+        "id": "obs_qsv11_hevc",
+        "runtimeValidationRequired": true
+      },
+      {
+        "id": "obs_qsv11_hevc_soft",
+        "runtimeValidationRequired": true
+      }
+    ],
+    "frames": 0,
+    "hdrAlphaSupported": false,
+    "hdrSources": [
+      {
+        "height": 240,
+        "name": "OWN Native24 SRT HDR 1791608861440 PQ10",
+        "uuid": "c85ba097-27d6-4e57-b691-add4855b5bcf",
+        "width": 1024
+      }
+    ],
+    "pending": false,
+    "runtimeValidationRequired": true,
+    "senderId": 2,
+    "state": "idle",
+    "success": true
+  },
+  "readOnlySnapshots": {
+    "before": {
+      "config": {
+        "freemix-srt-hdr-0.json": "2de9248db7b490b4d84cb31d99c7a9998cc8b8ef74628a97f0679d5c7e60456c",
+        "freemix-srt-hdr-1.json": "6140beb86ed4902f815a696f6dcbdd8c09749233dc89881d664619a510099102",
+        "freemix-srt-hdr-2.json": "79962e11899963b56d8f021020b9862aec39248996c48f732148ac95ce19eaf7",
+        "freemix-srt-hdr-3.json": "086aa42145d278c49b98599bdc643bed2f246b7aa4693ddd26f5653c8f39a18c"
+      },
+      "journalSha256": "ade0c51ce35f95032135d340b447b0573f488dda2c27ac0830ed028c6b064fb6",
+      "journalBytes": 1387
+    },
+    "after": {
+      "config": {
+        "freemix-srt-hdr-0.json": "2de9248db7b490b4d84cb31d99c7a9998cc8b8ef74628a97f0679d5c7e60456c",
+        "freemix-srt-hdr-1.json": "6140beb86ed4902f815a696f6dcbdd8c09749233dc89881d664619a510099102",
+        "freemix-srt-hdr-2.json": "79962e11899963b56d8f021020b9862aec39248996c48f732148ac95ce19eaf7",
+        "freemix-srt-hdr-3.json": "086aa42145d278c49b98599bdc643bed2f246b7aa4693ddd26f5653c8f39a18c"
+      },
+      "journalSha256": "ade0c51ce35f95032135d340b447b0573f488dda2c27ac0830ed028c6b064fb6",
+      "journalBytes": 1387
+    }
+  },
+  "configuredResponse": {
+    "active": false,
+    "autoStart": false,
+    "available": true,
+    "bytes": 0,
+    "config": {
+      "alpha": false,
+      "audioSourceUuid": "",
+      "audioTrack": 0,
+      "autoStart": false,
+      "bitrateKbps": 16000,
+      "contract": "pq-bt2020-p010-main10",
+      "encoder": "obs_nvenc_hevc_tex",
+      "fillKey": false,
+      "host": "127.0.0.1",
+      "latencyMs": 120,
+      "port": 60087,
+      "sourceUuid": "c85ba097-27d6-4e57-b691-add4855b5bcf"
+    },
+    "contract": "pq-bt2020-p010-main10",
+    "droppedFrames": 0,
+    "encoders": [
+      {
+        "id": "obs_nvenc_hevc_tex",
+        "runtimeValidationRequired": true
+      },
+      {
+        "id": "obs_nvenc_hevc_soft",
+        "runtimeValidationRequired": true
+      },
+      {
+        "id": "jim_hevc_nvenc",
+        "runtimeValidationRequired": true
+      },
+      {
+        "id": "obs_nvenc_hevc_cuda",
+        "runtimeValidationRequired": true
+      },
+      {
+        "id": "ffmpeg_hevc_nvenc",
+        "runtimeValidationRequired": true
+      },
+      {
+        "id": "obs_qsv11_hevc",
+        "runtimeValidationRequired": true
+      },
+      {
+        "id": "obs_qsv11_hevc_soft",
+        "runtimeValidationRequired": true
+      }
+    ],
+    "frames": 0,
+    "hdrAlphaSupported": false,
+    "hdrSources": [
+      {
+        "height": 240,
+        "name": "OWN Native24 SRT HDR 1791608861440 PQ10",
+        "uuid": "c85ba097-27d6-4e57-b691-add4855b5bcf",
+        "width": 1024
+      }
+    ],
+    "pending": false,
+    "runtimeValidationRequired": true,
+    "senderId": 2,
+    "state": "idle",
+    "success": true
+  },
+  "startAcceptance": {
+    "state": "starting",
+    "active": false,
+    "pending": true
+  },
+  "stopAcceptance": {
+    "state": "stopping",
+    "active": false,
+    "pending": true
+  },
+  "previewUrl": "http://127.0.0.1:64546/srt-hdr",
+  "previewReadUrl": "http://127.0.0.1:64546/api/srt-hdr?senderId=2",
+  "previewDefaultSender": 0,
+  "previewSelectedSender": 2,
+  "finalResponse": {
+    "active": false,
+    "autoStart": false,
+    "available": true,
+    "bytes": 0,
+    "config": {
+      "alpha": false,
+      "audioSourceUuid": "",
+      "audioTrack": 0,
+      "autoStart": false,
+      "bitrateKbps": 16000,
+      "contract": "pq-bt2020-p010-main10",
+      "encoder": "obs_nvenc_hevc_tex",
+      "fillKey": false,
+      "host": "127.0.0.1",
+      "latencyMs": 120,
+      "port": 60087,
+      "sourceUuid": "c85ba097-27d6-4e57-b691-add4855b5bcf"
+    },
+    "contract": "pq-bt2020-p010-main10",
+    "droppedFrames": 0,
+    "encoders": [
+      {
+        "id": "obs_nvenc_hevc_tex",
+        "runtimeValidationRequired": true
+      },
+      {
+        "id": "obs_nvenc_hevc_soft",
+        "runtimeValidationRequired": true
+      },
+      {
+        "id": "jim_hevc_nvenc",
+        "runtimeValidationRequired": true
+      },
+      {
+        "id": "obs_nvenc_hevc_cuda",
+        "runtimeValidationRequired": true
+      },
+      {
+        "id": "ffmpeg_hevc_nvenc",
+        "runtimeValidationRequired": true
+      },
+      {
+        "id": "obs_qsv11_hevc",
+        "runtimeValidationRequired": true
+      },
+      {
+        "id": "obs_qsv11_hevc_soft",
+        "runtimeValidationRequired": true
+      }
+    ],
+    "frames": 0,
+    "hdrAlphaSupported": false,
+    "hdrSources": [
+      {
+        "height": 240,
+        "name": "OWN Native24 SRT HDR 1791608861440 PQ10",
+        "uuid": "c85ba097-27d6-4e57-b691-add4855b5bcf",
+        "width": 1024
+      }
+    ],
+    "pending": false,
+    "runtimeValidationRequired": true,
+    "senderId": 2,
+    "state": "idle",
+    "success": true
+  },
+  "previewReady": true,
+  "receiverExits": [
+    {
+      "label": "http-selected-hdr",
+      "exit": {
+        "code": 4294967291,
+        "signal": null
+      },
+      "forcedOwnCleanup": false
+    }
+  ],
+  "shutdownAccepted": true,
+  "nativeClosed": true,
+  "apiClosed": true,
+  "logs": [
+    {
+      "sha256": "4e59e4edbf94f3044648674da8d47c5349bb19145531507588ba143e9f07f91b",
+      "nativeVersionConfirmed": true,
+      "allocations": [
+        0
+      ],
+      "meterWarnings": 4,
+      "doubleDestroyWarnings": 0,
+      "remainingObjectWarnings": 0
+    },
+    {
+      "sha256": "1f1a96ce7bb4ba01d7701940ba6b58921b0e6034e1461329027eeccb833e09fc",
+      "nativeVersionConfirmed": true,
+      "allocations": [
+        0
+      ],
+      "meterWarnings": 1,
+      "doubleDestroyWarnings": 0,
+      "remainingObjectWarnings": 0
+    },
+    {
+      "sha256": "4fc029056fe3deaa4170676a2f1e536aa5bafe3d9b501c539c1f491d092fdf75",
+      "nativeVersionConfirmed": true,
+      "allocations": [
+        0
+      ],
+      "meterWarnings": 4,
+      "doubleDestroyWarnings": 0,
+      "remainingObjectWarnings": 0
+    },
+    {
+      "sha256": "b1c8ee14303a950e4abed9e218b1d55ce7669164876982cf65b5220c3da2dec6",
+      "nativeVersionConfirmed": true,
+      "allocations": [
+        0
+      ],
+      "meterWarnings": 1,
+      "doubleDestroyWarnings": 0,
+      "remainingObjectWarnings": 0
+    }
+  ],
+  "crashArtifacts": 0,
+  "finished": "2026-10-10T05:16:14.774Z",
+  "limits": [
+    "Native24 loopback only; no WAN/physical vMix homologation",
+    "Fixture static10bit bands/ramp, actual output quantization verified; no subjective HDR display assessment",
+    "Master audio explicit from active own scene; unrelated private audio not injected",
+    "This QA uses signed031500 loader plus exact fullNative24; not a sealed candidate release"
+  ]
+}

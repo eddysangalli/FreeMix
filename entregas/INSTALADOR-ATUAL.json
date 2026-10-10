@@ -1,16 +1,20 @@
 {
   "status": "VERIFIED",
-  "version": "0.1.0-local.20261010000500",
-  "file": "FreeMix-Studio-Setup-0.1.0-local.20261010000500.exe",
-  "sha256": "cd7529d9d9ebf2806b40252691d73c7f28d5dcf49aeeddcbf85ea2cd5c624798",
-  "packageManifestHash": "6fbf37845536e8b3a6478ec15274f5ce9f7bf14051e10703f2c197550f417619",
-  "nativeCommit": "4793d1a40f56ea9b6e887eb49189d937758e3b7f",
-  "verifiedAt": "2026-10-10T00:26:17.471Z",
+  "version": "0.1.0-local.20261010035000",
+  "file": "FreeMix-Studio-Setup-0.1.0-local.20261010035000.exe",
+  "sha256": "155aa53e12ae4431f66d85fee7785ee158b343ffcda8ae41550025bab7a22c10",
+  "packageManifestHash": "c268a198e35ca5607acc8fb6a5a952aaabb66e8c978ca1fab968f44624e2bea5",
+  "nativeCommit": "709f101d1aaeb25ccc6f6eab77a3e23e9364f3b0",
+  "githubCommit": "82691c8b47f5c628bb8f491d0f278b4d6790d2a5",
+  "verifiedAt": "2026-10-10T05:06:01.781Z",
   "operatorActivated": false,
+  "distributionProof": "qa-finalizacao/setup-035000-qa-retry2/report.json",
+  "startupMethod": "Actual Setup install and two cooperative Native23 cycles; earlier guard failures preserved",
   "limits": [
-    "Current development Windows tested; clean Windows, physical hardware and WAN acceptance remain pending",
-    "No Authenticode certificate; inner payload is signed with Ed25519",
-    "No automatic operator activation, firewall changes or log upload",
-    "Replay Master digital passed eight steady segments; rapid switching transients and physical audition not tested"
+    "No Authenticode certificate; Ed25519 signed inner payload",
+    "Physical/WAN/clean Windows not homologated",
+    "Properties/filters handoff accepted; Native editor visibility/z-order not confirmed",
+    "Subsequent navigation cleanup, remaining Audio/Replay menus, queued ticker and SRT HDR Native24 are not included in this sealed version",
+    "Meter warnings [3,0] preserved; counter [0,0] and crash0 in own run are not a universal guarantee"
   ]
 }

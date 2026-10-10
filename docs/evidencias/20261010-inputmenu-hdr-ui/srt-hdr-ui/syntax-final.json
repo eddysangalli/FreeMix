@@ -1,0 +1,20 @@
+{
+  "status": "PASS",
+  "checks": [
+    {
+      "path": "FreeMix/painel/remoto/srt-hdr-ui.js",
+      "sha256": "642b6a542e148d80fa86314135aa250ccfcc48bf940df3948cdacdf405c34efc",
+      "status": "PASS_NODE_CHECK"
+    },
+    {
+      "path": "qa-finalizacao/srt-hdr-api-ux-native24-20261010/test-final-ui.mjs",
+      "sha256": "5c3496bc90b59567bc83b5d84218cca4a19d3aacc756d6a4b4245a7777fd2bb0",
+      "status": "PASS_NODE_CHECK"
+    },
+    {
+      "path": "qa-finalizacao/srt-hdr-api-ux-native24-20261010/freeze-final.mjs",
+      "sha256": "21cce6de5d2b33e23ae2e29846a000236dd4364c9f2c541dd1d2b43e7c7eb8b9",
+      "status": "PASS_NODE_CHECK"
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+if (st.pop === "menu") { const name = st.popArg, v = esc(name), ins = st.items.get(name) || [];
+      const hasMedia = ins.some((i) => isMedia(i.kind));
+      p.innerHTML = `<h3>${v}</h3><div class="menu">` + ins.map((i) => `<button data-a="props" data-v="${esc(i.name)}">Configurações de ${esc(i.name)}…</button>${st.gcNames.has(i.name) ? `<button data-a="gcedit" data-v="${esc(i.name)}"><b>Editar título…</b></button>` : ""}<button data-a="filters" data-v="${esc(i.name)}">Filtros de ${esc(i.name)}…</button>${i.kind === "browser_source" ? `<button data-a="calllink" data-v="${esc(i.name)}">Link do convidado (FreeMix Call)…</button>` : ""}`).join("")
+        + `<button data-a="minimizetoggle" data-v="${v}">${st.minimized?.[name] ? "Expandir entrada" : "Minimizar entrada"}</button>`
+        + (hasMedia ? `<button data-a="togglespeed" data-v="${v}">${st.showSpeed?.[name] ? "Ocultar velocidade de exibição" : "Show/Hide PlayBack Speed"}</button>` : "")
+        + `<button data-a="layers" data-v="${v}">Camadas: outras entradas por cima…</button><button data-a="audioadd" data-v="${v}">Juntar áudio a esta entrada…</button><button data-a="renameask" data-v="${v}">Renomear…</button><button data-a="tag" data-v="${v}">Cor…</button><button data-a="projector" data-v="${v}">Abrir em janela</button>${name === st.program ? "" : `<button data-a="closeask" data-v="${v}">Fechar entrada</button>`}</div>`; }
+    

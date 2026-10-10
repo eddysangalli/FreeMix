@@ -1,5 +1,48 @@
 # Pendências reais e critérios de conclusão
 
+## Estado vigente em 10/10/2026
+
+**035000 selecionado/VERIFIED**, Native23/709f101, Setup SHA155aa53e12ae4431f66d85fee7785ee158b343ffcda8ae41550025bab7a22c10. QA final: instalação própria e duas aberturas/fechamentos contador 0 / crash 0/Meter 3/0, diagnóstico/uninstall reais. **050500/Native24/a047860 é fonte posterior, ainda sem pacote/Setup instalado/aprovado neste registro.** Operador preservado. Provas completas em ATUALIZACAO-20261010.md.
+
+### Código já feito versus gate restante
+
+| Frente | Evidência confirmada | Pendência real / aceite |
+|---|---|---|
+| Distribuição/recuperação |035000 instalado/reiniciado/diagnosticado/desinstalado; QR/ticker finito/.fmx sem originais em ensaio instalado anterior031500. | Gerar/selar/instalar050500 com pins/closure e QA integrada; Windows limpo separado. |
+| Operações/menus | Preview UUID antes do Take, gate/recibos/dedup/delete;70 contratos atuais e12 verificações Native23; Calls21 backend / 34 UI. NAV/ticker integrados, menus55/input44 com IAB próprio. | Conferir novo pacote instalado/carga real; HTTP/mock não medem latência audiovisual geral. Properties/Filters queued sem confirmação visible/focus/z-order; draft observabilidade não aplicado. |
+| SRT HDR opaco | Native24: HEVC Main10/P010/PQ/BT.2020 limited+AAC48k;4 NVENC em1024×240/30fps,863 níveis decodificados; VUI/PTS/PCM/reconnect/stop/contexto. HTTP: 7 PASS/contador 0 / crash 0/Meter 1;2 guards finais UI VM PASS. | Novo pacote, receptor/monitorHDR, WAN/longa duração/UHD/60fps e outrosGPU/encoders. IAB/HTTP anterior aos2 guards finais. Capability não equivale a mídia homologada; não envia alpha. |
+| GTZIP | QR offline/edição/recuperação protegida; Polygon/Path33; template2D e texto Add/Replace/fila de 32 itens/direções/FPS racional integrados; CEF Native23 ACK/movimento sem reload. | QA instalada ticker textual novo. Templates/imagens/feeds/3D/sequências ausentes fora do contrato; exigir frames/tempos/exemplos. Não são743títulos aprovados. |
+| Replay/MultiGravação | Histórico MSE em REC, IN/OUT, 4 players/autoplay;30 pós-seek/81 comparações em 90 s até1 quadro software; PCM 30/50/100/VFR/NTSC/EOF. Composição com 3 TS finalizados/decodificados,outputs 0/close normal. | Câmeras/SSD/GPU/sessão longa; software não cria genlock. Não SourceRecord direto nos players; composição/MultiGravação é caminho aprovado. |
+| Áudio | Master com 4 players/mute/off-air/−6dB/troca/tons exclusivos; ASIO 8 buses/16 canais/16 formatos/10 mil callbacks RT mock; N-1/talkback separado do Master. | Interface/driver/loopback físico por canal, audição/Calls externas; Master medido em segmentos estáveis, não todos transientes. |
+| NDI/OMT/SDI | SDR alpha local; OMT P216 10 bit PQ/HLG manual/4 senders; SDI HDR compilado/guards negativos. | NDI HDR Advanced SDK/licença+API/renderer ainda faltantes. SDI placa/driver/keyer/modos/receptor; OMT não promete metadados automáticos. |
+| HTTPS/atualização |50 checks TLS local real/feed/assinatura/hash/download/redirect/negativas; trustCA sósubprocessoQA sem desativarSSL. Apply/rollback provas separadas. | Domínio/DNS/VPS/permissões para serviço público; TLS local não é código pendente. WAN/feed público/TURN outros gates. |
+| Rede/Calls/controladores/efeitos | FMXB AES/FEC/NACK/loopback; OSC/macros/feedback software; Whisper/shutdown corrigidos,6/7 termos no DLL novo. | WAN 2 conexões/VPS/receptor; convidados/TURN; MIDI/StreamDeck/XKeys/PTZ; corpus de áudio/ruído/endurance. FMXB não BELABOX/srtla; 6/7 não reconhecimento universal. |
+
+### Faixas condicionais após recursos disponíveis
+
+| Categoria | Condição/critério | Estimativa inicial de trabalho, não garantia de correção |
+|---|---|---|
+| Software/pacote050500 | Freeze/commit/assinatura; startup/ações/stop/diagnóstico/uninstall com pins exatos. |2–4h se não surgir falha; diagnóstico novo antes de reestimar. |
+| Editores Native | Build aprovada e observação desktop real; separar accepted/visible/focus de z-order. |2–4h matriz inicial após acesso; correção não orçada sem reprodução. |
+| NDI HDR/GTZIP desconhecido | SDK/licença/API ou exemplos/frames/tempos completos. | Sem prazo fechado antes do contrato. |
+| ASIO/Direct Out | Interface/driver/loopback cada canal. |2–4h matriz básica. |
+| SDI/HDR | DeckLink/driver/keyer/receptor/modos compatíveis. |4–8h SDR/Fill+Key; HDR conforme equipamento. |
+| SRT HDR receptor/WAN | GPU/receptor/monitor e rede real;decode/PTS/áudio/reconnect/carga. |2–4h matriz receptora inicial;WAN/endurance conforme topologia/duração. |
+| Bonding WAN | VPS UDP/2 conexões/receptor remoto. |4–8h matriz inicial; correções pelo resultado. |
+| HTTPS/TURN/Calls | Domínio/DNS/VPS/permissões/portas/convidados. |2–4h configuração;1–2h sessão Calls. |
+| Replay/controladores/Windows limpo | Câmeras/SSD/GPU,dispositivos/PTZ ou máquina/VMlimpa. |2–4h por matriz/conjunto+sessão combinada. |
+| Authenticode | Certificado/autorização. | Condicionado à obtenção;Ed25519 não substitui Authenticode. |
+
+Não houve ativação operador, homologação física/WAN geral ou upload automático de diagnóstico. Alpha WebBrowser abortado; ponte alpha nativa beta separada.13/10 condicionado aos recursos/resultados. Registros antigos abaixo não são instrução vigente.
+
+---
+
+## Histórico preservado — estados anteriores, não instruções atuais
+
+Registros abaixo mantêm textos/limites originais. Referências antigas a atual, pendente ou próximo valem para sua data; o estado vigente é o descrito acima.
+
+# Pendências reais e critérios de conclusão
+
 ## Estado atual — instalador031500 aprovado; revisão operacional em andamento
 
 Atualizado em 2026-10-10T04:22:12.902Z. O instalador aprovado e selecionado é **0.1.0-local.20261010031500**. Duas instalações reais, migração opt-in, diagnóstico sanitizado, credenciais novas e desinstalação conservadora passaram. QR/ticker/recuperação passaram em ensaio instalado composto; as falhas anteriores estão preservadas. Setup SHA256616a475d8baa9d317eaf68d7f7acade93bc3d308aa1c8830dd3bc09cc10f520f; ZIP2179ea72ef21bf0eab76423c578761e4b34a7c76311dac15840c6fbd7730a511. Contém Native22/500ced5. Nenhuma mesa do operador foi substituída.
