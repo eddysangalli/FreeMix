@@ -1,0 +1,46 @@
+{
+  "at": "2026-10-10T15:47:34.299Z",
+  "originalStatus": "OBSERVATION_COMPLETE",
+  "observationCompleteOnly": true,
+  "legacyResetPass": false,
+  "fullFTBPass": false,
+  "RootReviewedFourActualImages": true,
+  "ownPid": 84792,
+  "cimAbsent": true,
+  "cleanup": true,
+  "Native32Pins2085Matched": true,
+  "epochDelta": 1,
+  "requestedResetDelta": 1,
+  "fallbackSamples": 1,
+  "physicalDisplayAcknowledged": false,
+  "sourceAudioPTSAvailable": false,
+  "operatorTouched": false,
+  "newInstallerApproved": false,
+  "pins": [
+    {
+      "path": "ORIGINAL-OBSERVATION.json",
+      "bytes": 296360,
+      "sha256": "8db34942c9c52809a18c0b93eaaae71234785f6b62e54883b976cd4c2b3ee505"
+    },
+    {
+      "path": "baseline.png",
+      "bytes": 34677,
+      "sha256": "dbc24e55d0f70a78f3ccda6f0104da9d6a7c3865e3a3a0f32035691181893a8a"
+    },
+    {
+      "path": "after-500.png",
+      "bytes": 33133,
+      "sha256": "1815f18a5191efac9c9a4b0bd87f0f68c35ade67704b3c235da5729adbc4bb3a"
+    },
+    {
+      "path": "after-1500.png",
+      "bytes": 35109,
+      "sha256": "d6a12c9243276d26f6e943ddd83d78564fb66b2c5e32437508c2ab82ac88c07e"
+    },
+    {
+      "path": "after-4000.png",
+      "bytes": 36495,
+      "sha256": "cd7826ee600489709d3c67f7b32cecb21701749f65f3af6d64f94073bfd12e86"
+    }
+  ]
+}

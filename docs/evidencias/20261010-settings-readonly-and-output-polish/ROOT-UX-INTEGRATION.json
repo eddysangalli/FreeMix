@@ -1,0 +1,72 @@
+{
+  "status": "ROOT_INTEGRATED_UX_3_SOURCE_ONLY_AND_STAGED_LIFECYCLE_NOT_COMPILED",
+  "at": "2026-10-10T15:18:21.574Z",
+  "verified": {
+    "ux": 25,
+    "lifecycle": 32,
+    "uxModels": 12,
+    "lifecycleModels": 31
+  },
+  "product": [
+    {
+      "path": "FreeMix/painel/remoto/operacao.css",
+      "before": "21269beb83c39c32665a48b2e7cd96ed83b3ea99bce7f04a1d4989ce132a3f34",
+      "after": "5937b9ac9a1092adfc855539f2bd394684f564e3a69a81abfd671bfccd56e4ce",
+      "bytes": 7158
+    },
+    {
+      "path": "FreeMix/painel/remoto/saidas-operacao-ui.js",
+      "before": "66c556599877f2f51c44eda266575c6d7039fe34038fd638aaa79c2f65c61e09",
+      "after": "ca2fc11878f5c4740750f2cc284316d76bd37355ab0615afdc6f60832116324d",
+      "bytes": 26960
+    },
+    {
+      "path": "FreeMix/painel/remoto/saidas-readonly-ui.js",
+      "before": "eccca62623370952e855248cd5250a72fd861c94da590f6147d60aca42d1c6ac",
+      "after": "560c4828d0531a79980e629354e8d63b5eb1bd49aa5d9f3e3ae218924795f61b",
+      "bytes": 4271
+    }
+  ],
+  "backup": "historico/20261010-1518-before-ux-polish",
+  "lifecycle": {
+    "allowlistSha256": "8b5f446214b3774e869e04e0a71dba1e325f24ce1ca677dcc0da45bc1ed79fa7",
+    "job": "qa-finalizacao/LocalVocal-GovBuild-4fe1e45cd2e14822bcf9dea86ac01251",
+    "targets": [
+      {
+        "path": "src/transcription-filter.cpp",
+        "before": {
+          "bytes": 29552,
+          "sha256": "32270657c27f6d2651a1af7cd16397b64a65c6b8c94203045293074f3e77bd4c"
+        },
+        "after": {
+          "bytes": 30553,
+          "sha256": "b9ebe7dd306fc81289ecc69f40b51b418b8da9799ac086149967f2755363afb7"
+        },
+        "patchSha256": "b8efd2f1fb115df770dee3cf2117c28be94e4f65d9a5729af0ece01fb2d9a984"
+      },
+      {
+        "path": "src/transcription-filter-data.h",
+        "before": {
+          "bytes": 9203,
+          "sha256": "1c5aaeb1e9752403b93d34e251d69a65921982fead54eb274f856b544b6e7c19"
+        },
+        "after": {
+          "bytes": 9312,
+          "sha256": "9117fe4c7b04d6eac525f4d2d5681e8d1f4e7944b1866797ac739f8b8d0370b7"
+        },
+        "patchSha256": "a45032d65145c123b1ac02c26f8d1bf6c5496b609ce9d63a5398f65cfe6c91be"
+      },
+      {
+        "path": "src/localvocal-frontend-registration.h",
+        "before": null,
+        "after": {
+          "bytes": 2659,
+          "sha256": "6ca9c79f36e42816ec91b10669a1b69f4e56ff6c1f7343edde196146d902b00b"
+        }
+      }
+    ]
+  },
+  "afterRender": false,
+  "NativeStarted": false,
+  "operatorTouched": false
+}

@@ -1,0 +1,3655 @@
+{
+  "status": "FAIL",
+  "NativeGeneration": 32,
+  "head": "877b214d197fd013a83f0f6c625bfa4767eed936",
+  "criteria": {
+    "width": 640,
+    "height": 360,
+    "colorDeltaMin": 12,
+    "restoredMeanMax": 2,
+    "sharpnessRatioMin": 1.05,
+    "chromaGreenAlphaMax": 10,
+    "chromaForegroundAlphaMin": 245,
+    "audioSegmentMs": 2400,
+    "audioSettlingMs": 800,
+    "audioNoiseReductionDbMin": 3,
+    "audioRestoredRatioMin": 0.9,
+    "audioRestoredRatioMax": 1.1,
+    "limiterPeakMax": 0.76,
+    "speechRmsMin": 0.005,
+    "captionDeadlineMs": 45000,
+    "captionMinExpectedTokens": 3,
+    "captionMinMatchedTokens": 3,
+    "captionPollLimit": 45
+  },
+  "NativeExecuted": true,
+  "operatorTouched": false,
+  "microphone": false,
+  "hardwareOutput": false,
+  "networkCalls": false,
+  "rawLogCopied": false,
+  "recognizedTextIncluded": false,
+  "images": [
+    {
+      "label": "color-before",
+      "sha256": "15613a805507c37792fcd93112b3cf816843c61183c75caa9b7d976f76762f81",
+      "file": "qa-quality-evidence\\color-before.png",
+      "alphaEncoded": true
+    },
+    {
+      "label": "color-after",
+      "sha256": "41460b961e610f77d74e2378c29a7375732adff3792a2cb578db27c2bd95e13f",
+      "file": "qa-quality-evidence\\color-after.png",
+      "alphaEncoded": true
+    },
+    {
+      "label": "color-off",
+      "sha256": "15613a805507c37792fcd93112b3cf816843c61183c75caa9b7d976f76762f81",
+      "file": "qa-quality-evidence\\color-off.png",
+      "alphaEncoded": true
+    },
+    {
+      "label": "sharpness-before",
+      "sha256": "0f1408f14b6927f49417de09a08ac5205c69f3acd424cb06d30a09a10cc2bec1",
+      "file": "qa-quality-evidence\\sharpness-before.png",
+      "alphaEncoded": true
+    },
+    {
+      "label": "sharpness-after",
+      "sha256": "5c8547a58775ebfb745d1299f823c71aed98dcdd9d7d982ed4c9a1e160ac3d18",
+      "file": "qa-quality-evidence\\sharpness-after.png",
+      "alphaEncoded": true
+    },
+    {
+      "label": "sharpness-off",
+      "sha256": "0f1408f14b6927f49417de09a08ac5205c69f3acd424cb06d30a09a10cc2bec1",
+      "file": "qa-quality-evidence\\sharpness-off.png",
+      "alphaEncoded": true
+    },
+    {
+      "label": "chroma-before",
+      "sha256": "4dea95dcb0806949060901dd5d557492b9cd46567dcac300e23dbde23e4891b7",
+      "file": "qa-quality-evidence\\chroma-before.png",
+      "alphaEncoded": true
+    },
+    {
+      "label": "chroma-after",
+      "sha256": "cf6831f15c2d003e2c4cc7c27582947383aef8d787bd3c4621b82a293cf3f7ca",
+      "file": "qa-quality-evidence\\chroma-after.png",
+      "alphaEncoded": true
+    },
+    {
+      "label": "chroma-off",
+      "sha256": "4dea95dcb0806949060901dd5d557492b9cd46567dcac300e23dbde23e4891b7",
+      "file": "qa-quality-evidence\\chroma-off.png",
+      "alphaEncoded": true
+    }
+  ],
+  "audio": [
+    {
+      "label": "noise-before",
+      "startNs": 651163191994800,
+      "endNs": 651165593832700,
+      "routeBefore": {
+        "selected": "7c42b23b-9f81-4bbf-84d8-d09153e7be92",
+        "program": {
+          "currentProgramSceneName": "QA",
+          "currentProgramSceneUuid": "8a3e49c1-b597-4d58-b703-15b885ea1f4e"
+        },
+        "vendorSuccess": true,
+        "sceneItems": [
+          {
+            "sceneItemId": 5,
+            "sourceUuid": "7c42b23b-9f81-4bbf-84d8-d09153e7be92",
+            "sceneItemEnabled": true
+          },
+          {
+            "sceneItemId": 6,
+            "sourceUuid": "91b9c92e-b63d-44be-8a87-92dec34c9dca",
+            "sceneItemEnabled": true
+          },
+          {
+            "sceneItemId": 7,
+            "sourceUuid": "52711931-8b7d-45a3-a94c-1ef63bbf37ab",
+            "sceneItemEnabled": true
+          }
+        ],
+        "audio": [
+          {
+            "uuid": "7c42b23b-9f81-4bbf-84d8-d09153e7be92",
+            "name": "QA Quality noise",
+            "tracks": {
+              "1": true,
+              "2": false,
+              "3": false,
+              "4": false,
+              "5": false,
+              "6": false
+            },
+            "muted": false,
+            "volumeMul": 1,
+            "monitorType": "OBS_MONITORING_TYPE_NONE",
+            "mediaState": "OBS_MEDIA_STATE_PLAYING",
+            "mediaCursor": 597,
+            "mediaDuration": 8000,
+            "native": {
+              "uuid": "7c42b23b-9f81-4bbf-84d8-d09153e7be92",
+              "kind": "ffmpeg_source",
+              "audio": true,
+              "active": true,
+              "showing": true,
+              "enabled": true
+            }
+          },
+          {
+            "uuid": "91b9c92e-b63d-44be-8a87-92dec34c9dca",
+            "name": "QA Quality tone",
+            "tracks": {
+              "1": true,
+              "2": false,
+              "3": false,
+              "4": false,
+              "5": false,
+              "6": false
+            },
+            "muted": true,
+            "volumeMul": 1,
+            "monitorType": "OBS_MONITORING_TYPE_NONE",
+            "mediaState": "OBS_MEDIA_STATE_PLAYING",
+            "mediaCursor": 3413,
+            "mediaDuration": 8000,
+            "native": {
+              "uuid": "91b9c92e-b63d-44be-8a87-92dec34c9dca",
+              "kind": "ffmpeg_source",
+              "audio": true,
+              "active": true,
+              "showing": true,
+              "enabled": true
+            }
+          },
+          {
+            "uuid": "52711931-8b7d-45a3-a94c-1ef63bbf37ab",
+            "name": "QA Quality speech",
+            "tracks": {
+              "1": true,
+              "2": false,
+              "3": false,
+              "4": false,
+              "5": false,
+              "6": false
+            },
+            "muted": true,
+            "volumeMul": 1,
+            "monitorType": "OBS_MONITORING_TYPE_NONE",
+            "mediaState": "OBS_MEDIA_STATE_PLAYING",
+            "mediaCursor": 3413,
+            "mediaDuration": 16151,
+            "native": {
+              "uuid": "52711931-8b7d-45a3-a94c-1ef63bbf37ab",
+              "kind": "ffmpeg_source",
+              "audio": true,
+              "active": true,
+              "showing": true,
+              "enabled": true
+            }
+          }
+        ],
+        "problems": [],
+        "elapsedMs": 4.938900000001013,
+        "polls": 1
+      },
+      "routeAfter": {
+        "selected": "7c42b23b-9f81-4bbf-84d8-d09153e7be92",
+        "program": {
+          "currentProgramSceneName": "QA",
+          "currentProgramSceneUuid": "8a3e49c1-b597-4d58-b703-15b885ea1f4e"
+        },
+        "vendorSuccess": true,
+        "sceneItems": [
+          {
+            "sceneItemId": 5,
+            "sourceUuid": "7c42b23b-9f81-4bbf-84d8-d09153e7be92",
+            "sceneItemEnabled": true
+          },
+          {
+            "sceneItemId": 6,
+            "sourceUuid": "91b9c92e-b63d-44be-8a87-92dec34c9dca",
+            "sceneItemEnabled": true
+          },
+          {
+            "sceneItemId": 7,
+            "sourceUuid": "52711931-8b7d-45a3-a94c-1ef63bbf37ab",
+            "sceneItemEnabled": true
+          }
+        ],
+        "audio": [
+          {
+            "uuid": "7c42b23b-9f81-4bbf-84d8-d09153e7be92",
+            "name": "QA Quality noise",
+            "tracks": {
+              "1": true,
+              "2": false,
+              "3": false,
+              "4": false,
+              "5": false,
+              "6": false
+            },
+            "muted": false,
+            "volumeMul": 1,
+            "monitorType": "OBS_MONITORING_TYPE_NONE",
+            "mediaState": "OBS_MEDIA_STATE_PLAYING",
+            "mediaCursor": 2986,
+            "mediaDuration": 8000,
+            "native": {
+              "uuid": "7c42b23b-9f81-4bbf-84d8-d09153e7be92",
+              "kind": "ffmpeg_source",
+              "audio": true,
+              "active": true,
+              "showing": true,
+              "enabled": true
+            }
+          },
+          {
+            "uuid": "91b9c92e-b63d-44be-8a87-92dec34c9dca",
+            "name": "QA Quality tone",
+            "tracks": {
+              "1": true,
+              "2": false,
+              "3": false,
+              "4": false,
+              "5": false,
+              "6": false
+            },
+            "muted": true,
+            "volumeMul": 1,
+            "monitorType": "OBS_MONITORING_TYPE_NONE",
+            "mediaState": "OBS_MEDIA_STATE_PLAYING",
+            "mediaCursor": 5888,
+            "mediaDuration": 8000,
+            "native": {
+              "uuid": "91b9c92e-b63d-44be-8a87-92dec34c9dca",
+              "kind": "ffmpeg_source",
+              "audio": true,
+              "active": true,
+              "showing": true,
+              "enabled": true
+            }
+          },
+          {
+            "uuid": "52711931-8b7d-45a3-a94c-1ef63bbf37ab",
+            "name": "QA Quality speech",
+            "tracks": {
+              "1": true,
+              "2": false,
+              "3": false,
+              "4": false,
+              "5": false,
+              "6": false
+            },
+            "muted": true,
+            "volumeMul": 1,
+            "monitorType": "OBS_MONITORING_TYPE_NONE",
+            "mediaState": "OBS_MEDIA_STATE_PLAYING",
+            "mediaCursor": 5888,
+            "mediaDuration": 16151,
+            "native": {
+              "uuid": "52711931-8b7d-45a3-a94c-1ef63bbf37ab",
+              "kind": "ffmpeg_source",
+              "audio": true,
+              "active": true,
+              "showing": true,
+              "enabled": true
+            }
+          }
+        ],
+        "problems": [],
+        "elapsedMs": 6.011500000000524,
+        "polls": 1
+      },
+      "metrics": {
+        "finite": true,
+        "samplesPerChannel": 115712,
+        "seconds": 2.4106666666666667,
+        "rms": 0.006936763069238296,
+        "peak": 0.011993408203125
+      }
+    },
+    {
+      "label": "noise-rnnoise",
+      "startNs": 651166761891700,
+      "endNs": 651169162690500,
+      "routeBefore": {
+        "selected": "7c42b23b-9f81-4bbf-84d8-d09153e7be92",
+        "program": {
+          "currentProgramSceneName": "QA",
+          "currentProgramSceneUuid": "8a3e49c1-b597-4d58-b703-15b885ea1f4e"
+        },
+        "vendorSuccess": true,
+        "sceneItems": [
+          {
+            "sceneItemId": 5,
+            "sourceUuid": "7c42b23b-9f81-4bbf-84d8-d09153e7be92",
+            "sceneItemEnabled": true
+          },
+          {
+            "sceneItemId": 6,
+            "sourceUuid": "91b9c92e-b63d-44be-8a87-92dec34c9dca",
+            "sceneItemEnabled": true
+          },
+          {
+            "sceneItemId": 7,
+            "sourceUuid": "52711931-8b7d-45a3-a94c-1ef63bbf37ab",
+            "sceneItemEnabled": true
+          }
+        ],
+        "audio": [
+          {
+            "uuid": "7c42b23b-9f81-4bbf-84d8-d09153e7be92",
+            "name": "QA Quality noise",
+            "tracks": {
+              "1": true,
+              "2": false,
+              "3": false,
+              "4": false,
+              "5": false,
+              "6": false
+            },
+            "muted": false,
+            "volumeMul": 1,
+            "monitorType": "OBS_MONITORING_TYPE_NONE",
+            "mediaState": "OBS_MEDIA_STATE_PLAYING",
+            "mediaCursor": 4181,
+            "mediaDuration": 8000,
+            "native": {
+              "uuid": "7c42b23b-9f81-4bbf-84d8-d09153e7be92",
+              "kind": "ffmpeg_source",
+              "audio": true,
+              "active": true,
+              "showing": true,
+              "enabled": true
+            }
+          },
+          {
+            "uuid": "91b9c92e-b63d-44be-8a87-92dec34c9dca",
+            "name": "QA Quality tone",
+            "tracks": {
+              "1": true,
+              "2": false,
+              "3": false,
+              "4": false,
+              "5": false,
+              "6": false
+            },
+            "muted": true,
+            "volumeMul": 1,
+            "monitorType": "OBS_MONITORING_TYPE_NONE",
+            "mediaState": "OBS_MEDIA_STATE_PLAYING",
+            "mediaCursor": 6997,
+            "mediaDuration": 8000,
+            "native": {
+              "uuid": "91b9c92e-b63d-44be-8a87-92dec34c9dca",
+              "kind": "ffmpeg_source",
+              "audio": true,
+              "active": true,
+              "showing": true,
+              "enabled": true
+            }
+          },
+          {
+            "uuid": "52711931-8b7d-45a3-a94c-1ef63bbf37ab",
+            "name": "QA Quality speech",
+            "tracks": {
+              "1": true,
+              "2": false,
+              "3": false,
+              "4": false,
+              "5": false,
+              "6": false
+            },
+            "muted": true,
+            "volumeMul": 1,
+            "monitorType": "OBS_MONITORING_TYPE_NONE",
+            "mediaState": "OBS_MEDIA_STATE_PLAYING",
+            "mediaCursor": 6997,
+            "mediaDuration": 16151,
+            "native": {
+              "uuid": "52711931-8b7d-45a3-a94c-1ef63bbf37ab",
+              "kind": "ffmpeg_source",
+              "audio": true,
+              "active": true,
+              "showing": true,
+              "enabled": true
+            }
+          }
+        ],
+        "problems": [],
+        "elapsedMs": 7.157299999998941,
+        "polls": 1
+      },
+      "routeAfter": {
+        "selected": "7c42b23b-9f81-4bbf-84d8-d09153e7be92",
+        "program": {
+          "currentProgramSceneName": "QA",
+          "currentProgramSceneUuid": "8a3e49c1-b597-4d58-b703-15b885ea1f4e"
+        },
+        "vendorSuccess": true,
+        "sceneItems": [
+          {
+            "sceneItemId": 5,
+            "sourceUuid": "7c42b23b-9f81-4bbf-84d8-d09153e7be92",
+            "sceneItemEnabled": true
+          },
+          {
+            "sceneItemId": 6,
+            "sourceUuid": "91b9c92e-b63d-44be-8a87-92dec34c9dca",
+            "sceneItemEnabled": true
+          },
+          {
+            "sceneItemId": 7,
+            "sourceUuid": "52711931-8b7d-45a3-a94c-1ef63bbf37ab",
+            "sceneItemEnabled": true
+          }
+        ],
+        "audio": [
+          {
+            "uuid": "7c42b23b-9f81-4bbf-84d8-d09153e7be92",
+            "name": "QA Quality noise",
+            "tracks": {
+              "1": true,
+              "2": false,
+              "3": false,
+              "4": false,
+              "5": false,
+              "6": false
+            },
+            "muted": false,
+            "volumeMul": 1,
+            "monitorType": "OBS_MONITORING_TYPE_NONE",
+            "mediaState": "OBS_MEDIA_STATE_PLAYING",
+            "mediaCursor": 6570,
+            "mediaDuration": 8000,
+            "native": {
+              "uuid": "7c42b23b-9f81-4bbf-84d8-d09153e7be92",
+              "kind": "ffmpeg_source",
+              "audio": true,
+              "active": true,
+              "showing": true,
+              "enabled": true
+            }
+          },
+          {
+            "uuid": "91b9c92e-b63d-44be-8a87-92dec34c9dca",
+            "name": "QA Quality tone",
+            "tracks": {
+              "1": true,
+              "2": false,
+              "3": false,
+              "4": false,
+              "5": false,
+              "6": false
+            },
+            "muted": true,
+            "volumeMul": 1,
+            "monitorType": "OBS_MONITORING_TYPE_NONE",
+            "mediaState": "OBS_MEDIA_STATE_PLAYING",
+            "mediaCursor": 1450,
+            "mediaDuration": 8000,
+            "native": {
+              "uuid": "91b9c92e-b63d-44be-8a87-92dec34c9dca",
+              "kind": "ffmpeg_source",
+              "audio": true,
+              "active": true,
+              "showing": true,
+              "enabled": true
+            }
+          },
+          {
+            "uuid": "52711931-8b7d-45a3-a94c-1ef63bbf37ab",
+            "name": "QA Quality speech",
+            "tracks": {
+              "1": true,
+              "2": false,
+              "3": false,
+              "4": false,
+              "5": false,
+              "6": false
+            },
+            "muted": true,
+            "volumeMul": 1,
+            "monitorType": "OBS_MONITORING_TYPE_NONE",
+            "mediaState": "OBS_MEDIA_STATE_PLAYING",
+            "mediaCursor": 9386,
+            "mediaDuration": 16151,
+            "native": {
+              "uuid": "52711931-8b7d-45a3-a94c-1ef63bbf37ab",
+              "kind": "ffmpeg_source",
+              "audio": true,
+              "active": true,
+              "showing": true,
+              "enabled": true
+            }
+          }
+        ],
+        "problems": [],
+        "elapsedMs": 6.197700000000623,
+        "polls": 1
+      },
+      "metrics": {
+        "finite": true,
+        "samplesPerChannel": 114688,
+        "seconds": 2.3893333333333335,
+        "rms": 0.006156980945332415,
+        "peak": 0.018171172589063644
+      }
+    },
+    {
+      "label": "noise-off",
+      "startNs": 651170208123300,
+      "endNs": 651172609107600,
+      "routeBefore": {
+        "selected": "7c42b23b-9f81-4bbf-84d8-d09153e7be92",
+        "program": {
+          "currentProgramSceneName": "QA",
+          "currentProgramSceneUuid": "8a3e49c1-b597-4d58-b703-15b885ea1f4e"
+        },
+        "vendorSuccess": true,
+        "sceneItems": [
+          {
+            "sceneItemId": 5,
+            "sourceUuid": "7c42b23b-9f81-4bbf-84d8-d09153e7be92",
+            "sceneItemEnabled": true
+          },
+          {
+            "sceneItemId": 6,
+            "sourceUuid": "91b9c92e-b63d-44be-8a87-92dec34c9dca",
+            "sceneItemEnabled": true
+          },
+          {
+            "sceneItemId": 7,
+            "sourceUuid": "52711931-8b7d-45a3-a94c-1ef63bbf37ab",
+            "sceneItemEnabled": true
+          }
+        ],
+        "audio": [
+          {
+            "uuid": "7c42b23b-9f81-4bbf-84d8-d09153e7be92",
+            "name": "QA Quality noise",
+            "tracks": {
+              "1": true,
+              "2": false,
+              "3": false,
+              "4": false,
+              "5": false,
+              "6": false
+            },
+            "muted": false,
+            "volumeMul": 1,
+            "monitorType": "OBS_MONITORING_TYPE_NONE",
+            "mediaState": "OBS_MEDIA_STATE_PLAYING",
+            "mediaCursor": 7594,
+            "mediaDuration": 8000,
+            "native": {
+              "uuid": "7c42b23b-9f81-4bbf-84d8-d09153e7be92",
+              "kind": "ffmpeg_source",
+              "audio": true,
+              "active": true,
+              "showing": true,
+              "enabled": true
+            }
+          },
+          {
+            "uuid": "91b9c92e-b63d-44be-8a87-92dec34c9dca",
+            "name": "QA Quality tone",
+            "tracks": {
+              "1": true,
+              "2": false,
+              "3": false,
+              "4": false,
+              "5": false,
+              "6": false
+            },
+            "muted": true,
+            "volumeMul": 1,
+            "monitorType": "OBS_MONITORING_TYPE_NONE",
+            "mediaState": "OBS_MEDIA_STATE_PLAYING",
+            "mediaCursor": 2474,
+            "mediaDuration": 8000,
+            "native": {
+              "uuid": "91b9c92e-b63d-44be-8a87-92dec34c9dca",
+              "kind": "ffmpeg_source",
+              "audio": true,
+              "active": true,
+              "showing": true,
+              "enabled": true
+            }
+          },
+          {
+            "uuid": "52711931-8b7d-45a3-a94c-1ef63bbf37ab",
+            "name": "QA Quality speech",
+            "tracks": {
+              "1": true,
+              "2": false,
+              "3": false,
+              "4": false,
+              "5": false,
+              "6": false
+            },
+            "muted": true,
+            "volumeMul": 1,
+            "monitorType": "OBS_MONITORING_TYPE_NONE",
+            "mediaState": "OBS_MEDIA_STATE_PLAYING",
+            "mediaCursor": 10496,
+            "mediaDuration": 16151,
+            "native": {
+              "uuid": "52711931-8b7d-45a3-a94c-1ef63bbf37ab",
+              "kind": "ffmpeg_source",
+              "audio": true,
+              "active": true,
+              "showing": true,
+              "enabled": true
+            }
+          }
+        ],
+        "problems": [],
+        "elapsedMs": 7.751599999999598,
+        "polls": 1
+      },
+      "routeAfter": {
+        "selected": "7c42b23b-9f81-4bbf-84d8-d09153e7be92",
+        "program": {
+          "currentProgramSceneName": "QA",
+          "currentProgramSceneUuid": "8a3e49c1-b597-4d58-b703-15b885ea1f4e"
+        },
+        "vendorSuccess": true,
+        "sceneItems": [
+          {
+            "sceneItemId": 5,
+            "sourceUuid": "7c42b23b-9f81-4bbf-84d8-d09153e7be92",
+            "sceneItemEnabled": true
+          },
+          {
+            "sceneItemId": 6,
+            "sourceUuid": "91b9c92e-b63d-44be-8a87-92dec34c9dca",
+            "sceneItemEnabled": true
+          },
+          {
+            "sceneItemId": 7,
+            "sourceUuid": "52711931-8b7d-45a3-a94c-1ef63bbf37ab",
+            "sceneItemEnabled": true
+          }
+        ],
+        "audio": [
+          {
+            "uuid": "7c42b23b-9f81-4bbf-84d8-d09153e7be92",
+            "name": "QA Quality noise",
+            "tracks": {
+              "1": true,
+              "2": false,
+              "3": false,
+              "4": false,
+              "5": false,
+              "6": false
+            },
+            "muted": false,
+            "volumeMul": 1,
+            "monitorType": "OBS_MONITORING_TYPE_NONE",
+            "mediaState": "OBS_MEDIA_STATE_PLAYING",
+            "mediaCursor": 2048,
+            "mediaDuration": 8000,
+            "native": {
+              "uuid": "7c42b23b-9f81-4bbf-84d8-d09153e7be92",
+              "kind": "ffmpeg_source",
+              "audio": true,
+              "active": true,
+              "showing": true,
+              "enabled": true
+            }
+          },
+          {
+            "uuid": "91b9c92e-b63d-44be-8a87-92dec34c9dca",
+            "name": "QA Quality tone",
+            "tracks": {
+              "1": true,
+              "2": false,
+              "3": false,
+              "4": false,
+              "5": false,
+              "6": false
+            },
+            "muted": true,
+            "volumeMul": 1,
+            "monitorType": "OBS_MONITORING_TYPE_NONE",
+            "mediaState": "OBS_MEDIA_STATE_PLAYING",
+            "mediaCursor": 4864,
+            "mediaDuration": 8000,
+            "native": {
+              "uuid": "91b9c92e-b63d-44be-8a87-92dec34c9dca",
+              "kind": "ffmpeg_source",
+              "audio": true,
+              "active": true,
+              "showing": true,
+              "enabled": true
+            }
+          },
+          {
+            "uuid": "52711931-8b7d-45a3-a94c-1ef63bbf37ab",
+            "name": "QA Quality speech",
+            "tracks": {
+              "1": true,
+              "2": false,
+              "3": false,
+              "4": false,
+              "5": false,
+              "6": false
+            },
+            "muted": true,
+            "volumeMul": 1,
+            "monitorType": "OBS_MONITORING_TYPE_NONE",
+            "mediaState": "OBS_MEDIA_STATE_PLAYING",
+            "mediaCursor": 12885,
+            "mediaDuration": 16151,
+            "native": {
+              "uuid": "52711931-8b7d-45a3-a94c-1ef63bbf37ab",
+              "kind": "ffmpeg_source",
+              "audio": true,
+              "active": true,
+              "showing": true,
+              "enabled": true
+            }
+          }
+        ],
+        "problems": [],
+        "elapsedMs": 5.9804000000003725,
+        "polls": 1
+      },
+      "metrics": {
+        "finite": true,
+        "samplesPerChannel": 115712,
+        "seconds": 2.4106666666666667,
+        "rms": 0.006929802375591769,
+        "peak": 0.011993408203125
+      }
+    },
+    {
+      "label": "tone-before",
+      "startNs": 651173430504900,
+      "endNs": 651175831700300,
+      "routeBefore": {
+        "selected": "91b9c92e-b63d-44be-8a87-92dec34c9dca",
+        "program": {
+          "currentProgramSceneName": "QA",
+          "currentProgramSceneUuid": "8a3e49c1-b597-4d58-b703-15b885ea1f4e"
+        },
+        "vendorSuccess": true,
+        "sceneItems": [
+          {
+            "sceneItemId": 5,
+            "sourceUuid": "7c42b23b-9f81-4bbf-84d8-d09153e7be92",
+            "sceneItemEnabled": true
+          },
+          {
+            "sceneItemId": 6,
+            "sourceUuid": "91b9c92e-b63d-44be-8a87-92dec34c9dca",
+            "sceneItemEnabled": true
+          },
+          {
+            "sceneItemId": 7,
+            "sourceUuid": "52711931-8b7d-45a3-a94c-1ef63bbf37ab",
+            "sceneItemEnabled": true
+          }
+        ],
+        "audio": [
+          {
+            "uuid": "7c42b23b-9f81-4bbf-84d8-d09153e7be92",
+            "name": "QA Quality noise",
+            "tracks": {
+              "1": true,
+              "2": false,
+              "3": false,
+              "4": false,
+              "5": false,
+              "6": false
+            },
+            "muted": true,
+            "volumeMul": 1,
+            "monitorType": "OBS_MONITORING_TYPE_NONE",
+            "mediaState": "OBS_MEDIA_STATE_PLAYING",
+            "mediaCursor": 2901,
+            "mediaDuration": 8000,
+            "native": {
+              "uuid": "7c42b23b-9f81-4bbf-84d8-d09153e7be92",
+              "kind": "ffmpeg_source",
+              "audio": true,
+              "active": true,
+              "showing": true,
+              "enabled": true
+            }
+          },
+          {
+            "uuid": "91b9c92e-b63d-44be-8a87-92dec34c9dca",
+            "name": "QA Quality tone",
+            "tracks": {
+              "1": true,
+              "2": false,
+              "3": false,
+              "4": false,
+              "5": false,
+              "6": false
+            },
+            "muted": false,
+            "volumeMul": 1,
+            "monitorType": "OBS_MONITORING_TYPE_NONE",
+            "mediaState": "OBS_MEDIA_STATE_PLAYING",
+            "mediaCursor": 682,
+            "mediaDuration": 8000,
+            "native": {
+              "uuid": "91b9c92e-b63d-44be-8a87-92dec34c9dca",
+              "kind": "ffmpeg_source",
+              "audio": true,
+              "active": true,
+              "showing": true,
+              "enabled": true
+            }
+          },
+          {
+            "uuid": "52711931-8b7d-45a3-a94c-1ef63bbf37ab",
+            "name": "QA Quality speech",
+            "tracks": {
+              "1": true,
+              "2": false,
+              "3": false,
+              "4": false,
+              "5": false,
+              "6": false
+            },
+            "muted": true,
+            "volumeMul": 1,
+            "monitorType": "OBS_MONITORING_TYPE_NONE",
+            "mediaState": "OBS_MEDIA_STATE_PLAYING",
+            "mediaCursor": 13653,
+            "mediaDuration": 16151,
+            "native": {
+              "uuid": "52711931-8b7d-45a3-a94c-1ef63bbf37ab",
+              "kind": "ffmpeg_source",
+              "audio": true,
+              "active": true,
+              "showing": true,
+              "enabled": true
+            }
+          }
+        ],
+        "problems": [],
+        "elapsedMs": 4.931899999999587,
+        "polls": 1
+      },
+      "routeAfter": {
+        "selected": "91b9c92e-b63d-44be-8a87-92dec34c9dca",
+        "program": {
+          "currentProgramSceneName": "QA",
+          "currentProgramSceneUuid": "8a3e49c1-b597-4d58-b703-15b885ea1f4e"
+        },
+        "vendorSuccess": true,
+        "sceneItems": [
+          {
+            "sceneItemId": 5,
+            "sourceUuid": "7c42b23b-9f81-4bbf-84d8-d09153e7be92",
+            "sceneItemEnabled": true
+          },
+          {
+            "sceneItemId": 6,
+            "sourceUuid": "91b9c92e-b63d-44be-8a87-92dec34c9dca",
+            "sceneItemEnabled": true
+          },
+          {
+            "sceneItemId": 7,
+            "sourceUuid": "52711931-8b7d-45a3-a94c-1ef63bbf37ab",
+            "sceneItemEnabled": true
+          }
+        ],
+        "audio": [
+          {
+            "uuid": "7c42b23b-9f81-4bbf-84d8-d09153e7be92",
+            "name": "QA Quality noise",
+            "tracks": {
+              "1": true,
+              "2": false,
+              "3": false,
+              "4": false,
+              "5": false,
+              "6": false
+            },
+            "muted": true,
+            "volumeMul": 1,
+            "monitorType": "OBS_MONITORING_TYPE_NONE",
+            "mediaState": "OBS_MEDIA_STATE_PLAYING",
+            "mediaCursor": 5290,
+            "mediaDuration": 8000,
+            "native": {
+              "uuid": "7c42b23b-9f81-4bbf-84d8-d09153e7be92",
+              "kind": "ffmpeg_source",
+              "audio": true,
+              "active": true,
+              "showing": true,
+              "enabled": true
+            }
+          },
+          {
+            "uuid": "91b9c92e-b63d-44be-8a87-92dec34c9dca",
+            "name": "QA Quality tone",
+            "tracks": {
+              "1": true,
+              "2": false,
+              "3": false,
+              "4": false,
+              "5": false,
+              "6": false
+            },
+            "muted": false,
+            "volumeMul": 1,
+            "monitorType": "OBS_MONITORING_TYPE_NONE",
+            "mediaState": "OBS_MEDIA_STATE_PLAYING",
+            "mediaCursor": 3072,
+            "mediaDuration": 8000,
+            "native": {
+              "uuid": "91b9c92e-b63d-44be-8a87-92dec34c9dca",
+              "kind": "ffmpeg_source",
+              "audio": true,
+              "active": true,
+              "showing": true,
+              "enabled": true
+            }
+          },
+          {
+            "uuid": "52711931-8b7d-45a3-a94c-1ef63bbf37ab",
+            "name": "QA Quality speech",
+            "tracks": {
+              "1": true,
+              "2": false,
+              "3": false,
+              "4": false,
+              "5": false,
+              "6": false
+            },
+            "muted": true,
+            "volumeMul": 1,
+            "monitorType": "OBS_MONITORING_TYPE_NONE",
+            "mediaState": "OBS_MEDIA_STATE_ENDED",
+            "mediaCursor": null,
+            "mediaDuration": null,
+            "native": {
+              "uuid": "52711931-8b7d-45a3-a94c-1ef63bbf37ab",
+              "kind": "ffmpeg_source",
+              "audio": true,
+              "active": true,
+              "showing": true,
+              "enabled": true
+            }
+          }
+        ],
+        "problems": [],
+        "elapsedMs": 6.380700000001525,
+        "polls": 1
+      },
+      "metrics": {
+        "finite": true,
+        "samplesPerChannel": 115712,
+        "seconds": 2.4106666666666667,
+        "rms": 0.6363744332928595,
+        "peak": 0.89996337890625
+      }
+    },
+    {
+      "label": "tone-preset",
+      "startNs": 651176969239400,
+      "endNs": 651179370104800,
+      "routeBefore": {
+        "selected": "91b9c92e-b63d-44be-8a87-92dec34c9dca",
+        "program": {
+          "currentProgramSceneName": "QA",
+          "currentProgramSceneUuid": "8a3e49c1-b597-4d58-b703-15b885ea1f4e"
+        },
+        "vendorSuccess": true,
+        "sceneItems": [
+          {
+            "sceneItemId": 5,
+            "sourceUuid": "7c42b23b-9f81-4bbf-84d8-d09153e7be92",
+            "sceneItemEnabled": true
+          },
+          {
+            "sceneItemId": 6,
+            "sourceUuid": "91b9c92e-b63d-44be-8a87-92dec34c9dca",
+            "sceneItemEnabled": true
+          },
+          {
+            "sceneItemId": 7,
+            "sourceUuid": "52711931-8b7d-45a3-a94c-1ef63bbf37ab",
+            "sceneItemEnabled": true
+          }
+        ],
+        "audio": [
+          {
+            "uuid": "7c42b23b-9f81-4bbf-84d8-d09153e7be92",
+            "name": "QA Quality noise",
+            "tracks": {
+              "1": true,
+              "2": false,
+              "3": false,
+              "4": false,
+              "5": false,
+              "6": false
+            },
+            "muted": true,
+            "volumeMul": 1,
+            "monitorType": "OBS_MONITORING_TYPE_NONE",
+            "mediaState": "OBS_MEDIA_STATE_PLAYING",
+            "mediaCursor": 6400,
+            "mediaDuration": 8000,
+            "native": {
+              "uuid": "7c42b23b-9f81-4bbf-84d8-d09153e7be92",
+              "kind": "ffmpeg_source",
+              "audio": true,
+              "active": true,
+              "showing": true,
+              "enabled": true
+            }
+          },
+          {
+            "uuid": "91b9c92e-b63d-44be-8a87-92dec34c9dca",
+            "name": "QA Quality tone",
+            "tracks": {
+              "1": true,
+              "2": false,
+              "3": false,
+              "4": false,
+              "5": false,
+              "6": false
+            },
+            "muted": false,
+            "volumeMul": 1,
+            "monitorType": "OBS_MONITORING_TYPE_NONE",
+            "mediaState": "OBS_MEDIA_STATE_PLAYING",
+            "mediaCursor": 4181,
+            "mediaDuration": 8000,
+            "native": {
+              "uuid": "91b9c92e-b63d-44be-8a87-92dec34c9dca",
+              "kind": "ffmpeg_source",
+              "audio": true,
+              "active": true,
+              "showing": true,
+              "enabled": true
+            }
+          },
+          {
+            "uuid": "52711931-8b7d-45a3-a94c-1ef63bbf37ab",
+            "name": "QA Quality speech",
+            "tracks": {
+              "1": true,
+              "2": false,
+              "3": false,
+              "4": false,
+              "5": false,
+              "6": false
+            },
+            "muted": true,
+            "volumeMul": 1,
+            "monitorType": "OBS_MONITORING_TYPE_NONE",
+            "mediaState": "OBS_MEDIA_STATE_ENDED",
+            "mediaCursor": null,
+            "mediaDuration": null,
+            "native": {
+              "uuid": "52711931-8b7d-45a3-a94c-1ef63bbf37ab",
+              "kind": "ffmpeg_source",
+              "audio": true,
+              "active": true,
+              "showing": true,
+              "enabled": true
+            }
+          }
+        ],
+        "problems": [],
+        "elapsedMs": 6.103399999999965,
+        "polls": 1
+      },
+      "routeAfter": {
+        "selected": "91b9c92e-b63d-44be-8a87-92dec34c9dca",
+        "program": {
+          "currentProgramSceneName": "QA",
+          "currentProgramSceneUuid": "8a3e49c1-b597-4d58-b703-15b885ea1f4e"
+        },
+        "vendorSuccess": true,
+        "sceneItems": [
+          {
+            "sceneItemId": 5,
+            "sourceUuid": "7c42b23b-9f81-4bbf-84d8-d09153e7be92",
+            "sceneItemEnabled": true
+          },
+          {
+            "sceneItemId": 6,
+            "sourceUuid": "91b9c92e-b63d-44be-8a87-92dec34c9dca",
+            "sceneItemEnabled": true
+          },
+          {
+            "sceneItemId": 7,
+            "sourceUuid": "52711931-8b7d-45a3-a94c-1ef63bbf37ab",
+            "sceneItemEnabled": true
+          }
+        ],
+        "audio": [
+          {
+            "uuid": "7c42b23b-9f81-4bbf-84d8-d09153e7be92",
+            "name": "QA Quality noise",
+            "tracks": {
+              "1": true,
+              "2": false,
+              "3": false,
+              "4": false,
+              "5": false,
+              "6": false
+            },
+            "muted": true,
+            "volumeMul": 1,
+            "monitorType": "OBS_MONITORING_TYPE_NONE",
+            "mediaState": "OBS_MEDIA_STATE_PLAYING",
+            "mediaCursor": 768,
+            "mediaDuration": 8000,
+            "native": {
+              "uuid": "7c42b23b-9f81-4bbf-84d8-d09153e7be92",
+              "kind": "ffmpeg_source",
+              "audio": true,
+              "active": true,
+              "showing": true,
+              "enabled": true
+            }
+          },
+          {
+            "uuid": "91b9c92e-b63d-44be-8a87-92dec34c9dca",
+            "name": "QA Quality tone",
+            "tracks": {
+              "1": true,
+              "2": false,
+              "3": false,
+              "4": false,
+              "5": false,
+              "6": false
+            },
+            "muted": false,
+            "volumeMul": 1,
+            "monitorType": "OBS_MONITORING_TYPE_NONE",
+            "mediaState": "OBS_MEDIA_STATE_PLAYING",
+            "mediaCursor": 6570,
+            "mediaDuration": 8000,
+            "native": {
+              "uuid": "91b9c92e-b63d-44be-8a87-92dec34c9dca",
+              "kind": "ffmpeg_source",
+              "audio": true,
+              "active": true,
+              "showing": true,
+              "enabled": true
+            }
+          },
+          {
+            "uuid": "52711931-8b7d-45a3-a94c-1ef63bbf37ab",
+            "name": "QA Quality speech",
+            "tracks": {
+              "1": true,
+              "2": false,
+              "3": false,
+              "4": false,
+              "5": false,
+              "6": false
+            },
+            "muted": true,
+            "volumeMul": 1,
+            "monitorType": "OBS_MONITORING_TYPE_NONE",
+            "mediaState": "OBS_MEDIA_STATE_ENDED",
+            "mediaCursor": null,
+            "mediaDuration": null,
+            "native": {
+              "uuid": "52711931-8b7d-45a3-a94c-1ef63bbf37ab",
+              "kind": "ffmpeg_source",
+              "audio": true,
+              "active": true,
+              "showing": true,
+              "enabled": true
+            }
+          }
+        ],
+        "problems": [],
+        "elapsedMs": 6.688200000000506,
+        "polls": 1
+      },
+      "metrics": {
+        "finite": true,
+        "samplesPerChannel": 115712,
+        "seconds": 2.4106666666666667,
+        "rms": 0.2544492711161318,
+        "peak": 0.35980579257011414
+      }
+    },
+    {
+      "label": "tone-off",
+      "startNs": 651180416425500,
+      "endNs": 651182817652300,
+      "routeBefore": {
+        "selected": "91b9c92e-b63d-44be-8a87-92dec34c9dca",
+        "program": {
+          "currentProgramSceneName": "QA",
+          "currentProgramSceneUuid": "8a3e49c1-b597-4d58-b703-15b885ea1f4e"
+        },
+        "vendorSuccess": true,
+        "sceneItems": [
+          {
+            "sceneItemId": 5,
+            "sourceUuid": "7c42b23b-9f81-4bbf-84d8-d09153e7be92",
+            "sceneItemEnabled": true
+          },
+          {
+            "sceneItemId": 6,
+            "sourceUuid": "91b9c92e-b63d-44be-8a87-92dec34c9dca",
+            "sceneItemEnabled": true
+          },
+          {
+            "sceneItemId": 7,
+            "sourceUuid": "52711931-8b7d-45a3-a94c-1ef63bbf37ab",
+            "sceneItemEnabled": true
+          }
+        ],
+        "audio": [
+          {
+            "uuid": "7c42b23b-9f81-4bbf-84d8-d09153e7be92",
+            "name": "QA Quality noise",
+            "tracks": {
+              "1": true,
+              "2": false,
+              "3": false,
+              "4": false,
+              "5": false,
+              "6": false
+            },
+            "muted": true,
+            "volumeMul": 1,
+            "monitorType": "OBS_MONITORING_TYPE_NONE",
+            "mediaState": "OBS_MEDIA_STATE_PLAYING",
+            "mediaCursor": 1877,
+            "mediaDuration": 8000,
+            "native": {
+              "uuid": "7c42b23b-9f81-4bbf-84d8-d09153e7be92",
+              "kind": "ffmpeg_source",
+              "audio": true,
+              "active": true,
+              "showing": true,
+              "enabled": true
+            }
+          },
+          {
+            "uuid": "91b9c92e-b63d-44be-8a87-92dec34c9dca",
+            "name": "QA Quality tone",
+            "tracks": {
+              "1": true,
+              "2": false,
+              "3": false,
+              "4": false,
+              "5": false,
+              "6": false
+            },
+            "muted": false,
+            "volumeMul": 1,
+            "monitorType": "OBS_MONITORING_TYPE_NONE",
+            "mediaState": "OBS_MEDIA_STATE_PLAYING",
+            "mediaCursor": 7594,
+            "mediaDuration": 8000,
+            "native": {
+              "uuid": "91b9c92e-b63d-44be-8a87-92dec34c9dca",
+              "kind": "ffmpeg_source",
+              "audio": true,
+              "active": true,
+              "showing": true,
+              "enabled": true
+            }
+          },
+          {
+            "uuid": "52711931-8b7d-45a3-a94c-1ef63bbf37ab",
+            "name": "QA Quality speech",
+            "tracks": {
+              "1": true,
+              "2": false,
+              "3": false,
+              "4": false,
+              "5": false,
+              "6": false
+            },
+            "muted": true,
+            "volumeMul": 1,
+            "monitorType": "OBS_MONITORING_TYPE_NONE",
+            "mediaState": "OBS_MEDIA_STATE_ENDED",
+            "mediaCursor": null,
+            "mediaDuration": null,
+            "native": {
+              "uuid": "52711931-8b7d-45a3-a94c-1ef63bbf37ab",
+              "kind": "ffmpeg_source",
+              "audio": true,
+              "active": true,
+              "showing": true,
+              "enabled": true
+            }
+          }
+        ],
+        "problems": [],
+        "elapsedMs": 7.470099999998638,
+        "polls": 1
+      },
+      "routeAfter": {
+        "selected": "91b9c92e-b63d-44be-8a87-92dec34c9dca",
+        "program": {
+          "currentProgramSceneName": "QA",
+          "currentProgramSceneUuid": "8a3e49c1-b597-4d58-b703-15b885ea1f4e"
+        },
+        "vendorSuccess": true,
+        "sceneItems": [
+          {
+            "sceneItemId": 5,
+            "sourceUuid": "7c42b23b-9f81-4bbf-84d8-d09153e7be92",
+            "sceneItemEnabled": true
+          },
+          {
+            "sceneItemId": 6,
+            "sourceUuid": "91b9c92e-b63d-44be-8a87-92dec34c9dca",
+            "sceneItemEnabled": true
+          },
+          {
+            "sceneItemId": 7,
+            "sourceUuid": "52711931-8b7d-45a3-a94c-1ef63bbf37ab",
+            "sceneItemEnabled": true
+          }
+        ],
+        "audio": [
+          {
+            "uuid": "7c42b23b-9f81-4bbf-84d8-d09153e7be92",
+            "name": "QA Quality noise",
+            "tracks": {
+              "1": true,
+              "2": false,
+              "3": false,
+              "4": false,
+              "5": false,
+              "6": false
+            },
+            "muted": true,
+            "volumeMul": 1,
+            "monitorType": "OBS_MONITORING_TYPE_NONE",
+            "mediaState": "OBS_MEDIA_STATE_PLAYING",
+            "mediaCursor": 4266,
+            "mediaDuration": 8000,
+            "native": {
+              "uuid": "7c42b23b-9f81-4bbf-84d8-d09153e7be92",
+              "kind": "ffmpeg_source",
+              "audio": true,
+              "active": true,
+              "showing": true,
+              "enabled": true
+            }
+          },
+          {
+            "uuid": "91b9c92e-b63d-44be-8a87-92dec34c9dca",
+            "name": "QA Quality tone",
+            "tracks": {
+              "1": true,
+              "2": false,
+              "3": false,
+              "4": false,
+              "5": false,
+              "6": false
+            },
+            "muted": false,
+            "volumeMul": 1,
+            "monitorType": "OBS_MONITORING_TYPE_NONE",
+            "mediaState": "OBS_MEDIA_STATE_PLAYING",
+            "mediaCursor": 2048,
+            "mediaDuration": 8000,
+            "native": {
+              "uuid": "91b9c92e-b63d-44be-8a87-92dec34c9dca",
+              "kind": "ffmpeg_source",
+              "audio": true,
+              "active": true,
+              "showing": true,
+              "enabled": true
+            }
+          },
+          {
+            "uuid": "52711931-8b7d-45a3-a94c-1ef63bbf37ab",
+            "name": "QA Quality speech",
+            "tracks": {
+              "1": true,
+              "2": false,
+              "3": false,
+              "4": false,
+              "5": false,
+              "6": false
+            },
+            "muted": true,
+            "volumeMul": 1,
+            "monitorType": "OBS_MONITORING_TYPE_NONE",
+            "mediaState": "OBS_MEDIA_STATE_ENDED",
+            "mediaCursor": null,
+            "mediaDuration": null,
+            "native": {
+              "uuid": "52711931-8b7d-45a3-a94c-1ef63bbf37ab",
+              "kind": "ffmpeg_source",
+              "audio": true,
+              "active": true,
+              "showing": true,
+              "enabled": true
+            }
+          }
+        ],
+        "problems": [],
+        "elapsedMs": 7.967500000006112,
+        "polls": 1
+      },
+      "metrics": {
+        "finite": true,
+        "samplesPerChannel": 114688,
+        "seconds": 2.3893333333333335,
+        "rms": 0.6363890579886889,
+        "peak": 0.89996337890625
+      }
+    }
+  ],
+  "cases": [
+    {
+      "action": "effects_source",
+      "type": "nvBackground",
+      "stage": "rejected",
+      "mutationDispatches": 0
+    },
+    {
+      "action": "effects_source",
+      "type": "nvBlur",
+      "stage": "rejected",
+      "mutationDispatches": 0
+    },
+    {
+      "action": "effects_source",
+      "type": "nvDenoise",
+      "stage": "rejected",
+      "mutationDispatches": 0
+    },
+    {
+      "action": "effects_captions",
+      "type": "english",
+      "stage": "rejected",
+      "mutationDispatches": 0
+    },
+    {
+      "action": "effects_source",
+      "type": "color",
+      "stage": "rejected",
+      "mutationDispatches": 0
+    },
+    {
+      "action": "effects_source",
+      "key": "f6a76f2f-de47-4b55-8bec-ea6ac3ae6651",
+      "type": "color",
+      "stage": "confirmed",
+      "mutationDispatches": 2
+    },
+    {
+      "action": "effects_source",
+      "key": "f6a76f2f-de47-4b55-8bec-ea6ac3ae6651",
+      "type": "color",
+      "stage": "confirmed",
+      "mutationDispatches": 2
+    },
+    {
+      "action": "effects_source",
+      "key": "f2765b5c-5c53-4213-ab45-c5471f5b36bd",
+      "type": "sharpness",
+      "stage": "confirmed",
+      "mutationDispatches": 2
+    },
+    {
+      "action": "effects_source",
+      "key": "f2765b5c-5c53-4213-ab45-c5471f5b36bd",
+      "type": "sharpness",
+      "stage": "confirmed",
+      "mutationDispatches": 2
+    },
+    {
+      "action": "effects_source",
+      "key": "f87f1db3-8b9f-4fe3-9d5d-c120c17fa425",
+      "type": "chroma",
+      "stage": "confirmed",
+      "mutationDispatches": 2
+    },
+    {
+      "action": "effects_source",
+      "key": "f87f1db3-8b9f-4fe3-9d5d-c120c17fa425",
+      "type": "chroma",
+      "stage": "confirmed",
+      "mutationDispatches": 2
+    },
+    {
+      "action": "effects_source",
+      "key": "7c42b23b-9f81-4bbf-84d8-d09153e7be92",
+      "type": "rnnoise",
+      "stage": "confirmed",
+      "mutationDispatches": 2
+    },
+    {
+      "action": "effects_source",
+      "key": "7c42b23b-9f81-4bbf-84d8-d09153e7be92",
+      "type": "rnnoise",
+      "stage": "confirmed",
+      "mutationDispatches": 2
+    },
+    {
+      "action": "effects_source",
+      "key": "91b9c92e-b63d-44be-8a87-92dec34c9dca",
+      "type": "speech",
+      "stage": "confirmed",
+      "mutationDispatches": 6
+    },
+    {
+      "action": "effects_source",
+      "key": "91b9c92e-b63d-44be-8a87-92dec34c9dca",
+      "type": "speech",
+      "stage": "confirmed",
+      "mutationDispatches": 6
+    },
+    {
+      "action": "effects_captions",
+      "key": "52711931-8b7d-45a3-a94c-1ef63bbf37ab",
+      "type": "transcribe",
+      "stage": "confirmed",
+      "mutationDispatches": 2
+    },
+    {
+      "action": "effects_captions",
+      "key": "52711931-8b7d-45a3-a94c-1ef63bbf37ab",
+      "type": "transcribe",
+      "stage": "confirmed",
+      "mutationDispatches": 2
+    }
+  ],
+  "checks": [
+    {
+      "name": "color-native-render",
+      "status": "PASS",
+      "elapsedMs": 756
+    },
+    {
+      "name": "sharpness-native-render",
+      "status": "PASS",
+      "elapsedMs": 766
+    },
+    {
+      "name": "chroma-native-render",
+      "status": "PASS",
+      "elapsedMs": 736
+    },
+    {
+      "name": "rnnoise-digital-oracle",
+      "status": "FAIL",
+      "elapsedMs": 8,
+      "stage": "digital-master-oracles",
+      "code": "ERR_ASSERTION",
+      "uncertainMutation": false
+    },
+    {
+      "name": "speech-preset-digital-oracle",
+      "status": "PASS",
+      "elapsedMs": 0
+    },
+    {
+      "name": "digital-master-capture",
+      "status": "PASS",
+      "elapsedMs": 20542
+    },
+    {
+      "name": "portuguese-own-speech-asr",
+      "status": "PASS",
+      "elapsedMs": 4973
+    }
+  ],
+  "audioRoute": [
+    {
+      "label": "configured-all-muted",
+      "selected": null,
+      "program": {
+        "currentProgramSceneName": "QA",
+        "currentProgramSceneUuid": "8a3e49c1-b597-4d58-b703-15b885ea1f4e"
+      },
+      "vendorSuccess": true,
+      "sceneItems": [
+        {
+          "sceneItemId": 5,
+          "sourceUuid": "7c42b23b-9f81-4bbf-84d8-d09153e7be92",
+          "sceneItemEnabled": true
+        },
+        {
+          "sceneItemId": 6,
+          "sourceUuid": "91b9c92e-b63d-44be-8a87-92dec34c9dca",
+          "sceneItemEnabled": true
+        },
+        {
+          "sceneItemId": 7,
+          "sourceUuid": "52711931-8b7d-45a3-a94c-1ef63bbf37ab",
+          "sceneItemEnabled": true
+        }
+      ],
+      "audio": [
+        {
+          "uuid": "7c42b23b-9f81-4bbf-84d8-d09153e7be92",
+          "name": "QA Quality noise",
+          "tracks": {
+            "1": true,
+            "2": false,
+            "3": false,
+            "4": false,
+            "5": false,
+            "6": false
+          },
+          "muted": true,
+          "volumeMul": 1,
+          "monitorType": "OBS_MONITORING_TYPE_NONE",
+          "mediaState": "OBS_MEDIA_STATE_PLAYING",
+          "mediaCursor": 2645,
+          "mediaDuration": 8000,
+          "native": {
+            "uuid": "7c42b23b-9f81-4bbf-84d8-d09153e7be92",
+            "kind": "ffmpeg_source",
+            "audio": true,
+            "active": true,
+            "showing": true,
+            "enabled": true
+          }
+        },
+        {
+          "uuid": "91b9c92e-b63d-44be-8a87-92dec34c9dca",
+          "name": "QA Quality tone",
+          "tracks": {
+            "1": true,
+            "2": false,
+            "3": false,
+            "4": false,
+            "5": false,
+            "6": false
+          },
+          "muted": true,
+          "volumeMul": 1,
+          "monitorType": "OBS_MONITORING_TYPE_NONE",
+          "mediaState": "OBS_MEDIA_STATE_PLAYING",
+          "mediaCursor": 2645,
+          "mediaDuration": 8000,
+          "native": {
+            "uuid": "91b9c92e-b63d-44be-8a87-92dec34c9dca",
+            "kind": "ffmpeg_source",
+            "audio": true,
+            "active": true,
+            "showing": true,
+            "enabled": true
+          }
+        },
+        {
+          "uuid": "52711931-8b7d-45a3-a94c-1ef63bbf37ab",
+          "name": "QA Quality speech",
+          "tracks": {
+            "1": true,
+            "2": false,
+            "3": false,
+            "4": false,
+            "5": false,
+            "6": false
+          },
+          "muted": true,
+          "volumeMul": 1,
+          "monitorType": "OBS_MONITORING_TYPE_NONE",
+          "mediaState": "OBS_MEDIA_STATE_PLAYING",
+          "mediaCursor": 2645,
+          "mediaDuration": 16151,
+          "native": {
+            "uuid": "52711931-8b7d-45a3-a94c-1ef63bbf37ab",
+            "kind": "ffmpeg_source",
+            "audio": true,
+            "active": true,
+            "showing": true,
+            "enabled": true
+          }
+        }
+      ],
+      "problems": [],
+      "elapsedMs": 7.51089999999931,
+      "polls": 1
+    },
+    {
+      "label": "play-QA Quality noise",
+      "selected": "7c42b23b-9f81-4bbf-84d8-d09153e7be92",
+      "program": {
+        "currentProgramSceneName": "QA",
+        "currentProgramSceneUuid": "8a3e49c1-b597-4d58-b703-15b885ea1f4e"
+      },
+      "vendorSuccess": true,
+      "sceneItems": [
+        {
+          "sceneItemId": 5,
+          "sourceUuid": "7c42b23b-9f81-4bbf-84d8-d09153e7be92",
+          "sceneItemEnabled": true
+        },
+        {
+          "sceneItemId": 6,
+          "sourceUuid": "91b9c92e-b63d-44be-8a87-92dec34c9dca",
+          "sceneItemEnabled": true
+        },
+        {
+          "sceneItemId": 7,
+          "sourceUuid": "52711931-8b7d-45a3-a94c-1ef63bbf37ab",
+          "sceneItemEnabled": true
+        }
+      ],
+      "audio": [
+        {
+          "uuid": "7c42b23b-9f81-4bbf-84d8-d09153e7be92",
+          "name": "QA Quality noise",
+          "tracks": {
+            "1": true,
+            "2": false,
+            "3": false,
+            "4": false,
+            "5": false,
+            "6": false
+          },
+          "muted": false,
+          "volumeMul": 1,
+          "monitorType": "OBS_MONITORING_TYPE_NONE",
+          "mediaState": "OBS_MEDIA_STATE_PLAYING",
+          "mediaCursor": 597,
+          "mediaDuration": 8000,
+          "native": {
+            "uuid": "7c42b23b-9f81-4bbf-84d8-d09153e7be92",
+            "kind": "ffmpeg_source",
+            "audio": true,
+            "active": true,
+            "showing": true,
+            "enabled": true
+          }
+        },
+        {
+          "uuid": "91b9c92e-b63d-44be-8a87-92dec34c9dca",
+          "name": "QA Quality tone",
+          "tracks": {
+            "1": true,
+            "2": false,
+            "3": false,
+            "4": false,
+            "5": false,
+            "6": false
+          },
+          "muted": true,
+          "volumeMul": 1,
+          "monitorType": "OBS_MONITORING_TYPE_NONE",
+          "mediaState": "OBS_MEDIA_STATE_PLAYING",
+          "mediaCursor": 3413,
+          "mediaDuration": 8000,
+          "native": {
+            "uuid": "91b9c92e-b63d-44be-8a87-92dec34c9dca",
+            "kind": "ffmpeg_source",
+            "audio": true,
+            "active": true,
+            "showing": true,
+            "enabled": true
+          }
+        },
+        {
+          "uuid": "52711931-8b7d-45a3-a94c-1ef63bbf37ab",
+          "name": "QA Quality speech",
+          "tracks": {
+            "1": true,
+            "2": false,
+            "3": false,
+            "4": false,
+            "5": false,
+            "6": false
+          },
+          "muted": true,
+          "volumeMul": 1,
+          "monitorType": "OBS_MONITORING_TYPE_NONE",
+          "mediaState": "OBS_MEDIA_STATE_PLAYING",
+          "mediaCursor": 3413,
+          "mediaDuration": 16151,
+          "native": {
+            "uuid": "52711931-8b7d-45a3-a94c-1ef63bbf37ab",
+            "kind": "ffmpeg_source",
+            "audio": true,
+            "active": true,
+            "showing": true,
+            "enabled": true
+          }
+        }
+      ],
+      "problems": [],
+      "elapsedMs": 5.1744999999991705,
+      "polls": 1
+    },
+    {
+      "label": "noise-before-before",
+      "selected": "7c42b23b-9f81-4bbf-84d8-d09153e7be92",
+      "program": {
+        "currentProgramSceneName": "QA",
+        "currentProgramSceneUuid": "8a3e49c1-b597-4d58-b703-15b885ea1f4e"
+      },
+      "vendorSuccess": true,
+      "sceneItems": [
+        {
+          "sceneItemId": 5,
+          "sourceUuid": "7c42b23b-9f81-4bbf-84d8-d09153e7be92",
+          "sceneItemEnabled": true
+        },
+        {
+          "sceneItemId": 6,
+          "sourceUuid": "91b9c92e-b63d-44be-8a87-92dec34c9dca",
+          "sceneItemEnabled": true
+        },
+        {
+          "sceneItemId": 7,
+          "sourceUuid": "52711931-8b7d-45a3-a94c-1ef63bbf37ab",
+          "sceneItemEnabled": true
+        }
+      ],
+      "audio": [
+        {
+          "uuid": "7c42b23b-9f81-4bbf-84d8-d09153e7be92",
+          "name": "QA Quality noise",
+          "tracks": {
+            "1": true,
+            "2": false,
+            "3": false,
+            "4": false,
+            "5": false,
+            "6": false
+          },
+          "muted": false,
+          "volumeMul": 1,
+          "monitorType": "OBS_MONITORING_TYPE_NONE",
+          "mediaState": "OBS_MEDIA_STATE_PLAYING",
+          "mediaCursor": 597,
+          "mediaDuration": 8000,
+          "native": {
+            "uuid": "7c42b23b-9f81-4bbf-84d8-d09153e7be92",
+            "kind": "ffmpeg_source",
+            "audio": true,
+            "active": true,
+            "showing": true,
+            "enabled": true
+          }
+        },
+        {
+          "uuid": "91b9c92e-b63d-44be-8a87-92dec34c9dca",
+          "name": "QA Quality tone",
+          "tracks": {
+            "1": true,
+            "2": false,
+            "3": false,
+            "4": false,
+            "5": false,
+            "6": false
+          },
+          "muted": true,
+          "volumeMul": 1,
+          "monitorType": "OBS_MONITORING_TYPE_NONE",
+          "mediaState": "OBS_MEDIA_STATE_PLAYING",
+          "mediaCursor": 3413,
+          "mediaDuration": 8000,
+          "native": {
+            "uuid": "91b9c92e-b63d-44be-8a87-92dec34c9dca",
+            "kind": "ffmpeg_source",
+            "audio": true,
+            "active": true,
+            "showing": true,
+            "enabled": true
+          }
+        },
+        {
+          "uuid": "52711931-8b7d-45a3-a94c-1ef63bbf37ab",
+          "name": "QA Quality speech",
+          "tracks": {
+            "1": true,
+            "2": false,
+            "3": false,
+            "4": false,
+            "5": false,
+            "6": false
+          },
+          "muted": true,
+          "volumeMul": 1,
+          "monitorType": "OBS_MONITORING_TYPE_NONE",
+          "mediaState": "OBS_MEDIA_STATE_PLAYING",
+          "mediaCursor": 3413,
+          "mediaDuration": 16151,
+          "native": {
+            "uuid": "52711931-8b7d-45a3-a94c-1ef63bbf37ab",
+            "kind": "ffmpeg_source",
+            "audio": true,
+            "active": true,
+            "showing": true,
+            "enabled": true
+          }
+        }
+      ],
+      "problems": [],
+      "elapsedMs": 4.938900000001013,
+      "polls": 1
+    },
+    {
+      "label": "noise-before-after",
+      "selected": "7c42b23b-9f81-4bbf-84d8-d09153e7be92",
+      "program": {
+        "currentProgramSceneName": "QA",
+        "currentProgramSceneUuid": "8a3e49c1-b597-4d58-b703-15b885ea1f4e"
+      },
+      "vendorSuccess": true,
+      "sceneItems": [
+        {
+          "sceneItemId": 5,
+          "sourceUuid": "7c42b23b-9f81-4bbf-84d8-d09153e7be92",
+          "sceneItemEnabled": true
+        },
+        {
+          "sceneItemId": 6,
+          "sourceUuid": "91b9c92e-b63d-44be-8a87-92dec34c9dca",
+          "sceneItemEnabled": true
+        },
+        {
+          "sceneItemId": 7,
+          "sourceUuid": "52711931-8b7d-45a3-a94c-1ef63bbf37ab",
+          "sceneItemEnabled": true
+        }
+      ],
+      "audio": [
+        {
+          "uuid": "7c42b23b-9f81-4bbf-84d8-d09153e7be92",
+          "name": "QA Quality noise",
+          "tracks": {
+            "1": true,
+            "2": false,
+            "3": false,
+            "4": false,
+            "5": false,
+            "6": false
+          },
+          "muted": false,
+          "volumeMul": 1,
+          "monitorType": "OBS_MONITORING_TYPE_NONE",
+          "mediaState": "OBS_MEDIA_STATE_PLAYING",
+          "mediaCursor": 2986,
+          "mediaDuration": 8000,
+          "native": {
+            "uuid": "7c42b23b-9f81-4bbf-84d8-d09153e7be92",
+            "kind": "ffmpeg_source",
+            "audio": true,
+            "active": true,
+            "showing": true,
+            "enabled": true
+          }
+        },
+        {
+          "uuid": "91b9c92e-b63d-44be-8a87-92dec34c9dca",
+          "name": "QA Quality tone",
+          "tracks": {
+            "1": true,
+            "2": false,
+            "3": false,
+            "4": false,
+            "5": false,
+            "6": false
+          },
+          "muted": true,
+          "volumeMul": 1,
+          "monitorType": "OBS_MONITORING_TYPE_NONE",
+          "mediaState": "OBS_MEDIA_STATE_PLAYING",
+          "mediaCursor": 5888,
+          "mediaDuration": 8000,
+          "native": {
+            "uuid": "91b9c92e-b63d-44be-8a87-92dec34c9dca",
+            "kind": "ffmpeg_source",
+            "audio": true,
+            "active": true,
+            "showing": true,
+            "enabled": true
+          }
+        },
+        {
+          "uuid": "52711931-8b7d-45a3-a94c-1ef63bbf37ab",
+          "name": "QA Quality speech",
+          "tracks": {
+            "1": true,
+            "2": false,
+            "3": false,
+            "4": false,
+            "5": false,
+            "6": false
+          },
+          "muted": true,
+          "volumeMul": 1,
+          "monitorType": "OBS_MONITORING_TYPE_NONE",
+          "mediaState": "OBS_MEDIA_STATE_PLAYING",
+          "mediaCursor": 5888,
+          "mediaDuration": 16151,
+          "native": {
+            "uuid": "52711931-8b7d-45a3-a94c-1ef63bbf37ab",
+            "kind": "ffmpeg_source",
+            "audio": true,
+            "active": true,
+            "showing": true,
+            "enabled": true
+          }
+        }
+      ],
+      "problems": [],
+      "elapsedMs": 6.011500000000524,
+      "polls": 1
+    },
+    {
+      "label": "noise-rnnoise-before",
+      "selected": "7c42b23b-9f81-4bbf-84d8-d09153e7be92",
+      "program": {
+        "currentProgramSceneName": "QA",
+        "currentProgramSceneUuid": "8a3e49c1-b597-4d58-b703-15b885ea1f4e"
+      },
+      "vendorSuccess": true,
+      "sceneItems": [
+        {
+          "sceneItemId": 5,
+          "sourceUuid": "7c42b23b-9f81-4bbf-84d8-d09153e7be92",
+          "sceneItemEnabled": true
+        },
+        {
+          "sceneItemId": 6,
+          "sourceUuid": "91b9c92e-b63d-44be-8a87-92dec34c9dca",
+          "sceneItemEnabled": true
+        },
+        {
+          "sceneItemId": 7,
+          "sourceUuid": "52711931-8b7d-45a3-a94c-1ef63bbf37ab",
+          "sceneItemEnabled": true
+        }
+      ],
+      "audio": [
+        {
+          "uuid": "7c42b23b-9f81-4bbf-84d8-d09153e7be92",
+          "name": "QA Quality noise",
+          "tracks": {
+            "1": true,
+            "2": false,
+            "3": false,
+            "4": false,
+            "5": false,
+            "6": false
+          },
+          "muted": false,
+          "volumeMul": 1,
+          "monitorType": "OBS_MONITORING_TYPE_NONE",
+          "mediaState": "OBS_MEDIA_STATE_PLAYING",
+          "mediaCursor": 4181,
+          "mediaDuration": 8000,
+          "native": {
+            "uuid": "7c42b23b-9f81-4bbf-84d8-d09153e7be92",
+            "kind": "ffmpeg_source",
+            "audio": true,
+            "active": true,
+            "showing": true,
+            "enabled": true
+          }
+        },
+        {
+          "uuid": "91b9c92e-b63d-44be-8a87-92dec34c9dca",
+          "name": "QA Quality tone",
+          "tracks": {
+            "1": true,
+            "2": false,
+            "3": false,
+            "4": false,
+            "5": false,
+            "6": false
+          },
+          "muted": true,
+          "volumeMul": 1,
+          "monitorType": "OBS_MONITORING_TYPE_NONE",
+          "mediaState": "OBS_MEDIA_STATE_PLAYING",
+          "mediaCursor": 6997,
+          "mediaDuration": 8000,
+          "native": {
+            "uuid": "91b9c92e-b63d-44be-8a87-92dec34c9dca",
+            "kind": "ffmpeg_source",
+            "audio": true,
+            "active": true,
+            "showing": true,
+            "enabled": true
+          }
+        },
+        {
+          "uuid": "52711931-8b7d-45a3-a94c-1ef63bbf37ab",
+          "name": "QA Quality speech",
+          "tracks": {
+            "1": true,
+            "2": false,
+            "3": false,
+            "4": false,
+            "5": false,
+            "6": false
+          },
+          "muted": true,
+          "volumeMul": 1,
+          "monitorType": "OBS_MONITORING_TYPE_NONE",
+          "mediaState": "OBS_MEDIA_STATE_PLAYING",
+          "mediaCursor": 6997,
+          "mediaDuration": 16151,
+          "native": {
+            "uuid": "52711931-8b7d-45a3-a94c-1ef63bbf37ab",
+            "kind": "ffmpeg_source",
+            "audio": true,
+            "active": true,
+            "showing": true,
+            "enabled": true
+          }
+        }
+      ],
+      "problems": [],
+      "elapsedMs": 7.157299999998941,
+      "polls": 1
+    },
+    {
+      "label": "noise-rnnoise-after",
+      "selected": "7c42b23b-9f81-4bbf-84d8-d09153e7be92",
+      "program": {
+        "currentProgramSceneName": "QA",
+        "currentProgramSceneUuid": "8a3e49c1-b597-4d58-b703-15b885ea1f4e"
+      },
+      "vendorSuccess": true,
+      "sceneItems": [
+        {
+          "sceneItemId": 5,
+          "sourceUuid": "7c42b23b-9f81-4bbf-84d8-d09153e7be92",
+          "sceneItemEnabled": true
+        },
+        {
+          "sceneItemId": 6,
+          "sourceUuid": "91b9c92e-b63d-44be-8a87-92dec34c9dca",
+          "sceneItemEnabled": true
+        },
+        {
+          "sceneItemId": 7,
+          "sourceUuid": "52711931-8b7d-45a3-a94c-1ef63bbf37ab",
+          "sceneItemEnabled": true
+        }
+      ],
+      "audio": [
+        {
+          "uuid": "7c42b23b-9f81-4bbf-84d8-d09153e7be92",
+          "name": "QA Quality noise",
+          "tracks": {
+            "1": true,
+            "2": false,
+            "3": false,
+            "4": false,
+            "5": false,
+            "6": false
+          },
+          "muted": false,
+          "volumeMul": 1,
+          "monitorType": "OBS_MONITORING_TYPE_NONE",
+          "mediaState": "OBS_MEDIA_STATE_PLAYING",
+          "mediaCursor": 6570,
+          "mediaDuration": 8000,
+          "native": {
+            "uuid": "7c42b23b-9f81-4bbf-84d8-d09153e7be92",
+            "kind": "ffmpeg_source",
+            "audio": true,
+            "active": true,
+            "showing": true,
+            "enabled": true
+          }
+        },
+        {
+          "uuid": "91b9c92e-b63d-44be-8a87-92dec34c9dca",
+          "name": "QA Quality tone",
+          "tracks": {
+            "1": true,
+            "2": false,
+            "3": false,
+            "4": false,
+            "5": false,
+            "6": false
+          },
+          "muted": true,
+          "volumeMul": 1,
+          "monitorType": "OBS_MONITORING_TYPE_NONE",
+          "mediaState": "OBS_MEDIA_STATE_PLAYING",
+          "mediaCursor": 1450,
+          "mediaDuration": 8000,
+          "native": {
+            "uuid": "91b9c92e-b63d-44be-8a87-92dec34c9dca",
+            "kind": "ffmpeg_source",
+            "audio": true,
+            "active": true,
+            "showing": true,
+            "enabled": true
+          }
+        },
+        {
+          "uuid": "52711931-8b7d-45a3-a94c-1ef63bbf37ab",
+          "name": "QA Quality speech",
+          "tracks": {
+            "1": true,
+            "2": false,
+            "3": false,
+            "4": false,
+            "5": false,
+            "6": false
+          },
+          "muted": true,
+          "volumeMul": 1,
+          "monitorType": "OBS_MONITORING_TYPE_NONE",
+          "mediaState": "OBS_MEDIA_STATE_PLAYING",
+          "mediaCursor": 9386,
+          "mediaDuration": 16151,
+          "native": {
+            "uuid": "52711931-8b7d-45a3-a94c-1ef63bbf37ab",
+            "kind": "ffmpeg_source",
+            "audio": true,
+            "active": true,
+            "showing": true,
+            "enabled": true
+          }
+        }
+      ],
+      "problems": [],
+      "elapsedMs": 6.197700000000623,
+      "polls": 1
+    },
+    {
+      "label": "noise-off-before",
+      "selected": "7c42b23b-9f81-4bbf-84d8-d09153e7be92",
+      "program": {
+        "currentProgramSceneName": "QA",
+        "currentProgramSceneUuid": "8a3e49c1-b597-4d58-b703-15b885ea1f4e"
+      },
+      "vendorSuccess": true,
+      "sceneItems": [
+        {
+          "sceneItemId": 5,
+          "sourceUuid": "7c42b23b-9f81-4bbf-84d8-d09153e7be92",
+          "sceneItemEnabled": true
+        },
+        {
+          "sceneItemId": 6,
+          "sourceUuid": "91b9c92e-b63d-44be-8a87-92dec34c9dca",
+          "sceneItemEnabled": true
+        },
+        {
+          "sceneItemId": 7,
+          "sourceUuid": "52711931-8b7d-45a3-a94c-1ef63bbf37ab",
+          "sceneItemEnabled": true
+        }
+      ],
+      "audio": [
+        {
+          "uuid": "7c42b23b-9f81-4bbf-84d8-d09153e7be92",
+          "name": "QA Quality noise",
+          "tracks": {
+            "1": true,
+            "2": false,
+            "3": false,
+            "4": false,
+            "5": false,
+            "6": false
+          },
+          "muted": false,
+          "volumeMul": 1,
+          "monitorType": "OBS_MONITORING_TYPE_NONE",
+          "mediaState": "OBS_MEDIA_STATE_PLAYING",
+          "mediaCursor": 7594,
+          "mediaDuration": 8000,
+          "native": {
+            "uuid": "7c42b23b-9f81-4bbf-84d8-d09153e7be92",
+            "kind": "ffmpeg_source",
+            "audio": true,
+            "active": true,
+            "showing": true,
+            "enabled": true
+          }
+        },
+        {
+          "uuid": "91b9c92e-b63d-44be-8a87-92dec34c9dca",
+          "name": "QA Quality tone",
+          "tracks": {
+            "1": true,
+            "2": false,
+            "3": false,
+            "4": false,
+            "5": false,
+            "6": false
+          },
+          "muted": true,
+          "volumeMul": 1,
+          "monitorType": "OBS_MONITORING_TYPE_NONE",
+          "mediaState": "OBS_MEDIA_STATE_PLAYING",
+          "mediaCursor": 2474,
+          "mediaDuration": 8000,
+          "native": {
+            "uuid": "91b9c92e-b63d-44be-8a87-92dec34c9dca",
+            "kind": "ffmpeg_source",
+            "audio": true,
+            "active": true,
+            "showing": true,
+            "enabled": true
+          }
+        },
+        {
+          "uuid": "52711931-8b7d-45a3-a94c-1ef63bbf37ab",
+          "name": "QA Quality speech",
+          "tracks": {
+            "1": true,
+            "2": false,
+            "3": false,
+            "4": false,
+            "5": false,
+            "6": false
+          },
+          "muted": true,
+          "volumeMul": 1,
+          "monitorType": "OBS_MONITORING_TYPE_NONE",
+          "mediaState": "OBS_MEDIA_STATE_PLAYING",
+          "mediaCursor": 10496,
+          "mediaDuration": 16151,
+          "native": {
+            "uuid": "52711931-8b7d-45a3-a94c-1ef63bbf37ab",
+            "kind": "ffmpeg_source",
+            "audio": true,
+            "active": true,
+            "showing": true,
+            "enabled": true
+          }
+        }
+      ],
+      "problems": [],
+      "elapsedMs": 7.751599999999598,
+      "polls": 1
+    },
+    {
+      "label": "noise-off-after",
+      "selected": "7c42b23b-9f81-4bbf-84d8-d09153e7be92",
+      "program": {
+        "currentProgramSceneName": "QA",
+        "currentProgramSceneUuid": "8a3e49c1-b597-4d58-b703-15b885ea1f4e"
+      },
+      "vendorSuccess": true,
+      "sceneItems": [
+        {
+          "sceneItemId": 5,
+          "sourceUuid": "7c42b23b-9f81-4bbf-84d8-d09153e7be92",
+          "sceneItemEnabled": true
+        },
+        {
+          "sceneItemId": 6,
+          "sourceUuid": "91b9c92e-b63d-44be-8a87-92dec34c9dca",
+          "sceneItemEnabled": true
+        },
+        {
+          "sceneItemId": 7,
+          "sourceUuid": "52711931-8b7d-45a3-a94c-1ef63bbf37ab",
+          "sceneItemEnabled": true
+        }
+      ],
+      "audio": [
+        {
+          "uuid": "7c42b23b-9f81-4bbf-84d8-d09153e7be92",
+          "name": "QA Quality noise",
+          "tracks": {
+            "1": true,
+            "2": false,
+            "3": false,
+            "4": false,
+            "5": false,
+            "6": false
+          },
+          "muted": false,
+          "volumeMul": 1,
+          "monitorType": "OBS_MONITORING_TYPE_NONE",
+          "mediaState": "OBS_MEDIA_STATE_PLAYING",
+          "mediaCursor": 2048,
+          "mediaDuration": 8000,
+          "native": {
+            "uuid": "7c42b23b-9f81-4bbf-84d8-d09153e7be92",
+            "kind": "ffmpeg_source",
+            "audio": true,
+            "active": true,
+            "showing": true,
+            "enabled": true
+          }
+        },
+        {
+          "uuid": "91b9c92e-b63d-44be-8a87-92dec34c9dca",
+          "name": "QA Quality tone",
+          "tracks": {
+            "1": true,
+            "2": false,
+            "3": false,
+            "4": false,
+            "5": false,
+            "6": false
+          },
+          "muted": true,
+          "volumeMul": 1,
+          "monitorType": "OBS_MONITORING_TYPE_NONE",
+          "mediaState": "OBS_MEDIA_STATE_PLAYING",
+          "mediaCursor": 4864,
+          "mediaDuration": 8000,
+          "native": {
+            "uuid": "91b9c92e-b63d-44be-8a87-92dec34c9dca",
+            "kind": "ffmpeg_source",
+            "audio": true,
+            "active": true,
+            "showing": true,
+            "enabled": true
+          }
+        },
+        {
+          "uuid": "52711931-8b7d-45a3-a94c-1ef63bbf37ab",
+          "name": "QA Quality speech",
+          "tracks": {
+            "1": true,
+            "2": false,
+            "3": false,
+            "4": false,
+            "5": false,
+            "6": false
+          },
+          "muted": true,
+          "volumeMul": 1,
+          "monitorType": "OBS_MONITORING_TYPE_NONE",
+          "mediaState": "OBS_MEDIA_STATE_PLAYING",
+          "mediaCursor": 12885,
+          "mediaDuration": 16151,
+          "native": {
+            "uuid": "52711931-8b7d-45a3-a94c-1ef63bbf37ab",
+            "kind": "ffmpeg_source",
+            "audio": true,
+            "active": true,
+            "showing": true,
+            "enabled": true
+          }
+        }
+      ],
+      "problems": [],
+      "elapsedMs": 5.9804000000003725,
+      "polls": 1
+    },
+    {
+      "label": "play-QA Quality tone",
+      "selected": "91b9c92e-b63d-44be-8a87-92dec34c9dca",
+      "program": {
+        "currentProgramSceneName": "QA",
+        "currentProgramSceneUuid": "8a3e49c1-b597-4d58-b703-15b885ea1f4e"
+      },
+      "vendorSuccess": true,
+      "sceneItems": [
+        {
+          "sceneItemId": 5,
+          "sourceUuid": "7c42b23b-9f81-4bbf-84d8-d09153e7be92",
+          "sceneItemEnabled": true
+        },
+        {
+          "sceneItemId": 6,
+          "sourceUuid": "91b9c92e-b63d-44be-8a87-92dec34c9dca",
+          "sceneItemEnabled": true
+        },
+        {
+          "sceneItemId": 7,
+          "sourceUuid": "52711931-8b7d-45a3-a94c-1ef63bbf37ab",
+          "sceneItemEnabled": true
+        }
+      ],
+      "audio": [
+        {
+          "uuid": "7c42b23b-9f81-4bbf-84d8-d09153e7be92",
+          "name": "QA Quality noise",
+          "tracks": {
+            "1": true,
+            "2": false,
+            "3": false,
+            "4": false,
+            "5": false,
+            "6": false
+          },
+          "muted": true,
+          "volumeMul": 1,
+          "monitorType": "OBS_MONITORING_TYPE_NONE",
+          "mediaState": "OBS_MEDIA_STATE_PLAYING",
+          "mediaCursor": 2816,
+          "mediaDuration": 8000,
+          "native": {
+            "uuid": "7c42b23b-9f81-4bbf-84d8-d09153e7be92",
+            "kind": "ffmpeg_source",
+            "audio": true,
+            "active": true,
+            "showing": true,
+            "enabled": true
+          }
+        },
+        {
+          "uuid": "91b9c92e-b63d-44be-8a87-92dec34c9dca",
+          "name": "QA Quality tone",
+          "tracks": {
+            "1": true,
+            "2": false,
+            "3": false,
+            "4": false,
+            "5": false,
+            "6": false
+          },
+          "muted": false,
+          "volumeMul": 1,
+          "monitorType": "OBS_MONITORING_TYPE_NONE",
+          "mediaState": "OBS_MEDIA_STATE_PLAYING",
+          "mediaCursor": 597,
+          "mediaDuration": 8000,
+          "native": {
+            "uuid": "91b9c92e-b63d-44be-8a87-92dec34c9dca",
+            "kind": "ffmpeg_source",
+            "audio": true,
+            "active": true,
+            "showing": true,
+            "enabled": true
+          }
+        },
+        {
+          "uuid": "52711931-8b7d-45a3-a94c-1ef63bbf37ab",
+          "name": "QA Quality speech",
+          "tracks": {
+            "1": true,
+            "2": false,
+            "3": false,
+            "4": false,
+            "5": false,
+            "6": false
+          },
+          "muted": true,
+          "volumeMul": 1,
+          "monitorType": "OBS_MONITORING_TYPE_NONE",
+          "mediaState": "OBS_MEDIA_STATE_PLAYING",
+          "mediaCursor": 13653,
+          "mediaDuration": 16151,
+          "native": {
+            "uuid": "52711931-8b7d-45a3-a94c-1ef63bbf37ab",
+            "kind": "ffmpeg_source",
+            "audio": true,
+            "active": true,
+            "showing": true,
+            "enabled": true
+          }
+        }
+      ],
+      "problems": [],
+      "elapsedMs": 8.050499999997555,
+      "polls": 1
+    },
+    {
+      "label": "tone-before-before",
+      "selected": "91b9c92e-b63d-44be-8a87-92dec34c9dca",
+      "program": {
+        "currentProgramSceneName": "QA",
+        "currentProgramSceneUuid": "8a3e49c1-b597-4d58-b703-15b885ea1f4e"
+      },
+      "vendorSuccess": true,
+      "sceneItems": [
+        {
+          "sceneItemId": 5,
+          "sourceUuid": "7c42b23b-9f81-4bbf-84d8-d09153e7be92",
+          "sceneItemEnabled": true
+        },
+        {
+          "sceneItemId": 6,
+          "sourceUuid": "91b9c92e-b63d-44be-8a87-92dec34c9dca",
+          "sceneItemEnabled": true
+        },
+        {
+          "sceneItemId": 7,
+          "sourceUuid": "52711931-8b7d-45a3-a94c-1ef63bbf37ab",
+          "sceneItemEnabled": true
+        }
+      ],
+      "audio": [
+        {
+          "uuid": "7c42b23b-9f81-4bbf-84d8-d09153e7be92",
+          "name": "QA Quality noise",
+          "tracks": {
+            "1": true,
+            "2": false,
+            "3": false,
+            "4": false,
+            "5": false,
+            "6": false
+          },
+          "muted": true,
+          "volumeMul": 1,
+          "monitorType": "OBS_MONITORING_TYPE_NONE",
+          "mediaState": "OBS_MEDIA_STATE_PLAYING",
+          "mediaCursor": 2901,
+          "mediaDuration": 8000,
+          "native": {
+            "uuid": "7c42b23b-9f81-4bbf-84d8-d09153e7be92",
+            "kind": "ffmpeg_source",
+            "audio": true,
+            "active": true,
+            "showing": true,
+            "enabled": true
+          }
+        },
+        {
+          "uuid": "91b9c92e-b63d-44be-8a87-92dec34c9dca",
+          "name": "QA Quality tone",
+          "tracks": {
+            "1": true,
+            "2": false,
+            "3": false,
+            "4": false,
+            "5": false,
+            "6": false
+          },
+          "muted": false,
+          "volumeMul": 1,
+          "monitorType": "OBS_MONITORING_TYPE_NONE",
+          "mediaState": "OBS_MEDIA_STATE_PLAYING",
+          "mediaCursor": 682,
+          "mediaDuration": 8000,
+          "native": {
+            "uuid": "91b9c92e-b63d-44be-8a87-92dec34c9dca",
+            "kind": "ffmpeg_source",
+            "audio": true,
+            "active": true,
+            "showing": true,
+            "enabled": true
+          }
+        },
+        {
+          "uuid": "52711931-8b7d-45a3-a94c-1ef63bbf37ab",
+          "name": "QA Quality speech",
+          "tracks": {
+            "1": true,
+            "2": false,
+            "3": false,
+            "4": false,
+            "5": false,
+            "6": false
+          },
+          "muted": true,
+          "volumeMul": 1,
+          "monitorType": "OBS_MONITORING_TYPE_NONE",
+          "mediaState": "OBS_MEDIA_STATE_PLAYING",
+          "mediaCursor": 13653,
+          "mediaDuration": 16151,
+          "native": {
+            "uuid": "52711931-8b7d-45a3-a94c-1ef63bbf37ab",
+            "kind": "ffmpeg_source",
+            "audio": true,
+            "active": true,
+            "showing": true,
+            "enabled": true
+          }
+        }
+      ],
+      "problems": [],
+      "elapsedMs": 4.931899999999587,
+      "polls": 1
+    },
+    {
+      "label": "tone-before-after",
+      "selected": "91b9c92e-b63d-44be-8a87-92dec34c9dca",
+      "program": {
+        "currentProgramSceneName": "QA",
+        "currentProgramSceneUuid": "8a3e49c1-b597-4d58-b703-15b885ea1f4e"
+      },
+      "vendorSuccess": true,
+      "sceneItems": [
+        {
+          "sceneItemId": 5,
+          "sourceUuid": "7c42b23b-9f81-4bbf-84d8-d09153e7be92",
+          "sceneItemEnabled": true
+        },
+        {
+          "sceneItemId": 6,
+          "sourceUuid": "91b9c92e-b63d-44be-8a87-92dec34c9dca",
+          "sceneItemEnabled": true
+        },
+        {
+          "sceneItemId": 7,
+          "sourceUuid": "52711931-8b7d-45a3-a94c-1ef63bbf37ab",
+          "sceneItemEnabled": true
+        }
+      ],
+      "audio": [
+        {
+          "uuid": "7c42b23b-9f81-4bbf-84d8-d09153e7be92",
+          "name": "QA Quality noise",
+          "tracks": {
+            "1": true,
+            "2": false,
+            "3": false,
+            "4": false,
+            "5": false,
+            "6": false
+          },
+          "muted": true,
+          "volumeMul": 1,
+          "monitorType": "OBS_MONITORING_TYPE_NONE",
+          "mediaState": "OBS_MEDIA_STATE_PLAYING",
+          "mediaCursor": 5290,
+          "mediaDuration": 8000,
+          "native": {
+            "uuid": "7c42b23b-9f81-4bbf-84d8-d09153e7be92",
+            "kind": "ffmpeg_source",
+            "audio": true,
+            "active": true,
+            "showing": true,
+            "enabled": true
+          }
+        },
+        {
+          "uuid": "91b9c92e-b63d-44be-8a87-92dec34c9dca",
+          "name": "QA Quality tone",
+          "tracks": {
+            "1": true,
+            "2": false,
+            "3": false,
+            "4": false,
+            "5": false,
+            "6": false
+          },
+          "muted": false,
+          "volumeMul": 1,
+          "monitorType": "OBS_MONITORING_TYPE_NONE",
+          "mediaState": "OBS_MEDIA_STATE_PLAYING",
+          "mediaCursor": 3072,
+          "mediaDuration": 8000,
+          "native": {
+            "uuid": "91b9c92e-b63d-44be-8a87-92dec34c9dca",
+            "kind": "ffmpeg_source",
+            "audio": true,
+            "active": true,
+            "showing": true,
+            "enabled": true
+          }
+        },
+        {
+          "uuid": "52711931-8b7d-45a3-a94c-1ef63bbf37ab",
+          "name": "QA Quality speech",
+          "tracks": {
+            "1": true,
+            "2": false,
+            "3": false,
+            "4": false,
+            "5": false,
+            "6": false
+          },
+          "muted": true,
+          "volumeMul": 1,
+          "monitorType": "OBS_MONITORING_TYPE_NONE",
+          "mediaState": "OBS_MEDIA_STATE_ENDED",
+          "mediaCursor": null,
+          "mediaDuration": null,
+          "native": {
+            "uuid": "52711931-8b7d-45a3-a94c-1ef63bbf37ab",
+            "kind": "ffmpeg_source",
+            "audio": true,
+            "active": true,
+            "showing": true,
+            "enabled": true
+          }
+        }
+      ],
+      "problems": [],
+      "elapsedMs": 6.380700000001525,
+      "polls": 1
+    },
+    {
+      "label": "tone-preset-before",
+      "selected": "91b9c92e-b63d-44be-8a87-92dec34c9dca",
+      "program": {
+        "currentProgramSceneName": "QA",
+        "currentProgramSceneUuid": "8a3e49c1-b597-4d58-b703-15b885ea1f4e"
+      },
+      "vendorSuccess": true,
+      "sceneItems": [
+        {
+          "sceneItemId": 5,
+          "sourceUuid": "7c42b23b-9f81-4bbf-84d8-d09153e7be92",
+          "sceneItemEnabled": true
+        },
+        {
+          "sceneItemId": 6,
+          "sourceUuid": "91b9c92e-b63d-44be-8a87-92dec34c9dca",
+          "sceneItemEnabled": true
+        },
+        {
+          "sceneItemId": 7,
+          "sourceUuid": "52711931-8b7d-45a3-a94c-1ef63bbf37ab",
+          "sceneItemEnabled": true
+        }
+      ],
+      "audio": [
+        {
+          "uuid": "7c42b23b-9f81-4bbf-84d8-d09153e7be92",
+          "name": "QA Quality noise",
+          "tracks": {
+            "1": true,
+            "2": false,
+            "3": false,
+            "4": false,
+            "5": false,
+            "6": false
+          },
+          "muted": true,
+          "volumeMul": 1,
+          "monitorType": "OBS_MONITORING_TYPE_NONE",
+          "mediaState": "OBS_MEDIA_STATE_PLAYING",
+          "mediaCursor": 6400,
+          "mediaDuration": 8000,
+          "native": {
+            "uuid": "7c42b23b-9f81-4bbf-84d8-d09153e7be92",
+            "kind": "ffmpeg_source",
+            "audio": true,
+            "active": true,
+            "showing": true,
+            "enabled": true
+          }
+        },
+        {
+          "uuid": "91b9c92e-b63d-44be-8a87-92dec34c9dca",
+          "name": "QA Quality tone",
+          "tracks": {
+            "1": true,
+            "2": false,
+            "3": false,
+            "4": false,
+            "5": false,
+            "6": false
+          },
+          "muted": false,
+          "volumeMul": 1,
+          "monitorType": "OBS_MONITORING_TYPE_NONE",
+          "mediaState": "OBS_MEDIA_STATE_PLAYING",
+          "mediaCursor": 4181,
+          "mediaDuration": 8000,
+          "native": {
+            "uuid": "91b9c92e-b63d-44be-8a87-92dec34c9dca",
+            "kind": "ffmpeg_source",
+            "audio": true,
+            "active": true,
+            "showing": true,
+            "enabled": true
+          }
+        },
+        {
+          "uuid": "52711931-8b7d-45a3-a94c-1ef63bbf37ab",
+          "name": "QA Quality speech",
+          "tracks": {
+            "1": true,
+            "2": false,
+            "3": false,
+            "4": false,
+            "5": false,
+            "6": false
+          },
+          "muted": true,
+          "volumeMul": 1,
+          "monitorType": "OBS_MONITORING_TYPE_NONE",
+          "mediaState": "OBS_MEDIA_STATE_ENDED",
+          "mediaCursor": null,
+          "mediaDuration": null,
+          "native": {
+            "uuid": "52711931-8b7d-45a3-a94c-1ef63bbf37ab",
+            "kind": "ffmpeg_source",
+            "audio": true,
+            "active": true,
+            "showing": true,
+            "enabled": true
+          }
+        }
+      ],
+      "problems": [],
+      "elapsedMs": 6.103399999999965,
+      "polls": 1
+    },
+    {
+      "label": "tone-preset-after",
+      "selected": "91b9c92e-b63d-44be-8a87-92dec34c9dca",
+      "program": {
+        "currentProgramSceneName": "QA",
+        "currentProgramSceneUuid": "8a3e49c1-b597-4d58-b703-15b885ea1f4e"
+      },
+      "vendorSuccess": true,
+      "sceneItems": [
+        {
+          "sceneItemId": 5,
+          "sourceUuid": "7c42b23b-9f81-4bbf-84d8-d09153e7be92",
+          "sceneItemEnabled": true
+        },
+        {
+          "sceneItemId": 6,
+          "sourceUuid": "91b9c92e-b63d-44be-8a87-92dec34c9dca",
+          "sceneItemEnabled": true
+        },
+        {
+          "sceneItemId": 7,
+          "sourceUuid": "52711931-8b7d-45a3-a94c-1ef63bbf37ab",
+          "sceneItemEnabled": true
+        }
+      ],
+      "audio": [
+        {
+          "uuid": "7c42b23b-9f81-4bbf-84d8-d09153e7be92",
+          "name": "QA Quality noise",
+          "tracks": {
+            "1": true,
+            "2": false,
+            "3": false,
+            "4": false,
+            "5": false,
+            "6": false
+          },
+          "muted": true,
+          "volumeMul": 1,
+          "monitorType": "OBS_MONITORING_TYPE_NONE",
+          "mediaState": "OBS_MEDIA_STATE_PLAYING",
+          "mediaCursor": 768,
+          "mediaDuration": 8000,
+          "native": {
+            "uuid": "7c42b23b-9f81-4bbf-84d8-d09153e7be92",
+            "kind": "ffmpeg_source",
+            "audio": true,
+            "active": true,
+            "showing": true,
+            "enabled": true
+          }
+        },
+        {
+          "uuid": "91b9c92e-b63d-44be-8a87-92dec34c9dca",
+          "name": "QA Quality tone",
+          "tracks": {
+            "1": true,
+            "2": false,
+            "3": false,
+            "4": false,
+            "5": false,
+            "6": false
+          },
+          "muted": false,
+          "volumeMul": 1,
+          "monitorType": "OBS_MONITORING_TYPE_NONE",
+          "mediaState": "OBS_MEDIA_STATE_PLAYING",
+          "mediaCursor": 6570,
+          "mediaDuration": 8000,
+          "native": {
+            "uuid": "91b9c92e-b63d-44be-8a87-92dec34c9dca",
+            "kind": "ffmpeg_source",
+            "audio": true,
+            "active": true,
+            "showing": true,
+            "enabled": true
+          }
+        },
+        {
+          "uuid": "52711931-8b7d-45a3-a94c-1ef63bbf37ab",
+          "name": "QA Quality speech",
+          "tracks": {
+            "1": true,
+            "2": false,
+            "3": false,
+            "4": false,
+            "5": false,
+            "6": false
+          },
+          "muted": true,
+          "volumeMul": 1,
+          "monitorType": "OBS_MONITORING_TYPE_NONE",
+          "mediaState": "OBS_MEDIA_STATE_ENDED",
+          "mediaCursor": null,
+          "mediaDuration": null,
+          "native": {
+            "uuid": "52711931-8b7d-45a3-a94c-1ef63bbf37ab",
+            "kind": "ffmpeg_source",
+            "audio": true,
+            "active": true,
+            "showing": true,
+            "enabled": true
+          }
+        }
+      ],
+      "problems": [],
+      "elapsedMs": 6.688200000000506,
+      "polls": 1
+    },
+    {
+      "label": "tone-off-before",
+      "selected": "91b9c92e-b63d-44be-8a87-92dec34c9dca",
+      "program": {
+        "currentProgramSceneName": "QA",
+        "currentProgramSceneUuid": "8a3e49c1-b597-4d58-b703-15b885ea1f4e"
+      },
+      "vendorSuccess": true,
+      "sceneItems": [
+        {
+          "sceneItemId": 5,
+          "sourceUuid": "7c42b23b-9f81-4bbf-84d8-d09153e7be92",
+          "sceneItemEnabled": true
+        },
+        {
+          "sceneItemId": 6,
+          "sourceUuid": "91b9c92e-b63d-44be-8a87-92dec34c9dca",
+          "sceneItemEnabled": true
+        },
+        {
+          "sceneItemId": 7,
+          "sourceUuid": "52711931-8b7d-45a3-a94c-1ef63bbf37ab",
+          "sceneItemEnabled": true
+        }
+      ],
+      "audio": [
+        {
+          "uuid": "7c42b23b-9f81-4bbf-84d8-d09153e7be92",
+          "name": "QA Quality noise",
+          "tracks": {
+            "1": true,
+            "2": false,
+            "3": false,
+            "4": false,
+            "5": false,
+            "6": false
+          },
+          "muted": true,
+          "volumeMul": 1,
+          "monitorType": "OBS_MONITORING_TYPE_NONE",
+          "mediaState": "OBS_MEDIA_STATE_PLAYING",
+          "mediaCursor": 1877,
+          "mediaDuration": 8000,
+          "native": {
+            "uuid": "7c42b23b-9f81-4bbf-84d8-d09153e7be92",
+            "kind": "ffmpeg_source",
+            "audio": true,
+            "active": true,
+            "showing": true,
+            "enabled": true
+          }
+        },
+        {
+          "uuid": "91b9c92e-b63d-44be-8a87-92dec34c9dca",
+          "name": "QA Quality tone",
+          "tracks": {
+            "1": true,
+            "2": false,
+            "3": false,
+            "4": false,
+            "5": false,
+            "6": false
+          },
+          "muted": false,
+          "volumeMul": 1,
+          "monitorType": "OBS_MONITORING_TYPE_NONE",
+          "mediaState": "OBS_MEDIA_STATE_PLAYING",
+          "mediaCursor": 7594,
+          "mediaDuration": 8000,
+          "native": {
+            "uuid": "91b9c92e-b63d-44be-8a87-92dec34c9dca",
+            "kind": "ffmpeg_source",
+            "audio": true,
+            "active": true,
+            "showing": true,
+            "enabled": true
+          }
+        },
+        {
+          "uuid": "52711931-8b7d-45a3-a94c-1ef63bbf37ab",
+          "name": "QA Quality speech",
+          "tracks": {
+            "1": true,
+            "2": false,
+            "3": false,
+            "4": false,
+            "5": false,
+            "6": false
+          },
+          "muted": true,
+          "volumeMul": 1,
+          "monitorType": "OBS_MONITORING_TYPE_NONE",
+          "mediaState": "OBS_MEDIA_STATE_ENDED",
+          "mediaCursor": null,
+          "mediaDuration": null,
+          "native": {
+            "uuid": "52711931-8b7d-45a3-a94c-1ef63bbf37ab",
+            "kind": "ffmpeg_source",
+            "audio": true,
+            "active": true,
+            "showing": true,
+            "enabled": true
+          }
+        }
+      ],
+      "problems": [],
+      "elapsedMs": 7.470099999998638,
+      "polls": 1
+    },
+    {
+      "label": "tone-off-after",
+      "selected": "91b9c92e-b63d-44be-8a87-92dec34c9dca",
+      "program": {
+        "currentProgramSceneName": "QA",
+        "currentProgramSceneUuid": "8a3e49c1-b597-4d58-b703-15b885ea1f4e"
+      },
+      "vendorSuccess": true,
+      "sceneItems": [
+        {
+          "sceneItemId": 5,
+          "sourceUuid": "7c42b23b-9f81-4bbf-84d8-d09153e7be92",
+          "sceneItemEnabled": true
+        },
+        {
+          "sceneItemId": 6,
+          "sourceUuid": "91b9c92e-b63d-44be-8a87-92dec34c9dca",
+          "sceneItemEnabled": true
+        },
+        {
+          "sceneItemId": 7,
+          "sourceUuid": "52711931-8b7d-45a3-a94c-1ef63bbf37ab",
+          "sceneItemEnabled": true
+        }
+      ],
+      "audio": [
+        {
+          "uuid": "7c42b23b-9f81-4bbf-84d8-d09153e7be92",
+          "name": "QA Quality noise",
+          "tracks": {
+            "1": true,
+            "2": false,
+            "3": false,
+            "4": false,
+            "5": false,
+            "6": false
+          },
+          "muted": true,
+          "volumeMul": 1,
+          "monitorType": "OBS_MONITORING_TYPE_NONE",
+          "mediaState": "OBS_MEDIA_STATE_PLAYING",
+          "mediaCursor": 4266,
+          "mediaDuration": 8000,
+          "native": {
+            "uuid": "7c42b23b-9f81-4bbf-84d8-d09153e7be92",
+            "kind": "ffmpeg_source",
+            "audio": true,
+            "active": true,
+            "showing": true,
+            "enabled": true
+          }
+        },
+        {
+          "uuid": "91b9c92e-b63d-44be-8a87-92dec34c9dca",
+          "name": "QA Quality tone",
+          "tracks": {
+            "1": true,
+            "2": false,
+            "3": false,
+            "4": false,
+            "5": false,
+            "6": false
+          },
+          "muted": false,
+          "volumeMul": 1,
+          "monitorType": "OBS_MONITORING_TYPE_NONE",
+          "mediaState": "OBS_MEDIA_STATE_PLAYING",
+          "mediaCursor": 2048,
+          "mediaDuration": 8000,
+          "native": {
+            "uuid": "91b9c92e-b63d-44be-8a87-92dec34c9dca",
+            "kind": "ffmpeg_source",
+            "audio": true,
+            "active": true,
+            "showing": true,
+            "enabled": true
+          }
+        },
+        {
+          "uuid": "52711931-8b7d-45a3-a94c-1ef63bbf37ab",
+          "name": "QA Quality speech",
+          "tracks": {
+            "1": true,
+            "2": false,
+            "3": false,
+            "4": false,
+            "5": false,
+            "6": false
+          },
+          "muted": true,
+          "volumeMul": 1,
+          "monitorType": "OBS_MONITORING_TYPE_NONE",
+          "mediaState": "OBS_MEDIA_STATE_ENDED",
+          "mediaCursor": null,
+          "mediaDuration": null,
+          "native": {
+            "uuid": "52711931-8b7d-45a3-a94c-1ef63bbf37ab",
+            "kind": "ffmpeg_source",
+            "audio": true,
+            "active": true,
+            "showing": true,
+            "enabled": true
+          }
+        }
+      ],
+      "problems": [],
+      "elapsedMs": 7.967500000006112,
+      "polls": 1
+    },
+    {
+      "label": "play-QA Quality speech",
+      "selected": "52711931-8b7d-45a3-a94c-1ef63bbf37ab",
+      "program": {
+        "currentProgramSceneName": "QA",
+        "currentProgramSceneUuid": "8a3e49c1-b597-4d58-b703-15b885ea1f4e"
+      },
+      "vendorSuccess": true,
+      "sceneItems": [
+        {
+          "sceneItemId": 5,
+          "sourceUuid": "7c42b23b-9f81-4bbf-84d8-d09153e7be92",
+          "sceneItemEnabled": true
+        },
+        {
+          "sceneItemId": 6,
+          "sourceUuid": "91b9c92e-b63d-44be-8a87-92dec34c9dca",
+          "sceneItemEnabled": true
+        },
+        {
+          "sceneItemId": 7,
+          "sourceUuid": "52711931-8b7d-45a3-a94c-1ef63bbf37ab",
+          "sceneItemEnabled": true
+        }
+      ],
+      "audio": [
+        {
+          "uuid": "7c42b23b-9f81-4bbf-84d8-d09153e7be92",
+          "name": "QA Quality noise",
+          "tracks": {
+            "1": true,
+            "2": false,
+            "3": false,
+            "4": false,
+            "5": false,
+            "6": false
+          },
+          "muted": true,
+          "volumeMul": 1,
+          "monitorType": "OBS_MONITORING_TYPE_NONE",
+          "mediaState": "OBS_MEDIA_STATE_PLAYING",
+          "mediaCursor": 6229,
+          "mediaDuration": 8000,
+          "native": {
+            "uuid": "7c42b23b-9f81-4bbf-84d8-d09153e7be92",
+            "kind": "ffmpeg_source",
+            "audio": true,
+            "active": true,
+            "showing": true,
+            "enabled": true
+          }
+        },
+        {
+          "uuid": "91b9c92e-b63d-44be-8a87-92dec34c9dca",
+          "name": "QA Quality tone",
+          "tracks": {
+            "1": true,
+            "2": false,
+            "3": false,
+            "4": false,
+            "5": false,
+            "6": false
+          },
+          "muted": true,
+          "volumeMul": 1,
+          "monitorType": "OBS_MONITORING_TYPE_NONE",
+          "mediaState": "OBS_MEDIA_STATE_PLAYING",
+          "mediaCursor": 4010,
+          "mediaDuration": 8000,
+          "native": {
+            "uuid": "91b9c92e-b63d-44be-8a87-92dec34c9dca",
+            "kind": "ffmpeg_source",
+            "audio": true,
+            "active": true,
+            "showing": true,
+            "enabled": true
+          }
+        },
+        {
+          "uuid": "52711931-8b7d-45a3-a94c-1ef63bbf37ab",
+          "name": "QA Quality speech",
+          "tracks": {
+            "1": true,
+            "2": false,
+            "3": false,
+            "4": false,
+            "5": false,
+            "6": false
+          },
+          "muted": false,
+          "volumeMul": 1,
+          "monitorType": "OBS_MONITORING_TYPE_NONE",
+          "mediaState": "OBS_MEDIA_STATE_PLAYING",
+          "mediaCursor": 768,
+          "mediaDuration": 16151,
+          "native": {
+            "uuid": "52711931-8b7d-45a3-a94c-1ef63bbf37ab",
+            "kind": "ffmpeg_source",
+            "audio": true,
+            "active": true,
+            "showing": true,
+            "enabled": true
+          }
+        }
+      ],
+      "problems": [],
+      "elapsedMs": 7.884200000000419,
+      "polls": 1
+    }
+  ],
+  "routeTruncated": 0,
+  "localVocal": {
+    "sha256": "5aa7f14d9dd01c8d110eb86bf42e5f50b2a1070e6dcb7d92bc7b27e97bf45b4f",
+    "bytes": 1240064,
+    "rootExplicitlyPinned": true
+  },
+  "uncertainMutation": false,
+  "startedAt": "2026-10-10T15:27:22.540Z",
+  "pid": 17952,
+  "stage": "portuguese-own-speech-asr",
+  "readiness": {
+    "deadlineMs": 120000,
+    "snapshots": [
+      {
+        "elapsedMs": 6,
+        "code": "ECONNREFUSED"
+      },
+      {
+        "elapsedMs": 257,
+        "code": "ECONNREFUSED"
+      },
+      {
+        "elapsedMs": 510,
+        "code": "ECONNREFUSED"
+      },
+      {
+        "elapsedMs": 762,
+        "code": "ECONNREFUSED"
+      },
+      {
+        "elapsedMs": 1013,
+        "code": "ECONNREFUSED"
+      },
+      {
+        "elapsedMs": 1264,
+        "code": "ECONNREFUSED"
+      },
+      {
+        "elapsedMs": 1515,
+        "code": "ECONNREFUSED"
+      },
+      {
+        "elapsedMs": 1766,
+        "code": "ECONNREFUSED"
+      },
+      {
+        "elapsedMs": 2017,
+        "code": "ECONNREFUSED"
+      },
+      {
+        "elapsedMs": 2268,
+        "code": "ECONNREFUSED"
+      },
+      {
+        "elapsedMs": 2519,
+        "code": "ECONNREFUSED"
+      },
+      {
+        "elapsedMs": 2770,
+        "code": "ECONNREFUSED"
+      },
+      {
+        "elapsedMs": 3022,
+        "code": "ECONNREFUSED"
+      },
+      {
+        "elapsedMs": 3273,
+        "code": "ECONNREFUSED"
+      },
+      {
+        "elapsedMs": 3526,
+        "code": "ECONNREFUSED"
+      },
+      {
+        "elapsedMs": 3778,
+        "code": "ECONNREFUSED"
+      },
+      {
+        "elapsedMs": 4029,
+        "code": "ECONNREFUSED"
+      },
+      {
+        "elapsedMs": 4282,
+        "code": "ECONNREFUSED"
+      },
+      {
+        "elapsedMs": 4534,
+        "code": "ECONNREFUSED"
+      },
+      {
+        "elapsedMs": 4785,
+        "code": "ECONNREFUSED"
+      },
+      {
+        "elapsedMs": 5036,
+        "code": "ECONNREFUSED"
+      },
+      {
+        "elapsedMs": 5287,
+        "code": "ECONNREFUSED"
+      },
+      {
+        "elapsedMs": 5540,
+        "code": "ECONNREFUSED"
+      },
+      {
+        "elapsedMs": 5792,
+        "code": "ECONNREFUSED"
+      }
+    ],
+    "truncated": 7
+  },
+  "ready": true,
+  "availability": {
+    "requiredRegistered": true,
+    "nativeNvidiaKindsAbsent": true,
+    "sdkVfxApproved": false,
+    "sdkAfxApproved": false,
+    "english": false,
+    "genericTranslation": false,
+    "cloud": false,
+    "tinyMatch": true
+  },
+  "color": {
+    "meanRedIncrease": 70,
+    "restoredMeanDifference": 0
+  },
+  "sharpness": {
+    "edgeEnergyRatio": 2.230769230769231,
+    "restoredMeanDifference": 0,
+    "pixelObjective": {
+      "x": 86,
+      "y": 68,
+      "before": [
+        97,
+        97,
+        97,
+        255
+      ],
+      "after": [
+        92,
+        92,
+        92,
+        255
+      ],
+      "off": [
+        97,
+        97,
+        97,
+        255
+      ]
+    },
+    "meanDifference": 2.6084635416666666
+  },
+  "chroma": {
+    "greenAlpha": 0,
+    "foregroundAlpha": 255,
+    "foregroundRed": 220,
+    "restoredMeanDifference": 0
+  },
+  "failure": {
+    "stage": "digital-master-oracles",
+    "code": "ERR_ASSERTION"
+  },
+  "audioAssertions": {
+    "noiseReductionDb": 1.0357810307411823,
+    "noiseRestoredRatio": 0.9989965501809634,
+    "physicalOutput": false,
+    "perceptualSpeechQualityProven": false
+  },
+  "captions": {
+    "success": true,
+    "elapsedMs": 3004,
+    "polls": 3,
+    "snapshots": [
+      {
+        "elapsedMs": 1003,
+        "characters": 0,
+        "words": 0,
+        "matchedTokens": 0,
+        "expectedTokens": 5,
+        "cumulativeMatchedTokens": 0,
+        "textSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "elapsedMs": 2004,
+        "characters": 22,
+        "words": 3,
+        "matchedTokens": 1,
+        "expectedTokens": 5,
+        "cumulativeMatchedTokens": 1,
+        "textSha256": "00b33f2e926ab386b0619c3f604fbea1e7d339ba973a4634568c55c2552bd5f6"
+      },
+      {
+        "elapsedMs": 3004,
+        "characters": 36,
+        "words": 6,
+        "matchedTokens": 3,
+        "expectedTokens": 5,
+        "cumulativeMatchedTokens": 3,
+        "textSha256": "052b0caf239b9e07360e9d00ef1c98b8bd1c513fd47d4ac2a6dc13ede40ea8bd"
+      }
+    ],
+    "maxEvidence": {
+      "characters": 36,
+      "words": 6,
+      "matchedTokens": 3,
+      "expectedTokens": 5
+    },
+    "cumulativeMatchedTokens": 3,
+    "expectedTokenCount": 5,
+    "transcriptIncluded": false,
+    "syntheticFixtureOnly": true,
+    "universalAccuracyProven": false
+  },
+  "cleanup": {
+    "success": true,
+    "forced": false,
+    "shutdownRequested": true,
+    "shutdownAccepted": true,
+    "identityConfirmed": true,
+    "connectionClosed": true,
+    "preservedProcess": null,
+    "outputs": [
+      {
+        "outputActive": false,
+        "outputFlags": {
+          "OBS_OUTPUT_AUDIO": true,
+          "OBS_OUTPUT_ENCODED": true,
+          "OBS_OUTPUT_MULTI_TRACK": true,
+          "OBS_OUTPUT_SERVICE": false,
+          "OBS_OUTPUT_VIDEO": true
+        },
+        "outputHeight": 0,
+        "outputKind": "mp4_output",
+        "outputName": "simple_file_output",
+        "outputWidth": 0
+      },
+      {
+        "outputActive": false,
+        "outputFlags": {
+          "OBS_OUTPUT_AUDIO": false,
+          "OBS_OUTPUT_ENCODED": false,
+          "OBS_OUTPUT_MULTI_TRACK": false,
+          "OBS_OUTPUT_SERVICE": false,
+          "OBS_OUTPUT_VIDEO": true
+        },
+        "outputHeight": 360,
+        "outputKind": "virtualcam_output",
+        "outputName": "virtualcam_output",
+        "outputWidth": 640
+      }
+    ],
+    "shutdown": {
+      "success": true
+    },
+    "exit": {
+      "code": 0,
+      "signal": null
+    },
+    "connectionPending": false
+  },
+  "extraDestinationPins": {
+    "count": 8,
+    "probe": true,
+    "marker": true,
+    "media": true,
+    "match": true
+  },
+  "logSummary": {
+    "sha256": "6a9b0e048babcb0980bc74797ac576879b7abfc982bede19c6a04ac3c1971278",
+    "counts": [
+      0
+    ],
+    "crashMarkers": 0,
+    "crashFiles": 0,
+    "rawLogCopied": false
+  },
+  "afterPins": {
+    "NativeSource": 2085,
+    "NativeDestination": 2085,
+    "QA": 33,
+    "canonicalAndExternalPins": 46,
+    "tiny": true,
+    "match": true
+  },
+  "finishedAt": "2026-10-10T15:28:03.992Z",
+  "limits": [
+    "Own image/WAV/SAPI fixtures; no camera/microphone/device activation",
+    "Actual controller+NativeWS and digital Master; no HTTP API/UI visual acceptance claim",
+    "NVIDIA and English translation remain unavailable; no SDK/model downloads",
+    "RNNoise suppression/finite PCM and preset limiter test do not certify intelligibility or human speech quality",
+    "Tiny own-speech token evidence is finite, not general ASR accuracy",
+    "On unknown close identity/idle/shutdown preserve PID and root; no force/retry"
+  ]
+}

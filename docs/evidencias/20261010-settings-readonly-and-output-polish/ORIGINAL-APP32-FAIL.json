@@ -1,0 +1,913 @@
+{
+  "status": "FAIL",
+  "started": "2026-10-10T14:48:40.716Z",
+  "operatorTouched": false,
+  "productChanged": false,
+  "qaCompositionOnly": true,
+  "nativeHead": "877b214d197fd013a83f0f6c625bfa4767eed936",
+  "noApiStarted": false,
+  "noNativeUiAutomation": true,
+  "checks": [
+    {
+      "name": "Signed600 base and entire frozen Native32 pinned; own FPS configured before spawn",
+      "status": "PASS"
+    }
+  ],
+  "cases": [],
+  "requests": [
+    {
+      "route": "/api/health",
+      "method": "GET",
+      "foreignOrigin": false,
+      "status": 200,
+      "elapsedMs": 9.88409999999567
+    },
+    {
+      "route": "/api/health",
+      "method": "GET",
+      "foreignOrigin": false,
+      "status": 200,
+      "elapsedMs": 1.5856999999959953
+    },
+    {
+      "route": "/api/health",
+      "method": "GET",
+      "foreignOrigin": false,
+      "status": 200,
+      "elapsedMs": 1.3576999999932013
+    },
+    {
+      "route": "/api/health",
+      "method": "GET",
+      "foreignOrigin": false,
+      "status": 200,
+      "elapsedMs": 1.0764999999955762
+    },
+    {
+      "route": "/api/health",
+      "method": "GET",
+      "foreignOrigin": false,
+      "status": 200,
+      "elapsedMs": 1.2833000000100583
+    },
+    {
+      "route": "/api/health",
+      "method": "GET",
+      "foreignOrigin": false,
+      "status": 200,
+      "elapsedMs": 1.003100000001723
+    },
+    {
+      "route": "/api/health",
+      "method": "GET",
+      "foreignOrigin": false,
+      "status": 200,
+      "elapsedMs": 0.8887000000104308
+    },
+    {
+      "route": "/api/health",
+      "method": "GET",
+      "foreignOrigin": false,
+      "status": 200,
+      "elapsedMs": 2.1894000000029337
+    },
+    {
+      "route": "/api/health",
+      "method": "GET",
+      "foreignOrigin": false,
+      "status": 200,
+      "elapsedMs": 1.0397999999986496
+    },
+    {
+      "route": "/api/health",
+      "method": "GET",
+      "foreignOrigin": false,
+      "status": 200,
+      "elapsedMs": 1.1928999999945518
+    },
+    {
+      "route": "/api/health",
+      "method": "GET",
+      "foreignOrigin": false,
+      "status": 200,
+      "elapsedMs": 6.815800000011222
+    },
+    {
+      "route": "/api/outputs",
+      "method": "GET",
+      "foreignOrigin": false,
+      "status": 200,
+      "elapsedMs": 15.53859999999986
+    },
+    {
+      "route": "/api/outputs",
+      "method": "POST",
+      "foreignOrigin": false,
+      "status": 405,
+      "elapsedMs": 3.228399999992689
+    },
+    {
+      "route": "/api/outputs?index=0",
+      "method": "GET",
+      "foreignOrigin": false,
+      "status": 400,
+      "elapsedMs": 0.9580999999889173
+    },
+    {
+      "route": "/api/outputs",
+      "method": "GET",
+      "foreignOrigin": true,
+      "status": 401,
+      "elapsedMs": 0.7504999999946449
+    },
+    {
+      "route": "/api/outputs",
+      "method": "GET",
+      "foreignOrigin": true,
+      "status": 200,
+      "elapsedMs": 3.1528999999864027
+    },
+    {
+      "route": "/api/project/read",
+      "method": "GET",
+      "foreignOrigin": false,
+      "status": 200,
+      "elapsedMs": 3.6116999999794643
+    },
+    {
+      "route": "/api/project/read?scan=1",
+      "method": "GET",
+      "foreignOrigin": false,
+      "status": 400,
+      "elapsedMs": 0.6075000000128057
+    },
+    {
+      "route": "/api/project/read",
+      "method": "POST",
+      "foreignOrigin": false,
+      "status": 405,
+      "elapsedMs": 1.2474000000220258
+    },
+    {
+      "route": "/api/project/read",
+      "method": "GET",
+      "foreignOrigin": true,
+      "status": 403,
+      "elapsedMs": 0.5607000000018161
+    },
+    {
+      "route": "/api/project/preview",
+      "method": "POST",
+      "foreignOrigin": false,
+      "status": 200,
+      "elapsedMs": 4.3637999999918975
+    },
+    {
+      "route": "/api/project/scan",
+      "method": "POST",
+      "foreignOrigin": false,
+      "status": 409,
+      "elapsedMs": 1.0783999999985099
+    },
+    {
+      "route": "/api/project/apply",
+      "method": "POST",
+      "foreignOrigin": false,
+      "status": 409,
+      "elapsedMs": 0.941900000005262
+    },
+    {
+      "route": "/mesa.html",
+      "method": "GET",
+      "foreignOrigin": false,
+      "status": 200,
+      "elapsedMs": 1.8207000000111293
+    },
+    {
+      "route": "/saidas?context=external&transport=srt",
+      "method": "GET",
+      "foreignOrigin": false,
+      "status": 200,
+      "elapsedMs": 0.7017000000050757
+    },
+    {
+      "route": "/saidas?context=streaming",
+      "method": "GET",
+      "foreignOrigin": false,
+      "status": 200,
+      "elapsedMs": 0.7250000000058208
+    },
+    {
+      "route": "/calls",
+      "method": "GET",
+      "foreignOrigin": false,
+      "status": 200,
+      "elapsedMs": 0.6977000000188127
+    },
+    {
+      "route": "/settings?tab=replay",
+      "method": "GET",
+      "foreignOrigin": false,
+      "status": 200,
+      "elapsedMs": 0.5984000000171363
+    },
+    {
+      "route": "/hub",
+      "method": "GET",
+      "foreignOrigin": false,
+      "status": 200,
+      "elapsedMs": 0.7311000000045169
+    },
+    {
+      "route": "/efeitos?tab=quality",
+      "method": "GET",
+      "foreignOrigin": false,
+      "status": 200,
+      "elapsedMs": 0.6633999999903608
+    },
+    {
+      "route": "/novo-projeto/",
+      "method": "GET",
+      "foreignOrigin": false,
+      "status": 200,
+      "elapsedMs": 0.666800000006333
+    },
+    {
+      "route": "/settings?tab=display",
+      "method": "GET",
+      "foreignOrigin": false,
+      "status": 200,
+      "elapsedMs": 0.7045999999972992
+    },
+    {
+      "route": "/srt-hdr",
+      "method": "GET",
+      "foreignOrigin": false,
+      "status": 200,
+      "elapsedMs": 0.6726999999955297
+    },
+    {
+      "route": "/api/outputs",
+      "method": "GET",
+      "foreignOrigin": false,
+      "status": 200,
+      "elapsedMs": 3.6248999999952503
+    },
+    {
+      "route": "/api/json",
+      "method": "GET",
+      "foreignOrigin": false,
+      "status": 200,
+      "elapsedMs": 7.729200000001583
+    },
+    {
+      "route": "/api/outputs",
+      "method": "GET",
+      "foreignOrigin": false,
+      "status": 200,
+      "elapsedMs": 3.2652999999991152
+    },
+    {
+      "route": "/api/json",
+      "method": "GET",
+      "foreignOrigin": false,
+      "status": 200,
+      "elapsedMs": 6.835800000000745
+    },
+    {
+      "route": "/api/outputs",
+      "method": "GET",
+      "foreignOrigin": false,
+      "status": 200,
+      "elapsedMs": 2.4407000000064727
+    },
+    {
+      "route": "/api/json",
+      "method": "GET",
+      "foreignOrigin": false,
+      "status": 200,
+      "elapsedMs": 6.340499999991152
+    }
+  ],
+  "processObservations": [
+    {
+      "pid": 212184,
+      "helperUnknown": true,
+      "cimAbsent": true
+    }
+  ],
+  "pins": {
+    "candidate": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\candidate-release-060000.json",
+    "candidate-sha": "456696515dd7aabf87958e11a91bd324bab3f405fef68549c2cc16bf1e59647d",
+    "manifest-sha": "7107aa50b55dd2584be4fc30760af6ef1c85855c6995cd10758e65decc0a93b4",
+    "native-freeze": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\native-build-frozen-877b214-configured.json",
+    "native-freeze-sha": "2b28e9a69d84dc5028d3c1b3c38717a0d03175fc06afaa78bfcc0b284e389bf9",
+    "native-head": "877b214d197fd013a83f0f6c625bfa4767eed936",
+    "preparation": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\native32-real-app-preparation-20261010\\PREPARATION.json",
+    "preparation-sha": "56801edd9e6602758be7dea946c47befa533db127612c9cd0195cd6bd80ed5a7",
+    "receipt": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\native32-real-app-preparation-20261010\\receipt.json",
+    "root-reviewed": "EXECUTE-OWN-REAL-NATIVE32-READONLY-APP",
+    "main-fps": "30/1"
+  },
+  "capacity": {
+    "available": 73418694656,
+    "required": 3309198000
+  },
+  "root": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\own-temp-native32-real-app\\FreeMix-QA-NativeRealApp-vpQ0Oc",
+  "installed": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\own-temp-native32-real-app\\FreeMix-QA-NativeRealApp-vpQ0Oc\\FreeMix-QA-Native32 Real App with spaces",
+  "mainFpsRequested": "30/1",
+  "sourceDraftOverlay": false,
+  "canonicalOverlaySnapshot": true,
+  "apiPortReservedNotStarted": 54196,
+  "wsPort": 54198,
+  "signedBaseFiles": 9582,
+  "fullNativeFilesPinned": 2085,
+  "runtimeModulesPinned": 450,
+  "ownProfileFpsEditedOnlyBeforeSpawn": true,
+  "ndiBootstrap": {
+    "sha256": "2b6602075868ba4401f82f417d72424805d69b11ca86078023d0d489ff45dd84",
+    "version": "6.3.2.0",
+    "processOnly": true,
+    "globalEnvironmentChanged": false,
+    "ownReceiptBeforeBaseline": true
+  },
+  "nativePid": 212184,
+  "readinessFailureObservations": [
+    {
+      "context": "startup",
+      "stage": "connect",
+      "elapsedMs": 19,
+      "observedAbi": null,
+      "expectedAbi": "32.2.2",
+      "code": "ECONNREFUSED",
+      "operator": null
+    },
+    {
+      "context": "startup",
+      "stage": "connect",
+      "elapsedMs": 352,
+      "observedAbi": null,
+      "expectedAbi": "32.2.2",
+      "code": "ECONNREFUSED",
+      "operator": null
+    },
+    {
+      "context": "startup",
+      "stage": "connect",
+      "elapsedMs": 647,
+      "observedAbi": null,
+      "expectedAbi": "32.2.2",
+      "code": "ECONNREFUSED",
+      "operator": null
+    },
+    {
+      "context": "startup",
+      "stage": "connect",
+      "elapsedMs": 945,
+      "observedAbi": null,
+      "expectedAbi": "32.2.2",
+      "code": "ECONNREFUSED",
+      "operator": null
+    },
+    {
+      "context": "startup",
+      "stage": "connect",
+      "elapsedMs": 1244,
+      "observedAbi": null,
+      "expectedAbi": "32.2.2",
+      "code": "ECONNREFUSED",
+      "operator": null
+    },
+    {
+      "context": "startup",
+      "stage": "connect",
+      "elapsedMs": 1559,
+      "observedAbi": null,
+      "expectedAbi": "32.2.2",
+      "code": "ECONNREFUSED",
+      "operator": null
+    },
+    {
+      "context": "startup",
+      "stage": "connect",
+      "elapsedMs": 1850,
+      "observedAbi": null,
+      "expectedAbi": "32.2.2",
+      "code": "ECONNREFUSED",
+      "operator": null
+    },
+    {
+      "context": "startup",
+      "stage": "connect",
+      "elapsedMs": 2147,
+      "observedAbi": null,
+      "expectedAbi": "32.2.2",
+      "code": "ECONNREFUSED",
+      "operator": null
+    },
+    {
+      "context": "startup",
+      "stage": "connect",
+      "elapsedMs": 2440,
+      "observedAbi": null,
+      "expectedAbi": "32.2.2",
+      "code": "ECONNREFUSED",
+      "operator": null
+    },
+    {
+      "context": "startup",
+      "stage": "connect",
+      "elapsedMs": 2732,
+      "observedAbi": null,
+      "expectedAbi": "32.2.2",
+      "code": "ECONNREFUSED",
+      "operator": null
+    },
+    {
+      "context": "startup",
+      "stage": "connect",
+      "elapsedMs": 3024,
+      "observedAbi": null,
+      "expectedAbi": "32.2.2",
+      "code": "ECONNREFUSED",
+      "operator": null
+    },
+    {
+      "context": "startup",
+      "stage": "connect",
+      "elapsedMs": 3318,
+      "observedAbi": null,
+      "expectedAbi": "32.2.2",
+      "code": "ECONNREFUSED",
+      "operator": null
+    },
+    {
+      "context": "startup",
+      "stage": "connect",
+      "elapsedMs": 3615,
+      "observedAbi": null,
+      "expectedAbi": "32.2.2",
+      "code": "ECONNREFUSED",
+      "operator": null
+    },
+    {
+      "context": "startup",
+      "stage": "connect",
+      "elapsedMs": 3960,
+      "observedAbi": null,
+      "expectedAbi": "32.2.2",
+      "code": "ECONNREFUSED",
+      "operator": null
+    },
+    {
+      "context": "startup",
+      "stage": "connect",
+      "elapsedMs": 4311,
+      "observedAbi": null,
+      "expectedAbi": "32.2.2",
+      "code": "ECONNREFUSED",
+      "operator": null
+    },
+    {
+      "context": "startup",
+      "stage": "connect",
+      "elapsedMs": 4608,
+      "observedAbi": null,
+      "expectedAbi": "32.2.2",
+      "code": "ECONNREFUSED",
+      "operator": null
+    }
+  ],
+  "helperQueries": [
+    {
+      "pid": 173952,
+      "executable": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\entregas\\FreeMix-Completo-0.1.0-local.20261010060000\\runtime\\freemix-process-info.exe",
+      "ownReadOnlyHelper": true,
+      "exitCode": 0
+    },
+    {
+      "pid": 88364,
+      "executable": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\entregas\\FreeMix-Completo-0.1.0-local.20261010060000\\runtime\\freemix-process-info.exe",
+      "ownReadOnlyHelper": true,
+      "exitCode": 0
+    },
+    {
+      "pid": 85128,
+      "executable": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\entregas\\FreeMix-Completo-0.1.0-local.20261010060000\\runtime\\freemix-process-info.exe",
+      "ownReadOnlyHelper": true,
+      "exitCode": 0
+    },
+    {
+      "pid": 146620,
+      "executable": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\entregas\\FreeMix-Completo-0.1.0-local.20261010060000\\runtime\\freemix-process-info.exe",
+      "ownReadOnlyHelper": true,
+      "exitCode": 0
+    },
+    {
+      "pid": 158044,
+      "executable": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\entregas\\FreeMix-Completo-0.1.0-local.20261010060000\\runtime\\freemix-process-info.exe",
+      "ownReadOnlyHelper": true,
+      "exitCode": 0
+    },
+    {
+      "pid": 96812,
+      "executable": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\entregas\\FreeMix-Completo-0.1.0-local.20261010060000\\runtime\\freemix-process-info.exe",
+      "ownReadOnlyHelper": true,
+      "exitCode": 0
+    },
+    {
+      "pid": 214884,
+      "executable": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\entregas\\FreeMix-Completo-0.1.0-local.20261010060000\\runtime\\freemix-process-info.exe",
+      "ownReadOnlyHelper": true,
+      "exitCode": 0
+    },
+    {
+      "pid": 30996,
+      "executable": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\entregas\\FreeMix-Completo-0.1.0-local.20261010060000\\runtime\\freemix-process-info.exe",
+      "ownReadOnlyHelper": true,
+      "exitCode": 0
+    },
+    {
+      "pid": 137300,
+      "executable": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\entregas\\FreeMix-Completo-0.1.0-local.20261010060000\\runtime\\freemix-process-info.exe",
+      "ownReadOnlyHelper": true,
+      "exitCode": 0
+    },
+    {
+      "pid": 184260,
+      "executable": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\entregas\\FreeMix-Completo-0.1.0-local.20261010060000\\runtime\\freemix-process-info.exe",
+      "ownReadOnlyHelper": true,
+      "exitCode": 0
+    },
+    {
+      "pid": 61768,
+      "executable": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\entregas\\FreeMix-Completo-0.1.0-local.20261010060000\\runtime\\freemix-process-info.exe",
+      "ownReadOnlyHelper": true,
+      "exitCode": 0
+    },
+    {
+      "pid": 113672,
+      "executable": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\entregas\\FreeMix-Completo-0.1.0-local.20261010060000\\runtime\\freemix-process-info.exe",
+      "ownReadOnlyHelper": true,
+      "exitCode": 0
+    },
+    {
+      "pid": 182712,
+      "executable": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\entregas\\FreeMix-Completo-0.1.0-local.20261010060000\\runtime\\freemix-process-info.exe",
+      "ownReadOnlyHelper": true,
+      "exitCode": 0
+    },
+    {
+      "pid": 207904,
+      "executable": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\entregas\\FreeMix-Completo-0.1.0-local.20261010060000\\runtime\\freemix-process-info.exe",
+      "ownReadOnlyHelper": true,
+      "exitCode": 0
+    },
+    {
+      "pid": 143324,
+      "executable": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\entregas\\FreeMix-Completo-0.1.0-local.20261010060000\\runtime\\freemix-process-info.exe",
+      "ownReadOnlyHelper": true,
+      "exitCode": 0
+    },
+    {
+      "pid": 190864,
+      "executable": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\entregas\\FreeMix-Completo-0.1.0-local.20261010060000\\runtime\\freemix-process-info.exe",
+      "ownReadOnlyHelper": true,
+      "exitCode": 0
+    },
+    {
+      "pid": 94048,
+      "executable": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\entregas\\FreeMix-Completo-0.1.0-local.20261010060000\\runtime\\freemix-process-info.exe",
+      "ownReadOnlyHelper": true,
+      "exitCode": 0
+    },
+    {
+      "pid": 178144,
+      "executable": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\entregas\\FreeMix-Completo-0.1.0-local.20261010060000\\runtime\\freemix-process-info.exe",
+      "ownReadOnlyHelper": true,
+      "exitCode": 0
+    },
+    {
+      "pid": 60108,
+      "executable": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\entregas\\FreeMix-Completo-0.1.0-local.20261010060000\\runtime\\freemix-process-info.exe",
+      "ownReadOnlyHelper": true,
+      "exitCode": 0
+    },
+    {
+      "pid": 136652,
+      "executable": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\entregas\\FreeMix-Completo-0.1.0-local.20261010060000\\runtime\\freemix-process-info.exe",
+      "ownReadOnlyHelper": true,
+      "exitCode": 0
+    },
+    {
+      "pid": 77480,
+      "executable": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\entregas\\FreeMix-Completo-0.1.0-local.20261010060000\\runtime\\freemix-process-info.exe",
+      "ownReadOnlyHelper": true,
+      "exitCode": 0
+    },
+    {
+      "pid": 186068,
+      "executable": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\entregas\\FreeMix-Completo-0.1.0-local.20261010060000\\runtime\\freemix-process-info.exe",
+      "ownReadOnlyHelper": true,
+      "exitCode": 0
+    },
+    {
+      "pid": 156072,
+      "executable": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\entregas\\FreeMix-Completo-0.1.0-local.20261010060000\\runtime\\freemix-process-info.exe",
+      "ownReadOnlyHelper": true,
+      "exitCode": 0
+    },
+    {
+      "pid": 113200,
+      "executable": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\entregas\\FreeMix-Completo-0.1.0-local.20261010060000\\runtime\\freemix-process-info.exe",
+      "ownReadOnlyHelper": true,
+      "exitCode": 0
+    },
+    {
+      "pid": 58768,
+      "executable": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\entregas\\FreeMix-Completo-0.1.0-local.20261010060000\\runtime\\freemix-process-info.exe",
+      "ownReadOnlyHelper": true,
+      "exitCode": 0
+    },
+    {
+      "pid": 61864,
+      "executable": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\entregas\\FreeMix-Completo-0.1.0-local.20261010060000\\runtime\\freemix-process-info.exe",
+      "ownReadOnlyHelper": true,
+      "exitCode": 0
+    },
+    {
+      "pid": 112064,
+      "executable": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\entregas\\FreeMix-Completo-0.1.0-local.20261010060000\\runtime\\freemix-process-info.exe",
+      "ownReadOnlyHelper": true,
+      "exitCode": 0
+    },
+    {
+      "pid": 148872,
+      "executable": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\entregas\\FreeMix-Completo-0.1.0-local.20261010060000\\runtime\\freemix-process-info.exe",
+      "ownReadOnlyHelper": true,
+      "exitCode": 0
+    },
+    {
+      "pid": 209296,
+      "executable": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\entregas\\FreeMix-Completo-0.1.0-local.20261010060000\\runtime\\freemix-process-info.exe",
+      "ownReadOnlyHelper": true,
+      "exitCode": 0
+    },
+    {
+      "pid": 53808,
+      "executable": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\entregas\\FreeMix-Completo-0.1.0-local.20261010060000\\runtime\\freemix-process-info.exe",
+      "ownReadOnlyHelper": true,
+      "exitCode": 0
+    },
+    {
+      "pid": 133000,
+      "executable": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\entregas\\FreeMix-Completo-0.1.0-local.20261010060000\\runtime\\freemix-process-info.exe",
+      "ownReadOnlyHelper": true,
+      "exitCode": 0
+    },
+    {
+      "pid": 160296,
+      "executable": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\entregas\\FreeMix-Completo-0.1.0-local.20261010060000\\runtime\\freemix-process-info.exe",
+      "ownReadOnlyHelper": true,
+      "exitCode": 0
+    },
+    {
+      "pid": 191956,
+      "executable": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\entregas\\FreeMix-Completo-0.1.0-local.20261010060000\\runtime\\freemix-process-info.exe",
+      "ownReadOnlyHelper": true,
+      "exitCode": 0
+    },
+    {
+      "pid": 156904,
+      "executable": "C:/Windows/System32/WindowsPowerShell/v1.0/powershell.exe",
+      "ownReadOnlyHelper": true,
+      "exitCode": 0
+    }
+  ],
+  "webSocketVersionObserved": "32.2.2",
+  "readinessObservations": [
+    {
+      "context": "startup",
+      "pid": 212184,
+      "elapsedMs": 7851,
+      "vendorOwnPidConfirmed": true,
+      "studioAndIdleConfirmed": true
+    }
+  ],
+  "video": {
+    "baseWidth": 1920,
+    "baseHeight": 1080,
+    "fpsNumerator": 30,
+    "fpsDenominator": 1
+  },
+  "runtimeContextOwned": true,
+  "ownScenes": [
+    {
+      "key": "e9eca759-641c-4154-86a1-a2063f4a78f0",
+      "name": "QA App32 A"
+    },
+    {
+      "key": "c3635e01-730d-4162-83b4-7726b1e99efc",
+      "name": "QA App32 B"
+    }
+  ],
+  "explicitPreBaselineOwnConfiguration": {
+    "destinationsDisabled": 4,
+    "secretKeysCleared": true,
+    "syntheticColorSources": 2,
+    "noDeviceOpened": true
+  },
+  "apiPid": 120052,
+  "preOpening": {
+    "snapshot": {
+      "destinationsHash": "6805dacfffeae5e1896175c6235476e9b58c481d0daed1ca54d2db6d9a2df7ea",
+      "audioHash": "302a378d32926306cd03bb7e98ea639ea9e263220e1a07d16a7e4e6a4135af2e",
+      "configFiles": [
+        {
+          "namespace": "freemix-control",
+          "file": "ndi-runtime.json",
+          "sha256": "b29481173b8b4e167ba4d649f8d07a018d712f75fc4fa804b2a02739fabe1e67"
+        }
+      ],
+      "inputUuids": [
+        "3fd19673-1e77-455c-a3bf-cf13af2a6da1",
+        "43055d2c-b1a9-4006-896e-b7588cf9d097",
+        "8ae470e0-16e6-45e4-83f1-79e32e2562c8",
+        "a9669be8-2ce6-4da6-9d1e-a9b7d2f51d66",
+        "cdd65d1c-311e-4628-b6c8-acbce1a3a2d2",
+        "ffa7794c-e220-46b3-a22c-18a48e076e2f"
+      ]
+    },
+    "counts": {
+      "run": 0,
+      "execute": 1,
+      "journal": 2,
+      "refresh": 5,
+      "mutatingReq": 35
+    }
+  },
+  "projectOffContracts": {
+    "read": 200,
+    "query": 400,
+    "method": 405,
+    "foreignOrigin": 403,
+    "preview": 200,
+    "scan": 409,
+    "apply": 409,
+    "physicalDiscoveryRequested": false,
+    "devicesActivated": false,
+    "projectCreated": false,
+    "originalContextUnchanged": true,
+    "placeholderPlanOnly": true
+  },
+  "newMenuContracts": [
+    {
+      "route": "/hub",
+      "path": "painel/remoto/hub.html",
+      "sha256": "7ad6ae843bf00bdc65be5cd659cd2cc488d03b058b995e604b09a4c5511f35e5"
+    },
+    {
+      "route": "/efeitos?tab=quality",
+      "path": "painel/remoto/efeitos.html",
+      "sha256": "a96dd3a8e1022d754dc694dd1da06767c82433efe12401b3f60f13b05479c158"
+    },
+    {
+      "route": "/novo-projeto/",
+      "path": "painel/remoto/novo-projeto/index.html",
+      "sha256": "6be8843d4a130c753c7299a90159688734a78fb977fc022e159ec1cdd4d15062"
+    },
+    {
+      "route": "/settings?tab=display",
+      "path": "painel/remoto/settings.html",
+      "sha256": "ef48e199bedf7acaf348008f137273bb5fd0d30c9dfd4da0b725811d709b0404"
+    },
+    {
+      "route": "/srt-hdr",
+      "path": "painel/remoto/srt-hdr.html",
+      "sha256": "6df48c099f98653b8c05ecbd32585c776e5579ee663772169faacf7e86e36c5f"
+    }
+  ],
+  "getOutputsContracts": {
+    "get": 200,
+    "post": 405,
+    "query": 400,
+    "foreignOrigin": 401,
+    "ownOrigin": 200,
+    "noStore": true
+  },
+  "handoff": {
+    "id": "d915aeb0-13ef-496b-bce0-0999ede64d3f",
+    "contextSha256": "174b7f00dcc8e71ca0e783990e29c7c6c36a3e7705b92e27a5202c5fcdd749c3",
+    "readyAt": "2026-10-10T14:52:19.607Z",
+    "events": [
+      {
+        "kind": "ack",
+        "sequence": 0,
+        "accepted": true,
+        "lineSha256": "92fbad57c662fcf3d662cd4feaf90c2528f02a8d318f6175623acb1377f3f128"
+      },
+      {
+        "kind": "proof-ready",
+        "sequence": 1,
+        "accepted": true,
+        "lineSha256": "728423f01adfb637ec5d12d3499e2bc95df9ef2c67568dfb7302ff9d749ee7c6"
+      }
+    ],
+    "closeReason": "ROOT_PROOF_AND_NATIVE_READBACK_COMPLETE",
+    "proofValidated": true
+  },
+  "rootIabProof": {
+    "sha256": "4c713b8c80e0330ed987917dfd5b9973842ec6db8f33dff760901eca0cda52e7",
+    "files": [
+      {
+        "role": "mesa",
+        "file": "root-installed-mesa.jpg",
+        "mime": "image/jpeg",
+        "bytes": 63752,
+        "sha256": "ecd3b71bdf1f77f68adc8ea2ab87151fbacd10c0f74577038c73764118c9b7bc"
+      },
+      {
+        "role": "srt",
+        "file": "root-installed-srt.jpg",
+        "mime": "image/jpeg",
+        "bytes": 63654,
+        "sha256": "37face1c5109e2786ab91a9a6b8d01de2df9c3e3da6e1a857a6c1753527d07ff"
+      },
+      {
+        "role": "multistream",
+        "file": "root-installed-multistream.jpg",
+        "mime": "image/jpeg",
+        "bytes": 61442,
+        "sha256": "599652123d8ac4c5d1735ae9fcf04780ecf875eb33349899cbf64baba61ce3cf"
+      },
+      {
+        "role": "calls",
+        "file": "root-installed-calls.jpg",
+        "mime": "image/jpeg",
+        "bytes": 20215,
+        "sha256": "2ee71bc8ff2f694208c9814f6b9f87a443f104eb56b0977b2742710a00d72627"
+      },
+      {
+        "role": "replay-settings",
+        "file": "root-installed-replay-settings.jpg",
+        "mime": "image/jpeg",
+        "bytes": 110272,
+        "sha256": "f53b7d1c48c40fc0ca4a5ddc29408392883cb9aa62ff1b6ec66dd16de26a0566"
+      }
+    ]
+  },
+  "error": "run changed while opening/polling menus",
+  "errorDetails": {
+    "name": "AssertionError",
+    "code": "ERR_ASSERTION",
+    "operator": "strictEqual",
+    "actualPrimitive": 3,
+    "expectedPrimitive": 0,
+    "callsite": [
+      {
+        "module": "scenarios.mjs",
+        "line": 24,
+        "column": 336
+      },
+      {
+        "module": "runner.mjs",
+        "line": 27,
+        "column": 243
+      }
+    ]
+  },
+  "apiCooperativeMode": "child-emitted-SIGTERM",
+  "apiExit": {
+    "code": 0,
+    "signal": null
+  },
+  "apiClosedCooperatively": true,
+  "shutdownAccepted": true,
+  "nativeClosed": true,
+  "logs": [
+    {
+      "sha256": "c4f24a3158c97e3d89cf1dd466d3e05c5cd4dcc32c9c65d6e01aaa61f8b18be8",
+      "vendorConfirmed": true,
+      "allocations": [
+        0
+      ],
+      "meterWarnings": 0,
+      "remainingObjects": 0,
+      "doubleDestroyWarnings": 0
+    }
+  ],
+  "crashArtifacts": 0,
+  "fullNative2085PostClosureVerified": true,
+  "fullRuntimePostClosureVerified": true,
+  "unfinishedOwnHelpers": [],
+  "finished": "2026-10-10T14:58:30.100Z",
+  "limits": [
+    "Signed600 base + full Native32 + canonical snapshot, QA composition only; no package selection",
+    "Real own backend and Native state, Root IAB read-only proof required; no CEF/Windows zorder/GPU/PCM/AV/WAN/hardware proof",
+    "No external output, device, microphone, Call, replay recording or streaming start",
+    "Native and API readiness bounded120s each; READY/ACK total10min live120s afterACK cleanup40s; no retries/force",
+    "Queries may materialize native output holders; no zero-allocation claim from opening",
+    "Settings/audio/journal no-mutation compared after normal startup bus initialization settles",
+    "Standard production updater may issue read-only HTTP requests"
+  ]
+}

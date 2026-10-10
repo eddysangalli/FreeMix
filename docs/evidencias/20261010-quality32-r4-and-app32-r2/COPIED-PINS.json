@@ -1,0 +1,42 @@
+[
+  {
+    "path": "ORIGINAL-QUALITY32-R4-PARTIAL-FAIL.json",
+    "bytes": 104977,
+    "sha256": "befc8e6df0d63471d33e81c6a49c1323176048c49a57bc0a5112a6bf3778a69f"
+  },
+  {
+    "path": "ORIGINAL-APP32-R2-FAIL.json",
+    "bytes": 353229,
+    "sha256": "8260c4bf5ac8f2971e937559cb8d3211c8671e5b65398525bbc9c63c29076976"
+  },
+  {
+    "path": "ROOT-IAB-PROOF.json",
+    "bytes": 1358,
+    "sha256": "483da272269a16464a92717d2a47f70ea42c78a1d34c2482f8a1eb504bf11822"
+  },
+  {
+    "path": "root-installed-mesa.jpg",
+    "bytes": 63744,
+    "sha256": "9ca7505e6f0e5247225b709d8588f0d68226f813b1239c06e85847b4a2aff65c"
+  },
+  {
+    "path": "root-installed-srt.jpg",
+    "bytes": 72877,
+    "sha256": "96251d516c358f758adb97d2726f29595a08895dd0c047bb8674ad800cf8f46e"
+  },
+  {
+    "path": "root-installed-multistream.jpg",
+    "bytes": 69159,
+    "sha256": "4add371ed222ff290b6c67813a02d7ffdca01bf52fa18ef3a7bc0320b11dd3f5"
+  },
+  {
+    "path": "root-installed-calls.jpg",
+    "bytes": 20215,
+    "sha256": "2ee71bc8ff2f694208c9814f6b9f87a443f104eb56b0977b2742710a00d72627"
+  },
+  {
+    "path": "root-installed-replay-settings.jpg",
+    "bytes": 83442,
+    "sha256": "65ef9525ba774713b8610f5c97ee628dcb0d198f24e1c699933bdcea0afcaa0e"
+  }
+]

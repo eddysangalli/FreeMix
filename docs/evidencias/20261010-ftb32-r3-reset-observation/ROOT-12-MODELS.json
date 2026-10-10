@@ -1,0 +1,57 @@
+{
+  "status": "PASS_CPU_FAKE_RPC_ONLY",
+  "checks": [
+    {
+      "name": "Distinct scene and original source/audio settings/readbacks all precede exactly one Program dispatch",
+      "status": "PASS_CPU_FAKE_RPC_ONLY"
+    },
+    {
+      "name": "Program ACK alone is insufficient; three inactive rows followed by original UUID active succeed without another Set",
+      "status": "PASS_CPU_FAKE_RPC_ONLY"
+    },
+    {
+      "name": "Original UUID inactive in a private-copy-like context fails bounded; no alias adoption/no RESTART/extra transition",
+      "status": "PASS_CPU_FAKE_RPC_ONLY"
+    },
+    {
+      "name": "Unknown/failed Program ACK remains one counted dispatch and cannot be retried with same result",
+      "status": "PASS_CPU_FAKE_RPC_ONLY"
+    },
+    {
+      "name": "Simultaneous second attempt while first ACK is pending cannot dispatch another Set",
+      "status": "PASS_CPU_FAKE_RPC_ONLY"
+    },
+    {
+      "name": "Wrong collection/Studio/seed scene rejected before any write",
+      "status": "PASS_CPU_FAKE_RPC_ONLY"
+    },
+    {
+      "name": "Pre-dispatch collection change rejects; cleanup retains known scene/input references",
+      "status": "PASS_CPU_FAKE_RPC_ONLY"
+    },
+    {
+      "name": "Post-ACK context change rejects and does not retry transition or restart",
+      "status": "PASS_CPU_FAKE_RPC_ONLY"
+    },
+    {
+      "name": "Source tracks/monitor/mute/volume mismatches all reject before Program set",
+      "status": "PASS_CPU_FAKE_RPC_ONLY"
+    },
+    {
+      "name": "Original scene item disabled or foreign UUID rejected without substituting source",
+      "status": "PASS_CPU_FAKE_RPC_ONLY"
+    },
+    {
+      "name": "Correct name with foreign Program UUID or active=true/showing=false never accepts",
+      "status": "PASS_CPU_FAKE_RPC_ONLY"
+    },
+    {
+      "name": "Runner still one RESTART; own Scene removal inside cooperative ownedCleanup; pre-reset UUID check untouched",
+      "status": "PASS_CPU_FAKE_RPC_ONLY"
+    }
+  ],
+  "NativeExecuted": false,
+  "APIStarted": false,
+  "BrowserStarted": false,
+  "mediaDecoded": false
+}

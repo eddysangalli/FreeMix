@@ -1,0 +1,54 @@
+{
+  "status": "PASS_PACKAGE_IMPORT_CLOSURE_AND_NINE_SOURCE_PINS_SYNTAX",
+  "at": "2026-10-10T15:24:57.903Z",
+  "closureModules": 132,
+  "newSettingsGettersIncluded": true,
+  "sourceFiles": [
+    {
+      "path": "painel/remoto/operacao.css",
+      "sha256": "5937b9ac9a1092adfc855539f2bd394684f564e3a69a81abfd671bfccd56e4ce"
+    },
+    {
+      "path": "painel/remoto/saidas-operacao-ui.js",
+      "sha256": "ca2fc11878f5c4740750f2cc284316d76bd37355ab0615afdc6f60832116324d"
+    },
+    {
+      "path": "painel/remoto/saidas-readonly-ui.js",
+      "sha256": "560c4828d0531a79980e629354e8d63b5eb1bd49aa5d9f3e3ae218924795f61b"
+    },
+    {
+      "path": "ferramentas/servidor-api.mjs",
+      "sha256": "665aeedf26ec3dfa4e9ebaea40b7658e3d08ef23c2293d7f35bdbe21e8425161"
+    },
+    {
+      "path": "painel/remoto/settings.js",
+      "sha256": "a447ea5c22c22718f03201a975e30b54247def01565e03be275c01c6921df28f"
+    },
+    {
+      "path": "painel/remoto/saidas-external-ui.js",
+      "sha256": "8029378da9a9f2ec993cb85d497972cc4fe29e19e953ebae888e6f7f3ae482ab"
+    },
+    {
+      "path": "painel/mesa.html",
+      "sha256": "258818c83cfe3c53a3ca29ddaf3ab5230d18f423f470b157a7f144a7da4e5a2c"
+    },
+    {
+      "path": "ferramentas/read-settings-snapshot.mjs",
+      "sha256": "7400b14419f46bc9c033d5d642acfd48327d48b433825f23ed0111570d3f2bc3"
+    },
+    {
+      "path": "ferramentas/settings-read-http.mjs",
+      "sha256": "8d3338842e9b6462fc3de4f9d650aca910a1162d0c17e2a814f60f718629d33c"
+    }
+  ],
+  "NativeStarted": false,
+  "productModulesExecuted": false,
+  "installedAppPass": false,
+  "legacyRootTests": {
+    "outputs": "SETUP_FAILURE_MISSING_CONFIG_NO_NATIVE_CONNECTED",
+    "mesa": "SETUP_FAILURE_MISSING_DEMO_NO_NATIVE_CONNECTED"
+  },
+  "limits": [
+    "Two legacy Native test entrypoints were invoked without inspecting preconditions and failed before connection; exit0 from test-outputs is not a pass. No operator root was substituted."
+  ]
+}

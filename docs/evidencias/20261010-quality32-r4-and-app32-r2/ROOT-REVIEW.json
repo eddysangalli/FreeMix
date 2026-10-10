@@ -1,0 +1,87 @@
+{
+  "at": "2026-10-10T15:42:24.637Z",
+  "operatorTouched": false,
+  "closedOwnPids": [
+    17952,
+    79660,
+    157048
+  ],
+  "actualCimAbsent": true,
+  "qualityOriginalStatus": "FAIL",
+  "rnnoiseDb": 1.0357810307411823,
+  "rnnoiseRequiredDb": 3,
+  "presetDigitalScopeOnly": true,
+  "ASRScope": "3/5 expected tokens own synthetic Portuguese only",
+  "shutdownScope": "Filters removed/disabled and own media stopped before ordinary cooperative close; not live inference shutdown",
+  "allPrevious35AllocationsAttributed": false,
+  "appOriginalStatus": "FAIL",
+  "persistentAndAudioDigestUnchanged": true,
+  "runCounts": [
+    0,
+    2
+  ],
+  "methodActionsKnown": false,
+  "nativeMutatingCounterIsClassificationNotProofOfWrites": true,
+  "previewCutNotExecuted": true,
+  "allFiveRealScreensRootReviewed": true,
+  "replayCorrectRoute": true,
+  "initialRootEventsMissingScopeRejectedAndPreserved": true,
+  "correctedAckAndProofAccepted": true,
+  "imageChecks": [
+    {
+      "label": "color-before",
+      "sha256": "15613a805507c37792fcd93112b3cf816843c61183c75caa9b7d976f76762f81",
+      "ownActualFileVerified": true,
+      "identicalToPreviouslyRootReviewedR3": false
+    },
+    {
+      "label": "color-after",
+      "sha256": "41460b961e610f77d74e2378c29a7375732adff3792a2cb578db27c2bd95e13f",
+      "ownActualFileVerified": true,
+      "identicalToPreviouslyRootReviewedR3": false
+    },
+    {
+      "label": "color-off",
+      "sha256": "15613a805507c37792fcd93112b3cf816843c61183c75caa9b7d976f76762f81",
+      "ownActualFileVerified": true,
+      "identicalToPreviouslyRootReviewedR3": false
+    },
+    {
+      "label": "sharpness-before",
+      "sha256": "0f1408f14b6927f49417de09a08ac5205c69f3acd424cb06d30a09a10cc2bec1",
+      "ownActualFileVerified": true,
+      "identicalToPreviouslyRootReviewedR3": false
+    },
+    {
+      "label": "sharpness-after",
+      "sha256": "5c8547a58775ebfb745d1299f823c71aed98dcdd9d7d982ed4c9a1e160ac3d18",
+      "ownActualFileVerified": true,
+      "identicalToPreviouslyRootReviewedR3": false
+    },
+    {
+      "label": "sharpness-off",
+      "sha256": "0f1408f14b6927f49417de09a08ac5205c69f3acd424cb06d30a09a10cc2bec1",
+      "ownActualFileVerified": true,
+      "identicalToPreviouslyRootReviewedR3": false
+    },
+    {
+      "label": "chroma-before",
+      "sha256": "4dea95dcb0806949060901dd5d557492b9cd46567dcac300e23dbde23e4891b7",
+      "ownActualFileVerified": true,
+      "identicalToPreviouslyRootReviewedR3": false
+    },
+    {
+      "label": "chroma-after",
+      "sha256": "cf6831f15c2d003e2c4cc7c27582947383aef8d787bd3c4621b82a293cf3f7ca",
+      "ownActualFileVerified": true,
+      "identicalToPreviouslyRootReviewedR3": false
+    },
+    {
+      "label": "chroma-off",
+      "sha256": "4dea95dcb0806949060901dd5d557492b9cd46567dcac300e23dbde23e4891b7",
+      "ownActualFileVerified": true,
+      "identicalToPreviouslyRootReviewedR3": false
+    }
+  ],
+  "newInstallerQualified": false
+}

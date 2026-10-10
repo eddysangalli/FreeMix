@@ -715,6 +715,7 @@ body.popup-mode #pop[data-panel="add"] .add .types { display:flex; flex-directio
   const replayUrl = LOCAL.replayUrl || "http://" + new URL(LOCAL.url || "ws://127.0.0.1:4466").hostname + ":8088/api/replay";
 
 
+  async function readSettingsForConfig(){const expected=st.preset,url=new URL('/api/settings',replayUrl),response=await fetch(url.href,{cache:'no-store',signal:AbortSignal.timeout(10000)}),data=await response.json();if(!response.ok||data.success!==true)throw Error(data.error||'Não foi possível ler configurações');if((expected&&data.preset!==expected)||(st.preset&&st.preset!==data.preset))throw Error('O projeto mudou durante a consulta. Confira novamente.');return data;}
   let previewIntent=null,previewIntentSequence=0;
   function previewTakeInput(){const intent=previewIntent;if(intent&&intent.scope===st.preset&&st.scenes.includes(intent.name)&&(!st.sceneKeys[intent.name]||st.sceneKeys[intent.name]===intent.key))return intent.key;previewIntent=null;return st.sceneKeys[st.preview]||st.preview;}
   async function choosePreview(name){
@@ -1263,7 +1264,7 @@ body.popup-mode #pop[data-panel="add"] .add .types { display:flex; flex-directio
     cfgload: () => run((async () => {
       const P = (cat, name) => tryReq("GetProfileParameter", { parameterCategory: cat, parameterName: name }).then((r) => r?.parameterValue ?? "");
       const simple = (await P("Output", "Mode")) !== "Advanced", cat = simple ? "SimpleOutput" : "AdvOut";
-      const [sv, dir, v, fmt, fname, quality, recEnc, strEnc, vbit, abit, discovered] = await Promise.all([req("GetStreamServiceSettings"), req("GetRecordDirectory"), req("GetVideoSettings"), P(cat, "RecFormat2"), P("Output", "FilenameFormatting"), P(cat, "RecQuality"), P(cat, "RecEncoder"), P(cat, "StreamEncoder"), P(cat, "VBitrate"), P(cat, "ABitrate"), productionAction("settings_get")]);
+      const [sv, dir, v, fmt, fname, quality, recEnc, strEnc, vbit, abit, discovered] = await Promise.all([req("GetStreamServiceSettings"), req("GetRecordDirectory"), req("GetVideoSettings"), P(cat, "RecFormat2"), P("Output", "FilenameFormatting"), P(cat, "RecQuality"), P(cat, "RecEncoder"), P(cat, "StreamEncoder"), P(cat, "VBitrate"), P(cat, "ABitrate"), readSettingsForConfig()]);
       if (!discovered.success || !discovered.settings) throw Error(discovered.error || "Não foi possível descobrir os codificadores do motor");
       st.cfg = { simple, cat, server: sv.streamServiceSettings.server || "", key: sv.streamServiceSettings.key || "", dir: dir.recordDirectory, fmt: fmt || "mkv", fname, quality: quality || "Stream", recEnc: recEnc || "x264", strEnc: strEnc || "x264", vbit: vbit || "2500", abit: abit || "160", res: `${v.baseWidth}x${v.baseHeight}`, fps: `${v.fpsNumerator}/${v.fpsDenominator}` };
       Object.assign(st.cfg, {capabilities: discovered.settings.capabilities, protocol: discovered.settings.protocol === "native" && !st.cfg.server ? "rtmp" : discovered.settings.protocol, enhancedRtmp: false});

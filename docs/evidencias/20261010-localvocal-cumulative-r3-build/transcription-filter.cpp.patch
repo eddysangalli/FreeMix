@@ -1,0 +1,102 @@
+--- a/src/transcription-filter.cpp
++++ b/src/transcription-filter.cpp
+@@ -23,6 +23,7 @@
+ #include "transcription-filter.h"
+ #include "transcription-filter-callbacks.h"
+ #include "transcription-filter-data.h"
++#include "localvocal-frontend-registration.h"
+ #include "transcription-filter-utils.h"
+ #include "transcription-utils.h"
+ #include "model-utils/model-downloader.h"
+@@ -203,14 +204,24 @@
+ 	struct transcription_filter_data *gf =
+ 		static_cast<struct transcription_filter_data *>(data);
+ 
+-	signal_handler_t *sh_filter = obs_source_get_signal_handler(gf->context);
+-	signal_handler_disconnect(sh_filter, "enable", enable_callback, gf);
++	if (!gf) return;
++	// Retire the borrowed payload before waiting for inference or freeing members.
++	// The UI unregister is asynchronous: destruction must not wait for Qt.
++	localvocal_retire_frontend_registration(gf);
++	signal_handler_t *sh_filter = gf->context ? obs_source_get_signal_handler(gf->context) : nullptr;
++	if (sh_filter) signal_handler_disconnect(sh_filter, "enable", enable_callback, gf);
+ 
+ 	obs_log(gf->log_level, "filter destroy");
+ 	shutdown_whisper_thread(gf);
++	// Stop all monitor workers before destroying any shared gf member.
++	// Their destructors call stopThread again; joinable() prevents a second join.
++	gf->captions_monitor.stopThread();
++	gf->translation_monitor.stopThread();
++	gf->cloud_translation_monitor.stopThread();
+ 
+ 	if (gf->resampler_to_whisper) {
+ 		audio_resampler_destroy(gf->resampler_to_whisper);
++		gf->resampler_to_whisper = nullptr;
+ 	}
+ 
+ 	{
+@@ -220,6 +231,7 @@
+ 		for (size_t i = 0; i < gf->channels; i++) {
+ 			deque_free(&gf->input_buffers[i]);
+ 		}
++		deque_free(&gf->whisper_buffer);
+ 	}
+ 	deque_free(&gf->info_buffer);
+ 
+@@ -233,16 +245,8 @@
+ 	}
+ #endif
+ 
+-	if (gf->captions_monitor.isEnabled()) {
+-		gf->captions_monitor.stopThread();
+-	}
+-	if (gf->translation_monitor.isEnabled()) {
+-		gf->translation_monitor.stopThread();
+-	}
+-	if (gf->cloud_translation_monitor.isEnabled()) {
+-		gf->cloud_translation_monitor.stopThread();
+-	}
+-
++	// Match the placement-new construction; C resources above are already retired.
++	gf->~transcription_filter_data();
+ 	bfree(gf);
+ }
+ 
+@@ -523,7 +527,11 @@
+ 		}
+ 	}
+ 
+-	gf->translate_cloud = obs_data_get_bool(s, "translate_cloud");
++	// Detached cloud workers capture gf and cannot be drained at source teardown.
++	// This finite release has no approved managed cloud lifecycle.
++	gf->translate_cloud = false;
++	if (obs_data_get_bool(s, "translate_cloud"))
++		obs_log(LOG_WARNING, "FreeMix: traducao cloud indisponivel nesta release; ciclo de vida externo nao aprovado.");
+ 	gf->translate_cloud_config.provider = obs_data_get_string(s, "translate_cloud_provider");
+ 	gf->translate_cloud_target_language =
+ 		obs_data_get_string(s, "translate_cloud_target_language");
+@@ -631,6 +639,11 @@
+ 
+ 	void *data = bmalloc(sizeof(struct transcription_filter_data));
+ 	struct transcription_filter_data *gf = new (data) transcription_filter_data();
++	const auto release_partial = [](transcription_filter_data *ptr) {
++		transcription_filter_destroy(ptr);
++	};
++	std::unique_ptr<transcription_filter_data, decltype(release_partial)> owned(gf, release_partial);
++	gf->context = filter;
+ 
+ 	// Get the number of channels for the input source
+ 	gf->channels = audio_output_get_channels(obs_get_audio());
+@@ -727,10 +740,10 @@
+ 
+ 	// handle the event OBS_FRONTEND_EVENT_RECORDING_STARTING to reset the srt sentence number
+ 	// to match the subtitles with the recording
+-	obs_frontend_add_event_callback(recording_state_callback, gf);
++	localvocal_register_frontend_callback(gf);
+ 
+ 	obs_log(gf->log_level, "filter created.");
+-	return gf;
++	return owned.release();
+ }
+ 
+ void transcription_filter_activate(void *data)

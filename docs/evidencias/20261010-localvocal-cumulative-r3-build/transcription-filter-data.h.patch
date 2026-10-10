@@ -1,0 +1,13 @@
+--- a/src/transcription-filter-data.h
++++ b/src/transcription-filter-data.h
+@@ -96,7 +96,10 @@
+ 	const char *device_description;
+ };
+ 
++struct LocalVocalFrontendRegistration;
++
+ struct transcription_filter_data {
++	LocalVocalFrontendRegistration *frontend_registration = nullptr;
+ 	obs_source_t *context; // obs filter source (this filter)
+ 	size_t channels;       // number of channels
+ 	uint32_t sample_rate;  // input sample rate

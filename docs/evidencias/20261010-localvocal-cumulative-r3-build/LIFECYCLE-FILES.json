@@ -1,0 +1,65 @@
+{
+  "status": "APPLY_ONLY_AFTER_ROOT_REVIEW",
+  "targets": [
+    {
+      "path": "src/transcription-filter.cpp",
+      "before": {
+        "bytes": 29552,
+        "sha256": "32270657c27f6d2651a1af7cd16397b64a65c6b8c94203045293074f3e77bd4c"
+      },
+      "after": {
+        "bytes": 30553,
+        "sha256": "b9ebe7dd306fc81289ecc69f40b51b418b8da9799ac086149967f2755363afb7"
+      },
+      "patchSha256": "b8efd2f1fb115df770dee3cf2117c28be94e4f65d9a5729af0ece01fb2d9a984"
+    },
+    {
+      "path": "src/transcription-filter-data.h",
+      "before": {
+        "bytes": 9203,
+        "sha256": "1c5aaeb1e9752403b93d34e251d69a65921982fead54eb274f856b544b6e7c19"
+      },
+      "after": {
+        "bytes": 9312,
+        "sha256": "9117fe4c7b04d6eac525f4d2d5681e8d1f4e7944b1866797ac739f8b8d0370b7"
+      },
+      "patchSha256": "a45032d65145c123b1ac02c26f8d1bf6c5496b609ce9d63a5398f65cfe6c91be"
+    },
+    {
+      "path": "src/localvocal-frontend-registration.h",
+      "before": null,
+      "after": {
+        "bytes": 2659,
+        "sha256": "6ca9c79f36e42816ec91b10669a1b69f4e56ff6c1f7343edde196146d902b00b"
+      }
+    }
+  ],
+  "sixPriorDeltaTargetsUnchanged": [
+    {
+      "path": "src/model-utils/model-downloader-ui.cpp",
+      "sha256": "e1d0f24f25c0779506cbad8d40b77f5a2589aea44b929aea7bd1d77b84bd5b65"
+    },
+    {
+      "path": "src/model-utils/model-downloader.cpp",
+      "sha256": "815b191b26f356ada987d283d0e256b57d8639e10a2aa9e863561d4a18712cc8"
+    },
+    {
+      "path": "src/model-utils/model-infos.cpp",
+      "sha256": "a4baefd4223e1cf084d2c38d1a9e8111c5a335f312022a40031ec27dcc8b095e"
+    },
+    {
+      "path": "src/translation/translation-utils.cpp",
+      "sha256": "1ab10d1357683ad801ca6dc95fda0871677db4fcef464430adc1473ce0263023"
+    },
+    {
+      "path": "src/whisper-utils/whisper-utils.cpp",
+      "sha256": "75ab88ae6ce54a22e68cf61993cb8a99c1d60b1bf8f0cbde2d2dca44d532eaa6"
+    },
+    {
+      "path": "src/transcription-filter-callbacks.cpp",
+      "sha256": "b2ab59d37e193996b54d93c700e447131aadf2e03266991113c0988cf338071d"
+    }
+  ],
+  "cmakeChanges": false,
+  "layoutChangedPrivatePluginStruct": true
+}

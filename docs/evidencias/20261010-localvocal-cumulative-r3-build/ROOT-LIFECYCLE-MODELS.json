@@ -1,0 +1,134 @@
+{
+  "status": "PASS_SOURCE_AND_SCHEDULING_MODELS_ONLY",
+  "checks": 31,
+  "rows": [
+    {
+      "name": "baseline reproduces missing whisper deque and skipped member destruction",
+      "pass": true
+    },
+    {
+      "name": "destroy channels1 activefalse",
+      "pass": true
+    },
+    {
+      "name": "destroy channels1 activetrue",
+      "pass": true
+    },
+    {
+      "name": "destroy channels2 activefalse",
+      "pass": true
+    },
+    {
+      "name": "destroy channels2 activetrue",
+      "pass": true
+    },
+    {
+      "name": "destroy channels6 activefalse",
+      "pass": true
+    },
+    {
+      "name": "destroy channels6 activetrue",
+      "pass": true
+    },
+    {
+      "name": "destroy channels8 activefalse",
+      "pass": true
+    },
+    {
+      "name": "destroy channels8 activetrue",
+      "pass": true
+    },
+    {
+      "name": "destroy channels10 activefalse",
+      "pass": true
+    },
+    {
+      "name": "destroy channels10 activetrue",
+      "pass": true
+    },
+    {
+      "name": "empty buffers / unstarted inference remain valid destroy",
+      "pass": true
+    },
+    {
+      "name": "whisper and monitors stop before C resource release",
+      "pass": true
+    },
+    {
+      "name": "destructor occurs once before bfree and after lock scope",
+      "pass": true
+    },
+    {
+      "name": "monitor destructors stop idempotently using actual joinable branch",
+      "pass": true
+    },
+    {
+      "name": "destroy null guard before any gf access",
+      "pass": true
+    },
+    {
+      "name": "only existing Whisper shutdown call, no new join or detach",
+      "pass": true
+    },
+    {
+      "name": "no frontend vector mutation from destroy thread",
+      "pass": true
+    },
+    {
+      "name": "frontend header field default initializes nullable independent ticket",
+      "pass": true
+    },
+    {
+      "name": "frontend vector receives ticket instead of gf",
+      "pass": true
+    },
+    {
+      "name": "partial create 3 returns are owned before resources allocation",
+      "pass": true
+    },
+    {
+      "name": "partial allocation cleanup copy-buffer",
+      "pass": true
+    },
+    {
+      "name": "partial allocation cleanup resampler",
+      "pass": true
+    },
+    {
+      "name": "partial allocation cleanup source-signal",
+      "pass": true
+    },
+    {
+      "name": "cloud false before any cloud configuration assignment and diagnostic explicit",
+      "pass": true
+    },
+    {
+      "name": "register/event/retire/unregister lifecycle preserves independent ticket",
+      "pass": true
+    },
+    {
+      "name": "destroy before queued registration prevents any borrowed gf",
+      "pass": true
+    },
+    {
+      "name": "in-flight recording event drains before gf freed without UI dispatch wait",
+      "pass": true
+    },
+    {
+      "name": "UI blocked on destroy does not require UI work to finish retirement",
+      "pass": true
+    },
+    {
+      "name": "later frontend event before unregister sees retired payload",
+      "pass": true
+    },
+    {
+      "name": "many separate tickets never inherit reused gf identity",
+      "pass": true
+    }
+  ],
+  "compilerExecuted": false,
+  "nativeExecuted": false,
+  "realAllocator35Attribution": "UNKNOWN",
+  "actualFrontendUIAndModuleUnloadProof": false
+}

@@ -1,0 +1,84 @@
+{
+  "status": "STAGED_ONLY_NOT_CONFIGURED_NOT_BUILT",
+  "source": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\LocalVocal-GovBuild-4fe1e45cd2e14822bcf9dea86ac01251\\source",
+  "build": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\LocalVocal-GovBuild-4fe1e45cd2e14822bcf9dea86ac01251\\build",
+  "cargoHome": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\LocalVocal-GovBuild-4fe1e45cd2e14822bcf9dea86ac01251\\cargo-home",
+  "dependencyCopies": [
+    {
+      "key": "WHISPERCPP_FETCH",
+      "directory": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\LocalVocal-GovBuild-4fe1e45cd2e14822bcf9dea86ac01251\\dependencies\\whispercpp_fetch",
+      "files": 65,
+      "treeContentSha256": "b0ae5411ad2b169700e7db37ae8c87302f61dd5d07880facc5dd0d28fd11f1a5"
+    },
+    {
+      "key": "CTRANSLATE2_FETCH",
+      "directory": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\LocalVocal-GovBuild-4fe1e45cd2e14822bcf9dea86ac01251\\dependencies\\ctranslate2_fetch",
+      "files": 95,
+      "treeContentSha256": "67b4c02167e151890aedf9e03f49b90e7de6493e8e716f0819e45cd897646f7f"
+    },
+    {
+      "key": "SENTENCEPIECE_FETCH",
+      "directory": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\LocalVocal-GovBuild-4fe1e45cd2e14822bcf9dea86ac01251\\dependencies\\sentencepiece_fetch",
+      "files": 9,
+      "treeContentSha256": "50e385a9c7a43ac3ef0bc079553a4da853ad78d3a48292f7328f895009b5ba3b"
+    },
+    {
+      "key": "ONNXRUNTIME",
+      "directory": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\LocalVocal-GovBuild-4fe1e45cd2e14822bcf9dea86ac01251\\dependencies\\onnxruntime",
+      "files": 25,
+      "treeContentSha256": "3f2706987d461c45de6a5ef32e1f95b64dfdb353ecbef57aa3ee65d840ab3e95"
+    },
+    {
+      "key": "LIBCURL_FETCH",
+      "directory": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\LocalVocal-GovBuild-4fe1e45cd2e14822bcf9dea86ac01251\\dependencies\\libcurl_fetch",
+      "files": 19,
+      "treeContentSha256": "64db262dfbb3e210b476a79585130b61463ddf3dd06287dfad3a91aa10cca0db"
+    },
+    {
+      "key": "ICU_BUILD",
+      "directory": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\LocalVocal-GovBuild-4fe1e45cd2e14822bcf9dea86ac01251\\dependencies\\icu_build",
+      "files": 249,
+      "treeContentSha256": "d6e8a20db397f4e435e416f6735e963bd268053aa3d8fa3a744edb99137b20b1"
+    },
+    {
+      "key": "CORROSION",
+      "directory": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\LocalVocal-GovBuild-4fe1e45cd2e14822bcf9dea86ac01251\\dependencies\\corrosion",
+      "files": 193,
+      "treeContentSha256": "0b4bb6fc17cc65591cfd23fcb69ad638df4d7008f672bdc4fb7523e61ad76d92"
+    }
+  ],
+  "cargoRegistryCopies": [
+    {
+      "registryPart": "cache",
+      "files": 406,
+      "treeContentSha256": "95a97ea44ec6b1970db864a845cfb8218a6486fcda3b742820cff1a2b067fe6c"
+    },
+    {
+      "registryPart": "src",
+      "files": 19959,
+      "treeContentSha256": "068c9fdf10181a8aecc9304650a797f460ecc172e30d0d04455b3f9e2af3f0f3"
+    },
+    {
+      "registryPart": "index",
+      "files": 546,
+      "treeContentSha256": "3b27a46407d0cfe67cdb7b9e220f4fb152b09ed16f52535b6c1a02eea1994c48"
+    }
+  ],
+  "modelGovernanceAllowlistSha256": "41a6501e0cdfb82ccf1d04183bedef6856d303e5c9e527e9c7c4248525e68331",
+  "buildOnlyWebVttSha256": "3f88b0b5a417dc8d784ea64eb13af3c4966db56a0a0ee1a9db02ed6e6faaec4b",
+  "catalogueSha256": "fff3925a6a49cfed5a1901d1af54e60b666552da2ab4354f35b243c54588dc5b",
+  "captionOwnershipAllowlistSha256": "d2b2d940968c2406e2ba0b7ff9aee6433d3786ce828f0364c2ffa7506d6ae1d1",
+  "captionOwnershipSha256": "b2ab59d37e193996b54d93c700e447131aadf2e03266991113c0988cf338071d",
+  "gitExeSha256": "7cd588850959546663c81077af076835558c6a6af33506a64a65784743df92a1",
+  "omittedUnixEntrypoints": {
+    ".github/scripts/build-linux": ".build.zsh",
+    ".github/scripts/build-macos": ".build.zsh",
+    ".github/scripts/package-linux": ".package.zsh",
+    ".github/scripts/package-macos": ".package.zsh",
+    "build-aux/run-clang-format": ".run-format.zsh",
+    "build-aux/run-cmake-format": ".run-format.zsh",
+    "build-aux/run-swift-format": ".run-format.zsh"
+  },
+  "nativeRun": false,
+  "network": false
+}

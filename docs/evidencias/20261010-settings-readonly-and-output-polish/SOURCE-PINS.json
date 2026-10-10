@@ -1,0 +1,62 @@
+[
+  {
+    "path": "ROOT-UX-INTEGRATION.json",
+    "bytes": 2493,
+    "sha256": "e0d4e61cd1000aa8920c1e0b02b77466414678f3f4d158d55959fd12c2ce7e4d"
+  },
+  {
+    "path": "ROOT-SETTINGS-INTEGRATION.json",
+    "bytes": 2128,
+    "sha256": "3c0fb1c275a076388fc7bf9b4fa69754e5e48b42898fd7685547f941fbae74d8"
+  },
+  {
+    "path": "ROOT-CLOSURE.json",
+    "bytes": 1949,
+    "sha256": "fea4e29b23979a7fcd4b90019f728e22cd5465d3f23fe3467f0a88004a562ae9"
+  },
+  {
+    "path": "ORIGINAL-APP32-FAIL.json",
+    "bytes": 26785,
+    "sha256": "87822ed4dca26080776487edce41462bb31bf5ecadd72b9b261232c9f4bb0491"
+  },
+  {
+    "path": "ORIGINAL-IAB-PROOF.json",
+    "bytes": 1359,
+    "sha256": "4c713b8c80e0330ed987917dfd5b9973842ec6db8f33dff760901eca0cda52e7"
+  },
+  {
+    "path": "ROOT-READONLY-MODELS.json",
+    "bytes": 3502,
+    "sha256": "dccd529d8ab52167668368aa121b16094e6aaa236e421dd26fe469b633cba1b3"
+  },
+  {
+    "path": "ROOT-UX-MODELS.json",
+    "bytes": 2860,
+    "sha256": "3ca0847f62bf2482335c7710ce38c35e12547eae3c56403daf4f2459a8155adc"
+  },
+  {
+    "path": "root-installed-mesa.jpg",
+    "bytes": 63752,
+    "sha256": "ecd3b71bdf1f77f68adc8ea2ab87151fbacd10c0f74577038c73764118c9b7bc"
+  },
+  {
+    "path": "root-installed-srt.jpg",
+    "bytes": 63654,
+    "sha256": "37face1c5109e2786ab91a9a6b8d01de2df9c3e3da6e1a857a6c1753527d07ff"
+  },
+  {
+    "path": "root-installed-multistream.jpg",
+    "bytes": 61442,
+    "sha256": "599652123d8ac4c5d1735ae9fcf04780ecf875eb33349899cbf64baba61ce3cf"
+  },
+  {
+    "path": "root-installed-calls.jpg",
+    "bytes": 20215,
+    "sha256": "2ee71bc8ff2f694208c9814f6b9f87a443f104eb56b0977b2742710a00d72627"
+  },
+  {
+    "path": "root-installed-replay-settings.jpg",
+    "bytes": 110272,
+    "sha256": "f53b7d1c48c40fc0ca4a5ddc29408392883cb9aa62ff1b6ec66dd16de26a0566"
+  }
+]

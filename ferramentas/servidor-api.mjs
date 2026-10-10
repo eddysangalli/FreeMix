@@ -1,5 +1,6 @@
 import {createProjectHttpDispatcher,readProjectBody,admitProjectNativeEvent,admitProjectSocketMessage} from './projetos/runtime-admission.mjs';
 import {readOutputsSnapshot} from './read-outputs-snapshot.mjs';
+import {handleSettingsRead} from './settings-read-http.mjs';
 import {TickerAckBroker,readTickerAckRequest} from './gtzip-ticker-ack.mjs';
 // FreeMix control bridge. Commands use confirmed production operations.
 import { createServer } from 'node:http';
@@ -184,6 +185,7 @@ async function handleHttp(req,res){
         if([...u.searchParams.keys()].some(k=>k!=='mixId')||u.searchParams.getAll('mixId').length>1||(u.searchParams.get('mixId')??'0')!=='0')return json(res,400,{success:false,error:'Consulta disponível somente para Mix1/Master; nenhuma opção habilita o beta'});
         return json(res,200,{success:true,finalProgramGate:await production.readFinalProgramGate()});
       }
+      if(await handleSettingsRead({req,res,u,local,authorized,originAllowed,json,production}))return;
       if(path==='/api/outputs'){if(req.method!=='GET'){res.setHeader('Allow','GET');return json(res,405,{success:false,error:'Use GET somente para consultar'});}if(!local(req))return json(res,403,{success:false,error:'Consulta de saídas disponível somente neste computador'});if(u.searchParams.size)return json(res,400,{success:false,error:'Consulta não recebe configuração'});res.setHeader('Cache-Control','no-store');return json(res,200,await readOutputsSnapshot(production));}
       if(path==='/api/srt-hdr'){if(req.method!=='GET')return json(res,405,{success:false});if(!local(req))return json(res,403,{success:false,error:'Consulta HDR disponível somente neste computador'});const id=u.searchParams.get('senderId')??'0';if(!/^[0-3]$/.test(id))throw Error('Envio HDR inválido');return json(res,200,{success:true,outputs:await production.outputEngine.readSrtHdr(Number(id))});}
       if(path==='/api/network'&&req.method==='GET'){if(!local(req))return json(res,403,{success:false,error:'Rede disponível somente neste computador'});return json(res,200,await production.networkEngine.read());}

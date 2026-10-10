@@ -8,6 +8,11 @@
   let step = 0, operation = null, transaction = false, lastSelection = '', actionError = '';
   const preparedEmptyDestinations = new Set();
   const sections = [], workspace = content.closest('.workspace');
+  const slotNavigation = workspace.querySelector('nav');
+  slotNavigation.setAttribute('aria-label', 'Saídas adicionais');
+  const slotHeading = document.createElement('h2'); slotHeading.className = 'operation-slot-heading'; slotHeading.textContent = 'Saídas adicionais'; slotNavigation.prepend(slotHeading);
+  const empty = document.createElement('section'); empty.className = 'operation-empty';
+  empty.innerHTML = '<h2>Escolha uma saída para configurar</h2><p>Na lista, selecione uma saída livre ou um destino já salvo. Depois informe a conexão, escolha vídeo e áudio e confira antes de iniciar.</p><p class="operation-help">1. Destino · 2. Conteúdo e áudio · 3. Conferir e iniciar</p>';
   const original = [...content.childNodes];
   const workflow = document.createElement('section');
   workflow.id = 'output-workflow';
@@ -83,7 +88,7 @@
   const reserve = document.createElement('div'); reserve.hidden = true;
   for (const node of original) reserve.append(node);
   content.append(reserve);
-  workflow.append(navigation, status, capacityNote, ...sections);
+  workflow.append(empty, navigation, status, capacityNote, ...sections);
   content.prepend(workflow);
   sections[0].append(hint); move('name', sections[0]); sections[0].append(protocolLabel);
   if (connection) {
@@ -182,6 +187,10 @@
     if (!showing()) return;
     const ready = typeof outputs !== 'undefined' && !!outputs, selected = ready && index >= 0;
     const destinations = ready && Array.isArray(outputs.destinations) ? outputs.destinations : null;
+    empty.hidden = selected; navigation.hidden = !selected;
+    workspace.dataset.outputSelection = selected ? 'selected' : 'empty';
+    empty.querySelector('h2').textContent = ready ? 'Escolha uma saída para configurar' : 'Lendo as saídas do motor…';
+    empty.querySelector('p').textContent = ready ? 'Na lista, selecione uma saída livre ou um destino já salvo. Depois informe ' + (srt() ? 'o IP e a porta do receptor SRT, ou a conexão RIST.' : 'o servidor e a chave fornecidos pela plataforma.') : 'Aguarde a leitura atual. Nenhum destino será escolhido ou iniciado automaticamente.';
     if (!destinations?.length) capacityNote.textContent = 'Aguardando a capacidade dos destinos adicionais. A transmissão principal é separada.';
     else {
       const available = destinations.filter(destination => destination && !destination.active && !destination.enabled && !destination.server).length;
@@ -229,6 +238,7 @@
     projectTools.forEach(node => { if (node) node.hidden = true; });
     byId('srt-quick-guide').hidden = !srt();
     byId('destination-context-description').hidden = true;
+    const slotDivider = slotNavigation.querySelector('hr'); if (slotDivider) slotDivider.hidden = true;
     qualitySummary.textContent = 'Formato: ' + get('resolution') + ' · ' + Number(get('bitrate')).toLocaleString('pt-BR') + ' kbps · ' + (byId('codec').selectedOptions[0]?.textContent || 'codec não disponível') + '. Ajuste somente se o destino exigir.';
     summary.replaceChildren();
     entry('Destino', get('name') || 'Sem nome'); entry('Conexão', safeDestination());

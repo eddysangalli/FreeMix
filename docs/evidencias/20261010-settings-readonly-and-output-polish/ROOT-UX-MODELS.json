@@ -1,0 +1,79 @@
+{
+  "status": "PASS_PURE_MODELS_ONLY",
+  "checks": [
+    {
+      "name": "Initial unknown state says connecting, retains inert safety, no new network request",
+      "status": "PASS_PURE_ACTUAL_SOURCE_MODEL"
+    },
+    {
+      "name": "WS state/header change repaints output awaiting-read immediately without querying",
+      "status": "PASS_PURE_ACTUAL_SOURCE_MODEL"
+    },
+    {
+      "name": "Actual false connection stays disconnected/inert; mutation refused before job",
+      "status": "PASS_PURE_ACTUAL_SOURCE_MODEL"
+    },
+    {
+      "name": "Actual current GET keeps existing preset/auth/result guards, readonly no-store",
+      "status": "PASS_PURE_ACTUAL_SOURCE_MODEL"
+    },
+    {
+      "name": "Changed preset/foreign reply rejected unchanged and preserves stale observation",
+      "status": "PASS_PURE_ACTUAL_SOURCE_MODEL"
+    },
+    {
+      "name": "Uncertain deadline does not resend command; late ACK cannot unlock without manual read",
+      "status": "PASS_PURE_ACTUAL_SOURCE_MODEL"
+    },
+    {
+      "name": "No output read: clear waiting intro, stepnav hidden, no auto-selection",
+      "status": "PASS_PURE_ACTUAL_SOURCE_MODEL"
+    },
+    {
+      "name": "Read-ready vacant list: choose slot prompt not pastel active stage, SRT/stream copy distinct",
+      "status": "PASS_PURE_ACTUAL_SOURCE_MODEL"
+    },
+    {
+      "name": "Explicit selected index: three steps reappear and empty guide hides",
+      "status": "PASS_PURE_ACTUAL_SOURCE_MODEL"
+    },
+    {
+      "name": "Validation/transaction/defaults/command locks byte-identical, advanced details still closed until invalid-field focus",
+      "status": "PASS_PURE_ACTUAL_SOURCE_MODEL"
+    },
+    {
+      "name": "Read deadlines/mutate/ACK/auth-preserving logic byte-identical; DOM observer only decoration",
+      "status": "PASS_PURE_ACTUAL_SOURCE_MODEL"
+    },
+    {
+      "name": "App snapshots/proofs are evidence only, no source replacement; CSS all rules scoped dark controls/focus/reflow",
+      "status": "PASS_PURE_ACTUAL_SOURCE_MODEL"
+    }
+  ],
+  "syntax": [
+    {
+      "path": "draft/painel/remoto/saidas-operacao-ui.js",
+      "status": "PASS_PARSE_ONLY",
+      "sha256": "ca2fc11878f5c4740750f2cc284316d76bd37355ab0615afdc6f60832116324d"
+    },
+    {
+      "path": "draft/painel/remoto/saidas-readonly-ui.js",
+      "status": "PASS_PARSE_ONLY",
+      "sha256": "560c4828d0531a79980e629354e8d63b5eb1bd49aa5d9f3e3ae218924795f61b"
+    },
+    {
+      "path": "derive.mjs",
+      "status": "PASS_PARSE_ONLY",
+      "sha256": "1dd3a82b654f5ec086fa1bc91f68291340c08112a4c3e57efde10501e6afeaea"
+    },
+    {
+      "path": "test.mjs",
+      "status": "PASS_PARSE_ONLY",
+      "sha256": "670391a759b8ce0ced6717b76de846bb8f5c22abb7da934914e896af7721be4b"
+    }
+  ],
+  "BrowserStarted": false,
+  "NativeStarted": false,
+  "APIStarted": false,
+  "visualAfterVerified": false
+}

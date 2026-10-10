@@ -1,0 +1,60 @@
+{
+  "checks": [
+    {
+      "label": "color-before",
+      "sha256": "15613a805507c37792fcd93112b3cf816843c61183c75caa9b7d976f76762f81",
+      "identicalToPreviouslyRootReviewedR3": true,
+      "actualR4FileVerified": true
+    },
+    {
+      "label": "color-after",
+      "sha256": "41460b961e610f77d74e2378c29a7375732adff3792a2cb578db27c2bd95e13f",
+      "identicalToPreviouslyRootReviewedR3": true,
+      "actualR4FileVerified": true
+    },
+    {
+      "label": "color-off",
+      "sha256": "15613a805507c37792fcd93112b3cf816843c61183c75caa9b7d976f76762f81",
+      "identicalToPreviouslyRootReviewedR3": true,
+      "actualR4FileVerified": true
+    },
+    {
+      "label": "sharpness-before",
+      "sha256": "0f1408f14b6927f49417de09a08ac5205c69f3acd424cb06d30a09a10cc2bec1",
+      "identicalToPreviouslyRootReviewedR3": true,
+      "actualR4FileVerified": true
+    },
+    {
+      "label": "sharpness-after",
+      "sha256": "5c8547a58775ebfb745d1299f823c71aed98dcdd9d7d982ed4c9a1e160ac3d18",
+      "identicalToPreviouslyRootReviewedR3": true,
+      "actualR4FileVerified": true
+    },
+    {
+      "label": "sharpness-off",
+      "sha256": "0f1408f14b6927f49417de09a08ac5205c69f3acd424cb06d30a09a10cc2bec1",
+      "identicalToPreviouslyRootReviewedR3": true,
+      "actualR4FileVerified": true
+    },
+    {
+      "label": "chroma-before",
+      "sha256": "4dea95dcb0806949060901dd5d557492b9cd46567dcac300e23dbde23e4891b7",
+      "identicalToPreviouslyRootReviewedR3": true,
+      "actualR4FileVerified": true
+    },
+    {
+      "label": "chroma-after",
+      "sha256": "cf6831f15c2d003e2c4cc7c27582947383aef8d787bd3c4621b82a293cf3f7ca",
+      "identicalToPreviouslyRootReviewedR3": true,
+      "actualR4FileVerified": true
+    },
+    {
+      "label": "chroma-off",
+      "sha256": "4dea95dcb0806949060901dd5d557492b9cd46567dcac300e23dbde23e4891b7",
+      "identicalToPreviouslyRootReviewedR3": true,
+      "actualR4FileVerified": true
+    }
+  ],
+  "oldResultSha256": "a99cb412cd9ce12065d10e95a8cfd1cfa3494cd4e57759a942b3dc1ef68595a1",
+  "rawPCMIncluded": false
+}

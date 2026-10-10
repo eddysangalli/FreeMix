@@ -1,0 +1,54 @@
+{
+  "status": "ROOT_INTEGRATED_READONLY_SOURCE_REAL_APP_PENDING",
+  "at": "2026-10-10T15:20:32.329Z",
+  "allowlistSha256": "c348b4787a71e938fa90a06aa595687bcf6534f431210899348e2038eec26014",
+  "offsidePins": 43,
+  "rootModels": 24,
+  "changes": [
+    {
+      "path": "ferramentas/servidor-api.mjs",
+      "originalSha256": "96bd532fd709006d7ddb6b45ee3666235901735f6b407d33acb3f93c75699f85",
+      "draftPath": "draft/ferramentas/servidor-api.mjs",
+      "draftSha256": "665aeedf26ec3dfa4e9ebaea40b7658e3d08ef23c2293d7f35bdbe21e8425161",
+      "bytes": 32080
+    },
+    {
+      "path": "painel/remoto/settings.js",
+      "originalSha256": "9119cf4e5d01f3156118f825517aa842243031d7ffe204c93cc267fb9418321b",
+      "draftPath": "draft/painel/remoto/settings.js",
+      "draftSha256": "a447ea5c22c22718f03201a975e30b54247def01565e03be275c01c6921df28f",
+      "bytes": 22301
+    },
+    {
+      "path": "painel/remoto/saidas-external-ui.js",
+      "originalSha256": "fd4bf227589b7b543cef1bc3ba825d58168ae5b13f1ca995b1b3108b26c524e1",
+      "draftPath": "draft/painel/remoto/saidas-external-ui.js",
+      "draftSha256": "8029378da9a9f2ec993cb85d497972cc4fe29e19e953ebae888e6f7f3ae482ab",
+      "bytes": 15052
+    },
+    {
+      "path": "painel/mesa.html",
+      "originalSha256": "249d46a91da15f59fb693334e8687b8a619949f221d8e86b81d27069b04431e7",
+      "draftPath": "draft/painel/mesa.html",
+      "draftSha256": "258818c83cfe3c53a3ca29ddaf3ab5230d18f423f470b157a7f144a7da4e5a2c",
+      "bytes": 258749
+    },
+    {
+      "path": "ferramentas/read-settings-snapshot.mjs",
+      "originalSha256": null,
+      "draftPath": "draft/ferramentas/read-settings-snapshot.mjs",
+      "draftSha256": "7400b14419f46bc9c033d5d642acfd48327d48b433825f23ed0111570d3f2bc3",
+      "bytes": 2297
+    },
+    {
+      "path": "ferramentas/settings-read-http.mjs",
+      "originalSha256": null,
+      "draftPath": "draft/ferramentas/settings-read-http.mjs",
+      "draftSha256": "8d3338842e9b6462fc3de4f9d650aca910a1162d0c17e2a814f60f718629d33c",
+      "bytes": 908
+    }
+  ],
+  "operatorTouched": false,
+  "NativeStarted": false,
+  "realAppPass": false
+}

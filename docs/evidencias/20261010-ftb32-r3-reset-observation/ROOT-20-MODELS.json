@@ -1,0 +1,89 @@
+{
+  "status": "PASS_PREPARATION_CPU_ONLY",
+  "checks": [
+    {
+      "name": "Historical2702→33→0 FAIL remains with one requestedreset/one epoch and invalid fallback separated",
+      "status": "PASS_CPU_MODEL_ONLY"
+    },
+    {
+      "name": "Observer keeps collecting after strictFAIL; never retries or omits fallback to forcePASS",
+      "status": "PASS_CPU_MODEL_ONLY"
+    },
+    {
+      "name": "Unchanged strict criterion canPASS original monotonic reset-low/progress sequence",
+      "status": "PASS_CPU_MODEL_ONLY"
+    },
+    {
+      "name": "Unknown/foreign UUID unsafecounter invalidtype/supportedness rejected without guessing",
+      "status": "PASS_CPU_MODEL_ONLY"
+    },
+    {
+      "name": "Generationchange and revision/epoch regressions cannot be merged into original session",
+      "status": "PASS_CPU_MODEL_ONLY"
+    },
+    {
+      "name": "Same cached revision is permitted; readyfalse/submittedPTS never implies displayACK",
+      "status": "PASS_CPU_MODEL_ONLY"
+    },
+    {
+      "name": "201sample and10s bounds enforce finite collection independently of resetready",
+      "status": "PASS_CPU_MODEL_ONLY"
+    },
+    {
+      "name": "PCM packet window uses Masterwall, keeps sourcePTS unavailable and expectedsample advances",
+      "status": "PASS_CPU_MODEL_ONLY"
+    },
+    {
+      "name": "Own barcode decoder remains exact16bit protocol and detects no reference",
+      "status": "PASS_CPU_MODEL_ONLY"
+    },
+    {
+      "name": "Readiness120s validates exactNTSCseed/matchingPID/Studio/idle without writes",
+      "status": "PASS_CPU_MODEL_ONLY"
+    },
+    {
+      "name": "Foreign identity never cleans or requests close, preservesPID/no force",
+      "status": "PASS_CPU_MODEL_ONLY"
+    },
+    {
+      "name": "Activeoutputs or refusal preserve process; successful ownidle close requires exit0",
+      "status": "PASS_CPU_MODEL_ONLY"
+    },
+    {
+      "name": "Native observer publishes before callback and getterfallback/UUIDproc remain explicit",
+      "status": "PASS_CPU_MODEL_ONLY"
+    },
+    {
+      "name": "Runner has oneRESTART only, noforce/SRT/FTBON, hashes2085x2 and exactCLIguard",
+      "status": "PASS_CPU_MODEL_ONLY"
+    },
+    {
+      "name": "All49externalpins plus originalfailure/fixture verified without media decode",
+      "status": "PASS_CPU_MODEL_ONLY"
+    },
+    {
+      "name": "Collection deadline is terminal only at actual10s with3prior samples; early/errors remain failures",
+      "status": "PASS_CPU_MODEL_ONLY"
+    },
+    {
+      "name": "PCM timestampzero valid; negative timestamp/wallzero/frameszero remain invalid",
+      "status": "PASS_CPU_MODEL_ONLY"
+    },
+    {
+      "name": "Alreadyexited nonzero retains failure metadata without falsely claiming a live preservedprocess",
+      "status": "PASS_CPU_MODEL_ONLY"
+    },
+    {
+      "name": "Epochincrement does not permit revision regression in actualNative contract",
+      "status": "PASS_CPU_MODEL_ONLY"
+    },
+    {
+      "name": "FailurePNGs persist before rejection and primaryStatus survives secondary cleanup status",
+      "status": "PASS_CPU_MODEL_ONLY"
+    }
+  ],
+  "NativeExecuted": false,
+  "mediaDecoded": false,
+  "APIStarted": false,
+  "BrowserStarted": false
+}

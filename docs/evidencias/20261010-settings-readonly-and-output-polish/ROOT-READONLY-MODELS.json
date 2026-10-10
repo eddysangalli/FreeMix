@@ -1,0 +1,105 @@
+{
+  "status": "PASS_CPU_TRANSPORT_CAUSAL_MODELS_ONLY",
+  "checks": [
+    {
+      "name": "Real SettingsEngine getter uses only captured readonly requests; run/execute/refresh/journal/audio allzero",
+      "status": "PASS_CPU_MODEL_ONLY"
+    },
+    {
+      "name": "Context swap before getter never dispatches to foreign raw connection",
+      "status": "PASS_CPU_MODEL_ONLY"
+    },
+    {
+      "name": "Context switch between awaits/readback rejected without querying foreign",
+      "status": "PASS_CPU_MODEL_ONLY"
+    },
+    {
+      "name": "Scope change/disconnect during getter rejected, no mutation retry",
+      "status": "PASS_CPU_MODEL_ONLY"
+    },
+    {
+      "name": "Native actual collection differs despite cached scope: getter does not run",
+      "status": "PASS_CPU_MODEL_ONLY"
+    },
+    {
+      "name": "Unexpected getter Set or foreign vendor state explicitly rejected before dispatch",
+      "status": "PASS_CPU_MODEL_ONLY"
+    },
+    {
+      "name": "Incomplete getter result rejected; original caches and operation remain untouched",
+      "status": "PASS_CPU_MODEL_ONLY"
+    },
+    {
+      "name": "GET transport under actual project publicRun returns no-store readonly snapshot",
+      "status": "PASS_CPU_MODEL_ONLY"
+    },
+    {
+      "name": "Method POST refused405 without Native reads",
+      "status": "PASS_CPU_MODEL_ONLY"
+    },
+    {
+      "name": "Method PUT refused405 without Native reads",
+      "status": "PASS_CPU_MODEL_ONLY"
+    },
+    {
+      "name": "Method DELETE refused405 without Native reads",
+      "status": "PASS_CPU_MODEL_ONLY"
+    },
+    {
+      "name": "Method HEAD refused405 without Native reads",
+      "status": "PASS_CPU_MODEL_ONLY"
+    },
+    {
+      "name": "Query refused400 action",
+      "status": "PASS_CPU_MODEL_ONLY"
+    },
+    {
+      "name": "Query refused400 category",
+      "status": "PASS_CPU_MODEL_ONLY"
+    },
+    {
+      "name": "Query refused400 unknown",
+      "status": "PASS_CPU_MODEL_ONLY"
+    },
+    {
+      "name": "Local/origin/auth refused before any read; unknown route404",
+      "status": "PASS_CPU_MODEL_ONLY"
+    },
+    {
+      "name": "Real global admission projectBusy409 prevents all reads/writes",
+      "status": "PASS_CPU_MODEL_ONLY"
+    },
+    {
+      "name": "Actual canonical run method proves 3 settings_get calls enter begin/route/journal/2refresh percall",
+      "status": "PASS_CPU_MODEL_ONLY"
+    },
+    {
+      "name": "Three clients use GET for settings_get and server route stays within unchanged outerproject dispatcher",
+      "status": "PASS_CPU_MODEL_ONLY"
+    },
+    {
+      "name": "Four affected canonical baselines unchanged; 450 audit retained as historical prepolish; alias ignored",
+      "status": "PASS_CPU_MODEL_ONLY"
+    },
+    {
+      "name": "Ledger preserves promise identity/counts, records rejectedentry versus completion and never arguments",
+      "status": "PASS_CPU_MODEL_ONLY"
+    },
+    {
+      "name": "Ledger maximum2/dropped3 finite, snapshot immutable and strict count5 unchanged",
+      "status": "PASS_CPU_MODEL_ONLY"
+    },
+    {
+      "name": "Actual settings/mesa GET helper transport rejects late target switch with zero mutation requests",
+      "status": "PASS_CPU_MODEL_ONLY"
+    },
+    {
+      "name": "Actual readVirtual GET preserves readback and rejects late foreign scope",
+      "status": "PASS_CPU_MODEL_ONLY"
+    }
+  ],
+  "NativeExecuted": false,
+  "APIStarted": false,
+  "BrowserStarted": false,
+  "runtimeCauseOfExactThreeCallsIdentified": false
+}

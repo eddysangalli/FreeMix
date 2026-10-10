@@ -1,0 +1,26 @@
+{
+  "status": "ROOT_COMPILED_LOCALVOCAL_CUMULATIVE_R3_LIFECYCLE",
+  "startedAt": "2026-10-10T15:19:13.2493766Z",
+  "job": "D:/DRIVE/IA/antigravity/vmixtwste/qa-finalizacao/LocalVocal-GovBuild-4fe1e45cd2e14822bcf9dea86ac01251",
+  "buildPlanSha256": "f9fe95319671e9db68228961e2dffcc2a391b3c46a1b5791cb53611ed8404a9e",
+  "lifecycleAllowlistSha256": "8b5f446214b3774e869e04e0a71dba1e325f24ce1ca677dcc0da45bc1ed79fa7",
+  "modelGovernanceAllowlistSha256": "41a6501e0cdfb82ccf1d04183bedef6856d303e5c9e527e9c7c4248525e68331",
+  "captionOwnershipAllowlistSha256": "d2b2d940968c2406e2ba0b7ff9aee6433d3786ce828f0364c2ffa7506d6ae1d1",
+  "installed": false,
+  "NativeStarted": false,
+  "operatorTouched": false,
+  "networkPolicy": "FETCHCONTENT_DISCONNECTED_CARGO_OFFLINE_FROZEN_NO_TRACE_CLAIM",
+  "configureExit": 0,
+  "buildExit": 0,
+  "dll": {
+    "path": "D:/DRIVE/IA/antigravity/vmixtwste/qa-finalizacao/LocalVocal-GovBuild-4fe1e45cd2e14822bcf9dea86ac01251/build/RelWithDebInfo/obs-localvocal.dll",
+    "bytes": 1240064,
+    "sha256": "5aa7f14d9dd01c8d110eb86bf42e5f50b2a1070e6dcb7d92bc7b27e97bf45b4f"
+  },
+  "pdb": {
+    "path": "D:/DRIVE/IA/antigravity/vmixtwste/qa-finalizacao/LocalVocal-GovBuild-4fe1e45cd2e14822bcf9dea86ac01251/build/RelWithDebInfo/obs-localvocal.pdb",
+    "bytes": 15970304,
+    "sha256": "074178547a94d7f0b4c3c2dd4e5db6609401126393b8cbb8d34c25d4d340a803"
+  },
+  "finishedAt": "2026-10-10T15:20:32.3579669Z"
+}
