@@ -2372,10 +2372,12 @@ body.popup-mode #pop[data-panel="add"] .add .types { display:flex; flex-directio
         + `<p>Evento: antes do início conta em amarelo; durante, em verde; depois do fim, em vermelho.</p><div class="row end"><button class="b on" data-a="clockssave">OK</button><button class="b" data-a="close">Cancelar</button></div>`; }
     else if (st.pop === "gear") p.innerHTML = `<h3>Painel</h3><p>${st.on ? "Conectado a " + esc(LOCAL.url || "") : esc(st.why)}</p><div class="row"><button class="b${st.studio ? " on" : ""}" data-a="studio">Modo estúdio (Preview + Programa)</button></div><p style="margin-top:8px">Cenas, fontes, mixer nativo e controles do OBS continuam no menu Painéis.</p><div class="row"><button class="b" data-a="close">Fechar</button></div>`;
   }
-  const panelPages={'novo-projeto':'/novo-projeto/',audio:'/audio',datasources:'/dados',compositions:'/compor',calls:'/calls',macros:'/macros',recuperacao:'/recuperacao',diagnosticos:'/diagnosticos',saidas:'/saidas',settings:'/settings',config:'/settings',ext:'/saidas?context=external',iso:'/iso',replay:'/replay',replaysettings:'/replay?view=settings#replay-config',recset:'/settings?category=recording&context=recording',streamset:'/saidas?context=streaming'};
+  const panelPages={'novo-projeto':'/novo-projeto/',audio:'/audio',datasources:'/dados',compositions:'/compor',calls:'/calls',macros:'/macros',recuperacao:'/recuperacao',diagnosticos:'/diagnosticos',saidas:'/saidas',settings:'/settings',config:'/settings',ext:'/saidas?context=external',iso:'/iso',replay:'/replay',replaysettings:'/replay?view=settings#replay-config',recset:'/settings?category=recording&context=recording',streamset:'/transmitir'};
+  // Windows that open at the size of the dialog they copy from the reference, instead of the large default.
+  const panelSizes={streamset:[700,445]};
   const independentEditors=new Set(['novo-projeto','datasources','compositions','calls','macros','recuperacao','diagnosticos','saidas','settings','add','layers','audioset','clocks','ext','iso','replay','replaysettings','playlist','shortcuts','busman','recset','streamset','config','gcedit','presets','saveas','replayretention']);
   async function launchPanel(id,arg){
-    const title=({'novo-projeto':'Novo projeto · prévia',datasources:'Fontes de dados',compositions:'Composições',calls:'Calls',settings:'Configurações',replay:'Replay',replaysettings:'Configurações do Replay',list:'List',mixer:'Mixer de áudio',audio:'Áudio · AFV e filtros'})[id]||'FreeMix · '+id;
+    const title=({streamset:'Configurações de streaming','novo-projeto':'Novo projeto · prévia',datasources:'Fontes de dados',compositions:'Composições',calls:'Calls',settings:'Configurações',replay:'Replay',replaysettings:'Configurações do Replay',list:'List',mixer:'Mixer de áudio',audio:'Áudio · AFV e filtros'})[id]||'FreeMix · '+id;
     const url=panelPages[id]?replayUrl.replace(/\/api\/replay$/,panelPages[id])+(['compositions','audio'].includes(id)?'?input='+encodeURIComponent(arg||''):''):new URL('mesa.html?pop='+encodeURIComponent(id)+(arg?'&arg='+encodeURIComponent(arg):''),location.href).href;
     if(panelPages[id]){
       let health;
@@ -2384,10 +2386,10 @@ body.popup-mode #pop[data-panel="add"] .add .types { display:flex; flex-directio
       if(!health.connected)throw Error('O serviço local está aguardando o motor. Aguarde a conexão antes de abrir esta configuração.');
     }
     if(location.protocol==='file:'){
-      const result=await req('CallVendorRequest',{vendorName:'freemix',requestType:'open_panel',requestData:{url,title}});
+      const result=await req('CallVendorRequest',{vendorName:'freemix',requestType:'open_panel',requestData:{url,title,...(panelSizes[id]?{width:panelSizes[id][0],height:panelSizes[id][1]}:{})}});
       if(!result.responseData?.success)throw Error(result.responseData?.error||'Não foi possível abrir a janela '+title);return;
     }
-    const popup=window.open(url,'FreeMix_'+id,'width=1200,height=850,resizable=yes,scrollbars=yes');
+    const popup=window.open(url,'FreeMix_'+id,`width=${panelSizes[id]?.[0]||1200},height=${panelSizes[id]?.[1]||850},resizable=yes,scrollbars=yes`);
     if(!popup)throw Error('Permita as janelas pop-up do FreeMix neste navegador.');popup.focus();
   }
   const openPop = (id, arg) => { if(independentEditors.has(id)&&new URLSearchParams(location.search).get('pop')!==id){closePop();run(launchPanel(id,arg));return;} if (st.pop === id && st.popArg === arg) return closePop(); st.pop = id; st.popArg = arg; renderPop(); ($("add-name") || $("rn-name") || $("sa-name"))?.select(); if (["recset", "streamset", "config"].includes(id)) { st.cfg = null; renderPop(); A.cfgload(); } if (id === "presets") A.presetload(); if (id === "stats") A.statsload(); if (id === "clocks") { st.clocks = null; A.clocksload(); } if (id === "streamset") { st.destTab = 0; syncDest(); } if (id === "call") syncRet(); if (id === "layers") { st.layers = null; A.layersload(); } if (id === "audioset") { st.aset = null; st.asetTab = "geral"; renderPop(); A.asetload(); } if (id === "ext") A.extload(); };

@@ -1,0 +1,65 @@
+From d5cc34d570819c1c4f7cb5ad639d33a87e91d165 Mon Sep 17 00:00:00 2001
+From: Eddy Sangalli <eddyrodrigues@outlook.com>
+Date: Sat, 10 Oct 2026 23:25:50 -0300
+Subject: [PATCH] Keep valid audio devices when one inventory entry cannot be
+ read
+
+A leftover registry key under HKLM\SOFTWARE\ASIO without a valid CLSID, or one
+playback endpoint without a readable name, marked the whole inventory as
+incomplete, so none of the valid ASIO drivers or playback devices was offered and
+refreshing could not fix it. Such an entry is now left out. The inventory is
+still reported unknown when the enumeration itself fails, or when endpoints exist
+and none of them can be described.
+
+Found in a review of patches 0034-0036; the other findings of that review were
+checked against the source and do not apply (talkback lease is closed by the
+100 ms timer; SDI inventory is only reset on profile, collection or exit).
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+---
+ frontend/widgets/FreeMixAsioOutput.cpp   | 6 ++++--
+ frontend/widgets/FreeMixAudioRouting.cpp | 7 +++++--
+ 2 files changed, 9 insertions(+), 4 deletions(-)
+
+diff --git a/frontend/widgets/FreeMixAsioOutput.cpp b/frontend/widgets/FreeMixAsioOutput.cpp
+index fd87fa1..9cb32a8 100644
+--- a/frontend/widgets/FreeMixAsioOutput.cpp
++++ b/frontend/widgets/FreeMixAsioOutput.cpp
+@@ -20,10 +20,12 @@ std::vector<FreeMixAsioDriver> FreeMixAsioOutput::Drivers(bool *complete){
+  for(DWORD index=0;index<256;index++){
+   wchar_t name[256]{};DWORD len=256;const auto enumerated=RegEnumKeyExW(root,index,name,&len,nullptr,nullptr,nullptr,nullptr);
+   if(enumerated==ERROR_NO_MORE_ITEMS){ended=true;break;}if(enumerated!=ERROR_SUCCESS){okay=false;break;}
+-  HKEY key=nullptr;if(RegOpenKeyExW(root,name,0,KEY_READ,&key)!=ERROR_SUCCESS){okay=false;continue;}
++  // An entry that cannot be read or has no valid CLSID is what an uninstalled driver leaves behind. It is not a
++  // driver, so it is left out; it does not make the list of the drivers that are there unusable.
++  HKEY key=nullptr;if(RegOpenKeyExW(root,name,0,KEY_READ,&key)!=ERROR_SUCCESS)continue;
+   wchar_t clsid[128]{},description[512]{};DWORD bytes=sizeof(clsid);const auto result=RegGetValueW(key,nullptr,L"CLSID",RRF_RT_REG_SZ,nullptr,clsid,&bytes);
+   bytes=sizeof(description);RegGetValueW(key,nullptr,L"Description",RRF_RT_REG_SZ,nullptr,description,&bytes);RegCloseKey(key);
+-  CLSID guid{};if(result==ERROR_SUCCESS&&SUCCEEDED(CLSIDFromString(clsid,&guid)))list.push_back({UTF8(clsid),UTF8(*description?description:name)});else okay=false;
++  CLSID guid{};if(result==ERROR_SUCCESS&&SUCCEEDED(CLSIDFromString(clsid,&guid)))list.push_back({UTF8(clsid),UTF8(*description?description:name)});
+  }
+  RegCloseKey(root);if(complete)*complete=okay&&ended;return list;
+ }
+diff --git a/frontend/widgets/FreeMixAudioRouting.cpp b/frontend/widgets/FreeMixAudioRouting.cpp
+index cdef0b5..810a509 100644
+--- a/frontend/widgets/FreeMixAudioRouting.cpp
++++ b/frontend/widgets/FreeMixAudioRouting.cpp
+@@ -175,10 +175,13 @@ bool RenderInventory(std::vector<FreeMixAsioDriver> &rows){
+   hr=collection->Item(i,&device);if(SUCCEEDED(hr))hr=device->GetId(&id);if(SUCCEEDED(hr))hr=device->OpenPropertyStore(STGM_READ,&properties);if(SUCCEEDED(hr))hr=properties->GetValue(friendlyName,&name);
+   if(SUCCEEDED(hr)&&id&&name.vt==VT_LPWSTR&&name.pwszVal){
+    const auto utf8=[](const wchar_t *value){const int size=WideCharToMultiByte(CP_UTF8,0,value,-1,nullptr,0,nullptr,nullptr);std::string result(size>1&&size<=4096?size:0,0);if(!result.empty()){if(WideCharToMultiByte(CP_UTF8,0,value,-1,result.data(),size,nullptr,nullptr)!=size)return std::string{};result.pop_back();}return result;};
+-   auto deviceId=utf8(id),deviceName=utf8(name.pwszVal);if(deviceId.empty()||deviceName.empty())okay=false;else rows.push_back({std::move(deviceId),std::move(deviceName)});
+-  }else okay=false;
++   // One endpoint that cannot be described is left out; the other endpoints stay usable. Only a failure of the
++   // enumeration itself (above) makes the inventory unknown.
++   auto deviceId=utf8(id),deviceName=utf8(name.pwszVal);if(!deviceId.empty()&&!deviceName.empty())rows.push_back({std::move(deviceId),std::move(deviceName)});
++  }
+   PropVariantClear(&name);if(id)CoTaskMemFree(id);if(properties)properties->Release();if(device)device->Release();
+  }}
++ if(okay&&count&&rows.empty())okay=false; // endpoints exist and none could be described: unknown, not "no devices"
+  if(collection)collection->Release();if(enumerator)enumerator->Release();if(uninit)CoUninitialize();return okay;
+ }
+ void ObserveSourceRecordCapability(){
+-- 
+2.56.0.windows.1
+

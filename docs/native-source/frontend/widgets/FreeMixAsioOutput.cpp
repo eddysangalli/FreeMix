@@ -20,10 +20,12 @@ std::vector<FreeMixAsioDriver> FreeMixAsioOutput::Drivers(bool *complete){
  for(DWORD index=0;index<256;index++){
   wchar_t name[256]{};DWORD len=256;const auto enumerated=RegEnumKeyExW(root,index,name,&len,nullptr,nullptr,nullptr,nullptr);
   if(enumerated==ERROR_NO_MORE_ITEMS){ended=true;break;}if(enumerated!=ERROR_SUCCESS){okay=false;break;}
-  HKEY key=nullptr;if(RegOpenKeyExW(root,name,0,KEY_READ,&key)!=ERROR_SUCCESS){okay=false;continue;}
+  // An entry that cannot be read or has no valid CLSID is what an uninstalled driver leaves behind. It is not a
+  // driver, so it is left out; it does not make the list of the drivers that are there unusable.
+  HKEY key=nullptr;if(RegOpenKeyExW(root,name,0,KEY_READ,&key)!=ERROR_SUCCESS)continue;
   wchar_t clsid[128]{},description[512]{};DWORD bytes=sizeof(clsid);const auto result=RegGetValueW(key,nullptr,L"CLSID",RRF_RT_REG_SZ,nullptr,clsid,&bytes);
   bytes=sizeof(description);RegGetValueW(key,nullptr,L"Description",RRF_RT_REG_SZ,nullptr,description,&bytes);RegCloseKey(key);
-  CLSID guid{};if(result==ERROR_SUCCESS&&SUCCEEDED(CLSIDFromString(clsid,&guid)))list.push_back({UTF8(clsid),UTF8(*description?description:name)});else okay=false;
+  CLSID guid{};if(result==ERROR_SUCCESS&&SUCCEEDED(CLSIDFromString(clsid,&guid)))list.push_back({UTF8(clsid),UTF8(*description?description:name)});
  }
  RegCloseKey(root);if(complete)*complete=okay&&ended;return list;
 }

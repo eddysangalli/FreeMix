@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Configurações de streaming</title>
+<link rel="stylesheet" href="vmix-dialogo.css">
+</head>
+<body data-page="transmitir" class="vd">
+<div class="vd-window">
+  <div class="vd-body">
+    <div class="vd-row"><span></span>
+      <div class="vd-nums" id="nums" role="tablist" aria-label="Destino de streaming">
+        <button data-n="0" role="tab">1</button><button data-n="1" role="tab">2</button><button data-n="2" role="tab">3</button><button data-n="3" role="tab">4</button><button data-n="4" role="tab">5</button>
+      </div>
+    </div>
+    <label class="vd-row"><span>Destino</span><select id="provider"></select></label>
+    <label class="vd-row"><span>URL</span><input id="url" type="text" spellcheck="false" autocomplete="off"></label>
+    <label class="vd-row"><span>Chave de Stream</span><input id="key" type="password" spellcheck="false" autocomplete="off"></label>
+    <div class="vd-row"><span></span><div class="vd-right"><button id="advanced" title="Abre o editor completo deste destino: fonte de vídeo, áudio, overlays, reconexão">Avançado</button></div></div>
+    <div class="vd-gap"></div>
+    <div class="vd-row"><span>Qualidade</span><select id="quality"></select><button id="quality-cog" class="vd-cog" title="Personalizar a qualidade">&#9881;</button></div>
+    <div class="vd-row" id="custom" hidden><span></span>
+      <div class="vd-inline">
+        <label class="vd-check" id="custom-size">Tamanho <input id="width" type="number" min="240" max="3840" step="2" style="width:64px"> × <input id="height" type="number" min="240" max="3840" step="2" style="width:64px"></label>
+        <label class="vd-check">Vídeo <input id="bitrate" type="number" min="200" max="50000" step="100" style="width:70px"> kbps</label>
+        <label class="vd-check" id="custom-audio">Áudio <select id="audio-bitrate" style="width:64px"><option>128</option><option>160</option><option>192</option><option>256</option><option>320</option></select> kbps</label>
+      </div>
+    </div>
+    <div class="vd-row"><span>Codificador</span>
+      <div class="vd-inline"><select id="encoder" class="vd-short"></select>
+        <label class="vd-check"><input id="hardware" type="checkbox"> Use Encoder da Placa de Vídeo (GPU)</label></div>
+    </div>
+    <div class="vd-row" id="same-row"><span></span><label class="vd-check"><input id="same" type="checkbox"> Use Qualidade do Stream 1</label></div>
+    <p id="msg" class="vd-msg" role="status"></p>
+  </div>
+  <div class="vd-status" id="status" hidden>
+    <table><thead><tr><th>#</th><th>Destino</th><th>URL</th><th>Qualidade</th><th>Estado</th></tr></thead><tbody id="status-rows"></tbody></table>
+  </div>
+  <div class="vd-bar">
+    <button id="start-all">Iniciar tudo</button>
+    <button id="start-one">Começar 1</button>
+    <button id="view-status">Ver Status</button>
+    <span class="vd-flex"></span>
+    <button id="save-close">Salvar e Fechar</button>
+  </div>
+</div>
+<span id="connection" hidden></span><p id="message" hidden></p>
+<script src="controle.js"></script>
+<script src="transmitir.js"></script>
+</body>
+</html>

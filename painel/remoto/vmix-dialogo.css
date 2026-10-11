@@ -1,0 +1,69 @@
+/* Dialog look shared by the settings windows that follow the reference switcher: small, dense, flat, dark body with
+   light fields, labels right-aligned in one column, buttons in a darker bar at the bottom. Colour carries meaning
+   only: green = selected/active, red = on air, amber = attention. No gradients, shadows, glows or round corners. */
+.vd, .vd * { box-sizing: border-box; }
+html, body.vd { margin: 0; height: 100%; }
+body.vd { background: #1d2227; color: #fff; font: 12px/1.25 "Segoe UI", Tahoma, sans-serif; overflow: auto; }
+.vd-window { min-width: 560px; max-width: 760px; min-height: 100%; display: flex; flex-direction: column; background: #1d2227; }
+
+.vd-strip, .vd-bar { background: #0d1115; padding: 6px 12px; display: flex; align-items: center; gap: 6px; }
+.vd-bar { padding: 8px 10px; margin-top: auto; }
+.vd-bar .vd-flex { flex: 1; }
+.vd-body { padding: 8px 12px 10px; display: grid; gap: 7px; align-content: start; }
+
+/* One row = right-aligned bold label in a fixed column + the field(s). */
+.vd-row { display: grid; grid-template-columns: 138px minmax(0, 1fr) auto; align-items: center; column-gap: 9px; margin: 0; min-height: 22px; }
+.vd-row > span:first-child { text-align: right; font-weight: 700; white-space: nowrap; }
+.vd-strip .vd-row { flex: 1; grid-template-columns: 126px minmax(0, 1fr); }
+.vd-gap { height: 26px; }
+.vd-right { display: flex; justify-content: flex-end; gap: 6px; }
+.vd-inline { display: flex; align-items: center; gap: 14px; min-width: 0; }
+
+.vd input[type=text], .vd input[type=password], .vd input[type=number], .vd select {
+  height: 21px; padding: 1px 4px; border: 1px solid #6f757b; border-radius: 0; background: #e9eaeb; color: #000;
+  font: 12px "Segoe UI", Tahoma, sans-serif; width: 100%; min-width: 0; outline: none;
+}
+.vd input:focus, .vd select:focus { border: 1px solid #1e7fd6; box-shadow: inset 0 0 0 1px #1e7fd6; background: #fff; }
+.vd input:disabled, .vd select:disabled { background: #9a9ea2; color: #33383c; }
+.vd select.vd-short { width: 150px; }
+
+.vd button {
+  height: 26px; min-width: 62px; padding: 0 12px; border: 1px solid #44515c; border-radius: 0; background: #2a333b; color: #fff;
+  font: 700 12px "Segoe UI", Tahoma, sans-serif; cursor: default; white-space: nowrap;
+}
+.vd button:hover:not(:disabled) { background: #35414b; border-color: #5b6b78; }
+.vd button:active:not(:disabled) { background: #20282f; }
+.vd button:focus-visible { outline: 1px solid #fff; outline-offset: -3px; }
+.vd button:disabled { color: #7c868e; background: #232a30; border-color: #333c44; }
+.vd button.vd-on { background: #0b6f1a; border-color: #2aa13e; }           /* selected / active */
+.vd button.vd-air { background: #b3140c; border-color: #ff5a4f; }           /* on air */
+.vd button.vd-warn { background: #8a5a00; border-color: #d39a2a; }          /* attention */
+.vd-bar button { height: 32px; min-width: 126px; }
+.vd button.vd-cog { min-width: 26px; width: 26px; padding: 0; font-size: 15px; line-height: 1; }
+
+/* Numbered selectors (destinations, outputs…). */
+.vd-nums { display: flex; gap: 6px; }
+.vd-nums button { width: 46px; min-width: 46px; height: 28px; position: relative; }
+.vd-nums button.vd-live::after { content: ""; position: absolute; right: 3px; top: 3px; width: 7px; height: 7px; background: #ff3b30; }
+
+.vd-check { display: inline-flex; align-items: center; gap: 6px; font-weight: 400; white-space: nowrap; }
+.vd-check input { width: 13px; height: 13px; margin: 0; accent-color: #1e7fd6; }
+
+.vd-msg { margin: 2px 0 0 147px; min-height: 16px; color: #c9d1d8; }
+.vd-msg.vd-error { color: #ff8078; font-weight: 700; }
+.vd-msg.vd-ok { color: #7fe08f; }
+.vd-note { color: #9aa6b0; font-weight: 400; }
+
+/* Status list (what "Ver Status" shows). */
+.vd-status { margin: 0 12px 10px; border: 1px solid #39444d; background: #12171b; }
+.vd-status table { width: 100%; border-collapse: collapse; }
+.vd-status th, .vd-status td { padding: 2px 8px; text-align: left; border-bottom: 1px solid #252e35; font-weight: 400; white-space: nowrap; }
+.vd-window.vd-with-status .vd-gap { display: none; }                        /* the list takes the room of the spacer */
+.vd-window.vd-with-status .vd-status { margin-bottom: 6px; }
+.vd-status th { background: #26303a; font-weight: 700; }
+.vd-status td.vd-url { max-width: 240px; overflow: hidden; text-overflow: ellipsis; }
+.vd-status tr.vd-sel td { background: #7a4a00; }                            /* selected row */
+.vd-status .vd-air-text { color: #ff5a4f; font-weight: 700; }
+.vd-status .vd-ok-text { color: #63d977; font-weight: 700; }
+.vd-mono { font-family: Consolas, "Cascadia Mono", monospace; }
+[hidden] { display: none !important; }

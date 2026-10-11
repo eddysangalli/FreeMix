@@ -175,10 +175,13 @@ bool RenderInventory(std::vector<FreeMixAsioDriver> &rows){
   hr=collection->Item(i,&device);if(SUCCEEDED(hr))hr=device->GetId(&id);if(SUCCEEDED(hr))hr=device->OpenPropertyStore(STGM_READ,&properties);if(SUCCEEDED(hr))hr=properties->GetValue(friendlyName,&name);
   if(SUCCEEDED(hr)&&id&&name.vt==VT_LPWSTR&&name.pwszVal){
    const auto utf8=[](const wchar_t *value){const int size=WideCharToMultiByte(CP_UTF8,0,value,-1,nullptr,0,nullptr,nullptr);std::string result(size>1&&size<=4096?size:0,0);if(!result.empty()){if(WideCharToMultiByte(CP_UTF8,0,value,-1,result.data(),size,nullptr,nullptr)!=size)return std::string{};result.pop_back();}return result;};
-   auto deviceId=utf8(id),deviceName=utf8(name.pwszVal);if(deviceId.empty()||deviceName.empty())okay=false;else rows.push_back({std::move(deviceId),std::move(deviceName)});
-  }else okay=false;
+   // One endpoint that cannot be described is left out; the other endpoints stay usable. Only a failure of the
+   // enumeration itself (above) makes the inventory unknown.
+   auto deviceId=utf8(id),deviceName=utf8(name.pwszVal);if(!deviceId.empty()&&!deviceName.empty())rows.push_back({std::move(deviceId),std::move(deviceName)});
+  }
   PropVariantClear(&name);if(id)CoTaskMemFree(id);if(properties)properties->Release();if(device)device->Release();
  }}
+ if(okay&&count&&rows.empty())okay=false; // endpoints exist and none could be described: unknown, not "no devices"
  if(collection)collection->Release();if(enumerator)enumerator->Release();if(uninit)CoUninitialize();return okay;
 }
 void ObserveSourceRecordCapability(){

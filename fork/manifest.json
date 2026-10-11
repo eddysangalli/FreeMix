@@ -1,8 +1,8 @@
 {
   "upstream": "https://github.com/obsproject/obs-studio.git",
   "base": "ba2f32bdf791005443988a4955e963663e16b1ed",
-  "head": "e81afe793708bd17821c9dc866b066783251e5fc",
-  "version": "0.1.0-local.20261010181335",
+  "head": "ed08547c80c26581551d3c5fb2c332e9e18d4302",
+  "version": "0.1.0-local.20261011024129",
   "patches": [
     {
       "path": "0001-feat-branding-replace-OBS-identity-with-FreeMix-Stud.patch",
@@ -147,11 +147,19 @@
     {
       "path": "0036-Cache-SourceRecord-capability-after-frontend-startup.patch",
       "sha256": "807f37f5b6aaa37331dcb1a8af79a9433d231869513bf9a61f8b293f8832b715"
+    },
+    {
+      "path": "0037-Keep-valid-audio-devices-when-one-inventory-entry-ca.patch",
+      "sha256": "0cf38d43ad17d402348d0ccc48a1445e3fddea1607a9661c484bc8297b2a47e5"
+    },
+    {
+      "path": "0038-Let-a-panel-window-open-at-the-size-its-page-asks-fo.patch",
+      "sha256": "246e895ee72d656fc2cc616dfc47daa4782a03b099d261284fd1823e9f581d1d"
     }
   ],
-  "sourceUpdatedAt": "2026-10-10T18:15:16.064Z",
+  "sourceUpdatedAt": "2026-10-11T02:49:01.714Z",
   "sourceSchema": 2,
-  "tree": "fc107e309063b0fb13ca33315bd7e179d60ab822",
+  "tree": "511baffbf91395005e6ea271a5f438e0f6d63e15",
   "submodules": [
     {
       "path": "deps/libdshowcapture/src",

@@ -1,8 +1,8 @@
 {
   "status": "PASS",
   "base": "ba2f32bdf791005443988a4955e963663e16b1ed",
-  "head": "e81afe793708bd17821c9dc866b066783251e5fc",
-  "resultTree": "fc107e309063b0fb13ca33315bd7e179d60ab822",
+  "head": "ed08547c80c26581551d3c5fb2c332e9e18d4302",
+  "resultTree": "511baffbf91395005e6ea271a5f438e0f6d63e15",
   "submodules": [
     {
       "path": "deps/libdshowcapture/src",
@@ -197,8 +197,8 @@
     },
     {
       "path": "frontend/widgets/FreeMixAsioOutput.cpp",
-      "bytes": 11595,
-      "sha256": "280b736bd8d4f73db5b24f1c0f5b61e1a283e4310c6cf7e9708f5d7899c69f18"
+      "bytes": 11777,
+      "sha256": "6debc7cd79636d921a4c21f0e5db9c76c97cdd5083362f9aacf998914ed887ac"
     },
     {
       "path": "frontend/widgets/FreeMixAsioOutput.hpp",
@@ -207,8 +207,8 @@
     },
     {
       "path": "frontend/widgets/FreeMixAudioRouting.cpp",
-      "bytes": 29984,
-      "sha256": "a1aa6ebf37efce652347b95ce8fb2263d2f896538560a8737cb67afb61cd2fa9"
+      "bytes": 30244,
+      "sha256": "40a9b200c24ca1de8abc82012dd074d6b4dd31f2a6d852140d05e21864a5395f"
     },
     {
       "path": "frontend/widgets/FreeMixAudioRouting.hpp",
@@ -302,8 +302,8 @@
     },
     {
       "path": "frontend/widgets/FreeMixMultistream.cpp",
-      "bytes": 124688,
-      "sha256": "802439c9f65d62a5881c8e61588740992f6ef526bbd9dc6b95822e06ddb737eb"
+      "bytes": 125164,
+      "sha256": "521b81f2b325fb01fd7329e6c6ed02385906911fdbf15c511d2cde2e05ef09f1"
     },
     {
       "path": "frontend/widgets/FreeMixMultistream.hpp",

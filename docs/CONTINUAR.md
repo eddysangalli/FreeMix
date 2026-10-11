@@ -2,6 +2,26 @@
 <!-- rodada-20261010-noite -->
 > **Leia primeiro este bloco.** É o resumo vigente, em linguagem direta. O registro detalhado do Codex (até 10/10, 19h) continua logo abaixo, sem alteração.
 
+## Mudança de rumo pedida pelo dono — 10/10, 23h25: telas primeiro
+
+O dono reclamou, com razão, que o trabalho recente era quase só teste e que **as telas continuavam iguais: deviam ser cópias das do vMix e fáceis de mexer**. A partir daqui a ordem é: **refazer as telas uma a uma olhando a tela real do vMix** (ajuda em `https://www.vmix.com/help29/`, imagens das janelas; textos em português do arquivo de idioma do dono, `archived/referencias/vMix27-copia/languages/pt br eddy 29-0-0-40.txt`), e usar teste só para conferir cada tela no fim. Não restilizar de cabeça.
+
+### Feito: janela "Configurações de streaming" (engrenagem do Transmitir)
+- Cópia da janela *Streaming Settings* do vMix, no tamanho dela (700×445): botões **1 a 5**, **Destino**, **URL**, **Chave de Stream**, **Avançado**, **Qualidade** com engrenagem, codificador com "Use Encoder da Placa de Vídeo (GPU)", **Use Qualidade do Stream 1** (destinos 2 a 5), e embaixo **Iniciar tudo / Começar N / Ver Status / Salvar e Fechar**. O 1 é a transmissão principal; 2 a 5 são os quatro destinos adicionais. Destino no ar fica travado e o botão vira "Parar N" em vermelho, como no vMix.
+- Arquivos: `painel/remoto/transmitir.html`, `transmitir.js` e `vmix-dialogo.css` (visual de diálogo do vMix, para reaproveitar nas próximas janelas); rota `/transmitir` no `servidor-api.mjs`; na Mesa, a engrenagem do Transmitir abre essa janela. O editor antigo (`/saidas?context=streaming`) continua acessível pelo botão **Avançado**.
+- No motor (Native38, `ed08547`): as janelas do programa agora podem abrir no tamanho que a página pede (antes toda janela abria 1200×850). Native37 (`d5cc34d`): lista de dispositivos de áudio não é mais descartada por causa de uma entrada defeituosa.
+- Conferido de verdade: `scripts/qa/test-transmitir.mjs` — 19 de 19: configurar e pôr no ar os destinos 2 e 1 em servidores RTMP locais de teste, parar, Iniciar tudo / Parar tudo, Ver Status, destino que não responde (aviso claro), liberar um destino, Salvar e Fechar. A janela também foi aberta dentro do programa (cópia de teste) e fotografada.
+- **Ainda não está no instalador nem na mesa do operador.** Diferenças para o vMix, de propósito: sem a linha "Perfil" (o motor só tem salvar/carregar perfis dos destinos 2–5; entra quando houver excluir); "Aplicação: FFMPEG" virou "Codificador" com a lista real.
+
+### Próximas telas, na ordem (cada uma com a janela do vMix aberta ao lado)
+1. **Externo** (engrenagem do Externo): menu *Output 2/3/4 ▸ fonte*, *SRT*, *Output / NDI / SRT Settings*, *External Output Settings* e a janela com abas External 1–4 (ajuda: `ExternalOutput1.html`, `ExternalOutput.html`, `SettingsOutputs.html`).
+2. **Calls**: aba *Video Call* do Add Input — Host a Call / Connect to Call, Password + Copy + Reset, Return Feed (Video Source, Video Bandwidth, Audio Source) (`VideoCallSetup.html`, `CallManagerChat.html`).
+3. **Gravação** (engrenagem do Gravar) e **MultiCorder**.
+4. **Replay** (configurações) e **Settings** geral (categorias à esquerda como no vMix).
+
+### Bancada para trabalhar nas telas
+`scripts/qa/sandbox-telas.mjs` (rodar com o `runtime/node.exe` do pacote selecionado) instala uma cópia de teste própria, abre o programa minimizado e a API, e serve o painel direto de `FreeMix/painel`: edita o arquivo, recarrega a página. Fecha pedindo (`--fechar`), sem matar nada. `scripts/qa/abrir-janela-real.mjs` abre a página numa janela do próprio programa; `scripts/qa/capturar-janela.ps1` fotografa essa janela.
+
 ## Onde estamos — 10/10/2026, 23h30 (Claude assumiu de onde o Codex parou)
 
 **Instalador selecionado:** continua o `0.1.0-local.20261010060000` (motor Native24). **Fonte atual:** motor Native36 (`e81afe7`) + painel deste repositório. Tudo o que foi corrigido desde a madrugada do dia 10 (menus que não disparam comandos, inventários de áudio e SDI, cursor de mídia, salvamento automático só quando há mudança) está na fonte e **ainda não está em instalador**.

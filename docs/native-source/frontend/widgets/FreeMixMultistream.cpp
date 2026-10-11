@@ -1454,7 +1454,9 @@ void RequestOpenPanel(obs_data_t *request, obs_data_t *response, void *)
 {
  const QString raw = QString::fromUtf8(obs_data_get_string(request, "url"));
  const QString title = QString::fromUtf8(obs_data_get_string(request, "title")).left(100);
- QMetaObject::invokeMethod(OBSBasic::Get(), [raw, title, response]() {
+ // Optional size of the window's content, for the small dialogs; without it the window opens large as before.
+ const int wantWidth = int(obs_data_get_int(request, "width")), wantHeight = int(obs_data_get_int(request, "height"));
+ QMetaObject::invokeMethod(OBSBasic::Get(), [raw, title, response, wantWidth, wantHeight]() {
 #ifdef BROWSER_AVAILABLE
   auto *main = OBSBasic::Get();
   if (!main || main->isClosing() || frontendClosing) { obs_data_set_bool(response, "success", false); obs_data_set_string(response, "error", "O FreeMix está encerrando. Nenhuma janela será aberta."); return; }
@@ -1503,8 +1505,10 @@ void RequestOpenPanel(obs_data_t *request, obs_data_t *response, void *)
    browser->allowAllPopups(true);
    layout->addWidget(browser);
    const QRect screen = OBSBasic::Get()->screen()->availableGeometry();
-   window->setMinimumSize(std::min(800, screen.width() - 40), std::min(600, screen.height() - 80));
-   window->resize(std::min(1200, screen.width() - 40), std::min(850, screen.height() - 80));
+   const bool sized = wantWidth >= 360 && wantWidth <= 4000 && wantHeight >= 240 && wantHeight <= 3000;
+   const int width = std::min(sized ? wantWidth : 1200, screen.width() - 40), height = std::min(sized ? wantHeight : 850, screen.height() - 80);
+   window->setMinimumSize(std::min(sized ? width : 800, screen.width() - 40), std::min(sized ? height : 600, screen.height() - 80));
+   window->resize(width, height);
    window->move(screen.center() - window->rect().center());
   }
   window->show(); window->raise(); window->activateWindow();
