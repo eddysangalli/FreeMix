@@ -1,0 +1,176 @@
+{
+  "scope": "MOCK_API_REAL_DOM_ONLY",
+  "native": false,
+  "ndiReal": false,
+  "hardwareMicrophone": false,
+  "wan": false,
+  "inputPins": {
+    "expected": {
+      "html": "b82f5a1e70ed99b7499ef933cbc39d9a64981df60d0e3e211c957c29b1c7dc0e",
+      "js": "210e079714e51ddc3714ad3fdfa8ca9e64bb46c7ce22bfb409a7a909eb0e8925",
+      "css": "f3d08180366f933049c4a16b2e136e04c25a6691371d2d1f6e0d97c9da85084c"
+    },
+    "before": {
+      "html": "b82f5a1e70ed99b7499ef933cbc39d9a64981df60d0e3e211c957c29b1c7dc0e",
+      "js": "210e079714e51ddc3714ad3fdfa8ca9e64bb46c7ce22bfb409a7a909eb0e8925",
+      "css": "f3d08180366f933049c4a16b2e136e04c25a6691371d2d1f6e0d97c9da85084c"
+    },
+    "after": {
+      "html": "b82f5a1e70ed99b7499ef933cbc39d9a64981df60d0e3e211c957c29b1c7dc0e",
+      "js": "210e079714e51ddc3714ad3fdfa8ca9e64bb46c7ce22bfb409a7a909eb0e8925",
+      "css": "f3d08180366f933049c4a16b2e136e04c25a6691371d2d1f6e0d97c9da85084c"
+    }
+  },
+  "summary": {
+    "pass": 26,
+    "fail": 0,
+    "total": 26
+  },
+  "assertions": [
+    {
+      "title": "gate0_startup_zero_mutating_posts",
+      "ok": true,
+      "detail": "posts_mutantes=0"
+    },
+    {
+      "title": "gate0_slot1_selecionado_por_padrao",
+      "ok": true,
+      "detail": "slot0_on=true"
+    },
+    {
+      "title": "gate0_protocolo_ndi_padrao",
+      "ok": true,
+      "detail": "ndi_on=true"
+    },
+    {
+      "title": "gate0_virtual_camera_parada",
+      "ok": true,
+      "detail": "status=Parada"
+    },
+    {
+      "title": "gate0_tabela_status_oculta",
+      "ok": true,
+      "detail": "status_hidden=true"
+    },
+    {
+      "title": "gate1_rascunho_ndi_persistido_sessionstorage",
+      "ok": true,
+      "detail": "sessionStorage_ok=true"
+    },
+    {
+      "title": "gate1_slot2_exibe_nome_padrao",
+      "ok": true,
+      "detail": "nome=FreeMix NDI 2"
+    },
+    {
+      "title": "gate1_rascunho_slot1_restaurado_ao_voltar",
+      "ok": true,
+      "detail": "restaurado=true"
+    },
+    {
+      "title": "gate1_protocolo_omt_selecionado",
+      "ok": true,
+      "detail": "omt_on=true"
+    },
+    {
+      "title": "gate2_opcoes_avancadas_visivel",
+      "ok": true,
+      "detail": "advanced_vis=true"
+    },
+    {
+      "title": "gate2_pa16_ativa_alpha_e_inibe_fillkey",
+      "ok": true,
+      "detail": "pa16_ok=true"
+    },
+    {
+      "title": "gate2_fillkey_exibe_keyname_e_inibe_alpha",
+      "ok": true,
+      "detail": "fillkey_ok=true"
+    },
+    {
+      "title": "gate3_virtual_camera_toggle_ligada",
+      "ok": true,
+      "detail": "virt=true"
+    },
+    {
+      "title": "gate3_fullscreen_program_solicitado",
+      "ok": true,
+      "detail": "action=settings_projector, mix=PROGRAM"
+    },
+    {
+      "title": "gate3_fullscreen_source_solicitado",
+      "ok": true,
+      "detail": "action=settings_source_projector, input=cam1"
+    },
+    {
+      "title": "gate4_estado_busy_ativo_durante_slowack",
+      "ok": true,
+      "detail": "busy_active=true"
+    },
+    {
+      "title": "gate4_tabs_bloqueadas_durante_busy",
+      "ok": true,
+      "detail": "click_res=desabilitado"
+    },
+    {
+      "title": "gate4_aba_preservada_durante_busy",
+      "ok": true,
+      "detail": "slot0_retained=true"
+    },
+    {
+      "title": "gate4_interface_desbloqueada_apos_ack",
+      "ok": true,
+      "detail": "idle=true"
+    },
+    {
+      "title": "gate4_saida_confirmada_no_ar",
+      "ok": true,
+      "detail": "btn_live=true"
+    },
+    {
+      "title": "gate5_tabela_status_aberta",
+      "ok": true,
+      "detail": "status_open=true"
+    },
+    {
+      "title": "gate5_linhas_status_renderizadas",
+      "ok": true,
+      "detail": "rows_count=2"
+    },
+    {
+      "title": "gate5_clique_em_linha_seleciona_slot",
+      "ok": true,
+      "detail": "row_click=true"
+    },
+    {
+      "title": "gate6_largura_janela_700px",
+      "ok": true,
+      "detail": "width=700px"
+    },
+    {
+      "title": "gate6_footer_visivel_viewport_540",
+      "ok": true,
+      "detail": "bar_bottom=540px"
+    },
+    {
+      "title": "pins_rechecked_finally",
+      "ok": true,
+      "detail": "PINs intactos"
+    }
+  ],
+  "screenshots": [
+    "externo_gate0_startup_r1.png",
+    "externo_gate1_drafts_r1.png",
+    "externo_gate2_precision_fillkey_r1.png",
+    "externo_gate3_virtual_fullscreen_r1.png",
+    "externo_gate4_busy_guard_r1.png",
+    "externo_gate5_status_table_r1.png",
+    "externo_gate6_geometry700x540_r1.png"
+  ],
+  "cleanup": {
+    "exitObserved": true,
+    "status": "OK",
+    "profileDir": "D:\\FreeMix-QA-Gemini-Externo-Review-20261011-0630\\FreeMix-QA-Profile-Externo-uJn0CW",
+    "edgePid": 7328
+  }
+}

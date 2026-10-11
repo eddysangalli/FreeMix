@@ -1,0 +1,23 @@
+{
+  "verdict": "APPROVED_FOR_GUARDED_SOURCE_INTEGRATION",
+  "blockers": [],
+  "auditSummary": "O payload de integração da janela Saídas Externas ('externo.html', 'externo.js') foi verificado e aprovado. Os patches cirúrgicos em 'painel/mesa.html' e 'ferramentas/servidor-api.mjs' conectam com precisão a rota '/externo' à Mesa principal com dimensões [700, 540], preservando intactos o editor legado (/saidas), os contratos de backend, as rotinas nativas OBS e a integridade do repositório.",
+  "patchAndContractVerifications": {
+    "mesaRoutingAndDimensions": "PASS. Em 'painel/mesa.html', 'panelPages.ext' aponta para '/externo' e 'panelSizes.ext' é fixado em [700, 540], garantindo abertura compacta idêntica ao diálogo de referência. O título da janela em 'launchPanel' é registrado formalmente como 'Saídas externas'.",
+    "httpServerRoute": "PASS. Em 'ferramentas/servidor-api.mjs', a rota estática '/externo': 'externo' foi adicionada ao mapa 'routes' sem colisão, roteando corretamente para 'painel/externo.html'. A rota original '/saidas' permanece 100% preservada.",
+    "legacyEditorAccessibility": "PASS. O botão 'Avançado' presente na nova janela ('#advanced-btn') mantém o link de navegação para '/saidas?context=external&transport=...', preservando o acesso irrestrito ao editor operacional legado.",
+    "frontendPinsAndEvidence": "PASS. Os arquivos 'externo.html' (b82f...), 'externo.js' (210e...) e 'vmix-dialogo.css' (f3d0...) correspondem rigorosamente aos hashes qualificados no teste Real DOM R1. O recibo formal 'receipt-test-externo-dom-r1.json' (87b0...) atesta 26/26 asserções PASS com encerramento cooperativo do processo Edge (PID 7328, exitObserved: true).",
+    "baseHashesAndGitIntegrity": "PASS. Hashes base verificados para 'painel/mesa.html' (eed7...) e 'ferramentas/servidor-api.mjs' (44b9...) sob commit HEAD limpo 'ca2f333'. Não há intervenção em C++ Native, build ou arquivos de perfil de operador."
+  },
+  "executionGuardsForRoot": [
+    "Executar rechecagem sequencial de hash SHA-256 imediatamente pré-escrita para 'painel/mesa.html', 'ferramentas/servidor-api.mjs', 'painel/externo.html' e 'painel/externo.js'.",
+    "Em caso de divergência ou concorrência detectada em qualquer etapa, abortar imediatamente sem reversão cega destrutiva, preservando backups na pasta própria de trabalho.",
+    "Copiar e arquivar as evidências formais (recibo 'receipt-test-externo-dom-r1.json', README de handoff e as 7 capturas PNG) exclusivamente dentro da pasta 'FreeMix/docs/evidencias/20261011-janela-externo-gemini/'.",
+    "Registrar nota de continuidade com hashes pinados no arquivo externo 'docs/CONTINUAR.md'."
+  ],
+  "limits": [
+    "MOCK_API_REAL_DOM_ONLY: Qualificação estritamente restrita à interface de usuário, roteamento e contratos de API mockada em ambiente local Edge headless.",
+    "Sem inferência de hardware: não atesta drivers NDI reais, SDKs OMT nativos, dispositivos de captura nem transporte WAN WebRTC.",
+    "Camada nativa C++ e núcleo do motor permanecem inalterados."
+  ]
+}

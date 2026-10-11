@@ -1,0 +1,24 @@
+{
+  "verdict": "APPROVED_FOR_ONE_OWN_MOCK_REAL_DOM_EXECUTION",
+  "scope": "MOCK_API_REAL_DOM_ONLY",
+  "auditSummary": "O runner R1 da janela Externo ('run-test-externo-dom-r1.mjs') foi estruturado com rigor exemplar, incorporando todas as lições aprendidas e salvaguardas consolidadas nas rodadas anteriores. As avaliações CDP estão 100% encapsuladas em IIFEs, os endpoints sintéticos cobrem com exatidão o contrato real do backend, o teardown é estritamente cooperativo e a geometria de 700×540px é aferida com métricas computadas reais.",
+  "runtimeAndContractVerifications": {
+    "fixtureAndPinsIntegrity": "PASS. Hash SHA-256 verificado na inicialização ('pinsBefore') e no teardown ('pinsAfter') para 'externo.html' (b82f...), 'DRAFT-externo.js' (210e...) e 'vmix-dialogo.css' (f3d0...).",
+    "cdpEvaluationScoping": "PASS. Todas as expressões executadas via 'Runtime.evaluate' utilizam '(() => { ... })()', eliminando o risco de colisões léxicas ('Identifier already declared') no motor V8.",
+    "mockFidelityAndZeroStartup": "PASS. Rotas '/api/settings', '/api/outputs', '/api/json' e '/api/control' (com 'outputs_network', 'settings_virtual', 'settings_projector' e 'settings_source_projector') reproduzem com fidelidade os manipuladores do FreeMix. O Gate 0 valida formalmente zero POSTs mutantes no startup.",
+    "draftsAndMutualExclusions": "PASS. Gate 1 valida persistência em 'sessionStorage' para NDI e OMT e restauração na troca de abas (1 a 4). Gate 2 comprova a mútua exclusão entre Canal Alfa, Par Fill+Key e PA16 (16 bits) no protocolo OMT.",
+    "busyGuardAssertion": "PASS. O Gate 4 valida a guarda de concorrência com latência sintética de 1200ms ('slowAckDelayMs'), confirmando que '#nums button' reporta 'desabilitado' durante o trânsito assíncrono e preserva a seleção ativa.",
+    "virtualAndProjectorCoverage": "PASS. Gate 3 valida a comutação de câmera virtual e o disparo de tela cheia para 'PROGRAM' e para entrada específica via 'settings_source_projector'.",
+    "geometryAndComputedLayout": "PASS. Gate 6 afere via 'getBoundingClientRect()' a largura da janela em 700px e a posição do rodapé fixo '.vd-bar' contido dentro do limite inferior de 540px, gerando capturas PNG comprobatórias em todos os gates.",
+    "cooperativeTeardownAndReceipt": "PASS. Encerramento ordenado via 'Browser.close', verificação de 'exitCode' com timeout defensivo de 5000ms, ausência de 'fs.rm' (preservando 'profileDir') e geração atômica de 'receipt-test-externo-dom-r1.json' com contagem dinâmica de asserções e identificação do PID."
+  },
+  "blockers": [],
+  "requiredCorrections": [],
+  "limits": [
+    "MOCK_API_REAL_DOM_ONLY: Validação restrita ao layout, rendering, reatividade de DOM e contratos de API sob mock local em loopback no Microsoft Edge.",
+    "Nenhuma inferência sobre hardware: o teste não valida drivers WASAPI reais nem transmissão física de placas ou monitores.",
+    "Nenhuma inferência sobre NDI/OMT ou WAN reais: a inicialização e transporte de rede real dependem de SDKs e rede externa não envolvidos nesta execução local.",
+    "Execução experimental única: autorizada estritamente UMA execução do runner R1 pelo executor para colheita do recibo JSON e PNGs.",
+    "Imutabilidade do repositório: nenhum arquivo canônico em produção deve ser alterado nesta etapa de testes."
+  ]
+}

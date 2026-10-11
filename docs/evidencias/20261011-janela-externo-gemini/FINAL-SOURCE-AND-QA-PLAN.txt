@@ -1,0 +1,146 @@
+# Revisão de Coerência de Código e Plano de Validação Real DOM (Tela de Saídas Externas)
+
+---
+
+## PARTE 1: Revisão Final de Coerência de Código (Source-Only Review)
+
+### 1. Diagnóstico Estrutural e de Contratos
+
+1. **Guards de Concorrência e Bloqueio (`busy`):**
+   - **Tabs de Saídas (`#nums`):** Em `draw()`, cada botão numérico recebe `b.disabled = busy;`. No evento `E('nums').onclick`, há a trava de guarda defensiva:
+     ```javascript
+     if (busy || !b || b.disabled) return;
+     ```
+   - **Tabela de Status (`#status-rows`):** No evento `E('status-rows').onclick`, a seleção de linha do gerenciador verifica rigorosamente:
+     ```javascript
+     if (busy || !tr) return;
+     ```
+   - **Controles de Disparo e Ação:** Todos os botões executores (`#start-one`, `#start-all`, `#virtual-toggle`, `#fs-program`, `#fs-preview`, `#fs-multiview`, `#fs-open-input`, `#save-close`, `#advanced-btn`) têm `disabled = busy` garantido durante chamadas em trânsito dentro da rotina `run()`.
+
+2. **Fidelidade aos Contratos de Rede (`outputs_network`):**
+   - A função `toggleOutput` adere estritamente aos comandos canônicos `start` e `stop`:
+     - Ao iniciar: emite `action: 'outputs_network'`, `command: 'start'`, `senderId`, `protocol`, `name`, `groups`, `mode`, `input`, `audioTrack`, `audioSourceUuid`, `alpha`, `fillKey`, `keyName` e `precisionBits`. Nenhum comando fictício `configure` é inventado.
+     - Ao parar: emite `action: 'outputs_network'`, `command: 'stop'`, `senderId` e `protocol`.
+   - Limpeza atômica do rascunho local (`drafts.delete(keyOf(proto, slot))` e `persistDrafts()`) executada imediatamente após a confirmação do início da transmissão.
+
+3. **Persistência de Rascunhos em `sessionStorage`:**
+   - Chave isolada por origem: `'freemix.outputs.drafts:' + location.host`.
+   - Sanitização na carga com validação regex `/^(NDI|OMT):[0-3]$/`.
+   - `save-close` aciona `persistDrafts()` antes de fechar/notificar a janela mãe.
+
+4. **Preservação de Seleção e Memoização (`fill`):**
+   - A função `fill(el, html)` compara `el._html !== html` antes de sobrescrever o `innerHTML`. Se as opções forem idênticas no ciclo de polling de 2000ms (`refresh()`), o DOM não sofre mutação e dropdowns abertos não são fechados.
+
+5. **Startup Silencioso (Zero Mutating Commands):**
+   - Na inicialização (`start()`), o código executa exclusivamente leituras paralelas `GET /api/settings` e `GET /api/outputs` via `Promise.all`. Zero requisições `POST /api/control` são emitidas no carregamento da janela.
+
+### 2. Veredicto da Fonte
+
+> **VEREDICTO:** `SOURCE_ACCEPTED_QA_PENDING`  
+> O código JS (`210e079714e51ddc3714ad3fdfa8ca9e64bb46c7ce22bfb409a7a909eb0e8925`) e HTML estão perfeitamente coesos, com layout compacto (700px), total conformidade com a convenção vMix (`vd-*`), tratamento robusto de rascunhos locais e proteção contra descompasso de contexto por `busy`. Pronto para qualificação em DOM real.
+
+---
+
+## PARTE 2: Plano Finito de Teste Real DOM (MOCK API 700×540)
+
+```mermaid
+flowchart TD
+    G0["Gate 0: Startup Limpo<br>• Zero POSTs mutantes<br>• Carga GET settings/outputs<br>• Slot 1 selecionado"]
+    G1["Gate 1: Rascunhos & Protocolos<br>• Alternar NDI / OMT<br>• Edição de modo e alfa<br>• Persistência em sessionStorage"]
+    G2["Gate 2: Execução de Saída<br>• Iniciar saída 1 (start-one)<br>• Parar tudo / Iniciar tudo<br>• Contratos start/stop"]
+    G3["Gate 3: Câmera Virtual & Telas<br>• Toggle virtual cam<br>• Comandos projector"]
+    G4["Gate 4: SlowACK & Busy Guard<br>• Injeção de 1200ms de latência<br>• Bloqueio em #nums e #status-rows"]
+    G5["Gate 5: Ver Status & Geometria<br>• Expansão da tabela status<br>• Layout estável 700x540"]
+    G6["Gate 6: Teardown & Recibo<br>• Browser.close gracioso<br>• exitObserved sem force kill<br>• Recibo receipt-test-externo-dom-r1.json"]
+
+    G0 --> G1 --> G2 --> G3 --> G4 --> G5 --> G6
+```
+
+### 1. Parâmetros e Isolamento de Ambiente
+
+- **Escopo do Recibo:** `MOCK_API_REAL_DOM_ONLY`
+- **Ambiente de Teste:** Executável padrão do Microsoft Edge em modo headless (`--headless=new`, `--window-size=700,540`), conectado via CDP WebSocket nativo (Node.js 24).
+- **Isolamento de Processos e Dados:**
+  - Servidor HTTP Loopback exclusivo em porta efêmera (`127.0.0.1:0`).
+  - Diretório de perfil Edge temporário isolado em pasta própria (`FreeMix-QA-Profile-Externo-*`), preservado para auditoria (zero chamadas `fs.rm` recursivas).
+  - Isolamento de Saída: Todos os artefatos de evidência gravados com prefixo `externo_` (ex: `externo_gate0_startup_r1.png`, `receipt-test-externo-dom-r1.json`), **garantindo que nenhum arquivo de Calls R3/R4 seja sobrescrito**.
+
+### 2. Contrato da Mock API Sintética
+
+O servidor loopback interceptará e responderá sem acionar processos nativos de OBS/NDI:
+
+| Rota / Endpoint | Método | Resposta Mockada | Efeito no Estado Sintético |
+| :--- | :--- | :--- | :--- |
+| `/api/settings` | `GET` | `{ success: true, settings: { virtualCamera: false } }` | Retorna status da câmera virtual e periféricos |
+| `/api/outputs` | `GET` | `{ success: true, outputs: { ndi: { available: true, senders: [] }, omt: { available: true, senders: [] }, audioSources: [] } }` | Retorna capacidades de envio NDI e OMT |
+| `/api/control` (`outputs_network`) | `POST` | `{ success: true }` (suporta delay configurável) | Altera o estado `active` / `outputActive` do sender especificado |
+| `/api/control` (`settings_virtual`) | `POST` | `{ success: true }` | Alterna flag `settings.virtualCamera` |
+| `/api/control` (`settings_projector`) | `POST` | `{ success: true }` | Confirma solicitação de tela cheia |
+
+### 3. Detalhamento dos Portões de Validação (Gates)
+
+1. **Gate 0: Startup Limpo e Carga Inicial**
+   - Navegação até `http://127.0.0.1:{port}/externo`.
+   - **Assertion:** Contagem de requisições `POST /api/control` no startup é estritamente `0`.
+   - **Assertion:** Botão `1` em `#nums` possui classe `vd-on`, slot 1 ativo.
+   - **Assertion:** Status da câmera virtual exibe `Parada`, tabela `#status` está `hidden = true`.
+   - Captura: `externo_gate0_startup_r1.png`.
+
+2. **Gate 1: Alternância de Protocolos e Persistência de Rascunhos**
+   - Clique em `#type-omt`: verifica classe `vd-on` em `#type-omt` e remoção de `#type-ndi`.
+   - Edição de campos: seleção de entrada de vídeo diferente de `program`, alteração de `#net-name` e checkbox `#net-alpha`.
+   - **Assertion:** Verificação via IIFE de que `sessionStorage.getItem('freemix.outputs.drafts:...')` contém o rascunho codificado com a chave `OMT:0`.
+   - Alternância para slot 2 (`#nums button[data-n="1"]`) e retorno ao slot 1: **Assertion:** os valores editados permanecem restaurados a partir dos rascunhos.
+   - Captura: `externo_gate1_drafts_r1.png`.
+
+3. **Gate 2: Execução de Saída de Rede (`start-one` e `start-all`)**
+   - Clique no botão `#start-one`:
+     - **Assertion:** Dispara `POST /api/control` com `action: 'outputs_network'` e `command: 'start'`.
+     - **Assertion:** Botão `#start-one` muda o texto para `Parar 1` e ganha classe `vd-air`.
+     - **Assertion:** O rascunho correspondente em `sessionStorage` é limpo.
+   - Clique no botão `#start-all`:
+     - **Assertion:** Identifica saídas ativas e emite `command: 'stop'` para as em execução.
+   - Captura: `externo_gate2_outputs_live_r1.png`.
+
+4. **Gate 3: Integração de Câmera Virtual e Telas Cheias**
+   - Clique em `#virtual-toggle`: emite `settings_virtual` com `active: true`. Texto altera para `LIGADA` (`vd-ok-text`).
+   - Clique em `#fs-program`: emite `settings_projector` com `mix: 'PROGRAM'`.
+   - **Assertion:** Rodapé `#msg` confirma solicitação realizada.
+
+5. **Gate 4: SlowACK & Busy Guard Defensivo**
+   - Injeção de 1200ms de latência sintética em requisições de `outputs_network`.
+   - Clique em `#start-one`.
+   - Enquanto `busy === true`:
+     - Tentativa de clique em `#nums button[data-n="2"]` -> **Assertion:** Evento bloqueado, aba ativa permanece `0`.
+     - Tentativa de clique em linha de `#status-rows` -> **Assertion:** Evento ignorado.
+     - Botões `#type-ndi`, `#type-omt`, `#save-close` e `#start-all` desabilitados (`disabled = true`).
+   - Resolução do ACK após 1200ms: **Assertion:** Controles voltam imediatamente ao estado interativo (`busy = false`).
+   - Captura: `externo_gate4_busy_guard_r1.png`.
+
+6. **Gate 5: Tabela de Status e Geometria 700×540**
+   - Clique em `#view-status`: container `#status` remove atributo `hidden`.
+   - **Assertion:** Linhas em `#status-rows` refletem as saídas configuradas ou em envio.
+   - Clique em uma linha da tabela: **Assertion:** Seleciona o protocolo e slot correspondentes na interface superior.
+   - Medição de Geometria: BoundingClientRect da barra inferior `.vd-bar` confirma `bottom <= 540px` no viewport.
+   - Captura: `externo_gate5_status_geometry_r1.png`.
+
+7. **Gate 6: Teardown Gracioso e Geração de Recibo Formal**
+   - Fechamento da janela via CDP `Browser.close()`.
+   - Verificação de saída do processo filho (`edgeChild.exitCode !== null` e monitoramento do evento `exit` com timeout de 5s, sem `kill` forçado).
+   - Servidor loopback encerra conexões e fecha sockets ativos.
+   - Geração de `receipt-test-externo-dom-r1.json` contendo hashes dos arquivos testados (HTML e JS), lista completa de asserções PASS/FAIL e status `cleanup = OK`.
+
+### 4. Regras Estritas de Implementação do Runner (R1)
+
+- **Encapsulamento Léxico:** Toda invocação de `ev()` multiline será estritamente protegida por IIFE:
+  ```javascript
+  await ev(`(() => {
+    // Código de teste isolado sem poluição do escopo global V8
+  })()`);
+  ```
+- **Rastreabilidade de PINs:** Hashes dos arquivos `externo.html`, `externo.js` e `vmix-dialogo.css` validados no startup e reconferidos no bloco `finally`.
+- **Limitação de Escopo Declarada:** O runner incluirá declaração explícita no recibo de que testes de áudio WASAPI real, dispositivos físicos, drivers de captura NDI e tráfego WAN não foram executados nem inferidos.
+
+---
+
+Este plano está pronto para gerar o runner completo (`run-test-externo-dom-r1.mjs`) no próximo turno após a validação externa.
