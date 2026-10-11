@@ -1,37 +1,61 @@
 <!doctype html>
-<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>FreeMix · Calls</title><link rel="stylesheet" href="controle.css"><link rel="stylesheet" href="studio-dialog.css"><style>
-main{max-width:1000px}#calls-empty[hidden],#calls-returns[hidden],#calls-talkback[hidden],#calls-network[hidden]{display:none!important}#message:empty{display:none}#targets{margin:8px 0}#selection-status{margin:5px 0;min-height:18px}#talk-targets{margin:8px 0}#talk-status{margin:8px 0}.call{padding:16px;margin:10px 0;border:1px solid #456}.call-heading,.talk-heading{display:flex;align-items:center;justify-content:space-between;gap:12px}.call-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.call-grid label{display:grid}.check{display:flex;gap:8px;align-items:center}.targets{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0}.target{border:1px solid #526478;padding:10px 14px;min-height:44px}.target.selected{border-color:#48bdf5;background:#203b4e}.target small{display:block}#talk{min-height:76px;width:100%;touch-action:none;user-select:none;font-size:22px;font-weight:600}#talk.active{background:#b82121}#talk.pending{background:#74591d}.summary{line-height:1.7}.call-link{display:flex;gap:8px}.call-link input{min-width:0;flex:1;width:100%}a{color:#8acaff}details{margin-top:12px}summary{cursor:pointer;padding:8px 0}.sources{display:grid;gap:6px;padding:8px 0}.sources label{display:flex}.badge{font-size:12px;color:#b7c6d5}.talk-help{margin-bottom:0}.selection-status{min-height:22px}.selection-status.error{color:#ff9696}#destination-mode{max-width:280px}.mic-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}#director{margin:0}button:focus-visible,input:focus-visible,select:focus-visible,summary:focus-visible{outline:3px solid #72c7ff;outline-offset:2px}input[type=checkbox]{min-width:18px;min-height:18px}@media(max-width:700px){.call-grid{grid-template-columns:1fr}.call-heading{align-items:start}.call-link{flex-wrap:wrap}.call-link input{flex-basis:100%}.target{flex:1}.talk-heading{flex-wrap:wrap}}
-
-/* Keep guest links and the private talkback reachable together on desktop. */
-body[data-page=calls] main{max-width:1240px}
-body[data-page=calls] #message{min-height:0;padding:8px;grid-column:1/-1}
-body[data-page=calls] #calls-empty{grid-column:1/-1;max-width:700px;margin:24px auto}
-body[data-page=calls] .call{padding:12px;margin:8px 0}
-body[data-page=calls] .call .summary{margin:10px 0;line-height:1.5}
-body[data-page=calls] .call>label{display:grid;gap:6px}
-body[data-page=calls] .call-link{width:100%}
-body[data-page=calls] .call-link input{flex:1 1 140px}
-body[data-page=calls] .call-grid label{align-content:start}
-body[data-page=calls] #calls-talkback{border:1px solid #456;padding:16px}
-body[data-page=calls] .talk-heading{flex-wrap:wrap}
-body[data-page=calls] .talk-heading h2{margin:0}
-body[data-page=calls] #calls-network{grid-column:1/-1;padding:0 10px}
-@media(min-width:1050px){
- body[data-page=calls] main{display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:16px;align-items:start}
- body[data-page=calls] #calls-talkback{position:sticky;top:12px;max-height:calc(100vh - 60px);overflow:auto}
- body[data-page=calls] #guests{max-height:calc(100vh - 230px);overflow:auto;scroll-padding:12px}
-}
-@media(max-width:700px){body[data-page=calls] main{padding:8px}body[data-page=calls] #calls-talkback{margin-top:12px}}
-</style></head><body data-page="calls"><header><a href="/">FreeMix</a><h1>Calls</h1><span id="connection">Conectando…</span></header><main>
-<p id="message" role="status" aria-live="polite"></p>
-<section id="calls-empty" hidden aria-labelledby="calls-empty-title"><h2 id="calls-empty-title">Adicione uma Call na mesa</h2><p>Na mesa, use Adicionar entrada → Call. Depois volte aqui para copiar o link e preparar o retorno.</p></section>
-<section id="calls-returns" aria-labelledby="returns-title" hidden><h2 id="returns-title">Convidados e retornos</h2><div class="row"><button id="returns">Preparar retornos</button><button id="returns-stop">Parar retornos</button><label class="check"><input type="checkbox" id="conference" checked> Convidados ouvem uns aos outros</label></div><p id="return-status" role="status"></p><p id="return-video-limit" role="status"></p><button id="check-motor" type="button">Conferir motor</button><p id="check-motor-status" role="status" aria-live="polite"></p><div id="guests"></div><details><summary>Como funciona o retorno</summary><p id="return-compatibility"></p><p>Cada convidado recebe o vídeo escolhido e o áudio sem a própria voz. O limite de vídeo informado pelo motor aparece acima. Retornos preparados não comprovam que a pessoa está ouvindo: confirme com o convidado. Até 8 convidados neste fluxo.</p></details></section>
-<section id="calls-talkback" aria-labelledby="talk-title" hidden><div class="talk-heading"><h2 id="talk-title">Falar com os convidados</h2><span class="badge">Microfone privado · fora do Master</span></div>
-<div class="mic-row"><p id="director">Nenhum microfone preparado.</p><button id="mic-open" type="button">Configurar microfone</button></div>
-<details id="mic-details"><summary>Microfone do diretor</summary><div class="call-grid"><label>Microfone dedicado<select id="mic"></select></label><div><button id="prepare">Usar este microfone</button> <button id="create-mic">Criar com o dispositivo padrão</button></div></div><p class="muted">Use um microfone dedicado. Ele fica fora do Master, monitor e gravações. Ao criar com o padrão do Windows, confira o dispositivo nas propriedades.</p></details>
-<p><strong>Quem deve ouvir você?</strong></p><label>Destino do talkback<select id="destination-mode"><option value="all">Todos os Calls</option><option value="selected">Somente os selecionados</option></select></label>
-<div id="targets" class="targets"></div><p id="selection-status" class="selection-status" role="status" aria-live="polite"></p>
-<p id="talk-targets" class="summary"></p><button id="talk" disabled aria-pressed="false">Segure para falar</button><p id="talk-status" role="status" aria-live="polite"></p><details><summary>Atalhos e fechamento do microfone</summary><p class="muted talk-help">Soltar o botão ou sair desta janela fecha o microfone. Também pode segurar Espaço/Enter no botão ou Ctrl+Espaço nesta janela. A mesma seleção vale para o botão Talkback da mesa.</p></details>
-</section>
-<details id="calls-network" hidden><summary>Rede e diagnóstico avançado</summary><section><h2>Rede dos retornos</h2><p>Use rede automática ou importe o arquivo TURN do kit do seu servidor. A importação para os retornos; prepare-os novamente. Essa configuração atua no publicador de retorno. O convidado continua usando VDO.Ninja.</p><button id="ice-import">Importar configuração TURN</button> <button id="ice-reset">Usar rede automática</button><input id="ice-file" type="file" accept="application/json,.json" hidden><p id="ice-status"></p></section></details>
-</main><script src="controle.js"></script><script src="calls.js"></script></body></html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chamada de Vídeo</title>
+<link rel="stylesheet" href="vmix-dialogo.css">
+</head>
+<body data-page="calls" class="vd">
+<div class="vd-window vd-with-status">
+  <div class="vd-body">
+    <div class="vd-row"><span></span>
+      <div class="vd-nums" id="nums" role="tablist" aria-label="Chamada">
+        <button data-n="0" role="tab">1</button><button data-n="1" role="tab">2</button><button data-n="2" role="tab">3</button><button data-n="3" role="tab">4</button><button data-n="4" role="tab">5</button><button data-n="5" role="tab">6</button><button data-n="6" role="tab">7</button><button data-n="7" role="tab">8</button>
+      </div>
+    </div>
+    <div class="vd-row"><span>Nome</span><input id="name" type="text" maxlength="60" spellcheck="false" autocomplete="off">
+      <button id="host" title="Cria uma entrada na mesa que recebe o vídeo e o áudio do convidado">Hospedar chamada</button></div>
+    <div class="vd-row"><span>Senha</span><input id="password" type="text" class="vd-mono" readonly spellcheck="false">
+      <div class="vd-inline" style="gap:6px"><button id="copy">Copiar Link</button><button id="reset" title="Troca a senha: o link antigo deixa de funcionar">Redefinir Senha</button></div></div>
+    <div class="vd-row"><span></span><div class="vd-note vd-link" id="link"></div></div>
+    <div class="vd-row"><span></span><span class="vd-title">Sinal de retorno(Para Convidado)</span><button id="apply" title="Envia ao programa o que você escolheu abaixo">Aplicar</button></div>
+    <label class="vd-row"><span>Fonte de vídeo</span><select id="video"></select></label>
+    <label class="vd-row"><span>Fonte de áudio</span><select id="audio"></select></label>
+    <div class="vd-row" id="custom-row" hidden><span></span><div class="vd-checks" id="sources"></div></div>
+    <div class="vd-row"><span></span><label class="vd-check"><input id="conference" type="checkbox"> Convidados ouvem uns aos outros</label></div>
+    <div class="vd-row"><span></span><label class="vd-check"><input id="show-advanced" type="checkbox"> Mostrar opções avançadas</label></div>
+    <div class="vd-advanced" id="advanced" hidden>
+      <div class="vd-row"><span>Nível do retorno</span>
+        <div class="vd-inline"><label class="vd-check"><input id="gain" type="number" min="0" max="200" step="5" style="width:60px"> %</label>
+          <button id="reconnect" title="Refaz a conexão do retorno deste convidado">Reconectar</button></div></div>
+      <div class="vd-row"><span>Microfone do diretor</span><select id="mic"></select>
+        <div class="vd-inline" style="gap:6px"><button id="mic-use">Usar</button><button id="mic-create" title="Cria um microfone privado com o dispositivo padrão do Windows">Criar</button></div></div>
+      <div class="vd-row"><span></span><div class="vd-note" id="mic-status"></div></div>
+      <div class="vd-row"><span>Talkback para</span><select id="talk-mode" class="vd-short"><option value="all">Todos os convidados</option><option value="selected">Somente os marcados</option></select></div>
+      <div class="vd-row"><span></span><div class="vd-checks" id="targets"></div></div>
+      <div class="vd-row"><span></span><div class="vd-note" id="talk-status"></div></div>
+      <div class="vd-row"><span>Rede dos retornos</span>
+        <div class="vd-inline" style="gap:6px"><button id="ice-import" title="Arquivo TURN do kit do seu servidor">Importar TURN…</button><button id="ice-reset">Rede automática</button><span class="vd-note" id="ice-status"></span></div></div>
+      <div class="vd-row"><span>Diagnóstico</span><div class="vd-note vd-mono" id="diag"></div></div>
+      <div class="vd-row"><span></span><div class="vd-note" id="limit" style="white-space:normal"></div></div>
+      <input id="ice-file" type="file" accept="application/json,.json" hidden>
+    </div>
+    <p id="msg" class="vd-msg" role="status"></p>
+  </div>
+  <div class="vd-status" id="status">
+    <table><thead><tr><th>#</th><th>Chamada</th><th>Convidado vê</th><th>Convidado ouve</th><th>Estado</th></tr></thead><tbody id="rows"></tbody></table>
+  </div>
+  <div class="vd-bar">
+    <button id="returns">Preparar retornos</button>
+    <button id="talk" aria-pressed="false">Segure para falar</button>
+    <button id="manager" class="vd-on">Gerenciador de chamadas</button>
+    <span class="vd-flex"></span>
+    <button id="save-close">Salvar e Fechar</button>
+  </div>
+</div>
+<span id="connection" hidden></span><p id="message" hidden></p>
+<script src="controle.js"></script>
+<script src="calls.js"></script>
+</body>
+</html>

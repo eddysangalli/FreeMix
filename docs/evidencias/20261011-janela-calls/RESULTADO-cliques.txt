@@ -1,0 +1,31 @@
+OK    a janela carrega e conversa com o programa
+OK    sem chamadas: só o 1 fica disponível, pronto para hospedar  (+* 2- 3- 4- 5- 6- 7- 8-)
+OK    sem chamada escolhida, Copiar Link e Redefinir Senha ficam desabilitados
+OK    'Hospedar chamada' cria a entrada na mesa com a chamada dentro  (entrada "Convidado Ana 4QIT", senha de 14 caracteres)
+OK    a chamada nova fica selecionada, com o botão verde e a senha à mostra  (senha na tela igual da do programa)
+OK    o link já nasce definitivo (não muda quando os retornos são preparados)
+OK    'Copiar Link' copia o link do convidado  (Link copiado. Envie ao convidado.)
+OK    o próximo número livre abre uma chamada nova em branco
+OK    segunda chamada criada; o próximo livre aparece como +  (1 2* + 4- 5- 6- 7- 8-)
+OK    clicar em 'Hospedar chamada' numa chamada que já existe não cria outra  (Esta chamada já está hospedada: envie o link ao convidado. Para criar outra, clique no próximo número livre.)
+OK    'Redefinir Senha' troca a senha e o endereço do retorno: o link antigo deixa de valer  (senha nova na tela e no programa)
+OK    mudar o retorno marca 'não aplicado' e acende o Aplicar  (Alterações ainda não aplicadas: clique em Aplicar.)
+OK    'Aplicar' grava no programa o que o convidado vê e ouve  (vê "Convidado Bia 4QIT", ouve somente talkback)
+OK    o Gerenciador mostra o que foi salvo  (1Convidado Ana 4QITConvidado Bia 4QITSomente talkbackRetorno não preparado)
+OK    a lista de vídeo não oferece a própria chamada do convidado
+OK    'Escolher fontes de áudio' abre a lista de fontes da mesa  (1 fonte(s) oferecida(s))
+OK    fonte de áudio escolhida é gravada no programa  (1 fonte)
+OK    'Convidados ouvem uns aos outros' liga e desliga no programa  (antes ligado, depois desligado)
+OK    'Mostrar opções avançadas' abre nível, microfone, talkback e rede
+OK    'Talkback para: somente os marcados' grava os convidados marcados
+OK    desmarcar um convidado tira só ele do talkback  (1 convidado(s) marcados)
+OK    'Todos os convidados' volta ao padrão
+OK    mudar o nível do retorno fica pendente até aplicar
+OK    'Segure para falar' sem microfone do diretor explica o que falta e não abre nada  (Falta o microfone do diretor: escolha em “Mostrar opções avançadas”.)
+OK    'Preparar retornos' aplica antes o que estava pendente e envia o comando certo  (nível gravado 0.8; comando call_returns_prepare (conferido, não executado))
+OK    'Gerenciador de chamadas' esconde e mostra a lista
+OK    clicar numa linha do Gerenciador seleciona aquela chamada
+OK    'Salvar e Fechar' grava o que estava pendente e fecha a janela  (retorno de "Convidado Bia 4QIT": silent; janela fechada)
+OK    nenhum erro de script na página
+
+29/29 verificações passaram

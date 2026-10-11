@@ -15,6 +15,8 @@
   // [height, width, video kbps, audio kbps]
   const PRESETS = [[360, 640, 800, 128], [480, 854, 1500, 128], [720, 1280, 2500, 128], [720, 1280, 4000, 128], [1080, 1920, 4500, 128], [1080, 1920, 6000, 128], [1080, 1920, 8000, 160]];
   const HARDWARE = /nvenc|qsv|amf|vce|videotoolbox/i;
+  // A list is rewritten only when its content changes, so a list the operator has open is never closed under them.
+  const fill = (el, html) => { if (el._html !== html) { el.innerHTML = html; el._html = html; } };
   const mbps = (kbps) => (kbps >= 1000 ? (kbps / 1000).toLocaleString('pt-BR', { maximumFractionDigits: 1 }) + 'mbps' : kbps + 'kbps');
 
   let settings = null, outputs = null, selected = 0, loaded = false, busy = false;
@@ -50,20 +52,20 @@
     const n = selected, c = current(n), locked = c.live || !c.editable || busy;
     for (const b of E('nums').children) { const i = Number(b.dataset.n), s = saved(i); b.classList.toggle('vd-on', i === n); b.classList.toggle('vd-live', s.live); b.setAttribute('aria-selected', i === n); b.title = s.live ? 'No ar' : s.url ? 'Configurado' : 'Livre'; }
     const provider = providerOf(c.url), active = document.activeElement;
-    E('provider').innerHTML = PROVIDERS.map((p) => `<option value="${p.id}"${p.id === provider.id ? ' selected' : ''}>${esc(p.label)}</option>`).join('');
+    fill(E('provider'), PROVIDERS.map((p) => `<option value="${p.id}">${esc(p.label)}</option>`).join('')); if (E('provider').value !== provider.id) E('provider').value = provider.id;
     if (active !== E('url')) E('url').value = c.url;
     if (active !== E('key')) E('key').value = drafts[n]?.key || '';
     E('key').placeholder = c.hasKey ? 'Chave salva — deixe em branco para manter' : '';
     // Quality: the presets that fit, plus the current values when they are not a preset.
     const presets = PRESETS.filter((p) => n !== 0 || p[0] === c.height).map((p) => ({ width: n === 0 ? c.width : p[1], height: p[0], bitrate: p[2], audioBitrate: n === 0 ? String(p[3]) : null }));
     const match = presets.findIndex((p) => p.height === c.height && p.width === c.width && p.bitrate === c.bitrate && (n !== 0 || p.audioBitrate === c.audioBitrate));
-    E('quality').innerHTML = presets.map((p, i) => `<option value="${i}"${i === match ? ' selected' : ''}>${esc(qualityLabel(n, { ...p, encoder: c.encoder }))}</option>`).join('') + (match < 0 ? `<option value="-1" selected>${esc(qualityLabel(n, c))} (personalizada)</option>` : '');
+    fill(E('quality'), presets.map((p, i) => `<option value="${i}"${i === match ? ' selected' : ''}>${esc(qualityLabel(n, { ...p, encoder: c.encoder }))}</option>`).join('') + (match < 0 ? `<option value="-1" selected>${esc(qualityLabel(n, c))} (personalizada)</option>` : ''));
     E('quality').dataset.presets = JSON.stringify(presets);
     E('custom-size').hidden = n === 0; E('custom-audio').hidden = n !== 0;
     for (const [id, value] of [['width', c.width], ['height', c.height], ['bitrate', c.bitrate]]) if (active !== E(id)) E(id).value = value;
     if (c.audioBitrate) E('audio-bitrate').value = c.audioBitrate;
     const encoders = n === 0 ? mainEncoders() : extraEncoders();
-    E('encoder').innerHTML = encoders.map((e) => `<option value="${esc(e.id)}"${e.id === c.encoder ? ' selected' : ''}>${esc(e.name)}</option>`).join('');
+    fill(E('encoder'), encoders.map((e) => `<option value="${esc(e.id)}">${esc(e.name)}</option>`).join('')); if (E('encoder').value !== c.encoder) E('encoder').value = c.encoder;
     E('hardware').checked = HARDWARE.test(c.encoder); E('hardware').disabled = locked || !encoders.some((e) => HARDWARE.test(e.id));
     E('same-row').hidden = n === 0; const same = n !== 0 && sameAsMain(c); E('same').checked = same;
     for (const id of ['provider', 'url', 'key', 'quality', 'quality-cog', 'encoder', 'same']) E(id).disabled = locked;

@@ -2374,10 +2374,10 @@ body.popup-mode #pop[data-panel="add"] .add .types { display:flex; flex-directio
   }
   const panelPages={'novo-projeto':'/novo-projeto/',audio:'/audio',datasources:'/dados',compositions:'/compor',calls:'/calls',macros:'/macros',recuperacao:'/recuperacao',diagnosticos:'/diagnosticos',saidas:'/saidas',settings:'/settings',config:'/settings',ext:'/saidas?context=external',iso:'/iso',replay:'/replay',replaysettings:'/replay?view=settings#replay-config',recset:'/settings?category=recording&context=recording',streamset:'/transmitir'};
   // Windows that open at the size of the dialog they copy from the reference, instead of the large default.
-  const panelSizes={streamset:[700,445]};
+  const panelSizes={streamset:[700,445],calls:[700,540]};
   const independentEditors=new Set(['novo-projeto','datasources','compositions','calls','macros','recuperacao','diagnosticos','saidas','settings','add','layers','audioset','clocks','ext','iso','replay','replaysettings','playlist','shortcuts','busman','recset','streamset','config','gcedit','presets','saveas','replayretention']);
   async function launchPanel(id,arg){
-    const title=({streamset:'Configurações de streaming','novo-projeto':'Novo projeto · prévia',datasources:'Fontes de dados',compositions:'Composições',calls:'Calls',settings:'Configurações',replay:'Replay',replaysettings:'Configurações do Replay',list:'List',mixer:'Mixer de áudio',audio:'Áudio · AFV e filtros'})[id]||'FreeMix · '+id;
+    const title=({streamset:'Configurações de streaming','novo-projeto':'Novo projeto · prévia',datasources:'Fontes de dados',compositions:'Composições',calls:'Chamada de Vídeo',settings:'Configurações',replay:'Replay',replaysettings:'Configurações do Replay',list:'List',mixer:'Mixer de áudio',audio:'Áudio · AFV e filtros'})[id]||'FreeMix · '+id;
     const url=panelPages[id]?replayUrl.replace(/\/api\/replay$/,panelPages[id])+(['compositions','audio'].includes(id)?'?input='+encodeURIComponent(arg||''):''):new URL('mesa.html?pop='+encodeURIComponent(id)+(arg?'&arg='+encodeURIComponent(arg):''),location.href).href;
     if(panelPages[id]){
       let health;
