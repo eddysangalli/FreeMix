@@ -1,0 +1,34 @@
+{
+  "status": "REAL_START_PATH_OK_ON_REHEARSAL_COPY",
+  "version": "0.1.0-local.20261011145021",
+  "installed": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\own-temp-sandbox-telas\\FreeMix-QA-Ensaio-lhE1MK\\FreeMix-QA-Ensaio Mesa",
+  "checks": {
+    "launcherSaysReady": true,
+    "localServiceIsThisInstallation": true,
+    "engineConnected": true,
+    "newWindowsServed": true,
+    "programClosedWhenAsked": true,
+    "sessionEndedCleanly": true
+  },
+  "detail": {
+    "launcherOutput": [
+      "{\"success\":true,\"root\":\"D:\\\\DRIVE\\\\IA\\\\antigravity\\\\vmixtwste\\\\qa-finalizacao\\\\own-temp-sandbox-telas\\\\FreeMix-QA-Ensaio-lhE1MK\\\\FreeMix-QA-Ensaio Mesa\",\"pid\":80956,\"apiPort\":57386,\"buses\":true,\"ndiRuntime\":{\"version\":\"6.3.2.0\",\"sha256\":\"2b6602075868ba4401f82f417d72424805d69b11ca86078023d0d489ff45dd"
+    ],
+    "pages": {
+      "/transmitir": 200,
+      "/calls": 200,
+      "/externo": 200,
+      "/gravar": 200,
+      "/multicorder": 200,
+      "/replay?view=settings": 200,
+      "/fechar-janela.js": 200,
+      "/vmix-dialogo.css": 200
+    },
+    "buses": true,
+    "ndiLoaded": true,
+    "secondsToClose": 1,
+    "ownLocalServiceEnded": true,
+    "leaks": "0"
+  },
+  "operatorTouched": false
+}

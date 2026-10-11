@@ -1,0 +1,227 @@
+{
+  "target": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\obs-vmix",
+  "installedVersion": "0.1.0-local.20261009153453",
+  "version": "0.1.0-local.20261011145116",
+  "engine": "ed08547c80c26581551d3c5fb2c332e9e18d4302",
+  "repository": "71f8aa7af7e4297d97013f53a739a4162e303703",
+  "wanted": 9536,
+  "alreadyEqual": 9143,
+  "changed": 393,
+  "new": 243,
+  "megabytes": 175,
+  "groups": {
+    "bin/64bit": {
+      "files": 8,
+      "bytes": 15158272,
+      "novos": 0
+    },
+    "(raiz)": {
+      "files": 7,
+      "bytes": 172162,
+      "novos": 1
+    },
+    "data/obs-plugins": {
+      "files": 5,
+      "bytes": 5863,
+      "novos": 0
+    },
+    "data/obs-scripting": {
+      "files": 2,
+      "bytes": 3120640,
+      "novos": 0
+    },
+    "data/obs-studio": {
+      "files": 2,
+      "bytes": 196633,
+      "novos": 0
+    },
+    "docs": {
+      "files": 188,
+      "bytes": 2445815,
+      "novos": 138
+    },
+    "ferramentas": {
+      "files": 52,
+      "bytes": 549186,
+      "novos": 31
+    },
+    "fork/0001-feat-branding-replace-OBS-identity-with-FreeMix-Stud.patch": {
+      "files": 1,
+      "bytes": 108355,
+      "novos": 1
+    },
+    "fork/0002-feat-preview-native-Safe-Area-with-12-guide-modes-gr.patch": {
+      "files": 1,
+      "bytes": 8207,
+      "novos": 1
+    },
+    "fork/0003-feat-security-close-prompt-lock-with-critical-broadc.patch": {
+      "files": 1,
+      "bytes": 4010,
+      "novos": 1
+    },
+    "fork/0004-feat-overlays-build-Downstream-Keyer-in-tree-fix-uni.patch": {
+      "files": 1,
+      "bytes": 138216,
+      "novos": 1
+    },
+    "fork/0005-feat-frontend-multistream-preset-as-a-document-exit-.patch": {
+      "files": 1,
+      "bytes": 31125,
+      "novos": 1
+    },
+    "fork/0006-feat-broadcast-waveform-vectorscope-no-preview-colun.patch": {
+      "files": 1,
+      "bytes": 390020,
+      "novos": 1
+    },
+    "fork/0007-feat-broadcast-integrate-native-audio-independent-ou.patch": {
+      "files": 1,
+      "bytes": 428829,
+      "novos": 1
+    },
+    "fork/0008-fix-frontend-guard-shutdown-reentry-and-complete-Fre.patch": {
+      "files": 1,
+      "bytes": 17438,
+      "novos": 1
+    },
+    "fork/0009-feat-srt-add-verified-4-4-4-and-synchronized-packed-.patch": {
+      "files": 1,
+      "bytes": 27805,
+      "novos": 1
+    },
+    "fork/0010-Fix-reentrant-window-shutdown-and-reset-MPEG-TS-stat.patch": {
+      "files": 1,
+      "bytes": 8504,
+      "novos": 1
+    },
+    "fork/0011-Add-compatible-SRT-packed-and-separate-Fill-Key-420-.patch": {
+      "files": 1,
+      "bytes": 19518,
+      "novos": 1
+    },
+    "fork/0012-Fix-Fill-Key-straight-colour-and-silent-SRT-Key-audi.patch": {
+      "files": 1,
+      "bytes": 13762,
+      "novos": 1
+    },
+    "fork/0013-Add-explicit-multichannel-ASIO-playback-host-with-bo.patch": {
+      "files": 1,
+      "bytes": 89135,
+      "novos": 1
+    },
+    "fork/0014-Add-manual-PQ-and-HLG-OMT-HDR-outputs-with-unique-se.patch": {
+      "files": 1,
+      "bytes": 19271,
+      "novos": 1
+    },
+    "fork/0015-Add-independent-SDI-HDR-and-rebase-local-media-seek-.patch": {
+      "files": 1,
+      "bytes": 59627,
+      "novos": 1
+    },
+    "fork/0016-Avoid-submitting-two-frames-at-the-seek-presentation.patch": {
+      "files": 1,
+      "bytes": 1046,
+      "novos": 1
+    },
+    "fork/0017-Explain-missing-DeckLink-driver-separately-from-HDR-.patch": {
+      "files": 1,
+      "bytes": 1888,
+      "novos": 1
+    },
+    "fork/0018-Restart-persistent-off-air-media-explicitly-after-EO.patch": {
+      "files": 1,
+      "bytes": 994,
+      "novos": 1
+    },
+    "fork/0019-Allow-private-replay-file-players-to-opt-into-unbuff.patch": {
+      "files": 1,
+      "bytes": 1316,
+      "novos": 1
+    },
+    "fork/0020-Release-missing-file-list-and-updater-ETags-on-all-s.patch": {
+      "files": 1,
+      "bytes": 1854,
+      "novos": 1
+    },
+    "fork/0021-Complete-FreeMix-operator-branding-and-redact-OAuth-.patch": {
+      "files": 1,
+      "bytes": 42408,
+      "novos": 1
+    },
+    "fork/0022-Include-browser-activation-fix-verified-through-Nati.patch": {
+      "files": 1,
+      "bytes": 604,
+      "novos": 1
+    },
+    "fork/0023-Fix-input-panel-handoff-and-raise-source-dialogs.patch": {
+      "files": 1,
+      "bytes": 6426,
+      "novos": 1
+    },
+    "fork/0024-Add-isolated-manual-SRT-HDR-output-with-bounded-shut.patch": {
+      "files": 1,
+      "bytes": 32795,
+      "novos": 1
+    },
+    "fork/LEIAME.md": {
+      "files": 1,
+      "bytes": 1045,
+      "novos": 1
+    },
+    "fork/manifest.json": {
+      "files": 1,
+      "bytes": 6605,
+      "novos": 1
+    },
+    "fork/source-verification.json": {
+      "files": 1,
+      "bytes": 35466,
+      "novos": 1
+    },
+    "fork/submodules": {
+      "files": 2,
+      "bytes": 1208,
+      "novos": 2
+    },
+    "licenses/freemix-localvocal": {
+      "files": 2,
+      "bytes": 73563645,
+      "novos": 2
+    },
+    "licenses/freemix-sceneswitcher": {
+      "files": 1,
+      "bytes": 53032899,
+      "novos": 1
+    },
+    "obs-plugins/64bit": {
+      "files": 32,
+      "bytes": 32505344,
+      "novos": 0
+    },
+    "painel": {
+      "files": 63,
+      "bytes": 811196,
+      "novos": 40
+    },
+    "runtime/LICENSE-FFmpeg.txt": {
+      "files": 1,
+      "bytes": 606,
+      "novos": 0
+    },
+    "scripts/reconstruir-motor.mjs": {
+      "files": 1,
+      "bytes": 7247,
+      "novos": 1
+    }
+  },
+  "package": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\entregas\\FreeMix-Atualizacao-0.1.0-local.20261011145116",
+  "files": 394,
+  "manifestSha256": "172508a30a11d5d30c61693f428f0c3af913fc0fa893c32930ef9fdfc12b8754",
+  "acceptedByInstalledUpdater": true,
+  "applied": false,
+  "armedForOperator": true,
+  "armedAt": "2026-10-11T14:51:32.581Z",
+  "rehearsal": "ensaio-atualizacao-0.1.0-local.20261011145021.json"
+}
