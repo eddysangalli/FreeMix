@@ -1,0 +1,54 @@
+# Relatório de Inspeção Visual Independente: MultiCorder R7
+
+**Veredicto Formal:** `VISUAL_VERIFIED_WITH_LIMITS`
+**Recibo Empírico R7:** `receipt-test-multicorder-dom-r7.json` (SHA-256: `6dce860c6ab8dd28d163eb8512eff5bceb57ab912c6f74de3f2ee3e965fda3c5`)
+* **Resultado dos Gates:** **26/26 PASS** (15 gates originais + 9 contratuais R5/R7 + 2 de governança e limpeza).
+* **Teardown Cooperativo:** `browserExitObserved: true`, `mainPidAbsent: true`, `edgeProfileCount: 0`.
+* **Integridade de PINs:** Hashes SHA-256 de HTML, JS e CSS inalterados após a execução.
+* **Escopo Estrito:** `MOCK_API_REAL_DOM_ONLY` em Microsoft Edge Headless (700×540 px via CDP). Zero homologação física de hardware NVENC/QSV, discos rígidos ou ambiente nativo CEF.
+
+---
+
+## 1. Observação Real das 4 Imagens Inspecionadas
+
+Todas as 4 imagens PNG foram abertas e inspecionadas diretamente no ambiente:
+
+1. [screenshot-multicorder-startup-r7-700x540.png](file:///D:/FreeMix-QA-Gemini-MultiCorder-20261011-0900/screenshot-multicorder-startup-r7-700x540.png):
+   * **Dimensões e Viewport:** Exatamente 700×540 px, sem barras de rolagem globais e sem transbordamento.
+   * **Formatos:** `MPEG-2 TS` em destaque azul (`#007acc`); `MKV` e `MP4 Seguro` clicáveis; `AVI`, `vMix AVI` e `FFMPEG` com opacidade reduzida e desabilitados de forma limpa.
+   * **Ação Principal:** Botão `START` no canto superior direito, tipografia nítida e alto contraste.
+   * **Linha de Opções:** Dropdowns `Áudio: Entrada` e `Novo arquivo a cada: Nenhum (contínuo)` alinhados ao campo de texto `Pasta: Padrão do perfil`.
+   * **Tabela de Entradas:** 5 câmeras listadas (`Cam 1 - Palco` a `Cam 5 - PGM`), checkboxes desmarcados, duração e dropped frames exibindo `'—'`, estado `Parado` e pasta `Pasta padrão`.
+   * **Rodapé:** Link `Avançado...` ativo à esquerda; status centralizado exibindo com fidelidade `"Pronto para gravar."` em pt-BR (sem truncamento); botões `Atualizar` e `Salvar` habilitados à direita.
+
+2. [screenshot-multicorder-recording-r7-700x540.png](file:///D:/FreeMix-QA-Gemini-MultiCorder-20261011-0900/screenshot-multicorder-recording-r7-700x540.png):
+   * **Transição Ativa:** Botão superior direito alterna para `STOP` em vermelho vivo (`#e74c3c`), indicando gravação em andamento de forma inequívoca.
+   * **Bloqueio Defensivo de Opções:** Formatos, dropdowns de áudio/split, campo de pasta e botão `Salvar` ficam com opacidade reduzida e bloqueados contra cliques acidentais.
+   * **Linha Gravando:** `Cam 1 - Palco` com checkbox marcado (travado), duração ativa `00:00`, estado destacado como `Gravando` e caminho de arquivo preenchido (`E:\Recordings\iso\cam-1.ts`). Câmeras não gravadas permanecem `Parado`.
+   * **Status do Rodapé:** Mensagem central exibe integralmente `"MultiGravação iniciada com sucesso."`. Botão `Atualizar` permanece liberado para consulta do operador.
+
+3. [screenshot-multicorder-stop-r7-700x540.png](file:///D:/FreeMix-QA-Gemini-MultiCorder-20261011-0900/screenshot-multicorder-stop-r7-700x540.png):
+   * **Restauração Limpa:** Botão retorna para `START`; controles de formatos e opções são reabilitados.
+   * **Preservação de Seleção do Operador:** Checkbox de `Cam 1 - Palco` permanece marcado (seleção retida), mas com estado e duração revertidos para `Parado` e `'—'`.
+   * **Validação do Fix R7 (Gate 11):** O texto de status exibe com clareza `"MultiGravação finalizada."`, comprovando visualmente que o polling periódico **não apagou** a mensagem de confirmação de parada.
+
+4. [reference-multicorder-main.png](file:///D:/FreeMix-QA-Gemini-MultiCorder-20261011-0900/reference-multicorder-main.png) (Referência vMix 29 Pública):
+   * **Confronto Ergonômico:** A referência vMix apresenta tema clássico cinza/branco com grade de entradas ampla, botões de formatos topo e botão lateral de gravação. O FreeMix MultiCorder R7 compactou a disposição para 700×540 px adotando Dark Theme do ecossistema, manteve a fidelidade dos seletores de formato (desabilitando explicitamente codecs não suportados), unificou a definição de diretórios em linha e reservou a área inferior para navegação avançada (`/iso`) e feedback de status ausente na interface original.
+
+---
+
+## 2. Avaliação de Qualidade e Usabilidade
+
+* **Alinhamento e Densidade:** Layout harmonioso, espaçamentos consistentes, ausência de elementos sobrepostos ou controles fantasmas.
+* **Fidelidade Tipográfica e Idioma:** 100% em português brasileiro (pt-BR); nenhum termo cortado por reticências ou overflow na barra de status.
+* **Integridade dos Dados:** Coluna Dropped Frames exibe travessão estrito `'—'` em todos os estados, sem falsificação de contadores.
+
+---
+
+## 3. Limitações e Próximos Passos de Engenharia
+
+> [!IMPORTANT]
+> **Limitações do Veredicto:**
+> 1. A homologação visual acima foi realizada estritamente sobre capturas geradas no Microsoft Edge Headless via automação CDP local.
+> 2. Não substitui o teste em runtime real no diálogo nativo CEF do executável principal do FreeMix (`0.1.0-local.20261009153453`).
+> 3. A autorização para integração nos fontes canônicos de produção (`painel/remoto/multicorder.html` e `multicorder.js`) e aprovação de release final requerem chancela expressa do proprietário.

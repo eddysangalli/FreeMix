@@ -1,0 +1,42 @@
+{
+  "after": [
+    {
+      "Path": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\FreeMix\\painel\\mesa.html",
+      "Hash": "0DE799F06D9D75563BEDE10B145C935F41462915D6CA03F01783CAB5CF3E2DC8"
+    },
+    {
+      "Path": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\FreeMix\\ferramentas\\servidor-api.mjs",
+      "Hash": "B4060CFC66D3CA99DA4368967B9C02E2946DBFC3E74103207AC2A7D752EB3104"
+    },
+    {
+      "Path": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\FreeMix\\painel\\remoto\\multicorder.html",
+      "Hash": "146037F43814BA20359D91678B95BDF632F4445B0D6F431D42445404EE55C66E"
+    },
+    {
+      "Path": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\FreeMix\\painel\\remoto\\multicorder.js",
+      "Hash": "D9DD1AF615DE0EAFD4187AD0D1E68FE20837CB4A6BF75B83804E9488087658B5"
+    }
+  ],
+  "scope": "SOURCE_ONLY_MOCK_API_REAL_DOM_ONLY",
+  "receiptSha": "6dce860c6ab8dd28d163eb8512eff5bceb57ab912c6f74de3f2ee3e965fda3c5",
+  "syntax": "PASS",
+  "headBefore": "4282be6ce582d3625425389b2a384e0516dcbe45",
+  "counts": [
+    {
+      "file": "ferramentas/servidor-api.mjs",
+      "count": 1
+    },
+    {
+      "file": "painel/mesa.html",
+      "count": 1
+    },
+    {
+      "file": "painel/mesa.html",
+      "count": 1
+    },
+    {
+      "file": "painel/remoto/multicorder.html",
+      "count": 1
+    }
+  ]
+}

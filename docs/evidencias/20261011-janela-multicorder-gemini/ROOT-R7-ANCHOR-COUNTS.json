@@ -1,0 +1,57 @@
+[
+  {
+    "old": "const candidateHtml = path.join(ownDir, 'DRAFT-multicorder-r5.html');\nconst candidateJs = path.join(ownDir, 'DRAFT-multicorder-r5.js');",
+    "target": "run-test-multicorder-dom-r7.mjs",
+    "count": 1
+  },
+  {
+    "old": "  runner: 'run-test-multicorder-dom-r5.mjs',",
+    "target": "run-test-multicorder-dom-r7.mjs",
+    "count": 1
+  },
+  {
+    "old": "  if (pathname === '/multicorder' || pathname === '/DRAFT-multicorder-r5.html' || pathname === '/DRAFT-multicorder-r1.html') {\n    const content = fs.readFileSync(candidateHtml, 'utf8');\n    res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });\n    res.end(content);\n    return;\n  }\n\n  if (pathname === '/DRAFT-multicorder-r5.js' || pathname === '/DRAFT-multicorder-r1.js') {",
+    "target": "run-test-multicorder-dom-r7.mjs",
+    "count": 1
+  },
+  {
+    "old": "    profileDir = path.join(ownDir, `FreeMix-QA-Profile-MultiCorder-R5-${Date.now()}`);",
+    "target": "run-test-multicorder-dom-r7.mjs",
+    "count": 1
+  },
+  {
+    "old": "    await takeScreenshot('screenshot-multicorder-startup-r5-700x540');",
+    "target": "run-test-multicorder-dom-r7.mjs",
+    "count": 1
+  },
+  {
+    "old": "    await takeScreenshot('screenshot-multicorder-recording-r5-700x540');",
+    "target": "run-test-multicorder-dom-r7.mjs",
+    "count": 1
+  },
+  {
+    "old": "    await takeScreenshot('screenshot-multicorder-stop-r5-700x540');",
+    "target": "run-test-multicorder-dom-r7.mjs",
+    "count": 1
+  },
+  {
+    "old": "    const receiptPath = path.join(ownDir, 'receipt-test-multicorder-dom-r5.json');",
+    "target": "run-test-multicorder-dom-r7.mjs",
+    "count": 1
+  },
+  {
+    "old": "  <script src=\"DRAFT-multicorder-r5.js\"></script>",
+    "target": "DRAFT-multicorder-r7.html",
+    "count": 1
+  },
+  {
+    "old": "      } else if (!dirtyDraft && !hasActiveError && uncertainOp === null) {\n        setStatus('Pronto para gravar.');\n      }",
+    "target": "DRAFT-multicorder-r7.js",
+    "count": 1
+  },
+  {
+    "old": "    const btnRefresh = el('btn-refresh');\n    if (btnRefresh) {\n      btnRefresh.addEventListener('click', async () => {\n        const freshState = await fetchStatus(true);\n        if (freshState && typeof freshState.rec === 'boolean') {\n          if (uncertainOp === 'start') {\n            if (freshState.rec === false) {\n              uncertainOp = null;\n              setStatus('Status confirmado pelo motor: gravação não iniciada. Pronto para nova tentativa.');\n              renderControls();\n            } else {\n              uncertainOp = null;\n              setStatus('Status confirmado pelo motor: gravação ativa.');\n              renderControls();\n            }\n          } else if (uncertainOp === 'stop') {\n            if (freshState.rec === false) {\n              uncertainOp = null;\n              setStatus('Status confirmado pelo motor: gravação parada com sucesso.');\n              renderControls();\n            } else {\n              setStatus('Motor confirmou gravação ainda ativa. Tente parar novamente quando o processo concluir.', true);\n            }\n          } else if (uncertainOp === 'configure') {\n            uncertainOp = null;\n            dirtyDraft = false;\n            setStatus('Status consultado no motor: opções reconciliadas.');\n            renderControls();\n          }\n        }\n        // Se freshState for null (falha de rede, timeout do GET ou erro 500), uncertainOp JAMAIS é desfeito com cache antigo!\n      });\n    }",
+    "target": "DRAFT-multicorder-r7.js",
+    "count": 1
+  }
+]

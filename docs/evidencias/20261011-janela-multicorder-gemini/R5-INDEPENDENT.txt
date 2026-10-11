@@ -1,0 +1,115 @@
+# Relatório de Auditoria Independente de Código-Fonte: MultiCorder R5
+
+**Veredicto Formal:** `SOURCE_ACCEPTED_QA_PENDING`
+**Escopo:** Estritamente `MOCK_API_REAL_DOM_ONLY` / Diálogo CEF Web (700×540 px) no Microsoft Edge Headless via CDP.
+**Alvos Inspecionados:** [DRAFT-multicorder-r5.html](file:///D:/FreeMix-QA-Gemini-MultiCorder-20261011-0900/DRAFT-multicorder-r5.html) e [DRAFT-multicorder-r5.js](file:///D:/FreeMix-QA-Gemini-MultiCorder-20261011-0900/DRAFT-multicorder-r5.js), confrontados com [replay-disco.mjs](file:///D:/FreeMix-QA-Gemini-MultiCorder-20261011-0900/replay-disco.mjs) e [servidor-api.mjs](file:///D:/FreeMix-QA-Gemini-MultiCorder-20261011-0900/servidor-api.mjs).
+**Histórico e Governança:** O veredicto `SOURCE_ACCEPTED` emitido para R2 permanece **formalmente retratado**, mantendo registrado que R2 não isolava incertezas em `handleSave`, preflight e `handleStop`. O código R5 reescreveu a máquina de estados e superou essas omissões. Não há declaração de aprovação final de release ("100% PASS"); a homologação do produto depende da execução empírica dos 20 gates no runner pelo operador.
+
+---
+
+## 1. Confronto Causal: Motor Real (`replay-disco.mjs`) vs. Mock Adversarial
+
+A inspeção detalhada do backend canônico confirmou as seguintes premissas causais:
+
+1. **Serialização estrita na fila do motor:**
+   No motor canônico ([replay-disco.mjs#L170-L217](file:///D:/FreeMix-QA-Gemini-MultiCorder-20261011-0900/replay-disco.mjs#L170-L217)), o método `command(action, data)` encadeia todas as operações na `this.queue`. Durante a execução de `start()`, a sonda de vídeo FFprobe (`probe`) pode aguardar até 10.000 ms (40 tentativas de 250 ms, [L334-L341](file:///D:/FreeMix-QA-Gemini-MultiCorder-20261011-0900/replay-disco.mjs#L334-L341)). Qualquer requisição `GET /api/iso` que acione `iso.command('status')` **não ultrapassa a sonda em voo no mesmo processo**; ela aguarda a resolução anterior na fila.
+2. **Classificação contratual de erro:**
+   Caso uma segunda chamada `start()` atinja o motor enquanto `this.state.rec === true`, o motor lança `throw new Error("A sessão de replay já está gravando")` ([L286](file:///D:/FreeMix-QA-Gemini-MultiCorder-20261011-0900/replay-disco.mjs#L286)). No [servidor-api.mjs#L196-L215](file:///D:/FreeMix-QA-Gemini-MultiCorder-20261011-0900/servidor-api.mjs#L196-L215), esse erro é interceptado no bloco `catch` e retornado como **HTTP 400 ordinário** com `{ success: false, error: ... }`. **Não há crash de processo nem exceção fatal não tratada**.
+3. **Resiliência ao modelo adversarial:**
+   Em ambientes distribuídos ou mocks desacoplados com latência de rede simulada, requisições HTTP podem responder de forma desordenada. O front-end R5 foi projetado defensivamente para suportar ambos os cenários (serializado e concorrente).
+
+---
+
+## 2. Auditoria Forense dos 4 Caminhos de Mutação e Incerteza
+
+O código em [DRAFT-multicorder-r5.js](file:///D:/FreeMix-QA-Gemini-MultiCorder-20261011-0900/DRAFT-multicorder-r5.js) implementou proteção cirúrgica em todos os 4 fluxos mutantes:
+
+### Caminho 1: `sendConfigure()` Manual via `handleSave()` ([L337-L361](file:///D:/FreeMix-QA-Gemini-MultiCorder-20261011-0900/DRAFT-multicorder-r5.js#L337-L361))
+* **Travas e precondições:** Bloqueado se `isBusy || uncertainOp !== null`. Impede alteração com gravação em andamento (`persistedState?.rec === true`).
+* **Invalidação de GETs em voo:** Executa `stateEpoch++` antes da emissão da rede, invalidando qualquer polling anterior pendente.
+* **Deadline e Incerteza:** Timeout de 8.000 ms (`AbortSignal.timeout(TIMEOUT_MS)`). Erro de rede/timeout/5xx arma `uncertainOp = 'configure'` e exibe alerta em vermelho. Erros 400 ou 403 (acesso remoto não autorizado) são conhecidos (`err.isUnknown = false`) e não travam a UI em incerteza.
+
+### Caminho 2: `sendConfigure()` Pré-início dentro de `handleStart()` ([L242-L258](file:///D:/FreeMix-QA-Gemini-MultiCorder-20261011-0900/DRAFT-multicorder-r5.js#L242-L258))
+* Se `dirtyDraft === true`, dispara `sendConfigure()` antes de tentar iniciar o motor.
+* Se a configuração falhar por timeout ou perda de rede, registra `uncertainOp = 'configure'`, cancela imediatamente o avanço para a gravação (não emite `start` cego) e notifica o operador para reconciliar via "Atualizar".
+
+### Caminho 3: Início de Gravação via `handleStart()` ([L216-L293](file:///D:/FreeMix-QA-Gemini-MultiCorder-20261011-0900/DRAFT-multicorder-r5.js#L216-L293))
+* **Validação de entrada:** Exige entre 1 e 8 câmeras selecionadas; rejeita câmeras removidas do projeto contra `availableCams`.
+* **Delegação limpa de parada:** Se `persistedState?.rec === true`, delega para `handleStop()`.
+* **Invalidação por Epoch:** `stateEpoch++` executado antes do POST de início.
+* **Tratamento de timeout (8s):** Se estourar o prazo, arma `uncertainOp = 'start'` e orienta consulta manual. Se o backend responder HTTP 400 (ex.: entrada com microfone privado do diretor), o erro é tratado como conhecido (`err.isUnknown = false`) e a incerteza **não é armada**.
+
+### Caminho 4: Parada de Gravação via `handleStop()` ([L295-L335](file:///D:/FreeMix-QA-Gemini-MultiCorder-20261011-0900/DRAFT-multicorder-r5.js#L295-L335))
+* **Guarda de estado:** Rejeita execução se `!persistedState || persistedState.rec !== true`.
+* **Invalidação por Epoch:** `stateEpoch++` disparado antes da rede.
+* **Timeout e Incerteza:** Se a parada não responder em 8s, registra `uncertainOp = 'stop'`.
+
+---
+
+## 3. Reconciliação Estrita de Estado e Imunidade a Cache Obsoleto
+
+A lógica de resolução de incertezas e polling periódico em [DRAFT-multicorder-r5.js](file:///D:/FreeMix-QA-Gemini-MultiCorder-20261011-0900/DRAFT-multicorder-r5.js) atende rigorosamente aos contratos de robustez:
+
+1. **Resolução coerente no polling (`fetchStatus` [L131-L150](file:///D:/FreeMix-QA-Gemini-MultiCorder-20261011-0900/DRAFT-multicorder-r5.js#L131-L150)):**
+   * `persistedState.rec === true` resolve **apenas** `uncertainOp === 'start'`. Sob hipótese alguma resolve incertezas de `stop`.
+   * `persistedState.rec === false` resolve `uncertainOp === 'stop'`. O polling automático **não limpa** `uncertainOp === 'start'` quando `rec === false`, evitando que um polling intermediário redefina a interface para "Pronto para gravar" enquanto a sonda física ainda pode estar inicializando no disco.
+   * `uncertainOp === 'configure'` só é desarmado automaticamente se todas as opções retornadas pelo motor coincidirem com as opções locais enviadas.
+2. **Preservação de mensagens de erro contra o polling ([L154-L166](file:///D:/FreeMix-QA-Gemini-MultiCorder-20261011-0900/DRAFT-multicorder-r5.js#L154-L166)):**
+   * A verificação `hasActiveError = el('mc-status-text')?.classList.contains('error')` garante que o polling de 2.000 ms não sobrescreva avisos de timeout (como o ocorrido no Gate 12 em R1) com mensagens estáticas de prontidão.
+3. **Reconciliação manual no botão Atualizar (`btn-refresh` [L550-L579](file:///D:/FreeMix-QA-Gemini-MultiCorder-20261011-0900/DRAFT-multicorder-r5.js#L550-L579)):**
+   * O clique em "Atualizar" dispara `fetchStatus(true)` com validação explícita de `freshState`.
+   * **Rejeição de Cache Obsoleto:** Se a requisição de leitura falhar (HTTP 500, timeout do GET ou offline), `freshState` é `null`. Nenhuma incerteza (`uncertainOp`) é destravada com base no cache antigo em memória.
+   * Se `freshState.rec === false` e `uncertainOp === 'start'`, a incerteza é desarmada informando que a gravação não foi iniciada pelo motor, liberando o botão para nova tentativa limpa.
+   * Se `freshState.rec === true` e `uncertainOp === 'stop'`, o alerta de incerteza **é mantido**, informando que o motor continua gravando e impedindo nova tentativa prematura.
+
+---
+
+## 4. Preservação de Dados e Contrato de Interface
+
+1. **Preservação de configurações avançadas (`buildMergedOptions` [L90-L100](file:///D:/FreeMix-QA-Gemini-MultiCorder-20261011-0900/DRAFT-multicorder-r5.js#L90-L100)):**
+   A mesclagem clona `persistedState?.recordOptions`, preservando intactos campos como `perInput`, `prefix`, `encoder`, `crf`, `width`, `height`, `fpsDivisor` e `bitrate`. Apenas os 5 campos expostos na UI compacta são sobrepostos.
+2. **Preservação de seleção de entradas (`userSelection`):**
+   O `Set` de câmeras selecionadas pelo operador persiste em memória e não é limpo pelas consultas de polling.
+3. **Zero POST no carregamento e consulta:**
+   A inicialização (`init()` [L583-L601](file:///D:/FreeMix-QA-Gemini-MultiCorder-20261011-0900/DRAFT-multicorder-r5.js#L583-L601)) executa exclusivamente `fetchStatus(false)` (método `GET`). Nenhum POST é emitido sem ação intencional do operador.
+4. **Dropped Frames e Métricas:**
+   A coluna de Dropped Frames exibe estritamente `'—'` ([L464](file:///D:/FreeMix-QA-Gemini-MultiCorder-20261011-0900/DRAFT-multicorder-r5.js#L464)). Não há contadores artificiais simulados na UI.
+5. **Formatação e Viewport:**
+   O layout em [DRAFT-multicorder-r5.html](file:///D:/FreeMix-QA-Gemini-MultiCorder-20261011-0900/DRAFT-multicorder-r5.html) respeita 700×540 px, classes do design system `vmix-dialogo.css`, botões de formatos não suportados desabilitados com títulos explicativos e link nativo para configurações avançadas (`/iso`).
+
+---
+
+## 5. Matriz de Gates Obrigatória para o Runner de QA
+
+Para a homologação final no Microsoft Edge Headless via CDP, o runner de testes deve implementar os seguintes 20 gates sem vazamentos de fixture:
+
+| Gate | Identificador | Condição de Verificação |
+| :--- | :--- | :--- |
+| **01** | `GATE_INITIAL_RENDER_NO_POST` | Renderiza 700×540 px; confirma zero POSTs no startup; apenas `GET /api/iso`. |
+| **02** | `GATE_FORMAT_SELECTION` | Formatos MPEG-2 TS, MKV e MP4 Seguro alternáveis; AVI, vMix AVI e FFMPEG desabilitados. |
+| **03** | `GATE_OPTIONS_DIRTY_DRAFT` | Alteração de formato/áudio/split/pasta marca rascunho sujo sem disparar rede. |
+| **04** | `GATE_TABLE_CAMERAS_1_TO_8` | Listagem populada via `availableCams`; bloqueio com erro ao selecionar 0 ou >8 câmeras. |
+| **05** | `GATE_MIC_PRIVACY_REJECTION_400` | Rejeição HTTP 400 pelo backend exibe erro claro e **não arma** `uncertainOp`. |
+| **06** | `GATE_PREFLIGHT_CONFIGURE_START` | Se rascunho estiver sujo, clique em Start envia configure antes de iniciar. |
+| **07** | `GATE_PREFLIGHT_CONFIGURE_TIMEOUT_8S` | Timeout de 8s no configure pré-start arma `uncertainOp = 'configure'` e não emite `start`. |
+| **08** | `GATE_START_SUCCESS_RECORDING` | Sucesso em `start` define `rec: true`; botão muda para Stop (vermelho); timer ativo. |
+| **09** | `GATE_INFLIGHT_GET_INVALIDATION` | `stateEpoch` descarta respostas de GETs lentos defasados iniciados antes de mutações. |
+| **10** | `GATE_START_TIMEOUT_8S_UNCERTAINTY` | Timeout de 8s em `start` arma `uncertainOp = 'start'`; trava Start e Save; retém erro. |
+| **11** | `GATE_START_LATE_RESOLUTION_TRUE` | Resposta tardia do motor com `rec: true` desfaz incerteza de início e ativa modo gravando. |
+| **12** | `GATE_START_REFRESH_RESOLVE_FALSE` | Motor parado (`rec: false`); clique em Atualizar limpa incerteza e permite novo início. |
+| **13** | `GATE_STOP_SUCCESS` | Parada bem-sucedida redefine `rec: false`; botão volta para Start (verde); timer para. |
+| **14** | `GATE_STOP_TIMEOUT_8S_UNCERTAINTY` | Timeout de 8s em `stop` arma `uncertainOp = 'stop'`; bloqueia mutações e retém alerta. |
+| **15** | `GATE_STOP_REFRESH_REC_STILL_TRUE` | Se motor responder `rec: true` após timeout de stop, incerteza de parada **não é removida**. |
+| **16** | `GATE_STOP_LATE_RESOLUTION_FALSE` | Motor confirma parada tardia (`rec: false`); incerteza é desarmada. |
+| **17** | `GATE_MANUAL_SAVE_SUCCESS` | Clique em Salvar grava opções com motor parado; desfaz rascunho sujo. |
+| **18** | `GATE_MANUAL_SAVE_TIMEOUT_8S` | Timeout de 8s em Salvar manual arma `uncertainOp = 'configure'` até reconciliação. |
+| **19** | `GATE_REFRESH_REJECTS_STALE_CACHE` | Falha HTTP 500 no botão Atualizar mantém a incerteza intacta sem usar cache antigo. |
+| **20** | `GATE_CLEANUP_CIM_RECEIPT` | Evento `beforeunload` limpa timers; Edge encerra via CIM (`edgeProfileCount === 0`, `mainPidAbsent === true`); recibo SHA emitido. |
+
+---
+
+## 6. Parecer Conclusivo
+
+O código-fonte de **MultiCorder R5** em [DRAFT-multicorder-r5.js](file:///D:/FreeMix-QA-Gemini-MultiCorder-20261011-0900/DRAFT-multicorder-r5.js) e [DRAFT-multicorder-r5.html](file:///D:/FreeMix-QA-Gemini-MultiCorder-20261011-0900/DRAFT-multicorder-r5.html) atende integralmente às diretrizes de engenharia defensiva, controle causal de incerteza por época e isolamento de contratos.
+
+Nenhum blocker residual foi identificado no produto R5. O material está qualificado e apto para que o autor/Root atualize o runner de testes com os 20 gates acima descritos e execute uma rodada única e controlada de validação empírica.

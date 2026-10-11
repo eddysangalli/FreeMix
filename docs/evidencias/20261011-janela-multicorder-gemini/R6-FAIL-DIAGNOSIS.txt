@@ -1,0 +1,87 @@
+{
+  "diagnosis": {
+    "verdict": "PRODUCT_DEFECTS_PROVEN_ORACLE_SOUND",
+    "gate11": {
+      "id": "GATE_11_STOP_SUCCESS_TRANSITION",
+      "category": "PRODUCT_POLL_OVERWRITING_COMPLETION_FEEDBACK",
+      "evidence": "handleStop() executou setStatus('MultiGravação finalizada.') com sucesso. Contudo, o polling automático de background (POLL_MS = 2000) disparou aos ~2000ms após o carregamento do harness e executou fetchStatus(false). Na linha 164 de DRAFT-multicorder-r5.js, 'else if (!dirtyDraft && !hasActiveError && uncertainOp === null)' avaliou como verdadeiro e reescreveu incondicionalmente o statusText para 'Pronto para gravar.'. A asserção do teste observou o estado pós-polling no DOM.",
+      "causalRoot": "fetchStatus(false) periódico apaga feedbacks afirmativos de conclusão de operação recente ('MultiGravação finalizada.', 'Opções salvas...'). A sobreposição só deve ocorrer se o diálogo estiver no estado inicial ('Conectando ao motor...'), em branco, ou em transição externa vindo de 'MultiGravação ativa.'.",
+      "action": "Em fetchStatus(), proteger mc-status-text contra sobrescrita por polling se o conteúdo atual for um feedback afirmativo de conclusão."
+    },
+    "gate22": {
+      "id": "GATE_22_PENDING_STOP_RESOLUTION_FLOW",
+      "category": "PRODUCT_RACE_BETWEEN_FETCHSTATUS_AND_REFRESH_LISTENER",
+      "evidence": "Em read2, a gravação foi encerrada no mock (mockRec = false) após timeout prévio de stop (uncertainOp = 'stop'). Ao clicar em btn-refresh, o handler executou 'await fetchStatus(true)'. Na linha 136 de DRAFT-multicorder-r5.js, fetchStatus() detectou rec === false e mutou imediatamente uncertainOp = null. Ao retornar ao listener do botão na linha 563, a verificação 'else if (uncertainOp === \"stop\")' avaliou como falsa porque uncertainOp já era null. O bloco de status 'gravação parada com sucesso' foi ignorado, mantendo no DOM o texto de erro de read1 ('Motor confirmou gravação ainda ativa...') enquanto renderControls() já havia destravado o botão para 'Start'.",
+      "causalRoot": "fetchStatus() consome e anula uncertainOp antes que o listener de btn-refresh possa inspecionar qual operação estava em curso para formular a mensagem contextual do operador.",
+      "action": "Em btn-refresh, capturar 'const opBefore = uncertainOp;' antes do await e usar opBefore nas ramificações condicionais de feedback."
+    }
+  },
+  "patches": [
+    {
+      "file": "DRAFT-multicorder-r6.js",
+      "description": "Preservar mensagens afirmativas de conclusão contra sobrescrita por polling periódico de background",
+      "old": "      } else if (!dirtyDraft && !hasActiveError && uncertainOp === null) {\n        setStatus('Pronto para gravar.');\n      }",
+      "new": "      } else if (!dirtyDraft && !hasActiveError && uncertainOp === null) {\n        const cur = el('mc-status-text')?.textContent;\n        if (!cur || cur === 'Conectando ao motor...' || cur === 'MultiGravação ativa.') {\n          setStatus('Pronto para gravar.');\n        }\n      }",
+      "expectedCount": 1
+    },
+    {
+      "file": "DRAFT-multicorder-r6.js",
+      "description": "Capturar opBefore em btn-refresh antes de fetchStatus() para garantir exibição de parada confirmada e limpeza de erro residual",
+      "old": "    const btnRefresh = el('btn-refresh');\n    if (btnRefresh) {\n      btnRefresh.addEventListener('click', async () => {\n        const freshState = await fetchStatus(true);\n        if (freshState && typeof freshState.rec === 'boolean') {\n          if (uncertainOp === 'start') {\n            if (freshState.rec === false) {\n              uncertainOp = null;\n              setStatus('Status confirmado pelo motor: gravação não iniciada. Pronto para nova tentativa.');\n              renderControls();\n            } else {\n              uncertainOp = null;\n              setStatus('Status confirmado pelo motor: gravação ativa.');\n              renderControls();\n            }\n          } else if (uncertainOp === 'stop') {\n            if (freshState.rec === false) {\n              uncertainOp = null;\n              setStatus('Status confirmado pelo motor: gravação parada com sucesso.');\n              renderControls();\n            } else {\n              setStatus('Motor confirmou gravação ainda ativa. Tente parar novamente quando o processo concluir.', true);\n            }\n          } else if (uncertainOp === 'configure') {\n            uncertainOp = null;\n            dirtyDraft = false;\n            setStatus('Status consultado no motor: opções reconciliadas.');\n            renderControls();\n          }\n        }\n        // Se freshState for null (falha de rede, timeout do GET ou erro 500), uncertainOp JAMAIS é desfeito com cache antigo!\n      });\n    }",
+      "new": "    const btnRefresh = el('btn-refresh');\n    if (btnRefresh) {\n      btnRefresh.addEventListener('click', async () => {\n        const opBefore = uncertainOp;\n        const freshState = await fetchStatus(true);\n        if (freshState && typeof freshState.rec === 'boolean') {\n          if (opBefore === 'start') {\n            if (freshState.rec === false) {\n              uncertainOp = null;\n              setStatus('Status confirmado pelo motor: gravação não iniciada. Pronto para nova tentativa.');\n              renderControls();\n            } else {\n              uncertainOp = null;\n              setStatus('Status confirmado pelo motor: gravação ativa.');\n              renderControls();\n            }\n          } else if (opBefore === 'stop') {\n            if (freshState.rec === false) {\n              uncertainOp = null;\n              setStatus('Status confirmado pelo motor: gravação parada com sucesso.');\n              renderControls();\n            } else {\n              setStatus('Motor confirmou gravação ainda ativa. Tente parar novamente quando o processo concluir.', true);\n            }\n          } else if (opBefore === 'configure') {\n            uncertainOp = null;\n            dirtyDraft = false;\n            setStatus('Status consultado no motor: opções reconciliadas.');\n            renderControls();\n          }\n        }\n        // Se freshState for null (falha de rede, timeout do GET ou erro 500), uncertainOp JAMAIS é desfeito com cache antigo!\n      });\n    }",
+      "expectedCount": 1
+    },
+    {
+      "file": "DRAFT-multicorder-r6.html",
+      "description": "Atualizar referência de script para DRAFT-multicorder-r6.js",
+      "old": "  <script src=\"DRAFT-multicorder-r5.js\"></script>",
+      "new": "  <script src=\"DRAFT-multicorder-r6.js\"></script>",
+      "expectedCount": 1
+    },
+    {
+      "file": "run-test-multicorder-dom-r6.mjs",
+      "description": "Atualizar caminhos de candidatos, receipt, perfil e rotas mock para R6 mantendo todas as 26 asserções rigorosas",
+      "old": "const candidateHtml = path.join(ownDir, 'DRAFT-multicorder-r5.html');\nconst candidateJs = path.join(ownDir, 'DRAFT-multicorder-r5.js');",
+      "new": "const candidateHtml = path.join(ownDir, 'DRAFT-multicorder-r6.html');\nconst candidateJs = path.join(ownDir, 'DRAFT-multicorder-r6.js');",
+      "expectedCount": 1
+    },
+    {
+      "file": "run-test-multicorder-dom-r6.mjs",
+      "description": "Atualizar identificador de runner e receipt formal para R6",
+      "old": "  runner: 'run-test-multicorder-dom-r5.mjs',",
+      "new": "  runner: 'run-test-multicorder-dom-r6.mjs',",
+      "expectedCount": 1
+    },
+    {
+      "file": "run-test-multicorder-dom-r6.mjs",
+      "description": "Atualizar diretório de perfil e receiptPath para R6",
+      "old": "    profileDir = path.join(ownDir, `FreeMix-QA-Profile-MultiCorder-R5-${Date.now()}`);",
+      "new": "    profileDir = path.join(ownDir, `FreeMix-QA-Profile-MultiCorder-R6-${Date.now()}`);",
+      "expectedCount": 1
+    },
+    {
+      "file": "run-test-multicorder-dom-r6.mjs",
+      "description": "Atualizar caminho do arquivo de receipt JSON para R6",
+      "old": "    const receiptPath = path.join(ownDir, 'receipt-test-multicorder-dom-r5.json');",
+      "new": "    const receiptPath = path.join(ownDir, 'receipt-test-multicorder-dom-r6.json');",
+      "expectedCount": 1
+    },
+    {
+      "file": "run-test-multicorder-dom-r6.mjs",
+      "description": "Incluir rotas HTTP para DRAFT-multicorder-r6.html e DRAFT-multicorder-r6.js",
+      "old": "  if (pathname === '/multicorder' || pathname === '/DRAFT-multicorder-r5.html' || pathname === '/DRAFT-multicorder-r1.html') {\n    const content = fs.readFileSync(candidateHtml, 'utf8');\n    res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });\n    res.end(content);\n    return;\n  }\n\n  if (pathname === '/DRAFT-multicorder-r5.js' || pathname === '/DRAFT-multicorder-r1.js') {",
+      "new": "  if (pathname === '/multicorder' || pathname === '/DRAFT-multicorder-r6.html' || pathname === '/DRAFT-multicorder-r5.html' || pathname === '/DRAFT-multicorder-r1.html') {\n    const content = fs.readFileSync(candidateHtml, 'utf8');\n    res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });\n    res.end(content);\n    return;\n  }\n\n  if (pathname === '/DRAFT-multicorder-r6.js' || pathname === '/DRAFT-multicorder-r5.js' || pathname === '/DRAFT-multicorder-r1.js') {",
+      "expectedCount": 1
+    }
+  ],
+  "r6Artifacts": {
+    "sourceHtml": "DRAFT-multicorder-r6.html",
+    "sourceJs": "DRAFT-multicorder-r6.js",
+    "runner": "run-test-multicorder-dom-r6.mjs",
+    "receiptOutput": "receipt-test-multicorder-dom-r6.json",
+    "profilePrefix": "FreeMix-QA-Profile-MultiCorder-R6",
+    "totalGates": 26,
+    "gatesPreservedUnchanged": 26,
+    "relaxedGatesCount": 0
+  }
+}

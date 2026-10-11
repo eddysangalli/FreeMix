@@ -1,0 +1,93 @@
+# Parecer Técnico de Auditoria Causal Independente: MultiCorder R7 (Fonte e Runner)
+
+**Veredicto Formal:** `APROVED_FOR_ONE_OWN_MOCK_REAL_DOM_EXECUTION_ONLY`
+**Escopo:** Estritamente `MOCK_API_REAL_DOM_ONLY` / Diálogo CEF Web (700×540 px) no Microsoft Edge Headless via CDP.
+**Arquivos Auditados:**
+* Produto HTML: [DRAFT-multicorder-r7.html](file:///D:/FreeMix-QA-Gemini-MultiCorder-20261011-0900/DRAFT-multicorder-r7.html) (SHA: `b4900e6a0a9f04ab5f10bb5463ad3e8dddc928b7c52a4bc248eee2958b55f7c3`)
+* Produto JS: [DRAFT-multicorder-r7.js](file:///D:/FreeMix-QA-Gemini-MultiCorder-20261011-0900/DRAFT-multicorder-r7.js) (SHA: `d9dd1af615de0eafd4187ad0d1e68fe20837cb4a6bf75b83804e9488087658b5`)
+* Runner de Teste: [run-test-multicorder-dom-r7.mjs](file:///D:/FreeMix-QA-Gemini-MultiCorder-20261011-0900/run-test-multicorder-dom-r7.mjs) (SHA: `534d98f1be4d49272bbaeaab00db92ee4a234fa2e7c2ee63e53ecc1b6f5f19cf`)
+* Registro de Reparo: [R7-ANCHOR-REPAIR.txt](file:///D:/FreeMix-QA-Gemini-MultiCorder-20261011-0900/R7-ANCHOR-REPAIR.txt) e [ROOT-R7-ANCHOR-COUNTS.json](file:///D:/FreeMix-QA-Gemini-MultiCorder-20261011-0900/ROOT-R7-ANCHOR-COUNTS.json)
+**Recibo R5 Preservado:** Recibo R5 (`receipt-test-multicorder-dom-r5.json`, SHA `3de15ff6...`, 24 PASS / 2 FAIL) mantido íntegro e imutável para rastreabilidade histórica.
+
+---
+
+## 1. Diagnóstico Causal das Falhas de R5 (G11 e G22) e Validação dos Patches R7
+
+A execução de R5 apresentou **24 PASS e 2 FAIL** estritamente delimitados em dois comportamentos assíncronos de interface:
+
+### Falha 1: Gate 11 (`GATE_11_STOP_SUCCESS_TRANSITION`)
+* **Mecanismo da Falha em R5:**
+  Ao clicar em Stop, `handleStop()` definia corretamente `setStatus('MultiGravação finalizada.')`. Contudo, nos 800 ms de espera da asserção, o ciclo periódico de polling `fetchStatus(false)` retornava `rec: false`. Como `dirtyDraft === false`, `hasActiveError === false` e `uncertainOp === null`, a condição antiga executava cegamente `setStatus('Pronto para gravar.')`, apagando a mensagem de confirmação de parada antes da leitura do teste.
+* **Correção Causal em R7 ([DRAFT-multicorder-r7.js#L164-L169](file:///D:/FreeMix-QA-Gemini-MultiCorder-20261011-0900/DRAFT-multicorder-r7.js#L164-L169)):**
+  ```javascript
+  } else if (!dirtyDraft && !hasActiveError && uncertainOp === null) {
+    const cur = el('mc-status-text')?.textContent;
+    if (!cur || cur === 'Conectando ao motor...' || cur === 'MultiGravação ativa.') {
+      setStatus('Pronto para gravar.');
+    }
+  }
+  ```
+  O polling periódico agora só sobrescreve o texto com `"Pronto para gravar."` se a mensagem anterior era o estado inicial de conexão ou a transição direta de gravação ativa. Mensagens deliberadas de retorno ao operador (como `"MultiGravação finalizada."` e `"Status confirmado pelo motor..."`) são integralmente preservadas.
+
+### Falha 2: Gate 22 (`GATE_22_PENDING_STOP_RESOLUTION_FLOW`)
+* **Mecanismo da Falha em R5:**
+  No Read 2 do Gate 22, o motor confirmava a parada tardia (`rec: false`). Ao acionar o botão Atualizar, `fetchStatus(true)` executava primeiro e, em [DRAFT-multicorder-r5.js#L135-L139](file:///D:/FreeMix-QA-Gemini-MultiCorder-20261011-0900/DRAFT-multicorder-r5.js#L135-L139), limpava `uncertainOp = null`. Em seguida, o listener de clique de `btn-refresh` tentava avaliar `if (uncertainOp === 'stop')`, que resultava em `false` porque a variável já havia sido consumida dentro de `fetchStatus`. Consequentemente, o bloco de sucesso nunca era executado, e a mensagem de erro do Read 1 (*"Motor confirmou gravação ainda ativa..."*) permanecia residualmente na tela.
+* **Correção Causal em R7 ([DRAFT-multicorder-r7.js#L553-L574](file:///D:/FreeMix-QA-Gemini-MultiCorder-20261011-0900/DRAFT-multicorder-r7.js#L553-L574)):**
+  ```javascript
+  btnRefresh.addEventListener('click', async () => {
+    const opBefore = uncertainOp;
+    const freshState = await fetchStatus(true);
+    if (freshState && typeof freshState.rec === 'boolean') {
+      if (opBefore === 'start') { ... }
+      else if (opBefore === 'stop') {
+        if (freshState.rec === false) {
+          uncertainOp = null;
+          setStatus('Status confirmado pelo motor: gravação parada com sucesso.');
+          renderControls();
+        } else {
+          setStatus('Motor confirmou gravação ainda ativa. Tente parar novamente quando o processo concluir.', true);
+        }
+      }
+  ```
+  Ao capturar `opBefore = uncertainOp` **antes** da chamada assíncrona de `fetchStatus(true)`, o listener retém com precisão a intenção da operação pendente. Quando `freshState.rec === false`, ele limpa a incerteza e atualiza afirmativamente a mensagem para `"Status confirmado pelo motor: gravação parada com sucesso."`, eliminando a mensagem de erro residual.
+
+---
+
+## 2. Auditoria de Isolamento e Não-Regressão do Runner R7
+
+A inspeção cruzada de [run-test-multicorder-dom-r7.mjs](file:///D:/FreeMix-QA-Gemini-MultiCorder-20261011-0900/run-test-multicorder-dom-r7.mjs) contra o runner R5 comprovou que **nenhum critério, asserção ou tempo foi afrouxado**:
+
+1. **Renomeação de Artefatos de Saída (Zero Sobrescrita de R5):**
+   * Caminhos dos candidatos apontam estritamente para `DRAFT-multicorder-r7.html` e `DRAFT-multicorder-r7.js` ([L27-L28](file:///D:/FreeMix-QA-Gemini-MultiCorder-20261011-0900/run-test-multicorder-dom-r7.mjs#L27-L28)).
+   * Identificador do runner no recibo: `'run-test-multicorder-dom-r7.mjs'` ([L44](file:///D:/FreeMix-QA-Gemini-MultiCorder-20261011-0900/run-test-multicorder-dom-r7.mjs#L44)).
+   * Rotas HTTP do mock atendem `/DRAFT-multicorder-r7.html` e `/DRAFT-multicorder-r7.js` mantendo compatibilidade ([L201, L208](file:///D:/FreeMix-QA-Gemini-MultiCorder-20261011-0900/run-test-multicorder-dom-r7.mjs#L201)).
+   * Diretório de perfil do Edge isolado: `FreeMix-QA-Profile-MultiCorder-R7-${Date.now()}` ([L521](file:///D:/FreeMix-QA-Gemini-MultiCorder-20261011-0900/run-test-multicorder-dom-r7.mjs#L521)).
+   * Screenshots capturados salvos com prefixo R7:
+     * `screenshot-multicorder-startup-r7-700x540.png` ([L669](file:///D:/FreeMix-QA-Gemini-MultiCorder-20261011-0900/run-test-multicorder-dom-r7.mjs#L669))
+     * `screenshot-multicorder-recording-r7-700x540.png` ([L858](file:///D:/FreeMix-QA-Gemini-MultiCorder-20261011-0900/run-test-multicorder-dom-r7.mjs#L858))
+     * `screenshot-multicorder-stop-r7-700x540.png` ([L909](file:///D:/FreeMix-QA-Gemini-MultiCorder-20261011-0900/run-test-multicorder-dom-r7.mjs#L909))
+   * Recibo final gravado em: `receipt-test-multicorder-dom-r7.json` ([L1452](file:///D:/FreeMix-QA-Gemini-MultiCorder-20261011-0900/run-test-multicorder-dom-r7.mjs#L1452)).
+2. **Preservação Integral dos 26 Gates de Teste:**
+   * **Gates 1 a 15 (Originais):** Exatamente iguais, mantendo os tempos de espera (800 ms, 1.200 ms, 2.600 ms) e os resets de fixture (`resetMockServerState()`).
+   * **Gate 11 ([L876-L909](file:///D:/FreeMix-QA-Gemini-MultiCorder-20261011-0900/run-test-multicorder-dom-r7.mjs#L876-L909)):** Mantém rigorosamente a asserção `gate11Data.statusText.includes('MultiGravação finalizada')` com espera de 800 ms.
+   * **Gates 16 a 24 (Contratos de Incerteza e Epoch):** Mantêm os 4 deadlines de 8.000 ms com atraso simulado de 9.000 ms e espera de 8.600 ms, descarte de GETs por `stateEpoch` (Gate 20) e diferenciação entre queda de socket e HTTP 400 (Gate 24).
+   * **Gate 22 ([L1240-L1290](file:///D:/FreeMix-QA-Gemini-MultiCorder-20261011-0900/run-test-multicorder-dom-r7.mjs#L1240-L1290)):** Mantém idêntica a verificação dupla: Read 1 (`rec = true`) exigindo trava ativa e Read 2 (`rec = false`) exigindo destravamento e mensagem `"gravação parada com sucesso"`.
+   * **Gates 25 e 26 (Cleanup e Governança):** Encerramento cooperativo via `Browser.close`, verificação CIM de `mainPidAbsent` e `edgeProfileCount === 0`, e integridade de `pinsBefore === pinsAfter`.
+
+---
+
+## 3. Matriz de Cobertura e Governança Git
+
+* **Modificações de Produto:** Estritamente as 2 correções pontuais em `DRAFT-multicorder-r7.js` e a referência de script em `DRAFT-multicorder-r7.html`.
+* **Modificações de Teste:** Estritamente as renomeações de arquivo de saída para R7 em `run-test-multicorder-dom-r7.mjs`.
+* **Segurança de Execução:** Nenhuma alteração em binários de produção (`0.1.0-local.20261009153453`), nenhuma supressão de arquivos de branch e nenhum bypass de sandbox.
+
+---
+
+## 4. Parecer e Autorização
+
+O conjunto de arquivos **R7** resolve com precisão matemática a causa raiz das duas falhas pontuais de R5, preserva toda a máquina de estados contratuais e mantém isolados os artefatos de saída.
+
+1. **Veredicto:** `APROVED_FOR_ONE_OWN_MOCK_REAL_DOM_EXECUTION_ONLY`.
+2. **Autorização:** Fica autorizada **uma única execução controlada** do runner `run-test-multicorder-dom-r7.mjs` pelo operador/Root em ambiente local.
+3. **Critério de Validação Pós-Execução:** A homologação requer a conferência empírica de `receipt-test-multicorder-dom-r7.json` apresentando 26/26 PASS, `browserExitObserved === true` e PINs intactos.

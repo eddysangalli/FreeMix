@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=700,height=540,initial-scale=1">
+  <title>MultiCorder</title>
+  <link rel="stylesheet" href="vmix-dialogo.css">
+  <style>
+    body.vd {
+      margin: 0;
+      padding: 0;
+      background: #1e1e1e;
+      color: #f0f0f0;
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+      font-size: 12px;
+      user-select: none;
+      overflow: hidden;
+      width: 700px;
+      height: 540px;
+    }
+    .mc-window {
+      display: flex;
+      flex-direction: column;
+      width: 700px;
+      height: 540px;
+      box-sizing: border-box;
+      padding: 8px 10px;
+      gap: 6px;
+    }
+    .mc-topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+    }
+    .mc-formats {
+      display: flex;
+      gap: 3px;
+      flex-wrap: nowrap;
+    }
+    .mc-formats button {
+      padding: 5px 10px;
+      font-size: 11px;
+      font-weight: 600;
+      background: #2d2d30;
+      color: #cccccc;
+      border: 1px solid #3f3f46;
+      cursor: pointer;
+      border-radius: 2px;
+    }
+    .mc-formats button.selected {
+      background: #007acc;
+      color: #ffffff;
+      border-color: #0098ff;
+    }
+    .mc-formats button:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+      border-color: #2d2d30;
+    }
+    .mc-btn-main {
+      padding: 6px 20px;
+      font-size: 13px;
+      font-weight: bold;
+      min-width: 95px;
+      height: 32px;
+      cursor: pointer;
+      border-radius: 2px;
+      border: 1px solid #27ae60;
+      background: #2ecc71;
+      color: #ffffff;
+      text-transform: uppercase;
+    }
+    .mc-btn-main.recording {
+      background: #e74c3c;
+      border-color: #c0392b;
+    }
+    .mc-btn-main:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+    .mc-options-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: #252526;
+      padding: 6px 8px;
+      border: 1px solid #333337;
+      border-radius: 2px;
+    }
+    .mc-opt-item {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .mc-opt-item label {
+      font-size: 11px;
+      color: #aaaaaa;
+      white-space: nowrap;
+    }
+    .mc-opt-item select, .mc-opt-item input {
+      background: #1e1e1e;
+      color: #f0f0f0;
+      border: 1px solid #3f3f46;
+      padding: 2px 4px;
+      font-size: 11px;
+      height: 23px;
+      box-sizing: border-box;
+      border-radius: 2px;
+    }
+    .mc-grid-container {
+      flex: 1;
+      overflow-y: auto;
+      border: 1px solid #333337;
+      background: #181818;
+    }
+    .mc-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 11px;
+    }
+    .mc-table th {
+      background: #252526;
+      color: #aaaaaa;
+      text-align: left;
+      padding: 5px 6px;
+      font-weight: 600;
+      border-bottom: 1px solid #333337;
+      position: sticky;
+      top: 0;
+      z-index: 1;
+    }
+    .mc-table td {
+      padding: 4px 6px;
+      border-bottom: 1px solid #222225;
+      white-space: nowrap;
+    }
+    .mc-table tr:hover {
+      background: #202023;
+    }
+    .mc-table td.col-drop {
+      text-align: center;
+      color: #666666;
+    }
+    .mc-table td.col-path {
+      max-width: 230px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      color: #888888;
+    }
+    .mc-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 28px;
+      padding-top: 4px;
+      border-top: 1px solid #333337;
+    }
+    .mc-status-text {
+      font-size: 11px;
+      color: #aaaaaa;
+      max-width: 390px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .mc-status-text.error {
+      color: #ff6b6b;
+    }
+    .mc-actions {
+      display: flex;
+      gap: 6px;
+      align-items: center;
+    }
+    .mc-actions button, .mc-actions a {
+      font-size: 11px;
+      padding: 3px 9px;
+      background: #2d2d30;
+      color: #cccccc;
+      border: 1px solid #3f3f46;
+      text-decoration: none;
+      cursor: pointer;
+      border-radius: 2px;
+    }
+    .mc-actions a:hover, .mc-actions button:hover {
+      background: #3e3e42;
+      color: #ffffff;
+    }
+    .mc-actions button:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  </style>
+</head>
+<body data-page="multicorder" class="vd">
+  <div class="vd-window mc-window">
+    <div class="mc-topbar">
+      <div class="mc-formats" role="tablist" aria-label="Formato de Gravação">
+        <button type="button" disabled title="Formato AVI não suportado no FreeMix">AVI</button>
+        <button type="button" disabled title="Formato vMix AVI não suportado no FreeMix">vMix AVI</button>
+        <button type="button" id="fmt-mpegts" data-format="mpegts" class="selected" title="Gravação contínua MPEG-2 TS">MPEG-2 TS</button>
+        <button type="button" id="fmt-mkv" data-format="mkv" title="Gravação em Matroska MKV">MKV</button>
+        <button type="button" id="fmt-mp4_safe" data-format="mp4_safe" title="Grava em MKV e finaliza MP4 seguro ao parar">MP4 Seguro</button>
+        <button type="button" disabled title="Formato FFMPEG direto não suportado">FFMPEG</button>
+      </div>
+      <button type="button" id="btn-main-action" class="mc-btn-main">Start</button>
+    </div>
+
+    <div class="mc-options-row">
+      <div class="mc-opt-item">
+        <label for="mc-audio">Áudio:</label>
+        <select id="mc-audio">
+          <option value="input">Entrada</option>
+          <option value="master">Master</option>
+          <option value="bus-a">Bus A</option>
+          <option value="bus-b">Bus B</option>
+          <option value="all-tracks">Todas as 6 trilhas</option>
+          <option value="source">Fonte direta</option>
+        </select>
+        <select id="mc-audio-source" style="display: none; max-width: 140px;"></select>
+      </div>
+
+      <div class="mc-opt-item">
+        <label for="mc-split">Novo arquivo a cada:</label>
+        <select id="mc-split">
+          <option value="0">Nenhum (contínuo)</option>
+          <option value="300">5 Minutos</option>
+          <option value="600">10 Minutos</option>
+          <option value="900">15 Minutos</option>
+          <option value="1800">30 Minutos</option>
+          <option value="3600">60 Minutos</option>
+        </select>
+      </div>
+
+      <div class="mc-opt-item" style="flex: 1;">
+        <label for="mc-dir">Pasta:</label>
+        <input type="text" id="mc-dir" placeholder="Padrão do perfil" style="width: 100%;" maxlength="500">
+      </div>
+    </div>
+
+    <div class="mc-grid-container">
+      <table class="mc-table" aria-label="Entradas da MultiGravação">
+        <thead>
+          <tr>
+            <th style="width: 210px;">Entrada</th>
+            <th style="width: 75px;">Duração</th>
+            <th style="width: 90px; text-align: center;">Dropped Frames</th>
+            <th style="width: 75px;">Estado</th>
+            <th>Pasta / Arquivo</th>
+          </tr>
+        </thead>
+        <tbody id="mc-inputs-body">
+          <tr><td colspan="5" style="text-align: center; color: #888888; padding: 14px;">Carregando entradas disponíveis...</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="mc-footer">
+      <div>
+        <a href="/iso" id="link-advanced" title="Abrir configurações avançadas da MultiGravação">Avançado...</a>
+      </div>
+      <div id="mc-status-text" class="mc-status-text">Conectando ao motor...</div>
+      <div class="mc-actions">
+        <button type="button" id="btn-refresh" title="Atualizar dados do motor (leitura)">Atualizar</button>
+        <button type="button" id="btn-save" title="Salvar opções sem iniciar gravação">Salvar</button>
+      </div>
+    </div>
+  </div>
+  <script src="multicorder.js"></script>
+</body>
+</html>

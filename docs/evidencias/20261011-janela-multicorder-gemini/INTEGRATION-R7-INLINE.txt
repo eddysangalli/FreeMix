@@ -1,0 +1,29 @@
+{
+  "patches": [
+    {
+      "file": "painel/mesa.html",
+      "old": "  const panelPages={'novo-projeto':'/novo-projeto/',audio:'/audio',datasources:'/dados',compositions:'/compor',calls:'/calls',macros:'/macros',recuperacao:'/recuperacao',diagnosticos:'/diagnosticos',saidas:'/saidas',settings:'/settings',config:'/settings',ext:'/externo',iso:'/iso',replay:'/replay',replaysettings:'/replay?view=settings#replay-config',recset:'/gravar',streamset:'/transmitir'};",
+      "new": "  const panelPages={'novo-projeto':'/novo-projeto/',audio:'/audio',datasources:'/dados',compositions:'/compor',calls:'/calls',macros:'/macros',recuperacao:'/recuperacao',diagnosticos:'/diagnosticos',saidas:'/saidas',settings:'/settings',config:'/settings',ext:'/externo',iso:'/multicorder',replay:'/replay',replaysettings:'/replay?view=settings#replay-config',recset:'/gravar',streamset:'/transmitir'};",
+      "expectedCount": 1
+    },
+    {
+      "file": "painel/mesa.html",
+      "old": "  // Windows that open at the size of the dialog they copy from the reference, instead of the large default.\n  const panelSizes={streamset:[700,445],calls:[700,540],ext:[700,540],recset:[700,540]};",
+      "new": "  // Windows that open at the size of the dialog they copy from the reference, instead of the large default.\n  const panelSizes={streamset:[700,445],calls:[700,540],ext:[700,540],recset:[700,540],iso:[700,540]};",
+      "expectedCount": 1
+    },
+    {
+      "file": "ferramentas/servidor-api.mjs",
+      "old": "const routes={'/novo-projeto/':'novo-projeto/index','/':'hub','/hub':'hub','/corte':'corte','/playout':'playout','/gc-html':'gc-html','/gc':'gc','/audio':'audio','/replay':'replay','/iso':'iso','/dados':'dados','/compor':'compor','/settings':'settings','/calls':'calls','/macros':'macros','/recuperacao':'recuperacao','/saidas':'saidas','/externo':'externo','/gravar':'gravar','/transmitir':'transmitir','/srt-hdr':'srt-hdr','/rede':'rede','/atalhos':'atalhos','/efeitos':'efeitos','/sinais':'sinais','/atualizacao':'atualizacao','/diagnosticos':'diagnosticos'};",
+      "new": "const routes={'/novo-projeto/':'novo-projeto/index','/':'hub','/hub':'hub','/corte':'corte','/playout':'playout','/gc-html':'gc-html','/gc':'gc','/audio':'audio','/replay':'replay','/iso':'iso','/multicorder':'multicorder','/dados':'dados','/compor':'compor','/settings':'settings','/calls':'calls','/macros':'macros','/recuperacao':'recuperacao','/saidas':'saidas','/externo':'externo','/gravar':'gravar','/transmitir':'transmitir','/srt-hdr':'srt-hdr','/rede':'rede','/atalhos':'atalhos','/efeitos':'efeitos','/sinais':'sinais','/atualizacao':'atualizacao','/diagnosticos':'diagnosticos'};",
+      "expectedCount": 1
+    },
+    {
+      "file": "painel/remoto/multicorder.html",
+      "old": "  <script src=\"DRAFT-multicorder-r7.js\"></script>",
+      "new": "  <script src=\"multicorder.js\"></script>",
+      "expectedCount": 1
+    }
+  ],
+  "note": "### CONTINUAR: Integração de Fonte MultiCorder R7 Proposta\n\n- **Status:** Proposta de integração do MultiCorder R7 formulada sobre `HEAD 4282be6ce582d3625425389b2a384e0516dcbe45` após verificação mecânica de 26/26 PASS no mock Edge headless 700x540 (encerramento limpo via `Browser.close()`, ausência de processos órfãos `CIM=0`, integridade de pins e receipt `6dce860c...`).\n- **Preservação de Histórico:** Evidências de falha e artefatos de diagnóstico de R1 e R5 mantidos imutáveis.\n- **Contratos e Compatibilidade:**\n  - A engrenagem da MultiGravação na Mesa abre `/multicorder` nas dimensões vMix (700x540).\n  - Rota estática `/multicorder` registrada no servidor HTTP de controle para servir `painel/remoto/multicorder.html`.\n  - Script de produção aponta para `multicorder.js` (cópia exata de `DRAFT-multicorder-r7.js`).\n  - Mantida total compatibilidade retroativa com a rota legada `/iso`, rotinas de background, leases de sessão e ações existentes da Mesa.\n- **Fronteiras Delimitadas:** Escopo estritamente restrito a `MOCK_API_REAL_DOM_ONLY`. Não inclui instalação de build final Native38, drivers CEF de hardware/disco, tráfego de rede WAN, alteração no Setup 600 ou armação de rotinas de update."
+}

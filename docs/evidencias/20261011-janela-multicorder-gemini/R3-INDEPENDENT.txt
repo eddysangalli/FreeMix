@@ -1,0 +1,185 @@
+```json
+{
+  "verdict": "REQUIRES_AUTHOR_FIX",
+  "retractionR2": {
+    "status": "RETRATAÇÃO_FORMAL_EMITIDA",
+    "justificativa": "A qualificação anterior de R2 como 'robusta e integral' foi prematura. Conforme comprovado em R3-CONTRACT-CHECK.txt, a versão R2 continha brechas críticas: (1) ausência de uncertainMutation em handleSave() sob timeout; (2) ausência de uncertainMutation em sendConfigure() pré-start sob timeout; (3) ausência de uncertainMutation em handleStop() sob timeout; (4) destravamento indevido de incerteza no botão Atualizar utilizando o objeto persistedState em cache quando a requisição falhava. Todas as 4 deficiências foram confirmadas na auditoria e a aceitação de R2 é formalmente revogada."
+  },
+  "backendQueueClarification": {
+    "thisQueueStatus": "SERIALIZADO_NO_MOTOR_REAL",
+    "detalhes": "Em replay-disco.mjs (L174) e servidor-api.mjs (L196), GET /api/iso executa iso.command('status'), que é rigorosamente enfileirado na this.queue atrás de qualquer start/stop/configure em andamento. No motor real em Node.js, o GET de status não ultrapassa mutações pendentes. A hipótese de GET ultrapassando sonda em voo aplica-se estritamente ao servidor mock de testes (que responde requisições HTTP de forma concorrente desacoplada).",
+    "http400Status": "ERRO_TRATADO_NAO_FATAL",
+    "detalhes400": "Quando start() é invocado com gravação já ativa, o backend lança 'throw new Error(\"A sessão de replay já está gravando\")' (L286), capturado pelo servidor-api.mjs (L215) e retornado como HTTP 400 ordinário. Não há crash de processo, falha de memória ou unhandled rejection."
+  },
+  "blockersR3": [
+    {
+      "id": "MUTATION_DOES_NOT_INVALIDATE_INFLIGHT_GET",
+      "severity": "CRITICAL",
+      "location": "DRAFT-multicorder-r3.js (L74 e L152/L224/L261)",
+      "cause": "'stateEpoch' é incrementado exclusivamente dentro de 'fetchStatus()' (L74). As funções mutantes ('handleStart', 'handleStop', 'handleSave') NÃO incrementam 'stateEpoch'. Se uma requisição GET de polling periódico estiver em trânsito pela rede antes de um POST, ela resolverá com 'epoch === stateEpoch' após a mutação e sobrescreverá o estado do diálogo com dados obsoletos pré-mutação."
+    },
+    {
+      "id": "REC_TRUE_UNCONDITIONALLY_CLEARS_STOP_AND_CONFIGURE_UNCERTAINTY",
+      "severity": "CRITICAL",
+      "location": "DRAFT-multicorder-r3.js (L98-100)",
+      "cause": "A linha 98 executa incondicionalmente 'if (persistedState.rec === true) uncertainMutation = false;'. Se a mutação que sofreu timeout de 8s foi um STOP (onde a intenção do operador era parar a gravação), receber 'rec === true' significa que a parada NÃO foi concluída pelo motor. Desarmar 'uncertainMutation' e exibir 'MultiGravação ativa.' mascara a falha do STOP e libera a interface incorretamente. Da mesma forma, um timeout em configure manual não tem relação semântica com rec=true."
+    },
+    {
+      "id": "UNCERTAIN_MUTATION_LACKS_OPERATION_CONTEXT",
+      "severity": "HIGH",
+      "location": "DRAFT-multicorder-r3.js (L22 e handlers)",
+      "cause": "'uncertainMutation' é um booleano cego. O diálogo não discrimina se está incerto em relação a um START, STOP ou CONFIGURE, impedindo que a reconciliação e as mensagens de status reflitam a operação pretendida pelo operador."
+    }
+  ],
+  "correctionsR3": [
+    {
+      "target": "DRAFT-multicorder-r3.js",
+      "description": "Substituir booleano cego uncertainMutation por discriminador de operação uncertainOp ('start' | 'stop' | 'configure' | null)",
+      "old": "  let uncertainMutation = false;",
+      "new": "  let uncertainOp = null;"
+    },
+    {
+      "target": "DRAFT-multicorder-r3.js",
+      "description": "Invalidar GETs em voo incrementando stateEpoch em qualquer início de mutação POST",
+      "old": "  async function sendConfigure() {",
+      "new": "  async function sendConfigure() {\n    stateEpoch++;"
+    },
+    {
+      "target": "DRAFT-multicorder-r3.js",
+      "description": "Incrementar stateEpoch ao iniciar start e stop para descartar respostas defasadas",
+      "old": "    setBusy(true);\n\n    if (dirtyDraft) {",
+      "new": "    setBusy(true);\n    stateEpoch++;\n\n    if (dirtyDraft) {"
+    },
+    {
+      "target": "DRAFT-multicorder-r3.js",
+      "description": "Incrementar stateEpoch em handleStop",
+      "old": "    setBusy(true);\n    try {\n      setStatus('Parando MultiGravação e finalizando arquivos...');",
+      "new": "    setBusy(true);\n    stateEpoch++;\n    try {\n      setStatus('Parando MultiGravação e finalizando arquivos...');"
+    },
+    {
+      "target": "DRAFT-multicorder-r3.js",
+      "description": "Resolução coerente: rec=true só resolve uncertainOp === 'start'; uncertainOp === 'stop' exige rec=false",
+      "old": "      if (persistedState.rec === true) {\n        uncertainMutation = false;\n      }",
+      "new": "      if (persistedState.rec === true) {\n        if (uncertainOp === 'start') uncertainOp = null;\n      } else if (persistedState.rec === false) {\n        if (uncertainOp === 'stop') uncertainOp = null;\n      }"
+    },
+    {
+      "target": "DRAFT-multicorder-r3.js",
+      "description": "Atualizar mensagens de erro com uncertainOp específico em cada timeout",
+      "old": "        if (err.name === 'AbortError' || String(err.message).includes('Tempo limite')) {\n          uncertainMutation = true;\n          setStatus('Tempo limite de 8s ao salvar configurações pré-início. Verifique com Atualizar.', true);\n        }",
+      "new": "        if (err.name === 'AbortError' || String(err.message).includes('Tempo limite')) {\n          uncertainOp = 'configure';\n          setStatus('Tempo limite de 8s ao salvar configurações pré-início. Verifique com Atualizar.', true);\n        }"
+    },
+    {
+      "target": "DRAFT-multicorder-r3.js",
+      "description": "Armar uncertainOp = 'start' no catch de start",
+      "old": "      if (err.name === 'AbortError') {\n        uncertainMutation = true;\n        try { await fetchStatus(false); } catch (_) {}\n        setStatus('Tempo limite de 8s excedido. O motor pode ainda estar iniciando. Verifique o status com Atualizar.', true);\n      }",
+      "new": "      if (err.name === 'AbortError') {\n        uncertainOp = 'start';\n        try { await fetchStatus(false); } catch (_) {}\n        setStatus('Tempo limite de 8s excedido. O motor pode ainda estar iniciando. Verifique o status com Atualizar.', true);\n      }"
+    },
+    {
+      "target": "DRAFT-multicorder-r3.js",
+      "description": "Armar uncertainOp = 'stop' no catch de stop",
+      "old": "      if (err.name === 'AbortError' || String(err.message).includes('Tempo limite')) {\n        uncertainMutation = true;\n        setStatus('Tempo limite de 8s ao parar gravação. O motor pode ainda estar finalizando. Verifique com Atualizar.', true);\n      }",
+      "new": "      if (err.name === 'AbortError' || String(err.message).includes('Tempo limite')) {\n        uncertainOp = 'stop';\n        setStatus('Tempo limite de 8s ao parar gravação. O motor pode ainda estar finalizando. Verifique com Atualizar.', true);\n      }"
+    },
+    {
+      "target": "DRAFT-multicorder-r3.js",
+      "description": "Armar uncertainOp = 'configure' no catch de save",
+      "old": "      if (err.name === 'AbortError' || String(err.message).includes('Tempo limite')) {\n        uncertainMutation = true;\n        setStatus('Tempo limite de 8s ao salvar opções. Verifique o status com Atualizar.', true);\n      }",
+      "new": "      if (err.name === 'AbortError' || String(err.message).includes('Tempo limite')) {\n        uncertainOp = 'configure';\n        setStatus('Tempo limite de 8s ao salvar opções. Verifique o status com Atualizar.', true);\n      }"
+    },
+    {
+      "target": "DRAFT-multicorder-r3.js",
+      "description": "Desarmar incerteza no botão Atualizar com respeito ao contexto da operação",
+      "old": "          if (freshState.rec === false && uncertainMutation) {\n            uncertainMutation = false;\n            setStatus('Status confirmado pelo motor: gravação parada. Pronto para nova tentativa.');\n            renderControls();\n          }",
+      "new": "          if (freshState.rec === false && (uncertainOp === 'start' || uncertainOp === 'stop')) {\n            uncertainOp = null;\n            setStatus('Status confirmado pelo motor: gravação parada. Pronto para nova tentativa.');\n            renderControls();\n          } else if (freshState.rec === true && uncertainOp === 'start') {\n            uncertainOp = null;\n            setStatus('Status confirmado pelo motor: gravação ativa.');\n            renderControls();\n          }"
+    },
+    {
+      "target": "DRAFT-multicorder-r3.js",
+      "description": "RenderControls e guards baseados em uncertainOp !== null",
+      "old": "    if (isBusy || uncertainMutation) return;",
+      "new": "    if (isBusy || uncertainOp !== null) return;"
+    },
+    {
+      "target": "DRAFT-multicorder-r3.js",
+      "description": "RenderControls disabled",
+      "old": "      btnStart.disabled = isBusy || uncertainMutation;",
+      "new": "      btnStart.disabled = isBusy || uncertainOp !== null;"
+    },
+    {
+      "target": "DRAFT-multicorder-r3.js",
+      "description": "RenderControls btnSave",
+      "old": "      btnSave.disabled = lockInputs || uncertainMutation;",
+      "new": "      btnSave.disabled = lockInputs || uncertainOp !== null;"
+    }
+  ],
+  "exactQAGatesForRunner": [
+    "GATE_INFLIGHT_GET_INVALIDATION: Dispara GET de polling com latência artificial de 500ms; antes do retorno, aciona mutação POST que incrementa stateEpoch; valida que a resposta GET atrasada é descartada e não contamina persistedState.",
+    "GATE_TIMEOUT_STOP_UNCERTAINTY: Stop sofre timeout de 8s; valida que a UI entra em uncertainOp='stop', desabilita novos disparos de mutação e não limpa a incerteza se o motor responder rec=true.",
+    "GATE_TIMEOUT_STOP_FRESH_RECONCILIATION: Stop sofre timeout de 8s; subsequente leitura fresca com rec=false desfaz uncertainOp='stop' e reabilita botão Start.",
+    "GATE_TIMEOUT_CONFIGURE_UNCERTAINTY: Save sofre timeout de 8s; valida que o botão Salvar e Start são desabilitados contra novo POST cego.",
+    "GATE_REFRESH_REJECTS_STALE_CACHE: Simula falha de rede (HTTP 500) ao clicar em Atualizar enquanto há incerteza ativa; valida que a incerteza NÃO é desfeita com base em dados antigos de persistedState."
+  ]
+}
+```
+
+---
+
+# Parecer Técnico e Retratação de Auditoria (R2 / R3 MultiCorder)
+
+## 1. Retratação Formal da Avaliação de R2
+
+A qualificação emitida anteriormente para o código de produto R2 como "robusta e integral" é **formalmente revogada**. Conforme explicitado nos achados de [`R3-CONTRACT-CHECK.txt`](file:///D:/FreeMix-QA-Gemini-MultiCorder-20261011-0900/R3-CONTRACT-CHECK.txt), a implementação R2 apresentava brechas severas de concorrência e integridade:
+- **Timeout em `handleSave()` desprotegido:** Um estouro do deadline de 8s no salvamento de opções apenas emitia mensagem de erro, sem armar trava contra novo POST cego.
+- **Timeout em `sendConfigure()` pré-start desprotegido:** Em caso de timeout durante o preflight de início com rascunho sujo, o fluxo retornava sem sinalizar mutação incerta.
+- **Timeout em `handleStop()` desprotegido:** O encerramento da gravação sob timeout não impedia novos cliques enquanto o backend executava a finalização/remux de arquivos.
+- **Destravamento falso via cache obsoleto no botão "Atualizar":** O botão `btn-refresh` testava `persistedState?.rec === false` após invocar `fetchStatus(true)`. Em caso de erro de rede (HTTP 500, timeout ou JSON corrompido), `persistedState` não era atualizado, retendo em cache o estado anterior e desarmando a trava de segurança indevidamente.
+
+Esta avaliação independente assume a falha de julgamento anterior e reafirma que **nenhum desenho será aprovado como implementado sem conferência estrita do código real**.
+
+---
+
+## 2. Esclarecimento Contratual do Backend e Fila de Comandos
+
+A auditoria direta de [`replay-disco.mjs`](file:///D:/FreeMix-QA-Gemini-MultiCorder-20261011-0900/replay-disco.mjs) e [`servidor-api.mjs`](file:///D:/FreeMix-QA-Gemini-MultiCorder-20261011-0900/servidor-api.mjs) comprova dois fatos arquiteturais fundamentais:
+
+1. **Serialização estrita na fila `this.queue`:**
+   - Em `replay-disco.mjs` (linha 174), todas as operações chamadas por `iso.command(action, data)` são enfileiradas na Promise `this.queue`.
+   - Como o endpoint `GET /api/iso` invoca `iso.command('status')` (linha 196 de `servidor-api.mjs`), no backend real o `GET` **nunca ultrapassa** comandos `start`, `stop` ou `configure` em voo. Ele é executado estritamente após a conclusão da operação precedente.
+   - O cenário de "GET ultrapassando probe em voo" pertence ao modelo de teste adversarial ou a servidores mock desacoplados (onde requisições HTTP são atendidas de forma concorrente sem fila em memória).
+2. **Ausência de "Exceção Fatal" no motor:**
+   - Se `start()` for chamado quando `this.state.rec === true`, o backend lança `throw new Error("A sessão de replay já está gravando")` (linha 286 de `replay-disco.mjs`).
+   - O servidor HTTP em `servidor-api.mjs` (linha 215) captura essa exceção e retorna um **HTTP 400** ordinário `{ success: false, error: ... }`. Não ocorre crash de processo, falha de segmentação ou unhandled rejection.
+   - Contudo, a trava no cliente é manditória para impedir a emissão de requisições conflitantes ("dual POST") enquanto a confirmação anterior não foi estabelecida.
+
+---
+
+## 3. Bloqueadores Identificados no Código de Produto R3
+
+Embora o código [`DRAFT-multicorder-r3.js`](file:///D:/FreeMix-QA-Gemini-MultiCorder-20261011-0900/DRAFT-multicorder-r3.js) tenha introduzido melhorias importantes (como o bloqueio de destravamento com cache antigo no `btn-refresh`), ele ainda contém **três defeitos críticos que impedem a aprovação de QA**:
+
+1. **`stateEpoch` não invalida requisições GET em trânsito antes de uma mutação:**
+   - `stateEpoch` é incrementado exclusivamente dentro de `fetchStatus()` (linha 74).
+   - Nenhuma função mutante (`handleStart`, `handleStop`, `handleSave`, `sendConfigure`) altera `stateEpoch`.
+   - Se um GET de polling periódico estiver trafegando na rede no momento em que o operador clica em `Stop`, essa resposta chegará após a mutação com `epoch === stateEpoch` e sobrescreverá o estado interno com a resposta obsoleta pré-mutação.
+   - **Correção mandatória:** Incrementar `stateEpoch++` em cada disparo de POST mutante.
+2. **Resolução cega de `rec === true` desarmando incertezas de STOP e CONFIGURE:**
+   - Na linha 98 de `DRAFT-multicorder-r3.js`:
+     ```javascript
+     if (persistedState.rec === true) {
+       uncertainMutation = false;
+     }
+     ```
+   - Se o operador acionou `Stop` e a requisição sofreu timeout aos 8s, o motor ainda pode estar finalizando os arquivos em disco e reportar `rec === true` durante alguns instantes.
+   - Tratar `rec === true` como resolução positiva da incerteza desfaz a trava de segurança do STOP e altera o status para `"MultiGravação ativa."`, ignorando que o operador tentou encerrar a gravação!
+3. **Ausência de contextualização semântica da incerteza (`uncertainOp`):**
+   - Um booleano genérico `uncertainMutation` é insuficiente para modelar o ciclo de vida. É mandatório adotar `let uncertainOp = null;` (`'start' | 'stop' | 'configure' | null`), garantindo que:
+     - `uncertainOp === 'start'` só seja resolvido por `rec === true` (ou por `rec === false` deliberado via clique em "Atualizar");
+     - `uncertainOp === 'stop'` só seja resolvido por `rec === false` (sinalizando parada efetiva);
+     - `uncertainOp === 'configure'` exija confirmação de opções ou reconciliação manual.
+
+---
+
+## 4. Decisão
+
+**DECISÃO:** `REQUIRES_AUTHOR_FIX`
+
+O autor deve aplicar as correções mínimas descritas no JSON acima para materializar a versão **R4** de produto ([`DRAFT-multicorder-r4.js`](file:///D:/FreeMix-QA-Gemini-MultiCorder-20261011-0900/DRAFT-multicorder-r4.js) e [`DRAFT-multicorder-r4.html`](file:///D:/FreeMix-QA-Gemini-MultiCorder-20261011-0900/DRAFT-multicorder-r4.html)). Apenas após essa consolidação e a autoração correspondente do runner com os gates listados será concedido o status `SOURCE_QA_PENDING`.

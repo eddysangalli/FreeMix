@@ -1,0 +1,58 @@
+# Veredicto de Integração: MultiCorder R7 nos Fontes Canônicos
+
+**Veredicto Formal:** `SOURCE_INTEGRATION_APPROVED_WITH_GUARDS`
+**Escopo de Aplicação:** Integração cirúrgica dos fontes R7 nos caminhos canônicos de produção, sobre `HEAD 4282be6ce582d3625425389b2a384e0516dcbe45`.
+**Evidência Empírica Vinculada:** Recibo oficial `receipt-test-multicorder-dom-r7.json` (SHA `6dce860c6ab8dd28d163eb8512eff5bceb57ab912c6f74de3f2ee3e965fda3c5`, 26/26 PASS, encerramento cooperativo comprovado via CIM `edgeProfileCount: 0` e `mainPidAbsent: true`).
+
+---
+
+## 1. Auditoria e Confronto dos 4 Patches de Integração
+
+A inspeção dos 4 blocos de modificação confirmou conformidade estrita com a arquitetura defensiva e contratos estabelecidos:
+
+1. **[painel/mesa.html](file:///D:/FreeMix-QA-Gemini-MultiCorder-20261011-0900/painel/mesa.html) (Mapeamento de Página da Mesa):**
+   * Substitui `iso: '/iso'` por `iso: '/multicorder'` em `panelPages`.
+   * A engrenagem de atalho rápido da Mesa passa a abrir o diálogo moderno e compacto do MultiCorder.
+   * `expectedCount: 1` — ancoragem única e determinística.
+2. **[painel/mesa.html](file:///D:/FreeMix-QA-Gemini-MultiCorder-20261011-0900/painel/mesa.html) (Contrato de Viewport):**
+   * Adiciona `,iso:[700,540]` ao dicionário `panelSizes`.
+   * Garante que a abertura via Mesa respeite o layout compacto de referência vMix 29 (700×540 px) sem esticar para dimensões genéricas.
+   * `expectedCount: 1`.
+3. **[ferramentas/servidor-api.mjs](file:///D:/FreeMix-QA-Gemini-MultiCorder-20261011-0900/ferramentas/servidor-api.mjs) (Roteamento HTTP):**
+   * Registra a rota estática `'/multicorder': 'multicorder'`, servindo o diálogo HTML de produção.
+   * **Preservação de Retrocompatibilidade:** A rota legada `'/iso': 'iso'` é **mantida intacta**, garantindo que o link "Avançado..." (`href="/iso"`) do rodapé do MultiCorder continue funcionando sem quebras.
+   * Zero alterações na rota dinâmica `/api/iso` ou no motor [replay-disco.mjs](file:///D:/FreeMix-QA-Gemini-MultiCorder-20261011-0900/replay-disco.mjs).
+   * `expectedCount: 1`.
+4. **[painel/remoto/multicorder.html](file:///D:/FreeMix-QA-Gemini-MultiCorder-20261011-0900/painel/remoto/multicorder.html) (Referência de Script de Produção):**
+   * Atualiza a tag script de `<script src="DRAFT-multicorder-r7.js"></script>` para `<script src="multicorder.js"></script>`.
+   * O arquivo `painel/remoto/multicorder.js` receberá a cópia exata do código R7 auditado (SHA `d9dd1af6...`).
+   * `expectedCount: 1`.
+
+---
+
+## 2. Garantias e Fronteiras de Segurança Git
+
+* **Zero Regressão de Motor:** Nenhuma linha do controlador de gravação ou sincronia de disco foi alterada.
+* **Integridade de Setup e Binários:** O instalador do operador (`0.1.0-local.20261009153453`) e o Setup 600 permanecem intocados.
+* **Isolamento de Escopo:** Permanece estritamente em `MOCK_API_REAL_DOM_ONLY`, sem dependência de aceleração NVENC/QSV física ou testes em redes externas WAN/NDI.
+
+---
+
+## 3. Registro para Atualização de Continuidade (`CONTINUAR`)
+
+Após a aplicação mecânica dos 4 patches e a verificação do guard de integridade sem regressões, o seguinte registro oficial deve ser anexado ao arquivo de continuidade:
+
+```markdown
+### CONTINUAR: MultiCorder R7 Integrado nos Fontes Canônicos
+
+- **Status:** Integração do MultiCorder R7 concluída com sucesso sobre `HEAD 4282be6ce582d3625425389b2a384e0516dcbe45` após aprovação do runner empírico R7 (26/26 PASS, recibo `6dce860c6ab8dd28d163eb8512eff5bceb57ab912c6f74de3f2ee3e965fda3c5`, encerramento cooperativo CIM `edgeProfileCount: 0` e PINs inalterados).
+- **Fontes Canônicos Atualizados:**
+  - `painel/remoto/multicorder.html` e `painel/remoto/multicorder.js`: Diálogo de MultiGravação moderno com 4 deadlines de 8s protegidos, isolamento de `stateEpoch`, discriminação entre falha de rede e HTTP 400 e preservação de seleções do operador.
+  - `painel/mesa.html`: Engrenagem da MultiGravação vinculada a `/multicorder` no viewport padrão 700×540 px.
+  - `ferramentas/servidor-api.mjs`: Rota `/multicorder` adicionada, preservando a rota legada `/iso` para acesso às opções avançadas.
+- **Histórico e Diagnóstico:** Artefatos e evidências de falha das etapas R1 e R5 mantidos imutáveis no repositório.
+- **Fronteiras e Escopo:** Validação estrita em `MOCK_API_REAL_DOM_ONLY`. Não inclui alteração em binários de distribuição, Setup 600 ou drivers de hardware CEF.
+- **Próximo Alvo de Engenharia:** Diálogo de Configurações de Replay (`ReplaySettings` em `/replay?view=settings#replay-config`).
+```
+
+O Root mecânico está autorizado a aplicar a integração e prosseguir com o ciclo do projeto.

@@ -1,0 +1,18 @@
+# Veredicto de Complemento de Ancoragem
+
+**Veredicto Formal:** `COMPLEMENT_ACCEPTED_SOURCE_ONLY`
+
+### Análise da Correção de Ancoragem
+
+* **Arquivo Alvo:** [painel/mesa.html](file:///D:/FreeMix-QA-Gemini-MultiCorder-20261011-0900/painel/mesa.html)
+* **Motivação:** A proposta anterior continha o comentário multilinha precedente, gerando divergência de quebras de linha (`count = 0`). A nova âncora isola estritamente a linha de declaração `const panelSizes`.
+* **Conformidade:**
+  ```javascript
+  // Old:
+    const panelSizes={streamset:[700,445],calls:[700,540],ext:[700,540],recset:[700,540]};
+  // New:
+    const panelSizes={streamset:[700,445],calls:[700,540],ext:[700,540],recset:[700,540],iso:[700,540]};
+  ```
+* **Impacto:** Adiciona `,iso:[700,540]` de forma limpa, garantindo abertura no padrão vMix (700×540 px) sem efeitos colaterais.
+
+A âncora de linha única é cirúrgica e está aprovada para aplicação pelo Root mecânico com guarda de integridade.

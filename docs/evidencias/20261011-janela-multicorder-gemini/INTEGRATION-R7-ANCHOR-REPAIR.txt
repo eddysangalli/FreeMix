@@ -1,0 +1,8 @@
+{
+  "patch": {
+    "file": "painel/mesa.html",
+    "old": "  const panelSizes={streamset:[700,445],calls:[700,540],ext:[700,540],recset:[700,540]};",
+    "new": "  const panelSizes={streamset:[700,445],calls:[700,540],ext:[700,540],recset:[700,540],iso:[700,540]};",
+    "expectedCount": 1
+  }
+}

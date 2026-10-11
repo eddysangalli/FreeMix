@@ -1,0 +1,236 @@
+{
+  "scope": "MOCK_API_REAL_DOM_ONLY",
+  "runner": "run-test-multicorder-dom-r7.mjs",
+  "startedAt": "2026-10-11T10:09:41.196Z",
+  "viewport": {
+    "width": 700,
+    "height": 540
+  },
+  "pinsBefore": {
+    "html": {
+      "path": "D:\\FreeMix-QA-Gemini-MultiCorder-20261011-0900\\DRAFT-multicorder-r7.html",
+      "sha": "b4900e6a0a9f04ab5f10bb5463ad3e8dddc928b7c52a4bc248eee2958b55f7c3"
+    },
+    "js": {
+      "path": "D:\\FreeMix-QA-Gemini-MultiCorder-20261011-0900\\DRAFT-multicorder-r7.js",
+      "sha": "d9dd1af615de0eafd4187ad0d1e68fe20837cb4a6bf75b83804e9488087658b5"
+    },
+    "css": {
+      "path": "D:\\FreeMix-QA-Gemini-MultiCorder-20261011-0900\\vmix-dialogo.css",
+      "sha": "f3d08180366f933049c4a16b2e136e04c25a6691371d2d1f6e0d97c9da85084c"
+    }
+  },
+  "pinsAfter": {
+    "html": {
+      "path": "D:\\FreeMix-QA-Gemini-MultiCorder-20261011-0900\\DRAFT-multicorder-r7.html",
+      "sha": "b4900e6a0a9f04ab5f10bb5463ad3e8dddc928b7c52a4bc248eee2958b55f7c3"
+    },
+    "js": {
+      "path": "D:\\FreeMix-QA-Gemini-MultiCorder-20261011-0900\\DRAFT-multicorder-r7.js",
+      "sha": "d9dd1af615de0eafd4187ad0d1e68fe20837cb4a6bf75b83804e9488087658b5"
+    },
+    "css": {
+      "path": "D:\\FreeMix-QA-Gemini-MultiCorder-20261011-0900\\vmix-dialogo.css",
+      "sha": "f3d08180366f933049c4a16b2e136e04c25a6691371d2d1f6e0d97c9da85084c"
+    }
+  },
+  "browserExitObserved": true,
+  "browserMainPidAbsent": true,
+  "browserEdgeProfileCount": 0,
+  "browserProfilePreserved": "D:\\FreeMix-QA-Gemini-MultiCorder-20261011-0900\\FreeMix-QA-Profile-MultiCorder-R7-1791713381210",
+  "screenshots": [
+    "screenshot-multicorder-startup-r7-700x540.png",
+    "screenshot-multicorder-recording-r7-700x540.png",
+    "screenshot-multicorder-stop-r7-700x540.png"
+  ],
+  "assertions": [
+    {
+      "id": "GATE_1_ZERO_POST_STARTUP",
+      "description": "Inicialização do diálogo emite estritamente GET /api/iso (zero POSTs)",
+      "passed": true,
+      "detail": "POSTs observados: 0; GETs: 1",
+      "timestamp": "2026-10-11T10:09:46.130Z"
+    },
+    {
+      "id": "GATE_2_CAMERAS_POPULATION",
+      "description": "Tabela renderiza todas as 5 câmeras disponíveis e nenhuma está marcada por padrão",
+      "passed": true,
+      "detail": "{\"rowCount\":5,\"inputCount\":5,\"checkedCount\":0,\"firstCamName\":\"Cam 1 - Palco\"}",
+      "timestamp": "2026-10-11T10:09:46.164Z"
+    },
+    {
+      "id": "GATE_3_DROPPED_FRAMES_DASH",
+      "description": "Coluna Dropped Frames exibe travessão \"—\" em todas as linhas",
+      "passed": true,
+      "detail": "{\"dropCount\":5,\"allDashes\":true}",
+      "timestamp": "2026-10-11T10:09:46.166Z"
+    },
+    {
+      "id": "GATE_4_SELECTION_ISOLATION",
+      "description": "Checkboxes marcados pelo operador permanecem intactos após polling de background",
+      "passed": true,
+      "detail": "{\"chk1Checked\":true,\"chk2Checked\":true,\"chk3Checked\":false}",
+      "timestamp": "2026-10-11T10:09:48.770Z"
+    },
+    {
+      "id": "GATE_5_EMPTY_SELECTION_GUARD",
+      "description": "Start com 0 câmeras exibe aviso amigável e emite zero POST",
+      "passed": true,
+      "detail": "{\"postDelta\":0,\"status\":\"Selecione entre 1 e 8 entradas para gravar.\"}",
+      "timestamp": "2026-10-11T10:09:49.075Z"
+    },
+    {
+      "id": "GATE_6_OVERLIMIT_SELECTION_GUARD",
+      "description": "Start com mais de 8 câmeras bloqueia com mensagem amigável sem POST",
+      "passed": true,
+      "detail": "{\"postDelta\":0,\"status\":\"Máximo de 8 entradas permitidas para MultiGravação.\"}",
+      "timestamp": "2026-10-11T10:09:49.377Z"
+    },
+    {
+      "id": "GATE_7_DIRTY_DRAFT_CONFIG_PREFLIGHT",
+      "description": "Se dirtyDraft=true, Start despacha POST configure e subsequentemente POST start",
+      "passed": true,
+      "detail": "Ações despachadas: [\"configure\",\"start\"]",
+      "timestamp": "2026-10-11T10:09:50.940Z"
+    },
+    {
+      "id": "GATE_8_CONFIGURE_HTTP403_HANDLING",
+      "description": "Erro HTTP 403 em configure aborta a cadeia sem chamar start, retém rascunho e não arma incerteza indevida",
+      "passed": true,
+      "detail": "{\"actions\":[\"configure\"],\"data\":{\"statusText\":\"Falha ao salvar configurações: Opções de gravação só no computador do FreeMix\",\"dirValue\":\"E:\\\\Restricted\",\"btnText\":\"Start\",\"btnDisabled\":false}}",
+      "timestamp": "2026-10-11T10:09:52.404Z"
+    },
+    {
+      "id": "GATE_9_START_SUCCESS_TRANSITION",
+      "description": "Start confirmado alterna botão para Stop (.recording), trava inputs e exibe duração ativa",
+      "passed": true,
+      "detail": "{\"btnText\":\"Stop\",\"btnClass\":\"mc-btn-main recording\",\"audioDisabled\":true,\"splitDisabled\":true,\"dirDisabled\":true,\"chkDisabled\":true,\"durationText\":\"00:00\"}",
+      "timestamp": "2026-10-11T10:09:54.266Z"
+    },
+    {
+      "id": "GATE_10_STOP_INACTIVE_GUARD",
+      "description": "Diálogo parado apresenta botão Start e não permite disparo acidental de stop",
+      "passed": true,
+      "detail": "{\"btnText\":\"Start\",\"isRec\":false}",
+      "timestamp": "2026-10-11T10:09:55.239Z"
+    },
+    {
+      "id": "GATE_11_STOP_SUCCESS_TRANSITION",
+      "description": "Stop finaliza gravação, libera controles e atualiza mensagem de status",
+      "passed": true,
+      "detail": "{\"btnText\":\"Start\",\"isRec\":false,\"audioDisabled\":false,\"statusText\":\"MultiGravação finalizada.\"}",
+      "timestamp": "2026-10-11T10:09:57.504Z"
+    },
+    {
+      "id": "GATE_12_START_TIMEOUT_RECONCILIATION",
+      "description": "Timeout no start emite 1 único POST, preserva aviso de 8s contra sobrescrita e bloqueia novo POST cego",
+      "passed": true,
+      "detail": "{\"postDelta\":1,\"data\":{\"statusText\":\"Tempo limite de 8s excedido no início. O motor pode ainda estar iniciando. Verifique o status com Atualizar.\",\"isBusy\":true,\"refreshDisabled\":false}}",
+      "timestamp": "2026-10-11T10:10:06.886Z"
+    },
+    {
+      "id": "GATE_13_OPTIONS_MERGE_PRESERVATION",
+      "description": "POST configure preserva perInput, encoder, crf, prefix, width e height via deep merge",
+      "passed": true,
+      "detail": "{\"format\":\"mpegts\",\"directory\":\"D:\\\\BaseDir\",\"prefix\":\"iso_show\",\"encoder\":\"obs_nvenc_h264_tex\",\"crf\":19,\"audio\":\"master\",\"audioSourceUUID\":\"\",\"splitSeconds\":0,\"width\":1920,\"height\":1080,\"fpsDivisor\":2,\"bitrate\":8000,\"perInput\":{\"Cam 1 - Palco\":{\"bitrate\":12000,\"crf\":15}}}",
+      "timestamp": "2026-10-11T10:10:08.346Z"
+    },
+    {
+      "id": "GATE_14_DIRECTOR_MIC_REJECTION",
+      "description": "Mensagem de recusa de mic do diretor é exibida com fidelidade e não trava UI como incerta",
+      "passed": true,
+      "detail": "{\"statusText\":\"Falha ao iniciar: ISO/replay recusado: esta entrada contém o mic privado do diretor\",\"btnText\":\"Start\",\"btnDisabled\":false}",
+      "timestamp": "2026-10-11T10:10:09.810Z"
+    },
+    {
+      "id": "GATE_15_ADVANCED_LINK_INTEGRITY",
+      "description": "Link \"Avançado...\" preserva href=\"/iso\" estrito (não aponta para script .js)",
+      "passed": true,
+      "detail": "{\"href\":\"/iso\",\"text\":\"Avançado...\"}",
+      "timestamp": "2026-10-11T10:10:09.812Z"
+    },
+    {
+      "id": "GATE_16_SAVE_TIMEOUT_DEADLINE_8S",
+      "description": "Timeout de 8s ao salvar opções arma incerteza, bloqueia novo POST e retém rascunhos",
+      "passed": true,
+      "detail": "{\"statusText\":\"Tempo limite de 8s ao salvar opções. Verifique o status com Atualizar.\",\"saveDisabled\":true,\"startDisabled\":true,\"refreshDisabled\":false,\"draftAudio\":\"bus-a\"}",
+      "timestamp": "2026-10-11T10:10:19.075Z"
+    },
+    {
+      "id": "GATE_17_PREFLIGHT_CONFIGURE_TIMEOUT_8S",
+      "description": "Timeout de 8s em configure pré-início aborta sem disparar POST start e bloqueia mutações",
+      "passed": true,
+      "detail": "{\"actions\":[\"configure\"],\"data\":{\"statusText\":\"Tempo limite de 8s ou falha de rede ao salvar opções pré-início. Verifique com Atualizar.\",\"startDisabled\":true,\"saveDisabled\":true}}",
+      "timestamp": "2026-10-11T10:10:28.334Z"
+    },
+    {
+      "id": "GATE_18_STOP_TIMEOUT_DEADLINE_8S",
+      "description": "Timeout de 8s ao parar gravação arma incerteza de stop e protege botões mutantes",
+      "passed": true,
+      "detail": "{\"statusText\":\"Tempo limite de 8s ao parar gravação. O motor pode ainda estar finalizando. Verifique com Atualizar.\",\"mainDisabled\":true,\"saveDisabled\":true,\"refreshDisabled\":false}",
+      "timestamp": "2026-10-11T10:10:38.397Z"
+    },
+    {
+      "id": "GATE_19_UNKNOWN_READ_REJECTS_CACHE_UNLOCK",
+      "description": "Atualizar falho (HTTP 500 ou schema inválido) mantém incerteza sem liberar via cache defasado",
+      "passed": true,
+      "detail": "{\"resp500\":{\"statusText\":\"Falha ao atualizar status: HTTP 500\",\"mainDisabled\":true},\"respSchema\":{\"statusText\":\"Falha ao atualizar status: Estrutura de estado inválida retornada pelo motor\",\"mainDisabled\":true}}",
+      "timestamp": "2026-10-11T10:10:39.406Z"
+    },
+    {
+      "id": "GATE_20_STATE_EPOCH_STALE_GET_INVALIDATION",
+      "description": "GET lento em trânsito não sobrescreve rascunhos pós-mutação devido ao incremento de stateEpoch",
+      "passed": true,
+      "detail": "{\"dirValue\":\"D:\\\\NovaPastaEpoch\"}",
+      "timestamp": "2026-10-11T10:10:42.267Z"
+    },
+    {
+      "id": "GATE_21_LATE_GET_RESOLVES_START_NO_SECOND_POST",
+      "description": "START tardio com rec=true atualiza UI para Stop (.recording) sem emitir segundo POST mutante",
+      "passed": true,
+      "detail": "{\"postDelta\":0,\"data\":{\"btnText\":\"Stop\",\"btnClass\":\"mc-btn-main recording\",\"btnDisabled\":false,\"statusText\":\"MultiGravação ativa.\"}}",
+      "timestamp": "2026-10-11T10:10:54.128Z"
+    },
+    {
+      "id": "GATE_22_PENDING_STOP_RESOLUTION_FLOW",
+      "description": "STOP pendente mantém trava enquanto rec=true e só destrava quando leitura confirma rec=false",
+      "passed": true,
+      "detail": "{\"read1\":{\"statusText\":\"Motor confirmou gravação ainda ativa. Tente parar novamente quando o processo concluir.\",\"mainDisabled\":true},\"read2\":{\"statusText\":\"Status confirmado pelo motor: gravação parada com sucesso.\",\"mainDisabled\":false,\"btnText\":\"Start\"}}",
+      "timestamp": "2026-10-11T10:11:05.200Z"
+    },
+    {
+      "id": "GATE_23_UNCERTAIN_LOCKS_PREVENT_BLIND_POSTS",
+      "description": "Estado incerto bloqueia novos disparos de Start e Salvar mantendo opções no formulário",
+      "passed": true,
+      "detail": "{\"postDelta\":0,\"data\":{\"dirValue\":\"E:\\\\PastaIncerteza\",\"saveDisabled\":true,\"startDisabled\":true}}",
+      "timestamp": "2026-10-11T10:11:14.864Z"
+    },
+    {
+      "id": "GATE_24_NETWORK_DROP_VS_HTTP4XX_CLASSIFICATION",
+      "description": "Queda de conexão física arma incerteza; erro HTTP 400 ordinário é tratado sem travar interface",
+      "passed": true,
+      "detail": "{\"drop\":{\"statusText\":\"Tempo limite de 8s excedido no início. O motor pode ainda estar iniciando. Verifique o status com Atualizar.\",\"btnDisabled\":true},\"http400\":{\"statusText\":\"Falha ao iniciar: ISO/replay recusado: esta entrada contém o mic privado do diretor\",\"btnDisabled\":false}}",
+      "timestamp": "2026-10-11T10:11:17.386Z"
+    },
+    {
+      "id": "GATE_CLEANUP_EXIT_OBSERVED",
+      "description": "Processos msedge.exe associados ao perfil próprio encerraram cooperativamente (CIM count = 0)",
+      "passed": true,
+      "detail": "",
+      "timestamp": "2026-10-11T10:11:19.570Z"
+    },
+    {
+      "id": "GATE_CLEANUP_PINS_UNCHANGED",
+      "description": "Arquivos de origem mantiveram hashes SHA-256 inalterados após a bateria de testes",
+      "passed": true,
+      "detail": "",
+      "timestamp": "2026-10-11T10:11:19.570Z"
+    }
+  ],
+  "summary": {
+    "total": 26,
+    "passed": 26,
+    "failed": 0
+  },
+  "finishedAt": "2026-10-11T10:11:19.571Z"
+}
