@@ -26,6 +26,14 @@ Resultado, com gravação, envio NDI/OMT e câmera virtual reais na cópia de te
 
 **Limite conhecido do motor (não é da janela):** MultiGravação em **MKV de uma entrada parada** (cor lisa, imagem fixa) é recusada com "não produziu vídeo no disco": o motor exige um pacote de vídeo no arquivo em 10 s e o MKV demora mais a descarregar quando quase não há dados. Em MPEG-2 TS grava normal. Fica em pendências.
 
+**Caminho real da mesa conferido (11h30):** na cópia de ensaio já atualizada, com a janela principal visível, cada engrenagem da mesa de dentro do programa (Gravar, Transmitir, Externo, MultiGravação) foi clicada na janela real (`scripts/qa/clicar-janela.ps1`), a janela nova abriu e o botão dela mesma fechou. Depois o programa fechou em 2 s, sem relatório de erro, 0 vazamentos.
+
+**Armadilha de teste registrada:** carregar uma **cópia da página da mesa num navegador de fora** e mandar essa cópia abrir janelas (`scripts/qa/test-mesa-janelas.mjs`) deixa o programa de teste num estado em que ele trava ~40 s ao fechar e grava relatório de erro no navegador interno (3 de 3 vezes, em duas instalações de teste). Só carregar a cópia, ou abrir/fechar janelas por pedido direto, ou o caminho real acima, fecham limpo (`scripts/qa/experimento-fechamento.mjs` roda cada cenário e lê como a sessão terminou). Não é caminho do operador; não usar esse roteiro como prova e não deixá-lo por último numa bateria. A causa no motor não foi investigada.
+
+**Rede de segurança do dono:** `DESFAZER-ATUALIZACAO.cmd` (na raiz) desfaz a última atualização aplicada na mesa com o atualizador da própria instalação e repõe o ponteiro; ensaiado numa cópia (`scripts/qa/ensaiar-desfazer.mjs` → `UNDO_OK_ON_REHEARSAL_COPY`: versão, motor e ponteiro de volta).
+
+**GitHub:** os scripts da raiz (`scripts/qa`, `scripts/agentes`, os de atualização da mesa, os lançadores) agora também vão para o repositório, por `scripts/build/subir-scripts-para-repo.mjs` (só copia o que é novo ou o que é editado na raiz; arquivo que o repositório tem mais novo é deixado como está; confere senha/chaves antes).
+
 **Para o Codex (que segue na janela de Configurações gerais):** não mexi em `settings.html` / `settings.js` nem na pasta `D:/FreeMix-QA-Gemini-GeneralSettings-…`. Mudei `gravar.*`, `multicorder.*`, `externo.js`, `replay-settings.*`, `calls.*`, `transmitir.*`, `vmix-dialogo.css`, `mesa.html` (tamanho da janela de gravação) e `servidor-api.mjs` (rota `/api/panel-close`): os PINs antigos desses arquivos não valem mais. Janela nova que fecha: carregar `fechar-janela.js` e chamar `window.FreeMixClosePanel()`.
 
 ### Atualização da mesa — **autorizada pelo dono em 11/10** ("sim, pode mexer")
