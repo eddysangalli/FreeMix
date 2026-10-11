@@ -1,0 +1,122 @@
+# Parecer de Auditoria Independente de Integração Final (R3 Manifesto)
+
+**Veredicto Formal:** `ACCEPT_SOURCE_ONLY_INTEGRATION`
+**Escopo de Execução:** Estritamente *Readonly* e textual (zero comandos shell, zero escritas em disco e zero operações Git pelo agente auditor).
+**Alvos Confrontados:**
+- [`FINAL-INTEGRATION-R3-AUTHOR.txt`](file:///D:/FreeMix-QA-Gemini-ReplaySettings-20261011-1025/FINAL-INTEGRATION-R3-AUTHOR.txt) (Manifesto de integração submetido)
+- [`receipt-test-replay-settings-dom-r5.json`](file:///D:/FreeMix-QA-Gemini-ReplaySettings-20261011-1025/receipt-test-replay-settings-dom-r5.json) (SHA-256 `9472650ed96bbbfc73fba015f94b02a9bf6788a25be939d06d2e212244b3118e`)
+- [`ROOT-REAL-R5-POST-OBSERVATION.json`](file:///D:/FreeMix-QA-Gemini-ReplaySettings-20261011-1025/ROOT-REAL-R5-POST-OBSERVATION.json) (Evidência física de pós-execução do Root)
+- Fontes do produto qualificado: [`DRAFT-replay-settings-r4.js`](file:///D:/FreeMix-QA-Gemini-ReplaySettings-20261011-1025/DRAFT-replay-settings-r4.js) e [`DRAFT-replay-settings-r4.html`](file:///D:/FreeMix-QA-Gemini-ReplaySettings-20261011-1025/DRAFT-replay-settings-r4.html)
+- Arquivos canônicos de destino: [`painel/mesa.html`](file:///D:/FreeMix-QA-Gemini-ReplaySettings-20261011-1025/painel/mesa.html) e [`ferramentas/servidor-api.mjs`](file:///D:/FreeMix-QA-Gemini-ReplaySettings-20261011-1025/ferramentas/servidor-api.mjs) sobre o HEAD `ae245369305728d9b1fb01b83eae33f51e072f30`.
+
+---
+
+## 1. Verificação Criptográfica e Conformidade da Bateria R5
+
+1. **Evidência Empírica Oficial do Runner R5:**
+   - **Resultado:** **32/32 PASS**, exit code `0`.
+   - **Receipt SHA-256:** `9472650ed96bbbfc73fba015f94b02a9bf6788a25be939d06d2e212244b3118e` confirmado no receipt e na observação do Root.
+   - **Encerramento Cooperativo (CIM):** `browserExitObserved: true`, `browserMainPidAbsent: true`, `browserEdgeProfileCount: 0`, `ownEdgeCount: 0`.
+   - **Imutabilidade de PINs (`pinsSame: true`):** Os hashes SHA-256 dos artefatos de entrada mantiveram-se estritamente idênticos antes e após os testes:
+     - HTML: `99d640f344e5783ff56b9f63accf570346bd1a0a7654513c3056bb12652c7dcb`
+     - JS: `05cb27183c311a4d010639e0107ea5feaee17cefef3395f395a0ad45c5bb244f`
+     - CSS compartilhado: `f3d08180366f933049c4a16b2e136e04c25a6691371d2d1f6e0d97c9da85084c`
+2. **Cobertura Específica dos Gates Corrigidos:**
+   - **Gate 29 (Opções de Câmera):** Atraso de 12s no mock e drenagem síncrona aos 8600ms impediram qualquer disparo de mutação tardia; o teste adversarial com `Cam 2 - Geral` manteve a trava ativa (`btnDisabled: true`) até a chegada do Late ACK de `Cam 1 - Palco`.
+   - **Gate 31 (Auto-Align):** Atraso de 30s no mock e cancelamento síncrono aos 25600ms garantiram que calibração de outro anchor (`Anchor B`) ou defasada no tempo não destravasse o botão; a resolução só ocorreu com dados frescos do `Anchor A`.
+
+---
+
+## 2. Auditoria do Manifesto de Integração (2 Cópias e 2 Âncoras)
+
+### 2.1 As 2 Cópias de Arquivos de Produto
+1. **`DRAFT-replay-settings-r4.html` -> `painel/remoto/replay-settings.html`**
+   - SHA-256 esperado: `99d640f344e5783ff56b9f63accf570346bd1a0a7654513c3056bb12652c7dcb` (Conferido).
+   - Tag `<script src="/replay-settings.js"></script>` aponta para o resolvedor canônico.
+2. **`DRAFT-replay-settings-r4.js` -> `painel/remoto/replay-settings.js`**
+   - SHA-256 esperado: `05cb27183c311a4d010639e0107ea5feaee17cefef3395f395a0ad45c5bb244f` (Conferido).
+   - Contém guards de estado nulo, trava determinística de incerteza em 8s/25s, drafts isolados por câmera e reconciliação sem regressão.
+
+### 2.2 As 2 Âncoras Singulares (Diff Exato de 1 Linha por Arquivo)
+1. **Em [`painel/mesa.html`](file:///D:/FreeMix-QA-Gemini-ReplaySettings-20261011-1025/painel/mesa.html) (Linha 2377):**
+   - **Contexto Existente no HEAD `ae24536`:** As entradas `replaysettings:'/replay?view=settings#replay-config'` em `panelPages` (L2375), `'replaysettings'` em `independentEditors` (L2378) e o título `replaysettings:'Configurações do Replay'` em `launchPanel` (L2380) **já existem no repositório**.
+   - **Target Antigo:**
+     ```javascript
+       const panelSizes={streamset:[700,445],calls:[700,540],ext:[700,540],recset:[700,540],iso:[700,540]};
+     ```
+   - **Target Novo:**
+     ```javascript
+       const panelSizes={streamset:[700,445],calls:[700,540],ext:[700,540],recset:[700,540],iso:[700,540],replaysettings:[700,540]};
+     ```
+   - **Verificação:** Âncora única e inequívoca (`expectedCount: 1`). Garante abertura compacta na resolução exata de 700x540.
+2. **Em [`ferramentas/servidor-api.mjs`](file:///D:/FreeMix-QA-Gemini-ReplaySettings-20261011-1025/ferramentas/servidor-api.mjs) (Linha 205):**
+   - **Target Antigo:**
+     ```javascript
+         if(routes[path])file=join(PANEL,'remoto',routes[path]+'.html');
+     ```
+   - **Target Novo:**
+     ```javascript
+         if(routes[path])file=join(PANEL,'remoto',(path==='/replay'&&u.searchParams.get('view')==='settings'?'replay-settings':routes[path])+'.html');
+     ```
+   - **Verificação:** Âncora única e inequívoca (`expectedCount: 1`). Roteamento condicional estrito:
+     - `/replay` operacional (sem `view=settings`) continua servindo `join(PANEL, 'remoto', 'replay.html')` de forma 100% inalterada, preservando a timeline operacional.
+     - `/replay?view=settings` serve exclusivamente `replay-settings.html`.
+     - `/replay-settings.js` é resolvido de forma genérica e automática pelas linhas 207-212 sem necessidade de rotas dedicadas.
+     - Zero impacto no backend OBS/C++ (`zero backend diff`).
+
+---
+
+## 3. Delimitação Técnica e Rastreabilidade
+
+- **Não Confundir Mock DOM com Hardware/CEF:** A bateria R5 valida com rigor o comportamento funcional da interface no DOM do Microsoft Edge headless sob cenários determinísticos de rede e mock HTTP local. Ela **não substitui** os testes em runtime CEF integrado, nem atesta tráfego WAN ou estresse de hardware com encoders DeckLink/NDI.
+- **Rastreabilidade Histórica Preservada:** Os recibos e evidências de execuções anteriores ([`receipt-test-replay-settings-dom-r3.json`](file:///D:/FreeMix-QA-Gemini-ReplaySettings-20261011-1025/receipt-test-replay-settings-dom-r3.json) com 27/32 FAIL e [`receipt-test-replay-settings-dom-r4.json`](file:///D:/FreeMix-QA-Gemini-ReplaySettings-20261011-1025/receipt-test-replay-settings-dom-r4.json) com 30/32 FAIL) permanecem intactos, registrando a curva de maturação causal até a estabilização completa em R5.
+
+---
+
+## 4. Artefatos de Fechamento Solicitados
+
+Abaixo encontram-se o **README Final** e a **Nota de Continuidade (Append CONTINUAR)** estruturados em blocos markdown delimitados:
+
+```markdown
+# Evidência Empírica e Qualificação de Código — Diálogo ReplaySettings R5
+
+## 1. Síntese da Execução Física R5 pelo Root
+- **Runner Executado**: run-test-replay-settings-dom-r5.mjs
+- **Veredicto Determinístico**: 32/32 PASS, exit code 0
+- **Recibo Oficial**: receipt-test-replay-settings-dom-r5.json (SHA-256: 9472650ed96bbbfc73fba015f94b02a9bf6788a25be939d06d2e212244b3118e)
+- **Higiene de Processos (CIM)**: Encerramento cooperativo do Microsoft Edge verificado (browserExitObserved: true, browserMainPidAbsent: true, browserEdgeProfileCount: 0).
+- **Integridade de Fontes**: PINs criptográficos de entrada e saída idênticos (pinsSame: true).
+
+## 2. Cobertura de Prazos e Resiliência
+- **Prazos Reais do Produto**: Ações regulares abortam deterministicamente aos 8000ms e calibração de alinhamento aos 25000ms via AbortSignal do cliente.
+- **Isolamento de Timers Mock**: Delays ampliados do mock (12s e 30s) combinados com drenagem síncrona impedem que callbacks tardios contaminem testes adversariais de cross-câmera e cross-anchor.
+- **Rastreabilidade Histórica**: Registros de execuções de R3 (27/32 FAIL) e R4b (30/32 FAIL) preservados no repositório como evidência da investigação causal.
+
+## 3. Delimitação de Escopo
+- **Escopo Homologado**: Contratos de interface, layout compacto 700x540, isolamento de rascunhos por câmera, bloqueios de concorrência e recuperação sob reconexão contra API mock HTTP no Microsoft Edge headless.
+- **Não Aplicável**: Esta qualificação em ambiente de teste não equivale a testes em navegador embutido CEF nativo, gravação em discos de alta velocidade ou infraestrutura física de placas de captura WAN.
+
+## 4. Inspeção Visual (Reportada pelo Autor)
+- **screenshot-replay-settings-r5-tab-session-700x540.png**: Grade de 8 câmeras em duas colunas, status ocioso, botão de gravação SSD e ausência de rolagem horizontal.
+- **screenshot-replay-settings-r5-tab-storage-700x540.png**: Controles de retenção circular e campos numéricos de minutos.
+- **screenshot-replay-settings-r5-tab-audio-700x540.png**: Chave de áudio master, controle de ganho/mudo por câmera e seção de auto-alinhamento.
+*(Nota: As capturas atestam integridade funcional visual da interface conforme inspecionado pelo autor, sem constituir certificação de renderização no nível de pixel do motor nativo).*
+```
+
+```markdown
+### Continuidade da Integração e Próximos Passos (CONTINUAR)
+
+> [!WARNING]
+> **Status de Instalação no Operador:**
+> O diálogo `ReplaySettings` qualificado pela bateria de testes R5 **AINDA NÃO ESTÁ INSTALADO** na mesa operacional do operador.
+> Os artefatos residem na pasta de trabalho e dependem da aplicação mecânica do manifesto pelo Root (as 2 cópias de arquivos e os patches de 1 linha em `painel/mesa.html` e `ferramentas/servidor-api.mjs`).
+
+> [!IMPORTANT]
+> **Pendências de Homologação em Runtime Nativo:**
+> 1. Validação física no pacote final do operador FreeMix (Native CEF 38 / binários compilados).
+> 2. Verificação do diálogo integrado sob execução real do motor C++/OBS e renderizador CEF nativo.
+
+> [!NOTE]
+> **Direcionamento da Próxima Frente:**
+> Com a qualificação de código de `ReplaySettings` concluída e aprovada para integração mecânica, a próxima frente de desenvolvimento e auditoria deve avançar para o painel de **Configurações Gerais (`Settings` global)**.
+```

@@ -1,0 +1,278 @@
+{
+  "scope": "MOCK_API_REAL_DOM_ONLY",
+  "runner": "run-test-replay-settings-dom-r3.mjs",
+  "startedAt": "2026-10-11T11:30:09.624Z",
+  "viewport": {
+    "width": 700,
+    "height": 540
+  },
+  "pinsBefore": {
+    "html": {
+      "path": "D:\\FreeMix-QA-Gemini-ReplaySettings-20261011-1025\\DRAFT-replay-settings-r3.html",
+      "sha": "99d640f344e5783ff56b9f63accf570346bd1a0a7654513c3056bb12652c7dcb"
+    },
+    "js": {
+      "path": "D:\\FreeMix-QA-Gemini-ReplaySettings-20261011-1025\\DRAFT-replay-settings-r3.js",
+      "sha": "d23ebb5d3e56e8823e1962d77257540b01c3352e7a74497336c6c99bae26ee75"
+    },
+    "css": {
+      "path": "D:\\FreeMix-QA-Gemini-ReplaySettings-20261011-1025\\painel\\remoto\\vmix-dialogo.css",
+      "sha": "f3d08180366f933049c4a16b2e136e04c25a6691371d2d1f6e0d97c9da85084c"
+    }
+  },
+  "pinsAfter": {
+    "html": {
+      "path": "D:\\FreeMix-QA-Gemini-ReplaySettings-20261011-1025\\DRAFT-replay-settings-r3.html",
+      "sha": "99d640f344e5783ff56b9f63accf570346bd1a0a7654513c3056bb12652c7dcb"
+    },
+    "js": {
+      "path": "D:\\FreeMix-QA-Gemini-ReplaySettings-20261011-1025\\DRAFT-replay-settings-r3.js",
+      "sha": "d23ebb5d3e56e8823e1962d77257540b01c3352e7a74497336c6c99bae26ee75"
+    },
+    "css": {
+      "path": "D:\\FreeMix-QA-Gemini-ReplaySettings-20261011-1025\\painel\\remoto\\vmix-dialogo.css",
+      "sha": "f3d08180366f933049c4a16b2e136e04c25a6691371d2d1f6e0d97c9da85084c"
+    }
+  },
+  "browserExitObserved": true,
+  "browserMainPidAbsent": true,
+  "browserEdgeProfileCount": 0,
+  "browserProfilePreserved": "D:\\FreeMix-QA-Gemini-ReplaySettings-20261011-1025\\FreeMix-QA-Profile-ReplaySettings-R3-1791718209640",
+  "screenshots": [
+    "screenshot-replay-settings-tab-session-700x540.png",
+    "screenshot-replay-settings-tab-storage-700x540.png",
+    "screenshot-replay-settings-tab-audio-700x540.png"
+  ],
+  "assertions": [
+    {
+      "id": "GATE_1_VIEWPORT_LAYOUT_NO_HORIZONTAL_SCROLL",
+      "description": "Diálogo compacto 700x540, sidebar com 3 abas (session, storage, audio), rodapé fixo e sem barra horizontal",
+      "passed": true,
+      "detail": "{\"appW\":700,\"appH\":540,\"tabs\":[\"session\",\"storage\",\"audio\"],\"hasFooter\":true,\"noHScroll\":true}",
+      "timestamp": "2026-10-11T11:30:15.052Z"
+    },
+    {
+      "id": "GATE_2_ZERO_POST_STARTUP",
+      "description": "Inicialização do diálogo emite estritamente GET /api/replay (zero POSTs)",
+      "passed": true,
+      "detail": "POSTs observados: 0; GETs: 2",
+      "timestamp": "2026-10-11T11:30:15.992Z"
+    },
+    {
+      "id": "GATE_3_CAMERAS_SLOTS_INITIAL_RENDER",
+      "description": "Todos os 8 slots de câmera renderizam desmarcados (vazios), habilitados e populados",
+      "passed": true,
+      "detail": "{\"count\":8,\"allEmpty\":true,\"allEnabled\":true,\"slots\":[{\"id\":\"cam-slot-1\",\"val\":\"\",\"disabled\":false,\"optCount\":6,\"firstOpt\":\"(Nenhuma)\"},{\"id\":\"cam-slot-2\",\"val\":\"\",\"disabled\":false,\"optCount\":6,\"firstOpt\":\"(Nenhuma)\"},{\"id\":\"cam-slot-3\",\"val\":\"\",\"disabled\":false,\"optCount\":6,\"firstOpt\":\"(Nenhuma)\"},{\"id\":\"cam-slot-4\",\"val\":\"\",\"disabled\":false,\"optCount\":6,\"firstOpt\":\"(Nenhuma)\"},{\"id\":\"cam-slot-5\",\"val\":\"\",\"disabled\":false,\"optCount\":6,\"firstOpt\":\"(Nenhuma)\"},{\"id\":\"cam-slot-6\",\"val\":\"\",\"disabled\":false,\"optCount\":6,\"firstOpt\":\"(Nenhuma)\"},{\"id\":\"cam-slot-7\",\"val\":\"\",\"disabled\":false,\"optCount\":6,\"firstOpt\":\"(Nenhuma)\"},{\"id\":\"cam-slot-8\",\"val\":\"\",\"disabled\":false,\"optCount\":6,\"firstOpt\":\"(Nenhuma)\"}]}",
+      "timestamp": "2026-10-11T11:30:15.994Z"
+    },
+    {
+      "id": "GATE_4_START_SSD_EXACT_CAMS",
+      "description": "Disparo de início de gravação SSD emite payload start com as câmeras exatas selecionadas",
+      "passed": true,
+      "detail": "{\"action\":\"start\",\"payload\":{\"action\":\"start\",\"cams\":[\"Cam 1 - Palco\",\"Cam 2 - Geral\"]},\"at\":1791718216654}",
+      "timestamp": "2026-10-11T11:30:17.104Z"
+    },
+    {
+      "id": "GATE_5_START_REC_STATE_AND_LOCKS",
+      "description": "Sob gravação SSD ativa (rec=true): banner vermelho, botão .vd-air \"Parar gravação SSD\" e slots travados",
+      "passed": true,
+      "detail": "{\"isBannerRec\":true,\"btnText\":\"Parar gravação SSD\",\"btnClass\":\"vd-air\",\"slot1Disabled\":true,\"slot2Disabled\":true}",
+      "timestamp": "2026-10-11T11:30:17.107Z"
+    },
+    {
+      "id": "GATE_6_STOP_SSD_RECORDING",
+      "description": "Parar gravação SSD emite stop, restaura banner ocioso, botão .vd-on e destrava slots",
+      "passed": true,
+      "detail": "{\"isBannerIdle\":true,\"btnText\":\"Iniciar gravação SSD\",\"btnClass\":\"vd-on\",\"slot1Disabled\":false}",
+      "timestamp": "2026-10-11T11:30:17.561Z"
+    },
+    {
+      "id": "GATE_7_EMPTY_SELECTION_START_GUARD",
+      "description": "Start com 0 câmeras bloqueia localmente, exibe aviso e emite zero POST",
+      "passed": true,
+      "detail": "{\"postDelta\":0,\"msg\":\"Selecione pelo menos uma câmera para iniciar a gravação SSD.\"}",
+      "timestamp": "2026-10-11T11:30:18.472Z"
+    },
+    {
+      "id": "GATE_8_RETENTION_LIMITS_VALIDATION",
+      "description": "Salvar retenção com valor fora da faixa 2..1440 bloqueia localmente com aviso",
+      "passed": true,
+      "detail": "{\"msg\":\"Minutos de retenção devem ser um número inteiro entre 2 e 1440.\"}",
+      "timestamp": "2026-10-11T11:30:18.927Z"
+    },
+    {
+      "id": "GATE_9_RETENTION_SAVE_AND_POLL_PRESERVE",
+      "description": "Rascunho de retenção não é apagado pelo polling de background e payload retention é despachado",
+      "passed": true,
+      "detail": "{\"pollCheck\":{\"checked\":true,\"val\":\"45\"},\"lastPost\":{\"action\":\"retention\",\"payload\":{\"action\":\"retention\",\"enabled\":true,\"minutes\":45,\"segmentSeconds\":60},\"at\":1791718221996}}",
+      "timestamp": "2026-10-11T11:30:22.348Z"
+    },
+    {
+      "id": "GATE_10_RETENTION_LOCKED_DURING_REC",
+      "description": "Controles de retenção em disco ficam desabilitados quando REC está ativo",
+      "passed": true,
+      "detail": "{\"chkDisabled\":true,\"minDisabled\":true,\"btnDisabled\":true}",
+      "timestamp": "2026-10-11T11:30:23.209Z"
+    },
+    {
+      "id": "GATE_11_CAMERA_AUDIO_FOUR_PROPERTIES",
+      "description": "Aba Áudio renderiza fielmente as 4 propriedades da câmera (recordAudio, gainDb, muted, offsetFrames)",
+      "passed": true,
+      "detail": "{\"recSource\":\"master\",\"gain\":-3,\"muted\":false,\"offset\":10}",
+      "timestamp": "2026-10-11T11:30:24.274Z"
+    },
+    {
+      "id": "GATE_12_CAMERA_DRAFTS_ISOLATION_A_B_A",
+      "description": "Rascunhos de câmera são desacoplados por entidade e preservados ao alternar entre câmeras sob polling",
+      "passed": true,
+      "detail": "{\"cam1\":{\"gain\":-12,\"muted\":true},\"cam2\":{\"gain\":6}}",
+      "timestamp": "2026-10-11T11:30:26.478Z"
+    },
+    {
+      "id": "GATE_13_REC_AUDIO_SOURCE_LOCKED_WHILE_PLAYBACK_CONTROLS_LEGAL",
+      "description": "Sob REC ativo: seleção de fonte de gravação fica travada, mas volume/mute/offset de reprodução permanecem editáveis",
+      "passed": true,
+      "detail": "{\"recSourceDisabled\":true,\"gainDisabled\":false,\"mutedDisabled\":false,\"offsetDisabled\":false,\"btnSaveDisabled\":false}",
+      "timestamp": "2026-10-11T11:30:27.338Z"
+    },
+    {
+      "id": "GATE_14_CAMERA_OPTIONS_SAVE_AND_VALIDATION",
+      "description": "Validação rejeita valores ilegais e salva parâmetros válidos de câmera (camera-options)",
+      "passed": true,
+      "detail": "{\"action\":\"camera-options\",\"payload\":{\"action\":\"camera-options\",\"cam\":\"Cam 1 - Palco\",\"options\":{\"recordAudio\":\"input\",\"gainDb\":-6,\"muted\":true,\"offsetFrames\":15}},\"at\":1791718228401}",
+      "timestamp": "2026-10-11T11:30:28.751Z"
+    },
+    {
+      "id": "GATE_15_GLOBAL_AUDIO_TOGGLE",
+      "description": "Alternância de áudio master emite action audio e atualiza botão para .vd-dim \"Silenciado\"",
+      "passed": true,
+      "detail": "{\"lastPost\":{\"action\":\"audio\",\"payload\":{\"action\":\"audio\",\"enabled\":false},\"at\":1791718228754},\"btn\":{\"text\":\"Áudio Master Silenciado\",\"className\":\"vd-dim\"}}",
+      "timestamp": "2026-10-11T11:30:29.106Z"
+    },
+    {
+      "id": "GATE_16_BUSY_ACTION_LOCKS",
+      "description": "Enquanto requisição está em trânsito no motor (isBusy), todos os botões de ação e seletores ficam travados",
+      "passed": true,
+      "detail": "{\"btnRec\":true,\"btnAudio\":true,\"btnSaveCam\":true,\"camSelect\":true}",
+      "timestamp": "2026-10-11T11:30:30.770Z"
+    },
+    {
+      "id": "GATE_17_AUTO_ALIGN_PREREQUISITES_VALIDATION",
+      "description": "Alinhamento automático obedece rigorosamente às 3 travas contratuais (rec=false, mesmo lance, fora de PGM)",
+      "passed": true,
+      "detail": "{\"rec\":{\"disabled\":true,\"desc\":\"Gravação ativa: o alinhamento de áudio exige REC parado.\"},\"events\":{\"disabled\":true,\"desc\":\"Carregue pelo menos dois players com o mesmo lance no console para calibrar.\"},\"pgm\":{\"disabled\":true,\"desc\":\"Retire os players de Replay do Programa antes de executar o alinhamento.\"},\"ready\":{\"disabled\":false,\"desc\":\"Pronto para correlacionar áudio comum entre os ângulos carregados.\"}}",
+      "timestamp": "2026-10-11T11:30:32.447Z"
+    },
+    {
+      "id": "GATE_18_AUTO_ALIGN_DISPATCH_AND_CALIBRATION",
+      "description": "Disparo de auto-align envia player ativo e exibe desvio calibrado no DOM",
+      "passed": true,
+      "detail": "{\"lastPost\":{\"action\":\"auto-align\",\"payload\":{\"action\":\"auto-align\",\"player\":\"A\"},\"at\":1791718232449},\"dom\":{\"syncMsg\":\"Desvio: 0.00 quadros (30/1 fps)\"}}",
+      "timestamp": "2026-10-11T11:30:32.902Z"
+    },
+    {
+      "id": "GATE_19_SLOW_ACK_RESILIENCE",
+      "description": "Sob latência de 500ms no motor, interface exibe mensagem de confirmação e resolve sem double-POST",
+      "passed": true,
+      "detail": "{\"mid\":{\"msg\":\"Confirmando start no motor…\"},\"resolved\":{\"btnText\":\"Parar gravação SSD\",\"msg\":\"Operação start confirmada pelo motor.\"}}",
+      "timestamp": "2026-10-11T11:30:34.268Z"
+    },
+    {
+      "id": "GATE_20_GET_500_AND_MALFORMED_SCHEMA_IMMUNITY",
+      "description": "Respostas HTTP 500 ou schema inválido não causam crash, preservam o DOM e bloqueiam envio cego de POSTs",
+      "passed": false,
+      "detail": "{\"http500\":{\"msg\":\"Internal Server Error\",\"hasSlots\":true},\"malformed\":{\"msg\":\"Erro ou schema inválido ao consultar motor.\",\"hasSlots\":true},\"postDelta\":1}",
+      "timestamp": "2026-10-11T11:30:35.640Z"
+    },
+    {
+      "id": "GATE_21_STALE_GET_READ_EPOCH_DISCARD",
+      "description": "GET defasado em voo pré-mutação é descartado sem reverter o estado atual",
+      "passed": true,
+      "detail": "{\"audioText\":\"Áudio Master Silenciado\"}",
+      "timestamp": "2026-10-11T11:30:37.205Z"
+    },
+    {
+      "id": "GATE_22_NETWORK_TIMEOUT_8S_UNCERTAIN_OP",
+      "description": "Timeout real de 8s (AbortSignal) ao emitir start entra em incerteza estrita (uncertainOp) e bloqueia double-POST",
+      "passed": true,
+      "detail": "{\"postDelta\":0,\"data\":{\"msg\":\"O motor ainda não confirmou a operação. Verifique o status antes de enviar nova alteração.\",\"btnDisabled\":true}}",
+      "timestamp": "2026-10-11T11:30:46.717Z"
+    },
+    {
+      "id": "GATE_23_LATE_ACK_RESOLVES_UNCERTAIN_OP",
+      "description": "Polling subsequente obtém evidência positiva (rec=true) resolvendo uncertainOp de forma determinística",
+      "passed": true,
+      "detail": "{\"msg\":\"Status sincronizado com sucesso.\",\"btnText\":\"Parar gravação SSD\",\"btnDisabled\":false}",
+      "timestamp": "2026-10-11T11:30:47.073Z"
+    },
+    {
+      "id": "GATE_24_MANUAL_REFRESH_RECOVERY_NO_AUTORETRY",
+      "description": "Atualizar manual pós-fila comprova que a gravação não iniciou, destrava a interface e não faz reenvio automático cego",
+      "passed": false,
+      "detail": "{\"postDelta\":0,\"dom\":{\"msg\":\"Status sincronizado com sucesso.\",\"btnDisabled\":false}}",
+      "timestamp": "2026-10-11T11:30:48.436Z"
+    },
+    {
+      "id": "GATE_27_STOP_TIMEOUT_8S_UNCERTAIN_OP_AND_RESOLUTION",
+      "description": "Timeout real de 8s ao parar REC arma incerteza, bloqueia double-POST e resolve quando motor confirma rec=false",
+      "passed": true,
+      "detail": "{\"uncertain\":{\"msg\":\"O motor ainda não confirmou a operação. Verifique o status antes de enviar nova alteração.\",\"btnDisabled\":true},\"resolved\":{\"btnText\":\"Iniciar gravação SSD\",\"btnDisabled\":false}}",
+      "timestamp": "2026-10-11T11:30:58.254Z"
+    },
+    {
+      "id": "GATE_28_RETENTION_TIMEOUT_8S_UNCERTAIN_OP_AND_RESOLUTION",
+      "description": "Timeout real de 8s em retenção preserva rascunho (45 min), bloqueia novo POST e resolve via Late ACK",
+      "passed": false,
+      "detail": "{\"uncertain\":{\"btnDisabled\":true,\"msg\":\"O motor ainda não confirmou a operação. Verifique o status antes de enviar nova alteração.\",\"chkVal\":true,\"minVal\":\"45\"},\"resolved\":{\"btnDisabled\":false,\"msg\":\"Status sincronizado com sucesso.\"}}",
+      "timestamp": "2026-10-11T11:31:08.275Z"
+    },
+    {
+      "id": "GATE_29_CAMERA_OPTIONS_TIMEOUT_8S_CROSS_CAM_GUARD",
+      "description": "Timeout real de 8s em opções de câmera ignora ACK de outra câmera e só resolve quando a câmera alvo é confirmada",
+      "passed": false,
+      "detail": "{\"uncertain\":{\"btnDisabled\":true,\"selDisabled\":true,\"msg\":\"O motor ainda não confirmou a operação. Verifique o status antes de enviar nova alteração.\"},\"crossCam\":{\"btnDisabled\":false,\"msg\":\"Status sincronizado com sucesso.\"},\"resolved\":{\"btnDisabled\":false,\"selDisabled\":false}}",
+      "timestamp": "2026-10-11T11:31:18.650Z"
+    },
+    {
+      "id": "GATE_30_AUDIO_MASTER_TIMEOUT_8S_UNCERTAIN_OP_AND_RESOLUTION",
+      "description": "Timeout real de 8s em áudio master arma incerteza, bloqueia double-POST e resolve quando motor confirma novo estado",
+      "passed": true,
+      "detail": "{\"uncertain\":{\"btnDisabled\":true,\"msg\":\"O motor ainda não confirmou a operação. Verifique o status antes de enviar nova alteração.\"},\"resolved\":{\"btnText\":\"Áudio Master Silenciado\",\"btnClass\":\"vd-dim\",\"btnDisabled\":false}}",
+      "timestamp": "2026-10-11T11:31:28.674Z"
+    },
+    {
+      "id": "GATE_31_AUTO_ALIGN_TIMEOUT_25S_CROSS_ANCHOR_GUARD",
+      "description": "Timeout real de 25s em auto-align entra em incerteza, rejeita calibração de outro anchor e resolve com evidência fresca válida",
+      "passed": false,
+      "detail": "{\"uncertain\":{\"btnDisabled\":true,\"msg\":\"O motor ainda não confirmou a operação. Verifique o status antes de enviar nova alteração.\"},\"wrongAnchor\":{\"btnDisabled\":false,\"msg\":\"Status sincronizado com sucesso.\"},\"resolved\":{\"btnDisabled\":false,\"syncMsg\":\"Desvio: 1.00 quadros (30/1 fps)\"}}",
+      "timestamp": "2026-10-11T11:31:56.049Z"
+    },
+    {
+      "id": "GATE_32_UNAVAILABLE_SAVED_CAM_PRESERVED",
+      "description": "Câmera salva em cameraOptions mas ausente de availableCams é preservada no seletor e opções sem seleção cega de outra câmera",
+      "passed": true,
+      "detail": "{\"selectedCam\":\"Cam 9 - Remota\",\"hasOption\":true,\"gainVal\":-6,\"mutedVal\":true,\"offsetVal\":5}",
+      "timestamp": "2026-10-11T11:31:57.462Z"
+    },
+    {
+      "id": "GATE_25_CLEANUP_BROWSER_EXIT_CIM_ZERO",
+      "description": "Processos msedge.exe associados ao perfil próprio encerraram cooperativamente (CIM count = 0)",
+      "passed": true,
+      "detail": "",
+      "timestamp": "2026-10-11T11:31:59.593Z"
+    },
+    {
+      "id": "GATE_26_CLEANUP_PINS_UNCHANGED",
+      "description": "Arquivos de origem mantiveram hashes SHA-256 inalterados após a bateria de testes",
+      "passed": true,
+      "detail": "",
+      "timestamp": "2026-10-11T11:31:59.593Z"
+    }
+  ],
+  "summary": {
+    "total": 32,
+    "passed": 27,
+    "failed": 5
+  },
+  "finishedAt": "2026-10-11T11:31:59.594Z"
+}

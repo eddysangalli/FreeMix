@@ -1,0 +1,66 @@
+[
+  {
+    "file": "DOCS-FINAL-R4.txt",
+    "sha": "3363d22e4872fce747f6e10a0374bf0a807edcc7835ba655a1c5d9e9ae5df0e6"
+  },
+  {
+    "file": "FINAL-INTEGRATION-R3-AUTHOR.txt",
+    "sha": "6b08a718952925aaf0fb4408ff4a78fd547d79da302df496bbe64e85d5eaeb7e"
+  },
+  {
+    "file": "FINAL-INTEGRATION-R3-INDEPENDENT.txt",
+    "sha": "f6b923d2d7f777765efecc72f8c522b59a0951aad2ad2c5eb117e06d3510b5ac"
+  },
+  {
+    "file": "R5-DIAG-INDEPENDENT.txt",
+    "sha": "30970d42d6d4e30ec3fd2e38de7cc0cddf407a5fe75ae952f69fdb39f6a72b02"
+  },
+  {
+    "file": "README.md",
+    "sha": "95aeff9b45b8ce7c3b886fa241983d9aaaa4191affc6d00bb6408615ade7b815"
+  },
+  {
+    "file": "REAL-R4-DIAG-FIX-AUTHOR.txt",
+    "sha": "dfb47c7260e46b5212fd306bdb3bd83d250ba41957d166c5e85c83138c07cabd"
+  },
+  {
+    "file": "receipt-test-replay-settings-dom-r3.json",
+    "sha": "d5ac64cbe78280871b2b1f2fd780aee7f7ad5009c11f6ad915a6131c50d67643"
+  },
+  {
+    "file": "receipt-test-replay-settings-dom-r4.json",
+    "sha": "7cc68305ec88e6347b088508f535bc4e7c93760fcd08c7d3cdce24e0354ec3be"
+  },
+  {
+    "file": "receipt-test-replay-settings-dom-r5.json",
+    "sha": "9472650ed96bbbfc73fba015f94b02a9bf6788a25be939d06d2e212244b3118e"
+  },
+  {
+    "file": "ROOT-INTEGRATION-R3-RECEIPT.json",
+    "sha": "6afe27dfa3cf1ac46193176f2fa10c4827db92b4355e6d65fff0165da6bd0241"
+  },
+  {
+    "file": "ROOT-R5-PREEXEC-PINS.json",
+    "sha": "2f9ae7d487807b31127378a04495d39d39635dc1781ba41569a5cb63bb0cf5ce"
+  },
+  {
+    "file": "ROOT-REAL-R5-POST-OBSERVATION.json",
+    "sha": "232a78bf07c82e2326e85f54f52d93f4833b6a79337aa16a791207722361a19c"
+  },
+  {
+    "file": "run-test-replay-settings-dom-r5.mjs",
+    "sha": "ddd89decbd380e61c1bbe926fcafeec28da6c92a94893aa7531fe3c3eece94df"
+  },
+  {
+    "file": "screenshot-replay-settings-r5-tab-audio-700x540.png",
+    "sha": "d566233d6e0950ac723f0244acd04b5dd3c193b956a66166e136ec51093a97fa"
+  },
+  {
+    "file": "screenshot-replay-settings-r5-tab-session-700x540.png",
+    "sha": "0363a01fc4c632d8ff4a2cc84ae07bbfca2125c722f9058756177c6d11ca2bf2"
+  },
+  {
+    "file": "screenshot-replay-settings-r5-tab-storage-700x540.png",
+    "sha": "69378276085c085250aa405874f66f279cc329e5fc3544a0063537fb2bca79de"
+  }
+]

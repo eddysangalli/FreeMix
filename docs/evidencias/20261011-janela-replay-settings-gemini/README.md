@@ -1,0 +1,26 @@
+# Evidência Empírica e Qualificação de Código — ReplaySettings R5 (12:45 UTC)
+
+## 1. Síntese da Execução Física R5 pelo Root
+- **Runner Executado**: run-test-replay-settings-dom-r5.mjs
+- **Resultado Determinístico**: 32/32 PASS, exit code 0
+- **Recibo Oficial**: receipt-test-replay-settings-dom-r5.json (SHA-256: 9472650ed96bbbfc73fba015f94b02a9bf6788a25be939d06d2e212244b3118e)
+- **Higiene de Processos (CIM)**: Encerramento cooperativo no Microsoft Edge headless comprovado (browserExitObserved: true, browserMainPidAbsent: true, browserEdgeProfileCount: 0).
+- **Integridade de PINs**: Hashes SHA-256 de entrada e saída idênticos (pinsSame: true).
+
+## 2. Resiliência Temporal e Histórico Rastreável
+- **Prazos Reais Contratuais**: AbortSignal.timeout de 8000ms para ações regulares e 25000ms para alinhamento automático.
+- **Isolamento de Timers Mock**: Delays ampliados do mock (12s e 30s) combinados com cancelamento síncrono imediato aos 8600ms e 25600ms impediram vazamento assíncrono em testes adversariais.
+- **Rastreabilidade da Maturação**:
+  - R3: 27 PASS / 5 FAIL (preservado em receipt-test-replay-settings-dom-r3.json)
+  - R4: 30 PASS / 2 FAIL (preservado em receipt-test-replay-settings-dom-r4.json)
+  - R5: 32 PASS / 0 FAIL (conclusão determinística da qualificação de código)
+
+## 3. Delimitação de Escopo
+- **Escopo Homologado**: Contratos de interface, layout compacto 700x540, isolamento de rascunhos por câmera, bloqueios de concorrência e reconciliação contra API mock HTTP no Microsoft Edge headless.
+- **Não Aplicável**: Teste em mock DOM não substitui validação no navegador embutido CEF nativo, I/O de disco de alta velocidade ou infraestrutura de captura WAN/hardware.
+
+## 4. Inspeção Visual (Reportada pelo Autor AGY)
+- **screenshot-replay-settings-r5-tab-session-700x540.png**: Grade de 8 câmeras em 2 colunas, status ocioso, botão SSD e sem rolagem horizontal.
+- **screenshot-replay-settings-r5-tab-storage-700x540.png**: Controles de retenção circular e janela em minutos.
+- **screenshot-replay-settings-r5-tab-audio-700x540.png**: Chave de áudio master, ganho/mudo e seção de auto-alinhamento.
+*(Inspeção funcional visual reportada pelo autor; não constitui auditoria de renderização por pixels do motor nativo).*

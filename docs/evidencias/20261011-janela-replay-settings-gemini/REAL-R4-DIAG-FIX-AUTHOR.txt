@@ -1,0 +1,155 @@
+# Diagnóstico Causal R4b e Proposta R5 (Runner e Fixture Baseline)
+
+Auditamos o receipt oficial da execução real R4b ([`receipt-test-replay-settings-dom-r4.json`](file:///D:/FreeMix-QA-Gemini-ReplaySettings-20261011-1025/receipt-test-replay-settings-dom-r4.json), SHA `7cc68305ec88e6347b088508f535bc4e7c93760fcd08c7d3cdce24e0354ec3be`).
+
+O resultado confirmou **30 PASS / 2 FAIL**:
+* **Correções de Produto R4 100% Efetivas:**
+  * **G20 PASS:** `postDelta: 0`. Os guards `if (!replayState || isBusy || uncertainOp) return;` eliminaram qualquer emissão espúria de POST sob falha de carregamento inicial.
+  * **G24 PASS:** `"O motor confirmou que a operação anterior não foi aplicada. Trava liberada para nova ação manual."` preservada sem sobrescrita.
+  * **G28 PASS:** `"Operação pendente confirmada pelo motor."` preservada sem sobrescrita.
+  * **G25 PASS:** `browserEdgeProfileCount: 0` (encerramento cooperativo CIM).
+  * **G26 PASS:** PINs de HTML, JS e CSS rigorosamente idênticos.
+* **Falhas Restantes:** Exclusivamente **Gate 29** (`crossCam.btnDisabled: false`, msg `"Operação pendente confirmada pelo motor."`) e **Gate 31** (`wrongAnchor.btnDisabled: false`, msg `"Operação pendente confirmada pelo motor."`).
+
+---
+
+## 1. Diagnóstico Causal Concreto: Cronologia dos Timers e Fixture Leak
+
+A causa raiz foi isolada com precisão matemática na **cronologia dos timers assíncronos do servidor mock HTTP no runner**, e **NÃO** em defeito do produto cliente:
+
+### 1.1 Cronologia no Gate 29 (Opções de Câmera)
+```
+T = 0ms:      Runner dispara POST /api/replay (camera-options para Cam 1).
+              Mock HTTP agenda timer de atraso: setTimeout(respondPost, 9000).
+
+T = 8000ms:   Fetch no cliente aborta via AbortSignal.timeout(8000).
+              Cliente entra em uncertainOp (botão e seletor travados).
+
+T = 8600ms:   Runner acorda da espera literal de 8600ms.
+              Runner executa segundo clique concorrente (postDelta = 0 verificado).
+              Linha 1532: mockCameraOptionsDelayMs = 0 (apenas altera a variável para futuros POSTs!).
+              O timer setTimeout(..., 9000) agendado em T=0 PERMANECE ATIVO no event loop do Node.js!
+
+T = 8800ms:   Runner define mockCameraOptions['Cam 2 - Geral'] = ... (adversarial)
+              e inicia espera de 1800ms para o polling passivo de background.
+
+T = 9000ms:   CRASH CRONOLÓGICO: O timer de 9000ms do Node.js DISPARA!
+              A função respondPost() (L432) é executada em background e aplica:
+              mockCameraOptions['Cam 1 - Palco'] = { recordAudio: 'input', gainDb: -8, muted: true, offsetFrames: 12 }
+              O próprio servidor mock aplicou a mutação de Cam 1 antes do teste avaliar Cam 2!
+
+T = 10300ms:  Cliente executa GET /api/replay via setInterval(1500ms).
+              O servidor mock retorna Cam 1 JÁ MUTADA!
+              O cliente compara fresh.cameraOptions['Cam 1 - Palco'], constata igualdade,
+              resolve determinísticamente (resolved = true), emite "Operação pendente confirmada..."
+              e destrava o botão (#btn-save-cam-audio).
+
+T = 10600ms:  Runner avalia gate29CrossCamCheck e encontra btnDisabled = false (FAIL).
+```
+
+### 1.2 Cronologia no Gate 31 (Auto-Align)
+Idêntica dinâmica temporal:
+* Em `T = 0ms`, o servidor agenda `setTimeout(respondPost, 26000)`.
+* Em `T = 25000ms`, o cliente aborta por timeout e arma `uncertainOp`.
+* Em `T = 25600ms`, o runner testa segundo clique e injeta calibração adversarial (`anchor: 'B'`, timestamp antigo).
+* Em `T = 25800ms`, o runner inicia espera de 1800ms de polling passivo.
+* **Em `T = 26000ms`:** O timer de 26000ms do Node.js dispara `respondPost()`, que **sobrescreve** `mockCalibration` com `anchor: 'A'` e timestamp atual (`Date.now()`).
+* Em `T = 27300ms`, o polling passivo recebe a calibração legítima de `A`, o produto resolve legitimamente com `"Operação pendente confirmada pelo motor."` e destrava `#btn-auto-align`.
+
+---
+
+## 2. Imutabilidade do Produto (`DRAFT-replay-settings-r4.js`)
+
+O produto [`DRAFT-replay-settings-r4.js`](file:///D:/FreeMix-QA-Gemini-ReplaySettings-20261011-1025/DRAFT-replay-settings-r4.js) **não possui nenhum defeito de lógica**. Ele comportou-se com 100% de rigor contratual: quando o servidor mock informou que Cam 1 e Anchor A haviam sido efetivamente persistidos, ele confirmou a operação.
+
+* **Hash SHA-256 de [`DRAFT-replay-settings-r4.js`](file:///D:/FreeMix-QA-Gemini-ReplaySettings-20261011-1025/DRAFT-replay-settings-r4.js):** `05cb27183c311a4d010639e0107ea5feaee17cefef3395f395a0ad45c5bb244f` (permanece **100% INTACTO**).
+* **Hash SHA-256 de [`DRAFT-replay-settings-r4.html`](file:///D:/FreeMix-QA-Gemini-ReplaySettings-20261011-1025/DRAFT-replay-settings-r4.html):** `99d640f344e5783ff56b9f63accf570346bd1a0a7654513c3056bb12652c7dcb` (permanece **100% INTACTO**).
+
+---
+
+## 3. Correção Mínima Requerida no Runner R5 (`run-test-replay-settings-dom-r5.mjs`)
+
+A correção reside exclusivamente em:
+1. **Drenagem Real de Timers:** Cancelar fisicamente os timers pendentes em `activeServerTimers` (`for (const t of activeServerTimers) clearTimeout(t); activeServerTimers.clear();`) imediatamente após a detecção do timeout e do teste de segundo clique, impedindo que o callback atrasado de `respondPost()` seja executado durante o teste adversarial.
+2. **Preservação de Baseline em Repouso:** Garantir explicitamente que `mockCameraOptions['Cam 1 - Palco']` permaneça no estado prévio não-mutado durante a injeção adversarial de `Cam 2 - Geral`, e que `mockCalibration` permaneça sem calibração válida para o Anchor A.
+3. **Liberação Explícita do Late ACK Legítimo:** Aplicar explicitamente a mutação legítima no mock após a validação adversarial, comprovando que o polling passivo seguinte destrava determinísticamente a interface.
+4. **Isolamento de Artefatos R5:** Novos nomes para runner, profile directory, receipt JSON e screenshots com sufixo `r5`, preservando o histórico de falhas de R4 e R3 intacto.
+
+---
+
+## 4. Patches Literais JSON para o Runner R5 (`run-test-replay-settings-dom-r5.mjs`)
+
+Os patches abaixo devem ser aplicados sobre [`run-test-replay-settings-dom-r4.mjs`](file:///D:/FreeMix-QA-Gemini-ReplaySettings-20261011-1025/run-test-replay-settings-dom-r4.mjs) para produzir `run-test-replay-settings-dom-r5.mjs`:
+
+```json
+[
+  {
+    "file": "run-test-replay-settings-dom-r5.mjs",
+    "old": "// run-test-replay-settings-dom-r4.mjs\n// Runner FINITO, AUTOCONTIDO e DETERMINÍSTICO para validação REAL DOM / CDP no Microsoft Edge (700x540).\n// Diálogo compacto de Configurações do Replay R4 (DRAFT-replay-settings-r3.html / DRAFT-replay-settings-r4.js).",
+    "new": "// run-test-replay-settings-dom-r5.mjs\n// Runner FINITO, AUTOCONTIDO e DETERMINÍSTICO para validação REAL DOM / CDP no Microsoft Edge (700x540).\n// Diálogo compacto de Configurações do Replay R5 (DRAFT-replay-settings-r4.html / DRAFT-replay-settings-r4.js).",
+    "expectedCount": 1
+  },
+  {
+    "file": "run-test-replay-settings-dom-r5.mjs",
+    "old": "const ownDir = path.resolve('D:/FreeMix-QA-Gemini-ReplaySettings-20261011-1025');\nconst candidateHtmlCandidates = [\n  path.join(ownDir, 'DRAFT-replay-settings-r4.html'),\n  path.join(ownDir, 'DRAFT-replay-settings-r3.html')\n];\nconst candidateHtml = candidateHtmlCandidates.find(p => fs.existsSync(p)) || candidateHtmlCandidates[1];\nconst candidateJs = path.join(ownDir, 'DRAFT-replay-settings-r4.js');",
+    "new": "const ownDir = path.resolve('D:/FreeMix-QA-Gemini-ReplaySettings-20261011-1025');\nconst candidateHtmlCandidates = [\n  path.join(ownDir, 'DRAFT-replay-settings-r5.html'),\n  path.join(ownDir, 'DRAFT-replay-settings-r4.html'),\n  path.join(ownDir, 'DRAFT-replay-settings-r3.html')\n];\nconst candidateHtml = candidateHtmlCandidates.find(p => fs.existsSync(p)) || candidateHtmlCandidates[1];\nconst candidateJsCandidates = [\n  path.join(ownDir, 'DRAFT-replay-settings-r5.js'),\n  path.join(ownDir, 'DRAFT-replay-settings-r4.js')\n];\nconst candidateJs = candidateJsCandidates.find(p => fs.existsSync(p)) || candidateJsCandidates[1];",
+    "expectedCount": 1
+  },
+  {
+    "file": "run-test-replay-settings-dom-r5.mjs",
+    "old": "  runner: 'run-test-replay-settings-dom-r4.mjs',",
+    "new": "  runner: 'run-test-replay-settings-dom-r5.mjs',",
+    "expectedCount": 1
+  },
+  {
+    "file": "run-test-replay-settings-dom-r5.mjs",
+    "old": "  <title>FreeMix ReplaySettings Test Harness R4</title>",
+    "new": "  <title>FreeMix ReplaySettings Test Harness R5</title>",
+    "expectedCount": 1
+  },
+  {
+    "file": "run-test-replay-settings-dom-r5.mjs",
+    "old": "  if (pathname === '/replay' || pathname === '/DRAFT-replay-settings-r4.html' || pathname === '/DRAFT-replay-settings-r3.html' || pathname === '/DRAFT-replay-settings-r2.html' || pathname === '/DRAFT-replay-settings-r1.html') {\n    const content = fs.readFileSync(candidateHtml, 'utf8');\n    res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });\n    res.end(content);\n    return;\n  }\n\n  if (pathname === '/replay-settings.js' || pathname === '/DRAFT-replay-settings-r4.js' || pathname === '/DRAFT-replay-settings-r3.js' || pathname === '/DRAFT-replay-settings-r2.js' || pathname === '/DRAFT-replay-settings-r1.js') {",
+    "new": "  if (pathname === '/replay' || pathname === '/DRAFT-replay-settings-r5.html' || pathname === '/DRAFT-replay-settings-r4.html' || pathname === '/DRAFT-replay-settings-r3.html' || pathname === '/DRAFT-replay-settings-r2.html' || pathname === '/DRAFT-replay-settings-r1.html') {\n    const content = fs.readFileSync(candidateHtml, 'utf8');\n    res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });\n    res.end(content);\n    return;\n  }\n\n  if (pathname === '/replay-settings.js' || pathname === '/DRAFT-replay-settings-r5.js' || pathname === '/DRAFT-replay-settings-r4.js' || pathname === '/DRAFT-replay-settings-r3.js' || pathname === '/DRAFT-replay-settings-r2.js' || pathname === '/DRAFT-replay-settings-r1.js') {",
+    "expectedCount": 1
+  },
+  {
+    "file": "run-test-replay-settings-dom-r5.mjs",
+    "old": "    profileDir = path.join(ownDir, `FreeMix-QA-Profile-ReplaySettings-R4-${Date.now()}`);",
+    "new": "    profileDir = path.join(ownDir, `FreeMix-QA-Profile-ReplaySettings-R5-${Date.now()}`);",
+    "expectedCount": 1
+  },
+  {
+    "file": "run-test-replay-settings-dom-r5.mjs",
+    "old": "    // Captura dos 3 Screenshots Oficiais (uma para cada aba)\n    await takeScreenshot('screenshot-replay-settings-tab-session-700x540');\n    await switchTab('storage');\n    await takeScreenshot('screenshot-replay-settings-tab-storage-700x540');\n    await switchTab('audio');\n    await takeScreenshot('screenshot-replay-settings-tab-audio-700x540');\n    await switchTab('session');",
+    "new": "    // Captura dos 3 Screenshots Oficiais (uma para cada aba)\n    await takeScreenshot('screenshot-replay-settings-r5-tab-session-700x540');\n    await switchTab('storage');\n    await takeScreenshot('screenshot-replay-settings-r5-tab-storage-700x540');\n    await switchTab('audio');\n    await takeScreenshot('screenshot-replay-settings-r5-tab-audio-700x540');\n    await switchTab('session');",
+    "expectedCount": 1
+  },
+  {
+    "file": "run-test-replay-settings-dom-r5.mjs",
+    "old": "    console.log('[INFO] Aguardando timeout de 8000ms para camera-options em GATE_29 (literal wait 8600ms)...');\n    await new Promise(r => setTimeout(r, 8600));\n    mockCameraOptionsDelayMs = 0; // Drenagem de timer\n\n    const postCountBeforeSecondCamClick = recordedPostRequests.length;\n    await pageCdp.eval(`\n      const doc = document.getElementById('mc-frame')?.contentDocument || document;\n      doc.getElementById('btn-save-cam-audio').click();\n    `);\n    await new Promise(r => setTimeout(r, 200));\n    const postCountAfterSecondCamClick = recordedPostRequests.length;\n\n    const gate29UncertainData = await pageCdp.eval(`\n      const doc = document.getElementById('mc-frame')?.contentDocument || document;\n      return {\n        btnDisabled: doc.getElementById('btn-save-cam-audio')?.disabled ?? false,\n        selDisabled: doc.getElementById('audio-cam-select')?.disabled ?? false,\n        msg: doc.getElementById('status-msg')?.textContent ?? ''\n      };\n    `);\n\n    // Adversarial: Motor envia ACK/update para OUTRA câmera (Cam 2) -> uncertainOp NÃO DEVE ser resolvido via polling passivo\n    mockCameraOptions['Cam 2 - Geral'] = { recordAudio: 'master', gainDb: -10, muted: false, offsetFrames: 20 };\n    console.log('[INFO] Aguardando ciclo de polling passivo de 1500ms em GATE_29 (espera 1800ms)...');\n    await new Promise(r => setTimeout(r, 1800)); // Aguarda ciclo de polling passivo pollStatus(false)\n    const gate29CrossCamCheck = await pageCdp.eval(`\n      const doc = document.getElementById('mc-frame')?.contentDocument || document;\n      return {\n        btnDisabled: doc.getElementById('btn-save-cam-audio')?.disabled ?? false,\n        msg: doc.getElementById('status-msg')?.textContent ?? ''\n      };\n    `);\n\n    // Late ACK legítimo da câmera atuada (Cam 1) -> agora sim resolve uncertainOp via polling passivo\n    mockCameraOptions['Cam 1 - Palco'] = { recordAudio: 'input', gainDb: -8, muted: true, offsetFrames: 12 };",
+    "new": "    console.log('[INFO] Aguardando timeout de 8000ms para camera-options em GATE_29 (literal wait 8600ms)...');\n    await new Promise(r => setTimeout(r, 8600));\n\n    const postCountBeforeSecondCamClick = recordedPostRequests.length;\n    await pageCdp.eval(`\n      const doc = document.getElementById('mc-frame')?.contentDocument || document;\n      doc.getElementById('btn-save-cam-audio').click();\n    `);\n    await new Promise(r => setTimeout(r, 200));\n    const postCountAfterSecondCamClick = recordedPostRequests.length;\n\n    const gate29UncertainData = await pageCdp.eval(`\n      const doc = document.getElementById('mc-frame')?.contentDocument || document;\n      return {\n        btnDisabled: doc.getElementById('btn-save-cam-audio')?.disabled ?? false,\n        selDisabled: doc.getElementById('audio-cam-select')?.disabled ?? false,\n        msg: doc.getElementById('status-msg')?.textContent ?? ''\n      };\n    `);\n\n    // Drenagem estrita dos timers de servidor do POST que sofreu timeout de 8s (evita mutação tardia a 9000ms)\n    for (const t of activeServerTimers) clearTimeout(t);\n    activeServerTimers.clear();\n    mockCameraOptionsDelayMs = 0;\n    // Garante que o motor NÃO aplicou a alteração de Cam 1 (permanece no estado de repouso pré-mutação)\n    mockCameraOptions['Cam 1 - Palco'] = { recordAudio: 'input', gainDb: 0, muted: false, offsetFrames: 0 };\n\n    // Adversarial: Motor reporta ACK/update apenas para OUTRA câmera (Cam 2) -> uncertainOp NÃO DEVE ser resolvido via polling passivo\n    mockCameraOptions['Cam 2 - Geral'] = { recordAudio: 'master', gainDb: -10, muted: false, offsetFrames: 20 };\n    console.log('[INFO] Aguardando ciclo de polling passivo de 1500ms sob cross-cam em GATE_29 (espera 1800ms)...');\n    await new Promise(r => setTimeout(r, 1800)); // Aguarda ciclo de polling passivo pollStatus(false)\n    const gate29CrossCamCheck = await pageCdp.eval(`\n      const doc = document.getElementById('mc-frame')?.contentDocument || document;\n      return {\n        btnDisabled: doc.getElementById('btn-save-cam-audio')?.disabled ?? false,\n        msg: doc.getElementById('status-msg')?.textContent ?? ''\n      };\n    `);\n\n    // Late ACK legítimo da câmera atuada (Cam 1) -> agora sim resolve uncertainOp via polling passivo\n    mockCameraOptions['Cam 1 - Palco'] = { recordAudio: 'input', gainDb: -8, muted: true, offsetFrames: 12 };",
+    "expectedCount": 1
+  },
+  {
+    "file": "run-test-replay-settings-dom-r5.mjs",
+    "old": "    console.log('[INFO] Aguardando timeout de 25000ms para auto-align em GATE_31 (literal wait 25600ms)...');\n    await new Promise(r => setTimeout(r, 25600)); // Disparo do AbortSignal.timeout(25000)\n    mockAutoAlignDelayMs = 0; // Drenagem de timer\n\n    const postCountBeforeSecondAlignClick = recordedPostRequests.length;\n    await pageCdp.eval(`\n      const doc = document.getElementById('mc-frame')?.contentDocument || document;\n      doc.getElementById('btn-auto-align').click();\n    `);\n    await new Promise(r => setTimeout(r, 200));\n    const postCountAfterSecondAlignClick = recordedPostRequests.length;\n\n    const gate31UncertainData = await pageCdp.eval(`\n      const doc = document.getElementById('mc-frame')?.contentDocument || document;\n      return {\n        btnDisabled: doc.getElementById('btn-auto-align')?.disabled ?? false,\n        msg: doc.getElementById('status-msg')?.textContent ?? ''\n      };\n    `);\n\n    // Adversarial: Motor reporta calibração com timestamp ANTERIOR ao uncertainOp ou com outro anchor ('B')\n    mockCalibration = {\n      at: Date.now() - 35000,\n      anchor: 'B',\n      results: { A: { offsetFrames: 0, offsetMs: 0 } },\n      method: 'decoded-common-audio',\n      hardwareGenlock: false\n    };\n    console.log('[INFO] Aguardando ciclo de polling passivo de 1500ms em GATE_31 (espera 1800ms)...');\n    await new Promise(r => setTimeout(r, 1800)); // Aguarda ciclo de polling passivo pollStatus(false)\n    const gate31WrongAnchorCheck = await pageCdp.eval(`\n      const doc = document.getElementById('mc-frame')?.contentDocument || document;\n      return {\n        btnDisabled: doc.getElementById('btn-auto-align')?.disabled ?? false,\n        msg: doc.getElementById('status-msg')?.textContent ?? ''\n      };\n    `);\n\n    // Late ACK legítimo: calibração fresca com o anchor atuado ('A')\n    mockCalibration = {\n      at: Date.now(),\n      anchor: 'A',",
+    "new": "    console.log('[INFO] Aguardando timeout de 25000ms para auto-align em GATE_31 (literal wait 25600ms)...');\n    await new Promise(r => setTimeout(r, 25600)); // Disparo do AbortSignal.timeout(25000)\n\n    const postCountBeforeSecondAlignClick = recordedPostRequests.length;\n    await pageCdp.eval(`\n      const doc = document.getElementById('mc-frame')?.contentDocument || document;\n      doc.getElementById('btn-auto-align').click();\n    `);\n    await new Promise(r => setTimeout(r, 200));\n    const postCountAfterSecondAlignClick = recordedPostRequests.length;\n\n    const gate31UncertainData = await pageCdp.eval(`\n      const doc = document.getElementById('mc-frame')?.contentDocument || document;\n      return {\n        btnDisabled: doc.getElementById('btn-auto-align')?.disabled ?? false,\n        msg: doc.getElementById('status-msg')?.textContent ?? ''\n      };\n    `);\n\n    // Drenagem estrita dos timers de servidor do POST que sofreu timeout de 25s (evita mutação tardia a 26000ms)\n    for (const t of activeServerTimers) clearTimeout(t);\n    activeServerTimers.clear();\n    mockAutoAlignDelayMs = 0;\n\n    // Adversarial: Motor reporta calibração com timestamp ANTERIOR ao uncertainOp ou com outro anchor ('B')\n    mockCalibration = {\n      at: Date.now() - 35000,\n      anchor: 'B',\n      results: { A: { offsetFrames: 0, offsetMs: 0 } },\n      method: 'decoded-common-audio',\n      hardwareGenlock: false\n    };\n    mockSync = null;\n    console.log('[INFO] Aguardando ciclo de polling passivo de 1500ms sob wrong-anchor em GATE_31 (espera 1800ms)...');\n    await new Promise(r => setTimeout(r, 1800)); // Aguarda ciclo de polling passivo pollStatus(false)\n    const gate31WrongAnchorCheck = await pageCdp.eval(`\n      const doc = document.getElementById('mc-frame')?.contentDocument || document;\n      return {\n        btnDisabled: doc.getElementById('btn-auto-align')?.disabled ?? false,\n        msg: doc.getElementById('status-msg')?.textContent ?? ''\n      };\n    `);\n\n    // Late ACK legítimo: calibração fresca com o anchor atuado ('A')\n    mockCalibration = {\n      at: Date.now(),\n      anchor: 'A',",
+    "expectedCount": 1
+  },
+  {
+    "file": "run-test-replay-settings-dom-r5.mjs",
+    "old": "    const receiptPath = path.join(ownDir, 'receipt-test-replay-settings-dom-r4.json');",
+    "new": "    const receiptPath = path.join(ownDir, 'receipt-test-replay-settings-dom-r5.json');",
+    "expectedCount": 1
+  }
+]
+```
+
+---
+
+## 5. Próximos Passos e Verificação Independente
+
+1. **Revisão Independente:** Submeter o diagnóstico e os patches do runner R5 à revisão prévia do auditor independente.
+2. **Materialização Assistida pelo Root:** Após aprovação da revisão, o Root aplicará os patches gerando `run-test-replay-settings-dom-r5.mjs` e executará `node --check run-test-replay-settings-dom-r5.mjs`.
+3. **Execução Final:** Execução física assistida pelo Root no Microsoft Edge headless para validação dos 32 gates com emissão do relatório `receipt-test-replay-settings-dom-r5.json`.

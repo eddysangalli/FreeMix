@@ -244,3 +244,20 @@ A integração mecânica exata do módulo de autosave foi de ANTES a57f → DEPO
 - **Histórico e Diagnóstico:** Artefatos e evidências de falha das etapas R1 e R5 mantidos imutáveis no repositório.
 - **Fronteiras e Escopo:** Validação estrita em `MOCK_API_REAL_DOM_ONLY`. Não inclui alteração em binários de distribuição, Setup 600 ou drivers de hardware CEF.
 - **Próximo Alvo de Engenharia:** Diálogo de Configurações de Replay (`ReplaySettings` em `/replay?view=settings#replay-config`).
+
+### Continuidade da Integração Canônica e Próximos Passos (CONTINUAR)
+
+> [!NOTE]
+> **Status da Integração de Fontes:**
+> A integração dos fontes de `ReplaySettings` foi **CONCLUÍDA COM SUCESSO** no repositório base (`HEAD ae245369305728d9b1fb01b83eae33f51e072f30`), conforme atestado em `ROOT-INTEGRATION-R3-RECEIPT.json` (`status: INTEGRATED_SOURCE_SYNTAX_DIFF_PASS`):
+> - 2 arquivos copiados: `painel/remoto/replay-settings.html` (SHA: `99d640...`) e `painel/remoto/replay-settings.js` (SHA: `05cb27...`).
+> - 2 âncoras aplicadas (diff exato de 1 linha): `painel/mesa.html` e `ferramentas/servidor-api.mjs`.
+
+> [!WARNING]
+> **Ambiente Operacional e Pacote Final Pendentes:**
+> - A instalação no ambiente em execução do operador ainda não foi realizada (`operatorUpdated: false`).
+> - A homologação final depende da validação no binário compilado com CEF 38 (Native 38).
+
+> [!IMPORTANT]
+> **Próxima Frente de Trabalho:**
+> Com a fonte de `ReplaySettings` integrada e congelada, o escopo avança para o painel de **Configurações Gerais (`Settings` global)**.

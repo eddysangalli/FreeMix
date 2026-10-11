@@ -1,0 +1,18 @@
+[
+  {
+    "sha": "ddd89decbd380e61c1bbe926fcafeec28da6c92a94893aa7531fe3c3eece94df",
+    "file": "run-test-replay-settings-dom-r5.mjs"
+  },
+  {
+    "sha": "05cb27183c311a4d010639e0107ea5feaee17cefef3395f395a0ad45c5bb244f",
+    "file": "DRAFT-replay-settings-r4.js"
+  },
+  {
+    "sha": "99d640f344e5783ff56b9f63accf570346bd1a0a7654513c3056bb12652c7dcb",
+    "file": "DRAFT-replay-settings-r4.html"
+  },
+  {
+    "sha": "d9e144738dfdde5afcd4d584bbd98581a0e4cc4f69ec63fdb8fbb1e924558105",
+    "file": "R5-DIAG-INDEPENDENT.txt"
+  }
+]

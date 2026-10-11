@@ -1,0 +1,87 @@
+### Proposta Atualizada de Integração Canônica — Diálogo ReplaySettings (R3 Manifesto Final)
+
+Esta formulação atualiza a proposta anterior (`INTEGRATION-R2-AUTHOR.txt`) consolidando os hashes criptográficos reais e definitivos validados na execução oficial **R5 (32/32 PASS, exit 0)**. O escopo é estritamente textual e não executivo (zero comandos, zero escritas em disco via agente), aguardando revisão independente e aplicação mecânica pelo Root.
+
+---
+
+### 1. Manifesto de Integração (JSON Declarativo)
+
+```json
+{
+  "scope": "INTEGRATION_PROPOSAL_REPLAY_SETTINGS_R3_QUALIFIED",
+  "baseCommit": "ae245369305728d9b1fb01b83eae33f51e072f30",
+  "qualificationStatus": "QA_PASS_QUALIFIED_FOR_INTEGRATION",
+  "evidenceScope": "MOCK_API_REAL_DOM_ONLY",
+  "copyFiles": [
+    {
+      "source": "DRAFT-replay-settings-r4.html",
+      "destination": "painel/remoto/replay-settings.html",
+      "expectedSha256": "99d640f344e5783ff56b9f63accf570346bd1a0a7654513c3056bb12652c7dcb",
+      "description": "Casca HTML compacta 700x540 com sidebar de 3 abas e tag de script canônica apontando para /replay-settings.js"
+    },
+    {
+      "source": "DRAFT-replay-settings-r4.js",
+      "destination": "painel/remoto/replay-settings.js",
+      "expectedSha256": "05cb27183c311a4d010639e0107ea5feaee17cefef3395f395a0ad45c5bb244f",
+      "description": "Script de cliente qualificado (R4) com guards no carregamento, bloqueio por incerteza, cameraDrafts desacoplados e reconciliação determinística"
+    }
+  ],
+  "patches": [
+    {
+      "file": "painel/mesa.html",
+      "expectedCount": 1,
+      "old": "  const panelSizes={streamset:[700,445],calls:[700,540],ext:[700,540],recset:[700,540],iso:[700,540]};",
+      "new": "  const panelSizes={streamset:[700,445],calls:[700,540],ext:[700,540],recset:[700,540],iso:[700,540],replaysettings:[700,540]};",
+      "description": "Adiciona dimensão compacta 700x540 para replaysettings em panelSizes (as entradas em panelPages, independentEditors e títulos já existem no HEAD)"
+    },
+    {
+      "file": "ferramentas/servidor-api.mjs",
+      "expectedCount": 1,
+      "old": "    if(routes[path])file=join(PANEL,'remoto',routes[path]+'.html');",
+      "new": "    if(routes[path])file=join(PANEL,'remoto',(path==='/replay'&&u.searchParams.get('view')==='settings'?'replay-settings':routes[path])+'.html');",
+      "description": "Roteamento condicional estrito: /replay operacional continua servindo replay.html intacto; apenas a requisição com ?view=settings serve replay-settings.html"
+    }
+  ],
+  "verificationGuards": {
+    "syntaxCheck": "node --check ferramentas/servidor-api.mjs",
+    "gitStatusExpected": "clean working tree on HEAD ae245369305728d9b1fb01b83eae33f51e072f30 before apply",
+    "postDiffExpectedLines": "Exatamente 1 linha alterada em painel/mesa.html e 1 linha alterada em ferramentas/servidor-api.mjs"
+  }
+}
+```
+
+---
+
+### 2. README Curto de Evidência Empírica e Qualificação
+
+- **Execução Real R5 Unificada pelo Root**:
+  - **Runner**: [`run-test-replay-settings-dom-r5.mjs`](file:///D:/FreeMix-QA-Gemini-ReplaySettings-20261011-1025/run-test-replay-settings-dom-r5.mjs)
+  - **Resultado**: `32/32 PASS, exit 0`.
+  - **Receipt Oficial**: [`receipt-test-replay-settings-dom-r5.json`](file:///D:/FreeMix-QA-Gemini-ReplaySettings-20261011-1025/receipt-test-replay-settings-dom-r5.json)
+    - **SHA-256**: `9472650ed96bbbfc73fba015f94b02a9bf6788a25be939d06d2e212244b3118e`
+- **Observações de Pós-Execução do Root ([`ROOT-REAL-R5-POST-OBSERVATION.json`](file:///D:/FreeMix-QA-Gemini-ReplaySettings-20261011-1025/ROOT-REAL-R5-POST-OBSERVATION.json))**:
+  - `ownEdgeCount`: `0`
+  - `browserExitObserved`: `true`
+  - `browserMainPidAbsent`: `true`
+  - `browserEdgeProfileCount`: `0`
+  - `pinsSame`: `true` (hashes dos fontes de teste mantiveram-se idênticos antes e após a execução).
+- **Inspeção Visual Concluída**:
+  - [`screenshot-replay-settings-r5-tab-session-700x540.png`](file:///D:/FreeMix-QA-Gemini-ReplaySettings-20261011-1025/screenshot-replay-settings-r5-tab-session-700x540.png): 8 slots em 2 colunas com badges azuis, banner ocioso, botão verde "Iniciar gravação SSD", viewport 700x540 sem overflow.
+  - [`screenshot-replay-settings-r5-tab-storage-700x540.png`](file:///D:/FreeMix-QA-Gemini-ReplaySettings-20261011-1025/screenshot-replay-settings-r5-tab-storage-700x540.png): controles de retenção circular e janela em minutos (30 min).
+  - [`screenshot-replay-settings-r5-tab-audio-700x540.png`](file:///D:/FreeMix-QA-Gemini-ReplaySettings-20261011-1025/screenshot-replay-settings-r5-tab-audio-700x540.png): botão áudio master ligado, controles de volume/mute/offset e seção de auto-alinhamento.
+- **Rigor de Delimitação de Escopo (`MOCK_API_REAL_DOM_ONLY`)**:
+  - A qualificação atesta com rigor o contrato de interface visual, layout 700x540, preservação de drafts, bloqueios sob incerteza e recuperação manual de rede no Microsoft Edge headless contra os mocks da API de Replay.
+  - **Não constitui certificação de 100% de ponta a ponta do ecossistema FreeMix**: testes de stress com encoders reais de hardware (DeckLink, NDI, ISO), renderização CEF embutida e tráfego WAN permanecem reservados para etapas de validação em bancada integrada física.
+- **Isolamento de Impacto**:
+  - `painel/remoto/replay.html` e `painel/remoto/replay.js` permanecem rigorosamente intocados.
+  - Zero alteração no motor backend C++/OBS (`zero backend diff`).
+  - O ativo estático `/replay-settings.js` é servido nativamente pelo resolvedor genérico da linha 211 de [`ferramentas/servidor-api.mjs`](file:///D:/FreeMix-QA-Gemini-ReplaySettings-20261011-1025/ferramentas/servidor-api.mjs) sem necessidade de rota dedicada adicional.
+
+---
+
+### 3. Nota de Autor e Continuidade
+
+> [!NOTE]
+> Proposta R3 fechada com integridade criptográfica absoluta dos arquivos fontes e âncoras singulares auditadas sobre o commit base `ae245369305728d9b1fb01b83eae33f51e072f30`. Pronta para submissão à conferência do revisor independente e aplicação controlada pelo Root.
+>
+> **CONTINUAR**

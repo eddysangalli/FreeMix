@@ -1,0 +1,28 @@
+{
+  "approvalSHA": "38581f16cd7b8dc793b296703ca1c72c95edabbf9df2953d78e8add2666ab173",
+  "copies": [
+    {
+      "sha": "99d640f344e5783ff56b9f63accf570346bd1a0a7654513c3056bb12652c7dcb",
+      "file": "painel/remoto/replay-settings.html"
+    },
+    {
+      "sha": "05cb27183c311a4d010639e0107ea5feaee17cefef3395f395a0ad45c5bb244f",
+      "file": "painel/remoto/replay-settings.js"
+    }
+  ],
+  "operatorUpdated": false,
+  "status": "INTEGRATED_SOURCE_SYNTAX_DIFF_PASS",
+  "base": "ae245369305728d9b1fb01b83eae33f51e072f30",
+  "patches": [
+    {
+      "after": "31a276775f5021daccdacc4706254711e8bfde5179c0b8f097003942c412401b",
+      "before": "0de799f06d9d75563bede10b145c935f41462915d6ca03f01783cab5cf3e2dc8",
+      "file": "painel/mesa.html"
+    },
+    {
+      "after": "4cca90096cc6c66c2f40db4d7f9094f4caa0e9808473b2360addb4f0cfad4855",
+      "before": "b4060cfc66d3ca99da4368967b9c02e2946dbfc3e74103207ac2a7d752eb3104",
+      "file": "ferramentas/servidor-api.mjs"
+    }
+  ]
+}

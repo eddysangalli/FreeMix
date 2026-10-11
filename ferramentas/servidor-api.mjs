@@ -202,7 +202,7 @@ async function handleHttp(req,res){
       return json(res,404,{success:false,error:'API não encontrada'});
     }
     let file;
-    if(routes[path])file=join(PANEL,'remoto',routes[path]+'.html');
+    if(routes[path])file=join(PANEL,'remoto',(path==='/replay'&&u.searchParams.get('view')==='settings'?'replay-settings':routes[path])+'.html');
     else if(path==='/efeitos/srt-packed-alpha.shader'){res.setHeader('Content-Type','text/plain; charset=utf-8');res.setHeader('Content-Disposition','attachment; filename="srt-packed-alpha.shader"');const shader=await readFile(join(PANEL,'efeitos/srt-packed-alpha.shader'));res.writeHead(200);res.end(shader);return;}
     else{
       const decoded=decodeURIComponent(path);if(decoded.includes('\\')||decoded.includes('\0'))throw new Error('Caminho inválido');
