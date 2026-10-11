@@ -1,3 +1,15 @@
+<!-- sceneswitcher-notice-20261011 -->
+## 11/10 — aviso do Advanced Scene Switcher: conferência local
+
+O dono identificou o aviso no FreeMix como Advanced Scene Switcher. A tradução instalada contém: “Detectada uma nova versão do Advanced Scene Switcher. Deve ser criado um backup das configurações antigas?” (`AdvSceneSwitcher.askBackup`). A fonte preservada chama `AskForBackup` quando `VersionChanged` compara a versão salva com `g_GIT_SHA1`; esse caminho solicita backup após uma mudança local, sem consultar um servidor de atualizações. O texto exato visto pelo dono ainda não foi confirmado, portanto a identificação deste diálogo como o aviso observado permanece condicionada ao texto.
+
+Os hashes das duas DLLs instaladas coincidem com as DLLs recompiladas e testadas da correção de shutdown: módulo `699b1f15067fd27dd0aca42a5108b4b1be6d1e863085aabec71cbdfaab294cc0`, biblioteca `5b0e93759d1d544d39371ce7bbe3f7e962a39fead1fe1f6b0cb2d3774d91b24f`. O componente foi adaptado/recompilado, mas continua modular; seus subplugins/dependências oficiais foram preservados. Não afirmar que todos os plugins já foram incorporados ao executável ou que seus diálogos foram governados.
+
+Pendência: integrar identidade de versão estável e aviso de migração/backup ao fluxo FreeMix, preservando configurações e proteção de backup, com revisão de fonte, recompilação e QA próprio antes de distribuir. Nenhuma DLL, macro, configuração ou processo do operador foi alterado nesta conferência. Bloquear o updater do OBS não substitui o tratamento dos diálogos de cada componente.
+
+Observação somente leitura: `obs-vmix/version.json` agora declara `0.1.0-local.20261011145116`; o estado anterior “incremental ainda não aplicado” ficou histórico. Root não aplicou a atualização. Esta leitura não qualifica todos os recursos da mesa ou substitui os testes pendentes.
+
+---
 <!-- prazo-humano-20261012-1900 -->
 ## Prazo vigente — segunda-feira, 12/10/2026, às 19h de Brasília
 
