@@ -87,7 +87,7 @@
     if (selected > list.length || (selected === list.length && free < 0)) selected = Math.max(0, list.length - 1);
     const g = list[selected] || null, r = g ? returns().find((x) => x.key === g.key) : null, cur = g ? current(g) : null, changed = !!g && drafts.has(g.key), off = busy || !st.connected;
 
-    for (const b of E('nums').children) { const i = Number(b.dataset.n), x = list[i]; b.disabled = !x && i !== free; b.textContent = !x && i === free ? '+' : String(i + 1); b.classList.toggle('vd-on', i === selected); b.classList.toggle('vd-live', !!x?.connected); b.setAttribute('aria-selected', i === selected); b.title = x ? label(x) + (x.connected ? ' · convidado conectado' : '') : i === free ? 'Livre: hospedar uma nova chamada' : 'Livre'; }
+    for (const b of E('nums').children) { const i = Number(b.dataset.n), x = list[i]; b.disabled = off || (!x && i !== free); b.textContent = !x && i === free ? '+' : String(i + 1); b.classList.toggle('vd-on', i === selected); b.classList.toggle('vd-live', !!x?.connected); b.setAttribute('aria-selected', i === selected); b.title = x ? label(x) + (x.connected ? ' · convidado conectado' : '') : i === free ? 'Livre: hospedar uma nova chamada' : 'Livre'; }
     const slot = g ? g.key : 'new';
     if (E('name').dataset.slot !== slot) { E('name').dataset.slot = slot; E('name').value = g ? label(g) : ''; } else if (g) E('name').value = label(g);
     E('name').readOnly = !!g; E('name').disabled = !g && off; E('name').placeholder = g ? '' : 'Nome da nova chamada (opcional)';
@@ -115,9 +115,10 @@
     E('mic-status').textContent = c.director ? 'Em uso: ' + c.director.name + ' · fica fora do Master, do fone e das gravações.' : 'Nenhum microfone do diretor escolhido.';
     const t = targets(), keys = new Set(targetKeys());
     pick(E('talk-mode'), t === null ? 'all' : 'selected'); E('talk-mode').disabled = off || held || starting || !list.length;
-    fill(E('targets'), list.map((x) => `<label class="vd-check"><input type="checkbox" value="${esc(x.key)}"${keys.has(x.key) ? ' checked' : ''}${off || held || starting || t === null ? ' disabled' : ''}> ${esc(label(x))}</label>`).join(''));
+    E('targets').closest('.vd-row').hidden = t === null;
+    fill(E('targets'), list.map((x) => `<label class="vd-check"><input type="checkbox" value="${esc(x.key)}"${keys.has(x.key) ? ' checked' : ''}${off || held || starting ? ' disabled' : ''}> ${esc(label(x))}</label>`).join(''));
     const reason = talkReason();
-    E('talk-status').textContent = held && lease ? 'Microfone aberto só para os convidados marcados.' : reason || 'Pronto: segure o botão “Segure para falar” (ou Ctrl+Espaço).';
+    E('talk-status').textContent = held && lease ? (t === null ? 'Microfone aberto para todos os convidados.' : 'Microfone aberto só para os convidados marcados.') : reason || (t === null ? 'Pronto (todos os convidados): segure o botão “Segure para falar” (ou Ctrl+Espaço).' : 'Pronto (convidados marcados): segure o botão “Segure para falar” (ou Ctrl+Espaço).');
     E('ice-import').disabled = E('ice-reset').disabled = off;
     E('ice-status').textContent = c.ice?.configured ? `TURN configurado · ${c.ice.servers} servidor(es) · ${c.ice.transportPolicy}` : 'Rede automática';
     const d = r?.diagnostics;
@@ -153,8 +154,8 @@
   const selectedGuest = () => guests()[selected] || null;
 
   // ---- events ----
-  E('nums').onclick = (e) => { const b = e.target.closest('button'); if (!b || b.disabled) return; selected = Number(b.dataset.n); E('msg').dataset.auto = '1'; say(''); draw(); };
-  E('rows').onclick = (e) => { const tr = e.target.closest('tr[data-i]'); if (!tr) return; selected = Number(tr.dataset.i); E('msg').dataset.auto = '1'; say(''); draw(); };
+  E('nums').onclick = (e) => { const b = e.target.closest('button'); if (busy || !b || b.disabled) return; selected = Number(b.dataset.n); E('msg').dataset.auto = '1'; say(''); draw(); };
+  E('rows').onclick = (e) => { const tr = e.target.closest('tr[data-i]'); if (busy || !tr) return; selected = Number(tr.dataset.i); E('msg').dataset.auto = '1'; say(''); draw(); };
   E('host').onclick = () => { if (selectedGuest()) { note('Esta chamada já está hospedada: envie o link ao convidado. Para criar outra, clique no próximo número livre.'); return; }
     run('Criando a chamada', async () => { const made = (await send('call_create', { name: E('name').value.trim() })).call; const at = guests().findIndex((x) => x.name === made?.source); if (at >= 0) selected = at; return `Chamada “${made?.created}” criada na mesa. Copie o link e envie ao convidado.`; }); };
   E('copy').onclick = () => { const g = selectedGuest(); if (!g) return;

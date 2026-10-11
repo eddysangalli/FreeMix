@@ -1,0 +1,21 @@
+{
+  "verdict": "APPROVED_FOR_GUARDED_SOURCE_INTEGRATION",
+  "blockers": [],
+  "requiredCorrections": [],
+  "auditSummary": "O script de integração R2 ('apply-calls-ui-handoff-r2.ps1') corrige integralmente as deficiências de caminho relativo e de tratamento de concorrência do R1. Os caminhos absolutos resolvem com exatidão a estrutura de diretórios canônica ('painel\\remoto'), as pré-condições de Git e SHA são estritas, e o procedimento de escrita adota salvaguardas sequenciais sem assunções incorretas de atomicidade ou sobrescritas cegas pós-concorrência.",
+  "pathAndSecurityVerifications": {
+    "absolutePathResolution": "PASS. Caminhos completamente qualificados e parametrizados: repositório em 'D:\\DRIVE\\IA\\antigravity\\vmixtwste\\FreeMix', arquivos canônicos em 'painel\\remoto', pasta de testes em 'D:\\FreeMix-QA-Gemini-Calls-SourceReview-20261011-0530' e documento externo em 'D:\\DRIVE\\IA\\antigravity\\vmixtwste\\docs\\CONTINUAR.md'.",
+    "gitWorkspaceIntegrity": "PASS. Validação de HEAD via 'git -C $RepoRoot rev-parse HEAD' ($ExpectedHead = '1775a550c0aac5210ae266acdc6db21132179c81') e verificação de árvore limpa restrita aos alvos via 'git -C $RepoRoot status --porcelain -- $CanonicalPathList'.",
+    "strictPinsAndReceipt": "PASS. Validação exata dos hashes SHA-256 canônicos originais, dos DRAFTs qualificados e do recibo formal R4 ('1fdefd62...'). O script realiza análise semântica adicional no recibo JSON (scope 'MOCK_API_REAL_DOM_ONLY', 25 PASS / 0 FAIL, exitObserved: true, pins intactos).",
+    "backupIsolation": "PASS. Os backups 'calls.html.bak' e 'calls.js.bak' são gravados em diretório com carimbo de data/hora isolado dentro de 'OwnDir', sem poluir a árvore canônica do FreeMix.",
+    "sequentialPreWriteRechecks": "PASS. Rechecagem de hash sequencial imediatamente anterior a cada operação de escrita (para 'calls.html', 'calls.js' e 'CONTINUAR.md'). Em caso de detecção de escrita concorrente em 'calls.js', o script aborta sem sobrescrever o segundo arquivo e reporta a divergência sem reversão cega.",
+    "postCopyIntegrity": "PASS. Após a cópia, os hashes finais são revalidados contra os DRAFTs. Se houver divergência, o script aborta preservando os backups intactos para auditoria manual do operador, sem executar restauração cega destrutiva.",
+    "documentationAndEvidence": "PASS. Arquivamento restrito à pasta pública de evidências ('FreeMix/docs/evidencias/20261011-calls-talkback-ui-gemini') com gravação em UTF-8 de 'README.md', 'receipt-test-calls-dom-r4.json' e PNGs reais. Registro em 'CONTINUAR.md' protegido por rechecagem prévia de hash."
+  },
+  "limits": [
+    "MOCK_API_REAL_DOM_ONLY: Aprovação restrita à integração de código-fonte das melhorias de UI ('calls.html', 'calls.js') validadas no DOM real em Edge Headless sob mock local de API.",
+    "Nenhuma inferência sobre hardware físico: não valida dispositivos WASAPI reais, placas de captura nem microfones físicos.",
+    "Nenhuma inferência sobre WAN/WebRTC: o transporte de rede remota, servidores STUN/TURN e latências de internet não foram alterados nem validados.",
+    "Imutabilidade do Core/Native: contratos da API REST, backend em C++, configurações do operador e arquivos de build permanecem intocados."
+  ]
+}

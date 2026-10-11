@@ -1,0 +1,166 @@
+{
+  "scope": "MOCK_API_REAL_DOM_ONLY",
+  "native": false,
+  "hardwareMicrophone": false,
+  "wan": false,
+  "inputPins": {
+    "expected": {
+      "html": "c52b5d30c0170521cbf82bebe8058f101ffee6d5b42837a2b0e5996eba6b3179",
+      "js": "cfce275f9fd9e8750acab7f9e1cfd3d771f93e1e496cbed7b8332ae21574412c",
+      "css": "f3d08180366f933049c4a16b2e136e04c25a6691371d2d1f6e0d97c9da85084c"
+    },
+    "before": {
+      "html": "c52b5d30c0170521cbf82bebe8058f101ffee6d5b42837a2b0e5996eba6b3179",
+      "js": "cfce275f9fd9e8750acab7f9e1cfd3d771f93e1e496cbed7b8332ae21574412c",
+      "css": "f3d08180366f933049c4a16b2e136e04c25a6691371d2d1f6e0d97c9da85084c"
+    },
+    "after": {
+      "html": "c52b5d30c0170521cbf82bebe8058f101ffee6d5b42837a2b0e5996eba6b3179",
+      "js": "cfce275f9fd9e8750acab7f9e1cfd3d771f93e1e496cbed7b8332ae21574412c",
+      "css": "f3d08180366f933049c4a16b2e136e04c25a6691371d2d1f6e0d97c9da85084c"
+    }
+  },
+  "summary": {
+    "pass": 25,
+    "fail": 0,
+    "total": 25
+  },
+  "assertions": [
+    {
+      "title": "gate0_startup_zero_mutating_posts",
+      "ok": true,
+      "detail": "posts_mutantes=0"
+    },
+    {
+      "title": "gate0_slot1_livre_e_demais_bloqueados",
+      "ok": true,
+      "detail": "+ 2- 3- 4- 5- 6- 7- 8-"
+    },
+    {
+      "title": "gate0_talk_mode_padrao_all",
+      "ok": true,
+      "detail": "valor=all"
+    },
+    {
+      "title": "gate0_targets_oculto_em_all",
+      "ok": true,
+      "detail": "targets_hidden=true"
+    },
+    {
+      "title": "gate0_talk_status_informativo",
+      "ok": true,
+      "detail": "Nenhuma chamada criada."
+    },
+    {
+      "title": "gate0_advanced_oculto_por_padrao",
+      "ok": true,
+      "detail": "advanced_hidden=true"
+    },
+    {
+      "title": "gate1_duas_chamadas_criadas",
+      "ok": true,
+      "detail": "total_guests=2"
+    },
+    {
+      "title": "gate1_targets_visivel_em_selected",
+      "ok": true,
+      "detail": "targets_hidden=false"
+    },
+    {
+      "title": "gate1_checkboxes_renderizados_para_convidados",
+      "ok": true,
+      "detail": "checks_count=2"
+    },
+    {
+      "title": "gate1_rapid_targets_reflete_apenas_marcado",
+      "ok": true,
+      "detail": "[\"key-guest-1\"]"
+    },
+    {
+      "title": "gate1_targets_inalterados_ao_trocar_abas",
+      "ok": true,
+      "detail": "[\"key-guest-1\"]"
+    },
+    {
+      "title": "gate1_talkback_active_state",
+      "ok": true,
+      "detail": "FALANDO · solte para parar"
+    },
+    {
+      "title": "gate1_talkback_ping_emitted",
+      "ok": true,
+      "detail": "pings_recebidos=2"
+    },
+    {
+      "title": "gate1_talkback_stopped_on_blur",
+      "ok": true,
+      "detail": "talking=false"
+    },
+    {
+      "title": "gate1_targets_oculto_ao_voltar_para_all",
+      "ok": true,
+      "detail": "targets_hidden=true"
+    },
+    {
+      "title": "gate2_rascunhos_concorrentes_no_gerenciador",
+      "ok": true,
+      "detail": "r0=true, r1=true"
+    },
+    {
+      "title": "gate2_rascunho_aba0_preservado_apos_troca",
+      "ok": true,
+      "detail": "video_val=cam1"
+    },
+    {
+      "title": "gate2_todos_os_8_slots_ocupados",
+      "ok": true,
+      "detail": "slots_1_a_8_ativos"
+    },
+    {
+      "title": "gate2_manager_contem_8_linhas",
+      "ok": true,
+      "detail": "linhas=8"
+    },
+    {
+      "title": "gate2_footer_visivel_dentro_viewport_540",
+      "ok": true,
+      "detail": "bottom=540px"
+    },
+    {
+      "title": "gate3_estado_busy_ativo_durante_slowack",
+      "ok": true,
+      "detail": "busy=true"
+    },
+    {
+      "title": "gate3_nums_bloqueado_durante_busy",
+      "ok": true,
+      "detail": "click_result=desabilitado"
+    },
+    {
+      "title": "gate3_manager_row_bloqueada_durante_busy",
+      "ok": true,
+      "detail": "selecao_preservada=true"
+    },
+    {
+      "title": "gate3_retorno_ao_estado_idle_apos_ack",
+      "ok": true,
+      "detail": "idle=true"
+    },
+    {
+      "title": "pins_rechecked_finally",
+      "ok": true,
+      "detail": "PINs intactos"
+    }
+  ],
+  "screenshots": [
+    "gate0_0convidados_startup_r4.png",
+    "gate1_2convidados_talkback_r4.png",
+    "gate2_8convidados_layout700x540_r4.png",
+    "gate3_slowack_busy_guard_r4.png"
+  ],
+  "cleanup": {
+    "exitObserved": true,
+    "status": "OK",
+    "profileDir": "D:\\FreeMix-QA-Gemini-Calls-SourceReview-20261011-0530\\FreeMix-QA-Profile-T20L2K"
+  }
+}

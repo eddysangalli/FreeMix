@@ -1,0 +1,24 @@
+{
+  "verdict": "APPROVED_FOR_ONE_OWN_MOCK_REAL_DOM_EXECUTION",
+  "scope": "MOCK_API_REAL_DOM_ONLY",
+  "auditSummary": "O runner R4 ('run-test-calls-dom-r4.mjs') resolveu com precisão cirúrgica a colisão de escopo léxico observada em runtime ('Identifier sel already declared'), encapsulando as avaliações CDP em IIFEs isoladas. O script mantém a integridade dos PINs, elimina deleções recursivas, assegura teardown cooperativo e garante a geração atômica do receipt JSON.",
+  "evalScopingFixVerification": {
+    "iifeEncapsulation": "PASS. Todas as chamadas de avaliação com declaração de identificadores ('sel', 'chk', 'selV', 'gIn') estão agora envolvidas em '(() => { ... })()', eliminando o risco de colisão de escopo léxico global no V8/CDP.",
+    "uniqueArtifacts": "PASS. Nomes de screenshots e recibo de auditoria atualizados para sufixo R4 ('receipt-test-calls-dom-r4.json', capturas PNG *_r4.png), preservando o histórico de execuções anteriores sem sobrescritas acidentais."
+  },
+  "safetyAndIntegrityGuards": {
+    "zeroFileDeletions": "PASS. Nenhuma instrução 'fs.rm' presente. O diretório de perfil efêmero ('profileDir') é estritamente preservado para auditoria pós-execução.",
+    "pinsProtection": "PASS. Validação de SHA-256 executada antes ('pinsBefore') e revalidada no encerramento ('pinsAfter') para 'DRAFT-calls.html', 'DRAFT-calls.js' e 'vmix-dialogo.css'.",
+    "cooperativeTeardown": "PASS. Encerramento ordenado via comando CDP 'Browser.close', verificação de 'edgeChild.exitCode', listener 'once' com timeout de segurança de 5000ms e fechamento determinístico de sockets e servidor HTTP.",
+    "realDOMCoverage": "PASS. Asserções cobrem: zero POSTs mutantes no startup, exibição de 'Nenhuma chamada criada.' com 0 convidados, bolha de evento com 'bubbles: true', ciclo de Talkback (start/ping/blur), retenção simultânea de múltiplos rascunhos, ocupação total de 8 slots e proteção de interface sob 'busy' com slowACK (1200ms)."
+  },
+  "blockers": [],
+  "requiredCorrections": [],
+  "limits": [
+    "MOCK_API_REAL_DOM_ONLY: Validação estritamente confinada ao comportamento real de rendering/DOM no Microsoft Edge e conformidade com o contrato de API sintético local.",
+    "Ausência de validação de hardware: o teste não valida áudio físico, drivers WASAPI do Windows nem microfones reais.",
+    "Ausência de validação de WAN: o transporte WebRTC externo e servidores TURN/STUN remotos não são cobertos pelo mock em loopback.",
+    "Execução experimental única: autorizada unicamente UMA execução real local deste runner R4 pelo executor.",
+    "Imutabilidade do repositório: os arquivos canônicos do projeto e rascunhos de base permanecem intocados e protegidos contra integração prematura."
+  ]
+}

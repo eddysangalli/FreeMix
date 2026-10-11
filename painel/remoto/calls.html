@@ -24,6 +24,9 @@
     <label class="vd-row"><span>Fonte de áudio</span><select id="audio"></select></label>
     <div class="vd-row" id="custom-row" hidden><span></span><div class="vd-checks" id="sources"></div></div>
     <div class="vd-row"><span></span><label class="vd-check"><input id="conference" type="checkbox"> Convidados ouvem uns aos outros</label></div>
+    <div class="vd-row"><span>Talkback para</span><select id="talk-mode" class="vd-short"><option value="all">Todos os convidados</option><option value="selected">Somente os marcados</option></select></div>
+    <div class="vd-row"><span></span><div class="vd-checks" id="targets"></div></div>
+    <div class="vd-row"><span></span><div class="vd-note" id="talk-status"></div></div>
     <div class="vd-row"><span></span><label class="vd-check"><input id="show-advanced" type="checkbox"> Mostrar opções avançadas</label></div>
     <div class="vd-advanced" id="advanced" hidden>
       <div class="vd-row"><span>Nível do retorno</span>
@@ -32,9 +35,6 @@
       <div class="vd-row"><span>Microfone do diretor</span><select id="mic"></select>
         <div class="vd-inline" style="gap:6px"><button id="mic-use">Usar</button><button id="mic-create" title="Cria um microfone privado com o dispositivo padrão do Windows">Criar</button></div></div>
       <div class="vd-row"><span></span><div class="vd-note" id="mic-status"></div></div>
-      <div class="vd-row"><span>Talkback para</span><select id="talk-mode" class="vd-short"><option value="all">Todos os convidados</option><option value="selected">Somente os marcados</option></select></div>
-      <div class="vd-row"><span></span><div class="vd-checks" id="targets"></div></div>
-      <div class="vd-row"><span></span><div class="vd-note" id="talk-status"></div></div>
       <div class="vd-row"><span>Rede dos retornos</span>
         <div class="vd-inline" style="gap:6px"><button id="ice-import" title="Arquivo TURN do kit do seu servidor">Importar TURN…</button><button id="ice-reset">Rede automática</button><span class="vd-note" id="ice-status"></span></div></div>
       <div class="vd-row"><span>Diagnóstico</span><div class="vd-note vd-mono" id="diag"></div></div>

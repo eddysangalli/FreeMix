@@ -1,0 +1,20 @@
+{
+  "verdict": "ACCEPT_SOURCE_ONLY",
+  "summary": "Revisão estática de código concluída com aprovação no nível de código-fonte. Contratos de backend, ordem de declaração (TDZ), gestão de lease/watchdog e isolamento de navegação contra concorrência foram preservados integralmente.",
+  "sourceAudits": {
+    "declarationAndTDZ": "PASS. Todas as funções, seletores e variáveis de estado ('busy', 'off', 'selectedGuest', 'saveTargets') estão declarados antes do consumo.",
+    "busyAndOffLifetimes": "PASS. O ciclo de vida de 'busy' é gerido estritamente via try/finally em run(), com restauração garantida de estado e re-renderização de 'draw()'. 'off' reflete 'busy || !st.connected' e desabilita controles de forma consistente.",
+    "navigationGuards": "PASS. Cliques em '#nums' e '#rows' são bloqueados quando 'busy === true'. O botão '#manager' apenas comuta a visibilidade do painel '#status' e estilos de janela sem alterar o índice da chamada selecionada ('selected').",
+    "startupPurity": "PASS. A inicialização invoca unicamente sincronização passiva de tela (draw()) e temporizador de leitura; nenhuma requisição mutante de API é disparada no carregamento.",
+    "routingAndLeaseSafety": "PASS. Roteamento de talkback preserva modo global ('all' / 't === null') e seletivo ('selected'). O ciclo do microfone ('startTalk', 'stopTalk', 'holdEpoch', ping de 350ms e cancelamento de lease) permanece íntegro e imune a retenções."
+  },
+  "blockers": [],
+  "minimalFixes": [],
+  "runtimeRequirements": [
+    "Executar teste de renderização e densidade em viewport 700x540 para aferir barra de rolagem e fixação de '.vd-bar' com '#status' visível.",
+    "Validar em ambiente real a rejeição de cliques em abas e linhas de tabela durante chamadas assíncronas lentas.",
+    "Confirmar encerramento determinístico de lease de áudio em eventos de desfoque de janela ('blur'), 'visibilitychange' e 'pagehide'.",
+    "Realizar teste funcional fim-a-fim de captura de microfone e conectividade WebRTC/TURN (WAN).",
+    "Nota de governança: o aceite de código-fonte não autoriza a mesclagem ou integração canônica sobre o trabalho do outro autor sem consenso prévio."
+  ]
+}
