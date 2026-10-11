@@ -207,3 +207,14 @@ Preview/Cut/dedupe/persistência não executados após a falha. Native72084 ence
 
 
 A integração mecânica exata do módulo de autosave foi de ANTES a57f → DEPOIS a245, com 15 contratos CPU executados pelo autor Gemini e repetidos pelo Root. O revisor Gemini REVIU os contratos mas NÃO EXECUTOU. O save_preset continua ESCRITA/MUTANTE NUNCA readonly, com intervalo de 60s e gates zero intactos. O App36R3FAIL está preservado, o App36R4 em runtime real permanece PENDENTE e Setup/Native continuam congelados sem alteração. [Recibo de integração](ROOT-RECEIPT.json).
+
+
+## Continuação — Diálogo Gravar (Status Pós-Cleanup R3)
+
+* **Cleanup R3 Concluído (Exit 0):** `cleanup-gravar-r3-own-edge.mjs` executou com sucesso, encerrando cooperativamente o Edge órfão (PID 40932). O recibo `cleanup-r3-own-edge-receipt.json` (SHA `af34930d8038fb70e590836694574784f21bfa625aeb4467c95c6e714c7dcd23`) comprova: `ownPidAbsent=true`, `exitAbsentCIM=true`, `ownedProfileEdgeCount=0` e `errors=[]`. Root CIM confirmou PIDs 40932 e 136676 ausentes e zero processos `msedge.exe` nos perfis de teste. Perfis preservados; nenhum force-kill, deleção ou impacto no operador. PINs confirmados idênticos (HTML `d01392b...`, JS `5544e6d...`, runner R3 `88eb27b...`).
+* **Diagnóstico de Execução:** Os runners reais R2 e R3 falharam no bootstrap de descoberta do CDP antes de alcançar menus ou gates, sem gerar recibos de teste. O `finally` projetado em R3 não preveniu o processo órfão em runtime. Logs de STDERR/STDOUT, recibo de falha de R2b (self-matching) e auditoria Root CIM permanecem preservados como evidência.
+* **Status do Código Gravar:** Fonte R3 (HTML `d013...` / JS `5544...`) permanece em `SOURCE_ACCEPTED_QA_PENDING` exclusivamente em `D:/FreeMix-QA-Gemini-Recording-20261011-0730`. **Não integrado e não instalado na Mesa.** O runner R3 (SHA `88eb...`) está reprovado e não deve ser reexecutado. Nenhuma sessão ativa no momento.
+* **Próxima Sessão Gemini:**
+  1. Comparar detalhadamente o bootstrap de CDP com o runner Externo R1 homologado (SHA `2ddf3be...` em `D:/FreeMix-QA-Gemini-Externo-Review-20261011-0630`), adotando estritamente seu padrão funcional comprovado.
+  2. Diagnosticar a divergência de inicialização antes de instanciar novo Edge, preservando integralmente os 17 gates originais de R3, timeout de 8000ms e rotina de cleanup.
+* **Invariantes:** Externo integrado no commit `0c3f59c` (árvore limpa, 26/26 PASS em mock DOM). Instalação do operador (versão base `0.1.0-local.20261009153453` com Setup selecionado `0.1.0-local.20261010060000` Native24) permanece imutável; updater NÃO armado. Ordem confirmada: Gravar → MultiCorder → ReplaySettings.
