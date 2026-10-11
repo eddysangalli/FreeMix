@@ -131,7 +131,7 @@
   E('view-status').onclick = () => { E('status').hidden = !E('status').hidden; E('view-status').classList.toggle('vd-on', !E('status').hidden); document.querySelector('.vd-window').classList.toggle('vd-with-status', !E('status').hidden); draw(); };
   E('start-one').onclick = () => { const n = selected, on = !saved(n).live; run((on ? 'Começando ' : 'Parando ') + (n + 1), async () => { await toggle(n, on); return on ? `Destino ${n + 1} confirmado no ar pelo motor.` : `Destino ${n + 1} parado.`; }); };
   E('start-all').onclick = () => { const lives = [0, 1, 2, 3, 4].filter((i) => saved(i).live); run(lives.length ? 'Parando tudo' : 'Iniciando tudo', async () => { const failed = []; for (const i of lives.length ? lives : [0, 1, 2, 3, 4].filter((x) => current(x).url)) { try { await toggle(i, !lives.length); } catch (e) { failed.push(`${i + 1}: ${plain(e.message).replace(/^O destino 1 /, '')}`); } } if (failed.length) throw Error('Não confirmado — ' + failed.join(' · ')); return lives.length ? 'Todos os destinos parados.' : 'Destinos configurados confirmados no ar.'; }); };
-  E('save-close').onclick = () => run('Salvando', async () => { for (const i of [0, 1, 2, 3, 4]) await save(i); setTimeout(() => { if (parent !== window) parent.postMessage({ freemixCloseSettings: true }, location.origin); else window.close(); }, 150); return 'Configurações salvas e confirmadas pelo motor.'; });
+  E('save-close').onclick = () => run('Salvando', async () => { for (const i of [0, 1, 2, 3, 4]) await save(i); setTimeout(() => window.FreeMixClosePanel(), 150); return 'Configurações salvas e confirmadas pelo motor.'; });
 
   // The main stream's state arrives with the shared connection; the additional destinations are re-read (a pure read).
   let lastStreaming = null;

@@ -180,7 +180,7 @@
   E('ice-reset').onclick = () => run('Voltando à rede automática', async () => { await send('call_ice_reset'); return 'Rede automática. Clique em Preparar retornos de novo.'; });
   E('returns').onclick = () => { const live = individual(); run(live ? 'Parando os retornos' : 'Preparando os retornos', async () => { if (live) { await send('call_returns_stop'); return 'Retornos parados.'; } for (const g of guests()) if (drafts.has(g.key)) await apply(g); await send('call_returns_prepare'); return 'Retornos ligados. Cada convidado vê e ouve o que está na lista abaixo.'; }); };
   E('manager').onclick = () => { E('status').hidden = !E('status').hidden; E('manager').classList.toggle('vd-on', !E('status').hidden); document.querySelector('.vd-window').classList.toggle('vd-with-status', !E('status').hidden); };
-  E('save-close').onclick = () => run('Salvando', async () => { for (const g of guests()) if (drafts.has(g.key)) await apply(g); setTimeout(() => { if (parent !== window) parent.postMessage({ freemixCloseSettings: true }, location.origin); else window.close(); }, 150); return 'Tudo salvo no programa.'; });
+  E('save-close').onclick = () => run('Salvando', async () => { for (const g of guests()) if (drafts.has(g.key)) await apply(g); setTimeout(() => window.FreeMixClosePanel(), 150); return 'Tudo salvo no programa.'; });
 
   E('talk').onpointerdown = (e) => { if (e.button !== 0) return; e.preventDefault(); try { E('talk').setPointerCapture(e.pointerId); } catch { /* a pointer that cannot be captured still talks */ } startTalk(); };
   for (const name of ['pointerup', 'pointercancel', 'lostpointercapture']) E('talk').addEventListener(name, stopTalk);

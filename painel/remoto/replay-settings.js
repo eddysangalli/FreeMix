@@ -93,7 +93,8 @@
 
     isBusy = true;
     updateActionLocks();
-    showMessage(`Confirmando ${action} no motor…`);
+    const what = ({ start: 'Iniciar gravação', stop: 'Parar gravação', retention: 'Retenção', audio: 'Áudio do replay', 'camera-options': 'Opções da câmera', 'auto-align': 'Alinhamento pelo áudio' })[action] || action;
+    showMessage(`${what}: aguardando o programa…`);
 
     const requestEpoch = ++stateEpoch;
     let response;
@@ -110,7 +111,7 @@
       result = await response.json();
 
       if (!response.ok || !result.success || !validateReplaySchema(result.replay)) {
-        throw new Error(result?.error || `Operação ${action} recusada pelo motor`);
+        throw new Error(result?.error || `${what}: recusado pelo programa`);
       }
 
       // Sucesso determinístico imediato
@@ -125,7 +126,7 @@
       }
 
       renderState(replayState);
-      showMessage(`Operação ${action} confirmada pelo motor.`);
+      showMessage(`${what}: confirmado pelo programa.`);
       return result.replay;
     } catch (err) {
       const isTimeout = err.name === 'TimeoutError';
@@ -209,9 +210,11 @@
       const select = el(`cam-slot-${slot + 1}`);
       if (!select) continue;
 
+      // The cameras of the last session are offered again, except the ones that no longer exist on the mesa.
+      const remembered = data.session?.cams?.[slot]?.name || '';
       const currentVal = isRec
-        ? (data.session?.cams?.[slot]?.name || '')
-        : (camsDirty ? selectedCamsDraft[slot] : (data.session?.cams?.[slot]?.name || ''));
+        ? remembered
+        : (camsDirty ? selectedCamsDraft[slot] : (available.includes(remembered) ? remembered : ''));
 
       const optionsSignature = available.join('|');
       if (select.dataset.sig !== optionsSignature) {
@@ -483,13 +486,7 @@
   });
 
   // Botão Fechar
-  el('btn-close')?.addEventListener('click', () => {
-    if (window.opener && !window.opener.closed) {
-      window.close();
-    } else {
-      location.href = '/replay';
-    }
-  });
+  el('btn-close')?.addEventListener('click', () => window.FreeMixClosePanel());
 
   // Botão Atualizar (Dispara Consulta Deliberada do Operador com Epoch Próprio)
   el('btn-refresh')?.addEventListener('click', async () => {

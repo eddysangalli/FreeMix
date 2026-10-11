@@ -38,12 +38,17 @@ body.vd { background: #1d2227; color: #fff; font: 12px/1.25 "Segoe UI", Tahoma, 
 .vd button.vd-on { background: #0b6f1a; border-color: #2aa13e; }           /* selected / active */
 .vd button.vd-air { background: #b3140c; border-color: #ff5a4f; }           /* on air */
 .vd button.vd-warn { background: #8a5a00; border-color: #d39a2a; }          /* attention */
+/* A coloured button keeps its colour under the pointer: after "Start" is clicked the pointer is still on it. */
+.vd button.vd-on:hover:not(:disabled), .vd button.vd-on:active:not(:disabled) { background: #0e8a21; border-color: #3fc257; }
+.vd button.vd-air:hover:not(:disabled), .vd button.vd-air:active:not(:disabled) { background: #d01a10; border-color: #ff7a70; }
+.vd button.vd-warn:hover:not(:disabled), .vd button.vd-warn:active:not(:disabled) { background: #a56c00; border-color: #e5ae3f; }
 .vd-bar button { height: 32px; min-width: 126px; }
 .vd button.vd-cog { min-width: 26px; width: 26px; padding: 0; font-size: 15px; line-height: 1; }
 
 /* Numbered selectors (destinations, outputs…). */
 .vd-nums { display: flex; gap: 6px; }
 .vd-nums button { width: 46px; min-width: 46px; height: 28px; position: relative; }
+.vd-nums.vd-words button { width: auto; min-width: 62px; padding: 0 14px; }   /* same selectors with words (file formats, tabs) */
 .vd-nums button.vd-live::after { content: ""; position: absolute; right: 3px; top: 3px; width: 7px; height: 7px; background: #ff3b30; }
 
 .vd-check { display: inline-flex; align-items: center; gap: 6px; font-weight: 400; white-space: nowrap; }
@@ -77,3 +82,9 @@ body.vd { background: #1d2227; color: #fff; font: 12px/1.25 "Segoe UI", Tahoma, 
 .vd-advanced { display: grid; gap: 7px; padding: 7px 0; border-top: 1px solid #39444d; border-bottom: 1px solid #39444d; }
 .vd input[readonly] { background: #c9cccf; }
 [hidden] { display: none !important; }
+
+/* A window whose list takes all the room left (inputs to record, sources…): the list scrolls, the bar stays. */
+.vd-window.vd-fill { height: 100%; }
+.vd-status.vd-grow { flex: 1 1 0; min-height: 60px; overflow: auto; }
+.vd-status.vd-grow th { position: sticky; top: 0; }
+.vd-status input[type=checkbox] { width: 13px; height: 13px; margin: 0; vertical-align: middle; accent-color: #1e7fd6; }

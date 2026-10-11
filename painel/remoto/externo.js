@@ -31,7 +31,9 @@
   // Rascunhos locais por envio (chave: "NDI:0", "OMT:1", etc.)
   const drafts = new Map();
   try {
-    const raw = sessionStorage.getItem(STORAGE_KEY);
+    // What was typed and not started is kept on this computer, so "Salvar e Fechar" really keeps it for next time;
+    // the copy in the session is what the advanced editor reads when opened from here.
+    const raw = localStorage.getItem(STORAGE_KEY) || sessionStorage.getItem(STORAGE_KEY);
     if (raw) {
       for (const [k, v] of JSON.parse(raw)) {
         if (/^(NDI|OMT):[0-3]$/.test(k) && v && typeof v === 'object') {
@@ -43,7 +45,9 @@
 
   const persistDrafts = () => {
     try {
-      sessionStorage.setItem(STORAGE_KEY, JSON.stringify([...drafts]));
+      const text = JSON.stringify([...drafts]);
+      localStorage.setItem(STORAGE_KEY, text);
+      sessionStorage.setItem(STORAGE_KEY, text);
     } catch {}
   };
 
@@ -629,11 +633,7 @@
 
   E('save-close').onclick = () => {
     persistDrafts();
-    if (parent !== window) {
-      parent.postMessage({ freemixCloseSettings: true }, location.origin);
-    } else {
-      window.close();
-    }
+    window.FreeMixClosePanel();
   };
 
   // Atualização periódica leve
