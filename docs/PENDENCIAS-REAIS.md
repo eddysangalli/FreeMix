@@ -8,7 +8,7 @@
 - **Aplicação na mesa real ainda não vista**: só o dono abrindo pelo `ABRIR-FREEMIX.cmd` aplica; os ensaios usaram configuração de fábrica, não a dele.
 - **MultiGravação em MKV com imagem parada**: o motor recusa o início ("não produziu vídeo no disco") porque exige um pacote de vídeo no arquivo em 10 s; com cor lisa/imagem fixa o MKV demora mais a descarregar. MPEG-2 TS grava normal. Corrigir no motor (`replay-disco.mjs`, conferência do início) ou esconder MKV até lá.
 - **Programa trava ao fechar e grava relatório de erro depois que uma cópia da página da mesa, num navegador de fora, manda abrir janelas** (só em teste; o caminho do operador fecha limpo). Causa no motor não investigada; pode esconder um defeito real de vida útil das janelas.
-- **Janela de Configurações gerais**: rascunho R2 aceito pelo Codex, não integrado nem conferido com o programa real.
+- ~~Janela de Configurações gerais~~ **feita às 11h45** (`/configuracoes`, 18/18 com o programa real). Falta nela: conferir Importar com arquivo real, o download do Exportar dentro da janela do programa e o botão "Todas as preferências do programa".
 
 ## Software que ainda exige trabalho ou prova
 

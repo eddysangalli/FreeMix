@@ -1,0 +1,153 @@
+=== configuracoes
+OK    a janela carrega com os dados do programa
+OK    abrir a janela não envia nenhum comando
+OK    categorias à esquerda, 'Exibir' selecionada  (18 categorias)
+OK    'Exibir' mostra o formato que o programa tem
+OK    'Opções' lista as preferências do programa com os valores dele  (19 opções)
+OK    alteração fica marcada (ponto na categoria e aviso)  (Alterações ainda não salvas: clique em OK.)
+OK    'OK' grava as opções no programa e fecha a janela  (duplo clique: true; distância: 12)
+OK    ao reabrir, a janela mostra o que foi salvo
+OK    'Padrão' põe os valores de fábrica no formulário sem gravar  (Valores de fábrica no formulário. Clique em OK para salvar.)
+OK    'Exportar' pede o arquivo desta categoria ao programa  (Arquivo desta categoria exportado.)
+OK    'Cancelar' fecha sem gravar
+OK    '1080p' preenche quadro e saída
+OK    'OK' muda o formato do quadro no programa  (1920×1080, saída 1920×1080)
+OK    gravando, o formato do quadro trava e avisa  (Gravando, transmitindo ou com a câmera virtual ligada: pare para mudar o formato do quadro.)
+OK    parada a gravação, destrava
+OK    'Gravando ›' abre a janela de gravação dentro do programa  ("Configuração de gravação" 700×300)
+OK    'Informações' mostra os números do programa
+OK    nenhum erro de script na página
+valores originais repostos: true
+
+18/18 verificações passaram
+
+=== transmitir
+OK    a janela carrega com dados do motor
+OK    cinco destinos, o 1 selecionado
+OK    o destino 1 mostra o codificador e o tamanho que o motor tem  (H264 720p 4mbps AAC 128kbps)
+OK    destino livre (5): sem URL, 'Começar 5' fica desabilitado
+OK    no destino 2 aparece 'Use Qualidade do Stream 1'
+OK    alteração fica marcada como não salva  (Alterações ainda não salvas.)
+OK    'Começar 2' salva e põe o destino 2 no ar de verdade  (motor: ativo, 1280x720 2500 kbps; destino recebeu 2466 bytes)
+OK    o botão vira 'Parar 2' em vermelho e os campos travam
+OK    'Ver Status' mostra o destino 2 NO AR  (2Servidor RTMP personalizadortmp://127.0.0.1:49923/liveH264 720p 2,5mbpsNO AR)
+OK    'Parar 2' tira o destino 2 do ar
+OK    desmarcar a GPU troca o codificador para x264
+OK    'Começar 1' salva e põe a transmissão principal no ar de verdade  (motor: transmitindo, 4000 kbps x264; destino recebeu 0 bytes)
+OK    com o 1 no ar, 'Iniciar tudo' vira 'Parar tudo'
+OK    'Parar tudo' para a transmissão principal
+OK    'Iniciar tudo' põe no ar os dois destinos configurados
+OK    'Parar tudo' deixa tudo parado
+OK    destino que não responde: aviso claro, nada no ar  (O destino 1 não entrou no ar: o servidor não aceitou a conexão. Confira a URL e a chave.)
+OK    'Salvar e Fechar' grava tudo (destino 2 liberado, destino 1 mantido) e fecha a janela  (destino 2: "" desligado, sem chave; destino 1: rtmp://127.0.0.1:49924/live; janela fechada)
+OK    nenhum erro de script na página
+
+19/19 verificações passaram
+
+=== calls
+OK    a janela carrega e conversa com o programa
+OK    sem chamadas: só o 1 fica disponível, pronto para hospedar  (+* 2- 3- 4- 5- 6- 7- 8-)
+OK    sem chamada escolhida, Copiar Link e Redefinir Senha ficam desabilitados
+OK    'Hospedar chamada' cria a entrada na mesa com a chamada dentro  (entrada "Convidado Ana QR0H", senha de 14 caracteres)
+OK    a chamada nova fica selecionada, com o botão verde e a senha à mostra  (senha na tela igual da do programa)
+OK    o link já nasce definitivo (não muda quando os retornos são preparados)
+OK    'Copiar Link' copia o link do convidado  (Link copiado. Envie ao convidado.)
+OK    o próximo número livre abre uma chamada nova em branco
+OK    segunda chamada criada; o próximo livre aparece como +  (1 2* + 4- 5- 6- 7- 8-)
+OK    clicar em 'Hospedar chamada' numa chamada que já existe não cria outra  (Esta chamada já está hospedada: envie o link ao convidado. Para criar outra, clique no próximo número livre.)
+OK    'Redefinir Senha' troca a senha e o endereço do retorno: o link antigo deixa de valer  (senha nova na tela e no programa)
+OK    mudar o retorno marca 'não aplicado' e acende o Aplicar  (Alterações ainda não aplicadas: clique em Aplicar.)
+OK    'Aplicar' grava no programa o que o convidado vê e ouve  (vê "Convidado Bia QR0H", ouve somente talkback)
+OK    o Gerenciador mostra o que foi salvo  (1Convidado Ana QR0HConvidado Bia QR0HSomente talkbackRetorno não preparado)
+OK    a lista de vídeo não oferece a própria chamada do convidado
+OK    'Escolher fontes de áudio' abre a lista de fontes da mesa  (1 fonte(s) oferecida(s))
+OK    fonte de áudio escolhida é gravada no programa  (1 fonte)
+OK    'Convidados ouvem uns aos outros' liga e desliga no programa  (antes ligado, depois desligado)
+OK    'Mostrar opções avançadas' abre nível, microfone, talkback e rede
+OK    'Talkback para: somente os marcados' grava os convidados marcados
+OK    desmarcar um convidado tira só ele do talkback  (1 convidado(s) marcados)
+OK    'Todos os convidados' volta ao padrão
+OK    mudar o nível do retorno fica pendente até aplicar
+OK    'Segure para falar' sem microfone do diretor explica o que falta e não abre nada  (Falta o microfone do diretor: escolha em “Mostrar opções avançadas”.)
+OK    'Preparar retornos' aplica antes o que estava pendente e envia o comando certo  (nível gravado 0.8; comando call_returns_prepare (conferido, não executado))
+OK    'Gerenciador de chamadas' esconde e mostra a lista
+OK    clicar numa linha do Gerenciador seleciona aquela chamada
+OK    'Salvar e Fechar' grava o que estava pendente e fecha a janela  (retorno de "Convidado Bia QR0H": silent; janela fechada)
+OK    nenhum erro de script na página
+
+29/29 verificações passaram
+
+=== externo
+OK    a janela carrega com os dados do programa
+OK    abrir a janela não envia nenhum comando
+OK    quatro saídas, a 1 selecionada; tipos oferecidos conforme o programa  (NDI disponível, OMT disponível)
+OK    alteração fica marcada como não aplicada  (Alterações ainda não aplicadas.)
+OK    'Começar 1' põe a saída NDI 1 enviando de verdade, com o nome escolhido  ("FreeMix QA NDI QWN5", 1280x720)
+OK    o botão vira 'Parar 1' em vermelho, o número ganha a marca e os campos travam
+OK    'Ver Status' mostra a saída ENVIANDO  (1NDIFreeMix QA NDI QWN5Saída (programa)ENVIANDO · 4 quadros)
+OK    'Parar 1' para o envio
+OK    'Começar 2' em OMT põe a saída 2 enviando de verdade  ("FreeMix QA OMT QWN5")
+OK    com uma saída enviando, 'Iniciar tudo' vira 'Parar tudo'
+OK    'Parar tudo' para todos os envios
+OK    'Câmera virtual: Ligar' liga de verdade (ou explica por que não)  (ligada, confirmado pelo programa)
+OK    'Parar' desliga a câmera virtual
+OK    'Tela cheia: Preview' é aceito pelo programa  (Janela de tela cheia (Preview) solicitada.)
+OK    'Salvar e Fechar' guarda o que foi digitado e fecha
+OK    ao reabrir, o que foi guardado está lá  (Guardado QWN5)
+OK    nenhum erro de script na página
+
+17/17 verificações passaram
+
+=== gravar
+OK    a janela carrega com os dados do programa
+OK    abrir a janela não envia nenhum comando
+OK    formatos como botões no topo, com o do programa em verde  (MKV* MP4 MOV)
+OK    pasta, codec e qualidade são os do programa
+OK    'Cancelar' fecha sem gravar nada no programa
+OK    em MP4 aparece 'Modo Tolerante a falhas'  (Alterações ainda não salvas.)
+OK    marcar a GPU troca o codec para o da placa de vídeo  (nvenc)
+OK    'OK' grava formato, qualidade, codec e pasta no programa  (hybrid_mp4, HQ, nvenc)
+OK    'OK' fecha a janela depois da confirmação
+OK    ao reabrir, a janela mostra o que foi salvo
+OK    com gravação em andamento a janela trava e avisa  (Gravando 00:00:00: pare a gravação para alterar.)
+OK    a gravação real saiu em MP4 na pasta escolhida  (2026-10-11 11-45-57.mp4, 15 KB)
+OK    parada a gravação, a janela destrava
+OK    pasta em branco: aviso, nenhum comando enviado  (Informe a pasta de gravação.)
+OK    nenhum erro de script na página
+configuração original reposta: true
+
+15/15 verificações passaram
+
+=== multicorder
+OK    a janela carrega com as entradas da mesa  (QA Cor RD0I, CAM 1)
+OK    abrir a janela não envia nenhum comando
+OK    o formato do programa aparece em verde  (mpegts)
+OK    'Começar' sem entrada marcada: aviso, nenhum comando  (Marque pelo menos uma entrada para gravar.)
+OK    alteração fica marcada como não salva  (Alterações ainda não salvas.)
+OK    'Começar' salva as opções e põe a entrada gravando de verdade  (1 entrada(s), formato mpegts)
+OK    o botão vira 'Parar' em vermelho, a linha mostra GRAVANDO e os campos travam  (QA Cor RD0I00:05GRAVANDOcam-1-2026-10-11_11-46-06.tsCAM 1—Parado—)
+OK    a duração anda  (00:09)
+OK    'Parar' fecha a gravação e o arquivo está na pasta escolhida  (cam-1-2026-10-11_11-46-06.ts, 154 KB)
+OK    depois de parar, a janela volta a 'Começar' e destrava
+OK    'Salvar e Fechar' grava a opção no programa e fecha  (mkv)
+OK    nenhum erro de script na página
+opções originais repostas: true
+
+12/12 verificações passaram
+
+=== replay-settings
+OK    a janela carrega com as entradas da mesa
+OK    abrir a janela não envia nenhum comando
+OK    iniciar sem câmera escolhida: aviso, nenhum comando  (Selecione pelo menos uma câmera para iniciar a gravação SSD.)
+OK    'Iniciar gravação' põe o replay gravando a câmera escolhida  (1 câmera(s))
+OK    o botão vira 'Parar' em vermelho, a faixa mostra o tempo e as câmeras travam  (Gravação SSD em Andamento 00:00:01)
+OK    'Parar' encerra a gravação do replay
+OK    'Aplicar Retenção' grava a retenção no programa  (ligada, 45 min; clique: ok; mensagem: Retenção: confirmado pelo programa.; comando: {"url":"/api/replay","action":"retention","enabled":true,"minutes":45,"segmentSeconds":60})
+OK    o botão do áudio do replay liga e desliga no programa  (antes ligado, depois silenciado)
+OK    'Aplicar Câmera' grava volume, silenciar e offset daquela câmera  ({"recordAudio":"input","gainDb":-6,"offsetFrames":2,"muted":true})
+OK    mensagens em português claro, sem nome interno de comando  (Opções da câmera: confirmado pelo programa.)
+OK    'Fechar' fecha a janela
+OK    nenhum erro de script na página
+
+12/12 verificações passaram
+

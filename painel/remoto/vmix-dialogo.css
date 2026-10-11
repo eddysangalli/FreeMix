@@ -88,3 +88,15 @@ body.vd { background: #1d2227; color: #fff; font: 12px/1.25 "Segoe UI", Tahoma, 
 .vd-status.vd-grow { flex: 1 1 0; min-height: 60px; overflow: auto; }
 .vd-status.vd-grow th { position: sticky; top: 0; }
 .vd-status input[type=checkbox] { width: 13px; height: 13px; margin: 0; vertical-align: middle; accent-color: #1e7fd6; }
+
+/* A window with a list of categories on the left and the fields of the chosen one on the right (Settings). */
+.vd-main { flex: 1 1 0; min-height: 0; display: flex; }
+.vd-side { width: 176px; flex: none; background: #0d1115; border-right: 1px solid #39444d; overflow-y: auto; display: flex; flex-direction: column; }
+.vd .vd-side button { height: 27px; min-height: 27px; min-width: 0; border: 0; border-bottom: 1px solid #1a2228; background: transparent; text-align: left; padding: 0 10px; overflow: hidden; text-overflow: ellipsis; }
+.vd .vd-side button:hover:not(:disabled) { background: #1b242b; border-color: #1a2228; }
+.vd .vd-side button.vd-on, .vd .vd-side button.vd-on:hover:not(:disabled) { background: #0b6f1a; }
+.vd-pane { flex: 1 1 0; min-width: 0; overflow-x: hidden; overflow-y: auto; display: flex; flex-direction: column; }
+.vd-pane .vd-body { flex: 1 0 auto; }
+.vd-pane .vd-msg { margin: 0 12px 8px; }
+.vd-settings .vd-row { grid-template-columns: 236px minmax(0, 1fr) auto; }
+.vd-settings .vd-row.vd-row-check { display: block; padding-left: 22px; }   /* a list of tick boxes reads from the left, as in the reference */

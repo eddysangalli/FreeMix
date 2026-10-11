@@ -18,6 +18,10 @@ const receipt = await json(join(records, "APLICACAO-ULTIMA.json")).catch(() => n
 if (!receipt?.backup) { console.error("Não há atualização aplicada registrada para desfazer."); process.exit(1); }
 const installed = (await json(join(root, "version.json"))).version;
 if (receipt.version && receipt.version !== installed) { console.error(`A mesa está na versão ${installed}, não na ${receipt.version} que o registro aponta. Nada foi alterado.`); process.exit(1); }
+// Only the update the pointer names is undone: with a newer update armed and not applied yet, the record on disk
+// still describes an older update, and undoing that one is not what the owner is asking for.
+const armed = await json(join(records, "ULTIMA-ATUALIZACAO.json")).catch(() => null);
+if (armed?.version && armed.version !== installed) { console.error(`A atualização ${armed.version} está preparada mas ainda não foi aplicada (a mesa está na ${installed}). Não há o que desfazer. Nada foi alterado.`); process.exit(1); }
 
 // The mesa must be closed by the owner; only its own local helper service, left running in the background by design,
 // is stopped here, after checking it belongs to this installation (the same rule the launcher uses before updating).

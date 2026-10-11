@@ -35,8 +35,9 @@ const existing = typeof args.instalacao === "string" ? path.resolve(args.instala
 const root = existing ? path.dirname(existing) : await newQaRoot("Sandbox"), installed = existing || path.join(root, "FreeMix-QA-Sandbox Telas"); await assertOwnedQa(root, installed);
 const ports = existing ? JSON.parse(await fs.readFile(path.join(root, "ensaio.json"), "utf8")) : { apiPort: await freePort(), wsPort: await freePort() };
 const { apiPort, wsPort } = ports;
-const overlay = async (folder) => { if (existing) return; for (const e of await fs.readdir(path.join(product, folder), { withFileTypes: true, recursive: true })) { if (!e.isFile()) continue; const from = path.join(e.parentPath, e.name), rel = path.relative(product, from); if (rel.replaceAll("\\", "/") === "painel/local.js") continue; await fs.mkdir(path.dirname(path.join(installed, rel)), { recursive: true }); await fs.copyFile(from, path.join(installed, rel)); } };
-if (existing) console.log("usando a instalação de teste existente " + installed);
+const live = !!args["ao-vivo"];   // with --instalacao: reuse that own installation, but with the current tools and the panel served live from the repository
+const overlay = async (folder) => { if (existing && !live) return; for (const e of await fs.readdir(path.join(product, folder), { withFileTypes: true, recursive: true })) { if (!e.isFile()) continue; const from = path.join(e.parentPath, e.name), rel = path.relative(product, from); if (rel.replaceAll("\\", "/") === "painel/local.js") continue; await fs.mkdir(path.dirname(path.join(installed, rel)), { recursive: true }); await fs.copyFile(from, path.join(installed, rel)); } };
+if (existing) { console.log("usando a instalação de teste existente " + installed + (live ? " com as ferramentas e o painel atuais" : "")); if (live) { await overlay("ferramentas"); await overlay("painel"); } }
 else {
   console.log("instalando cópia de teste em " + installed);
   const { installPortable } = await import(pathToFileURL(path.join(packageRoot, "ferramentas/instalar-portatil.mjs")));
@@ -60,12 +61,12 @@ for (const end = Date.now() + 120000; Date.now() < end && !obs && !nativeExited;
 assert(obs, "o programa de teste não ficou pronto em 120 s");
 
 let api, apiExited = false;
-const startApi = () => { apiExited = false; api = spawn(process.execPath, [path.join(import.meta.dirname, "sandbox-api.mjs")], { cwd: installed, windowsHide: true, env: { ...process.env, FREEMIX_ROOT: installed, FREEMIX_PANEL_DIR: path.join(existing || product, "painel"), FREEMIX_API_PORT: String(apiPort), FREEMIX_API_HOST: "127.0.0.1", FREEMIX_QA_OWN_ONLY: "YES", FREEMIX_QA_OWNER_ROOT: root }, stdio: ["ignore", "ignore", "inherit", "ipc"] }); api.on("exit", () => { apiExited = true; }); };
+const startApi = () => { apiExited = false; api = spawn(process.execPath, [path.join(import.meta.dirname, "sandbox-api.mjs")], { cwd: installed, windowsHide: true, env: { ...process.env, FREEMIX_ROOT: installed, FREEMIX_PANEL_DIR: path.join(existing && !live ? existing : product, "painel"), FREEMIX_API_PORT: String(apiPort), FREEMIX_API_HOST: "127.0.0.1", FREEMIX_QA_OWN_ONLY: "YES", FREEMIX_QA_OWNER_ROOT: root }, stdio: ["ignore", "ignore", "inherit", "ipc"] }); api.on("exit", () => { apiExited = true; }); };
 const stopApi = async () => { if (!api || apiExited) return; api.send({ kind: "close" }); for (const end = Date.now() + 40000; Date.now() < end && !apiExited;) await sleep(100); assert(apiExited, "a API de teste não encerrou em 40 s"); };
 startApi();
 const base = "http://127.0.0.1:" + apiPort;
 for (const end = Date.now() + 120000; Date.now() < end;) { try { const h = await (await fetch(base + "/api/health")).json(); if (h.connected) break; } catch {} await sleep(500); }
-await fs.writeFile(path.join(control, "sandbox.json"), JSON.stringify({ base, apiPort, wsPort, nativePid: native.pid, apiPid: api.pid, root, installed, nativeHead: frozen.head, debugPort: args.depurar ? Number(args.depurar) : null, startedAt: new Date().toISOString(), painelAoVivo: path.join(existing || product, "painel") }, null, 2));
+await fs.writeFile(path.join(control, "sandbox.json"), JSON.stringify({ base, apiPort, wsPort, nativePid: native.pid, apiPid: api.pid, root, installed, nativeHead: frozen.head, debugPort: args.depurar ? Number(args.depurar) : null, startedAt: new Date().toISOString(), painelAoVivo: path.join(existing && !live ? existing : product, "painel") }, null, 2));
 console.log("SANDBOX_READY " + base + "  (controle: " + control + ")");
 
 // "reiniciar-api" re-copies the tools and restarts only the API (after a change in FreeMix/ferramentas); "fechar" ends.
