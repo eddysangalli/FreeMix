@@ -1,0 +1,47 @@
+{
+  "status": "PASS",
+  "scope": "Native39 and managed internal SceneSwitcher/DistroAV software QA; no broadcast hardware/WAN validation",
+  "nativeHead": "7b77e328ec4741ab734e43f3275d37d9d1dfd22e",
+  "nativeFreezeSHA": "3952f3d5935f7cabdca57a30db3944522b7b87f59960e85d21b9892a2bedec4c",
+  "pluginPins": {
+    "advanced-scene-switcher.dll": "a04508295ce8ecdaa97ea23052c4a19d9c00762273f22b322bd667cdfe6614ca",
+    "advanced-scene-switcher-lib.dll": "6c6e25b13542cb25af993fbec036129239e296819313ab0dde3b69f8318daa18",
+    "distroav.dll": "4e093ae3fcf375c4cf4c73efcc1b605330d6a641cdbfd52ad780c18e6dbbcfb8"
+  },
+  "ndiRuntimeHash": "2b6602075868ba4401f82f417d72424805d69b11ca86078023d0d489ff45dd84",
+  "serviceCatalogueUpdatesCompiledOff": true,
+  "persistedAutoUpdateTrueFixture": true,
+  "ndiEnvironmentPoisonedForTest": true,
+  "runs": [
+    {
+      "round": 1,
+      "ndiInputRegistered": true,
+      "initialStopped": true,
+      "startStopPassed": true,
+      "backupExact": true,
+      "backupNotRewritten": null,
+      "stableVersionSaved": true,
+      "shutdownAccepted": true,
+      "closed": true
+    },
+    {
+      "round": 2,
+      "ndiInputRegistered": true,
+      "initialStopped": true,
+      "startStopPassed": true,
+      "backupExact": true,
+      "backupNotRewritten": true,
+      "stableVersionSaved": true,
+      "shutdownAccepted": true,
+      "closed": true
+    }
+  ],
+  "allocations": [
+    0,
+    0
+  ],
+  "full2085PostPins": true,
+  "operatorTouched": false,
+  "apiStarted": false,
+  "newCustomerPackageSealed": false
+}

@@ -1,8 +1,8 @@
 {
   "upstream": "https://github.com/obsproject/obs-studio.git",
   "base": "ba2f32bdf791005443988a4955e963663e16b1ed",
-  "head": "ed08547c80c26581551d3c5fb2c332e9e18d4302",
-  "version": "0.1.0-local.20261011024129",
+  "head": "7b77e328ec4741ab734e43f3275d37d9d1dfd22e",
+  "version": "0.1.0-local.20261011232400",
   "patches": [
     {
       "path": "0001-feat-branding-replace-OBS-identity-with-FreeMix-Stud.patch",
@@ -155,11 +155,15 @@
     {
       "path": "0038-Let-a-panel-window-open-at-the-size-its-page-asks-fo.patch",
       "sha256": "246e895ee72d656fc2cc616dfc47daa4782a03b099d261284fd1823e9f581d1d"
+    },
+    {
+      "path": "0039-Disable-independent-service-catalogue-updates-in-Fre.patch",
+      "sha256": "723459b48490d991930743123845ad822828ed036a67981f3e1811369c040d01"
     }
   ],
-  "sourceUpdatedAt": "2026-10-11T02:49:01.714Z",
+  "sourceUpdatedAt": "2026-10-11T23:23:22.586Z",
   "sourceSchema": 2,
-  "tree": "511baffbf91395005e6ea271a5f438e0f6d63e15",
+  "tree": "56ce11867c077323e36c81265176971d76a3c601",
   "submodules": [
     {
       "path": "deps/libdshowcapture/src",

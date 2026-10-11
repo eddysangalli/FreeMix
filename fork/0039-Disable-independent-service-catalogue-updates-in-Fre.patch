@@ -1,0 +1,27 @@
+From 7b77e328ec4741ab734e43f3275d37d9d1dfd22e Mon Sep 17 00:00:00 2001
+From: Eddy Sangalli <eddyrodrigues@outlook.com>
+Date: Sun, 11 Oct 2026 20:19:31 -0300
+Subject: [PATCH] Disable independent service catalogue updates in FreeMix
+ builds
+
+---
+ plugins/rtmp-services/CMakeLists.txt | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+diff --git a/plugins/rtmp-services/CMakeLists.txt b/plugins/rtmp-services/CMakeLists.txt
+index be0364c..2b45271 100644
+--- a/plugins/rtmp-services/CMakeLists.txt
++++ b/plugins/rtmp-services/CMakeLists.txt
+@@ -1,6 +1,8 @@
+ cmake_minimum_required(VERSION 3.28...3.30)
+ 
+-option(ENABLE_SERVICE_UPDATES "Checks for service updates" ON)
++# The service catalogue is part of the approved FreeMix payload. A cached ON
++# value or an external configure flag must not restore independent OBS updates.
++set(ENABLE_SERVICE_UPDATES OFF CACHE BOOL "FreeMix delivers service catalogue updates" FORCE)
+ 
+ set(
+   RTMP_SERVICES_URL
+-- 
+2.56.0.windows.1
+

@@ -1,0 +1,15 @@
+PASS new backup created atomically
+PASS exact original bytes preserved
+PASS same backup accepted on repeat
+PASS repeat does not rewrite backup
+PASS conflicting existing backup refused
+PASS conflict leaves original intact
+PASS empty snapshot refused
+PASS empty snapshot creates no file
+PASS directory cannot masquerade as backup file
+PASS non-directory parent failure returned
+PASS own junction fixture created
+PASS junction parent refused
+PASS junction target untouched
+PASS junction as destination refused
+RESULT 14/14

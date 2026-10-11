@@ -1,0 +1,41 @@
+{
+  "version": "6.2.1-freemix-managed-r1",
+  "sourceArchive": "https://codeload.github.com/DistroAV/DistroAV/zip/refs/tags/6.2.1",
+  "sourceArchiveSHA": "6da38f422c6dc826165a7462b4496f967ed7f948bd6a97ba3e0e3143193625e4",
+  "patchSHA": "6a2fb5c1fb6dbce1a175ea6383cd921bf1f6fca16631fcb81b6c766cae69df4c",
+  "sourceFiles": [
+    {
+      "path": "cmake/windows/buildspec.cmake",
+      "sourceSHA": "bda1888ca4776bae008f86004a335034b45b90ab3ec2a58333c76b73b6d88386",
+      "normalizedTextSHA": "bda1888ca4776bae008f86004a335034b45b90ab3ec2a58333c76b73b6d88386"
+    },
+    {
+      "path": "src/plugin-main.cpp",
+      "sourceSHA": "6b75762fb218cbe7f6c0a5356f2908633d0a0af13aee4ae503a144fac4fa8e3e",
+      "normalizedTextSHA": "6b75762fb218cbe7f6c0a5356f2908633d0a0af13aee4ae503a144fac4fa8e3e"
+    },
+    {
+      "path": "src/forms/update.cpp",
+      "sourceSHA": "03434bed3a5749dbdf2c063886cd27bc52d724fe4c20e3c658035571525092da",
+      "normalizedTextSHA": "03434bed3a5749dbdf2c063886cd27bc52d724fe4c20e3c658035571525092da"
+    },
+    {
+      "path": "src/forms/output-settings.cpp",
+      "sourceSHA": "cc1e1ef653c757d27fd7f33b719ed51a0be0a03e1f857fdf863cd6717dc0e085",
+      "normalizedTextSHA": "cc1e1ef653c757d27fd7f33b719ed51a0be0a03e1f857fdf863cd6717dc0e085"
+    },
+    {
+      "path": "src/ndi-filter.cpp",
+      "sourceSHA": "d94896aa2ffb3cd17d7d93ca782909018eba441d7f211a7ada0320a1eb0e7c86",
+      "normalizedTextSHA": "d94896aa2ffb3cd17d7d93ca782909018eba441d7f211a7ada0320a1eb0e7c86"
+    },
+    {
+      "path": "src/managed-runtime.hpp",
+      "sourceSHA": "91970e6b52f9697a6df3f836f7b0e36778a17a520b3ff4d272cd0a4b77bf4611",
+      "normalizedTextSHA": "91970e6b52f9697a6df3f836f7b0e36778a17a520b3ff4d272cd0a4b77bf4611"
+    }
+  ],
+  "license": "GPL-2.0-or-later",
+  "upstreamUpdates": "disabled in managed paths",
+  "scope": "Internal FreeMix libraries; not a promise of static linking or qualification of all third-party features"
+}

@@ -1,5 +1,5 @@
 {
-  "sobre": "Componentes de terceiros dentro do FreeMix: de onde vêm, versão instalada, licença e os arquivos que pertencem a cada um. ferramentas/verificar-atualizacoes.mjs compara esta lista com a última versão publicada de cada um e confere se os arquivos instalados ainda são os registrados aqui.",
+  "sobre": "Componentes internos do FreeMix: origem, versão aprovada, licença e arquivos registrados. ferramentas/verificar-atualizacoes.mjs confere somente a integridade local; não consulta nem instala atualizações de OBS ou plugins. Novas versões são liberadas pelo canal do FreeMix após qualificação.",
   "componentes": [
     {
       "id": "obs-studio",
@@ -13,8 +13,14 @@
         "bin/64bit/obs.dll"
       ],
       "sha256": {
-        "bin/64bit/FreeMix.exe": "947724cf99c8babdf43d7c032de7bb43192694e7d08f7ecbaa133b631ac5d14d",
-        "bin/64bit/obs.dll": "bb050a55a20f8c55105f0d80c777a1f30274dc84928591ecdce77829f00b651e"
+        "bin/64bit/FreeMix.exe": "c77c0b27d1b684a57cb0a561c90b5896fc8472f4a1c9f4c1760c7854496b013c",
+        "bin/64bit/obs.dll": "a1ceb0be02e2449fd939d1b3324da329f991e56cea67426ef0de4535b2528648"
+      },
+      "managedBuild": {
+        "nativeHead": "7b77e328ec4741ab734e43f3275d37d9d1dfd22e",
+        "serviceCatalogueUpdates": false,
+        "upstreamUpdates": false,
+        "version": "32.2.2-39-g7b77e32"
       }
     },
     {
@@ -135,12 +141,18 @@
       "repo": "DistroAV/DistroAV",
       "versao": "6.2.1",
       "licenca": "GPL-2.0-or-later",
-      "papel": "NDI nativo; runtime local separado 6.3.2.0 não redistribuído",
+      "papel": "Saídas e entradas NDI como componente interno compilado do FreeMix. Sem updater/instalador próprio; usa somente o runtime NDI aprovado e incluído na entrega.",
       "arquivos": [
         "obs-plugins/64bit/distroav.dll"
       ],
       "sha256": {
-        "obs-plugins/64bit/distroav.dll": "0cb0cd42256b4a9eef7193292ecd603f64067d798a59c21c33422a7860c6478d"
+        "obs-plugins/64bit/distroav.dll": "4e093ae3fcf375c4cf4c73efcc1b605330d6a641cdbfd52ad780c18e6dbbcfb8"
+      },
+      "managedBuild": {
+        "provenance": "licenses/freemix-distroav-managed/PROVENANCE.json",
+        "runtimeSelection": "app-local pinned sha256",
+        "upstreamUpdates": false,
+        "version": "6.2.1-freemix-managed-r1"
       }
     },
     {
@@ -358,8 +370,8 @@
         "data/obs-plugins/advanced-scene-switcher/res/images/logo.ico": "435ae53d78f89ec4325843828d9fb580b0979c51e628af1c260a671165cbce70",
         "data/obs-plugins/advanced-scene-switcher/res/ocr/eng.traineddata": "daa0c97d651c19fba3b25e81317cd697e9908c8208090c94c3905381c23fc047",
         "data/obs-plugins/advanced-scene-switcher/res/speech/ggml-tiny-q8_0.bin": "c2085835d3f50733e2ff6e4b41ae8a2b8d8110461e18821b09a15c40c42d1cca",
-        "obs-plugins/64bit/advanced-scene-switcher-lib.dll": "62d0fb240b5c92c99fe045e697e6c28180a0089b0289c66cf56caada9580b605",
-        "obs-plugins/64bit/advanced-scene-switcher.dll": "c358655827137c613a8873e3ac88efa452aabbf473c8d10c75bfa0a150041487",
+        "obs-plugins/64bit/advanced-scene-switcher-lib.dll": "6c6e25b13542cb25af993fbec036129239e296819313ab0dde3b69f8318daa18",
+        "obs-plugins/64bit/advanced-scene-switcher.dll": "a04508295ce8ecdaa97ea23052c4a19d9c00762273f22b322bd667cdfe6614ca",
         "obs-plugins/64bit/advanced-scene-switcher-plugins/advanced-scene-switcher-base.dll": "dc9423a1100a89bcd072f421c15ffded49cd7bf396e294b0a838cf91c06f0f17",
         "obs-plugins/64bit/advanced-scene-switcher-plugins/advanced-scene-switcher-http.dll": "7e296d842bd173bf4b63c5fa12f60e3a05decb9d5f23a9a810bf0cbd31a1c617",
         "obs-plugins/64bit/advanced-scene-switcher-plugins/advanced-scene-switcher-macro-schedule.dll": "6bfbaf1589809199bb485675dabe227de3595283d191ce96997676b814c53cf7",
@@ -386,7 +398,12 @@
       "fonte": "licenses/advanced-scene-switcher/advanced-scene-switcher-1.36.1-source.tar.xz",
       "fonteSha256": "1e8c66e18c1d999c47f1e69a3978df3121a5d1ebaf5d77cdae7d73d062d53ce2",
       "licenca": "GPL-2.0",
-      "enabledByDefault": false
+      "enabledByDefault": false,
+      "managedBuild": {
+        "provenance": "licenses/freemix-sceneswitcher-managed/PROVENANCE.json",
+        "migration": "immutable automatic backup; stable build identity",
+        "version": "1.36.1-freemix-r2"
+      }
     },
     {
       "nome": "Cloud Closed Captions",

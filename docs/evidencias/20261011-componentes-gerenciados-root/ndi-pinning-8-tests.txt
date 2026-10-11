@@ -1,0 +1,9 @@
+PASS approved app-local runtime accepted
+PASS environment cannot redirect SDK selection
+PASS same-size altered SDK rejected
+PASS restored exact approved SDK accepted
+PASS missing SDK has no system fallback
+PASS own runtime junction fixture created
+PASS junction runtime rejected
+PASS hardlinked runtime rejected
+RESULT 8/8

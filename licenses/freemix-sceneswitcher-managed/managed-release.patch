@@ -1,0 +1,147 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -42,9 +42,13 @@ include(cmake/common/get_git_revision_description.cmake)
+ get_git_head_revision(GIT_REFSPEC GIT_SHA1)
+ git_describe(GIT_TAG)
+ 
+-if(${GIT_TAG} STREQUAL "GIT-NOTFOUND")
++if(NOT GIT_TAG OR GIT_TAG MATCHES "NOTFOUND$")
+   set(GIT_TAG ${PROJECT_VERSION})
+ endif()
++# FreeMix owns this build's identity independently of a checkout's .git folder.
++# This is a migration identifier, not an upstream update channel.
++set(GIT_TAG "${PROJECT_VERSION}-freemix-r2")
++set(GIT_SHA1 "freemix-sceneswitcher-${PROJECT_VERSION}-r2")
+ message(STATUS "${PROJECT_NAME} version: ${GIT_TAG}")
+ configure_file("${CMAKE_CURRENT_SOURCE_DIR}/cmake/common/version.cpp.in"
+                "${CMAKE_CURRENT_BINARY_DIR}/lib/version.cpp" @ONLY)
+diff --git a/lib/utils/backup.cpp b/lib/utils/backup.cpp
+--- a/lib/utils/backup.cpp
++++ b/lib/utils/backup.cpp
+@@ -1,4 +1,5 @@
+ #include "backup.hpp"
++#include "managed-backup.hpp"
+ #include "log-helper.hpp"
+ #include "obs-module-helper.hpp"
+ #include "path-helpers.hpp"
+@@ -11,7 +12,9 @@
+ #include <util/config-file.h>
+ 
+ #include <QFileDialog>
++#include <QCryptographicHash>
+ #include <QMainWindow>
++#include <QSaveFile>
+ #include <QTextStream>
+ #include <QTimer>
+ 
+@@ -19,52 +22,29 @@
+ 
+ namespace advss {
+ 
+-static void showBackupDialogs(const QString &json)
++void AskForBackup(obs_data_t *settings)
+ {
+-	const bool backupWasConfirmed = DisplayMessage(
+-		obs_module_text("AdvSceneSwitcher.askBackup"), true, false);
+-
+-	if (!backupWasConfirmed) {
+-		return;
+-	}
+-
+-	QString path = QFileDialog::getSaveFileName(
+-		nullptr,
+-		obs_module_text(
+-			"AdvSceneSwitcher.generalTab.saveOrLoadsettings.exportWindowTitle"),
+-		GetDefaultSettingsSaveLocation(),
+-		obs_module_text(
+-			"AdvSceneSwitcher.generalTab.saveOrLoadsettings.textType"));
+-	if (path.isEmpty()) {
+-		return;
+-	}
+-
+-	QFile file(path);
+-	if (!file.open(QIODevice::WriteOnly | QIODevice::Text)) {
++	// Save the exact pre-migration settings before LoadSettings can modify them.
++	// No modal, network request, update check or replacement of an old backup.
++	const char *json = obs_data_get_json(settings);
++	const QByteArray snapshot = json ? QByteArray(json) : QByteArray();
++	const auto digest = QCryptographicHash::hash(snapshot, QCryptographicHash::Sha256).toHex();
++	const QByteArray name = "freemix-migration-" + digest + ".json";
++	char *rawPath = obs_module_config_path(name.constData());
++	const bool saved = rawPath && StoreMigrationSnapshot(QString::fromUtf8(rawPath), snapshot);
++	bfree(rawPath);
++	if (saved) {
++		blog(LOG_INFO, "FreeMix migration backup preserved (%s)", digest.constData());
+ 		return;
+ 	}
+-	auto out = QTextStream(&file);
+-	out << json;
+-}
+-
+-void AskForBackup(obs_data_t *settings)
+-{
+-	// This function is called while the plugin settings are being loaded.
+-	// Blocking at this stage can cause issues such as OBS failing to start
+-	// or crashing.
+-	// Therefore, we ask the user whether they want to back up the settings
+-	// asynchronously.
+-
+-	auto json = obs_data_get_json(settings);
+-	static QString jsonQString = json ? json : "";
+-
+-	static const auto askForBackupWrapper = [](void *) {
+-		showBackupDialogs(jsonQString);
+-	};
+-
++	blog(LOG_ERROR, "FreeMix could not preserve the pre-migration settings backup");
++	// Failure is visible; never pretend the safety copy succeeded. Keep the
++	// existing manual export workflow available without calling it an update.
+ 	AddFinishedLoadingStep([]() {
+-		obs_queue_task(OBS_TASK_UI, askForBackupWrapper, nullptr,
+-			       false);
++		obs_queue_task(OBS_TASK_UI, [](void *) {
++			DisplayMessage("FreeMix: não foi possível salvar o backup das automações. "
++				       "Exporte as configurações antes de alterá-las.", false, false);
++		}, nullptr, false);
+ 	});
+ }
+ 
+diff --git a/lib/utils/managed-backup.hpp b/lib/utils/managed-backup.hpp
+new file mode 100644
+--- /dev/null
++++ b/lib/utils/managed-backup.hpp
+@@ -0,0 +1,33 @@
++#pragma once
++#include <QDir>
++#include <QFile>
++#include <QFileInfo>
++#include <QSaveFile>
++
++namespace advss {
++// An immutable, atomic copy of the original settings. Never replace an existing
++// different backup and never follow a link in its directory chain.
++inline bool StoreMigrationSnapshot(const QString &path, const QByteArray &snapshot)
++{
++	if (snapshot.isEmpty()) return false;
++	const QFileInfo info(path);
++	if (info.isSymLink() || info.isJunction()) return false;
++	QString parent = info.absolutePath();
++	while (true) {
++		const QFileInfo parentInfo(parent);
++		if (parentInfo.isSymLink() || parentInfo.isJunction()) return false;
++		const QString next = parentInfo.dir().absolutePath();
++		if (next == parent) break;
++		parent = next;
++	}
++	QDir dir(info.absolutePath());
++	if (!dir.exists() && !dir.mkpath(".")) return false;
++	if (info.exists()) {
++		QFile existing(path);
++		return existing.open(QIODevice::ReadOnly) && existing.readAll() == snapshot;
++	}
++	QSaveFile file(path);
++	file.setDirectWriteFallback(false);
++	return file.open(QIODevice::WriteOnly) && file.write(snapshot) == snapshot.size() && file.commit();
++}
++} // namespace advss

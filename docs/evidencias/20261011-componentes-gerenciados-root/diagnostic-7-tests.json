@@ -1,0 +1,42 @@
+{
+  "status": "PASS",
+  "cases": [
+    {
+      "name": "approved-local",
+      "status": 0,
+      "networkCalls": 0
+    },
+    {
+      "name": "changed-local",
+      "status": 1,
+      "networkCalls": 0
+    },
+    {
+      "name": "missing-local",
+      "status": 1,
+      "networkCalls": 0
+    },
+    {
+      "name": "missing-hash",
+      "status": 1,
+      "networkCalls": 0
+    },
+    {
+      "name": "path-traversal",
+      "status": 1,
+      "networkCalls": 0
+    },
+    {
+      "name": "no-refix",
+      "status": 1,
+      "networkCalls": 0
+    },
+    {
+      "name": "null-version",
+      "status": 0,
+      "networkCalls": 0
+    }
+  ],
+  "sourceSHA": "5355b3eac1ba627c6a93a4c81583b5e9fbe353d25bc5b7d38fa4b261eb95f91b",
+  "operatorTouched": false
+}

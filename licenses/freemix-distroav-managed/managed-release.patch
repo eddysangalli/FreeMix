@@ -1,0 +1,593 @@
+diff --git a/cmake/windows/buildspec.cmake b/cmake/windows/buildspec.cmake
+--- a/cmake/windows/buildspec.cmake
++++ b/cmake/windows/buildspec.cmake
+@@ -21,4 +21,8 @@ function(_check_dependencies_windows)
+   _check_dependencies()
+ endfunction()
+ 
+-_check_dependencies_windows()
++# FreeMix reuses its already qualified local OBS/Qt/dependency imports.
++# This build never downloads another OBS engine or an NDI SDK.
++if(NOT FREEMIX_REUSE_OBS_IMPORTS)
++  _check_dependencies_windows()
++endif()
+diff --git a/src/plugin-main.cpp b/src/plugin-main.cpp
+--- a/src/plugin-main.cpp
++++ b/src/plugin-main.cpp
+@@ -18,6 +18,8 @@
+ #include "plugin-main.h"
+ #include "obs-module.h"
+ #include "plugin-support.h"
++#include "managed-runtime.hpp"
++#include <QCoreApplication>
+ 
+ #include "forms/output-settings.h"
+ #include "forms/update.h"
+@@ -384,7 +386,8 @@ bool obs_module_load(void)
+ 		auto title = Str("NDIPlugin.LibError.Title");
+ 		auto message = "Error-401: " + QTStr("NDIPlugin.LibError.Message") + "<br>";
+ 
+-		message += makeLink(PLUGIN_REDIRECT_NDI_REDIST_URL);
++		message = QString::fromUtf8("FreeMix: o componente NDI aprovado está ausente ou não pôde ser carregado. "
++					   "Repare a instalação usando uma entrega FreeMix aprovada.");
+ 
+ 		obs_log(LOG_ERROR, "ERR-401 - NDI library failed to load with message: '%s'", QT_TO_UTF8(message));
+ 		obs_log(LOG_DEBUG, "obs_module_load: ERROR - load_ndilib() failed; message=%s", QT_TO_UTF8(message));
+@@ -508,8 +511,8 @@ void obs_module_post_load(void)
+ {
+ 	obs_log(LOG_DEBUG, "+obs_module_post_load()");
+ 
+-	// Check for new updates after the plugin has loaded.
+-	updateCheckStart();
++	// FreeMix fork: plugin/runtime updates are delivered only by an approved FreeMix release.
++	// Do not enter the upstream update checker during module startup.
+ 
+ 	obs_log(LOG_DEBUG, "-obs_module_post_load()");
+ }
+@@ -534,6 +537,13 @@ void obs_module_unload(void)
+ 
+ const NDIlib_v6 *load_ndilib()
+ {
++#if defined(Q_OS_WIN)
++	const QString lib_path = freemix_distro::ManagedNdiPath(QCoreApplication::applicationDirPath());
++	if (lib_path.isEmpty()) {
++		obs_log(LOG_ERROR, "FreeMix rejected an unavailable or unapproved app-local NDI runtime");
++		return nullptr;
++	}
++#else
+ 	auto locations = QStringList();
+ 	auto temp_path = QString(qgetenv(NDILIB_REDIST_FOLDER));
+ 	if (!temp_path.isEmpty()) {
+@@ -586,6 +596,7 @@ const NDIlib_v6 *load_ndilib()
+ 		}
+ #endif
+ 	}
++#endif
+ 	if (!lib_path.isEmpty()) {
+ 		obs_log(LOG_DEBUG, "load_ndilib: Found '%s'; attempting to load NDI library...",
+ 			QT_TO_UTF8(QDir::toNativeSeparators(lib_path)));
+diff --git a/src/forms/update.cpp b/src/forms/update.cpp
+--- a/src/forms/update.cpp
++++ b/src/forms/update.cpp
+@@ -139,8 +139,6 @@ public:
+ 
+ 		auto pluginDisplayName = QString(PLUGIN_DISPLAY_NAME);
+ 
+-		auto config = Config::Current();
+-
+ 		auto textTemp = QTStr("NDIPlugin.Update.Title").arg(pluginDisplayName);
+ 		setWindowTitle(textTemp);
+ 
+@@ -170,14 +168,9 @@ public:
+ 			QTextDocument::MarkdownFeatures(QTextDocument::MarkdownDialectGitHub |
+ 							QTextDocument::MarkdownNoHTML));
+ 
+-		ui->checkBoxAutoCheckForUpdates->setChecked(config->AutoCheckForUpdates());
+-#if QT_VERSION < QT_VERSION_CHECK(6, 7, 0)
+-		connect(ui->checkBoxAutoCheckForUpdates, &QCheckBox::stateChanged, this,
+-			[](int state) { Config::Current(false)->AutoCheckForUpdates(state == Qt::Checked); });
+-#else
+-		connect(ui->checkBoxAutoCheckForUpdates, &QCheckBox::checkStateChanged, this,
+-			[](int state) { Config::Current(false)->AutoCheckForUpdates(state == Qt::Checked); });
+-#endif
++		ui->checkBoxAutoCheckForUpdates->setChecked(false);
++		ui->checkBoxAutoCheckForUpdates->setEnabled(false);
++		ui->checkBoxAutoCheckForUpdates->setToolTip(QString::fromUtf8("Atualizações de plugins são fornecidas pelo FreeMix."));
+ 
+ 		connect(ui->buttonSkipThisVersion, &QPushButton::clicked, this, [this, pluginUpdateInfo]() {
+ 			Config::Current(false)->SkipUpdateVersion(pluginUpdateInfo.versionLatest);
+@@ -196,10 +189,9 @@ public:
+ 		ui->buttonInstallUpdate->setStyleSheet(QString("QPushButton:default { background-color: %1; }")
+ 							       .arg(defaultButtonBackgroundColor.name(QColor::HexRgb)));
+ #endif
+-		connect(ui->buttonInstallUpdate, &QPushButton::clicked, [this, pluginUpdateInfo]() {
+-			QDesktopServices::openUrl(QUrl(pluginUpdateInfo.releaseUrl));
+-			accept();
+-		});
++		ui->buttonInstallUpdate->setEnabled(false);
++		ui->buttonInstallUpdate->setToolTip(QString::fromUtf8("Atualizações de plugins são fornecidas pelo FreeMix."));
++		connect(ui->buttonInstallUpdate, &QPushButton::clicked, [this]() { reject(); });
+ 
+ 		ui->labelDonateUrl->setText(makeLink(PLUGIN_REDIRECT_DONATE_URL));
+ 		connect(ui->labelDonateUrl, &QLabel::linkActivated,
+@@ -427,187 +419,10 @@ void updateCheckStop()
+ 
+ bool updateCheckStart(UserRequestCallback userRequestCallback)
+ {
+-	auto methodSignature =
+-		QString("updateCheckStart(userRequestCallback=%1)").arg(userRequestCallback ? "..." : "nullptr");
+-	obs_log(LOG_DEBUG, "+%s", QT_TO_UTF8(methodSignature));
+-
+-	auto isAutoCheck = userRequestCallback == nullptr;
+-
+-	auto config = Config::Current();
+-	if (isAutoCheck && !config->AutoCheckForUpdates()) {
+-		obs_log(LOG_DEBUG, "updateCheckStart: AutoCheckForUpdates is disabled; ignoring");
+-		obs_log(LOG_DEBUG, "-%s", QT_TO_UTF8(methodSignature));
+-		return false;
+-	}
+-
+-	if (isUpdatePendingOrShowing()) {
+-		if (update_dialog) {
+-			update_dialog->raise();
+-		}
+-		obs_log(LOG_DEBUG, "updateCheckStart: update pending or showing; ignoring");
+-		obs_log(LOG_DEBUG, "-%s", QT_TO_UTF8(methodSignature));
+-		return false;
+-	}
+-
+-	//
+-	// Avoid hitting the server too often by limiting auto-checks to every minAutoUpdateCheckIntervalSeconds.
+-	//
+-	if (isAutoCheck && !Config::UpdateLastCheckIgnore) {
+-		auto now = QDateTime::currentDateTime();
+-
+-		auto minAutoUpdateCheckIntervalSeconds = config->MinAutoUpdateCheckIntervalSeconds();
+-		if (minAutoUpdateCheckIntervalSeconds > 0) {
+-			auto lastUpdateCheck = config->LastUpdateCheck();
+-			auto elapsedSeconds = lastUpdateCheck.secsTo(now);
+-			if (elapsedSeconds < minAutoUpdateCheckIntervalSeconds) {
+-				obs_log(LOG_DEBUG,
+-					"updateCheckStart: elapsedSeconds=%lld < minAutoUpdateCheckIntervalSeconds=%d; ignoring",
+-					elapsedSeconds, minAutoUpdateCheckIntervalSeconds);
+-				obs_log(LOG_DEBUG, "-%s", QT_TO_UTF8(methodSignature));
+-				return false;
+-			}
+-		}
+-	}
+-	config->LastUpdateCheck(QDateTime::currentDateTime());
+-
+-	auto main_window = static_cast<QMainWindow *>(obs_frontend_get_main_window());
+-
+-//#define DIRECT_REQUEST_GITHUB
+-#ifdef DIRECT_REQUEST_GITHUB
+-	// Used to test directly hitting github instead of going through distroav.org firebase hosting+functions.
+-	QUrl url("https://api.github.com/repos/DistroAV/DistroAV/releases/latest");
+-#else
+-	QUrl url(rehostUrl(PLUGIN_UPDATE_URL));
+-	obs_log(LOG_DEBUG, "updateCheckStart: url='%s'", QT_TO_UTF8(url.toString()));
+-
+-	auto pluginVersion = QString(PLUGIN_VERSION);
+-	auto obsGuid = config->GetInstallGUID();
+-
+-	if (!obsGuid.isEmpty()) {
+-		obs_log(LOG_VERBOSE, "OBS GUID detected : '%s' ", QT_TO_UTF8(obsGuid));
+-	} else {
+-		obs_log(LOG_VERBOSE, "No OBS GUID detected - Assuming this is a new installation");
+-		obsGuid = "noguiddetectednewfreshinstalldistroavobs";
+-	}
+-
+-	auto module_hash_sha256 = GetObsCurrentModuleSHA256();
+-	auto ndiVersionForUserAgent = ndiLib ? QString(ndiLib->version()) : QString("NDI/Unavailable");
+-	auto userAgent = QString("DistroAV/%1 (OBS/%2 %3; %4; %5; %6) %7")
+-				 .arg(pluginVersion)
+-				 .arg(obs_get_version_string())
+-				 .arg(obsGuid)
+-				 .arg(ndiVersionForUserAgent)
+-				 .arg(QSysInfo::prettyProductName())
+-				 .arg(QSysInfo::currentCpuArchitecture())
+-				 .arg(module_hash_sha256);
+-	obs_log(LOG_DEBUG, "updateCheckStart: userAgent='%s'", QT_TO_UTF8(userAgent));
+-
+-	QJsonObject postObj;
+-	postObj["config"] = QJsonObject{{"autoCheck", config->AutoCheckForUpdates()}};
+-	postObj["request"] = QJsonObject{{"autoCheck", isAutoCheck}};
+-	std::string postData;
+-	if (!postObj.isEmpty()) {
+-		QJsonDocument postJson(postObj);
+-		postData = postJson.toJson().toStdString();
+-	}
+-#endif
+-
+-#if 0
+-	//qputenv("QT_LOGGING_RULES", "qt.network.ssl=true");
+-	obs_log(LOG_DEBUG,
+-		"updateCheckStart: QSslSocket{ supportsSsl=%s, sslLibraryBuildVersionString='%s', sslLibraryVersionString='%s'}",
+-		QSslSocket::supportsSsl() ? "true" : "false",
+-		QT_TO_UTF8(QSslSocket::sslLibraryBuildVersionString()),
+-		QT_TO_UTF8(QSslSocket::sslLibraryVersionString()));
+-	/*
+-	The above should output something like:
+-	```
+-	info: updateCheckStart: QSslSocket{ supportsSsl=true, sslLibraryBuildVersionString=`OpenSSL 1.1.1l  24 Aug 2021`, sslLibraryVersionString=`OpenSSL 1.1.1l  24 Aug 2021`}	
+-	```
+-	Instead it is outputting:
+-	```
+-	warning: No functional TLS backend was found
+-	warning: No functional TLS backend was found
+-	warning: No functional TLS backend was found
+-	info: updateCheckStart: QSslSocket{ supportsSsl=false, sslLibraryBuildVersionString=``, sslLibraryVersionString=``}
+-	```
+-	This appears to confirm that OBS' Qt is not built with SSL support. :(
+-	*/
+-#endif
+-
+-#ifdef UPDATE_REQUEST_QT
+-	// TODO: QScopedPointer<QNetworkReply, QScopedPointerDeleteLater> reply;
+-	update_request = new QNetworkRequest(url);
+-#else
+-	update_request =
+-		new RemoteTextThread(url.toString().toStdString(), "application/json", postData, UPDATE_TIMEOUT_SEC);
+-	// Our logic needs to set `update_request = nullptr` after it finishes...
+-	QObject::connect(
+-		update_request, &RemoteTextThread::finished, main_window,
+-		[]() {
+-			update_request->deleteLater();
+-			update_request = nullptr;
+-		},
+-		Qt::QueuedConnection);
+-#endif
+-
+-#ifndef DIRECT_REQUEST_GITHUB
+-#ifdef UPDATE_REQUEST_QT
+-	update_request->setRawHeader("User-Agent", userAgent.toUtf8());
+-#else
+-	userAgent = "User-Agent: " + userAgent;
+-	update_request->headers.push_back(userAgent.toStdString());
+-#endif
+-#endif
+-
+-#ifdef UPDATE_REQUEST_QT
+-	auto manager = new QNetworkAccessManager(main_window);
+-
+-	auto timer = new QTimer();
+-	timer->setSingleShot(true);
+-	QObject::connect(timer, &QTimer::timeout, []() {
+-		obs_log(LOG_WARNING, "WARN-418 - Update Check took too long for a response");
+-		PostToMainThread("timer->timeout", []() { updateCheckStop(); });
+-		obs_log(LOG_DEBUG, "updateCheckStart: timer: Request timed out");
+-		PostToMainThread("timer->timeout", []() { updateCheckStop(); });
+-	});
+-
+-	QObject::connect(manager, &QNetworkAccessManager::finished,
+-			 [manager, timer, userRequestor](QNetworkReply *reply) {
+-				 timer->stop();
+-
+-				 auto errorCode = reply->error();
+-				 QString responseOrErrorString;
+-				 if (errorCode == QNetworkReply::NoError) {
+-					 responseOrErrorString = reply->readAll();
+-				 } else {
+-					 responseOrErrorString = reply->errorString();
+-				 }
+-
+-				 onCheckForUpdateNetworkFinish(responseOrErrorString, errorCode, userRequestor);
+-				 updateCheckStop();
+-				 timer->deleteLater();
+-				 manager->deleteLater();
+-			 });
+-	timer->start(UPDATE_TIMEOUT_SEC * 1000));
+-	update_reply = manager->get(*update_request);
+-#else
+-	QObject::connect(
+-		update_request, &RemoteTextThread::Result, main_window,
+-		[userRequestCallback](int httpStatusCode, const QString &responseData, const QString &errorData) {
+-#if 0
+-			obs_log(LOG_DEBUG,
+-			     "updateCheckStart: Result: httpStatusCode=%d, responseData='%s', errorData='%s'",
+-			     httpCode, QT_TO_UTF8(responseData),
+-			     QT_TO_UTF8(errorData));
+-#endif
+-			onCheckForUpdateNetworkFinish(httpStatusCode, responseData, errorData, userRequestCallback);
+-		},
+-		Qt::QueuedConnection);
+-	update_request->start();
+-#endif
+-	obs_log(LOG_DEBUG, "-%s", QT_TO_UTF8(methodSignature));
+-	return true;
++	// FreeMix invariant: neither manual callbacks nor persisted/forced upstream preferences
++	// may request, download, launch or replace an engine/plugin/runtime release.
++	(void)userRequestCallback;
++	return false;
+ }
+ 
+ void showSampleUpdateDialog()
+diff --git a/src/forms/output-settings.cpp b/src/forms/output-settings.cpp
+--- a/src/forms/output-settings.cpp
++++ b/src/forms/output-settings.cpp
+@@ -26,7 +26,7 @@
+ #include <QDesktopServices>
+ #include <QMessageBox>
+ #include <QProgressDialog>
+-#include <QProcess>
++#include <QLabel>
+ #include <QPointer>
+ #include <QPushButton>
+ #include <QRegularExpression>
+@@ -97,168 +97,23 @@ OutputSettings::OutputSettings(QWidget *parent) : QDialog(parent), ui(new Ui::Ou
+ 				       ? QString("Missing (need %1+)").arg(PLUGIN_MIN_NDI_VERSION)
+ 				       : QString("Too old (%1 < %2)").arg(ndiVersionShort, PLUGIN_MIN_NDI_VERSION)));
+ 
+-	// DistroAV Section Logic
+-	// Check For Update Button
+-	connect(ui->pushButtonCheckForUpdate, &QPushButton::clicked, [this]() {
+-		// Whew! QProgressDialog is ugly on Windows!
+-		// TODO: Write our own.
+-		QPointer<QProgressDialog> progressDialog =
+-			new QProgressDialog(QTStr("NDIPlugin.Update.CheckingForUpdate.Text").arg(PLUGIN_DISPLAY_NAME),
+-					    Str("NDIPlugin.Update.CheckingForUpdate.Cancel"), 0, 0, this);
+-		progressDialog->setAttribute(Qt::WA_DeleteOnClose, true);
+-		progressDialog->setWindowModality(Qt::WindowModal);
+-		connect(progressDialog, &QProgressDialog::canceled, [progressDialog]() {
+-			updateCheckStop();
+-			progressDialog->close();
+-		});
+-		auto checking = updateCheckStart([this,
+-						  progressDialog](const PluginUpdateInfo &pluginUpdateInfo) -> bool {
+-			if (progressDialog != nullptr) {
+-				progressDialog->close();
+-			}
+-
+-			if (!pluginUpdateInfo.errorData.isEmpty()) {
+-				QString errorData = pluginUpdateInfo.errorData;
+-				if (LOG_LEVEL >= LOG_DEBUG) {
+-					QJsonParseError parseError;
+-					QJsonDocument jsonDoc =
+-						QJsonDocument::fromJson(errorData.toUtf8(), &parseError);
+-					if (parseError.error == QJsonParseError::NoError) {
+-						QJsonObject jsonObject = jsonDoc.object();
+-						if (jsonObject.contains("error")) {
+-							errorData = jsonObject["error"].toString();
+-						}
+-					}
+-				}
+-
+-				auto errorText = QTStr("NDIPlugin.Update.CheckingForUpdate.Error.Text");
+-				errorText += QString("<pre>%1</pre>").arg(errorData);
+-
+-				if (pluginUpdateInfo.httpStatusCode == 404    // Not Found
+-				    || pluginUpdateInfo.httpStatusCode == 412 // Precondition Failed
+-				) {
+-					// Only someone building and loading their own plugin should see this.
+-					// This is effectively just a code comment to them/me in the UI.
+-					// English only text is OK here, just like it is for all code comments.
+-					errorText += R"(
+-The update server says you are not using an official release.<br>
+-<br>
+-Update checks are only supported for official releases.
+-)";
+-					if (LOG_LEVEL >= LOG_DEBUG) {
+-						errorText += R"(<br>
+-<br>
+-If you are running a local build, don't forget to add your build info to the update server.
+-)";
+-					}
+-				}
+-
+-				QMessageBox::warning(this, Str("NDIPlugin.Update.CheckingForUpdate.Error.Title"),
+-						     errorText);
+-				return false;
+-			}
+-
+-			if (pluginUpdateInfo.versionLatest <= pluginUpdateInfo.versionCurrent &&
+-			    Config::UpdateForce < 1) {
+-				QMessageBox::information(
+-					this, QTStr("NDIPlugin.Update.NoUpdateAvailable").arg(PLUGIN_DISPLAY_NAME),
+-					QTStr("NDIPlugin.Update.YouAreUpToDate")
+-						.arg(PLUGIN_DISPLAY_NAME, pluginUpdateInfo.versionCurrent.toString()));
+-				return false;
+-			}
+-
+-			return false;
+-		});
+-		if (checking) {
+-			progressDialog->show();
+-		} else {
+-			progressDialog->deleteLater();
+-		}
+-	});
+-
+-	if (LOG_LEVEL >= LOG_DEBUG) {
+-		// Debug-only: stray button that shows the update dialog with a hostile
+-		// sample `releaseNotes` so the markdown-render HTML-escape in
+-		// PluginUpdate (see src/forms/update.cpp) can be visually verified
+-		// without waiting for a real release. Only added when log level is
+-		// debug or verbose (e.g. `--distroav-debug`).
+-		auto testButton = new QPushButton("Test Release Notes (debug)", this);
+-		testButton->setToolTip("Debug: show the update dialog with sample hostile releaseNotes "
+-				       "(HTML / script injection attempts) to verify the markdown escape.");
+-		ui->horizontalLayoutDistroAv->addWidget(testButton);
+-		connect(testButton, &QPushButton::clicked, [] { showSampleUpdateDialog(); });
+-	}
+-
+-	// Auto re-install DistroAV Plugin Button
+-	connect(ui->pushButtonInstallPlugin, &QPushButton::clicked, [this]() {
+-		obs_log(LOG_DEBUG, "Re-Install DistroAV Plugin button clicked");
+-#if defined(Q_OS_MACOS)
+-		const auto script = QString(
+-			"tell application \"Terminal\"\n"
+-			"activate\n"
+-			"do script \"brew tap distroav/distroav && brew reinstall --cask distroav/distroav/distroav && exit\"\n"
+-			"end tell");
+-
+-		if (!QProcess::startDetached("/usr/bin/osascript", QStringList() << "-e" << script)) {
+-			QMessageBox::warning(
+-				this, QTStr("NDIPlugin.OneclickInstallError.Title"),
+-				QTStr("NDIPlugin.OneclickInstallError.Message") +
+-					QStringLiteral("brew reinstall --cask distroav/distroav/distroav"));
+-		}
+-#elif defined(Q_OS_WIN)
+-		if (!QProcess::startDetached(
+-				"cmd.exe",
+-				QStringList()
+-					<< "/c"
+-					<< "start"
+-					<< "cmd.exe"
+-					<< "/c"
+-					<< "winget install -e --id DistroAV.DistroAV --accept-package-agreements --accept-source-agreements || pause")) {
+-			QMessageBox::warning(this, QTStr("NDIPlugin.OneclickInstallError.Title"),
+-					     QTStr("NDIPlugin.OneclickInstallError.Message") + QStringLiteral("winget install -e --id DistroAV.DistroAV"));
+-			obs_log(LOG_DEBUG, "Install DistroAV button: something went wrong");
+-		}
+-#else
+-			QMessageBox::information(this, "Unsupported platform",
+-						"Automatic DistroAV installation is currently only supported on Windows and macOS using the default installation methods.");
+-#endif
+-	});
+-
+-	// NDI Library Section Logic
+-	connect(ui->pushButtonGetNdi, &QPushButton::clicked,
+-		[]() { QDesktopServices::openUrl(QUrl(rehostUrl(PLUGIN_REDIRECT_NDI_REDIST_URL))); });
+-
+-	connect(ui->pushButtonInstallNdi, &QPushButton::clicked, [this]() {
+-		obs_log(LOG_DEBUG, "Install NDI button clicked");
+-#if defined(Q_OS_MACOS)
+-		const auto script = QString("tell application \"Terminal\"\n"
+-					    "activate\n"
+-					    "do script \"brew reinstall libndi && exit\"\n"
+-					    "end tell");
+-
+-		if (!QProcess::startDetached("/usr/bin/osascript", QStringList() << "-e" << script)) {
+-			QMessageBox::warning(this, QTStr("NDIPlugin.OneclickInstallError.Title"),
+-					     QTStr("NDIPlugin.OneclickInstallError.Message") +
+-						     QStringLiteral("brew reinstall libndi"));
+-		}
+-#elif defined(Q_OS_WIN)
+-		if (!QProcess::startDetached(
+-				"cmd.exe",
+-				QStringList()
+-					<< "/c"
+-					<< "start"
+-					<< "cmd.exe"
+-					<< "/c"
+-					<< "winget install -e --id NDI.NDIRuntime --accept-package-agreements --accept-source-agreements || pause")) {
+-			QMessageBox::warning(this, QTStr("NDIPlugin.OneclickInstallError.Title"),
+-					     QTStr("NDIPlugin.OneclickInstallError.Message") + QStringLiteral("winget install -e --id NDI.NDIRuntime"));
+-			obs_log(LOG_DEBUG, "Install NDI button: something went wrong");
+-		}
+-#else
+-		QMessageBox::information(this, "Unsupported platform",
+-					 "Automatic NDI installation is currently only supported on Windows and macOS using the default installation methods.");
+-#endif
+-	});
++	// FreeMix fork: no independent upstream updater or package-manager installers.
++	const QString releaseNotice = QString::fromUtf8("Plugins e NDI Runtime: atualize pelo FreeMix.");
++	auto *notice = new QLabel(releaseNotice, this);
++	notice->setWordWrap(true);
++	ui->horizontalLayoutDistroAv->addWidget(notice);
++	ui->checkBoxAutoCheckForUpdates->setChecked(false);
++	ui->checkBoxAutoCheckForUpdates->setEnabled(false);
++	ui->checkBoxAutoCheckForUpdates->setToolTip(releaseNotice);
++	ui->pushButtonCheckForUpdate->setEnabled(false);
++	ui->pushButtonCheckForUpdate->setToolTip(releaseNotice);
++	ui->pushButtonInstallPlugin->setEnabled(false);
++	ui->pushButtonInstallPlugin->setToolTip(releaseNotice);
++	ui->pushButtonInstallNdi->setEnabled(false);
++	ui->pushButtonInstallNdi->setToolTip(releaseNotice);
++	ui->pushButtonGetNdi->setEnabled(false);
++	ui->pushButtonGetNdi->setToolTip(releaseNotice);
++	// Intentionally no clicked handlers for update/install/download controls.
+ 
+ 	connect(ui->pushButtonDiscord, &QPushButton::clicked,
+ 		[]() { QDesktopServices::openUrl(QUrl(rehostUrl(PLUGIN_REDIRECT_DISCORD_URL))); });
+@@ -290,7 +145,7 @@ void OutputSettings::onFormAccepted()
+ 	config->TallyProgramEnabled = ui->tallyProgramCheckBox->isChecked();
+ 	config->TallyPreviewEnabled = ui->tallyPreviewCheckBox->isChecked();
+ 
+-	config->AutoCheckForUpdates(ui->checkBoxAutoCheckForUpdates->isChecked());
++	config->AutoCheckForUpdates(false);
+ 
+ 	auto mainSupported = ui->mainOutputGroupBox->isEnabled();
+ 
+@@ -362,7 +217,7 @@ void OutputSettings::showEvent(QShowEvent *)
+ 	ui->tallyProgramCheckBox->setChecked(config->TallyProgramEnabled);
+ 	ui->tallyPreviewCheckBox->setChecked(config->TallyPreviewEnabled);
+ 
+-	ui->checkBoxAutoCheckForUpdates->setChecked(config->AutoCheckForUpdates());
++	ui->checkBoxAutoCheckForUpdates->setChecked(false);
+ }
+ 
+ void OutputSettings::toggleShowHide()
+diff --git a/src/ndi-filter.cpp b/src/ndi-filter.cpp
+--- a/src/ndi-filter.cpp
++++ b/src/ndi-filter.cpp
+@@ -119,14 +119,14 @@ obs_properties_t *ndi_filter_getproperties(void *)
+ 	obs_properties_add_text(props, FLT_PROP_GROUPS, obs_module_text("NDIPlugin.FilterProps.NDIGroups"),
+ 				OBS_TEXT_DEFAULT);
+ 
+-	obs_properties_add_button(props, "ndi_apply", obs_module_text("NDIPlugin.FilterProps.ApplySettings"),
++	obs_properties_add_button2(props, "ndi_apply", obs_module_text("NDIPlugin.FilterProps.ApplySettings"),
+ 				  [](obs_properties_t *, obs_property_t *, void *private_data) {
+ 					  auto s = (ndi_filter_t *)private_data;
+ 					  auto settings = obs_source_get_settings(s->obs_source);
+ 					  ndi_filter_update(s, settings);
+ 					  obs_data_release(settings);
+ 					  return true;
+-				  });
++				  }, nullptr);
+ 
+ 	obs_log(LOG_DEBUG, "-ndi_filter_getproperties(...)");
+ 	return props;
+diff --git a/src/managed-runtime.hpp b/src/managed-runtime.hpp
+new file mode 100644
+--- /dev/null
++++ b/src/managed-runtime.hpp
+@@ -0,0 +1,48 @@
++#pragma once
++#include <QDir>
++#include <QFile>
++#include <QFileInfo>
++#include <QCryptographicHash>
++#ifdef Q_OS_WIN
++#ifndef NOMINMAX
++#define NOMINMAX
++#endif
++#include <windows.h>
++#endif
++
++namespace freemix_distro {
++// Windows customer builds use the licensed SDK already present in the approved
++// FreeMix payload, never a vendor install or an environment-variable path.
++inline QString ManagedNdiPath(const QString &applicationDirectory)
++{
++	QDir root(applicationDirectory);
++	if (!root.cdUp() || !root.cdUp()) return {};
++	const QString file = root.absoluteFilePath("runtime/ndi-v6/Processing.NDI.Lib.x64.dll");
++	for (QString p=file;;) {
++		const QFileInfo info(p);
++		if (info.isSymLink() || info.isJunction()) return {};
++		const QString parent=info.dir().absolutePath();
++		if (parent==p) break;
++		p=parent;
++	}
++	const QFileInfo info(file);
++	if (!info.isFile() || info.size()!=29863120) return {};
++#ifdef Q_OS_WIN
++	const HANDLE handle=CreateFileW(reinterpret_cast<LPCWSTR>(file.utf16()), FILE_READ_ATTRIBUTES,
++		FILE_SHARE_READ|FILE_SHARE_WRITE|FILE_SHARE_DELETE, nullptr, OPEN_EXISTING,
++		FILE_FLAG_OPEN_REPARSE_POINT, nullptr);
++	if (handle==INVALID_HANDLE_VALUE) return {};
++	BY_HANDLE_FILE_INFORMATION metadata{};
++	const bool independent=GetFileInformationByHandle(handle,&metadata) &&
++		metadata.nNumberOfLinks==1 && !(metadata.dwFileAttributes&FILE_ATTRIBUTE_REPARSE_POINT);
++	CloseHandle(handle);
++	if (!independent) return {};
++#endif
++	QFile sdk(file);
++	if (!sdk.open(QIODevice::ReadOnly)) return {};
++	QCryptographicHash hash(QCryptographicHash::Sha256);
++	if (!hash.addData(&sdk)) return {};
++	if (hash.result().toHex()!="2b6602075868ba4401f82f417d72424805d69b11ca86078023d0d489ff45dd84") return {};
++	return file;
++}
++} // namespace freemix_distro
