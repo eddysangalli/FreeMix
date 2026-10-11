@@ -1,0 +1,19 @@
+{
+  "status": "UNDO_OK_ON_REHEARSAL_COPY",
+  "installed": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\own-temp-sandbox-telas\\FreeMix-QA-Ensaio-27ZZJE\\FreeMix-QA-Ensaio Mesa",
+  "from": "0.1.0-local.20261011140049",
+  "backTo": "0.1.0-local.20261009153453",
+  "checks": {
+    "scriptSucceeded": true,
+    "versionBack": true,
+    "engineBackToOriginal": true,
+    "newWindowRemoved": true,
+    "pointerRestored": true,
+    "receiptCleared": true
+  },
+  "output": [
+    "Desfazendo a atualização 0.1.0-local.20261011140049 com a cópia de segurança…",
+    "Pronto. A mesa voltou para a versão 0.1.0-local.20261009153453. Abra normalmente pelo ABRIR-FREEMIX.cmd."
+  ],
+  "operatorTouched": false
+}

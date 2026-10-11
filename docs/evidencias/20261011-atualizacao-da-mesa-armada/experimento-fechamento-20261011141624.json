@@ -1,0 +1,41 @@
+{
+  "installed": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\own-temp-sandbox-telas\\FreeMix-QA-Ensaio-27ZZJE\\FreeMix-QA-Ensaio Mesa",
+  "results": [
+    {
+      "name": "nada",
+      "scenarioError": null,
+      "wrapperExit": 0,
+      "secondsToClose": 3,
+      "cleanEnd": true,
+      "leaks": "0",
+      "crash": null
+    },
+    {
+      "name": "roteiro:mesa-janelas",
+      "scenarioError": "8/9 verificações passaram",
+      "wrapperExit": 1,
+      "secondsToClose": 42,
+      "cleanEnd": false,
+      "leaks": null,
+      "crash": "80000003 em libcef.dll · CrBrowserMain (Crashed)"
+    },
+    {
+      "name": "roteiro:externo",
+      "scenarioError": null,
+      "wrapperExit": 0,
+      "secondsToClose": 3,
+      "cleanEnd": true,
+      "leaks": "0",
+      "crash": null
+    },
+    {
+      "name": "roteiro:calls",
+      "scenarioError": null,
+      "wrapperExit": 0,
+      "secondsToClose": 2,
+      "cleanEnd": true,
+      "leaks": "0",
+      "crash": null
+    }
+  ]
+}

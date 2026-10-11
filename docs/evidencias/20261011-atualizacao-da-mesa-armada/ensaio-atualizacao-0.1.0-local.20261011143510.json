@@ -1,0 +1,22 @@
+{
+  "status": "UPDATE_APPLIED_ON_REHEARSAL_COPY",
+  "mesaVersion": "0.1.0-local.20261009153453",
+  "newVersion": "0.1.0-local.20261011143510",
+  "engine": "ed08547c80c26581551d3c5fb2c332e9e18d4302",
+  "installed": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\own-temp-sandbox-telas\\FreeMix-QA-Ensaio-SXxDk1\\FreeMix-QA-Ensaio Mesa",
+  "package": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\entregas\\FreeMix-Atualizacao-0.1.0-local.20261011143510",
+  "packageFiles": 490,
+  "packageMegabytes": 175,
+  "mesaWouldReceive": {
+    "changed": 391,
+    "megabytes": 175
+  },
+  "checks": {
+    "versionAfter": true,
+    "engineIsTheFrozenBuild": true,
+    "newWindowPresent": true,
+    "everyPackageFileInPlace": true,
+    "backupKept": true
+  },
+  "operatorTouched": false
+}

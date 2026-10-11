@@ -1,0 +1,9 @@
+{
+  "installed": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\own-temp-sandbox-telas\\FreeMix-QA-Sandbox-cgCIkM\\FreeMix-QA-Sandbox Telas",
+  "results": [
+    {
+      "name": "roteiro:mesa-so-carregar",
+      "error": "não abriu: já existe um sandbox aberto (D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\sandbox-telas\\sandbox.json); feche-o primeiro com --fechar"
+    }
+  ]
+}

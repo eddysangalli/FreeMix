@@ -1,0 +1,14 @@
+{
+  "installed": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\own-temp-sandbox-telas\\FreeMix-QA-Sandbox-cgCIkM\\FreeMix-QA-Sandbox Telas",
+  "results": [
+    {
+      "name": "roteiro:mesa-janelas",
+      "scenarioError": "6/8 verificações passaram",
+      "wrapperExit": 1,
+      "secondsToClose": 42,
+      "cleanEnd": false,
+      "leaks": null,
+      "crash": "c0000005 em qt6core.dll · CrBrowserMain (Crashed)"
+    }
+  ]
+}

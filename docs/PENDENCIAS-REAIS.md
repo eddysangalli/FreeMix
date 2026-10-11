@@ -4,6 +4,12 @@
 **Mudou nesta rodada:** o P0 dos menus foi fechado com prova real (linha riscada na tabela). Entrou um item novo, pequeno: **inventário de áudio tolerante a uma entrada defeituosa** (hoje uma única chave quebrada em `HKLM\SOFTWARE\ASIO`, ou um único dispositivo de reprodução sem nome, faz o programa descartar todos os dispositivos válidos); correção em preparo junto com a revisão dos patches 0025–0036. O resto da tabela continua como estava.
 **Entrega aprovada:0.1.0-local.20261010060000 / Native24, imutável. Fonte atual Native36 e DLL LocalVocal cumulativa são QA/fonte, sem novo instalador aprovado.** Os PASS abaixo têm escopo finito; o histórico posterior não substitui esta visão vigente.
 
+**Acréscimo de 11/10, 11h40 (Claude):** as seis janelas novas (Streaming, Chamada de Vídeo, Saídas externas, Gravação, MultiGravação, Configurações do Replay) passaram com o programa real e a atualização da mesa do operador foi **armada** (detalhes e limites em CONTINUAR.md). Entraram quatro itens:
+- **Aplicação na mesa real ainda não vista**: só o dono abrindo pelo `ABRIR-FREEMIX.cmd` aplica; os ensaios usaram configuração de fábrica, não a dele.
+- **MultiGravação em MKV com imagem parada**: o motor recusa o início ("não produziu vídeo no disco") porque exige um pacote de vídeo no arquivo em 10 s; com cor lisa/imagem fixa o MKV demora mais a descarregar. MPEG-2 TS grava normal. Corrigir no motor (`replay-disco.mjs`, conferência do início) ou esconder MKV até lá.
+- **Programa trava ao fechar e grava relatório de erro depois que uma cópia da página da mesa, num navegador de fora, manda abrir janelas** (só em teste; o caminho do operador fecha limpo). Causa no motor não investigada; pode esconder um defeito real de vida útil das janelas.
+- **Janela de Configurações gerais**: rascunho R2 aceito pelo Codex, não integrado nem conferido com o programa real.
+
 ## Software que ainda exige trabalho ou prova
 
 | Prioridade / frente | Estado comprovado | Trabalho concreto e critério | Quem pode provar / condição |

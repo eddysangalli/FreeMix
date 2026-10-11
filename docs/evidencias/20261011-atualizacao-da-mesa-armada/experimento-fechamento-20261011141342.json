@@ -1,0 +1,50 @@
+{
+  "installed": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\own-temp-sandbox-telas\\FreeMix-QA-Sandbox-cgCIkM\\FreeMix-QA-Sandbox Telas",
+  "results": [
+    {
+      "name": "nada",
+      "scenarioError": null,
+      "wrapperExit": 0,
+      "secondsToClose": 3,
+      "cleanEnd": true,
+      "leaks": "0",
+      "crash": null
+    },
+    {
+      "name": "abre-e-fecha-pelo-pedido",
+      "scenarioError": null,
+      "wrapperExit": 0,
+      "secondsToClose": 3,
+      "cleanEnd": true,
+      "leaks": "0",
+      "crash": null
+    },
+    {
+      "name": "abre-e-deixa-aberta",
+      "scenarioError": null,
+      "wrapperExit": 0,
+      "secondsToClose": 3,
+      "cleanEnd": true,
+      "leaks": "0",
+      "crash": null
+    },
+    {
+      "name": "quatro-abre-fecha-em-seguida",
+      "scenarioError": null,
+      "wrapperExit": 0,
+      "secondsToClose": 3,
+      "cleanEnd": true,
+      "leaks": "0",
+      "crash": null
+    },
+    {
+      "name": "tela-cheia-aberta",
+      "scenarioError": null,
+      "wrapperExit": 0,
+      "secondsToClose": 3,
+      "cleanEnd": true,
+      "leaks": "0",
+      "crash": null
+    }
+  ]
+}
