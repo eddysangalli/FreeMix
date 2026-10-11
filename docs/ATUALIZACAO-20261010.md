@@ -1,4 +1,9 @@
 # Estado operacional em 10/10/2026
+<!-- rodada-20261010-noite -->
+
+**Atualização das 23h30:** o ensaio de App passou em execução real (App36 R4e): abrir e manter abertas as cinco telas não dispara comando; Preview, Cut e salvamento automático conferidos; fechamento limpo. As três falhas anteriores do dia eram do roteiro de teste. Detalhes e limites: [prova](evidencias/20261011-app36-r4e-real-pass/ROOT-README.md). Instalador selecionado continua o 060000; o novo depende de uma pequena leva de correções do motor e da repetição do ensaio.
+
+---
 
 **Instalador aprovado continua 0.1.0-local.20261010060000 / Native24, imutável.** As correções atuais de fonte/Native33 e os testes históricos Native32 não estão nesse instalador. Ainda não há pacote posterior aprovado. A mesa, mídia, Calls, REC e configurações do operador permanecem fora destes ensaios.
 

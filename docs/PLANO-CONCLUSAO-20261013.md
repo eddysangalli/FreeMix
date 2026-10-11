@@ -1,5 +1,17 @@
-# Plano de conclusão até13/10
+# Plano de conclusão até 13/10
+<!-- rodada-20261010-noite -->
 
+**Situação em 10/10, 23h30.** Passo 4 (validar o App com a fonte final) **concluído** para Native36 + painel atual: [App36 R4e PASS](evidencias/20261011-app36-r4e-real-pass/ROOT-README.md). Ordem daqui para a frente:
+
+1. Conferir e corrigir o que a revisão de código dos patches 0025–0036 confirmar (pequeno; vira Native37).
+2. Compilar, congelar, repetir o ensaio de App (8 min) no Native37.
+3. Selar o instalador novo, instalar em pasta própria, abrir/fechar duas vezes, diagnóstico e desinstalação; publicar commit e push.
+4. Em paralelo, sem segurar o instalador: Calls contínuo (segue desligado), RNNoise, LocalVocal com filtro vivo, FTB 29,97 completo.
+5. Terça, 13/10: conferir a entrega e listar o que depende de equipamento, licença ou rede.
+
+---
+
+## Registro anterior (Codex)
 Entrega selecionada: **0.1.0-local.20261010060000, Native24/a047860**, imutável. Fonte atual Native36/e81afe7 compilada viaALL_BUILD e congelada:2085arquivos,36patches/3submódulos/231snapshots reconstruídos. Cursor retido integrado; reinício NTSC real33 PASS no cursor, fullFTB ainda pendente. Ainda não há novo instalador aprovado. Native30/93d73e2 e candidato093000/FAIL permanecem históricos.
 
 1. Fechamento176324 conferido; ReplayR3 real PASS e fechou cooperativamente. Preservar FAILs originais; novos QA fecham automaticamente com guardas corretas.

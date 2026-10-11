@@ -1,0 +1,7 @@
+{"kind":"ack","role":"root","ownOnly":true,"handoffId":"0badaca0-f4c6-4754-a871-c844aa54d572","contextSha256":"a4cbb4d61bec8121f81ec135bb4c61ef7b5c1df30013f91b41b994c3bf370176","sequence":0}
+{"kind":"heartbeat","role":"root","ownOnly":true,"handoffId":"0badaca0-f4c6-4754-a871-c844aa54d572","contextSha256":"a4cbb4d61bec8121f81ec135bb4c61ef7b5c1df30013f91b41b994c3bf370176","sequence":1,"action":"capture"}
+{"kind":"heartbeat","role":"root","ownOnly":true,"handoffId":"0badaca0-f4c6-4754-a871-c844aa54d572","contextSha256":"a4cbb4d61bec8121f81ec135bb4c61ef7b5c1df30013f91b41b994c3bf370176","sequence":2,"action":"capture"}
+{"kind":"heartbeat","role":"root","ownOnly":true,"handoffId":"0badaca0-f4c6-4754-a871-c844aa54d572","contextSha256":"a4cbb4d61bec8121f81ec135bb4c61ef7b5c1df30013f91b41b994c3bf370176","sequence":3,"action":"capture"}
+{"kind":"heartbeat","role":"root","ownOnly":true,"handoffId":"0badaca0-f4c6-4754-a871-c844aa54d572","contextSha256":"a4cbb4d61bec8121f81ec135bb4c61ef7b5c1df30013f91b41b994c3bf370176","sequence":4,"action":"capture"}
+{"kind":"heartbeat","role":"root","ownOnly":true,"handoffId":"0badaca0-f4c6-4754-a871-c844aa54d572","contextSha256":"a4cbb4d61bec8121f81ec135bb4c61ef7b5c1df30013f91b41b994c3bf370176","sequence":5,"action":"capture"}
+{"kind":"proof-ready","role":"root","ownOnly":true,"handoffId":"0badaca0-f4c6-4754-a871-c844aa54d572","contextSha256":"a4cbb4d61bec8121f81ec135bb4c61ef7b5c1df30013f91b41b994c3bf370176","sequence":6}

@@ -1,0 +1,148 @@
+{
+  "copies": [
+    {
+      "file": "receipt-r4d.json",
+      "from": "qa-finalizacao/native36-real-app-r4d-preparation-20261011/receipt.json",
+      "bytes": 480216,
+      "sha256": "5a9ac1d49ecba70b3dea73f6be7236e0d19f06a343528afaf6b41aeac0a23c68"
+    },
+    {
+      "file": "root-events-r4d.ndjson",
+      "from": "qa-finalizacao/native36-real-app-r4d-preparation-20261011/root-events.ndjson",
+      "bytes": 1470,
+      "sha256": "1b426549f8a64e11a77bd587a60a96ba4a5a3c2eaa1650a477f5f0628f1a2e79"
+    },
+    {
+      "file": "root-proof-r4d.json",
+      "from": "qa-finalizacao/native36-real-app-r4d-preparation-20261011/root-iab-proof.json",
+      "bytes": 1358,
+      "sha256": "e29c22dacf7812b338bffe18d299b83efd36dabd24626dec9f4a8f5efab09e7d"
+    },
+    {
+      "file": "root-command-r4d.json",
+      "from": "qa-finalizacao/native36-real-app-r4d-preparation-20261011/root-command.json",
+      "bytes": 1557,
+      "sha256": "e465d66f8aa65c4de55df5c9d9602063d40c3e83544763e84e17b63dfa4c6d95"
+    },
+    {
+      "file": "derivation-r4d.json",
+      "from": "qa-finalizacao/native36-real-app-r4d-offside-20261011/DERIVE-RECEIPT.json",
+      "bytes": 6934,
+      "sha256": "998910adc039e93eb8e3c61a49c8f852587a8978df5e99374aeaf12dcb6463fd"
+    },
+    {
+      "file": "browser-observations-r4d.json",
+      "from": "qa-finalizacao/root-app36r4d-real-execution-20261011/browser-observations.json",
+      "bytes": 4817,
+      "sha256": "bddbec857f81215145ff9ab25330501092c0113ddb30d982971695e751161021"
+    },
+    {
+      "file": "reviewed-r4d.json",
+      "from": "qa-finalizacao/root-app36r4d-real-execution-20261011/ROOT-REVIEWED.json",
+      "bytes": 886,
+      "sha256": "2d6ab56f059dea564ffcd24f9f7d976bd0d2ed05da5eae0886a6d99ff3143a39"
+    },
+    {
+      "file": "launcher-r4d.json",
+      "from": "qa-finalizacao/root-app36r4d-real-execution-20261011/launcher-receipt.json",
+      "bytes": 916,
+      "sha256": "2b0b349af505e60b2d3b78f3ddb34f2c5dabc8d04a494d83fd82849de8ed29dc"
+    },
+    {
+      "file": "receipt-r4e.json",
+      "from": "qa-finalizacao/native36-real-app-r4e-preparation-20261011/receipt.json",
+      "bytes": 462883,
+      "sha256": "4781787ee93ff8e619470a7ecec140f1860ed0dbba696b50711033dfb4ea9cc0"
+    },
+    {
+      "file": "root-events-r4e.ndjson",
+      "from": "qa-finalizacao/native36-real-app-r4e-preparation-20261011/root-events.ndjson",
+      "bytes": 1470,
+      "sha256": "23e8d7f144f470a210fc2a094fe0f4e215c34575f8e8a3f85bf940fbe42430a2"
+    },
+    {
+      "file": "root-proof-r4e.json",
+      "from": "qa-finalizacao/native36-real-app-r4e-preparation-20261011/root-iab-proof.json",
+      "bytes": 1358,
+      "sha256": "4c3555fe658f7d5a01ab7622100fe50b1d4046a1c4d59137db189a77376dae63"
+    },
+    {
+      "file": "root-command-r4e.json",
+      "from": "qa-finalizacao/native36-real-app-r4e-preparation-20261011/root-command.json",
+      "bytes": 1557,
+      "sha256": "85ee46aa7f4d807fda899aee1778ef5ad0d57d270d95c6bf9163708c7b763d35"
+    },
+    {
+      "file": "derivation-r4e.json",
+      "from": "qa-finalizacao/native36-real-app-r4e-offside-20261011/DERIVE-RECEIPT.json",
+      "bytes": 2996,
+      "sha256": "935b10207f4c6fc2a899e4133f2e1db14fa497ee65cc0d4eca8c6cf1add95467"
+    },
+    {
+      "file": "browser-observations-r4e.json",
+      "from": "qa-finalizacao/root-app36r4e-real-execution-20261011/browser-observations.json",
+      "bytes": 4502,
+      "sha256": "a46749867b2ec729cae17334e2056153e876804dcaaa224856d7590b637bd062"
+    },
+    {
+      "file": "reviewed-r4e.json",
+      "from": "qa-finalizacao/root-app36r4e-real-execution-20261011/ROOT-REVIEWED.json",
+      "bytes": 942,
+      "sha256": "a6ae9bf6a5e9e57049eaa0d57799843407e30af03f33e2aa2ec7a93d71da64ad"
+    },
+    {
+      "file": "launcher-r4e.json",
+      "from": "qa-finalizacao/root-app36r4e-real-execution-20261011/launcher-receipt.json",
+      "bytes": 916,
+      "sha256": "7abcbe0ba5358fa24e89e316d31df089ec9feead27781e95dbf5e71f76df4a70"
+    },
+    {
+      "file": "r4e-mesa.jpg",
+      "from": "qa-finalizacao/native36-real-app-r4e-preparation-20261011/root-installed-mesa.jpg",
+      "bytes": 70637,
+      "sha256": "75fac79dd0eadd0c88b3d4165eadae54c59e291c62b18735ebf4a302082f64cd"
+    },
+    {
+      "file": "r4e-srt.jpg",
+      "from": "qa-finalizacao/native36-real-app-r4e-preparation-20261011/root-installed-srt.jpg",
+      "bytes": 76432,
+      "sha256": "ff012c766d9e6c66ea01df10098977d3424074b85a430ed6e3c37cba5531a4f4"
+    },
+    {
+      "file": "r4e-multistream.jpg",
+      "from": "qa-finalizacao/native36-real-app-r4e-preparation-20261011/root-installed-multistream.jpg",
+      "bytes": 72185,
+      "sha256": "b60262c8349f741961b824ea1e26ef96c9a4ec31e58b220ee0b821243e97afca"
+    },
+    {
+      "file": "r4e-calls.jpg",
+      "from": "qa-finalizacao/native36-real-app-r4e-preparation-20261011/root-installed-calls.jpg",
+      "bytes": 18804,
+      "sha256": "f6f12b2ed16c90b1a1180e522c0ac1da3d6379db49377ad4bd091cc89c0237ed"
+    },
+    {
+      "file": "r4e-replay-settings.jpg",
+      "from": "qa-finalizacao/native36-real-app-r4e-preparation-20261011/root-installed-replay-settings.jpg",
+      "bytes": 90343,
+      "sha256": "d9d7f0e8f4b4776ee0cce62e3aae81164a05efca5d9922ce7df243e8a7ef8eb4"
+    },
+    {
+      "file": "root-browser.mjs",
+      "from": "qa-finalizacao/root-app36r4e-real-execution-20261011/root-browser.mjs",
+      "bytes": 9822,
+      "sha256": "c9e568fbe0e4f5439c9fbfa594828025897452d77b9e779e9ddbeb24d6a65ad8"
+    },
+    {
+      "file": "gemini-review-of-r4d-changes.txt",
+      "from": "qa-finalizacao/agy-20261011-app36r4d-revisao/RESPONSE.txt",
+      "bytes": 3682,
+      "sha256": "a11ef8066aa78dd39007cf0b1da5e388cb617684bf5cc4fbe5ef063286f69574"
+    },
+    {
+      "file": "gemini-review-receipt.json",
+      "from": "qa-finalizacao/agy-20261011-app36r4d-revisao/RECEIPT.json",
+      "bytes": 594,
+      "sha256": "9995fac8b3e105248a5f2ed6c8b7cacf57d9c4238fa4804b1c39869ba612fc9a"
+    }
+  ]
+}

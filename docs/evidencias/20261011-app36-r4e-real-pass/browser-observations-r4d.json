@@ -1,0 +1,126 @@
+{
+  "browser": "Microsoft Edge headless over DevTools protocol",
+  "navigationOnly": true,
+  "pages": {
+    "mesa": {
+      "role": "mesa",
+      "loaded": true,
+      "exceptions": [],
+      "errors": [
+        "Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "Failed to load resource: net::ERR_CONNECTION_REFUSED",
+        "WebSocket connection to 'ws://127.0.0.1:53045/' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED"
+      ],
+      "httpErrors": [
+        {
+          "status": 404,
+          "url": "/favicon.ico"
+        }
+      ],
+      "failed": [
+        "net::ERR_CONNECTION_REFUSED"
+      ],
+      "responses": 169,
+      "title": "Mesa",
+      "url": "/mesa.html",
+      "responsesAtEnd": 169
+    },
+    "srt": {
+      "role": "srt",
+      "loaded": true,
+      "exceptions": [],
+      "errors": [
+        "Failed to load resource: net::ERR_CONNECTION_REFUSED",
+        "WebSocket connection to 'ws://127.0.0.1:53044/ws' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED",
+        "Failed to load resource: net::ERR_CONNECTION_REFUSED",
+        "Failed to load resource: net::ERR_CONNECTION_REFUSED",
+        "WebSocket connection to 'ws://127.0.0.1:53044/ws' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED"
+      ],
+      "httpErrors": [],
+      "failed": [
+        "net::ERR_CONNECTION_REFUSED",
+        "net::ERR_CONNECTION_REFUSED",
+        "net::ERR_CONNECTION_REFUSED"
+      ],
+      "responses": 46,
+      "title": "FreeMix · Saídas horizontal e vertical",
+      "url": "/saidas?context=external&transport=srt",
+      "responsesAtEnd": 46
+    },
+    "multistream": {
+      "role": "multistream",
+      "loaded": true,
+      "exceptions": [],
+      "errors": [
+        "Failed to load resource: net::ERR_CONNECTION_REFUSED",
+        "WebSocket connection to 'ws://127.0.0.1:53044/ws' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED",
+        "Failed to load resource: net::ERR_CONNECTION_REFUSED",
+        "Failed to load resource: net::ERR_CONNECTION_REFUSED",
+        "WebSocket connection to 'ws://127.0.0.1:53044/ws' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED"
+      ],
+      "httpErrors": [],
+      "failed": [
+        "net::ERR_CONNECTION_REFUSED",
+        "net::ERR_CONNECTION_REFUSED",
+        "net::ERR_CONNECTION_REFUSED"
+      ],
+      "responses": 47,
+      "title": "FreeMix · Saídas horizontal e vertical",
+      "url": "/saidas?context=streaming",
+      "responsesAtEnd": 47
+    },
+    "calls": {
+      "role": "calls",
+      "loaded": true,
+      "exceptions": [],
+      "errors": [
+        "Failed to load resource: net::ERR_CONNECTION_REFUSED",
+        "WebSocket connection to 'ws://127.0.0.1:53044/ws' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED",
+        "Failed to load resource: net::ERR_CONNECTION_REFUSED",
+        "WebSocket connection to 'ws://127.0.0.1:53044/ws' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED"
+      ],
+      "httpErrors": [],
+      "failed": [
+        "net::ERR_CONNECTION_REFUSED",
+        "net::ERR_CONNECTION_REFUSED"
+      ],
+      "responses": 5,
+      "title": "FreeMix · Calls",
+      "url": "/calls",
+      "responsesAtEnd": 5
+    },
+    "replay-settings": {
+      "role": "replay-settings",
+      "loaded": true,
+      "exceptions": [],
+      "errors": [
+        "Failed to load resource: net::ERR_CONNECTION_REFUSED",
+        "Failed to load resource: net::ERR_CONNECTION_REFUSED",
+        "WebSocket connection to 'ws://127.0.0.1:53044/ws' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED",
+        "Failed to load resource: net::ERR_CONNECTION_REFUSED",
+        "WebSocket connection to 'ws://127.0.0.1:53044/ws' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED",
+        "Failed to load resource: net::ERR_CONNECTION_REFUSED",
+        "Failed to load resource: net::ERR_CONNECTION_REFUSED",
+        "Failed to load resource: net::ERR_CONNECTION_REFUSED",
+        "WebSocket connection to 'ws://127.0.0.1:53044/ws' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED"
+      ],
+      "httpErrors": [],
+      "failed": [
+        "net::ERR_CONNECTION_REFUSED",
+        "net::ERR_CONNECTION_REFUSED",
+        "net::ERR_CONNECTION_REFUSED",
+        "net::ERR_CONNECTION_REFUSED",
+        "net::ERR_CONNECTION_REFUSED",
+        "net::ERR_CONNECTION_REFUSED"
+      ],
+      "responses": 71,
+      "title": "FreeMix · Configurações do Replay",
+      "url": "/replay?view=settings#replay-config",
+      "responsesAtEnd": 71
+    }
+  },
+  "browserPid": 63492,
+  "browserVersion": "Edg/155.0.4283.45",
+  "screensStayedOpenUntilReceipt": true,
+  "browserClosed": true
+}

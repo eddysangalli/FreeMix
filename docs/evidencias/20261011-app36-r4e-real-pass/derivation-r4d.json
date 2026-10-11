@@ -1,0 +1,112 @@
+{
+  "status": "R4D_TEST_FILES_DERIVED_NOTHING_STARTED",
+  "derivedFrom": {
+    "r4cPins": {
+      "scenarios.mjs": "14aec64b48fbcaa9b125171201a25c8ef87de2352faa74a2e12ff67c8a297cd4",
+      "api-child.mjs": "2601d080c99b1d8c573528f19fbacf578d2ec0cf169d14f3ea15353ded05f77c",
+      "autosave-cases.mjs": "2e4717a650ba2988fe87504e15aa3374c7211ec0bdad873a0ede28be49e4c3f9"
+    },
+    "r3Runner": "dba48c03b517d5051623558653ab705638985f9a4080b64b9eec3f0d5755d28e"
+  },
+  "draftPins": {
+    "scenarios.mjs": "d3216c3d6c2ad641e6338565fcd1fe46ff2f4f00878d8ff386b6b3cd4e0520e7",
+    "api-child.mjs": "965560059b4b0acb8a814db7e27e3c3c9c2476c724bf5f95fec5c7b6b7b46c21",
+    "autosave-cases.mjs": "2e4717a650ba2988fe87504e15aa3374c7211ec0bdad873a0ede28be49e4c3f9"
+  },
+  "preparerSha256": "5cb407973004f8a4326cbed9167d81790144b86f3c6ef8db15a71139347e37ed",
+  "preflightSha256": "2d56d40d0a1af85ae9af4bb1eaf19fb978238fbfff09305f8d5b7d72c3eb1b12",
+  "gateUnchanged": [
+    "run",
+    "execute",
+    "journal",
+    "mutatingReq"
+  ],
+  "gate": "zero increments from the baseline (taken after the first real checkpoint) to the end of the five screens and of the 60 s hold",
+  "r4cFailurePreserved": true,
+  "edits": [
+    {
+      "file": "scenarios.mjs",
+      "from": "assert.equal(baseline.counts.run,0);assert.equal(baseline.counts.execute,0);assert.equal(baseline.counts.mutatingReq,0);",
+      "to": "assert.equal(baseline.counts.run,0);const startupExecute=baseline.methodLedger.methods.execute;assert.equal(startupExecute.dropped,0);const startupActions=startupExecute.records.map(r=>r.action);receipt.startupBeforeBaseline={executeActions:startupActions,counts:{...baseline.counts},criterion:'zero increments after this baseline; startup bus initialization happens before it'};assert.equal(baseline.counts.execute,startupActions.length);assert(startupActions.every(a=>a==='audio_enable'),'Command other than startup audio_enable before baseline');"
+    },
+    {
+      "file": "scenarios.mjs",
+      "from": "assert.equal(afterContracts.counts.run,0);assert.equal(afterContracts.counts.execute,0);assert.equal(afterContracts.counts.mutatingReq,0);assertNoOpeningMutations(baseline.counts,afterContracts.counts);",
+      "to": "assert.equal(afterContracts.counts.run,0);assertNoOpeningMutations(baseline.counts,afterContracts.counts);"
+    },
+    {
+      "file": "scenarios.mjs",
+      "from": "assert.equal(counts.counts.run,0);assert.equal(counts.counts.execute,0);assert.equal(counts.counts.mutatingReq,0);",
+      "to": "assert.equal(counts.counts.run,0);"
+    },
+    {
+      "file": "api-child.mjs",
+      "from": "process.send?.({kind:'closing',mode:'child-cooperative-close'});process.emit('SIGTERM');}});",
+      "to": "process.send?.({kind:'closing',mode:'child-cooperative-close'});process.emit('SIGTERM');process.disconnect?.();}});"
+    },
+    {
+      "file": "prepare-app36r4.mjs",
+      "from": "R4C",
+      "to": "R4D",
+      "count": 9
+    },
+    {
+      "file": "prepare-app36r4.mjs",
+      "from": "r4c",
+      "to": "r4d",
+      "count": 4
+    },
+    {
+      "file": "prepare-app36r4.mjs",
+      "from": "R4c",
+      "to": "R4d",
+      "count": 1
+    },
+    {
+      "file": "preflight-app36r4.mjs",
+      "from": "R4C",
+      "to": "R4D",
+      "count": 1
+    },
+    {
+      "file": "prepare-app36r4.mjs",
+      "from": "native36-real-app-r4d-preparation-20261010",
+      "to": "native36-real-app-r4d-preparation-20261011"
+    },
+    {
+      "file": "prepare-app36r4.mjs",
+      "from": "const draft = path.join(ws, 'qa-finalizacao/native36-real-app-r4-revision2-offside-20261010/draft-final');",
+      "to": "const draft = path.join(ws, 'qa-finalizacao/native36-real-app-r4d-offside-20261011/draft-final');"
+    },
+    {
+      "file": "prepare-app36r4.mjs",
+      "from": "assert.equal(await fs.access(partialR4b).then(() => true, () => false), true, 'partial R4b must be preserved and never reused');",
+      "to": "assert.equal(await fs.access(partialR4b).then(() => true, () => false), true, 'partial R4b must be preserved and never reused');\nassert.equal(await fs.access(path.join(ws, 'qa-finalizacao/native36-real-app-r4c-preparation-20261010/receipt.json')).then(() => true, () => false), true, 'failed R4c must be preserved and never reused');"
+    },
+    {
+      "file": "prepare-app36r4.mjs",
+      "from": "14aec64b48fbcaa9b125171201a25c8ef87de2352faa74a2e12ff67c8a297cd4",
+      "to": "d3216c3d6c2ad641e6338565fcd1fe46ff2f4f00878d8ff386b6b3cd4e0520e7"
+    },
+    {
+      "file": "preflight-app36r4.mjs",
+      "from": "14aec64b48fbcaa9b125171201a25c8ef87de2352faa74a2e12ff67c8a297cd4",
+      "to": "d3216c3d6c2ad641e6338565fcd1fe46ff2f4f00878d8ff386b6b3cd4e0520e7"
+    },
+    {
+      "file": "prepare-app36r4.mjs",
+      "from": "2601d080c99b1d8c573528f19fbacf578d2ec0cf169d14f3ea15353ded05f77c",
+      "to": "965560059b4b0acb8a814db7e27e3c3c9c2476c724bf5f95fec5c7b6b7b46c21"
+    },
+    {
+      "file": "preflight-app36r4.mjs",
+      "from": "2601d080c99b1d8c573528f19fbacf578d2ec0cf169d14f3ea15353ded05f77c",
+      "to": "965560059b4b0acb8a814db7e27e3c3c9c2476c724bf5f95fec5c7b6b7b46c21"
+    },
+    {
+      "file": "prepare-app36r4.mjs",
+      "from": "runner = replace(runner, 'PASS_OWN_REAL_NATIVE36_READONLY_APP_R3', 'PASS_OWN_REAL_NATIVE36_READONLY_APP_R4D', 'runner.mjs');",
+      "to": "runner = replace(runner, 'PASS_OWN_REAL_NATIVE36_READONLY_APP_R3', 'PASS_OWN_REAL_NATIVE36_READONLY_APP_R4D', 'runner.mjs');\nrunner = replace(runner, \"try{const deadline=Math.min(Date.now()+40000,globalThis.ownQaContext?.handoffGlobalDeadlineWall??Date.now()+40000);const bounded=async task=>{const left=deadline-Date.now();assert(left>0,'Own cleanup deadline expired; no force');let timer;try{return await Promise.race([task,new Promise((_,reject)=>{timer=setTimeout(()=>reject(Error('Own cleanup deadline expired; no force')),left);})]);}finally{clearTimeout(timer);}};for(const service of [...(globalThis.ownQaContext?.services||[])].reverse())await bounded(service.close());if(nativePid&&\", \"try{let deadline=Date.now()+45000;const bounded=async task=>{const left=deadline-Date.now();assert(left>0,'Own cleanup deadline expired; no force');let timer;try{return await Promise.race([task,new Promise((_,reject)=>{timer=setTimeout(()=>reject(Error('Own cleanup deadline expired; no force')),left);})]);}finally{clearTimeout(timer);}};let serviceCloseError=null;try{for(const service of [...(globalThis.ownQaContext?.services||[])].reverse())await bounded(service.close());}catch(e){serviceCloseError=e;receipt.serviceCloseError=safe(e);}deadline=Date.now()+40000;if(nativePid&&\", 'runner.mjs');\nrunner = replace(runner, \"assert(receipt.nativeClosed,'Own close unconfirmed; no force');}}catch(e){receipt.cleanupError=safe(e);\", \"assert(receipt.nativeClosed,'Own close unconfirmed; no force');}if(serviceCloseError)throw serviceCloseError;}catch(e){receipt.cleanupError=safe(e);\", 'runner.mjs');"
+    }
+  ]
+}

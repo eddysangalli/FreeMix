@@ -1,0 +1,100 @@
+{
+  "status": "R4E_TEST_FILES_DERIVED_NOTHING_STARTED",
+  "derivedFrom": {
+    "r4dPins": {
+      "scenarios.mjs": "d3216c3d6c2ad641e6338565fcd1fe46ff2f4f00878d8ff386b6b3cd4e0520e7",
+      "api-child.mjs": "965560059b4b0acb8a814db7e27e3c3c9c2476c724bf5f95fec5c7b6b7b46c21",
+      "autosave-cases.mjs": "2e4717a650ba2988fe87504e15aa3374c7211ec0bdad873a0ede28be49e4c3f9"
+    }
+  },
+  "draftPins": {
+    "scenarios.mjs": "d3216c3d6c2ad641e6338565fcd1fe46ff2f4f00878d8ff386b6b3cd4e0520e7",
+    "api-child.mjs": "965560059b4b0acb8a814db7e27e3c3c9c2476c724bf5f95fec5c7b6b7b46c21",
+    "autosave-cases.mjs": "af8c0a3587e4d417742e37b6c454229cd1758270991a5a8a5bcc7efd57951921"
+  },
+  "preparerSha256": "7fc56a5b5dfb5d0ec37d632e7972ecb982425417e569d529f6dfd5c20d29d025",
+  "preflightSha256": "ada17cb5e06bc81a7079d06302b85b2ea80d3b34a4e28eaec7d26d8436ce352e",
+  "gateUnchanged": [
+    "run",
+    "execute",
+    "journal",
+    "mutatingReq"
+  ],
+  "r4dFailurePreserved": true,
+  "edits": [
+    {
+      "file": "autosave-cases.mjs",
+      "from": "body:JSON.stringify({action:'checkpoint',input:own[1].key,operationId:checkpointOpId,expectedScope:scope})",
+      "to": "body:JSON.stringify({action:'recovery_checkpoint'})"
+    },
+    {
+      "file": "prepare-app36r4.mjs",
+      "from": "R4D",
+      "to": "R4E",
+      "count": 9
+    },
+    {
+      "file": "prepare-app36r4.mjs",
+      "from": "r4d",
+      "to": "r4e",
+      "count": 5
+    },
+    {
+      "file": "prepare-app36r4.mjs",
+      "from": "R4d",
+      "to": "R4e",
+      "count": 1
+    },
+    {
+      "file": "preflight-app36r4.mjs",
+      "from": "R4D",
+      "to": "R4E",
+      "count": 1
+    },
+    {
+      "file": "prepare-app36r4.mjs",
+      "from": "2e4717a650ba2988fe87504e15aa3374c7211ec0bdad873a0ede28be49e4c3f9",
+      "to": "af8c0a3587e4d417742e37b6c454229cd1758270991a5a8a5bcc7efd57951921"
+    },
+    {
+      "file": "preflight-app36r4.mjs",
+      "from": "2e4717a650ba2988fe87504e15aa3374c7211ec0bdad873a0ede28be49e4c3f9",
+      "to": "af8c0a3587e4d417742e37b6c454229cd1758270991a5a8a5bcc7efd57951921"
+    },
+    {
+      "file": "prepare-app36r4.mjs",
+      "from": "'failed R4c must be preserved and never reused');",
+      "to": "'failed R4c must be preserved and never reused');\nassert.equal(await fs.access(path.join(ws, 'qa-finalizacao/native36-real-app-r4d-preparation-20261011/receipt.json')).then(() => true, () => false), true, 'failed R4d must be preserved and never reused');"
+    },
+    {
+      "file": "root-browser.mjs",
+      "from": "r4d",
+      "to": "r4e",
+      "count": 2
+    },
+    {
+      "file": "root-browser.mjs",
+      "from": "R4d",
+      "to": "R4e",
+      "count": 1
+    },
+    {
+      "file": "launch-root-only.mjs",
+      "from": "R4D",
+      "to": "R4E",
+      "count": 1
+    },
+    {
+      "file": "launch-root-only.mjs",
+      "from": "r4d",
+      "to": "r4e",
+      "count": 5
+    },
+    {
+      "file": "launch-root-only.mjs",
+      "from": "R4d",
+      "to": "R4e",
+      "count": 1
+    }
+  ]
+}

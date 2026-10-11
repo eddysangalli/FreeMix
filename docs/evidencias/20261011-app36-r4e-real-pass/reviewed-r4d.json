@@ -1,0 +1,13 @@
+{
+  "approved": true,
+  "reviewer": "Claude (orchestrator), looked at the five JPEG files saved by root-browser.mjs",
+  "seen": {
+    "mesa": "panel with the test's own inputs QA App36 A (Program, red) and QA App36 B (Preview, green), CAM 1, mixer Master/A/B, status bar Online 720p30",
+    "srt": "Externo - SRT / RIST, 'Motor conectado', four free outputs, nothing selected",
+    "multistream": "MultiStream, 'Motor conectado', four free outputs, nothing selected",
+    "calls": "Calls, 'Motor conectado', empty state asking to add a Call",
+    "replay-settings": "Replay settings, 'SSD PARADO', the three inputs listed, recording stopped"
+  },
+  "navigationOnly": true,
+  "note": "Pictures come from Microsoft Edge headless driven by script, not from a hand-operated browser pane. They show what the pages render with the real own backend; they are not an approval of the design."
+}

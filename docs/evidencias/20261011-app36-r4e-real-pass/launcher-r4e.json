@@ -1,0 +1,18 @@
+{
+  "launcher": "qa-finalizacao/root-app36r4e-real-execution-20261011/launch-root-only.mjs",
+  "startedAt": "2026-10-11T02:15:34.943Z",
+  "finishedAt": "2026-10-11T02:20:59.822Z",
+  "exitCode": 0,
+  "preflightStatus": 0,
+  "pins": {
+    "ALLOWLIST-PREPARATION.json": "4fe111fdb295d1d8adeede9392b3535c8e4d2326d6005424ea3812829f7223e9",
+    "root-command.json": "85ee46aa7f4d807fda899aee1778ef5ad0d57d270d95c6bf9163708c7b763d35",
+    "PREPARATION.json": "87db29168f1457296d56b2ce75a97f3cc605d01ac4ce6e9c28d4ce16470a587b",
+    "runner.mjs": "4ccc1ba14f03291e12c939d1f67fc57b254b73507b1b5830c1b5e5dfe4e1b3bc",
+    "preflight-app36r4.mjs": "ada17cb5e06bc81a7079d06302b85b2ea80d3b34a4e28eaec7d26d8436ce352e",
+    "nodeExe": "ba4e6d110e8c1592a1ecd390f6b05f3da124b13871a5be62b341a07a853c6c32"
+  },
+  "isolatedTempDir": "qa-finalizacao/own-temp-native36-real-app-r4e",
+  "runnerPid": 197836,
+  "noCredentialsIncluded": true
+}

@@ -1,0 +1,46 @@
+{
+  "ownOnly": true,
+  "backendReal": true,
+  "reviewed": true,
+  "readOnlyNavigation": true,
+  "noSaveStart": true,
+  "handoffId": "0badaca0-f4c6-4754-a871-c844aa54d572",
+  "contextSha256": "a4cbb4d61bec8121f81ec135bb4c61ef7b5c1df30013f91b41b994c3bf370176",
+  "files": [
+    {
+      "role": "mesa",
+      "file": "root-installed-mesa.jpg",
+      "mime": "image/jpeg",
+      "bytes": 70614,
+      "sha256": "b8e5d8041a5affa325e6baa68733eff86b45161516f205b5d91e123895d1ae58"
+    },
+    {
+      "role": "srt",
+      "file": "root-installed-srt.jpg",
+      "mime": "image/jpeg",
+      "bytes": 76287,
+      "sha256": "a3ca093e39cdb87a1942367626877969a7252fad2844a482da79207c9c0be970"
+    },
+    {
+      "role": "multistream",
+      "file": "root-installed-multistream.jpg",
+      "mime": "image/jpeg",
+      "bytes": 72168,
+      "sha256": "e456394d34a4921bc2db685986ba85fc2059b669af337747b977cd58ece9c65d"
+    },
+    {
+      "role": "calls",
+      "file": "root-installed-calls.jpg",
+      "mime": "image/jpeg",
+      "bytes": 18804,
+      "sha256": "f6f12b2ed16c90b1a1180e522c0ac1da3d6379db49377ad4bd091cc89c0237ed"
+    },
+    {
+      "role": "replay-settings",
+      "file": "root-installed-replay-settings.jpg",
+      "mime": "image/jpeg",
+      "bytes": 90343,
+      "sha256": "d9d7f0e8f4b4776ee0cce62e3aae81164a05efca5d9922ce7df243e8a7ef8eb4"
+    }
+  ]
+}

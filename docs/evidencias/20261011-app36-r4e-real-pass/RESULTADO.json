@@ -1,0 +1,129 @@
+{
+  "r4e": {
+    "status": "PASS_OWN_REAL_NATIVE36_READONLY_APP_R4E",
+    "started": "2026-10-11T02:15:35.417Z",
+    "finished": "2026-10-11T02:20:59.803Z",
+    "nativeHead": "e81afe793708bd17821c9dc866b066783251e5fc",
+    "baseline": {
+      "run": 0,
+      "execute": 1,
+      "journal": 2,
+      "refresh": 6,
+      "mutatingReq": 19
+    },
+    "afterHttp": {
+      "run": 0,
+      "execute": 1,
+      "journal": 2,
+      "refresh": 6,
+      "mutatingReq": 19
+    },
+    "afterScreensAndHold": {
+      "run": 0,
+      "execute": 1,
+      "journal": 2,
+      "refresh": 101,
+      "mutatingReq": 19
+    },
+    "holdMs": 60077,
+    "startupCommandsBeforeBaseline": [
+      "audio_enable"
+    ],
+    "defaultsTraffic": {
+      "afterHttp": {
+        "GetInputDefaultSettings": 0,
+        "GetSourceFilterDefaultSettings": 0
+      },
+      "afterIab": {
+        "GetInputDefaultSettings": 0,
+        "GetSourceFilterDefaultSettings": 0
+      }
+    },
+    "previewMs": 90.41190000000643,
+    "cutMs": 165.15760000003502,
+    "duplicateCutAnsweredFromCache": true,
+    "tagsPersisted": true,
+    "automaticSaveAfterChange": true,
+    "manualCheckpoint": 200,
+    "close": {
+      "apiExit": {
+        "code": 0,
+        "signal": null
+      },
+      "shutdownAccepted": true,
+      "nativeClosed": true,
+      "crashArtifacts": 0,
+      "logs": [
+        {
+          "sha256": "c6ccd6bdfaac11466a78e2e688cc613aa624694a88592b96c4b47733d825b2a5",
+          "vendorConfirmed": true,
+          "allocations": [
+            0
+          ],
+          "meterWarnings": 0,
+          "remainingObjects": 0,
+          "doubleDestroyWarnings": 0
+        }
+      ]
+    },
+    "pinsAfterClose": {
+      "native2085": true,
+      "runtime": true
+    }
+  },
+  "r4d": {
+    "status": "FAIL",
+    "failedAt": {
+      "name": "AssertionError",
+      "code": "ERR_ASSERTION",
+      "operator": "strictEqual",
+      "actualPrimitive": 400,
+      "expectedPrimitive": 200,
+      "callsite": [
+        {
+          "module": "scenarios.mjs",
+          "line": 25,
+          "column": 1467
+        },
+        {
+          "module": "runner.mjs",
+          "line": 33,
+          "column": 243
+        }
+      ]
+    },
+    "baseline": {
+      "run": 0,
+      "execute": 1,
+      "journal": 2,
+      "refresh": 6,
+      "mutatingReq": 19
+    },
+    "afterScreensAndHold": {
+      "run": 0,
+      "execute": 1,
+      "journal": 2,
+      "refresh": 103,
+      "mutatingReq": 19
+    },
+    "manualCheckpointHttpStatus": 400,
+    "cause": "test file asked for action 'checkpoint'; the product's action is 'recovery_checkpoint'",
+    "close": {
+      "apiExit": {
+        "code": 0,
+        "signal": null
+      },
+      "shutdownAccepted": true,
+      "nativeClosed": true
+    }
+  },
+  "limits": [
+    "Signed600 base + full Native36 + canonical snapshot, QA composition only; no package selection",
+    "Real own backend and Native state, Root IAB read-only proof required; no CEF/Windows zorder/GPU/PCM/AV/WAN/hardware proof",
+    "No external output, device, microphone, Call, replay recording or streaming start",
+    "Native and API readiness bounded120s each; READY/ACK total10min live120s afterACK cleanup40s; no retries/force",
+    "Native36 exact cached audio/destinations/SDI queries source-qualified; SourceRecord defaults are startup/explicit refresh maintenance, not GET; unknown or driver scans remain violations",
+    "Settings/audio/journal no-mutation compared after normal startup bus initialization settles",
+    "Standard production updater may issue read-only HTTP requests"
+  ]
+}

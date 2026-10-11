@@ -1,0 +1,22 @@
+{
+  "status": "PREPARED_ROOT_REVIEW_REQUIRED_NO_EXECUTION",
+  "executable": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\entregas\\FreeMix-Completo-0.1.0-local.20261010060000\\runtime\\node.exe",
+  "runner": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\native36-real-app-r4e-preparation-20261011\\runner.mjs",
+  "args": [
+    "--candidate=D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\candidate-release-060000.json",
+    "--candidate-sha=456696515dd7aabf87958e11a91bd324bab3f405fef68549c2cc16bf1e59647d",
+    "--manifest-sha=7107aa50b55dd2584be4fc30760af6ef1c85855c6995cd10758e65decc0a93b4",
+    "--native-freeze=D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\native-build-frozen-e81afe7-configured.json",
+    "--native-freeze-sha=f1703fbaf473ae4039c19a36101eea62daa70e946e461dd3a4789cd5186792c8",
+    "--native-head=e81afe793708bd17821c9dc866b066783251e5fc",
+    "--preparation=D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\native36-real-app-r4e-preparation-20261011\\PREPARATION.json",
+    "--preparation-sha=87db29168f1457296d56b2ce75a97f3cc605d01ac4ce6e9c28d4ce16470a587b",
+    "--receipt=D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\native36-real-app-r4e-preparation-20261011\\receipt.json",
+    "--root-reviewed=EXECUTE-OWN-REAL-NATIVE36-READONLY-APP-R4E",
+    "--main-fps=30/1"
+  ],
+  "environment": {
+    "TEMP": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\own-temp-native36-real-app-r4e",
+    "TMP": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\qa-finalizacao\\own-temp-native36-real-app-r4e"
+  }
+}
