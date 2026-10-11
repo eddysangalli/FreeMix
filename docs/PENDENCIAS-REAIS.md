@@ -1,3 +1,45 @@
+# Pendências reais — atualização em 11/10/2026, ~15h23 (São Paulo)
+<!-- rodada-20261011-1523-r3 -->
+> **Leia primeiro este bloco.** Resume o estado mais recente conferido pelo Root. O registro de 10/10, 23h30, abaixo, continua sem alteração.
+
+**Git:** base verificada no HEAD `c4f374268adae2e73a71189400cd1bd26997d59b`, limpo e idêntico ao `ls-remote` do branch `feat/native-menus-config-screens` em https://github.com/eddysangalli/FreeMix nesta checagem. Código integrado está publicado; propostas/bancadas em preparação (offside) permanecem locais, fora do repositório. Commits futuros ficarão adiante deste HEAD.
+
+**Instalação:** o instalador completo selecionado, `0.1.0-local.20261010060000` / Native24/a047860, foi validado em instalação própria do Root (ambiente de QA) — não é a versão hoje em produção na mesa do operador. A mesa real roda `0.1.0-local.20261009153453`. A atualização incremental `0.1.0-local.20261011145116` (Native38 `ed08547` + painel `71f8aa7`) está armada, ainda não aplicada; aplica-se só quando o dono fechar o FreeMix e abrir de novo pelo `ABRIR-FREEMIX.cmd`. O ensaio de abrir/atualizar/desfazer passou numa cópia de fábrica, não é homologação com a configuração do operador. Ainda não há pacote completo novo selado com as fontes finais do Native38; o instalador completo selecionado continua sendo o Native24 anterior a essas fontes.
+
+**Conferência Root (somente leitura):** assinatura e 394 hashes de arquivo do pacote conferidos; as 18 fontes atuais de UI/API/Mesa batem com o pacote armado.
+
+**Correções já no motor:** Native37 já corrige o inventário de áudio tolerante a uma entrada defeituosa (ASIO/dispositivo sem nome não descarta mais todos os válidos); Native38 já permite cada janela abrir no tamanho pedido pela página.
+
+**Sete janelas novas:** roteiros relataram 122/122, mas a maior parte dessa automação roda num navegador Edge separado, não na janela CEF embutida. Só o caminho de abrir a engrenagem e fechar pela janela de verdade dentro do programa foi provado separadamente (não os 122 casos). Chamadas reais de retorno/microfone/WAN não foram testadas.
+
+**App36 — autosave:** R3 (motor antigo) teve FAIL de autosave durante a permanência nas telas; preservado como histórico. Corrigido via Gemini (commit `e801`) e confirmado em **App36 R4e: PASS** — 60.077ms de permanência, contadores run0/execute1/journal2/mutatingReq19 iguais ao início, Preview 90ms, Cut 165ms, dedupe/tags corretos, autosave só após mudança real, checkpoint manual HTTP 200, fechamento limpo (cleanup 0). Prova: [App36 R4e](evidencias/20261011-app36-r4e-real-pass/ROOT-README.md) e `receipt-r4e.json`. Essa prova cobre Native36 + painel `e801` — ainda não o Native38 atual.
+
+**Linha visual aprovada:** o dono aprovou a linha geral das telas que Claude vem refazendo como cópia do vMix. Isso não aprova especificamente o teste com API MOCK (prévia de Calls com chamadas sintéticas) como prova de produto — motor Native, microfone e WAN continuam sem prova real.
+
+**Pendente, preparado, não executado:** roteiro de QA de fontes/preferências nativas do Calls; faltam 3 testes de Configurações Gerais (importar arquivo real, baixar Exportar dentro da janela, botão nativo “todas as preferências”). Revisões de fonte sobre stream/concorrência/reconexão aguardam confirmação em runtime.
+
+**AGY/Claude:** a última chamada ao AGY recebeu HTTP 429 (RESOURCE_EXHAUSTED, resposta de 0 bytes); nova tentativa espaçada (18h25 UTC) recebeu o mesmo 429. Claude, por outro lado, já retomou e respondeu integralmente depois disso — não está mais bloqueado. Resumo: cotas interromperam parte das tarefas; Claude retomou; o AGY, na última tentativa, continua bloqueado.
+
+**Changelog:** o repositório não tinha changelog; criado `docs/CHANGELOG.md` com o histórico de 10/10 e 11/10.
+
+## Tabela de prioridades — status / trabalho restante / critério
+
+| Prioridade | Estado comprovado | Trabalho concreto e critério | Prova / referência |
+|---|---|---|---|
+| P0 — MultiGravação MKV estático | Início recusado com fonte parada: FAIL; MPEG-2 TS grava normal. | Investigar causa raiz (pacote de vídeo em 10s) com teste positivo/negativo real; não ocultar formato nem só subir timeout. | CONTINUAR.md |
+| P0 — Calls A/V contínuo | Drift 9,778863 ms/s: FAIL, recurso OFF. | Isolar clock/pacote por metadata antes de religar. | PENDENCIAS-REAIS.md |
+| P0 — Estabilidade de transmissão (saídas simultâneas/reconexão/latência sob carga) | Prioridade atual do dono; QA final de persistência sob carga ainda pendente. | Ensaio de longa duração real com saídas simultâneas, reconexão e carga; só depois selar pacote completo novo com as fontes finais do Native38 (ainda não selado). | PENDENCIAS-REAIS.md |
+| P1 — RNNoise | Redução 1,0358 dB, exigido 3 dB: FAIL. | Isolar PCM/parâmetros reais mantendo meta de 3 dB. | PENDENCIAS-REAIS.md |
+| P1 — LocalVocal filtro vivo / FTB completo | Fechamento comum só com filtro removido; FTB só no cursor (motor legado). | Ensaio com filtro vivo e cancelamento real; repetir FTB no Master atual. | PENDENCIAS-REAIS.md |
+| P2 — Menus antigos + Configurações Gerais | Áudio/dados/composições/macros/recuperação/diagnósticos/replay/Avançado/SRT/RIST/SDI no editor antigo; Config. Gerais 18/18 PASS, 3 casos sem cobrir. | Refazer telas copiando o vMix; testar import real/export/preferências nativas. | CONTINUAR.md |
+| P2 — Replay endurance | Capturas pontuais (A/B, segmentos Master) PASS. | Ensaio de longa duração específico do Replay. | PENDENCIAS-REAIS.md |
+| P2 — Assistente de projetos / NVIDIA | Criar/varrer e aprovação completa NVIDIA: false. | QA de cobertura e capability real antes de habilitar. | PENDENCIAS-REAIS.md |
+| P2 — Travamento ao fechar via navegador externo | Só em teste; caminho do operador fecha limpo; causa não investigada. | Investigar causa raiz no motor. | CONTINUAR.md |
+| Externo — hardware/licença/rede/certificado | ASIO/SDI/HDR/OMT/PTZ, NDI Advanced, WAN duas redes, Windows limpo, Authenticode. | Depende de recursos externos; QA de software não substitui. | PENDENCIAS-REAIS.md |
+
+Histórico anterior (10/10, 23h30) preservado abaixo, sem alteração.
+
+---
 # Pendências reais — visão atual em 10/10/2026, 23h30
 <!-- rodada-20261010-noite -->
 

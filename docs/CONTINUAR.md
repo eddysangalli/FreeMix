@@ -1,4 +1,23 @@
 # Continuidade do FreeMix
+<!-- rodada-20261011-1523-r3 -->
+> **Leia primeiro este bloco.** Pendências e histórico cronológico: PENDENCIAS-REAIS.md e CHANGELOG.md (novo). O bloco de 10/10, 23h25, “telas primeiro”, abaixo, continua valendo.
+
+## Git vs. pacote — 11/10, ~15h23
+Base verificada: HEAD `c4f374268adae2e73a71189400cd1bd26997d59b`, limpo e idêntico ao branch remoto `feat/native-menus-config-screens` (https://github.com/eddysangalli/FreeMix) nesta checagem — commits futuros ficarão adiante deste HEAD. Código integrado publicado; propostas/bancadas offside permanecem locais. Instalador completo selecionado `0.1.0-local.20261010060000` / Native24 foi validado em instalação própria do Root, não é a versão em produção na mesa (que roda `0.1.0-local.20261009153453`). Atualização incremental `0.1.0-local.20261011145116` (Native38 `ed08547` + painel `71f8aa7`) está armada, aplica-se só na próxima abertura via `ABRIR-FREEMIX.cmd` com o programa fechado. Ainda não há pacote completo novo selado com as fontes finais do Native38.
+
+## Prioridade agora: estabilidade de transmissão/rede (P0) e as telas vMix já aprovadas
+Não duplicar o trabalho antigo de Configurações (já feito e documentado, ver abaixo). Três frentes:
+1. **Claude/Root — janelas e QA real dentro do programa.** Sete janelas revisadas; roteiros relataram 122/122, mas a maior parte roda em Edge externo — só o caminho real (clicar a engrenagem, abrir, fechar dentro da janela nativa) foi provado separadamente. [App36 R4e](evidencias/20261011-app36-r4e-real-pass/ROOT-README.md) confirmou o gate de menus sem autosave indevido (Native36 + painel `e801`). Falta repetir isso sobre o Native38 atual, QA de longa duração e chamadas reais de áudio/rede.
+2. **Telas aprovadas do vMix.** O dono aprovou a linha visual geral (cópias do vMix); a prévia de Calls com API MOCK não é prova de motor/microfone/WAN. Faltam os menus grandes antigos (Áudio, Fontes de dados, Composições, Macros, Recuperação, Diagnósticos, console do Replay, Avançado, SRT/RIST/SDI externos).
+3. **Estabilidade de streaming/rede — P0 atual.** Saídas simultâneas, reconexão e latência sob carga são prioridade imediata do dono, separada do endurance específico do Replay. Hipóteses de stream/concorrência/reconexão aguardam confirmação em runtime; ainda não há pacote completo novo selado com as fontes finais do Native38 para essa qualificação. Especificação de QA de fontes/preferências do Calls pronta, com 3 testes de Configurações Gerais ainda pendentes.
+
+## AGY/Claude
+Última chamada ao AGY: HTTP 429 (RESOURCE_EXHAUSTED, resposta 0 bytes); nova tentativa também 429. Claude retomou e respondeu integralmente depois disso — não está bloqueado. Retomada do AGY depende de cota externa, sem horário garantido.
+
+Regras de sempre: mesa/API, vMix, Calls, gravações, mídia e configurações do operador não são tocados; publicar é só commit/push no GitHub privado e pacote local; nada de CLI bruto, log ou segredo do operador no Git.
+
+---
+# Continuidade do FreeMix
 <!-- rodada-20261010-noite -->
 > **Leia primeiro este bloco.** É o resumo vigente, em linguagem direta. O registro detalhado do Codex (até 10/10, 19h) continua logo abaixo, sem alteração.
 
