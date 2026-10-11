@@ -218,3 +218,18 @@ A integração mecânica exata do módulo de autosave foi de ANTES a57f → DEPO
   1. Comparar detalhadamente o bootstrap de CDP com o runner Externo R1 homologado (SHA `2ddf3be...` em `D:/FreeMix-QA-Gemini-Externo-Review-20261011-0630`), adotando estritamente seu padrão funcional comprovado.
   2. Diagnosticar a divergência de inicialização antes de instanciar novo Edge, preservando integralmente os 17 gates originais de R3, timeout de 8000ms e rotina de cleanup.
 * **Invariantes:** Externo integrado no commit `0c3f59c` (árvore limpa, 26/26 PASS em mock DOM). Instalação do operador (versão base `0.1.0-local.20261009153453` com Setup selecionado `0.1.0-local.20261010060000` Native24) permanece imutável; updater NÃO armado. Ordem confirmada: Gravar → MultiCorder → ReplaySettings.
+
+# Próximos Passos: Roadmap de Janelas Modais
+
+## Estado Atual
+- **Gravar**: Concluído no código-fonte canônico (rota `/gravar`, Mesa `recset:[700,540]`, HTML SHA `5220ea2a...`, JS SHA `5544e6df...`).
+- **Evidências**: Arquivadas em [`evidencias/20261011-janela-gravar-gemini/README.md`](evidencias/20261011-janela-gravar-gemini/README.md).
+- **Ambiente QA**: Todos os processos Edge e CLIs de teste finalizados cooperativamente.
+- **Instalação do Operador**: Operador `0.1.0-local.20261009153453` e Setup Native24 `0.1.0-local.20261010060000` permanecem intocados. Updater não armado; Mesa não atualizada; não repetir Gravar29/Calls25/Externo26 sem que fonte ou motor tenham mudado. Antigravity ONLY autoria/análise/review; Root mecânico.
+
+## Próxima Tarefa: MultiCorder
+- **Sequência**: Avançar para a modelagem da janela **MultiCorder**.
+- **Diretrizes**:
+  - Consultar a documentação canônica na raiz (`docs/`) e os arquivos mais recentes em `FreeMix/docs/` antes de iniciar a modelagem.
+  - Reutilizar contratos existentes do backend sem inventar rotas ou APIs não documentadas.
+  - Manter política de isolamento: implementação offside em draft com validação prévia independente em Real DOM antes de qualquer integração na Mesa.

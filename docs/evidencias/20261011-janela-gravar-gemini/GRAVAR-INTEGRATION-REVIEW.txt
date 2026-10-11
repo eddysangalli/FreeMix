@@ -1,0 +1,113 @@
+```json
+{
+  "verdict": "APPROVED_FOR_SOURCE_INTEGRATION_ONLY",
+  "blockers": [],
+  "corrections": {
+    "recipe": {
+      "target": "painel/mesa.html",
+      "issue": "A checagem original do autor utilizava apenas string .includes(), sem validação de parser/sintaxe dos scripts inline.",
+      "correctedCommand": "node -e \"const fs = require('fs'), vm = require('vm'); const html = fs.readFileSync('painel/mesa.html', 'utf8'); if (!html.includes('/gravar') || !html.includes('recset:[700,540]')) throw new Error('Rotas de recset ausentes'); const matches = [...html.matchAll(/<script(?![^>]*\\bsrc=)[^>]*>([\\s\\S]*?)<\\/script>/gi)]; if (matches.length === 0) throw new Error('Nenhum script inline localizado'); matches.forEach((m, i) => { new vm.Script(m[1], { filename: 'painel/mesa.html#inline-' + i }); }); console.log('painel/mesa.html: ' + matches.length + ' bloco(s) inline com sintaxe validada (vm.Script PASS) e rotas recset confirmadas');\""
+    },
+    "readme": {
+      "issue": "A menção a sessionStorage no README original era imprecisa e não comprovada pelo teste R6.",
+      "correction": "Substituição da alegação 'preservação de rascunho em sessionStorage' por 'preservação de rascunho em memória/DOM no campo #rec-directory', delimitando o que foi empiricamente provado pelo runner R6 (dirVal === 'D:\\...')."
+    },
+    "continuation": {
+      "issue": "O CONTINUAR.md original omitia a delimitação de que os instaladores/updaters do operador não foram armados e não apresentava o balanço consolidado de estados prévios e próximos.",
+      "correction": "Inclusão explícita de que os instaladores do operador (0.1.0-local.20261009153453) e Setup Native24 (0.1.0-local.20261010060000) permanecem intocados e não armados, e estruturação formal do estado atual (Calls, Externo e Gravar) e do próximo alvo (MultiCorder)."
+    }
+  },
+  "limits": [
+    "Execução validada estritamente em Real DOM headless via Edge CDP (porta efêmera) com Mock API local.",
+    "29/29 PASS atesta conformidade estrita de eventos, contratos HTTP/JSON e integridade visual na camada de UI a 700x540.",
+    "NÃO constitui homologação de gravação real em subsistemas de disco (I/O, throughput, latência de escrita).",
+    "NÃO constitui homologação de encoders nativos C++ ou aceleração por hardware (NVENC, QuickSync, AMF, CPU x264).",
+    "NÃO constitui homologação de fluxos de rede externos (WAN, NDI, WebRTC ou streaming contínuo).",
+    "NÃO valida o container CEF nativo do operador.",
+    "Os binários de distribuição do operador e instaladores do setup permanecem estritamente NÃO ARMADOS e NÃO MODIFICADOS."
+  ],
+  "recipechecks": [
+    {
+      "step": "Verificação de sintaxe do servidor API",
+      "command": "node --check ferramentas/servidor-api.mjs"
+    },
+    {
+      "step": "Validação real de sintaxe e parsing de scripts inline de painel/mesa.html (sem executar código)",
+      "command": "node -e \"const fs = require('fs'), vm = require('vm'); const html = fs.readFileSync('painel/mesa.html', 'utf8'); if (!html.includes('/gravar') || !html.includes('recset:[700,540]')) throw new Error('Rotas de recset ausentes'); const matches = [...html.matchAll(/<script(?![^>]*\\bsrc=)[^>]*>([\\s\\S]*?)<\\/script>/gi)]; if (matches.length === 0) throw new Error('Nenhum script inline localizado'); matches.forEach((m, i) => { new vm.Script(m[1], { filename: 'painel/mesa.html#inline-' + i }); }); console.log('painel/mesa.html: ' + matches.length + ' bloco(s) inline com sintaxe validada (vm.Script PASS) e rotas recset confirmadas');\""
+    },
+    {
+      "step": "Verificação de sintaxe do arquivo de produto gravar.js",
+      "command": "node --check painel/remoto/gravar.js"
+    },
+    {
+      "step": "Conferência de integridade de working tree e status Git",
+      "command": "git diff --stat"
+    }
+  ]
+}
+```
+
+---
+
+# Documentação Qualificada para Integração
+
+## 1. `docs/evidencias/20261011-janela-gravar-gemini/README.md` (Corrigido e Delimitado)
+
+```markdown
+# Diálogo de Gravação (Gravar) — Evidência de Integração
+
+## Status e Validação
+- **Interface:** Diálogo compacto estilo vMix integrado em `/gravar` ([`painel/remoto/gravar.html`](file:///D:/FreeMix-QA-Gemini-Recording-20261011-0730/painel/remoto/gravar.html) e [`painel/remoto/gravar.js`](file:///D:/FreeMix-QA-Gemini-Recording-20261011-0730/painel/remoto/gravar.js)).
+- **Viewport:** 700×540 px.
+- **Validação Empírica:** 29/29 PASS em Microsoft Edge Headless (Real DOM via CDP em porta efêmera) sob API Mock local sintética.
+- **Recibo Oficial:** SHA-256 `e9fb6a34b110322fbef7866189cf70eb63ff7e992d00e713eb4a1b96e638c89c` (Exit Code 0, encerramento cooperativo comprovado via CIM com 0 instâncias remanescentes).
+
+## Contratos e Resiliência Atestados
+- **Rota de Controle:** `POST /api/control` com payload `{ action: 'settings_apply', category: 'recording', directory, format, quality, encoder }`.
+- **Rotas de Consulta:** `GET /api/settings` e `GET /api/json`.
+- **Tolerância a Falhas de Rede:**
+  - HTTP 500 na carga inicial bloqueia controles e exibe alerta amigável.
+  - HTTP 500 durante o salvamento aborta com zero chamadas POST e preservação do rascunho em memória/DOM no campo `#rec-directory`.
+  - Respostas sem preset ou com divergência de perfil abortam a mutação de estado.
+- **Deadline:** `AbortSignal.timeout(8000)` ativo e testado (9000ms simulados com 8600ms de espera), liberando a interface após o timeout sem disparos fantasmas.
+- **Retrocompatibilidade:** O atalho "Avançado" preserva acesso direto ao editor legado em `/settings?category=recording&context=recording` (rota de backend `/settings` mantida intacta).
+
+## Delimitação Estrita de Escopo
+- Os testes atestam conformidade contratual da UI e integridade de eventos de front-end.
+- Não validam codificação por hardware real (NVENC, Intel QuickSync, AMD AMF ou CPU nativa).
+- Não validam taxa de transferência nem escrita sustentada em disco de armazenamento.
+- Não validam tráfego WAN, NDI ou streaming contínuo.
+```
+
+---
+
+## 2. `docs/CONTINUAR.md` (Corrigido com Limites de Operador e Estados)
+
+```markdown
+# Continuação do Plano de Janelas Modais FreeMix
+
+## 1. Estado Atual Consolidado
+- **Diálogo Calls:** Integrado e validado em `/calls` (25/25 PASS, commit `ca2f333`).
+- **Diálogo Externo:** Integrado e validado em `/externo` (26/26 PASS, commit `0c3f59c`).
+- **Diálogo Gravar:** Validado empiricamente (29/29 PASS, recibo SHA `e9fb6a34...`) e aprovado para integração em `/gravar` (`recset:[700,540]`).
+- **Limites de Ambiente:** Instalação do operador (`FreeMix 0.1.0-local.20261009153453`) e pacote `Setup Native24 (0.1.0-local.20261010060000)` permanecem **estritamente inalterados, não armados e não atualizados**. Nenhum instalador ou modificador de sistema nativo foi disparado.
+
+## 2. Próximo Passo
+- **Alvo:** Modelagem e implementação do diálogo **MultiCorder** (`multicorder`).
+- **Diretrizes para MultiCorder:**
+  - Manter rigorosa separação de responsabilidades (contratos de backend `/api/settings` e `/api/control`).
+  - Utilizar harness de teste em Real DOM Edge CDP com porta efêmera e encerramento cooperativo.
+  - Não introduzir dependências ou suposições de hardware físico antes da homologação de UI.
+  - Preservar integridade dos PINs e rotação limpa de working directory.
+```
+
+---
+
+## 3. Conclusão da Revisão Independente
+
+- **Patches de Código:** Os 5 patches do autor em [`painel/mesa.html`](file:///D:/FreeMix-QA-Gemini-Recording-20261011-0730/painel/mesa.html), [`ferramentas/servidor-api.mjs`](file:///D:/FreeMix-QA-Gemini-Recording-20261011-0730/ferramentas/servidor-api.mjs) e [`painel/remoto/gravar.html`](file:///D:/FreeMix-QA-Gemini-Recording-20261011-0730/painel/remoto/gravar.html) preservam as rotas pré-existentes, mantêm o modo Avançado funcional e não alteram a lógica de produto validada.
+- **Cópias:** Cópia fiel de [`DRAFT-gravar-r3.js`](file:///D:/FreeMix-QA-Gemini-Recording-20261011-0730/DRAFT-gravar-r3.js) (`5544e6df...`) para `painel/remoto/gravar.js` e [`DRAFT-gravar-r3.html`](file:///D:/FreeMix-QA-Gemini-Recording-20261011-0730/DRAFT-gravar-r3.html) (`d01392b3...`) para `painel/remoto/gravar.html`.
+- **Receita de Verificação:** A receita com `vm.Script` substitui com sucesso a verificação simplista de string, conferindo a sintaxe real de todos os scripts da Mesa sem execução destrutiva.
+
+O Root está formalmente autorizado a aplicar a integração no repositório canônico conforme especificado:
+**`APPROVED_FOR_SOURCE_INTEGRATION_ONLY`**

@@ -1,0 +1,117 @@
+```json
+{
+  "retractions": {
+    "latencyAndStateClaims": "Retratam-se formalmente as hipóteses genéricas da resposta anterior sobre latência loopback de 250-400ms e corridas de amostragem no statusText dos Gates 11, 13 e 16. Os dados empíricos reais de R5 desmentem essas hipóteses: statusMatched foi TRUE em Gate 11 e Gate 13, e onePostDelta + statusNonEmpty foram TRUE em Gate 16 dentro das janelas de amostragem reais (300ms e 8600ms)."
+  },
+  "confirmedCauses": {
+    "GATE_11_UNKNOWN_STATE_HTTP500_BLOCKS_POST": {
+      "observedData": {
+        "postDelta": 0,
+        "zeroPost": true,
+        "statusMatched": true,
+        "statusText": "Não foi possível verificar o estado do gravador (Falha HTTP 500 ao consultar estado). Operação cancelada.",
+        "dirVal": "D:State500Draft",
+        "dirMatched": false
+      },
+      "causalDiagnosis": "Falha estritamente provocada pelo escaping da string no runner. No evaluate `doc.getElementById('rec-directory').value = 'D:\\State500Draft'`, a barra dupla dentro do template literal Node foi avaliada como barra simples no Edge (`'D:\\State500Draft'`). O parser JS do Edge tratou `\\S` como caractere de escape inválido, gravando `D:State500Draft` no input. O assert comparou `state500Result.dirVal === 'D:\\\\State500Draft'` (que no Node é `D:\\State500Draft`), resultando em dirMatched = false. O produto funcionou perfeitamente: bloqueou o POST (postDelta = 0) e emitiu a mensagem contratual exata."
+    },
+    "GATE_12_UNKNOWN_SETTINGS_HTTP500_BLOCKS_POST": {
+      "observedData": {
+        "postDelta": 0,
+        "zeroPost": true,
+        "encoderVal": "",
+        "statusMatched": false,
+        "statusText": "Selecione um codificador válido.",
+        "dirVal": "D:SettingsFailDraft",
+        "dirMatched": false
+      },
+      "causalDiagnosis": "Envenenamento de setup da fixture (startup poisoning). O runner armou `mockSettingsFailure = { status: 500 }` antes de `await loadHarness()`. Isso fez com que o loadSettings() inicial falhasse na carga da página, impedindo renderEncoders() de popular o select #rec-encoder (encoderVal permaneceu vazio: `\"\"`). Ao clicar em salvar, saveSettings() abortou na validação local de formulário (linha 241: `if (!enc) setStatus('Selecione um codificador válido.')`) antes de disparar o pré-flight de revalidação da linha 265. O oráculo esperava a mensagem de revalidação ('Falha HTTP 500 ao revalidar perfil'), mas o diálogo nem sequer estava inicializado."
+    },
+    "GATE_12_SETTINGS_MISSING_PRESET_BLOCKS_POST": {
+      "observedData": {
+        "postDelta": 0,
+        "zeroPost": true,
+        "encoderVal": "",
+        "statusMatched": false,
+        "statusText": "Selecione um codificador válido.",
+        "dirVal": "D:SettingsFailDraft"
+      },
+      "causalDiagnosis": "Falha em cascata decorrente do Gate 12. Como o harness não foi recarregado, o formulário permaneceu com encoderVal = `\"\"`. O clique em salvar colidiu novamente na validação síncrona de formulário na linha 241, sem alcançar a verificação de preset na linha 270."
+    },
+    "GATE_13_STALE_PRESET_LOCKOUT": {
+      "observedData": {
+        "postDelta": 0,
+        "zeroPost": true,
+        "statusMatched": true,
+        "statusText": "O perfil de produção foi alterado externamente (PRESET_B_EXTERNAL). Recarregue a janela.",
+        "dirVal": "D:StalePresetDraft",
+        "dirMatched": false
+      },
+      "causalDiagnosis": "Mesmo defeito de escaping de string no evaluate do runner: `doc.getElementById('rec-directory').value = 'D:\\StalePresetDraft'` resultou no valor de DOM `D:StalePresetDraft`, reprovando dirMatched contra `D:\\StalePresetDraft`. O produto detectou a alteração externa do preset, bloqueou o POST e gerou a mensagem exata esperada pelo oráculo."
+    },
+    "GATE_16_POST_DEADLINE_8000MS_TIMEOUT": {
+      "observedData": {
+        "postBefore": 3,
+        "postAfter": 4,
+        "postDelta": 1,
+        "onePostDelta": true,
+        "closeCount": 0,
+        "zeroClose": true,
+        "statusNonEmpty": true,
+        "statusText": "signal timed out",
+        "isBusyNow": false,
+        "dirVal": "D:TimeoutDraft",
+        "dirMatched": false
+      },
+      "causalDiagnosis": "Mesmo defeito de escaping de string no evaluate do runner: `dirVal` gravado no DOM foi `D:TimeoutDraft` em vez de `D:\\TimeoutDraft`. Todos os demais requisitos contratuais foram cumpridos com perfeição pelo produto: postDelta = 1 (disparou exatamente 1 POST), closeCount = 0 (não fechou o diálogo), isBusyNow = false (desbloqueou controles após o abort) e statusText = 'signal timed out' (AbortSignal.timeout de 8000ms capturado)."
+    }
+  },
+  "unknown": {
+    "remainingUnknowns": "Nenhum. Todos os 5 comportamentos foram determinados empiricamente pelos dados de R5 confrontados com as linhas reais de DRAFT-gravar.js."
+  },
+  "productFixNeeded": {
+    "required": false,
+    "rationale": "DRAFT-gravar.js não requer NENHUMA alteração. Os dados empíricos de R5 provam que o código cumpriu todos os requisitos: bloqueou POSTs indevidos, abortou no prazo de 8000ms, emitiu as mensagens esperadas e manteve o estado consistente."
+  },
+  "oracleFixNeeded": {
+    "required": true,
+    "items": [
+      "Escaping de strings de caminho no runner: passar barra quádrupla ('D:\\\\\\\\...') dentro dos template literals de evaluate para que o Edge receba barra dupla ('D:\\\\...') e grave a barra invertida real no DOM.",
+      "Separação do Gate 12 em dois casos distintos: (1) Abertura com HTTP 500 em /api/settings (verifica erro de inicialização e bloqueio de salvamento); (2) Salvamento com HTTP 500 em /api/settings (carrega formulário com sucesso sob mock saudável, em seguida arma mockSettingsFailure e clica em salvar para testar a revalidação da linha 267).",
+      "Isolamento do Gate 12b: garantir que o harness esteja devidamente populado com encoders válidos antes de disparar o teste de missingPreset."
+    ]
+  },
+  "nextPatches": [
+    {
+      "targetFile": "run-test-gravar-dom-r6.mjs",
+      "old": "    doc.getElementById('rec-directory').value = 'D:\\\\State500Draft';",
+      "new": "    doc.getElementById('rec-directory').value = 'D:\\\\\\\\State500Draft';"
+    },
+    {
+      "targetFile": "run-test-gravar-dom-r6.mjs",
+      "old": "  // Gate 12: Unknown GET settings (/api/settings HTTP 500, success false, missing preset) -> Zero POST\n  mockSettingsFailure = { status: 500 };\n  await loadHarness();\n  const postCountBeforeSettingsFail = recordedPostRequests.length;\n  await pageCdp.eval(`\n    const doc = document.getElementById('gravar-frame').contentDocument;\n    doc.getElementById('rec-directory').value = 'D:\\\\SettingsFailDraft';\n    doc.getElementById('btn-save').click();\n  `);\n  await new Promise(r => setTimeout(r, 300));\n  const settings500Result = await pageCdp.eval(`\n    const doc = document.getElementById('gravar-frame').contentDocument;\n    const st = doc.getElementById('status-msg');\n    return {\n      statusText: st ? st.textContent : '',\n      statusClass: st ? st.className : '',\n      dirVal: doc.getElementById('rec-directory')?.value ?? '',\n      saveDisabled: doc.getElementById('btn-save')?.disabled ?? false,\n      formatVal: doc.querySelector('.vrec-format-btn.vd-on')?.getAttribute('data-fmt') ?? '',\n      encoderVal: doc.getElementById('rec-encoder')?.value ?? '',\n      qualityVal: doc.getElementById('rec-quality')?.value ?? ''\n    };\n  `);\n  const postCountAfterSettings500 = recordedPostRequests.length;\n  assertTest('GATE_12_UNKNOWN_SETTINGS_HTTP500_BLOCKS_POST', 'Falha HTTP 500 em /api/settings aborta salvamento com zero POST e draft retido',\n    recordedPostRequests.length === postCountBeforeSettingsFail &&\n    settings500Result.dirVal === 'D:\\\\SettingsFailDraft' &&\n    settings500Result.statusText.includes('Falha HTTP 500 ao revalidar perfil'),",
+      "new": "  // Gate 12A: Falha HTTP 500 na abertura de /api/settings bloqueia formulário e impede POST\n  mockSettingsFailure = { status: 500 };\n  await loadHarness();\n  const postCountBeforeOpenSettingsFail = recordedPostRequests.length;\n  await pageCdp.eval(`\n    const doc = document.getElementById('gravar-frame').contentDocument;\n    doc.getElementById('btn-save').click();\n  `);\n  await new Promise(r => setTimeout(r, 300));\n  const openSettings500Result = await pageCdp.eval(`\n    const doc = document.getElementById('gravar-frame').contentDocument;\n    const st = doc.getElementById('status-msg');\n    return {\n      statusText: st ? st.textContent : '',\n      saveDisabled: doc.getElementById('btn-save')?.disabled ?? false\n    };\n  `);\n  assertTest('GATE_12A_OPEN_SETTINGS_HTTP500_BLOCKS_SAVE', 'Falha HTTP 500 ao carregar /api/settings impede salvamento com zero POST',\n    recordedPostRequests.length === postCountBeforeOpenSettingsFail &&\n    openSettings500Result.statusText.includes('Falha HTTP 500 ao carregar configurações'));\n\n  // Gate 12B: Falha HTTP 500 na revalidação de perfil durante o Save aborta com zero POST e draft retido\n  mockSettingsFailure = null;\n  await loadHarness();\n  mockSettingsFailure = { status: 500 };\n  const postCountBeforeSettingsFail = recordedPostRequests.length;\n  await pageCdp.eval(`\n    const doc = document.getElementById('gravar-frame').contentDocument;\n    doc.getElementById('rec-directory').value = 'D:\\\\\\\\SettingsFailDraft';\n    doc.getElementById('btn-save').click();\n  `);\n  await new Promise(r => setTimeout(r, 300));\n  const settings500Result = await pageCdp.eval(`\n    const doc = document.getElementById('gravar-frame').contentDocument;\n    const st = doc.getElementById('status-msg');\n    return {\n      statusText: st ? st.textContent : '',\n      statusClass: st ? st.className : '',\n      dirVal: doc.getElementById('rec-directory')?.value ?? '',\n      saveDisabled: doc.getElementById('btn-save')?.disabled ?? false,\n      formatVal: doc.querySelector('.vrec-format-btn.vd-on')?.getAttribute('data-fmt') ?? '',\n      encoderVal: doc.getElementById('rec-encoder')?.value ?? '',\n      qualityVal: doc.getElementById('rec-quality')?.value ?? ''\n    };\n  `);\n  const postCountAfterSettings500 = recordedPostRequests.length;\n  assertTest('GATE_12_UNKNOWN_SETTINGS_HTTP500_BLOCKS_POST', 'Falha HTTP 500 em /api/settings aborta salvamento com zero POST e draft retido',\n    recordedPostRequests.length === postCountBeforeSettingsFail &&\n    settings500Result.dirVal === 'D:\\\\SettingsFailDraft' &&\n    settings500Result.statusText.includes('Falha HTTP 500 ao revalidar perfil'),"
+    },
+    {
+      "targetFile": "run-test-gravar-dom-r6.mjs",
+      "old": "  mockSettingsFailure = { missingPreset: true };\n  await pageCdp.eval(`\n    const doc = document.getElementById('gravar-frame').contentDocument;\n    doc.getElementById('btn-save').click();\n  `);",
+      "new": "  mockSettingsFailure = null;\n  await loadHarness();\n  mockSettingsFailure = { missingPreset: true };\n  await pageCdp.eval(`\n    const doc = document.getElementById('gravar-frame').contentDocument;\n    doc.getElementById('btn-save').click();\n  `);"
+    },
+    {
+      "targetFile": "run-test-gravar-dom-r6.mjs",
+      "old": "    doc.getElementById('rec-directory').value = 'D:\\\\StalePresetDraft';",
+      "new": "    doc.getElementById('rec-directory').value = 'D:\\\\\\\\StalePresetDraft';"
+    },
+    {
+      "targetFile": "run-test-gravar-dom-r6.mjs",
+      "old": "    doc.getElementById('rec-directory').value = 'D:\\\\TimeoutDraft';",
+      "new": "    doc.getElementById('rec-directory').value = 'D:\\\\\\\\TimeoutDraft';"
+    }
+  ],
+  "scope": {
+    "productSource": "DRAFT-gravar.js permanece imutável e comprovado correto.",
+    "runnerIsolation": "Ajustes restritos a run-test-gravar-dom-r6.mjs sem editar artefatos R4b, R5 ou DRAFT-gravar-r3.",
+    "invariants": "Todos os prazos (8000ms), sleeps, critério de zero POST e preservação de draft permanecem estritos e sem relaxamento."
+  }
+}
+```

@@ -1,0 +1,47 @@
+{
+  "runtime": "MOCK_API_REAL_DOM_ONLY",
+  "patches": [
+    {
+      "count": 1,
+      "target": "painel/mesa.html"
+    },
+    {
+      "count": 1,
+      "target": "painel/mesa.html"
+    },
+    {
+      "count": 1,
+      "target": "painel/mesa.html"
+    },
+    {
+      "count": 1,
+      "target": "ferramentas/servidor-api.mjs"
+    },
+    {
+      "count": 1,
+      "target": "painel/remoto/gravar.html"
+    }
+  ],
+  "nativeStarted": false,
+  "files": [
+    {
+      "relative": "painel/remoto/gravar.js",
+      "sha256": "5544e6df0f51965246699df5ff9bdd22fdbc6f3323b630a65cdac9cb7d71716c"
+    },
+    {
+      "relative": "painel/remoto/gravar.html",
+      "sha256": "5220ea2aa5167599247eda62f9113d0e62715463a5d559732557073cd8c0982e"
+    },
+    {
+      "relative": "painel/mesa.html",
+      "sha256": "f1b28aad49b01ebd7eb1b335c7315074afdf1714c26c73ae4e85f474634774b2"
+    },
+    {
+      "relative": "ferramentas/servidor-api.mjs",
+      "sha256": "d4c729e8b8eeacc64706d78428914a5afa5ace62cd3261eed3126d2d73b48128"
+    }
+  ],
+  "headBefore": "caea6e5e275ce7a2add10892ac321a45a6d0046b",
+  "status": "SOURCE_INTEGRATED_CHECKS_PASS",
+  "operatorUpdated": false
+}

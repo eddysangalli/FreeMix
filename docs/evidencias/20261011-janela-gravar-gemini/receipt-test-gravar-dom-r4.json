@@ -1,0 +1,250 @@
+{
+  "scope": "MOCK_API_REAL_DOM_ONLY",
+  "runner": "run-test-gravar-dom-r4.mjs",
+  "startedAt": "2026-10-11T08:19:22.637Z",
+  "viewport": {
+    "width": 700,
+    "height": 540
+  },
+  "pinsBefore": {
+    "html": {
+      "path": "D:\\FreeMix-QA-Gemini-Recording-20261011-0730\\DRAFT-gravar-r3.html",
+      "sha": "d01392b3a44e2b1b94dee854ac8a6444b927ceab523da9e2e4b396168d95d664"
+    },
+    "js": {
+      "path": "D:\\FreeMix-QA-Gemini-Recording-20261011-0730\\DRAFT-gravar-r3.js",
+      "sha": "5544e6df0f51965246699df5ff9bdd22fdbc6f3323b630a65cdac9cb7d71716c"
+    },
+    "css": {
+      "path": "D:\\FreeMix-QA-Gemini-Recording-20261011-0730\\vmix-dialogo.css",
+      "sha": "f3d08180366f933049c4a16b2e136e04c25a6691371d2d1f6e0d97c9da85084c"
+    }
+  },
+  "pinsAfter": {
+    "html": {
+      "path": "D:\\FreeMix-QA-Gemini-Recording-20261011-0730\\DRAFT-gravar-r3.html",
+      "sha": "d01392b3a44e2b1b94dee854ac8a6444b927ceab523da9e2e4b396168d95d664"
+    },
+    "js": {
+      "path": "D:\\FreeMix-QA-Gemini-Recording-20261011-0730\\DRAFT-gravar-r3.js",
+      "sha": "5544e6df0f51965246699df5ff9bdd22fdbc6f3323b630a65cdac9cb7d71716c"
+    },
+    "css": {
+      "path": "D:\\FreeMix-QA-Gemini-Recording-20261011-0730\\vmix-dialogo.css",
+      "sha": "f3d08180366f933049c4a16b2e136e04c25a6691371d2d1f6e0d97c9da85084c"
+    }
+  },
+  "browserExitObserved": true,
+  "browserMainPidAbsent": true,
+  "browserEdgeProfileCount": 0,
+  "browserProfilePreserved": "D:\\FreeMix-QA-Gemini-Recording-20261011-0730\\FreeMix-QA-Profile-Recording-r4-1791706762651",
+  "screenshots": [
+    "screenshot-gravar-startup-r4-700x540.png",
+    "screenshot-gravar-advanced-mode-r4.png",
+    "screenshot-gravar-active-guard-r4.png"
+  ],
+  "assertions": [
+    {
+      "id": "GATE_0_STARTUP_ZERO_POST",
+      "description": "Abertura do diálogo não deve disparar nenhum POST para o servidor",
+      "passed": true,
+      "detail": "",
+      "timestamp": "2026-10-11T08:19:27.558Z"
+    },
+    {
+      "id": "GATE_1_GEOMETRY_700X540",
+      "description": "Janela segue estritamente 700x540 sem estouro de rolagem horizontal",
+      "passed": true,
+      "detail": "",
+      "timestamp": "2026-10-11T08:19:27.917Z"
+    },
+    {
+      "id": "GATE_2_FORMATS_CAPABILITIES",
+      "description": "Formatos da barra lateral correspondem exatamente a capabilities.recordingFormats",
+      "passed": true,
+      "detail": "",
+      "timestamp": "2026-10-11T08:19:27.920Z"
+    },
+    {
+      "id": "GATE_2_ACTIVE_FORMAT_DEFAULT",
+      "description": "Formato ativo inicial é MKV",
+      "passed": true,
+      "detail": "",
+      "timestamp": "2026-10-11T08:19:27.920Z"
+    },
+    {
+      "id": "GATE_2_INPUT_VALUES",
+      "description": "Diretório e qualidade preenchidos com valores vigentes",
+      "passed": true,
+      "detail": "",
+      "timestamp": "2026-10-11T08:19:27.920Z"
+    },
+    {
+      "id": "GATE_2_VIDEO_SUMMARY_READONLY",
+      "description": "Resumo de vídeo exibe resolução e FPS do projeto",
+      "passed": true,
+      "detail": "",
+      "timestamp": "2026-10-11T08:19:27.920Z"
+    },
+    {
+      "id": "GATE_3_UNSUPPORTED_ENCODER_PRESERVED",
+      "description": "Codificador indisponível no hardware é mantido como opção selecionada e desabilitada",
+      "passed": true,
+      "detail": "",
+      "timestamp": "2026-10-11T08:19:28.531Z"
+    },
+    {
+      "id": "GATE_4_ADVANCED_BANNER_VISIBLE",
+      "description": "Alerta informativo exibido no modo avançado",
+      "passed": true,
+      "detail": "",
+      "timestamp": "2026-10-11T08:19:29.139Z"
+    },
+    {
+      "id": "GATE_4_ADVANCED_INPUTS_LOCKED",
+      "description": "Todos os campos de edição simples bloqueados no modo avançado",
+      "passed": true,
+      "detail": "",
+      "timestamp": "2026-10-11T08:19:29.139Z"
+    },
+    {
+      "id": "GATE_4_ADVANCED_LINK_CORRECT",
+      "description": "Link aponta para o editor completo de gravação",
+      "passed": true,
+      "detail": "",
+      "timestamp": "2026-10-11T08:19:29.139Z"
+    },
+    {
+      "id": "GATE_5_RECORDING_ACTIVE_BADGE",
+      "description": "Badge reflete timecode de gravação ativa com animação",
+      "passed": true,
+      "detail": "",
+      "timestamp": "2026-10-11T08:19:30.065Z"
+    },
+    {
+      "id": "GATE_5_RECORDING_ACTIVE_SAVE_LOCKED",
+      "description": "Botão OK/Salvar desabilitado durante gravação ativa",
+      "passed": true,
+      "detail": "",
+      "timestamp": "2026-10-11T08:19:30.065Z"
+    },
+    {
+      "id": "GATE_6_EMPTY_DIR_VALIDATION",
+      "description": "Diretório em branco é bloqueado localmente sem disparar POST",
+      "passed": true,
+      "detail": "",
+      "timestamp": "2026-10-11T08:19:30.925Z"
+    },
+    {
+      "id": "GATE_7_SLOW_ACK_BUSY_LOCK",
+      "description": "Todos os campos, botões de formato e ações são bloqueados durante requisição em trânsito",
+      "passed": true,
+      "detail": "",
+      "timestamp": "2026-10-11T08:19:31.130Z"
+    },
+    {
+      "id": "GATE_8_POST_PAYLOAD_CONTRACT",
+      "description": "Payload POST /api/control respeita estritamente o contrato plano do backend",
+      "passed": true,
+      "detail": "",
+      "timestamp": "2026-10-11T08:19:32.530Z"
+    },
+    {
+      "id": "GATE_8_POST_SUCCESS_CLOSES_DIALOG",
+      "description": "Sucesso do botão OK fecha o diálogo emitindo postMessage({ freemixCloseSettings: true })",
+      "passed": true,
+      "detail": "",
+      "timestamp": "2026-10-11T08:19:32.532Z"
+    },
+    {
+      "id": "GATE_9_ERROR_ACK_PRESERVES_DRAFT",
+      "description": "Em caso de erro no servidor, o diálogo permanece aberto e preserva o valor digitado",
+      "passed": true,
+      "detail": "",
+      "timestamp": "2026-10-11T08:19:33.544Z"
+    },
+    {
+      "id": "GATE_10_CANCEL_CLOSES_WITHOUT_POST",
+      "description": "Botão Cancelar emite postMessage de fechamento com zero requisições POST",
+      "passed": true,
+      "detail": "",
+      "timestamp": "2026-10-11T08:19:33.749Z"
+    },
+    {
+      "id": "GATE_11_UNKNOWN_STATE_HTTP500_BLOCKS_POST",
+      "description": "Falha HTTP 500 em /api/json aborta salvamento com erro, zero POST e draft preservado",
+      "passed": false,
+      "detail": "",
+      "timestamp": "2026-10-11T08:19:34.658Z"
+    },
+    {
+      "id": "GATE_11_UNKNOWN_STATE_MISSING_BOOL_BLOCKS_POST",
+      "description": "Resposta sem boolean explícito em recording aborta salvamento com zero POST",
+      "passed": true,
+      "detail": "",
+      "timestamp": "2026-10-11T08:19:34.962Z"
+    },
+    {
+      "id": "GATE_12_UNKNOWN_SETTINGS_HTTP500_BLOCKS_POST",
+      "description": "Falha HTTP 500 em /api/settings aborta salvamento com zero POST e draft retido",
+      "passed": false,
+      "detail": "",
+      "timestamp": "2026-10-11T08:19:35.873Z"
+    },
+    {
+      "id": "GATE_12_SETTINGS_MISSING_PRESET_BLOCKS_POST",
+      "description": "Resposta sem campo preset em /api/settings cancela salvamento com zero POST",
+      "passed": false,
+      "detail": "",
+      "timestamp": "2026-10-11T08:19:36.177Z"
+    },
+    {
+      "id": "GATE_13_STALE_PRESET_LOCKOUT",
+      "description": "Divergência entre perfil ativo no backend e currentPreset aborta POST e sinaliza alteração",
+      "passed": false,
+      "detail": "",
+      "timestamp": "2026-10-11T08:19:37.089Z"
+    },
+    {
+      "id": "GATE_14_MODE_ADVANCED_DRIFT_AT_SAVE",
+      "description": "Mudança dinâmica para Modo Avançado impede conversão cega, ativa banner e preserva draft sem POST",
+      "passed": true,
+      "detail": "",
+      "timestamp": "2026-10-11T08:19:38.001Z"
+    },
+    {
+      "id": "GATE_15_CONCURRENCY_DOUBLE_CLICK_PREVENTED",
+      "description": "isBusy síncrono impede clique duplo concorrente no pré-flight (máximo 1 POST despachado)",
+      "passed": true,
+      "detail": "",
+      "timestamp": "2026-10-11T08:19:39.511Z"
+    },
+    {
+      "id": "GATE_16_POST_DEADLINE_8000MS_TIMEOUT",
+      "description": "Timeout de 8000ms no POST não fecha diálogo, não realiza retry e retém parâmetros no formulário",
+      "passed": false,
+      "detail": "",
+      "timestamp": "2026-10-11T08:19:48.726Z"
+    },
+    {
+      "id": "GATE_CLEANUP_EXIT_OBSERVED",
+      "description": "Processos msedge.exe associados ao perfil encerraram cooperativamente",
+      "passed": true,
+      "detail": "",
+      "timestamp": "2026-10-11T08:19:50.981Z"
+    },
+    {
+      "id": "GATE_CLEANUP_PINS_UNCHANGED",
+      "description": "Arquivos de origem mantiveram hashes SHA-256 inalterados após o teste",
+      "passed": true,
+      "detail": "",
+      "timestamp": "2026-10-11T08:19:50.981Z"
+    }
+  ],
+  "summary": {
+    "total": 28,
+    "passed": 23,
+    "failed": 5
+  },
+  "finishedAt": "2026-10-11T08:19:50.982Z"
+}

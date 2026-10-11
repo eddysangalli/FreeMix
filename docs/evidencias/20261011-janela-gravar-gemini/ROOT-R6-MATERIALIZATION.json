@@ -1,0 +1,52 @@
+[
+  {
+    "index": 0,
+    "anchor": "  runner: 'run-test-gravar-dom-r4.mjs',",
+    "count": 1
+  },
+  {
+    "index": 1,
+    "anchor": "    profileDir = path.join(ownDir, `FreeMix-QA-Profile-Recording-r5-${Date.now()}`);",
+    "count": 1
+  },
+  {
+    "index": 2,
+    "anchor": "  await takeScreenshot('screenshot-gravar-startup-r5-700x540');",
+    "count": 1
+  },
+  {
+    "index": 3,
+    "anchor": "  await takeScreenshot('screenshot-gravar-advanced-mode-r5');",
+    "count": 1
+  },
+  {
+    "index": 4,
+    "anchor": "  await takeScreenshot('screenshot-gravar-active-guard-r5');",
+    "count": 1
+  },
+  {
+    "index": 5,
+    "anchor": "    const receiptPath = path.join(ownDir, 'receipt-test-gravar-dom-r5.json');",
+    "count": 1
+  },
+  {
+    "index": 6,
+    "anchor": "    doc.getElementById('rec-directory').value = 'D:\\\\State500Draft';",
+    "count": 1
+  },
+  {
+    "index": 7,
+    "anchor": "  // Gate 12: Unknown GET settings (/api/settings HTTP 500, success false, missing preset) -> Zero POST",
+    "count": 1
+  },
+  {
+    "index": 8,
+    "anchor": "    doc.getElementById('rec-directory').value = 'D:\\\\StalePresetDraft';",
+    "count": 1
+  },
+  {
+    "index": 9,
+    "anchor": "    doc.getElementById('rec-directory').value = 'D:\\\\TimeoutDraft';",
+    "count": 1
+  }
+]

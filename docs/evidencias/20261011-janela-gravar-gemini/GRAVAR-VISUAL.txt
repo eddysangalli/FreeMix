@@ -1,0 +1,39 @@
+```json
+{
+  "status": "VISUAL_VERIFIED",
+  "viewedFiles": [
+    "D:/FreeMix-QA-Gemini-Recording-20261011-0730/screenshot-gravar-startup-r6-700x540.png",
+    "D:/FreeMix-QA-Gemini-Recording-20261011-0730/screenshot-gravar-advanced-mode-r6.png",
+    "D:/FreeMix-QA-Gemini-Recording-20261011-0730/screenshot-gravar-active-guard-r6.png",
+    "D:/FreeMix-QA-Gemini-Recording-20261011-0730/reference-recording-mp4-full.png",
+    "D:/FreeMix-QA-Gemini-Recording-20261011-0730/reference-recording-avi-full.png"
+  ],
+  "observations": {
+    "viewportAndLayout": {
+      "dimensions": "700x540 px exatos, sem scrollbars horizontais ou verticais e sem estouro de margem.",
+      "header": "Emblema verde 'REC' com título 'Configuração de Gravação' à esquerda. Badge de status à direita: 'PARADO' em cinza escuro (startup) e 'GRAVANDO 00:15:42' em vermelho ativo (active guard).",
+      "sidebar": "Coluna lateral esquerda (~25% da largura) com cabeçalho 'FORMATOS' em caixa alta e botões empilhados (MKV, MP4, MP4 Fragmentado, MP4 Híbrido, MOV, MOV Fragmentado, MOV Híbrido). O item ativo (MKV) exibe fundo verde sólido e texto branco com alto contraste.",
+      "mainPanel": "Área principal (~75% da largura) com três controles principais: input 'Pasta de Gravação' (exibindo caminho Windows C:\\FreeMixRecordings), select 'Codificador de Vídeo' (x264 Software Encoder) e select 'Qualidade da Gravação' (HQ - Alta Qualidade).",
+      "infoBox": "Painel de resumo em cinza-azulado com 'Resolução do Projeto: 1920x1080' e 'Taxa de Quadros: 30/1 fps', legível e alinhado aos metadados do motor.",
+      "footer": "Botão 'Avançado...' posicionado à esquerda no rodapé; botões de ação à direita com 'Cancelar' em cinza escuro e 'OK' em verde de destaque."
+    },
+    "stateVariations": {
+      "startup": "Todos os campos editáveis habilitados, botão OK ativo, sem avisos de erro.",
+      "advancedMode": "Banner de advertência amarelo ('Perfil em Modo Avançado: ... Abrir Editor Avançado Completo') renderizado no topo do painel principal; todos os campos de formulário e botões de formato desabilitados (cinza desbotado); botão OK desativado para prevenir conflitos.",
+      "activeGuard": "Badge superior vermelho com timecode '00:15:42'; aviso vermelho em destaque ('Gravação em andamento. Pare a gravação para alterar configurações.'); campos desabilitados e botão OK bloqueado contra edições concorrentes."
+    },
+    "comparisonWithVmixReference": {
+      "structure": "A arquitetura visual da janela reproduz fielmente a divisão clássica do vMix (painel de formatos à esquerda em lista vertical + formulário de parâmetros à direita + rodapé de confirmação).",
+      "browseLimitation": "Na referência vMix nativa há um botão Windows Win32 'Browse' ao lado do campo de arquivo. No FreeMix web, o campo é um input de texto padrão sem botão de busca de diretório nativo, o que é plenamente condizente com as limitações de segurança de sandbox de navegadores.",
+      "scopeSeparation": "Enquanto o diálogo nativo do vMix condensa configurações avançadas de hardware, áudio delays e WAV em dezenas de controles secundários, o FreeMix adota a divisão modular correta: ajustes essenciais de produção no diálogo compacto (700x540) e delegação de parâmetros profundos ao editor completo via link 'Avançado...'."
+    }
+  },
+  "blockers": [],
+  "limits": [
+    "Revisão visual baseada exclusivamente nas capturas estáticas PNG geradas pelo runner R6 no Edge Real DOM.",
+    "Mock API local loopback utilizada durante o teste; não atesta comportamento sob drivers reais de GPU/hardware.",
+    "Inexistência de botão 'Procurar Pasta' é limitação arquitetural conhecida e esperada em ambiente web.",
+    "Código-fonte sob congelamento estrito: nenhuma alteração de layout, CSS ou funcionalidade foi ou será aplicada."
+  ]
+}
+```

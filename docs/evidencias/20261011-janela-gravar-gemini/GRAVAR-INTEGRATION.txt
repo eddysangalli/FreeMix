@@ -1,0 +1,98 @@
+```json
+{
+  "guards": {
+    "expectedHead": "caea6e5",
+    "preIntegrationPins": [
+      {
+        "relative": "painel/mesa.html",
+        "sha256": "307868917388acbb5069e6e41d6113abdf0ead8da5311ea819b2761c3064468f"
+      },
+      {
+        "relative": "ferramentas/servidor-api.mjs",
+        "sha256": "908d069662b7cff8ec40cf78b8417aad94aadd2a008e7d3caeb67fc21122fe17"
+      },
+      {
+        "relative": "docs/CONTINUAR.md",
+        "sha256": "7e81ab0c65d4b17d506f2fad0c5c10186a0ba403e2d448eff3b51efa8bc88f14"
+      }
+    ],
+    "sourceDraftPins": [
+      {
+        "relative": "DRAFT-gravar-r3.html",
+        "sha256": "d01392b3a44e2b1b94dee854ac8a6444b927ceab523da9e2e4b396168d95d664"
+      },
+      {
+        "relative": "DRAFT-gravar-r3.js",
+        "sha256": "5544e6df0f51965246699df5ff9bdd22fdbc6f3323b630a65cdac9cb7d71716c"
+      }
+    ],
+    "receiptR6Validation": {
+      "sha256": "e9fb6a34b110322fbef7866189cf70eb63ff7e992d00e713eb4a1b96e638c89c",
+      "summary": { "passed": 29, "failed": 0, "total": 29 },
+      "cleanup": { "exitCode": 0, "browserCooperativeClose": true, "profileProcessCount": 0 }
+    }
+  },
+  "copies": [
+    {
+      "source": "DRAFT-gravar-r3.js",
+      "target": "painel/remoto/gravar.js"
+    },
+    {
+      "source": "DRAFT-gravar-r3.html",
+      "target": "painel/remoto/gravar.html"
+    }
+  ],
+  "patches": [
+    {
+      "target": "painel/mesa.html",
+      "old": "  const panelPages={'novo-projeto':'/novo-projeto/',audio:'/audio',datasources:'/dados',compositions:'/compor',calls:'/calls',macros:'/macros',recuperacao:'/recuperacao',diagnosticos:'/diagnosticos',saidas:'/saidas',settings:'/settings',config:'/settings',ext:'/externo',iso:'/iso',replay:'/replay',replaysettings:'/replay?view=settings#replay-config',recset:'/settings?category=recording&context=recording',streamset:'/transmitir'};",
+      "new": "  const panelPages={'novo-projeto':'/novo-projeto/',audio:'/audio',datasources:'/dados',compositions:'/compor',calls:'/calls',macros:'/macros',recuperacao:'/recuperacao',diagnosticos:'/diagnosticos',saidas:'/saidas',settings:'/settings',config:'/settings',ext:'/externo',iso:'/iso',replay:'/replay',replaysettings:'/replay?view=settings#replay-config',recset:'/gravar',streamset:'/transmitir'};"
+    },
+    {
+      "target": "painel/mesa.html",
+      "old": "  const panelSizes={streamset:[700,445],calls:[700,540],ext:[700,540]};",
+      "new": "  const panelSizes={streamset:[700,445],calls:[700,540],ext:[700,540],recset:[700,540]};"
+    },
+    {
+      "target": "painel/mesa.html",
+      "old": "    const title=({ext:'Saídas externas',streamset:'Configurações de streaming','novo-projeto':'Novo projeto · prévia',datasources:'Fontes de dados',compositions:'Composições',calls:'Chamada de Vídeo',settings:'Configurações',replay:'Replay',replaysettings:'Configurações do Replay',list:'List',mixer:'Mixer de áudio',audio:'Áudio · AFV e filtros'})[id]||'FreeMix · '+id;",
+      "new": "    const title=({ext:'Saídas externas',streamset:'Configurações de streaming',recset:'Configuração de Gravação','novo-projeto':'Novo projeto · prévia',datasources:'Fontes de dados',compositions:'Composições',calls:'Chamada de Vídeo',settings:'Configurações',replay:'Replay',replaysettings:'Configurações do Replay',list:'List',mixer:'Mixer de áudio',audio:'Áudio · AFV e filtros'})[id]||'FreeMix · '+id;"
+    },
+    {
+      "target": "ferramentas/servidor-api.mjs",
+      "old": "const routes={'/novo-projeto/':'novo-projeto/index','/':'hub','/hub':'hub','/corte':'corte','/playout':'playout','/gc-html':'gc-html','/gc':'gc','/audio':'audio','/replay':'replay','/iso':'iso','/dados':'dados','/compor':'compor','/settings':'settings','/calls':'calls','/macros':'macros','/recuperacao':'recuperacao','/saidas':'saidas','/externo':'externo','/transmitir':'transmitir','/srt-hdr':'srt-hdr','/rede':'rede','/atalhos':'atalhos','/efeitos':'efeitos','/sinais':'sinais','/atualizacao':'atualizacao','/diagnosticos':'diagnosticos'};",
+      "new": "const routes={'/novo-projeto/':'novo-projeto/index','/':'hub','/hub':'hub','/corte':'corte','/playout':'playout','/gc-html':'gc-html','/gc':'gc','/audio':'audio','/replay':'replay','/iso':'iso','/dados':'dados','/compor':'compor','/settings':'settings','/calls':'calls','/macros':'macros','/recuperacao':'recuperacao','/saidas':'saidas','/externo':'externo','/gravar':'gravar','/transmitir':'transmitir','/srt-hdr':'srt-hdr','/rede':'rede','/atalhos':'atalhos','/efeitos':'efeitos','/sinais':'sinais','/atualizacao':'atualizacao','/diagnosticos':'diagnosticos'};"
+    },
+    {
+      "target": "painel/remoto/gravar.html",
+      "old": "<script src=\"DRAFT-gravar.js\"></script>",
+      "new": "<script src=\"gravar.js\"></script>"
+    }
+  ],
+  "readmeMarkdown": "# Diálogo de Gravação (Gravar)\n\n## Status e Validação\n- Interface compacta estilo vMix integrada em `/gravar` (`painel/remoto/gravar.html` e `painel/remoto/gravar.js`).\n- Viewport: 700x540 px.\n- Validação empírica: 29/29 PASS em Real DOM Microsoft Edge (CDP isolado em porta efêmera) com Mock API sintética local.\n- Receipt SHA: `e9fb6a34b110322fbef7866189cf70eb63ff7e992d00e713eb4a1b96e638c89c` (exit 0, encerramento cooperativo sem processos órfãos).\n\n## Contratos e Resiliência\n- Rota de controle: `POST /api/control` com payload plano `{ action: 'settings_apply', category: 'recording', directory, format, quality, encoder }`.\n- Leitura de configurações e estado: `GET /api/settings` e `GET /api/json`.\n- Proteção contra falhas de rede: tratamento de HTTP 500 no startup e na revalidação, payload sem preset e stale preset drift (zero POST e preservação de rascunho em sessionStorage).\n- Deadline: `AbortSignal.timeout(8000)` estrito com desbloqueio dos controles e aviso ao usuário.\n- Compatibilidade: link 'Avançado' preserva acesso total ao editor legador em `/settings?category=recording&context=recording`.\n- Diagnóstico histórico: as 5 reprovações em ensaios R4b/R5 decorreram de escaping Windows de caminho (`D:\\...`) no harness e sequenciamento de mock na fixture, sem defeito no código-fonte.\n\n## Evidências\n- Artefatos e logs arquivados para consolidação em `docs/evidencias/20261011-janela-gravar-gemini/`.",
+  "continuationMarkdown": "# Continuação do Plano de Janelas Modais\n\n## Estado Atual\n- Janela Gravar (Recording Setup) validada com 29/29 PASS em Real DOM e integrada à Mesa (`recset: '/gravar'`).\n- Processos de QA e instâncias do Edge finalizados cooperativamente (PID count 0).\n- Repositório pronto para avanço.\n\n## Próximo Passo\n- Avançar para a janela **MultiCorder** seguindo a mesma metodologia defensiva de contratos e isolamento de runtime.\n- Consultar documentação recente em `docs/` e `FreeMix/docs/` antes da modelagem do diálogo.",
+  "limits": [
+    "Execução validada estritamente em Real DOM headless via Edge CDP em loopback local com Mock API.",
+    "29/29 PASS atesta conformidade de contratos, eventos e segurança de UI; não constitui declaração de 100% de estabilidade universal.",
+    "Não valida gravação física em disco real (I/O de arquivos).",
+    "Não valida codificação por hardware real (NVENC, QuickSync, x264 nativo).",
+    "Não valida NDI, WAN ou conectividade externa.",
+    "Não valida runtime CEF nativo do operador.",
+    "Instalação do operador (0.1.0-local.20261009153453) e Setup Native24 (0.1.0-local.20261010060000) permanecem intocados e não atualizados."
+  ],
+  "recipechecks": [
+    {
+      "step": "Verificação de sintaxe do servidor API",
+      "command": "node --check ferramentas/servidor-api.mjs"
+    },
+    {
+      "step": "Conferência de integridade dos arquivos modificados",
+      "command": "git diff --stat"
+    },
+    {
+      "step": "Conferência de syntax e parsing de painel/mesa.html",
+      "command": "node -e \"const fs = require('fs'); const html = fs.readFileSync('painel/mesa.html', 'utf8'); if (!html.includes('/gravar') || !html.includes('recset:[700,540]')) throw new Error('Falha na integridade da Mesa'); console.log('Mesa syntax OK');\""
+    }
+  ]
+}
+```

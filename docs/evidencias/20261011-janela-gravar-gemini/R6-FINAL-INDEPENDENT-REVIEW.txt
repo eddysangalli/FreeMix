@@ -1,0 +1,55 @@
+# Parecer de Homologação e Decisão Independente (R6)
+
+**Alvo:** Script de Teste Automatizado [`run-test-gravar-dom-r6.mjs`](file:///D:/FreeMix-QA-Gemini-Recording-20261011-0730/run-test-gravar-dom-r6.mjs)
+**SHA-256 Validado (Root):** `e80af3adadef2803869e1a890e2aa256f195357e3c7606edcb26ea15b8839fc6`
+**Sintaxe Node.js:** Aprovada (`node --check PASS`)
+**Código de Produto:** [`DRAFT-gravar-r3.js`](file:///D:/FreeMix-QA-Gemini-Recording-20261011-0730/DRAFT-gravar-r3.js) (`5544e6df...`) e [`DRAFT-gravar-r3.html`](file:///D:/FreeMix-QA-Gemini-Recording-20261011-0730/DRAFT-gravar-r3.html) (`d01392b3...`) **100% INTACTOS (0 bytes modificados)**
+
+---
+
+## 1. Auditoria Causal dos 10 Patches Materializados
+
+A inspeção dos 10 patches aplicados sobre a base de código integral de R5 demonstra conformidade exata e resolução completa de todas as causas-raiz identificadas na telemetria anterior:
+
+| Índice | Alvo do Patch | Âncora / Modificação | Análise de Causalidade e Integridade |
+| :---: | :--- | :--- | :--- |
+| **0** | Metadados do Runner | `runner: 'run-test-gravar-dom-r6.mjs'` | Identificação canônica de R6 preservada no recibo. |
+| **1** | Perfil Edge Isolado | `FreeMix-QA-Profile-Recording-r6-...` | Evita colisão de perfil com execuções prévias de R4b/R5. |
+| **2-4** | Nomes de Screenshots | `screenshot-gravar-*-r6-*.png` | Três capturas direcionadas a arquivos inéditos de R6. |
+| **5** | Recibo de Saída | `receipt-test-gravar-dom-r6.json` | Garante persistência isolada das evidências de R6. |
+| **6** | Gate 11 (Escaping Path) | `'D:\\\\\\\\State500Draft'` | A barra quádrupla no evaluate grava `D:\State500Draft` literal no DOM, casando exatamente com a asserção no Node (`dirVal === 'D:\\State500Draft'`). Zero POST validado. |
+| **7** | Gate 12 (Desmembramento A/B/C) | Separação em **Gate 12A**, **Gate 12B** e **Gate 12C** | **Resolução da objeção crítica:**<br>• **Gate 12A:** Amostra `openSettings500Result` **antes** do clique em `#btn-save`, verificando `'Falha HTTP 500 ao carregar configurações'` sem colidir com a validação síncrona local de formulário. Clica em salvar e atesta zero POST mutante.<br>• **Gate 12B:** Recarrega harness saudável (`loadHarness()`), preenche diretório com barra quádrupla (`'D:\\\\\\\\SettingsFailDraft'`), injeta falha 500 após o carregamento e valida retenção de rascunho com a mensagem exata da fonte (`'Falha HTTP 500 ao revalidar perfil'`) e zero POST.<br>• **Gate 12C:** Recarrega harness saudável, isola seu próprio baseline (`postCountBeforeMissingPreset = recordedPostRequests.length`), injeta resposta sem preset e valida cancelamento defensivo (`'Resposta de configurações malformada'`) sem vazamento de contadores. |
+| **8** | Gate 13 (Escaping Path) | `'D:\\\\\\\\StalePresetDraft'` | Elimina falso negativo de escape em Windows path; asserção casa com `dirVal === 'D:\\StalePresetDraft'`. Zero POST mantido. |
+| **9** | Gate 16 (Escaping Path) | `'D:\\\\\\\\TimeoutDraft'` | Elimina falso negativo de escape; asserção casa com `dirVal === 'D:\\TimeoutDraft'`. Deadline fatal de 8000ms e wait de 8600ms mantidos rigorosamente. |
+
+---
+
+## 2. Contrato Formal da Quantidade de Asserções
+
+O runner R5 possuía formalmente 28 asserções. Com a inclusão do caso explícito de falha na abertura (`GATE_12_OPEN_SETTINGS_HTTP500_BLOCKS_SAVE`) e a preservação dos dois casos originais de salvamento (`GATE_12_UNKNOWN_SETTINGS_HTTP500_BLOCKS_POST` e `GATE_12_SETTINGS_MISSING_PRESET_BLOCKS_POST`), o contrato formal de asserções foi atualizado:
+
+- **Asserções Originais Preservadas:** 28
+- **Nova Asserção de Inicialização (Gate 12A):** +1 (`GATE_12_OPEN_SETTINGS_HTTP500_BLOCKS_SAVE`)
+- **Total Contratual Obrigatório em R6:** **29 asserções**
+
+O arquivo de recibo [`receipt-test-gravar-dom-r6.json`](file:///D:/FreeMix-QA-Gemini-Recording-20261011-0730/receipt-test-gravar-dom-r6.json) deverá registrar obrigatoriamente `total: 29` (e não 28).
+
+---
+
+## 3. Demarcação de Limites de Homologação
+
+> [!WARNING]
+> - O estado de execução em tempo de execução permanece formalmente **UNKNOWN** até que a execução mecânica produza o recibo em disco.
+> - A aprovação deste script restringe-se estritamente à integridade oracular e defensiva da camada de UI em **Microsoft Edge Headless (700×540 via CDP) com API Mockada**.
+> - Esta autorização **NÃO constitui** validação ou homologação de motor C++ Nativo, encoders de hardware (NVENC/QSV/AMF), gravação em disco físico, tolerância a jitter de clock ou operação de longa duração em produção.
+
+---
+
+## 4. Decisão Conclusiva
+
+Não existem bloqueadores causais ou de especificação remanescentes no código de teste ou no código de produto.
+
+**DECISÃO:** `APPROVED_FOR_ONE_OWN_MOCK_REAL_DOM_EXECUTION_ONLY`
+
+> [!NOTE]
+> Autorizada **exatamente UMA execução mecânica** do runner [`run-test-gravar-dom-r6.mjs`](file:///D:/FreeMix-QA-Gemini-Recording-20261011-0730/run-test-gravar-dom-r6.mjs) pelo Root/Operador, com encerramento cooperativo de instâncias do Edge via `Browser.close` e verificação pós-exit de processos órfãos via CIM.
