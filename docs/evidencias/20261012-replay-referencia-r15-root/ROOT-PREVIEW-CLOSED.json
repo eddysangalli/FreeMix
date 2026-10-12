@@ -1,0 +1,9 @@
+{
+  "format": 1,
+  "scope": "MOCK_API_REAL_DOM_ONLY",
+  "serverActualClosed": true,
+  "pinsSame": true,
+  "mutatingMockPosts": 2,
+  "readOnlyMockPosts": 235,
+  "operatorTouched": false
+}

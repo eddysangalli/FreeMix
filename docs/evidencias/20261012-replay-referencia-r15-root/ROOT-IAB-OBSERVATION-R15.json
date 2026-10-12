@@ -1,0 +1,56 @@
+{
+  "scope": "REAL_DOM_API_MOCK_SYNTHETIC_JPEG_ONLY",
+  "sourcePin": "aec86823b1aeb391484f4559838b9331b07c589822cb1eb58f5cd2294962b5f1",
+  "fullscreenCss": [
+    950,
+    534
+  ],
+  "dockCss": [
+    950,
+    250
+  ],
+  "fullscreenRowHeight": 8.993,
+  "dockRowHeight": 12.986,
+  "fullscreenTableWidth": 950,
+  "dockTableScrollWidth": 1238,
+  "decodedBothPlayerImages": [
+    320,
+    180
+  ],
+  "dockPlayerImageRectsZero": true,
+  "flagsFullOrder": [
+    "Lance1Cam3",
+    "Lance1Cam1",
+    "Lance2Cam2"
+  ],
+  "reorder": [
+    "Lance1Cam1",
+    "Lance1Cam3",
+    "Lance2Cam2"
+  ],
+  "fade400Persisted": true,
+  "saveConfirmedByVisibleStatus": true,
+  "prepareExplicitEnabled": true,
+  "dockFlagOrder": [
+    "Lance3Cam4",
+    "Lance3Cam2"
+  ],
+  "matrixCam3OriginalSelectConfirmed": true,
+  "originalToolsLoadExplicit": true,
+  "consoleErrors": 0,
+  "postCounts": {
+    "history": 235,
+    "playlist-save": 1,
+    "load": 1
+  },
+  "historyPostsReadOnly": true,
+  "locatorTitleGetByLabelNoMatchPreservedAsToolSelectionIssue": true,
+  "visualStatus": "STRUCTURAL_REFERENCE_COMPARISON_DONE_NOT_PIXEL_IDENTICAL_OR_OWNER_APPROVED",
+  "limits": [
+    "eight_tiles_are_recorded_camera_selectors_not_eight_live_feeds",
+    "unsupported_loop_music_quad_export_disabled",
+    "Native_not_executed",
+    "not_installed_or_packaged"
+  ],
+  "operatorTouched": false
+}
