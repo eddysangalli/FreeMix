@@ -1,0 +1,26 @@
+{
+  "benchExecuted": false,
+  "patchCount": 13,
+  "syntaxExit": 0,
+  "observedUtc": "2026-10-12T20:09:03.5800842Z",
+  "anchorCounts": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+  ],
+  "status": "LITERAL_PART1_MATERIALIZED_NOT_EXECUTED_NOT_ADMITTED",
+  "bytes": 58150,
+  "helpersPending": true,
+  "independentReviewPending": true,
+  "sha256": "5620267f2cb32a35f4fe52041a217bfb4437c9f786dd6fd401bf358e618e921a"
+}

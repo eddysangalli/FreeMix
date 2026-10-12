@@ -1,0 +1,19 @@
+{
+  "operatorChanged": false,
+  "claudeReturnedFullResponses": true,
+  "activeCLI": false,
+  "primaryReference": "https://ffmpeg.org/ffmpeg.html#Main-options",
+  "lastAttemptResponseBytes": 66,
+  "lastAttemptExit": 1,
+  "balance": "unknown",
+  "lastAttemptNewSource": false,
+  "observedUtc": "2026-10-12T20:12:04.4869601Z",
+  "replayCPU11Passed": true,
+  "codecR19Admitted": false,
+  "codecR19BenchExecuted": false,
+  "resetEstimateUtc": "2026-10-13T00:30:00Z",
+  "lastAttemptClosed": true,
+  "deadlineUtc": "2026-10-12T22:00:00Z",
+  "lastAttemptUtc": "2026-10-12T20:10:08.470Z",
+  "resetGuaranteed": false
+}

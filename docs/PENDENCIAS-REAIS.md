@@ -1,4 +1,13 @@
 
+## 12/10/2026 20:12 UTC — Novo limite do Claude; codecR19 materializado, ainda não qualificado
+
+O Claude entregou os13patches completos que faltavam: todos os anchors ocorreram uma vez contra R18, arquivoR19 reconstruído58.150B/SHA5620267f2cb32a35f4fe52041a217bfb4437c9f786dd6fd401bf358e618e921a e sintaxe0. O retorno anterior somente tail permanece preservado e não foi aplicado. R19 é fonte não admitida: helpers/CPU/revisão integral/bancada ainda pendentes.
+
+A afirmação de que -fs no limite exato garante100MiB durante escrita contradiz a documentação primária do FFmpeg, que admite saída ligeiramente maior que o valor solicitado ([opção -fs](https://ffmpeg.org/ffmpeg.html#Main-options)). Root não alterou o algoritmo por conta própria e encaminhou correçãoR20 ao autor, exigindo limite de escrita real, fechamento cooperativo e contrato do contador decodificado. A tentativaR20 encerrou20:10:08UTC exit1/isErrortrue66B por limite de sessão: estimativa21h30SP/13/10 00:30UTC, posterior ao prazo de entrega, sem garantia. Nenhum resultadoR20, nenhuma nova bancada ou codec escolhido. TodosCLIs desta rodada encerrados; saldo desconhecido.
+
+Replay mantém CPU11PASS e provas públicas do classificador. Novo UI/backend ainda experimental; não há aprovação Native completa nem instalação/pacote. Mesa e operador preservados. A automação foi enxugada para o estado atual e guardas indispensáveis, removendo checkpoints obsoletos repetidos para poupar contexto; supervisão20min e checksAGY horários mantidos. Prazo12/10 às19hSP não autoriza declarar100% ou concluir incompleto. Provas sanitizadas: docs/evidencias/20261012-clis-codec-r19-root.
+
+
 ## 12/10/2026 19:45 UTC — Claude retomado; classificador da agulha validado em CPU
 
 O Claude voltou a produzir respostas completas após a janela estimada: autor codecR18 retornou50.996B, revisão independente codec8.526B e revisão Replay9.358B. São respostas de fonte; saldo desconhecido. Gemini, Opus e Sonnet continuam429 nos últimos checks horários, todos encerrados. Nenhum processo do operador foi alterado.
