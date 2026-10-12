@@ -1,3 +1,9 @@
+<!-- managed-source-package-20261012-0110 -->
+## Fontes dos componentes gerenciados — complemento de empacotamento
+
+O ZIP oficial DistroAV6.2.1 usado na compilação agora está em `licenses/freemix-distroav-managed/DistroAV-6.2.1-official-source.zip`, SHA6da38f422c6dc826165a7462b4496f967ed7f948bd6a97ba3e0e3143193625e4; catálogo e proveniência declaram o caminho local. A proveniência SceneSwitcher declara o ZIP oficial já presente na base600 assinada, SHA c3cb9d64d9bb9a15b0880a8b6e734ee20368f533fb5fb2aeb40b60aa77b66b2b. O novo montador deverá conferir ambos os ZIPs efetivamente copiados, além dos patches/licenças. Nenhum DLL, fonte C++ ou byte do Native39 mudou nesta complementação; build/QA anterior permanece com os mesmos pins. Pacote completo ainda não montado/selado, mesa intacta.
+
+---
 <!-- replay-preparado-root-20261012-0100 -->
 ## Replay — implementação experimental e provas reais de mídia, 11/10 às22h de Brasília
 

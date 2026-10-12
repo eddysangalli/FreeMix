@@ -137,6 +137,8 @@
     },
     {
       "id": "distroav",
+      "fonte": "licenses/freemix-distroav-managed/DistroAV-6.2.1-official-source.zip",
+      "fonteSha256": "6da38f422c6dc826165a7462b4496f967ed7f948bd6a97ba3e0e3143193625e4",
       "nome": "DistroAV NDI",
       "repo": "DistroAV/DistroAV",
       "versao": "6.2.1",

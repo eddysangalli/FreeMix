@@ -2,6 +2,8 @@
   "version": "1.36.1-freemix-r2",
   "sourceArchive": "https://codeload.github.com/WarmUpTill/SceneSwitcher/zip/refs/tags/1.36.1",
   "sourceArchiveSHA": "c3cb9d64d9bb9a15b0880a8b6e734ee20368f533fb5fb2aeb40b60aa77b66b2b",
+  "localSourceArchive": "licenses/freemix-sceneswitcher/SceneSwitcher-1.36.1-official-source.zip",
+  "localSourceArchiveOrigin": "signed-base600-source",
   "patchSHA": "1c715b7c165505bb4af1af4c2f7f64a0df74ff1b63eca6cec4e2a4f8bc16fd4d",
   "sourceFiles": [
     {

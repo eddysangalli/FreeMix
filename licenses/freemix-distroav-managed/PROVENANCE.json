@@ -2,6 +2,8 @@
   "version": "6.2.1-freemix-managed-r1",
   "sourceArchive": "https://codeload.github.com/DistroAV/DistroAV/zip/refs/tags/6.2.1",
   "sourceArchiveSHA": "6da38f422c6dc826165a7462b4496f967ed7f948bd6a97ba3e0e3143193625e4",
+  "localSourceArchive": "licenses/freemix-distroav-managed/DistroAV-6.2.1-official-source.zip",
+  "localSourceArchiveOrigin": "product-tracked-source",
   "patchSHA": "6a2fb5c1fb6dbce1a175ea6383cd921bf1f6fca16631fcb81b6c766cae69df4c",
   "sourceFiles": [
     {
