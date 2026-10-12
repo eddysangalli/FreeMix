@@ -1,3 +1,15 @@
+<!-- replay-shared-dock-human-direction-20261012 -->
+## Replay — direção vigente: preservar a Mesa, mesma interface e somente A/B
+
+O dono esclareceu que a tela acoplada da Mesa é a referência mais correta: **preservar seu desenho e melhorá-lo**, e fazer a janela externa usar a mesma interface. A operação deve apresentar somente **Replay A e Replay B**, sem C/D. A primeira composição externa do commit6a40304 não é aprovação visual final nem está instalada; a próxima composição deve partir do dock da Mesa, não substituí-lo por aquele console externo.
+
+Fonte atual confirma dois renderizadores: `mesa.html::renderSideReplay` e `remoto/replay.html/js`. Root manteve o renderer e o desenho da Mesa intactos; tentativa de preparação de host separado falhou numa guarda antes de escrever fontes canônicas e foi interrompida após a correção humana. Próximo trabalho: componente compartilhado a partir do dock, agulha/preview de quadros reais, seleção A/B, sem recriar a interface durante polling nem mandar comandos de produção ao navegar. A barra de progresso decorativa de45% e elementos legados ocultos não são provas de operação.
+
+Agentes preparam fontes offside e não executam processos. Root executou18 contratos CPU da atualização manual de histórico: consulta de status permanece livre durante uma leitura de metadata bloqueada, navegação não prepara mídia nem altera players, limites/lease/cancelamento/disposal preservados. O controlador de curvas R5 passou CPU com deduplicação/restart e limpeza de artefato após admissão tardia recusada. Ambos são mocks injetados e não Native/CEF ou operação completa. Reviews de fonte ainda corrigem recibos de ACK/nonce e limpeza tardia; composição completa, DOM, Native e pacote permanecem pendentes.
+
+Gemini continua limitado na tentativa completa de revisão: HTTP429/RESOURCE_EXHAUSTED, sem resposta, saldo desconhecido; checks espaçados. Claude CLI aguarda a janela de reset informada (~04:20UTC12/10, sem garantia). Root/agentes seguem no replay autorizado. Operador e instalação preservados; não empacotar o desenho externo6a40304 como layout final aprovado sem esta harmonização e QA pertinente. Prazo12/10 às19hBRT mantido.
+
+---
 <!-- replay-operation-layout-root-20261012-0205 -->
 ## Replay — janela de operação alinhada ao padrão das demais janelas
 
