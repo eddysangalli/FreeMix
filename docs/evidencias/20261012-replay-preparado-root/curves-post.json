@@ -1,0 +1,92 @@
+{
+  "status": "PASS_OWN_SYNTHETIC_ONLY",
+  "scope": "ACTUAL_SYNTHETIC_DECODED_CURVES_NOT_NATIVE_OR_BROADCAST_PASS",
+  "tests": [
+    {
+      "name": "fast-slow-fast",
+      "outputFrames": 72,
+      "duration": 2.4,
+      "maxSourceFrameError": 1.1430361849028827,
+      "decoded": true,
+      "silentPcmVerified": true,
+      "sourcePreserved": true
+    },
+    {
+      "name": "fast-slow",
+      "outputFrames": 56,
+      "duration": 1.8666666666666667,
+      "maxSourceFrameError": 1.235763272885876,
+      "decoded": true,
+      "silentPcmVerified": true,
+      "sourcePreserved": true
+    },
+    {
+      "name": "explicit-audio-ack-required",
+      "passed": true
+    },
+    {
+      "name": "cancel-before-encode-no-ready",
+      "passed": true
+    }
+  ],
+  "allOwnedPidsAbsent": true,
+  "ownedChildren": 13,
+  "observations": [
+    {
+      "pid": 122904,
+      "absent": true
+    },
+    {
+      "pid": 66196,
+      "absent": true
+    },
+    {
+      "pid": 50300,
+      "absent": true
+    },
+    {
+      "pid": 36736,
+      "absent": true
+    },
+    {
+      "pid": 18576,
+      "absent": true
+    },
+    {
+      "pid": 190540,
+      "absent": true
+    },
+    {
+      "pid": 211652,
+      "absent": true
+    },
+    {
+      "pid": 136108,
+      "absent": true
+    },
+    {
+      "pid": 208336,
+      "absent": true
+    },
+    {
+      "pid": 113992,
+      "absent": true
+    },
+    {
+      "pid": 108480,
+      "absent": true
+    },
+    {
+      "pid": 195100,
+      "absent": true
+    },
+    {
+      "pid": 106352,
+      "absent": true
+    }
+  ],
+  "sourcePinsSame": true,
+  "actualClosed": true,
+  "operatorTouched": false,
+  "nativeStarted": false
+}

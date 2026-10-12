@@ -1,0 +1,49 @@
+{
+  "runtimeStatus": "PASS",
+  "gates": 14,
+  "allGatesPass": true,
+  "allOwnedPidsAbsent": true,
+  "ownedChildren": 6,
+  "observations": [
+    {
+      "pid": 167788,
+      "expectedExe": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\entregas\\FreeMix-Completo-0.1.0-local.20261010060000\\runtime\\ffmpeg.exe",
+      "absent": true,
+      "actualExe": null
+    },
+    {
+      "pid": 156428,
+      "expectedExe": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\entregas\\FreeMix-Completo-0.1.0-local.20261010060000\\runtime\\ffprobe.exe",
+      "absent": true,
+      "actualExe": null
+    },
+    {
+      "pid": 211136,
+      "expectedExe": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\entregas\\FreeMix-Completo-0.1.0-local.20261010060000\\runtime\\ffmpeg.exe",
+      "absent": true,
+      "actualExe": null
+    },
+    {
+      "pid": 77880,
+      "expectedExe": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\entregas\\FreeMix-Completo-0.1.0-local.20261010060000\\runtime\\ffmpeg.exe",
+      "absent": true,
+      "actualExe": null
+    },
+    {
+      "pid": 126592,
+      "expectedExe": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\entregas\\FreeMix-Completo-0.1.0-local.20261010060000\\runtime\\ffmpeg.exe",
+      "absent": true,
+      "actualExe": null
+    },
+    {
+      "pid": 81060,
+      "expectedExe": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\entregas\\FreeMix-Completo-0.1.0-local.20261010060000\\runtime\\ffmpeg.exe",
+      "absent": true,
+      "actualExe": null
+    }
+  ],
+  "runnerPinsSame": true,
+  "operatorTouched": false,
+  "nativeStarted": false,
+  "root": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-WorkerRunner-R2\\FreeMix-QA-Worker-Real-b8cf7f1b-9f93-4650-adfe-5aba68002654"
+}

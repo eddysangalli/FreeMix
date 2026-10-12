@@ -1,0 +1,8 @@
+{
+  "exit": 0,
+  "scope": "CPU_MOCK_ENGINE_ONLY_NOT_NATIVE_OR_MEDIA_PASS",
+  "sourcePinsSame": true,
+  "operatorTouched": false,
+  "nativeStarted": false,
+  "run": "D:/FreeMix-QA-Replay-Agents-20261012-0006-r2/FreeMix-QA-PlaylistCPU-R2"
+}

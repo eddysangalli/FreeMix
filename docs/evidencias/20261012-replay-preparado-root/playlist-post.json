@@ -1,0 +1,150 @@
+{
+  "status": "PASS_OWN_SYNTHETIC_ONLY",
+  "scope": "ACTUAL_SYNTHETIC_CUT_FADE_DECODED_PIXELS_PCM_NOT_NATIVE_PASS",
+  "tests": [
+    {
+      "name": "actual mixed CUT/FADE render",
+      "pass": true,
+      "duration": 5.6
+    },
+    {
+      "name": "actual metadata/full frame count",
+      "pass": true,
+      "frames": 168
+    },
+    {
+      "name": "decoded CUT and FADE pixel samples",
+      "pass": true,
+      "samples": [
+        {
+          "at": 1.8,
+          "kind": "red",
+          "rgb": [
+            252,
+            0,
+            0
+          ]
+        },
+        {
+          "at": 2.2,
+          "kind": "blue",
+          "rgb": [
+            0,
+            0,
+            253
+          ]
+        },
+        {
+          "at": 3.5,
+          "kind": "blue",
+          "rgb": [
+            0,
+            0,
+            253
+          ]
+        },
+        {
+          "at": 3.8,
+          "kind": "fade",
+          "rgb": [
+            0,
+            125,
+            125
+          ]
+        },
+        {
+          "at": 4.1,
+          "kind": "green",
+          "rgb": [
+            0,
+            253,
+            0
+          ]
+        },
+        {
+          "at": 5.4,
+          "kind": "green",
+          "rgb": [
+            0,
+            253,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "name": "actual stereo PCM continuity/nonclip/mixed fade tones",
+      "pass": true,
+      "samplesPerChannel": 268800,
+      "peak": 0.199981689453125,
+      "outgoing": [
+        0.09998703663778623,
+        0.0999897659655867
+      ],
+      "incoming": [
+        0.09999682250804727,
+        0.09999864016378214
+      ]
+    },
+    {
+      "name": "all source clips untouched",
+      "pass": true
+    }
+  ],
+  "allOwnedPidsAbsent": true,
+  "ownedChildren": 12,
+  "observations": [
+    {
+      "pid": 178804,
+      "absent": true
+    },
+    {
+      "pid": 160064,
+      "absent": true
+    },
+    {
+      "pid": 199292,
+      "absent": true
+    },
+    {
+      "pid": 73560,
+      "absent": true
+    },
+    {
+      "pid": 103908,
+      "absent": true
+    },
+    {
+      "pid": 106288,
+      "absent": true
+    },
+    {
+      "pid": 52512,
+      "absent": true
+    },
+    {
+      "pid": 98864,
+      "absent": true
+    },
+    {
+      "pid": 208348,
+      "absent": true
+    },
+    {
+      "pid": 117748,
+      "absent": true
+    },
+    {
+      "pid": 203184,
+      "absent": true
+    },
+    {
+      "pid": 83836,
+      "absent": true
+    }
+  ],
+  "sourcePinsSame": true,
+  "actualClosed": true,
+  "operatorTouched": false,
+  "nativeStarted": false
+}

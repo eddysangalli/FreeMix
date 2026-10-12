@@ -1,3 +1,17 @@
+<!-- replay-preparado-root-20261012-0100 -->
+## Replay — implementação experimental e provas reais de mídia, 11/10 às22h de Brasília
+
+O dono autorizou Codex e seus agentes a implementar o replay enquanto os CLIs externos retomam. Código experimental preservado em `experimentos/replay-preparado-20261012`, fora dos caminhos de produto. Base canônica c40579b/Native39; nenhuma alteração da mesa/API do operador.
+
+Root executou playlists CPU24/24 e worker real14/14. Em mídia sintética própria, lista CUT seguida de FADE400ms passou cinco verificações:168 quadros/5,6s, cores na ordem, mistura real dos tons PCM estéreo, originais intactos e12 processos ausentes por CIM. Curvas rápido→lento→rápido e rápido→lento passaram quatro verificações reais:72/56 quadros, mapeamento temporal/endpoints conferidos nos pixels decodificados, PCM silenciado, confirmação explícita de silêncio, cancelamento antes da preparação, originais intactos e13 processos ausentes. Provas: `docs/evidencias/20261012-replay-preparado-root`.
+
+Limites: preparação cria um arquivo derivado H264/CRF18 antes de ir ao ar; não é codec sem perdas nem efeito aplicado ao decoder ao vivo. Curva ainda exige confirmação explícita de áudio silenciado; áudio variável não foi qualificado. Preparação consome tempo/disco. Esta bancada não prova Native/CEF, dispositivos, GPU, WAN, quatro câmeras ou longa duração.
+
+Pendentes: integração do worker com todos os caminhos transitivos do replay, agulha/visualização/INOUT e editores de lista/curva na interface, QA da janela nativa/latência/retomada, seleção de codec por medições e novo pacote completo. Fontes experimentais ainda NÃO estão instaladas ou incluídas como recursos ativos do pacote do operador. Falhas anteriores de fixture, inspeção RGB e enum de erro permanecem preservadas nos diretórios próprios; nenhum critério foi relaxado.
+
+Claude CLI voltou e trabalha em revisão de empacotamento/codec. A tentativa completa Gemini de12/10~01hUTC continuou HTTP429/RESOURCE_EXHAUSTED; nenhuma resposta de análise, saldo desconhecido. Seguir checks espaçados, sem afirmar que AGY está trabalhando. Prazo vigente:12/10 às19hBRT; o prazo não transforma pendências em concluídas.
+
+---
 <!-- managed-components-root-20261011 -->
 ## Atual — componentes internos e bloqueios de atualização qualificados
 

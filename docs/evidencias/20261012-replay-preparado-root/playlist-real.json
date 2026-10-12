@@ -1,0 +1,297 @@
+{
+  "status": "PASS_OWN_SYNTHETIC_ONLY",
+  "root": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-PlaylistMedia-R1\\FreeMix-QA-PlaylistArtifacts-R1",
+  "tests": [
+    {
+      "name": "actual mixed CUT/FADE render",
+      "pass": true,
+      "duration": 5.6
+    },
+    {
+      "name": "actual metadata/full frame count",
+      "pass": true,
+      "frames": 168
+    },
+    {
+      "name": "decoded CUT and FADE pixel samples",
+      "pass": true,
+      "samples": [
+        {
+          "at": 1.8,
+          "kind": "red",
+          "rgb": [
+            252,
+            0,
+            0
+          ]
+        },
+        {
+          "at": 2.2,
+          "kind": "blue",
+          "rgb": [
+            0,
+            0,
+            253
+          ]
+        },
+        {
+          "at": 3.5,
+          "kind": "blue",
+          "rgb": [
+            0,
+            0,
+            253
+          ]
+        },
+        {
+          "at": 3.8,
+          "kind": "fade",
+          "rgb": [
+            0,
+            125,
+            125
+          ]
+        },
+        {
+          "at": 4.1,
+          "kind": "green",
+          "rgb": [
+            0,
+            253,
+            0
+          ]
+        },
+        {
+          "at": 5.4,
+          "kind": "green",
+          "rgb": [
+            0,
+            253,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "name": "actual stereo PCM continuity/nonclip/mixed fade tones",
+      "pass": true,
+      "samplesPerChannel": 268800,
+      "peak": 0.199981689453125,
+      "outgoing": [
+        0.09998703663778623,
+        0.0999897659655867
+      ],
+      "incoming": [
+        0.09999682250804727,
+        0.09999864016378214
+      ]
+    },
+    {
+      "name": "all source clips untouched",
+      "pass": true
+    }
+  ],
+  "recipe": {
+    "args": [
+      "-hide_banner",
+      "-v",
+      "error",
+      "-n",
+      "-threads",
+      "2",
+      "-filter_complex_threads",
+      "2",
+      "-threads",
+      "2",
+      "-i",
+      "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-PlaylistMedia-R1\\FreeMix-QA-PlaylistArtifacts-R1\\red.mkv",
+      "-threads",
+      "2",
+      "-i",
+      "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-PlaylistMedia-R1\\FreeMix-QA-PlaylistArtifacts-R1\\blue.mkv",
+      "-threads",
+      "2",
+      "-i",
+      "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-PlaylistMedia-R1\\FreeMix-QA-PlaylistArtifacts-R1\\green.mkv",
+      "-filter_complex",
+      "[0:v:0]trim=duration=2,setpts=PTS-STARTPTS,scale=320:240:force_original_aspect_ratio=decrease,pad=320:240:(ow-iw)/2:(oh-ih)/2,setsar=1,fps=30/1,format=yuv420p,settb=AVTB[v0];[0:a:0]atrim=duration=2,asetpts=PTS-STARTPTS,aresample=48000,aformat=sample_fmts=fltp:channel_layouts=stereo,apad,atrim=duration=2[a0];[1:v:0]trim=duration=2,setpts=PTS-STARTPTS,scale=320:240:force_original_aspect_ratio=decrease,pad=320:240:(ow-iw)/2:(oh-ih)/2,setsar=1,fps=30/1,format=yuv420p,settb=AVTB[v1];[1:a:0]atrim=duration=2,asetpts=PTS-STARTPTS,aresample=48000,aformat=sample_fmts=fltp:channel_layouts=stereo,apad,atrim=duration=2[a1];[2:v:0]trim=duration=2,setpts=PTS-STARTPTS,scale=320:240:force_original_aspect_ratio=decrease,pad=320:240:(ow-iw)/2:(oh-ih)/2,setsar=1,fps=30/1,format=yuv420p,settb=AVTB[v2];[2:a:0]atrim=duration=2,asetpts=PTS-STARTPTS,aresample=48000,aformat=sample_fmts=fltp:channel_layouts=stereo,apad,atrim=duration=2[a2];[v0][v1]concat=n=2:v=1:a=0[vx1];[a0][a1]concat=n=2:v=0:a=1[ax1];[vx1][v2]xfade=transition=fade:duration=0.4:offset=3.6[vx2];[ax1][a2]acrossfade=d=0.4:c1=tri:c2=tri[ax2]",
+      "-map",
+      "[vx2]",
+      "-map",
+      "[ax2]",
+      "-t",
+      "5.6",
+      "-c:v",
+      "libx264",
+      "-preset",
+      "veryfast",
+      "-crf",
+      "18",
+      "-g",
+      "1",
+      "-bf",
+      "0",
+      "-pix_fmt",
+      "yuv420p",
+      "-c:a",
+      "pcm_s16le",
+      "-ar",
+      "48000",
+      "-ac",
+      "2",
+      "-f",
+      "matroska",
+      "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-PlaylistMedia-R1\\FreeMix-QA-PlaylistArtifacts-R1\\playlist.mkv"
+    ],
+    "outputFile": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-PlaylistMedia-R1\\FreeMix-QA-PlaylistArtifacts-R1\\playlist.mkv",
+    "duration": 5.6,
+    "boundaries": [
+      {
+        "index": 1,
+        "startSeconds": 2,
+        "endSeconds": 2,
+        "type": "CUT",
+        "durationMs": 0
+      },
+      {
+        "index": 2,
+        "startSeconds": 3.6,
+        "endSeconds": 4,
+        "type": "FADE",
+        "durationMs": 400
+      }
+    ],
+    "width": 320,
+    "height": 240,
+    "fps": "30/1",
+    "quality": {
+      "video": "H.264 all-intra CRF18, re-encoded; not mathematically lossless",
+      "audio": "PCM stereo 48 kHz; CUT or linear crossfade"
+    },
+    "mode": "PRE_RENDERED_SINGLE_DECODER"
+  },
+  "failure": null,
+  "cleanup": {
+    "actualClosed": true,
+    "pending": [],
+    "noForce": true,
+    "preflightBusy": false,
+    "readingFiles": [],
+    "ledgerFile": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-PlaylistMedia-R1\\FreeMix-QA-PlaylistArtifacts-R1\\REPLAY-WORKER-LEDGER.json",
+    "ledgerError": null
+  },
+  "children": [
+    {
+      "id": "f1ec9597-4e6f-4c58-898d-45d146c557a5",
+      "label": "fixture",
+      "kind": "ffmpeg",
+      "pid": 178804,
+      "exe": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\entregas\\FreeMix-Completo-0.1.0-local.20261010060000\\runtime\\ffmpeg.exe",
+      "exeSHA": "09948d4cdd0650da6ff5a87577469f2a218dc2615ae379f8f734d24c49de0f73",
+      "root": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-PlaylistMedia-R1\\FreeMix-QA-PlaylistArtifacts-R1"
+    },
+    {
+      "id": "87391643-bf90-4546-b3d3-5046f3c30a65",
+      "label": "fixture",
+      "kind": "ffmpeg",
+      "pid": 160064,
+      "exe": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\entregas\\FreeMix-Completo-0.1.0-local.20261010060000\\runtime\\ffmpeg.exe",
+      "exeSHA": "09948d4cdd0650da6ff5a87577469f2a218dc2615ae379f8f734d24c49de0f73",
+      "root": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-PlaylistMedia-R1\\FreeMix-QA-PlaylistArtifacts-R1"
+    },
+    {
+      "id": "2dfd934b-7bfe-48fc-99ea-93c27579a928",
+      "label": "fixture",
+      "kind": "ffmpeg",
+      "pid": 199292,
+      "exe": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\entregas\\FreeMix-Completo-0.1.0-local.20261010060000\\runtime\\ffmpeg.exe",
+      "exeSHA": "09948d4cdd0650da6ff5a87577469f2a218dc2615ae379f8f734d24c49de0f73",
+      "root": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-PlaylistMedia-R1\\FreeMix-QA-PlaylistArtifacts-R1"
+    },
+    {
+      "id": "c2dadb76-2492-43f2-afee-581b9de82d21",
+      "label": "playlist-prepare",
+      "kind": "ffmpeg",
+      "pid": 73560,
+      "exe": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\entregas\\FreeMix-Completo-0.1.0-local.20261010060000\\runtime\\ffmpeg.exe",
+      "exeSHA": "09948d4cdd0650da6ff5a87577469f2a218dc2615ae379f8f734d24c49de0f73",
+      "root": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-PlaylistMedia-R1\\FreeMix-QA-PlaylistArtifacts-R1"
+    },
+    {
+      "id": "851f520a-e085-4f48-bc22-3b7fa393e188",
+      "label": "probe",
+      "kind": "ffprobe",
+      "pid": 103908,
+      "exe": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\entregas\\FreeMix-Completo-0.1.0-local.20261010060000\\runtime\\ffprobe.exe",
+      "exeSHA": "a6618e99bb58869ded3c6f37b53aa1a8d701c3591dbb7b5b317d47369c112be2",
+      "root": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-PlaylistMedia-R1\\FreeMix-QA-PlaylistArtifacts-R1"
+    },
+    {
+      "id": "20906830-15f3-4520-8172-e6caeb855b33",
+      "label": "pixel-analysis",
+      "kind": "ffmpeg",
+      "pid": 106288,
+      "exe": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\entregas\\FreeMix-Completo-0.1.0-local.20261010060000\\runtime\\ffmpeg.exe",
+      "exeSHA": "09948d4cdd0650da6ff5a87577469f2a218dc2615ae379f8f734d24c49de0f73",
+      "root": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-PlaylistMedia-R1\\FreeMix-QA-PlaylistArtifacts-R1"
+    },
+    {
+      "id": "e8c07ef9-2bc8-4565-b289-c48b0ea45bd7",
+      "label": "pixel-analysis",
+      "kind": "ffmpeg",
+      "pid": 52512,
+      "exe": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\entregas\\FreeMix-Completo-0.1.0-local.20261010060000\\runtime\\ffmpeg.exe",
+      "exeSHA": "09948d4cdd0650da6ff5a87577469f2a218dc2615ae379f8f734d24c49de0f73",
+      "root": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-PlaylistMedia-R1\\FreeMix-QA-PlaylistArtifacts-R1"
+    },
+    {
+      "id": "f39b5864-655a-4694-aa99-6739b2c6d0cb",
+      "label": "pixel-analysis",
+      "kind": "ffmpeg",
+      "pid": 98864,
+      "exe": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\entregas\\FreeMix-Completo-0.1.0-local.20261010060000\\runtime\\ffmpeg.exe",
+      "exeSHA": "09948d4cdd0650da6ff5a87577469f2a218dc2615ae379f8f734d24c49de0f73",
+      "root": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-PlaylistMedia-R1\\FreeMix-QA-PlaylistArtifacts-R1"
+    },
+    {
+      "id": "737f680d-3367-435e-99d6-ce9dd2e41adf",
+      "label": "pixel-analysis",
+      "kind": "ffmpeg",
+      "pid": 208348,
+      "exe": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\entregas\\FreeMix-Completo-0.1.0-local.20261010060000\\runtime\\ffmpeg.exe",
+      "exeSHA": "09948d4cdd0650da6ff5a87577469f2a218dc2615ae379f8f734d24c49de0f73",
+      "root": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-PlaylistMedia-R1\\FreeMix-QA-PlaylistArtifacts-R1"
+    },
+    {
+      "id": "9ac3fcfc-d21b-4f68-a522-1e028d0666ed",
+      "label": "pixel-analysis",
+      "kind": "ffmpeg",
+      "pid": 117748,
+      "exe": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\entregas\\FreeMix-Completo-0.1.0-local.20261010060000\\runtime\\ffmpeg.exe",
+      "exeSHA": "09948d4cdd0650da6ff5a87577469f2a218dc2615ae379f8f734d24c49de0f73",
+      "root": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-PlaylistMedia-R1\\FreeMix-QA-PlaylistArtifacts-R1"
+    },
+    {
+      "id": "8d0ebaa4-c890-47d5-b284-b9f571f28b47",
+      "label": "pixel-analysis",
+      "kind": "ffmpeg",
+      "pid": 203184,
+      "exe": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\entregas\\FreeMix-Completo-0.1.0-local.20261010060000\\runtime\\ffmpeg.exe",
+      "exeSHA": "09948d4cdd0650da6ff5a87577469f2a218dc2615ae379f8f734d24c49de0f73",
+      "root": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-PlaylistMedia-R1\\FreeMix-QA-PlaylistArtifacts-R1"
+    },
+    {
+      "id": "12b8fd89-1724-4ea9-9fce-dee3fc5ac9da",
+      "label": "pcm-analysis",
+      "kind": "ffmpeg",
+      "pid": 83836,
+      "exe": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\entregas\\FreeMix-Completo-0.1.0-local.20261010060000\\runtime\\ffmpeg.exe",
+      "exeSHA": "09948d4cdd0650da6ff5a87577469f2a218dc2615ae379f8f734d24c49de0f73",
+      "root": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-PlaylistMedia-R1\\FreeMix-QA-PlaylistArtifacts-R1"
+    }
+  ],
+  "scope": "ROOT_REAL_MEDIA_NO_NATIVE_API_DEVICE_WAN",
+  "operatorTouched": false,
+  "nativeStarted": false,
+  "codecChosen": false
+}

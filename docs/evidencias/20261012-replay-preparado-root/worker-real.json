@@ -1,0 +1,153 @@
+{
+  "format": 1,
+  "scope": "ROOT_OWN_REAL_FFMPEG_SYNTHETIC_NO_NATIVE_API_DEVICE_WAN",
+  "root": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-WorkerRunner-R2\\FreeMix-QA-Worker-Real-b8cf7f1b-9f93-4650-adfe-5aba68002654",
+  "sourcePins": [
+    {
+      "path": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\entregas\\FreeMix-Completo-0.1.0-local.20261010060000\\runtime\\ffmpeg.exe",
+      "bytes": 227398656,
+      "sha256": "09948d4cdd0650da6ff5a87577469f2a218dc2615ae379f8f734d24c49de0f73",
+      "source": "signed factory600 runtime independent of operator"
+    },
+    {
+      "path": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\entregas\\FreeMix-Completo-0.1.0-local.20261010060000\\runtime\\ffprobe.exe",
+      "bytes": 227193344,
+      "sha256": "a6618e99bb58869ded3c6f37b53aa1a8d701c3591dbb7b5b317d47369c112be2",
+      "source": "signed factory600 runtime independent of operator"
+    }
+  ],
+  "gates": [
+    {
+      "name": "real synthetic FFmpeg finite one second / actual close",
+      "pass": true
+    },
+    {
+      "name": "real local ffprobe duration and codecs",
+      "pass": true
+    },
+    {
+      "name": "real decoded stereo PCM streaming zero sample proof",
+      "pass": true
+    },
+    {
+      "name": "typed own RGB64 counter input encodes finite real artifact",
+      "pass": true
+    },
+    {
+      "name": "path escape rejected before spawn",
+      "pass": true
+    },
+    {
+      "name": "network and second output rejected before spawn",
+      "pass": true
+    },
+    {
+      "name": "nostdin and unbounded decode rejected before spawn",
+      "pass": true
+    },
+    {
+      "name": "wrong executable pin fails before spawn",
+      "pass": true
+    },
+    {
+      "name": "existing artifact overwrite refused",
+      "pass": true
+    },
+    {
+      "name": "hard link input rejected and preserved",
+      "pass": true
+    },
+    {
+      "name": "junction ancestor input rejected and source preserved",
+      "pass": true
+    },
+    {
+      "name": "cancel sends cooperative stdin q and waits actual close",
+      "pass": true
+    },
+    {
+      "name": "stdout cap fails despite actual close, no partial PASS",
+      "pass": true
+    },
+    {
+      "name": "cooperative worker close / actual child events / leases empty",
+      "pass": true
+    }
+  ],
+  "children": [
+    {
+      "id": "d33f3538-4471-4303-bbd1-b0e82607a618",
+      "label": "fixture",
+      "kind": "ffmpeg",
+      "pid": 167788,
+      "exe": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\entregas\\FreeMix-Completo-0.1.0-local.20261010060000\\runtime\\ffmpeg.exe",
+      "exeSHA": "09948d4cdd0650da6ff5a87577469f2a218dc2615ae379f8f734d24c49de0f73",
+      "root": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-WorkerRunner-R2\\FreeMix-QA-Worker-Real-b8cf7f1b-9f93-4650-adfe-5aba68002654"
+    },
+    {
+      "id": "8fbb4480-f7ad-4c8a-a3dd-bb7b843a7445",
+      "label": "probe",
+      "kind": "ffprobe",
+      "pid": 156428,
+      "exe": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\entregas\\FreeMix-Completo-0.1.0-local.20261010060000\\runtime\\ffprobe.exe",
+      "exeSHA": "a6618e99bb58869ded3c6f37b53aa1a8d701c3591dbb7b5b317d47369c112be2",
+      "root": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-WorkerRunner-R2\\FreeMix-QA-Worker-Real-b8cf7f1b-9f93-4650-adfe-5aba68002654"
+    },
+    {
+      "id": "474e3120-7817-40ed-9afb-012f75d63154",
+      "label": "pcm-analysis",
+      "kind": "ffmpeg",
+      "pid": 211136,
+      "exe": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\entregas\\FreeMix-Completo-0.1.0-local.20261010060000\\runtime\\ffmpeg.exe",
+      "exeSHA": "09948d4cdd0650da6ff5a87577469f2a218dc2615ae379f8f734d24c49de0f73",
+      "root": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-WorkerRunner-R2\\FreeMix-QA-Worker-Real-b8cf7f1b-9f93-4650-adfe-5aba68002654"
+    },
+    {
+      "id": "f122d1ca-9d03-4392-87cb-1a7ed9de572f",
+      "label": "fixture",
+      "kind": "ffmpeg",
+      "pid": 77880,
+      "exe": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\entregas\\FreeMix-Completo-0.1.0-local.20261010060000\\runtime\\ffmpeg.exe",
+      "exeSHA": "09948d4cdd0650da6ff5a87577469f2a218dc2615ae379f8f734d24c49de0f73",
+      "root": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-WorkerRunner-R2\\FreeMix-QA-Worker-Real-b8cf7f1b-9f93-4650-adfe-5aba68002654"
+    },
+    {
+      "id": "c7d7d40c-1b5d-47fb-8a44-7180a1daaadc",
+      "label": "decode-verify",
+      "kind": "ffmpeg",
+      "pid": 126592,
+      "exe": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\entregas\\FreeMix-Completo-0.1.0-local.20261010060000\\runtime\\ffmpeg.exe",
+      "exeSHA": "09948d4cdd0650da6ff5a87577469f2a218dc2615ae379f8f734d24c49de0f73",
+      "root": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-WorkerRunner-R2\\FreeMix-QA-Worker-Real-b8cf7f1b-9f93-4650-adfe-5aba68002654"
+    },
+    {
+      "id": "379e1f19-da48-47cf-aafd-a551267ce34d",
+      "label": "version",
+      "kind": "ffmpeg",
+      "pid": 81060,
+      "exe": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\entregas\\FreeMix-Completo-0.1.0-local.20261010060000\\runtime\\ffmpeg.exe",
+      "exeSHA": "09948d4cdd0650da6ff5a87577469f2a218dc2615ae379f8f734d24c49de0f73",
+      "root": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-WorkerRunner-R2\\FreeMix-QA-Worker-Real-b8cf7f1b-9f93-4650-adfe-5aba68002654"
+    }
+  ],
+  "cleanup": {
+    "actualClosed": true,
+    "pending": [],
+    "noForce": true,
+    "preflightBusy": false,
+    "readingFiles": [],
+    "ledgerFile": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-WorkerRunner-R2\\FreeMix-QA-Worker-Real-b8cf7f1b-9f93-4650-adfe-5aba68002654\\REPLAY-WORKER-LEDGER.json",
+    "ledgerError": null
+  },
+  "failure": null,
+  "status": "PASS",
+  "rootMustIndependentlyConfirmOwnedPidsAbsent": [
+    167788,
+    156428,
+    211136,
+    77880,
+    126592,
+    81060
+  ],
+  "createdAt": "2026-10-12T00:26:24.496Z"
+}

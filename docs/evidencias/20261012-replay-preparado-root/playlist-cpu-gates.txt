@@ -1,0 +1,25 @@
+PASS Bounded definition persists explicit order and transitions
+PASS Invalid transition is rejected without CUT fallback
+PASS Raw speed curve cannot masquerade as prepared artifact
+PASS Maximum eight clips and last transition validation
+PASS Mixed CUT/FADE recipe keeps order and accumulated timeline
+PASS Overlapping long fades and too-long list refused
+PASS Prepare does not put any source on air and loads fixed100
+PASS Status reads never issue Native commands or autoplay
+PASS Explicit start reserves decoder and rejects generic speed/seek
+PASS End HOLD keeps frame, no implicit live transition
+PASS End LIVE happens only when selected in saved definition
+PASS External Program takeover cannot be overwritten by EOS
+PASS Wrong source or speed blocks start before Program mutation
+PASS Collection drift blocks start without loading old scope
+PASS Cancellation is epoch-safe and never loads late output
+PASS Linked angle mode is rejected rather than silently broken
+PASS Decoder stall does not trigger a guessed EOS transition
+PASS Restarted controller reloads definitions but never auto-starts
+PASS Saved reorder retains same definition ID and replaces order once
+PASS Worker failure does not publish a saved playable artifact
+PASS Unclosed worker cannot produce READY even with exit0 claim
+PASS Nested active source is rejected despite different Program scene
+PASS Collection changes during worker cancel late prepare publication
+PASS Out-of-order targeted cancel suppresses future matching preparation
+{"scope":"CPU_MOCK_ENGINE_ONLY","tests":24,"failures":0,"nativeStarted":false,"operatorTouched":false}
