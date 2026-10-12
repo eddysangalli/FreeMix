@@ -1,0 +1,41 @@
+{
+  "format": 1,
+  "scope": "EXACT_FAILED_OWN_NATIVE39_COOPERATIVE_CLEANUP_ONLY",
+  "status": "CLOSED_COOPERATIVELY_WITH_CIM_ABSENCE",
+  "nativePid": 185164,
+  "apiPid": 108556,
+  "wsPort": 62017,
+  "apiPort": 62018,
+  "operatorTouched": false,
+  "requests": [
+    {
+      "type": "CallVendorRequest",
+      "at": 1791787479538
+    },
+    {
+      "type": "GetRecordStatus",
+      "at": 1791787484293
+    },
+    {
+      "type": "GetStreamStatus",
+      "at": 1791787489072
+    },
+    {
+      "type": "GetVirtualCamStatus",
+      "at": 1791787493152
+    },
+    {
+      "type": "GetOutputList",
+      "at": 1791787497590
+    },
+    {
+      "type": "CallVendorRequest",
+      "at": 1791787502200
+    }
+  ],
+  "force": false,
+  "outputCount": 2,
+  "shutdownGuardAccepted": true,
+  "actualAbsent": true,
+  "queryHelpersPending": 0
+}

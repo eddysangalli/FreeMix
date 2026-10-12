@@ -1,3 +1,14 @@
+
+## 12/10/2026 06:48 UTC — Replay: primeiro ensaio Native39 falhou; cópia de QA encerrada
+
+O runner Native R2 executou uma vez em instalação própria isolada: identidade Native39/API/portas e saídas ociosas PASS; o segundo gate, início da gravação SourceRecord sintética, FAIL com `fetch failed`. Os gates seguintes de CEF, prévias A/B, agulha, navegação sem mutações, persistência e autosave NÃO foram executados. O recibo FAIL original foi preservado; o novo Replay permanece offside, sem qualificação Native/CEF e fora do pacote instalado.
+
+A API da cópia encerrou; seu código de saída e causa não foram capturados pelo roteiro original, que descartava stderr. O fechamento inicial também foi interrompido pelo erro HTTP. Um helper cooperativo R3, revisado independentemente e com guardas de raiz, PID/executável/hash/data de criação, autenticação local e saídas ociosas, recebeu ACK positivo do Native para `shutdown_idle(qaClose:true)` e confirmou ausência CIM. Pós-observação: cinco PIDs próprios ausentes, nenhum executável/listener da cópia restante, 2085 pinos Native + três DLLs gerenciadas + 168 fontes + mídias originais iguais, medidor de alocações zero e nenhum crash. Nada foi alterado na instalação do operador. Fechamento verificado NÃO transforma o teste em PASS.
+
+O log da cópia mostra falhas de carregamento de submódulos por caminho de QA excessivamente longo. A causa do encerramento da API continua desconhecida. A revisão de fonte identificou um caminho de erro de spawn com acesso a stdio antes do listener de erro; essa fragilidade está em correção isolada, sem atribuí-la como causa comprovada deste FAIL. Próximo roteiro deve usar raiz própria curta, registrar stderr/exit de forma limitada e tentar cada fechamento cooperativo independentemente. Nova execução somente depois da revisão da correção e do roteiro finito; não repetir R2 ou afrouxar gates.
+
+Provas: `docs/evidencias/20261012-replay-native39-r2-fail-root`. Permanecem válidos os testes anteriores CPU/FS e FFmpeg sintético 16/16 do combinado, com 51 PIDs encerrados e 168 pinos preservados; eles não substituem o ensaio Native. Prazo humano: 12/10 às19h America/Sao_Paulo, sem conclusão automática pelo prazo.
+
 <!-- replay-combined-final-root-20261012 -->
 ## Replay — backend combinado qualificado na bancada; Native/CEF é o próximo gate
 

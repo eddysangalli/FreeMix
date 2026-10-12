@@ -1,0 +1,244 @@
+{
+  "format": 1,
+  "at": "2026-10-12T06:21:02.699Z",
+  "scope": "OWN_NATIVE39_CEF_REAL_API_SYNTHETIC_MEDIA_ONLY",
+  "status": "FAIL",
+  "operatorTouched": false,
+  "framesAreSynthetic": true,
+  "physicalAudio": false,
+  "WAN": false,
+  "gates": [
+    {
+      "name": "round1 exact Native39 identity / own ports / real API / idle outputs",
+      "pass": true,
+      "elapsedMs": 37559.43460000004,
+      "detail": null
+    },
+    {
+      "name": "SourceRecord actual own counter scenes recording then stopped history",
+      "pass": false,
+      "elapsedMs": 1180.4618999999948,
+      "code": null,
+      "message": "fetch failed"
+    }
+  ],
+  "rounds": [
+    {
+      "round": 1,
+      "nativePid": 185164,
+      "apiPid": 108556
+    }
+  ],
+  "children": [
+    {
+      "id": "9a4e7387-0804-42d2-9e5e-b59b72aa8390",
+      "label": "fixture",
+      "kind": "FixtureTool",
+      "pid": 188564,
+      "exe": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Native39-Root-Parent-R2\\FreeMix-QA-NativeReplay39-38ea238f-50c2-4586-833d-e816f6599e00\\FreeMix-QA-NativeReplay39\\runtime\\ffmpeg.exe",
+      "exeSHA": "09948d4cdd0650da6ff5a87577469f2a218dc2615ae379f8f734d24c49de0f73",
+      "root": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Native39-Root-Parent-R2\\FreeMix-QA-NativeReplay39-38ea238f-50c2-4586-833d-e816f6599e00\\FreeMix-QA-Counter-Fixtures-368b8284-7659-43b4-a47f-c45d5716d5e2"
+    },
+    {
+      "id": "24bf6161-dd27-44b8-aaad-61afb2dff3b2",
+      "label": "fixture",
+      "kind": "FixtureTool",
+      "pid": 173628,
+      "exe": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Native39-Root-Parent-R2\\FreeMix-QA-NativeReplay39-38ea238f-50c2-4586-833d-e816f6599e00\\FreeMix-QA-NativeReplay39\\runtime\\ffmpeg.exe",
+      "exeSHA": "09948d4cdd0650da6ff5a87577469f2a218dc2615ae379f8f734d24c49de0f73",
+      "root": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Native39-Root-Parent-R2\\FreeMix-QA-NativeReplay39-38ea238f-50c2-4586-833d-e816f6599e00\\FreeMix-QA-Counter-Fixtures-368b8284-7659-43b4-a47f-c45d5716d5e2"
+    },
+    {
+      "kind": "Native39",
+      "pid": 185164,
+      "exe": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Native39-Root-Parent-R2\\FreeMix-QA-NativeReplay39-38ea238f-50c2-4586-833d-e816f6599e00\\FreeMix-QA-NativeReplay39\\bin\\64bit\\FreeMix.exe",
+      "exeSHA": "c77c0b27d1b684a57cb0a561c90b5896fc8472f4a1c9f4c1760c7854496b013c"
+    },
+    {
+      "kind": "API",
+      "pid": 108556,
+      "exe": "D:\\DRIVE\\IA\\antigravity\\vmixtwste\\entregas\\FreeMix-Completo-0.1.0-local.20261010060000\\runtime\\node.exe",
+      "exeSHA": "ba4e6d110e8c1592a1ecd390f6b05f3da124b13871a5be62b341a07a853c6c32"
+    }
+  ],
+  "mainNativeRequests": [
+    {
+      "type": "CallVendorRequest",
+      "at": 396080.201,
+      "read": true
+    },
+    {
+      "type": "GetRecordStatus",
+      "at": 396082.384,
+      "read": true
+    },
+    {
+      "type": "GetStreamStatus",
+      "at": 396083.7873,
+      "read": true
+    },
+    {
+      "type": "GetVirtualCamStatus",
+      "at": 396084.8732,
+      "read": true
+    },
+    {
+      "type": "GetOutputList",
+      "at": 396086.2325,
+      "read": true
+    },
+    {
+      "type": "CreateScene",
+      "at": 399722.9769,
+      "read": false
+    },
+    {
+      "type": "CreateInput",
+      "at": 399726.4343,
+      "read": false
+    },
+    {
+      "type": "SetSceneItemTransform",
+      "at": 399728.5877,
+      "read": false
+    },
+    {
+      "type": "CreateScene",
+      "at": 399731.0917,
+      "read": false
+    },
+    {
+      "type": "CreateInput",
+      "at": 399740.1044,
+      "read": false
+    },
+    {
+      "type": "SetSceneItemTransform",
+      "at": 399742.9111,
+      "read": false
+    },
+    {
+      "type": "SetStudioModeEnabled",
+      "at": 399744.931,
+      "read": false
+    },
+    {
+      "type": "SetCurrentPreviewScene",
+      "at": 399746.8241,
+      "read": false
+    },
+    {
+      "type": "SetCurrentProgramScene",
+      "at": 399748.522,
+      "read": false
+    },
+    {
+      "type": "GetRecordDirectory",
+      "at": 399764.7415,
+      "read": true
+    }
+  ],
+  "closures": [],
+  "expectedHead": "ea3cfdc04d00a87a80b2a4a3af66271556b183ff",
+  "canonicalHEADGuardVerified": true,
+  "recipePins": [
+    {
+      "path": "api-child.mjs",
+      "bytes": 4519,
+      "sha256": "906156f88ea0155127205835860bf2f1a9a3d0370be75e2940a607515261bed2"
+    },
+    {
+      "path": "api-close-observed.mjs",
+      "bytes": 3238,
+      "sha256": "0415524b9397c0e6a77938fa5cfb1a3b078ae7dbb85287ffeb7d367a8417e407"
+    },
+    {
+      "path": "cdp-own.mjs",
+      "bytes": 4729,
+      "sha256": "0ae221546994cca4a4f3635ba001ab3074bed62bd7588c78e0864d85428be540"
+    },
+    {
+      "path": "fixtures-own.mjs",
+      "bytes": 5035,
+      "sha256": "bf46517739e8f43b5551b9d392495eb0325b0b2f71b0f2fe3c1c7687012a4a2d"
+    },
+    {
+      "path": "run-native-replay39-r2.mjs",
+      "bytes": 39816,
+      "sha256": "e1742f1e12bdee42ab90745a00963cd19b4bebe42438a9d409ae4e998e436eb8"
+    },
+    {
+      "path": "test-api-close-observed.mjs",
+      "bytes": 3480,
+      "sha256": "b9652423e288c1eb45cea6839d355956d9c50d15450518e031ed92578d320e47"
+    }
+  ],
+  "root": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Native39-Root-Parent-R2\\FreeMix-QA-NativeReplay39-38ea238f-50c2-4586-833d-e816f6599e00",
+  "installed": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Native39-Root-Parent-R2\\FreeMix-QA-NativeReplay39-38ea238f-50c2-4586-833d-e816f6599e00\\FreeMix-QA-NativeReplay39",
+  "ports": {
+    "ws": 62017,
+    "api": 62018,
+    "debug": 62019
+  },
+  "managedPins": [
+    {
+      "path": "obs-plugins/64bit/advanced-scene-switcher.dll",
+      "bytes": 12288,
+      "sha256": "a04508295ce8ecdaa97ea23052c4a19d9c00762273f22b322bd667cdfe6614ca"
+    },
+    {
+      "path": "obs-plugins/64bit/advanced-scene-switcher-lib.dll",
+      "bytes": 5473792,
+      "sha256": "6c6e25b13542cb25af993fbec036129239e296819313ab0dde3b69f8318daa18"
+    },
+    {
+      "path": "obs-plugins/64bit/distroav.dll",
+      "bytes": 557056,
+      "sha256": "4e093ae3fcf375c4cf4c73efcc1b605330d6a641cdbfd52ad780c18e6dbbcfb8"
+    }
+  ],
+  "fixturePins": [
+    {
+      "cam": "QA Counter Red",
+      "file": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Native39-Root-Parent-R2\\FreeMix-QA-NativeReplay39-38ea238f-50c2-4586-833d-e816f6599e00\\FreeMix-QA-Counter-Fixtures-368b8284-7659-43b4-a47f-c45d5716d5e2\\QA Counter Red.mkv",
+      "bytes": 593910,
+      "sha256": "f45dd9f117030b5907c170cf343ae0ea7effe7bfde08025341fdf6382ccc02df",
+      "frames": 90,
+      "fps": 30,
+      "color": [
+        240,
+        16,
+        16
+      ]
+    },
+    {
+      "cam": "QA Counter Blue",
+      "file": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Native39-Root-Parent-R2\\FreeMix-QA-NativeReplay39-38ea238f-50c2-4586-833d-e816f6599e00\\FreeMix-QA-Counter-Fixtures-368b8284-7659-43b4-a47f-c45d5716d5e2\\QA Counter Blue.mkv",
+      "bytes": 593794,
+      "sha256": "8d770cc62aecae0fc3755ce27810fbee547a6f5a905290319de8eb470b6e19bd",
+      "frames": 90,
+      "fps": 30,
+      "color": [
+        16,
+        16,
+        240
+      ]
+    }
+  ],
+  "error": {
+    "code": null,
+    "message": "fetch failed",
+    "stack": "TypeError: fetch failed"
+  },
+  "cleanup": {
+    "pending": true,
+    "message": "fetch failed",
+    "noForce": true
+  },
+  "pendingOwnership": {
+    "Native": true,
+    "API": true,
+    "CIMHelpers": 0,
+    "unknownProcessIdentities": 0
+  }
+}

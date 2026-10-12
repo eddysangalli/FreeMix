@@ -1,0 +1,37 @@
+{
+  "format": 1,
+  "at": "2026-10-12T06:47:01.796Z",
+  "scope": "OWN_FAILED_NATIVE39_POST_COOPERATIVE_CLEANUP_ONLY",
+  "originalTestStatus": "FAIL",
+  "originalReceiptSHA": "eb9f921ef5c5ede0b70e3200185a94bdb8a5d67cb2934bce9e36362787b57f57",
+  "cleanupReceiptSHA": "6923bc7c91e3d8d55bb50a519c958ba88d56e8c6487801f34b27c19893157560",
+  "nativeClosedCooperatively": true,
+  "originalParentExitCode": 1,
+  "apiPidAbsent": true,
+  "apiExitCodeUnknown": true,
+  "allFiveOwnedPidsAbsent": true,
+  "ownExecutableProcessCount": 0,
+  "ownListenersCount": 0,
+  "CIM": {
+    "expectedIdentities": [],
+    "installedExecutableProcesses": [],
+    "listenerProcesses": []
+  },
+  "full2085PostPins": true,
+  "managed3PostPins": true,
+  "source168Same": true,
+  "originalFixturesSame": true,
+  "logs": [
+    {
+      "file": "2026-10-12 03-27-05.txt",
+      "sha256": "38a1c75d073bc791c3fac82ddbfaaac2e4eaa20f26ccf2e5e44e5b4e9269b266",
+      "allocatorLeakMeters": [
+        0
+      ],
+      "longPathLoaderWarnings": 11
+    }
+  ],
+  "crashes": 0,
+  "operatorTouched": false,
+  "NativeReplayQualified": false
+}
