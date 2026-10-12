@@ -1,4 +1,15 @@
 
+## 12/10/2026 19:45 UTC — Claude retomado; classificador da agulha validado em CPU
+
+O Claude voltou a produzir respostas completas após a janela estimada: autor codecR18 retornou50.996B, revisão independente codec8.526B e revisão Replay9.358B. São respostas de fonte; saldo desconhecido. Gemini, Opus e Sonnet continuam429 nos últimos checks horários, todos encerrados. Nenhum processo do operador foi alterado.
+
+Replay: a primeira resposta foi parcial e não autorizou execução. A continuação leu o roteiro inteiro, nove dependências e a cadeia C/C++ selecionada; manteve Native bloqueado pelo binding nulo. A hipótese de fixture offair com restart_on_activate foi sustentada em fonte, sem provar retroativamente a causa do FAIL. Revisão apontou diferença entre editorR15 e manifesto169R14 e ofereceu endurecimento do hash do marker; composição final/revisão/QA Native continuam pendentes. Foi admitido apenas o helper CPU puro: uma execução própria passou11grupos de RGB/counter/intervalos circulares, exit0, stderr0, fontes originais e cópias com hashes iguais e PID128712 ausente em CIM. Não houve Native, FFmpeg, sockets ou mídia real nesse teste.
+
+CodecR18 foi materializado literalmente de um único bloco JS e dois anchors de helpers; sintaxe passou. A revisão admitiu os helpers e a bancada em fonte, mas reconheceu que o seek verifica PTS sem conferir o contador visual pedido, e o tamanho do gerador continua estimativa. Root não executou R18 nem relaxou o contrato: pediu ao autorR19 contador binário decodificável sem depender de fonte e limites durante escrita, preservando2s1080p59.94/PCM/2threads/100MiBporarquivo/750MiBagregado. O primeiro FAIL real R14 e seus arquivos permanecem intactos; zero candidatos comparados, nenhum codec escolhido. A contagem4PIDs inclui3comandos FFmpeg e o Node pai, sem discrepância de fechamento.
+
+O novo Replay continua experimental, fora da instalação e do pacote. Tela cheia e dock compartilham a fábrica A/B; aprovação visual1:1, feeds reais, agulha/INOUT/persistência no Native e novo pacote completo ainda pendentes. Mesa externa ao Replay preservada. Prazo12/10 às19h America/Sao_Paulo mantido, sem conclusão pelo relógio. Provas CPU sanitizadas: docs/evidencias/20261012-replay-background-cpu-root.
+
+
 ## 12/10/2026 15:25 UTC — Replay: estrutura das referências e flags validadas na prévia; CLIs novamente limitados
 
 R15 alterou somente apresentação JS/CSS; common/editor e outros25arquivos permanecem R14. Revisão integral independente e guardas27pinos/nlink1/noLinks/realpath passaram antes de uma prévia própria. DOM real/API simulada: fullscreen950×534 com oito colunas e linhas9px; dock950×250 sem monitores, linhas13px e rolagem para câmeras7/8. Capturas posteriores confirmaram ambos JPEG sintéticos320×180 decodificados. Estrutura/posições foram comparadas às referências; dados, controles específicos e oito feeds reais ainda diferem. Não é aprovação pixel1:1, Native ou instalação.

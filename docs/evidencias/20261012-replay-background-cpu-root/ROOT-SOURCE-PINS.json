@@ -1,0 +1,13 @@
+{
+  "pins": [
+    [
+      "test-background-pixel-contract-r10.mjs",
+      "c55505457ed5a81b69b0293a453151552aa2c37ed68a168547973ea52c54a0cb"
+    ],
+    [
+      "background-pixel-proof.mjs",
+      "c024b62c71a5ee53dbcc3ac025c774874fdc2f70643f94ad477b4470f41e2016"
+    ]
+  ],
+  "scope": "SOURCE_REVIEW_ADMITTED_PURE_BUFFER_AND_BRACKET_CPU_ONLY"
+}

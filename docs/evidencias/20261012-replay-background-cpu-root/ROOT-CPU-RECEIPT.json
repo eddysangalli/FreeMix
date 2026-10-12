@@ -1,0 +1,15 @@
+{
+  "observedUtc": "2026-10-12T19:43:05.403Z",
+  "pid": 128712,
+  "actualClosed": true,
+  "code": 0,
+  "signal": null,
+  "failure": null,
+  "groups": 11,
+  "scope": "PURE_SYNTHETIC_BUFFER_ONLY",
+  "pinsSame": true,
+  "stderrBytes": 0,
+  "native": false,
+  "ffmpeg": false,
+  "operatorChanged": false
+}
