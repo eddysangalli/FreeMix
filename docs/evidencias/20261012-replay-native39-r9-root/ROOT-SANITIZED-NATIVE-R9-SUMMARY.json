@@ -1,0 +1,65 @@
+{
+  "format": 1,
+  "status": "NATIVE_R9_FAIL_PRESERVED",
+  "scope": "OWN_NATIVE39_REAL_CEF_SOURCE_RECORD_SYNTHETIC_MEDIA",
+  "originalReceiptSHA": "3731df60880c50f426f796deed7e93e1568c613a236c2d93ef4d57bd0ca888e1",
+  "successfulGates": 7,
+  "remainingGatesNotExecuted": 6,
+  "gates": [
+    {
+      "name": "round1 exact Native39 identity / own ports / real API / idle outputs",
+      "pass": true,
+      "durationMs": null
+    },
+    {
+      "name": "SourceRecord actual own counter scenes recording then stopped history",
+      "pass": true,
+      "durationMs": null
+    },
+    {
+      "name": "real Native CEF shared Mesa/external component A/B only",
+      "pass": true,
+      "durationMs": null
+    },
+    {
+      "name": "60s unloaded navigation hold zero mutating increments after checkpoint",
+      "pass": true,
+      "durationMs": null
+    },
+    {
+      "name": "actual local import / A/B paused load / C-D rejection before Native mutation",
+      "pass": true,
+      "durationMs": null
+    },
+    {
+      "name": "A/B actual managed JPEG decoded counters at paused seek positions in both CEF surfaces",
+      "pass": true,
+      "durationMs": null
+    },
+    {
+      "name": "60s loaded navigation hold separately accounts Native screenshot reads only",
+      "pass": true,
+      "durationMs": null
+    },
+    {
+      "name": "actual history needle decoded frame matches independent TS counter; IN disabled until confirmation",
+      "pass": false,
+      "durationMs": null
+    }
+  ],
+  "failure": "History needle did not confirm the independently decoded TS counter within the deadline; cause remains unproven.",
+  "cleanup": {
+    "publicDrainClosed": true,
+    "observerRestored": true,
+    "originalPendingAckPreserved": true,
+    "originalOwnedIdentitiesAbsent": 28,
+    "ownInstalledExecutableCount": 0,
+    "listeners": 0,
+    "NativeExit0": true,
+    "apiExitCodeKnown": false
+  },
+  "installed": false,
+  "operatorTouched": false,
+  "wholeReplayQualified": false,
+  "hardwareAudioWANQualified": false
+}
