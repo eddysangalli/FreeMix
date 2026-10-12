@@ -1,3 +1,11 @@
+<!-- replay-combined-interim-root-20261012 -->
+## Replay — prova intermediária de backend, interface comum ainda em trabalho
+
+Snapshot próprio congelado de137 fontes passou20 contratos CPU e12 verificações de mídia RGB/PCM sintética com FFmpeg real. Consulta manual do histórico, preview em três pontos, captura limitada, cadência, proxy/lease, cache sem job, cancelamento tardio e callback completo de curva foram exercitados; arquivo derivado só foi publicado após fechamento real das ferramentas. Nonce repetido de curva não iniciou outro job.26 processos próprios ausentes por CIM, fontes e original intactos. Provas: `docs/evidencias/20261012-replay-preparado-root/combined-interim-r1`.
+
+A admissão experimental usa somente A/B; pedidos C/D recusam antes de mídia/Native e registros antigos permanecem iguais. Esta prova é de snapshot intermediário: recibos/cancelamento de listas e ACK da UI recebem correções posteriores; o componente comum ainda é construído a partir do desenho da Mesa, que segue preservado. Produto canônico ainda não recebeu esse backend ou a interface comum. Não é Native/CEF, hardware, latência/endurance, WAN ou pacote instalado. Prazo e restrições da mesa permanecem.
+
+---
 <!-- replay-shared-dock-human-direction-20261012 -->
 ## Replay — direção vigente: preservar a Mesa, mesma interface e somente A/B
 

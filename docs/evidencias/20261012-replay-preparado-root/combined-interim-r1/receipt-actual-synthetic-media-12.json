@@ -1,0 +1,358 @@
+{
+  "format": 1,
+  "scope": "REAL_FFMPEG_SYNTHETIC_CONTROLLER_MOCK_NATIVE_READS_ONLY_NO_API_NATIVE_DEVICE_WAN",
+  "root": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Combined-Root-Snapshot-R1\\FreeMix-QA-Combined-Controller-Real-R1-fdfc5eb7-9c9a-452e-82a9-326b6b43c696",
+  "gates": [
+    {
+      "name": "real two-second RGB64 frame counter plus silent stereo PCM synthetic source",
+      "pass": true
+    },
+    {
+      "name": "controller constructor inert / source capabilities do not write source folder",
+      "pass": true
+    },
+    {
+      "name": "explicit current-session metadata refresh uses real probe without Native mutation",
+      "pass": true
+    },
+    {
+      "name": "three actual cursor positions select matching decoded RGB counter frames within one frame",
+      "pass": true
+    },
+    {
+      "name": "actual bounded captured event output / decode metadata / original untouched",
+      "pass": true
+    },
+    {
+      "name": "saved clip finite decoded cadence through governed FFprobe adapter",
+      "pass": true
+    },
+    {
+      "name": "actual MSE proxy / cache lease pins and close preserve active lease",
+      "pass": true
+    },
+    {
+      "name": "cached metadata navigation starts no new tool job",
+      "pass": true
+    },
+    {
+      "name": "scope mismatch refuses late frame result without on-air commands",
+      "pass": true
+    },
+    {
+      "name": "actual completed encode invalidated before delivery remains owned and cleans only unpublished artifact",
+      "pass": true
+    },
+    {
+      "name": "whole actual curve-controller callback renders verifies closes then publishes only a saved derived clip",
+      "pass": true
+    },
+    {
+      "name": "dispose confirms actual workers closed / source original unchanged",
+      "pass": true
+    }
+  ],
+  "children": [
+    {
+      "id": "890c8666-bf91-4ebf-bfd7-ce6b6feb7fcd",
+      "label": "fixture",
+      "kind": "ffmpeg",
+      "pid": 60964,
+      "exe": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Combined-Root-Snapshot-R1\\FreeMix-QA-Combined-Controller-Real-R1-fdfc5eb7-9c9a-452e-82a9-326b6b43c696\\runtime\\ffmpeg.exe",
+      "exeSHA": "09948d4cdd0650da6ff5a87577469f2a218dc2615ae379f8f734d24c49de0f73",
+      "root": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Combined-Root-Snapshot-R1\\FreeMix-QA-Combined-Controller-Real-R1-fdfc5eb7-9c9a-452e-82a9-326b6b43c696\\FreeMix-QA-Fixture-bc907c93-9bd1-430a-9165-c9d567cf8a6b"
+    },
+    {
+      "id": "a3f24e1b-7932-4759-95b0-ee655d54c742",
+      "label": "probe",
+      "kind": "ffprobe",
+      "pid": 142140,
+      "exe": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Combined-Root-Snapshot-R1\\FreeMix-QA-Combined-Controller-Real-R1-fdfc5eb7-9c9a-452e-82a9-326b6b43c696\\runtime\\ffprobe.exe",
+      "exeSHA": "a6618e99bb58869ded3c6f37b53aa1a8d701c3591dbb7b5b317d47369c112be2",
+      "root": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Combined-Root-Snapshot-R1\\FreeMix-QA-Combined-Controller-Real-R1-fdfc5eb7-9c9a-452e-82a9-326b6b43c696\\gravacoes\\replay-preparation\\FreeMix-Replay-Preparation-d0a56a9f-45e2-4682-8373-10d1f016c485"
+    },
+    {
+      "id": "d598ab45-7ff4-4747-938f-ebc6a65433ab",
+      "label": "probe",
+      "kind": "ffprobe",
+      "pid": 169212,
+      "exe": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Combined-Root-Snapshot-R1\\FreeMix-QA-Combined-Controller-Real-R1-fdfc5eb7-9c9a-452e-82a9-326b6b43c696\\runtime\\ffprobe.exe",
+      "exeSHA": "a6618e99bb58869ded3c6f37b53aa1a8d701c3591dbb7b5b317d47369c112be2",
+      "root": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Combined-Root-Snapshot-R1\\FreeMix-QA-Combined-Controller-Real-R1-fdfc5eb7-9c9a-452e-82a9-326b6b43c696\\gravacoes\\replay-preparation\\FreeMix-Replay-Preparation-d0a56a9f-45e2-4682-8373-10d1f016c485"
+    },
+    {
+      "id": "9938a390-c976-4ca3-9329-e0386ef37abf",
+      "label": "frame-preview",
+      "kind": "ffmpeg",
+      "pid": 164652,
+      "exe": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Combined-Root-Snapshot-R1\\FreeMix-QA-Combined-Controller-Real-R1-fdfc5eb7-9c9a-452e-82a9-326b6b43c696\\runtime\\ffmpeg.exe",
+      "exeSHA": "09948d4cdd0650da6ff5a87577469f2a218dc2615ae379f8f734d24c49de0f73",
+      "root": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Combined-Root-Snapshot-R1\\FreeMix-QA-Combined-Controller-Real-R1-fdfc5eb7-9c9a-452e-82a9-326b6b43c696\\gravacoes\\replay-preparation\\FreeMix-Replay-Preparation-d0a56a9f-45e2-4682-8373-10d1f016c485"
+    },
+    {
+      "id": "ed205070-63a3-4f5c-b524-5c95360ddd0e",
+      "label": "pixel-analysis",
+      "kind": "ffmpeg",
+      "pid": 108348,
+      "exe": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Combined-Root-Snapshot-R1\\FreeMix-QA-Combined-Controller-Real-R1-fdfc5eb7-9c9a-452e-82a9-326b6b43c696\\runtime\\ffmpeg.exe",
+      "exeSHA": "09948d4cdd0650da6ff5a87577469f2a218dc2615ae379f8f734d24c49de0f73",
+      "root": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Combined-Root-Snapshot-R1\\FreeMix-QA-Combined-Controller-Real-R1-fdfc5eb7-9c9a-452e-82a9-326b6b43c696\\FreeMix-QA-Fixture-bc907c93-9bd1-430a-9165-c9d567cf8a6b"
+    },
+    {
+      "id": "b6fdf763-8489-4096-88da-5e28e6b58719",
+      "label": "probe",
+      "kind": "ffprobe",
+      "pid": 96968,
+      "exe": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Combined-Root-Snapshot-R1\\FreeMix-QA-Combined-Controller-Real-R1-fdfc5eb7-9c9a-452e-82a9-326b6b43c696\\runtime\\ffprobe.exe",
+      "exeSHA": "a6618e99bb58869ded3c6f37b53aa1a8d701c3591dbb7b5b317d47369c112be2",
+      "root": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Combined-Root-Snapshot-R1\\FreeMix-QA-Combined-Controller-Real-R1-fdfc5eb7-9c9a-452e-82a9-326b6b43c696\\gravacoes\\replay-preparation\\FreeMix-Replay-Preparation-d0a56a9f-45e2-4682-8373-10d1f016c485"
+    },
+    {
+      "id": "23774709-63b1-4ce9-aed1-bc0632af2588",
+      "label": "frame-preview",
+      "kind": "ffmpeg",
+      "pid": 140992,
+      "exe": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Combined-Root-Snapshot-R1\\FreeMix-QA-Combined-Controller-Real-R1-fdfc5eb7-9c9a-452e-82a9-326b6b43c696\\runtime\\ffmpeg.exe",
+      "exeSHA": "09948d4cdd0650da6ff5a87577469f2a218dc2615ae379f8f734d24c49de0f73",
+      "root": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Combined-Root-Snapshot-R1\\FreeMix-QA-Combined-Controller-Real-R1-fdfc5eb7-9c9a-452e-82a9-326b6b43c696\\gravacoes\\replay-preparation\\FreeMix-Replay-Preparation-d0a56a9f-45e2-4682-8373-10d1f016c485"
+    },
+    {
+      "id": "a8d019d6-9af4-4af7-b247-a61b58950c99",
+      "label": "pixel-analysis",
+      "kind": "ffmpeg",
+      "pid": 63400,
+      "exe": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Combined-Root-Snapshot-R1\\FreeMix-QA-Combined-Controller-Real-R1-fdfc5eb7-9c9a-452e-82a9-326b6b43c696\\runtime\\ffmpeg.exe",
+      "exeSHA": "09948d4cdd0650da6ff5a87577469f2a218dc2615ae379f8f734d24c49de0f73",
+      "root": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Combined-Root-Snapshot-R1\\FreeMix-QA-Combined-Controller-Real-R1-fdfc5eb7-9c9a-452e-82a9-326b6b43c696\\FreeMix-QA-Fixture-bc907c93-9bd1-430a-9165-c9d567cf8a6b"
+    },
+    {
+      "id": "75f47dfa-f663-4e69-be36-453d93c62acb",
+      "label": "probe",
+      "kind": "ffprobe",
+      "pid": 108808,
+      "exe": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Combined-Root-Snapshot-R1\\FreeMix-QA-Combined-Controller-Real-R1-fdfc5eb7-9c9a-452e-82a9-326b6b43c696\\runtime\\ffprobe.exe",
+      "exeSHA": "a6618e99bb58869ded3c6f37b53aa1a8d701c3591dbb7b5b317d47369c112be2",
+      "root": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Combined-Root-Snapshot-R1\\FreeMix-QA-Combined-Controller-Real-R1-fdfc5eb7-9c9a-452e-82a9-326b6b43c696\\gravacoes\\replay-preparation\\FreeMix-Replay-Preparation-d0a56a9f-45e2-4682-8373-10d1f016c485"
+    },
+    {
+      "id": "e1adfab3-619c-433a-afa8-f4359253425c",
+      "label": "frame-preview",
+      "kind": "ffmpeg",
+      "pid": 92404,
+      "exe": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Combined-Root-Snapshot-R1\\FreeMix-QA-Combined-Controller-Real-R1-fdfc5eb7-9c9a-452e-82a9-326b6b43c696\\runtime\\ffmpeg.exe",
+      "exeSHA": "09948d4cdd0650da6ff5a87577469f2a218dc2615ae379f8f734d24c49de0f73",
+      "root": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Combined-Root-Snapshot-R1\\FreeMix-QA-Combined-Controller-Real-R1-fdfc5eb7-9c9a-452e-82a9-326b6b43c696\\gravacoes\\replay-preparation\\FreeMix-Replay-Preparation-d0a56a9f-45e2-4682-8373-10d1f016c485"
+    },
+    {
+      "id": "c9c12887-3693-4fb8-8d3b-b5dd8acc1a84",
+      "label": "pixel-analysis",
+      "kind": "ffmpeg",
+      "pid": 208124,
+      "exe": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Combined-Root-Snapshot-R1\\FreeMix-QA-Combined-Controller-Real-R1-fdfc5eb7-9c9a-452e-82a9-326b6b43c696\\runtime\\ffmpeg.exe",
+      "exeSHA": "09948d4cdd0650da6ff5a87577469f2a218dc2615ae379f8f734d24c49de0f73",
+      "root": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Combined-Root-Snapshot-R1\\FreeMix-QA-Combined-Controller-Real-R1-fdfc5eb7-9c9a-452e-82a9-326b6b43c696\\FreeMix-QA-Fixture-bc907c93-9bd1-430a-9165-c9d567cf8a6b"
+    },
+    {
+      "id": "258b400b-84f9-460a-a562-c3074672a59c",
+      "label": "clip-prepare",
+      "kind": "ffmpeg",
+      "pid": 148120,
+      "exe": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Combined-Root-Snapshot-R1\\FreeMix-QA-Combined-Controller-Real-R1-fdfc5eb7-9c9a-452e-82a9-326b6b43c696\\runtime\\ffmpeg.exe",
+      "exeSHA": "09948d4cdd0650da6ff5a87577469f2a218dc2615ae379f8f734d24c49de0f73",
+      "root": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Combined-Root-Snapshot-R1\\FreeMix-QA-Combined-Controller-Real-R1-fdfc5eb7-9c9a-452e-82a9-326b6b43c696\\gravacoes\\replay-preparation\\FreeMix-Replay-Preparation-4a8d02f2-4867-4034-90e2-82264cf07856"
+    },
+    {
+      "id": "e945605d-eceb-4abc-9dd7-0cd5b939d81c",
+      "label": "probe",
+      "kind": "ffprobe",
+      "pid": 78236,
+      "exe": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Combined-Root-Snapshot-R1\\FreeMix-QA-Combined-Controller-Real-R1-fdfc5eb7-9c9a-452e-82a9-326b6b43c696\\runtime\\ffprobe.exe",
+      "exeSHA": "a6618e99bb58869ded3c6f37b53aa1a8d701c3591dbb7b5b317d47369c112be2",
+      "root": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Combined-Root-Snapshot-R1\\FreeMix-QA-Combined-Controller-Real-R1-fdfc5eb7-9c9a-452e-82a9-326b6b43c696\\gravacoes\\replay-preparation\\FreeMix-Replay-Preparation-d0a56a9f-45e2-4682-8373-10d1f016c485"
+    },
+    {
+      "id": "8071df73-70a9-4aa4-ad66-ad80afad0d00",
+      "label": "probe",
+      "kind": "ffprobe",
+      "pid": 95324,
+      "exe": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Combined-Root-Snapshot-R1\\FreeMix-QA-Combined-Controller-Real-R1-fdfc5eb7-9c9a-452e-82a9-326b6b43c696\\runtime\\ffprobe.exe",
+      "exeSHA": "a6618e99bb58869ded3c6f37b53aa1a8d701c3591dbb7b5b317d47369c112be2",
+      "root": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Combined-Root-Snapshot-R1\\FreeMix-QA-Combined-Controller-Real-R1-fdfc5eb7-9c9a-452e-82a9-326b6b43c696\\gravacoes\\replay-preparation\\FreeMix-Replay-Preparation-d0a56a9f-45e2-4682-8373-10d1f016c485"
+    },
+    {
+      "id": "69f98646-728d-4e25-a07f-0f34947f0ae6",
+      "label": "cadence",
+      "kind": "ffprobe",
+      "pid": 110760,
+      "exe": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Combined-Root-Snapshot-R1\\FreeMix-QA-Combined-Controller-Real-R1-fdfc5eb7-9c9a-452e-82a9-326b6b43c696\\runtime\\ffprobe.exe",
+      "exeSHA": "a6618e99bb58869ded3c6f37b53aa1a8d701c3591dbb7b5b317d47369c112be2",
+      "root": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Combined-Root-Snapshot-R1\\FreeMix-QA-Combined-Controller-Real-R1-fdfc5eb7-9c9a-452e-82a9-326b6b43c696\\gravacoes\\replay-preparation\\FreeMix-Replay-Preparation-d0a56a9f-45e2-4682-8373-10d1f016c485"
+    },
+    {
+      "id": "39e446fe-349d-46ae-8cb9-8b7605e0b2d8",
+      "label": "probe",
+      "kind": "ffprobe",
+      "pid": 113740,
+      "exe": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Combined-Root-Snapshot-R1\\FreeMix-QA-Combined-Controller-Real-R1-fdfc5eb7-9c9a-452e-82a9-326b6b43c696\\runtime\\ffprobe.exe",
+      "exeSHA": "a6618e99bb58869ded3c6f37b53aa1a8d701c3591dbb7b5b317d47369c112be2",
+      "root": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Combined-Root-Snapshot-R1\\FreeMix-QA-Combined-Controller-Real-R1-fdfc5eb7-9c9a-452e-82a9-326b6b43c696\\gravacoes\\replay-preparation\\FreeMix-Replay-Preparation-d0a56a9f-45e2-4682-8373-10d1f016c485"
+    },
+    {
+      "id": "4999d899-ab61-49ae-a77a-2439208c953d",
+      "label": "mse-preview",
+      "kind": "ffmpeg",
+      "pid": 115516,
+      "exe": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Combined-Root-Snapshot-R1\\FreeMix-QA-Combined-Controller-Real-R1-fdfc5eb7-9c9a-452e-82a9-326b6b43c696\\runtime\\ffmpeg.exe",
+      "exeSHA": "09948d4cdd0650da6ff5a87577469f2a218dc2615ae379f8f734d24c49de0f73",
+      "root": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Combined-Root-Snapshot-R1\\FreeMix-QA-Combined-Controller-Real-R1-fdfc5eb7-9c9a-452e-82a9-326b6b43c696\\gravacoes\\replay-preparation\\FreeMix-Replay-Preparation-cb977d1f-49e1-41be-a09a-7079221de2e8"
+    },
+    {
+      "id": "52b42b70-f9fa-4651-a1fc-5eec3e0a31ee",
+      "label": "probe",
+      "kind": "ffprobe",
+      "pid": 12920,
+      "exe": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Combined-Root-Snapshot-R1\\FreeMix-QA-Combined-Controller-Real-R1-fdfc5eb7-9c9a-452e-82a9-326b6b43c696\\runtime\\ffprobe.exe",
+      "exeSHA": "a6618e99bb58869ded3c6f37b53aa1a8d701c3591dbb7b5b317d47369c112be2",
+      "root": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Combined-Root-Snapshot-R1\\FreeMix-QA-Combined-Controller-Real-R1-fdfc5eb7-9c9a-452e-82a9-326b6b43c696\\gravacoes\\replay-preparation\\FreeMix-Replay-Preparation-d0a56a9f-45e2-4682-8373-10d1f016c485"
+    },
+    {
+      "id": "6412e8f0-cf01-4d66-ba38-5b402ae51643",
+      "label": "speedcurve-prepare",
+      "kind": "ffmpeg",
+      "pid": 75640,
+      "exe": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Combined-Root-Snapshot-R1\\FreeMix-QA-Combined-Controller-Real-R1-fdfc5eb7-9c9a-452e-82a9-326b6b43c696\\runtime\\ffmpeg.exe",
+      "exeSHA": "09948d4cdd0650da6ff5a87577469f2a218dc2615ae379f8f734d24c49de0f73",
+      "root": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Combined-Root-Snapshot-R1\\FreeMix-QA-Combined-Controller-Real-R1-fdfc5eb7-9c9a-452e-82a9-326b6b43c696\\gravacoes\\replay-preparation\\FreeMix-Replay-Preparation-900857eb-53ff-417c-8abc-6d9e6e01eed7"
+    },
+    {
+      "id": "6412e8f0-cf01-4d66-ba38-5b402ae51643",
+      "label": "speedcurve-prepare",
+      "kind": "ffmpeg",
+      "pid": 75640,
+      "exe": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Combined-Root-Snapshot-R1\\FreeMix-QA-Combined-Controller-Real-R1-fdfc5eb7-9c9a-452e-82a9-326b6b43c696\\runtime\\ffmpeg.exe",
+      "exeSHA": "09948d4cdd0650da6ff5a87577469f2a218dc2615ae379f8f734d24c49de0f73",
+      "root": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Combined-Root-Snapshot-R1\\FreeMix-QA-Combined-Controller-Real-R1-fdfc5eb7-9c9a-452e-82a9-326b6b43c696\\gravacoes\\replay-preparation\\FreeMix-Replay-Preparation-900857eb-53ff-417c-8abc-6d9e6e01eed7"
+    },
+    {
+      "id": "c7cc36ad-9a97-4656-8a8b-c7b432ca7a9f",
+      "label": "probe",
+      "kind": "ffprobe",
+      "pid": 175456,
+      "exe": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Combined-Root-Snapshot-R1\\FreeMix-QA-Combined-Controller-Real-R1-fdfc5eb7-9c9a-452e-82a9-326b6b43c696\\runtime\\ffprobe.exe",
+      "exeSHA": "a6618e99bb58869ded3c6f37b53aa1a8d701c3591dbb7b5b317d47369c112be2",
+      "root": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Combined-Root-Snapshot-R1\\FreeMix-QA-Combined-Controller-Real-R1-fdfc5eb7-9c9a-452e-82a9-326b6b43c696\\gravacoes\\replay-preparation\\FreeMix-Replay-Preparation-2890bd0c-fb87-4e96-b069-a6d653148b7d"
+    },
+    {
+      "id": "a6fc3be8-22a5-4c91-ba14-f97749bb3a79",
+      "label": "probe",
+      "kind": "ffprobe",
+      "pid": 69736,
+      "exe": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Combined-Root-Snapshot-R1\\FreeMix-QA-Combined-Controller-Real-R1-fdfc5eb7-9c9a-452e-82a9-326b6b43c696\\runtime\\ffprobe.exe",
+      "exeSHA": "a6618e99bb58869ded3c6f37b53aa1a8d701c3591dbb7b5b317d47369c112be2",
+      "root": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Combined-Root-Snapshot-R1\\FreeMix-QA-Combined-Controller-Real-R1-fdfc5eb7-9c9a-452e-82a9-326b6b43c696\\gravacoes\\replay-preparation\\FreeMix-Replay-Preparation-2890bd0c-fb87-4e96-b069-a6d653148b7d"
+    },
+    {
+      "id": "3d66694e-6830-4fc1-85fa-dd7fe41edb6d",
+      "label": "speedcurve-prepare",
+      "kind": "ffmpeg",
+      "pid": 83276,
+      "exe": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Combined-Root-Snapshot-R1\\FreeMix-QA-Combined-Controller-Real-R1-fdfc5eb7-9c9a-452e-82a9-326b6b43c696\\runtime\\ffmpeg.exe",
+      "exeSHA": "09948d4cdd0650da6ff5a87577469f2a218dc2615ae379f8f734d24c49de0f73",
+      "root": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Combined-Root-Snapshot-R1\\FreeMix-QA-Combined-Controller-Real-R1-fdfc5eb7-9c9a-452e-82a9-326b6b43c696\\gravacoes\\replay-preparation\\FreeMix-Replay-Preparation-2890bd0c-fb87-4e96-b069-a6d653148b7d"
+    },
+    {
+      "id": "2d0fbe13-14a5-4ff1-9516-61e3be5f3ebc",
+      "label": "probe",
+      "kind": "ffprobe",
+      "pid": 29384,
+      "exe": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Combined-Root-Snapshot-R1\\FreeMix-QA-Combined-Controller-Real-R1-fdfc5eb7-9c9a-452e-82a9-326b6b43c696\\runtime\\ffprobe.exe",
+      "exeSHA": "a6618e99bb58869ded3c6f37b53aa1a8d701c3591dbb7b5b317d47369c112be2",
+      "root": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Combined-Root-Snapshot-R1\\FreeMix-QA-Combined-Controller-Real-R1-fdfc5eb7-9c9a-452e-82a9-326b6b43c696\\gravacoes\\replay-preparation\\FreeMix-Replay-Preparation-2890bd0c-fb87-4e96-b069-a6d653148b7d"
+    },
+    {
+      "id": "569d92bb-915c-4bb5-afe4-fff7717d5e60",
+      "label": "decode-verify",
+      "kind": "ffmpeg",
+      "pid": 162648,
+      "exe": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Combined-Root-Snapshot-R1\\FreeMix-QA-Combined-Controller-Real-R1-fdfc5eb7-9c9a-452e-82a9-326b6b43c696\\runtime\\ffmpeg.exe",
+      "exeSHA": "09948d4cdd0650da6ff5a87577469f2a218dc2615ae379f8f734d24c49de0f73",
+      "root": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Combined-Root-Snapshot-R1\\FreeMix-QA-Combined-Controller-Real-R1-fdfc5eb7-9c9a-452e-82a9-326b6b43c696\\gravacoes\\replay-preparation\\FreeMix-Replay-Preparation-2890bd0c-fb87-4e96-b069-a6d653148b7d"
+    },
+    {
+      "id": "8c7768ca-584a-4361-a08c-5816eaa73e35",
+      "label": "pcm-analysis",
+      "kind": "ffmpeg",
+      "pid": 160668,
+      "exe": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Combined-Root-Snapshot-R1\\FreeMix-QA-Combined-Controller-Real-R1-fdfc5eb7-9c9a-452e-82a9-326b6b43c696\\runtime\\ffmpeg.exe",
+      "exeSHA": "09948d4cdd0650da6ff5a87577469f2a218dc2615ae379f8f734d24c49de0f73",
+      "root": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Combined-Root-Snapshot-R1\\FreeMix-QA-Combined-Controller-Real-R1-fdfc5eb7-9c9a-452e-82a9-326b6b43c696\\gravacoes\\replay-preparation\\FreeMix-Replay-Preparation-2890bd0c-fb87-4e96-b069-a6d653148b7d"
+    }
+  ],
+  "nativeRequests": [
+    "GetSceneList",
+    "GetSceneList",
+    "GetSceneCollectionList",
+    "GetSceneCollectionList"
+  ],
+  "closures": [
+    {
+      "actualClosed": true,
+      "pending": [],
+      "noForce": true,
+      "preflightBusy": false,
+      "readingFiles": [],
+      "ledgerFile": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Combined-Root-Snapshot-R1\\FreeMix-QA-Combined-Controller-Real-R1-fdfc5eb7-9c9a-452e-82a9-326b6b43c696\\FreeMix-QA-Fixture-bc907c93-9bd1-430a-9165-c9d567cf8a6b\\REPLAY-WORKER-LEDGER-21ec0205-66b3-49b1-849f-19c14c1d79e6.json",
+      "ledgerError": null
+    },
+    {
+      "actualClosed": true,
+      "pending": [],
+      "noForce": true,
+      "preflightBusy": false,
+      "readingFiles": [],
+      "ledgerFile": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Combined-Root-Snapshot-R1\\FreeMix-QA-Combined-Controller-Real-R1-fdfc5eb7-9c9a-452e-82a9-326b6b43c696\\FreeMix-QA-Fixture-bc907c93-9bd1-430a-9165-c9d567cf8a6b\\REPLAY-WORKER-LEDGER-0578ff6f-e5b6-4145-9278-7f34ab7a40de.json",
+      "ledgerError": null
+    },
+    {
+      "disposed": true,
+      "cadenceQuiescent": true
+    },
+    {
+      "actualClosed": true,
+      "pending": [],
+      "outstanding": 0,
+      "reading": []
+    }
+  ],
+  "failure": null,
+  "sourceOriginalSame": true,
+  "status": "PASS",
+  "rootMustObserveOwnedPidsAbsent": [
+    60964,
+    142140,
+    169212,
+    164652,
+    108348,
+    96968,
+    140992,
+    63400,
+    108808,
+    92404,
+    208124,
+    148120,
+    78236,
+    95324,
+    110760,
+    113740,
+    115516,
+    12920,
+    75640,
+    75640,
+    175456,
+    69736,
+    83276,
+    29384,
+    162648,
+    160668
+  ]
+}
