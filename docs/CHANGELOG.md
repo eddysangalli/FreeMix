@@ -1,3 +1,13 @@
+<!-- replay-common-ui-dom-root-20261012 -->
+## Replay — mesma interface Mesa/janela, agulha e dois previews passaram no navegador
+
+O componente comum baseado no desenho da Mesa passou **36/36 verificações de DOM com API simulada**. A versão com previews A/B também passou36/36: imagens decodificadas, captura durante avanço do cursor, descarte de imagens de outra fonte/sessão, respostas perdidas e cancelamento correlacionado foram exercitados. Navegar entre abas não enviou comandos mutantes; escolhas e controles sobreviveram ao polling. IN/OUT do histórico usam o quadro exibido confirmado; operação somenteA/B, registros legadosC/D preservados.
+
+Ensaio separado de captura passou **13/13**, com quatro imagens em700×540 e1200×760 mostrando A/B simultaneamente e a agulha. Root inspecionou as capturas; UTF8 correto. Os três navegadores próprios fecharam cooperativamente, CIM ausente/profile0, servidores fechados e pinos iguais. Falhas anteriores de inicialização, espera antecipada de ACK e perda de resposta da fixture permanecem preservadas; o componente correto não foi alterado para afrouxar os critérios. [Provas e imagens](evidencias/20261012-replay-interface-comum-root/ROOT-RECEIPT.json).
+
+**Ainda offside, não instalado nem incluído no pacote.** As imagens são sintéticas e as APIs simuladas: não comprovam frames Native/CEF, vídeo no ar, áudio físico, latência/endurance ou WAN. Próximo: qualificar o backend combinado, fechamento aguardável/persistência, previews reaisNative39 e integrar sob guardas; depois montar o pacote completo. Mesa e operador intactos. Claude CLI voltou a entregar respostas revisáveis de codec/pacote; Antigravity continua limitado nas últimas tarefas completas, saldo desconhecido. Prazo12/10 às19hBRT mantido.
+
+---
 <!-- replay-whole-playlist-root-r8-20261012 -->
 ## Replay — listas completas passaram na bancada; Mesa permanece a referência
 

@@ -1,0 +1,3550 @@
+{
+  "format": 1,
+  "scope": "MOCK_API_REAL_DOM_ONLY",
+  "runner": "common-dom-r13-monitor",
+  "startedAt": "2026-10-12T04:22:21.560Z",
+  "viewport": {
+    "width": 1280,
+    "height": 900
+  },
+  "nativeStarted": false,
+  "mediaToolsStarted": false,
+  "operatorTouched": false,
+  "trace": {
+    "exceptions": [],
+    "console": [],
+    "network": [
+      {
+        "kind": "request",
+        "id": "B369DBB26D80B84A8166110A285774B1",
+        "url": "http://127.0.0.1:58747/replay",
+        "method": "GET",
+        "type": "Document"
+      },
+      {
+        "kind": "response",
+        "id": "B369DBB26D80B84A8166110A285774B1",
+        "status": 200,
+        "url": "http://127.0.0.1:58747/replay",
+        "mime": "text/html"
+      },
+      {
+        "kind": "request",
+        "id": "142140.2",
+        "url": "http://127.0.0.1:58747/replay-dock-console.css",
+        "method": "GET",
+        "type": "Stylesheet"
+      },
+      {
+        "kind": "request",
+        "id": "142140.3",
+        "url": "http://127.0.0.1:58747/fechar-janela.js",
+        "method": "GET",
+        "type": "Script"
+      },
+      {
+        "kind": "request",
+        "id": "142140.4",
+        "url": "http://127.0.0.1:58747/replay-dock-console.js",
+        "method": "GET",
+        "type": "Script"
+      },
+      {
+        "kind": "request",
+        "id": "142140.5",
+        "url": "http://127.0.0.1:58747/replay.js",
+        "method": "GET",
+        "type": "Script"
+      },
+      {
+        "kind": "response",
+        "id": "142140.2",
+        "status": 200,
+        "url": "http://127.0.0.1:58747/replay-dock-console.css",
+        "mime": "text/css"
+      },
+      {
+        "kind": "response",
+        "id": "142140.3",
+        "status": 200,
+        "url": "http://127.0.0.1:58747/fechar-janela.js",
+        "mime": "text/javascript"
+      },
+      {
+        "kind": "response",
+        "id": "142140.5",
+        "status": 200,
+        "url": "http://127.0.0.1:58747/replay.js",
+        "mime": "text/javascript"
+      },
+      {
+        "kind": "response",
+        "id": "142140.4",
+        "status": 200,
+        "url": "http://127.0.0.1:58747/replay-dock-console.js",
+        "mime": "text/javascript"
+      },
+      {
+        "kind": "request",
+        "id": "142140.10",
+        "url": "http://127.0.0.1:58747/api/replay",
+        "method": "GET",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "142140.10",
+        "status": 200,
+        "url": "http://127.0.0.1:58747/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "142140.11",
+        "url": "http://127.0.0.1:58747/api/replay",
+        "method": "POST",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "142140.11",
+        "status": 200,
+        "url": "http://127.0.0.1:58747/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "142140.12",
+        "url": "http://127.0.0.1:58747/favicon.ico",
+        "method": "GET",
+        "type": "Other"
+      },
+      {
+        "kind": "response",
+        "id": "142140.12",
+        "status": 404,
+        "url": "http://127.0.0.1:58747/favicon.ico",
+        "mime": "text/plain"
+      },
+      {
+        "kind": "request",
+        "id": "142140.13",
+        "url": "http://127.0.0.1:58747/api/replay",
+        "method": "GET",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "142140.13",
+        "status": 200,
+        "url": "http://127.0.0.1:58747/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "142140.14",
+        "url": "http://127.0.0.1:58747/api/replay",
+        "method": "POST",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "142140.14",
+        "status": 200,
+        "url": "http://127.0.0.1:58747/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "142140.15",
+        "url": "http://127.0.0.1:58747/api/replay",
+        "method": "POST",
+        "type": "Fetch"
+      },
+      {
+        "kind": "request",
+        "id": "142140.16",
+        "url": "http://127.0.0.1:58747/api/replay",
+        "method": "POST",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "142140.16",
+        "status": 200,
+        "url": "http://127.0.0.1:58747/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "response",
+        "id": "142140.15",
+        "status": 400,
+        "url": "http://127.0.0.1:58747/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "142140.17",
+        "url": "http://127.0.0.1:58747/api/replay",
+        "method": "GET",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "142140.17",
+        "status": 200,
+        "url": "http://127.0.0.1:58747/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "142140.18",
+        "url": "http://127.0.0.1:58747/api/replay",
+        "method": "GET",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "142140.18",
+        "status": 200,
+        "url": "http://127.0.0.1:58747/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "142140.19",
+        "url": "http://127.0.0.1:58747/api/replay",
+        "method": "POST",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "142140.19",
+        "status": 200,
+        "url": "http://127.0.0.1:58747/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "failed",
+        "id": "142140.19",
+        "error": "net::ERR_INCOMPLETE_CHUNKED_ENCODING",
+        "cancelled": false
+      },
+      {
+        "kind": "request",
+        "id": "142140.20",
+        "url": "http://127.0.0.1:58747/api/replay",
+        "method": "GET",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "142140.20",
+        "status": 200,
+        "url": "http://127.0.0.1:58747/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "142140.21",
+        "url": "http://127.0.0.1:58747/api/replay",
+        "method": "GET",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "142140.21",
+        "status": 200,
+        "url": "http://127.0.0.1:58747/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "142140.22",
+        "url": "http://127.0.0.1:58747/api/replay",
+        "method": "POST",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "142140.22",
+        "status": 200,
+        "url": "http://127.0.0.1:58747/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "142140.23",
+        "url": "http://127.0.0.1:58747/api/replay",
+        "method": "POST",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "142140.23",
+        "status": 200,
+        "url": "http://127.0.0.1:58747/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "142140.24",
+        "url": "http://127.0.0.1:58747/api/replay",
+        "method": "GET",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "142140.24",
+        "status": 200,
+        "url": "http://127.0.0.1:58747/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "142140.25",
+        "url": "http://127.0.0.1:58747/api/replay",
+        "method": "POST",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "142140.25",
+        "status": 400,
+        "url": "http://127.0.0.1:58747/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "142140.26",
+        "url": "http://127.0.0.1:58747/api/replay",
+        "method": "GET",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "142140.26",
+        "status": 200,
+        "url": "http://127.0.0.1:58747/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "142140.27",
+        "url": "http://127.0.0.1:58747/api/replay",
+        "method": "GET",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "142140.27",
+        "status": 200,
+        "url": "http://127.0.0.1:58747/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "142140.28",
+        "url": "http://127.0.0.1:58747/api/replay",
+        "method": "POST",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "142140.28",
+        "status": 200,
+        "url": "http://127.0.0.1:58747/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "142140.29",
+        "url": "http://127.0.0.1:58747/api/replay",
+        "method": "GET",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "142140.29",
+        "status": 200,
+        "url": "http://127.0.0.1:58747/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "142140.30",
+        "url": "http://127.0.0.1:58747/api/replay",
+        "method": "POST",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "142140.30",
+        "status": 200,
+        "url": "http://127.0.0.1:58747/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "142140.31",
+        "url": "http://127.0.0.1:58747/api/replay",
+        "method": "GET",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "142140.31",
+        "status": 200,
+        "url": "http://127.0.0.1:58747/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "142140.32",
+        "url": "http://127.0.0.1:58747/api/replay",
+        "method": "POST",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "142140.32",
+        "status": 200,
+        "url": "http://127.0.0.1:58747/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "142140.33",
+        "url": "http://127.0.0.1:58747/api/replay",
+        "method": "POST",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "142140.33",
+        "status": 200,
+        "url": "http://127.0.0.1:58747/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "142140.34",
+        "url": "http://127.0.0.1:58747/api/replay",
+        "method": "POST",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "142140.34",
+        "status": 200,
+        "url": "http://127.0.0.1:58747/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "142140.35",
+        "url": "http://127.0.0.1:58747/api/replay",
+        "method": "GET",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "142140.35",
+        "status": 200,
+        "url": "http://127.0.0.1:58747/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "142140.36",
+        "url": "http://127.0.0.1:58747/api/replay",
+        "method": "GET",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "142140.36",
+        "status": 200,
+        "url": "http://127.0.0.1:58747/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "142140.37",
+        "url": "http://127.0.0.1:58747/api/replay",
+        "method": "POST",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "142140.37",
+        "status": 200,
+        "url": "http://127.0.0.1:58747/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "142140.38",
+        "url": "http://127.0.0.1:58747/api/replay",
+        "method": "POST",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "142140.38",
+        "status": 200,
+        "url": "http://127.0.0.1:58747/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "142140.39",
+        "url": "http://127.0.0.1:58747/api/replay",
+        "method": "GET",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "142140.39",
+        "status": 200,
+        "url": "http://127.0.0.1:58747/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "142140.40",
+        "url": "http://127.0.0.1:58747/api/replay",
+        "method": "POST",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "142140.40",
+        "status": 200,
+        "url": "http://127.0.0.1:58747/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "142140.41",
+        "url": "http://127.0.0.1:58747/api/replay",
+        "method": "GET",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "142140.41",
+        "status": 200,
+        "url": "http://127.0.0.1:58747/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "142140.42",
+        "url": "http://127.0.0.1:58747/api/replay",
+        "method": "GET",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "142140.42",
+        "status": 200,
+        "url": "http://127.0.0.1:58747/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "142140.43",
+        "url": "http://127.0.0.1:58747/api/replay",
+        "method": "POST",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "142140.43",
+        "status": 200,
+        "url": "http://127.0.0.1:58747/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "142140.44",
+        "url": "http://127.0.0.1:58747/api/replay",
+        "method": "GET",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "142140.44",
+        "status": 200,
+        "url": "http://127.0.0.1:58747/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "142140.45",
+        "url": "http://127.0.0.1:58747/api/replay",
+        "method": "POST",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "142140.45",
+        "status": 200,
+        "url": "http://127.0.0.1:58747/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "142140.46",
+        "url": "http://127.0.0.1:58747/api/replay",
+        "method": "GET",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "142140.46",
+        "status": 200,
+        "url": "http://127.0.0.1:58747/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "142140.47",
+        "url": "http://127.0.0.1:58747/api/replay",
+        "method": "POST",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "142140.47",
+        "status": 200,
+        "url": "http://127.0.0.1:58747/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "142140.48",
+        "url": "http://127.0.0.1:58747/api/replay",
+        "method": "POST",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "142140.48",
+        "status": 500,
+        "url": "http://127.0.0.1:58747/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "142140.49",
+        "url": "http://127.0.0.1:58747/api/replay",
+        "method": "GET",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "142140.49",
+        "status": 200,
+        "url": "http://127.0.0.1:58747/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "142140.50",
+        "url": "http://127.0.0.1:58747/api/replay",
+        "method": "GET",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "142140.50",
+        "status": 200,
+        "url": "http://127.0.0.1:58747/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "142140.51",
+        "url": "http://127.0.0.1:58747/api/replay",
+        "method": "GET",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "142140.51",
+        "status": 200,
+        "url": "http://127.0.0.1:58747/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "142140.52",
+        "url": "http://127.0.0.1:58747/api/replay",
+        "method": "POST",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "142140.52",
+        "status": 200,
+        "url": "http://127.0.0.1:58747/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "142140.53",
+        "url": "http://127.0.0.1:58747/api/replay",
+        "method": "GET",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "142140.53",
+        "status": 200,
+        "url": "http://127.0.0.1:58747/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "142140.54",
+        "url": "http://127.0.0.1:58747/api/replay",
+        "method": "POST",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "142140.54",
+        "status": 200,
+        "url": "http://127.0.0.1:58747/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "142140.55",
+        "url": "http://127.0.0.1:58747/api/replay",
+        "method": "GET",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "142140.55",
+        "status": 200,
+        "url": "http://127.0.0.1:58747/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "142140.56",
+        "url": "http://127.0.0.1:58747/api/replay",
+        "method": "GET",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "142140.56",
+        "status": 200,
+        "url": "http://127.0.0.1:58747/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "142140.57",
+        "url": "http://127.0.0.1:58747/api/replay",
+        "method": "POST",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "142140.57",
+        "status": 200,
+        "url": "http://127.0.0.1:58747/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "142140.58",
+        "url": "http://127.0.0.1:58747/api/replay",
+        "method": "GET",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "142140.58",
+        "status": 200,
+        "url": "http://127.0.0.1:58747/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "142140.59",
+        "url": "http://127.0.0.1:58747/api/replay",
+        "method": "POST",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "142140.59",
+        "status": 200,
+        "url": "http://127.0.0.1:58747/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "142140.60",
+        "url": "http://127.0.0.1:58747/api/replay",
+        "method": "GET",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "142140.60",
+        "status": 200,
+        "url": "http://127.0.0.1:58747/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "142140.61",
+        "url": "http://127.0.0.1:58747/api/replay",
+        "method": "GET",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "142140.61",
+        "status": 200,
+        "url": "http://127.0.0.1:58747/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "142140.62",
+        "url": "http://127.0.0.1:58747/api/replay",
+        "method": "POST",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "142140.62",
+        "status": 200,
+        "url": "http://127.0.0.1:58747/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "142140.63",
+        "url": "http://127.0.0.1:58747/api/replay",
+        "method": "GET",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "142140.63",
+        "status": 200,
+        "url": "http://127.0.0.1:58747/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "142140.64",
+        "url": "http://127.0.0.1:58747/api/replay",
+        "method": "POST",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "142140.64",
+        "status": 200,
+        "url": "http://127.0.0.1:58747/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "failed",
+        "id": "142140.64",
+        "error": "net::ERR_INCOMPLETE_CHUNKED_ENCODING",
+        "cancelled": false
+      },
+      {
+        "kind": "request",
+        "id": "142140.65",
+        "url": "http://127.0.0.1:58747/api/replay",
+        "method": "GET",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "142140.65",
+        "status": 200,
+        "url": "http://127.0.0.1:58747/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "142140.66",
+        "url": "http://127.0.0.1:58747/api/replay",
+        "method": "POST",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "142140.66",
+        "status": 200,
+        "url": "http://127.0.0.1:58747/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "142140.67",
+        "url": "http://127.0.0.1:58747/api/replay",
+        "method": "GET",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "142140.67",
+        "status": 200,
+        "url": "http://127.0.0.1:58747/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "142140.68",
+        "url": "http://127.0.0.1:58747/api/replay",
+        "method": "POST",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "142140.68",
+        "status": 200,
+        "url": "http://127.0.0.1:58747/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "142140.69",
+        "url": "http://127.0.0.1:58747/api/replay",
+        "method": "GET",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "142140.69",
+        "status": 200,
+        "url": "http://127.0.0.1:58747/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "142140.70",
+        "url": "http://127.0.0.1:58747/api/replay",
+        "method": "POST",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "142140.70",
+        "status": 200,
+        "url": "http://127.0.0.1:58747/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "142140.71",
+        "url": "http://127.0.0.1:58747/api/replay",
+        "method": "GET",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "142140.71",
+        "status": 200,
+        "url": "http://127.0.0.1:58747/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "142140.72",
+        "url": "http://127.0.0.1:58747/api/replay",
+        "method": "GET",
+        "type": "Fetch"
+      },
+      {
+        "kind": "request",
+        "id": "142140.73",
+        "url": "http://127.0.0.1:58747/api/replay",
+        "method": "POST",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "142140.73",
+        "status": 200,
+        "url": "http://127.0.0.1:58747/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "142140.74",
+        "url": "http://127.0.0.1:58747/api/replay-player-preview?player=A",
+        "method": "GET",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "142140.74",
+        "status": 200,
+        "url": "http://127.0.0.1:58747/api/replay-player-preview?player=A",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "142140.75",
+        "url": "data:image/jpeg;base64,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",
+        "method": "GET",
+        "type": "Image"
+      },
+      {
+        "kind": "response",
+        "id": "142140.75",
+        "status": 200,
+        "url": "data:image/jpeg;base64,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",
+        "mime": "image/jpeg"
+      },
+      {
+        "kind": "request",
+        "id": "142140.76",
+        "url": "http://127.0.0.1:58747/api/replay-player-preview?player=A",
+        "method": "GET",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "142140.76",
+        "status": 200,
+        "url": "http://127.0.0.1:58747/api/replay-player-preview?player=A",
+        "mime": "application/json"
+      },
+      {
+        "kind": "response",
+        "id": "142140.72",
+        "status": 200,
+        "url": "http://127.0.0.1:58747/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "142140.78",
+        "url": "http://127.0.0.1:58747/api/replay-player-preview?player=A",
+        "method": "GET",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "142140.78",
+        "status": 200,
+        "url": "http://127.0.0.1:58747/api/replay-player-preview?player=A",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "142140.80",
+        "url": "http://127.0.0.1:58747/api/replay-player-preview?player=A",
+        "method": "GET",
+        "type": "Fetch"
+      },
+      {
+        "kind": "request",
+        "id": "142140.81",
+        "url": "http://127.0.0.1:58747/api/replay",
+        "method": "GET",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "142140.81",
+        "status": 200,
+        "url": "http://127.0.0.1:58747/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "142140.82",
+        "url": "http://127.0.0.1:58747/api/replay",
+        "method": "POST",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "142140.82",
+        "status": 200,
+        "url": "http://127.0.0.1:58747/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "response",
+        "id": "142140.80",
+        "status": 200,
+        "url": "http://127.0.0.1:58747/api/replay-player-preview?player=A",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "142140.84",
+        "url": "http://127.0.0.1:58747/api/replay-player-preview?player=A",
+        "method": "GET",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "142140.84",
+        "status": 200,
+        "url": "http://127.0.0.1:58747/api/replay-player-preview?player=A",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "142140.86",
+        "url": "http://127.0.0.1:58747/api/replay",
+        "method": "GET",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "142140.86",
+        "status": 200,
+        "url": "http://127.0.0.1:58747/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "142140.87",
+        "url": "http://127.0.0.1:58747/api/replay-player-preview?player=A",
+        "method": "GET",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "142140.87",
+        "status": 200,
+        "url": "http://127.0.0.1:58747/api/replay-player-preview?player=A",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "142140.89",
+        "url": "http://127.0.0.1:58747/api/replay-player-preview?player=A",
+        "method": "GET",
+        "type": "Fetch"
+      },
+      {
+        "kind": "request",
+        "id": "142140.90",
+        "url": "http://127.0.0.1:58747/api/replay",
+        "method": "GET",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "142140.89",
+        "status": 200,
+        "url": "http://127.0.0.1:58747/api/replay-player-preview?player=A",
+        "mime": "application/json"
+      },
+      {
+        "kind": "response",
+        "id": "142140.90",
+        "status": 200,
+        "url": "http://127.0.0.1:58747/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "142140.91",
+        "url": "http://127.0.0.1:58747/api/replay",
+        "method": "GET",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "142140.91",
+        "status": 200,
+        "url": "http://127.0.0.1:58747/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "142140.92",
+        "url": "http://127.0.0.1:58747/api/replay-player-preview?player=A",
+        "method": "GET",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "142140.92",
+        "status": 200,
+        "url": "http://127.0.0.1:58747/api/replay-player-preview?player=A",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "142140.94",
+        "url": "http://127.0.0.1:58747/api/replay-player-preview?player=A",
+        "method": "GET",
+        "type": "Fetch"
+      },
+      {
+        "kind": "request",
+        "id": "142140.95",
+        "url": "http://127.0.0.1:58747/api/replay",
+        "method": "GET",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "142140.95",
+        "status": 200,
+        "url": "http://127.0.0.1:58747/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "response",
+        "id": "142140.94",
+        "status": 200,
+        "url": "http://127.0.0.1:58747/api/replay-player-preview?player=A",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "142140.97",
+        "url": "http://127.0.0.1:58747/api/replay-player-preview?player=A",
+        "method": "GET",
+        "type": "Fetch"
+      },
+      {
+        "kind": "request",
+        "id": "142140.98",
+        "url": "http://127.0.0.1:58747/api/replay",
+        "method": "GET",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "142140.98",
+        "status": 200,
+        "url": "http://127.0.0.1:58747/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "142140.99",
+        "url": "http://127.0.0.1:58747/api/replay",
+        "method": "POST",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "142140.99",
+        "status": 200,
+        "url": "http://127.0.0.1:58747/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "142140.100",
+        "url": "http://127.0.0.1:58747/__frame/d2214b7c-2ffe-4dfe-9597-cb357ba818ac.svg",
+        "method": "GET",
+        "type": "Image"
+      },
+      {
+        "kind": "response",
+        "id": "142140.100",
+        "status": 200,
+        "url": "http://127.0.0.1:58747/__frame/d2214b7c-2ffe-4dfe-9597-cb357ba818ac.svg",
+        "mime": "image/svg+xml"
+      },
+      {
+        "kind": "request",
+        "id": "142140.101",
+        "url": "http://127.0.0.1:58747/api/replay",
+        "method": "POST",
+        "type": "Fetch"
+      },
+      {
+        "kind": "request",
+        "id": "142140.102",
+        "url": "http://127.0.0.1:58747/api/replay",
+        "method": "POST",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "142140.101",
+        "status": 200,
+        "url": "http://127.0.0.1:58747/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "response",
+        "id": "142140.102",
+        "status": 200,
+        "url": "http://127.0.0.1:58747/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "142140.103",
+        "url": "http://127.0.0.1:58747/__frame/423d616b-d6a0-4fe0-8a1a-81200cbc78c3.svg",
+        "method": "GET",
+        "type": "Image"
+      },
+      {
+        "kind": "request",
+        "id": "142140.104",
+        "url": "http://127.0.0.1:58747/api/replay",
+        "method": "GET",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "142140.97",
+        "status": 200,
+        "url": "http://127.0.0.1:58747/api/replay-player-preview?player=A",
+        "mime": "application/json"
+      },
+      {
+        "kind": "response",
+        "id": "142140.104",
+        "status": 200,
+        "url": "http://127.0.0.1:58747/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "142140.106",
+        "url": "http://127.0.0.1:58747/api/replay",
+        "method": "POST",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "142140.106",
+        "status": 200,
+        "url": "http://127.0.0.1:58747/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "response",
+        "id": "142140.103",
+        "status": 200,
+        "url": "http://127.0.0.1:58747/__frame/423d616b-d6a0-4fe0-8a1a-81200cbc78c3.svg",
+        "mime": "image/svg+xml"
+      },
+      {
+        "kind": "request",
+        "id": "142140.107",
+        "url": "http://127.0.0.1:58747/api/replay",
+        "method": "POST",
+        "type": "Fetch"
+      },
+      {
+        "kind": "request",
+        "id": "142140.108",
+        "url": "http://127.0.0.1:58747/api/replay",
+        "method": "POST",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "142140.107",
+        "status": 200,
+        "url": "http://127.0.0.1:58747/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "142140.109",
+        "url": "http://127.0.0.1:58747/api/replay-player-preview?player=A",
+        "method": "GET",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "142140.109",
+        "status": 200,
+        "url": "http://127.0.0.1:58747/api/replay-player-preview?player=A",
+        "mime": "application/json"
+      },
+      {
+        "kind": "response",
+        "id": "142140.108",
+        "status": 200,
+        "url": "http://127.0.0.1:58747/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "142140.111",
+        "url": "http://127.0.0.1:58747/api/replay",
+        "method": "POST",
+        "type": "Fetch"
+      },
+      {
+        "kind": "request",
+        "id": "142140.112",
+        "url": "http://127.0.0.1:58747/api/replay",
+        "method": "GET",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "142140.112",
+        "status": 200,
+        "url": "http://127.0.0.1:58747/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "response",
+        "id": "142140.111",
+        "status": 200,
+        "url": "http://127.0.0.1:58747/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "142140.113",
+        "url": "http://127.0.0.1:58747/__frame/9a6a066c-a140-41e3-85f4-48b890b04b7c.svg",
+        "method": "GET",
+        "type": "Image"
+      },
+      {
+        "kind": "response",
+        "id": "142140.113",
+        "status": 200,
+        "url": "http://127.0.0.1:58747/__frame/9a6a066c-a140-41e3-85f4-48b890b04b7c.svg",
+        "mime": "image/svg+xml"
+      },
+      {
+        "kind": "request",
+        "id": "142140.114",
+        "url": "http://127.0.0.1:58747/api/replay-player-preview?player=A",
+        "method": "GET",
+        "type": "Fetch"
+      },
+      {
+        "kind": "request",
+        "id": "142140.115",
+        "url": "http://127.0.0.1:58747/api/replay",
+        "method": "POST",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "142140.114",
+        "status": 200,
+        "url": "http://127.0.0.1:58747/api/replay-player-preview?player=A",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "142140.117",
+        "url": "http://127.0.0.1:58747/api/replay-player-preview?player=A",
+        "method": "GET",
+        "type": "Fetch"
+      },
+      {
+        "kind": "request",
+        "id": "142140.118",
+        "url": "http://127.0.0.1:58747/api/replay",
+        "method": "GET",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "142140.118",
+        "status": 200,
+        "url": "http://127.0.0.1:58747/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "response",
+        "id": "142140.115",
+        "status": 200,
+        "url": "http://127.0.0.1:58747/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "142140.119",
+        "url": "http://127.0.0.1:58747/__frame/fe03f7c2-706e-44a9-995d-abe7d2fc7170.svg",
+        "method": "GET",
+        "type": "Image"
+      },
+      {
+        "kind": "response",
+        "id": "142140.117",
+        "status": 200,
+        "url": "http://127.0.0.1:58747/api/replay-player-preview?player=A",
+        "mime": "application/json"
+      },
+      {
+        "kind": "response",
+        "id": "142140.119",
+        "status": 200,
+        "url": "http://127.0.0.1:58747/__frame/fe03f7c2-706e-44a9-995d-abe7d2fc7170.svg",
+        "mime": "image/svg+xml"
+      },
+      {
+        "kind": "request",
+        "id": "142140.121",
+        "url": "http://127.0.0.1:58747/api/replay",
+        "method": "POST",
+        "type": "Fetch"
+      },
+      {
+        "kind": "request",
+        "id": "142140.122",
+        "url": "http://127.0.0.1:58747/api/replay",
+        "method": "POST",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "142140.122",
+        "status": 200,
+        "url": "http://127.0.0.1:58747/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "failed",
+        "id": "142140.121",
+        "error": "net::ERR_ABORTED",
+        "cancelled": true
+      },
+      {
+        "kind": "request",
+        "id": "142140.123",
+        "url": "http://127.0.0.1:58747/api/replay-player-preview?player=A",
+        "method": "GET",
+        "type": "Fetch"
+      },
+      {
+        "kind": "request",
+        "id": "142140.124",
+        "url": "http://127.0.0.1:58747/api/replay",
+        "method": "GET",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "142140.124",
+        "status": 200,
+        "url": "http://127.0.0.1:58747/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "response",
+        "id": "142140.123",
+        "status": 200,
+        "url": "http://127.0.0.1:58747/api/replay-player-preview?player=A",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "142140.126",
+        "url": "http://127.0.0.1:58747/api/replay",
+        "method": "POST",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "142140.126",
+        "status": 200,
+        "url": "http://127.0.0.1:58747/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "142140.127",
+        "url": "http://127.0.0.1:58747/api/replay-player-preview?player=B",
+        "method": "GET",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "142140.127",
+        "status": 200,
+        "url": "http://127.0.0.1:58747/api/replay-player-preview?player=B",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "142140.128",
+        "url": "data:image/jpeg;base64,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",
+        "method": "GET",
+        "type": "Image"
+      },
+      {
+        "kind": "response",
+        "id": "142140.128",
+        "status": 200,
+        "url": "data:image/jpeg;base64,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",
+        "mime": "image/jpeg"
+      },
+      {
+        "kind": "request",
+        "id": "142140.129",
+        "url": "http://127.0.0.1:58747/api/replay-player-preview?player=A",
+        "method": "GET",
+        "type": "Fetch"
+      },
+      {
+        "kind": "request",
+        "id": "142140.130",
+        "url": "http://127.0.0.1:58747/api/replay",
+        "method": "GET",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "142140.130",
+        "status": 200,
+        "url": "http://127.0.0.1:58747/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "142140.131",
+        "url": "http://127.0.0.1:58747/api/replay",
+        "method": "GET",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "142140.131",
+        "status": 200,
+        "url": "http://127.0.0.1:58747/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "response",
+        "id": "142140.129",
+        "status": 200,
+        "url": "http://127.0.0.1:58747/api/replay-player-preview?player=A",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "142140.133",
+        "url": "http://127.0.0.1:58747/api/replay-player-preview?player=B",
+        "method": "GET",
+        "type": "Fetch"
+      },
+      {
+        "kind": "request",
+        "id": "142140.134",
+        "url": "http://127.0.0.1:58747/api/replay",
+        "method": "GET",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "142140.134",
+        "status": 200,
+        "url": "http://127.0.0.1:58747/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "142140.135",
+        "url": "http://127.0.0.1:58747/api/replay",
+        "method": "POST",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "142140.135",
+        "status": 200,
+        "url": "http://127.0.0.1:58747/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "142140.136",
+        "url": "http://127.0.0.1:58747/api/replay",
+        "method": "GET",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "142140.136",
+        "status": 200,
+        "url": "http://127.0.0.1:58747/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "failed",
+        "id": "142140.133",
+        "error": "net::ERR_ABORTED",
+        "cancelled": true
+      },
+      {
+        "kind": "request",
+        "id": "142140.137",
+        "url": "http://127.0.0.1:58747/api/replay-player-preview?player=A",
+        "method": "GET",
+        "type": "Fetch"
+      },
+      {
+        "kind": "request",
+        "id": "142140.138",
+        "url": "http://127.0.0.1:58747/api/replay",
+        "method": "GET",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "142140.138",
+        "status": 200,
+        "url": "http://127.0.0.1:58747/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "142140.139",
+        "url": "http://127.0.0.1:58747/api/replay",
+        "method": "GET",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "142140.137",
+        "status": 200,
+        "url": "http://127.0.0.1:58747/api/replay-player-preview?player=A",
+        "mime": "application/json"
+      },
+      {
+        "kind": "response",
+        "id": "142140.139",
+        "status": 200,
+        "url": "http://127.0.0.1:58747/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "142140.141",
+        "url": "http://127.0.0.1:58747/api/replay-player-preview?player=B",
+        "method": "GET",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "142140.141",
+        "status": 200,
+        "url": "http://127.0.0.1:58747/api/replay-player-preview?player=B",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "142140.143",
+        "url": "http://127.0.0.1:58747/api/replay-player-preview?player=A",
+        "method": "GET",
+        "type": "Fetch"
+      },
+      {
+        "kind": "request",
+        "id": "142140.144",
+        "url": "http://127.0.0.1:58747/api/replay",
+        "method": "GET",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "142140.144",
+        "status": 200,
+        "url": "http://127.0.0.1:58747/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "response",
+        "id": "142140.143",
+        "status": 200,
+        "url": "http://127.0.0.1:58747/api/replay-player-preview?player=A",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "142140.146",
+        "url": "http://127.0.0.1:58747/api/replay-player-preview?player=B",
+        "method": "GET",
+        "type": "Fetch"
+      },
+      {
+        "kind": "request",
+        "id": "142140.147",
+        "url": "http://127.0.0.1:58747/api/replay",
+        "method": "GET",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "142140.146",
+        "status": 503,
+        "url": "http://127.0.0.1:58747/api/replay-player-preview?player=B",
+        "mime": "application/json"
+      },
+      {
+        "kind": "response",
+        "id": "142140.147",
+        "status": 200,
+        "url": "http://127.0.0.1:58747/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "142140.148",
+        "url": "http://127.0.0.1:58747/api/replay",
+        "method": "GET",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "142140.148",
+        "status": 200,
+        "url": "http://127.0.0.1:58747/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "142140.149",
+        "url": "http://127.0.0.1:58747/api/replay",
+        "method": "POST",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "142140.149",
+        "status": 200,
+        "url": "http://127.0.0.1:58747/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "142140.150",
+        "url": "http://127.0.0.1:58747/api/replay",
+        "method": "POST",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "142140.150",
+        "status": 400,
+        "url": "http://127.0.0.1:58747/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "142140.151",
+        "url": "http://127.0.0.1:58747/api/replay",
+        "method": "POST",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "142140.151",
+        "status": 400,
+        "url": "http://127.0.0.1:58747/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "6750658160118A6F244DCFDFDB2234ED",
+        "url": "http://127.0.0.1:58747/qa-dock",
+        "method": "GET",
+        "type": "Document"
+      },
+      {
+        "kind": "response",
+        "id": "6750658160118A6F244DCFDFDB2234ED",
+        "status": 200,
+        "url": "http://127.0.0.1:58747/qa-dock",
+        "mime": "text/html"
+      },
+      {
+        "kind": "request",
+        "id": "142140.153",
+        "url": "http://127.0.0.1:58747/replay-dock-console.css",
+        "method": "GET",
+        "type": "Stylesheet"
+      },
+      {
+        "kind": "request",
+        "id": "142140.154",
+        "url": "http://127.0.0.1:58747/replay-dock-console.js",
+        "method": "GET",
+        "type": "Script"
+      },
+      {
+        "kind": "response",
+        "id": "142140.153",
+        "status": 200,
+        "url": "http://127.0.0.1:58747/replay-dock-console.css",
+        "mime": "text/css"
+      },
+      {
+        "kind": "response",
+        "id": "142140.154",
+        "status": 200,
+        "url": "http://127.0.0.1:58747/replay-dock-console.js",
+        "mime": "text/javascript"
+      },
+      {
+        "kind": "request",
+        "id": "142140.157",
+        "url": "http://127.0.0.1:58747/api/replay",
+        "method": "GET",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "142140.157",
+        "status": 200,
+        "url": "http://127.0.0.1:58747/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "142140.158",
+        "url": "http://127.0.0.1:58747/api/replay",
+        "method": "POST",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "142140.158",
+        "status": 200,
+        "url": "http://127.0.0.1:58747/api/replay",
+        "mime": "application/json"
+      }
+    ],
+    "http": [
+      {
+        "method": "GET",
+        "path": "/replay",
+        "at": 1791778945335
+      },
+      {
+        "method": "GET",
+        "path": "/replay-dock-console.css",
+        "at": 1791778945345
+      },
+      {
+        "method": "GET",
+        "path": "/fechar-janela.js",
+        "at": 1791778945346
+      },
+      {
+        "method": "GET",
+        "path": "/replay-dock-console.js",
+        "at": 1791778945346
+      },
+      {
+        "method": "GET",
+        "path": "/replay.js",
+        "at": 1791778945346
+      },
+      {
+        "method": "GET",
+        "path": "/api/replay",
+        "at": 1791778945354
+      },
+      {
+        "method": "POST",
+        "path": "/api/replay",
+        "at": 1791778945388
+      },
+      {
+        "method": "GET",
+        "path": "/favicon.ico",
+        "at": 1791778945391
+      },
+      {
+        "method": "GET",
+        "path": "/api/replay",
+        "at": 1791778946354
+      },
+      {
+        "method": "POST",
+        "path": "/api/replay",
+        "at": 1791778947245
+      },
+      {
+        "method": "POST",
+        "path": "/api/replay",
+        "at": 1791778947333
+      },
+      {
+        "method": "POST",
+        "path": "/api/replay",
+        "at": 1791778947339
+      },
+      {
+        "method": "GET",
+        "path": "/api/replay",
+        "at": 1791778948355
+      },
+      {
+        "method": "GET",
+        "path": "/api/replay",
+        "at": 1791778949355
+      },
+      {
+        "method": "POST",
+        "path": "/api/replay",
+        "at": 1791778949650
+      },
+      {
+        "method": "GET",
+        "path": "/api/replay",
+        "at": 1791778950355
+      },
+      {
+        "method": "GET",
+        "path": "/api/replay",
+        "at": 1791778951355
+      },
+      {
+        "method": "POST",
+        "path": "/api/replay",
+        "at": 1791778952057
+      },
+      {
+        "method": "POST",
+        "path": "/api/replay",
+        "at": 1791778952061
+      },
+      {
+        "method": "GET",
+        "path": "/api/replay",
+        "at": 1791778952354
+      },
+      {
+        "method": "POST",
+        "path": "/api/replay",
+        "at": 1791778953215
+      },
+      {
+        "method": "GET",
+        "path": "/api/replay",
+        "at": 1791778953355
+      },
+      {
+        "method": "GET",
+        "path": "/api/replay",
+        "at": 1791778954355
+      },
+      {
+        "method": "POST",
+        "path": "/api/replay",
+        "at": 1791778954535
+      },
+      {
+        "method": "GET",
+        "path": "/api/replay",
+        "at": 1791778955356
+      },
+      {
+        "method": "POST",
+        "path": "/api/replay",
+        "at": 1791778955851
+      },
+      {
+        "method": "GET",
+        "path": "/api/replay",
+        "at": 1791778956354
+      },
+      {
+        "method": "POST",
+        "path": "/api/replay",
+        "at": 1791778957009
+      },
+      {
+        "method": "POST",
+        "path": "/api/replay",
+        "at": 1791778957097
+      },
+      {
+        "method": "POST",
+        "path": "/api/replay",
+        "at": 1791778957184
+      },
+      {
+        "method": "GET",
+        "path": "/api/replay",
+        "at": 1791778957355
+      },
+      {
+        "method": "GET",
+        "path": "/api/replay",
+        "at": 1791778958355
+      },
+      {
+        "method": "POST",
+        "path": "/api/replay",
+        "at": 1791778958359
+      },
+      {
+        "method": "POST",
+        "path": "/api/replay",
+        "at": 1791778958501
+      },
+      {
+        "method": "GET",
+        "path": "/api/replay",
+        "at": 1791778959355
+      },
+      {
+        "method": "POST",
+        "path": "/api/replay",
+        "at": 1791778959656
+      },
+      {
+        "method": "GET",
+        "path": "/api/replay",
+        "at": 1791778960355
+      },
+      {
+        "method": "GET",
+        "path": "/api/replay",
+        "at": 1791778961355
+      },
+      {
+        "method": "POST",
+        "path": "/api/replay",
+        "at": 1791778962125
+      },
+      {
+        "method": "GET",
+        "path": "/api/replay",
+        "at": 1791778963354
+      },
+      {
+        "method": "POST",
+        "path": "/api/replay",
+        "at": 1791778963982
+      },
+      {
+        "method": "GET",
+        "path": "/api/replay",
+        "at": 1791778964354
+      },
+      {
+        "method": "POST",
+        "path": "/api/replay",
+        "at": 1791778964358
+      },
+      {
+        "method": "POST",
+        "path": "/api/replay",
+        "at": 1791778965140
+      },
+      {
+        "method": "GET",
+        "path": "/api/replay",
+        "at": 1791778965355
+      },
+      {
+        "method": "GET",
+        "path": "/api/replay",
+        "at": 1791778966354
+      },
+      {
+        "method": "GET",
+        "path": "/api/replay",
+        "at": 1791778967355
+      },
+      {
+        "method": "POST",
+        "path": "/api/replay",
+        "at": 1791778967612
+      },
+      {
+        "method": "GET",
+        "path": "/api/replay",
+        "at": 1791778968355
+      },
+      {
+        "method": "POST",
+        "path": "/api/replay",
+        "at": 1791778968770
+      },
+      {
+        "method": "GET",
+        "path": "/api/replay",
+        "at": 1791778969355
+      },
+      {
+        "method": "GET",
+        "path": "/api/replay",
+        "at": 1791778970355
+      },
+      {
+        "method": "POST",
+        "path": "/api/replay",
+        "at": 1791778970359
+      },
+      {
+        "method": "GET",
+        "path": "/api/replay",
+        "at": 1791778971355
+      },
+      {
+        "method": "POST",
+        "path": "/api/replay",
+        "at": 1791778971651
+      },
+      {
+        "method": "GET",
+        "path": "/api/replay",
+        "at": 1791778972355
+      },
+      {
+        "method": "GET",
+        "path": "/api/replay",
+        "at": 1791778973355
+      },
+      {
+        "method": "POST",
+        "path": "/api/replay",
+        "at": 1791778974041
+      },
+      {
+        "method": "GET",
+        "path": "/api/replay",
+        "at": 1791778974354
+      },
+      {
+        "method": "POST",
+        "path": "/api/replay",
+        "at": 1791778975276
+      },
+      {
+        "method": "GET",
+        "path": "/api/replay",
+        "at": 1791778976356
+      },
+      {
+        "method": "POST",
+        "path": "/api/replay",
+        "at": 1791778976360
+      },
+      {
+        "method": "GET",
+        "path": "/api/replay",
+        "at": 1791778977355
+      },
+      {
+        "method": "POST",
+        "path": "/api/replay",
+        "at": 1791778977748
+      },
+      {
+        "method": "GET",
+        "path": "/api/replay",
+        "at": 1791778978354
+      },
+      {
+        "method": "POST",
+        "path": "/api/replay",
+        "at": 1791778978983
+      },
+      {
+        "method": "GET",
+        "path": "/api/replay",
+        "at": 1791778980356
+      },
+      {
+        "method": "GET",
+        "path": "/api/replay",
+        "at": 1791778981355
+      },
+      {
+        "method": "POST",
+        "path": "/api/replay",
+        "at": 1791778981442
+      },
+      {
+        "method": "GET",
+        "path": "/api/replay-player-preview",
+        "at": 1791778981854
+      },
+      {
+        "method": "GET",
+        "path": "/api/replay-player-preview",
+        "at": 1791778982854
+      },
+      {
+        "method": "GET",
+        "path": "/api/replay-player-preview",
+        "at": 1791778983853
+      },
+      {
+        "method": "GET",
+        "path": "/api/replay-player-preview",
+        "at": 1791778984354
+      },
+      {
+        "method": "GET",
+        "path": "/api/replay",
+        "at": 1791778984355
+      },
+      {
+        "method": "POST",
+        "path": "/api/replay",
+        "at": 1791778984357
+      },
+      {
+        "method": "GET",
+        "path": "/api/replay-player-preview",
+        "at": 1791778984854
+      },
+      {
+        "method": "GET",
+        "path": "/api/replay",
+        "at": 1791778985354
+      },
+      {
+        "method": "GET",
+        "path": "/api/replay-player-preview",
+        "at": 1791778985853
+      },
+      {
+        "method": "GET",
+        "path": "/api/replay-player-preview",
+        "at": 1791778986353
+      },
+      {
+        "method": "GET",
+        "path": "/api/replay",
+        "at": 1791778986354
+      },
+      {
+        "method": "GET",
+        "path": "/api/replay",
+        "at": 1791778987354
+      },
+      {
+        "method": "GET",
+        "path": "/api/replay-player-preview",
+        "at": 1791778987853
+      },
+      {
+        "method": "GET",
+        "path": "/api/replay-player-preview",
+        "at": 1791778988353
+      },
+      {
+        "method": "GET",
+        "path": "/api/replay",
+        "at": 1791778988354
+      },
+      {
+        "method": "GET",
+        "path": "/api/replay-player-preview",
+        "at": 1791778988853
+      },
+      {
+        "method": "GET",
+        "path": "/api/replay",
+        "at": 1791778989354
+      },
+      {
+        "method": "POST",
+        "path": "/api/replay",
+        "at": 1791778989419
+      },
+      {
+        "method": "GET",
+        "path": "/__frame/d2214b7c-2ffe-4dfe-9597-cb357ba818ac.svg",
+        "at": 1791778989773
+      },
+      {
+        "method": "POST",
+        "path": "/api/replay",
+        "at": 1791778989914
+      },
+      {
+        "method": "POST",
+        "path": "/api/replay",
+        "at": 1791778989915
+      },
+      {
+        "method": "GET",
+        "path": "/__frame/423d616b-d6a0-4fe0-8a1a-81200cbc78c3.svg",
+        "at": 1791778990269
+      },
+      {
+        "method": "GET",
+        "path": "/api/replay",
+        "at": 1791778990355
+      },
+      {
+        "method": "POST",
+        "path": "/api/replay",
+        "at": 1791778990358
+      },
+      {
+        "method": "POST",
+        "path": "/api/replay",
+        "at": 1791778990736
+      },
+      {
+        "method": "POST",
+        "path": "/api/replay",
+        "at": 1791778990738
+      },
+      {
+        "method": "GET",
+        "path": "/api/replay-player-preview",
+        "at": 1791778990854
+      },
+      {
+        "method": "POST",
+        "path": "/api/replay",
+        "at": 1791778991241
+      },
+      {
+        "method": "GET",
+        "path": "/api/replay",
+        "at": 1791778991354
+      },
+      {
+        "method": "GET",
+        "path": "/__frame/9a6a066c-a140-41e3-85f4-48b890b04b7c.svg",
+        "at": 1791778991745
+      },
+      {
+        "method": "GET",
+        "path": "/api/replay-player-preview",
+        "at": 1791778991853
+      },
+      {
+        "method": "POST",
+        "path": "/api/replay",
+        "at": 1791778991875
+      },
+      {
+        "method": "GET",
+        "path": "/api/replay-player-preview",
+        "at": 1791778992354
+      },
+      {
+        "method": "GET",
+        "path": "/api/replay",
+        "at": 1791778992355
+      },
+      {
+        "method": "GET",
+        "path": "/__frame/fe03f7c2-706e-44a9-995d-abe7d2fc7170.svg",
+        "at": 1791778992378
+      },
+      {
+        "method": "POST",
+        "path": "/api/replay",
+        "at": 1791778992564
+      },
+      {
+        "method": "POST",
+        "path": "/api/replay",
+        "at": 1791778992718
+      },
+      {
+        "method": "GET",
+        "path": "/api/replay-player-preview",
+        "at": 1791778993353
+      },
+      {
+        "method": "GET",
+        "path": "/api/replay",
+        "at": 1791778993355
+      },
+      {
+        "method": "POST",
+        "path": "/api/replay",
+        "at": 1791778993532
+      },
+      {
+        "method": "GET",
+        "path": "/api/replay-player-preview",
+        "at": 1791778993853
+      },
+      {
+        "method": "GET",
+        "path": "/api/replay-player-preview",
+        "at": 1791778994354
+      },
+      {
+        "method": "GET",
+        "path": "/api/replay",
+        "at": 1791778994355
+      },
+      {
+        "method": "GET",
+        "path": "/api/replay",
+        "at": 1791778995354
+      },
+      {
+        "method": "GET",
+        "path": "/api/replay-player-preview",
+        "at": 1791778996353
+      },
+      {
+        "method": "GET",
+        "path": "/api/replay",
+        "at": 1791778996354
+      },
+      {
+        "method": "POST",
+        "path": "/api/replay",
+        "at": 1791778996358
+      },
+      {
+        "method": "GET",
+        "path": "/api/replay",
+        "at": 1791778997354
+      },
+      {
+        "method": "GET",
+        "path": "/api/replay-player-preview",
+        "at": 1791778997853
+      },
+      {
+        "method": "GET",
+        "path": "/api/replay",
+        "at": 1791778998355
+      },
+      {
+        "method": "GET",
+        "path": "/api/replay",
+        "at": 1791778999354
+      },
+      {
+        "method": "GET",
+        "path": "/api/replay-player-preview",
+        "at": 1791778999853
+      },
+      {
+        "method": "GET",
+        "path": "/api/replay-player-preview",
+        "at": 1791779000354
+      },
+      {
+        "method": "GET",
+        "path": "/api/replay",
+        "at": 1791779000355
+      },
+      {
+        "method": "GET",
+        "path": "/api/replay-player-preview",
+        "at": 1791779001353
+      },
+      {
+        "method": "GET",
+        "path": "/api/replay",
+        "at": 1791779001355
+      },
+      {
+        "method": "GET",
+        "path": "/api/replay",
+        "at": 1791779002354
+      },
+      {
+        "method": "POST",
+        "path": "/api/replay",
+        "at": 1791779002358
+      },
+      {
+        "method": "POST",
+        "path": "/api/replay",
+        "at": 1791779002766
+      },
+      {
+        "method": "POST",
+        "path": "/api/replay",
+        "at": 1791779002768
+      },
+      {
+        "method": "GET",
+        "path": "/qa-dock",
+        "at": 1791779002777
+      },
+      {
+        "method": "GET",
+        "path": "/replay-dock-console.css",
+        "at": 1791779002784
+      },
+      {
+        "method": "GET",
+        "path": "/replay-dock-console.js",
+        "at": 1791779002784
+      },
+      {
+        "method": "GET",
+        "path": "/api/replay",
+        "at": 1791779002789
+      },
+      {
+        "method": "POST",
+        "path": "/api/replay",
+        "at": 1791779002794
+      }
+    ],
+    "failure": null
+  },
+  "gates": [
+    {
+      "name": "G01 startup zero MUTATING POST",
+      "passed": true,
+      "detail": {
+        "readOnlyPosts": 1
+      }
+    },
+    {
+      "name": "G02 list/curve startup never prepare",
+      "passed": true,
+      "detail": {
+        "emptyDeckMonitorRequests": 0
+      }
+    },
+    {
+      "name": "G03 expand widgets no mutation",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "G04 draft survives GET polling",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "G05 saved order/cameras/fade exact",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "G06 slow prepare blocks duplicate and edit",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "G07 explicit cancel carries operation nonce",
+      "passed": true,
+      "detail": {
+        "stopFlightDedup": true,
+        "unrelatedPlaylistLocked": true,
+        "emptyPlaylistLocked": true,
+        "playlistPeerLocked": true,
+        "sameNonceCancellation": true
+      }
+    },
+    {
+      "name": "G08 FADE failure exposes fault no onair fallback",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "G09 READY waits explicit start",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "G10 start exactly one explicit POST",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "G11 HOLD end never returns live itself",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "G12 explicit stop returns live in mock",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "G12B LIVE chosen only by explicit saved setting",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "G12C LIVE end UI reflects declared backend result",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "G13 curve requires silence opt-in",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "G14 curve choices preserved through polling",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "G15 curve slowACK dedupe and busy selectors",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "G16 exact ratio points/silence contract",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "G17 cancel only explicit current job",
+      "passed": true,
+      "detail": {
+        "lostAckScope": "accepted HTTP200 headers then incomplete JSON body loss; not socket-before-headers or timer deadline test",
+        "accepted500Locked": true,
+        "wrongImmediateLocked": true,
+        "wrongCancelLocked": true,
+        "unrelatedStillLocked": true,
+        "matchedRequestId": "e2311c59-1bac-48cb-a5df-d8c6c502061a"
+      }
+    },
+    {
+      "name": "G18 effect published as new event, original retained",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "G19 prepared artifact locks generic speed slider",
+      "passed": true,
+      "detail": {
+        "prePostGetDelivered": true,
+        "staleGetRejected": true
+      }
+    },
+    {
+      "name": "G19B prepared speed label explains fixed100",
+      "passed": true,
+      "detail": {
+        "scope": "prepared A/B fixed100 + decoded JPEG MOCK + slow capture overlapping normal cursor polls; no Native screenshot proof",
+        "mutatingPostDelta": 0,
+        "legacyNotOperational": true,
+        "monitorA": true,
+        "movingFrameRetained": true,
+        "movingFramePublished": true,
+        "deckPixels": [
+          57,
+          91,
+          136
+        ]
+      }
+    },
+    {
+      "name": "G20 un-decoded image does not enable IN",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "G21 needle confirms decoded fresh image",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "G21B rendered pixels prove requested Cam1/frame120 before MARK_IN",
+      "passed": true,
+      "detail": {
+        "rgb": [
+          57,
+          91,
+          135
+        ],
+        "frameNumber": 120,
+        "width": 320,
+        "height": 180
+      }
+    },
+    {
+      "name": "G22 INOUT derive confirmed displayed cursors",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "G23 at most active+latest pending scrub",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "G23B displayed pixels discard older coalesced cursor",
+      "passed": true,
+      "detail": {
+        "rgb": [
+          57,
+          91,
+          135
+        ],
+        "frameNumber": 240,
+        "width": 320,
+        "height": 180
+      }
+    },
+    {
+      "name": "G23D camera change cannot enable IN before image decode",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "G23C camera swap reflected by displayed pixels not status text",
+      "passed": true,
+      "detail": {
+        "rgb": [
+          135,
+          99,
+          57
+        ],
+        "frameNumber": 240,
+        "width": 320,
+        "height": 180
+      }
+    },
+    {
+      "name": "G24 old session response never confirms old frame",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "G26 compact widgets exist at target viewport",
+      "passed": true,
+      "detail": {
+        "scope": "same component + decoded A/B JPEG fixtures, bounded HTTP screenshot contract MOCK, no Native capture/CEF/operator proof",
+        "unsupported": [
+          {
+            "status": 400,
+            "body": {
+              "success": false,
+              "error": "Only Replay A/B supported"
+            }
+          },
+          {
+            "status": 400,
+            "body": {
+              "success": false,
+              "error": "Only Replay A/B supported"
+            }
+          }
+        ],
+        "dockShared": true,
+        "monitorB": true,
+        "stalePreviewDropped": true,
+        "uncertainMonitorStopped": true,
+        "navigationMutatingDelta": 0
+      }
+    },
+    {
+      "name": "G25 pagehide sends no mutating POST",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "G27 own Edge actual cooperative exit CIM0",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "G28 exact source pins unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "G29 mock server cooperative close",
+      "passed": true,
+      "detail": null
+    }
+  ],
+  "screenshots": [
+    "replay-A-monitor-synthetic-jpeg-only.png",
+    "replay-confirmed-cam2-frame240-before-scope-reset.png",
+    "replay-playlist-ui-1280x900.png",
+    "replay-playlist-ui-700x540.png",
+    "replay-curve-ui-700x540.png",
+    "replay-needle-scope-reset-ui-700x540.png",
+    "replay-A-B-monitors-synthetic-jpeg-only.png",
+    "replay-common-mesa-style-dock-700x540.png"
+  ],
+  "postLedger": [
+    {
+      "action": "history",
+      "data": {
+        "action": "history"
+      },
+      "at": 1791778945388
+    },
+    {
+      "action": "playlist-save",
+      "data": {
+        "action": "playlist-save",
+        "definition": {
+          "name": "QA ordem preservada",
+          "endMode": "HOLD",
+          "items": [
+            {
+              "eventId": "10000000-0000-4000-8000-000000000001",
+              "cam": "Cam 1",
+              "transition": {
+                "type": "FADE",
+                "durationMs": 400
+              }
+            },
+            {
+              "eventId": "10000000-0000-4000-8000-000000000002",
+              "cam": "Cam 2",
+              "transition": {
+                "type": "CUT",
+                "durationMs": 0
+              }
+            }
+          ]
+        }
+      },
+      "at": 1791778947245
+    },
+    {
+      "action": "playlist-prepare",
+      "data": {
+        "action": "playlist-prepare",
+        "id": "7cdab74f-3ab5-4f2c-a0a1-772f64409689",
+        "player": "A",
+        "operationId": "2b36655b-5445-4377-91e4-101d91bf48af"
+      },
+      "at": 1791778947333
+    },
+    {
+      "action": "playlist-stop",
+      "data": {
+        "action": "playlist-stop",
+        "operationId": "2b36655b-5445-4377-91e4-101d91bf48af"
+      },
+      "at": 1791778947339
+    },
+    {
+      "action": "playlist-prepare",
+      "data": {
+        "action": "playlist-prepare",
+        "id": "7cdab74f-3ab5-4f2c-a0a1-772f64409689",
+        "player": "A",
+        "operationId": "e100c551-b1de-41a0-9d9c-7ccc4d061b1b"
+      },
+      "at": 1791778949650
+    },
+    {
+      "action": "playlist-stop",
+      "data": {
+        "action": "playlist-stop",
+        "operationId": "e100c551-b1de-41a0-9d9c-7ccc4d061b1b"
+      },
+      "at": 1791778952057
+    },
+    {
+      "action": "history",
+      "data": {
+        "action": "history"
+      },
+      "at": 1791778952062
+    },
+    {
+      "action": "playlist-prepare",
+      "data": {
+        "action": "playlist-prepare",
+        "id": "7cdab74f-3ab5-4f2c-a0a1-772f64409689",
+        "player": "A",
+        "operationId": "c12fce3e-10d0-4137-9b90-c324c54dcf41"
+      },
+      "at": 1791778953216
+    },
+    {
+      "action": "playlist-prepare",
+      "data": {
+        "action": "playlist-prepare",
+        "id": "7cdab74f-3ab5-4f2c-a0a1-772f64409689",
+        "player": "A",
+        "operationId": "7347f9f0-68ac-4a02-b2b3-12e8a8512dda"
+      },
+      "at": 1791778954535
+    },
+    {
+      "action": "playlist-start",
+      "data": {
+        "action": "playlist-start"
+      },
+      "at": 1791778955851
+    },
+    {
+      "action": "playlist-stop",
+      "data": {
+        "action": "playlist-stop"
+      },
+      "at": 1791778957009
+    },
+    {
+      "action": "playlist-save",
+      "data": {
+        "action": "playlist-save",
+        "definition": {
+          "name": "QA ordem preservada",
+          "endMode": "LIVE",
+          "items": [
+            {
+              "eventId": "10000000-0000-4000-8000-000000000001",
+              "cam": "Cam 1",
+              "transition": {
+                "type": "FADE",
+                "durationMs": 400
+              }
+            },
+            {
+              "eventId": "10000000-0000-4000-8000-000000000002",
+              "cam": "Cam 2",
+              "transition": {
+                "type": "CUT",
+                "durationMs": 0
+              }
+            }
+          ],
+          "id": "7cdab74f-3ab5-4f2c-a0a1-772f64409689",
+          "version": 1
+        }
+      },
+      "at": 1791778957097
+    },
+    {
+      "action": "playlist-prepare",
+      "data": {
+        "action": "playlist-prepare",
+        "id": "7cdab74f-3ab5-4f2c-a0a1-772f64409689",
+        "player": "A",
+        "operationId": "543e5632-d70b-42e1-b1fc-1384a0fc0248"
+      },
+      "at": 1791778957184
+    },
+    {
+      "action": "history",
+      "data": {
+        "action": "history"
+      },
+      "at": 1791778958359
+    },
+    {
+      "action": "playlist-start",
+      "data": {
+        "action": "playlist-start"
+      },
+      "at": 1791778958501
+    },
+    {
+      "action": "playlist-stop",
+      "data": {
+        "action": "playlist-stop"
+      },
+      "at": 1791778959656
+    },
+    {
+      "action": "curve-prepare",
+      "data": {
+        "action": "curve-prepare",
+        "requestId": "24282f91-78d7-48b6-976b-c8387d1fafd7",
+        "eventId": "10000000-0000-4000-8000-000000000001",
+        "cam": "Cam 2",
+        "points": [
+          {
+            "position": 0,
+            "speed": 2
+          },
+          {
+            "position": 1,
+            "speed": 0.5
+          }
+        ],
+        "audioMode": "silence",
+        "audioAcknowledged": true
+      },
+      "at": 1791778962125
+    },
+    {
+      "action": "curve-cancel",
+      "data": {
+        "action": "curve-cancel",
+        "jobId": "831825e9-8875-4dda-8d8b-c927466d9f46"
+      },
+      "at": 1791778963982
+    },
+    {
+      "action": "history",
+      "data": {
+        "action": "history"
+      },
+      "at": 1791778964359
+    },
+    {
+      "action": "curve-prepare",
+      "data": {
+        "action": "curve-prepare",
+        "requestId": "c06bb448-ab99-48be-8f72-e2029c5c1909",
+        "eventId": "10000000-0000-4000-8000-000000000001",
+        "cam": "Cam 2",
+        "points": [
+          {
+            "position": 0,
+            "speed": 2
+          },
+          {
+            "position": 1,
+            "speed": 0.5
+          }
+        ],
+        "audioMode": "silence",
+        "audioAcknowledged": true
+      },
+      "at": 1791778965140
+    },
+    {
+      "action": "curve-cancel",
+      "data": {
+        "action": "curve-cancel",
+        "jobId": "27bf6369-f0c7-4522-bebf-90fde36ec023"
+      },
+      "at": 1791778967613
+    },
+    {
+      "action": "curve-prepare",
+      "data": {
+        "action": "curve-prepare",
+        "requestId": "b3904764-eb69-4e2f-a8a5-ea1e71ef561d",
+        "eventId": "10000000-0000-4000-8000-000000000001",
+        "cam": "Cam 2",
+        "points": [
+          {
+            "position": 0,
+            "speed": 2
+          },
+          {
+            "position": 1,
+            "speed": 0.5
+          }
+        ],
+        "audioMode": "silence",
+        "audioAcknowledged": true
+      },
+      "at": 1791778968770
+    },
+    {
+      "action": "history",
+      "data": {
+        "action": "history"
+      },
+      "at": 1791778970359
+    },
+    {
+      "action": "curve-cancel",
+      "data": {
+        "action": "curve-cancel",
+        "jobId": "a02267d9-6a06-4ca2-af1e-a4cbe46b5e1e"
+      },
+      "at": 1791778971651
+    },
+    {
+      "action": "curve-cancel",
+      "data": {
+        "action": "curve-cancel",
+        "jobId": "a02267d9-6a06-4ca2-af1e-a4cbe46b5e1e"
+      },
+      "at": 1791778974041
+    },
+    {
+      "action": "curve-prepare",
+      "data": {
+        "action": "curve-prepare",
+        "requestId": "e2311c59-1bac-48cb-a5df-d8c6c502061a",
+        "eventId": "10000000-0000-4000-8000-000000000001",
+        "cam": "Cam 2",
+        "points": [
+          {
+            "position": 0,
+            "speed": 2
+          },
+          {
+            "position": 1,
+            "speed": 0.5
+          }
+        ],
+        "audioMode": "silence",
+        "audioAcknowledged": true
+      },
+      "at": 1791778975276
+    },
+    {
+      "action": "history",
+      "data": {
+        "action": "history"
+      },
+      "at": 1791778976360
+    },
+    {
+      "action": "curve-cancel",
+      "data": {
+        "action": "curve-cancel",
+        "jobId": "d6b8b755-e640-488d-bdbd-d6d223953591"
+      },
+      "at": 1791778977748
+    },
+    {
+      "action": "curve-prepare",
+      "data": {
+        "action": "curve-prepare",
+        "requestId": "cd21439d-db21-469a-8615-f7a345c7b03f",
+        "eventId": "10000000-0000-4000-8000-000000000001",
+        "cam": "Cam 2",
+        "points": [
+          {
+            "position": 0,
+            "speed": 2
+          },
+          {
+            "position": 1,
+            "speed": 0.5
+          }
+        ],
+        "audioMode": "silence",
+        "audioAcknowledged": true
+      },
+      "at": 1791778978983
+    },
+    {
+      "action": "load",
+      "data": {
+        "action": "load",
+        "player": "A",
+        "eventId": "cf7a2484-13c8-4d4a-b8fc-8505ee63fe0c",
+        "cam": "Cam 2"
+      },
+      "at": 1791778981442
+    },
+    {
+      "action": "history",
+      "data": {
+        "action": "history"
+      },
+      "at": 1791778984357
+    },
+    {
+      "action": "history-frame",
+      "data": {
+        "action": "history-frame",
+        "sessionId": "qa-session-1",
+        "cam": "Cam 1",
+        "cursor": 4
+      },
+      "at": 1791778989419
+    },
+    {
+      "action": "history-pin",
+      "data": {
+        "action": "history-pin",
+        "sessionId": "qa-session-1",
+        "start": 4,
+        "end": 30
+      },
+      "at": 1791778989914
+    },
+    {
+      "action": "history-frame",
+      "data": {
+        "action": "history-frame",
+        "sessionId": "qa-session-1",
+        "cam": "Cam 1",
+        "cursor": 5
+      },
+      "at": 1791778989915
+    },
+    {
+      "action": "history",
+      "data": {
+        "action": "history"
+      },
+      "at": 1791778990358
+    },
+    {
+      "action": "history-pin",
+      "data": {
+        "action": "history-pin",
+        "sessionId": "qa-session-1",
+        "start": 4,
+        "end": 5
+      },
+      "at": 1791778990736
+    },
+    {
+      "action": "history-frame",
+      "data": {
+        "action": "history-frame",
+        "sessionId": "qa-session-1",
+        "cam": "Cam 1",
+        "cursor": 6
+      },
+      "at": 1791778990738
+    },
+    {
+      "action": "history-frame",
+      "data": {
+        "action": "history-frame",
+        "sessionId": "qa-session-1",
+        "cam": "Cam 1",
+        "cursor": 8
+      },
+      "at": 1791778991241
+    },
+    {
+      "action": "history-frame",
+      "data": {
+        "action": "history-frame",
+        "sessionId": "qa-session-1",
+        "cam": "Cam 2",
+        "cursor": 8
+      },
+      "at": 1791778991876
+    },
+    {
+      "action": "history-frame",
+      "data": {
+        "action": "history-frame",
+        "sessionId": "qa-session-1",
+        "cam": "Cam 2",
+        "cursor": 9
+      },
+      "at": 1791778992564
+    },
+    {
+      "action": "history-refresh",
+      "data": {
+        "action": "history-refresh"
+      },
+      "at": 1791778992718
+    },
+    {
+      "action": "load",
+      "data": {
+        "action": "load",
+        "player": "B",
+        "eventId": "cf7a2484-13c8-4d4a-b8fc-8505ee63fe0c",
+        "cam": "Cam 2"
+      },
+      "at": 1791778993532
+    },
+    {
+      "action": "history",
+      "data": {
+        "action": "history"
+      },
+      "at": 1791778996358
+    },
+    {
+      "action": "history",
+      "data": {
+        "action": "history"
+      },
+      "at": 1791779002358
+    },
+    {
+      "action": "load",
+      "data": {
+        "action": "load",
+        "player": "C",
+        "eventId": "10000000-0000-4000-8000-000000000001",
+        "cam": "Cam 1"
+      },
+      "at": 1791779002766
+    },
+    {
+      "action": "load",
+      "data": {
+        "action": "load",
+        "player": "D",
+        "eventId": "10000000-0000-4000-8000-000000000001",
+        "cam": "Cam 1"
+      },
+      "at": 1791779002768
+    },
+    {
+      "action": "history",
+      "data": {
+        "action": "history"
+      },
+      "at": 1791779002794
+    }
+  ],
+  "readOnlyPostCount": 18,
+  "mutatingPostCount": 29,
+  "pinsBefore": [
+    {
+      "path": "fechar-janela.js",
+      "sha256": "c8f9191511034f54d2b6435fa4ab25770eff6814c882e7f47c2351a89c9867af",
+      "bytes": 1276
+    },
+    {
+      "path": "MESA-EXACT-PATCHES.json",
+      "sha256": "4cc75f9a37f6b02750a39ef3f8c0bc2a7c674073bc905dfaf520995ab6914590",
+      "bytes": 13638
+    },
+    {
+      "path": "mesa.html",
+      "sha256": "d0efc30c235a0d6973da7f0523b79473c1513b111dd00ec09e0d5ff8fc6f2c96",
+      "bytes": 256367
+    },
+    {
+      "path": "MONITOR-EXACT-DELTA.json",
+      "sha256": "fdbfdeb563c2c771825b4e0bde861abb0f41170981bbd39728677c23878ffbef",
+      "bytes": 10743
+    },
+    {
+      "path": "MOVING-MONITOR-EXACT-DELTA.json",
+      "sha256": "5cc3a23f6da1b954f0c09b951f1e89d9c211d04245a90e78ef63768b3b4b9c67",
+      "bytes": 1134
+    },
+    {
+      "path": "replay-dock-console.css",
+      "sha256": "27b1dbbd690eb48d07f69f87409b85ade9d4f6f63d7b9e45415d67bff9d1af0e",
+      "bytes": 5903
+    },
+    {
+      "path": "replay-dock-console.js",
+      "sha256": "636701a1092bb6329fbcc148d9de55ac9d41d22e0c700af2cfcce76dcf8b920b",
+      "bytes": 71983
+    },
+    {
+      "path": "replay.html",
+      "sha256": "53b61894c64f5becbec4c25217bdc37cb2912785bd075ae73d71a9901e1865d2",
+      "bytes": 975
+    },
+    {
+      "path": "replay.js",
+      "sha256": "72b2f842d2cf348f00ae69054afdbe75237d91875310283aff0d7ebd88fb6759",
+      "bytes": 1258
+    },
+    {
+      "path": "run-test-replay-common-dom-r13-monitor.mjs",
+      "sha256": "d6ee14631d80642ab3b4198da16c932cb8433016d48c5ce19526015428ee1298",
+      "bytes": 59173
+    },
+    {
+      "path": "SOURCE-REVIEW.md",
+      "sha256": "d1add017eb7526f3c091592d61ae91a5555e904f47b89a27b373a9f3cf48c332",
+      "bytes": 8147
+    },
+    {
+      "path": "test-host-admission-r2.mjs",
+      "sha256": "025a7161f1a5336e78f2d8228d1edb6da2bbe1f9f50aa4a1882d529a832cff24",
+      "bytes": 4541
+    },
+    {
+      "path": "test-media-event-lifecycle-r2.mjs",
+      "sha256": "74b093f7bb1694d2bec62b092dbc6751da60f0b66ee2f436d189372c4ca5d363",
+      "bytes": 3850
+    }
+  ],
+  "pinsAfter": [
+    {
+      "path": "fechar-janela.js",
+      "sha256": "c8f9191511034f54d2b6435fa4ab25770eff6814c882e7f47c2351a89c9867af",
+      "bytes": 1276
+    },
+    {
+      "path": "MESA-EXACT-PATCHES.json",
+      "sha256": "4cc75f9a37f6b02750a39ef3f8c0bc2a7c674073bc905dfaf520995ab6914590",
+      "bytes": 13638
+    },
+    {
+      "path": "mesa.html",
+      "sha256": "d0efc30c235a0d6973da7f0523b79473c1513b111dd00ec09e0d5ff8fc6f2c96",
+      "bytes": 256367
+    },
+    {
+      "path": "MONITOR-EXACT-DELTA.json",
+      "sha256": "fdbfdeb563c2c771825b4e0bde861abb0f41170981bbd39728677c23878ffbef",
+      "bytes": 10743
+    },
+    {
+      "path": "MOVING-MONITOR-EXACT-DELTA.json",
+      "sha256": "5cc3a23f6da1b954f0c09b951f1e89d9c211d04245a90e78ef63768b3b4b9c67",
+      "bytes": 1134
+    },
+    {
+      "path": "replay-dock-console.css",
+      "sha256": "27b1dbbd690eb48d07f69f87409b85ade9d4f6f63d7b9e45415d67bff9d1af0e",
+      "bytes": 5903
+    },
+    {
+      "path": "replay-dock-console.js",
+      "sha256": "636701a1092bb6329fbcc148d9de55ac9d41d22e0c700af2cfcce76dcf8b920b",
+      "bytes": 71983
+    },
+    {
+      "path": "replay.html",
+      "sha256": "53b61894c64f5becbec4c25217bdc37cb2912785bd075ae73d71a9901e1865d2",
+      "bytes": 975
+    },
+    {
+      "path": "replay.js",
+      "sha256": "72b2f842d2cf348f00ae69054afdbe75237d91875310283aff0d7ebd88fb6759",
+      "bytes": 1258
+    },
+    {
+      "path": "run-test-replay-common-dom-r13-monitor.mjs",
+      "sha256": "d6ee14631d80642ab3b4198da16c932cb8433016d48c5ce19526015428ee1298",
+      "bytes": 59173
+    },
+    {
+      "path": "SOURCE-REVIEW.md",
+      "sha256": "d1add017eb7526f3c091592d61ae91a5555e904f47b89a27b373a9f3cf48c332",
+      "bytes": 8147
+    },
+    {
+      "path": "test-host-admission-r2.mjs",
+      "sha256": "025a7161f1a5336e78f2d8228d1edb6da2bbe1f9f50aa4a1882d529a832cff24",
+      "bytes": 4541
+    },
+    {
+      "path": "test-media-event-lifecycle-r2.mjs",
+      "sha256": "74b093f7bb1694d2bec62b092dbc6751da60f0b66ee2f436d189372c4ca5d363",
+      "bytes": 3850
+    }
+  ],
+  "browser": {
+    "requestedClose": true,
+    "mainPid": 49144,
+    "mainPidAbsent": true,
+    "profileCount": 0,
+    "actualClosed": true,
+    "spawnHandleClosed": true,
+    "errors": [],
+    "profile": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-CommonUI-DOM-R13-Monitor-Root1\\FreeMix-QA-Profile-ReplayCombined-10b0ea6e-98fd-4e08-a238-a992a8eb2994",
+    "cdpPort": 58749,
+    "executable": "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe",
+    "executableSHA": "4bb4545b4ab80a3cf463a588ce570ca42de38fe6db16e3baeb0798ac75b4648b"
+  },
+  "server": {
+    "actualClosed": true,
+    "port": 58747
+  },
+  "errors": [],
+  "finishedAt": "2026-10-12T04:23:25.346Z",
+  "summary": {
+    "total": 36,
+    "passed": 36,
+    "failed": 0
+  }
+}

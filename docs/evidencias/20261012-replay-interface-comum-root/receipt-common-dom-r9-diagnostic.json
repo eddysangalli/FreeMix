@@ -1,0 +1,2856 @@
+{
+  "format": 1,
+  "scope": "MOCK_API_REAL_DOM_ONLY",
+  "runner": "common-dom-r9-diagnostic",
+  "startedAt": "2026-10-12T04:15:32.226Z",
+  "viewport": {
+    "width": 1280,
+    "height": 900
+  },
+  "nativeStarted": false,
+  "mediaToolsStarted": false,
+  "operatorTouched": false,
+  "trace": {
+    "exceptions": [],
+    "console": [],
+    "network": [
+      {
+        "kind": "request",
+        "id": "727AAA64CADB5F356D5782FBBAF5F351",
+        "url": "http://127.0.0.1:56861/replay",
+        "method": "GET",
+        "type": "Document"
+      },
+      {
+        "kind": "response",
+        "id": "727AAA64CADB5F356D5782FBBAF5F351",
+        "status": 200,
+        "url": "http://127.0.0.1:56861/replay",
+        "mime": "text/html"
+      },
+      {
+        "kind": "request",
+        "id": "105688.2",
+        "url": "http://127.0.0.1:56861/replay-dock-console.css",
+        "method": "GET",
+        "type": "Stylesheet"
+      },
+      {
+        "kind": "request",
+        "id": "105688.3",
+        "url": "http://127.0.0.1:56861/fechar-janela.js",
+        "method": "GET",
+        "type": "Script"
+      },
+      {
+        "kind": "request",
+        "id": "105688.4",
+        "url": "http://127.0.0.1:56861/replay-dock-console.js",
+        "method": "GET",
+        "type": "Script"
+      },
+      {
+        "kind": "request",
+        "id": "105688.5",
+        "url": "http://127.0.0.1:56861/replay.js",
+        "method": "GET",
+        "type": "Script"
+      },
+      {
+        "kind": "response",
+        "id": "105688.2",
+        "status": 200,
+        "url": "http://127.0.0.1:56861/replay-dock-console.css",
+        "mime": "text/css"
+      },
+      {
+        "kind": "response",
+        "id": "105688.3",
+        "status": 200,
+        "url": "http://127.0.0.1:56861/fechar-janela.js",
+        "mime": "text/javascript"
+      },
+      {
+        "kind": "response",
+        "id": "105688.5",
+        "status": 200,
+        "url": "http://127.0.0.1:56861/replay.js",
+        "mime": "text/javascript"
+      },
+      {
+        "kind": "response",
+        "id": "105688.4",
+        "status": 200,
+        "url": "http://127.0.0.1:56861/replay-dock-console.js",
+        "mime": "text/javascript"
+      },
+      {
+        "kind": "request",
+        "id": "105688.10",
+        "url": "http://127.0.0.1:56861/api/replay",
+        "method": "GET",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "105688.10",
+        "status": 200,
+        "url": "http://127.0.0.1:56861/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "105688.11",
+        "url": "http://127.0.0.1:56861/api/replay",
+        "method": "POST",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "105688.11",
+        "status": 200,
+        "url": "http://127.0.0.1:56861/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "105688.12",
+        "url": "http://127.0.0.1:56861/favicon.ico",
+        "method": "GET",
+        "type": "Other"
+      },
+      {
+        "kind": "response",
+        "id": "105688.12",
+        "status": 404,
+        "url": "http://127.0.0.1:56861/favicon.ico",
+        "mime": "text/plain"
+      },
+      {
+        "kind": "request",
+        "id": "105688.13",
+        "url": "http://127.0.0.1:56861/api/replay",
+        "method": "GET",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "105688.13",
+        "status": 200,
+        "url": "http://127.0.0.1:56861/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "105688.14",
+        "url": "http://127.0.0.1:56861/api/replay",
+        "method": "POST",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "105688.14",
+        "status": 200,
+        "url": "http://127.0.0.1:56861/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "105688.15",
+        "url": "http://127.0.0.1:56861/api/replay",
+        "method": "POST",
+        "type": "Fetch"
+      },
+      {
+        "kind": "request",
+        "id": "105688.16",
+        "url": "http://127.0.0.1:56861/api/replay",
+        "method": "POST",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "105688.16",
+        "status": 200,
+        "url": "http://127.0.0.1:56861/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "response",
+        "id": "105688.15",
+        "status": 400,
+        "url": "http://127.0.0.1:56861/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "105688.17",
+        "url": "http://127.0.0.1:56861/api/replay",
+        "method": "GET",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "105688.17",
+        "status": 200,
+        "url": "http://127.0.0.1:56861/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "105688.18",
+        "url": "http://127.0.0.1:56861/api/replay",
+        "method": "GET",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "105688.18",
+        "status": 200,
+        "url": "http://127.0.0.1:56861/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "105688.19",
+        "url": "http://127.0.0.1:56861/api/replay",
+        "method": "POST",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "105688.19",
+        "status": 200,
+        "url": "http://127.0.0.1:56861/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "failed",
+        "id": "105688.19",
+        "error": "net::ERR_INCOMPLETE_CHUNKED_ENCODING",
+        "cancelled": false
+      },
+      {
+        "kind": "request",
+        "id": "105688.20",
+        "url": "http://127.0.0.1:56861/api/replay",
+        "method": "GET",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "105688.20",
+        "status": 200,
+        "url": "http://127.0.0.1:56861/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "105688.21",
+        "url": "http://127.0.0.1:56861/api/replay",
+        "method": "GET",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "105688.21",
+        "status": 200,
+        "url": "http://127.0.0.1:56861/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "105688.22",
+        "url": "http://127.0.0.1:56861/api/replay",
+        "method": "POST",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "105688.22",
+        "status": 200,
+        "url": "http://127.0.0.1:56861/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "105688.23",
+        "url": "http://127.0.0.1:56861/api/replay",
+        "method": "POST",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "105688.23",
+        "status": 200,
+        "url": "http://127.0.0.1:56861/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "105688.24",
+        "url": "http://127.0.0.1:56861/api/replay",
+        "method": "GET",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "105688.24",
+        "status": 200,
+        "url": "http://127.0.0.1:56861/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "105688.25",
+        "url": "http://127.0.0.1:56861/api/replay",
+        "method": "POST",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "105688.25",
+        "status": 400,
+        "url": "http://127.0.0.1:56861/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "105688.26",
+        "url": "http://127.0.0.1:56861/api/replay",
+        "method": "GET",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "105688.26",
+        "status": 200,
+        "url": "http://127.0.0.1:56861/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "105688.27",
+        "url": "http://127.0.0.1:56861/api/replay",
+        "method": "GET",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "105688.27",
+        "status": 200,
+        "url": "http://127.0.0.1:56861/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "105688.28",
+        "url": "http://127.0.0.1:56861/api/replay",
+        "method": "POST",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "105688.28",
+        "status": 200,
+        "url": "http://127.0.0.1:56861/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "105688.29",
+        "url": "http://127.0.0.1:56861/api/replay",
+        "method": "GET",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "105688.29",
+        "status": 200,
+        "url": "http://127.0.0.1:56861/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "105688.30",
+        "url": "http://127.0.0.1:56861/api/replay",
+        "method": "POST",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "105688.30",
+        "status": 200,
+        "url": "http://127.0.0.1:56861/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "105688.31",
+        "url": "http://127.0.0.1:56861/api/replay",
+        "method": "GET",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "105688.31",
+        "status": 200,
+        "url": "http://127.0.0.1:56861/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "105688.32",
+        "url": "http://127.0.0.1:56861/api/replay",
+        "method": "POST",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "105688.32",
+        "status": 200,
+        "url": "http://127.0.0.1:56861/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "105688.33",
+        "url": "http://127.0.0.1:56861/api/replay",
+        "method": "POST",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "105688.33",
+        "status": 200,
+        "url": "http://127.0.0.1:56861/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "105688.34",
+        "url": "http://127.0.0.1:56861/api/replay",
+        "method": "POST",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "105688.34",
+        "status": 200,
+        "url": "http://127.0.0.1:56861/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "105688.35",
+        "url": "http://127.0.0.1:56861/api/replay",
+        "method": "GET",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "105688.35",
+        "status": 200,
+        "url": "http://127.0.0.1:56861/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "105688.36",
+        "url": "http://127.0.0.1:56861/api/replay",
+        "method": "GET",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "105688.36",
+        "status": 200,
+        "url": "http://127.0.0.1:56861/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "105688.37",
+        "url": "http://127.0.0.1:56861/api/replay",
+        "method": "POST",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "105688.37",
+        "status": 200,
+        "url": "http://127.0.0.1:56861/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "105688.38",
+        "url": "http://127.0.0.1:56861/api/replay",
+        "method": "POST",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "105688.38",
+        "status": 200,
+        "url": "http://127.0.0.1:56861/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "105688.39",
+        "url": "http://127.0.0.1:56861/api/replay",
+        "method": "GET",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "105688.39",
+        "status": 200,
+        "url": "http://127.0.0.1:56861/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "105688.40",
+        "url": "http://127.0.0.1:56861/api/replay",
+        "method": "POST",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "105688.40",
+        "status": 200,
+        "url": "http://127.0.0.1:56861/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "105688.41",
+        "url": "http://127.0.0.1:56861/api/replay",
+        "method": "GET",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "105688.41",
+        "status": 200,
+        "url": "http://127.0.0.1:56861/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "105688.42",
+        "url": "http://127.0.0.1:56861/api/replay",
+        "method": "GET",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "105688.42",
+        "status": 200,
+        "url": "http://127.0.0.1:56861/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "105688.43",
+        "url": "http://127.0.0.1:56861/api/replay",
+        "method": "POST",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "105688.43",
+        "status": 200,
+        "url": "http://127.0.0.1:56861/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "105688.44",
+        "url": "http://127.0.0.1:56861/api/replay",
+        "method": "GET",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "105688.44",
+        "status": 200,
+        "url": "http://127.0.0.1:56861/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "105688.45",
+        "url": "http://127.0.0.1:56861/api/replay",
+        "method": "POST",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "105688.45",
+        "status": 200,
+        "url": "http://127.0.0.1:56861/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "105688.46",
+        "url": "http://127.0.0.1:56861/api/replay",
+        "method": "GET",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "105688.46",
+        "status": 200,
+        "url": "http://127.0.0.1:56861/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "105688.47",
+        "url": "http://127.0.0.1:56861/api/replay",
+        "method": "POST",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "105688.47",
+        "status": 200,
+        "url": "http://127.0.0.1:56861/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "105688.48",
+        "url": "http://127.0.0.1:56861/api/replay",
+        "method": "POST",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "105688.48",
+        "status": 500,
+        "url": "http://127.0.0.1:56861/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "105688.49",
+        "url": "http://127.0.0.1:56861/api/replay",
+        "method": "GET",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "105688.49",
+        "status": 200,
+        "url": "http://127.0.0.1:56861/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "105688.50",
+        "url": "http://127.0.0.1:56861/api/replay",
+        "method": "GET",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "105688.50",
+        "status": 200,
+        "url": "http://127.0.0.1:56861/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "105688.51",
+        "url": "http://127.0.0.1:56861/api/replay",
+        "method": "GET",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "105688.51",
+        "status": 200,
+        "url": "http://127.0.0.1:56861/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "105688.52",
+        "url": "http://127.0.0.1:56861/api/replay",
+        "method": "POST",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "105688.52",
+        "status": 200,
+        "url": "http://127.0.0.1:56861/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "105688.53",
+        "url": "http://127.0.0.1:56861/api/replay",
+        "method": "GET",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "105688.53",
+        "status": 200,
+        "url": "http://127.0.0.1:56861/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "105688.54",
+        "url": "http://127.0.0.1:56861/api/replay",
+        "method": "POST",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "105688.54",
+        "status": 200,
+        "url": "http://127.0.0.1:56861/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "105688.55",
+        "url": "http://127.0.0.1:56861/api/replay",
+        "method": "GET",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "105688.55",
+        "status": 200,
+        "url": "http://127.0.0.1:56861/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "105688.56",
+        "url": "http://127.0.0.1:56861/api/replay",
+        "method": "GET",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "105688.56",
+        "status": 200,
+        "url": "http://127.0.0.1:56861/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "105688.57",
+        "url": "http://127.0.0.1:56861/api/replay",
+        "method": "GET",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "105688.57",
+        "status": 200,
+        "url": "http://127.0.0.1:56861/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "105688.58",
+        "url": "http://127.0.0.1:56861/api/replay",
+        "method": "POST",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "105688.58",
+        "status": 200,
+        "url": "http://127.0.0.1:56861/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "105688.59",
+        "url": "http://127.0.0.1:56861/api/replay",
+        "method": "POST",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "105688.59",
+        "status": 200,
+        "url": "http://127.0.0.1:56861/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "105688.60",
+        "url": "http://127.0.0.1:56861/api/replay",
+        "method": "GET",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "105688.60",
+        "status": 200,
+        "url": "http://127.0.0.1:56861/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "105688.61",
+        "url": "http://127.0.0.1:56861/api/replay",
+        "method": "GET",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "105688.61",
+        "status": 200,
+        "url": "http://127.0.0.1:56861/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "105688.62",
+        "url": "http://127.0.0.1:56861/api/replay",
+        "method": "POST",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "105688.62",
+        "status": 200,
+        "url": "http://127.0.0.1:56861/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "105688.63",
+        "url": "http://127.0.0.1:56861/api/replay",
+        "method": "GET",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "105688.63",
+        "status": 200,
+        "url": "http://127.0.0.1:56861/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "105688.64",
+        "url": "http://127.0.0.1:56861/api/replay",
+        "method": "POST",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "105688.64",
+        "status": 200,
+        "url": "http://127.0.0.1:56861/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "failed",
+        "id": "105688.64",
+        "error": "net::ERR_INCOMPLETE_CHUNKED_ENCODING",
+        "cancelled": false
+      },
+      {
+        "kind": "request",
+        "id": "105688.65",
+        "url": "http://127.0.0.1:56861/api/replay",
+        "method": "GET",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "105688.65",
+        "status": 200,
+        "url": "http://127.0.0.1:56861/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "105688.66",
+        "url": "http://127.0.0.1:56861/api/replay",
+        "method": "GET",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "105688.66",
+        "status": 200,
+        "url": "http://127.0.0.1:56861/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "105688.67",
+        "url": "http://127.0.0.1:56861/api/replay",
+        "method": "GET",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "105688.67",
+        "status": 200,
+        "url": "http://127.0.0.1:56861/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "105688.68",
+        "url": "http://127.0.0.1:56861/api/replay",
+        "method": "POST",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "105688.68",
+        "status": 200,
+        "url": "http://127.0.0.1:56861/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "105688.69",
+        "url": "http://127.0.0.1:56861/api/replay",
+        "method": "POST",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "105688.69",
+        "status": 200,
+        "url": "http://127.0.0.1:56861/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "105688.70",
+        "url": "http://127.0.0.1:56861/api/replay",
+        "method": "GET",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "105688.70",
+        "status": 200,
+        "url": "http://127.0.0.1:56861/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "105688.71",
+        "url": "http://127.0.0.1:56861/api/replay",
+        "method": "POST",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "105688.71",
+        "status": 200,
+        "url": "http://127.0.0.1:56861/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "105688.72",
+        "url": "http://127.0.0.1:56861/api/replay",
+        "method": "GET",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "105688.72",
+        "status": 200,
+        "url": "http://127.0.0.1:56861/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "105688.73",
+        "url": "http://127.0.0.1:56861/api/replay",
+        "method": "GET",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "105688.73",
+        "status": 200,
+        "url": "http://127.0.0.1:56861/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "105688.74",
+        "url": "http://127.0.0.1:56861/api/replay",
+        "method": "GET",
+        "type": "Fetch"
+      },
+      {
+        "kind": "request",
+        "id": "105688.75",
+        "url": "http://127.0.0.1:56861/api/replay",
+        "method": "POST",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "105688.75",
+        "status": 200,
+        "url": "http://127.0.0.1:56861/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "response",
+        "id": "105688.74",
+        "status": 200,
+        "url": "http://127.0.0.1:56861/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "105688.76",
+        "url": "http://127.0.0.1:56861/api/replay",
+        "method": "GET",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "105688.76",
+        "status": 200,
+        "url": "http://127.0.0.1:56861/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "105688.77",
+        "url": "http://127.0.0.1:56861/api/replay",
+        "method": "POST",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "105688.77",
+        "status": 200,
+        "url": "http://127.0.0.1:56861/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "105688.78",
+        "url": "http://127.0.0.1:56861/api/replay",
+        "method": "GET",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "105688.78",
+        "status": 200,
+        "url": "http://127.0.0.1:56861/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "105688.79",
+        "url": "http://127.0.0.1:56861/api/replay",
+        "method": "GET",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "105688.79",
+        "status": 200,
+        "url": "http://127.0.0.1:56861/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "105688.80",
+        "url": "http://127.0.0.1:56861/api/replay",
+        "method": "GET",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "105688.80",
+        "status": 200,
+        "url": "http://127.0.0.1:56861/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "105688.81",
+        "url": "http://127.0.0.1:56861/api/replay",
+        "method": "POST",
+        "type": "Fetch"
+      },
+      {
+        "kind": "request",
+        "id": "105688.82",
+        "url": "http://127.0.0.1:56861/api/replay",
+        "method": "GET",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "105688.82",
+        "status": 200,
+        "url": "http://127.0.0.1:56861/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "response",
+        "id": "105688.81",
+        "status": 200,
+        "url": "http://127.0.0.1:56861/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "105688.83",
+        "url": "http://127.0.0.1:56861/__frame/f5501b91-9348-464d-986f-5830183c3444.svg",
+        "method": "GET",
+        "type": "Image"
+      },
+      {
+        "kind": "response",
+        "id": "105688.83",
+        "status": 200,
+        "url": "http://127.0.0.1:56861/__frame/f5501b91-9348-464d-986f-5830183c3444.svg",
+        "mime": "image/svg+xml"
+      },
+      {
+        "kind": "request",
+        "id": "105688.84",
+        "url": "http://127.0.0.1:56861/api/replay",
+        "method": "POST",
+        "type": "Fetch"
+      },
+      {
+        "kind": "request",
+        "id": "105688.85",
+        "url": "http://127.0.0.1:56861/api/replay",
+        "method": "POST",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "105688.84",
+        "status": 200,
+        "url": "http://127.0.0.1:56861/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "response",
+        "id": "105688.85",
+        "status": 200,
+        "url": "http://127.0.0.1:56861/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "105688.86",
+        "url": "http://127.0.0.1:56861/__frame/7103a3a2-0e53-44db-90ba-50e8bd670eb2.svg",
+        "method": "GET",
+        "type": "Image"
+      },
+      {
+        "kind": "request",
+        "id": "105688.87",
+        "url": "http://127.0.0.1:56861/api/replay",
+        "method": "GET",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "105688.87",
+        "status": 200,
+        "url": "http://127.0.0.1:56861/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "response",
+        "id": "105688.86",
+        "status": 200,
+        "url": "http://127.0.0.1:56861/__frame/7103a3a2-0e53-44db-90ba-50e8bd670eb2.svg",
+        "mime": "image/svg+xml"
+      },
+      {
+        "kind": "request",
+        "id": "105688.88",
+        "url": "http://127.0.0.1:56861/api/replay",
+        "method": "POST",
+        "type": "Fetch"
+      },
+      {
+        "kind": "request",
+        "id": "105688.89",
+        "url": "http://127.0.0.1:56861/api/replay",
+        "method": "POST",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "105688.88",
+        "status": 200,
+        "url": "http://127.0.0.1:56861/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "response",
+        "id": "105688.89",
+        "status": 200,
+        "url": "http://127.0.0.1:56861/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "105688.90",
+        "url": "http://127.0.0.1:56861/api/replay",
+        "method": "POST",
+        "type": "Fetch"
+      },
+      {
+        "kind": "request",
+        "id": "105688.91",
+        "url": "http://127.0.0.1:56861/api/replay",
+        "method": "GET",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "105688.91",
+        "status": 200,
+        "url": "http://127.0.0.1:56861/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "105688.92",
+        "url": "http://127.0.0.1:56861/api/replay",
+        "method": "POST",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "105688.92",
+        "status": 200,
+        "url": "http://127.0.0.1:56861/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "response",
+        "id": "105688.90",
+        "status": 200,
+        "url": "http://127.0.0.1:56861/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "105688.93",
+        "url": "http://127.0.0.1:56861/__frame/09972add-0731-40cb-91d4-e8b09b7b6954.svg",
+        "method": "GET",
+        "type": "Image"
+      },
+      {
+        "kind": "response",
+        "id": "105688.93",
+        "status": 200,
+        "url": "http://127.0.0.1:56861/__frame/09972add-0731-40cb-91d4-e8b09b7b6954.svg",
+        "mime": "image/svg+xml"
+      },
+      {
+        "kind": "request",
+        "id": "105688.94",
+        "url": "http://127.0.0.1:56861/api/replay",
+        "method": "POST",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "105688.94",
+        "status": 200,
+        "url": "http://127.0.0.1:56861/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "105688.95",
+        "url": "http://127.0.0.1:56861/__frame/21e34203-f887-4004-be5b-7099a118635d.svg",
+        "method": "GET",
+        "type": "Image"
+      },
+      {
+        "kind": "response",
+        "id": "105688.95",
+        "status": 200,
+        "url": "http://127.0.0.1:56861/__frame/21e34203-f887-4004-be5b-7099a118635d.svg",
+        "mime": "image/svg+xml"
+      },
+      {
+        "kind": "request",
+        "id": "105688.96",
+        "url": "http://127.0.0.1:56861/api/replay",
+        "method": "GET",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "105688.96",
+        "status": 200,
+        "url": "http://127.0.0.1:56861/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "105688.97",
+        "url": "http://127.0.0.1:56861/api/replay",
+        "method": "POST",
+        "type": "Fetch"
+      },
+      {
+        "kind": "request",
+        "id": "105688.98",
+        "url": "http://127.0.0.1:56861/api/replay",
+        "method": "POST",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "105688.98",
+        "status": 200,
+        "url": "http://127.0.0.1:56861/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "failed",
+        "id": "105688.97",
+        "error": "net::ERR_ABORTED",
+        "cancelled": true
+      },
+      {
+        "kind": "request",
+        "id": "105688.99",
+        "url": "http://127.0.0.1:56861/api/replay",
+        "method": "GET",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "105688.99",
+        "status": 200,
+        "url": "http://127.0.0.1:56861/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "105688.100",
+        "url": "http://127.0.0.1:56861/api/replay",
+        "method": "POST",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "105688.100",
+        "status": 400,
+        "url": "http://127.0.0.1:56861/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "105688.101",
+        "url": "http://127.0.0.1:56861/api/replay",
+        "method": "POST",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "105688.101",
+        "status": 400,
+        "url": "http://127.0.0.1:56861/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "25E7D01ED99ADA42F23384920989FBF5",
+        "url": "http://127.0.0.1:56861/qa-dock",
+        "method": "GET",
+        "type": "Document"
+      },
+      {
+        "kind": "response",
+        "id": "25E7D01ED99ADA42F23384920989FBF5",
+        "status": 200,
+        "url": "http://127.0.0.1:56861/qa-dock",
+        "mime": "text/html"
+      },
+      {
+        "kind": "request",
+        "id": "105688.103",
+        "url": "http://127.0.0.1:56861/replay-dock-console.css",
+        "method": "GET",
+        "type": "Stylesheet"
+      },
+      {
+        "kind": "request",
+        "id": "105688.104",
+        "url": "http://127.0.0.1:56861/replay-dock-console.js",
+        "method": "GET",
+        "type": "Script"
+      },
+      {
+        "kind": "response",
+        "id": "105688.103",
+        "status": 200,
+        "url": "http://127.0.0.1:56861/replay-dock-console.css",
+        "mime": "text/css"
+      },
+      {
+        "kind": "response",
+        "id": "105688.104",
+        "status": 200,
+        "url": "http://127.0.0.1:56861/replay-dock-console.js",
+        "mime": "text/javascript"
+      },
+      {
+        "kind": "request",
+        "id": "105688.107",
+        "url": "http://127.0.0.1:56861/api/replay",
+        "method": "GET",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "105688.107",
+        "status": 200,
+        "url": "http://127.0.0.1:56861/api/replay",
+        "mime": "application/json"
+      },
+      {
+        "kind": "request",
+        "id": "105688.108",
+        "url": "http://127.0.0.1:56861/api/replay",
+        "method": "POST",
+        "type": "Fetch"
+      },
+      {
+        "kind": "response",
+        "id": "105688.108",
+        "status": 200,
+        "url": "http://127.0.0.1:56861/api/replay",
+        "mime": "application/json"
+      }
+    ],
+    "http": [
+      {
+        "method": "GET",
+        "path": "/replay",
+        "at": 1791778536183
+      },
+      {
+        "method": "GET",
+        "path": "/replay-dock-console.css",
+        "at": 1791778536193
+      },
+      {
+        "method": "GET",
+        "path": "/fechar-janela.js",
+        "at": 1791778536194
+      },
+      {
+        "method": "GET",
+        "path": "/replay-dock-console.js",
+        "at": 1791778536195
+      },
+      {
+        "method": "GET",
+        "path": "/replay.js",
+        "at": 1791778536195
+      },
+      {
+        "method": "GET",
+        "path": "/api/replay",
+        "at": 1791778536203
+      },
+      {
+        "method": "POST",
+        "path": "/api/replay",
+        "at": 1791778536237
+      },
+      {
+        "method": "GET",
+        "path": "/favicon.ico",
+        "at": 1791778536247
+      },
+      {
+        "method": "GET",
+        "path": "/api/replay",
+        "at": 1791778537203
+      },
+      {
+        "method": "POST",
+        "path": "/api/replay",
+        "at": 1791778538074
+      },
+      {
+        "method": "POST",
+        "path": "/api/replay",
+        "at": 1791778538160
+      },
+      {
+        "method": "POST",
+        "path": "/api/replay",
+        "at": 1791778538168
+      },
+      {
+        "method": "GET",
+        "path": "/api/replay",
+        "at": 1791778539204
+      },
+      {
+        "method": "GET",
+        "path": "/api/replay",
+        "at": 1791778540204
+      },
+      {
+        "method": "POST",
+        "path": "/api/replay",
+        "at": 1791778540479
+      },
+      {
+        "method": "GET",
+        "path": "/api/replay",
+        "at": 1791778541203
+      },
+      {
+        "method": "GET",
+        "path": "/api/replay",
+        "at": 1791778542204
+      },
+      {
+        "method": "POST",
+        "path": "/api/replay",
+        "at": 1791778542886
+      },
+      {
+        "method": "POST",
+        "path": "/api/replay",
+        "at": 1791778542892
+      },
+      {
+        "method": "GET",
+        "path": "/api/replay",
+        "at": 1791778543204
+      },
+      {
+        "method": "POST",
+        "path": "/api/replay",
+        "at": 1791778544041
+      },
+      {
+        "method": "GET",
+        "path": "/api/replay",
+        "at": 1791778544203
+      },
+      {
+        "method": "GET",
+        "path": "/api/replay",
+        "at": 1791778545204
+      },
+      {
+        "method": "POST",
+        "path": "/api/replay",
+        "at": 1791778545361
+      },
+      {
+        "method": "GET",
+        "path": "/api/replay",
+        "at": 1791778546205
+      },
+      {
+        "method": "POST",
+        "path": "/api/replay",
+        "at": 1791778546679
+      },
+      {
+        "method": "GET",
+        "path": "/api/replay",
+        "at": 1791778547203
+      },
+      {
+        "method": "POST",
+        "path": "/api/replay",
+        "at": 1791778547835
+      },
+      {
+        "method": "POST",
+        "path": "/api/replay",
+        "at": 1791778547924
+      },
+      {
+        "method": "POST",
+        "path": "/api/replay",
+        "at": 1791778548010
+      },
+      {
+        "method": "GET",
+        "path": "/api/replay",
+        "at": 1791778548203
+      },
+      {
+        "method": "GET",
+        "path": "/api/replay",
+        "at": 1791778549204
+      },
+      {
+        "method": "POST",
+        "path": "/api/replay",
+        "at": 1791778549208
+      },
+      {
+        "method": "POST",
+        "path": "/api/replay",
+        "at": 1791778549327
+      },
+      {
+        "method": "GET",
+        "path": "/api/replay",
+        "at": 1791778550203
+      },
+      {
+        "method": "POST",
+        "path": "/api/replay",
+        "at": 1791778550485
+      },
+      {
+        "method": "GET",
+        "path": "/api/replay",
+        "at": 1791778551203
+      },
+      {
+        "method": "GET",
+        "path": "/api/replay",
+        "at": 1791778552203
+      },
+      {
+        "method": "POST",
+        "path": "/api/replay",
+        "at": 1791778552958
+      },
+      {
+        "method": "GET",
+        "path": "/api/replay",
+        "at": 1791778554203
+      },
+      {
+        "method": "POST",
+        "path": "/api/replay",
+        "at": 1791778554814
+      },
+      {
+        "method": "GET",
+        "path": "/api/replay",
+        "at": 1791778555204
+      },
+      {
+        "method": "POST",
+        "path": "/api/replay",
+        "at": 1791778555208
+      },
+      {
+        "method": "POST",
+        "path": "/api/replay",
+        "at": 1791778555969
+      },
+      {
+        "method": "GET",
+        "path": "/api/replay",
+        "at": 1791778556204
+      },
+      {
+        "method": "GET",
+        "path": "/api/replay",
+        "at": 1791778557203
+      },
+      {
+        "method": "GET",
+        "path": "/api/replay",
+        "at": 1791778558203
+      },
+      {
+        "method": "POST",
+        "path": "/api/replay",
+        "at": 1791778558440
+      },
+      {
+        "method": "GET",
+        "path": "/api/replay",
+        "at": 1791778559203
+      },
+      {
+        "method": "POST",
+        "path": "/api/replay",
+        "at": 1791778559596
+      },
+      {
+        "method": "GET",
+        "path": "/api/replay",
+        "at": 1791778560203
+      },
+      {
+        "method": "GET",
+        "path": "/api/replay",
+        "at": 1791778561203
+      },
+      {
+        "method": "GET",
+        "path": "/api/replay",
+        "at": 1791778562203
+      },
+      {
+        "method": "POST",
+        "path": "/api/replay",
+        "at": 1791778562207
+      },
+      {
+        "method": "POST",
+        "path": "/api/replay",
+        "at": 1791778562477
+      },
+      {
+        "method": "GET",
+        "path": "/api/replay",
+        "at": 1791778563203
+      },
+      {
+        "method": "GET",
+        "path": "/api/replay",
+        "at": 1791778564204
+      },
+      {
+        "method": "POST",
+        "path": "/api/replay",
+        "at": 1791778564863
+      },
+      {
+        "method": "GET",
+        "path": "/api/replay",
+        "at": 1791778565204
+      },
+      {
+        "method": "POST",
+        "path": "/api/replay",
+        "at": 1791778566099
+      },
+      {
+        "method": "GET",
+        "path": "/api/replay",
+        "at": 1791778566203
+      },
+      {
+        "method": "GET",
+        "path": "/api/replay",
+        "at": 1791778567204
+      },
+      {
+        "method": "GET",
+        "path": "/api/replay",
+        "at": 1791778568204
+      },
+      {
+        "method": "POST",
+        "path": "/api/replay",
+        "at": 1791778568210
+      },
+      {
+        "method": "POST",
+        "path": "/api/replay",
+        "at": 1791778568489
+      },
+      {
+        "method": "GET",
+        "path": "/api/replay",
+        "at": 1791778569203
+      },
+      {
+        "method": "POST",
+        "path": "/api/replay",
+        "at": 1791778569643
+      },
+      {
+        "method": "GET",
+        "path": "/api/replay",
+        "at": 1791778570204
+      },
+      {
+        "method": "GET",
+        "path": "/api/replay",
+        "at": 1791778571204
+      },
+      {
+        "method": "GET",
+        "path": "/api/replay",
+        "at": 1791778572203
+      },
+      {
+        "method": "POST",
+        "path": "/api/replay",
+        "at": 1791778572267
+      },
+      {
+        "method": "GET",
+        "path": "/api/replay",
+        "at": 1791778575204
+      },
+      {
+        "method": "POST",
+        "path": "/api/replay",
+        "at": 1791778575207
+      },
+      {
+        "method": "GET",
+        "path": "/api/replay",
+        "at": 1791778576203
+      },
+      {
+        "method": "GET",
+        "path": "/api/replay",
+        "at": 1791778577203
+      },
+      {
+        "method": "GET",
+        "path": "/api/replay",
+        "at": 1791778578204
+      },
+      {
+        "method": "POST",
+        "path": "/api/replay",
+        "at": 1791778579163
+      },
+      {
+        "method": "GET",
+        "path": "/api/replay",
+        "at": 1791778579204
+      },
+      {
+        "method": "GET",
+        "path": "/__frame/f5501b91-9348-464d-986f-5830183c3444.svg",
+        "at": 1791778579516
+      },
+      {
+        "method": "POST",
+        "path": "/api/replay",
+        "at": 1791778579668
+      },
+      {
+        "method": "POST",
+        "path": "/api/replay",
+        "at": 1791778579669
+      },
+      {
+        "method": "GET",
+        "path": "/__frame/7103a3a2-0e53-44db-90ba-50e8bd670eb2.svg",
+        "at": 1791778580022
+      },
+      {
+        "method": "GET",
+        "path": "/api/replay",
+        "at": 1791778580204
+      },
+      {
+        "method": "POST",
+        "path": "/api/replay",
+        "at": 1791778580488
+      },
+      {
+        "method": "POST",
+        "path": "/api/replay",
+        "at": 1791778580490
+      },
+      {
+        "method": "POST",
+        "path": "/api/replay",
+        "at": 1791778580993
+      },
+      {
+        "method": "GET",
+        "path": "/api/replay",
+        "at": 1791778581203
+      },
+      {
+        "method": "POST",
+        "path": "/api/replay",
+        "at": 1791778581207
+      },
+      {
+        "method": "GET",
+        "path": "/__frame/09972add-0731-40cb-91d4-e8b09b7b6954.svg",
+        "at": 1791778581496
+      },
+      {
+        "method": "POST",
+        "path": "/api/replay",
+        "at": 1791778581627
+      },
+      {
+        "method": "GET",
+        "path": "/__frame/21e34203-f887-4004-be5b-7099a118635d.svg",
+        "at": 1791778582130
+      },
+      {
+        "method": "GET",
+        "path": "/api/replay",
+        "at": 1791778582203
+      },
+      {
+        "method": "POST",
+        "path": "/api/replay",
+        "at": 1791778582238
+      },
+      {
+        "method": "POST",
+        "path": "/api/replay",
+        "at": 1791778582393
+      },
+      {
+        "method": "GET",
+        "path": "/api/replay",
+        "at": 1791778583203
+      },
+      {
+        "method": "POST",
+        "path": "/api/replay",
+        "at": 1791778583205
+      },
+      {
+        "method": "POST",
+        "path": "/api/replay",
+        "at": 1791778583208
+      },
+      {
+        "method": "GET",
+        "path": "/qa-dock",
+        "at": 1791778583217
+      },
+      {
+        "method": "GET",
+        "path": "/replay-dock-console.css",
+        "at": 1791778583235
+      },
+      {
+        "method": "GET",
+        "path": "/replay-dock-console.js",
+        "at": 1791778583236
+      },
+      {
+        "method": "GET",
+        "path": "/api/replay",
+        "at": 1791778583242
+      },
+      {
+        "method": "POST",
+        "path": "/api/replay",
+        "at": 1791778583276
+      }
+    ],
+    "failure": null
+  },
+  "gates": [
+    {
+      "name": "G01 startup zero MUTATING POST",
+      "passed": true,
+      "detail": {
+        "readOnlyPosts": 1
+      }
+    },
+    {
+      "name": "G02 list/curve startup never prepare",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "G03 expand widgets no mutation",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "G04 draft survives GET polling",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "G05 saved order/cameras/fade exact",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "G06 slow prepare blocks duplicate and edit",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "G07 explicit cancel carries operation nonce",
+      "passed": true,
+      "detail": {
+        "stopFlightDedup": true,
+        "unrelatedPlaylistLocked": true,
+        "emptyPlaylistLocked": true,
+        "playlistPeerLocked": true,
+        "sameNonceCancellation": true
+      }
+    },
+    {
+      "name": "G08 FADE failure exposes fault no onair fallback",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "G09 READY waits explicit start",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "G10 start exactly one explicit POST",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "G11 HOLD end never returns live itself",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "G12 explicit stop returns live in mock",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "G12B LIVE chosen only by explicit saved setting",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "G12C LIVE end UI reflects declared backend result",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "G13 curve requires silence opt-in",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "G14 curve choices preserved through polling",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "G15 curve slowACK dedupe and busy selectors",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "G16 exact ratio points/silence contract",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "G17 cancel only explicit current job",
+      "passed": true,
+      "detail": {
+        "lostAckScope": "accepted HTTP200 headers then incomplete JSON body loss; not socket-before-headers or timer deadline test",
+        "accepted500Locked": true,
+        "wrongImmediateLocked": true,
+        "wrongCancelLocked": true,
+        "unrelatedStillLocked": true,
+        "matchedRequestId": "9af4822a-9099-44b2-8ff7-9aef92e6d358"
+      }
+    },
+    {
+      "name": "G18 effect published as new event, original retained",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "G19 prepared artifact locks generic speed slider",
+      "passed": true,
+      "detail": {
+        "prePostGetDelivered": true,
+        "staleGetRejected": true
+      }
+    },
+    {
+      "name": "G19B prepared speed label explains fixed100",
+      "passed": true,
+      "detail": {
+        "scope": "whole render after menu/layout decorators; prepared A/B locks global speed, preserved legacy C does not",
+        "mutatingPostDelta": 0,
+        "legacyNotOperational": true
+      }
+    },
+    {
+      "name": "G20 un-decoded image does not enable IN",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "G21 needle confirms decoded fresh image",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "G21B rendered pixels prove requested Cam1/frame120 before MARK_IN",
+      "passed": true,
+      "detail": {
+        "rgb": [
+          57,
+          91,
+          135
+        ],
+        "frameNumber": 120,
+        "width": 320,
+        "height": 180
+      }
+    },
+    {
+      "name": "G22 INOUT derive confirmed displayed cursors",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "G23 at most active+latest pending scrub",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "G23B displayed pixels discard older coalesced cursor",
+      "passed": true,
+      "detail": {
+        "rgb": [
+          57,
+          91,
+          135
+        ],
+        "frameNumber": 240,
+        "width": 320,
+        "height": 180
+      }
+    },
+    {
+      "name": "G23D camera change cannot enable IN before image decode",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "G23C camera swap reflected by displayed pixels not status text",
+      "passed": true,
+      "detail": {
+        "rgb": [
+          135,
+          99,
+          57
+        ],
+        "frameNumber": 240,
+        "width": 320,
+        "height": 180
+      }
+    },
+    {
+      "name": "G24 old session response never confirms old frame",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "G26 compact widgets exist at target viewport",
+      "passed": true,
+      "detail": {
+        "scope": "shared template/controller in own isolated dock adapter, not whole operator Mesa; declared MOCK C/D rejection not actual Disk proof",
+        "unsupported": [
+          {
+            "status": 400,
+            "body": {
+              "success": false,
+              "error": "Only Replay A/B supported"
+            }
+          },
+          {
+            "status": 400,
+            "body": {
+              "success": false,
+              "error": "Only Replay A/B supported"
+            }
+          }
+        ],
+        "dockShared": true,
+        "navigationMutatingDelta": 0
+      }
+    },
+    {
+      "name": "G25 pagehide sends no mutating POST",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "G27 own Edge actual cooperative exit CIM0",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "G28 exact source pins unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "G29 mock server cooperative close",
+      "passed": true,
+      "detail": null
+    }
+  ],
+  "screenshots": [
+    "replay-confirmed-cam2-frame240-before-scope-reset.png",
+    "replay-playlist-ui-1280x900.png",
+    "replay-playlist-ui-700x540.png",
+    "replay-curve-ui-700x540.png",
+    "replay-needle-scope-reset-ui-700x540.png",
+    "replay-common-mesa-style-dock-700x540.png"
+  ],
+  "postLedger": [
+    {
+      "action": "history",
+      "data": {
+        "action": "history"
+      },
+      "at": 1791778536237
+    },
+    {
+      "action": "playlist-save",
+      "data": {
+        "action": "playlist-save",
+        "definition": {
+          "name": "QA ordem preservada",
+          "endMode": "HOLD",
+          "items": [
+            {
+              "eventId": "10000000-0000-4000-8000-000000000001",
+              "cam": "Cam 1",
+              "transition": {
+                "type": "FADE",
+                "durationMs": 400
+              }
+            },
+            {
+              "eventId": "10000000-0000-4000-8000-000000000002",
+              "cam": "Cam 2",
+              "transition": {
+                "type": "CUT",
+                "durationMs": 0
+              }
+            }
+          ]
+        }
+      },
+      "at": 1791778538074
+    },
+    {
+      "action": "playlist-prepare",
+      "data": {
+        "action": "playlist-prepare",
+        "id": "efb47961-ac5f-4459-8c19-803311a25a2f",
+        "player": "A",
+        "operationId": "41b96284-aa45-4a81-800e-1325592143be"
+      },
+      "at": 1791778538160
+    },
+    {
+      "action": "playlist-stop",
+      "data": {
+        "action": "playlist-stop",
+        "operationId": "41b96284-aa45-4a81-800e-1325592143be"
+      },
+      "at": 1791778538169
+    },
+    {
+      "action": "playlist-prepare",
+      "data": {
+        "action": "playlist-prepare",
+        "id": "efb47961-ac5f-4459-8c19-803311a25a2f",
+        "player": "A",
+        "operationId": "aa7ca108-fa3c-4fee-9607-ec96d607d398"
+      },
+      "at": 1791778540480
+    },
+    {
+      "action": "playlist-stop",
+      "data": {
+        "action": "playlist-stop",
+        "operationId": "aa7ca108-fa3c-4fee-9607-ec96d607d398"
+      },
+      "at": 1791778542886
+    },
+    {
+      "action": "history",
+      "data": {
+        "action": "history"
+      },
+      "at": 1791778542892
+    },
+    {
+      "action": "playlist-prepare",
+      "data": {
+        "action": "playlist-prepare",
+        "id": "efb47961-ac5f-4459-8c19-803311a25a2f",
+        "player": "A",
+        "operationId": "ec2964d2-ef20-4782-afca-0ae8ad389231"
+      },
+      "at": 1791778544042
+    },
+    {
+      "action": "playlist-prepare",
+      "data": {
+        "action": "playlist-prepare",
+        "id": "efb47961-ac5f-4459-8c19-803311a25a2f",
+        "player": "A",
+        "operationId": "78e11ed0-f08e-49a7-b24e-8a4e621b564c"
+      },
+      "at": 1791778545362
+    },
+    {
+      "action": "playlist-start",
+      "data": {
+        "action": "playlist-start"
+      },
+      "at": 1791778546679
+    },
+    {
+      "action": "playlist-stop",
+      "data": {
+        "action": "playlist-stop"
+      },
+      "at": 1791778547835
+    },
+    {
+      "action": "playlist-save",
+      "data": {
+        "action": "playlist-save",
+        "definition": {
+          "name": "QA ordem preservada",
+          "endMode": "LIVE",
+          "items": [
+            {
+              "eventId": "10000000-0000-4000-8000-000000000001",
+              "cam": "Cam 1",
+              "transition": {
+                "type": "FADE",
+                "durationMs": 400
+              }
+            },
+            {
+              "eventId": "10000000-0000-4000-8000-000000000002",
+              "cam": "Cam 2",
+              "transition": {
+                "type": "CUT",
+                "durationMs": 0
+              }
+            }
+          ],
+          "id": "efb47961-ac5f-4459-8c19-803311a25a2f",
+          "version": 1
+        }
+      },
+      "at": 1791778547924
+    },
+    {
+      "action": "playlist-prepare",
+      "data": {
+        "action": "playlist-prepare",
+        "id": "efb47961-ac5f-4459-8c19-803311a25a2f",
+        "player": "A",
+        "operationId": "81aaa783-a66d-4a3d-b8d8-46ecf637fb9d"
+      },
+      "at": 1791778548010
+    },
+    {
+      "action": "history",
+      "data": {
+        "action": "history"
+      },
+      "at": 1791778549208
+    },
+    {
+      "action": "playlist-start",
+      "data": {
+        "action": "playlist-start"
+      },
+      "at": 1791778549327
+    },
+    {
+      "action": "playlist-stop",
+      "data": {
+        "action": "playlist-stop"
+      },
+      "at": 1791778550485
+    },
+    {
+      "action": "curve-prepare",
+      "data": {
+        "action": "curve-prepare",
+        "requestId": "f5251dde-d38a-4a3f-ab5c-19aed54218bc",
+        "eventId": "10000000-0000-4000-8000-000000000001",
+        "cam": "Cam 2",
+        "points": [
+          {
+            "position": 0,
+            "speed": 2
+          },
+          {
+            "position": 1,
+            "speed": 0.5
+          }
+        ],
+        "audioMode": "silence",
+        "audioAcknowledged": true
+      },
+      "at": 1791778552958
+    },
+    {
+      "action": "curve-cancel",
+      "data": {
+        "action": "curve-cancel",
+        "jobId": "261359c8-0d1a-4098-8bea-b6f1e0ac9145"
+      },
+      "at": 1791778554814
+    },
+    {
+      "action": "history",
+      "data": {
+        "action": "history"
+      },
+      "at": 1791778555209
+    },
+    {
+      "action": "curve-prepare",
+      "data": {
+        "action": "curve-prepare",
+        "requestId": "fbabb1db-bdcf-4027-8bf6-8f67f2754c69",
+        "eventId": "10000000-0000-4000-8000-000000000001",
+        "cam": "Cam 2",
+        "points": [
+          {
+            "position": 0,
+            "speed": 2
+          },
+          {
+            "position": 1,
+            "speed": 0.5
+          }
+        ],
+        "audioMode": "silence",
+        "audioAcknowledged": true
+      },
+      "at": 1791778555969
+    },
+    {
+      "action": "curve-cancel",
+      "data": {
+        "action": "curve-cancel",
+        "jobId": "7a1b8d47-391f-4b3b-9251-ffa78ecd4644"
+      },
+      "at": 1791778558440
+    },
+    {
+      "action": "curve-prepare",
+      "data": {
+        "action": "curve-prepare",
+        "requestId": "43871d08-df77-4606-a913-672107bdd496",
+        "eventId": "10000000-0000-4000-8000-000000000001",
+        "cam": "Cam 2",
+        "points": [
+          {
+            "position": 0,
+            "speed": 2
+          },
+          {
+            "position": 1,
+            "speed": 0.5
+          }
+        ],
+        "audioMode": "silence",
+        "audioAcknowledged": true
+      },
+      "at": 1791778559596
+    },
+    {
+      "action": "history",
+      "data": {
+        "action": "history"
+      },
+      "at": 1791778562208
+    },
+    {
+      "action": "curve-cancel",
+      "data": {
+        "action": "curve-cancel",
+        "jobId": "6018e6b3-de60-4ca5-b154-b4cdfdd5609e"
+      },
+      "at": 1791778562477
+    },
+    {
+      "action": "curve-cancel",
+      "data": {
+        "action": "curve-cancel",
+        "jobId": "6018e6b3-de60-4ca5-b154-b4cdfdd5609e"
+      },
+      "at": 1791778564863
+    },
+    {
+      "action": "curve-prepare",
+      "data": {
+        "action": "curve-prepare",
+        "requestId": "9af4822a-9099-44b2-8ff7-9aef92e6d358",
+        "eventId": "10000000-0000-4000-8000-000000000001",
+        "cam": "Cam 2",
+        "points": [
+          {
+            "position": 0,
+            "speed": 2
+          },
+          {
+            "position": 1,
+            "speed": 0.5
+          }
+        ],
+        "audioMode": "silence",
+        "audioAcknowledged": true
+      },
+      "at": 1791778566099
+    },
+    {
+      "action": "history",
+      "data": {
+        "action": "history"
+      },
+      "at": 1791778568210
+    },
+    {
+      "action": "curve-cancel",
+      "data": {
+        "action": "curve-cancel",
+        "jobId": "f140877d-81fc-4044-96c0-a3f29e5e54f7"
+      },
+      "at": 1791778568489
+    },
+    {
+      "action": "curve-prepare",
+      "data": {
+        "action": "curve-prepare",
+        "requestId": "c493621b-b429-4d66-bb9e-2fcca6df8b90",
+        "eventId": "10000000-0000-4000-8000-000000000001",
+        "cam": "Cam 2",
+        "points": [
+          {
+            "position": 0,
+            "speed": 2
+          },
+          {
+            "position": 1,
+            "speed": 0.5
+          }
+        ],
+        "audioMode": "silence",
+        "audioAcknowledged": true
+      },
+      "at": 1791778569643
+    },
+    {
+      "action": "load",
+      "data": {
+        "action": "load",
+        "player": "A",
+        "eventId": "814a16be-00ac-492c-9976-edb674c2e32e",
+        "cam": "Cam 2"
+      },
+      "at": 1791778572267
+    },
+    {
+      "action": "history",
+      "data": {
+        "action": "history"
+      },
+      "at": 1791778575207
+    },
+    {
+      "action": "history-frame",
+      "data": {
+        "action": "history-frame",
+        "sessionId": "qa-session-1",
+        "cam": "Cam 1",
+        "cursor": 4
+      },
+      "at": 1791778579163
+    },
+    {
+      "action": "history-pin",
+      "data": {
+        "action": "history-pin",
+        "sessionId": "qa-session-1",
+        "start": 4,
+        "end": 30
+      },
+      "at": 1791778579668
+    },
+    {
+      "action": "history-frame",
+      "data": {
+        "action": "history-frame",
+        "sessionId": "qa-session-1",
+        "cam": "Cam 1",
+        "cursor": 5
+      },
+      "at": 1791778579669
+    },
+    {
+      "action": "history-pin",
+      "data": {
+        "action": "history-pin",
+        "sessionId": "qa-session-1",
+        "start": 4,
+        "end": 5
+      },
+      "at": 1791778580488
+    },
+    {
+      "action": "history-frame",
+      "data": {
+        "action": "history-frame",
+        "sessionId": "qa-session-1",
+        "cam": "Cam 1",
+        "cursor": 6
+      },
+      "at": 1791778580490
+    },
+    {
+      "action": "history-frame",
+      "data": {
+        "action": "history-frame",
+        "sessionId": "qa-session-1",
+        "cam": "Cam 1",
+        "cursor": 8
+      },
+      "at": 1791778580993
+    },
+    {
+      "action": "history",
+      "data": {
+        "action": "history"
+      },
+      "at": 1791778581207
+    },
+    {
+      "action": "history-frame",
+      "data": {
+        "action": "history-frame",
+        "sessionId": "qa-session-1",
+        "cam": "Cam 2",
+        "cursor": 8
+      },
+      "at": 1791778581627
+    },
+    {
+      "action": "history-frame",
+      "data": {
+        "action": "history-frame",
+        "sessionId": "qa-session-1",
+        "cam": "Cam 2",
+        "cursor": 9
+      },
+      "at": 1791778582238
+    },
+    {
+      "action": "history-refresh",
+      "data": {
+        "action": "history-refresh"
+      },
+      "at": 1791778582393
+    },
+    {
+      "action": "load",
+      "data": {
+        "action": "load",
+        "player": "C",
+        "eventId": "10000000-0000-4000-8000-000000000001",
+        "cam": "Cam 1"
+      },
+      "at": 1791778583205
+    },
+    {
+      "action": "load",
+      "data": {
+        "action": "load",
+        "player": "D",
+        "eventId": "10000000-0000-4000-8000-000000000001",
+        "cam": "Cam 1"
+      },
+      "at": 1791778583208
+    },
+    {
+      "action": "history",
+      "data": {
+        "action": "history"
+      },
+      "at": 1791778583276
+    }
+  ],
+  "readOnlyPostCount": 16,
+  "mutatingPostCount": 28,
+  "pinsBefore": [
+    {
+      "path": "fechar-janela.js",
+      "sha256": "c8f9191511034f54d2b6435fa4ab25770eff6814c882e7f47c2351a89c9867af",
+      "bytes": 1276
+    },
+    {
+      "path": "MESA-EXACT-PATCHES.json",
+      "sha256": "4cc75f9a37f6b02750a39ef3f8c0bc2a7c674073bc905dfaf520995ab6914590",
+      "bytes": 13638
+    },
+    {
+      "path": "mesa.html",
+      "sha256": "d0efc30c235a0d6973da7f0523b79473c1513b111dd00ec09e0d5ff8fc6f2c96",
+      "bytes": 256367
+    },
+    {
+      "path": "replay-dock-console.css",
+      "sha256": "2013ef340c0928419ecbdca83a745c0823cb590f430287523f1c1cdffd7d8bc2",
+      "bytes": 5594
+    },
+    {
+      "path": "replay-dock-console.js",
+      "sha256": "5539435c600d9e91926ac4820ab6fff7b9a83ac362f0457ef8788c84e0a4e2e7",
+      "bytes": 65724
+    },
+    {
+      "path": "replay.html",
+      "sha256": "53b61894c64f5becbec4c25217bdc37cb2912785bd075ae73d71a9901e1865d2",
+      "bytes": 975
+    },
+    {
+      "path": "replay.js",
+      "sha256": "72b2f842d2cf348f00ae69054afdbe75237d91875310283aff0d7ebd88fb6759",
+      "bytes": 1258
+    },
+    {
+      "path": "run-test-replay-common-dom-r9-diagnostic.mjs",
+      "sha256": "07666b4eb6ecf6fc64d1f91410a97771fb284e1478dc2bc27e882dd61b48c3ff",
+      "bytes": 53235
+    },
+    {
+      "path": "SOURCE-REVIEW.md",
+      "sha256": "d3586b0184897cd8d6290c4afeab618aba279c32cac8dc17d7399b6614810ecf",
+      "bytes": 10116
+    },
+    {
+      "path": "test-host-admission-r2.mjs",
+      "sha256": "182ecab4e57205554f32781c726f1a06669bdd9aa2e07bd3ad71f578b773ad5c",
+      "bytes": 4519
+    },
+    {
+      "path": "test-media-event-lifecycle-r2.mjs",
+      "sha256": "74b093f7bb1694d2bec62b092dbc6751da60f0b66ee2f436d189372c4ca5d363",
+      "bytes": 3850
+    }
+  ],
+  "pinsAfter": [
+    {
+      "path": "fechar-janela.js",
+      "sha256": "c8f9191511034f54d2b6435fa4ab25770eff6814c882e7f47c2351a89c9867af",
+      "bytes": 1276
+    },
+    {
+      "path": "MESA-EXACT-PATCHES.json",
+      "sha256": "4cc75f9a37f6b02750a39ef3f8c0bc2a7c674073bc905dfaf520995ab6914590",
+      "bytes": 13638
+    },
+    {
+      "path": "mesa.html",
+      "sha256": "d0efc30c235a0d6973da7f0523b79473c1513b111dd00ec09e0d5ff8fc6f2c96",
+      "bytes": 256367
+    },
+    {
+      "path": "replay-dock-console.css",
+      "sha256": "2013ef340c0928419ecbdca83a745c0823cb590f430287523f1c1cdffd7d8bc2",
+      "bytes": 5594
+    },
+    {
+      "path": "replay-dock-console.js",
+      "sha256": "5539435c600d9e91926ac4820ab6fff7b9a83ac362f0457ef8788c84e0a4e2e7",
+      "bytes": 65724
+    },
+    {
+      "path": "replay.html",
+      "sha256": "53b61894c64f5becbec4c25217bdc37cb2912785bd075ae73d71a9901e1865d2",
+      "bytes": 975
+    },
+    {
+      "path": "replay.js",
+      "sha256": "72b2f842d2cf348f00ae69054afdbe75237d91875310283aff0d7ebd88fb6759",
+      "bytes": 1258
+    },
+    {
+      "path": "run-test-replay-common-dom-r9-diagnostic.mjs",
+      "sha256": "07666b4eb6ecf6fc64d1f91410a97771fb284e1478dc2bc27e882dd61b48c3ff",
+      "bytes": 53235
+    },
+    {
+      "path": "SOURCE-REVIEW.md",
+      "sha256": "d3586b0184897cd8d6290c4afeab618aba279c32cac8dc17d7399b6614810ecf",
+      "bytes": 10116
+    },
+    {
+      "path": "test-host-admission-r2.mjs",
+      "sha256": "182ecab4e57205554f32781c726f1a06669bdd9aa2e07bd3ad71f578b773ad5c",
+      "bytes": 4519
+    },
+    {
+      "path": "test-media-event-lifecycle-r2.mjs",
+      "sha256": "74b093f7bb1694d2bec62b092dbc6751da60f0b66ee2f436d189372c4ca5d363",
+      "bytes": 3850
+    }
+  ],
+  "browser": {
+    "requestedClose": true,
+    "mainPid": 40072,
+    "mainPidAbsent": true,
+    "profileCount": 0,
+    "actualClosed": true,
+    "spawnHandleClosed": true,
+    "errors": [],
+    "profile": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-CommonUI-DOM-R9-Root1\\FreeMix-QA-Profile-ReplayCombined-2cfa5f95-6809-43eb-9e83-01eda2e313a6",
+    "cdpPort": 56862,
+    "executable": "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe",
+    "executableSHA": "4bb4545b4ab80a3cf463a588ce570ca42de38fe6db16e3baeb0798ac75b4648b"
+  },
+  "server": {
+    "actualClosed": true,
+    "port": 56861
+  },
+  "errors": [],
+  "finishedAt": "2026-10-12T04:16:25.787Z",
+  "summary": {
+    "total": 36,
+    "passed": 36,
+    "failed": 0
+  }
+}

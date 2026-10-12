@@ -1,0 +1,72 @@
+{
+  "observedUtc": "2026-10-12T04:37:47.111Z",
+  "scope": "MOCK_API_REAL_DOM_ONLY_SYNTHETIC_IMAGES",
+  "status": "PASS_DOM36_MONITOR36_CAPTURE13_NOT_NATIVE_NOT_INSTALLED",
+  "receipts": [
+    {
+      "name": "receipt-common-dom-r9-diagnostic.json",
+      "sha256": "23d504482eb54ba43cea547d885470b12f8a927ddd7229b5be4333f784a8ea3a",
+      "summary": {
+        "total": 36,
+        "passed": 36,
+        "failed": 0
+      },
+      "ownPid": 40072,
+      "mainPidAbsent": true,
+      "profileCount": 0,
+      "sourcePinsSame": true,
+      "nativeStarted": false
+    },
+    {
+      "name": "receipt-common-dom-r13-monitor.json",
+      "sha256": "c14f2b1cdf41aad0bae0cb9f227e8155be317355c13c6f2a7a3bc5d96504f12b",
+      "summary": {
+        "total": 36,
+        "passed": 36,
+        "failed": 0
+      },
+      "ownPid": 49144,
+      "mainPidAbsent": true,
+      "profileCount": 0,
+      "sourcePinsSame": true,
+      "nativeStarted": false
+    },
+    {
+      "name": "receipt-common-capture-r1.json",
+      "sha256": "dfc34702247c794b289fb49088ab2b1925d573abb8dfd3134a759709cd7a9e0d",
+      "summary": {
+        "total": 13,
+        "passed": 13,
+        "failed": 0
+      },
+      "ownPid": 158944,
+      "mainPidAbsent": true,
+      "profileCount": 0,
+      "sourcePinsSame": true,
+      "nativeStarted": false
+    }
+  ],
+  "images": [
+    {
+      "name": "standalone-700x540-both-decks-history-confirmed.png",
+      "sha256": "29f2d0036532b48236f805ea4eb0ca024d74729a7586ac0b98aa85891a93b7df"
+    },
+    {
+      "name": "standalone-1200x760-both-decks-history-confirmed.png",
+      "sha256": "00c34b931fb23b15a9942ffdb6681a5e51cf2512de217c7855829590c6d0ac85"
+    },
+    {
+      "name": "dock-700x540-both-decks-history-confirmed.png",
+      "sha256": "2c7312a4b93aa42e5d74b971b8118122f7785e528aec107b65e43f8db0ebc142"
+    },
+    {
+      "name": "dock-1200x760-both-decks-history-confirmed.png",
+      "sha256": "cff32a65aeb014bbbc65448f0fbdcb2bcdf5ad872149e0903c25402466d0f954"
+    }
+  ],
+  "mesaCanonicalChanged": false,
+  "operatorChanged": false,
+  "sourceIntegrated": false,
+  "packageIncluded": false,
+  "visualOwnerApproval": false
+}
