@@ -1,3 +1,13 @@
+<!-- replay-combined-final-root-20261012 -->
+## Replay — backend combinado qualificado na bancada; Native/CEF é o próximo gate
+
+O snapshot final de168 fontes passou9 contratos de fechamento aguardável,3 contratos usando o descarte real do Disk com filas simuladas,4 verificações de gravação atômica em pasta própria e15 contratos do controlador de listas. A fila de metadados aceita termina antes do encerramento da sessão/conexão; somente gravação atômica bem-sucedida do escopo atual marca recuperação como alterada. Navegação e publicação de status não marcam alterações.
+
+A execução seguinte passou **16/16 com FFmpeg real e vídeo/PCM estéreo sintéticos**, através do Disk combinado e com OBS declarado como mock. CUT/FADE400ms, pixels e mistura PCM, ordem/IDs, carga pausada100%, nonce sem segundo render, cancelamento e mudança de escopo foram exercitados.51 identidades próprias ausentes por CIM,168 pinos intactos e descarte das ferramentas/filas confirmado. [Recibos e limites](evidencias/20261012-replay-combinado-final-root/ROOT-RECEIPT.json). Falhas anteriores continuam preservadas.
+
+**Não instalado, não incluído no pacote e ainda sem PASS Native/CEF.** O desenho da Mesa permanece a referência comum para a janela; agulha e previews A/B já têm provas de navegador simuladas, mas os quadros reaisNative39, persistência/autosave60s, permanência sem mutações, reinício e fechamento cooperativo ainda dependem do roteiro finito em revisão. Nenhuma alteração no operador. Codec e montador de pacote seguem em autoria/revisão externa; nenhuma bancada de codec ou novo payload foi executado. Prazo12/10 às19hBRT mantido.
+
+---
 <!-- replay-common-ui-dom-root-20261012 -->
 ## Replay — mesma interface Mesa/janela, agulha e dois previews passaram no navegador
 

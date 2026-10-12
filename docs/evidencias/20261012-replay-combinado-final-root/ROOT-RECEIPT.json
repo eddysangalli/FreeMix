@@ -1,0 +1,57 @@
+{
+  "observedUtc": "2026-10-12T05:23:31.395Z",
+  "status": "PASS_CPU9_DISPOSE3_OWNFS4_PLAYLIST15_REAL16_NOT_NATIVE_NOT_INSTALLED",
+  "scope": "REAL_FFMPEG_SYNTHETIC_WHOLE_PLAYLIST_DISK_DECLARED_OBS_MOCK_NO_NATIVE",
+  "sourceManifest": "1098dd2bc1b845a78bddb94655eafb2d4bc310bd0f8c9286578ae278ce14e445",
+  "sourceFiles": 168,
+  "sourcePinsSame": true,
+  "ownedOriginalProcessIdentitiesAbsent": 51,
+  "actualMediaGates": 16,
+  "actualClosures": [
+    {
+      "actualClosed": true,
+      "pending": [],
+      "noForce": true,
+      "preflightBusy": false,
+      "readingFiles": [],
+      "ledgerFile": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Final-Replay-Root-Snapshot-R1\\FreeMix-QA-Combined-Playlist-R12-fcf0ad9c-895a-4df6-bb7f-68e3a5207b40\\FreeMix-QA-Playlist-Fixtures-eb835075-c77a-443b-b158-2423a98f1df4\\REPLAY-WORKER-LEDGER-5ab5d2d3-a34e-4a41-ac6f-787e1f2bef2b.json",
+      "ledgerError": null
+    },
+    {
+      "disposed": true,
+      "queueQuiescent": true,
+      "cadenceQuiescent": true,
+      "playerPreview": {
+        "closed": true,
+        "pending": false,
+        "nativePending": false,
+        "nativeCompletionUnknown": false,
+        "player": null
+      }
+    },
+    {
+      "actualClosed": true,
+      "pending": [],
+      "outstanding": 0,
+      "reading": []
+    }
+  ],
+  "proofs": [
+    {
+      "name": "ROOT-CPU-FS-EXECUTION-RECEIPT.json",
+      "sha256": "622acca16b2a4fc233ef763384666929eb34b23c6fa4754b713a675fa8d93325"
+    },
+    {
+      "name": "receipt-combined-playlist.json",
+      "sha256": "b709ae8ea4743c44df3c66f4221c0f5a593b4a2d4210c2bc23fa7b23de537546"
+    },
+    {
+      "name": "ROOT-POST-OBSERVATION.json",
+      "sha256": "bc2dce34779516529f30ae10e6f66fca7f8ae6bb82333ac4ff4122cfa7661dc5"
+    }
+  ],
+  "sourceIntegrated": false,
+  "nativeStarted": false,
+  "operatorChanged": false,
+  "packageIncluded": false
+}

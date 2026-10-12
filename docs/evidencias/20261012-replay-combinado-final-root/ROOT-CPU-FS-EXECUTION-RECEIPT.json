@@ -1,0 +1,50 @@
+{
+  "observedUtc": "2026-10-12T05:12:07.977Z",
+  "status": "PASS_EXECUTED_CLOSURE_CPU9_DISPOSE3_OWNFS4_PLAYLIST15",
+  "scope": "CPU_INJECTED_AND_OWN_FILESYSTEM_NO_NATIVE",
+  "sourceManifest": "1098dd2bc1b845a78bddb94655eafb2d4bc310bd0f8c9286578ae278ce14e445",
+  "results": [
+    {
+      "status": "fulfilled",
+      "value": {
+        "chunk_id": "d24ff9",
+        "wall_time_seconds": 0.000012,
+        "exit_code": 0,
+        "original_token_count": 177,
+        "output": "PASS inert construction and exact idempotent stop promise\nPASS held owned tool prevents session and transport until settled\nPASS caller deadline keeps pending registry and actual future settlement\nPASS Native read still pending blocks connection closure\nPASS unknown GPU completion never becomes closed from empty tool promises\nPASS failed tool disposal cannot close transport or discard failed identity\nPASS public failure receipts omit raw private exception text\nPASS constructor rejection is inert\nPASS metadata save marks only own current namespace scope, never stale read context\n{\"status\":\"PASS_IF_ROOT_EXECUTED_ALL_ASSERTIONS\",\"gates\":9,\"scope\":\"PURE_CPU_INJECTED_CLOSURES_METADATA_NO_NATIVE_NO_IO\"}\n"
+      }
+    },
+    {
+      "status": "fulfilled",
+      "value": {
+        "chunk_id": "c55860",
+        "wall_time_seconds": 0.0000123,
+        "exit_code": 0,
+        "original_token_count": 115,
+        "output": "PASS actual dispose closes admission first but does not finish before accepted metadata queue\nPASS API session/OBS closure follows actual accepted queue and dirty callback\nPASS tool retirement and queued publication settle concurrently without queue self-deadlock\n{\"status\":\"PASS_IF_ROOT_EXECUTED_ALL_ASSERTIONS\",\"gates\":3,\"scope\":\"ACTUAL_DISPOSE_CODE_DECLARED_FAKE_QUEUE_CLOSURES_READ_SOURCE_ONLY\",\"native\":false,\"processes\":false,\"filesystemWrites\":false}\n"
+      }
+    },
+    {
+      "status": "fulfilled",
+      "value": {
+        "chunk_id": "49f261",
+        "wall_time_seconds": 0.0000071,
+        "exit_code": 0,
+        "original_token_count": 85,
+        "output": "{\"status\":\"PASS_IF_ROOT_EXECUTED_ALL_ASSERTIONS\",\"scope\":\"OWN_METADATA_FILESYSTEM_ONLY\",\"gates\":4,\"atomicBeforeDirty\":true,\"broadcastDoesNotDirty\":true,\"failedSaveDoesNotDirty\":true,\"staleScopeDoesNotDirty\":true,\"native\":false,\"mediaTools\":false,\"ownRoot\":\"D:\\\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\\\FreeMix-QA-Atomic-Save-Final-R1\"}\n"
+      }
+    },
+    {
+      "status": "fulfilled",
+      "value": {
+        "chunk_id": "61eb93",
+        "wall_time_seconds": 0.2077855,
+        "exit_code": 0,
+        "original_token_count": 382,
+        "output": "PASS constructor/status are inert, bounded and disclose no path or raw collection\nPASS accepted active UUID/definition/deck/scope correlate before ACK, without status side effects\nPASS genuine completed result UUID is exposed and same nonce replay never duplicates job/event/load\nPASS completed receipt becomes invalidated when actual current state/scope no longer admits it\nPASS current definition mismatch never serializes a generic READY receipt\nPASS early cancellation UUID tombstone is actual, has unknown definition/deck and starts no job\nPASS active cancellation stays CANCELLING until held fake worker has settled\nPASS pending close is never relabeled CANCELLED from promise rejection; status remains pure\nPASS failed accepted request has exact UUID and no fabricated event/path\nPASS receipt history and cancellation tombstones remain bounded64 through actual requests\nPASS accepted active cancellation UUID cannot restart after actual mock settlement or clock advance\nPASS provider closure unknown cannot serialize settled cancellation as closed/CANCELLED\nPASS provider quiescence true before promise settlement cannot declare cancellation completed\nPASS known pending provider cannot claim closure or admit metadata/prepare operations after rejection\nPASS held accepted preparation scope switch retains cancellation ownership and nonce across ten-minute retry\n{\"scope\":\"PURE_CPU_MOCK_ENGINE_MEDIA_STATUS_ONLY\",\"tests\":15,\"status\":\"PASS_IF_ROOT_EXECUTED_ALL_ASSERTIONS\",\"native\":false,\"processes\":false,\"fileIO\":false}\n"
+      }
+    }
+  ],
+  "nativeStarted": false,
+  "operatorChanged": false
+}

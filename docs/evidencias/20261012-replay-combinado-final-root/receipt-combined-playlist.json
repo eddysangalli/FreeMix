@@ -1,0 +1,3253 @@
+{
+  "format": 1,
+  "root": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Final-Replay-Root-Snapshot-R1\\FreeMix-QA-Combined-Playlist-R12-fcf0ad9c-895a-4df6-bb7f-68e3a5207b40",
+  "scope": "REAL_FFMPEG_SYNTHETIC_WHOLE_PLAYLIST_DISK_DECLARED_OBS_MOCK_NO_NATIVE",
+  "result": {
+    "scope": "REAL_FFMPEG_SYNTHETIC_THROUGH_DISK_API_MOCK_OBS_NO_NATIVE_DEVICE_WAN",
+    "status": "PASS",
+    "gates": [
+      {
+        "name": "actual RGB64 / 30fps / stereo PCM synthetic saved events",
+        "pass": true
+      },
+      {
+        "name": "C/D deck commands and playlist preparations reject before tool / input / Program mutation",
+        "pass": true
+      },
+      {
+        "name": "saved playlist keeps IDs/order/CUT/400msFADE and reload is inert",
+        "pass": true
+      },
+      {
+        "name": "status navigation has zero mutations / jobs / persistent state changes",
+        "pass": true
+      },
+      {
+        "name": "actual playlist through Disk provider callback / full decoded span / off-air paused load100",
+        "pass": true
+      },
+      {
+        "name": "successful ACK retry returns same prepared event/file without rerender/publication/Native mutation",
+        "pass": true
+      },
+      {
+        "name": "actual prepared output colors prove CUT ordering and 400ms FADE pixels",
+        "pass": true
+      },
+      {
+        "name": "actual stereo PCM continuity / incoming-outgoing spectral mix / no silence gap or double peak",
+        "pass": true
+      },
+      {
+        "name": "wrong loaded speed and active nested player reject before PGM or decoder restart",
+        "pass": true
+      },
+      {
+        "name": "explicit start / real route load-state ACK / HOLD waits for mock EOS only",
+        "pass": true
+      },
+      {
+        "name": "genuine LIVE EOS repeated Stop is inert / wrong Program or scope refuses without state change",
+        "pass": true
+      },
+      {
+        "name": "manual Program takeover never retakes Replay or replaces manual scene on Stop",
+        "pass": true
+      },
+      {
+        "name": "early cancellation nonce suppresses late request / duplicate PREPARING lock survives until settlement",
+        "pass": true
+      },
+      {
+        "name": "actual post-delivery epoch cancellation cleans only unpublished own result before Native load",
+        "pass": true
+      },
+      {
+        "name": "actual provider scope rejection after finished callback returns owned cleanup capability",
+        "pass": true
+      },
+      {
+        "name": "original fixture hashes / real worker closure ledgers / status remains passive",
+        "pass": true
+      }
+    ],
+    "details": {
+      "file": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Final-Replay-Root-Snapshot-R1\\FreeMix-QA-Combined-Playlist-R12-fcf0ad9c-895a-4df6-bb7f-68e3a5207b40\\gravacoes\\replay-preparation\\FreeMix-Replay-Preparation-873a47d5-74a4-406d-a067-88711122b4dc\\playlist.mkv",
+      "prepareMetadata": {
+        "duration": 5.6,
+        "streams": [
+          {
+            "codec_type": "video",
+            "width": 320,
+            "height": 240,
+            "r_frame_rate": "30/1",
+            "avg_frame_rate": "30/1",
+            "start_time": "0.000000"
+          },
+          {
+            "codec_type": "audio",
+            "r_frame_rate": "0/0",
+            "avg_frame_rate": "0/0",
+            "start_time": "0.000000"
+          }
+        ],
+        "videoStart": 0,
+        "containerStart": 0,
+        "frameRate": "30/1",
+        "variableFrameRate": false,
+        "cadence": {
+          "method": "finite-full-decoded-pts",
+          "status": "cfr",
+          "entireFile": true,
+          "frames": 168,
+          "firstPts": 0,
+          "lastPts": 5.567,
+          "minMs": 32.999999999999474,
+          "maxMs": 34.000000000000696,
+          "irregularIntervals": 0
+        },
+        "hasVideo": true,
+        "audio": true
+      },
+      "actualHeader": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "h264",
+            "codec_type": "video",
+            "width": 320,
+            "height": 240,
+            "r_frame_rate": "30/1",
+            "avg_frame_rate": "30/1"
+          },
+          {
+            "codec_name": "pcm_s16le",
+            "codec_type": "audio",
+            "sample_rate": "48000",
+            "channels": 2,
+            "r_frame_rate": "0/0",
+            "avg_frame_rate": "0/0"
+          }
+        ],
+        "format": {
+          "duration": "5.600000"
+        }
+      },
+      "pixelSamples": [
+        {
+          "at": 1.8,
+          "rgb": [
+            252,
+            0,
+            0
+          ]
+        },
+        {
+          "at": 2.2,
+          "rgb": [
+            0,
+            0,
+            253
+          ]
+        },
+        {
+          "at": 3.5,
+          "rgb": [
+            0,
+            0,
+            253
+          ]
+        },
+        {
+          "at": 3.8,
+          "rgb": [
+            0,
+            125.40625,
+            125.40625
+          ]
+        },
+        {
+          "at": 4.1,
+          "rgb": [
+            0,
+            253.40625,
+            0
+          ]
+        },
+        {
+          "at": 5.4,
+          "rgb": [
+            0,
+            253.40625,
+            0
+          ]
+        }
+      ],
+      "pcmSamples": [
+        {
+          "at": 1.96,
+          "frames": 3840,
+          "peak": 0.17999267578125,
+          "maxChannelDelta": 0,
+          "amp440": 0.08944318986585453,
+          "amp880": 0.08960435224834863,
+          "amp660": 0.00402571987908828
+        },
+        {
+          "at": 2.08,
+          "frames": 3840,
+          "peak": 0.17999267578125,
+          "maxChannelDelta": 0,
+          "amp440": 0.0008780395392369392,
+          "amp880": 0.17989579787293053,
+          "amp660": 0.0029925086672749016
+        },
+        {
+          "at": 3.48,
+          "frames": 3840,
+          "peak": 0.17999267578125,
+          "maxChannelDelta": 0,
+          "amp440": 0.0008780395392369392,
+          "amp880": 0.17989579787293053,
+          "amp660": 0.0029925086672749016
+        },
+        {
+          "at": 3.76,
+          "frames": 3840,
+          "peak": 0.175811767578125,
+          "maxChannelDelta": 0,
+          "amp440": 0.001784909524680844,
+          "amp880": 0.0884607520595128,
+          "amp660": 0.0888459401159956
+        },
+        {
+          "at": 4.12,
+          "frames": 3840,
+          "peak": 0.17999267578125,
+          "maxChannelDelta": 0,
+          "amp440": 0.0030965454922897632,
+          "amp880": 0.0029999843454218923,
+          "amp660": 0.18019727296366964
+        }
+      ]
+    },
+    "sourcePins": [
+      {
+        "path": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Final-Replay-Root-Snapshot-R1\\FreeMix-QA-Combined-Playlist-R12-fcf0ad9c-895a-4df6-bb7f-68e3a5207b40\\FreeMix-QA-Playlist-Fixtures-eb835075-c77a-443b-b158-2423a98f1df4\\Red.mkv",
+        "bytes": 394570,
+        "sha256": "6400577e5481cffca289e70fe2aa7eb5d0512cc27a6b1eccf97dab30e36af7d7"
+      },
+      {
+        "path": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Final-Replay-Root-Snapshot-R1\\FreeMix-QA-Combined-Playlist-R12-fcf0ad9c-895a-4df6-bb7f-68e3a5207b40\\FreeMix-QA-Playlist-Fixtures-eb835075-c77a-443b-b158-2423a98f1df4\\Blue.mkv",
+        "bytes": 394330,
+        "sha256": "bcbbebbfa7b1ee1603b5f6bd6c2aa65c136ebfe9281d2491d3356b78c637fef1"
+      },
+      {
+        "path": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Final-Replay-Root-Snapshot-R1\\FreeMix-QA-Combined-Playlist-R12-fcf0ad9c-895a-4df6-bb7f-68e3a5207b40\\FreeMix-QA-Playlist-Fixtures-eb835075-c77a-443b-b158-2423a98f1df4\\Green.mkv",
+        "bytes": 394810,
+        "sha256": "fa71716361b673e6e69fc651635a3b035f58000b6d7a47bf6bc4eb5d5f8f1840"
+      }
+    ],
+    "closures": [
+      {
+        "actualClosed": true,
+        "pending": [],
+        "noForce": true,
+        "preflightBusy": false,
+        "readingFiles": [],
+        "ledgerFile": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Final-Replay-Root-Snapshot-R1\\FreeMix-QA-Combined-Playlist-R12-fcf0ad9c-895a-4df6-bb7f-68e3a5207b40\\FreeMix-QA-Playlist-Fixtures-eb835075-c77a-443b-b158-2423a98f1df4\\REPLAY-WORKER-LEDGER-5ab5d2d3-a34e-4a41-ac6f-787e1f2bef2b.json",
+        "ledgerError": null
+      }
+    ],
+    "childrenObserved": 51,
+    "failure": null,
+    "nativeRequests": [
+      {
+        "type": "GetSceneCollectionList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetSceneCollectionList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetSceneList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetSceneCollectionList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetSceneList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetSceneCollectionList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetSceneList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetSceneCollectionList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetSceneList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetSceneCollectionList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetSceneList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetInputList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetVideoSettings",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetSceneCollectionList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetSceneCollectionList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetStudioModeEnabled",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetSceneList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetSceneCollectionList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetSceneList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetInputList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "CreateScene",
+        "data": {
+          "sceneName": "REPLAY A"
+        },
+        "mutation": true
+      },
+      {
+        "type": "GetInputSettings",
+        "data": {
+          "inputName": "Replay Player A"
+        },
+        "mutation": false
+      },
+      {
+        "type": "GetSceneCollectionList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetSceneList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetInputList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "CreateInput",
+        "data": {
+          "sceneName": "REPLAY A",
+          "inputName": "Replay Player A",
+          "inputKind": "ffmpeg_source",
+          "inputSettings": {
+            "local_file": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Final-Replay-Root-Snapshot-R1\\FreeMix-QA-Combined-Playlist-R12-fcf0ad9c-895a-4df6-bb7f-68e3a5207b40\\gravacoes\\replay-preparation\\FreeMix-Replay-Preparation-873a47d5-74a4-406d-a067-88711122b4dc\\playlist.mkv",
+            "is_local_file": true,
+            "looping": false,
+            "restart_on_activate": false,
+            "close_when_inactive": false,
+            "clear_on_media_end": false,
+            "speed_percent": 100,
+            "freemix_replay_unbuffered": true
+          }
+        },
+        "mutation": true
+      },
+      {
+        "type": "GetSceneCollectionList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetSceneList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetInputList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetSourceActive",
+        "data": {
+          "sourceName": "Replay Player A"
+        },
+        "mutation": false
+      },
+      {
+        "type": "SetInputMute",
+        "data": {
+          "inputName": "Replay Player A",
+          "inputMuted": true
+        },
+        "mutation": true
+      },
+      {
+        "type": "GetSceneCollectionList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetSceneList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetInputList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetSourceActive",
+        "data": {
+          "sourceName": "Replay Player A"
+        },
+        "mutation": false
+      },
+      {
+        "type": "SetInputAudioMonitorType",
+        "data": {
+          "inputName": "Replay Player A",
+          "monitorType": "OBS_MONITORING_TYPE_NONE"
+        },
+        "mutation": true
+      },
+      {
+        "type": "GetSceneCollectionList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetSceneList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetInputList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetSourceActive",
+        "data": {
+          "sourceName": "Replay Player A"
+        },
+        "mutation": false
+      },
+      {
+        "type": "SetInputAudioTracks",
+        "data": {
+          "inputName": "Replay Player A",
+          "inputAudioTracks": {
+            "1": true,
+            "2": false,
+            "3": false,
+            "4": false,
+            "5": false,
+            "6": false
+          }
+        },
+        "mutation": true
+      },
+      {
+        "type": "GetVideoSettings",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetSceneCollectionList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetSceneList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetInputList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetSourceActive",
+        "data": {
+          "sourceName": "Replay Player A"
+        },
+        "mutation": false
+      },
+      {
+        "type": "SetSceneItemTransform",
+        "data": {
+          "sceneName": "REPLAY A",
+          "sceneItemId": 1,
+          "sceneItemTransform": {
+            "positionX": 0,
+            "positionY": 0,
+            "boundsType": "OBS_BOUNDS_SCALE_INNER",
+            "boundsWidth": 320,
+            "boundsHeight": 240,
+            "boundsAlignment": 0
+          }
+        },
+        "mutation": true
+      },
+      {
+        "type": "GetSceneCollectionList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetSceneList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetInputList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetSourceActive",
+        "data": {
+          "sourceName": "Replay Player A"
+        },
+        "mutation": false
+      },
+      {
+        "type": "SetCurrentPreviewScene",
+        "data": {
+          "sceneName": "REPLAY A"
+        },
+        "mutation": true
+      },
+      {
+        "type": "GetSceneCollectionList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetSceneList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetInputList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetSourceActive",
+        "data": {
+          "sourceName": "Replay Player A"
+        },
+        "mutation": false
+      },
+      {
+        "type": "TriggerMediaInputAction",
+        "data": {
+          "inputName": "Replay Player A",
+          "mediaAction": "OBS_WEBSOCKET_MEDIA_INPUT_ACTION_RESTART"
+        },
+        "mutation": true
+      },
+      {
+        "type": "GetMediaInputStatus",
+        "data": {
+          "inputName": "Replay Player A"
+        },
+        "mutation": false
+      },
+      {
+        "type": "GetSceneCollectionList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetSceneList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetInputList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetSourceActive",
+        "data": {
+          "sourceName": "Replay Player A"
+        },
+        "mutation": false
+      },
+      {
+        "type": "TriggerMediaInputAction",
+        "data": {
+          "inputName": "Replay Player A",
+          "mediaAction": "OBS_WEBSOCKET_MEDIA_INPUT_ACTION_PAUSE"
+        },
+        "mutation": true
+      },
+      {
+        "type": "GetMediaInputStatus",
+        "data": {
+          "inputName": "Replay Player A"
+        },
+        "mutation": false
+      },
+      {
+        "type": "GetSceneCollectionList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetSceneList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetInputList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetSourceActive",
+        "data": {
+          "sourceName": "Replay Player A"
+        },
+        "mutation": false
+      },
+      {
+        "type": "SetMediaInputCursor",
+        "data": {
+          "inputName": "Replay Player A",
+          "mediaCursor": 0
+        },
+        "mutation": true
+      },
+      {
+        "type": "GetSceneCollectionList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetMediaInputStatus",
+        "data": {
+          "inputName": "Replay Player A"
+        },
+        "mutation": false
+      },
+      {
+        "type": "GetInputSettings",
+        "data": {
+          "inputName": "Replay Player A"
+        },
+        "mutation": false
+      },
+      {
+        "type": "GetSceneList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetSceneCollectionList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetMediaInputStatus",
+        "data": {
+          "inputName": "Replay Player A"
+        },
+        "mutation": false
+      },
+      {
+        "type": "GetInputSettings",
+        "data": {
+          "inputName": "Replay Player A"
+        },
+        "mutation": false
+      },
+      {
+        "type": "GetSceneList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetSceneCollectionList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetSceneCollectionList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetInputSettings",
+        "data": {
+          "inputName": "Replay Player A"
+        },
+        "mutation": false
+      },
+      {
+        "type": "GetSceneCollectionList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetInputSettings",
+        "data": {
+          "inputName": "Replay Player A"
+        },
+        "mutation": false
+      },
+      {
+        "type": "GetSceneList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetInputList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetSourceActive",
+        "data": {
+          "sourceName": "Replay Player A"
+        },
+        "mutation": false
+      },
+      {
+        "type": "GetSceneCollectionList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetInputSettings",
+        "data": {
+          "inputName": "Replay Player A"
+        },
+        "mutation": false
+      },
+      {
+        "type": "GetSceneList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetInputList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetSourceActive",
+        "data": {
+          "sourceName": "Replay Player A"
+        },
+        "mutation": false
+      },
+      {
+        "type": "GetSceneList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetSceneList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetInputSettings",
+        "data": {
+          "inputName": "Replay Player A"
+        },
+        "mutation": false
+      },
+      {
+        "type": "GetSceneCollectionList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetSceneList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "SetCurrentProgramScene",
+        "data": {
+          "sceneName": "REPLAY A"
+        },
+        "mutation": true
+      },
+      {
+        "type": "GetSceneList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetSceneCollectionList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetSceneList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "TriggerMediaInputAction",
+        "data": {
+          "inputName": "Replay Player A",
+          "mediaAction": "OBS_WEBSOCKET_MEDIA_INPUT_ACTION_RESTART"
+        },
+        "mutation": true
+      },
+      {
+        "type": "GetMediaInputStatus",
+        "data": {
+          "inputName": "Replay Player A"
+        },
+        "mutation": false
+      },
+      {
+        "type": "GetSceneList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetInputSettings",
+        "data": {
+          "inputName": "Replay Player A"
+        },
+        "mutation": false
+      },
+      {
+        "type": "GetInputVolume",
+        "data": {
+          "inputName": "Replay Player A"
+        },
+        "mutation": false
+      },
+      {
+        "type": "GetInputMute",
+        "data": {
+          "inputName": "Replay Player A"
+        },
+        "mutation": false
+      },
+      {
+        "type": "SetInputMute",
+        "data": {
+          "inputName": "Replay Player A",
+          "inputMuted": false
+        },
+        "mutation": true
+      },
+      {
+        "type": "GetSceneCollectionList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetInputSettings",
+        "data": {
+          "inputName": "Replay Player A"
+        },
+        "mutation": false
+      },
+      {
+        "type": "GetMediaInputStatus",
+        "data": {
+          "inputName": "Replay Player A"
+        },
+        "mutation": false
+      },
+      {
+        "type": "GetInputSettings",
+        "data": {
+          "inputName": "Replay Player A"
+        },
+        "mutation": false
+      },
+      {
+        "type": "GetSceneList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetSceneCollectionList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetInputSettings",
+        "data": {
+          "inputName": "Replay Player A"
+        },
+        "mutation": false
+      },
+      {
+        "type": "GetSceneList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetMediaInputStatus",
+        "data": {
+          "inputName": "Replay Player A"
+        },
+        "mutation": false
+      },
+      {
+        "type": "GetSceneCollectionList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetInputSettings",
+        "data": {
+          "inputName": "Replay Player A"
+        },
+        "mutation": false
+      },
+      {
+        "type": "GetSceneList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "SetCurrentProgramScene",
+        "data": {
+          "sceneName": "QA Live"
+        },
+        "mutation": true
+      },
+      {
+        "type": "GetSceneList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetSceneList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetInputSettings",
+        "data": {
+          "inputName": "Replay Player A"
+        },
+        "mutation": false
+      },
+      {
+        "type": "GetInputMute",
+        "data": {
+          "inputName": "Replay Player A"
+        },
+        "mutation": false
+      },
+      {
+        "type": "SetInputMute",
+        "data": {
+          "inputName": "Replay Player A",
+          "inputMuted": true
+        },
+        "mutation": true
+      },
+      {
+        "type": "GetInputVolume",
+        "data": {
+          "inputName": "Replay Player A"
+        },
+        "mutation": false
+      },
+      {
+        "type": "GetSceneList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetMediaInputStatus",
+        "data": {
+          "inputName": "Replay Player A"
+        },
+        "mutation": false
+      },
+      {
+        "type": "GetInputSettings",
+        "data": {
+          "inputName": "Replay Player A"
+        },
+        "mutation": false
+      },
+      {
+        "type": "GetSceneList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetSceneCollectionList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetMediaInputStatus",
+        "data": {
+          "inputName": "Replay Player A"
+        },
+        "mutation": false
+      },
+      {
+        "type": "GetInputSettings",
+        "data": {
+          "inputName": "Replay Player A"
+        },
+        "mutation": false
+      },
+      {
+        "type": "GetSceneList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetSceneCollectionList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetSceneList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetInputList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetSourceActive",
+        "data": {
+          "sourceName": "Replay Player A"
+        },
+        "mutation": false
+      },
+      {
+        "type": "GetVideoSettings",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetSceneCollectionList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetSceneCollectionList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetStudioModeEnabled",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetSceneList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetInputSettings",
+        "data": {
+          "inputName": "Replay Player A"
+        },
+        "mutation": false
+      },
+      {
+        "type": "GetSceneCollectionList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetSceneList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetInputList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetSourceActive",
+        "data": {
+          "sourceName": "Replay Player A"
+        },
+        "mutation": false
+      },
+      {
+        "type": "SetInputMute",
+        "data": {
+          "inputName": "Replay Player A",
+          "inputMuted": true
+        },
+        "mutation": true
+      },
+      {
+        "type": "GetSceneCollectionList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetSceneList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetInputList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetSourceActive",
+        "data": {
+          "sourceName": "Replay Player A"
+        },
+        "mutation": false
+      },
+      {
+        "type": "SetInputSettings",
+        "data": {
+          "inputName": "Replay Player A",
+          "inputSettings": {
+            "local_file": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Final-Replay-Root-Snapshot-R1\\FreeMix-QA-Combined-Playlist-R12-fcf0ad9c-895a-4df6-bb7f-68e3a5207b40\\gravacoes\\replay-preparation\\FreeMix-Replay-Preparation-67249b83-61ff-491a-8fc4-84a28e707872\\playlist.mkv",
+            "is_local_file": true,
+            "looping": false,
+            "restart_on_activate": false,
+            "close_when_inactive": false,
+            "clear_on_media_end": false,
+            "speed_percent": 100,
+            "freemix_replay_unbuffered": true
+          }
+        },
+        "mutation": true
+      },
+      {
+        "type": "GetSceneItemList",
+        "data": {
+          "sceneName": "REPLAY A"
+        },
+        "mutation": false
+      },
+      {
+        "type": "GetSceneCollectionList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetSceneList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetInputList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetSourceActive",
+        "data": {
+          "sourceName": "Replay Player A"
+        },
+        "mutation": false
+      },
+      {
+        "type": "SetInputMute",
+        "data": {
+          "inputName": "Replay Player A",
+          "inputMuted": true
+        },
+        "mutation": true
+      },
+      {
+        "type": "GetSceneCollectionList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetSceneList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetInputList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetSourceActive",
+        "data": {
+          "sourceName": "Replay Player A"
+        },
+        "mutation": false
+      },
+      {
+        "type": "SetInputAudioMonitorType",
+        "data": {
+          "inputName": "Replay Player A",
+          "monitorType": "OBS_MONITORING_TYPE_NONE"
+        },
+        "mutation": true
+      },
+      {
+        "type": "GetSceneCollectionList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetSceneList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetInputList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetSourceActive",
+        "data": {
+          "sourceName": "Replay Player A"
+        },
+        "mutation": false
+      },
+      {
+        "type": "SetInputAudioTracks",
+        "data": {
+          "inputName": "Replay Player A",
+          "inputAudioTracks": {
+            "1": true,
+            "2": false,
+            "3": false,
+            "4": false,
+            "5": false,
+            "6": false
+          }
+        },
+        "mutation": true
+      },
+      {
+        "type": "GetVideoSettings",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetSceneCollectionList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetSceneList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetInputList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetSourceActive",
+        "data": {
+          "sourceName": "Replay Player A"
+        },
+        "mutation": false
+      },
+      {
+        "type": "SetSceneItemTransform",
+        "data": {
+          "sceneName": "REPLAY A",
+          "sceneItemId": 1,
+          "sceneItemTransform": {
+            "positionX": 0,
+            "positionY": 0,
+            "boundsType": "OBS_BOUNDS_SCALE_INNER",
+            "boundsWidth": 320,
+            "boundsHeight": 240,
+            "boundsAlignment": 0
+          }
+        },
+        "mutation": true
+      },
+      {
+        "type": "GetSceneCollectionList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetSceneList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetInputList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetSourceActive",
+        "data": {
+          "sourceName": "Replay Player A"
+        },
+        "mutation": false
+      },
+      {
+        "type": "SetCurrentPreviewScene",
+        "data": {
+          "sceneName": "REPLAY A"
+        },
+        "mutation": true
+      },
+      {
+        "type": "GetSceneCollectionList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetSceneList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetInputList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetSourceActive",
+        "data": {
+          "sourceName": "Replay Player A"
+        },
+        "mutation": false
+      },
+      {
+        "type": "TriggerMediaInputAction",
+        "data": {
+          "inputName": "Replay Player A",
+          "mediaAction": "OBS_WEBSOCKET_MEDIA_INPUT_ACTION_RESTART"
+        },
+        "mutation": true
+      },
+      {
+        "type": "GetMediaInputStatus",
+        "data": {
+          "inputName": "Replay Player A"
+        },
+        "mutation": false
+      },
+      {
+        "type": "GetSceneCollectionList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetSceneList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetInputList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetSourceActive",
+        "data": {
+          "sourceName": "Replay Player A"
+        },
+        "mutation": false
+      },
+      {
+        "type": "TriggerMediaInputAction",
+        "data": {
+          "inputName": "Replay Player A",
+          "mediaAction": "OBS_WEBSOCKET_MEDIA_INPUT_ACTION_PAUSE"
+        },
+        "mutation": true
+      },
+      {
+        "type": "GetMediaInputStatus",
+        "data": {
+          "inputName": "Replay Player A"
+        },
+        "mutation": false
+      },
+      {
+        "type": "GetSceneCollectionList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetSceneList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetInputList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetSourceActive",
+        "data": {
+          "sourceName": "Replay Player A"
+        },
+        "mutation": false
+      },
+      {
+        "type": "SetMediaInputCursor",
+        "data": {
+          "inputName": "Replay Player A",
+          "mediaCursor": 0
+        },
+        "mutation": true
+      },
+      {
+        "type": "GetSceneCollectionList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetMediaInputStatus",
+        "data": {
+          "inputName": "Replay Player A"
+        },
+        "mutation": false
+      },
+      {
+        "type": "GetInputSettings",
+        "data": {
+          "inputName": "Replay Player A"
+        },
+        "mutation": false
+      },
+      {
+        "type": "GetSceneList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetSceneCollectionList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetInputSettings",
+        "data": {
+          "inputName": "Replay Player A"
+        },
+        "mutation": false
+      },
+      {
+        "type": "GetSceneList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetInputList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetSourceActive",
+        "data": {
+          "sourceName": "Replay Player A"
+        },
+        "mutation": false
+      },
+      {
+        "type": "GetSceneList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetSceneList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetInputSettings",
+        "data": {
+          "inputName": "Replay Player A"
+        },
+        "mutation": false
+      },
+      {
+        "type": "GetSceneCollectionList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetSceneList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "SetCurrentProgramScene",
+        "data": {
+          "sceneName": "REPLAY A"
+        },
+        "mutation": true
+      },
+      {
+        "type": "GetSceneList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetSceneCollectionList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetSceneList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "TriggerMediaInputAction",
+        "data": {
+          "inputName": "Replay Player A",
+          "mediaAction": "OBS_WEBSOCKET_MEDIA_INPUT_ACTION_RESTART"
+        },
+        "mutation": true
+      },
+      {
+        "type": "GetMediaInputStatus",
+        "data": {
+          "inputName": "Replay Player A"
+        },
+        "mutation": false
+      },
+      {
+        "type": "GetSceneList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetInputSettings",
+        "data": {
+          "inputName": "Replay Player A"
+        },
+        "mutation": false
+      },
+      {
+        "type": "GetInputVolume",
+        "data": {
+          "inputName": "Replay Player A"
+        },
+        "mutation": false
+      },
+      {
+        "type": "GetInputMute",
+        "data": {
+          "inputName": "Replay Player A"
+        },
+        "mutation": false
+      },
+      {
+        "type": "SetInputMute",
+        "data": {
+          "inputName": "Replay Player A",
+          "inputMuted": false
+        },
+        "mutation": true
+      },
+      {
+        "type": "GetSceneCollectionList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetInputSettings",
+        "data": {
+          "inputName": "Replay Player A"
+        },
+        "mutation": false
+      },
+      {
+        "type": "GetMediaInputStatus",
+        "data": {
+          "inputName": "Replay Player A"
+        },
+        "mutation": false
+      },
+      {
+        "type": "GetInputSettings",
+        "data": {
+          "inputName": "Replay Player A"
+        },
+        "mutation": false
+      },
+      {
+        "type": "GetSceneList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetSceneCollectionList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetInputSettings",
+        "data": {
+          "inputName": "Replay Player A"
+        },
+        "mutation": false
+      },
+      {
+        "type": "GetSceneList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetMediaInputStatus",
+        "data": {
+          "inputName": "Replay Player A"
+        },
+        "mutation": false
+      },
+      {
+        "type": "GetSceneCollectionList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetInputSettings",
+        "data": {
+          "inputName": "Replay Player A"
+        },
+        "mutation": false
+      },
+      {
+        "type": "GetSceneList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "SetCurrentProgramScene",
+        "data": {
+          "sceneName": "QA Live"
+        },
+        "mutation": true
+      },
+      {
+        "type": "GetSceneList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetSceneList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetInputSettings",
+        "data": {
+          "inputName": "Replay Player A"
+        },
+        "mutation": false
+      },
+      {
+        "type": "GetInputMute",
+        "data": {
+          "inputName": "Replay Player A"
+        },
+        "mutation": false
+      },
+      {
+        "type": "SetInputMute",
+        "data": {
+          "inputName": "Replay Player A",
+          "inputMuted": true
+        },
+        "mutation": true
+      },
+      {
+        "type": "GetInputVolume",
+        "data": {
+          "inputName": "Replay Player A"
+        },
+        "mutation": false
+      },
+      {
+        "type": "GetSceneList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetSceneCollectionList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetSceneList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetSceneCollectionList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetSceneCollectionList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetSceneList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetMediaInputStatus",
+        "data": {
+          "inputName": "Replay Player A"
+        },
+        "mutation": false
+      },
+      {
+        "type": "GetInputSettings",
+        "data": {
+          "inputName": "Replay Player A"
+        },
+        "mutation": false
+      },
+      {
+        "type": "GetSceneList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetMediaInputStatus",
+        "data": {
+          "inputName": "Replay Player A"
+        },
+        "mutation": false
+      },
+      {
+        "type": "GetInputSettings",
+        "data": {
+          "inputName": "Replay Player A"
+        },
+        "mutation": false
+      },
+      {
+        "type": "GetSceneList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetSceneCollectionList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetSceneList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetInputList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetSourceActive",
+        "data": {
+          "sourceName": "Replay Player A"
+        },
+        "mutation": false
+      },
+      {
+        "type": "GetVideoSettings",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetSceneCollectionList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetSceneCollectionList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetStudioModeEnabled",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetSceneList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetInputSettings",
+        "data": {
+          "inputName": "Replay Player A"
+        },
+        "mutation": false
+      },
+      {
+        "type": "GetSceneCollectionList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetSceneList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetInputList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetSourceActive",
+        "data": {
+          "sourceName": "Replay Player A"
+        },
+        "mutation": false
+      },
+      {
+        "type": "SetInputMute",
+        "data": {
+          "inputName": "Replay Player A",
+          "inputMuted": true
+        },
+        "mutation": true
+      },
+      {
+        "type": "GetSceneCollectionList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetSceneList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetInputList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetSourceActive",
+        "data": {
+          "sourceName": "Replay Player A"
+        },
+        "mutation": false
+      },
+      {
+        "type": "SetInputSettings",
+        "data": {
+          "inputName": "Replay Player A",
+          "inputSettings": {
+            "local_file": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Final-Replay-Root-Snapshot-R1\\FreeMix-QA-Combined-Playlist-R12-fcf0ad9c-895a-4df6-bb7f-68e3a5207b40\\gravacoes\\replay-preparation\\FreeMix-Replay-Preparation-edfcc195-a8a6-4024-a069-87a9b2b0bf34\\playlist.mkv",
+            "is_local_file": true,
+            "looping": false,
+            "restart_on_activate": false,
+            "close_when_inactive": false,
+            "clear_on_media_end": false,
+            "speed_percent": 100,
+            "freemix_replay_unbuffered": true
+          }
+        },
+        "mutation": true
+      },
+      {
+        "type": "GetSceneItemList",
+        "data": {
+          "sceneName": "REPLAY A"
+        },
+        "mutation": false
+      },
+      {
+        "type": "GetSceneCollectionList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetSceneList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetInputList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetSourceActive",
+        "data": {
+          "sourceName": "Replay Player A"
+        },
+        "mutation": false
+      },
+      {
+        "type": "SetInputMute",
+        "data": {
+          "inputName": "Replay Player A",
+          "inputMuted": true
+        },
+        "mutation": true
+      },
+      {
+        "type": "GetSceneCollectionList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetSceneList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetInputList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetSourceActive",
+        "data": {
+          "sourceName": "Replay Player A"
+        },
+        "mutation": false
+      },
+      {
+        "type": "SetInputAudioMonitorType",
+        "data": {
+          "inputName": "Replay Player A",
+          "monitorType": "OBS_MONITORING_TYPE_NONE"
+        },
+        "mutation": true
+      },
+      {
+        "type": "GetSceneCollectionList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetSceneList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetInputList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetSourceActive",
+        "data": {
+          "sourceName": "Replay Player A"
+        },
+        "mutation": false
+      },
+      {
+        "type": "SetInputAudioTracks",
+        "data": {
+          "inputName": "Replay Player A",
+          "inputAudioTracks": {
+            "1": true,
+            "2": false,
+            "3": false,
+            "4": false,
+            "5": false,
+            "6": false
+          }
+        },
+        "mutation": true
+      },
+      {
+        "type": "GetVideoSettings",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetSceneCollectionList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetSceneList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetInputList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetSourceActive",
+        "data": {
+          "sourceName": "Replay Player A"
+        },
+        "mutation": false
+      },
+      {
+        "type": "SetSceneItemTransform",
+        "data": {
+          "sceneName": "REPLAY A",
+          "sceneItemId": 1,
+          "sceneItemTransform": {
+            "positionX": 0,
+            "positionY": 0,
+            "boundsType": "OBS_BOUNDS_SCALE_INNER",
+            "boundsWidth": 320,
+            "boundsHeight": 240,
+            "boundsAlignment": 0
+          }
+        },
+        "mutation": true
+      },
+      {
+        "type": "GetSceneCollectionList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetSceneList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetInputList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetSourceActive",
+        "data": {
+          "sourceName": "Replay Player A"
+        },
+        "mutation": false
+      },
+      {
+        "type": "SetCurrentPreviewScene",
+        "data": {
+          "sceneName": "REPLAY A"
+        },
+        "mutation": true
+      },
+      {
+        "type": "GetSceneCollectionList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetSceneList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetInputList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetSourceActive",
+        "data": {
+          "sourceName": "Replay Player A"
+        },
+        "mutation": false
+      },
+      {
+        "type": "TriggerMediaInputAction",
+        "data": {
+          "inputName": "Replay Player A",
+          "mediaAction": "OBS_WEBSOCKET_MEDIA_INPUT_ACTION_RESTART"
+        },
+        "mutation": true
+      },
+      {
+        "type": "GetMediaInputStatus",
+        "data": {
+          "inputName": "Replay Player A"
+        },
+        "mutation": false
+      },
+      {
+        "type": "GetSceneCollectionList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetSceneList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetInputList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetSourceActive",
+        "data": {
+          "sourceName": "Replay Player A"
+        },
+        "mutation": false
+      },
+      {
+        "type": "TriggerMediaInputAction",
+        "data": {
+          "inputName": "Replay Player A",
+          "mediaAction": "OBS_WEBSOCKET_MEDIA_INPUT_ACTION_PAUSE"
+        },
+        "mutation": true
+      },
+      {
+        "type": "GetMediaInputStatus",
+        "data": {
+          "inputName": "Replay Player A"
+        },
+        "mutation": false
+      },
+      {
+        "type": "GetSceneCollectionList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetSceneList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetInputList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetSourceActive",
+        "data": {
+          "sourceName": "Replay Player A"
+        },
+        "mutation": false
+      },
+      {
+        "type": "SetMediaInputCursor",
+        "data": {
+          "inputName": "Replay Player A",
+          "mediaCursor": 0
+        },
+        "mutation": true
+      },
+      {
+        "type": "GetSceneCollectionList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetMediaInputStatus",
+        "data": {
+          "inputName": "Replay Player A"
+        },
+        "mutation": false
+      },
+      {
+        "type": "GetInputSettings",
+        "data": {
+          "inputName": "Replay Player A"
+        },
+        "mutation": false
+      },
+      {
+        "type": "GetSceneList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetSceneCollectionList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetInputSettings",
+        "data": {
+          "inputName": "Replay Player A"
+        },
+        "mutation": false
+      },
+      {
+        "type": "GetSceneList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetInputList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetSourceActive",
+        "data": {
+          "sourceName": "Replay Player A"
+        },
+        "mutation": false
+      },
+      {
+        "type": "GetSceneList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetSceneList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetInputSettings",
+        "data": {
+          "inputName": "Replay Player A"
+        },
+        "mutation": false
+      },
+      {
+        "type": "GetSceneCollectionList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetSceneList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "SetCurrentProgramScene",
+        "data": {
+          "sceneName": "REPLAY A"
+        },
+        "mutation": true
+      },
+      {
+        "type": "GetSceneList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetSceneCollectionList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetSceneList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "TriggerMediaInputAction",
+        "data": {
+          "inputName": "Replay Player A",
+          "mediaAction": "OBS_WEBSOCKET_MEDIA_INPUT_ACTION_RESTART"
+        },
+        "mutation": true
+      },
+      {
+        "type": "GetMediaInputStatus",
+        "data": {
+          "inputName": "Replay Player A"
+        },
+        "mutation": false
+      },
+      {
+        "type": "GetSceneList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetInputSettings",
+        "data": {
+          "inputName": "Replay Player A"
+        },
+        "mutation": false
+      },
+      {
+        "type": "GetInputVolume",
+        "data": {
+          "inputName": "Replay Player A"
+        },
+        "mutation": false
+      },
+      {
+        "type": "GetInputMute",
+        "data": {
+          "inputName": "Replay Player A"
+        },
+        "mutation": false
+      },
+      {
+        "type": "SetInputMute",
+        "data": {
+          "inputName": "Replay Player A",
+          "inputMuted": false
+        },
+        "mutation": true
+      },
+      {
+        "type": "GetSceneCollectionList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetInputSettings",
+        "data": {
+          "inputName": "Replay Player A"
+        },
+        "mutation": false
+      },
+      {
+        "type": "GetMediaInputStatus",
+        "data": {
+          "inputName": "Replay Player A"
+        },
+        "mutation": false
+      },
+      {
+        "type": "GetInputSettings",
+        "data": {
+          "inputName": "Replay Player A"
+        },
+        "mutation": false
+      },
+      {
+        "type": "GetSceneList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetSceneCollectionList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetInputSettings",
+        "data": {
+          "inputName": "Replay Player A"
+        },
+        "mutation": false
+      },
+      {
+        "type": "GetSceneList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetSceneCollectionList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetInputSettings",
+        "data": {
+          "inputName": "Replay Player A"
+        },
+        "mutation": false
+      },
+      {
+        "type": "GetSceneList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetMediaInputStatus",
+        "data": {
+          "inputName": "Replay Player A"
+        },
+        "mutation": false
+      },
+      {
+        "type": "GetInputSettings",
+        "data": {
+          "inputName": "Replay Player A"
+        },
+        "mutation": false
+      },
+      {
+        "type": "GetSceneList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetSceneCollectionList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetSceneList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetInputList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetSourceActive",
+        "data": {
+          "sourceName": "Replay Player A"
+        },
+        "mutation": false
+      },
+      {
+        "type": "GetVideoSettings",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetSceneCollectionList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetMediaInputStatus",
+        "data": {
+          "inputName": "Replay Player A"
+        },
+        "mutation": false
+      },
+      {
+        "type": "GetInputSettings",
+        "data": {
+          "inputName": "Replay Player A"
+        },
+        "mutation": false
+      },
+      {
+        "type": "GetSceneList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetSceneCollectionList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetMediaInputStatus",
+        "data": {
+          "inputName": "Replay Player A"
+        },
+        "mutation": false
+      },
+      {
+        "type": "GetInputSettings",
+        "data": {
+          "inputName": "Replay Player A"
+        },
+        "mutation": false
+      },
+      {
+        "type": "GetSceneList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetMediaInputStatus",
+        "data": {
+          "inputName": "Replay Player A"
+        },
+        "mutation": false
+      },
+      {
+        "type": "GetInputSettings",
+        "data": {
+          "inputName": "Replay Player A"
+        },
+        "mutation": false
+      },
+      {
+        "type": "GetSceneList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetSceneCollectionList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetSceneList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetInputList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetSourceActive",
+        "data": {
+          "sourceName": "Replay Player A"
+        },
+        "mutation": false
+      },
+      {
+        "type": "GetVideoSettings",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetSceneCollectionList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetSceneCollectionList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetSceneList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetInputList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetSourceActive",
+        "data": {
+          "sourceName": "Replay Player A"
+        },
+        "mutation": false
+      },
+      {
+        "type": "GetVideoSettings",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetSceneCollectionList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetMediaInputStatus",
+        "data": {
+          "inputName": "Replay Player A"
+        },
+        "mutation": false
+      },
+      {
+        "type": "GetInputSettings",
+        "data": {
+          "inputName": "Replay Player A"
+        },
+        "mutation": false
+      },
+      {
+        "type": "GetSceneList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetSceneCollectionList",
+        "data": {},
+        "mutation": false
+      },
+      {
+        "type": "GetMediaInputStatus",
+        "data": {
+          "inputName": "Replay Player A"
+        },
+        "mutation": false
+      },
+      {
+        "type": "GetInputSettings",
+        "data": {
+          "inputName": "Replay Player A"
+        },
+        "mutation": false
+      },
+      {
+        "type": "GetSceneList",
+        "data": {},
+        "mutation": false
+      }
+    ],
+    "rootMustObserveActualOwnedPidsAbsent": [
+      197760,
+      138940,
+      31124,
+      99252,
+      63972,
+      183020,
+      193112,
+      158128,
+      150120,
+      179164,
+      146548,
+      44988,
+      180668,
+      85868,
+      4044,
+      170644,
+      66284,
+      87152,
+      172308,
+      124724,
+      198468,
+      40208,
+      208736,
+      105460,
+      183972,
+      86336,
+      150472,
+      158052,
+      207680,
+      71896,
+      183800,
+      203392,
+      47200,
+      116328,
+      214424,
+      168496,
+      158368,
+      187148,
+      27608,
+      19304,
+      192088,
+      193128,
+      58572,
+      62168,
+      164656,
+      130628,
+      122104,
+      205164,
+      126004,
+      188012,
+      191316
+    ]
+  },
+  "children": [
+    {
+      "id": "dfa9433d-4645-4c61-9102-05088165a421",
+      "label": "fixture",
+      "kind": "ffmpeg",
+      "pid": 197760,
+      "exe": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Final-Replay-Root-Snapshot-R1\\FreeMix-QA-Combined-Playlist-R12-fcf0ad9c-895a-4df6-bb7f-68e3a5207b40\\runtime\\ffmpeg.exe",
+      "exeSHA": "09948d4cdd0650da6ff5a87577469f2a218dc2615ae379f8f734d24c49de0f73",
+      "root": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Final-Replay-Root-Snapshot-R1\\FreeMix-QA-Combined-Playlist-R12-fcf0ad9c-895a-4df6-bb7f-68e3a5207b40\\FreeMix-QA-Playlist-Fixtures-eb835075-c77a-443b-b158-2423a98f1df4"
+    },
+    {
+      "id": "16b0de16-1e30-4cf5-98b5-7acd09574b7d",
+      "label": "fixture",
+      "kind": "ffmpeg",
+      "pid": 138940,
+      "exe": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Final-Replay-Root-Snapshot-R1\\FreeMix-QA-Combined-Playlist-R12-fcf0ad9c-895a-4df6-bb7f-68e3a5207b40\\runtime\\ffmpeg.exe",
+      "exeSHA": "09948d4cdd0650da6ff5a87577469f2a218dc2615ae379f8f734d24c49de0f73",
+      "root": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Final-Replay-Root-Snapshot-R1\\FreeMix-QA-Combined-Playlist-R12-fcf0ad9c-895a-4df6-bb7f-68e3a5207b40\\FreeMix-QA-Playlist-Fixtures-eb835075-c77a-443b-b158-2423a98f1df4"
+    },
+    {
+      "id": "95e9be1f-2d10-4d22-9342-f55d9f41e6f3",
+      "label": "fixture",
+      "kind": "ffmpeg",
+      "pid": 31124,
+      "exe": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Final-Replay-Root-Snapshot-R1\\FreeMix-QA-Combined-Playlist-R12-fcf0ad9c-895a-4df6-bb7f-68e3a5207b40\\runtime\\ffmpeg.exe",
+      "exeSHA": "09948d4cdd0650da6ff5a87577469f2a218dc2615ae379f8f734d24c49de0f73",
+      "root": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Final-Replay-Root-Snapshot-R1\\FreeMix-QA-Combined-Playlist-R12-fcf0ad9c-895a-4df6-bb7f-68e3a5207b40\\FreeMix-QA-Playlist-Fixtures-eb835075-c77a-443b-b158-2423a98f1df4"
+    },
+    {
+      "id": "792eff95-d2e1-4c60-9f18-0fdd2c27c284",
+      "label": "probe",
+      "kind": "ffprobe",
+      "pid": 99252,
+      "exe": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Final-Replay-Root-Snapshot-R1\\FreeMix-QA-Combined-Playlist-R12-fcf0ad9c-895a-4df6-bb7f-68e3a5207b40\\runtime\\ffprobe.exe",
+      "exeSHA": "a6618e99bb58869ded3c6f37b53aa1a8d701c3591dbb7b5b317d47369c112be2",
+      "root": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Final-Replay-Root-Snapshot-R1\\FreeMix-QA-Combined-Playlist-R12-fcf0ad9c-895a-4df6-bb7f-68e3a5207b40\\gravacoes\\replay-preparation\\FreeMix-Replay-Preparation-3fb80fe4-e9a2-4e85-85ed-ce5e86187128"
+    },
+    {
+      "id": "9eb850f3-f9e3-4bb8-862a-d6801e731ca6",
+      "label": "cadence",
+      "kind": "ffprobe",
+      "pid": 63972,
+      "exe": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Final-Replay-Root-Snapshot-R1\\FreeMix-QA-Combined-Playlist-R12-fcf0ad9c-895a-4df6-bb7f-68e3a5207b40\\runtime\\ffprobe.exe",
+      "exeSHA": "a6618e99bb58869ded3c6f37b53aa1a8d701c3591dbb7b5b317d47369c112be2",
+      "root": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Final-Replay-Root-Snapshot-R1\\FreeMix-QA-Combined-Playlist-R12-fcf0ad9c-895a-4df6-bb7f-68e3a5207b40\\gravacoes\\replay-preparation\\FreeMix-Replay-Preparation-3fb80fe4-e9a2-4e85-85ed-ce5e86187128"
+    },
+    {
+      "id": "eb683306-500a-4c0b-b2ac-c6cfa08718b5",
+      "label": "probe",
+      "kind": "ffprobe",
+      "pid": 183020,
+      "exe": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Final-Replay-Root-Snapshot-R1\\FreeMix-QA-Combined-Playlist-R12-fcf0ad9c-895a-4df6-bb7f-68e3a5207b40\\runtime\\ffprobe.exe",
+      "exeSHA": "a6618e99bb58869ded3c6f37b53aa1a8d701c3591dbb7b5b317d47369c112be2",
+      "root": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Final-Replay-Root-Snapshot-R1\\FreeMix-QA-Combined-Playlist-R12-fcf0ad9c-895a-4df6-bb7f-68e3a5207b40\\gravacoes\\replay-preparation\\FreeMix-Replay-Preparation-3fb80fe4-e9a2-4e85-85ed-ce5e86187128"
+    },
+    {
+      "id": "c88f5ded-965d-4224-9aa4-08101cffccd0",
+      "label": "cadence",
+      "kind": "ffprobe",
+      "pid": 193112,
+      "exe": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Final-Replay-Root-Snapshot-R1\\FreeMix-QA-Combined-Playlist-R12-fcf0ad9c-895a-4df6-bb7f-68e3a5207b40\\runtime\\ffprobe.exe",
+      "exeSHA": "a6618e99bb58869ded3c6f37b53aa1a8d701c3591dbb7b5b317d47369c112be2",
+      "root": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Final-Replay-Root-Snapshot-R1\\FreeMix-QA-Combined-Playlist-R12-fcf0ad9c-895a-4df6-bb7f-68e3a5207b40\\gravacoes\\replay-preparation\\FreeMix-Replay-Preparation-3fb80fe4-e9a2-4e85-85ed-ce5e86187128"
+    },
+    {
+      "id": "00fc25cb-e178-49e4-8050-59865640abb9",
+      "label": "probe",
+      "kind": "ffprobe",
+      "pid": 158128,
+      "exe": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Final-Replay-Root-Snapshot-R1\\FreeMix-QA-Combined-Playlist-R12-fcf0ad9c-895a-4df6-bb7f-68e3a5207b40\\runtime\\ffprobe.exe",
+      "exeSHA": "a6618e99bb58869ded3c6f37b53aa1a8d701c3591dbb7b5b317d47369c112be2",
+      "root": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Final-Replay-Root-Snapshot-R1\\FreeMix-QA-Combined-Playlist-R12-fcf0ad9c-895a-4df6-bb7f-68e3a5207b40\\gravacoes\\replay-preparation\\FreeMix-Replay-Preparation-3fb80fe4-e9a2-4e85-85ed-ce5e86187128"
+    },
+    {
+      "id": "fcc27c03-e0d7-4532-ad6b-01e5100a8064",
+      "label": "cadence",
+      "kind": "ffprobe",
+      "pid": 150120,
+      "exe": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Final-Replay-Root-Snapshot-R1\\FreeMix-QA-Combined-Playlist-R12-fcf0ad9c-895a-4df6-bb7f-68e3a5207b40\\runtime\\ffprobe.exe",
+      "exeSHA": "a6618e99bb58869ded3c6f37b53aa1a8d701c3591dbb7b5b317d47369c112be2",
+      "root": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Final-Replay-Root-Snapshot-R1\\FreeMix-QA-Combined-Playlist-R12-fcf0ad9c-895a-4df6-bb7f-68e3a5207b40\\gravacoes\\replay-preparation\\FreeMix-Replay-Preparation-3fb80fe4-e9a2-4e85-85ed-ce5e86187128"
+    },
+    {
+      "id": "6c2b2402-e35b-44d9-92fc-b98ec25789bf",
+      "label": "playlist-prepare",
+      "kind": "ffmpeg",
+      "pid": 179164,
+      "exe": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Final-Replay-Root-Snapshot-R1\\FreeMix-QA-Combined-Playlist-R12-fcf0ad9c-895a-4df6-bb7f-68e3a5207b40\\runtime\\ffmpeg.exe",
+      "exeSHA": "09948d4cdd0650da6ff5a87577469f2a218dc2615ae379f8f734d24c49de0f73",
+      "root": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Final-Replay-Root-Snapshot-R1\\FreeMix-QA-Combined-Playlist-R12-fcf0ad9c-895a-4df6-bb7f-68e3a5207b40\\gravacoes\\replay-preparation\\FreeMix-Replay-Preparation-873a47d5-74a4-406d-a067-88711122b4dc"
+    },
+    {
+      "id": "542fe2fe-0107-456d-8ed5-70e35cb12aa1",
+      "label": "probe",
+      "kind": "ffprobe",
+      "pid": 146548,
+      "exe": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Final-Replay-Root-Snapshot-R1\\FreeMix-QA-Combined-Playlist-R12-fcf0ad9c-895a-4df6-bb7f-68e3a5207b40\\runtime\\ffprobe.exe",
+      "exeSHA": "a6618e99bb58869ded3c6f37b53aa1a8d701c3591dbb7b5b317d47369c112be2",
+      "root": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Final-Replay-Root-Snapshot-R1\\FreeMix-QA-Combined-Playlist-R12-fcf0ad9c-895a-4df6-bb7f-68e3a5207b40\\gravacoes\\replay-preparation\\FreeMix-Replay-Preparation-873a47d5-74a4-406d-a067-88711122b4dc"
+    },
+    {
+      "id": "6e93f4d3-42ac-4eaf-a12e-4b1c4abb17b3",
+      "label": "cadence",
+      "kind": "ffprobe",
+      "pid": 44988,
+      "exe": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Final-Replay-Root-Snapshot-R1\\FreeMix-QA-Combined-Playlist-R12-fcf0ad9c-895a-4df6-bb7f-68e3a5207b40\\runtime\\ffprobe.exe",
+      "exeSHA": "a6618e99bb58869ded3c6f37b53aa1a8d701c3591dbb7b5b317d47369c112be2",
+      "root": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Final-Replay-Root-Snapshot-R1\\FreeMix-QA-Combined-Playlist-R12-fcf0ad9c-895a-4df6-bb7f-68e3a5207b40\\gravacoes\\replay-preparation\\FreeMix-Replay-Preparation-873a47d5-74a4-406d-a067-88711122b4dc"
+    },
+    {
+      "id": "1866e80d-5f03-4c2f-a1d3-d2bf6597999b",
+      "label": "probe",
+      "kind": "ffprobe",
+      "pid": 180668,
+      "exe": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Final-Replay-Root-Snapshot-R1\\FreeMix-QA-Combined-Playlist-R12-fcf0ad9c-895a-4df6-bb7f-68e3a5207b40\\runtime\\ffprobe.exe",
+      "exeSHA": "a6618e99bb58869ded3c6f37b53aa1a8d701c3591dbb7b5b317d47369c112be2",
+      "root": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Final-Replay-Root-Snapshot-R1\\FreeMix-QA-Combined-Playlist-R12-fcf0ad9c-895a-4df6-bb7f-68e3a5207b40\\gravacoes\\replay-preparation\\FreeMix-Replay-Preparation-3fb80fe4-e9a2-4e85-85ed-ce5e86187128"
+    },
+    {
+      "id": "e2835596-c6bf-41ae-81bc-d390311f305c",
+      "label": "pixel-analysis",
+      "kind": "ffmpeg",
+      "pid": 85868,
+      "exe": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Final-Replay-Root-Snapshot-R1\\FreeMix-QA-Combined-Playlist-R12-fcf0ad9c-895a-4df6-bb7f-68e3a5207b40\\runtime\\ffmpeg.exe",
+      "exeSHA": "09948d4cdd0650da6ff5a87577469f2a218dc2615ae379f8f734d24c49de0f73",
+      "root": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Final-Replay-Root-Snapshot-R1\\FreeMix-QA-Combined-Playlist-R12-fcf0ad9c-895a-4df6-bb7f-68e3a5207b40\\gravacoes\\replay-preparation\\FreeMix-Replay-Preparation-3fb80fe4-e9a2-4e85-85ed-ce5e86187128"
+    },
+    {
+      "id": "4efb2b76-2817-4df9-9401-1d6e398229c4",
+      "label": "pixel-analysis",
+      "kind": "ffmpeg",
+      "pid": 4044,
+      "exe": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Final-Replay-Root-Snapshot-R1\\FreeMix-QA-Combined-Playlist-R12-fcf0ad9c-895a-4df6-bb7f-68e3a5207b40\\runtime\\ffmpeg.exe",
+      "exeSHA": "09948d4cdd0650da6ff5a87577469f2a218dc2615ae379f8f734d24c49de0f73",
+      "root": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Final-Replay-Root-Snapshot-R1\\FreeMix-QA-Combined-Playlist-R12-fcf0ad9c-895a-4df6-bb7f-68e3a5207b40\\gravacoes\\replay-preparation\\FreeMix-Replay-Preparation-3fb80fe4-e9a2-4e85-85ed-ce5e86187128"
+    },
+    {
+      "id": "a9e5a67f-b555-406c-8aa6-be5054319e8c",
+      "label": "pixel-analysis",
+      "kind": "ffmpeg",
+      "pid": 170644,
+      "exe": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Final-Replay-Root-Snapshot-R1\\FreeMix-QA-Combined-Playlist-R12-fcf0ad9c-895a-4df6-bb7f-68e3a5207b40\\runtime\\ffmpeg.exe",
+      "exeSHA": "09948d4cdd0650da6ff5a87577469f2a218dc2615ae379f8f734d24c49de0f73",
+      "root": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Final-Replay-Root-Snapshot-R1\\FreeMix-QA-Combined-Playlist-R12-fcf0ad9c-895a-4df6-bb7f-68e3a5207b40\\gravacoes\\replay-preparation\\FreeMix-Replay-Preparation-3fb80fe4-e9a2-4e85-85ed-ce5e86187128"
+    },
+    {
+      "id": "3eec699c-f39a-448c-b2f7-246b22eaa1e0",
+      "label": "pixel-analysis",
+      "kind": "ffmpeg",
+      "pid": 66284,
+      "exe": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Final-Replay-Root-Snapshot-R1\\FreeMix-QA-Combined-Playlist-R12-fcf0ad9c-895a-4df6-bb7f-68e3a5207b40\\runtime\\ffmpeg.exe",
+      "exeSHA": "09948d4cdd0650da6ff5a87577469f2a218dc2615ae379f8f734d24c49de0f73",
+      "root": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Final-Replay-Root-Snapshot-R1\\FreeMix-QA-Combined-Playlist-R12-fcf0ad9c-895a-4df6-bb7f-68e3a5207b40\\gravacoes\\replay-preparation\\FreeMix-Replay-Preparation-3fb80fe4-e9a2-4e85-85ed-ce5e86187128"
+    },
+    {
+      "id": "ac8a6248-4225-41d5-8c2a-86744f1d1ff6",
+      "label": "pixel-analysis",
+      "kind": "ffmpeg",
+      "pid": 87152,
+      "exe": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Final-Replay-Root-Snapshot-R1\\FreeMix-QA-Combined-Playlist-R12-fcf0ad9c-895a-4df6-bb7f-68e3a5207b40\\runtime\\ffmpeg.exe",
+      "exeSHA": "09948d4cdd0650da6ff5a87577469f2a218dc2615ae379f8f734d24c49de0f73",
+      "root": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Final-Replay-Root-Snapshot-R1\\FreeMix-QA-Combined-Playlist-R12-fcf0ad9c-895a-4df6-bb7f-68e3a5207b40\\gravacoes\\replay-preparation\\FreeMix-Replay-Preparation-3fb80fe4-e9a2-4e85-85ed-ce5e86187128"
+    },
+    {
+      "id": "9a7bd9e7-7b6f-4721-9b22-477ff046cb61",
+      "label": "pixel-analysis",
+      "kind": "ffmpeg",
+      "pid": 172308,
+      "exe": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Final-Replay-Root-Snapshot-R1\\FreeMix-QA-Combined-Playlist-R12-fcf0ad9c-895a-4df6-bb7f-68e3a5207b40\\runtime\\ffmpeg.exe",
+      "exeSHA": "09948d4cdd0650da6ff5a87577469f2a218dc2615ae379f8f734d24c49de0f73",
+      "root": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Final-Replay-Root-Snapshot-R1\\FreeMix-QA-Combined-Playlist-R12-fcf0ad9c-895a-4df6-bb7f-68e3a5207b40\\gravacoes\\replay-preparation\\FreeMix-Replay-Preparation-3fb80fe4-e9a2-4e85-85ed-ce5e86187128"
+    },
+    {
+      "id": "5c0f05c9-b8f5-4db7-a72b-51f5d1267c64",
+      "label": "pcm-analysis",
+      "kind": "ffmpeg",
+      "pid": 124724,
+      "exe": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Final-Replay-Root-Snapshot-R1\\FreeMix-QA-Combined-Playlist-R12-fcf0ad9c-895a-4df6-bb7f-68e3a5207b40\\runtime\\ffmpeg.exe",
+      "exeSHA": "09948d4cdd0650da6ff5a87577469f2a218dc2615ae379f8f734d24c49de0f73",
+      "root": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Final-Replay-Root-Snapshot-R1\\FreeMix-QA-Combined-Playlist-R12-fcf0ad9c-895a-4df6-bb7f-68e3a5207b40\\gravacoes\\replay-preparation\\FreeMix-Replay-Preparation-3fb80fe4-e9a2-4e85-85ed-ce5e86187128"
+    },
+    {
+      "id": "b576b8ed-73db-4200-943f-ded3d3fad24d",
+      "label": "pcm-analysis",
+      "kind": "ffmpeg",
+      "pid": 198468,
+      "exe": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Final-Replay-Root-Snapshot-R1\\FreeMix-QA-Combined-Playlist-R12-fcf0ad9c-895a-4df6-bb7f-68e3a5207b40\\runtime\\ffmpeg.exe",
+      "exeSHA": "09948d4cdd0650da6ff5a87577469f2a218dc2615ae379f8f734d24c49de0f73",
+      "root": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Final-Replay-Root-Snapshot-R1\\FreeMix-QA-Combined-Playlist-R12-fcf0ad9c-895a-4df6-bb7f-68e3a5207b40\\gravacoes\\replay-preparation\\FreeMix-Replay-Preparation-3fb80fe4-e9a2-4e85-85ed-ce5e86187128"
+    },
+    {
+      "id": "0b11c278-0d12-4d87-a473-cf1714e66495",
+      "label": "pcm-analysis",
+      "kind": "ffmpeg",
+      "pid": 40208,
+      "exe": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Final-Replay-Root-Snapshot-R1\\FreeMix-QA-Combined-Playlist-R12-fcf0ad9c-895a-4df6-bb7f-68e3a5207b40\\runtime\\ffmpeg.exe",
+      "exeSHA": "09948d4cdd0650da6ff5a87577469f2a218dc2615ae379f8f734d24c49de0f73",
+      "root": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Final-Replay-Root-Snapshot-R1\\FreeMix-QA-Combined-Playlist-R12-fcf0ad9c-895a-4df6-bb7f-68e3a5207b40\\gravacoes\\replay-preparation\\FreeMix-Replay-Preparation-3fb80fe4-e9a2-4e85-85ed-ce5e86187128"
+    },
+    {
+      "id": "afe86a38-97a1-4830-a1fc-8fd2b793754d",
+      "label": "pcm-analysis",
+      "kind": "ffmpeg",
+      "pid": 208736,
+      "exe": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Final-Replay-Root-Snapshot-R1\\FreeMix-QA-Combined-Playlist-R12-fcf0ad9c-895a-4df6-bb7f-68e3a5207b40\\runtime\\ffmpeg.exe",
+      "exeSHA": "09948d4cdd0650da6ff5a87577469f2a218dc2615ae379f8f734d24c49de0f73",
+      "root": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Final-Replay-Root-Snapshot-R1\\FreeMix-QA-Combined-Playlist-R12-fcf0ad9c-895a-4df6-bb7f-68e3a5207b40\\gravacoes\\replay-preparation\\FreeMix-Replay-Preparation-3fb80fe4-e9a2-4e85-85ed-ce5e86187128"
+    },
+    {
+      "id": "903abf30-d159-41b8-856d-fe39e46257a7",
+      "label": "pcm-analysis",
+      "kind": "ffmpeg",
+      "pid": 105460,
+      "exe": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Final-Replay-Root-Snapshot-R1\\FreeMix-QA-Combined-Playlist-R12-fcf0ad9c-895a-4df6-bb7f-68e3a5207b40\\runtime\\ffmpeg.exe",
+      "exeSHA": "09948d4cdd0650da6ff5a87577469f2a218dc2615ae379f8f734d24c49de0f73",
+      "root": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Final-Replay-Root-Snapshot-R1\\FreeMix-QA-Combined-Playlist-R12-fcf0ad9c-895a-4df6-bb7f-68e3a5207b40\\gravacoes\\replay-preparation\\FreeMix-Replay-Preparation-3fb80fe4-e9a2-4e85-85ed-ce5e86187128"
+    },
+    {
+      "id": "1a54ccb2-f0b6-4f0a-91ca-fb62a0339f07",
+      "label": "probe",
+      "kind": "ffprobe",
+      "pid": 183972,
+      "exe": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Final-Replay-Root-Snapshot-R1\\FreeMix-QA-Combined-Playlist-R12-fcf0ad9c-895a-4df6-bb7f-68e3a5207b40\\runtime\\ffprobe.exe",
+      "exeSHA": "a6618e99bb58869ded3c6f37b53aa1a8d701c3591dbb7b5b317d47369c112be2",
+      "root": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Final-Replay-Root-Snapshot-R1\\FreeMix-QA-Combined-Playlist-R12-fcf0ad9c-895a-4df6-bb7f-68e3a5207b40\\gravacoes\\replay-preparation\\FreeMix-Replay-Preparation-3fb80fe4-e9a2-4e85-85ed-ce5e86187128"
+    },
+    {
+      "id": "ef082af2-c30d-4914-a032-d6deae3b7e7e",
+      "label": "probe",
+      "kind": "ffprobe",
+      "pid": 86336,
+      "exe": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Final-Replay-Root-Snapshot-R1\\FreeMix-QA-Combined-Playlist-R12-fcf0ad9c-895a-4df6-bb7f-68e3a5207b40\\runtime\\ffprobe.exe",
+      "exeSHA": "a6618e99bb58869ded3c6f37b53aa1a8d701c3591dbb7b5b317d47369c112be2",
+      "root": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Final-Replay-Root-Snapshot-R1\\FreeMix-QA-Combined-Playlist-R12-fcf0ad9c-895a-4df6-bb7f-68e3a5207b40\\gravacoes\\replay-preparation\\FreeMix-Replay-Preparation-3fb80fe4-e9a2-4e85-85ed-ce5e86187128"
+    },
+    {
+      "id": "f4f8718b-576c-42d9-8bf7-16f7080a1238",
+      "label": "probe",
+      "kind": "ffprobe",
+      "pid": 150472,
+      "exe": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Final-Replay-Root-Snapshot-R1\\FreeMix-QA-Combined-Playlist-R12-fcf0ad9c-895a-4df6-bb7f-68e3a5207b40\\runtime\\ffprobe.exe",
+      "exeSHA": "a6618e99bb58869ded3c6f37b53aa1a8d701c3591dbb7b5b317d47369c112be2",
+      "root": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Final-Replay-Root-Snapshot-R1\\FreeMix-QA-Combined-Playlist-R12-fcf0ad9c-895a-4df6-bb7f-68e3a5207b40\\gravacoes\\replay-preparation\\FreeMix-Replay-Preparation-3fb80fe4-e9a2-4e85-85ed-ce5e86187128"
+    },
+    {
+      "id": "3016b368-8c53-4fae-a299-efbc0e634bd3",
+      "label": "playlist-prepare",
+      "kind": "ffmpeg",
+      "pid": 158052,
+      "exe": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Final-Replay-Root-Snapshot-R1\\FreeMix-QA-Combined-Playlist-R12-fcf0ad9c-895a-4df6-bb7f-68e3a5207b40\\runtime\\ffmpeg.exe",
+      "exeSHA": "09948d4cdd0650da6ff5a87577469f2a218dc2615ae379f8f734d24c49de0f73",
+      "root": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Final-Replay-Root-Snapshot-R1\\FreeMix-QA-Combined-Playlist-R12-fcf0ad9c-895a-4df6-bb7f-68e3a5207b40\\gravacoes\\replay-preparation\\FreeMix-Replay-Preparation-67249b83-61ff-491a-8fc4-84a28e707872"
+    },
+    {
+      "id": "cc3254d0-c4f4-4735-8a0c-e7f7af94eafd",
+      "label": "probe",
+      "kind": "ffprobe",
+      "pid": 207680,
+      "exe": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Final-Replay-Root-Snapshot-R1\\FreeMix-QA-Combined-Playlist-R12-fcf0ad9c-895a-4df6-bb7f-68e3a5207b40\\runtime\\ffprobe.exe",
+      "exeSHA": "a6618e99bb58869ded3c6f37b53aa1a8d701c3591dbb7b5b317d47369c112be2",
+      "root": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Final-Replay-Root-Snapshot-R1\\FreeMix-QA-Combined-Playlist-R12-fcf0ad9c-895a-4df6-bb7f-68e3a5207b40\\gravacoes\\replay-preparation\\FreeMix-Replay-Preparation-67249b83-61ff-491a-8fc4-84a28e707872"
+    },
+    {
+      "id": "1ea7be8d-7f16-46f9-b995-3c6c772d0d8f",
+      "label": "cadence",
+      "kind": "ffprobe",
+      "pid": 71896,
+      "exe": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Final-Replay-Root-Snapshot-R1\\FreeMix-QA-Combined-Playlist-R12-fcf0ad9c-895a-4df6-bb7f-68e3a5207b40\\runtime\\ffprobe.exe",
+      "exeSHA": "a6618e99bb58869ded3c6f37b53aa1a8d701c3591dbb7b5b317d47369c112be2",
+      "root": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Final-Replay-Root-Snapshot-R1\\FreeMix-QA-Combined-Playlist-R12-fcf0ad9c-895a-4df6-bb7f-68e3a5207b40\\gravacoes\\replay-preparation\\FreeMix-Replay-Preparation-67249b83-61ff-491a-8fc4-84a28e707872"
+    },
+    {
+      "id": "8dd0152d-a7ce-4b41-8919-0959ea04b9f1",
+      "label": "probe",
+      "kind": "ffprobe",
+      "pid": 183800,
+      "exe": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Final-Replay-Root-Snapshot-R1\\FreeMix-QA-Combined-Playlist-R12-fcf0ad9c-895a-4df6-bb7f-68e3a5207b40\\runtime\\ffprobe.exe",
+      "exeSHA": "a6618e99bb58869ded3c6f37b53aa1a8d701c3591dbb7b5b317d47369c112be2",
+      "root": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Final-Replay-Root-Snapshot-R1\\FreeMix-QA-Combined-Playlist-R12-fcf0ad9c-895a-4df6-bb7f-68e3a5207b40\\gravacoes\\replay-preparation\\FreeMix-Replay-Preparation-3fb80fe4-e9a2-4e85-85ed-ce5e86187128"
+    },
+    {
+      "id": "40057f1e-be8a-42ec-9195-9a93d2ed88f2",
+      "label": "probe",
+      "kind": "ffprobe",
+      "pid": 203392,
+      "exe": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Final-Replay-Root-Snapshot-R1\\FreeMix-QA-Combined-Playlist-R12-fcf0ad9c-895a-4df6-bb7f-68e3a5207b40\\runtime\\ffprobe.exe",
+      "exeSHA": "a6618e99bb58869ded3c6f37b53aa1a8d701c3591dbb7b5b317d47369c112be2",
+      "root": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Final-Replay-Root-Snapshot-R1\\FreeMix-QA-Combined-Playlist-R12-fcf0ad9c-895a-4df6-bb7f-68e3a5207b40\\gravacoes\\replay-preparation\\FreeMix-Replay-Preparation-3fb80fe4-e9a2-4e85-85ed-ce5e86187128"
+    },
+    {
+      "id": "b8542528-ef9d-4e3d-b969-dd7c7670c6b3",
+      "label": "probe",
+      "kind": "ffprobe",
+      "pid": 47200,
+      "exe": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Final-Replay-Root-Snapshot-R1\\FreeMix-QA-Combined-Playlist-R12-fcf0ad9c-895a-4df6-bb7f-68e3a5207b40\\runtime\\ffprobe.exe",
+      "exeSHA": "a6618e99bb58869ded3c6f37b53aa1a8d701c3591dbb7b5b317d47369c112be2",
+      "root": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Final-Replay-Root-Snapshot-R1\\FreeMix-QA-Combined-Playlist-R12-fcf0ad9c-895a-4df6-bb7f-68e3a5207b40\\gravacoes\\replay-preparation\\FreeMix-Replay-Preparation-3fb80fe4-e9a2-4e85-85ed-ce5e86187128"
+    },
+    {
+      "id": "cda3d47a-6a07-4524-a674-2bbae04aacf1",
+      "label": "playlist-prepare",
+      "kind": "ffmpeg",
+      "pid": 116328,
+      "exe": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Final-Replay-Root-Snapshot-R1\\FreeMix-QA-Combined-Playlist-R12-fcf0ad9c-895a-4df6-bb7f-68e3a5207b40\\runtime\\ffmpeg.exe",
+      "exeSHA": "09948d4cdd0650da6ff5a87577469f2a218dc2615ae379f8f734d24c49de0f73",
+      "root": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Final-Replay-Root-Snapshot-R1\\FreeMix-QA-Combined-Playlist-R12-fcf0ad9c-895a-4df6-bb7f-68e3a5207b40\\gravacoes\\replay-preparation\\FreeMix-Replay-Preparation-edfcc195-a8a6-4024-a069-87a9b2b0bf34"
+    },
+    {
+      "id": "1cc2e1f4-6faf-4c63-bc4e-9dd9707a79ff",
+      "label": "probe",
+      "kind": "ffprobe",
+      "pid": 214424,
+      "exe": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Final-Replay-Root-Snapshot-R1\\FreeMix-QA-Combined-Playlist-R12-fcf0ad9c-895a-4df6-bb7f-68e3a5207b40\\runtime\\ffprobe.exe",
+      "exeSHA": "a6618e99bb58869ded3c6f37b53aa1a8d701c3591dbb7b5b317d47369c112be2",
+      "root": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Final-Replay-Root-Snapshot-R1\\FreeMix-QA-Combined-Playlist-R12-fcf0ad9c-895a-4df6-bb7f-68e3a5207b40\\gravacoes\\replay-preparation\\FreeMix-Replay-Preparation-edfcc195-a8a6-4024-a069-87a9b2b0bf34"
+    },
+    {
+      "id": "22ea5088-4041-48c9-b1c4-01cddd9e82fc",
+      "label": "cadence",
+      "kind": "ffprobe",
+      "pid": 168496,
+      "exe": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Final-Replay-Root-Snapshot-R1\\FreeMix-QA-Combined-Playlist-R12-fcf0ad9c-895a-4df6-bb7f-68e3a5207b40\\runtime\\ffprobe.exe",
+      "exeSHA": "a6618e99bb58869ded3c6f37b53aa1a8d701c3591dbb7b5b317d47369c112be2",
+      "root": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Final-Replay-Root-Snapshot-R1\\FreeMix-QA-Combined-Playlist-R12-fcf0ad9c-895a-4df6-bb7f-68e3a5207b40\\gravacoes\\replay-preparation\\FreeMix-Replay-Preparation-edfcc195-a8a6-4024-a069-87a9b2b0bf34"
+    },
+    {
+      "id": "c7f900f5-6d00-4eeb-b9dc-3f8055e7b6eb",
+      "label": "probe",
+      "kind": "ffprobe",
+      "pid": 158368,
+      "exe": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Final-Replay-Root-Snapshot-R1\\FreeMix-QA-Combined-Playlist-R12-fcf0ad9c-895a-4df6-bb7f-68e3a5207b40\\runtime\\ffprobe.exe",
+      "exeSHA": "a6618e99bb58869ded3c6f37b53aa1a8d701c3591dbb7b5b317d47369c112be2",
+      "root": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Final-Replay-Root-Snapshot-R1\\FreeMix-QA-Combined-Playlist-R12-fcf0ad9c-895a-4df6-bb7f-68e3a5207b40\\gravacoes\\replay-preparation\\FreeMix-Replay-Preparation-3fb80fe4-e9a2-4e85-85ed-ce5e86187128"
+    },
+    {
+      "id": "f731d088-88f4-4a5c-85cf-99cdeeabd412",
+      "label": "probe",
+      "kind": "ffprobe",
+      "pid": 187148,
+      "exe": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Final-Replay-Root-Snapshot-R1\\FreeMix-QA-Combined-Playlist-R12-fcf0ad9c-895a-4df6-bb7f-68e3a5207b40\\runtime\\ffprobe.exe",
+      "exeSHA": "a6618e99bb58869ded3c6f37b53aa1a8d701c3591dbb7b5b317d47369c112be2",
+      "root": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Final-Replay-Root-Snapshot-R1\\FreeMix-QA-Combined-Playlist-R12-fcf0ad9c-895a-4df6-bb7f-68e3a5207b40\\gravacoes\\replay-preparation\\FreeMix-Replay-Preparation-3fb80fe4-e9a2-4e85-85ed-ce5e86187128"
+    },
+    {
+      "id": "27c8446c-1a0a-4e5a-b5c5-e1fd3b11c297",
+      "label": "probe",
+      "kind": "ffprobe",
+      "pid": 27608,
+      "exe": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Final-Replay-Root-Snapshot-R1\\FreeMix-QA-Combined-Playlist-R12-fcf0ad9c-895a-4df6-bb7f-68e3a5207b40\\runtime\\ffprobe.exe",
+      "exeSHA": "a6618e99bb58869ded3c6f37b53aa1a8d701c3591dbb7b5b317d47369c112be2",
+      "root": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Final-Replay-Root-Snapshot-R1\\FreeMix-QA-Combined-Playlist-R12-fcf0ad9c-895a-4df6-bb7f-68e3a5207b40\\gravacoes\\replay-preparation\\FreeMix-Replay-Preparation-3fb80fe4-e9a2-4e85-85ed-ce5e86187128"
+    },
+    {
+      "id": "83d75d33-5f74-4ca6-b537-d52b50318c3f",
+      "label": "probe",
+      "kind": "ffprobe",
+      "pid": 19304,
+      "exe": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Final-Replay-Root-Snapshot-R1\\FreeMix-QA-Combined-Playlist-R12-fcf0ad9c-895a-4df6-bb7f-68e3a5207b40\\runtime\\ffprobe.exe",
+      "exeSHA": "a6618e99bb58869ded3c6f37b53aa1a8d701c3591dbb7b5b317d47369c112be2",
+      "root": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Final-Replay-Root-Snapshot-R1\\FreeMix-QA-Combined-Playlist-R12-fcf0ad9c-895a-4df6-bb7f-68e3a5207b40\\gravacoes\\replay-preparation\\FreeMix-Replay-Preparation-3fb80fe4-e9a2-4e85-85ed-ce5e86187128"
+    },
+    {
+      "id": "3c28c3e5-4c5a-4b8e-8cf1-2f0fb014575d",
+      "label": "probe",
+      "kind": "ffprobe",
+      "pid": 192088,
+      "exe": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Final-Replay-Root-Snapshot-R1\\FreeMix-QA-Combined-Playlist-R12-fcf0ad9c-895a-4df6-bb7f-68e3a5207b40\\runtime\\ffprobe.exe",
+      "exeSHA": "a6618e99bb58869ded3c6f37b53aa1a8d701c3591dbb7b5b317d47369c112be2",
+      "root": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Final-Replay-Root-Snapshot-R1\\FreeMix-QA-Combined-Playlist-R12-fcf0ad9c-895a-4df6-bb7f-68e3a5207b40\\gravacoes\\replay-preparation\\FreeMix-Replay-Preparation-3fb80fe4-e9a2-4e85-85ed-ce5e86187128"
+    },
+    {
+      "id": "171c9d38-0434-49f8-9f83-a94f536b976d",
+      "label": "probe",
+      "kind": "ffprobe",
+      "pid": 193128,
+      "exe": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Final-Replay-Root-Snapshot-R1\\FreeMix-QA-Combined-Playlist-R12-fcf0ad9c-895a-4df6-bb7f-68e3a5207b40\\runtime\\ffprobe.exe",
+      "exeSHA": "a6618e99bb58869ded3c6f37b53aa1a8d701c3591dbb7b5b317d47369c112be2",
+      "root": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Final-Replay-Root-Snapshot-R1\\FreeMix-QA-Combined-Playlist-R12-fcf0ad9c-895a-4df6-bb7f-68e3a5207b40\\gravacoes\\replay-preparation\\FreeMix-Replay-Preparation-3fb80fe4-e9a2-4e85-85ed-ce5e86187128"
+    },
+    {
+      "id": "c76aca7e-bcf3-49d1-b4c2-cf72af89a515",
+      "label": "playlist-prepare",
+      "kind": "ffmpeg",
+      "pid": 58572,
+      "exe": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Final-Replay-Root-Snapshot-R1\\FreeMix-QA-Combined-Playlist-R12-fcf0ad9c-895a-4df6-bb7f-68e3a5207b40\\runtime\\ffmpeg.exe",
+      "exeSHA": "09948d4cdd0650da6ff5a87577469f2a218dc2615ae379f8f734d24c49de0f73",
+      "root": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Final-Replay-Root-Snapshot-R1\\FreeMix-QA-Combined-Playlist-R12-fcf0ad9c-895a-4df6-bb7f-68e3a5207b40\\gravacoes\\replay-preparation\\FreeMix-Replay-Preparation-ab3d22ef-5546-4bdc-a808-38a7981786d4"
+    },
+    {
+      "id": "9ff879d7-1fa3-40e7-9b8a-d6ce16ed61d9",
+      "label": "probe",
+      "kind": "ffprobe",
+      "pid": 62168,
+      "exe": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Final-Replay-Root-Snapshot-R1\\FreeMix-QA-Combined-Playlist-R12-fcf0ad9c-895a-4df6-bb7f-68e3a5207b40\\runtime\\ffprobe.exe",
+      "exeSHA": "a6618e99bb58869ded3c6f37b53aa1a8d701c3591dbb7b5b317d47369c112be2",
+      "root": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Final-Replay-Root-Snapshot-R1\\FreeMix-QA-Combined-Playlist-R12-fcf0ad9c-895a-4df6-bb7f-68e3a5207b40\\gravacoes\\replay-preparation\\FreeMix-Replay-Preparation-ab3d22ef-5546-4bdc-a808-38a7981786d4"
+    },
+    {
+      "id": "cd27d10e-faab-47ba-bf1c-531f149f89fc",
+      "label": "cadence",
+      "kind": "ffprobe",
+      "pid": 164656,
+      "exe": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Final-Replay-Root-Snapshot-R1\\FreeMix-QA-Combined-Playlist-R12-fcf0ad9c-895a-4df6-bb7f-68e3a5207b40\\runtime\\ffprobe.exe",
+      "exeSHA": "a6618e99bb58869ded3c6f37b53aa1a8d701c3591dbb7b5b317d47369c112be2",
+      "root": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Final-Replay-Root-Snapshot-R1\\FreeMix-QA-Combined-Playlist-R12-fcf0ad9c-895a-4df6-bb7f-68e3a5207b40\\gravacoes\\replay-preparation\\FreeMix-Replay-Preparation-ab3d22ef-5546-4bdc-a808-38a7981786d4"
+    },
+    {
+      "id": "5b646ea8-bd6f-4bbb-8640-356d8de19d59",
+      "label": "probe",
+      "kind": "ffprobe",
+      "pid": 130628,
+      "exe": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Final-Replay-Root-Snapshot-R1\\FreeMix-QA-Combined-Playlist-R12-fcf0ad9c-895a-4df6-bb7f-68e3a5207b40\\runtime\\ffprobe.exe",
+      "exeSHA": "a6618e99bb58869ded3c6f37b53aa1a8d701c3591dbb7b5b317d47369c112be2",
+      "root": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Final-Replay-Root-Snapshot-R1\\FreeMix-QA-Combined-Playlist-R12-fcf0ad9c-895a-4df6-bb7f-68e3a5207b40\\gravacoes\\replay-preparation\\FreeMix-Replay-Preparation-3fb80fe4-e9a2-4e85-85ed-ce5e86187128"
+    },
+    {
+      "id": "a3c93a1c-9561-4c75-be8f-78620742ee4d",
+      "label": "probe",
+      "kind": "ffprobe",
+      "pid": 122104,
+      "exe": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Final-Replay-Root-Snapshot-R1\\FreeMix-QA-Combined-Playlist-R12-fcf0ad9c-895a-4df6-bb7f-68e3a5207b40\\runtime\\ffprobe.exe",
+      "exeSHA": "a6618e99bb58869ded3c6f37b53aa1a8d701c3591dbb7b5b317d47369c112be2",
+      "root": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Final-Replay-Root-Snapshot-R1\\FreeMix-QA-Combined-Playlist-R12-fcf0ad9c-895a-4df6-bb7f-68e3a5207b40\\gravacoes\\replay-preparation\\FreeMix-Replay-Preparation-3fb80fe4-e9a2-4e85-85ed-ce5e86187128"
+    },
+    {
+      "id": "448f7a91-131c-4789-b958-0422d309f9d2",
+      "label": "probe",
+      "kind": "ffprobe",
+      "pid": 205164,
+      "exe": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Final-Replay-Root-Snapshot-R1\\FreeMix-QA-Combined-Playlist-R12-fcf0ad9c-895a-4df6-bb7f-68e3a5207b40\\runtime\\ffprobe.exe",
+      "exeSHA": "a6618e99bb58869ded3c6f37b53aa1a8d701c3591dbb7b5b317d47369c112be2",
+      "root": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Final-Replay-Root-Snapshot-R1\\FreeMix-QA-Combined-Playlist-R12-fcf0ad9c-895a-4df6-bb7f-68e3a5207b40\\gravacoes\\replay-preparation\\FreeMix-Replay-Preparation-3fb80fe4-e9a2-4e85-85ed-ce5e86187128"
+    },
+    {
+      "id": "4bf1edaa-66cc-42cf-9c7e-ec079fd6f1b0",
+      "label": "playlist-prepare",
+      "kind": "ffmpeg",
+      "pid": 126004,
+      "exe": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Final-Replay-Root-Snapshot-R1\\FreeMix-QA-Combined-Playlist-R12-fcf0ad9c-895a-4df6-bb7f-68e3a5207b40\\runtime\\ffmpeg.exe",
+      "exeSHA": "09948d4cdd0650da6ff5a87577469f2a218dc2615ae379f8f734d24c49de0f73",
+      "root": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Final-Replay-Root-Snapshot-R1\\FreeMix-QA-Combined-Playlist-R12-fcf0ad9c-895a-4df6-bb7f-68e3a5207b40\\gravacoes\\replay-preparation\\FreeMix-Replay-Preparation-f1f44e8c-9113-43ff-9114-96a50b86ce1b"
+    },
+    {
+      "id": "f800f481-5eab-459a-af3a-955840e3f78b",
+      "label": "probe",
+      "kind": "ffprobe",
+      "pid": 188012,
+      "exe": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Final-Replay-Root-Snapshot-R1\\FreeMix-QA-Combined-Playlist-R12-fcf0ad9c-895a-4df6-bb7f-68e3a5207b40\\runtime\\ffprobe.exe",
+      "exeSHA": "a6618e99bb58869ded3c6f37b53aa1a8d701c3591dbb7b5b317d47369c112be2",
+      "root": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Final-Replay-Root-Snapshot-R1\\FreeMix-QA-Combined-Playlist-R12-fcf0ad9c-895a-4df6-bb7f-68e3a5207b40\\gravacoes\\replay-preparation\\FreeMix-Replay-Preparation-f1f44e8c-9113-43ff-9114-96a50b86ce1b"
+    },
+    {
+      "id": "0c5ad39f-eb45-4754-847b-cba25cbdedb5",
+      "label": "cadence",
+      "kind": "ffprobe",
+      "pid": 191316,
+      "exe": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Final-Replay-Root-Snapshot-R1\\FreeMix-QA-Combined-Playlist-R12-fcf0ad9c-895a-4df6-bb7f-68e3a5207b40\\runtime\\ffprobe.exe",
+      "exeSHA": "a6618e99bb58869ded3c6f37b53aa1a8d701c3591dbb7b5b317d47369c112be2",
+      "root": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Final-Replay-Root-Snapshot-R1\\FreeMix-QA-Combined-Playlist-R12-fcf0ad9c-895a-4df6-bb7f-68e3a5207b40\\gravacoes\\replay-preparation\\FreeMix-Replay-Preparation-f1f44e8c-9113-43ff-9114-96a50b86ce1b"
+    }
+  ],
+  "closures": [
+    {
+      "actualClosed": true,
+      "pending": [],
+      "noForce": true,
+      "preflightBusy": false,
+      "readingFiles": [],
+      "ledgerFile": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Final-Replay-Root-Snapshot-R1\\FreeMix-QA-Combined-Playlist-R12-fcf0ad9c-895a-4df6-bb7f-68e3a5207b40\\FreeMix-QA-Playlist-Fixtures-eb835075-c77a-443b-b158-2423a98f1df4\\REPLAY-WORKER-LEDGER-5ab5d2d3-a34e-4a41-ac6f-787e1f2bef2b.json",
+      "ledgerError": null
+    },
+    {
+      "disposed": true,
+      "queueQuiescent": true,
+      "cadenceQuiescent": true,
+      "playerPreview": {
+        "closed": true,
+        "pending": false,
+        "nativePending": false,
+        "nativeCompletionUnknown": false,
+        "player": null
+      }
+    },
+    {
+      "actualClosed": true,
+      "pending": [],
+      "outstanding": 0,
+      "reading": []
+    }
+  ],
+  "failure": null,
+  "status": "PASS",
+  "rootMustObserveActualOwnedPidsAbsent": [
+    197760,
+    138940,
+    31124,
+    99252,
+    63972,
+    183020,
+    193112,
+    158128,
+    150120,
+    179164,
+    146548,
+    44988,
+    180668,
+    85868,
+    4044,
+    170644,
+    66284,
+    87152,
+    172308,
+    124724,
+    198468,
+    40208,
+    208736,
+    105460,
+    183972,
+    86336,
+    150472,
+    158052,
+    207680,
+    71896,
+    183800,
+    203392,
+    47200,
+    116328,
+    214424,
+    168496,
+    158368,
+    187148,
+    27608,
+    19304,
+    192088,
+    193128,
+    58572,
+    62168,
+    164656,
+    130628,
+    122104,
+    205164,
+    126004,
+    188012,
+    191316
+  ]
+}

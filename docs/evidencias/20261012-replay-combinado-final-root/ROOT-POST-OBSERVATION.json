@@ -1,0 +1,349 @@
+{
+  "observedUtc": "2026-10-12T05:12:07.882Z",
+  "status": "PASS_TARGETED_REAL16_POST_IDENTITIES_AND_SOURCE_PINS",
+  "scope": "REAL_FFMPEG_SYNTHETIC_WHOLE_PLAYLIST_DISK_DECLARED_OBS_MOCK_NO_NATIVE",
+  "receiptSha": "b709ae8ea4743c44df3c66f4221c0f5a593b4a2d4210c2bc23fa7b23de537546",
+  "mediaGates": 16,
+  "sourcePinCount": 168,
+  "sourcePinsSame": true,
+  "children": [
+    {
+      "pid": 197760,
+      "absent": true,
+      "originalIdentityAbsent": true,
+      "reusedIdentity": null
+    },
+    {
+      "pid": 138940,
+      "absent": true,
+      "originalIdentityAbsent": true,
+      "reusedIdentity": null
+    },
+    {
+      "pid": 31124,
+      "absent": true,
+      "originalIdentityAbsent": true,
+      "reusedIdentity": null
+    },
+    {
+      "pid": 99252,
+      "absent": true,
+      "originalIdentityAbsent": true,
+      "reusedIdentity": null
+    },
+    {
+      "pid": 63972,
+      "absent": true,
+      "originalIdentityAbsent": true,
+      "reusedIdentity": null
+    },
+    {
+      "pid": 183020,
+      "absent": true,
+      "originalIdentityAbsent": true,
+      "reusedIdentity": null
+    },
+    {
+      "pid": 193112,
+      "absent": true,
+      "originalIdentityAbsent": true,
+      "reusedIdentity": null
+    },
+    {
+      "pid": 158128,
+      "absent": true,
+      "originalIdentityAbsent": true,
+      "reusedIdentity": null
+    },
+    {
+      "pid": 150120,
+      "absent": true,
+      "originalIdentityAbsent": true,
+      "reusedIdentity": null
+    },
+    {
+      "pid": 179164,
+      "absent": true,
+      "originalIdentityAbsent": true,
+      "reusedIdentity": null
+    },
+    {
+      "pid": 146548,
+      "absent": true,
+      "originalIdentityAbsent": true,
+      "reusedIdentity": null
+    },
+    {
+      "pid": 44988,
+      "absent": true,
+      "originalIdentityAbsent": true,
+      "reusedIdentity": null
+    },
+    {
+      "pid": 180668,
+      "absent": true,
+      "originalIdentityAbsent": true,
+      "reusedIdentity": null
+    },
+    {
+      "pid": 85868,
+      "absent": true,
+      "originalIdentityAbsent": true,
+      "reusedIdentity": null
+    },
+    {
+      "pid": 4044,
+      "absent": true,
+      "originalIdentityAbsent": true,
+      "reusedIdentity": null
+    },
+    {
+      "pid": 170644,
+      "absent": true,
+      "originalIdentityAbsent": true,
+      "reusedIdentity": null
+    },
+    {
+      "pid": 66284,
+      "absent": true,
+      "originalIdentityAbsent": true,
+      "reusedIdentity": null
+    },
+    {
+      "pid": 87152,
+      "absent": true,
+      "originalIdentityAbsent": true,
+      "reusedIdentity": null
+    },
+    {
+      "pid": 172308,
+      "absent": true,
+      "originalIdentityAbsent": true,
+      "reusedIdentity": null
+    },
+    {
+      "pid": 124724,
+      "absent": true,
+      "originalIdentityAbsent": true,
+      "reusedIdentity": null
+    },
+    {
+      "pid": 198468,
+      "absent": true,
+      "originalIdentityAbsent": true,
+      "reusedIdentity": null
+    },
+    {
+      "pid": 40208,
+      "absent": true,
+      "originalIdentityAbsent": true,
+      "reusedIdentity": null
+    },
+    {
+      "pid": 208736,
+      "absent": true,
+      "originalIdentityAbsent": true,
+      "reusedIdentity": null
+    },
+    {
+      "pid": 105460,
+      "absent": true,
+      "originalIdentityAbsent": true,
+      "reusedIdentity": null
+    },
+    {
+      "pid": 183972,
+      "absent": true,
+      "originalIdentityAbsent": true,
+      "reusedIdentity": null
+    },
+    {
+      "pid": 86336,
+      "absent": true,
+      "originalIdentityAbsent": true,
+      "reusedIdentity": null
+    },
+    {
+      "pid": 150472,
+      "absent": true,
+      "originalIdentityAbsent": true,
+      "reusedIdentity": null
+    },
+    {
+      "pid": 158052,
+      "absent": true,
+      "originalIdentityAbsent": true,
+      "reusedIdentity": null
+    },
+    {
+      "pid": 207680,
+      "absent": true,
+      "originalIdentityAbsent": true,
+      "reusedIdentity": null
+    },
+    {
+      "pid": 71896,
+      "absent": true,
+      "originalIdentityAbsent": true,
+      "reusedIdentity": null
+    },
+    {
+      "pid": 183800,
+      "absent": true,
+      "originalIdentityAbsent": true,
+      "reusedIdentity": null
+    },
+    {
+      "pid": 203392,
+      "absent": true,
+      "originalIdentityAbsent": true,
+      "reusedIdentity": null
+    },
+    {
+      "pid": 47200,
+      "absent": true,
+      "originalIdentityAbsent": true,
+      "reusedIdentity": null
+    },
+    {
+      "pid": 116328,
+      "absent": true,
+      "originalIdentityAbsent": true,
+      "reusedIdentity": null
+    },
+    {
+      "pid": 214424,
+      "absent": true,
+      "originalIdentityAbsent": true,
+      "reusedIdentity": null
+    },
+    {
+      "pid": 168496,
+      "absent": true,
+      "originalIdentityAbsent": true,
+      "reusedIdentity": null
+    },
+    {
+      "pid": 158368,
+      "absent": true,
+      "originalIdentityAbsent": true,
+      "reusedIdentity": null
+    },
+    {
+      "pid": 187148,
+      "absent": true,
+      "originalIdentityAbsent": true,
+      "reusedIdentity": null
+    },
+    {
+      "pid": 27608,
+      "absent": true,
+      "originalIdentityAbsent": true,
+      "reusedIdentity": null
+    },
+    {
+      "pid": 19304,
+      "absent": true,
+      "originalIdentityAbsent": true,
+      "reusedIdentity": null
+    },
+    {
+      "pid": 192088,
+      "absent": true,
+      "originalIdentityAbsent": true,
+      "reusedIdentity": null
+    },
+    {
+      "pid": 193128,
+      "absent": true,
+      "originalIdentityAbsent": true,
+      "reusedIdentity": null
+    },
+    {
+      "pid": 58572,
+      "absent": true,
+      "originalIdentityAbsent": true,
+      "reusedIdentity": null
+    },
+    {
+      "pid": 62168,
+      "absent": true,
+      "originalIdentityAbsent": true,
+      "reusedIdentity": null
+    },
+    {
+      "pid": 164656,
+      "absent": true,
+      "originalIdentityAbsent": true,
+      "reusedIdentity": null
+    },
+    {
+      "pid": 130628,
+      "absent": true,
+      "originalIdentityAbsent": true,
+      "reusedIdentity": null
+    },
+    {
+      "pid": 122104,
+      "absent": true,
+      "originalIdentityAbsent": true,
+      "reusedIdentity": null
+    },
+    {
+      "pid": 205164,
+      "absent": true,
+      "originalIdentityAbsent": true,
+      "reusedIdentity": null
+    },
+    {
+      "pid": 126004,
+      "absent": true,
+      "originalIdentityAbsent": true,
+      "reusedIdentity": null
+    },
+    {
+      "pid": 188012,
+      "absent": true,
+      "originalIdentityAbsent": true,
+      "reusedIdentity": null
+    },
+    {
+      "pid": 191316,
+      "absent": true,
+      "originalIdentityAbsent": true,
+      "reusedIdentity": null
+    }
+  ],
+  "actualOwnedIdentitiesAbsent": true,
+  "closures": [
+    {
+      "actualClosed": true,
+      "pending": [],
+      "noForce": true,
+      "preflightBusy": false,
+      "readingFiles": [],
+      "ledgerFile": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Final-Replay-Root-Snapshot-R1\\FreeMix-QA-Combined-Playlist-R12-fcf0ad9c-895a-4df6-bb7f-68e3a5207b40\\FreeMix-QA-Playlist-Fixtures-eb835075-c77a-443b-b158-2423a98f1df4\\REPLAY-WORKER-LEDGER-5ab5d2d3-a34e-4a41-ac6f-787e1f2bef2b.json",
+      "ledgerError": null
+    },
+    {
+      "disposed": true,
+      "queueQuiescent": true,
+      "cadenceQuiescent": true,
+      "playerPreview": {
+        "closed": true,
+        "pending": false,
+        "nativePending": false,
+        "nativeCompletionUnknown": false,
+        "player": null
+      }
+    },
+    {
+      "actualClosed": true,
+      "pending": [],
+      "outstanding": 0,
+      "reading": []
+    }
+  ],
+  "nativeStarted": false,
+  "operatorChanged": false
+}
