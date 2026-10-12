@@ -1,0 +1,31 @@
+{
+  "at": "2026-10-12T21:29:38.867Z",
+  "scope": "REAL_DOM_OWN_API_MOCK_NAVIGATION_ONLY",
+  "sourceChanges": [
+    {
+      "path": "painel/remoto/externo.html",
+      "sha256": "058b40cc2056fd522178ba7e37d3f247ed10809e328e08702455829ee4b05583",
+      "beforeSHA": "ec1cade00d7cd5bb0f30ddea468522e4b82aee90b86192d3736dba57f76a6c93"
+    },
+    {
+      "path": "painel/remoto/externo.js",
+      "sha256": "89e28864ca031e032c39e7f969845f6d362d148fecd35c90ca434da267791c19",
+      "beforeSHA": "9276b16dc027518b8e45468c33561986953f269b8ebdc9b3c01edded75afa630"
+    }
+  ],
+  "button": "Externo > SRT",
+  "target": "/saidas?context=external&transport=srt",
+  "selectedProtocol": "srt",
+  "visibleConnectionFields": [
+    "Caller/Listener",
+    "IP ou nome do receptor",
+    "Porta SRT"
+  ],
+  "mutatingCalls": 0,
+  "consoleErrors": 0,
+  "serverClosed": true,
+  "ownPidAbsent": true,
+  "operatorChanged": false,
+  "nativeTransmissionTested": false,
+  "packageDelivered": false
+}

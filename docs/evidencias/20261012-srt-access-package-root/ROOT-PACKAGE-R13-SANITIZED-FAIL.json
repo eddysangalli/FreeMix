@@ -1,0 +1,17 @@
+{
+  "at": "2026-10-12T21:29:38.867Z",
+  "status": "FAILED_INHERITED_CANONICAL_OVERLAY_MARKER",
+  "builderSHA": "7687f930bdf84f874ad67ced27728748c0fdbaf5910ad3f19f13da6042a8d021",
+  "executionHEAD": "83d439aacfba73d16df6e71d25c9a61e6d8b8b69",
+  "builderExit": 1,
+  "baseFile": "canonical-source-pins.json",
+  "baseAndCandidateSHA": "34fc8a6f7cbf19ff7c48c758f975097c405d4cda2b9173ade6654528e3b7e73c",
+  "baseHistoricalCommit": "6adcd19315c01a4f01baaab2fd5d9e560872619b",
+  "sourceOverlayCompleted": false,
+  "sealed": false,
+  "installerBuilt": false,
+  "NativeStarted": false,
+  "operatorChanged": false,
+  "partialPreserved": true,
+  "externalAuthorCorrectionRequired": true
+}

@@ -289,6 +289,7 @@
     E('start-all').disabled = busy;
 
     E('advanced-btn').disabled = busy;
+    E('type-srt').disabled = busy;
     E('save-close').disabled = busy;
 
     // Mensagem de status
@@ -623,13 +624,17 @@
     draw();
   };
 
-  E('advanced-btn').onclick = () => {
+  function openAdvancedTransport(transport) {
+    if (busy || !['ndi', 'omt', 'srt'].includes(transport)) return;
     const hasDirty = ['NDI', 'OMT'].some((pr) => [0, 1, 2, 3].some((sl) => isDirty(pr, sl)));
     if (hasDirty && !confirm('Há alterações não salvas nesta janela. Abrir o editor avançado mesmo assim?')) {
       return;
     }
-    location.href = '/saidas?context=external&transport=' + selectedProtocol.toLowerCase();
-  };
+    persistDrafts();
+    location.href = '/saidas?context=external&transport=' + transport;
+  }
+  E('advanced-btn').onclick = () => openAdvancedTransport(selectedProtocol.toLowerCase());
+  E('type-srt').onclick = () => openAdvancedTransport('srt');
 
   E('save-close').onclick = () => {
     persistDrafts();

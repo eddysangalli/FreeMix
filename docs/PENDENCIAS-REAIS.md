@@ -1,4 +1,15 @@
 
+## 12/10/2026 21:29 UTC — SRT acessível no Externo e bloqueio real do empacotador
+
+O usuário apontou SRT ausente na janela Externo. A fonte oferecia somente NDI e OMT na linha Tipo; SRT estava no editor completo. Agora o botão SRT abre diretamente /saidas?context=external&transport=srt, conserva rascunhos NDI/OMT e respeita operação pendente. Prévia isolada com DOM real/API simulada confirmou botão visível, navegação e saída livre com protocolo SRT, Caller/Listener, IP e porta. Zero comandos mutantes, console sem erros, servidor/aba encerrados e PID próprio ausente. Não é teste de transmissão/receptor, alteração da instalação do operador ou pacote entregue.
+
+Root compôs backend169+UI27 em190 arquivos próprios;47 caminhos canônicos novos/alterados, antigo editor636701 substituído explicitamente pelo4f9e23 de flags. Fonte composta ainda aguarda revisão/QA Native14, sem integração canônica do Replay. O pedido humano agora é pacote completo com novas telas funcionando e CMD após qualificação.
+
+Uma execução real do empacotador externo R13 com HEAD83d439a, Native39 e3DLLs terminou FAIL: a base assinada contém canonical-source-pins.json antigo; o builder o herdou e aplicar-fontes-payload recusou corretamente um payload já sobreposto. SHA34fc8a6f7cbf19ff7c48c758f975097c405d4cda2b9173ade6654528e3b7e73c coincide na base e na cópia. Candidato parcial próprio preservado, sem retomar, selar, ZIP, EXE ou instalação. Correção de autoria/revisão de pacote permanece externa. Nenhum Native/API/codecbench começou nesta rodada.
+
+AGY três FULLtasks21:16 terminaram429/0B; próxima tentativa por modelo>=22:16:51/53UTC. Claude>=13/10 00:30UTC. Humano autorizou investigar/executar agentes gratuitos Kilo/OpenCode e instalou o CLI oficial; disponibilidade de inferência ainda precisa comprovação, nunca usar modelo pago por fallback. Trabalho humano em experimentos/replay-codec-bench-20261012 permanece fora dos arquivos deste commit. Provas públicas: docs/evidencias/20261012-srt-access-package-root.
+
+
 ## 12/10/2026 20:12 UTC — Novo limite do Claude; codecR19 materializado, ainda não qualificado
 
 O Claude entregou os13patches completos que faltavam: todos os anchors ocorreram uma vez contra R18, arquivoR19 reconstruído58.150B/SHA5620267f2cb32a35f4fe52041a217bfb4437c9f786dd6fd401bf358e618e921a e sintaxe0. O retorno anterior somente tail permanece preservado e não foi aplicado. R19 é fonte não admitida: helpers/CPU/revisão integral/bancada ainda pendentes.
