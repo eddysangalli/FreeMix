@@ -1,0 +1,49 @@
+{
+  "scope": "REAL_DOM_MOCK_API_SYNTHETIC_JPEG_ONLY",
+  "fullscreenCssViewport": [
+    950,
+    534
+  ],
+  "dockCssViewport": [
+    950,
+    250
+  ],
+  "observations": {
+    "fullscreenFlagsOrder": [
+      "Lance1Cam3",
+      "Lance1Cam1",
+      "Lance2Cam2"
+    ],
+    "reordered": [
+      "Lance1Cam1",
+      "Lance1Cam3",
+      "Lance2Cam2"
+    ],
+    "fadeMsConfirmedAfterPollAndNameEdit": 400,
+    "saveConfirmed": true,
+    "dockFlagsOrder": [
+      "Lance3Cam4",
+      "Lance3Cam2"
+    ],
+    "consoleErrorsBoth": 0,
+    "decodedPlayerJpegDimensions": [
+      320,
+      180
+    ],
+    "dockPlayerImagesVisible": 0
+  },
+  "postCounts": {
+    "history": 79,
+    "playlist-save": 1
+  },
+  "historyPostsReadOnly": true,
+  "visualStatus": "NOT_1_TO_1_DENSITY_AND_CONTROL_POSITION_REFINEMENT_PENDING",
+  "NativeStarted": false,
+  "operatorTouched": false,
+  "captures": [
+    "fullscreen-flags-r14.jpg",
+    "playlist-order-fade400-r14.jpg",
+    "dock-950-r14.jpg",
+    "dock-order-r14.jpg"
+  ]
+}

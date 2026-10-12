@@ -1,0 +1,11 @@
+{
+  "sourcePin": "d3c5527bf91ec89c80b730cca0498e5f8bf06868f087ca20204cfbaadecaeafe",
+  "sourcePeerSha": "59026b465909817a138d90ba005cf04ef88cc1d70d35237455dff4eaa0c55a90",
+  "CPUActualCases": 30,
+  "actualScope": "REAL_DOM_API_MOCK_SYNTHETIC_JPEG_ONLY",
+  "visualApprovedOneToOne": false,
+  "canonicalIntegrated": false,
+  "NativeStarted": false,
+  "operatorTouched": false,
+  "newPackageCreated": false
+}
