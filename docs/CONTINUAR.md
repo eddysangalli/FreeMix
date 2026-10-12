@@ -1,4 +1,21 @@
 
+## 12/10/2026 23:51 UTC — Replay ainda fora do pacote; falha TS preservada e QA arquivado
+
+O prazo de teste às19h30 terminou sem entrega do pacote completo ou EXE novo. A prévia entregue era DOM real/API simulada, com JPEG sintético fixo e Native0. Flags por ângulo, ordem da lista, CUT/FADE400, salvar e preparar curva foram exercitados somente no modelo. O servidor R5 encerrou pelo limite de30min; no fim houve128 recusas ao atingir o limite do histórico de requisições. A captura inicial não prova uma sessão inteira saudável. O CMD antigo depende daquela sessão encerrada e não é mais uma entrada utilizável. O novo launcher reabrível ainda está em qualificação: R3 falhou na sintaxe PowerShell antes de iniciar e R4 falhou na substituição do registro no WindowsPowerShell5 antes de iniciar Node; originais preservados.
+
+No ensaio Native39 TEST_ONLY R5, identidade/API passou e quatro capturas reais de entrada/cena mostraram os contadores esperados com mídia PLAYING, sem alterar Program/Preview. A prova do TS gravado falhou: “TS seek counter does not match its actual relative PTS/frame index”. As etapas de navegador posteriores não foram abertas. A causa permanece desconhecida; o helper já usa contador inicial relativo, portanto a hipótese de assumir contador zero foi refutada. Um diagnóstico offline finito de18 trabalhos está em revisão, com PTS/contadores antes de qualquer conclusão e sem relaxar tolerâncias. Native14 e Replay completo continuam sem aprovação.
+
+API e Native do R5 fecharam cooperativamente com código0, observador restaurado e recursos pendentes zero. Pós-observação22:54 confirmou29 IDs próprios ausentes e quatro portas livres; pinos e alocações foram conferidos. Quatro falhas transitórias dos helpers CIM permanecem registradas, sem transformar todos os testes em PASS. Nenhuma instalação ou processo do operador foi alterado.
+
+O usuário arquivou178 pastas de QA da raizD: para archived/qa-raiz-d-20261012, preservando o conteúdo; MANIFESTO registra pending0/remaining0. Novas fontes, casos e saídas ficam dentro do projeto em qa-replay/qa-finalizacao. Referências antigas em recibos continuam históricas; sucessores exigem vínculos explícitos e pinos novos. Fontes do launcher e do diagnóstico foram adaptadas, sem reescrever o arquivo em massa.
+
+A pesquisa compartilhável de codecs está em entregas/PESQUISA-CODECS-REPLAY-20261012.md, atualizada com os resultados públicos paralelos V3 e seus limites. Não há codec escolhido pelo Root nem bancada Root nova aprovada. O retorno Kilo de autoria de integração tinha somente59bytes/incompleto; a revisão completa rejeitou o R20 por contabilidade agregada e falta de conexão dos escritores/contador RGB ao benchmark. Código de saída0 não equivale a fonte completa ou contrato aprovado. Claude permanece bloqueado até a estimativa13/10 00:30UTC; horários não garantem disponibilidade.
+
+SRT está corrigido na fonte do Externo e passou na prévia simulada; transmissão e instalação ainda são provas separadas. Empacotador R13 falhou em guarda de payload previamente selado; R14 preparatório não foi executado. Quatro vídeos Topaz separados foram solicitados pelo usuário para ensaio multicâmera sincronizado, mas os arquivos finais ainda não foram fornecidos. Reprodução simultânea/frame sync e carga de quatro entradas precisam ser medidos.
+
+Prova pública sanitizada: docs/evidencias/20261012-replay-native-r5-status-root/ROOT-STATUS.json. Trabalho humano nos dois diretórios experimentais de codec permanece intacto e fora deste commit.
+
+
 ## 12/10/2026 21:29 UTC — SRT acessível no Externo e bloqueio real do empacotador
 
 O usuário apontou SRT ausente na janela Externo. A fonte oferecia somente NDI e OMT na linha Tipo; SRT estava no editor completo. Agora o botão SRT abre diretamente /saidas?context=external&transport=srt, conserva rascunhos NDI/OMT e respeita operação pendente. Prévia isolada com DOM real/API simulada confirmou botão visível, navegação e saída livre com protocolo SRT, Caller/Listener, IP e porta. Zero comandos mutantes, console sem erros, servidor/aba encerrados e PID próprio ausente. Não é teste de transmissão/receptor, alteração da instalação do operador ou pacote entregue.

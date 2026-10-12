@@ -1,0 +1,43 @@
+{
+  "format": 1,
+  "observedAt": "2026-10-12T23:51:50.858Z",
+  "scope": "SANITIZED_HISTORICAL_ROOT_NATIVE_R5_AND_CURRENT_DELIVERY_LIMITS",
+  "originalReceiptSHA256": "c82fb0ec7597a2bdaad98ab9cfbde86699c2b8a5ab484197ed98ca1fc3002b93",
+  "NativeR5": {
+    "status": "FAIL_TEST_ONLY",
+    "gates": [
+      {
+        "name": "TESTONLY01 exact Native39/API identity and idle own outputs",
+        "pass": true,
+        "elapsedMs": 20323.739699999976
+      },
+      {
+        "name": "TESTONLY02 cold offair fixtures and actual stopped SourceRecord RGB/counter/PTS",
+        "pass": false,
+        "elapsedMs": 22389.32389999999
+      }
+    ],
+    "stoppedTsCriterionPassed": false,
+    "Native14Approved": false,
+    "originalFailurePreserved": true
+  },
+  "postObservation": {
+    "at": "2026-10-12T22:54:17.5139809Z",
+    "pidCount": 29,
+    "allNumericPidsAbsent": true,
+    "allOwnPortsUnbound": true,
+    "nativeMemoryLeaks0": true
+  },
+  "archive": {
+    "movedCount": 178,
+    "newQaWithinProject": true
+  },
+  "delivery": {
+    "fullPackage": false,
+    "newExe": false,
+    "newReplayInstalled": false,
+    "oldMockClosed": true,
+    "reopenableMockNotYetQualified": true
+  },
+  "operatorTouched": false
+}
