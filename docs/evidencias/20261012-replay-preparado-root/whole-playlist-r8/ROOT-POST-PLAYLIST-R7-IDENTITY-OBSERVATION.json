@@ -1,0 +1,17 @@
+{
+  "status": "FAIL_PRESERVED",
+  "actualClosedByWorker": true,
+  "receiptChildCount": 20,
+  "ownProcessIdentitiesAbsent": true,
+  "matching": [],
+  "unrelatedReusedPids": [
+    {
+      "pid": 137356,
+      "actualExe": "C:\\WINDOWS\\system32\\conhost.exe",
+      "expectedExe": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Combined-Playlist-Root-Snapshot-R7\\FreeMix-QA-Combined-Playlist-R7-766c94fb-3b40-4756-b50a-df611791ae7a\\runtime\\ffprobe.exe",
+      "classification": "PID_REUSED_UNRELATED_PRESERVED"
+    }
+  ],
+  "sourcePinsSame": true,
+  "observedUtc": "2026-10-12T02:41:44.3416614Z"
+}

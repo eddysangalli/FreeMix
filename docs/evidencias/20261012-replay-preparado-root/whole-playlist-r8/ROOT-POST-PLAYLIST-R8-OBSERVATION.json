@@ -1,0 +1,20 @@
+{
+  "scope": "ACTUAL_FFMPEG_SYNTHETIC_WHOLE_PLAYLIST_DECLARED_NATIVE_MOCK",
+  "status": "PASS",
+  "gates": 16,
+  "childCount": 51,
+  "uniqueOwnedPidCount": 51,
+  "ownedProcessIdentitiesAbsent": true,
+  "matchingOwned": [],
+  "unrelatedPidReuse": [],
+  "sourcePinsSame": true,
+  "sourcePinCount": 146,
+  "pinErrors": [],
+  "originalsSame": true,
+  "originalErrors": [],
+  "receiptSha": "8448C5C7254AD0E6CDFCE58819EA3AB5A283AF0FE4632E64A3CD3BFDC127119C",
+  "nativeUiQualified": false,
+  "installed": false,
+  "operatorChanged": false,
+  "observedUtc": "2026-10-12T02:49:34.9926819Z"
+}

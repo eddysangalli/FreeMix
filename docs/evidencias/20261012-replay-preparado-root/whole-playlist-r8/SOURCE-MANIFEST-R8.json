@@ -1,0 +1,747 @@
+{
+  "productSourcesUnchanged": true,
+  "baseSourceFiles": 144,
+  "files": [
+    {
+      "bytes": 155,
+      "sha256": "8fd57818321e159464b1c78fea4c86c9b008e708fa66686c4df56664f07b0981",
+      "path": "AB-PREPARED-LOCK-ANCHOR-COUNTS.json"
+    },
+    {
+      "bytes": 638,
+      "sha256": "ac86883710237f18a9f98a39fdc1a9c616e3fec7d106597884efdf6d400b9c06",
+      "path": "APPROVED-FFMPEG-PINS.json"
+    },
+    {
+      "bytes": 60203,
+      "sha256": "f6eff861a25ebb3bcd8303835fe4c3cfeb4d4c827d1bae6fd976406d102e803d",
+      "path": "ASSEMBLY-INPUTS.json"
+    },
+    {
+      "bytes": 22277,
+      "sha256": "90a331b37c61ef298b9b3277c020e166b2b7cc7a9d253ae64c1b84f1054d12a9",
+      "path": "ASSEMBLY-LITERAL-PATCHES.json"
+    },
+    {
+      "bytes": 485,
+      "sha256": "db4235b890c53da60f401cb2de71e734f8bd17034137542286b24211eddd8cea",
+      "path": "FRONTEND-AB-ANCHOR-COUNTS.json"
+    },
+    {
+      "bytes": 2830,
+      "sha256": "7c05c089e84834117a9f0ac9935fe84b345076a98cb2547472b9bc06bfe7f617",
+      "path": "HANDOFF-R7.md"
+    },
+    {
+      "bytes": 185,
+      "sha256": "e8dc0228cd1f313fdf9b900a6b7431ed70e4d2cdfe85bfe84e1c7b4492d71a83",
+      "path": "package.json"
+    },
+    {
+      "bytes": 740,
+      "sha256": "3e82a8c5e4471f676cc6d9226d3162ff8c4c371eac50eaf56145cf578badac00",
+      "path": "R5-R6-ANCHOR-COUNTS.json"
+    },
+    {
+      "bytes": 66,
+      "sha256": "3f9c19c4526e61014d0af42cc623d6f1a81a87ed1a59e74b486396b4e1e6647d",
+      "path": "R7-ANCHOR-COUNTS.json"
+    },
+    {
+      "bytes": 4303,
+      "sha256": "577cecfb3126c046f2b77c52a985649777f38cbc682f01156999e3a4c631e6d2",
+      "path": "SOURCE-REVIEW.md"
+    },
+    {
+      "bytes": 15937,
+      "sha256": "87202450dca6ad887bf6db0f9186552cd1d86842bf067377e4fea80583a8c00e",
+      "path": "test-combined-controller-contract.mjs"
+    },
+    {
+      "bytes": 12718,
+      "sha256": "c82cce29173791f09fedad7ccebca79a6726369f7501ec622af8c7f54a096834",
+      "path": "test-combined-controller-real.mjs"
+    },
+    {
+      "bytes": 3374,
+      "sha256": "49b9094e1aa3f0180c9569a84544ecf8dc9dd4b6f9b460029cc777e66ad648af",
+      "path": "test-combined-playlist-phase-r6.mjs"
+    },
+    {
+      "bytes": 3374,
+      "sha256": "7e0cfa2e537d0cdec4d2d0e0046033b87b5c8128a0802b78ad0c53fc8eecba8c",
+      "path": "test-combined-playlist-phase-r7.mjs"
+    },
+    {
+      "bytes": 3374,
+      "sha256": "0b698b71b058273a86df6ecb7b275acaff4e0468cacea9ac37bc301d9999c1b7",
+      "path": "test-combined-playlist-phase-r8.mjs"
+    },
+    {
+      "bytes": 7533,
+      "sha256": "c1e741971bd9389c98bd63eee408dbedb55905ab26e2cc80176ee4b13b5c6041",
+      "path": "test-curve-controller-contract.mjs"
+    },
+    {
+      "bytes": 21289,
+      "sha256": "b1405184218a3552e88794edbce4f4dbbb972366dfd4e847cb8377eac90b4637",
+      "path": "test-playlist-through-disk-r1.mjs"
+    },
+    {
+      "bytes": 25153,
+      "sha256": "be09d1ef932a7909d6bdd4b26990f9827907271f431a3b382b1d1cc27befa4c2",
+      "path": "test-playlist-through-disk-r3.mjs"
+    },
+    {
+      "bytes": 25427,
+      "sha256": "3ad3c94f5bdfeda1ecf7d0b16d104d5e47b6a800e42ac7ef9f749737cea675f2",
+      "path": "test-playlist-through-disk-r4.mjs"
+    },
+    {
+      "bytes": 25428,
+      "sha256": "b15d4b69e9e2719c02583ad0cb3b94b4644f1f21aa9c9460adf6712743968f42",
+      "path": "test-playlist-through-disk-r5.mjs"
+    },
+    {
+      "bytes": 2176,
+      "sha256": "ad10b63c3ceec63f98b924fb36b45cc6c61be7ea97e0ffe34c179f450d0ca46b",
+      "path": "ferramentas/atalhos-globais.mjs"
+    },
+    {
+      "bytes": 9242,
+      "sha256": "5a99c18ab979bb9825527f17eaf101e8055d4bb1a2acdb9bf72cde5d3fa016da",
+      "path": "ferramentas/atualizacao-online.mjs"
+    },
+    {
+      "bytes": 5919,
+      "sha256": "8f0855db94750bac67b1a536c950f0fdf7942393dc434a80b9f7f403695c2d98",
+      "path": "ferramentas/atualizar-freemix.mjs"
+    },
+    {
+      "bytes": 15765,
+      "sha256": "f53fff2aee94e51c36751350aea90151da86dfa7d821212ee4b2b14c302cb91c",
+      "path": "ferramentas/audio-buses-producao.mjs"
+    },
+    {
+      "bytes": 10174,
+      "sha256": "4cff9f1d960738035f54ee90ef9a167ca7f4b43430ca17814124845c55c1bb4b",
+      "path": "ferramentas/audio-routing-producao.mjs"
+    },
+    {
+      "bytes": 8714,
+      "sha256": "200104690e4a7c21f78d51911ebfa0f03a98de55f2b6dbc2921e2da618f3a51c",
+      "path": "ferramentas/automacao-operacional.mjs"
+    },
+    {
+      "bytes": 15367,
+      "sha256": "33a6baf2d2f5455cd99a0195124b6d5583ac19b4803308fb1c7f849961bec7d7",
+      "path": "ferramentas/bonding-medicoes.mjs"
+    },
+    {
+      "bytes": 33743,
+      "sha256": "7211d8821c5372ef245db727e55d9a6e68ae58b604cb4e4d4c08af39853b071e",
+      "path": "ferramentas/bonding-producao.mjs"
+    },
+    {
+      "bytes": 5036,
+      "sha256": "13af99ea67eb0a46502cf706376d9f60b27cf7d0ede7f6b880d56aaee4977022",
+      "path": "ferramentas/bonding-receptor-portatil.mjs"
+    },
+    {
+      "bytes": 5850,
+      "sha256": "0d529d0ad4e985f239ef05951af4683ae822d8d791c0d065088aa8ee873934c5",
+      "path": "ferramentas/call-video-codec.mjs"
+    },
+    {
+      "bytes": 13778,
+      "sha256": "e8653086187082496408c4ed6599aa0970049ef3f3a0b7a6d69fb788a223e802",
+      "path": "ferramentas/call-video-native.mjs"
+    },
+    {
+      "bytes": 1890,
+      "sha256": "13ded46fb5ca3689791dcfd3325d3d69ca20e81c3964ff58d613d6097b288800",
+      "path": "ferramentas/calls-ice.mjs"
+    },
+    {
+      "bytes": 22710,
+      "sha256": "fc933c3a64de06a0dfba70f0af6f15883c8c0ceca03f737fcdba34eb9e9ad5cf",
+      "path": "ferramentas/calls-producao.mjs"
+    },
+    {
+      "bytes": 3430,
+      "sha256": "bdf7e7cc47a390c0c79b0a757070dba1f32b620fb640879cafbb6da1e2a35f3d",
+      "path": "ferramentas/capacidades-motor.mjs"
+    },
+    {
+      "bytes": 2294,
+      "sha256": "ee752d8240cb888db2b5f05031536d1090750297565b712154398392376abf7e",
+      "path": "ferramentas/composicao-advanced-masks.mjs"
+    },
+    {
+      "bytes": 6121,
+      "sha256": "69163ebef97ef9ac3fa3dc554dfc274cd4df23a7494f25e9e7b9efd2f8307e85",
+      "path": "ferramentas/composicao-estilos.mjs"
+    },
+    {
+      "bytes": 1297,
+      "sha256": "c05b0f85d1b5273e58774dd6037b536b7be44975b1b21e446f9dcd748ec9eb82",
+      "path": "ferramentas/composicao-fundo.mjs"
+    },
+    {
+      "bytes": 2753,
+      "sha256": "d7de29a40e80f369f252a0705dca94f01a0e151b50da0ca33cbfa212a7aeba06",
+      "path": "ferramentas/composicao-locutor.mjs"
+    },
+    {
+      "bytes": 2304,
+      "sha256": "db0fd73285533417c06f278d13773d9582e1df864eda2a785dd0d78dd132cda6",
+      "path": "ferramentas/composicao-presets.mjs"
+    },
+    {
+      "bytes": 13342,
+      "sha256": "8912782596393e5b72a1bc5f65ba2c5e7b5bf42b5699e2d34b120b40c9e5b973",
+      "path": "ferramentas/configuracoes-producao.mjs"
+    },
+    {
+      "bytes": 12471,
+      "sha256": "46ca77aad10a1fb227ff9acd9678941463fc634fbc3d08b9e9b23afa7649bbad",
+      "path": "ferramentas/controlador-producao.mjs"
+    },
+    {
+      "bytes": 52966,
+      "sha256": "304a49022d5447b1d1edf4bb9972c4e127b432efdf44cf79e4443d9b1eb38c1d",
+      "path": "ferramentas/controle-producao.mjs"
+    },
+    {
+      "bytes": 8967,
+      "sha256": "8c169a300afae0aea805298d5d02c5020593382433b61f4955d134a09713bcfa",
+      "path": "ferramentas/controller-osc.mjs"
+    },
+    {
+      "bytes": 13531,
+      "sha256": "545f59e83595cb6dfb7277e06994bde6b691acd768cfc1fd48c21bb87cba7a59",
+      "path": "ferramentas/diagnostico-producao.mjs"
+    },
+    {
+      "bytes": 4731,
+      "sha256": "0f3afc0e511bc48d1641746e4926ad571870ca1587beb4e397e2c93550474ad8",
+      "path": "ferramentas/diagnostico-zip.mjs"
+    },
+    {
+      "bytes": 3174,
+      "sha256": "03cf7f7729ee2e83af9e937d7169381a605131991fada22ff5aa685f8cc7da99",
+      "path": "ferramentas/efeitos-operacoes.mjs"
+    },
+    {
+      "bytes": 9991,
+      "sha256": "6c4d8ef25b8c319fc651391c4e68dd222e5fe6bfdffae75f4945adfb26b86e1f",
+      "path": "ferramentas/efeitos-producao.mjs"
+    },
+    {
+      "bytes": 3214,
+      "sha256": "7f53ca19e10f854d0b2b278d803cea3a83c672b0557625ea98847df974148244",
+      "path": "ferramentas/efeitos-ptz.mjs"
+    },
+    {
+      "bytes": 51397,
+      "sha256": "4ba37e9d2deb07d71ddc65a6e4e2974b914669f6a8a7a01788a8d70e7149f615",
+      "path": "ferramentas/entradas-producao.mjs"
+    },
+    {
+      "bytes": 5031,
+      "sha256": "4a8a15966d67fd117f6a473fe583ff965e36fd9df68edc09141d04fc5210f04d",
+      "path": "ferramentas/fila-producao.mjs"
+    },
+    {
+      "bytes": 8224,
+      "sha256": "bd1d40aa83c576ccbb9e833fda8d7b66a6babedf7a77023ecfcfb8f33a31a05e",
+      "path": "ferramentas/final-program-gate-producao.mjs"
+    },
+    {
+      "bytes": 13884,
+      "sha256": "e25c386846bc3c58ff8ec7c122112452f722d71ca49d2cca35fa386468d76393",
+      "path": "ferramentas/fontes-dados.mjs"
+    },
+    {
+      "bytes": 3692,
+      "sha256": "3623340909e6abf0bc9cae622f1657e41968862b026455b4f9456eaea99a633c",
+      "path": "ferramentas/gc-assets.mjs"
+    },
+    {
+      "bytes": 12351,
+      "sha256": "33a6def6bacd5902b24d93549dbc9e88e5e8b4810cd4b82c57505b830bf17de9",
+      "path": "ferramentas/gc-biblioteca-producao.mjs"
+    },
+    {
+      "bytes": 11239,
+      "sha256": "e0efc4580874a3ae40fde5028e17306298c07606f5e7a7fa236ef4a6c63c5afe",
+      "path": "ferramentas/gc-gtzip.mjs"
+    },
+    {
+      "bytes": 6610,
+      "sha256": "90240d37510ad84986be2446f7b5f4f083f0e208a95b722b5c7275badd4358d3",
+      "path": "ferramentas/gc-html-producao.mjs"
+    },
+    {
+      "bytes": 1853,
+      "sha256": "b3ce86ea78f4808abcedf7d363ff743279d2fcd817c5a1abf36fbdec39437c0e",
+      "path": "ferramentas/gt_utils.mjs"
+    },
+    {
+      "bytes": 8553,
+      "sha256": "4ab80efd023fafffe141c32c701c8ef54edbc7cb72aa3b469131dbad29a7889d",
+      "path": "ferramentas/gtzip_converter.mjs"
+    },
+    {
+      "bytes": 4501,
+      "sha256": "b2107d921137e48b0a7d8ec6b62e7b2e7509a47c3992bf947da7aad6e85725be",
+      "path": "ferramentas/gtzip-archive.mjs"
+    },
+    {
+      "bytes": 2399,
+      "sha256": "8f0636142c0c85309e872fc74c5411a7584282afe9b48da5765299ac693a7464",
+      "path": "ferramentas/gtzip-fonts.mjs"
+    },
+    {
+      "bytes": 73348,
+      "sha256": "422f54b25660a373f9aca81da3f5021f1bb1b002f392cce412619756c0d208cc",
+      "path": "ferramentas/gtzip-qr-bundle.mjs"
+    },
+    {
+      "bytes": 3016,
+      "sha256": "0088ca623686d6cfc9df13de3859bb2b42cd8af2b07057f8ee5c4013b2a0834b",
+      "path": "ferramentas/gtzip-qr.mjs"
+    },
+    {
+      "bytes": 14728,
+      "sha256": "552a6b9d891cfb3bcd1dad5b8e9b4b293ceb1646924664bf80a18bdeb4229e50",
+      "path": "ferramentas/gtzip-render.mjs"
+    },
+    {
+      "bytes": 2369,
+      "sha256": "65ad2c8e1cc4d20a0800a79bc85b1048f6824a40b73599a6d7a9b003c4152c3c",
+      "path": "ferramentas/gtzip-runtime.mjs"
+    },
+    {
+      "bytes": 3132,
+      "sha256": "18cb107ca7df7d444c017850ddeb92294ebab299d55aec64a8d2f571a522cc59",
+      "path": "ferramentas/gtzip-ticker-ack.mjs"
+    },
+    {
+      "bytes": 12779,
+      "sha256": "5efee366a7d82b01bae3df12b50b6e0ec1da626ceea6bfbe406cd2e98331b40e",
+      "path": "ferramentas/gtzip-ticker.mjs"
+    },
+    {
+      "bytes": 12640,
+      "sha256": "2738f124d729684882c9a58f749310f7683bb70bdd4bdb1d14e54783e76cfa64",
+      "path": "ferramentas/gtzip-xml.mjs"
+    },
+    {
+      "bytes": 15133,
+      "sha256": "ea0e62985c7a39470ffb3464e4c32fdd98264948e200b3bf5553c8f85e3c055d",
+      "path": "ferramentas/instalar-portatil.mjs"
+    },
+    {
+      "bytes": 20118,
+      "sha256": "2c9a0b57e2c639a9ce89271219579b3a1fa76d27dcd566eb36faf6de53f9b048",
+      "path": "ferramentas/macros-producao.mjs"
+    },
+    {
+      "bytes": 2487,
+      "sha256": "9f37d5806d62eb3c5e1d0775a197858ccc783da57567b079650a786011f2ff0b",
+      "path": "ferramentas/midia-preview-http.mjs"
+    },
+    {
+      "bytes": 3108,
+      "sha256": "6c5070f7e9e7a484e930e37815b360b018d3e8fdb5ebef19bdef3619ce0a0084",
+      "path": "ferramentas/multi-rtmp-adapter.mjs"
+    },
+    {
+      "bytes": 8031,
+      "sha256": "9a4e132c468a0c8da4eaf5c97f4d6b919ec82a74f120d8b2f3068bf3026ed085",
+      "path": "ferramentas/ndi-producao.mjs"
+    },
+    {
+      "bytes": 4217,
+      "sha256": "ecec7a08f6a999d84f71f2ab7cad23f842a5065028ba05facaf0ed41ab1fb44f",
+      "path": "ferramentas/ndi-runtime.mjs"
+    },
+    {
+      "bytes": 3188,
+      "sha256": "735a395d1fdd4774b0e44ba8c65926b3601aa5035bf17a8dcb53ca9b907c9cdc",
+      "path": "ferramentas/obsws.mjs"
+    },
+    {
+      "bytes": 1993,
+      "sha256": "7b77bfc66e6db3d6dc143a337b74b517c0e1679bd50103f22fec652c4f60e8e5",
+      "path": "ferramentas/omt-hdr-producao.mjs"
+    },
+    {
+      "bytes": 6130,
+      "sha256": "15a632b6d1c80c9926710066e345931a76a7fe5cebd45b33221175b52aa98c5c",
+      "path": "ferramentas/omt-producao.mjs"
+    },
+    {
+      "bytes": 1045,
+      "sha256": "48f0d68face1a9a15f2f0eca8d5a645499cc3f13f290f989cfd6a0dbf44a7650",
+      "path": "ferramentas/plugins-defaults.mjs"
+    },
+    {
+      "bytes": 3600,
+      "sha256": "2a584331ffa70af68009ed27657a25c4b52b7dd0258bf4ccd2c7a0f282a42613",
+      "path": "ferramentas/preferencias-producao.mjs"
+    },
+    {
+      "bytes": 4371,
+      "sha256": "967d9bad9a8e93322809afe8c8ab65bdcbb7cce737b9937d17dbb775d8997573",
+      "path": "ferramentas/preparar-portatil.mjs"
+    },
+    {
+      "bytes": 2459,
+      "sha256": "82f84fbc1fdc5b10e8d65c52dc28f3ff456ec586a297570c32443d3d3a4825dd",
+      "path": "ferramentas/qualidade-model-cache.mjs"
+    },
+    {
+      "bytes": 12662,
+      "sha256": "c912c1ac64e9459bb182855193124bb7fd50a541f0ec20dd7a3d3d5d7c54cf67",
+      "path": "ferramentas/qualidade-producao.mjs"
+    },
+    {
+      "bytes": 1652,
+      "sha256": "b810ebd8d6068fa362c630b606ea5c068530fe663b895598a6ba742d78c5cc76",
+      "path": "ferramentas/qualidade-sdk.mjs"
+    },
+    {
+      "bytes": 711,
+      "sha256": "be863cd29582d53f9bb1f621683c1857a6b4428eaa98fffa8893d63831fb4263",
+      "path": "ferramentas/read-outputs-snapshot.mjs"
+    },
+    {
+      "bytes": 2297,
+      "sha256": "7400b14419f46bc9c033d5d642acfd48327d48b433825f23ed0111570d3f2bc3",
+      "path": "ferramentas/read-settings-snapshot.mjs"
+    },
+    {
+      "bytes": 8273,
+      "sha256": "1d40b99de88332e05dd20cba714bd1e158c3013f3bbc91db78a234c1452a42bf",
+      "path": "ferramentas/recuperacao-dependencias.mjs"
+    },
+    {
+      "bytes": 4483,
+      "sha256": "c794abbe5d00da1f392bfdaedc1aeddb98e420f801809fb652d3f89f2e7b4c92",
+      "path": "ferramentas/recuperacao-estados.mjs"
+    },
+    {
+      "bytes": 991,
+      "sha256": "9f0b867a3561ed646122a0c7819cadd2fcdf39ed0f384fdf4fd87d328fba2be8",
+      "path": "ferramentas/recuperacao-eventos.mjs"
+    },
+    {
+      "bytes": 3990,
+      "sha256": "edde6000a71f42ed1588c1ce2929ede65e536264ae954a7ee4b6355a24ec22c5",
+      "path": "ferramentas/recuperacao-gtzip.mjs"
+    },
+    {
+      "bytes": 17316,
+      "sha256": "d92c40c038105176b4f1faf6fe4116f5979dd375c1eec5560cfd2ab7cf5cdfd4",
+      "path": "ferramentas/recuperacao-importacao.mjs"
+    },
+    {
+      "bytes": 4279,
+      "sha256": "a418dbd39f662b823f71a8cfacec8dc95350f3ba770e6a346330f0e2b0217720",
+      "path": "ferramentas/recuperacao-instalabilidade.mjs"
+    },
+    {
+      "bytes": 3727,
+      "sha256": "8db5a5808c8916ca82afb11c19bc2b33fc512d50bab85cfd577c46e1cf184a56",
+      "path": "ferramentas/recuperacao-inventario.mjs"
+    },
+    {
+      "bytes": 23181,
+      "sha256": "6abb2a3f23ccb376e3b6ed9fbc92beed1be51d36b14a6a884503454940291ac0",
+      "path": "ferramentas/recuperacao-producao.mjs"
+    },
+    {
+      "bytes": 9357,
+      "sha256": "705231166d8f981ea2085096d3e3e453f9cc3e998671bb55ead9291d45b75153",
+      "path": "ferramentas/recuperacao-remota.mjs"
+    },
+    {
+      "bytes": 1144,
+      "sha256": "d339a1055021bf13e1335a123ea909630bf5ce5b2b3740291e44c813842b1939",
+      "path": "ferramentas/recuperacao-saidas.mjs"
+    },
+    {
+      "bytes": 6455,
+      "sha256": "855f71fbb51e8809843b456a11ba1f276afd75c06e24aaec591f844ea22a29cf",
+      "path": "ferramentas/replay-cadence.mjs"
+    },
+    {
+      "bytes": 13139,
+      "sha256": "5c93929070863704633ca4b0dbbc48b6323e40294908c906fabd166930d166c1",
+      "path": "ferramentas/replay-curve-controller.mjs"
+    },
+    {
+      "bytes": 90630,
+      "sha256": "c1458d7f4cfc415efbadebbbd679d43c4f9242ffe98df528e00f0d48a44365de",
+      "path": "ferramentas/replay-disco.mjs"
+    },
+    {
+      "bytes": 20815,
+      "sha256": "71200a44bae2a50ee46a6e92ad10ddeeca6cae6bfedc385e61fa210019c40c5e",
+      "path": "ferramentas/replay-media-provider.mjs"
+    },
+    {
+      "bytes": 5315,
+      "sha256": "199fdbe5df02d42c7871b34ef15b92dd6c119587a29f10edbc16a96db7a30d83",
+      "path": "ferramentas/replay-playlist-provider.mjs"
+    },
+    {
+      "bytes": 30479,
+      "sha256": "7a5cb5e4138f6696cdefc9836024b8e1e3bfd5e44f3342ce01348d0d9ed72198",
+      "path": "ferramentas/replay-playlist.mjs"
+    },
+    {
+      "bytes": 8021,
+      "sha256": "77eed62b3da9715f5201187aa8faf2af83981584cfa35d26dda8cb63beb846bf",
+      "path": "ferramentas/replay-preview.mjs"
+    },
+    {
+      "bytes": 791,
+      "sha256": "a77a0e710d9d443d52b5e2728839e259cd8ed2c56a361b61947fb39bcb3ee09f",
+      "path": "ferramentas/replay-release-media-pins.mjs"
+    },
+    {
+      "bytes": 6297,
+      "sha256": "177e30efa904567147efec16785ac6603f263ea13009ee5df319749a13e73a98",
+      "path": "ferramentas/replay-sincronia.mjs"
+    },
+    {
+      "bytes": 6972,
+      "sha256": "248f4ed7896747aa0695a5b09ffb7c34b9adf1df3a063bc2af824cec6a674dd3",
+      "path": "ferramentas/replay-speedcurve-worker-adapter.mjs"
+    },
+    {
+      "bytes": 12620,
+      "sha256": "938a69545eb7eb2956cd1170097a367651e2089d4e441a16914701e31932df75",
+      "path": "ferramentas/replay-speedcurve.mjs"
+    },
+    {
+      "bytes": 36656,
+      "sha256": "508cdaa535de53f62d5cf2fad05f97e5da449ac32159f56e61fc367eea2b98be",
+      "path": "ferramentas/replay-worker.mjs"
+    },
+    {
+      "bytes": 9548,
+      "sha256": "47c6d8573d7ccad60a75efb8abdadeb633b200b11d167e3ac6b5dfaf0d566ad3",
+      "path": "ferramentas/retornos-calls.mjs"
+    },
+    {
+      "bytes": 2186,
+      "sha256": "d9d24d2ea4de1ad2e1e1cbb6cfa41d9b80b486ee59a91529b4453fc6bd63b8b9",
+      "path": "ferramentas/saidas-hdr.mjs"
+    },
+    {
+      "bytes": 13790,
+      "sha256": "043db7e2f2291ed49a1a93cb1da4d4cdb3692580d7accce44d359a694f1ec3c8",
+      "path": "ferramentas/saidas-producao.mjs"
+    },
+    {
+      "bytes": 2052,
+      "sha256": "93b550696f2b50e7bd69139868a70173c96e5450b890542a0e8d13e928f6dc70",
+      "path": "ferramentas/saidas-sdi.mjs"
+    },
+    {
+      "bytes": 2239,
+      "sha256": "3f3f6118c1a4f0d0f99f9bdf317c850c9f29709bd16ef8048a76d77c5e5e358f",
+      "path": "ferramentas/saidas-srt.mjs"
+    },
+    {
+      "bytes": 34267,
+      "sha256": "c752855ba2fb889bb6c28d2a7e78333c9553a81f27c36b8eef75de759f5d3c5c",
+      "path": "ferramentas/servidor-api.mjs"
+    },
+    {
+      "bytes": 20924,
+      "sha256": "a245e64353566e1e52b2cdba95b67c0d0b11f842841eaf9f8c96f29097785e6a",
+      "path": "ferramentas/sessao-producao.mjs"
+    },
+    {
+      "bytes": 908,
+      "sha256": "8d3338842e9b6462fc3de4f9d650aca910a1162d0c17e2a814f60f718629d33c",
+      "path": "ferramentas/settings-read-http.mjs"
+    },
+    {
+      "bytes": 3149,
+      "sha256": "69e2443957453bfae6eb380774ba68566e2b04eaf4dfc23be174dcf67218b157",
+      "path": "ferramentas/sinais-producao.mjs"
+    },
+    {
+      "bytes": 4482,
+      "sha256": "f25ecf5fcc17cdcfe7762eb0ea4ed8903160636696ccaf9631d19e48a957869b",
+      "path": "ferramentas/srt-hdr-producao.mjs"
+    },
+    {
+      "bytes": 1149,
+      "sha256": "7a50f99fd149a9ba0e2cfa8e535ae2199235b158823e6cf47bcdc50dfba2cf7b",
+      "path": "ferramentas/projetos/composition-port.mjs"
+    },
+    {
+      "bytes": 2293,
+      "sha256": "1a4fb9130506b7b5354ebbaeee54e563f08554be127051bffe619739a79fe8ef",
+      "path": "ferramentas/projetos/composition-presets.js"
+    },
+    {
+      "bytes": 4090,
+      "sha256": "56844aa98269b1f678f750fed60ec49c8eccec60dd2772a15edfc40da758cf3c",
+      "path": "ferramentas/projetos/core-host-binding.mjs"
+    },
+    {
+      "bytes": 163,
+      "sha256": "f78b2fcee6a73b4bea9859285909709b28fff54dbe4fca3205f8c83a8158b254",
+      "path": "ferramentas/projetos/creation-policy.json"
+    },
+    {
+      "bytes": 4119,
+      "sha256": "ee5463f67bc74e4990789ae4312a8db60b9f181f9be3472088faaf4e09c9ea9d",
+      "path": "ferramentas/projetos/device-discovery.mjs"
+    },
+    {
+      "bytes": 324,
+      "sha256": "87b8d67e6f8494310cf518f9aecfa65803eb8e4eea94af9425fcb2f9f98bb5c6",
+      "path": "ferramentas/projetos/geometry.js"
+    },
+    {
+      "bytes": 1988,
+      "sha256": "2fea530cd422bba3926c48a7f2466044ce17e6d498164c22e2f95c7555106e17",
+      "path": "ferramentas/projetos/isolation-hooks.mjs"
+    },
+    {
+      "bytes": 2417,
+      "sha256": "c681534cb701270b94ab95e767bf68476bbb2a22f6efa674a47cfdf97bb0bf01",
+      "path": "ferramentas/projetos/owner-activity.mjs"
+    },
+    {
+      "bytes": 5724,
+      "sha256": "d47a0c5500769921b3e2e01abe990fab1d3ab81071574752b9c3db1e829be502",
+      "path": "ferramentas/projetos/preview-adapter.mjs"
+    },
+    {
+      "bytes": 2318,
+      "sha256": "560cb3838fa6b3520feb9cff6f04199b6531fd9117fa1ab5288cac24306de93a",
+      "path": "ferramentas/projetos/project-api-adapter.mjs"
+    },
+    {
+      "bytes": 4639,
+      "sha256": "684c26d41dfbd096d5230ad03b2a67fc081f96a47bef296e1b9df4e7d4e7a82d",
+      "path": "ferramentas/projetos/project-files.mjs"
+    },
+    {
+      "bytes": 3679,
+      "sha256": "19ac64e89150a75bd5dd0a8b66bd9bbc08881e16b5154c4a7886d80d7c9f5fa6",
+      "path": "ferramentas/projetos/project-isolation-gate.mjs"
+    },
+    {
+      "bytes": 19915,
+      "sha256": "cd0755438b4887434e078802b0528e35691585db4980f7b2e277686b3b9ef77a",
+      "path": "ferramentas/projetos/project-provisioner.mjs"
+    },
+    {
+      "bytes": 388,
+      "sha256": "3da83b3a483b376f8591a0249e980fa281e4509cd088ffd803867a74026a6e82",
+      "path": "ferramentas/projetos/qualification-policy.mjs"
+    },
+    {
+      "bytes": 2138,
+      "sha256": "02d3b1529b0439d995f160ef8189e6ed09eeb151540e7c5067c51de9d3ec89de",
+      "path": "ferramentas/projetos/runtime-admission.mjs"
+    },
+    {
+      "bytes": 1445,
+      "sha256": "78863373cbf5a38b2fcbf40bd663e0c78ca4f47bc77d946106b80a282dd3719b",
+      "path": "ferramentas/projetos/wizard-host.mjs"
+    },
+    {
+      "bytes": 6858,
+      "sha256": "d971b6e41ea918624f64de1adc21bd88fd6a5f031b9851bb4450d34973808e68",
+      "path": "ferramentas/projetos/wizard-model.js"
+    },
+    {
+      "bytes": 6161,
+      "sha256": "68c9e3e29aab56a7a1545542b4fd2fa706e180d500f2afa601c3af39f2cbd205",
+      "path": "painel/gc/biblioteca/modelos.mjs"
+    },
+    {
+      "bytes": 2243,
+      "sha256": "6a3cd495995a5af4118c38f328e0d6732c451d2c29815c99639092407f967f37",
+      "path": "painel/remoto/controle.css"
+    },
+    {
+      "bytes": 12382,
+      "sha256": "cd3db9458a3e3294feb6ce00b11c998a21c51ae9ad644c14b6b1222f8761bbe0",
+      "path": "painel/remoto/controle.js"
+    },
+    {
+      "bytes": 2057,
+      "sha256": "443b69db2ccc16559244468062d408d31489459f8c6750ec0d2e1810a500727b",
+      "path": "painel/remoto/menus-tarefas-ui.css"
+    },
+    {
+      "bytes": 4431,
+      "sha256": "7b5000db82d56b6cb32b9db908f5e3da04f24604e1c145a1ff9b9d17821e6f7f",
+      "path": "painel/remoto/menus-tarefas-ui.js"
+    },
+    {
+      "bytes": 9697,
+      "sha256": "c7d0b0af0267b6823cccd38313c025faa973590b2a8767b6d0892d0f53188ad7",
+      "path": "painel/remoto/replay-console.css"
+    },
+    {
+      "bytes": 8642,
+      "sha256": "2d8cb7b6ae5ff8c857fb04eedd99dba4bb49b8787275f8345ca9986787ae21cc",
+      "path": "painel/remoto/replay-curve-controls.js"
+    },
+    {
+      "bytes": 3006,
+      "sha256": "dab9abc81d2a864a9a16f35972a20aa72da0a727460dba85ca6dca724e724c5b",
+      "path": "painel/remoto/replay-curve-ui.js"
+    },
+    {
+      "bytes": 6437,
+      "sha256": "5421b97086c5d1899d2ed396b8ad5788a1ee61d2e876e841e29b37c42cf7bc41",
+      "path": "painel/remoto/replay-layout.js"
+    },
+    {
+      "bytes": 8867,
+      "sha256": "721446b75fe4bf3e32c7a362d5a367202569a4b977cb39656064a8f35bce36ca",
+      "path": "painel/remoto/replay-playlist-ui.js"
+    },
+    {
+      "bytes": 18582,
+      "sha256": "d38c719598612d996d947771a680cf1522666105d0d11f8fff2373a7778aa0c5",
+      "path": "painel/remoto/replay.html"
+    },
+    {
+      "bytes": 30949,
+      "sha256": "a946ed72bafffecc51b8f88e34bee7e5dac239fe5e85a97ab6f5628697852f18",
+      "path": "painel/remoto/replay.js"
+    },
+    {
+      "bytes": 7578,
+      "sha256": "99fb5ddc0e29fcbd5a719d21efadf72f2009a5a5a879a85ed79db5460870051c",
+      "path": "painel/remoto/vmix-dialogo.css"
+    }
+  ],
+  "format": 1,
+  "status": "FROZEN_SOURCE_ONLY_TARGETED_RECIPE_R8_ROOT_EXECUTION_PENDING",
+  "base": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Combined-Playlist-Root-Snapshot-R7",
+  "existingBaseFilesUnchanged": true,
+  "diagnosedFix": "FFmpeg -t .08 -> 0.08, exact one literal",
+  "entrypoint": "test-combined-playlist-phase-r8.mjs",
+  "onlyNewRecipeFiles": [
+    "test-playlist-through-disk-r5.mjs",
+    "test-combined-playlist-phase-r8.mjs"
+  ],
+  "preservedCriteria": 16
+}

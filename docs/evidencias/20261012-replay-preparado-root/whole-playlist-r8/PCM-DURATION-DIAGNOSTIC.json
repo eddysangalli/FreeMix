@@ -1,0 +1,30 @@
+{
+  "scope": "DIAGNOSTIC_ONLY_NO_PRODUCT_TEST_PASS",
+  "root": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Combined-Playlist-Root-Snapshot-R7\\FreeMix-QA-PCM-Diagnostic-6ba4d985-c05e-43a4-ab48-ae1d0c51ec5e",
+  "runs": [
+    {
+      "pid": 173760,
+      "exe": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Combined-Playlist-Root-Snapshot-R7\\FreeMix-QA-Combined-Playlist-R7-766c94fb-3b40-4756-b50a-df611791ae7a\\runtime\\ffmpeg.exe",
+      "duration": ".08",
+      "code": 4294967274,
+      "signal": null,
+      "stderr": "Invalid duration for option t: .08\r\nError parsing options for output file -.\r\nError opening output files: Invalid argument\r\n",
+      "stdoutBytes": 0,
+      "deadline": false,
+      "actualClosed": true
+    },
+    {
+      "pid": 62576,
+      "exe": "D:\\FreeMix-QA-Replay-Agents-20261012-0006-r2\\FreeMix-QA-Combined-Playlist-Root-Snapshot-R7\\FreeMix-QA-Combined-Playlist-R7-766c94fb-3b40-4756-b50a-df611791ae7a\\runtime\\ffmpeg.exe",
+      "duration": "0.08",
+      "code": 0,
+      "signal": null,
+      "stderr": "",
+      "stdoutBytes": 0,
+      "deadline": false,
+      "actualClosed": true
+    }
+  ],
+  "sourceSame": true,
+  "noForce": true
+}

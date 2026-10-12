@@ -1,3 +1,13 @@
+<!-- replay-whole-playlist-root-r8-20261012 -->
+## Replay — listas completas passaram na bancada; Mesa permanece a referência
+
+Root executou uma preparação completa de listas em snapshot próprio de146 fontes: **16/16 verificações passaram**, com FFmpeg real, vídeo RGB e PCM estéreo sintéticos e motor OBS explicitamente simulado. CUT e FADE400ms, cadência, ordem e mistura do áudio, carga pausada a100%, recibo/nonce sem segunda preparação, HOLD/LIVE, retorno condicionado ao Programa, cancelamento, mudança de escopo e limpeza tardia foram exercitados.51 processos próprios ficaram ausentes por CIM; fontes e três originais intactos. [Prova e limites](evidencias/20261012-replay-preparado-root/whole-playlist-r8/ROOT-POST-PLAYLIST-R8-OBSERVATION.json).
+
+A execução anterior R7 falhou na leitura de PCM porque FFmpeg recusou a duração literal `.08`; diagnóstico separado aceitou `0.08`. R8 mudou somente essa fixture e o identificador da execução, preservando16 critérios e fontes de produto. FAIL original preservado. Um PID observado depois de R7 pertencia a `conhost.exe` por reutilização, não à ferramenta própria; nenhum processo alheio foi fechado.
+
+O desenho da **Mesa segue preservado**. Componente comum Mesa/janela externa, somenteReplay A/B e agulha com confirmação de quadro está pronto offside para revisão/DOM. Ainda não integrado, instalado ou qualificado em Native/CEF. O mock não comprova dispositivos, áudio no ar, WAN, endurance ou broadcast final. Próximo: qualificar essa interface comum, Native39 pertinente e pacote atualizado. Prazo12/10 às19hBRT mantido.
+
+---
 <!-- replay-combined-interim-root-20261012 -->
 ## Replay — prova intermediária de backend, interface comum ainda em trabalho
 
