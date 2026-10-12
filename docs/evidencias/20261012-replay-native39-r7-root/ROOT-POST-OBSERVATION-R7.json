@@ -1,0 +1,56 @@
+{
+  "format": 1,
+  "at": "2026-10-12T10:43:14.000Z",
+  "scope": "NATIVE_R7_FAIL_PRESERVED_INDEPENDENT_POST_CIM_AND_PINS",
+  "status": "FAIL_PRESERVED_PHYSICAL_CLEANUP_OBSERVED",
+  "originalReceiptSHA": "1554e2395cee944c6ff2dcdba1358e5f43e9a94280c9f651bc298b4a5ce03abe",
+  "successfulGates": 3,
+  "failedGate": "60s unloaded navigation hold zero mutating increments after checkpoint",
+  "remainingGatesNotExecuted": 10,
+  "ownedPids": [
+    33680,
+    129604,
+    61456,
+    120224,
+    214972,
+    145648,
+    91524,
+    13504,
+    18944,
+    15060,
+    18212,
+    187012,
+    136724,
+    22192
+  ],
+  "ownedReportedPidsAbsent": 14,
+  "ownInstalledExecutableCount": 0,
+  "listenerCount": 0,
+  "originalRootSessionJoinedExitCode": 1,
+  "parentStdoutStderrEofObservedByRoot": true,
+  "publicApiDrainClosedProofSHA": "4f4357e6fa2e2155f4d5909a07012cb63a38b3e1515450276fa71faa35cd78c1",
+  "observerRestored": false,
+  "originalCloserAckPendingPreserved": true,
+  "retirementHelperStatus": "PENDING_OR_REFUSED",
+  "retirementReplyUnavailable": true,
+  "apiExitCode": null,
+  "apiExitCodeKnown": false,
+  "NativeExit0": true,
+  "freezePinsSame": 2085,
+  "managedPinsSame": 3,
+  "sourcePinsSame": 169,
+  "recipePinsSame": 8,
+  "originalFixturePinsSame": 2,
+  "logs": [
+    {
+      "file": "2026-10-12 05-44-58.txt",
+      "sha256": "3b30c16f69b3eef34c72951efe4ee37a82d4843b320ce55eccb4a3f8946a1642",
+      "leaks": [
+        0
+      ]
+    }
+  ],
+  "crashCount": 0,
+  "operatorTouched": false,
+  "NativeReplayWholeQualified": false
+}

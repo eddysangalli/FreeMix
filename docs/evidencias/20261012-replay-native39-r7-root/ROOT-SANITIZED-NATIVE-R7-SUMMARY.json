@@ -1,0 +1,39 @@
+{
+  "at": "2026-10-12T10:50:28.803Z",
+  "scope": "SANITIZED_NATIVE39_R7_SYNTHETIC_OWN_QA_SUMMARY",
+  "originalReceiptSHA": "1554e2395cee944c6ff2dcdba1358e5f43e9a94280c9f651bc298b4a5ce03abe",
+  "postObservationSHA": "9077ea5c968c5a9c258e50f154e0ba604dd9d969840c8fc804455863274c0526",
+  "status": "FAIL_PRESERVED",
+  "successfulGates": 3,
+  "remainingGatesNotExecuted": 10,
+  "gates": [
+    {
+      "name": "round1 exact Native39 identity / own ports / real API / idle outputs",
+      "pass": true,
+      "elapsedMs": 20634.49219999998
+    },
+    {
+      "name": "SourceRecord actual own counter scenes recording then stopped history",
+      "pass": true,
+      "elapsedMs": 16671.743499999982
+    },
+    {
+      "name": "real Native CEF shared Mesa/external component A/B only",
+      "pass": true,
+      "elapsedMs": 12905.483899999992
+    },
+    {
+      "name": "60s unloaded navigation hold zero mutating increments after checkpoint",
+      "pass": false,
+      "elapsedMs": 30241.254799999966
+    }
+  ],
+  "recordedSyntheticCameras": 2,
+  "historySeconds": 8.988001,
+  "realCEFCommonABInterface": true,
+  "navHoldActuallyStarted": false,
+  "failure": "QA observer HTTP response close coverage error blocked checkpoint; navigation hold was not executed",
+  "operatorTouched": false,
+  "installedOrPackaged": false,
+  "wholeNativeReplayQualified": false
+}

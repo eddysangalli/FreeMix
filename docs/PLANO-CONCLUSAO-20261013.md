@@ -1,4 +1,14 @@
 
+## 12/10/2026 10:55 UTC — Replay: gravação e interface comum passaram no Native; qualificação ainda pendente
+
+O ensaio próprio Native39 R7 passou identidade/API, gravação SourceRecord de duas câmeras sintéticas (histórico parado de8,988s) e abertura CEF real da Mesa e janela separada com a mesma fábrica de interface, somente A/B. O quarto gate falhou antes do checkpoint de navegação: o observador do roteiro manteve um erro de fechamento HTTP. A permanência60s sem mutações não começou; os dez gates posteriores, incluindo quadros carregados A/B, agulha, IN/OUT, persistência, autosave e reinício, NÃO foram executados. Isso não comprova falha funcional desses recursos, nem qualifica a entrega. O recibo FAIL original permanece imutável.
+
+Fechamento cooperativo e pós-observação independente concluídos:14PIDs próprios ausentes, nenhum executável/listener restante,2085pinos Native +3DLLs gerenciadas +169fontes +8arquivos do roteiro +2fixtures iguais, alocações zero e nenhum crash. O Native encerrou com código0; o código de saída da API é desconhecido. A retirada do observador não foi confirmada e a resposta de um helper de retirada ficou indisponível; esses limites continuam registrados, sem transformar o FAIL em PASS. Nenhuma alteração no operador.
+
+A revisão do novo observador encontrou dois bloqueios de fechamento e pediu correção com regressões; só após revisão e testes do roteiro haverá novo ensaio Native finito. O combinado seguinte de169fontes está aceito em fonte, incluindo guarda que impede chamada externa do tick interno;15contratos CPU dessa guarda passaram. O novo Replay continua offside, sem integração canônica, instalação ou pacote. O montador R13 está aceito apenas como preparação; nenhum payload completo novo foi montado. Codec R13 foi materializado literalmente e verificado em sintaxe, mas precisa revisão independente de propriedade de processos antes da bancada; nenhum benchmark de codec foi executado.
+
+Provas públicas: `docs/evidencias/20261012-replay-native39-r7-root` (resumo sanitizado e pós-observação). Preservar o desenho da Mesa, interface comum acoplada/separada e somente A/B. Prazo12/10 às19h America/Sao_Paulo mantido, sem conclusão automática nem declaração100%.
+
 ## 12/10/2026 06:48 UTC — Replay: primeiro ensaio Native39 falhou; cópia de QA encerrada
 
 O runner Native R2 executou uma vez em instalação própria isolada: identidade Native39/API/portas e saídas ociosas PASS; o segundo gate, início da gravação SourceRecord sintética, FAIL com `fetch failed`. Os gates seguintes de CEF, prévias A/B, agulha, navegação sem mutações, persistência e autosave NÃO foram executados. O recibo FAIL original foi preservado; o novo Replay permanece offside, sem qualificação Native/CEF e fora do pacote instalado.
@@ -261,3 +271,14 @@ Preview/Cut/dedupe/persistência não executados após a falha. Native72084 ence
 
 
 A integração mecânica exata do módulo de autosave foi de ANTES a57f → DEPOIS a245, com 15 contratos CPU executados pelo autor Gemini e repetidos pelo Root. O revisor Gemini REVIU os contratos mas NÃO EXECUTOU. O save_preset continua ESCRITA/MUTANTE NUNCA readonly, com intervalo de 60s e gates zero intactos. O App36R3FAIL está preservado, o App36R4 em runtime real permanece PENDENTE e Setup/Native continuam congelados sem alteração. [Recibo de integração](ROOT-RECEIPT.json).
+
+
+## 12/10/2026 10:55 UTC — Replay: gravação e interface comum passaram no Native; qualificação ainda pendente
+
+O ensaio próprio Native39 R7 passou identidade/API, gravação SourceRecord de duas câmeras sintéticas (histórico parado de8,988s) e abertura CEF real da Mesa e janela separada com a mesma fábrica de interface, somente A/B. O quarto gate falhou antes do checkpoint de navegação: o observador do roteiro manteve um erro de fechamento HTTP. A permanência60s sem mutações não começou; os dez gates posteriores, incluindo quadros carregados A/B, agulha, IN/OUT, persistência, autosave e reinício, NÃO foram executados. Isso não comprova falha funcional desses recursos, nem qualifica a entrega. O recibo FAIL original permanece imutável.
+
+Fechamento cooperativo e pós-observação independente concluídos:14PIDs próprios ausentes, nenhum executável/listener restante,2085pinos Native +3DLLs gerenciadas +169fontes +8arquivos do roteiro +2fixtures iguais, alocações zero e nenhum crash. O Native encerrou com código0; o código de saída da API é desconhecido. A retirada do observador não foi confirmada e a resposta de um helper de retirada ficou indisponível; esses limites continuam registrados, sem transformar o FAIL em PASS. Nenhuma alteração no operador.
+
+A revisão do novo observador encontrou dois bloqueios de fechamento e pediu correção com regressões; só após revisão e testes do roteiro haverá novo ensaio Native finito. O combinado seguinte de169fontes está aceito em fonte, incluindo guarda que impede chamada externa do tick interno;15contratos CPU dessa guarda passaram. O novo Replay continua offside, sem integração canônica, instalação ou pacote. O montador R13 está aceito apenas como preparação; nenhum payload completo novo foi montado. Codec R13 foi materializado literalmente e verificado em sintaxe, mas precisa revisão independente de propriedade de processos antes da bancada; nenhum benchmark de codec foi executado.
+
+Provas públicas: `docs/evidencias/20261012-replay-native39-r7-root` (resumo sanitizado e pós-observação). Preservar o desenho da Mesa, interface comum acoplada/separada e somente A/B. Prazo12/10 às19h America/Sao_Paulo mantido, sem conclusão automática nem declaração100%.
