@@ -1,3 +1,15 @@
+<!-- replay-operation-layout-root-20261012-0205 -->
+## Replay — janela de operação alinhada ao padrão das demais janelas
+
+Ordem do dono: a tela acoplada já está no estilo vMix; melhorar a janela separada de operação. Código atual recebeu somente composição/estilo da operação: botões planos compactos, lances e preview lado a lado, agulha e IN/OUT visíveis, quatro players compactos, transporte e velocidades agrupados e mensagens junto dos controles. Reutiliza `vmix-dialogo.css` aprovado; menu solicita1200×760. `replay.js`, backend, arquivos de Configurações do Replay e CSS compartilhado permaneceram com os mesmos bytes. Listas e curvas experimentais não foram integradas nesta alteração visual.
+
+Root observou a nova operação em DOM real com API simulada, sem erros de console; abriu/fechou Câmeras e constatou somente solicitações de histórico na prévia. Servidor próprio fechou cooperativamente e seu Node ficou ausente por CIM. A agulha aparece desabilitada porque esta fixture não contém uma sessão gravada. Isto não comprova busca em mídia, operação Native/CEF, REC, PGM, latência ou hardware. Screenshot e recibo: `docs/evidencias/20261012-replay-operacao-compacta`.
+
+O controlador experimental também passou dez verificações com FFmpeg real e mídia sintética própria: quadros em três posições, captura limitada, cadência, lease de proxy, cache sem novos jobs e cancelamento tardio. Originais preservados,19 processos próprios ausentes por CIM. Esse resultado é separado da prévia mock e não qualifica a composição completa no programa.
+
+Pendente: QA pertinente da janela nativa e inclusão no novo pacote completo; operador não atualizado por Root. Novo empacotamento deverá consumir o HEAD posterior a esta alteração. Deadline12/10 às19hBRT mantido; sem declaração de broadcast concluído.
+
+---
 <!-- managed-source-package-20261012-0110 -->
 ## Fontes dos componentes gerenciados — complemento de empacotamento
 

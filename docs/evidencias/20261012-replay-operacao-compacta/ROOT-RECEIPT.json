@@ -1,0 +1,47 @@
+{
+  "format": 1,
+  "status": "SOURCE_OPERATION_UI_INTEGRATED_REAL_DOM_MOCK_ONLY",
+  "scope": "Separate main Replay operation window",
+  "mesaInlineScriptsParsed": 1,
+  "sourceHtmlGuard": true,
+  "originalReplayHandlersSame": true,
+  "settingsSourcesSame": true,
+  "sharedStylesSame": true,
+  "uiConsoleErrors": [],
+  "previewRequests": [
+    "history",
+    "history",
+    "history",
+    "history",
+    "history",
+    "history",
+    "history",
+    "history",
+    "history",
+    "history",
+    "history",
+    "history",
+    "history",
+    "history"
+  ],
+  "ownPreviewServerClosed": true,
+  "ownNodeAbsentCIM": true,
+  "requestedNativePanelSize": [
+    1200,
+    760
+  ],
+  "nativeWindowSizeObserved": false,
+  "nativeUiQualified": false,
+  "operatorChanged": false,
+  "packageIncludesNewUi": false,
+  "newFiles": [
+    {
+      "name": "replay-layout.js",
+      "sha256": "2e61d3c3f9067deda033d205a84a31faed83639154559915a72fd21906aded2f"
+    },
+    {
+      "name": "replay-console.css",
+      "sha256": "c7d0b0af0267b6823cccd38313c025faa973590b2a8767b6d0892d0f53188ad7"
+    }
+  ]
+}

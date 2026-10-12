@@ -2374,7 +2374,7 @@ body.popup-mode #pop[data-panel="add"] .add .types { display:flex; flex-directio
   }
   const panelPages={'novo-projeto':'/novo-projeto/',audio:'/audio',datasources:'/dados',compositions:'/compor',calls:'/calls',macros:'/macros',recuperacao:'/recuperacao',diagnosticos:'/diagnosticos',saidas:'/saidas',settings:'/configuracoes',config:'/configuracoes',ext:'/externo',iso:'/multicorder',replay:'/replay',replaysettings:'/replay?view=settings#replay-config',recset:'/gravar',streamset:'/transmitir'};
   // Windows that open at the size of the dialog they copy from the reference, instead of the large default.
-  const panelSizes={settings:[760,540],config:[760,540],streamset:[700,445],calls:[700,540],ext:[700,540],recset:[700,300],iso:[700,540],replaysettings:[700,540]};
+  const panelSizes={replay:[1200,760],settings:[760,540],config:[760,540],streamset:[700,445],calls:[700,540],ext:[700,540],recset:[700,300],iso:[700,540],replaysettings:[700,540]};
   const independentEditors=new Set(['novo-projeto','datasources','compositions','calls','macros','recuperacao','diagnosticos','saidas','settings','add','layers','audioset','clocks','ext','iso','replay','replaysettings','playlist','shortcuts','busman','recset','streamset','config','gcedit','presets','saveas','replayretention']);
   async function launchPanel(id,arg){
     const title=({ext:'Saídas externas',streamset:'Configurações de streaming',recset:'Configuração de gravação',iso:'MultiGravação','novo-projeto':'Novo projeto · prévia',datasources:'Fontes de dados',compositions:'Composições',calls:'Chamada de Vídeo',settings:'Configurações',replay:'Replay',replaysettings:'Configurações do Replay',list:'List',mixer:'Mixer de áudio',audio:'Áudio · AFV e filtros'})[id]||'FreeMix · '+id;
