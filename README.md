@@ -1,98 +1,124 @@
-# FreeMix — README /060000
+# FreeMix
 
-Estado vigente após aceite Root: **0.1.0-local.20261010060000, Native24/a047860**. Uma instalação própria, dois ciclos cooperativos counter0/crash0, Meter [0,0] preservados, diagnóstico instalado sanitizado e desinstalação conservadora. Operador preservado, não ativado/substituído.
-
-Git do payload selado: **6adcd19315c01a4f01baaab2fd5d9e560872619b**. O commit posterior de provas/documentação não recompõe o payload. Manifesto 7107aa50b55dd2584be4fc30760af6ef1c85855c6995cd10758e65decc0a93b4; Setup 3a53cc01ea2998d785e4914c219084e6868ad4bf7b33fff31f074685878993bd; ZIP 82769392912badfb5a4f03a717181e915b404d8418fe7e2376f2702dddbfe821. Todos9582 arquivos assinados e2085pinsNative foram conferidos.
-
-Menus/NAV/Replay Settings/Calls/Externo e as correções Calls/HDR desta fonte fazem parte do candidato600. O QA instalado usa HDR GET sem transmissão; mídia HDR local anterior continua uma prova separada.050500 foi candidato não selecionado: FAIL de observação API preservado, seguido de diagnóstico/uninstall em continuação separada; não virou PASS.035000 permanece como seleção anterior preservada.
-
-Instale em destino novo/vazio. Estado e critérios em docs/CONTINUAR.md, docs/ENTREGA-ATUAL.md e docs/PENDENCIAS-REAIS.md.
-
-Baseline aprovada somente no escopo dos recibos, sem promessa100%. A auditoria posterior identificou recuperação incompleta de operações incertas e um atalho FTB sem contrato público confirmável; ambos continuam em correção posterior, junto do retorno contínuo das Calls. IAB com backend Native real não prova CEF desktop, editores visíveis/foco/z-order, GPU/PCM, endurance ou todos encoders. Retorno custom Calls usa JPEG640×360 até5fps; vídeo contínuo25/30fps por fonte ainda requer pipeline próprio com PTS/backpressure/sincronismo, não só timer/hardware. Programa usa câmera virtual com taxa ideal solicitada, sem taxa efetiva homologada aqui. ASIO/SDI/PTZ/controladores físicos, WAN/TURN/bonding, Windows limpo, receptor/monitor HDR e NDI HDR Advanced SDK/licença/implementação continuam gates separados. GTZIP finito não implica compatibilidade universal/3D/frames ausentes. Alpha web abortado; ponte alpha nativa beta separada. Assinatura interna Ed25519; sem Authenticode.
-
-Provas instaladas: qa-finalizacao/setup-060000-qa/report.json SHA 77d835df3da98d84c5e4458450cbbd0ecc2917e767dc43061d9551d7e53ded0c; allowlist SHA 703df68812198b839e1a697f8303805d0f4b9fc2c012108db3646398f998d25a; Root IAB files5 SHA 7c5b0acb987cd81f4a8179bc84a5592efffc91dfc089a9a5fee96f67306253d3.
+**Open-source live video production & switcher suite** — mesa de corte broadcast com motor OBS (libobs/FFmpeg), lógica operacional própria, não clone do OBS nem skin do vMix.
 
 ---
 
-## Histórico preservado — estado anterior à seleção060000
+## O que é
 
-Referências a atual/pendente/próximo abaixo pertencem ao registro original; artefatos selados/recibos não foram reescritos.
+FreeMix une em uma única interface: **Preview • Program • T-Bar • Bandeja de Inputs • Mixer de Áudio • Overlays/DSK • Replay A/B • Playlist • Calls N-1 • DataSources • Multistream/SRT/NDI/SDI**.
 
-# FreeMix
+A unidade principal é o **INPUT** (câmera, VT, GC, Call, Replay, Composição), não Scene/Source. O operador pensa em produção, não em configuração de engine.
 
-**Abrir sua mesa:** [ABRIR-FREEMIX.cmd](ABRIR-FREEMIX.cmd). O atalho `FreeMix Studio.lnk` faz a mesma coisa. O inicializador prepara motor + API e preserva a mesa já aberta.
+---
 
-**Instalar em outra pasta ou computador:** [INSTALAR-FREEMIX.cmd](INSTALAR-FREEMIX.cmd). Abre o instalador completo em `entregas`, independente deste projeto após a instalação. A instalação nova começa com uma mesa inicial; não importa automaticamente suas câmeras/projeto.
+## Telas Principais
 
-- [Documentação](docs/README.md): guias, entrega e pendências reais.
-- [Organização](docs/ORGANIZACAO.md): função de cada pasta e histórico movido.
-- [PREPARAR-SERVIDOR.cmd](scripts/manutencao/PREPARAR-SERVIDOR.cmd): prepara o kit para VPS; instruções em [Servidor](servidor/LEIA-ME.md).
-- [COLETAR-LOGS.cmd](COLETAR-LOGS.cmd): gera ZIP local de diagnóstico, mesmo após crash, para enviar por e-mail ou WhatsApp. Não precisa de servidor e não abre o motor. Instruções em [Logs do beta](obs-vmix/docs/LOGS-BETA.md).
+### Mesa Master (Switcher)
+![Mesa Master](screenshots/01_mesa_master.png)
 
-| Pasta | Uso |
+### Hub Remoto / Corte Remoto
+| Hub Remoto | Corte Remoto |
 |---|---|
-| FreeMix/ | Repositório privado com painel, ferramentas e patches; não usar como instalação |
-| obs-vmix/ | Instalação do operador; atualização nativa exige fechar a mesa normalmente |
-| freemix-app/ | Código-fonte nativo e build do fork |
-| entregas/ | Instalador e pacotes assinados da versão atual |
-| docs/, scripts/ | Guias atuais e scripts auxiliares organizados por função |
-| qa-portatil/, qa-finalizacao/, qa-replay/ | Testes isolados e evidências |
-| downloads/ | Dependências verificadas e material de integração |
-| archived/ | Documentos, scripts e referências antigas |
-| node24/, rea/ | Ferramentas preservadas |
-| release-keys/ | Chaves privadas locais de assinatura |
+| ![Hub Remoto](screenshots/02_hub_remoto.png) | ![Corte Remoto](screenshots/03_corte_remoto.png) |
 
-A organização moveu itens antigos para archived/, com recibos de origem/destino. Não abra diretamente `obs-vmix/bin/64bit/FreeMix.exe`: use o inicializador para preparar os serviços das janelas extras.
+### Mixer de Áudio
+![Audio Mixer](screenshots/04_audio_mixer.png)
 
+### Playout Engine & Monitor
+| Playout Engine | Playout Monitor |
+|---|---|
+| ![Playout Engine](screenshots/05_playout_engine.png) | ![Playout Monitor](screenshots/06_playout_monitor.png) |
 
-## Telas do Sistema (Screenshots)
+### Overlays / DSK
+![Overlays DSK](screenshots/07_overlays_dsk.png)
 
-![](screenshots/seq01b_novo_projeto_cameras.png)
+### Composição Multibox (2/3/4 box, PiP, Slides)
+![Composição Multibox](screenshots/08_composicao_multibox.png)
 
-![](screenshots/seq01c_novo_projeto_conferir.png)
+### Efeitos IA / PTZ / DVE 3D
+![Efeitos IA PTZ](screenshots/09_efeitos_ia_ptz.png)
 
-![](screenshots/seq01_novo_projeto_wizard.png)
+### Replay Multicam
+![Replay Multicam](screenshots/10_replay_multicam.png)
 
-![](screenshots/seq02_topbar_monitoramento.png)
+### Calls N-1 (Retorno automático, Publisher, Sala)
+| Calls N-1 | Call Publisher | FreeMix Call Sala |
+|---|---|---|
+| ![Calls N-1](screenshots/12_calls_n1.png) | ![Call Publisher](screenshots/seq08_call_publisher.png) | ![Call Sala](screenshots/seq09_freemix_call_sala.png) |
 
-![](screenshots/seq03_mesa_master_switcher.png)
+### DataSources (Excel/CSV, Google Sheets, JSON)
+![DataSources](screenshots/13_datasources_dados.png)
 
-![](screenshots/seq04_hub_remoto.png)
+### Saídas (Output Engine, SRT, NDI, SDI, Multi-stream, VirtualCam, ISO Rec)
+![Saídas](screenshots/14_saidas_output.png)
 
-![](screenshots/seq05_corte_remoto.png)
+### GC / Títulos (Esportes, Jornalismo, Lower Thirds, Scoreboard, Countdown, etc.)
+| GC Central | Esportes Placar | Jornalismo Lower | Breaking News |
+|---|---|---|---|
+| ![GC Central](screenshots/seq18_gc_central.png) | ![Esportes](screenshots/20_gc_esportes_placar.png) | ![Jornalismo](screenshots/21_gc_jornalismo_lower.png) | ![Breaking](screenshots/46_gc_breaking_news_h.png) |
 
-![](screenshots/seq06b_audio_matriz_vmix.png)
+### Macros, Atalhos, Sinais, Configurações
+| Macros | Atalhos MIDI | Sinais Diagnóstico | Configurações Gerais |
+|---|---|---|---|
+| ![Macros](screenshots/15_macros_automacao.png) | ![Atalhos](screenshots/16_atalhos_teclado.png) | ![Sinais](screenshots/17_sinais_diagnostico.png) | ![Config](screenshots/18_configuracoes_gerais.png) |
 
-![](screenshots/seq06c_audio_direct_wasapi.png)
+---
 
-![](screenshots/seq06_audio_mixer.png)
+## Início Rápido
 
-![](screenshots/seq07_calls_n1.png)
+```cmd
+# Abrir a mesa (prepara motor + API + janelas extras)
+ABRIR-FREEMIX.cmd
 
-![](screenshots/seq08_call_publisher.png)
+# Instalar em outra máquina/pasta
+INSTALAR-FREEMIX.cmd
+```
 
-![](screenshots/seq09_freemix_call_sala.png)
+> **Não execute** `obs-vmix/bin/64bit/FreeMix.exe` direto — use o inicializador para subir os serviços das janelas extras.
 
-![](screenshots/seq10_playout_engine.png)
+---
 
-![](screenshots/seq11_playout_monitor.png)
+## Estrutura do Repositório
 
-![](screenshots/seq12b_composicao_vertical_2box.png)
+| Pasta | Função |
+|---|---|
+| `FreeMix/` | Repositório privado: painel, ferramentas, patches (não usar como instalação) |
+| `obs-vmix/` | Instalação do operador (atualização nativa exige fechar a mesa) |
+| `freemix-app/` | Código-fonte nativo e build do fork |
+| `entregas/` | Instalador e pacotes assinados da versão atual |
+| `docs/`, `scripts/` | Guias e scripts organizados por função |
+| `qa-*/` | Testes isolados e evidências |
+| `downloads/` | Dependências verificadas |
+| `archived/` | Documentos/scripts antigos com recibos |
+| `screenshots/` | Telas do sistema (este README) |
+| `release-keys/` | Chaves privadas de assinatura (local only) |
 
-![](screenshots/seq12c_composicao_3box_triplo.png)
+---
 
-![](screenshots/seq12d_composicao_4box_grid.png)
+## Documentação
 
-![](screenshots/seq12e_composicao_pip.png)
+- [Documentação completa](docs/README.md)
+- [Organização de pastas](docs/ORGANIZACAO.md)
+- [Entrega atual](docs/ENTREGA-ATUAL.md)
+- [Pendências reais](docs/PENDENCIAS-REAIS.md)
+- [Preparar servidor/VPS](scripts/manutencao/PREPARAR-SERVIDOR.cmd)
+- [Coletar logs (ZIP diagnóstico)](COLETAR-LOGS.cmd)
 
-![](screenshots/seq12f_composicao_slides.png)
+---
 
-![](screenshots/seq12_composicao_multibox.png)
+## Princípios de Produto
 
-![](screenshots/seq13b_efeitos_legendas_whisper.png)
+- **Não é clone do OBS** — usa libobs/FFmpeg como base, mas a lógica é de mesa broadcast
+- **INPUT-first** — câmera, VT, GC, Call, Replay, Composição em um card integrado
+- **Reduzir passos** — Call N-1 automático, Replay A/B, DataSources, multisserviços integrados
+- **Resolver defeitos históricos do vMix** — não apenas imitá-lo
+- **Zero interfaces originais** — tudo operado pela UI própria do FreeMix
 
-![](screenshots/seq13c_efeitos_criativos_dve3d.png)
+> Ver visão completa em [`FreeMix/docs/PRODUCT-VISION.md`](FreeMix/docs/PRODUCT-VISION.md)
 
-![](screenshots/seq13d_efeitos_ptz_visca.png)
+---
 
+## Licença
 
+Código-fonte: licença proprietária / source-available. Binários em `entregas/` assinados Ed25519 (sem Authenticode).
