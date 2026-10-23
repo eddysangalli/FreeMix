@@ -4,6 +4,10 @@
 
 ---
 
+![FreeMix Mesa Master](screenshots/hero.png)
+
+---
+
 ## O que é
 
 FreeMix une em uma única interface: **Preview • Program • T-Bar • Bandeja de Inputs • Mixer de Áudio • Overlays/DSK • Replay A/B • Playlist • Calls N-1 • DataSources • Multistream/SRT/NDI/SDI**.
@@ -12,56 +16,25 @@ A unidade principal é o **INPUT** (câmera, VT, GC, Call, Replay, Composição)
 
 ---
 
-## Telas Principais
+## Telas-chave
 
-### Mesa Master (Switcher)
-![Mesa Master](screenshots/01_mesa_master.png)
+### Calls N-1 — FreeMix Call Sala
+Retorno automático N-1, publisher e sala de chamada integrados.
+![Calls Sala](screenshots/seq09_freemix_call_sala.png)
 
-### Hub Remoto / Corte Remoto
-| Hub Remoto | Corte Remoto |
-|---|---|
-| ![Hub Remoto](screenshots/02_hub_remoto.png) | ![Corte Remoto](screenshots/03_corte_remoto.png) |
+### Replay Multicam
+Replay A/B multicâmera com marcação de pontos, câmera lenta, export.
+![Replay Multicam](screenshots/10_replay_multicam.png)
 
-### Mixer de Áudio
-![Audio Mixer](screenshots/04_audio_mixer.png)
+### Overlays / DSK
+Downstream keyers, templates GT,Lower Thirds, bugs, countdowns, scoreboards.
+![Overlays DSK](screenshots/07_overlays_dsk.png)
 
 ### Playout Engine & Monitor
+Engine de playout com playlist, monitor de saída, cue/pre-roll, transições.
 | Playout Engine | Playout Monitor |
 |---|---|
 | ![Playout Engine](screenshots/05_playout_engine.png) | ![Playout Monitor](screenshots/06_playout_monitor.png) |
-
-### Overlays / DSK
-![Overlays DSK](screenshots/07_overlays_dsk.png)
-
-### Composição Multibox (2/3/4 box, PiP, Slides)
-![Composição Multibox](screenshots/08_composicao_multibox.png)
-
-### Efeitos IA / PTZ / DVE 3D
-![Efeitos IA PTZ](screenshots/09_efeitos_ia_ptz.png)
-
-### Replay Multicam
-![Replay Multicam](screenshots/10_replay_multicam.png)
-
-### Calls N-1 (Retorno automático, Publisher, Sala)
-| Calls N-1 | Call Publisher | FreeMix Call Sala |
-|---|---|---|
-| ![Calls N-1](screenshots/12_calls_n1.png) | ![Call Publisher](screenshots/seq08_call_publisher.png) | ![Call Sala](screenshots/seq09_freemix_call_sala.png) |
-
-### DataSources (Excel/CSV, Google Sheets, JSON)
-![DataSources](screenshots/13_datasources_dados.png)
-
-### Saídas (Output Engine, SRT, NDI, SDI, Multi-stream, VirtualCam, ISO Rec)
-![Saídas](screenshots/14_saidas_output.png)
-
-### GC / Títulos (Esportes, Jornalismo, Lower Thirds, Scoreboard, Countdown, etc.)
-| GC Central | Esportes Placar | Jornalismo Lower | Breaking News |
-|---|---|---|---|
-| ![GC Central](screenshots/seq18_gc_central.png) | ![Esportes](screenshots/20_gc_esportes_placar.png) | ![Jornalismo](screenshots/21_gc_jornalismo_lower.png) | ![Breaking](screenshots/46_gc_breaking_news_h.png) |
-
-### Macros, Atalhos, Sinais, Configurações
-| Macros | Atalhos MIDI | Sinais Diagnóstico | Configurações Gerais |
-|---|---|---|---|
-| ![Macros](screenshots/15_macros_automacao.png) | ![Atalhos](screenshots/16_atalhos_teclado.png) | ![Sinais](screenshots/17_sinais_diagnostico.png) | ![Config](screenshots/18_configuracoes_gerais.png) |
 
 ---
 
